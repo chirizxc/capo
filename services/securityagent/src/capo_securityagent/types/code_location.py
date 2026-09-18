@@ -31,14 +31,14 @@ def serialize_json(value: CodeLocation) -> dict:
 
 def deserialize_json(data: dict) -> CodeLocation:
     out: CodeLocation = {}  # type: ignore[typeddict-item]
-    if "filePath" in data:
+    if data.get("filePath") is not None:
         out["file_path"] = data["filePath"]
     else:
         raise DeserializationError("CodeLocation.file_path required")
-    if "lineStart" in data:
+    if data.get("lineStart") is not None:
         out["line_start"] = data["lineStart"]
-    if "lineEnd" in data:
+    if data.get("lineEnd") is not None:
         out["line_end"] = data["lineEnd"]
-    if "label" in data:
+    if data.get("label") is not None:
         out["label"] = data["label"]
     return out

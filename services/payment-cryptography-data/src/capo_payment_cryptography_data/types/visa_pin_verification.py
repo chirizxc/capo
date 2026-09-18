@@ -28,13 +28,13 @@ def serialize_json(value: VisaPinVerification) -> dict:
 
 def deserialize_json(data: dict) -> VisaPinVerification:
     out: VisaPinVerification = {}  # type: ignore[typeddict-item]
-    if "PinVerificationKeyIndex" in data:
+    if data.get("PinVerificationKeyIndex") is not None:
         out["pin_verification_key_index"] = data["PinVerificationKeyIndex"]
     else:
         raise DeserializationError(
             "VisaPinVerification.pin_verification_key_index required"
         )
-    if "VerificationValue" in data:
+    if data.get("VerificationValue") is not None:
         out["verification_value"] = data["VerificationValue"]
     else:
         raise DeserializationError("VisaPinVerification.verification_value required")

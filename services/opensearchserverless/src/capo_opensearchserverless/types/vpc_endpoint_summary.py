@@ -37,10 +37,10 @@ def serialize_aws_json_1_0(value: VpcEndpointSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> VpcEndpointSummary:
     out: VpcEndpointSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     return out

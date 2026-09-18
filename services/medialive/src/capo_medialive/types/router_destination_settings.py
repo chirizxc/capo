@@ -23,6 +23,6 @@ def serialize_json(value: RouterDestinationSettings) -> dict:
 
 def deserialize_json(data: dict) -> RouterDestinationSettings:
     out: RouterDestinationSettings = {}  # type: ignore[typeddict-item]
-    if "availabilityZoneName" in data:
+    if data.get("availabilityZoneName") is not None:
         out["availability_zone_name"] = data["availabilityZoneName"]
     return out

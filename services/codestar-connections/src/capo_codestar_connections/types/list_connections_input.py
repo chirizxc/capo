@@ -45,7 +45,7 @@ def serialize_aws_json_1_0(value: ListConnectionsInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListConnectionsInput:
     out: ListConnectionsInput = {}  # type: ignore[typeddict-item]
-    if "ProviderTypeFilter" in data:
+    if data.get("ProviderTypeFilter") is not None:
         import capo_codestar_connections.types.provider_type
 
         out["provider_type_filter"] = (
@@ -53,12 +53,12 @@ def deserialize_aws_json_1_0(data: dict) -> ListConnectionsInput:
                 data["ProviderTypeFilter"]
             )
         )
-    if "HostArnFilter" in data:
+    if data.get("HostArnFilter") is not None:
         out["host_arn_filter"] = data["HostArnFilter"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     else:
         out["max_results"] = 0
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

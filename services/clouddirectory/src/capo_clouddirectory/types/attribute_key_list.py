@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AttributeKeyList:
 
     out: AttributeKeyList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_clouddirectory.types.attribute_key.deserialize_json(item))
     return out

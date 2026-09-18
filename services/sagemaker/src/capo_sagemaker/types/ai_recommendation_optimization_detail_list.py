@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> AIRecommendationOptimizationDetailLi
 
     out: AIRecommendationOptimizationDetailList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.ai_recommendation_optimization_detail.deserialize_aws_json_1_1(
                 item

@@ -31,9 +31,9 @@ def serialize_json(value: RedshiftStorageProperties) -> dict:
 
 
 def deserialize_json(data: dict) -> RedshiftStorageProperties:
-    if "clusterName" in data:
+    if data.get("clusterName") is not None:
         return {"clusterName": data["clusterName"]}
-    elif "workgroupName" in data:
+    elif data.get("workgroupName") is not None:
         return {"workgroupName": data["workgroupName"]}
     else:
         raise DeserializationError(

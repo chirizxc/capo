@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> RouteTransitIntermediateStopAttributeList:
 
     out: RouteTransitIntermediateStopAttributeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_geo_routes.types.route_transit_intermediate_stop_attribute.deserialize_json(
                 item

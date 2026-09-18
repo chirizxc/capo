@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> RouteTransitSpanList:
 
     out: RouteTransitSpanList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_geo_routes.types.route_transit_span.deserialize_json(item))
     return out

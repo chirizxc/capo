@@ -26,7 +26,7 @@ def serialize_aws_json_1_0(value: DeleteRepositoryLinkInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteRepositoryLinkInput:
     out: DeleteRepositoryLinkInput = {}  # type: ignore[typeddict-item]
-    if "RepositoryLinkId" in data:
+    if data.get("RepositoryLinkId") is not None:
         out["repository_link_id"] = data["RepositoryLinkId"]
     else:
         raise DeserializationError(

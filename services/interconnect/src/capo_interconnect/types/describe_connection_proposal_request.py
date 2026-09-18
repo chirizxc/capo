@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: DescribeConnectionProposalRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeConnectionProposalRequest:
     out: DescribeConnectionProposalRequest = {}  # type: ignore[typeddict-item]
-    if "activationKey" in data:
+    if data.get("activationKey") is not None:
         out["activation_key"] = data["activationKey"]
     else:
         raise DeserializationError(

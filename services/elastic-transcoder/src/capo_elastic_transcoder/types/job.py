@@ -109,47 +109,47 @@ def serialize_json(value: Job) -> dict:
 
 def deserialize_json(data: dict) -> Job:
     out: Job = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "PipelineId" in data:
+    if data.get("PipelineId") is not None:
         out["pipeline_id"] = data["PipelineId"]
-    if "Input" in data:
+    if data.get("Input") is not None:
         import capo_elastic_transcoder.types.job_input
 
         out["input"] = capo_elastic_transcoder.types.job_input.deserialize_json(
             data["Input"]
         )
-    if "Inputs" in data:
+    if data.get("Inputs") is not None:
         import capo_elastic_transcoder.types.job_inputs
 
         out["inputs"] = capo_elastic_transcoder.types.job_inputs.deserialize_json(
             data["Inputs"]
         )
-    if "Output" in data:
+    if data.get("Output") is not None:
         import capo_elastic_transcoder.types.job_output
 
         out["output"] = capo_elastic_transcoder.types.job_output.deserialize_json(
             data["Output"]
         )
-    if "Outputs" in data:
+    if data.get("Outputs") is not None:
         import capo_elastic_transcoder.types.job_outputs
 
         out["outputs"] = capo_elastic_transcoder.types.job_outputs.deserialize_json(
             data["Outputs"]
         )
-    if "OutputKeyPrefix" in data:
+    if data.get("OutputKeyPrefix") is not None:
         out["output_key_prefix"] = data["OutputKeyPrefix"]
-    if "Playlists" in data:
+    if data.get("Playlists") is not None:
         import capo_elastic_transcoder.types.playlists
 
         out["playlists"] = capo_elastic_transcoder.types.playlists.deserialize_json(
             data["Playlists"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "UserMetadata" in data:
+    if data.get("UserMetadata") is not None:
         import capo_elastic_transcoder.types.user_metadata
 
         out["user_metadata"] = (
@@ -157,7 +157,7 @@ def deserialize_json(data: dict) -> Job:
                 data["UserMetadata"]
             )
         )
-    if "Timing" in data:
+    if data.get("Timing") is not None:
         import capo_elastic_transcoder.types.timing
 
         out["timing"] = capo_elastic_transcoder.types.timing.deserialize_json(

@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: PullRequestStatusRequiredException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PullRequestStatusRequiredException_:
     out: PullRequestStatusRequiredException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,20 @@ class PullRequestStatusRequiredException(ServiceError):
 
     code: str | None = "PullRequestStatusRequiredException"
 
-    def __init__(self, data: PullRequestStatusRequiredException_):
+    def __init__(
+        self, data: PullRequestStatusRequiredException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="PullRequestStatusRequiredException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "PullRequestStatusRequiredException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "PullRequestStatusRequiredException":
+        return cls(deserialize_aws_json_1_1(data), message)

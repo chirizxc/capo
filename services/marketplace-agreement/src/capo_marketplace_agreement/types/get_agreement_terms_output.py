@@ -36,7 +36,7 @@ def serialize_aws_json_1_0(value: GetAgreementTermsOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetAgreementTermsOutput:
     out: GetAgreementTermsOutput = {}  # type: ignore[typeddict-item]
-    if "acceptedTerms" in data:
+    if data.get("acceptedTerms") is not None:
         import capo_marketplace_agreement.types.accepted_term_list
 
         out["accepted_terms"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_0(data: dict) -> GetAgreementTermsOutput:
                 data["acceptedTerms"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

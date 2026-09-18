@@ -56,15 +56,15 @@ def serialize_json(value: CreateDatasetRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDatasetRequest:
     out: CreateDatasetRequest = {}  # type: ignore[typeddict-item]
-    if "datasetId" in data:
+    if data.get("datasetId") is not None:
         out["dataset_id"] = data["datasetId"]
-    if "datasetName" in data:
+    if data.get("datasetName") is not None:
         out["dataset_name"] = data["datasetName"]
     else:
         raise DeserializationError("CreateDatasetRequest.dataset_name required")
-    if "datasetDescription" in data:
+    if data.get("datasetDescription") is not None:
         out["dataset_description"] = data["datasetDescription"]
-    if "datasetSource" in data:
+    if data.get("datasetSource") is not None:
         import capo_iotsitewise.types.dataset_source
 
         out["dataset_source"] = capo_iotsitewise.types.dataset_source.deserialize_json(
@@ -72,9 +72,9 @@ def deserialize_json(data: dict) -> CreateDatasetRequest:
         )
     else:
         raise DeserializationError("CreateDatasetRequest.dataset_source required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_iotsitewise.types.tag_map
 
         out["tags"] = capo_iotsitewise.types.tag_map.deserialize_json(data["tags"])

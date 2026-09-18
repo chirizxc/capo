@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: StopAddressListImportJobRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StopAddressListImportJobRequest:
     out: StopAddressListImportJobRequest = {}  # type: ignore[typeddict-item]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
     else:
         raise DeserializationError("StopAddressListImportJobRequest.job_id required")

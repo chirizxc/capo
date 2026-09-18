@@ -53,17 +53,17 @@ def serialize_json(value: AutoshiftSummary) -> dict:
 
 def deserialize_json(data: dict) -> AutoshiftSummary:
     out: AutoshiftSummary = {}  # type: ignore[typeddict-item]
-    if "awayFrom" in data:
+    if data.get("awayFrom") is not None:
         out["away_from"] = data["awayFrom"]
     else:
         raise DeserializationError("AutoshiftSummary.away_from required")
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_arc_zonal_shift.types.expiry_time
 
         out["end_time"] = capo_arc_zonal_shift.types.expiry_time.deserialize_json(
             data["endTime"]
         )
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_arc_zonal_shift.types.start_time
 
         out["start_time"] = capo_arc_zonal_shift.types.start_time.deserialize_json(
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> AutoshiftSummary:
         )
     else:
         raise DeserializationError("AutoshiftSummary.start_time required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_arc_zonal_shift.types.autoshift_execution_status
 
         out["status"] = (

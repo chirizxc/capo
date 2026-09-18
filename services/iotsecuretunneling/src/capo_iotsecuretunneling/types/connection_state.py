@@ -42,7 +42,7 @@ def serialize_aws_json_1_1(value: ConnectionState) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConnectionState:
     out: ConnectionState = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iotsecuretunneling.types.connection_status
 
         out["status"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConnectionState:
                 data["status"]
             )
         )
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_iotsecuretunneling.types.date_type
 
         out["last_updated_at"] = (

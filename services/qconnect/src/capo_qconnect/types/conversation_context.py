@@ -30,7 +30,7 @@ def serialize_json(value: ConversationContext) -> dict:
 
 def deserialize_json(data: dict) -> ConversationContext:
     out: ConversationContext = {}  # type: ignore[typeddict-item]
-    if "selfServiceConversationHistory" in data:
+    if data.get("selfServiceConversationHistory") is not None:
         import capo_qconnect.types.self_service_conversation_history_list
 
         out["self_service_conversation_history"] = (

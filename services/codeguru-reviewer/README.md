@@ -13,9 +13,9 @@ from capo_codeguru_reviewer import AsyncCodeGuruReviewerClient
 
 
 async def main():
-    async with AsyncCodeGuruReviewerClient() as s3:
+    async with AsyncCodeGuruReviewerClient() as code_guru_reviewer:
         # Example: call the associate_repository operation
-        response = await s3.associate_repository()
+        response = await code_guru_reviewer.associate_repository()
         print(response["repository_association"])
 ```
 
@@ -28,9 +28,9 @@ from capo_codeguru_reviewer import AsyncCodeGuruReviewerClient
 
 
 async def main():
-    async with AsyncCodeGuruReviewerClient() as s3:
-        # Example: paginate over list_repository_associations
-        async for item in s3.iter_list_repository_associations():
+    async with AsyncCodeGuruReviewerClient() as code_guru_reviewer:
+        # Example: paginate over list_code_reviews
+        async for item in code_guru_reviewer.iter_list_code_reviews():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_codeguru_reviewer.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncCodeGuruReviewerClient() as s3:
+    async with AsyncCodeGuruReviewerClient() as code_guru_reviewer:
         try:
-            await s3.associate_repository()
+            await code_guru_reviewer.associate_repository()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_codeguru_reviewer import AsyncCodeGuruReviewerClient
 
 
 async def main():
-    async with AsyncCodeGuruReviewerClient() as s3:
+    async with AsyncCodeGuruReviewerClient() as code_guru_reviewer:
         # Default: 3 attempts for every operation
-        response = await s3.associate_repository()
+        response = await code_guru_reviewer.associate_repository()
 
         # Override per operation
-        response = await s3.associate_repository(config_overrides={"retry_max_attempts": 5})
+        response = await code_guru_reviewer.associate_repository(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.associate_repository(config_overrides={"retry_max_attempts": 1})
+        response = await code_guru_reviewer.associate_repository(config_overrides={"retry_max_attempts": 1})
 ```

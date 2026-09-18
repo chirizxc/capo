@@ -26,7 +26,7 @@ def serialize_json(value: QuickResponseDataProvider) -> dict:
 
 
 def deserialize_json(data: dict) -> QuickResponseDataProvider:
-    if "content" in data:
+    if data.get("content") is not None:
         return {"content": data["content"]}
     else:
         raise DeserializationError(

@@ -37,7 +37,7 @@ def serialize_json(value: ListRasterDataCollectionsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListRasterDataCollectionsOutput:
     out: ListRasterDataCollectionsOutput = {}  # type: ignore[typeddict-item]
-    if "RasterDataCollectionSummaries" in data:
+    if data.get("RasterDataCollectionSummaries") is not None:
         import capo_sagemaker_geospatial.types.data_collections_list
 
         out["raster_data_collection_summaries"] = (
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> ListRasterDataCollectionsOutput:
         raise DeserializationError(
             "ListRasterDataCollectionsOutput.raster_data_collection_summaries required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -23,6 +23,6 @@ def serialize_json(value: AttendeeFeatures) -> dict:
 
 def deserialize_json(data: dict) -> AttendeeFeatures:
     out: AttendeeFeatures = {}  # type: ignore[typeddict-item]
-    if "MaxCount" in data:
+    if data.get("MaxCount") is not None:
         out["max_count"] = data["MaxCount"]
     return out

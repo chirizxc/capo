@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DescribeAffectedEntitiesForOrganizationRequest:
     out: DescribeAffectedEntitiesForOrganizationRequest = {}  # type: ignore[typeddict-item]
-    if "organizationEntityFilters" in data:
+    if data.get("organizationEntityFilters") is not None:
         import capo_health.types.organization_entity_filters_list
 
         out["organization_entity_filters"] = (
@@ -73,13 +73,13 @@ def deserialize_aws_json_1_1(
                 data["organizationEntityFilters"]
             )
         )
-    if "locale" in data:
+    if data.get("locale") is not None:
         out["locale"] = data["locale"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "organizationEntityAccountFilters" in data:
+    if data.get("organizationEntityAccountFilters") is not None:
         import capo_health.types.organization_entity_account_filters_list
 
         out["organization_entity_account_filters"] = (

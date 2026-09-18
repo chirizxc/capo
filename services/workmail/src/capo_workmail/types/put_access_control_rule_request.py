@@ -118,11 +118,11 @@ def serialize_aws_json_1_1(value: PutAccessControlRuleRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutAccessControlRuleRequest:
     out: PutAccessControlRuleRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("PutAccessControlRuleRequest.name required")
-    if "Effect" in data:
+    if data.get("Effect") is not None:
         import capo_workmail.types.access_control_rule_effect
 
         out["effect"] = (
@@ -132,17 +132,17 @@ def deserialize_aws_json_1_1(data: dict) -> PutAccessControlRuleRequest:
         )
     else:
         raise DeserializationError("PutAccessControlRuleRequest.effect required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     else:
         raise DeserializationError("PutAccessControlRuleRequest.description required")
-    if "IpRanges" in data:
+    if data.get("IpRanges") is not None:
         import capo_workmail.types.ip_range_list
 
         out["ip_ranges"] = capo_workmail.types.ip_range_list.deserialize_aws_json_1_1(
             data["IpRanges"]
         )
-    if "NotIpRanges" in data:
+    if data.get("NotIpRanges") is not None:
         import capo_workmail.types.ip_range_list
 
         out["not_ip_ranges"] = (
@@ -150,37 +150,37 @@ def deserialize_aws_json_1_1(data: dict) -> PutAccessControlRuleRequest:
                 data["NotIpRanges"]
             )
         )
-    if "Actions" in data:
+    if data.get("Actions") is not None:
         import capo_workmail.types.actions_list
 
         out["actions"] = capo_workmail.types.actions_list.deserialize_aws_json_1_1(
             data["Actions"]
         )
-    if "NotActions" in data:
+    if data.get("NotActions") is not None:
         import capo_workmail.types.actions_list
 
         out["not_actions"] = capo_workmail.types.actions_list.deserialize_aws_json_1_1(
             data["NotActions"]
         )
-    if "UserIds" in data:
+    if data.get("UserIds") is not None:
         import capo_workmail.types.user_id_list
 
         out["user_ids"] = capo_workmail.types.user_id_list.deserialize_aws_json_1_1(
             data["UserIds"]
         )
-    if "NotUserIds" in data:
+    if data.get("NotUserIds") is not None:
         import capo_workmail.types.user_id_list
 
         out["not_user_ids"] = capo_workmail.types.user_id_list.deserialize_aws_json_1_1(
             data["NotUserIds"]
         )
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
     else:
         raise DeserializationError(
             "PutAccessControlRuleRequest.organization_id required"
         )
-    if "ImpersonationRoleIds" in data:
+    if data.get("ImpersonationRoleIds") is not None:
         import capo_workmail.types.impersonation_role_id_list
 
         out["impersonation_role_ids"] = (
@@ -188,7 +188,7 @@ def deserialize_aws_json_1_1(data: dict) -> PutAccessControlRuleRequest:
                 data["ImpersonationRoleIds"]
             )
         )
-    if "NotImpersonationRoleIds" in data:
+    if data.get("NotImpersonationRoleIds") is not None:
         import capo_workmail.types.impersonation_role_id_list
 
         out["not_impersonation_role_ids"] = (

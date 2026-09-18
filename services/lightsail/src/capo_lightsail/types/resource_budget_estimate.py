@@ -60,9 +60,9 @@ def serialize_aws_json_1_1(value: ResourceBudgetEstimate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResourceBudgetEstimate:
     out: ResourceBudgetEstimate = {}  # type: ignore[typeddict-item]
-    if "resourceName" in data:
+    if data.get("resourceName") is not None:
         out["resource_name"] = data["resourceName"]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_lightsail.types.resource_type
 
         out["resource_type"] = (
@@ -70,7 +70,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceBudgetEstimate:
                 data["resourceType"]
             )
         )
-    if "costEstimates" in data:
+    if data.get("costEstimates") is not None:
         import capo_lightsail.types.cost_estimates
 
         out["cost_estimates"] = (
@@ -78,13 +78,13 @@ def deserialize_aws_json_1_1(data: dict) -> ResourceBudgetEstimate:
                 data["costEstimates"]
             )
         )
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_lightsail.types.iso_date
 
         out["start_time"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
             data["startTime"]
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_lightsail.types.iso_date
 
         out["end_time"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(

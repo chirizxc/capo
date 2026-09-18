@@ -45,15 +45,15 @@ def serialize_json(value: AssetListingItemAdditionalAttributes) -> dict:
 
 def deserialize_json(data: dict) -> AssetListingItemAdditionalAttributes:
     out: AssetListingItemAdditionalAttributes = {}  # type: ignore[typeddict-item]
-    if "forms" in data:
+    if data.get("forms") is not None:
         out["forms"] = data["forms"]
-    if "matchRationale" in data:
+    if data.get("matchRationale") is not None:
         import capo_datazone.types.match_rationale
 
         out["match_rationale"] = capo_datazone.types.match_rationale.deserialize_json(
             data["matchRationale"]
         )
-    if "latestTimeSeriesDataPointForms" in data:
+    if data.get("latestTimeSeriesDataPointForms") is not None:
         import capo_datazone.types.time_series_data_point_summary_form_output_list
 
         out["latest_time_series_data_point_forms"] = (

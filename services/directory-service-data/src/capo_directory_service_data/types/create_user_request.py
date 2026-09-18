@@ -64,17 +64,17 @@ def serialize_json(value: CreateUserRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateUserRequest:
     out: CreateUserRequest = {}  # type: ignore[typeddict-item]
-    if "SAMAccountName" in data:
+    if data.get("SAMAccountName") is not None:
         out["sam_account_name"] = data["SAMAccountName"]
     else:
         raise DeserializationError("CreateUserRequest.sam_account_name required")
-    if "EmailAddress" in data:
+    if data.get("EmailAddress") is not None:
         out["email_address"] = data["EmailAddress"]
-    if "GivenName" in data:
+    if data.get("GivenName") is not None:
         out["given_name"] = data["GivenName"]
-    if "Surname" in data:
+    if data.get("Surname") is not None:
         out["surname"] = data["Surname"]
-    if "OtherAttributes" in data:
+    if data.get("OtherAttributes") is not None:
         import capo_directory_service_data.types.attributes
 
         out["other_attributes"] = (
@@ -82,6 +82,6 @@ def deserialize_json(data: dict) -> CreateUserRequest:
                 data["OtherAttributes"]
             )
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

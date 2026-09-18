@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsDmsReplicationInstanceVpcSecurityGroupsLi
 
     out: AwsDmsReplicationInstanceVpcSecurityGroupsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_dms_replication_instance_vpc_security_groups_details.deserialize_json(
                 item

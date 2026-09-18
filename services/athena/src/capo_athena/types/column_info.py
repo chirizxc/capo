@@ -63,37 +63,37 @@ def serialize_aws_json_1_1(value: ColumnInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ColumnInfo:
     out: ColumnInfo = {}  # type: ignore[typeddict-item]
-    if "CatalogName" in data:
+    if data.get("CatalogName") is not None:
         out["catalog_name"] = data["CatalogName"]
-    if "SchemaName" in data:
+    if data.get("SchemaName") is not None:
         out["schema_name"] = data["SchemaName"]
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("ColumnInfo.name required")
-    if "Label" in data:
+    if data.get("Label") is not None:
         out["label"] = data["Label"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     else:
         raise DeserializationError("ColumnInfo.type required")
-    if "Precision" in data:
+    if data.get("Precision") is not None:
         out["precision"] = data["Precision"]
     else:
         out["precision"] = 0
-    if "Scale" in data:
+    if data.get("Scale") is not None:
         out["scale"] = data["Scale"]
     else:
         out["scale"] = 0
-    if "Nullable" in data:
+    if data.get("Nullable") is not None:
         import capo_athena.types.column_nullable
 
         out["nullable"] = capo_athena.types.column_nullable.deserialize_aws_json_1_1(
             data["Nullable"]
         )
-    if "CaseSensitive" in data:
+    if data.get("CaseSensitive") is not None:
         out["case_sensitive"] = data["CaseSensitive"]
     else:
         out["case_sensitive"] = False

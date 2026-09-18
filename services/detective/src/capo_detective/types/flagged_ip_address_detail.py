@@ -30,9 +30,9 @@ def serialize_json(value: FlaggedIpAddressDetail) -> dict:
 
 def deserialize_json(data: dict) -> FlaggedIpAddressDetail:
     out: FlaggedIpAddressDetail = {}  # type: ignore[typeddict-item]
-    if "IpAddress" in data:
+    if data.get("IpAddress") is not None:
         out["ip_address"] = data["IpAddress"]
-    if "Reason" in data:
+    if data.get("Reason") is not None:
         import capo_detective.types.reason
 
         out["reason"] = capo_detective.types.reason.deserialize_json(data["Reason"])

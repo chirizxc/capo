@@ -38,7 +38,7 @@ def serialize_json(value: UpdateReputationEntityCustomerManagedStatusRequest) ->
 
 def deserialize_json(data: dict) -> UpdateReputationEntityCustomerManagedStatusRequest:
     out: UpdateReputationEntityCustomerManagedStatusRequest = {}  # type: ignore[typeddict-item]
-    if "SendingStatus" in data:
+    if data.get("SendingStatus") is not None:
         import capo_sesv2.types.sending_status
 
         out["sending_status"] = capo_sesv2.types.sending_status.deserialize_json(

@@ -49,7 +49,7 @@ def serialize_json(value: UpdateSpaceResourcesRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSpaceResourcesRequest:
     out: UpdateSpaceResourcesRequest = {}  # type: ignore[typeddict-item]
-    if "AddResources" in data:
+    if data.get("AddResources") is not None:
         import capo_quicksight.types.space_resource_operations
 
         out["add_resources"] = (
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> UpdateSpaceResourcesRequest:
                 data["AddResources"]
             )
         )
-    if "RemoveResources" in data:
+    if data.get("RemoveResources") is not None:
         import capo_quicksight.types.space_resource_operations
 
         out["remove_resources"] = (

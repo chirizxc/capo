@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteIdentityProviderConfigurationRequest) ->
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteIdentityProviderConfigurationRequest:
     out: DeleteIdentityProviderConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
     else:
         raise DeserializationError(

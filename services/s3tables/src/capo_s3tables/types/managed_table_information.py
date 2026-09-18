@@ -31,7 +31,7 @@ def serialize_json(value: ManagedTableInformation) -> dict:
 
 def deserialize_json(data: dict) -> ManagedTableInformation:
     out: ManagedTableInformation = {}  # type: ignore[typeddict-item]
-    if "replicationInformation" in data:
+    if data.get("replicationInformation") is not None:
         import capo_s3tables.types.replication_information
 
         out["replication_information"] = (

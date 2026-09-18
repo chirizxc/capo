@@ -40,13 +40,13 @@ def serialize_aws_json_1_1(value: BatchGetPartitionResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetPartitionResponse:
     out: BatchGetPartitionResponse = {}  # type: ignore[typeddict-item]
-    if "Partitions" in data:
+    if data.get("Partitions") is not None:
         import capo_glue.types.partition_list
 
         out["partitions"] = capo_glue.types.partition_list.deserialize_aws_json_1_1(
             data["Partitions"]
         )
-    if "UnprocessedKeys" in data:
+    if data.get("UnprocessedKeys") is not None:
         import capo_glue.types.batch_get_partition_value_list
 
         out["unprocessed_keys"] = (

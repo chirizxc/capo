@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: ModelLatencyThreshold) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModelLatencyThreshold:
     out: ModelLatencyThreshold = {}  # type: ignore[typeddict-item]
-    if "Percentile" in data:
+    if data.get("Percentile") is not None:
         out["percentile"] = data["Percentile"]
-    if "ValueInMilliseconds" in data:
+    if data.get("ValueInMilliseconds") is not None:
         out["value_in_milliseconds"] = data["ValueInMilliseconds"]
     return out

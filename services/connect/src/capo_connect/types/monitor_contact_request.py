@@ -50,19 +50,19 @@ def serialize_json(value: MonitorContactRequest) -> dict:
 
 def deserialize_json(data: dict) -> MonitorContactRequest:
     out: MonitorContactRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
     else:
         raise DeserializationError("MonitorContactRequest.instance_id required")
-    if "ContactId" in data:
+    if data.get("ContactId") is not None:
         out["contact_id"] = data["ContactId"]
     else:
         raise DeserializationError("MonitorContactRequest.contact_id required")
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
     else:
         raise DeserializationError("MonitorContactRequest.user_id required")
-    if "AllowedMonitorCapabilities" in data:
+    if data.get("AllowedMonitorCapabilities") is not None:
         import capo_connect.types.allowed_monitor_capabilities
 
         out["allowed_monitor_capabilities"] = (
@@ -70,6 +70,6 @@ def deserialize_json(data: dict) -> MonitorContactRequest:
                 data["AllowedMonitorCapabilities"]
             )
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

@@ -46,11 +46,11 @@ def serialize_aws_json_1_1(value: DynamoDBELTConnectorSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DynamoDBELTConnectorSource:
     out: DynamoDBELTConnectorSource = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("DynamoDBELTConnectorSource.name required")
-    if "ConnectionOptions" in data:
+    if data.get("ConnectionOptions") is not None:
         import capo_glue.types.ddbelt_connection_options
 
         out["connection_options"] = (
@@ -58,7 +58,7 @@ def deserialize_aws_json_1_1(data: dict) -> DynamoDBELTConnectorSource:
                 data["ConnectionOptions"]
             )
         )
-    if "OutputSchemas" in data:
+    if data.get("OutputSchemas") is not None:
         import capo_glue.types.glue_schemas
 
         out["output_schemas"] = capo_glue.types.glue_schemas.deserialize_aws_json_1_1(

@@ -58,19 +58,19 @@ def serialize_aws_json_1_1(value: ManagedRuleSetVersion) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ManagedRuleSetVersion:
     out: ManagedRuleSetVersion = {}  # type: ignore[typeddict-item]
-    if "AssociatedRuleGroupArn" in data:
+    if data.get("AssociatedRuleGroupArn") is not None:
         out["associated_rule_group_arn"] = data["AssociatedRuleGroupArn"]
-    if "Capacity" in data:
+    if data.get("Capacity") is not None:
         out["capacity"] = data["Capacity"]
-    if "ForecastedLifetime" in data:
+    if data.get("ForecastedLifetime") is not None:
         out["forecasted_lifetime"] = data["ForecastedLifetime"]
-    if "PublishTimestamp" in data:
+    if data.get("PublishTimestamp") is not None:
         import capo_wafv2.types.timestamp
 
         out["publish_timestamp"] = capo_wafv2.types.timestamp.deserialize_aws_json_1_1(
             data["PublishTimestamp"]
         )
-    if "LastUpdateTimestamp" in data:
+    if data.get("LastUpdateTimestamp") is not None:
         import capo_wafv2.types.timestamp
 
         out["last_update_timestamp"] = (
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_1(data: dict) -> ManagedRuleSetVersion:
                 data["LastUpdateTimestamp"]
             )
         )
-    if "ExpiryTimestamp" in data:
+    if data.get("ExpiryTimestamp") is not None:
         import capo_wafv2.types.timestamp
 
         out["expiry_timestamp"] = capo_wafv2.types.timestamp.deserialize_aws_json_1_1(

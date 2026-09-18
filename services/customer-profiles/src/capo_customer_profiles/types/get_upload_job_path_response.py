@@ -38,13 +38,13 @@ def serialize_json(value: GetUploadJobPathResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetUploadJobPathResponse:
     out: GetUploadJobPathResponse = {}  # type: ignore[typeddict-item]
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
     else:
         raise DeserializationError("GetUploadJobPathResponse.url required")
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "ValidUntil" in data:
+    if data.get("ValidUntil") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["valid_until"] = capo_customer_profiles.types.timestamp.deserialize_json(

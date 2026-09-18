@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ParticipantTimerConfigList:
 
     out: ParticipantTimerConfigList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.participant_timer_configuration.deserialize_json(item)
         )

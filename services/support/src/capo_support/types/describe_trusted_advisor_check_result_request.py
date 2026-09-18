@@ -28,12 +28,12 @@ def serialize_aws_json_1_1(value: DescribeTrustedAdvisorCheckResultRequest) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeTrustedAdvisorCheckResultRequest:
     out: DescribeTrustedAdvisorCheckResultRequest = {}  # type: ignore[typeddict-item]
-    if "checkId" in data:
+    if data.get("checkId") is not None:
         out["check_id"] = data["checkId"]
     else:
         raise DeserializationError(
             "DescribeTrustedAdvisorCheckResultRequest.check_id required"
         )
-    if "language" in data:
+    if data.get("language") is not None:
         out["language"] = data["language"]
     return out

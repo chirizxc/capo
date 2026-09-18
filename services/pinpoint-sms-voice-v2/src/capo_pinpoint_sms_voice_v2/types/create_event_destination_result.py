@@ -42,11 +42,11 @@ def serialize_aws_json_1_0(value: CreateEventDestinationResult) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateEventDestinationResult:
     out: CreateEventDestinationResult = {}  # type: ignore[typeddict-item]
-    if "ConfigurationSetArn" in data:
+    if data.get("ConfigurationSetArn") is not None:
         out["configuration_set_arn"] = data["ConfigurationSetArn"]
-    if "ConfigurationSetName" in data:
+    if data.get("ConfigurationSetName") is not None:
         out["configuration_set_name"] = data["ConfigurationSetName"]
-    if "EventDestination" in data:
+    if data.get("EventDestination") is not None:
         import capo_pinpoint_sms_voice_v2.types.event_destination
 
         out["event_destination"] = (

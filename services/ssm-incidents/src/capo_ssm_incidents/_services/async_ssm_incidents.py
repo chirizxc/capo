@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.ssmincidents#SSMIncidents``."""
 
 import datetime
+import uuid
 import warnings
 from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -266,15 +267,17 @@ class AsyncSSMIncidentsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_incidents.types.batch_get_incident_findings_input.BatchGetIncidentFindingsInput = {}  # type: ignore[typeddict-item]
-        input_["incident_record_arn"] = incident_record_arn
-        input_["finding_ids"] = finding_ids
+        input_: capo_ssm_incidents.types.batch_get_incident_findings_input.BatchGetIncidentFindingsInput = {
+            "incident_record_arn": incident_record_arn,
+            "finding_ids": finding_ids,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_replication_set(
@@ -320,10 +323,12 @@ class AsyncSSMIncidentsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_incidents.types.create_replication_set_input.CreateReplicationSetInput = {}  # type: ignore[typeddict-item]
-        input_["regions"] = regions
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_ssm_incidents.types.create_replication_set_input.CreateReplicationSetInput = {
+            "regions": regions
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -332,6 +337,7 @@ class AsyncSSMIncidentsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_response_plan(
@@ -399,13 +405,15 @@ class AsyncSSMIncidentsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_incidents.types.create_response_plan_input.CreateResponsePlanInput = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["name"] = name
+        input_: capo_ssm_incidents.types.create_response_plan_input.CreateResponsePlanInput = {
+            "name": name,
+            "incident_template": incident_template,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if display_name is not None:
             input_["display_name"] = display_name
-        input_["incident_template"] = incident_template
         if chat_channel is not None:
             input_["chat_channel"] = chat_channel
         if engagements is not None:
@@ -422,6 +430,7 @@ class AsyncSSMIncidentsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_timeline_event(
@@ -475,13 +484,15 @@ class AsyncSSMIncidentsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_incidents.types.create_timeline_event_input.CreateTimelineEventInput = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["incident_record_arn"] = incident_record_arn
-        input_["event_time"] = event_time
-        input_["event_type"] = event_type
-        input_["event_data"] = event_data
+        input_: capo_ssm_incidents.types.create_timeline_event_input.CreateTimelineEventInput = {
+            "incident_record_arn": incident_record_arn,
+            "event_time": event_time,
+            "event_type": event_type,
+            "event_data": event_data,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if event_references is not None:
             input_["event_references"] = event_references
 
@@ -490,6 +501,7 @@ class AsyncSSMIncidentsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_incident_record(
@@ -527,14 +539,16 @@ class AsyncSSMIncidentsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_incidents.types.delete_incident_record_input.DeleteIncidentRecordInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_ssm_incidents.types.delete_incident_record_input.DeleteIncidentRecordInput = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_replication_set(
@@ -573,14 +587,16 @@ class AsyncSSMIncidentsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_incidents.types.delete_replication_set_input.DeleteReplicationSetInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_ssm_incidents.types.delete_replication_set_input.DeleteReplicationSetInput = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_resource_policy(
@@ -621,15 +637,17 @@ class AsyncSSMIncidentsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_incidents.types.delete_resource_policy_input.DeleteResourcePolicyInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["policy_id"] = policy_id
+        input_: capo_ssm_incidents.types.delete_resource_policy_input.DeleteResourcePolicyInput = {
+            "resource_arn": resource_arn,
+            "policy_id": policy_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_response_plan(
@@ -669,14 +687,16 @@ class AsyncSSMIncidentsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_incidents.types.delete_response_plan_input.DeleteResponsePlanInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_ssm_incidents.types.delete_response_plan_input.DeleteResponsePlanInput = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_timeline_event(
@@ -716,15 +736,17 @@ class AsyncSSMIncidentsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_incidents.types.delete_timeline_event_input.DeleteTimelineEventInput = {}  # type: ignore[typeddict-item]
-        input_["incident_record_arn"] = incident_record_arn
-        input_["event_id"] = event_id
+        input_: capo_ssm_incidents.types.delete_timeline_event_input.DeleteTimelineEventInput = {
+            "incident_record_arn": incident_record_arn,
+            "event_id": event_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_incident_record(
@@ -763,14 +785,16 @@ class AsyncSSMIncidentsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_incidents.types.get_incident_record_input.GetIncidentRecordInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_ssm_incidents.types.get_incident_record_input.GetIncidentRecordInput = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_replication_set(
@@ -809,14 +833,16 @@ class AsyncSSMIncidentsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_incidents.types.get_replication_set_input.GetReplicationSetInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_ssm_incidents.types.get_replication_set_input.GetReplicationSetInput = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_resource_policies(
@@ -859,8 +885,9 @@ class AsyncSSMIncidentsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_incidents.types.get_resource_policies_input.GetResourcePoliciesInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_ssm_incidents.types.get_resource_policies_input.GetResourcePoliciesInput = {
+            "resource_arn": resource_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -871,6 +898,7 @@ class AsyncSSMIncidentsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_get_resource_policies(
@@ -932,14 +960,16 @@ class AsyncSSMIncidentsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_incidents.types.get_response_plan_input.GetResponsePlanInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_ssm_incidents.types.get_response_plan_input.GetResponsePlanInput = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_timeline_event(
@@ -980,15 +1010,17 @@ class AsyncSSMIncidentsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_incidents.types.get_timeline_event_input.GetTimelineEventInput = {}  # type: ignore[typeddict-item]
-        input_["incident_record_arn"] = incident_record_arn
-        input_["event_id"] = event_id
+        input_: capo_ssm_incidents.types.get_timeline_event_input.GetTimelineEventInput = {
+            "incident_record_arn": incident_record_arn,
+            "event_id": event_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_incident_findings(
@@ -1031,8 +1063,9 @@ class AsyncSSMIncidentsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_incidents.types.list_incident_findings_input.ListIncidentFindingsInput = {}  # type: ignore[typeddict-item]
-        input_["incident_record_arn"] = incident_record_arn
+        input_: capo_ssm_incidents.types.list_incident_findings_input.ListIncidentFindingsInput = {
+            "incident_record_arn": incident_record_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1043,6 +1076,7 @@ class AsyncSSMIncidentsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_incident_findings(
@@ -1107,7 +1141,7 @@ class AsyncSSMIncidentsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_incidents.types.list_incident_records_input.ListIncidentRecordsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_ssm_incidents.types.list_incident_records_input.ListIncidentRecordsInput = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -1120,6 +1154,7 @@ class AsyncSSMIncidentsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_incident_records(
@@ -1184,8 +1219,9 @@ class AsyncSSMIncidentsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_incidents.types.list_related_items_input.ListRelatedItemsInput = {}  # type: ignore[typeddict-item]
-        input_["incident_record_arn"] = incident_record_arn
+        input_: capo_ssm_incidents.types.list_related_items_input.ListRelatedItemsInput = {
+            "incident_record_arn": incident_record_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1196,6 +1232,7 @@ class AsyncSSMIncidentsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_related_items(
@@ -1258,7 +1295,7 @@ class AsyncSSMIncidentsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_incidents.types.list_replication_sets_input.ListReplicationSetsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_ssm_incidents.types.list_replication_sets_input.ListReplicationSetsInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1269,6 +1306,7 @@ class AsyncSSMIncidentsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_replication_sets(
@@ -1329,7 +1367,7 @@ class AsyncSSMIncidentsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_incidents.types.list_response_plans_input.ListResponsePlansInput = {}  # type: ignore[typeddict-item]
+        input_: capo_ssm_incidents.types.list_response_plans_input.ListResponsePlansInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1340,6 +1378,7 @@ class AsyncSSMIncidentsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_response_plans(
@@ -1399,14 +1438,16 @@ class AsyncSSMIncidentsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_incidents.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_ssm_incidents.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_timeline_events(
@@ -1458,8 +1499,9 @@ class AsyncSSMIncidentsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_incidents.types.list_timeline_events_input.ListTimelineEventsInput = {}  # type: ignore[typeddict-item]
-        input_["incident_record_arn"] = incident_record_arn
+        input_: capo_ssm_incidents.types.list_timeline_events_input.ListTimelineEventsInput = {
+            "incident_record_arn": incident_record_arn
+        }
         if filters is not None:
             input_["filters"] = filters
         if sort_by is not None:
@@ -1476,6 +1518,7 @@ class AsyncSSMIncidentsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_timeline_events(
@@ -1547,15 +1590,17 @@ class AsyncSSMIncidentsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_incidents.types.put_resource_policy_input.PutResourcePolicyInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["policy"] = policy
+        input_: capo_ssm_incidents.types.put_resource_policy_input.PutResourcePolicyInput = {
+            "resource_arn": resource_arn,
+            "policy": policy,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_incident(
@@ -1611,10 +1656,12 @@ class AsyncSSMIncidentsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_incidents.types.start_incident_input.StartIncidentInput = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["response_plan_arn"] = response_plan_arn
+        input_: capo_ssm_incidents.types.start_incident_input.StartIncidentInput = {
+            "response_plan_arn": response_plan_arn
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if title is not None:
             input_["title"] = title
         if impact is not None:
@@ -1629,6 +1676,7 @@ class AsyncSSMIncidentsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -1671,15 +1719,17 @@ class AsyncSSMIncidentsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_incidents.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_ssm_incidents.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -1721,15 +1771,17 @@ class AsyncSSMIncidentsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_incidents.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_ssm_incidents.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_deletion_protection(
@@ -1774,17 +1826,20 @@ class AsyncSSMIncidentsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_incidents.types.update_deletion_protection_input.UpdateDeletionProtectionInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["deletion_protected"] = deletion_protected
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_ssm_incidents.types.update_deletion_protection_input.UpdateDeletionProtectionInput = {
+            "arn": arn,
+            "deletion_protected": deletion_protected,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_incident_record(
@@ -1848,10 +1903,12 @@ class AsyncSSMIncidentsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_incidents.types.update_incident_record_input.UpdateIncidentRecordInput = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["arn"] = arn
+        input_: capo_ssm_incidents.types.update_incident_record_input.UpdateIncidentRecordInput = {
+            "arn": arn
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if title is not None:
             input_["title"] = title
         if summary is not None:
@@ -1870,6 +1927,7 @@ class AsyncSSMIncidentsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_related_items(
@@ -1917,17 +1975,20 @@ class AsyncSSMIncidentsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_incidents.types.update_related_items_input.UpdateRelatedItemsInput = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["incident_record_arn"] = incident_record_arn
-        input_["related_items_update"] = related_items_update
+        input_: capo_ssm_incidents.types.update_related_items_input.UpdateRelatedItemsInput = {
+            "incident_record_arn": incident_record_arn,
+            "related_items_update": related_items_update,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_replication_set(
@@ -1973,17 +2034,20 @@ class AsyncSSMIncidentsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_incidents.types.update_replication_set_input.UpdateReplicationSetInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["actions"] = actions
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_ssm_incidents.types.update_replication_set_input.UpdateReplicationSetInput = {
+            "arn": arn,
+            "actions": actions,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_response_plan(
@@ -2071,10 +2135,12 @@ class AsyncSSMIncidentsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_incidents.types.update_response_plan_input.UpdateResponsePlanInput = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["arn"] = arn
+        input_: capo_ssm_incidents.types.update_response_plan_input.UpdateResponsePlanInput = {
+            "arn": arn
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if display_name is not None:
             input_["display_name"] = display_name
         if incident_template_title is not None:
@@ -2105,6 +2171,7 @@ class AsyncSSMIncidentsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_timeline_event(
@@ -2162,11 +2229,13 @@ class AsyncSSMIncidentsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_incidents.types.update_timeline_event_input.UpdateTimelineEventInput = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["incident_record_arn"] = incident_record_arn
-        input_["event_id"] = event_id
+        input_: capo_ssm_incidents.types.update_timeline_event_input.UpdateTimelineEventInput = {
+            "incident_record_arn": incident_record_arn,
+            "event_id": event_id,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if event_time is not None:
             input_["event_time"] = event_time
         if event_type is not None:
@@ -2181,6 +2250,7 @@ class AsyncSSMIncidentsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

@@ -21,16 +21,24 @@ def serialize_aws_json_1_1(value: GetMailboxDetailsResponse) -> dict:
     out: dict = {}
     if "mailbox_quota" in value:
         out["MailboxQuota"] = value["mailbox_quota"]
-    out["MailboxSize"] = value.get("mailbox_size", 0)
+    out["MailboxSize"] = (
+        "NaN"
+        if value.get("mailbox_size", 0) != value.get("mailbox_size", 0)
+        else "Infinity"
+        if value.get("mailbox_size", 0) == float("inf")
+        else "-Infinity"
+        if value.get("mailbox_size", 0) == float("-inf")
+        else value.get("mailbox_size", 0)
+    )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> GetMailboxDetailsResponse:
     out: GetMailboxDetailsResponse = {}  # type: ignore[typeddict-item]
-    if "MailboxQuota" in data:
+    if data.get("MailboxQuota") is not None:
         out["mailbox_quota"] = data["MailboxQuota"]
-    if "MailboxSize" in data:
-        out["mailbox_size"] = data["MailboxSize"]
+    if data.get("MailboxSize") is not None:
+        out["mailbox_size"] = float(data["MailboxSize"])
     else:
         out["mailbox_size"] = 0
     return out

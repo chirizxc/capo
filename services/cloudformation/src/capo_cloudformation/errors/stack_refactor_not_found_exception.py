@@ -37,15 +37,20 @@ class StackRefactorNotFoundException(ServiceError):
 
     code: str | None = "StackRefactorNotFoundException"
 
-    def __init__(self, data: StackRefactorNotFoundException_):
+    def __init__(
+        self, data: StackRefactorNotFoundException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="StackRefactorNotFoundException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "StackRefactorNotFoundException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "StackRefactorNotFoundException":
+        return cls(deserialize_query(el), message)

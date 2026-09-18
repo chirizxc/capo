@@ -36,7 +36,7 @@ def serialize_json(value: BatchGetStepResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetStepResponse:
     out: BatchGetStepResponse = {}  # type: ignore[typeddict-item]
-    if "steps" in data:
+    if data.get("steps") is not None:
         import capo_deadline.types.batch_get_step_items
 
         out["steps"] = capo_deadline.types.batch_get_step_items.deserialize_json(
@@ -44,7 +44,7 @@ def deserialize_json(data: dict) -> BatchGetStepResponse:
         )
     else:
         raise DeserializationError("BatchGetStepResponse.steps required")
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_deadline.types.batch_get_step_errors
 
         out["errors"] = capo_deadline.types.batch_get_step_errors.deserialize_json(

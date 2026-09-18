@@ -30,8 +30,8 @@ def serialize_json(value: AlexaForBusinessMetadata) -> dict:
 
 def deserialize_json(data: dict) -> AlexaForBusinessMetadata:
     out: AlexaForBusinessMetadata = {}  # type: ignore[typeddict-item]
-    if "IsAlexaForBusinessEnabled" in data:
+    if data.get("IsAlexaForBusinessEnabled") is not None:
         out["is_alexa_for_business_enabled"] = data["IsAlexaForBusinessEnabled"]
-    if "AlexaForBusinessRoomArn" in data:
+    if data.get("AlexaForBusinessRoomArn") is not None:
         out["alexa_for_business_room_arn"] = data["AlexaForBusinessRoomArn"]
     return out

@@ -48,16 +48,16 @@ def serialize_aws_json_1_1(value: MedicalTranscriptionSetting) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MedicalTranscriptionSetting:
     out: MedicalTranscriptionSetting = {}  # type: ignore[typeddict-item]
-    if "ShowSpeakerLabels" in data:
+    if data.get("ShowSpeakerLabels") is not None:
         out["show_speaker_labels"] = data["ShowSpeakerLabels"]
-    if "MaxSpeakerLabels" in data:
+    if data.get("MaxSpeakerLabels") is not None:
         out["max_speaker_labels"] = data["MaxSpeakerLabels"]
-    if "ChannelIdentification" in data:
+    if data.get("ChannelIdentification") is not None:
         out["channel_identification"] = data["ChannelIdentification"]
-    if "ShowAlternatives" in data:
+    if data.get("ShowAlternatives") is not None:
         out["show_alternatives"] = data["ShowAlternatives"]
-    if "MaxAlternatives" in data:
+    if data.get("MaxAlternatives") is not None:
         out["max_alternatives"] = data["MaxAlternatives"]
-    if "VocabularyName" in data:
+    if data.get("VocabularyName") is not None:
         out["vocabulary_name"] = data["VocabularyName"]
     return out

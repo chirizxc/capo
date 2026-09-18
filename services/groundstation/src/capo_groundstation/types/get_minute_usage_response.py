@@ -34,14 +34,14 @@ def serialize_json(value: GetMinuteUsageResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetMinuteUsageResponse:
     out: GetMinuteUsageResponse = {}  # type: ignore[typeddict-item]
-    if "isReservedMinutesCustomer" in data:
+    if data.get("isReservedMinutesCustomer") is not None:
         out["is_reserved_minutes_customer"] = data["isReservedMinutesCustomer"]
-    if "totalReservedMinuteAllocation" in data:
+    if data.get("totalReservedMinuteAllocation") is not None:
         out["total_reserved_minute_allocation"] = data["totalReservedMinuteAllocation"]
-    if "upcomingMinutesScheduled" in data:
+    if data.get("upcomingMinutesScheduled") is not None:
         out["upcoming_minutes_scheduled"] = data["upcomingMinutesScheduled"]
-    if "totalScheduledMinutes" in data:
+    if data.get("totalScheduledMinutes") is not None:
         out["total_scheduled_minutes"] = data["totalScheduledMinutes"]
-    if "estimatedMinutesRemaining" in data:
+    if data.get("estimatedMinutesRemaining") is not None:
         out["estimated_minutes_remaining"] = data["estimatedMinutesRemaining"]
     return out

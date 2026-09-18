@@ -29,8 +29,8 @@ def serialize_aws_json_1_1(value: DeleteFileCacheRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteFileCacheRequest:
     out: DeleteFileCacheRequest = {}  # type: ignore[typeddict-item]
-    if "FileCacheId" in data:
+    if data.get("FileCacheId") is not None:
         out["file_cache_id"] = data["FileCacheId"]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
     return out

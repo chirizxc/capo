@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: CreateHITWithHITTypeResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateHITWithHITTypeResponse:
     out: CreateHITWithHITTypeResponse = {}  # type: ignore[typeddict-item]
-    if "HIT" in data:
+    if data.get("HIT") is not None:
         import capo_mturk.types.hit
 
         out["hit"] = capo_mturk.types.hit.deserialize_aws_json_1_1(data["HIT"])

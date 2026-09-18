@@ -54,28 +54,28 @@ def serialize_json(value: SnowflakeConnectorProfileProperties) -> dict:
 
 def deserialize_json(data: dict) -> SnowflakeConnectorProfileProperties:
     out: SnowflakeConnectorProfileProperties = {}  # type: ignore[typeddict-item]
-    if "warehouse" in data:
+    if data.get("warehouse") is not None:
         out["warehouse"] = data["warehouse"]
     else:
         raise DeserializationError(
             "SnowflakeConnectorProfileProperties.warehouse required"
         )
-    if "stage" in data:
+    if data.get("stage") is not None:
         out["stage"] = data["stage"]
     else:
         raise DeserializationError("SnowflakeConnectorProfileProperties.stage required")
-    if "bucketName" in data:
+    if data.get("bucketName") is not None:
         out["bucket_name"] = data["bucketName"]
     else:
         raise DeserializationError(
             "SnowflakeConnectorProfileProperties.bucket_name required"
         )
-    if "bucketPrefix" in data:
+    if data.get("bucketPrefix") is not None:
         out["bucket_prefix"] = data["bucketPrefix"]
-    if "privateLinkServiceName" in data:
+    if data.get("privateLinkServiceName") is not None:
         out["private_link_service_name"] = data["privateLinkServiceName"]
-    if "accountName" in data:
+    if data.get("accountName") is not None:
         out["account_name"] = data["accountName"]
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
     return out

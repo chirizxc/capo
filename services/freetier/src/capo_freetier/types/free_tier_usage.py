@@ -43,9 +43,34 @@ def serialize_aws_json_1_0(value: FreeTierUsage) -> dict:
         out["usageType"] = value["usage_type"]
     if "region" in value:
         out["region"] = value["region"]
-    out["actualUsageAmount"] = value.get("actual_usage_amount", 0)
-    out["forecastedUsageAmount"] = value.get("forecasted_usage_amount", 0)
-    out["limit"] = value.get("limit", 0)
+    out["actualUsageAmount"] = (
+        "NaN"
+        if value.get("actual_usage_amount", 0) != value.get("actual_usage_amount", 0)
+        else "Infinity"
+        if value.get("actual_usage_amount", 0) == float("inf")
+        else "-Infinity"
+        if value.get("actual_usage_amount", 0) == float("-inf")
+        else value.get("actual_usage_amount", 0)
+    )
+    out["forecastedUsageAmount"] = (
+        "NaN"
+        if value.get("forecasted_usage_amount", 0)
+        != value.get("forecasted_usage_amount", 0)
+        else "Infinity"
+        if value.get("forecasted_usage_amount", 0) == float("inf")
+        else "-Infinity"
+        if value.get("forecasted_usage_amount", 0) == float("-inf")
+        else value.get("forecasted_usage_amount", 0)
+    )
+    out["limit"] = (
+        "NaN"
+        if value.get("limit", 0) != value.get("limit", 0)
+        else "Infinity"
+        if value.get("limit", 0) == float("inf")
+        else "-Infinity"
+        if value.get("limit", 0) == float("-inf")
+        else value.get("limit", 0)
+    )
     if "unit" in value:
         out["unit"] = value["unit"]
     if "description" in value:
@@ -57,30 +82,30 @@ def serialize_aws_json_1_0(value: FreeTierUsage) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> FreeTierUsage:
     out: FreeTierUsage = {}  # type: ignore[typeddict-item]
-    if "service" in data:
+    if data.get("service") is not None:
         out["service"] = data["service"]
-    if "operation" in data:
+    if data.get("operation") is not None:
         out["operation"] = data["operation"]
-    if "usageType" in data:
+    if data.get("usageType") is not None:
         out["usage_type"] = data["usageType"]
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
-    if "actualUsageAmount" in data:
-        out["actual_usage_amount"] = data["actualUsageAmount"]
+    if data.get("actualUsageAmount") is not None:
+        out["actual_usage_amount"] = float(data["actualUsageAmount"])
     else:
         out["actual_usage_amount"] = 0
-    if "forecastedUsageAmount" in data:
-        out["forecasted_usage_amount"] = data["forecastedUsageAmount"]
+    if data.get("forecastedUsageAmount") is not None:
+        out["forecasted_usage_amount"] = float(data["forecastedUsageAmount"])
     else:
         out["forecasted_usage_amount"] = 0
-    if "limit" in data:
-        out["limit"] = data["limit"]
+    if data.get("limit") is not None:
+        out["limit"] = float(data["limit"])
     else:
         out["limit"] = 0
-    if "unit" in data:
+    if data.get("unit") is not None:
         out["unit"] = data["unit"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "freeTierType" in data:
+    if data.get("freeTierType") is not None:
         out["free_tier_type"] = data["freeTierType"]
     return out

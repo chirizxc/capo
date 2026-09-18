@@ -35,7 +35,7 @@ def serialize_aws_json_1_0(value: ListKeysOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListKeysOutput:
     out: ListKeysOutput = {}  # type: ignore[typeddict-item]
-    if "Keys" in data:
+    if data.get("Keys") is not None:
         import capo_payment_cryptography.types.key_summary_list
 
         out["keys"] = (
@@ -45,6 +45,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListKeysOutput:
         )
     else:
         raise DeserializationError("ListKeysOutput.keys required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

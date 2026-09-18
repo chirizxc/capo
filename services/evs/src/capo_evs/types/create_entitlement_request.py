@@ -47,17 +47,17 @@ def serialize_aws_json_1_0(value: CreateEntitlementRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateEntitlementRequest:
     out: CreateEntitlementRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
     else:
         raise DeserializationError("CreateEntitlementRequest.environment_id required")
-    if "connectorId" in data:
+    if data.get("connectorId") is not None:
         out["connector_id"] = data["connectorId"]
     else:
         raise DeserializationError("CreateEntitlementRequest.connector_id required")
-    if "entitlementType" in data:
+    if data.get("entitlementType") is not None:
         import capo_evs.types.entitlement_type
 
         out["entitlement_type"] = (
@@ -67,7 +67,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateEntitlementRequest:
         )
     else:
         raise DeserializationError("CreateEntitlementRequest.entitlement_type required")
-    if "vmIds" in data:
+    if data.get("vmIds") is not None:
         import capo_evs.types.vm_id_list
 
         out["vm_ids"] = capo_evs.types.vm_id_list.deserialize_aws_json_1_0(

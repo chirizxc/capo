@@ -102,7 +102,7 @@ def serialize_json(value: SavingsPlanOfferingRate) -> dict:
 
 def deserialize_json(data: dict) -> SavingsPlanOfferingRate:
     out: SavingsPlanOfferingRate = {}  # type: ignore[typeddict-item]
-    if "savingsPlanOffering" in data:
+    if data.get("savingsPlanOffering") is not None:
         import capo_savingsplans.types.parent_savings_plan_offering
 
         out["savings_plan_offering"] = (
@@ -110,15 +110,15 @@ def deserialize_json(data: dict) -> SavingsPlanOfferingRate:
                 data["savingsPlanOffering"]
             )
         )
-    if "rate" in data:
+    if data.get("rate") is not None:
         out["rate"] = data["rate"]
-    if "unit" in data:
+    if data.get("unit") is not None:
         import capo_savingsplans.types.savings_plan_rate_unit
 
         out["unit"] = capo_savingsplans.types.savings_plan_rate_unit.deserialize_json(
             data["unit"]
         )
-    if "productType" in data:
+    if data.get("productType") is not None:
         import capo_savingsplans.types.savings_plan_product_type
 
         out["product_type"] = (
@@ -126,7 +126,7 @@ def deserialize_json(data: dict) -> SavingsPlanOfferingRate:
                 data["productType"]
             )
         )
-    if "serviceCode" in data:
+    if data.get("serviceCode") is not None:
         import capo_savingsplans.types.savings_plan_rate_service_code
 
         out["service_code"] = (
@@ -134,11 +134,11 @@ def deserialize_json(data: dict) -> SavingsPlanOfferingRate:
                 data["serviceCode"]
             )
         )
-    if "usageType" in data:
+    if data.get("usageType") is not None:
         out["usage_type"] = data["usageType"]
-    if "operation" in data:
+    if data.get("operation") is not None:
         out["operation"] = data["operation"]
-    if "properties" in data:
+    if data.get("properties") is not None:
         import capo_savingsplans.types.savings_plan_offering_rate_property_list
 
         out["properties"] = (

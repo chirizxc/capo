@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: GetInstanceSnapshotsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetInstanceSnapshotsRequest:
     out: GetInstanceSnapshotsRequest = {}  # type: ignore[typeddict-item]
-    if "pageToken" in data:
+    if data.get("pageToken") is not None:
         out["page_token"] = data["pageToken"]
     return out

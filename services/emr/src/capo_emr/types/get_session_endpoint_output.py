@@ -46,11 +46,11 @@ def serialize_aws_json_1_1(value: GetSessionEndpointOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetSessionEndpointOutput:
     out: GetSessionEndpointOutput = {}  # type: ignore[typeddict-item]
-    if "Endpoint" in data:
+    if data.get("Endpoint") is not None:
         out["endpoint"] = data["Endpoint"]
-    if "AuthToken" in data:
+    if data.get("AuthToken") is not None:
         out["auth_token"] = data["AuthToken"]
-    if "AuthTokenExpirationTime" in data:
+    if data.get("AuthTokenExpirationTime") is not None:
         import capo_emr.types.date
 
         out["auth_token_expiration_time"] = (
@@ -58,7 +58,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetSessionEndpointOutput:
                 data["AuthTokenExpirationTime"]
             )
         )
-    if "Credentials" in data:
+    if data.get("Credentials") is not None:
         import capo_emr.types.credentials
 
         out["credentials"] = capo_emr.types.credentials.deserialize_aws_json_1_1(

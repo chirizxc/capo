@@ -36,15 +36,15 @@ def serialize_aws_json_1_1(value: QueryObjectsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> QueryObjectsOutput:
     out: QueryObjectsOutput = {}  # type: ignore[typeddict-item]
-    if "ids" in data:
+    if data.get("ids") is not None:
         import capo_data_pipeline.types.id_list
 
         out["ids"] = capo_data_pipeline.types.id_list.deserialize_aws_json_1_1(
             data["ids"]
         )
-    if "marker" in data:
+    if data.get("marker") is not None:
         out["marker"] = data["marker"]
-    if "hasMoreResults" in data:
+    if data.get("hasMoreResults") is not None:
         out["has_more_results"] = data["hasMoreResults"]
     else:
         out["has_more_results"] = False

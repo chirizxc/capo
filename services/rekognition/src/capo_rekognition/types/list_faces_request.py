@@ -48,17 +48,17 @@ def serialize_aws_json_1_1(value: ListFacesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListFacesRequest:
     out: ListFacesRequest = {}  # type: ignore[typeddict-item]
-    if "CollectionId" in data:
+    if data.get("CollectionId") is not None:
         out["collection_id"] = data["CollectionId"]
     else:
         raise DeserializationError("ListFacesRequest.collection_id required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
-    if "FaceIds" in data:
+    if data.get("FaceIds") is not None:
         import capo_rekognition.types.face_id_list
 
         out["face_ids"] = capo_rekognition.types.face_id_list.deserialize_aws_json_1_1(

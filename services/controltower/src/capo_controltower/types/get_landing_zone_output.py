@@ -28,7 +28,7 @@ def serialize_json(value: GetLandingZoneOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetLandingZoneOutput:
     out: GetLandingZoneOutput = {}  # type: ignore[typeddict-item]
-    if "landingZone" in data:
+    if data.get("landingZone") is not None:
         import capo_controltower.types.landing_zone_detail
 
         out["landing_zone"] = (

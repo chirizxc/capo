@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> IdNamespaceIdMappingWorkflowMetadataList:
 
     out: IdNamespaceIdMappingWorkflowMetadataList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_entityresolution.types.id_namespace_id_mapping_workflow_metadata.deserialize_json(
                 item

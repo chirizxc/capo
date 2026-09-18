@@ -54,11 +54,11 @@ def serialize_json(value: FixedUpfrontPricingTerm) -> dict:
 
 def deserialize_json(data: dict) -> FixedUpfrontPricingTerm:
     out: FixedUpfrontPricingTerm = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("FixedUpfrontPricingTerm.id required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_marketplace_discovery.types.term_type
 
         out["type"] = capo_marketplace_discovery.types.term_type.deserialize_json(
@@ -66,17 +66,17 @@ def deserialize_json(data: dict) -> FixedUpfrontPricingTerm:
         )
     else:
         raise DeserializationError("FixedUpfrontPricingTerm.type required")
-    if "currencyCode" in data:
+    if data.get("currencyCode") is not None:
         out["currency_code"] = data["currencyCode"]
     else:
         raise DeserializationError("FixedUpfrontPricingTerm.currency_code required")
-    if "duration" in data:
+    if data.get("duration") is not None:
         out["duration"] = data["duration"]
-    if "price" in data:
+    if data.get("price") is not None:
         out["price"] = data["price"]
     else:
         raise DeserializationError("FixedUpfrontPricingTerm.price required")
-    if "grants" in data:
+    if data.get("grants") is not None:
         import capo_marketplace_discovery.types.grant_list
 
         out["grants"] = capo_marketplace_discovery.types.grant_list.deserialize_json(

@@ -44,9 +44,9 @@ def serialize_json(value: WrappedKeyMaterial) -> dict:
 
 
 def deserialize_json(data: dict) -> WrappedKeyMaterial:
-    if "Tr31KeyBlock" in data:
+    if data.get("Tr31KeyBlock") is not None:
         return {"Tr31KeyBlock": data["Tr31KeyBlock"]}
-    elif "DiffieHellmanSymmetricKey" in data:
+    elif data.get("DiffieHellmanSymmetricKey") is not None:
         import capo_payment_cryptography_data.types.ecdh_derivation_attributes
 
         return {

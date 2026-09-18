@@ -69,7 +69,7 @@ def serialize_json(value: PublicAccessConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> PublicAccessConfiguration:
     out: PublicAccessConfiguration = {}  # type: ignore[typeddict-item]
-    if "publicAclAccess" in data:
+    if data.get("publicAclAccess") is not None:
         import capo_guardduty.types.public_access_status
 
         out["public_acl_access"] = (
@@ -77,7 +77,7 @@ def deserialize_json(data: dict) -> PublicAccessConfiguration:
                 data["publicAclAccess"]
             )
         )
-    if "publicPolicyAccess" in data:
+    if data.get("publicPolicyAccess") is not None:
         import capo_guardduty.types.public_access_status
 
         out["public_policy_access"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> PublicAccessConfiguration:
                 data["publicPolicyAccess"]
             )
         )
-    if "publicAclIgnoreBehavior" in data:
+    if data.get("publicAclIgnoreBehavior") is not None:
         import capo_guardduty.types.public_acl_ignore_behavior
 
         out["public_acl_ignore_behavior"] = (
@@ -93,7 +93,7 @@ def deserialize_json(data: dict) -> PublicAccessConfiguration:
                 data["publicAclIgnoreBehavior"]
             )
         )
-    if "publicBucketRestrictBehavior" in data:
+    if data.get("publicBucketRestrictBehavior") is not None:
         import capo_guardduty.types.public_bucket_restrict_behavior
 
         out["public_bucket_restrict_behavior"] = (

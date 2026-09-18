@@ -27,7 +27,7 @@ def serialize_json(value: ResourceDefinitionVersion) -> dict:
 
 def deserialize_json(data: dict) -> ResourceDefinitionVersion:
     out: ResourceDefinitionVersion = {}  # type: ignore[typeddict-item]
-    if "Resources" in data:
+    if data.get("Resources") is not None:
         import capo_greengrass.types.__list_of_resource
 
         out["resources"] = capo_greengrass.types.__list_of_resource.deserialize_json(

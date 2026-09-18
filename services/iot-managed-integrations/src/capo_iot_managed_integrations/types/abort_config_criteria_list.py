@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AbortConfigCriteriaList:
 
     out: AbortConfigCriteriaList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot_managed_integrations.types.abort_config_criteria.deserialize_json(
                 item

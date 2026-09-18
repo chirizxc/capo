@@ -31,7 +31,7 @@ def serialize_json(value: PutEventStreamRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutEventStreamRequest:
     out: PutEventStreamRequest = {}  # type: ignore[typeddict-item]
-    if "WriteEventStream" in data:
+    if data.get("WriteEventStream") is not None:
         import capo_pinpoint.types.write_event_stream
 
         out["write_event_stream"] = (

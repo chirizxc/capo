@@ -70,11 +70,11 @@ def serialize_json(value: UpdateConnectorDestinationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateConnectorDestinationRequest:
     out: UpdateConnectorDestinationRequest = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "AuthType" in data:
+    if data.get("AuthType") is not None:
         import capo_iot_managed_integrations.types.auth_type
 
         out["auth_type"] = (
@@ -82,7 +82,7 @@ def deserialize_json(data: dict) -> UpdateConnectorDestinationRequest:
                 data["AuthType"]
             )
         )
-    if "AuthConfig" in data:
+    if data.get("AuthConfig") is not None:
         import capo_iot_managed_integrations.types.auth_config_update
 
         out["auth_config"] = (
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> UpdateConnectorDestinationRequest:
                 data["AuthConfig"]
             )
         )
-    if "SecretsManager" in data:
+    if data.get("SecretsManager") is not None:
         import capo_iot_managed_integrations.types.secrets_manager
 
         out["secrets_manager"] = (

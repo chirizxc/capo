@@ -25,6 +25,6 @@ def serialize_json(value: EfsFileSystemConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> EfsFileSystemConfiguration:
     out: EfsFileSystemConfiguration = {}  # type: ignore[typeddict-item]
-    if "fileSystemPolicy" in data:
+    if data.get("fileSystemPolicy") is not None:
         out["file_system_policy"] = data["fileSystemPolicy"]
     return out

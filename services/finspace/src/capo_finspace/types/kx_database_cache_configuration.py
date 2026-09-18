@@ -35,16 +35,16 @@ def serialize_json(value: KxDatabaseCacheConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> KxDatabaseCacheConfiguration:
     out: KxDatabaseCacheConfiguration = {}  # type: ignore[typeddict-item]
-    if "cacheType" in data:
+    if data.get("cacheType") is not None:
         out["cache_type"] = data["cacheType"]
     else:
         raise DeserializationError("KxDatabaseCacheConfiguration.cache_type required")
-    if "dbPaths" in data:
+    if data.get("dbPaths") is not None:
         import capo_finspace.types.db_paths
 
         out["db_paths"] = capo_finspace.types.db_paths.deserialize_json(data["dbPaths"])
     else:
         raise DeserializationError("KxDatabaseCacheConfiguration.db_paths required")
-    if "dataviewName" in data:
+    if data.get("dataviewName") is not None:
         out["dataview_name"] = data["dataviewName"]
     return out

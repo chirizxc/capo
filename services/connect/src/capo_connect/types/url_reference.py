@@ -28,8 +28,8 @@ def serialize_json(value: UrlReference) -> dict:
 
 def deserialize_json(data: dict) -> UrlReference:
     out: UrlReference = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     return out

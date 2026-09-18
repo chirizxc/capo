@@ -43,11 +43,11 @@ def serialize_json(value: CoreNetworkEdge) -> dict:
 
 def deserialize_json(data: dict) -> CoreNetworkEdge:
     out: CoreNetworkEdge = {}  # type: ignore[typeddict-item]
-    if "EdgeLocation" in data:
+    if data.get("EdgeLocation") is not None:
         out["edge_location"] = data["EdgeLocation"]
-    if "Asn" in data:
+    if data.get("Asn") is not None:
         out["asn"] = data["Asn"]
-    if "InsideCidrBlocks" in data:
+    if data.get("InsideCidrBlocks") is not None:
         import capo_networkmanager.types.constrained_string_list
 
         out["inside_cidr_blocks"] = (

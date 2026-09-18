@@ -44,9 +44,9 @@ def deserialize_json(
     data: dict,
 ) -> AwsEc2LaunchTemplateDataCapacityReservationSpecificationDetails:
     out: AwsEc2LaunchTemplateDataCapacityReservationSpecificationDetails = {}  # type: ignore[typeddict-item]
-    if "CapacityReservationPreference" in data:
+    if data.get("CapacityReservationPreference") is not None:
         out["capacity_reservation_preference"] = data["CapacityReservationPreference"]
-    if "CapacityReservationTarget" in data:
+    if data.get("CapacityReservationTarget") is not None:
         import capo_securityhub.types.aws_ec2_launch_template_data_capacity_reservation_specification_capacity_reservation_target_details
 
         out["capacity_reservation_target"] = (

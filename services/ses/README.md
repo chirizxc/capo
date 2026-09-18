@@ -13,9 +13,9 @@ from capo_ses import AsyncSESClient
 
 
 async def main():
-    async with AsyncSESClient() as s3:
+    async with AsyncSESClient() as ses:
         # Example: call the clone_receipt_rule_set operation
-        response = await s3.clone_receipt_rule_set()
+        response = await ses.clone_receipt_rule_set()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_ses import AsyncSESClient
 
 
 async def main():
-    async with AsyncSESClient() as s3:
-        # Example: paginate over list_identities
-        async for item in s3.iter_list_identities():
+    async with AsyncSESClient() as ses:
+        # Example: paginate over list_custom_verification_email_templates
+        async for item in ses.iter_list_custom_verification_email_templates():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_ses.error import AlreadyExistsException
 
 
 async def main():
-    async with AsyncSESClient() as s3:
+    async with AsyncSESClient() as ses:
         try:
-            await s3.clone_receipt_rule_set()
+            await ses.clone_receipt_rule_set()
         except AlreadyExistsException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_ses import AsyncSESClient
 
 
 async def main():
-    async with AsyncSESClient() as s3:
+    async with AsyncSESClient() as ses:
         # Default: 3 attempts for every operation
-        response = await s3.clone_receipt_rule_set()
+        response = await ses.clone_receipt_rule_set()
 
         # Override per operation
-        response = await s3.clone_receipt_rule_set(config_overrides={"retry_max_attempts": 5})
+        response = await ses.clone_receipt_rule_set(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.clone_receipt_rule_set(config_overrides={"retry_max_attempts": 1})
+        response = await ses.clone_receipt_rule_set(config_overrides={"retry_max_attempts": 1})
 ```

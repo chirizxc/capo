@@ -17,7 +17,7 @@ def serialize_json(value: IdMappingConfig) -> dict:
 
 def deserialize_json(data: dict) -> IdMappingConfig:
     out: IdMappingConfig = {}  # type: ignore[typeddict-item]
-    if "allowUseAsDimensionColumn" in data:
+    if data.get("allowUseAsDimensionColumn") is not None:
         out["allow_use_as_dimension_column"] = data["allowUseAsDimensionColumn"]
     else:
         out["allow_use_as_dimension_column"] = False

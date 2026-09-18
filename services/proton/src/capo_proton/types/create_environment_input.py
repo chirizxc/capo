@@ -91,39 +91,39 @@ def serialize_aws_json_1_0(value: CreateEnvironmentInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateEnvironmentInput:
     out: CreateEnvironmentInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateEnvironmentInput.name required")
-    if "templateName" in data:
+    if data.get("templateName") is not None:
         out["template_name"] = data["templateName"]
     else:
         raise DeserializationError("CreateEnvironmentInput.template_name required")
-    if "templateMajorVersion" in data:
+    if data.get("templateMajorVersion") is not None:
         out["template_major_version"] = data["templateMajorVersion"]
     else:
         raise DeserializationError(
             "CreateEnvironmentInput.template_major_version required"
         )
-    if "templateMinorVersion" in data:
+    if data.get("templateMinorVersion") is not None:
         out["template_minor_version"] = data["templateMinorVersion"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "spec" in data:
+    if data.get("spec") is not None:
         out["spec"] = data["spec"]
     else:
         raise DeserializationError("CreateEnvironmentInput.spec required")
-    if "protonServiceRoleArn" in data:
+    if data.get("protonServiceRoleArn") is not None:
         out["proton_service_role_arn"] = data["protonServiceRoleArn"]
-    if "environmentAccountConnectionId" in data:
+    if data.get("environmentAccountConnectionId") is not None:
         out["environment_account_connection_id"] = data[
             "environmentAccountConnectionId"
         ]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_proton.types.tag_list
 
         out["tags"] = capo_proton.types.tag_list.deserialize_aws_json_1_0(data["tags"])
-    if "provisioningRepository" in data:
+    if data.get("provisioningRepository") is not None:
         import capo_proton.types.repository_branch_input
 
         out["provisioning_repository"] = (
@@ -131,8 +131,8 @@ def deserialize_aws_json_1_0(data: dict) -> CreateEnvironmentInput:
                 data["provisioningRepository"]
             )
         )
-    if "componentRoleArn" in data:
+    if data.get("componentRoleArn") is not None:
         out["component_role_arn"] = data["componentRoleArn"]
-    if "codebuildRoleArn" in data:
+    if data.get("codebuildRoleArn") is not None:
         out["codebuild_role_arn"] = data["codebuildRoleArn"]
     return out

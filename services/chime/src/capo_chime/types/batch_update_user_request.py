@@ -35,7 +35,7 @@ def serialize_json(value: BatchUpdateUserRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchUpdateUserRequest:
     out: BatchUpdateUserRequest = {}  # type: ignore[typeddict-item]
-    if "UpdateUserRequestItems" in data:
+    if data.get("UpdateUserRequestItems") is not None:
         import capo_chime.types.update_user_request_item_list
 
         out["update_user_request_items"] = (

@@ -55,21 +55,21 @@ def serialize_aws_json_1_1(value: IPSet) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IPSet:
     out: IPSet = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("IPSet.name required")
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("IPSet.id required")
-    if "ARN" in data:
+    if data.get("ARN") is not None:
         out["arn"] = data["ARN"]
     else:
         raise DeserializationError("IPSet.arn required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "IPAddressVersion" in data:
+    if data.get("IPAddressVersion") is not None:
         import capo_wafv2.types.ip_address_version
 
         out["ip_address_version"] = (
@@ -79,7 +79,7 @@ def deserialize_aws_json_1_1(data: dict) -> IPSet:
         )
     else:
         raise DeserializationError("IPSet.ip_address_version required")
-    if "Addresses" in data:
+    if data.get("Addresses") is not None:
         import capo_wafv2.types.ip_addresses
 
         out["addresses"] = capo_wafv2.types.ip_addresses.deserialize_aws_json_1_1(

@@ -34,7 +34,7 @@ def serialize_json(value: ListBrokersResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListBrokersResponse:
     out: ListBrokersResponse = {}  # type: ignore[typeddict-item]
-    if "brokerSummaries" in data:
+    if data.get("brokerSummaries") is not None:
         import capo_mq.types.__list_of_broker_summary
 
         out["broker_summaries"] = (
@@ -42,6 +42,6 @@ def deserialize_json(data: dict) -> ListBrokersResponse:
                 data["brokerSummaries"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

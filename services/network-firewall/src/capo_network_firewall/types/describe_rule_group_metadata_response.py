@@ -89,21 +89,21 @@ def serialize_aws_json_1_0(value: DescribeRuleGroupMetadataResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeRuleGroupMetadataResponse:
     out: DescribeRuleGroupMetadataResponse = {}  # type: ignore[typeddict-item]
-    if "RuleGroupArn" in data:
+    if data.get("RuleGroupArn") is not None:
         out["rule_group_arn"] = data["RuleGroupArn"]
     else:
         raise DeserializationError(
             "DescribeRuleGroupMetadataResponse.rule_group_arn required"
         )
-    if "RuleGroupName" in data:
+    if data.get("RuleGroupName") is not None:
         out["rule_group_name"] = data["RuleGroupName"]
     else:
         raise DeserializationError(
             "DescribeRuleGroupMetadataResponse.rule_group_name required"
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_network_firewall.types.rule_group_type
 
         out["type"] = (
@@ -111,9 +111,9 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeRuleGroupMetadataResponse:
                 data["Type"]
             )
         )
-    if "Capacity" in data:
+    if data.get("Capacity") is not None:
         out["capacity"] = data["Capacity"]
-    if "StatefulRuleOptions" in data:
+    if data.get("StatefulRuleOptions") is not None:
         import capo_network_firewall.types.stateful_rule_options
 
         out["stateful_rule_options"] = (
@@ -121,7 +121,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeRuleGroupMetadataResponse:
                 data["StatefulRuleOptions"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_network_firewall.types.last_update_time
 
         out["last_modified_time"] = (
@@ -129,10 +129,10 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeRuleGroupMetadataResponse:
                 data["LastModifiedTime"]
             )
         )
-    if "VendorName" in data:
+    if data.get("VendorName") is not None:
         out["vendor_name"] = data["VendorName"]
-    if "ProductId" in data:
+    if data.get("ProductId") is not None:
         out["product_id"] = data["ProductId"]
-    if "ListingName" in data:
+    if data.get("ListingName") is not None:
         out["listing_name"] = data["ListingName"]
     return out

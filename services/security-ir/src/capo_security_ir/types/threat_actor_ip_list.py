@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ThreatActorIpList:
 
     out: ThreatActorIpList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_security_ir.types.threat_actor_ip.deserialize_json(item))
     return out

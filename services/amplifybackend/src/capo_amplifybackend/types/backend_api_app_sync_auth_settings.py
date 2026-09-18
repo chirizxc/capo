@@ -36,7 +36,15 @@ def serialize_json(value: BackendAPIAppSyncAuthSettings) -> dict:
     if "description" in value:
         out["description"] = value["description"]
     if "expiration_time" in value:
-        out["expirationTime"] = value["expiration_time"]
+        out["expirationTime"] = (
+            "NaN"
+            if value["expiration_time"] != value["expiration_time"]
+            else "Infinity"
+            if value["expiration_time"] == float("inf")
+            else "-Infinity"
+            if value["expiration_time"] == float("-inf")
+            else value["expiration_time"]
+        )
     if "open_id_auth_ttl" in value:
         out["openIDAuthTTL"] = value["open_id_auth_ttl"]
     if "open_id_client_id" in value:
@@ -52,20 +60,20 @@ def serialize_json(value: BackendAPIAppSyncAuthSettings) -> dict:
 
 def deserialize_json(data: dict) -> BackendAPIAppSyncAuthSettings:
     out: BackendAPIAppSyncAuthSettings = {}  # type: ignore[typeddict-item]
-    if "cognitoUserPoolId" in data:
+    if data.get("cognitoUserPoolId") is not None:
         out["cognito_user_pool_id"] = data["cognitoUserPoolId"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "expirationTime" in data:
-        out["expiration_time"] = data["expirationTime"]
-    if "openIDAuthTTL" in data:
+    if data.get("expirationTime") is not None:
+        out["expiration_time"] = float(data["expirationTime"])
+    if data.get("openIDAuthTTL") is not None:
         out["open_id_auth_ttl"] = data["openIDAuthTTL"]
-    if "openIDClientId" in data:
+    if data.get("openIDClientId") is not None:
         out["open_id_client_id"] = data["openIDClientId"]
-    if "openIDIatTTL" in data:
+    if data.get("openIDIatTTL") is not None:
         out["open_id_iat_ttl"] = data["openIDIatTTL"]
-    if "openIDIssueURL" in data:
+    if data.get("openIDIssueURL") is not None:
         out["open_id_issue_url"] = data["openIDIssueURL"]
-    if "openIDProviderName" in data:
+    if data.get("openIDProviderName") is not None:
         out["open_id_provider_name"] = data["openIDProviderName"]
     return out

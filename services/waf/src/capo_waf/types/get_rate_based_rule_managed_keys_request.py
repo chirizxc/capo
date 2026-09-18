@@ -29,12 +29,12 @@ def serialize_aws_json_1_1(value: GetRateBasedRuleManagedKeysRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetRateBasedRuleManagedKeysRequest:
     out: GetRateBasedRuleManagedKeysRequest = {}  # type: ignore[typeddict-item]
-    if "RuleId" in data:
+    if data.get("RuleId") is not None:
         out["rule_id"] = data["RuleId"]
     else:
         raise DeserializationError(
             "GetRateBasedRuleManagedKeysRequest.rule_id required"
         )
-    if "NextMarker" in data:
+    if data.get("NextMarker") is not None:
         out["next_marker"] = data["NextMarker"]
     return out

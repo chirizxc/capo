@@ -61,24 +61,24 @@ def serialize_json(value: StartSnapshotRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartSnapshotRequest:
     out: StartSnapshotRequest = {}  # type: ignore[typeddict-item]
-    if "VolumeSize" in data:
+    if data.get("VolumeSize") is not None:
         out["volume_size"] = data["VolumeSize"]
     else:
         raise DeserializationError("StartSnapshotRequest.volume_size required")
-    if "ParentSnapshotId" in data:
+    if data.get("ParentSnapshotId") is not None:
         out["parent_snapshot_id"] = data["ParentSnapshotId"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_ebs.types.tags
 
         out["tags"] = capo_ebs.types.tags.deserialize_json(data["Tags"])
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "Encrypted" in data:
+    if data.get("Encrypted") is not None:
         out["encrypted"] = data["Encrypted"]
-    if "KmsKeyArn" in data:
+    if data.get("KmsKeyArn") is not None:
         out["kms_key_arn"] = data["KmsKeyArn"]
-    if "Timeout" in data:
+    if data.get("Timeout") is not None:
         out["timeout"] = data["Timeout"]
     return out

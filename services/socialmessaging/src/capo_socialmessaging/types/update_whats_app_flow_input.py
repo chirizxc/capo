@@ -46,17 +46,17 @@ def serialize_json(value: UpdateWhatsAppFlowInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateWhatsAppFlowInput:
     out: UpdateWhatsAppFlowInput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("UpdateWhatsAppFlowInput.id required")
-    if "flowId" in data:
+    if data.get("flowId") is not None:
         out["flow_id"] = data["flowId"]
     else:
         raise DeserializationError("UpdateWhatsAppFlowInput.flow_id required")
-    if "flowName" in data:
+    if data.get("flowName") is not None:
         out["flow_name"] = data["flowName"]
-    if "categories" in data:
+    if data.get("categories") is not None:
         import capo_socialmessaging.types.meta_flow_category_list
 
         out["categories"] = (

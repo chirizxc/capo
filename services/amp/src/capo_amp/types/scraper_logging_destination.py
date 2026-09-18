@@ -34,7 +34,7 @@ def serialize_json(value: ScraperLoggingDestination) -> dict:
 
 
 def deserialize_json(data: dict) -> ScraperLoggingDestination:
-    if "cloudWatchLogs" in data:
+    if data.get("cloudWatchLogs") is not None:
         import capo_amp.types.cloud_watch_log_destination
 
         return {

@@ -31,7 +31,7 @@ def serialize_json(value: WorkflowAttributes) -> dict:
 
 def deserialize_json(data: dict) -> WorkflowAttributes:
     out: WorkflowAttributes = {}  # type: ignore[typeddict-item]
-    if "AppflowIntegration" in data:
+    if data.get("AppflowIntegration") is not None:
         import capo_customer_profiles.types.appflow_integration_workflow_attributes
 
         out["appflow_integration"] = (

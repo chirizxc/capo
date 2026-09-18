@@ -114,13 +114,13 @@ def serialize_aws_json_1_1(value: RecommendationJobInputConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RecommendationJobInputConfig:
     out: RecommendationJobInputConfig = {}  # type: ignore[typeddict-item]
-    if "ModelPackageVersionArn" in data:
+    if data.get("ModelPackageVersionArn") is not None:
         out["model_package_version_arn"] = data["ModelPackageVersionArn"]
-    if "ModelName" in data:
+    if data.get("ModelName") is not None:
         out["model_name"] = data["ModelName"]
-    if "JobDurationInSeconds" in data:
+    if data.get("JobDurationInSeconds") is not None:
         out["job_duration_in_seconds"] = data["JobDurationInSeconds"]
-    if "TrafficPattern" in data:
+    if data.get("TrafficPattern") is not None:
         import capo_sagemaker.types.traffic_pattern
 
         out["traffic_pattern"] = (
@@ -128,7 +128,7 @@ def deserialize_aws_json_1_1(data: dict) -> RecommendationJobInputConfig:
                 data["TrafficPattern"]
             )
         )
-    if "ResourceLimit" in data:
+    if data.get("ResourceLimit") is not None:
         import capo_sagemaker.types.recommendation_job_resource_limit
 
         out["resource_limit"] = (
@@ -136,7 +136,7 @@ def deserialize_aws_json_1_1(data: dict) -> RecommendationJobInputConfig:
                 data["ResourceLimit"]
             )
         )
-    if "EndpointConfigurations" in data:
+    if data.get("EndpointConfigurations") is not None:
         import capo_sagemaker.types.endpoint_input_configurations
 
         out["endpoint_configurations"] = (
@@ -144,9 +144,9 @@ def deserialize_aws_json_1_1(data: dict) -> RecommendationJobInputConfig:
                 data["EndpointConfigurations"]
             )
         )
-    if "VolumeKmsKeyId" in data:
+    if data.get("VolumeKmsKeyId") is not None:
         out["volume_kms_key_id"] = data["VolumeKmsKeyId"]
-    if "ContainerConfig" in data:
+    if data.get("ContainerConfig") is not None:
         import capo_sagemaker.types.recommendation_job_container_config
 
         out["container_config"] = (
@@ -154,13 +154,13 @@ def deserialize_aws_json_1_1(data: dict) -> RecommendationJobInputConfig:
                 data["ContainerConfig"]
             )
         )
-    if "Endpoints" in data:
+    if data.get("Endpoints") is not None:
         import capo_sagemaker.types.endpoints
 
         out["endpoints"] = capo_sagemaker.types.endpoints.deserialize_aws_json_1_1(
             data["Endpoints"]
         )
-    if "VpcConfig" in data:
+    if data.get("VpcConfig") is not None:
         import capo_sagemaker.types.recommendation_job_vpc_config
 
         out["vpc_config"] = (

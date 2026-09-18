@@ -36,14 +36,14 @@ def serialize_json(value: InAppMessageHeaderConfig) -> dict:
 
 def deserialize_json(data: dict) -> InAppMessageHeaderConfig:
     out: InAppMessageHeaderConfig = {}  # type: ignore[typeddict-item]
-    if "Alignment" in data:
+    if data.get("Alignment") is not None:
         import capo_pinpoint.types.alignment
 
         out["alignment"] = capo_pinpoint.types.alignment.deserialize_json(
             data["Alignment"]
         )
-    if "Header" in data:
+    if data.get("Header") is not None:
         out["header"] = data["Header"]
-    if "TextColor" in data:
+    if data.get("TextColor") is not None:
         out["text_color"] = data["TextColor"]
     return out

@@ -51,18 +51,18 @@ def serialize_json(value: SimulationMetadata) -> dict:
 
 def deserialize_json(data: dict) -> SimulationMetadata:
     out: SimulationMetadata = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_simspaceweaver.types.timestamp
 
         out["creation_time"] = capo_simspaceweaver.types.timestamp.deserialize_json(
             data["CreationTime"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "TargetStatus" in data:
+    if data.get("TargetStatus") is not None:
         out["target_status"] = data["TargetStatus"]
     return out

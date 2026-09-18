@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> IntegrationV2TypeList:
 
     out: IntegrationV2TypeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityhub.types.integration_v2_type.deserialize_json(item))
     return out

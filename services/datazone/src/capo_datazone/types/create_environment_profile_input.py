@@ -65,25 +65,25 @@ def serialize_json(value: CreateEnvironmentProfileInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateEnvironmentProfileInput:
     out: CreateEnvironmentProfileInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateEnvironmentProfileInput.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "environmentBlueprintIdentifier" in data:
+    if data.get("environmentBlueprintIdentifier") is not None:
         out["environment_blueprint_identifier"] = data["environmentBlueprintIdentifier"]
     else:
         raise DeserializationError(
             "CreateEnvironmentProfileInput.environment_blueprint_identifier required"
         )
-    if "projectIdentifier" in data:
+    if data.get("projectIdentifier") is not None:
         out["project_identifier"] = data["projectIdentifier"]
     else:
         raise DeserializationError(
             "CreateEnvironmentProfileInput.project_identifier required"
         )
-    if "userParameters" in data:
+    if data.get("userParameters") is not None:
         import capo_datazone.types.environment_parameters_list
 
         out["user_parameters"] = (
@@ -91,8 +91,8 @@ def deserialize_json(data: dict) -> CreateEnvironmentProfileInput:
                 data["userParameters"]
             )
         )
-    if "awsAccountId" in data:
+    if data.get("awsAccountId") is not None:
         out["aws_account_id"] = data["awsAccountId"]
-    if "awsAccountRegion" in data:
+    if data.get("awsAccountRegion") is not None:
         out["aws_account_region"] = data["awsAccountRegion"]
     return out

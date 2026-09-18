@@ -114,8 +114,9 @@ class ServiceLevelObjectiveResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_application_signals.types.create_service_level_objective_input.CreateServiceLevelObjectiveInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_application_signals.types.create_service_level_objective_input.CreateServiceLevelObjectiveInput = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if sli_config is not None:
@@ -138,6 +139,7 @@ class ServiceLevelObjectiveResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -173,14 +175,16 @@ class ServiceLevelObjectiveResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_application_signals.types.get_service_level_objective_input.GetServiceLevelObjectiveInput = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_application_signals.types.get_service_level_objective_input.GetServiceLevelObjectiveInput = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -236,8 +240,9 @@ class ServiceLevelObjectiveResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_application_signals.types.update_service_level_objective_input.UpdateServiceLevelObjectiveInput = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_application_signals.types.update_service_level_objective_input.UpdateServiceLevelObjectiveInput = {
+            "id": id
+        }
         if description is not None:
             input_["description"] = description
         if sli_config is not None:
@@ -256,6 +261,7 @@ class ServiceLevelObjectiveResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -291,14 +297,16 @@ class ServiceLevelObjectiveResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_application_signals.types.delete_service_level_objective_input.DeleteServiceLevelObjectiveInput = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_application_signals.types.delete_service_level_objective_input.DeleteServiceLevelObjectiveInput = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -365,7 +373,7 @@ class ServiceLevelObjectiveResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_application_signals.types.list_service_level_objectives_input.ListServiceLevelObjectivesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_application_signals.types.list_service_level_objectives_input.ListServiceLevelObjectivesInput = {}
         if key_attributes is not None:
             input_["key_attributes"] = key_attributes
         if operation_name is not None:
@@ -390,6 +398,7 @@ class ServiceLevelObjectiveResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -457,8 +466,9 @@ class AsyncServiceLevelObjectiveResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_application_signals.types.create_service_level_objective_input.CreateServiceLevelObjectiveInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_application_signals.types.create_service_level_objective_input.CreateServiceLevelObjectiveInput = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if sli_config is not None:
@@ -481,6 +491,7 @@ class AsyncServiceLevelObjectiveResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -517,14 +528,16 @@ class AsyncServiceLevelObjectiveResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_application_signals.types.get_service_level_objective_input.GetServiceLevelObjectiveInput = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_application_signals.types.get_service_level_objective_input.GetServiceLevelObjectiveInput = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -581,8 +594,9 @@ class AsyncServiceLevelObjectiveResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_application_signals.types.update_service_level_objective_input.UpdateServiceLevelObjectiveInput = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_application_signals.types.update_service_level_objective_input.UpdateServiceLevelObjectiveInput = {
+            "id": id
+        }
         if description is not None:
             input_["description"] = description
         if sli_config is not None:
@@ -601,6 +615,7 @@ class AsyncServiceLevelObjectiveResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -637,14 +652,16 @@ class AsyncServiceLevelObjectiveResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_application_signals.types.delete_service_level_objective_input.DeleteServiceLevelObjectiveInput = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_application_signals.types.delete_service_level_objective_input.DeleteServiceLevelObjectiveInput = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -712,7 +729,7 @@ class AsyncServiceLevelObjectiveResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_application_signals.types.list_service_level_objectives_input.ListServiceLevelObjectivesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_application_signals.types.list_service_level_objectives_input.ListServiceLevelObjectivesInput = {}
         if key_attributes is not None:
             input_["key_attributes"] = key_attributes
         if operation_name is not None:
@@ -737,4 +754,5 @@ class AsyncServiceLevelObjectiveResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

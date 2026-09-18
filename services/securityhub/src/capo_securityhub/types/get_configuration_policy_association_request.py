@@ -25,7 +25,7 @@ def serialize_json(value: GetConfigurationPolicyAssociationRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetConfigurationPolicyAssociationRequest:
     out: GetConfigurationPolicyAssociationRequest = {}  # type: ignore[typeddict-item]
-    if "Target" in data:
+    if data.get("Target") is not None:
         import capo_securityhub.types.target
 
         out["target"] = capo_securityhub.types.target.deserialize_json(data["Target"])

@@ -33,10 +33,10 @@ def serialize_json(value: DatasetOwnerInfo) -> dict:
 
 def deserialize_json(data: dict) -> DatasetOwnerInfo:
     out: DatasetOwnerInfo = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "phoneNumber" in data:
+    if data.get("phoneNumber") is not None:
         out["phone_number"] = data["phoneNumber"]
-    if "email" in data:
+    if data.get("email") is not None:
         out["email"] = data["email"]
     return out

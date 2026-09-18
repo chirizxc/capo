@@ -37,7 +37,7 @@ def serialize_json(value: ListServiceLevelObjectiveExclusionWindowsOutput) -> di
 
 def deserialize_json(data: dict) -> ListServiceLevelObjectiveExclusionWindowsOutput:
     out: ListServiceLevelObjectiveExclusionWindowsOutput = {}  # type: ignore[typeddict-item]
-    if "ExclusionWindows" in data:
+    if data.get("ExclusionWindows") is not None:
         import capo_application_signals.types.exclusion_windows
 
         out["exclusion_windows"] = (
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> ListServiceLevelObjectiveExclusionWindowsOut
         raise DeserializationError(
             "ListServiceLevelObjectiveExclusionWindowsOutput.exclusion_windows required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

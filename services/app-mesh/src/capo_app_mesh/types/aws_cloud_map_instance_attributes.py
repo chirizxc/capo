@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AwsCloudMapInstanceAttributes:
 
     out: AwsCloudMapInstanceAttributes = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_app_mesh.types.aws_cloud_map_instance_attribute.deserialize_json(item)
         )

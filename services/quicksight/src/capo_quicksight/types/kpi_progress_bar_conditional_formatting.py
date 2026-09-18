@@ -31,7 +31,7 @@ def serialize_json(value: KPIProgressBarConditionalFormatting) -> dict:
 
 def deserialize_json(data: dict) -> KPIProgressBarConditionalFormatting:
     out: KPIProgressBarConditionalFormatting = {}  # type: ignore[typeddict-item]
-    if "ForegroundColor" in data:
+    if data.get("ForegroundColor") is not None:
         import capo_quicksight.types.conditional_formatting_color
 
         out["foreground_color"] = (

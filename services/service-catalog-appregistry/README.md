@@ -13,9 +13,9 @@ from capo_service_catalog_appregistry import AsyncServiceCatalogAppRegistryClien
 
 
 async def main():
-    async with AsyncServiceCatalogAppRegistryClient() as s3:
+    async with AsyncServiceCatalogAppRegistryClient() as service_catalog_app_registry:
         # Example: call the associate_attribute_group operation
-        response = await s3.associate_attribute_group()
+        response = await service_catalog_app_registry.associate_attribute_group()
         print(response["application_arn"])
 ```
 
@@ -28,9 +28,9 @@ from capo_service_catalog_appregistry import AsyncServiceCatalogAppRegistryClien
 
 
 async def main():
-    async with AsyncServiceCatalogAppRegistryClient() as s3:
+    async with AsyncServiceCatalogAppRegistryClient() as service_catalog_app_registry:
         # Example: paginate over list_applications
-        async for item in s3.iter_list_applications():
+        async for item in service_catalog_app_registry.iter_list_applications():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_service_catalog_appregistry.error import ConflictException
 
 
 async def main():
-    async with AsyncServiceCatalogAppRegistryClient() as s3:
+    async with AsyncServiceCatalogAppRegistryClient() as service_catalog_app_registry:
         try:
-            await s3.associate_attribute_group()
+            await service_catalog_app_registry.associate_attribute_group()
         except ConflictException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_service_catalog_appregistry import AsyncServiceCatalogAppRegistryClien
 
 
 async def main():
-    async with AsyncServiceCatalogAppRegistryClient() as s3:
+    async with AsyncServiceCatalogAppRegistryClient() as service_catalog_app_registry:
         # Default: 3 attempts for every operation
-        response = await s3.associate_attribute_group()
+        response = await service_catalog_app_registry.associate_attribute_group()
 
         # Override per operation
-        response = await s3.associate_attribute_group(config_overrides={"retry_max_attempts": 5})
+        response = await service_catalog_app_registry.associate_attribute_group(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.associate_attribute_group(config_overrides={"retry_max_attempts": 1})
+        response = await service_catalog_app_registry.associate_attribute_group(config_overrides={"retry_max_attempts": 1})
 ```

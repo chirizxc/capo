@@ -35,9 +35,9 @@ def serialize_aws_json_1_0(value: ListKeyspacesResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListKeyspacesResponse:
     out: ListKeyspacesResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "keyspaces" in data:
+    if data.get("keyspaces") is not None:
         import capo_keyspaces.types.keyspace_summary_list
 
         out["keyspaces"] = (

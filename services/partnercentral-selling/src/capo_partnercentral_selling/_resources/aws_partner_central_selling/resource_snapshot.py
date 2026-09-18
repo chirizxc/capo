@@ -92,21 +92,21 @@ class ResourceSnapshot:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.create_resource_snapshot_request.CreateResourceSnapshotRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["engagement_identifier"] = engagement_identifier
-        input_["resource_type"] = resource_type
-        input_["resource_identifier"] = resource_identifier
-        input_["resource_snapshot_template_identifier"] = (
-            resource_snapshot_template_identifier
-        )
-        input_["client_token"] = client_token
+        input_: capo_partnercentral_selling.types.create_resource_snapshot_request.CreateResourceSnapshotRequest = {
+            "catalog": catalog,
+            "engagement_identifier": engagement_identifier,
+            "resource_type": resource_type,
+            "resource_identifier": resource_identifier,
+            "resource_snapshot_template_identifier": resource_snapshot_template_identifier,
+            "client_token": client_token,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_resource_snapshot(
@@ -156,14 +156,13 @@ class ResourceSnapshot:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.get_resource_snapshot_request.GetResourceSnapshotRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["engagement_identifier"] = engagement_identifier
-        input_["resource_type"] = resource_type
-        input_["resource_identifier"] = resource_identifier
-        input_["resource_snapshot_template_identifier"] = (
-            resource_snapshot_template_identifier
-        )
+        input_: capo_partnercentral_selling.types.get_resource_snapshot_request.GetResourceSnapshotRequest = {
+            "catalog": catalog,
+            "engagement_identifier": engagement_identifier,
+            "resource_type": resource_type,
+            "resource_identifier": resource_identifier,
+            "resource_snapshot_template_identifier": resource_snapshot_template_identifier,
+        }
         if revision is not None:
             input_["revision"] = revision
 
@@ -172,6 +171,7 @@ class ResourceSnapshot:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_engagement_resource_associations(
@@ -231,8 +231,9 @@ class ResourceSnapshot:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.list_engagement_resource_associations_request.ListEngagementResourceAssociationsRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
+        input_: capo_partnercentral_selling.types.list_engagement_resource_associations_request.ListEngagementResourceAssociationsRequest = {
+            "catalog": catalog
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -251,6 +252,7 @@ class ResourceSnapshot:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_resource_snapshots(
@@ -312,13 +314,14 @@ class ResourceSnapshot:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.list_resource_snapshots_request.ListResourceSnapshotsRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
+        input_: capo_partnercentral_selling.types.list_resource_snapshots_request.ListResourceSnapshotsRequest = {
+            "catalog": catalog,
+            "engagement_identifier": engagement_identifier,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["engagement_identifier"] = engagement_identifier
         if resource_type is not None:
             input_["resource_type"] = resource_type
         if resource_identifier is not None:
@@ -335,6 +338,7 @@ class ResourceSnapshot:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -390,21 +394,21 @@ class AsyncResourceSnapshot:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.create_resource_snapshot_request.CreateResourceSnapshotRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["engagement_identifier"] = engagement_identifier
-        input_["resource_type"] = resource_type
-        input_["resource_identifier"] = resource_identifier
-        input_["resource_snapshot_template_identifier"] = (
-            resource_snapshot_template_identifier
-        )
-        input_["client_token"] = client_token
+        input_: capo_partnercentral_selling.types.create_resource_snapshot_request.CreateResourceSnapshotRequest = {
+            "catalog": catalog,
+            "engagement_identifier": engagement_identifier,
+            "resource_type": resource_type,
+            "resource_identifier": resource_identifier,
+            "resource_snapshot_template_identifier": resource_snapshot_template_identifier,
+            "client_token": client_token,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_resource_snapshot(
@@ -455,14 +459,13 @@ class AsyncResourceSnapshot:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.get_resource_snapshot_request.GetResourceSnapshotRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["engagement_identifier"] = engagement_identifier
-        input_["resource_type"] = resource_type
-        input_["resource_identifier"] = resource_identifier
-        input_["resource_snapshot_template_identifier"] = (
-            resource_snapshot_template_identifier
-        )
+        input_: capo_partnercentral_selling.types.get_resource_snapshot_request.GetResourceSnapshotRequest = {
+            "catalog": catalog,
+            "engagement_identifier": engagement_identifier,
+            "resource_type": resource_type,
+            "resource_identifier": resource_identifier,
+            "resource_snapshot_template_identifier": resource_snapshot_template_identifier,
+        }
         if revision is not None:
             input_["revision"] = revision
 
@@ -471,6 +474,7 @@ class AsyncResourceSnapshot:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_engagement_resource_associations(
@@ -531,8 +535,9 @@ class AsyncResourceSnapshot:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.list_engagement_resource_associations_request.ListEngagementResourceAssociationsRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
+        input_: capo_partnercentral_selling.types.list_engagement_resource_associations_request.ListEngagementResourceAssociationsRequest = {
+            "catalog": catalog
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -551,6 +556,7 @@ class AsyncResourceSnapshot:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_resource_snapshots(
@@ -613,13 +619,14 @@ class AsyncResourceSnapshot:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.list_resource_snapshots_request.ListResourceSnapshotsRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
+        input_: capo_partnercentral_selling.types.list_resource_snapshots_request.ListResourceSnapshotsRequest = {
+            "catalog": catalog,
+            "engagement_identifier": engagement_identifier,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["engagement_identifier"] = engagement_identifier
         if resource_type is not None:
             input_["resource_type"] = resource_type
         if resource_identifier is not None:
@@ -636,4 +643,5 @@ class AsyncResourceSnapshot:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

@@ -131,15 +131,15 @@ def serialize_json(value: GetDeploymentResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetDeploymentResponse:
     out: GetDeploymentResponse = {}  # type: ignore[typeddict-item]
-    if "targetArn" in data:
+    if data.get("targetArn") is not None:
         out["target_arn"] = data["targetArn"]
-    if "revisionId" in data:
+    if data.get("revisionId") is not None:
         out["revision_id"] = data["revisionId"]
-    if "deploymentId" in data:
+    if data.get("deploymentId") is not None:
         out["deployment_id"] = data["deploymentId"]
-    if "deploymentName" in data:
+    if data.get("deploymentName") is not None:
         out["deployment_name"] = data["deploymentName"]
-    if "deploymentStatus" in data:
+    if data.get("deploymentStatus") is not None:
         import capo_greengrassv2.types.deployment_status
 
         out["deployment_status"] = (
@@ -147,11 +147,11 @@ def deserialize_json(data: dict) -> GetDeploymentResponse:
                 data["deploymentStatus"]
             )
         )
-    if "iotJobId" in data:
+    if data.get("iotJobId") is not None:
         out["iot_job_id"] = data["iotJobId"]
-    if "iotJobArn" in data:
+    if data.get("iotJobArn") is not None:
         out["iot_job_arn"] = data["iotJobArn"]
-    if "components" in data:
+    if data.get("components") is not None:
         import capo_greengrassv2.types.component_deployment_specifications
 
         out["components"] = (
@@ -159,7 +159,7 @@ def deserialize_json(data: dict) -> GetDeploymentResponse:
                 data["components"]
             )
         )
-    if "deploymentPolicies" in data:
+    if data.get("deploymentPolicies") is not None:
         import capo_greengrassv2.types.deployment_policies
 
         out["deployment_policies"] = (
@@ -167,7 +167,7 @@ def deserialize_json(data: dict) -> GetDeploymentResponse:
                 data["deploymentPolicies"]
             )
         )
-    if "iotJobConfiguration" in data:
+    if data.get("iotJobConfiguration") is not None:
         import capo_greengrassv2.types.deployment_io_t_job_configuration
 
         out["iot_job_configuration"] = (
@@ -175,19 +175,19 @@ def deserialize_json(data: dict) -> GetDeploymentResponse:
                 data["iotJobConfiguration"]
             )
         )
-    if "creationTimestamp" in data:
+    if data.get("creationTimestamp") is not None:
         import capo_greengrassv2.types.timestamp
 
         out["creation_timestamp"] = capo_greengrassv2.types.timestamp.deserialize_json(
             data["creationTimestamp"]
         )
-    if "isLatestForTarget" in data:
+    if data.get("isLatestForTarget") is not None:
         out["is_latest_for_target"] = data["isLatestForTarget"]
     else:
         out["is_latest_for_target"] = False
-    if "parentTargetArn" in data:
+    if data.get("parentTargetArn") is not None:
         out["parent_target_arn"] = data["parentTargetArn"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_greengrassv2.types.tag_map
 
         out["tags"] = capo_greengrassv2.types.tag_map.deserialize_json(data["tags"])

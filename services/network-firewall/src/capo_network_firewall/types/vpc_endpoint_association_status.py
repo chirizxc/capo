@@ -43,7 +43,7 @@ def serialize_aws_json_1_0(value: VpcEndpointAssociationStatus) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> VpcEndpointAssociationStatus:
     out: VpcEndpointAssociationStatus = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_network_firewall.types.firewall_status_value
 
         out["status"] = (
@@ -53,7 +53,7 @@ def deserialize_aws_json_1_0(data: dict) -> VpcEndpointAssociationStatus:
         )
     else:
         raise DeserializationError("VpcEndpointAssociationStatus.status required")
-    if "AssociationSyncState" in data:
+    if data.get("AssociationSyncState") is not None:
         import capo_network_firewall.types.association_sync_state
 
         out["association_sync_state"] = (

@@ -45,7 +45,7 @@ def serialize_aws_json_1_1(value: WarmPoolStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WarmPoolStatus:
     out: WarmPoolStatus = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.warm_pool_resource_status
 
         out["status"] = (
@@ -53,10 +53,10 @@ def deserialize_aws_json_1_1(data: dict) -> WarmPoolStatus:
                 data["Status"]
             )
         )
-    if "ResourceRetainedBillableTimeInSeconds" in data:
+    if data.get("ResourceRetainedBillableTimeInSeconds") is not None:
         out["resource_retained_billable_time_in_seconds"] = data[
             "ResourceRetainedBillableTimeInSeconds"
         ]
-    if "ReusedByJob" in data:
+    if data.get("ReusedByJob") is not None:
         out["reused_by_job"] = data["ReusedByJob"]
     return out

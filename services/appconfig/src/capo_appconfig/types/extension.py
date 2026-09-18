@@ -60,25 +60,25 @@ def serialize_json(value: Extension) -> dict:
 
 def deserialize_json(data: dict) -> Extension:
     out: Extension = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "VersionNumber" in data:
+    if data.get("VersionNumber") is not None:
         out["version_number"] = data["VersionNumber"]
     else:
         out["version_number"] = 0
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Actions" in data:
+    if data.get("Actions") is not None:
         import capo_appconfig.types.actions_map
 
         out["actions"] = capo_appconfig.types.actions_map.deserialize_json(
             data["Actions"]
         )
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_appconfig.types.parameter_map
 
         out["parameters"] = capo_appconfig.types.parameter_map.deserialize_json(

@@ -57,7 +57,7 @@ def serialize_json(value: MedicalScribeConfigurationEvent) -> dict:
 
 def deserialize_json(data: dict) -> MedicalScribeConfigurationEvent:
     out: MedicalScribeConfigurationEvent = {}  # type: ignore[typeddict-item]
-    if "postStreamActionSettings" in data:
+    if data.get("postStreamActionSettings") is not None:
         import capo_connecthealth.types.medical_scribe_post_stream_action_settings
 
         out["post_stream_action_settings"] = (
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> MedicalScribeConfigurationEvent:
         raise DeserializationError(
             "MedicalScribeConfigurationEvent.post_stream_action_settings required"
         )
-    if "channelDefinitions" in data:
+    if data.get("channelDefinitions") is not None:
         import capo_connecthealth.types.medical_scribe_channel_definitions
 
         out["channel_definitions"] = (
@@ -77,7 +77,7 @@ def deserialize_json(data: dict) -> MedicalScribeConfigurationEvent:
                 data["channelDefinitions"]
             )
         )
-    if "encounterContext" in data:
+    if data.get("encounterContext") is not None:
         import capo_connecthealth.types.encounter_context
 
         out["encounter_context"] = (

@@ -27,6 +27,6 @@ def serialize_json(value: UnshareApplicationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UnshareApplicationRequest:
     out: UnshareApplicationRequest = {}  # type: ignore[typeddict-item]
-    if "organizationId" in data:
+    if data.get("organizationId") is not None:
         out["organization_id"] = data["organizationId"]
     return out

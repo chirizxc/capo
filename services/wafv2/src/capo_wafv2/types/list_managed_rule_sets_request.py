@@ -36,14 +36,14 @@ def serialize_aws_json_1_1(value: ListManagedRuleSetsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListManagedRuleSetsRequest:
     out: ListManagedRuleSetsRequest = {}  # type: ignore[typeddict-item]
-    if "Scope" in data:
+    if data.get("Scope") is not None:
         import capo_wafv2.types.scope
 
         out["scope"] = capo_wafv2.types.scope.deserialize_aws_json_1_1(data["Scope"])
     else:
         raise DeserializationError("ListManagedRuleSetsRequest.scope required")
-    if "NextMarker" in data:
+    if data.get("NextMarker") is not None:
         out["next_marker"] = data["NextMarker"]
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
     return out

@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: ClinicalNoteGenerationSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClinicalNoteGenerationSettings:
     out: ClinicalNoteGenerationSettings = {}  # type: ignore[typeddict-item]
-    if "NoteTemplate" in data:
+    if data.get("NoteTemplate") is not None:
         import capo_transcribe.types.medical_scribe_note_template
 
         out["note_template"] = (

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ResourceTenantMetadataList:
 
     out: ResourceTenantMetadataList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_sesv2.types.resource_tenant_metadata.deserialize_json(item))
     return out

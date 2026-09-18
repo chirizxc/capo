@@ -70,25 +70,25 @@ def serialize_json(value: SearchJobBackupsResult) -> dict:
 
 def deserialize_json(data: dict) -> SearchJobBackupsResult:
     out: SearchJobBackupsResult = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_backupsearch.types.search_job_state
 
         out["status"] = capo_backupsearch.types.search_job_state.deserialize_json(
             data["Status"]
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_backupsearch.types.resource_type
 
         out["resource_type"] = capo_backupsearch.types.resource_type.deserialize_json(
             data["ResourceType"]
         )
-    if "BackupResourceArn" in data:
+    if data.get("BackupResourceArn") is not None:
         out["backup_resource_arn"] = data["BackupResourceArn"]
-    if "SourceResourceArn" in data:
+    if data.get("SourceResourceArn") is not None:
         out["source_resource_arn"] = data["SourceResourceArn"]
-    if "IndexCreationTime" in data:
+    if data.get("IndexCreationTime") is not None:
         import capo_backupsearch.types._prelude.timestamp
 
         out["index_creation_time"] = (
@@ -96,7 +96,7 @@ def deserialize_json(data: dict) -> SearchJobBackupsResult:
                 data["IndexCreationTime"]
             )
         )
-    if "BackupCreationTime" in data:
+    if data.get("BackupCreationTime") is not None:
         import capo_backupsearch.types._prelude.timestamp
 
         out["backup_creation_time"] = (

@@ -41,15 +41,20 @@ class CapacityReservationPendingException(ServiceError):
 
     code: str | None = "CapacityReservationPendingException"
 
-    def __init__(self, data: CapacityReservationPendingException_):
+    def __init__(
+        self, data: CapacityReservationPendingException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="CapacityReservationPendingException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "CapacityReservationPendingException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "CapacityReservationPendingException":
+        return cls(deserialize_query(el), message)

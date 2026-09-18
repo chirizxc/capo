@@ -16,4 +16,4 @@ def serialize_json(value: TerminateTargetInstancesRequestSourceServerIDs) -> lis
 
 
 def deserialize_json(data: list) -> TerminateTargetInstancesRequestSourceServerIDs:
-    return list(data)
+    return [item for item in data if item is not None]

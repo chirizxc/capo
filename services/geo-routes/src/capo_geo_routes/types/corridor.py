@@ -31,7 +31,7 @@ def serialize_json(value: Corridor) -> dict:
 
 def deserialize_json(data: dict) -> Corridor:
     out: Corridor = {}  # type: ignore[typeddict-item]
-    if "LineString" in data:
+    if data.get("LineString") is not None:
         import capo_geo_routes.types.line_string
 
         out["line_string"] = capo_geo_routes.types.line_string.deserialize_json(
@@ -39,7 +39,7 @@ def deserialize_json(data: dict) -> Corridor:
         )
     else:
         raise DeserializationError("Corridor.line_string required")
-    if "Radius" in data:
+    if data.get("Radius") is not None:
         out["radius"] = data["Radius"]
     else:
         raise DeserializationError("Corridor.radius required")

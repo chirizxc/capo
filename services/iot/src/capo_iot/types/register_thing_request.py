@@ -33,11 +33,11 @@ def serialize_json(value: RegisterThingRequest) -> dict:
 
 def deserialize_json(data: dict) -> RegisterThingRequest:
     out: RegisterThingRequest = {}  # type: ignore[typeddict-item]
-    if "templateBody" in data:
+    if data.get("templateBody") is not None:
         out["template_body"] = data["templateBody"]
     else:
         raise DeserializationError("RegisterThingRequest.template_body required")
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_iot.types.parameters
 
         out["parameters"] = capo_iot.types.parameters.deserialize_json(

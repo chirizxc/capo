@@ -184,19 +184,19 @@ def serialize_aws_json_1_1(value: CreateContainerFleetInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateContainerFleetInput:
     out: CreateContainerFleetInput = {}  # type: ignore[typeddict-item]
-    if "FleetRoleArn" in data:
+    if data.get("FleetRoleArn") is not None:
         out["fleet_role_arn"] = data["FleetRoleArn"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "GameServerContainerGroupDefinitionName" in data:
+    if data.get("GameServerContainerGroupDefinitionName") is not None:
         out["game_server_container_group_definition_name"] = data[
             "GameServerContainerGroupDefinitionName"
         ]
-    if "PerInstanceContainerGroupDefinitionName" in data:
+    if data.get("PerInstanceContainerGroupDefinitionName") is not None:
         out["per_instance_container_group_definition_name"] = data[
             "PerInstanceContainerGroupDefinitionName"
         ]
-    if "InstanceConnectionPortRange" in data:
+    if data.get("InstanceConnectionPortRange") is not None:
         import capo_gamelift.types.connection_port_range
 
         out["instance_connection_port_range"] = (
@@ -204,7 +204,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateContainerFleetInput:
                 data["InstanceConnectionPortRange"]
             )
         )
-    if "InstanceInboundPermissions" in data:
+    if data.get("InstanceInboundPermissions") is not None:
         import capo_gamelift.types.ip_permissions_list
 
         out["instance_inbound_permissions"] = (
@@ -212,13 +212,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreateContainerFleetInput:
                 data["InstanceInboundPermissions"]
             )
         )
-    if "GameServerContainerGroupsPerInstance" in data:
+    if data.get("GameServerContainerGroupsPerInstance") is not None:
         out["game_server_container_groups_per_instance"] = data[
             "GameServerContainerGroupsPerInstance"
         ]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         out["instance_type"] = data["InstanceType"]
-    if "BillingType" in data:
+    if data.get("BillingType") is not None:
         import capo_gamelift.types.container_fleet_billing_type
 
         out["billing_type"] = (
@@ -226,7 +226,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateContainerFleetInput:
                 data["BillingType"]
             )
         )
-    if "Locations" in data:
+    if data.get("Locations") is not None:
         import capo_gamelift.types.location_configuration_list
 
         out["locations"] = (
@@ -234,7 +234,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateContainerFleetInput:
                 data["Locations"]
             )
         )
-    if "MetricGroups" in data:
+    if data.get("MetricGroups") is not None:
         import capo_gamelift.types.metric_group_list
 
         out["metric_groups"] = (
@@ -242,7 +242,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateContainerFleetInput:
                 data["MetricGroups"]
             )
         )
-    if "NewGameSessionProtectionPolicy" in data:
+    if data.get("NewGameSessionProtectionPolicy") is not None:
         import capo_gamelift.types.protection_policy
 
         out["new_game_session_protection_policy"] = (
@@ -250,7 +250,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateContainerFleetInput:
                 data["NewGameSessionProtectionPolicy"]
             )
         )
-    if "GameSessionCreationLimitPolicy" in data:
+    if data.get("GameSessionCreationLimitPolicy") is not None:
         import capo_gamelift.types.game_session_creation_limit_policy
 
         out["game_session_creation_limit_policy"] = (
@@ -258,7 +258,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateContainerFleetInput:
                 data["GameSessionCreationLimitPolicy"]
             )
         )
-    if "LogConfiguration" in data:
+    if data.get("LogConfiguration") is not None:
         import capo_gamelift.types.log_configuration
 
         out["log_configuration"] = (
@@ -266,13 +266,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreateContainerFleetInput:
                 data["LogConfiguration"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_gamelift.types.tag_list
 
         out["tags"] = capo_gamelift.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "PlayerGatewayMode" in data:
+    if data.get("PlayerGatewayMode") is not None:
         import capo_gamelift.types.player_gateway_mode
 
         out["player_gateway_mode"] = (

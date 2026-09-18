@@ -96,7 +96,7 @@ def serialize_json(value: RuleGroupSourceStatelessRuleMatchAttributes) -> dict:
 
 def deserialize_json(data: dict) -> RuleGroupSourceStatelessRuleMatchAttributes:
     out: RuleGroupSourceStatelessRuleMatchAttributes = {}  # type: ignore[typeddict-item]
-    if "DestinationPorts" in data:
+    if data.get("DestinationPorts") is not None:
         import capo_securityhub.types.rule_group_source_stateless_rule_match_attributes_destination_ports_list
 
         out["destination_ports"] = (
@@ -104,7 +104,7 @@ def deserialize_json(data: dict) -> RuleGroupSourceStatelessRuleMatchAttributes:
                 data["DestinationPorts"]
             )
         )
-    if "Destinations" in data:
+    if data.get("Destinations") is not None:
         import capo_securityhub.types.rule_group_source_stateless_rule_match_attributes_destinations_list
 
         out["destinations"] = (
@@ -112,7 +112,7 @@ def deserialize_json(data: dict) -> RuleGroupSourceStatelessRuleMatchAttributes:
                 data["Destinations"]
             )
         )
-    if "Protocols" in data:
+    if data.get("Protocols") is not None:
         import capo_securityhub.types.rule_group_source_stateless_rule_match_attributes_protocols_list
 
         out["protocols"] = (
@@ -120,7 +120,7 @@ def deserialize_json(data: dict) -> RuleGroupSourceStatelessRuleMatchAttributes:
                 data["Protocols"]
             )
         )
-    if "SourcePorts" in data:
+    if data.get("SourcePorts") is not None:
         import capo_securityhub.types.rule_group_source_stateless_rule_match_attributes_source_ports_list
 
         out["source_ports"] = (
@@ -128,7 +128,7 @@ def deserialize_json(data: dict) -> RuleGroupSourceStatelessRuleMatchAttributes:
                 data["SourcePorts"]
             )
         )
-    if "Sources" in data:
+    if data.get("Sources") is not None:
         import capo_securityhub.types.rule_group_source_stateless_rule_match_attributes_sources_list
 
         out["sources"] = (
@@ -136,7 +136,7 @@ def deserialize_json(data: dict) -> RuleGroupSourceStatelessRuleMatchAttributes:
                 data["Sources"]
             )
         )
-    if "TcpFlags" in data:
+    if data.get("TcpFlags") is not None:
         import capo_securityhub.types.rule_group_source_stateless_rule_match_attributes_tcp_flags_list
 
         out["tcp_flags"] = (

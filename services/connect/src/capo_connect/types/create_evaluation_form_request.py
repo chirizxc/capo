@@ -123,13 +123,13 @@ def serialize_json(value: CreateEvaluationFormRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateEvaluationFormRequest:
     out: CreateEvaluationFormRequest = {}  # type: ignore[typeddict-item]
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
     else:
         raise DeserializationError("CreateEvaluationFormRequest.title required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Items" in data:
+    if data.get("Items") is not None:
         import capo_connect.types.evaluation_form_items_list
 
         out["items"] = capo_connect.types.evaluation_form_items_list.deserialize_json(
@@ -137,7 +137,7 @@ def deserialize_json(data: dict) -> CreateEvaluationFormRequest:
         )
     else:
         raise DeserializationError("CreateEvaluationFormRequest.items required")
-    if "ScoringStrategy" in data:
+    if data.get("ScoringStrategy") is not None:
         import capo_connect.types.evaluation_form_scoring_strategy
 
         out["scoring_strategy"] = (
@@ -145,7 +145,7 @@ def deserialize_json(data: dict) -> CreateEvaluationFormRequest:
                 data["ScoringStrategy"]
             )
         )
-    if "AutoEvaluationConfiguration" in data:
+    if data.get("AutoEvaluationConfiguration") is not None:
         import capo_connect.types.evaluation_form_auto_evaluation_configuration
 
         out["auto_evaluation_configuration"] = (
@@ -153,17 +153,17 @@ def deserialize_json(data: dict) -> CreateEvaluationFormRequest:
                 data["AutoEvaluationConfiguration"]
             )
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "AsDraft" in data:
+    if data.get("AsDraft") is not None:
         out["as_draft"] = data["AsDraft"]
     else:
         out["as_draft"] = False
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])
-    if "ReviewConfiguration" in data:
+    if data.get("ReviewConfiguration") is not None:
         import capo_connect.types.evaluation_review_configuration
 
         out["review_configuration"] = (
@@ -171,7 +171,7 @@ def deserialize_json(data: dict) -> CreateEvaluationFormRequest:
                 data["ReviewConfiguration"]
             )
         )
-    if "TargetConfiguration" in data:
+    if data.get("TargetConfiguration") is not None:
         import capo_connect.types.evaluation_form_target_configuration
 
         out["target_configuration"] = (
@@ -179,7 +179,7 @@ def deserialize_json(data: dict) -> CreateEvaluationFormRequest:
                 data["TargetConfiguration"]
             )
         )
-    if "LanguageConfiguration" in data:
+    if data.get("LanguageConfiguration") is not None:
         import capo_connect.types.evaluation_form_language_configuration
 
         out["language_configuration"] = (

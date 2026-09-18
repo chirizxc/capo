@@ -142,13 +142,13 @@ def serialize_aws_json_1_1(value: DataRepositoryAssociation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataRepositoryAssociation:
     out: DataRepositoryAssociation = {}  # type: ignore[typeddict-item]
-    if "AssociationId" in data:
+    if data.get("AssociationId") is not None:
         out["association_id"] = data["AssociationId"]
-    if "ResourceARN" in data:
+    if data.get("ResourceARN") is not None:
         out["resource_arn"] = data["ResourceARN"]
-    if "FileSystemId" in data:
+    if data.get("FileSystemId") is not None:
         out["file_system_id"] = data["FileSystemId"]
-    if "Lifecycle" in data:
+    if data.get("Lifecycle") is not None:
         import capo_fsx.types.data_repository_lifecycle
 
         out["lifecycle"] = (
@@ -156,7 +156,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataRepositoryAssociation:
                 data["Lifecycle"]
             )
         )
-    if "FailureDetails" in data:
+    if data.get("FailureDetails") is not None:
         import capo_fsx.types.data_repository_failure_details
 
         out["failure_details"] = (
@@ -164,15 +164,15 @@ def deserialize_aws_json_1_1(data: dict) -> DataRepositoryAssociation:
                 data["FailureDetails"]
             )
         )
-    if "FileSystemPath" in data:
+    if data.get("FileSystemPath") is not None:
         out["file_system_path"] = data["FileSystemPath"]
-    if "DataRepositoryPath" in data:
+    if data.get("DataRepositoryPath") is not None:
         out["data_repository_path"] = data["DataRepositoryPath"]
-    if "BatchImportMetaDataOnCreate" in data:
+    if data.get("BatchImportMetaDataOnCreate") is not None:
         out["batch_import_meta_data_on_create"] = data["BatchImportMetaDataOnCreate"]
-    if "ImportedFileChunkSize" in data:
+    if data.get("ImportedFileChunkSize") is not None:
         out["imported_file_chunk_size"] = data["ImportedFileChunkSize"]
-    if "S3" in data:
+    if data.get("S3") is not None:
         import capo_fsx.types.s3_data_repository_configuration
 
         out["s3"] = (
@@ -180,21 +180,21 @@ def deserialize_aws_json_1_1(data: dict) -> DataRepositoryAssociation:
                 data["S3"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_fsx.types.tags
 
         out["tags"] = capo_fsx.types.tags.deserialize_aws_json_1_1(data["Tags"])
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_fsx.types.creation_time
 
         out["creation_time"] = capo_fsx.types.creation_time.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "FileCacheId" in data:
+    if data.get("FileCacheId") is not None:
         out["file_cache_id"] = data["FileCacheId"]
-    if "FileCachePath" in data:
+    if data.get("FileCachePath") is not None:
         out["file_cache_path"] = data["FileCachePath"]
-    if "DataRepositorySubdirectories" in data:
+    if data.get("DataRepositorySubdirectories") is not None:
         import capo_fsx.types.sub_directories_paths
 
         out["data_repository_subdirectories"] = (
@@ -202,7 +202,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataRepositoryAssociation:
                 data["DataRepositorySubdirectories"]
             )
         )
-    if "NFS" in data:
+    if data.get("NFS") is not None:
         import capo_fsx.types.nfs_data_repository_configuration
 
         out["nfs"] = (

@@ -43,11 +43,11 @@ def serialize_json(value: CommandExecutionResult) -> dict:
 
 def deserialize_json(data: dict) -> CommandExecutionResult:
     out: CommandExecutionResult = {}  # type: ignore[typeddict-item]
-    if "S" in data:
+    if data.get("S") is not None:
         out["s"] = data["S"]
-    if "B" in data:
+    if data.get("B") is not None:
         out["b"] = data["B"]
-    if "BIN" in data:
+    if data.get("BIN") is not None:
         import capo_iot.types.binary_command_execution_result
 
         out["bin"] = capo_iot.types.binary_command_execution_result.deserialize_json(

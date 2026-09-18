@@ -43,9 +43,9 @@ def serialize_json(value: StatusSummary) -> dict:
         out["Status"] = capo_ssm_quicksetup.types.status.serialize_json(value["status"])
     if "status_message" in value:
         out["StatusMessage"] = value["status_message"]
-    import capo_ssm_quicksetup.types._prelude.timestamp
+    import capo_ssm_quicksetup._protocol.serialize
 
-    out["LastUpdatedAt"] = capo_ssm_quicksetup.types._prelude.timestamp.serialize_json(
+    out["LastUpdatedAt"] = capo_ssm_quicksetup._protocol.serialize.fmt_date_time(
         value["last_updated_at"]
     )
     if "status_details" in value:
@@ -59,7 +59,7 @@ def serialize_json(value: StatusSummary) -> dict:
 
 def deserialize_json(data: dict) -> StatusSummary:
     out: StatusSummary = {}  # type: ignore[typeddict-item]
-    if "StatusType" in data:
+    if data.get("StatusType") is not None:
         import capo_ssm_quicksetup.types.status_type
 
         out["status_type"] = capo_ssm_quicksetup.types.status_type.deserialize_json(
@@ -67,25 +67,23 @@ def deserialize_json(data: dict) -> StatusSummary:
         )
     else:
         raise DeserializationError("StatusSummary.status_type required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_ssm_quicksetup.types.status
 
         out["status"] = capo_ssm_quicksetup.types.status.deserialize_json(
             data["Status"]
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "LastUpdatedAt" in data:
-        import capo_ssm_quicksetup.types._prelude.timestamp
+    if data.get("LastUpdatedAt") is not None:
+        import datetime
 
-        out["last_updated_at"] = (
-            capo_ssm_quicksetup.types._prelude.timestamp.deserialize_json(
-                data["LastUpdatedAt"]
-            )
+        out["last_updated_at"] = datetime.datetime.fromisoformat(
+            data["LastUpdatedAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("StatusSummary.last_updated_at required")
-    if "StatusDetails" in data:
+    if data.get("StatusDetails") is not None:
         import capo_ssm_quicksetup.types.status_details
 
         out["status_details"] = (

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ConnectorDestinationListDefinition:
 
     out: ConnectorDestinationListDefinition = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot_managed_integrations.types.connector_destination_summary.deserialize_json(
                 item

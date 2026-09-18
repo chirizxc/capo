@@ -30,9 +30,9 @@ def serialize_aws_json_1_1(value: TLDInMaintenance_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TLDInMaintenance_:
     out: TLDInMaintenance_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "tld" in data:
+    if data.get("tld") is not None:
         out["tld"] = data["tld"]
     return out
 
@@ -42,15 +42,18 @@ class TLDInMaintenance(ServiceError):
 
     code: str | None = "TLDInMaintenance"
 
-    def __init__(self, data: TLDInMaintenance_):
+    def __init__(self, data: TLDInMaintenance_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="TLDInMaintenance",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "TLDInMaintenance":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "TLDInMaintenance":
+        return cls(deserialize_aws_json_1_1(data), message)

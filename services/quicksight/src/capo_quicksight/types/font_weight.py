@@ -27,7 +27,7 @@ def serialize_json(value: FontWeight) -> dict:
 
 def deserialize_json(data: dict) -> FontWeight:
     out: FontWeight = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         import capo_quicksight.types.font_weight_name
 
         out["name"] = capo_quicksight.types.font_weight_name.deserialize_json(

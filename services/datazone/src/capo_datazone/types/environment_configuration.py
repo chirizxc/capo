@@ -98,27 +98,27 @@ def serialize_json(value: EnvironmentConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> EnvironmentConfiguration:
     out: EnvironmentConfiguration = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("EnvironmentConfiguration.name required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "environmentBlueprintId" in data:
+    if data.get("environmentBlueprintId") is not None:
         out["environment_blueprint_id"] = data["environmentBlueprintId"]
     else:
         raise DeserializationError(
             "EnvironmentConfiguration.environment_blueprint_id required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "deploymentMode" in data:
+    if data.get("deploymentMode") is not None:
         import capo_datazone.types.deployment_mode
 
         out["deployment_mode"] = capo_datazone.types.deployment_mode.deserialize_json(
             data["deploymentMode"]
         )
-    if "configurationParameters" in data:
+    if data.get("configurationParameters") is not None:
         import capo_datazone.types.environment_configuration_parameters_details
 
         out["configuration_parameters"] = (
@@ -126,24 +126,24 @@ def deserialize_json(data: dict) -> EnvironmentConfiguration:
                 data["configurationParameters"]
             )
         )
-    if "awsAccount" in data:
+    if data.get("awsAccount") is not None:
         import capo_datazone.types.aws_account
 
         out["aws_account"] = capo_datazone.types.aws_account.deserialize_json(
             data["awsAccount"]
         )
-    if "accountPools" in data:
+    if data.get("accountPools") is not None:
         import capo_datazone.types.account_pool_list
 
         out["account_pools"] = capo_datazone.types.account_pool_list.deserialize_json(
             data["accountPools"]
         )
-    if "awsRegion" in data:
+    if data.get("awsRegion") is not None:
         import capo_datazone.types.region
 
         out["aws_region"] = capo_datazone.types.region.deserialize_json(
             data["awsRegion"]
         )
-    if "deploymentOrder" in data:
+    if data.get("deploymentOrder") is not None:
         out["deployment_order"] = data["deploymentOrder"]
     return out

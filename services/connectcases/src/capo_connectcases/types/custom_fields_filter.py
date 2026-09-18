@@ -78,7 +78,7 @@ def serialize_json(value: CustomFieldsFilter) -> dict:
 
 
 def deserialize_json(data: dict) -> CustomFieldsFilter:
-    if "field" in data:
+    if data.get("field") is not None:
         import capo_connectcases.types.field_filter
 
         return {
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> CustomFieldsFilter:
                 data["field"]
             )
         }
-    elif "not" in data:
+    elif data.get("not") is not None:
         import capo_connectcases.types.custom_fields_filter
 
         return {
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> CustomFieldsFilter:
                 data["not"]
             )
         }
-    elif "andAll" in data:
+    elif data.get("andAll") is not None:
         import capo_connectcases.types.custom_fields_filter_list
 
         return {
@@ -102,7 +102,7 @@ def deserialize_json(data: dict) -> CustomFieldsFilter:
                 data["andAll"]
             )
         }
-    elif "orAll" in data:
+    elif data.get("orAll") is not None:
         import capo_connectcases.types.custom_fields_filter_list
 
         return {

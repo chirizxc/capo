@@ -45,15 +45,15 @@ def serialize_aws_json_1_1(value: PolicyParameter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PolicyParameter:
     out: PolicyParameter = {}  # type: ignore[typeddict-item]
-    if "Key" in data:
+    if data.get("Key") is not None:
         out["key"] = data["Key"]
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_mturk.types.string_list
 
         out["values"] = capo_mturk.types.string_list.deserialize_aws_json_1_1(
             data["Values"]
         )
-    if "MapEntries" in data:
+    if data.get("MapEntries") is not None:
         import capo_mturk.types.parameter_map_entry_list
 
         out["map_entries"] = (

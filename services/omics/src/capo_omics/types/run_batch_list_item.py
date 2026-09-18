@@ -59,18 +59,18 @@ def serialize_json(value: RunBatchListItem) -> dict:
 
 def deserialize_json(data: dict) -> RunBatchListItem:
     out: RunBatchListItem = {}  # type: ignore[typeddict-item]
-    if "runSettingId" in data:
+    if data.get("runSettingId") is not None:
         out["run_setting_id"] = data["runSettingId"]
-    if "runId" in data:
+    if data.get("runId") is not None:
         out["run_id"] = data["runId"]
-    if "runInternalUuid" in data:
+    if data.get("runInternalUuid") is not None:
         out["run_internal_uuid"] = data["runInternalUuid"]
-    if "runArn" in data:
+    if data.get("runArn") is not None:
         out["run_arn"] = data["runArn"]
-    if "submissionStatus" in data:
+    if data.get("submissionStatus") is not None:
         out["submission_status"] = data["submissionStatus"]
-    if "submissionFailureReason" in data:
+    if data.get("submissionFailureReason") is not None:
         out["submission_failure_reason"] = data["submissionFailureReason"]
-    if "submissionFailureMessage" in data:
+    if data.get("submissionFailureMessage") is not None:
         out["submission_failure_message"] = data["submissionFailureMessage"]
     return out

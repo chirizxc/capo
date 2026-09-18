@@ -103,11 +103,11 @@ def serialize_json(value: StreamSessionSummary) -> dict:
 
 def deserialize_json(data: dict) -> StreamSessionSummary:
     out: StreamSessionSummary = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_gameliftstreams.types.stream_session_status
 
         out["status"] = (
@@ -115,7 +115,7 @@ def deserialize_json(data: dict) -> StreamSessionSummary:
                 data["Status"]
             )
         )
-    if "StatusReason" in data:
+    if data.get("StatusReason") is not None:
         import capo_gameliftstreams.types.stream_session_status_reason
 
         out["status_reason"] = (
@@ -123,13 +123,13 @@ def deserialize_json(data: dict) -> StreamSessionSummary:
                 data["StatusReason"]
             )
         )
-    if "Protocol" in data:
+    if data.get("Protocol") is not None:
         import capo_gameliftstreams.types.protocol
 
         out["protocol"] = capo_gameliftstreams.types.protocol.deserialize_json(
             data["Protocol"]
         )
-    if "LastUpdatedAt" in data:
+    if data.get("LastUpdatedAt") is not None:
         import capo_gameliftstreams.types._prelude.timestamp
 
         out["last_updated_at"] = (
@@ -137,7 +137,7 @@ def deserialize_json(data: dict) -> StreamSessionSummary:
                 data["LastUpdatedAt"]
             )
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_gameliftstreams.types._prelude.timestamp
 
         out["created_at"] = (
@@ -145,9 +145,9 @@ def deserialize_json(data: dict) -> StreamSessionSummary:
                 data["CreatedAt"]
             )
         )
-    if "ApplicationArn" in data:
+    if data.get("ApplicationArn") is not None:
         out["application_arn"] = data["ApplicationArn"]
-    if "ExportFilesMetadata" in data:
+    if data.get("ExportFilesMetadata") is not None:
         import capo_gameliftstreams.types.export_files_metadata
 
         out["export_files_metadata"] = (
@@ -155,6 +155,6 @@ def deserialize_json(data: dict) -> StreamSessionSummary:
                 data["ExportFilesMetadata"]
             )
         )
-    if "Location" in data:
+    if data.get("Location") is not None:
         out["location"] = data["Location"]
     return out

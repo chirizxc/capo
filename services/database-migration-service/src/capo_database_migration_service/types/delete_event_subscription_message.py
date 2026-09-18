@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteEventSubscriptionMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteEventSubscriptionMessage:
     out: DeleteEventSubscriptionMessage = {}  # type: ignore[typeddict-item]
-    if "SubscriptionName" in data:
+    if data.get("SubscriptionName") is not None:
         out["subscription_name"] = data["SubscriptionName"]
     else:
         raise DeserializationError(

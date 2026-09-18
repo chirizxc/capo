@@ -57,7 +57,7 @@ def serialize_json(value: PivotTableFieldOptions) -> dict:
 
 def deserialize_json(data: dict) -> PivotTableFieldOptions:
     out: PivotTableFieldOptions = {}  # type: ignore[typeddict-item]
-    if "SelectedFieldOptions" in data:
+    if data.get("SelectedFieldOptions") is not None:
         import capo_quicksight.types.pivot_table_field_option_list
 
         out["selected_field_options"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> PivotTableFieldOptions:
                 data["SelectedFieldOptions"]
             )
         )
-    if "DataPathOptions" in data:
+    if data.get("DataPathOptions") is not None:
         import capo_quicksight.types.pivot_table_data_path_option_list
 
         out["data_path_options"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> PivotTableFieldOptions:
                 data["DataPathOptions"]
             )
         )
-    if "CollapseStateOptions" in data:
+    if data.get("CollapseStateOptions") is not None:
         import capo_quicksight.types.pivot_table_field_collapse_state_option_list
 
         out["collapse_state_options"] = (

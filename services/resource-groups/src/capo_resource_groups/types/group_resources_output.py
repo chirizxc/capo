@@ -53,7 +53,7 @@ def serialize_json(value: GroupResourcesOutput) -> dict:
 
 def deserialize_json(data: dict) -> GroupResourcesOutput:
     out: GroupResourcesOutput = {}  # type: ignore[typeddict-item]
-    if "Succeeded" in data:
+    if data.get("Succeeded") is not None:
         import capo_resource_groups.types.resource_arn_list
 
         out["succeeded"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> GroupResourcesOutput:
                 data["Succeeded"]
             )
         )
-    if "Failed" in data:
+    if data.get("Failed") is not None:
         import capo_resource_groups.types.failed_resource_list
 
         out["failed"] = (
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> GroupResourcesOutput:
                 data["Failed"]
             )
         )
-    if "Pending" in data:
+    if data.get("Pending") is not None:
         import capo_resource_groups.types.pending_resource_list
 
         out["pending"] = (

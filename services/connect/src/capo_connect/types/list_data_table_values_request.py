@@ -52,13 +52,13 @@ def serialize_json(value: ListDataTableValuesRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListDataTableValuesRequest:
     out: ListDataTableValuesRequest = {}  # type: ignore[typeddict-item]
-    if "RecordIds" in data:
+    if data.get("RecordIds") is not None:
         import capo_connect.types.record_ids
 
         out["record_ids"] = capo_connect.types.record_ids.deserialize_json(
             data["RecordIds"]
         )
-    if "PrimaryAttributeValues" in data:
+    if data.get("PrimaryAttributeValues") is not None:
         import capo_connect.types.primary_attribute_value_filters
 
         out["primary_attribute_values"] = (

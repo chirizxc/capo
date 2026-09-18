@@ -29,9 +29,9 @@ def serialize_json(value: OrderBy) -> dict:
 
 def deserialize_json(data: dict) -> OrderBy:
     out: OrderBy = {}  # type: ignore[typeddict-item]
-    if "order" in data:
+    if data.get("order") is not None:
         out["order"] = data["order"]
-    if "propertyName" in data:
+    if data.get("propertyName") is not None:
         out["property_name"] = data["propertyName"]
     else:
         raise DeserializationError("OrderBy.property_name required")

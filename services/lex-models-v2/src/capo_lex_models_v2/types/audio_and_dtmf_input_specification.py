@@ -52,13 +52,13 @@ def serialize_json(value: AudioAndDTMFInputSpecification) -> dict:
 
 def deserialize_json(data: dict) -> AudioAndDTMFInputSpecification:
     out: AudioAndDTMFInputSpecification = {}  # type: ignore[typeddict-item]
-    if "startTimeoutMs" in data:
+    if data.get("startTimeoutMs") is not None:
         out["start_timeout_ms"] = data["startTimeoutMs"]
     else:
         raise DeserializationError(
             "AudioAndDTMFInputSpecification.start_timeout_ms required"
         )
-    if "audioSpecification" in data:
+    if data.get("audioSpecification") is not None:
         import capo_lex_models_v2.types.audio_specification
 
         out["audio_specification"] = (
@@ -66,7 +66,7 @@ def deserialize_json(data: dict) -> AudioAndDTMFInputSpecification:
                 data["audioSpecification"]
             )
         )
-    if "dtmfSpecification" in data:
+    if data.get("dtmfSpecification") is not None:
         import capo_lex_models_v2.types.dtmf_specification
 
         out["dtmf_specification"] = (

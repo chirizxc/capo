@@ -55,11 +55,11 @@ def serialize_aws_json_1_1(value: UpdateDashboardRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateDashboardRequest:
     out: UpdateDashboardRequest = {}  # type: ignore[typeddict-item]
-    if "DashboardId" in data:
+    if data.get("DashboardId") is not None:
         out["dashboard_id"] = data["DashboardId"]
     else:
         raise DeserializationError("UpdateDashboardRequest.dashboard_id required")
-    if "Widgets" in data:
+    if data.get("Widgets") is not None:
         import capo_cloudtrail.types.request_widget_list
 
         out["widgets"] = (
@@ -67,7 +67,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateDashboardRequest:
                 data["Widgets"]
             )
         )
-    if "RefreshSchedule" in data:
+    if data.get("RefreshSchedule") is not None:
         import capo_cloudtrail.types.refresh_schedule
 
         out["refresh_schedule"] = (
@@ -75,6 +75,6 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateDashboardRequest:
                 data["RefreshSchedule"]
             )
         )
-    if "TerminationProtectionEnabled" in data:
+    if data.get("TerminationProtectionEnabled") is not None:
         out["termination_protection_enabled"] = data["TerminationProtectionEnabled"]
     return out

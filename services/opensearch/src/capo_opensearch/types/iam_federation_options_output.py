@@ -37,10 +37,10 @@ def serialize_json(value: IAMFederationOptionsOutput) -> dict:
 
 def deserialize_json(data: dict) -> IAMFederationOptionsOutput:
     out: IAMFederationOptionsOutput = {}  # type: ignore[typeddict-item]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "SubjectKey" in data:
+    if data.get("SubjectKey") is not None:
         out["subject_key"] = data["SubjectKey"]
-    if "RolesKey" in data:
+    if data.get("RolesKey") is not None:
         out["roles_key"] = data["RolesKey"]
     return out

@@ -36,16 +36,16 @@ def serialize_json(value: CreateFolderMembershipResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateFolderMembershipResponse:
     out: CreateFolderMembershipResponse = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     else:
         out["status"] = 0
-    if "FolderMember" in data:
+    if data.get("FolderMember") is not None:
         import capo_quicksight.types.folder_member
 
         out["folder_member"] = capo_quicksight.types.folder_member.deserialize_json(
             data["FolderMember"]
         )
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

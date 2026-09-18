@@ -40,19 +40,19 @@ def serialize_aws_json_1_1(value: Highlight) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Highlight:
     out: Highlight = {}  # type: ignore[typeddict-item]
-    if "BeginOffset" in data:
+    if data.get("BeginOffset") is not None:
         out["begin_offset"] = data["BeginOffset"]
     else:
         raise DeserializationError("Highlight.begin_offset required")
-    if "EndOffset" in data:
+    if data.get("EndOffset") is not None:
         out["end_offset"] = data["EndOffset"]
     else:
         raise DeserializationError("Highlight.end_offset required")
-    if "TopAnswer" in data:
+    if data.get("TopAnswer") is not None:
         out["top_answer"] = data["TopAnswer"]
     else:
         out["top_answer"] = False
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_kendra.types.highlight_type
 
         out["type"] = capo_kendra.types.highlight_type.deserialize_aws_json_1_1(

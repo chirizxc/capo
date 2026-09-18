@@ -41,16 +41,16 @@ def serialize_json(value: TemplateShareSummary) -> dict:
 
 def deserialize_json(data: dict) -> TemplateShareSummary:
     out: TemplateShareSummary = {}  # type: ignore[typeddict-item]
-    if "ShareId" in data:
+    if data.get("ShareId") is not None:
         out["share_id"] = data["ShareId"]
-    if "SharedWith" in data:
+    if data.get("SharedWith") is not None:
         out["shared_with"] = data["SharedWith"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_wellarchitected.types.share_status
 
         out["status"] = capo_wellarchitected.types.share_status.deserialize_json(
             data["Status"]
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
     return out

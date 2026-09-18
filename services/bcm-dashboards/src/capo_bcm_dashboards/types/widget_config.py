@@ -40,7 +40,7 @@ def serialize_aws_json_1_0(value: WidgetConfig) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> WidgetConfig:
     out: WidgetConfig = {}  # type: ignore[typeddict-item]
-    if "queryParameters" in data:
+    if data.get("queryParameters") is not None:
         import capo_bcm_dashboards.types.query_parameters
 
         out["query_parameters"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_0(data: dict) -> WidgetConfig:
         )
     else:
         raise DeserializationError("WidgetConfig.query_parameters required")
-    if "displayConfig" in data:
+    if data.get("displayConfig") is not None:
         import capo_bcm_dashboards.types.display_config
 
         out["display_config"] = (

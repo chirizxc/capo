@@ -30,7 +30,7 @@ def serialize_aws_json_1_0(value: BatchGetPolicyInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> BatchGetPolicyInput:
     out: BatchGetPolicyInput = {}  # type: ignore[typeddict-item]
-    if "requests" in data:
+    if data.get("requests") is not None:
         import capo_verifiedpermissions.types.batch_get_policy_input_list
 
         out["requests"] = (

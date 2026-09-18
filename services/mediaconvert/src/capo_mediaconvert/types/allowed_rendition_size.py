@@ -40,14 +40,14 @@ def serialize_json(value: AllowedRenditionSize) -> dict:
 
 def deserialize_json(data: dict) -> AllowedRenditionSize:
     out: AllowedRenditionSize = {}  # type: ignore[typeddict-item]
-    if "height" in data:
+    if data.get("height") is not None:
         out["height"] = data["height"]
-    if "required" in data:
+    if data.get("required") is not None:
         import capo_mediaconvert.types.required_flag
 
         out["required"] = capo_mediaconvert.types.required_flag.deserialize_json(
             data["required"]
         )
-    if "width" in data:
+    if data.get("width") is not None:
         out["width"] = data["width"]
     return out

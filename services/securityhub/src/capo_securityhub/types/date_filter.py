@@ -36,11 +36,11 @@ def serialize_json(value: DateFilter) -> dict:
 
 def deserialize_json(data: dict) -> DateFilter:
     out: DateFilter = {}  # type: ignore[typeddict-item]
-    if "Start" in data:
+    if data.get("Start") is not None:
         out["start"] = data["Start"]
-    if "End" in data:
+    if data.get("End") is not None:
         out["end"] = data["End"]
-    if "DateRange" in data:
+    if data.get("DateRange") is not None:
         import capo_securityhub.types.date_range
 
         out["date_range"] = capo_securityhub.types.date_range.deserialize_json(

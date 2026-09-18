@@ -52,22 +52,22 @@ def serialize_json(value: JourneyRunExecutionActivityMetricsResponse) -> dict:
 
 def deserialize_json(data: dict) -> JourneyRunExecutionActivityMetricsResponse:
     out: JourneyRunExecutionActivityMetricsResponse = {}  # type: ignore[typeddict-item]
-    if "ActivityType" in data:
+    if data.get("ActivityType") is not None:
         out["activity_type"] = data["ActivityType"]
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
-    if "JourneyActivityId" in data:
+    if data.get("JourneyActivityId") is not None:
         out["journey_activity_id"] = data["JourneyActivityId"]
-    if "JourneyId" in data:
+    if data.get("JourneyId") is not None:
         out["journey_id"] = data["JourneyId"]
-    if "LastEvaluatedTime" in data:
+    if data.get("LastEvaluatedTime") is not None:
         out["last_evaluated_time"] = data["LastEvaluatedTime"]
-    if "Metrics" in data:
+    if data.get("Metrics") is not None:
         import capo_pinpoint.types.map_of__string
 
         out["metrics"] = capo_pinpoint.types.map_of__string.deserialize_json(
             data["Metrics"]
         )
-    if "RunId" in data:
+    if data.get("RunId") is not None:
         out["run_id"] = data["RunId"]
     return out

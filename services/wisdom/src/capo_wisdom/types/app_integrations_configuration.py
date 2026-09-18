@@ -33,13 +33,13 @@ def serialize_json(value: AppIntegrationsConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AppIntegrationsConfiguration:
     out: AppIntegrationsConfiguration = {}  # type: ignore[typeddict-item]
-    if "appIntegrationArn" in data:
+    if data.get("appIntegrationArn") is not None:
         out["app_integration_arn"] = data["appIntegrationArn"]
     else:
         raise DeserializationError(
             "AppIntegrationsConfiguration.app_integration_arn required"
         )
-    if "objectFields" in data:
+    if data.get("objectFields") is not None:
         import capo_wisdom.types.object_fields_list
 
         out["object_fields"] = capo_wisdom.types.object_fields_list.deserialize_json(

@@ -49,7 +49,7 @@ def serialize_aws_json_1_1(value: ListCollectionsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListCollectionsResponse:
     out: ListCollectionsResponse = {}  # type: ignore[typeddict-item]
-    if "CollectionIds" in data:
+    if data.get("CollectionIds") is not None:
         import capo_rekognition.types.collection_id_list
 
         out["collection_ids"] = (
@@ -57,9 +57,9 @@ def deserialize_aws_json_1_1(data: dict) -> ListCollectionsResponse:
                 data["CollectionIds"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "FaceModelVersions" in data:
+    if data.get("FaceModelVersions") is not None:
         import capo_rekognition.types.face_model_version_list
 
         out["face_model_versions"] = (

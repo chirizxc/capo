@@ -38,15 +38,15 @@ def serialize_aws_json_1_0(value: PutProfileVisibilityRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PutProfileVisibilityRequest:
     out: PutProfileVisibilityRequest = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("PutProfileVisibilityRequest.catalog required")
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
     else:
         raise DeserializationError("PutProfileVisibilityRequest.identifier required")
-    if "Visibility" in data:
+    if data.get("Visibility") is not None:
         import capo_partnercentral_account.types.profile_visibility
 
         out["visibility"] = (

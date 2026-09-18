@@ -23,6 +23,6 @@ def serialize_json(value: RegisterConnectorResponse) -> dict:
 
 def deserialize_json(data: dict) -> RegisterConnectorResponse:
     out: RegisterConnectorResponse = {}  # type: ignore[typeddict-item]
-    if "connectorArn" in data:
+    if data.get("connectorArn") is not None:
         out["connector_arn"] = data["connectorArn"]
     return out

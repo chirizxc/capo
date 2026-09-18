@@ -62,9 +62,9 @@ def serialize_json(value: SourceFlowConfig) -> dict:
 
 def deserialize_json(data: dict) -> SourceFlowConfig:
     out: SourceFlowConfig = {}  # type: ignore[typeddict-item]
-    if "ConnectorProfileName" in data:
+    if data.get("ConnectorProfileName") is not None:
         out["connector_profile_name"] = data["ConnectorProfileName"]
-    if "ConnectorType" in data:
+    if data.get("ConnectorType") is not None:
         import capo_customer_profiles.types.source_connector_type
 
         out["connector_type"] = (
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> SourceFlowConfig:
         )
     else:
         raise DeserializationError("SourceFlowConfig.connector_type required")
-    if "IncrementalPullConfig" in data:
+    if data.get("IncrementalPullConfig") is not None:
         import capo_customer_profiles.types.incremental_pull_config
 
         out["incremental_pull_config"] = (
@@ -82,7 +82,7 @@ def deserialize_json(data: dict) -> SourceFlowConfig:
                 data["IncrementalPullConfig"]
             )
         )
-    if "SourceConnectorProperties" in data:
+    if data.get("SourceConnectorProperties") is not None:
         import capo_customer_profiles.types.source_connector_properties
 
         out["source_connector_properties"] = (

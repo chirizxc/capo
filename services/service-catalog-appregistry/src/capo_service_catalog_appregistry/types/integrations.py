@@ -42,7 +42,7 @@ def serialize_json(value: Integrations) -> dict:
 
 def deserialize_json(data: dict) -> Integrations:
     out: Integrations = {}  # type: ignore[typeddict-item]
-    if "resourceGroup" in data:
+    if data.get("resourceGroup") is not None:
         import capo_service_catalog_appregistry.types.resource_group
 
         out["resource_group"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> Integrations:
                 data["resourceGroup"]
             )
         )
-    if "applicationTagResourceGroup" in data:
+    if data.get("applicationTagResourceGroup") is not None:
         import capo_service_catalog_appregistry.types.resource_group
 
         out["application_tag_resource_group"] = (

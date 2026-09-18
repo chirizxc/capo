@@ -31,10 +31,10 @@ def serialize_aws_json_1_0(value: PrepareQueryRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PrepareQueryRequest:
     out: PrepareQueryRequest = {}  # type: ignore[typeddict-item]
-    if "QueryString" in data:
+    if data.get("QueryString") is not None:
         out["query_string"] = data["QueryString"]
     else:
         raise DeserializationError("PrepareQueryRequest.query_string required")
-    if "ValidateOnly" in data:
+    if data.get("ValidateOnly") is not None:
         out["validate_only"] = data["ValidateOnly"]
     return out

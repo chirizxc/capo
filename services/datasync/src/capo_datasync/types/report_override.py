@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: ReportOverride) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReportOverride:
     out: ReportOverride = {}  # type: ignore[typeddict-item]
-    if "ReportLevel" in data:
+    if data.get("ReportLevel") is not None:
         import capo_datasync.types.report_level
 
         out["report_level"] = capo_datasync.types.report_level.deserialize_aws_json_1_1(

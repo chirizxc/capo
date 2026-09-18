@@ -36,7 +36,7 @@ def serialize_json(value: ListComponentVersionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListComponentVersionsResponse:
     out: ListComponentVersionsResponse = {}  # type: ignore[typeddict-item]
-    if "componentVersions" in data:
+    if data.get("componentVersions") is not None:
         import capo_greengrassv2.types.component_version_list
 
         out["component_versions"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListComponentVersionsResponse:
                 data["componentVersions"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -31,7 +31,7 @@ def serialize_json(value: TableUnaggregatedFieldWells) -> dict:
 
 def deserialize_json(data: dict) -> TableUnaggregatedFieldWells:
     out: TableUnaggregatedFieldWells = {}  # type: ignore[typeddict-item]
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_quicksight.types.table_unaggregated_field_list
 
         out["values"] = (

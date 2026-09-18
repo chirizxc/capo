@@ -87,9 +87,9 @@ def serialize_aws_json_1_0(value: UpdateClusterSlurmConfigurationRequest) -> dic
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateClusterSlurmConfigurationRequest:
     out: UpdateClusterSlurmConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "scaleDownIdleTimeInSeconds" in data:
+    if data.get("scaleDownIdleTimeInSeconds") is not None:
         out["scale_down_idle_time_in_seconds"] = data["scaleDownIdleTimeInSeconds"]
-    if "slurmCustomSettings" in data:
+    if data.get("slurmCustomSettings") is not None:
         import capo_pcs.types.slurm_custom_settings
 
         out["slurm_custom_settings"] = (
@@ -97,7 +97,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateClusterSlurmConfigurationReque
                 data["slurmCustomSettings"]
             )
         )
-    if "slurmdbdCustomSettings" in data:
+    if data.get("slurmdbdCustomSettings") is not None:
         import capo_pcs.types.slurmdbd_custom_settings
 
         out["slurmdbd_custom_settings"] = (
@@ -105,7 +105,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateClusterSlurmConfigurationReque
                 data["slurmdbdCustomSettings"]
             )
         )
-    if "cgroupCustomSettings" in data:
+    if data.get("cgroupCustomSettings") is not None:
         import capo_pcs.types.cgroup_custom_settings
 
         out["cgroup_custom_settings"] = (
@@ -113,7 +113,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateClusterSlurmConfigurationReque
                 data["cgroupCustomSettings"]
             )
         )
-    if "accounting" in data:
+    if data.get("accounting") is not None:
         import capo_pcs.types.update_accounting_request
 
         out["accounting"] = (
@@ -121,7 +121,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateClusterSlurmConfigurationReque
                 data["accounting"]
             )
         )
-    if "slurmRest" in data:
+    if data.get("slurmRest") is not None:
         import capo_pcs.types.update_slurm_rest_request
 
         out["slurm_rest"] = (

@@ -49,7 +49,7 @@ def serialize_aws_json_1_0(value: CreateConnectionInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateConnectionInput:
     out: CreateConnectionInput = {}  # type: ignore[typeddict-item]
-    if "ProviderType" in data:
+    if data.get("ProviderType") is not None:
         import capo_codeconnections.types.provider_type
 
         out["provider_type"] = (
@@ -57,16 +57,16 @@ def deserialize_aws_json_1_0(data: dict) -> CreateConnectionInput:
                 data["ProviderType"]
             )
         )
-    if "ConnectionName" in data:
+    if data.get("ConnectionName") is not None:
         out["connection_name"] = data["ConnectionName"]
     else:
         raise DeserializationError("CreateConnectionInput.connection_name required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_codeconnections.types.tag_list
 
         out["tags"] = capo_codeconnections.types.tag_list.deserialize_aws_json_1_0(
             data["Tags"]
         )
-    if "HostArn" in data:
+    if data.get("HostArn") is not None:
         out["host_arn"] = data["HostArn"]
     return out

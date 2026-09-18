@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> NetworkResourceCountList:
 
     out: NetworkResourceCountList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_networkmanager.types.network_resource_count.deserialize_json(item)
         )

@@ -31,11 +31,11 @@ def serialize_json(value: TextData) -> dict:
 
 def deserialize_json(data: dict) -> TextData:
     out: TextData = {}  # type: ignore[typeddict-item]
-    if "title" in data:
+    if data.get("title") is not None:
         import capo_qconnect.types.document_text
 
         out["title"] = capo_qconnect.types.document_text.deserialize_json(data["title"])
-    if "excerpt" in data:
+    if data.get("excerpt") is not None:
         import capo_qconnect.types.document_text
 
         out["excerpt"] = capo_qconnect.types.document_text.deserialize_json(

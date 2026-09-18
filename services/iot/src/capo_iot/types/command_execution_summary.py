@@ -65,27 +65,27 @@ def serialize_json(value: CommandExecutionSummary) -> dict:
 
 def deserialize_json(data: dict) -> CommandExecutionSummary:
     out: CommandExecutionSummary = {}  # type: ignore[typeddict-item]
-    if "commandArn" in data:
+    if data.get("commandArn") is not None:
         out["command_arn"] = data["commandArn"]
-    if "executionId" in data:
+    if data.get("executionId") is not None:
         out["execution_id"] = data["executionId"]
-    if "targetArn" in data:
+    if data.get("targetArn") is not None:
         out["target_arn"] = data["targetArn"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iot.types.command_execution_status
 
         out["status"] = capo_iot.types.command_execution_status.deserialize_json(
             data["status"]
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_iot.types.date_type
 
         out["created_at"] = capo_iot.types.date_type.deserialize_json(data["createdAt"])
-    if "startedAt" in data:
+    if data.get("startedAt") is not None:
         import capo_iot.types.date_type
 
         out["started_at"] = capo_iot.types.date_type.deserialize_json(data["startedAt"])
-    if "completedAt" in data:
+    if data.get("completedAt") is not None:
         import capo_iot.types.date_type
 
         out["completed_at"] = capo_iot.types.date_type.deserialize_json(

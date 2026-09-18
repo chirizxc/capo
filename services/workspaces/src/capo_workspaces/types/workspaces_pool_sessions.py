@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> WorkspacesPoolSessions:
 
     out: WorkspacesPoolSessions = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_workspaces.types.workspaces_pool_session.deserialize_aws_json_1_1(item)
         )

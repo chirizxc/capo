@@ -43,7 +43,7 @@ def serialize_json(value: MotionGraphicsConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> MotionGraphicsConfiguration:
     out: MotionGraphicsConfiguration = {}  # type: ignore[typeddict-item]
-    if "motionGraphicsInsertion" in data:
+    if data.get("motionGraphicsInsertion") is not None:
         import capo_medialive.types.motion_graphics_insertion
 
         out["motion_graphics_insertion"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> MotionGraphicsConfiguration:
                 data["motionGraphicsInsertion"]
             )
         )
-    if "motionGraphicsSettings" in data:
+    if data.get("motionGraphicsSettings") is not None:
         import capo_medialive.types.motion_graphics_settings
 
         out["motion_graphics_settings"] = (

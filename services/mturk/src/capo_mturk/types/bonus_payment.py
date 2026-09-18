@@ -46,15 +46,15 @@ def serialize_aws_json_1_1(value: BonusPayment) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BonusPayment:
     out: BonusPayment = {}  # type: ignore[typeddict-item]
-    if "WorkerId" in data:
+    if data.get("WorkerId") is not None:
         out["worker_id"] = data["WorkerId"]
-    if "BonusAmount" in data:
+    if data.get("BonusAmount") is not None:
         out["bonus_amount"] = data["BonusAmount"]
-    if "AssignmentId" in data:
+    if data.get("AssignmentId") is not None:
         out["assignment_id"] = data["AssignmentId"]
-    if "Reason" in data:
+    if data.get("Reason") is not None:
         out["reason"] = data["Reason"]
-    if "GrantTime" in data:
+    if data.get("GrantTime") is not None:
         import capo_mturk.types.timestamp
 
         out["grant_time"] = capo_mturk.types.timestamp.deserialize_aws_json_1_1(

@@ -31,7 +31,7 @@ def serialize_json(value: UpdateEmailTemplateRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateEmailTemplateRequest:
     out: UpdateEmailTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "TemplateContent" in data:
+    if data.get("TemplateContent") is not None:
         import capo_sesv2.types.email_template_content
 
         out["template_content"] = (

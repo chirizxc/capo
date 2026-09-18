@@ -28,13 +28,13 @@ def serialize_aws_json_1_0(value: UpdateActiveModelVersionRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateActiveModelVersionRequest:
     out: UpdateActiveModelVersionRequest = {}  # type: ignore[typeddict-item]
-    if "ModelName" in data:
+    if data.get("ModelName") is not None:
         out["model_name"] = data["ModelName"]
     else:
         raise DeserializationError(
             "UpdateActiveModelVersionRequest.model_name required"
         )
-    if "ModelVersion" in data:
+    if data.get("ModelVersion") is not None:
         out["model_version"] = data["ModelVersion"]
     else:
         raise DeserializationError(

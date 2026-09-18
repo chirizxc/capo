@@ -71,15 +71,15 @@ def serialize_aws_json_1_1(value: UpdateCostCategoryDefinitionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateCostCategoryDefinitionRequest:
     out: UpdateCostCategoryDefinitionRequest = {}  # type: ignore[typeddict-item]
-    if "CostCategoryArn" in data:
+    if data.get("CostCategoryArn") is not None:
         out["cost_category_arn"] = data["CostCategoryArn"]
     else:
         raise DeserializationError(
             "UpdateCostCategoryDefinitionRequest.cost_category_arn required"
         )
-    if "EffectiveStart" in data:
+    if data.get("EffectiveStart") is not None:
         out["effective_start"] = data["EffectiveStart"]
-    if "RuleVersion" in data:
+    if data.get("RuleVersion") is not None:
         import capo_cost_explorer.types.cost_category_rule_version
 
         out["rule_version"] = (
@@ -91,7 +91,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateCostCategoryDefinitionRequest:
         raise DeserializationError(
             "UpdateCostCategoryDefinitionRequest.rule_version required"
         )
-    if "Rules" in data:
+    if data.get("Rules") is not None:
         import capo_cost_explorer.types.cost_category_rules_list
 
         out["rules"] = (
@@ -101,9 +101,9 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateCostCategoryDefinitionRequest:
         )
     else:
         raise DeserializationError("UpdateCostCategoryDefinitionRequest.rules required")
-    if "DefaultValue" in data:
+    if data.get("DefaultValue") is not None:
         out["default_value"] = data["DefaultValue"]
-    if "SplitChargeRules" in data:
+    if data.get("SplitChargeRules") is not None:
         import capo_cost_explorer.types.cost_category_split_charge_rules_list
 
         out["split_charge_rules"] = (

@@ -78,9 +78,10 @@ class ConfiguredAudienceModelPolicy:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.put_configured_audience_model_policy_request.PutConfiguredAudienceModelPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["configured_audience_model_arn"] = configured_audience_model_arn
-        input_["configured_audience_model_policy"] = configured_audience_model_policy
+        input_: capo_cleanroomsml.types.put_configured_audience_model_policy_request.PutConfiguredAudienceModelPolicyRequest = {
+            "configured_audience_model_arn": configured_audience_model_arn,
+            "configured_audience_model_policy": configured_audience_model_policy,
+        }
         if previous_policy_hash is not None:
             input_["previous_policy_hash"] = previous_policy_hash
         if policy_existence_condition is not None:
@@ -91,6 +92,7 @@ class ConfiguredAudienceModelPolicy:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -126,14 +128,16 @@ class ConfiguredAudienceModelPolicy:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.get_configured_audience_model_policy_request.GetConfiguredAudienceModelPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["configured_audience_model_arn"] = configured_audience_model_arn
+        input_: capo_cleanroomsml.types.get_configured_audience_model_policy_request.GetConfiguredAudienceModelPolicyRequest = {
+            "configured_audience_model_arn": configured_audience_model_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -167,14 +171,16 @@ class ConfiguredAudienceModelPolicy:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.delete_configured_audience_model_policy_request.DeleteConfiguredAudienceModelPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["configured_audience_model_arn"] = configured_audience_model_arn
+        input_: capo_cleanroomsml.types.delete_configured_audience_model_policy_request.DeleteConfiguredAudienceModelPolicyRequest = {
+            "configured_audience_model_arn": configured_audience_model_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -224,9 +230,10 @@ class AsyncConfiguredAudienceModelPolicy:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.put_configured_audience_model_policy_request.PutConfiguredAudienceModelPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["configured_audience_model_arn"] = configured_audience_model_arn
-        input_["configured_audience_model_policy"] = configured_audience_model_policy
+        input_: capo_cleanroomsml.types.put_configured_audience_model_policy_request.PutConfiguredAudienceModelPolicyRequest = {
+            "configured_audience_model_arn": configured_audience_model_arn,
+            "configured_audience_model_policy": configured_audience_model_policy,
+        }
         if previous_policy_hash is not None:
             input_["previous_policy_hash"] = previous_policy_hash
         if policy_existence_condition is not None:
@@ -237,6 +244,7 @@ class AsyncConfiguredAudienceModelPolicy:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -273,14 +281,16 @@ class AsyncConfiguredAudienceModelPolicy:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.get_configured_audience_model_policy_request.GetConfiguredAudienceModelPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["configured_audience_model_arn"] = configured_audience_model_arn
+        input_: capo_cleanroomsml.types.get_configured_audience_model_policy_request.GetConfiguredAudienceModelPolicyRequest = {
+            "configured_audience_model_arn": configured_audience_model_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -315,12 +325,14 @@ class AsyncConfiguredAudienceModelPolicy:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.delete_configured_audience_model_policy_request.DeleteConfiguredAudienceModelPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["configured_audience_model_arn"] = configured_audience_model_arn
+        input_: capo_cleanroomsml.types.delete_configured_audience_model_policy_request.DeleteConfiguredAudienceModelPolicyRequest = {
+            "configured_audience_model_arn": configured_audience_model_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

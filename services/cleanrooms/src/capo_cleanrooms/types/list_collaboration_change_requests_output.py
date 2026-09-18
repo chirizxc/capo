@@ -35,7 +35,7 @@ def serialize_json(value: ListCollaborationChangeRequestsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListCollaborationChangeRequestsOutput:
     out: ListCollaborationChangeRequestsOutput = {}  # type: ignore[typeddict-item]
-    if "collaborationChangeRequestSummaries" in data:
+    if data.get("collaborationChangeRequestSummaries") is not None:
         import capo_cleanrooms.types.collaboration_change_request_summary_list
 
         out["collaboration_change_request_summaries"] = (
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> ListCollaborationChangeRequestsOutput:
         raise DeserializationError(
             "ListCollaborationChangeRequestsOutput.collaboration_change_request_summaries required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

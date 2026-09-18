@@ -42,17 +42,17 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> ListStackInstancesForProvisionedProductInput:
     out: ListStackInstancesForProvisionedProductInput = {}  # type: ignore[typeddict-item]
-    if "AcceptLanguage" in data:
+    if data.get("AcceptLanguage") is not None:
         out["accept_language"] = data["AcceptLanguage"]
-    if "ProvisionedProductId" in data:
+    if data.get("ProvisionedProductId") is not None:
         out["provisioned_product_id"] = data["ProvisionedProductId"]
     else:
         raise DeserializationError(
             "ListStackInstancesForProvisionedProductInput.provisioned_product_id required"
         )
-    if "PageToken" in data:
+    if data.get("PageToken") is not None:
         out["page_token"] = data["PageToken"]
-    if "PageSize" in data:
+    if data.get("PageSize") is not None:
         out["page_size"] = data["PageSize"]
     else:
         out["page_size"] = 0

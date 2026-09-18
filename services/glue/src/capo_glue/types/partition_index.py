@@ -30,13 +30,13 @@ def serialize_aws_json_1_1(value: PartitionIndex) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PartitionIndex:
     out: PartitionIndex = {}  # type: ignore[typeddict-item]
-    if "Keys" in data:
+    if data.get("Keys") is not None:
         import capo_glue.types.key_list
 
         out["keys"] = capo_glue.types.key_list.deserialize_aws_json_1_1(data["Keys"])
     else:
         raise DeserializationError("PartitionIndex.keys required")
-    if "IndexName" in data:
+    if data.get("IndexName") is not None:
         out["index_name"] = data["IndexName"]
     else:
         raise DeserializationError("PartitionIndex.index_name required")

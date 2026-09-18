@@ -96,17 +96,17 @@ def serialize_json(value: DataLakeResource) -> dict:
 
 def deserialize_json(data: dict) -> DataLakeResource:
     out: DataLakeResource = {}  # type: ignore[typeddict-item]
-    if "dataLakeArn" in data:
+    if data.get("dataLakeArn") is not None:
         out["data_lake_arn"] = data["dataLakeArn"]
     else:
         raise DeserializationError("DataLakeResource.data_lake_arn required")
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
     else:
         raise DeserializationError("DataLakeResource.region required")
-    if "s3BucketArn" in data:
+    if data.get("s3BucketArn") is not None:
         out["s3_bucket_arn"] = data["s3BucketArn"]
-    if "encryptionConfiguration" in data:
+    if data.get("encryptionConfiguration") is not None:
         import capo_securitylake.types.data_lake_encryption_configuration
 
         out["encryption_configuration"] = (
@@ -114,7 +114,7 @@ def deserialize_json(data: dict) -> DataLakeResource:
                 data["encryptionConfiguration"]
             )
         )
-    if "lifecycleConfiguration" in data:
+    if data.get("lifecycleConfiguration") is not None:
         import capo_securitylake.types.data_lake_lifecycle_configuration
 
         out["lifecycle_configuration"] = (
@@ -122,7 +122,7 @@ def deserialize_json(data: dict) -> DataLakeResource:
                 data["lifecycleConfiguration"]
             )
         )
-    if "replicationConfiguration" in data:
+    if data.get("replicationConfiguration") is not None:
         import capo_securitylake.types.data_lake_replication_configuration
 
         out["replication_configuration"] = (
@@ -130,7 +130,7 @@ def deserialize_json(data: dict) -> DataLakeResource:
                 data["replicationConfiguration"]
             )
         )
-    if "createStatus" in data:
+    if data.get("createStatus") is not None:
         import capo_securitylake.types.data_lake_status
 
         out["create_status"] = (
@@ -138,7 +138,7 @@ def deserialize_json(data: dict) -> DataLakeResource:
                 data["createStatus"]
             )
         )
-    if "updateStatus" in data:
+    if data.get("updateStatus") is not None:
         import capo_securitylake.types.data_lake_update_status
 
         out["update_status"] = (

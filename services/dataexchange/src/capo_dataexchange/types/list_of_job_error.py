@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ListOfJobError:
 
     out: ListOfJobError = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_dataexchange.types.job_error.deserialize_json(item))
     return out

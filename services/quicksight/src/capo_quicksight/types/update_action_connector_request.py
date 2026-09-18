@@ -52,11 +52,11 @@ def serialize_json(value: UpdateActionConnectorRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateActionConnectorRequest:
     out: UpdateActionConnectorRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("UpdateActionConnectorRequest.name required")
-    if "AuthenticationConfig" in data:
+    if data.get("AuthenticationConfig") is not None:
         import capo_quicksight.types.auth_config
 
         out["authentication_config"] = (
@@ -68,8 +68,8 @@ def deserialize_json(data: dict) -> UpdateActionConnectorRequest:
         raise DeserializationError(
             "UpdateActionConnectorRequest.authentication_config required"
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "VpcConnectionArn" in data:
+    if data.get("VpcConnectionArn") is not None:
         out["vpc_connection_arn"] = data["VpcConnectionArn"]
     return out

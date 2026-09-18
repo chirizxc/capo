@@ -38,12 +38,12 @@ def serialize_aws_json_1_1(value: NFSFileShareDefaults) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NFSFileShareDefaults:
     out: NFSFileShareDefaults = {}  # type: ignore[typeddict-item]
-    if "FileMode" in data:
+    if data.get("FileMode") is not None:
         out["file_mode"] = data["FileMode"]
-    if "DirectoryMode" in data:
+    if data.get("DirectoryMode") is not None:
         out["directory_mode"] = data["DirectoryMode"]
-    if "GroupId" in data:
+    if data.get("GroupId") is not None:
         out["group_id"] = data["GroupId"]
-    if "OwnerId" in data:
+    if data.get("OwnerId") is not None:
         out["owner_id"] = data["OwnerId"]
     return out

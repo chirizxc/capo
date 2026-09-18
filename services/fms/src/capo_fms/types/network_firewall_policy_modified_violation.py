@@ -48,9 +48,9 @@ def serialize_aws_json_1_1(value: NetworkFirewallPolicyModifiedViolation) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> NetworkFirewallPolicyModifiedViolation:
     out: NetworkFirewallPolicyModifiedViolation = {}  # type: ignore[typeddict-item]
-    if "ViolationTarget" in data:
+    if data.get("ViolationTarget") is not None:
         out["violation_target"] = data["ViolationTarget"]
-    if "CurrentPolicyDescription" in data:
+    if data.get("CurrentPolicyDescription") is not None:
         import capo_fms.types.network_firewall_policy_description
 
         out["current_policy_description"] = (
@@ -58,7 +58,7 @@ def deserialize_aws_json_1_1(data: dict) -> NetworkFirewallPolicyModifiedViolati
                 data["CurrentPolicyDescription"]
             )
         )
-    if "ExpectedPolicyDescription" in data:
+    if data.get("ExpectedPolicyDescription") is not None:
         import capo_fms.types.network_firewall_policy_description
 
         out["expected_policy_description"] = (

@@ -39,18 +39,18 @@ def serialize_aws_json_1_1(value: SendSSHPublicKeyRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SendSSHPublicKeyRequest:
     out: SendSSHPublicKeyRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
     else:
         raise DeserializationError("SendSSHPublicKeyRequest.instance_id required")
-    if "InstanceOSUser" in data:
+    if data.get("InstanceOSUser") is not None:
         out["instance_os_user"] = data["InstanceOSUser"]
     else:
         raise DeserializationError("SendSSHPublicKeyRequest.instance_os_user required")
-    if "SSHPublicKey" in data:
+    if data.get("SSHPublicKey") is not None:
         out["ssh_public_key"] = data["SSHPublicKey"]
     else:
         raise DeserializationError("SendSSHPublicKeyRequest.ssh_public_key required")
-    if "AvailabilityZone" in data:
+    if data.get("AvailabilityZone") is not None:
         out["availability_zone"] = data["AvailabilityZone"]
     return out

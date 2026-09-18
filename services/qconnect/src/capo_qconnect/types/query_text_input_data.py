@@ -24,7 +24,7 @@ def serialize_json(value: QueryTextInputData) -> dict:
 
 def deserialize_json(data: dict) -> QueryTextInputData:
     out: QueryTextInputData = {}  # type: ignore[typeddict-item]
-    if "text" in data:
+    if data.get("text") is not None:
         out["text"] = data["text"]
     else:
         raise DeserializationError("QueryTextInputData.text required")

@@ -92,15 +92,15 @@ def serialize_aws_json_1_1(value: ScalingPlanResource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ScalingPlanResource:
     out: ScalingPlanResource = {}  # type: ignore[typeddict-item]
-    if "ScalingPlanName" in data:
+    if data.get("ScalingPlanName") is not None:
         out["scaling_plan_name"] = data["ScalingPlanName"]
     else:
         raise DeserializationError("ScalingPlanResource.scaling_plan_name required")
-    if "ScalingPlanVersion" in data:
+    if data.get("ScalingPlanVersion") is not None:
         out["scaling_plan_version"] = data["ScalingPlanVersion"]
     else:
         raise DeserializationError("ScalingPlanResource.scaling_plan_version required")
-    if "ServiceNamespace" in data:
+    if data.get("ServiceNamespace") is not None:
         import capo_auto_scaling_plans.types.service_namespace
 
         out["service_namespace"] = (
@@ -110,11 +110,11 @@ def deserialize_aws_json_1_1(data: dict) -> ScalingPlanResource:
         )
     else:
         raise DeserializationError("ScalingPlanResource.service_namespace required")
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     else:
         raise DeserializationError("ScalingPlanResource.resource_id required")
-    if "ScalableDimension" in data:
+    if data.get("ScalableDimension") is not None:
         import capo_auto_scaling_plans.types.scalable_dimension
 
         out["scalable_dimension"] = (
@@ -124,7 +124,7 @@ def deserialize_aws_json_1_1(data: dict) -> ScalingPlanResource:
         )
     else:
         raise DeserializationError("ScalingPlanResource.scalable_dimension required")
-    if "ScalingPolicies" in data:
+    if data.get("ScalingPolicies") is not None:
         import capo_auto_scaling_plans.types.scaling_policies
 
         out["scaling_policies"] = (
@@ -132,7 +132,7 @@ def deserialize_aws_json_1_1(data: dict) -> ScalingPlanResource:
                 data["ScalingPolicies"]
             )
         )
-    if "ScalingStatusCode" in data:
+    if data.get("ScalingStatusCode") is not None:
         import capo_auto_scaling_plans.types.scaling_status_code
 
         out["scaling_status_code"] = (
@@ -142,6 +142,6 @@ def deserialize_aws_json_1_1(data: dict) -> ScalingPlanResource:
         )
     else:
         raise DeserializationError("ScalingPlanResource.scaling_status_code required")
-    if "ScalingStatusMessage" in data:
+    if data.get("ScalingStatusMessage") is not None:
         out["scaling_status_message"] = data["ScalingStatusMessage"]
     return out

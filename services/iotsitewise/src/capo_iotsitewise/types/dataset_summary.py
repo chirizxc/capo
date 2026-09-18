@@ -59,23 +59,23 @@ def serialize_json(value: DatasetSummary) -> dict:
 
 def deserialize_json(data: dict) -> DatasetSummary:
     out: DatasetSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("DatasetSummary.id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("DatasetSummary.arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("DatasetSummary.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     else:
         raise DeserializationError("DatasetSummary.description required")
-    if "creationDate" in data:
+    if data.get("creationDate") is not None:
         import capo_iotsitewise.types.timestamp
 
         out["creation_date"] = capo_iotsitewise.types.timestamp.deserialize_json(
@@ -83,7 +83,7 @@ def deserialize_json(data: dict) -> DatasetSummary:
         )
     else:
         raise DeserializationError("DatasetSummary.creation_date required")
-    if "lastUpdateDate" in data:
+    if data.get("lastUpdateDate") is not None:
         import capo_iotsitewise.types.timestamp
 
         out["last_update_date"] = capo_iotsitewise.types.timestamp.deserialize_json(
@@ -91,7 +91,7 @@ def deserialize_json(data: dict) -> DatasetSummary:
         )
     else:
         raise DeserializationError("DatasetSummary.last_update_date required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iotsitewise.types.dataset_status
 
         out["status"] = capo_iotsitewise.types.dataset_status.deserialize_json(

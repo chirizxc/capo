@@ -94,41 +94,41 @@ def serialize_json(value: InternalAccessDetails) -> dict:
 
 def deserialize_json(data: dict) -> InternalAccessDetails:
     out: InternalAccessDetails = {}  # type: ignore[typeddict-item]
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_accessanalyzer.types.action_list
 
         out["action"] = capo_accessanalyzer.types.action_list.deserialize_json(
             data["action"]
         )
-    if "condition" in data:
+    if data.get("condition") is not None:
         import capo_accessanalyzer.types.condition_key_map
 
         out["condition"] = capo_accessanalyzer.types.condition_key_map.deserialize_json(
             data["condition"]
         )
-    if "principal" in data:
+    if data.get("principal") is not None:
         import capo_accessanalyzer.types.principal_map
 
         out["principal"] = capo_accessanalyzer.types.principal_map.deserialize_json(
             data["principal"]
         )
-    if "principalOwnerAccount" in data:
+    if data.get("principalOwnerAccount") is not None:
         out["principal_owner_account"] = data["principalOwnerAccount"]
-    if "accessType" in data:
+    if data.get("accessType") is not None:
         out["access_type"] = data["accessType"]
-    if "principalType" in data:
+    if data.get("principalType") is not None:
         out["principal_type"] = data["principalType"]
-    if "sources" in data:
+    if data.get("sources") is not None:
         import capo_accessanalyzer.types.finding_source_list
 
         out["sources"] = capo_accessanalyzer.types.finding_source_list.deserialize_json(
             data["sources"]
         )
-    if "resourceControlPolicyRestriction" in data:
+    if data.get("resourceControlPolicyRestriction") is not None:
         out["resource_control_policy_restriction"] = data[
             "resourceControlPolicyRestriction"
         ]
-    if "serviceControlPolicyRestriction" in data:
+    if data.get("serviceControlPolicyRestriction") is not None:
         out["service_control_policy_restriction"] = data[
             "serviceControlPolicyRestriction"
         ]

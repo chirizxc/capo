@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: UpdateTrustResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateTrustResult:
     out: UpdateTrustResult = {}  # type: ignore[typeddict-item]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
-    if "TrustId" in data:
+    if data.get("TrustId") is not None:
         out["trust_id"] = data["TrustId"]
     return out

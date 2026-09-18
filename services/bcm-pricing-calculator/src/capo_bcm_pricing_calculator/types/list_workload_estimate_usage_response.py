@@ -38,7 +38,7 @@ def serialize_aws_json_1_0(value: ListWorkloadEstimateUsageResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListWorkloadEstimateUsageResponse:
     out: ListWorkloadEstimateUsageResponse = {}  # type: ignore[typeddict-item]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_bcm_pricing_calculator.types.workload_estimate_usage_items
 
         out["items"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListWorkloadEstimateUsageResponse:
                 data["items"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

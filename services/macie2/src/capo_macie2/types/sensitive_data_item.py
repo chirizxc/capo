@@ -43,7 +43,7 @@ def serialize_json(value: SensitiveDataItem) -> dict:
 
 def deserialize_json(data: dict) -> SensitiveDataItem:
     out: SensitiveDataItem = {}  # type: ignore[typeddict-item]
-    if "category" in data:
+    if data.get("category") is not None:
         import capo_macie2.types.sensitive_data_item_category
 
         out["category"] = (
@@ -51,12 +51,12 @@ def deserialize_json(data: dict) -> SensitiveDataItem:
                 data["category"]
             )
         )
-    if "detections" in data:
+    if data.get("detections") is not None:
         import capo_macie2.types.default_detections
 
         out["detections"] = capo_macie2.types.default_detections.deserialize_json(
             data["detections"]
         )
-    if "totalCount" in data:
+    if data.get("totalCount") is not None:
         out["total_count"] = data["totalCount"]
     return out

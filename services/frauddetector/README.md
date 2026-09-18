@@ -13,10 +13,25 @@ from capo_frauddetector import AsyncFraudDetectorClient
 
 
 async def main():
-    async with AsyncFraudDetectorClient() as s3:
+    async with AsyncFraudDetectorClient() as fraud_detector:
         # Example: call the batch_create_variable operation
-        response = await s3.batch_create_variable()
+        response = await fraud_detector.batch_create_variable()
         print(response["errors"])
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_frauddetector import AsyncFraudDetectorClient
+
+
+async def main():
+    async with AsyncFraudDetectorClient() as fraud_detector:
+        # Example: paginate over describe_model_versions
+        async for item in fraud_detector.iter_describe_model_versions():
+            print(item)
 ```
 
 ## Error Handling
@@ -29,9 +44,9 @@ from capo_frauddetector.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncFraudDetectorClient() as s3:
+    async with AsyncFraudDetectorClient() as fraud_detector:
         try:
-            await s3.batch_create_variable()
+            await fraud_detector.batch_create_variable()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +63,13 @@ from capo_frauddetector import AsyncFraudDetectorClient
 
 
 async def main():
-    async with AsyncFraudDetectorClient() as s3:
+    async with AsyncFraudDetectorClient() as fraud_detector:
         # Default: 3 attempts for every operation
-        response = await s3.batch_create_variable()
+        response = await fraud_detector.batch_create_variable()
 
         # Override per operation
-        response = await s3.batch_create_variable(config_overrides={"retry_max_attempts": 5})
+        response = await fraud_detector.batch_create_variable(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.batch_create_variable(config_overrides={"retry_max_attempts": 1})
+        response = await fraud_detector.batch_create_variable(config_overrides={"retry_max_attempts": 1})
 ```

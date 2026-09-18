@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> __listOfAvailMatchingCriteria:
 
     out: __listOfAvailMatchingCriteria = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mediatailor.types.avail_matching_criteria.deserialize_json(item)
         )

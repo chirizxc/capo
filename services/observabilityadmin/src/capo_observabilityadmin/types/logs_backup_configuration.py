@@ -29,10 +29,10 @@ def serialize_json(value: LogsBackupConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> LogsBackupConfiguration:
     out: LogsBackupConfiguration = {}  # type: ignore[typeddict-item]
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
     else:
         raise DeserializationError("LogsBackupConfiguration.region required")
-    if "KmsKeyArn" in data:
+    if data.get("KmsKeyArn") is not None:
         out["kms_key_arn"] = data["KmsKeyArn"]
     return out

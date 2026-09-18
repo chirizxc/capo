@@ -66,9 +66,9 @@ def serialize_json(value: DataSourceIntrospectionModel) -> dict:
 
 def deserialize_json(data: dict) -> DataSourceIntrospectionModel:
     out: DataSourceIntrospectionModel = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "fields" in data:
+    if data.get("fields") is not None:
         import capo_appsync.types.data_source_introspection_model_fields
 
         out["fields"] = (
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> DataSourceIntrospectionModel:
                 data["fields"]
             )
         )
-    if "primaryKey" in data:
+    if data.get("primaryKey") is not None:
         import capo_appsync.types.data_source_introspection_model_index
 
         out["primary_key"] = (
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> DataSourceIntrospectionModel:
                 data["primaryKey"]
             )
         )
-    if "indexes" in data:
+    if data.get("indexes") is not None:
         import capo_appsync.types.data_source_introspection_model_indexes
 
         out["indexes"] = (
@@ -92,6 +92,6 @@ def deserialize_json(data: dict) -> DataSourceIntrospectionModel:
                 data["indexes"]
             )
         )
-    if "sdl" in data:
+    if data.get("sdl") is not None:
         out["sdl"] = data["sdl"]
     return out

@@ -63,13 +63,13 @@ def serialize_aws_json_1_1(value: UpdateFeatureMetadataRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateFeatureMetadataRequest:
     out: UpdateFeatureMetadataRequest = {}  # type: ignore[typeddict-item]
-    if "FeatureGroupName" in data:
+    if data.get("FeatureGroupName") is not None:
         out["feature_group_name"] = data["FeatureGroupName"]
-    if "FeatureName" in data:
+    if data.get("FeatureName") is not None:
         out["feature_name"] = data["FeatureName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ParameterAdditions" in data:
+    if data.get("ParameterAdditions") is not None:
         import capo_sagemaker.types.feature_parameter_additions
 
         out["parameter_additions"] = (
@@ -77,7 +77,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateFeatureMetadataRequest:
                 data["ParameterAdditions"]
             )
         )
-    if "ParameterRemovals" in data:
+    if data.get("ParameterRemovals") is not None:
         import capo_sagemaker.types.feature_parameter_removals
 
         out["parameter_removals"] = (

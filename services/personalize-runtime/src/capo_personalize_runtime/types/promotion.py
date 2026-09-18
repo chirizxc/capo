@@ -48,13 +48,13 @@ def serialize_json(value: Promotion) -> dict:
 
 def deserialize_json(data: dict) -> Promotion:
     out: Promotion = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "percentPromotedItems" in data:
+    if data.get("percentPromotedItems") is not None:
         out["percent_promoted_items"] = data["percentPromotedItems"]
-    if "filterArn" in data:
+    if data.get("filterArn") is not None:
         out["filter_arn"] = data["filterArn"]
-    if "filterValues" in data:
+    if data.get("filterValues") is not None:
         import capo_personalize_runtime.types.filter_values
 
         out["filter_values"] = (

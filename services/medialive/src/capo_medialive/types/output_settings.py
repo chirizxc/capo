@@ -150,7 +150,7 @@ def serialize_json(value: OutputSettings) -> dict:
 
 def deserialize_json(data: dict) -> OutputSettings:
     out: OutputSettings = {}  # type: ignore[typeddict-item]
-    if "archiveOutputSettings" in data:
+    if data.get("archiveOutputSettings") is not None:
         import capo_medialive.types.archive_output_settings
 
         out["archive_output_settings"] = (
@@ -158,7 +158,7 @@ def deserialize_json(data: dict) -> OutputSettings:
                 data["archiveOutputSettings"]
             )
         )
-    if "frameCaptureOutputSettings" in data:
+    if data.get("frameCaptureOutputSettings") is not None:
         import capo_medialive.types.frame_capture_output_settings
 
         out["frame_capture_output_settings"] = (
@@ -166,7 +166,7 @@ def deserialize_json(data: dict) -> OutputSettings:
                 data["frameCaptureOutputSettings"]
             )
         )
-    if "hlsOutputSettings" in data:
+    if data.get("hlsOutputSettings") is not None:
         import capo_medialive.types.hls_output_settings
 
         out["hls_output_settings"] = (
@@ -174,7 +174,7 @@ def deserialize_json(data: dict) -> OutputSettings:
                 data["hlsOutputSettings"]
             )
         )
-    if "mediaPackageOutputSettings" in data:
+    if data.get("mediaPackageOutputSettings") is not None:
         import capo_medialive.types.media_package_output_settings
 
         out["media_package_output_settings"] = (
@@ -182,7 +182,7 @@ def deserialize_json(data: dict) -> OutputSettings:
                 data["mediaPackageOutputSettings"]
             )
         )
-    if "msSmoothOutputSettings" in data:
+    if data.get("msSmoothOutputSettings") is not None:
         import capo_medialive.types.ms_smooth_output_settings
 
         out["ms_smooth_output_settings"] = (
@@ -190,7 +190,7 @@ def deserialize_json(data: dict) -> OutputSettings:
                 data["msSmoothOutputSettings"]
             )
         )
-    if "multiplexOutputSettings" in data:
+    if data.get("multiplexOutputSettings") is not None:
         import capo_medialive.types.multiplex_output_settings
 
         out["multiplex_output_settings"] = (
@@ -198,7 +198,7 @@ def deserialize_json(data: dict) -> OutputSettings:
                 data["multiplexOutputSettings"]
             )
         )
-    if "rtmpOutputSettings" in data:
+    if data.get("rtmpOutputSettings") is not None:
         import capo_medialive.types.rtmp_output_settings
 
         out["rtmp_output_settings"] = (
@@ -206,7 +206,7 @@ def deserialize_json(data: dict) -> OutputSettings:
                 data["rtmpOutputSettings"]
             )
         )
-    if "udpOutputSettings" in data:
+    if data.get("udpOutputSettings") is not None:
         import capo_medialive.types.udp_output_settings
 
         out["udp_output_settings"] = (
@@ -214,7 +214,7 @@ def deserialize_json(data: dict) -> OutputSettings:
                 data["udpOutputSettings"]
             )
         )
-    if "cmafIngestOutputSettings" in data:
+    if data.get("cmafIngestOutputSettings") is not None:
         import capo_medialive.types.cmaf_ingest_output_settings
 
         out["cmaf_ingest_output_settings"] = (
@@ -222,7 +222,7 @@ def deserialize_json(data: dict) -> OutputSettings:
                 data["cmafIngestOutputSettings"]
             )
         )
-    if "srtOutputSettings" in data:
+    if data.get("srtOutputSettings") is not None:
         import capo_medialive.types.srt_output_settings
 
         out["srt_output_settings"] = (
@@ -230,7 +230,7 @@ def deserialize_json(data: dict) -> OutputSettings:
                 data["srtOutputSettings"]
             )
         )
-    if "mediaConnectRouterOutputSettings" in data:
+    if data.get("mediaConnectRouterOutputSettings") is not None:
         import capo_medialive.types.media_connect_router_output_settings
 
         out["media_connect_router_output_settings"] = (

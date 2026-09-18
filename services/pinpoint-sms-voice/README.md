@@ -13,9 +13,9 @@ from capo_pinpoint_sms_voice import AsyncPinpointSMSVoiceClient
 
 
 async def main():
-    async with AsyncPinpointSMSVoiceClient() as s3:
+    async with AsyncPinpointSMSVoiceClient() as pinpoint_sms_voice:
         # Example: call the create_configuration_set operation
-        response = await s3.create_configuration_set()
+        response = await pinpoint_sms_voice.create_configuration_set()
         print(response)
 ```
 
@@ -29,9 +29,9 @@ from capo_pinpoint_sms_voice.error import AlreadyExistsException
 
 
 async def main():
-    async with AsyncPinpointSMSVoiceClient() as s3:
+    async with AsyncPinpointSMSVoiceClient() as pinpoint_sms_voice:
         try:
-            await s3.create_configuration_set()
+            await pinpoint_sms_voice.create_configuration_set()
         except AlreadyExistsException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_pinpoint_sms_voice import AsyncPinpointSMSVoiceClient
 
 
 async def main():
-    async with AsyncPinpointSMSVoiceClient() as s3:
+    async with AsyncPinpointSMSVoiceClient() as pinpoint_sms_voice:
         # Default: 3 attempts for every operation
-        response = await s3.create_configuration_set()
+        response = await pinpoint_sms_voice.create_configuration_set()
 
         # Override per operation
-        response = await s3.create_configuration_set(config_overrides={"retry_max_attempts": 5})
+        response = await pinpoint_sms_voice.create_configuration_set(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_configuration_set(config_overrides={"retry_max_attempts": 1})
+        response = await pinpoint_sms_voice.create_configuration_set(config_overrides={"retry_max_attempts": 1})
 ```

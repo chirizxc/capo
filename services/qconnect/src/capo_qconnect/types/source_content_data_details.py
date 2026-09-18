@@ -51,15 +51,15 @@ def serialize_json(value: SourceContentDataDetails) -> dict:
 
 def deserialize_json(data: dict) -> SourceContentDataDetails:
     out: SourceContentDataDetails = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("SourceContentDataDetails.id required")
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("SourceContentDataDetails.type required")
-    if "textData" in data:
+    if data.get("textData") is not None:
         import capo_qconnect.types.text_data
 
         out["text_data"] = capo_qconnect.types.text_data.deserialize_json(
@@ -67,7 +67,7 @@ def deserialize_json(data: dict) -> SourceContentDataDetails:
         )
     else:
         raise DeserializationError("SourceContentDataDetails.text_data required")
-    if "rankingData" in data:
+    if data.get("rankingData") is not None:
         import capo_qconnect.types.ranking_data
 
         out["ranking_data"] = capo_qconnect.types.ranking_data.deserialize_json(
@@ -75,7 +75,7 @@ def deserialize_json(data: dict) -> SourceContentDataDetails:
         )
     else:
         raise DeserializationError("SourceContentDataDetails.ranking_data required")
-    if "citationSpan" in data:
+    if data.get("citationSpan") is not None:
         import capo_qconnect.types.citation_span
 
         out["citation_span"] = capo_qconnect.types.citation_span.deserialize_json(

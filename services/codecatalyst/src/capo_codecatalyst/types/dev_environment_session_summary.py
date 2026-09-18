@@ -31,9 +31,9 @@ def serialize_json(value: DevEnvironmentSessionSummary) -> dict:
     out["spaceName"] = value["space_name"]
     out["projectName"] = value["project_name"]
     out["devEnvironmentId"] = value["dev_environment_id"]
-    import capo_codecatalyst.types.timestamp
+    import capo_codecatalyst._protocol.serialize
 
-    out["startedTime"] = capo_codecatalyst.types.timestamp.serialize_json(
+    out["startedTime"] = capo_codecatalyst._protocol.serialize.fmt_date_time(
         value["started_time"]
     )
     out["id"] = value["id"]
@@ -42,29 +42,29 @@ def serialize_json(value: DevEnvironmentSessionSummary) -> dict:
 
 def deserialize_json(data: dict) -> DevEnvironmentSessionSummary:
     out: DevEnvironmentSessionSummary = {}  # type: ignore[typeddict-item]
-    if "spaceName" in data:
+    if data.get("spaceName") is not None:
         out["space_name"] = data["spaceName"]
     else:
         raise DeserializationError("DevEnvironmentSessionSummary.space_name required")
-    if "projectName" in data:
+    if data.get("projectName") is not None:
         out["project_name"] = data["projectName"]
     else:
         raise DeserializationError("DevEnvironmentSessionSummary.project_name required")
-    if "devEnvironmentId" in data:
+    if data.get("devEnvironmentId") is not None:
         out["dev_environment_id"] = data["devEnvironmentId"]
     else:
         raise DeserializationError(
             "DevEnvironmentSessionSummary.dev_environment_id required"
         )
-    if "startedTime" in data:
-        import capo_codecatalyst.types.timestamp
+    if data.get("startedTime") is not None:
+        import datetime
 
-        out["started_time"] = capo_codecatalyst.types.timestamp.deserialize_json(
-            data["startedTime"]
+        out["started_time"] = datetime.datetime.fromisoformat(
+            data["startedTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("DevEnvironmentSessionSummary.started_time required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("DevEnvironmentSessionSummary.id required")

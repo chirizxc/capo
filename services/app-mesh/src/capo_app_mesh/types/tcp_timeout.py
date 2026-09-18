@@ -25,7 +25,7 @@ def serialize_json(value: TcpTimeout) -> dict:
 
 def deserialize_json(data: dict) -> TcpTimeout:
     out: TcpTimeout = {}  # type: ignore[typeddict-item]
-    if "idle" in data:
+    if data.get("idle") is not None:
         import capo_app_mesh.types.duration
 
         out["idle"] = capo_app_mesh.types.duration.deserialize_json(data["idle"])

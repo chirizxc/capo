@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetMobileSdkReleaseResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetMobileSdkReleaseResponse:
     out: GetMobileSdkReleaseResponse = {}  # type: ignore[typeddict-item]
-    if "MobileSdkRelease" in data:
+    if data.get("MobileSdkRelease") is not None:
         import capo_wafv2.types.mobile_sdk_release
 
         out["mobile_sdk_release"] = (

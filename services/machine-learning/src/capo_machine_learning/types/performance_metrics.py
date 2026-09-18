@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: PerformanceMetrics) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PerformanceMetrics:
     out: PerformanceMetrics = {}  # type: ignore[typeddict-item]
-    if "Properties" in data:
+    if data.get("Properties") is not None:
         import capo_machine_learning.types.performance_metrics_properties
 
         out["properties"] = (

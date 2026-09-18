@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: TrainingDataSchema) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TrainingDataSchema:
     out: TrainingDataSchema = {}  # type: ignore[typeddict-item]
-    if "modelVariables" in data:
+    if data.get("modelVariables") is not None:
         import capo_frauddetector.types.list_of_strings
 
         out["model_variables"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> TrainingDataSchema:
         )
     else:
         raise DeserializationError("TrainingDataSchema.model_variables required")
-    if "labelSchema" in data:
+    if data.get("labelSchema") is not None:
         import capo_frauddetector.types.label_schema
 
         out["label_schema"] = (

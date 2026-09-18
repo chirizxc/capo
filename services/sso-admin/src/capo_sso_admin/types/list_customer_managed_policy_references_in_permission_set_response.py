@@ -42,7 +42,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> ListCustomerManagedPolicyReferencesInPermissionSetResponse:
     out: ListCustomerManagedPolicyReferencesInPermissionSetResponse = {}  # type: ignore[typeddict-item]
-    if "CustomerManagedPolicyReferences" in data:
+    if data.get("CustomerManagedPolicyReferences") is not None:
         import capo_sso_admin.types.customer_managed_policy_reference_list
 
         out["customer_managed_policy_references"] = (
@@ -50,6 +50,6 @@ def deserialize_aws_json_1_1(
                 data["CustomerManagedPolicyReferences"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -117,13 +117,13 @@ def serialize_aws_json_1_0(value: BenefitAllocationSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> BenefitAllocationSummary:
     out: BenefitAllocationSummary = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_partnercentral_benefits.types.benefit_allocation_status
 
         out["status"] = (
@@ -131,15 +131,15 @@ def deserialize_aws_json_1_0(data: dict) -> BenefitAllocationSummary:
                 data["Status"]
             )
         )
-    if "StatusReason" in data:
+    if data.get("StatusReason") is not None:
         out["status_reason"] = data["StatusReason"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "BenefitId" in data:
+    if data.get("BenefitId") is not None:
         out["benefit_id"] = data["BenefitId"]
-    if "BenefitApplicationId" in data:
+    if data.get("BenefitApplicationId") is not None:
         out["benefit_application_id"] = data["BenefitApplicationId"]
-    if "FulfillmentTypes" in data:
+    if data.get("FulfillmentTypes") is not None:
         import capo_partnercentral_benefits.types.fulfillment_types
 
         out["fulfillment_types"] = (
@@ -147,7 +147,7 @@ def deserialize_aws_json_1_0(data: dict) -> BenefitAllocationSummary:
                 data["FulfillmentTypes"]
             )
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_partnercentral_benefits.types.timestamp
 
         out["created_at"] = (
@@ -155,7 +155,7 @@ def deserialize_aws_json_1_0(data: dict) -> BenefitAllocationSummary:
                 data["CreatedAt"]
             )
         )
-    if "ExpiresAt" in data:
+    if data.get("ExpiresAt") is not None:
         import capo_partnercentral_benefits.types.timestamp
 
         out["expires_at"] = (
@@ -163,7 +163,7 @@ def deserialize_aws_json_1_0(data: dict) -> BenefitAllocationSummary:
                 data["ExpiresAt"]
             )
         )
-    if "ApplicableBenefitIds" in data:
+    if data.get("ApplicableBenefitIds") is not None:
         import capo_partnercentral_benefits.types.benefit_ids
 
         out["applicable_benefit_ids"] = (

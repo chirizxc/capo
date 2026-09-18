@@ -62,7 +62,7 @@ def serialize_json(value: Message) -> dict:
 
 def deserialize_json(data: dict) -> Message:
     out: Message = {}  # type: ignore[typeddict-item]
-    if "plainTextMessage" in data:
+    if data.get("plainTextMessage") is not None:
         import capo_lex_models_v2.types.plain_text_message
 
         out["plain_text_message"] = (
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> Message:
                 data["plainTextMessage"]
             )
         )
-    if "customPayload" in data:
+    if data.get("customPayload") is not None:
         import capo_lex_models_v2.types.custom_payload
 
         out["custom_payload"] = (
@@ -78,13 +78,13 @@ def deserialize_json(data: dict) -> Message:
                 data["customPayload"]
             )
         )
-    if "ssmlMessage" in data:
+    if data.get("ssmlMessage") is not None:
         import capo_lex_models_v2.types.ssml_message
 
         out["ssml_message"] = capo_lex_models_v2.types.ssml_message.deserialize_json(
             data["ssmlMessage"]
         )
-    if "imageResponseCard" in data:
+    if data.get("imageResponseCard") is not None:
         import capo_lex_models_v2.types.image_response_card
 
         out["image_response_card"] = (

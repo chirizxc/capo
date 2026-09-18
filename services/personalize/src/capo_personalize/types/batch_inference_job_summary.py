@@ -72,13 +72,13 @@ def serialize_aws_json_1_1(value: BatchInferenceJobSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchInferenceJobSummary:
     out: BatchInferenceJobSummary = {}  # type: ignore[typeddict-item]
-    if "batchInferenceJobArn" in data:
+    if data.get("batchInferenceJobArn") is not None:
         out["batch_inference_job_arn"] = data["batchInferenceJobArn"]
-    if "jobName" in data:
+    if data.get("jobName") is not None:
         out["job_name"] = data["jobName"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_personalize.types.date
 
         out["creation_date_time"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchInferenceJobSummary:
                 data["creationDateTime"]
             )
         )
-    if "lastUpdatedDateTime" in data:
+    if data.get("lastUpdatedDateTime") is not None:
         import capo_personalize.types.date
 
         out["last_updated_date_time"] = (
@@ -94,11 +94,11 @@ def deserialize_aws_json_1_1(data: dict) -> BatchInferenceJobSummary:
                 data["lastUpdatedDateTime"]
             )
         )
-    if "failureReason" in data:
+    if data.get("failureReason") is not None:
         out["failure_reason"] = data["failureReason"]
-    if "solutionVersionArn" in data:
+    if data.get("solutionVersionArn") is not None:
         out["solution_version_arn"] = data["solutionVersionArn"]
-    if "batchInferenceJobMode" in data:
+    if data.get("batchInferenceJobMode") is not None:
         import capo_personalize.types.batch_inference_job_mode
 
         out["batch_inference_job_mode"] = (

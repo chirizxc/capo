@@ -42,16 +42,16 @@ def serialize_json(value: TileStyle) -> dict:
 
 def deserialize_json(data: dict) -> TileStyle:
     out: TileStyle = {}  # type: ignore[typeddict-item]
-    if "BackgroundColor" in data:
+    if data.get("BackgroundColor") is not None:
         out["background_color"] = data["BackgroundColor"]
-    if "Border" in data:
+    if data.get("Border") is not None:
         import capo_quicksight.types.border_style
 
         out["border"] = capo_quicksight.types.border_style.deserialize_json(
             data["Border"]
         )
-    if "BorderRadius" in data:
+    if data.get("BorderRadius") is not None:
         out["border_radius"] = data["BorderRadius"]
-    if "Padding" in data:
+    if data.get("Padding") is not None:
         out["padding"] = data["Padding"]
     return out

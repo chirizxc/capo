@@ -51,7 +51,7 @@ def serialize_aws_json_1_1(value: ReceivedMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReceivedMetadata:
     out: ReceivedMetadata = {}  # type: ignore[typeddict-item]
-    if "ReceivedStatus" in data:
+    if data.get("ReceivedStatus") is not None:
         import capo_license_manager.types.received_status
 
         out["received_status"] = (
@@ -59,9 +59,9 @@ def deserialize_aws_json_1_1(data: dict) -> ReceivedMetadata:
                 data["ReceivedStatus"]
             )
         )
-    if "ReceivedStatusReason" in data:
+    if data.get("ReceivedStatusReason") is not None:
         out["received_status_reason"] = data["ReceivedStatusReason"]
-    if "AllowedOperations" in data:
+    if data.get("AllowedOperations") is not None:
         import capo_license_manager.types.allowed_operation_list
 
         out["allowed_operations"] = (

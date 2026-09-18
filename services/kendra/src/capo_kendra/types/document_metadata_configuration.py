@@ -50,11 +50,11 @@ def serialize_aws_json_1_1(value: DocumentMetadataConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DocumentMetadataConfiguration:
     out: DocumentMetadataConfiguration = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("DocumentMetadataConfiguration.name required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_kendra.types.document_attribute_value_type
 
         out["type"] = (
@@ -64,13 +64,13 @@ def deserialize_aws_json_1_1(data: dict) -> DocumentMetadataConfiguration:
         )
     else:
         raise DeserializationError("DocumentMetadataConfiguration.type required")
-    if "Relevance" in data:
+    if data.get("Relevance") is not None:
         import capo_kendra.types.relevance
 
         out["relevance"] = capo_kendra.types.relevance.deserialize_aws_json_1_1(
             data["Relevance"]
         )
-    if "Search" in data:
+    if data.get("Search") is not None:
         import capo_kendra.types.search
 
         out["search"] = capo_kendra.types.search.deserialize_aws_json_1_1(

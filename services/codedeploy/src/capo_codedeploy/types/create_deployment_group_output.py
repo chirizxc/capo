@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: CreateDeploymentGroupOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateDeploymentGroupOutput:
     out: CreateDeploymentGroupOutput = {}  # type: ignore[typeddict-item]
-    if "deploymentGroupId" in data:
+    if data.get("deploymentGroupId") is not None:
         out["deployment_group_id"] = data["deploymentGroupId"]
     return out

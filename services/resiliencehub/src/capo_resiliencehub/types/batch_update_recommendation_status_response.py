@@ -44,13 +44,13 @@ def serialize_json(value: BatchUpdateRecommendationStatusResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchUpdateRecommendationStatusResponse:
     out: BatchUpdateRecommendationStatusResponse = {}  # type: ignore[typeddict-item]
-    if "appArn" in data:
+    if data.get("appArn") is not None:
         out["app_arn"] = data["appArn"]
     else:
         raise DeserializationError(
             "BatchUpdateRecommendationStatusResponse.app_arn required"
         )
-    if "successfulEntries" in data:
+    if data.get("successfulEntries") is not None:
         import capo_resiliencehub.types.batch_update_recommendation_status_successful_entries
 
         out["successful_entries"] = (
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> BatchUpdateRecommendationStatusResponse:
         raise DeserializationError(
             "BatchUpdateRecommendationStatusResponse.successful_entries required"
         )
-    if "failedEntries" in data:
+    if data.get("failedEntries") is not None:
         import capo_resiliencehub.types.batch_update_recommendation_status_failed_entries
 
         out["failed_entries"] = (

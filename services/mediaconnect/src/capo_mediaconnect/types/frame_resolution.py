@@ -22,8 +22,8 @@ def serialize_json(value: FrameResolution) -> dict:
 
 def deserialize_json(data: dict) -> FrameResolution:
     out: FrameResolution = {}  # type: ignore[typeddict-item]
-    if "frameHeight" in data:
+    if data.get("frameHeight") is not None:
         out["frame_height"] = data["frameHeight"]
-    if "frameWidth" in data:
+    if data.get("frameWidth") is not None:
         out["frame_width"] = data["frameWidth"]
     return out

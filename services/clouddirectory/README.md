@@ -13,10 +13,25 @@ from capo_clouddirectory import AsyncCloudDirectoryClient
 
 
 async def main():
-    async with AsyncCloudDirectoryClient() as s3:
+    async with AsyncCloudDirectoryClient() as cloud_directory:
         # Example: call the add_facet_to_object operation
-        response = await s3.add_facet_to_object()
+        response = await cloud_directory.add_facet_to_object()
         print(response)
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_clouddirectory import AsyncCloudDirectoryClient
+
+
+async def main():
+    async with AsyncCloudDirectoryClient() as cloud_directory:
+        # Example: paginate over list_applied_schema_arns
+        async for item in cloud_directory.iter_list_applied_schema_arns():
+            print(item)
 ```
 
 ## Error Handling
@@ -29,9 +44,9 @@ from capo_clouddirectory.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncCloudDirectoryClient() as s3:
+    async with AsyncCloudDirectoryClient() as cloud_directory:
         try:
-            await s3.add_facet_to_object()
+            await cloud_directory.add_facet_to_object()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +63,13 @@ from capo_clouddirectory import AsyncCloudDirectoryClient
 
 
 async def main():
-    async with AsyncCloudDirectoryClient() as s3:
+    async with AsyncCloudDirectoryClient() as cloud_directory:
         # Default: 3 attempts for every operation
-        response = await s3.add_facet_to_object()
+        response = await cloud_directory.add_facet_to_object()
 
         # Override per operation
-        response = await s3.add_facet_to_object(config_overrides={"retry_max_attempts": 5})
+        response = await cloud_directory.add_facet_to_object(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.add_facet_to_object(config_overrides={"retry_max_attempts": 1})
+        response = await cloud_directory.add_facet_to_object(config_overrides={"retry_max_attempts": 1})
 ```

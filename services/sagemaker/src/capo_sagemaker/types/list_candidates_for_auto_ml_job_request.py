@@ -73,9 +73,9 @@ def serialize_aws_json_1_1(value: ListCandidatesForAutoMLJobRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListCandidatesForAutoMLJobRequest:
     out: ListCandidatesForAutoMLJobRequest = {}  # type: ignore[typeddict-item]
-    if "AutoMLJobName" in data:
+    if data.get("AutoMLJobName") is not None:
         out["auto_ml_job_name"] = data["AutoMLJobName"]
-    if "StatusEquals" in data:
+    if data.get("StatusEquals") is not None:
         import capo_sagemaker.types.candidate_status
 
         out["status_equals"] = (
@@ -83,9 +83,9 @@ def deserialize_aws_json_1_1(data: dict) -> ListCandidatesForAutoMLJobRequest:
                 data["StatusEquals"]
             )
         )
-    if "CandidateNameEquals" in data:
+    if data.get("CandidateNameEquals") is not None:
         out["candidate_name_equals"] = data["CandidateNameEquals"]
-    if "SortOrder" in data:
+    if data.get("SortOrder") is not None:
         import capo_sagemaker.types.auto_ml_sort_order
 
         out["sort_order"] = (
@@ -93,7 +93,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListCandidatesForAutoMLJobRequest:
                 data["SortOrder"]
             )
         )
-    if "SortBy" in data:
+    if data.get("SortBy") is not None:
         import capo_sagemaker.types.candidate_sort_by
 
         out["sort_by"] = (
@@ -101,8 +101,8 @@ def deserialize_aws_json_1_1(data: dict) -> ListCandidatesForAutoMLJobRequest:
                 data["SortBy"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

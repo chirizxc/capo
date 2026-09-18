@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: SmbMountOptions) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SmbMountOptions:
     out: SmbMountOptions = {}  # type: ignore[typeddict-item]
-    if "Version" in data:
+    if data.get("Version") is not None:
         import capo_datasync.types.smb_version
 
         out["version"] = capo_datasync.types.smb_version.deserialize_aws_json_1_1(

@@ -28,8 +28,8 @@ def serialize_json(value: MessageReviewHandler) -> dict:
 
 def deserialize_json(data: dict) -> MessageReviewHandler:
     out: MessageReviewHandler = {}  # type: ignore[typeddict-item]
-    if "uri" in data:
+    if data.get("uri") is not None:
         out["uri"] = data["uri"]
-    if "fallbackResult" in data:
+    if data.get("fallbackResult") is not None:
         out["fallback_result"] = data["fallbackResult"]
     return out

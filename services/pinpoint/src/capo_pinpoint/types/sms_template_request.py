@@ -42,16 +42,16 @@ def serialize_json(value: SMSTemplateRequest) -> dict:
 
 def deserialize_json(data: dict) -> SMSTemplateRequest:
     out: SMSTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "Body" in data:
+    if data.get("Body") is not None:
         out["body"] = data["Body"]
-    if "DefaultSubstitutions" in data:
+    if data.get("DefaultSubstitutions") is not None:
         out["default_substitutions"] = data["DefaultSubstitutions"]
-    if "RecommenderId" in data:
+    if data.get("RecommenderId") is not None:
         out["recommender_id"] = data["RecommenderId"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_pinpoint.types.map_of__string
 
         out["tags"] = capo_pinpoint.types.map_of__string.deserialize_json(data["tags"])
-    if "TemplateDescription" in data:
+    if data.get("TemplateDescription") is not None:
         out["template_description"] = data["TemplateDescription"]
     return out

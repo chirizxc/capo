@@ -46,20 +46,20 @@ def serialize_json(value: RunSummary) -> dict:
 
 def deserialize_json(data: dict) -> RunSummary:
     out: RunSummary = {}  # type: ignore[typeddict-item]
-    if "pendingRunCount" in data:
+    if data.get("pendingRunCount") is not None:
         out["pending_run_count"] = data["pendingRunCount"]
-    if "startingRunCount" in data:
+    if data.get("startingRunCount") is not None:
         out["starting_run_count"] = data["startingRunCount"]
-    if "runningRunCount" in data:
+    if data.get("runningRunCount") is not None:
         out["running_run_count"] = data["runningRunCount"]
-    if "stoppingRunCount" in data:
+    if data.get("stoppingRunCount") is not None:
         out["stopping_run_count"] = data["stoppingRunCount"]
-    if "completedRunCount" in data:
+    if data.get("completedRunCount") is not None:
         out["completed_run_count"] = data["completedRunCount"]
-    if "deletedRunCount" in data:
+    if data.get("deletedRunCount") is not None:
         out["deleted_run_count"] = data["deletedRunCount"]
-    if "failedRunCount" in data:
+    if data.get("failedRunCount") is not None:
         out["failed_run_count"] = data["failedRunCount"]
-    if "cancelledRunCount" in data:
+    if data.get("cancelledRunCount") is not None:
         out["cancelled_run_count"] = data["cancelledRunCount"]
     return out

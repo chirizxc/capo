@@ -78,11 +78,11 @@ def serialize_json(value: DirectoryRegistration) -> dict:
 
 def deserialize_json(data: dict) -> DirectoryRegistration:
     out: DirectoryRegistration = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_pca_connector_ad.types.directory_registration_status
 
         out["status"] = (
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> DirectoryRegistration:
                 data["Status"]
             )
         )
-    if "StatusReason" in data:
+    if data.get("StatusReason") is not None:
         import capo_pca_connector_ad.types.directory_registration_status_reason
 
         out["status_reason"] = (
@@ -98,7 +98,7 @@ def deserialize_json(data: dict) -> DirectoryRegistration:
                 data["StatusReason"]
             )
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_pca_connector_ad.types._prelude.timestamp
 
         out["created_at"] = (
@@ -106,7 +106,7 @@ def deserialize_json(data: dict) -> DirectoryRegistration:
                 data["CreatedAt"]
             )
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_pca_connector_ad.types._prelude.timestamp
 
         out["updated_at"] = (

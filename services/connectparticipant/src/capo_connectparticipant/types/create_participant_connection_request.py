@@ -39,7 +39,7 @@ def serialize_json(value: CreateParticipantConnectionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateParticipantConnectionRequest:
     out: CreateParticipantConnectionRequest = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_connectparticipant.types.connection_type_list
 
         out["type"] = (
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> CreateParticipantConnectionRequest:
                 data["Type"]
             )
         )
-    if "ConnectParticipant" in data:
+    if data.get("ConnectParticipant") is not None:
         out["connect_participant"] = data["ConnectParticipant"]
     return out

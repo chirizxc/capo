@@ -79,7 +79,7 @@ def serialize_aws_json_1_0(value: AwsProductInsights) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AwsProductInsights:
     out: AwsProductInsights = {}  # type: ignore[typeddict-item]
-    if "CurrencyCode" in data:
+    if data.get("CurrencyCode") is not None:
         import capo_partnercentral_selling.types.currency_code
 
         out["currency_code"] = (
@@ -89,7 +89,7 @@ def deserialize_aws_json_1_0(data: dict) -> AwsProductInsights:
         )
     else:
         raise DeserializationError("AwsProductInsights.currency_code required")
-    if "Frequency" in data:
+    if data.get("Frequency") is not None:
         import capo_partnercentral_selling.types.payment_frequency
 
         out["frequency"] = (
@@ -99,13 +99,13 @@ def deserialize_aws_json_1_0(data: dict) -> AwsProductInsights:
         )
     else:
         raise DeserializationError("AwsProductInsights.frequency required")
-    if "TotalAmount" in data:
+    if data.get("TotalAmount") is not None:
         out["total_amount"] = data["TotalAmount"]
-    if "TotalOptimizedAmount" in data:
+    if data.get("TotalOptimizedAmount") is not None:
         out["total_optimized_amount"] = data["TotalOptimizedAmount"]
-    if "TotalPotentialSavingsAmount" in data:
+    if data.get("TotalPotentialSavingsAmount") is not None:
         out["total_potential_savings_amount"] = data["TotalPotentialSavingsAmount"]
-    if "TotalAmountByCategory" in data:
+    if data.get("TotalAmountByCategory") is not None:
         import capo_partnercentral_selling.types.amount_map
 
         out["total_amount_by_category"] = (
@@ -117,7 +117,7 @@ def deserialize_aws_json_1_0(data: dict) -> AwsProductInsights:
         raise DeserializationError(
             "AwsProductInsights.total_amount_by_category required"
         )
-    if "AwsProducts" in data:
+    if data.get("AwsProducts") is not None:
         import capo_partnercentral_selling.types.aws_products_list
 
         out["aws_products"] = (

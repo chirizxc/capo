@@ -74,7 +74,7 @@ def serialize_json(value: EmvCommonAttributes) -> dict:
 
 def deserialize_json(data: dict) -> EmvCommonAttributes:
     out: EmvCommonAttributes = {}  # type: ignore[typeddict-item]
-    if "MajorKeyDerivationMode" in data:
+    if data.get("MajorKeyDerivationMode") is not None:
         import capo_payment_cryptography_data.types.major_key_derivation_mode
 
         out["major_key_derivation_mode"] = (
@@ -86,23 +86,23 @@ def deserialize_json(data: dict) -> EmvCommonAttributes:
         raise DeserializationError(
             "EmvCommonAttributes.major_key_derivation_mode required"
         )
-    if "PrimaryAccountNumber" in data:
+    if data.get("PrimaryAccountNumber") is not None:
         out["primary_account_number"] = data["PrimaryAccountNumber"]
     else:
         raise DeserializationError(
             "EmvCommonAttributes.primary_account_number required"
         )
-    if "PanSequenceNumber" in data:
+    if data.get("PanSequenceNumber") is not None:
         out["pan_sequence_number"] = data["PanSequenceNumber"]
     else:
         raise DeserializationError("EmvCommonAttributes.pan_sequence_number required")
-    if "ApplicationCryptogram" in data:
+    if data.get("ApplicationCryptogram") is not None:
         out["application_cryptogram"] = data["ApplicationCryptogram"]
     else:
         raise DeserializationError(
             "EmvCommonAttributes.application_cryptogram required"
         )
-    if "Mode" in data:
+    if data.get("Mode") is not None:
         import capo_payment_cryptography_data.types.emv_encryption_mode
 
         out["mode"] = (
@@ -112,7 +112,7 @@ def deserialize_json(data: dict) -> EmvCommonAttributes:
         )
     else:
         raise DeserializationError("EmvCommonAttributes.mode required")
-    if "PinBlockPaddingType" in data:
+    if data.get("PinBlockPaddingType") is not None:
         import capo_payment_cryptography_data.types.pin_block_padding_type
 
         out["pin_block_padding_type"] = (
@@ -124,7 +124,7 @@ def deserialize_json(data: dict) -> EmvCommonAttributes:
         raise DeserializationError(
             "EmvCommonAttributes.pin_block_padding_type required"
         )
-    if "PinBlockLengthPosition" in data:
+    if data.get("PinBlockLengthPosition") is not None:
         import capo_payment_cryptography_data.types.pin_block_length_position
 
         out["pin_block_length_position"] = (

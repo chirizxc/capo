@@ -61,11 +61,11 @@ def serialize_json(value: AccessPolicySummary) -> dict:
 
 def deserialize_json(data: dict) -> AccessPolicySummary:
     out: AccessPolicySummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("AccessPolicySummary.id required")
-    if "identity" in data:
+    if data.get("identity") is not None:
         import capo_iotsitewise.types.identity
 
         out["identity"] = capo_iotsitewise.types.identity.deserialize_json(
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> AccessPolicySummary:
         )
     else:
         raise DeserializationError("AccessPolicySummary.identity required")
-    if "resource" in data:
+    if data.get("resource") is not None:
         import capo_iotsitewise.types.resource
 
         out["resource"] = capo_iotsitewise.types.resource.deserialize_json(
@@ -81,7 +81,7 @@ def deserialize_json(data: dict) -> AccessPolicySummary:
         )
     else:
         raise DeserializationError("AccessPolicySummary.resource required")
-    if "permission" in data:
+    if data.get("permission") is not None:
         import capo_iotsitewise.types.permission
 
         out["permission"] = capo_iotsitewise.types.permission.deserialize_json(
@@ -89,13 +89,13 @@ def deserialize_json(data: dict) -> AccessPolicySummary:
         )
     else:
         raise DeserializationError("AccessPolicySummary.permission required")
-    if "creationDate" in data:
+    if data.get("creationDate") is not None:
         import capo_iotsitewise.types.timestamp
 
         out["creation_date"] = capo_iotsitewise.types.timestamp.deserialize_json(
             data["creationDate"]
         )
-    if "lastUpdateDate" in data:
+    if data.get("lastUpdateDate") is not None:
         import capo_iotsitewise.types.timestamp
 
         out["last_update_date"] = capo_iotsitewise.types.timestamp.deserialize_json(

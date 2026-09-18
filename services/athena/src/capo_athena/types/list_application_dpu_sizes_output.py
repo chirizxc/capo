@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListApplicationDPUSizesOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListApplicationDPUSizesOutput:
     out: ListApplicationDPUSizesOutput = {}  # type: ignore[typeddict-item]
-    if "ApplicationDPUSizes" in data:
+    if data.get("ApplicationDPUSizes") is not None:
         import capo_athena.types.application_dpu_sizes_list
 
         out["application_dpu_sizes"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListApplicationDPUSizesOutput:
                 data["ApplicationDPUSizes"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

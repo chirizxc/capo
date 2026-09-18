@@ -16,14 +16,22 @@ class SecondaryAddressComponentMatchScore(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: SecondaryAddressComponentMatchScore) -> dict:
     out: dict = {}
-    out["Number"] = value.get("number", 0)
+    out["Number"] = (
+        "NaN"
+        if value.get("number", 0) != value.get("number", 0)
+        else "Infinity"
+        if value.get("number", 0) == float("inf")
+        else "-Infinity"
+        if value.get("number", 0) == float("-inf")
+        else value.get("number", 0)
+    )
     return out
 
 
 def deserialize_json(data: dict) -> SecondaryAddressComponentMatchScore:
     out: SecondaryAddressComponentMatchScore = {}  # type: ignore[typeddict-item]
-    if "Number" in data:
-        out["number"] = data["Number"]
+    if data.get("Number") is not None:
+        out["number"] = float(data["Number"])
     else:
         out["number"] = 0
     return out

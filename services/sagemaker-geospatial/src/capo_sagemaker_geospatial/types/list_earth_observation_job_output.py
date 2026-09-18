@@ -35,7 +35,7 @@ def serialize_json(value: ListEarthObservationJobOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListEarthObservationJobOutput:
     out: ListEarthObservationJobOutput = {}  # type: ignore[typeddict-item]
-    if "EarthObservationJobSummaries" in data:
+    if data.get("EarthObservationJobSummaries") is not None:
         import capo_sagemaker_geospatial.types.earth_observation_job_list
 
         out["earth_observation_job_summaries"] = (
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> ListEarthObservationJobOutput:
         raise DeserializationError(
             "ListEarthObservationJobOutput.earth_observation_job_summaries required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

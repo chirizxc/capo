@@ -61,7 +61,7 @@ def serialize_json(value: LineItemFilter) -> dict:
 
 def deserialize_json(data: dict) -> LineItemFilter:
     out: LineItemFilter = {}  # type: ignore[typeddict-item]
-    if "Attribute" in data:
+    if data.get("Attribute") is not None:
         import capo_billingconductor.types.line_item_filter_attribute_name
 
         out["attribute"] = (
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> LineItemFilter:
         )
     else:
         raise DeserializationError("LineItemFilter.attribute required")
-    if "MatchOption" in data:
+    if data.get("MatchOption") is not None:
         import capo_billingconductor.types.match_option
 
         out["match_option"] = capo_billingconductor.types.match_option.deserialize_json(
@@ -79,7 +79,7 @@ def deserialize_json(data: dict) -> LineItemFilter:
         )
     else:
         raise DeserializationError("LineItemFilter.match_option required")
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_billingconductor.types.line_item_filter_values_list
 
         out["values"] = (
@@ -89,7 +89,7 @@ def deserialize_json(data: dict) -> LineItemFilter:
         )
     else:
         out["values"] = []
-    if "AttributeValues" in data:
+    if data.get("AttributeValues") is not None:
         import capo_billingconductor.types.attribute_value_list
 
         out["attribute_values"] = (

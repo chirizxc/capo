@@ -39,19 +39,19 @@ def serialize_aws_json_1_0(value: TimerStartedEventAttributes) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TimerStartedEventAttributes:
     out: TimerStartedEventAttributes = {}  # type: ignore[typeddict-item]
-    if "timerId" in data:
+    if data.get("timerId") is not None:
         out["timer_id"] = data["timerId"]
     else:
         raise DeserializationError("TimerStartedEventAttributes.timer_id required")
-    if "control" in data:
+    if data.get("control") is not None:
         out["control"] = data["control"]
-    if "startToFireTimeout" in data:
+    if data.get("startToFireTimeout") is not None:
         out["start_to_fire_timeout"] = data["startToFireTimeout"]
     else:
         raise DeserializationError(
             "TimerStartedEventAttributes.start_to_fire_timeout required"
         )
-    if "decisionTaskCompletedEventId" in data:
+    if data.get("decisionTaskCompletedEventId") is not None:
         out["decision_task_completed_event_id"] = data["decisionTaskCompletedEventId"]
     else:
         out["decision_task_completed_event_id"] = 0

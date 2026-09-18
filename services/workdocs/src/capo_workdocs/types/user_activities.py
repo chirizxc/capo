@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> UserActivities:
 
     out: UserActivities = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_workdocs.types.activity.deserialize_json(item))
     return out

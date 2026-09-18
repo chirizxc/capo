@@ -29,8 +29,8 @@ def serialize_json(value: BatchJobDependency) -> dict:
 
 def deserialize_json(data: dict) -> BatchJobDependency:
     out: BatchJobDependency = {}  # type: ignore[typeddict-item]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     return out

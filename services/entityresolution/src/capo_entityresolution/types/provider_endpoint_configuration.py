@@ -34,7 +34,7 @@ def serialize_json(value: ProviderEndpointConfiguration) -> dict:
 
 
 def deserialize_json(data: dict) -> ProviderEndpointConfiguration:
-    if "marketplaceConfiguration" in data:
+    if data.get("marketplaceConfiguration") is not None:
         import capo_entityresolution.types.provider_marketplace_configuration
 
         return {

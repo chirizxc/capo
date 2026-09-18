@@ -58,21 +58,21 @@ def serialize_aws_json_1_0(value: CreateRelayRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateRelayRequest:
     out: CreateRelayRequest = {}  # type: ignore[typeddict-item]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "RelayName" in data:
+    if data.get("RelayName") is not None:
         out["relay_name"] = data["RelayName"]
     else:
         raise DeserializationError("CreateRelayRequest.relay_name required")
-    if "ServerName" in data:
+    if data.get("ServerName") is not None:
         out["server_name"] = data["ServerName"]
     else:
         raise DeserializationError("CreateRelayRequest.server_name required")
-    if "ServerPort" in data:
+    if data.get("ServerPort") is not None:
         out["server_port"] = data["ServerPort"]
     else:
         raise DeserializationError("CreateRelayRequest.server_port required")
-    if "Authentication" in data:
+    if data.get("Authentication") is not None:
         import capo_mailmanager.types.relay_authentication
 
         out["authentication"] = (
@@ -82,7 +82,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateRelayRequest:
         )
     else:
         raise DeserializationError("CreateRelayRequest.authentication required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_mailmanager.types.tag_list
 
         out["tags"] = capo_mailmanager.types.tag_list.deserialize_aws_json_1_0(

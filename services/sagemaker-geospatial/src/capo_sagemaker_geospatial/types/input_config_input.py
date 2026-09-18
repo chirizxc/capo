@@ -40,11 +40,11 @@ def serialize_json(value: InputConfigInput) -> dict:
 
 def deserialize_json(data: dict) -> InputConfigInput:
     out: InputConfigInput = {}  # type: ignore[typeddict-item]
-    if "PreviousEarthObservationJobArn" in data:
+    if data.get("PreviousEarthObservationJobArn") is not None:
         out["previous_earth_observation_job_arn"] = data[
             "PreviousEarthObservationJobArn"
         ]
-    if "RasterDataCollectionQuery" in data:
+    if data.get("RasterDataCollectionQuery") is not None:
         import capo_sagemaker_geospatial.types.raster_data_collection_query_input
 
         out["raster_data_collection_query"] = (

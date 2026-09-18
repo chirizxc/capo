@@ -57,19 +57,19 @@ def serialize_json(value: Lens) -> dict:
 
 def deserialize_json(data: dict) -> Lens:
     out: Lens = {}  # type: ignore[typeddict-item]
-    if "LensArn" in data:
+    if data.get("LensArn") is not None:
         out["lens_arn"] = data["LensArn"]
-    if "LensVersion" in data:
+    if data.get("LensVersion") is not None:
         out["lens_version"] = data["LensVersion"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Owner" in data:
+    if data.get("Owner") is not None:
         out["owner"] = data["Owner"]
-    if "ShareInvitationId" in data:
+    if data.get("ShareInvitationId") is not None:
         out["share_invitation_id"] = data["ShareInvitationId"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_wellarchitected.types.tag_map
 
         out["tags"] = capo_wellarchitected.types.tag_map.deserialize_json(data["Tags"])

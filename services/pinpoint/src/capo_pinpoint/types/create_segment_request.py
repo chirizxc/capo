@@ -33,7 +33,7 @@ def serialize_json(value: CreateSegmentRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateSegmentRequest:
     out: CreateSegmentRequest = {}  # type: ignore[typeddict-item]
-    if "WriteSegmentRequest" in data:
+    if data.get("WriteSegmentRequest") is not None:
         import capo_pinpoint.types.write_segment_request
 
         out["write_segment_request"] = (

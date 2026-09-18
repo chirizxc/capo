@@ -36,9 +36,9 @@ def serialize_json(value: CustomAuthConfig) -> dict:
 
 def deserialize_json(data: dict) -> CustomAuthConfig:
     out: CustomAuthConfig = {}  # type: ignore[typeddict-item]
-    if "customAuthenticationType" in data:
+    if data.get("customAuthenticationType") is not None:
         out["custom_authentication_type"] = data["customAuthenticationType"]
-    if "authParameters" in data:
+    if data.get("authParameters") is not None:
         import capo_appflow.types.auth_parameter_list
 
         out["auth_parameters"] = (

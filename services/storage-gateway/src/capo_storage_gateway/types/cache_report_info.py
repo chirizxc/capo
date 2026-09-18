@@ -118,9 +118,9 @@ def serialize_aws_json_1_1(value: CacheReportInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CacheReportInfo:
     out: CacheReportInfo = {}  # type: ignore[typeddict-item]
-    if "CacheReportARN" in data:
+    if data.get("CacheReportARN") is not None:
         out["cache_report_arn"] = data["CacheReportARN"]
-    if "CacheReportStatus" in data:
+    if data.get("CacheReportStatus") is not None:
         import capo_storage_gateway.types.cache_report_status
 
         out["cache_report_status"] = (
@@ -128,27 +128,27 @@ def deserialize_aws_json_1_1(data: dict) -> CacheReportInfo:
                 data["CacheReportStatus"]
             )
         )
-    if "ReportCompletionPercent" in data:
+    if data.get("ReportCompletionPercent") is not None:
         out["report_completion_percent"] = data["ReportCompletionPercent"]
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_storage_gateway.types.time
 
         out["end_time"] = capo_storage_gateway.types.time.deserialize_aws_json_1_1(
             data["EndTime"]
         )
-    if "Role" in data:
+    if data.get("Role") is not None:
         out["role"] = data["Role"]
-    if "FileShareARN" in data:
+    if data.get("FileShareARN") is not None:
         out["file_share_arn"] = data["FileShareARN"]
-    if "LocationARN" in data:
+    if data.get("LocationARN") is not None:
         out["location_arn"] = data["LocationARN"]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_storage_gateway.types.time
 
         out["start_time"] = capo_storage_gateway.types.time.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "InclusionFilters" in data:
+    if data.get("InclusionFilters") is not None:
         import capo_storage_gateway.types.cache_report_filter_list
 
         out["inclusion_filters"] = (
@@ -156,7 +156,7 @@ def deserialize_aws_json_1_1(data: dict) -> CacheReportInfo:
                 data["InclusionFilters"]
             )
         )
-    if "ExclusionFilters" in data:
+    if data.get("ExclusionFilters") is not None:
         import capo_storage_gateway.types.cache_report_filter_list
 
         out["exclusion_filters"] = (
@@ -164,9 +164,9 @@ def deserialize_aws_json_1_1(data: dict) -> CacheReportInfo:
                 data["ExclusionFilters"]
             )
         )
-    if "ReportName" in data:
+    if data.get("ReportName") is not None:
         out["report_name"] = data["ReportName"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_storage_gateway.types.tags
 
         out["tags"] = capo_storage_gateway.types.tags.deserialize_aws_json_1_1(

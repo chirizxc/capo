@@ -91,7 +91,7 @@ def serialize_json(value: ConsolidatedPolicyList) -> dict:
 
 def deserialize_json(data: dict) -> ConsolidatedPolicyList:
     out: ConsolidatedPolicyList = {}  # type: ignore[typeddict-item]
-    if "joinColumns" in data:
+    if data.get("joinColumns") is not None:
         import capo_cleanrooms.types.analysis_rule_column_list
 
         out["join_columns"] = (
@@ -101,7 +101,7 @@ def deserialize_json(data: dict) -> ConsolidatedPolicyList:
         )
     else:
         raise DeserializationError("ConsolidatedPolicyList.join_columns required")
-    if "allowedJoinOperators" in data:
+    if data.get("allowedJoinOperators") is not None:
         import capo_cleanrooms.types.join_operators_list
 
         out["allowed_join_operators"] = (
@@ -109,7 +109,7 @@ def deserialize_json(data: dict) -> ConsolidatedPolicyList:
                 data["allowedJoinOperators"]
             )
         )
-    if "listColumns" in data:
+    if data.get("listColumns") is not None:
         import capo_cleanrooms.types.analysis_rule_column_list
 
         out["list_columns"] = (
@@ -119,7 +119,7 @@ def deserialize_json(data: dict) -> ConsolidatedPolicyList:
         )
     else:
         raise DeserializationError("ConsolidatedPolicyList.list_columns required")
-    if "additionalAnalyses" in data:
+    if data.get("additionalAnalyses") is not None:
         import capo_cleanrooms.types.additional_analyses
 
         out["additional_analyses"] = (
@@ -127,7 +127,7 @@ def deserialize_json(data: dict) -> ConsolidatedPolicyList:
                 data["additionalAnalyses"]
             )
         )
-    if "allowedResultReceivers" in data:
+    if data.get("allowedResultReceivers") is not None:
         import capo_cleanrooms.types.allowed_result_receivers
 
         out["allowed_result_receivers"] = (
@@ -135,7 +135,7 @@ def deserialize_json(data: dict) -> ConsolidatedPolicyList:
                 data["allowedResultReceivers"]
             )
         )
-    if "allowedAdditionalAnalyses" in data:
+    if data.get("allowedAdditionalAnalyses") is not None:
         import capo_cleanrooms.types.allowed_additional_analyses
 
         out["allowed_additional_analyses"] = (

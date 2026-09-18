@@ -89,15 +89,15 @@ def serialize_json(value: SecurityControlDefinition) -> dict:
 
 def deserialize_json(data: dict) -> SecurityControlDefinition:
     out: SecurityControlDefinition = {}  # type: ignore[typeddict-item]
-    if "SecurityControlId" in data:
+    if data.get("SecurityControlId") is not None:
         out["security_control_id"] = data["SecurityControlId"]
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "RemediationUrl" in data:
+    if data.get("RemediationUrl") is not None:
         out["remediation_url"] = data["RemediationUrl"]
-    if "SeverityRating" in data:
+    if data.get("SeverityRating") is not None:
         import capo_securityhub.types.severity_rating
 
         out["severity_rating"] = (
@@ -105,7 +105,7 @@ def deserialize_json(data: dict) -> SecurityControlDefinition:
                 data["SeverityRating"]
             )
         )
-    if "CurrentRegionAvailability" in data:
+    if data.get("CurrentRegionAvailability") is not None:
         import capo_securityhub.types.region_availability_status
 
         out["current_region_availability"] = (
@@ -113,7 +113,7 @@ def deserialize_json(data: dict) -> SecurityControlDefinition:
                 data["CurrentRegionAvailability"]
             )
         )
-    if "CustomizableProperties" in data:
+    if data.get("CustomizableProperties") is not None:
         import capo_securityhub.types.customizable_properties
 
         out["customizable_properties"] = (
@@ -121,7 +121,7 @@ def deserialize_json(data: dict) -> SecurityControlDefinition:
                 data["CustomizableProperties"]
             )
         )
-    if "ParameterDefinitions" in data:
+    if data.get("ParameterDefinitions") is not None:
         import capo_securityhub.types.parameter_definitions
 
         out["parameter_definitions"] = (

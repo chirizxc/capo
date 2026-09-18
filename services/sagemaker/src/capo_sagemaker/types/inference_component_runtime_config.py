@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: InferenceComponentRuntimeConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InferenceComponentRuntimeConfig:
     out: InferenceComponentRuntimeConfig = {}  # type: ignore[typeddict-item]
-    if "CopyCount" in data:
+    if data.get("CopyCount") is not None:
         out["copy_count"] = data["CopyCount"]
     return out

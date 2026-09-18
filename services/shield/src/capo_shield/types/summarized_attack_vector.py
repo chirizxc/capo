@@ -37,11 +37,11 @@ def serialize_aws_json_1_1(value: SummarizedAttackVector) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SummarizedAttackVector:
     out: SummarizedAttackVector = {}  # type: ignore[typeddict-item]
-    if "VectorType" in data:
+    if data.get("VectorType") is not None:
         out["vector_type"] = data["VectorType"]
     else:
         raise DeserializationError("SummarizedAttackVector.vector_type required")
-    if "VectorCounters" in data:
+    if data.get("VectorCounters") is not None:
         import capo_shield.types.summarized_counter_list
 
         out["vector_counters"] = (

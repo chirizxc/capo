@@ -29,10 +29,10 @@ def serialize_aws_json_1_1(value: DeleteWorkGroupInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteWorkGroupInput:
     out: DeleteWorkGroupInput = {}  # type: ignore[typeddict-item]
-    if "WorkGroup" in data:
+    if data.get("WorkGroup") is not None:
         out["work_group"] = data["WorkGroup"]
     else:
         raise DeserializationError("DeleteWorkGroupInput.work_group required")
-    if "RecursiveDeleteOption" in data:
+    if data.get("RecursiveDeleteOption") is not None:
         out["recursive_delete_option"] = data["RecursiveDeleteOption"]
     return out

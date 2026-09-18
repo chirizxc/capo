@@ -29,7 +29,7 @@ def serialize_json(value: UpdateAccessConfigRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAccessConfigRequest:
     out: UpdateAccessConfigRequest = {}  # type: ignore[typeddict-item]
-    if "authenticationMode" in data:
+    if data.get("authenticationMode") is not None:
         import capo_eks.types.authentication_mode
 
         out["authentication_mode"] = (

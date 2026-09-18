@@ -35,15 +35,15 @@ def serialize_aws_json_1_1(value: CreateProtectionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateProtectionRequest:
     out: CreateProtectionRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateProtectionRequest.name required")
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     else:
         raise DeserializationError("CreateProtectionRequest.resource_arn required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_shield.types.tag_list
 
         out["tags"] = capo_shield.types.tag_list.deserialize_aws_json_1_1(data["Tags"])

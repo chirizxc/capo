@@ -36,7 +36,7 @@ def serialize_aws_json_1_0(value: DescribeProtectConfigurationsResult) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeProtectConfigurationsResult:
     out: DescribeProtectConfigurationsResult = {}  # type: ignore[typeddict-item]
-    if "ProtectConfigurations" in data:
+    if data.get("ProtectConfigurations") is not None:
         import capo_pinpoint_sms_voice_v2.types.protect_configuration_information_list
 
         out["protect_configurations"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeProtectConfigurationsResult:
                 data["ProtectConfigurations"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

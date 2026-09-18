@@ -156,17 +156,17 @@ def serialize_aws_json_1_1(value: Budget) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Budget:
     out: Budget = {}  # type: ignore[typeddict-item]
-    if "BudgetName" in data:
+    if data.get("BudgetName") is not None:
         out["budget_name"] = data["BudgetName"]
     else:
         raise DeserializationError("Budget.budget_name required")
-    if "BudgetLimit" in data:
+    if data.get("BudgetLimit") is not None:
         import capo_budgets.types.spend
 
         out["budget_limit"] = capo_budgets.types.spend.deserialize_aws_json_1_1(
             data["BudgetLimit"]
         )
-    if "PlannedBudgetLimits" in data:
+    if data.get("PlannedBudgetLimits") is not None:
         import capo_budgets.types.planned_budget_limits
 
         out["planned_budget_limits"] = (
@@ -174,19 +174,19 @@ def deserialize_aws_json_1_1(data: dict) -> Budget:
                 data["PlannedBudgetLimits"]
             )
         )
-    if "CostFilters" in data:
+    if data.get("CostFilters") is not None:
         import capo_budgets.types.cost_filters
 
         out["cost_filters"] = capo_budgets.types.cost_filters.deserialize_aws_json_1_1(
             data["CostFilters"]
         )
-    if "CostTypes" in data:
+    if data.get("CostTypes") is not None:
         import capo_budgets.types.cost_types
 
         out["cost_types"] = capo_budgets.types.cost_types.deserialize_aws_json_1_1(
             data["CostTypes"]
         )
-    if "TimeUnit" in data:
+    if data.get("TimeUnit") is not None:
         import capo_budgets.types.time_unit
 
         out["time_unit"] = capo_budgets.types.time_unit.deserialize_aws_json_1_1(
@@ -194,13 +194,13 @@ def deserialize_aws_json_1_1(data: dict) -> Budget:
         )
     else:
         raise DeserializationError("Budget.time_unit required")
-    if "TimePeriod" in data:
+    if data.get("TimePeriod") is not None:
         import capo_budgets.types.time_period
 
         out["time_period"] = capo_budgets.types.time_period.deserialize_aws_json_1_1(
             data["TimePeriod"]
         )
-    if "CalculatedSpend" in data:
+    if data.get("CalculatedSpend") is not None:
         import capo_budgets.types.calculated_spend
 
         out["calculated_spend"] = (
@@ -208,7 +208,7 @@ def deserialize_aws_json_1_1(data: dict) -> Budget:
                 data["CalculatedSpend"]
             )
         )
-    if "BudgetType" in data:
+    if data.get("BudgetType") is not None:
         import capo_budgets.types.budget_type
 
         out["budget_type"] = capo_budgets.types.budget_type.deserialize_aws_json_1_1(
@@ -216,7 +216,7 @@ def deserialize_aws_json_1_1(data: dict) -> Budget:
         )
     else:
         raise DeserializationError("Budget.budget_type required")
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_budgets.types.generic_timestamp
 
         out["last_updated_time"] = (
@@ -224,7 +224,7 @@ def deserialize_aws_json_1_1(data: dict) -> Budget:
                 data["LastUpdatedTime"]
             )
         )
-    if "AutoAdjustData" in data:
+    if data.get("AutoAdjustData") is not None:
         import capo_budgets.types.auto_adjust_data
 
         out["auto_adjust_data"] = (
@@ -232,7 +232,7 @@ def deserialize_aws_json_1_1(data: dict) -> Budget:
                 data["AutoAdjustData"]
             )
         )
-    if "FilterExpression" in data:
+    if data.get("FilterExpression") is not None:
         import capo_budgets.types.expression
 
         out["filter_expression"] = (
@@ -240,15 +240,15 @@ def deserialize_aws_json_1_1(data: dict) -> Budget:
                 data["FilterExpression"]
             )
         )
-    if "Metrics" in data:
+    if data.get("Metrics") is not None:
         import capo_budgets.types.metrics
 
         out["metrics"] = capo_budgets.types.metrics.deserialize_aws_json_1_1(
             data["Metrics"]
         )
-    if "BillingViewArn" in data:
+    if data.get("BillingViewArn") is not None:
         out["billing_view_arn"] = data["BillingViewArn"]
-    if "HealthStatus" in data:
+    if data.get("HealthStatus") is not None:
         import capo_budgets.types.health_status
 
         out["health_status"] = (

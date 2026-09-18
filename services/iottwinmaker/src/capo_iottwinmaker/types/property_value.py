@@ -40,13 +40,13 @@ def serialize_json(value: PropertyValue) -> dict:
 
 def deserialize_json(data: dict) -> PropertyValue:
     out: PropertyValue = {}  # type: ignore[typeddict-item]
-    if "timestamp" in data:
+    if data.get("timestamp") is not None:
         import capo_iottwinmaker.types.timestamp
 
         out["timestamp"] = capo_iottwinmaker.types.timestamp.deserialize_json(
             data["timestamp"]
         )
-    if "value" in data:
+    if data.get("value") is not None:
         import capo_iottwinmaker.types.data_value
 
         out["value"] = capo_iottwinmaker.types.data_value.deserialize_json(
@@ -54,6 +54,6 @@ def deserialize_json(data: dict) -> PropertyValue:
         )
     else:
         raise DeserializationError("PropertyValue.value required")
-    if "time" in data:
+    if data.get("time") is not None:
         out["time"] = data["time"]
     return out

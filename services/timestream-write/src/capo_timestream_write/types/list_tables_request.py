@@ -35,10 +35,10 @@ def serialize_aws_json_1_0(value: ListTablesRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListTablesRequest:
     out: ListTablesRequest = {}  # type: ignore[typeddict-item]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

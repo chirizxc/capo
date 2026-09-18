@@ -221,7 +221,16 @@ def serialize_aws_json_1_0(value: RDSDBRecommendation) -> dict:
                 value["effective_recommendation_preferences"]
             )
         )
-    out["lookbackPeriodInDays"] = value.get("lookback_period_in_days", 0)
+    out["lookbackPeriodInDays"] = (
+        "NaN"
+        if value.get("lookback_period_in_days", 0)
+        != value.get("lookback_period_in_days", 0)
+        else "Infinity"
+        if value.get("lookback_period_in_days", 0) == float("inf")
+        else "-Infinity"
+        if value.get("lookback_period_in_days", 0) == float("-inf")
+        else value.get("lookback_period_in_days", 0)
+    )
     if "last_refresh_timestamp" in value:
         import capo_compute_optimizer.types.last_refresh_timestamp
 
@@ -241,19 +250,19 @@ def serialize_aws_json_1_0(value: RDSDBRecommendation) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RDSDBRecommendation:
     out: RDSDBRecommendation = {}  # type: ignore[typeddict-item]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "engine" in data:
+    if data.get("engine") is not None:
         out["engine"] = data["engine"]
-    if "engineVersion" in data:
+    if data.get("engineVersion") is not None:
         out["engine_version"] = data["engineVersion"]
-    if "promotionTier" in data:
+    if data.get("promotionTier") is not None:
         out["promotion_tier"] = data["promotionTier"]
-    if "currentDBInstanceClass" in data:
+    if data.get("currentDBInstanceClass") is not None:
         out["current_db_instance_class"] = data["currentDBInstanceClass"]
-    if "currentStorageConfiguration" in data:
+    if data.get("currentStorageConfiguration") is not None:
         import capo_compute_optimizer.types.db_storage_configuration
 
         out["current_storage_configuration"] = (
@@ -261,15 +270,15 @@ def deserialize_aws_json_1_0(data: dict) -> RDSDBRecommendation:
                 data["currentStorageConfiguration"]
             )
         )
-    if "dbClusterIdentifier" in data:
+    if data.get("dbClusterIdentifier") is not None:
         out["db_cluster_identifier"] = data["dbClusterIdentifier"]
-    if "idle" in data:
+    if data.get("idle") is not None:
         import capo_compute_optimizer.types.idle
 
         out["idle"] = capo_compute_optimizer.types.idle.deserialize_aws_json_1_0(
             data["idle"]
         )
-    if "instanceFinding" in data:
+    if data.get("instanceFinding") is not None:
         import capo_compute_optimizer.types.rds_instance_finding
 
         out["instance_finding"] = (
@@ -277,7 +286,7 @@ def deserialize_aws_json_1_0(data: dict) -> RDSDBRecommendation:
                 data["instanceFinding"]
             )
         )
-    if "storageFinding" in data:
+    if data.get("storageFinding") is not None:
         import capo_compute_optimizer.types.rds_storage_finding
 
         out["storage_finding"] = (
@@ -285,7 +294,7 @@ def deserialize_aws_json_1_0(data: dict) -> RDSDBRecommendation:
                 data["storageFinding"]
             )
         )
-    if "instanceFindingReasonCodes" in data:
+    if data.get("instanceFindingReasonCodes") is not None:
         import capo_compute_optimizer.types.rds_instance_finding_reason_codes
 
         out["instance_finding_reason_codes"] = (
@@ -293,7 +302,7 @@ def deserialize_aws_json_1_0(data: dict) -> RDSDBRecommendation:
                 data["instanceFindingReasonCodes"]
             )
         )
-    if "currentInstancePerformanceRisk" in data:
+    if data.get("currentInstancePerformanceRisk") is not None:
         import capo_compute_optimizer.types.rds_current_instance_performance_risk
 
         out["current_instance_performance_risk"] = (
@@ -301,7 +310,7 @@ def deserialize_aws_json_1_0(data: dict) -> RDSDBRecommendation:
                 data["currentInstancePerformanceRisk"]
             )
         )
-    if "currentStorageEstimatedMonthlyVolumeIOPsCostVariation" in data:
+    if data.get("currentStorageEstimatedMonthlyVolumeIOPsCostVariation") is not None:
         import capo_compute_optimizer.types.rds_estimated_monthly_volume_io_ps_cost_variation
 
         out["current_storage_estimated_monthly_volume_io_ps_cost_variation"] = (
@@ -309,7 +318,7 @@ def deserialize_aws_json_1_0(data: dict) -> RDSDBRecommendation:
                 data["currentStorageEstimatedMonthlyVolumeIOPsCostVariation"]
             )
         )
-    if "storageFindingReasonCodes" in data:
+    if data.get("storageFindingReasonCodes") is not None:
         import capo_compute_optimizer.types.rds_storage_finding_reason_codes
 
         out["storage_finding_reason_codes"] = (
@@ -317,7 +326,7 @@ def deserialize_aws_json_1_0(data: dict) -> RDSDBRecommendation:
                 data["storageFindingReasonCodes"]
             )
         )
-    if "instanceRecommendationOptions" in data:
+    if data.get("instanceRecommendationOptions") is not None:
         import capo_compute_optimizer.types.rdsdb_instance_recommendation_options
 
         out["instance_recommendation_options"] = (
@@ -325,7 +334,7 @@ def deserialize_aws_json_1_0(data: dict) -> RDSDBRecommendation:
                 data["instanceRecommendationOptions"]
             )
         )
-    if "storageRecommendationOptions" in data:
+    if data.get("storageRecommendationOptions") is not None:
         import capo_compute_optimizer.types.rdsdb_storage_recommendation_options
 
         out["storage_recommendation_options"] = (
@@ -333,7 +342,7 @@ def deserialize_aws_json_1_0(data: dict) -> RDSDBRecommendation:
                 data["storageRecommendationOptions"]
             )
         )
-    if "utilizationMetrics" in data:
+    if data.get("utilizationMetrics") is not None:
         import capo_compute_optimizer.types.rdsdb_utilization_metrics
 
         out["utilization_metrics"] = (
@@ -341,7 +350,7 @@ def deserialize_aws_json_1_0(data: dict) -> RDSDBRecommendation:
                 data["utilizationMetrics"]
             )
         )
-    if "effectiveRecommendationPreferences" in data:
+    if data.get("effectiveRecommendationPreferences") is not None:
         import capo_compute_optimizer.types.rds_effective_recommendation_preferences
 
         out["effective_recommendation_preferences"] = (
@@ -349,11 +358,11 @@ def deserialize_aws_json_1_0(data: dict) -> RDSDBRecommendation:
                 data["effectiveRecommendationPreferences"]
             )
         )
-    if "lookbackPeriodInDays" in data:
-        out["lookback_period_in_days"] = data["lookbackPeriodInDays"]
+    if data.get("lookbackPeriodInDays") is not None:
+        out["lookback_period_in_days"] = float(data["lookbackPeriodInDays"])
     else:
         out["lookback_period_in_days"] = 0
-    if "lastRefreshTimestamp" in data:
+    if data.get("lastRefreshTimestamp") is not None:
         import capo_compute_optimizer.types.last_refresh_timestamp
 
         out["last_refresh_timestamp"] = (
@@ -361,7 +370,7 @@ def deserialize_aws_json_1_0(data: dict) -> RDSDBRecommendation:
                 data["lastRefreshTimestamp"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_compute_optimizer.types.tags
 
         out["tags"] = capo_compute_optimizer.types.tags.deserialize_aws_json_1_0(

@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListParallelDataResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListParallelDataResponse:
     out: ListParallelDataResponse = {}  # type: ignore[typeddict-item]
-    if "ParallelDataPropertiesList" in data:
+    if data.get("ParallelDataPropertiesList") is not None:
         import capo_translate.types.parallel_data_properties_list
 
         out["parallel_data_properties_list"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListParallelDataResponse:
                 data["ParallelDataPropertiesList"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

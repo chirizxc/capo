@@ -31,7 +31,7 @@ def serialize_json(value: QuotaSharePolicy) -> dict:
 
 def deserialize_json(data: dict) -> QuotaSharePolicy:
     out: QuotaSharePolicy = {}  # type: ignore[typeddict-item]
-    if "idleResourceAssignmentStrategy" in data:
+    if data.get("idleResourceAssignmentStrategy") is not None:
         import capo_batch.types.quota_share_idle_resource_assignment_strategy
 
         out["idle_resource_assignment_strategy"] = (

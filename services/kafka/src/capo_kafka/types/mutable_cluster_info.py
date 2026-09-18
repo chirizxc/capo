@@ -159,7 +159,7 @@ def serialize_json(value: MutableClusterInfo) -> dict:
 
 def deserialize_json(data: dict) -> MutableClusterInfo:
     out: MutableClusterInfo = {}  # type: ignore[typeddict-item]
-    if "brokerEBSVolumeInfo" in data:
+    if data.get("brokerEBSVolumeInfo") is not None:
         import capo_kafka.types.__list_of_broker_ebs_volume_info
 
         out["broker_ebs_volume_info"] = (
@@ -167,7 +167,7 @@ def deserialize_json(data: dict) -> MutableClusterInfo:
                 data["brokerEBSVolumeInfo"]
             )
         )
-    if "configurationInfo" in data:
+    if data.get("configurationInfo") is not None:
         import capo_kafka.types.configuration_info
 
         out["configuration_info"] = (
@@ -175,9 +175,9 @@ def deserialize_json(data: dict) -> MutableClusterInfo:
                 data["configurationInfo"]
             )
         )
-    if "numberOfBrokerNodes" in data:
+    if data.get("numberOfBrokerNodes") is not None:
         out["number_of_broker_nodes"] = data["numberOfBrokerNodes"]
-    if "enhancedMonitoring" in data:
+    if data.get("enhancedMonitoring") is not None:
         import capo_kafka.types.enhanced_monitoring
 
         out["enhanced_monitoring"] = (
@@ -185,29 +185,29 @@ def deserialize_json(data: dict) -> MutableClusterInfo:
                 data["enhancedMonitoring"]
             )
         )
-    if "openMonitoring" in data:
+    if data.get("openMonitoring") is not None:
         import capo_kafka.types.open_monitoring
 
         out["open_monitoring"] = capo_kafka.types.open_monitoring.deserialize_json(
             data["openMonitoring"]
         )
-    if "zookeeperAccess" in data:
+    if data.get("zookeeperAccess") is not None:
         import capo_kafka.types.zookeeper_access
 
         out["zookeeper_access"] = capo_kafka.types.zookeeper_access.deserialize_json(
             data["zookeeperAccess"]
         )
-    if "kafkaVersion" in data:
+    if data.get("kafkaVersion") is not None:
         out["kafka_version"] = data["kafkaVersion"]
-    if "loggingInfo" in data:
+    if data.get("loggingInfo") is not None:
         import capo_kafka.types.logging_info
 
         out["logging_info"] = capo_kafka.types.logging_info.deserialize_json(
             data["loggingInfo"]
         )
-    if "instanceType" in data:
+    if data.get("instanceType") is not None:
         out["instance_type"] = data["instanceType"]
-    if "clientAuthentication" in data:
+    if data.get("clientAuthentication") is not None:
         import capo_kafka.types.client_authentication
 
         out["client_authentication"] = (
@@ -215,25 +215,25 @@ def deserialize_json(data: dict) -> MutableClusterInfo:
                 data["clientAuthentication"]
             )
         )
-    if "encryptionInfo" in data:
+    if data.get("encryptionInfo") is not None:
         import capo_kafka.types.encryption_info
 
         out["encryption_info"] = capo_kafka.types.encryption_info.deserialize_json(
             data["encryptionInfo"]
         )
-    if "connectivityInfo" in data:
+    if data.get("connectivityInfo") is not None:
         import capo_kafka.types.connectivity_info
 
         out["connectivity_info"] = capo_kafka.types.connectivity_info.deserialize_json(
             data["connectivityInfo"]
         )
-    if "storageMode" in data:
+    if data.get("storageMode") is not None:
         import capo_kafka.types.storage_mode
 
         out["storage_mode"] = capo_kafka.types.storage_mode.deserialize_json(
             data["storageMode"]
         )
-    if "brokerCountUpdateInfo" in data:
+    if data.get("brokerCountUpdateInfo") is not None:
         import capo_kafka.types.broker_count_update_info
 
         out["broker_count_update_info"] = (
@@ -241,7 +241,7 @@ def deserialize_json(data: dict) -> MutableClusterInfo:
                 data["brokerCountUpdateInfo"]
             )
         )
-    if "rebalancing" in data:
+    if data.get("rebalancing") is not None:
         import capo_kafka.types.rebalancing
 
         out["rebalancing"] = capo_kafka.types.rebalancing.deserialize_json(

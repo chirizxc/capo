@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SamplingTargetDocumentList:
 
     out: SamplingTargetDocumentList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_xray.types.sampling_target_document.deserialize_json(item))
     return out

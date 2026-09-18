@@ -40,9 +40,9 @@ def serialize_json(value: NodeInterfaceMappingCreateRequest) -> dict:
 
 def deserialize_json(data: dict) -> NodeInterfaceMappingCreateRequest:
     out: NodeInterfaceMappingCreateRequest = {}  # type: ignore[typeddict-item]
-    if "logicalInterfaceName" in data:
+    if data.get("logicalInterfaceName") is not None:
         out["logical_interface_name"] = data["logicalInterfaceName"]
-    if "networkInterfaceMode" in data:
+    if data.get("networkInterfaceMode") is not None:
         import capo_medialive.types.network_interface_mode
 
         out["network_interface_mode"] = (
@@ -50,6 +50,6 @@ def deserialize_json(data: dict) -> NodeInterfaceMappingCreateRequest:
                 data["networkInterfaceMode"]
             )
         )
-    if "physicalInterfaceName" in data:
+    if data.get("physicalInterfaceName") is not None:
         out["physical_interface_name"] = data["physicalInterfaceName"]
     return out

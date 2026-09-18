@@ -74,16 +74,16 @@ class ResourceEndpointAssociation:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.delete_resource_endpoint_association_request.DeleteResourceEndpointAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_endpoint_association_identifier"] = (
-            resource_endpoint_association_identifier
-        )
+        input_: capo_vpc_lattice.types.delete_resource_endpoint_association_request.DeleteResourceEndpointAssociationRequest = {
+            "resource_endpoint_association_identifier": resource_endpoint_association_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -136,8 +136,9 @@ class ResourceEndpointAssociation:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.list_resource_endpoint_associations_request.ListResourceEndpointAssociationsRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_configuration_identifier"] = resource_configuration_identifier
+        input_: capo_vpc_lattice.types.list_resource_endpoint_associations_request.ListResourceEndpointAssociationsRequest = {
+            "resource_configuration_identifier": resource_configuration_identifier
+        }
         if resource_endpoint_association_identifier is not None:
             input_["resource_endpoint_association_identifier"] = (
                 resource_endpoint_association_identifier
@@ -156,6 +157,7 @@ class ResourceEndpointAssociation:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -199,16 +201,16 @@ class AsyncResourceEndpointAssociation:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.delete_resource_endpoint_association_request.DeleteResourceEndpointAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_endpoint_association_identifier"] = (
-            resource_endpoint_association_identifier
-        )
+        input_: capo_vpc_lattice.types.delete_resource_endpoint_association_request.DeleteResourceEndpointAssociationRequest = {
+            "resource_endpoint_association_identifier": resource_endpoint_association_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -262,8 +264,9 @@ class AsyncResourceEndpointAssociation:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.list_resource_endpoint_associations_request.ListResourceEndpointAssociationsRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_configuration_identifier"] = resource_configuration_identifier
+        input_: capo_vpc_lattice.types.list_resource_endpoint_associations_request.ListResourceEndpointAssociationsRequest = {
+            "resource_configuration_identifier": resource_configuration_identifier
+        }
         if resource_endpoint_association_identifier is not None:
             input_["resource_endpoint_association_identifier"] = (
                 resource_endpoint_association_identifier
@@ -282,4 +285,5 @@ class AsyncResourceEndpointAssociation:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

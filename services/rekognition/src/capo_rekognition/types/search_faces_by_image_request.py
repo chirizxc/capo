@@ -37,7 +37,15 @@ def serialize_aws_json_1_1(value: SearchFacesByImageRequest) -> dict:
     if "max_faces" in value:
         out["MaxFaces"] = value["max_faces"]
     if "face_match_threshold" in value:
-        out["FaceMatchThreshold"] = value["face_match_threshold"]
+        out["FaceMatchThreshold"] = (
+            "NaN"
+            if value["face_match_threshold"] != value["face_match_threshold"]
+            else "Infinity"
+            if value["face_match_threshold"] == float("inf")
+            else "-Infinity"
+            if value["face_match_threshold"] == float("-inf")
+            else value["face_match_threshold"]
+        )
     if "quality_filter" in value:
         import capo_rekognition.types.quality_filter
 
@@ -51,11 +59,11 @@ def serialize_aws_json_1_1(value: SearchFacesByImageRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SearchFacesByImageRequest:
     out: SearchFacesByImageRequest = {}  # type: ignore[typeddict-item]
-    if "CollectionId" in data:
+    if data.get("CollectionId") is not None:
         out["collection_id"] = data["CollectionId"]
     else:
         raise DeserializationError("SearchFacesByImageRequest.collection_id required")
-    if "Image" in data:
+    if data.get("Image") is not None:
         import capo_rekognition.types.image
 
         out["image"] = capo_rekognition.types.image.deserialize_aws_json_1_1(
@@ -63,11 +71,11 @@ def deserialize_aws_json_1_1(data: dict) -> SearchFacesByImageRequest:
         )
     else:
         raise DeserializationError("SearchFacesByImageRequest.image required")
-    if "MaxFaces" in data:
+    if data.get("MaxFaces") is not None:
         out["max_faces"] = data["MaxFaces"]
-    if "FaceMatchThreshold" in data:
-        out["face_match_threshold"] = data["FaceMatchThreshold"]
-    if "QualityFilter" in data:
+    if data.get("FaceMatchThreshold") is not None:
+        out["face_match_threshold"] = float(data["FaceMatchThreshold"])
+    if data.get("QualityFilter") is not None:
         import capo_rekognition.types.quality_filter
 
         out["quality_filter"] = (

@@ -49,9 +49,9 @@ def serialize_json(value: GetMembershipAccountDetailItem) -> dict:
 
 def deserialize_json(data: dict) -> GetMembershipAccountDetailItem:
     out: GetMembershipAccountDetailItem = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "relationshipStatus" in data:
+    if data.get("relationshipStatus") is not None:
         import capo_security_ir.types.membership_account_relationship_status
 
         out["relationship_status"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> GetMembershipAccountDetailItem:
                 data["relationshipStatus"]
             )
         )
-    if "relationshipType" in data:
+    if data.get("relationshipType") is not None:
         import capo_security_ir.types.membership_account_relationship_type
 
         out["relationship_type"] = (

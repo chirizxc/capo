@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: DocumentMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DocumentMetadata:
     out: DocumentMetadata = {}  # type: ignore[typeddict-item]
-    if "Pages" in data:
+    if data.get("Pages") is not None:
         out["pages"] = data["Pages"]
-    if "ExtractedCharacters" in data:
+    if data.get("ExtractedCharacters") is not None:
         import capo_comprehend.types.list_of_extracted_characters
 
         out["extracted_characters"] = (

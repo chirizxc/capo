@@ -24,7 +24,7 @@ def serialize_json(value: Attribute) -> dict:
 
 def deserialize_json(data: dict) -> Attribute:
     out: Attribute = {}  # type: ignore[typeddict-item]
-    if "jsonPath" in data:
+    if data.get("jsonPath") is not None:
         out["json_path"] = data["jsonPath"]
     else:
         raise DeserializationError("Attribute.json_path required")

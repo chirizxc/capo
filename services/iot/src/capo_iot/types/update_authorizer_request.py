@@ -56,11 +56,11 @@ def serialize_json(value: UpdateAuthorizerRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAuthorizerRequest:
     out: UpdateAuthorizerRequest = {}  # type: ignore[typeddict-item]
-    if "authorizerFunctionArn" in data:
+    if data.get("authorizerFunctionArn") is not None:
         out["authorizer_function_arn"] = data["authorizerFunctionArn"]
-    if "tokenKeyName" in data:
+    if data.get("tokenKeyName") is not None:
         out["token_key_name"] = data["tokenKeyName"]
-    if "tokenSigningPublicKeys" in data:
+    if data.get("tokenSigningPublicKeys") is not None:
         import capo_iot.types.public_key_map
 
         out["token_signing_public_keys"] = (
@@ -68,12 +68,12 @@ def deserialize_json(data: dict) -> UpdateAuthorizerRequest:
                 data["tokenSigningPublicKeys"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iot.types.authorizer_status
 
         out["status"] = capo_iot.types.authorizer_status.deserialize_json(
             data["status"]
         )
-    if "enableCachingForHttp" in data:
+    if data.get("enableCachingForHttp") is not None:
         out["enable_caching_for_http"] = data["enableCachingForHttp"]
     return out

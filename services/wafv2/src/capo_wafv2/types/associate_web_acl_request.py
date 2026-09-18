@@ -27,11 +27,11 @@ def serialize_aws_json_1_1(value: AssociateWebACLRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AssociateWebACLRequest:
     out: AssociateWebACLRequest = {}  # type: ignore[typeddict-item]
-    if "WebACLArn" in data:
+    if data.get("WebACLArn") is not None:
         out["web_acl_arn"] = data["WebACLArn"]
     else:
         raise DeserializationError("AssociateWebACLRequest.web_acl_arn required")
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     else:
         raise DeserializationError("AssociateWebACLRequest.resource_arn required")

@@ -33,7 +33,7 @@ def serialize_json(value: ListReportVersionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListReportVersionsResponse:
     out: ListReportVersionsResponse = {}  # type: ignore[typeddict-item]
-    if "reports" in data:
+    if data.get("reports") is not None:
         import capo_artifact.types.reports_list
 
         out["reports"] = capo_artifact.types.reports_list.deserialize_json(
@@ -41,6 +41,6 @@ def deserialize_json(data: dict) -> ListReportVersionsResponse:
         )
     else:
         raise DeserializationError("ListReportVersionsResponse.reports required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

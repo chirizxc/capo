@@ -39,7 +39,7 @@ def serialize_aws_json_1_1(value: DescribeExclusionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeExclusionsRequest:
     out: DescribeExclusionsRequest = {}  # type: ignore[typeddict-item]
-    if "exclusionArns" in data:
+    if data.get("exclusionArns") is not None:
         import capo_inspector.types.batch_describe_exclusions_arn_list
 
         out["exclusion_arns"] = (
@@ -49,7 +49,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeExclusionsRequest:
         )
     else:
         raise DeserializationError("DescribeExclusionsRequest.exclusion_arns required")
-    if "locale" in data:
+    if data.get("locale") is not None:
         import capo_inspector.types.locale
 
         out["locale"] = capo_inspector.types.locale.deserialize_aws_json_1_1(

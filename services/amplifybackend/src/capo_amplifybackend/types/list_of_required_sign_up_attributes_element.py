@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ListOfRequiredSignUpAttributesElement:
 
     out: ListOfRequiredSignUpAttributesElement = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_amplifybackend.types.required_sign_up_attributes_element.deserialize_json(
                 item

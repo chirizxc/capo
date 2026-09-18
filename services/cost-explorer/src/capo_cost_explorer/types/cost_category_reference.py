@@ -87,19 +87,19 @@ def serialize_aws_json_1_1(value: CostCategoryReference) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CostCategoryReference:
     out: CostCategoryReference = {}  # type: ignore[typeddict-item]
-    if "CostCategoryArn" in data:
+    if data.get("CostCategoryArn") is not None:
         out["cost_category_arn"] = data["CostCategoryArn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "EffectiveStart" in data:
+    if data.get("EffectiveStart") is not None:
         out["effective_start"] = data["EffectiveStart"]
-    if "EffectiveEnd" in data:
+    if data.get("EffectiveEnd") is not None:
         out["effective_end"] = data["EffectiveEnd"]
-    if "NumberOfRules" in data:
+    if data.get("NumberOfRules") is not None:
         out["number_of_rules"] = data["NumberOfRules"]
     else:
         out["number_of_rules"] = 0
-    if "ProcessingStatus" in data:
+    if data.get("ProcessingStatus") is not None:
         import capo_cost_explorer.types.cost_category_processing_status_list
 
         out["processing_status"] = (
@@ -107,7 +107,7 @@ def deserialize_aws_json_1_1(data: dict) -> CostCategoryReference:
                 data["ProcessingStatus"]
             )
         )
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_cost_explorer.types.cost_category_values_list
 
         out["values"] = (
@@ -115,9 +115,9 @@ def deserialize_aws_json_1_1(data: dict) -> CostCategoryReference:
                 data["Values"]
             )
         )
-    if "DefaultValue" in data:
+    if data.get("DefaultValue") is not None:
         out["default_value"] = data["DefaultValue"]
-    if "SupportedResourceTypes" in data:
+    if data.get("SupportedResourceTypes") is not None:
         import capo_cost_explorer.types.resource_types
 
         out["supported_resource_types"] = (

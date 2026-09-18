@@ -44,7 +44,7 @@ def serialize_json(value: AwsS3BucketWebsiteConfigurationRoutingRule) -> dict:
 
 def deserialize_json(data: dict) -> AwsS3BucketWebsiteConfigurationRoutingRule:
     out: AwsS3BucketWebsiteConfigurationRoutingRule = {}  # type: ignore[typeddict-item]
-    if "Condition" in data:
+    if data.get("Condition") is not None:
         import capo_securityhub.types.aws_s3_bucket_website_configuration_routing_rule_condition
 
         out["condition"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> AwsS3BucketWebsiteConfigurationRoutingRule:
                 data["Condition"]
             )
         )
-    if "Redirect" in data:
+    if data.get("Redirect") is not None:
         import capo_securityhub.types.aws_s3_bucket_website_configuration_routing_rule_redirect
 
         out["redirect"] = (

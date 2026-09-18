@@ -40,11 +40,11 @@ def serialize_json(value: ProviderSchemaAttribute) -> dict:
 
 def deserialize_json(data: dict) -> ProviderSchemaAttribute:
     out: ProviderSchemaAttribute = {}  # type: ignore[typeddict-item]
-    if "fieldName" in data:
+    if data.get("fieldName") is not None:
         out["field_name"] = data["fieldName"]
     else:
         raise DeserializationError("ProviderSchemaAttribute.field_name required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_entityresolution.types.schema_attribute_type
 
         out["type"] = (
@@ -54,8 +54,8 @@ def deserialize_json(data: dict) -> ProviderSchemaAttribute:
         )
     else:
         raise DeserializationError("ProviderSchemaAttribute.type required")
-    if "subType" in data:
+    if data.get("subType") is not None:
         out["sub_type"] = data["subType"]
-    if "hashing" in data:
+    if data.get("hashing") is not None:
         out["hashing"] = data["hashing"]
     return out

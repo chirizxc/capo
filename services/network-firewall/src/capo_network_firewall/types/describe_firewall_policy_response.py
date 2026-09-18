@@ -49,13 +49,13 @@ def serialize_aws_json_1_0(value: DescribeFirewallPolicyResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeFirewallPolicyResponse:
     out: DescribeFirewallPolicyResponse = {}  # type: ignore[typeddict-item]
-    if "UpdateToken" in data:
+    if data.get("UpdateToken") is not None:
         out["update_token"] = data["UpdateToken"]
     else:
         raise DeserializationError(
             "DescribeFirewallPolicyResponse.update_token required"
         )
-    if "FirewallPolicyResponse" in data:
+    if data.get("FirewallPolicyResponse") is not None:
         import capo_network_firewall.types.firewall_policy_response
 
         out["firewall_policy_response"] = (
@@ -67,7 +67,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeFirewallPolicyResponse:
         raise DeserializationError(
             "DescribeFirewallPolicyResponse.firewall_policy_response required"
         )
-    if "FirewallPolicy" in data:
+    if data.get("FirewallPolicy") is not None:
         import capo_network_firewall.types.firewall_policy
 
         out["firewall_policy"] = (

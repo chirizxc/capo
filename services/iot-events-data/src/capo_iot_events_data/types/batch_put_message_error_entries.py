@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> BatchPutMessageErrorEntries:
 
     out: BatchPutMessageErrorEntries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot_events_data.types.batch_put_message_error_entry.deserialize_json(
                 item

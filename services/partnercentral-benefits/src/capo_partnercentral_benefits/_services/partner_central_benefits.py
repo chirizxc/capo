@@ -236,19 +236,21 @@ class PartnerCentralBenefitsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_partnercentral_benefits.types.amend_benefit_application_input.AmendBenefitApplicationInput = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["client_token"] = client_token
-        input_["revision"] = revision
-        input_["identifier"] = identifier
-        input_["amendment_reason"] = amendment_reason
-        input_["amendments"] = amendments
+        input_: capo_partnercentral_benefits.types.amend_benefit_application_input.AmendBenefitApplicationInput = {
+            "catalog": catalog,
+            "client_token": client_token,
+            "revision": revision,
+            "identifier": identifier,
+            "amendment_reason": amendment_reason,
+            "amendments": amendments,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_benefit_application_resource(
@@ -291,16 +293,18 @@ class PartnerCentralBenefitsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_partnercentral_benefits.types.associate_benefit_application_resource_input.AssociateBenefitApplicationResourceInput = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["benefit_application_identifier"] = benefit_application_identifier
-        input_["resource_arn"] = resource_arn
+        input_: capo_partnercentral_benefits.types.associate_benefit_application_resource_input.AssociateBenefitApplicationResourceInput = {
+            "catalog": catalog,
+            "benefit_application_identifier": benefit_application_identifier,
+            "resource_arn": resource_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_benefit_application(
@@ -345,10 +349,11 @@ class PartnerCentralBenefitsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_partnercentral_benefits.types.cancel_benefit_application_input.CancelBenefitApplicationInput = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["client_token"] = client_token
-        input_["identifier"] = identifier
+        input_: capo_partnercentral_benefits.types.cancel_benefit_application_input.CancelBenefitApplicationInput = {
+            "catalog": catalog,
+            "client_token": client_token,
+            "identifier": identifier,
+        }
         if reason is not None:
             input_["reason"] = reason
 
@@ -357,6 +362,7 @@ class PartnerCentralBenefitsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_benefit_application(
@@ -427,14 +433,15 @@ class PartnerCentralBenefitsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_partnercentral_benefits.types.create_benefit_application_input.CreateBenefitApplicationInput = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["client_token"] = client_token
+        input_: capo_partnercentral_benefits.types.create_benefit_application_input.CreateBenefitApplicationInput = {
+            "catalog": catalog,
+            "client_token": client_token,
+            "benefit_identifier": benefit_identifier,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
             input_["description"] = description
-        input_["benefit_identifier"] = benefit_identifier
         if fulfillment_types is not None:
             input_["fulfillment_types"] = fulfillment_types
         if benefit_application_details is not None:
@@ -453,6 +460,7 @@ class PartnerCentralBenefitsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_benefit_application_resource(
@@ -495,16 +503,18 @@ class PartnerCentralBenefitsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_partnercentral_benefits.types.disassociate_benefit_application_resource_input.DisassociateBenefitApplicationResourceInput = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["benefit_application_identifier"] = benefit_application_identifier
-        input_["resource_arn"] = resource_arn
+        input_: capo_partnercentral_benefits.types.disassociate_benefit_application_resource_input.DisassociateBenefitApplicationResourceInput = {
+            "catalog": catalog,
+            "benefit_application_identifier": benefit_application_identifier,
+            "resource_arn": resource_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_benefit(
@@ -544,15 +554,17 @@ class PartnerCentralBenefitsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_partnercentral_benefits.types.get_benefit_input.GetBenefitInput = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
+        input_: capo_partnercentral_benefits.types.get_benefit_input.GetBenefitInput = {
+            "catalog": catalog,
+            "identifier": identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_benefit_allocation(
@@ -592,15 +604,17 @@ class PartnerCentralBenefitsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_partnercentral_benefits.types.get_benefit_allocation_input.GetBenefitAllocationInput = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
+        input_: capo_partnercentral_benefits.types.get_benefit_allocation_input.GetBenefitAllocationInput = {
+            "catalog": catalog,
+            "identifier": identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_benefit_application(
@@ -641,15 +655,17 @@ class PartnerCentralBenefitsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_partnercentral_benefits.types.get_benefit_application_input.GetBenefitApplicationInput = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
+        input_: capo_partnercentral_benefits.types.get_benefit_application_input.GetBenefitApplicationInput = {
+            "catalog": catalog,
+            "identifier": identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_benefit_allocations(
@@ -707,8 +723,9 @@ class PartnerCentralBenefitsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_partnercentral_benefits.types.list_benefit_allocations_input.ListBenefitAllocationsInput = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
+        input_: capo_partnercentral_benefits.types.list_benefit_allocations_input.ListBenefitAllocationsInput = {
+            "catalog": catalog
+        }
         if fulfillment_types is not None:
             input_["fulfillment_types"] = fulfillment_types
         if benefit_identifiers is not None:
@@ -727,6 +744,7 @@ class PartnerCentralBenefitsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_benefit_allocations(
@@ -831,8 +849,9 @@ class PartnerCentralBenefitsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_partnercentral_benefits.types.list_benefit_applications_input.ListBenefitApplicationsInput = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
+        input_: capo_partnercentral_benefits.types.list_benefit_applications_input.ListBenefitApplicationsInput = {
+            "catalog": catalog
+        }
         if programs is not None:
             input_["programs"] = programs
         if fulfillment_types is not None:
@@ -857,6 +876,7 @@ class PartnerCentralBenefitsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_benefit_applications(
@@ -957,8 +977,9 @@ class PartnerCentralBenefitsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_partnercentral_benefits.types.list_benefits_input.ListBenefitsInput = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
+        input_: capo_partnercentral_benefits.types.list_benefits_input.ListBenefitsInput = {
+            "catalog": catalog
+        }
         if programs is not None:
             input_["programs"] = programs
         if fulfillment_types is not None:
@@ -975,6 +996,7 @@ class PartnerCentralBenefitsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_benefits(
@@ -1047,14 +1069,16 @@ class PartnerCentralBenefitsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_partnercentral_benefits.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_partnercentral_benefits.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def recall_benefit_application(
@@ -1099,18 +1123,20 @@ class PartnerCentralBenefitsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_partnercentral_benefits.types.recall_benefit_application_input.RecallBenefitApplicationInput = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
+        input_: capo_partnercentral_benefits.types.recall_benefit_application_input.RecallBenefitApplicationInput = {
+            "catalog": catalog,
+            "identifier": identifier,
+            "reason": reason,
+        }
         if client_token is not None:
             input_["client_token"] = client_token
-        input_["identifier"] = identifier
-        input_["reason"] = reason
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def submit_benefit_application(
@@ -1151,15 +1177,17 @@ class PartnerCentralBenefitsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_partnercentral_benefits.types.submit_benefit_application_input.SubmitBenefitApplicationInput = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["identifier"] = identifier
+        input_: capo_partnercentral_benefits.types.submit_benefit_application_input.SubmitBenefitApplicationInput = {
+            "catalog": catalog,
+            "identifier": identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -1201,15 +1229,17 @@ class PartnerCentralBenefitsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_partnercentral_benefits.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_partnercentral_benefits.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -1251,15 +1281,17 @@ class PartnerCentralBenefitsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_partnercentral_benefits.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_partnercentral_benefits.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_benefit_application(
@@ -1322,15 +1354,16 @@ class PartnerCentralBenefitsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_partnercentral_benefits.types.update_benefit_application_input.UpdateBenefitApplicationInput = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["client_token"] = client_token
+        input_: capo_partnercentral_benefits.types.update_benefit_application_input.UpdateBenefitApplicationInput = {
+            "catalog": catalog,
+            "client_token": client_token,
+            "identifier": identifier,
+            "revision": revision,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
             input_["description"] = description
-        input_["identifier"] = identifier
-        input_["revision"] = revision
         if benefit_application_details is not None:
             input_["benefit_application_details"] = benefit_application_details
         if partner_contacts is not None:
@@ -1343,6 +1376,7 @@ class PartnerCentralBenefitsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

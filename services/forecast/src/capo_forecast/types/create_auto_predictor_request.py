@@ -133,13 +133,13 @@ def serialize_aws_json_1_1(value: CreateAutoPredictorRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateAutoPredictorRequest:
     out: CreateAutoPredictorRequest = {}  # type: ignore[typeddict-item]
-    if "PredictorName" in data:
+    if data.get("PredictorName") is not None:
         out["predictor_name"] = data["PredictorName"]
     else:
         raise DeserializationError("CreateAutoPredictorRequest.predictor_name required")
-    if "ForecastHorizon" in data:
+    if data.get("ForecastHorizon") is not None:
         out["forecast_horizon"] = data["ForecastHorizon"]
-    if "ForecastTypes" in data:
+    if data.get("ForecastTypes") is not None:
         import capo_forecast.types.forecast_types
 
         out["forecast_types"] = (
@@ -147,7 +147,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAutoPredictorRequest:
                 data["ForecastTypes"]
             )
         )
-    if "ForecastDimensions" in data:
+    if data.get("ForecastDimensions") is not None:
         import capo_forecast.types.forecast_dimensions
 
         out["forecast_dimensions"] = (
@@ -155,15 +155,15 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAutoPredictorRequest:
                 data["ForecastDimensions"]
             )
         )
-    if "ForecastFrequency" in data:
+    if data.get("ForecastFrequency") is not None:
         out["forecast_frequency"] = data["ForecastFrequency"]
-    if "DataConfig" in data:
+    if data.get("DataConfig") is not None:
         import capo_forecast.types.data_config
 
         out["data_config"] = capo_forecast.types.data_config.deserialize_aws_json_1_1(
             data["DataConfig"]
         )
-    if "EncryptionConfig" in data:
+    if data.get("EncryptionConfig") is not None:
         import capo_forecast.types.encryption_config
 
         out["encryption_config"] = (
@@ -171,9 +171,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAutoPredictorRequest:
                 data["EncryptionConfig"]
             )
         )
-    if "ReferencePredictorArn" in data:
+    if data.get("ReferencePredictorArn") is not None:
         out["reference_predictor_arn"] = data["ReferencePredictorArn"]
-    if "OptimizationMetric" in data:
+    if data.get("OptimizationMetric") is not None:
         import capo_forecast.types.optimization_metric
 
         out["optimization_metric"] = (
@@ -181,13 +181,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAutoPredictorRequest:
                 data["OptimizationMetric"]
             )
         )
-    if "ExplainPredictor" in data:
+    if data.get("ExplainPredictor") is not None:
         out["explain_predictor"] = data["ExplainPredictor"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_forecast.types.tags
 
         out["tags"] = capo_forecast.types.tags.deserialize_aws_json_1_1(data["Tags"])
-    if "MonitorConfig" in data:
+    if data.get("MonitorConfig") is not None:
         import capo_forecast.types.monitor_config
 
         out["monitor_config"] = (
@@ -195,7 +195,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAutoPredictorRequest:
                 data["MonitorConfig"]
             )
         )
-    if "TimeAlignmentBoundary" in data:
+    if data.get("TimeAlignmentBoundary") is not None:
         import capo_forecast.types.time_alignment_boundary
 
         out["time_alignment_boundary"] = (

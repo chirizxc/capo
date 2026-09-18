@@ -40,10 +40,10 @@ def serialize_json(value: UpdateAttributeGroupRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAttributeGroupRequest:
     out: UpdateAttributeGroupRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         out["attributes"] = data["attributes"]
     return out

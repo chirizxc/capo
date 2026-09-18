@@ -38,11 +38,11 @@ def serialize_json(value: CreateInputSourceRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateInputSourceRequest:
     out: CreateInputSourceRequest = {}  # type: ignore[typeddict-item]
-    if "serviceArn" in data:
+    if data.get("serviceArn") is not None:
         out["service_arn"] = data["serviceArn"]
     else:
         raise DeserializationError("CreateInputSourceRequest.service_arn required")
-    if "resourceConfiguration" in data:
+    if data.get("resourceConfiguration") is not None:
         import capo_resiliencehubv2.types.resource_configuration
 
         out["resource_configuration"] = (
@@ -54,6 +54,6 @@ def deserialize_json(data: dict) -> CreateInputSourceRequest:
         raise DeserializationError(
             "CreateInputSourceRequest.resource_configuration required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

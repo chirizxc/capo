@@ -34,7 +34,7 @@ def serialize_json(value: ConfigurationDetails) -> dict:
 
 
 def deserialize_json(data: dict) -> ConfigurationDetails:
-    if "directAnalysisConfigurationDetails" in data:
+    if data.get("directAnalysisConfigurationDetails") is not None:
         import capo_cleanrooms.types.direct_analysis_configuration_details
 
         return {

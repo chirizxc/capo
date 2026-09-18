@@ -45,7 +45,7 @@ def serialize_aws_json_1_1(value: ApplicationCodeConfigurationDescription) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> ApplicationCodeConfigurationDescription:
     out: ApplicationCodeConfigurationDescription = {}  # type: ignore[typeddict-item]
-    if "CodeContentType" in data:
+    if data.get("CodeContentType") is not None:
         import capo_kinesis_analytics_v2.types.code_content_type
 
         out["code_content_type"] = (
@@ -57,7 +57,7 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationCodeConfigurationDescript
         raise DeserializationError(
             "ApplicationCodeConfigurationDescription.code_content_type required"
         )
-    if "CodeContentDescription" in data:
+    if data.get("CodeContentDescription") is not None:
         import capo_kinesis_analytics_v2.types.code_content_description
 
         out["code_content_description"] = (

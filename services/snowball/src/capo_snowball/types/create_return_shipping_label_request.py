@@ -35,11 +35,11 @@ def serialize_aws_json_1_1(value: CreateReturnShippingLabelRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateReturnShippingLabelRequest:
     out: CreateReturnShippingLabelRequest = {}  # type: ignore[typeddict-item]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
     else:
         raise DeserializationError("CreateReturnShippingLabelRequest.job_id required")
-    if "ShippingOption" in data:
+    if data.get("ShippingOption") is not None:
         import capo_snowball.types.shipping_option
 
         out["shipping_option"] = (

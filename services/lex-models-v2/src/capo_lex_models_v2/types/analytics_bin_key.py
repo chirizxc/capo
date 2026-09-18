@@ -34,12 +34,12 @@ def serialize_json(value: AnalyticsBinKey) -> dict:
 
 def deserialize_json(data: dict) -> AnalyticsBinKey:
     out: AnalyticsBinKey = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         import capo_lex_models_v2.types.analytics_bin_by_name
 
         out["name"] = capo_lex_models_v2.types.analytics_bin_by_name.deserialize_json(
             data["name"]
         )
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     return out

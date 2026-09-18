@@ -80,19 +80,19 @@ def serialize_aws_json_1_1(value: ClassifyDocumentResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClassifyDocumentResponse:
     out: ClassifyDocumentResponse = {}  # type: ignore[typeddict-item]
-    if "Classes" in data:
+    if data.get("Classes") is not None:
         import capo_comprehend.types.list_of_classes
 
         out["classes"] = capo_comprehend.types.list_of_classes.deserialize_aws_json_1_1(
             data["Classes"]
         )
-    if "Labels" in data:
+    if data.get("Labels") is not None:
         import capo_comprehend.types.list_of_labels
 
         out["labels"] = capo_comprehend.types.list_of_labels.deserialize_aws_json_1_1(
             data["Labels"]
         )
-    if "DocumentMetadata" in data:
+    if data.get("DocumentMetadata") is not None:
         import capo_comprehend.types.document_metadata
 
         out["document_metadata"] = (
@@ -100,7 +100,7 @@ def deserialize_aws_json_1_1(data: dict) -> ClassifyDocumentResponse:
                 data["DocumentMetadata"]
             )
         )
-    if "DocumentType" in data:
+    if data.get("DocumentType") is not None:
         import capo_comprehend.types.list_of_document_type
 
         out["document_type"] = (
@@ -108,13 +108,13 @@ def deserialize_aws_json_1_1(data: dict) -> ClassifyDocumentResponse:
                 data["DocumentType"]
             )
         )
-    if "Errors" in data:
+    if data.get("Errors") is not None:
         import capo_comprehend.types.list_of_errors
 
         out["errors"] = capo_comprehend.types.list_of_errors.deserialize_aws_json_1_1(
             data["Errors"]
         )
-    if "Warnings" in data:
+    if data.get("Warnings") is not None:
         import capo_comprehend.types.list_of_warnings
 
         out["warnings"] = (

@@ -96,23 +96,23 @@ def serialize_aws_json_1_0(value: CreateCollectionRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateCollectionRequest:
     out: CreateCollectionRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateCollectionRequest.name required")
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_opensearchserverless.types.tags
 
         out["tags"] = capo_opensearchserverless.types.tags.deserialize_aws_json_1_0(
             data["tags"]
         )
-    if "standbyReplicas" in data:
+    if data.get("standbyReplicas") is not None:
         out["standby_replicas"] = data["standbyReplicas"]
-    if "vectorOptions" in data:
+    if data.get("vectorOptions") is not None:
         import capo_opensearchserverless.types.vector_options
 
         out["vector_options"] = (
@@ -120,9 +120,9 @@ def deserialize_aws_json_1_0(data: dict) -> CreateCollectionRequest:
                 data["vectorOptions"]
             )
         )
-    if "collectionGroupName" in data:
+    if data.get("collectionGroupName") is not None:
         out["collection_group_name"] = data["collectionGroupName"]
-    if "encryptionConfig" in data:
+    if data.get("encryptionConfig") is not None:
         import capo_opensearchserverless.types.encryption_config
 
         out["encryption_config"] = (
@@ -130,8 +130,8 @@ def deserialize_aws_json_1_0(data: dict) -> CreateCollectionRequest:
                 data["encryptionConfig"]
             )
         )
-    if "deletionProtection" in data:
+    if data.get("deletionProtection") is not None:
         out["deletion_protection"] = data["deletionProtection"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

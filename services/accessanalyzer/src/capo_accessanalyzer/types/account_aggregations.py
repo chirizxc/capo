@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AccountAggregations:
 
     out: AccountAggregations = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_accessanalyzer.types.finding_aggregation_account_details.deserialize_json(
                 item

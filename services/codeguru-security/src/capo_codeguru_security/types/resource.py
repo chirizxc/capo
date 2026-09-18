@@ -22,8 +22,8 @@ def serialize_json(value: Resource) -> dict:
 
 def deserialize_json(data: dict) -> Resource:
     out: Resource = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "subResourceId" in data:
+    if data.get("subResourceId") is not None:
         out["sub_resource_id"] = data["subResourceId"]
     return out

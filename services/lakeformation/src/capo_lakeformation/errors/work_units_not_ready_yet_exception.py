@@ -25,7 +25,7 @@ def serialize_json(value: WorkUnitsNotReadyYetException_) -> dict:
 
 def deserialize_json(data: dict) -> WorkUnitsNotReadyYetException_:
     out: WorkUnitsNotReadyYetException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -35,15 +35,20 @@ class WorkUnitsNotReadyYetException(ServiceError):
 
     code: str | None = "WorkUnitsNotReadyYetException"
 
-    def __init__(self, data: WorkUnitsNotReadyYetException_):
+    def __init__(
+        self, data: WorkUnitsNotReadyYetException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="WorkUnitsNotReadyYetException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "WorkUnitsNotReadyYetException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "WorkUnitsNotReadyYetException":
+        return cls(deserialize_json(data), message)

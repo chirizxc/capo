@@ -34,9 +34,9 @@ def serialize_json(value: SourceTable) -> dict:
 
 def deserialize_json(data: dict) -> SourceTable:
     out: SourceTable = {}  # type: ignore[typeddict-item]
-    if "PhysicalTableId" in data:
+    if data.get("PhysicalTableId") is not None:
         out["physical_table_id"] = data["PhysicalTableId"]
-    if "DataSet" in data:
+    if data.get("DataSet") is not None:
         import capo_quicksight.types.parent_data_set
 
         out["data_set"] = capo_quicksight.types.parent_data_set.deserialize_json(

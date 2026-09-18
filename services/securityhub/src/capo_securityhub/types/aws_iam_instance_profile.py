@@ -56,17 +56,17 @@ def serialize_json(value: AwsIamInstanceProfile) -> dict:
 
 def deserialize_json(data: dict) -> AwsIamInstanceProfile:
     out: AwsIamInstanceProfile = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "CreateDate" in data:
+    if data.get("CreateDate") is not None:
         out["create_date"] = data["CreateDate"]
-    if "InstanceProfileId" in data:
+    if data.get("InstanceProfileId") is not None:
         out["instance_profile_id"] = data["InstanceProfileId"]
-    if "InstanceProfileName" in data:
+    if data.get("InstanceProfileName") is not None:
         out["instance_profile_name"] = data["InstanceProfileName"]
-    if "Path" in data:
+    if data.get("Path") is not None:
         out["path"] = data["Path"]
-    if "Roles" in data:
+    if data.get("Roles") is not None:
         import capo_securityhub.types.aws_iam_instance_profile_roles
 
         out["roles"] = (

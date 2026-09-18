@@ -44,7 +44,7 @@ def serialize_json(value: Details) -> dict:
 
 def deserialize_json(data: dict) -> Details:
     out: Details = {}  # type: ignore[typeddict-item]
-    if "ImportAssetFromSignedUrlJobErrorDetails" in data:
+    if data.get("ImportAssetFromSignedUrlJobErrorDetails") is not None:
         import capo_dataexchange.types.import_asset_from_signed_url_job_error_details
 
         out["import_asset_from_signed_url_job_error_details"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> Details:
                 data["ImportAssetFromSignedUrlJobErrorDetails"]
             )
         )
-    if "ImportAssetsFromS3JobErrorDetails" in data:
+    if data.get("ImportAssetsFromS3JobErrorDetails") is not None:
         import capo_dataexchange.types.list_of_asset_source_entry
 
         out["import_assets_from_s3_job_error_details"] = (

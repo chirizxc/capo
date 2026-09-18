@@ -37,13 +37,13 @@ def serialize_json(value: BatchStartRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchStartRequest:
     out: BatchStartRequest = {}  # type: ignore[typeddict-item]
-    if "channelIds" in data:
+    if data.get("channelIds") is not None:
         import capo_medialive.types.__list_of__string
 
         out["channel_ids"] = capo_medialive.types.__list_of__string.deserialize_json(
             data["channelIds"]
         )
-    if "multiplexIds" in data:
+    if data.get("multiplexIds") is not None:
         import capo_medialive.types.__list_of__string
 
         out["multiplex_ids"] = capo_medialive.types.__list_of__string.deserialize_json(

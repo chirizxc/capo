@@ -32,8 +32,8 @@ def serialize_json(value: AssociateAttributeGroupResponse) -> dict:
 
 def deserialize_json(data: dict) -> AssociateAttributeGroupResponse:
     out: AssociateAttributeGroupResponse = {}  # type: ignore[typeddict-item]
-    if "applicationArn" in data:
+    if data.get("applicationArn") is not None:
         out["application_arn"] = data["applicationArn"]
-    if "attributeGroupArn" in data:
+    if data.get("attributeGroupArn") is not None:
         out["attribute_group_arn"] = data["attributeGroupArn"]
     return out

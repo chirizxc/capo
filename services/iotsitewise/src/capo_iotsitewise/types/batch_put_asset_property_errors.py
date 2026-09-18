@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> BatchPutAssetPropertyErrors:
 
     out: BatchPutAssetPropertyErrors = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iotsitewise.types.batch_put_asset_property_error.deserialize_json(item)
         )

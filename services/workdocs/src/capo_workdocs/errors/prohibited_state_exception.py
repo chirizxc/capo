@@ -24,7 +24,7 @@ def serialize_json(value: ProhibitedStateException_) -> dict:
 
 def deserialize_json(data: dict) -> ProhibitedStateException_:
     out: ProhibitedStateException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class ProhibitedStateException(ServiceError):
 
     code: str | None = "ProhibitedStateException"
 
-    def __init__(self, data: ProhibitedStateException_):
+    def __init__(self, data: ProhibitedStateException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ProhibitedStateException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ProhibitedStateException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "ProhibitedStateException":
+        return cls(deserialize_json(data), message)

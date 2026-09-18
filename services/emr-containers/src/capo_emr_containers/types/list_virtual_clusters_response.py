@@ -36,7 +36,7 @@ def serialize_json(value: ListVirtualClustersResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListVirtualClustersResponse:
     out: ListVirtualClustersResponse = {}  # type: ignore[typeddict-item]
-    if "virtualClusters" in data:
+    if data.get("virtualClusters") is not None:
         import capo_emr_containers.types.virtual_clusters
 
         out["virtual_clusters"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListVirtualClustersResponse:
                 data["virtualClusters"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

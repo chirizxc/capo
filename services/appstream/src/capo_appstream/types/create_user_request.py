@@ -60,9 +60,9 @@ def serialize_aws_json_1_1(value: CreateUserRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateUserRequest:
     out: CreateUserRequest = {}  # type: ignore[typeddict-item]
-    if "UserName" in data:
+    if data.get("UserName") is not None:
         out["user_name"] = data["UserName"]
-    if "MessageAction" in data:
+    if data.get("MessageAction") is not None:
         import capo_appstream.types.message_action
 
         out["message_action"] = (
@@ -70,11 +70,11 @@ def deserialize_aws_json_1_1(data: dict) -> CreateUserRequest:
                 data["MessageAction"]
             )
         )
-    if "FirstName" in data:
+    if data.get("FirstName") is not None:
         out["first_name"] = data["FirstName"]
-    if "LastName" in data:
+    if data.get("LastName") is not None:
         out["last_name"] = data["LastName"]
-    if "AuthenticationType" in data:
+    if data.get("AuthenticationType") is not None:
         import capo_appstream.types.authentication_type
 
         out["authentication_type"] = (

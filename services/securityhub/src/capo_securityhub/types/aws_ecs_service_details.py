@@ -193,7 +193,7 @@ def serialize_json(value: AwsEcsServiceDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEcsServiceDetails:
     out: AwsEcsServiceDetails = {}  # type: ignore[typeddict-item]
-    if "CapacityProviderStrategy" in data:
+    if data.get("CapacityProviderStrategy") is not None:
         import capo_securityhub.types.aws_ecs_service_capacity_provider_strategy_list
 
         out["capacity_provider_strategy"] = (
@@ -201,9 +201,9 @@ def deserialize_json(data: dict) -> AwsEcsServiceDetails:
                 data["CapacityProviderStrategy"]
             )
         )
-    if "Cluster" in data:
+    if data.get("Cluster") is not None:
         out["cluster"] = data["Cluster"]
-    if "DeploymentConfiguration" in data:
+    if data.get("DeploymentConfiguration") is not None:
         import capo_securityhub.types.aws_ecs_service_deployment_configuration_details
 
         out["deployment_configuration"] = (
@@ -211,7 +211,7 @@ def deserialize_json(data: dict) -> AwsEcsServiceDetails:
                 data["DeploymentConfiguration"]
             )
         )
-    if "DeploymentController" in data:
+    if data.get("DeploymentController") is not None:
         import capo_securityhub.types.aws_ecs_service_deployment_controller_details
 
         out["deployment_controller"] = (
@@ -219,17 +219,17 @@ def deserialize_json(data: dict) -> AwsEcsServiceDetails:
                 data["DeploymentController"]
             )
         )
-    if "DesiredCount" in data:
+    if data.get("DesiredCount") is not None:
         out["desired_count"] = data["DesiredCount"]
-    if "EnableEcsManagedTags" in data:
+    if data.get("EnableEcsManagedTags") is not None:
         out["enable_ecs_managed_tags"] = data["EnableEcsManagedTags"]
-    if "EnableExecuteCommand" in data:
+    if data.get("EnableExecuteCommand") is not None:
         out["enable_execute_command"] = data["EnableExecuteCommand"]
-    if "HealthCheckGracePeriodSeconds" in data:
+    if data.get("HealthCheckGracePeriodSeconds") is not None:
         out["health_check_grace_period_seconds"] = data["HealthCheckGracePeriodSeconds"]
-    if "LaunchType" in data:
+    if data.get("LaunchType") is not None:
         out["launch_type"] = data["LaunchType"]
-    if "LoadBalancers" in data:
+    if data.get("LoadBalancers") is not None:
         import capo_securityhub.types.aws_ecs_service_load_balancers_list
 
         out["load_balancers"] = (
@@ -237,9 +237,9 @@ def deserialize_json(data: dict) -> AwsEcsServiceDetails:
                 data["LoadBalancers"]
             )
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "NetworkConfiguration" in data:
+    if data.get("NetworkConfiguration") is not None:
         import capo_securityhub.types.aws_ecs_service_network_configuration_details
 
         out["network_configuration"] = (
@@ -247,7 +247,7 @@ def deserialize_json(data: dict) -> AwsEcsServiceDetails:
                 data["NetworkConfiguration"]
             )
         )
-    if "PlacementConstraints" in data:
+    if data.get("PlacementConstraints") is not None:
         import capo_securityhub.types.aws_ecs_service_placement_constraints_list
 
         out["placement_constraints"] = (
@@ -255,7 +255,7 @@ def deserialize_json(data: dict) -> AwsEcsServiceDetails:
                 data["PlacementConstraints"]
             )
         )
-    if "PlacementStrategies" in data:
+    if data.get("PlacementStrategies") is not None:
         import capo_securityhub.types.aws_ecs_service_placement_strategies_list
 
         out["placement_strategies"] = (
@@ -263,19 +263,19 @@ def deserialize_json(data: dict) -> AwsEcsServiceDetails:
                 data["PlacementStrategies"]
             )
         )
-    if "PlatformVersion" in data:
+    if data.get("PlatformVersion") is not None:
         out["platform_version"] = data["PlatformVersion"]
-    if "PropagateTags" in data:
+    if data.get("PropagateTags") is not None:
         out["propagate_tags"] = data["PropagateTags"]
-    if "Role" in data:
+    if data.get("Role") is not None:
         out["role"] = data["Role"]
-    if "SchedulingStrategy" in data:
+    if data.get("SchedulingStrategy") is not None:
         out["scheduling_strategy"] = data["SchedulingStrategy"]
-    if "ServiceArn" in data:
+    if data.get("ServiceArn") is not None:
         out["service_arn"] = data["ServiceArn"]
-    if "ServiceName" in data:
+    if data.get("ServiceName") is not None:
         out["service_name"] = data["ServiceName"]
-    if "ServiceRegistries" in data:
+    if data.get("ServiceRegistries") is not None:
         import capo_securityhub.types.aws_ecs_service_service_registries_list
 
         out["service_registries"] = (
@@ -283,6 +283,6 @@ def deserialize_json(data: dict) -> AwsEcsServiceDetails:
                 data["ServiceRegistries"]
             )
         )
-    if "TaskDefinition" in data:
+    if data.get("TaskDefinition") is not None:
         out["task_definition"] = data["TaskDefinition"]
     return out

@@ -43,15 +43,15 @@ def serialize_json(value: UpdateBrandResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateBrandResponse:
     out: UpdateBrandResponse = {}  # type: ignore[typeddict-item]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
-    if "BrandDetail" in data:
+    if data.get("BrandDetail") is not None:
         import capo_quicksight.types.brand_detail
 
         out["brand_detail"] = capo_quicksight.types.brand_detail.deserialize_json(
             data["BrandDetail"]
         )
-    if "BrandDefinition" in data:
+    if data.get("BrandDefinition") is not None:
         import capo_quicksight.types.brand_definition
 
         out["brand_definition"] = (

@@ -37,10 +37,10 @@ def serialize_json(value: EvidenceInsights) -> dict:
 
 def deserialize_json(data: dict) -> EvidenceInsights:
     out: EvidenceInsights = {}  # type: ignore[typeddict-item]
-    if "noncompliantEvidenceCount" in data:
+    if data.get("noncompliantEvidenceCount") is not None:
         out["noncompliant_evidence_count"] = data["noncompliantEvidenceCount"]
-    if "compliantEvidenceCount" in data:
+    if data.get("compliantEvidenceCount") is not None:
         out["compliant_evidence_count"] = data["compliantEvidenceCount"]
-    if "inconclusiveEvidenceCount" in data:
+    if data.get("inconclusiveEvidenceCount") is not None:
         out["inconclusive_evidence_count"] = data["inconclusiveEvidenceCount"]
     return out

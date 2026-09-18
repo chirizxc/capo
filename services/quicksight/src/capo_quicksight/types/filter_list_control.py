@@ -111,19 +111,19 @@ def serialize_json(value: FilterListControl) -> dict:
 
 def deserialize_json(data: dict) -> FilterListControl:
     out: FilterListControl = {}  # type: ignore[typeddict-item]
-    if "FilterControlId" in data:
+    if data.get("FilterControlId") is not None:
         out["filter_control_id"] = data["FilterControlId"]
     else:
         raise DeserializationError("FilterListControl.filter_control_id required")
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
     else:
         out["title"] = ""
-    if "SourceFilterId" in data:
+    if data.get("SourceFilterId") is not None:
         out["source_filter_id"] = data["SourceFilterId"]
     else:
         raise DeserializationError("FilterListControl.source_filter_id required")
-    if "DisplayOptions" in data:
+    if data.get("DisplayOptions") is not None:
         import capo_quicksight.types.list_control_display_options
 
         out["display_options"] = (
@@ -131,13 +131,13 @@ def deserialize_json(data: dict) -> FilterListControl:
                 data["DisplayOptions"]
             )
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_quicksight.types.sheet_control_list_type
 
         out["type"] = capo_quicksight.types.sheet_control_list_type.deserialize_json(
             data["Type"]
         )
-    if "SelectableValues" in data:
+    if data.get("SelectableValues") is not None:
         import capo_quicksight.types.filter_selectable_values
 
         out["selectable_values"] = (
@@ -145,7 +145,7 @@ def deserialize_json(data: dict) -> FilterListControl:
                 data["SelectableValues"]
             )
         )
-    if "CascadingControlConfiguration" in data:
+    if data.get("CascadingControlConfiguration") is not None:
         import capo_quicksight.types.cascading_control_configuration
 
         out["cascading_control_configuration"] = (
@@ -153,7 +153,7 @@ def deserialize_json(data: dict) -> FilterListControl:
                 data["CascadingControlConfiguration"]
             )
         )
-    if "ControlSortConfigurations" in data:
+    if data.get("ControlSortConfigurations") is not None:
         import capo_quicksight.types.control_sort_configuration_list
 
         out["control_sort_configurations"] = (
@@ -161,7 +161,7 @@ def deserialize_json(data: dict) -> FilterListControl:
                 data["ControlSortConfigurations"]
             )
         )
-    if "ControlTitleFormatText" in data:
+    if data.get("ControlTitleFormatText") is not None:
         import capo_quicksight.types.control_title_format_text
 
         out["control_title_format_text"] = (

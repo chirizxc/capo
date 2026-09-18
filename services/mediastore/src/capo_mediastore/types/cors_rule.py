@@ -66,7 +66,7 @@ def serialize_aws_json_1_1(value: CorsRule) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CorsRule:
     out: CorsRule = {}  # type: ignore[typeddict-item]
-    if "AllowedOrigins" in data:
+    if data.get("AllowedOrigins") is not None:
         import capo_mediastore.types.allowed_origins
 
         out["allowed_origins"] = (
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_1(data: dict) -> CorsRule:
         )
     else:
         raise DeserializationError("CorsRule.allowed_origins required")
-    if "AllowedMethods" in data:
+    if data.get("AllowedMethods") is not None:
         import capo_mediastore.types.allowed_methods
 
         out["allowed_methods"] = (
@@ -84,7 +84,7 @@ def deserialize_aws_json_1_1(data: dict) -> CorsRule:
                 data["AllowedMethods"]
             )
         )
-    if "AllowedHeaders" in data:
+    if data.get("AllowedHeaders") is not None:
         import capo_mediastore.types.allowed_headers
 
         out["allowed_headers"] = (
@@ -94,11 +94,11 @@ def deserialize_aws_json_1_1(data: dict) -> CorsRule:
         )
     else:
         raise DeserializationError("CorsRule.allowed_headers required")
-    if "MaxAgeSeconds" in data:
+    if data.get("MaxAgeSeconds") is not None:
         out["max_age_seconds"] = data["MaxAgeSeconds"]
     else:
         out["max_age_seconds"] = 0
-    if "ExposeHeaders" in data:
+    if data.get("ExposeHeaders") is not None:
         import capo_mediastore.types.expose_headers
 
         out["expose_headers"] = (

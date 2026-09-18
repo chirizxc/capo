@@ -25,7 +25,7 @@ def serialize_json(value: CreateApiKeyResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateApiKeyResponse:
     out: CreateApiKeyResponse = {}  # type: ignore[typeddict-item]
-    if "apiKey" in data:
+    if data.get("apiKey") is not None:
         import capo_appsync.types.api_key
 
         out["api_key"] = capo_appsync.types.api_key.deserialize_json(data["apiKey"])

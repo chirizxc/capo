@@ -44,9 +44,9 @@ def serialize_json(value: CreateCellRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateCellRequest:
     out: CreateCellRequest = {}  # type: ignore[typeddict-item]
-    if "cellName" in data:
+    if data.get("cellName") is not None:
         out["cell_name"] = data["cellName"]
-    if "cells" in data:
+    if data.get("cells") is not None:
         import capo_route53_recovery_readiness.types.__list_of__string
 
         out["cells"] = (
@@ -54,7 +54,7 @@ def deserialize_json(data: dict) -> CreateCellRequest:
                 data["cells"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_route53_recovery_readiness.types.tags
 
         out["tags"] = capo_route53_recovery_readiness.types.tags.deserialize_json(

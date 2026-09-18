@@ -32,12 +32,12 @@ def serialize_aws_json_1_0(value: ListSignalCatalogNodesResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListSignalCatalogNodesResponse:
     out: ListSignalCatalogNodesResponse = {}  # type: ignore[typeddict-item]
-    if "nodes" in data:
+    if data.get("nodes") is not None:
         import capo_iotfleetwise.types.nodes
 
         out["nodes"] = capo_iotfleetwise.types.nodes.deserialize_aws_json_1_0(
             data["nodes"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

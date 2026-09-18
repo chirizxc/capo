@@ -32,7 +32,7 @@ def serialize_json(value: GenerateBotElementRequest) -> dict:
 
 def deserialize_json(data: dict) -> GenerateBotElementRequest:
     out: GenerateBotElementRequest = {}  # type: ignore[typeddict-item]
-    if "intentId" in data:
+    if data.get("intentId") is not None:
         out["intent_id"] = data["intentId"]
     else:
         raise DeserializationError("GenerateBotElementRequest.intent_id required")

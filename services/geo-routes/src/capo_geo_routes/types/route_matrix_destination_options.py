@@ -30,7 +30,15 @@ class RouteMatrixDestinationOptions(TypedDict, closed=True):
 def serialize_json(value: RouteMatrixDestinationOptions) -> dict:
     out: dict = {}
     out["AvoidActionsForDistance"] = value.get("avoid_actions_for_distance", 0)
-    out["Heading"] = value.get("heading", 0)
+    out["Heading"] = (
+        "NaN"
+        if value.get("heading", 0) != value.get("heading", 0)
+        else "Infinity"
+        if value.get("heading", 0) == float("inf")
+        else "-Infinity"
+        if value.get("heading", 0) == float("-inf")
+        else value.get("heading", 0)
+    )
     if "matching" in value:
         import capo_geo_routes.types.route_matrix_matching_options
 
@@ -52,15 +60,15 @@ def serialize_json(value: RouteMatrixDestinationOptions) -> dict:
 
 def deserialize_json(data: dict) -> RouteMatrixDestinationOptions:
     out: RouteMatrixDestinationOptions = {}  # type: ignore[typeddict-item]
-    if "AvoidActionsForDistance" in data:
+    if data.get("AvoidActionsForDistance") is not None:
         out["avoid_actions_for_distance"] = data["AvoidActionsForDistance"]
     else:
         out["avoid_actions_for_distance"] = 0
-    if "Heading" in data:
-        out["heading"] = data["Heading"]
+    if data.get("Heading") is not None:
+        out["heading"] = float(data["Heading"])
     else:
         out["heading"] = 0
-    if "Matching" in data:
+    if data.get("Matching") is not None:
         import capo_geo_routes.types.route_matrix_matching_options
 
         out["matching"] = (
@@ -68,7 +76,7 @@ def deserialize_json(data: dict) -> RouteMatrixDestinationOptions:
                 data["Matching"]
             )
         )
-    if "SideOfStreet" in data:
+    if data.get("SideOfStreet") is not None:
         import capo_geo_routes.types.route_matrix_side_of_street_options
 
         out["side_of_street"] = (

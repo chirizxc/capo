@@ -85,7 +85,7 @@ def serialize_aws_json_1_0(value: ActivityTaskScheduledEventAttributes) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ActivityTaskScheduledEventAttributes:
     out: ActivityTaskScheduledEventAttributes = {}  # type: ignore[typeddict-item]
-    if "activityType" in data:
+    if data.get("activityType") is not None:
         import capo_swf.types.activity_type
 
         out["activity_type"] = capo_swf.types.activity_type.deserialize_aws_json_1_0(
@@ -95,23 +95,23 @@ def deserialize_aws_json_1_0(data: dict) -> ActivityTaskScheduledEventAttributes
         raise DeserializationError(
             "ActivityTaskScheduledEventAttributes.activity_type required"
         )
-    if "activityId" in data:
+    if data.get("activityId") is not None:
         out["activity_id"] = data["activityId"]
     else:
         raise DeserializationError(
             "ActivityTaskScheduledEventAttributes.activity_id required"
         )
-    if "input" in data:
+    if data.get("input") is not None:
         out["input"] = data["input"]
-    if "control" in data:
+    if data.get("control") is not None:
         out["control"] = data["control"]
-    if "scheduleToStartTimeout" in data:
+    if data.get("scheduleToStartTimeout") is not None:
         out["schedule_to_start_timeout"] = data["scheduleToStartTimeout"]
-    if "scheduleToCloseTimeout" in data:
+    if data.get("scheduleToCloseTimeout") is not None:
         out["schedule_to_close_timeout"] = data["scheduleToCloseTimeout"]
-    if "startToCloseTimeout" in data:
+    if data.get("startToCloseTimeout") is not None:
         out["start_to_close_timeout"] = data["startToCloseTimeout"]
-    if "taskList" in data:
+    if data.get("taskList") is not None:
         import capo_swf.types.task_list
 
         out["task_list"] = capo_swf.types.task_list.deserialize_aws_json_1_0(
@@ -121,12 +121,12 @@ def deserialize_aws_json_1_0(data: dict) -> ActivityTaskScheduledEventAttributes
         raise DeserializationError(
             "ActivityTaskScheduledEventAttributes.task_list required"
         )
-    if "taskPriority" in data:
+    if data.get("taskPriority") is not None:
         out["task_priority"] = data["taskPriority"]
-    if "decisionTaskCompletedEventId" in data:
+    if data.get("decisionTaskCompletedEventId") is not None:
         out["decision_task_completed_event_id"] = data["decisionTaskCompletedEventId"]
     else:
         out["decision_task_completed_event_id"] = 0
-    if "heartbeatTimeout" in data:
+    if data.get("heartbeatTimeout") is not None:
         out["heartbeat_timeout"] = data["heartbeatTimeout"]
     return out

@@ -53,37 +53,37 @@ def serialize_aws_json_1_1(value: StartMailboxExportJobRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartMailboxExportJobRequest:
     out: StartMailboxExportJobRequest = {}  # type: ignore[typeddict-item]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     else:
         raise DeserializationError("StartMailboxExportJobRequest.client_token required")
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
     else:
         raise DeserializationError(
             "StartMailboxExportJobRequest.organization_id required"
         )
-    if "EntityId" in data:
+    if data.get("EntityId") is not None:
         out["entity_id"] = data["EntityId"]
     else:
         raise DeserializationError("StartMailboxExportJobRequest.entity_id required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     else:
         raise DeserializationError("StartMailboxExportJobRequest.role_arn required")
-    if "KmsKeyArn" in data:
+    if data.get("KmsKeyArn") is not None:
         out["kms_key_arn"] = data["KmsKeyArn"]
     else:
         raise DeserializationError("StartMailboxExportJobRequest.kms_key_arn required")
-    if "S3BucketName" in data:
+    if data.get("S3BucketName") is not None:
         out["s3_bucket_name"] = data["S3BucketName"]
     else:
         raise DeserializationError(
             "StartMailboxExportJobRequest.s3_bucket_name required"
         )
-    if "S3Prefix" in data:
+    if data.get("S3Prefix") is not None:
         out["s3_prefix"] = data["S3Prefix"]
     else:
         raise DeserializationError("StartMailboxExportJobRequest.s3_prefix required")

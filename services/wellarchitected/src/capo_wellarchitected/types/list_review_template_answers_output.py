@@ -44,11 +44,11 @@ def serialize_json(value: ListReviewTemplateAnswersOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListReviewTemplateAnswersOutput:
     out: ListReviewTemplateAnswersOutput = {}  # type: ignore[typeddict-item]
-    if "TemplateArn" in data:
+    if data.get("TemplateArn") is not None:
         out["template_arn"] = data["TemplateArn"]
-    if "LensAlias" in data:
+    if data.get("LensAlias") is not None:
         out["lens_alias"] = data["LensAlias"]
-    if "AnswerSummaries" in data:
+    if data.get("AnswerSummaries") is not None:
         import capo_wellarchitected.types.review_template_answer_summaries
 
         out["answer_summaries"] = (
@@ -56,6 +56,6 @@ def deserialize_json(data: dict) -> ListReviewTemplateAnswersOutput:
                 data["AnswerSummaries"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

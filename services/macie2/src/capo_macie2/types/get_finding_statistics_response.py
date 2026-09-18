@@ -29,7 +29,7 @@ def serialize_json(value: GetFindingStatisticsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetFindingStatisticsResponse:
     out: GetFindingStatisticsResponse = {}  # type: ignore[typeddict-item]
-    if "countsByGroup" in data:
+    if data.get("countsByGroup") is not None:
         import capo_macie2.types.__list_of_group_count
 
         out["counts_by_group"] = (

@@ -64,25 +64,25 @@ def serialize_json(value: StartAttachedFileUploadResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartAttachedFileUploadResponse:
     out: StartAttachedFileUploadResponse = {}  # type: ignore[typeddict-item]
-    if "FileArn" in data:
+    if data.get("FileArn") is not None:
         out["file_arn"] = data["FileArn"]
-    if "FileId" in data:
+    if data.get("FileId") is not None:
         out["file_id"] = data["FileId"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         out["creation_time"] = data["CreationTime"]
-    if "FileStatus" in data:
+    if data.get("FileStatus") is not None:
         import capo_connect.types.file_status_type
 
         out["file_status"] = capo_connect.types.file_status_type.deserialize_json(
             data["FileStatus"]
         )
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         import capo_connect.types.created_by_info
 
         out["created_by"] = capo_connect.types.created_by_info.deserialize_json(
             data["CreatedBy"]
         )
-    if "UploadUrlMetadata" in data:
+    if data.get("UploadUrlMetadata") is not None:
         import capo_connect.types.upload_url_metadata
 
         out["upload_url_metadata"] = (

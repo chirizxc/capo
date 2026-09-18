@@ -44,7 +44,7 @@ def serialize_json(value: ClusterDetails) -> dict:
 
 def deserialize_json(data: dict) -> ClusterDetails:
     out: ClusterDetails = {}  # type: ignore[typeddict-item]
-    if "lastInUse" in data:
+    if data.get("lastInUse") is not None:
         import capo_inspector2.types._prelude.timestamp
 
         out["last_in_use"] = capo_inspector2.types._prelude.timestamp.deserialize_json(
@@ -52,11 +52,11 @@ def deserialize_json(data: dict) -> ClusterDetails:
         )
     else:
         raise DeserializationError("ClusterDetails.last_in_use required")
-    if "runningUnitCount" in data:
+    if data.get("runningUnitCount") is not None:
         out["running_unit_count"] = data["runningUnitCount"]
-    if "stoppedUnitCount" in data:
+    if data.get("stoppedUnitCount") is not None:
         out["stopped_unit_count"] = data["stoppedUnitCount"]
-    if "clusterMetadata" in data:
+    if data.get("clusterMetadata") is not None:
         import capo_inspector2.types.cluster_metadata
 
         out["cluster_metadata"] = (

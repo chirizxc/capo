@@ -35,7 +35,7 @@ def serialize_json(value: DescribeIdentityProviderConfigRequest) -> dict:
 
 def deserialize_json(data: dict) -> DescribeIdentityProviderConfigRequest:
     out: DescribeIdentityProviderConfigRequest = {}  # type: ignore[typeddict-item]
-    if "identityProviderConfig" in data:
+    if data.get("identityProviderConfig") is not None:
         import capo_eks.types.identity_provider_config
 
         out["identity_provider_config"] = (

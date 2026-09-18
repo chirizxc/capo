@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> GroupedByResource:
 
     out: GroupedByResource = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_guardduty.types.resource_statistics.deserialize_json(item))
     return out

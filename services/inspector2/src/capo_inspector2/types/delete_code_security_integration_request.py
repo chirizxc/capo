@@ -26,7 +26,7 @@ def serialize_json(value: DeleteCodeSecurityIntegrationRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteCodeSecurityIntegrationRequest:
     out: DeleteCodeSecurityIntegrationRequest = {}  # type: ignore[typeddict-item]
-    if "integrationArn" in data:
+    if data.get("integrationArn") is not None:
         out["integration_arn"] = data["integrationArn"]
     else:
         raise DeserializationError(

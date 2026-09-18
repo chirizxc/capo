@@ -27,8 +27,8 @@ def serialize_json(value: FunctionRef) -> dict:
 
 def deserialize_json(data: dict) -> FunctionRef:
     out: FunctionRef = {}  # type: ignore[typeddict-item]
-    if "RunCondition" in data:
+    if data.get("RunCondition") is not None:
         out["run_condition"] = data["RunCondition"]
-    if "FunctionId" in data:
+    if data.get("FunctionId") is not None:
         out["function_id"] = data["FunctionId"]
     return out

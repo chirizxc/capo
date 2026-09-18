@@ -40,7 +40,7 @@ def serialize_json(value: LiveConnectorSinkConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> LiveConnectorSinkConfiguration:
     out: LiveConnectorSinkConfiguration = {}  # type: ignore[typeddict-item]
-    if "SinkType" in data:
+    if data.get("SinkType") is not None:
         import capo_chime_sdk_media_pipelines.types.live_connector_sink_type
 
         out["sink_type"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> LiveConnectorSinkConfiguration:
         )
     else:
         raise DeserializationError("LiveConnectorSinkConfiguration.sink_type required")
-    if "RTMPConfiguration" in data:
+    if data.get("RTMPConfiguration") is not None:
         import capo_chime_sdk_media_pipelines.types.live_connector_rtmp_configuration
 
         out["rtmp_configuration"] = (

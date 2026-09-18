@@ -63,7 +63,7 @@ def serialize_json(value: EBSItemFilter) -> dict:
 
 def deserialize_json(data: dict) -> EBSItemFilter:
     out: EBSItemFilter = {}  # type: ignore[typeddict-item]
-    if "FilePaths" in data:
+    if data.get("FilePaths") is not None:
         import capo_backupsearch.types.string_condition_list
 
         out["file_paths"] = (
@@ -71,13 +71,13 @@ def deserialize_json(data: dict) -> EBSItemFilter:
                 data["FilePaths"]
             )
         )
-    if "Sizes" in data:
+    if data.get("Sizes") is not None:
         import capo_backupsearch.types.long_condition_list
 
         out["sizes"] = capo_backupsearch.types.long_condition_list.deserialize_json(
             data["Sizes"]
         )
-    if "CreationTimes" in data:
+    if data.get("CreationTimes") is not None:
         import capo_backupsearch.types.time_condition_list
 
         out["creation_times"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> EBSItemFilter:
                 data["CreationTimes"]
             )
         )
-    if "LastModificationTimes" in data:
+    if data.get("LastModificationTimes") is not None:
         import capo_backupsearch.types.time_condition_list
 
         out["last_modification_times"] = (

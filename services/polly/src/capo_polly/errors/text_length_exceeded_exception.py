@@ -24,7 +24,7 @@ def serialize_json(value: TextLengthExceededException_) -> dict:
 
 def deserialize_json(data: dict) -> TextLengthExceededException_:
     out: TextLengthExceededException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,18 @@ class TextLengthExceededException(ServiceError):
 
     code: str | None = "TextLengthExceededException"
 
-    def __init__(self, data: TextLengthExceededException_):
+    def __init__(self, data: TextLengthExceededException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="TextLengthExceededException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "TextLengthExceededException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "TextLengthExceededException":
+        return cls(deserialize_json(data), message)

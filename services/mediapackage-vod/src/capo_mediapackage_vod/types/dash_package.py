@@ -89,7 +89,7 @@ def serialize_json(value: DashPackage) -> dict:
 
 def deserialize_json(data: dict) -> DashPackage:
     out: DashPackage = {}  # type: ignore[typeddict-item]
-    if "dashManifests" in data:
+    if data.get("dashManifests") is not None:
         import capo_mediapackage_vod.types.__list_of_dash_manifest
 
         out["dash_manifests"] = (
@@ -97,7 +97,7 @@ def deserialize_json(data: dict) -> DashPackage:
                 data["dashManifests"]
             )
         )
-    if "encryption" in data:
+    if data.get("encryption") is not None:
         import capo_mediapackage_vod.types.dash_encryption
 
         out["encryption"] = (
@@ -105,13 +105,13 @@ def deserialize_json(data: dict) -> DashPackage:
                 data["encryption"]
             )
         )
-    if "includeEncoderConfigurationInSegments" in data:
+    if data.get("includeEncoderConfigurationInSegments") is not None:
         out["include_encoder_configuration_in_segments"] = data[
             "includeEncoderConfigurationInSegments"
         ]
-    if "includeIframeOnlyStream" in data:
+    if data.get("includeIframeOnlyStream") is not None:
         out["include_iframe_only_stream"] = data["includeIframeOnlyStream"]
-    if "periodTriggers" in data:
+    if data.get("periodTriggers") is not None:
         import capo_mediapackage_vod.types.__list_of__period_triggers_element
 
         out["period_triggers"] = (
@@ -119,9 +119,9 @@ def deserialize_json(data: dict) -> DashPackage:
                 data["periodTriggers"]
             )
         )
-    if "segmentDurationSeconds" in data:
+    if data.get("segmentDurationSeconds") is not None:
         out["segment_duration_seconds"] = data["segmentDurationSeconds"]
-    if "segmentTemplateFormat" in data:
+    if data.get("segmentTemplateFormat") is not None:
         import capo_mediapackage_vod.types.segment_template_format
 
         out["segment_template_format"] = (

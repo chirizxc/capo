@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: DeleteSessionResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteSessionResponse:
     out: DeleteSessionResponse = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     return out

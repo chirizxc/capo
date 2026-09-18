@@ -35,7 +35,7 @@ def serialize_aws_json_1_0(value: DateInterval) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DateInterval:
     out: DateInterval = {}  # type: ignore[typeddict-item]
-    if "StartDate" in data:
+    if data.get("StartDate") is not None:
         import capo_invoicing.types._prelude.timestamp
 
         out["start_date"] = (
@@ -45,7 +45,7 @@ def deserialize_aws_json_1_0(data: dict) -> DateInterval:
         )
     else:
         raise DeserializationError("DateInterval.start_date required")
-    if "EndDate" in data:
+    if data.get("EndDate") is not None:
         import capo_invoicing.types._prelude.timestamp
 
         out["end_date"] = (

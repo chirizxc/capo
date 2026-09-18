@@ -24,7 +24,7 @@ def serialize_json(value: FacetValidationException_) -> dict:
 
 def deserialize_json(data: dict) -> FacetValidationException_:
     out: FacetValidationException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class FacetValidationException(ServiceError):
 
     code: str | None = "FacetValidationException"
 
-    def __init__(self, data: FacetValidationException_):
+    def __init__(self, data: FacetValidationException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="FacetValidationException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "FacetValidationException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "FacetValidationException":
+        return cls(deserialize_json(data), message)

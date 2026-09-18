@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: CreateMLTransformResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateMLTransformResponse:
     out: CreateMLTransformResponse = {}  # type: ignore[typeddict-item]
-    if "TransformId" in data:
+    if data.get("TransformId") is not None:
         out["transform_id"] = data["TransformId"]
     return out

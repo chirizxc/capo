@@ -52,17 +52,17 @@ def serialize_aws_json_1_1(value: ModifyEventSubscriptionMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModifyEventSubscriptionMessage:
     out: ModifyEventSubscriptionMessage = {}  # type: ignore[typeddict-item]
-    if "SubscriptionName" in data:
+    if data.get("SubscriptionName") is not None:
         out["subscription_name"] = data["SubscriptionName"]
     else:
         raise DeserializationError(
             "ModifyEventSubscriptionMessage.subscription_name required"
         )
-    if "SnsTopicArn" in data:
+    if data.get("SnsTopicArn") is not None:
         out["sns_topic_arn"] = data["SnsTopicArn"]
-    if "SourceType" in data:
+    if data.get("SourceType") is not None:
         out["source_type"] = data["SourceType"]
-    if "EventCategories" in data:
+    if data.get("EventCategories") is not None:
         import capo_database_migration_service.types.event_categories_list
 
         out["event_categories"] = (
@@ -70,6 +70,6 @@ def deserialize_aws_json_1_1(data: dict) -> ModifyEventSubscriptionMessage:
                 data["EventCategories"]
             )
         )
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
     return out

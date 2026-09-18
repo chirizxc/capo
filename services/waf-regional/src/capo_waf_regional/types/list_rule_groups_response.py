@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: ListRuleGroupsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListRuleGroupsResponse:
     out: ListRuleGroupsResponse = {}  # type: ignore[typeddict-item]
-    if "NextMarker" in data:
+    if data.get("NextMarker") is not None:
         out["next_marker"] = data["NextMarker"]
-    if "RuleGroups" in data:
+    if data.get("RuleGroups") is not None:
         import capo_waf_regional.types.rule_group_summaries
 
         out["rule_groups"] = (

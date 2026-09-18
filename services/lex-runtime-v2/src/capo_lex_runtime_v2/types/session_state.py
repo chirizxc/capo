@@ -72,19 +72,19 @@ def serialize_json(value: SessionState) -> dict:
 
 def deserialize_json(data: dict) -> SessionState:
     out: SessionState = {}  # type: ignore[typeddict-item]
-    if "dialogAction" in data:
+    if data.get("dialogAction") is not None:
         import capo_lex_runtime_v2.types.dialog_action
 
         out["dialog_action"] = capo_lex_runtime_v2.types.dialog_action.deserialize_json(
             data["dialogAction"]
         )
-    if "intent" in data:
+    if data.get("intent") is not None:
         import capo_lex_runtime_v2.types.intent
 
         out["intent"] = capo_lex_runtime_v2.types.intent.deserialize_json(
             data["intent"]
         )
-    if "activeContexts" in data:
+    if data.get("activeContexts") is not None:
         import capo_lex_runtime_v2.types.active_contexts_list
 
         out["active_contexts"] = (
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> SessionState:
                 data["activeContexts"]
             )
         )
-    if "sessionAttributes" in data:
+    if data.get("sessionAttributes") is not None:
         import capo_lex_runtime_v2.types.string_map
 
         out["session_attributes"] = (
@@ -100,9 +100,9 @@ def deserialize_json(data: dict) -> SessionState:
                 data["sessionAttributes"]
             )
         )
-    if "originatingRequestId" in data:
+    if data.get("originatingRequestId") is not None:
         out["originating_request_id"] = data["originatingRequestId"]
-    if "runtimeHints" in data:
+    if data.get("runtimeHints") is not None:
         import capo_lex_runtime_v2.types.runtime_hints
 
         out["runtime_hints"] = capo_lex_runtime_v2.types.runtime_hints.deserialize_json(

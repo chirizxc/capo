@@ -251,18 +251,20 @@ class AsyncSsmSapClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_sap.types.delete_resource_permission_input.DeleteResourcePermissionInput = {}  # type: ignore[typeddict-item]
+        input_: capo_ssm_sap.types.delete_resource_permission_input.DeleteResourcePermissionInput = {
+            "resource_arn": resource_arn
+        }
         if action_type is not None:
             input_["action_type"] = action_type
         if source_resource_arn is not None:
             input_["source_resource_arn"] = source_resource_arn
-        input_["resource_arn"] = resource_arn
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def deregister_application(
@@ -299,14 +301,16 @@ class AsyncSsmSapClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_sap.types.deregister_application_input.DeregisterApplicationInput = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_ssm_sap.types.deregister_application_input.DeregisterApplicationInput = {
+            "application_id": application_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_application(
@@ -350,7 +354,7 @@ class AsyncSsmSapClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_sap.types.get_application_input.GetApplicationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_ssm_sap.types.get_application_input.GetApplicationInput = {}
         if application_id is not None:
             input_["application_id"] = application_id
         if application_arn is not None:
@@ -363,6 +367,7 @@ class AsyncSsmSapClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_component(
@@ -401,15 +406,17 @@ class AsyncSsmSapClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_sap.types.get_component_input.GetComponentInput = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["component_id"] = component_id
+        input_: capo_ssm_sap.types.get_component_input.GetComponentInput = {
+            "application_id": application_id,
+            "component_id": component_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_configuration_check_operation(
@@ -445,14 +452,16 @@ class AsyncSsmSapClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_sap.types.get_configuration_check_operation_input.GetConfigurationCheckOperationInput = {}  # type: ignore[typeddict-item]
-        input_["operation_id"] = operation_id
+        input_: capo_ssm_sap.types.get_configuration_check_operation_input.GetConfigurationCheckOperationInput = {
+            "operation_id": operation_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_database(
@@ -496,7 +505,7 @@ class AsyncSsmSapClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_sap.types.get_database_input.GetDatabaseInput = {}  # type: ignore[typeddict-item]
+        input_: capo_ssm_sap.types.get_database_input.GetDatabaseInput = {}
         if application_id is not None:
             input_["application_id"] = application_id
         if component_id is not None:
@@ -511,6 +520,7 @@ class AsyncSsmSapClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_operation(
@@ -546,14 +556,16 @@ class AsyncSsmSapClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_sap.types.get_operation_input.GetOperationInput = {}  # type: ignore[typeddict-item]
-        input_["operation_id"] = operation_id
+        input_: capo_ssm_sap.types.get_operation_input.GetOperationInput = {
+            "operation_id": operation_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_resource_permission(
@@ -596,16 +608,18 @@ class AsyncSsmSapClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_sap.types.get_resource_permission_input.GetResourcePermissionInput = {}  # type: ignore[typeddict-item]
+        input_: capo_ssm_sap.types.get_resource_permission_input.GetResourcePermissionInput = {
+            "resource_arn": resource_arn
+        }
         if action_type is not None:
             input_["action_type"] = action_type
-        input_["resource_arn"] = resource_arn
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_applications(
@@ -646,7 +660,7 @@ class AsyncSsmSapClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_sap.types.list_applications_input.ListApplicationsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_ssm_sap.types.list_applications_input.ListApplicationsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -659,6 +673,7 @@ class AsyncSsmSapClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_applications(
@@ -725,7 +740,7 @@ class AsyncSsmSapClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_sap.types.list_components_input.ListComponentsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_ssm_sap.types.list_components_input.ListComponentsInput = {}
         if application_id is not None:
             input_["application_id"] = application_id
         if next_token is not None:
@@ -738,6 +753,7 @@ class AsyncSsmSapClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_components(
@@ -800,7 +816,7 @@ class AsyncSsmSapClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_sap.types.list_configuration_check_definitions_input.ListConfigurationCheckDefinitionsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_ssm_sap.types.list_configuration_check_definitions_input.ListConfigurationCheckDefinitionsInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -811,6 +827,7 @@ class AsyncSsmSapClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_configuration_check_definitions(
@@ -878,8 +895,9 @@ class AsyncSsmSapClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_sap.types.list_configuration_check_operations_input.ListConfigurationCheckOperationsInput = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_ssm_sap.types.list_configuration_check_operations_input.ListConfigurationCheckOperationsInput = {
+            "application_id": application_id
+        }
         if list_mode is not None:
             input_["list_mode"] = list_mode
         if max_results is not None:
@@ -894,6 +912,7 @@ class AsyncSsmSapClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_configuration_check_operations(
@@ -967,7 +986,7 @@ class AsyncSsmSapClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_sap.types.list_databases_input.ListDatabasesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_ssm_sap.types.list_databases_input.ListDatabasesInput = {}
         if application_id is not None:
             input_["application_id"] = application_id
         if component_id is not None:
@@ -982,6 +1001,7 @@ class AsyncSsmSapClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_databases(
@@ -1050,8 +1070,9 @@ class AsyncSsmSapClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_sap.types.list_operation_events_input.ListOperationEventsInput = {}  # type: ignore[typeddict-item]
-        input_["operation_id"] = operation_id
+        input_: capo_ssm_sap.types.list_operation_events_input.ListOperationEventsInput = {
+            "operation_id": operation_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1064,6 +1085,7 @@ class AsyncSsmSapClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_operation_events(
@@ -1130,8 +1152,9 @@ class AsyncSsmSapClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_sap.types.list_operations_input.ListOperationsInput = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_ssm_sap.types.list_operations_input.ListOperationsInput = {
+            "application_id": application_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1144,6 +1167,7 @@ class AsyncSsmSapClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_operations(
@@ -1208,8 +1232,9 @@ class AsyncSsmSapClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_sap.types.list_sub_check_results_input.ListSubCheckResultsInput = {}  # type: ignore[typeddict-item]
-        input_["operation_id"] = operation_id
+        input_: capo_ssm_sap.types.list_sub_check_results_input.ListSubCheckResultsInput = {
+            "operation_id": operation_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1220,6 +1245,7 @@ class AsyncSsmSapClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_sub_check_results(
@@ -1282,8 +1308,9 @@ class AsyncSsmSapClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_sap.types.list_sub_check_rule_results_input.ListSubCheckRuleResultsInput = {}  # type: ignore[typeddict-item]
-        input_["sub_check_result_id"] = sub_check_result_id
+        input_: capo_ssm_sap.types.list_sub_check_rule_results_input.ListSubCheckRuleResultsInput = {
+            "sub_check_result_id": sub_check_result_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1294,6 +1321,7 @@ class AsyncSsmSapClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_sub_check_rule_results(
@@ -1355,14 +1383,16 @@ class AsyncSsmSapClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_sap.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_ssm_sap.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_resource_permission(
@@ -1405,16 +1435,18 @@ class AsyncSsmSapClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_sap.types.put_resource_permission_input.PutResourcePermissionInput = {}  # type: ignore[typeddict-item]
-        input_["action_type"] = action_type
-        input_["source_resource_arn"] = source_resource_arn
-        input_["resource_arn"] = resource_arn
+        input_: capo_ssm_sap.types.put_resource_permission_input.PutResourcePermissionInput = {
+            "action_type": action_type,
+            "source_resource_arn": source_resource_arn,
+            "resource_arn": resource_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def register_application(
@@ -1474,10 +1506,11 @@ class AsyncSsmSapClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_sap.types.register_application_input.RegisterApplicationInput = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["application_type"] = application_type
-        input_["instances"] = instances
+        input_: capo_ssm_sap.types.register_application_input.RegisterApplicationInput = {
+            "application_id": application_id,
+            "application_type": application_type,
+            "instances": instances,
+        }
         if sap_instance_number is not None:
             input_["sap_instance_number"] = sap_instance_number
         if sid is not None:
@@ -1496,6 +1529,7 @@ class AsyncSsmSapClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_application(
@@ -1533,14 +1567,16 @@ class AsyncSsmSapClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_sap.types.start_application_input.StartApplicationInput = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_ssm_sap.types.start_application_input.StartApplicationInput = {
+            "application_id": application_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_application_refresh(
@@ -1579,14 +1615,16 @@ class AsyncSsmSapClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_sap.types.start_application_refresh_input.StartApplicationRefreshInput = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_ssm_sap.types.start_application_refresh_input.StartApplicationRefreshInput = {
+            "application_id": application_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_configuration_checks(
@@ -1628,8 +1666,9 @@ class AsyncSsmSapClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_sap.types.start_configuration_checks_input.StartConfigurationChecksInput = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_ssm_sap.types.start_configuration_checks_input.StartConfigurationChecksInput = {
+            "application_id": application_id
+        }
         if configuration_check_ids is not None:
             input_["configuration_check_ids"] = configuration_check_ids
 
@@ -1638,6 +1677,7 @@ class AsyncSsmSapClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_application(
@@ -1681,8 +1721,9 @@ class AsyncSsmSapClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_sap.types.stop_application_input.StopApplicationInput = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_ssm_sap.types.stop_application_input.StopApplicationInput = {
+            "application_id": application_id
+        }
         if stop_connected_entity is not None:
             input_["stop_connected_entity"] = stop_connected_entity
         if include_ec2_instance_shutdown is not None:
@@ -1693,6 +1734,7 @@ class AsyncSsmSapClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -1731,15 +1773,17 @@ class AsyncSsmSapClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_sap.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_ssm_sap.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -1778,15 +1822,17 @@ class AsyncSsmSapClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_sap.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_ssm_sap.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_application_settings(
@@ -1837,8 +1883,9 @@ class AsyncSsmSapClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_ssm_sap.types.update_application_settings_input.UpdateApplicationSettingsInput = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_ssm_sap.types.update_application_settings_input.UpdateApplicationSettingsInput = {
+            "application_id": application_id
+        }
         if credentials_to_add_or_update is not None:
             input_["credentials_to_add_or_update"] = credentials_to_add_or_update
         if credentials_to_remove is not None:
@@ -1853,6 +1900,7 @@ class AsyncSsmSapClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

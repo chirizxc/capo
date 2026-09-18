@@ -73,11 +73,11 @@ def serialize_aws_json_1_1(value: EdgePackagingJobSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EdgePackagingJobSummary:
     out: EdgePackagingJobSummary = {}  # type: ignore[typeddict-item]
-    if "EdgePackagingJobArn" in data:
+    if data.get("EdgePackagingJobArn") is not None:
         out["edge_packaging_job_arn"] = data["EdgePackagingJobArn"]
-    if "EdgePackagingJobName" in data:
+    if data.get("EdgePackagingJobName") is not None:
         out["edge_packaging_job_name"] = data["EdgePackagingJobName"]
-    if "EdgePackagingJobStatus" in data:
+    if data.get("EdgePackagingJobStatus") is not None:
         import capo_sagemaker.types.edge_packaging_job_status
 
         out["edge_packaging_job_status"] = (
@@ -85,19 +85,19 @@ def deserialize_aws_json_1_1(data: dict) -> EdgePackagingJobSummary:
                 data["EdgePackagingJobStatus"]
             )
         )
-    if "CompilationJobName" in data:
+    if data.get("CompilationJobName") is not None:
         out["compilation_job_name"] = data["CompilationJobName"]
-    if "ModelName" in data:
+    if data.get("ModelName") is not None:
         out["model_name"] = data["ModelName"]
-    if "ModelVersion" in data:
+    if data.get("ModelVersion") is not None:
         out["model_version"] = data["ModelVersion"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (

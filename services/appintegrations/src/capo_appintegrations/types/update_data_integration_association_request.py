@@ -39,7 +39,7 @@ def serialize_json(value: UpdateDataIntegrationAssociationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDataIntegrationAssociationRequest:
     out: UpdateDataIntegrationAssociationRequest = {}  # type: ignore[typeddict-item]
-    if "ExecutionConfiguration" in data:
+    if data.get("ExecutionConfiguration") is not None:
         import capo_appintegrations.types.execution_configuration
 
         out["execution_configuration"] = (

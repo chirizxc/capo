@@ -63,23 +63,31 @@ def serialize_aws_json_1_0(value: Document) -> dict:
                 value["tokenized_body"]
             )
         )
-    out["OriginalScore"] = value["original_score"]
+    out["OriginalScore"] = (
+        "NaN"
+        if value["original_score"] != value["original_score"]
+        else "Infinity"
+        if value["original_score"] == float("inf")
+        else "-Infinity"
+        if value["original_score"] == float("-inf")
+        else value["original_score"]
+    )
     return out
 
 
 def deserialize_aws_json_1_0(data: dict) -> Document:
     out: Document = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("Document.id required")
-    if "GroupId" in data:
+    if data.get("GroupId") is not None:
         out["group_id"] = data["GroupId"]
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
-    if "Body" in data:
+    if data.get("Body") is not None:
         out["body"] = data["Body"]
-    if "TokenizedTitle" in data:
+    if data.get("TokenizedTitle") is not None:
         import capo_kendra_ranking.types.title_tokens_list
 
         out["tokenized_title"] = (
@@ -87,7 +95,7 @@ def deserialize_aws_json_1_0(data: dict) -> Document:
                 data["TokenizedTitle"]
             )
         )
-    if "TokenizedBody" in data:
+    if data.get("TokenizedBody") is not None:
         import capo_kendra_ranking.types.body_tokens_list
 
         out["tokenized_body"] = (
@@ -95,8 +103,8 @@ def deserialize_aws_json_1_0(data: dict) -> Document:
                 data["TokenizedBody"]
             )
         )
-    if "OriginalScore" in data:
-        out["original_score"] = data["OriginalScore"]
+    if data.get("OriginalScore") is not None:
+        out["original_score"] = float(data["OriginalScore"])
     else:
         raise DeserializationError("Document.original_score required")
     return out

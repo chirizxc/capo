@@ -42,7 +42,15 @@ class TargetTrackingScalingPolicyConfiguration(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: TargetTrackingScalingPolicyConfiguration) -> dict:
     out: dict = {}
-    out["TargetValue"] = value["target_value"]
+    out["TargetValue"] = (
+        "NaN"
+        if value["target_value"] != value["target_value"]
+        else "Infinity"
+        if value["target_value"] == float("inf")
+        else "-Infinity"
+        if value["target_value"] == float("-inf")
+        else value["target_value"]
+    )
     if "predefined_metric_specification" in value:
         import capo_application_auto_scaling.types.predefined_metric_specification
 
@@ -70,13 +78,13 @@ def serialize_aws_json_1_1(value: TargetTrackingScalingPolicyConfiguration) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> TargetTrackingScalingPolicyConfiguration:
     out: TargetTrackingScalingPolicyConfiguration = {}  # type: ignore[typeddict-item]
-    if "TargetValue" in data:
-        out["target_value"] = data["TargetValue"]
+    if data.get("TargetValue") is not None:
+        out["target_value"] = float(data["TargetValue"])
     else:
         raise DeserializationError(
             "TargetTrackingScalingPolicyConfiguration.target_value required"
         )
-    if "PredefinedMetricSpecification" in data:
+    if data.get("PredefinedMetricSpecification") is not None:
         import capo_application_auto_scaling.types.predefined_metric_specification
 
         out["predefined_metric_specification"] = (
@@ -84,7 +92,7 @@ def deserialize_aws_json_1_1(data: dict) -> TargetTrackingScalingPolicyConfigura
                 data["PredefinedMetricSpecification"]
             )
         )
-    if "CustomizedMetricSpecification" in data:
+    if data.get("CustomizedMetricSpecification") is not None:
         import capo_application_auto_scaling.types.customized_metric_specification
 
         out["customized_metric_specification"] = (
@@ -92,10 +100,10 @@ def deserialize_aws_json_1_1(data: dict) -> TargetTrackingScalingPolicyConfigura
                 data["CustomizedMetricSpecification"]
             )
         )
-    if "ScaleOutCooldown" in data:
+    if data.get("ScaleOutCooldown") is not None:
         out["scale_out_cooldown"] = data["ScaleOutCooldown"]
-    if "ScaleInCooldown" in data:
+    if data.get("ScaleInCooldown") is not None:
         out["scale_in_cooldown"] = data["ScaleInCooldown"]
-    if "DisableScaleIn" in data:
+    if data.get("DisableScaleIn") is not None:
         out["disable_scale_in"] = data["DisableScaleIn"]
     return out

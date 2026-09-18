@@ -38,7 +38,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> ListPerformanceAnalysisReportRecommendationsResponse:
     out: ListPerformanceAnalysisReportRecommendationsResponse = {}  # type: ignore[typeddict-item]
-    if "Recommendations" in data:
+    if data.get("Recommendations") is not None:
         import capo_pi.types.recommendation_list
 
         out["recommendations"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_1(
                 data["Recommendations"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

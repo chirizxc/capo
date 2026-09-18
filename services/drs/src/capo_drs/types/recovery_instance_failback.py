@@ -79,28 +79,28 @@ def serialize_json(value: RecoveryInstanceFailback) -> dict:
 
 def deserialize_json(data: dict) -> RecoveryInstanceFailback:
     out: RecoveryInstanceFailback = {}  # type: ignore[typeddict-item]
-    if "failbackClientID" in data:
+    if data.get("failbackClientID") is not None:
         out["failback_client_id"] = data["failbackClientID"]
-    if "failbackJobID" in data:
+    if data.get("failbackJobID") is not None:
         out["failback_job_id"] = data["failbackJobID"]
-    if "failbackInitiationTime" in data:
+    if data.get("failbackInitiationTime") is not None:
         out["failback_initiation_time"] = data["failbackInitiationTime"]
-    if "state" in data:
+    if data.get("state") is not None:
         out["state"] = data["state"]
-    if "agentLastSeenByServiceDateTime" in data:
+    if data.get("agentLastSeenByServiceDateTime") is not None:
         out["agent_last_seen_by_service_date_time"] = data[
             "agentLastSeenByServiceDateTime"
         ]
-    if "failbackClientLastSeenByServiceDateTime" in data:
+    if data.get("failbackClientLastSeenByServiceDateTime") is not None:
         out["failback_client_last_seen_by_service_date_time"] = data[
             "failbackClientLastSeenByServiceDateTime"
         ]
-    if "failbackToOriginalServer" in data:
+    if data.get("failbackToOriginalServer") is not None:
         out["failback_to_original_server"] = data["failbackToOriginalServer"]
-    if "firstByteDateTime" in data:
+    if data.get("firstByteDateTime") is not None:
         out["first_byte_date_time"] = data["firstByteDateTime"]
-    if "elapsedReplicationDuration" in data:
+    if data.get("elapsedReplicationDuration") is not None:
         out["elapsed_replication_duration"] = data["elapsedReplicationDuration"]
-    if "failbackLaunchType" in data:
+    if data.get("failbackLaunchType") is not None:
         out["failback_launch_type"] = data["failbackLaunchType"]
     return out

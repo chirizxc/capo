@@ -41,7 +41,7 @@ def serialize_json(value: StillWaitingResponseSpecification) -> dict:
 
 def deserialize_json(data: dict) -> StillWaitingResponseSpecification:
     out: StillWaitingResponseSpecification = {}  # type: ignore[typeddict-item]
-    if "messageGroups" in data:
+    if data.get("messageGroups") is not None:
         import capo_lex_models_v2.types.message_groups_list
 
         out["message_groups"] = (
@@ -53,18 +53,18 @@ def deserialize_json(data: dict) -> StillWaitingResponseSpecification:
         raise DeserializationError(
             "StillWaitingResponseSpecification.message_groups required"
         )
-    if "frequencyInSeconds" in data:
+    if data.get("frequencyInSeconds") is not None:
         out["frequency_in_seconds"] = data["frequencyInSeconds"]
     else:
         raise DeserializationError(
             "StillWaitingResponseSpecification.frequency_in_seconds required"
         )
-    if "timeoutInSeconds" in data:
+    if data.get("timeoutInSeconds") is not None:
         out["timeout_in_seconds"] = data["timeoutInSeconds"]
     else:
         raise DeserializationError(
             "StillWaitingResponseSpecification.timeout_in_seconds required"
         )
-    if "allowInterrupt" in data:
+    if data.get("allowInterrupt") is not None:
         out["allow_interrupt"] = data["allowInterrupt"]
     return out

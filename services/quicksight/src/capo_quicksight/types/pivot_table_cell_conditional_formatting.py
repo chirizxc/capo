@@ -63,13 +63,13 @@ def serialize_json(value: PivotTableCellConditionalFormatting) -> dict:
 
 def deserialize_json(data: dict) -> PivotTableCellConditionalFormatting:
     out: PivotTableCellConditionalFormatting = {}  # type: ignore[typeddict-item]
-    if "FieldId" in data:
+    if data.get("FieldId") is not None:
         out["field_id"] = data["FieldId"]
     else:
         raise DeserializationError(
             "PivotTableCellConditionalFormatting.field_id required"
         )
-    if "TextFormat" in data:
+    if data.get("TextFormat") is not None:
         import capo_quicksight.types.text_conditional_format
 
         out["text_format"] = (
@@ -77,7 +77,7 @@ def deserialize_json(data: dict) -> PivotTableCellConditionalFormatting:
                 data["TextFormat"]
             )
         )
-    if "Scope" in data:
+    if data.get("Scope") is not None:
         import capo_quicksight.types.pivot_table_conditional_formatting_scope
 
         out["scope"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> PivotTableCellConditionalFormatting:
                 data["Scope"]
             )
         )
-    if "Scopes" in data:
+    if data.get("Scopes") is not None:
         import capo_quicksight.types.pivot_table_conditional_formatting_scope_list
 
         out["scopes"] = (

@@ -36,7 +36,7 @@ def serialize_json(value: VectorEnrichmentJobDataSourceConfigInput) -> dict:
 
 
 def deserialize_json(data: dict) -> VectorEnrichmentJobDataSourceConfigInput:
-    if "S3Data" in data:
+    if data.get("S3Data") is not None:
         import capo_sagemaker_geospatial.types.vector_enrichment_job_s3_data
 
         return {

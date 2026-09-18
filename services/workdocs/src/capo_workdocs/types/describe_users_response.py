@@ -39,14 +39,14 @@ def serialize_json(value: DescribeUsersResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeUsersResponse:
     out: DescribeUsersResponse = {}  # type: ignore[typeddict-item]
-    if "Users" in data:
+    if data.get("Users") is not None:
         import capo_workdocs.types.organization_user_list
 
         out["users"] = capo_workdocs.types.organization_user_list.deserialize_json(
             data["Users"]
         )
-    if "TotalNumberOfUsers" in data:
+    if data.get("TotalNumberOfUsers") is not None:
         out["total_number_of_users"] = data["TotalNumberOfUsers"]
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
     return out

@@ -50,15 +50,15 @@ def serialize_aws_json_1_1(value: CreateCertificateRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateCertificateRequest:
     out: CreateCertificateRequest = {}  # type: ignore[typeddict-item]
-    if "certificateName" in data:
+    if data.get("certificateName") is not None:
         out["certificate_name"] = data["certificateName"]
     else:
         raise DeserializationError("CreateCertificateRequest.certificate_name required")
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
     else:
         raise DeserializationError("CreateCertificateRequest.domain_name required")
-    if "subjectAlternativeNames" in data:
+    if data.get("subjectAlternativeNames") is not None:
         import capo_lightsail.types.subject_alternative_name_list
 
         out["subject_alternative_names"] = (
@@ -66,7 +66,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateCertificateRequest:
                 data["subjectAlternativeNames"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_lightsail.types.tag_list
 
         out["tags"] = capo_lightsail.types.tag_list.deserialize_aws_json_1_1(

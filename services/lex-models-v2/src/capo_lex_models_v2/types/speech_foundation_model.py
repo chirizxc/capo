@@ -29,10 +29,10 @@ def serialize_json(value: SpeechFoundationModel) -> dict:
 
 def deserialize_json(data: dict) -> SpeechFoundationModel:
     out: SpeechFoundationModel = {}  # type: ignore[typeddict-item]
-    if "modelArn" in data:
+    if data.get("modelArn") is not None:
         out["model_arn"] = data["modelArn"]
     else:
         raise DeserializationError("SpeechFoundationModel.model_arn required")
-    if "voiceId" in data:
+    if data.get("voiceId") is not None:
         out["voice_id"] = data["voiceId"]
     return out

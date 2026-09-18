@@ -31,7 +31,7 @@ def serialize_json(value: ColumnFilterConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ColumnFilterConfiguration:
     out: ColumnFilterConfiguration = {}  # type: ignore[typeddict-item]
-    if "includedColumnNames" in data:
+    if data.get("includedColumnNames") is not None:
         import capo_datazone.types.column_name_list
 
         out["included_column_names"] = (

@@ -53,9 +53,9 @@ def serialize_json(value: LastUploaderStatus) -> dict:
 
 def deserialize_json(data: dict) -> LastUploaderStatus:
     out: LastUploaderStatus = {}  # type: ignore[typeddict-item]
-    if "JobStatusDetails" in data:
+    if data.get("JobStatusDetails") is not None:
         out["job_status_details"] = data["JobStatusDetails"]
-    if "LastCollectedTime" in data:
+    if data.get("LastCollectedTime") is not None:
         import capo_kinesis_video.types.timestamp
 
         out["last_collected_time"] = (
@@ -63,13 +63,13 @@ def deserialize_json(data: dict) -> LastUploaderStatus:
                 data["LastCollectedTime"]
             )
         )
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_kinesis_video.types.timestamp
 
         out["last_updated_time"] = capo_kinesis_video.types.timestamp.deserialize_json(
             data["LastUpdatedTime"]
         )
-    if "UploaderStatus" in data:
+    if data.get("UploaderStatus") is not None:
         import capo_kinesis_video.types.uploader_status
 
         out["uploader_status"] = (

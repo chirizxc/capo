@@ -54,11 +54,11 @@ def serialize_aws_json_1_1(value: ReservationUtilizationGroup) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReservationUtilizationGroup:
     out: ReservationUtilizationGroup = {}  # type: ignore[typeddict-item]
-    if "Key" in data:
+    if data.get("Key") is not None:
         out["key"] = data["Key"]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_cost_explorer.types.attributes
 
         out["attributes"] = (
@@ -66,7 +66,7 @@ def deserialize_aws_json_1_1(data: dict) -> ReservationUtilizationGroup:
                 data["Attributes"]
             )
         )
-    if "Utilization" in data:
+    if data.get("Utilization") is not None:
         import capo_cost_explorer.types.reservation_aggregates
 
         out["utilization"] = (

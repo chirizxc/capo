@@ -131,49 +131,49 @@ def serialize_json(value: DescribeApplicationInstanceResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeApplicationInstanceResponse:
     out: DescribeApplicationInstanceResponse = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DefaultRuntimeContextDevice" in data:
+    if data.get("DefaultRuntimeContextDevice") is not None:
         out["default_runtime_context_device"] = data["DefaultRuntimeContextDevice"]
-    if "DefaultRuntimeContextDeviceName" in data:
+    if data.get("DefaultRuntimeContextDeviceName") is not None:
         out["default_runtime_context_device_name"] = data[
             "DefaultRuntimeContextDeviceName"
         ]
-    if "ApplicationInstanceIdToReplace" in data:
+    if data.get("ApplicationInstanceIdToReplace") is not None:
         out["application_instance_id_to_replace"] = data[
             "ApplicationInstanceIdToReplace"
         ]
-    if "RuntimeRoleArn" in data:
+    if data.get("RuntimeRoleArn") is not None:
         out["runtime_role_arn"] = data["RuntimeRoleArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "HealthStatus" in data:
+    if data.get("HealthStatus") is not None:
         out["health_status"] = data["HealthStatus"]
-    if "StatusDescription" in data:
+    if data.get("StatusDescription") is not None:
         out["status_description"] = data["StatusDescription"]
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_panorama.types.time_stamp
 
         out["created_time"] = capo_panorama.types.time_stamp.deserialize_json(
             data["CreatedTime"]
         )
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_panorama.types.time_stamp
 
         out["last_updated_time"] = capo_panorama.types.time_stamp.deserialize_json(
             data["LastUpdatedTime"]
         )
-    if "ApplicationInstanceId" in data:
+    if data.get("ApplicationInstanceId") is not None:
         out["application_instance_id"] = data["ApplicationInstanceId"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_panorama.types.tag_map
 
         out["tags"] = capo_panorama.types.tag_map.deserialize_json(data["Tags"])
-    if "RuntimeContextStates" in data:
+    if data.get("RuntimeContextStates") is not None:
         import capo_panorama.types.reported_runtime_context_states
 
         out["runtime_context_states"] = (

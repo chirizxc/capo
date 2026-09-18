@@ -99,7 +99,7 @@ def serialize_json(value: UpdateVpcLinkResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateVpcLinkResponse:
     out: UpdateVpcLinkResponse = {}  # type: ignore[typeddict-item]
-    if "createdDate" in data:
+    if data.get("createdDate") is not None:
         import capo_apigatewayv2.types.__timestamp_iso8601
 
         out["created_date"] = (
@@ -107,9 +107,9 @@ def deserialize_json(data: dict) -> UpdateVpcLinkResponse:
                 data["createdDate"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_apigatewayv2.types.security_group_id_list
 
         out["security_group_ids"] = (
@@ -117,19 +117,19 @@ def deserialize_json(data: dict) -> UpdateVpcLinkResponse:
                 data["securityGroupIds"]
             )
         )
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_apigatewayv2.types.subnet_id_list
 
         out["subnet_ids"] = capo_apigatewayv2.types.subnet_id_list.deserialize_json(
             data["subnetIds"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_apigatewayv2.types.tags
 
         out["tags"] = capo_apigatewayv2.types.tags.deserialize_json(data["tags"])
-    if "vpcLinkId" in data:
+    if data.get("vpcLinkId") is not None:
         out["vpc_link_id"] = data["vpcLinkId"]
-    if "vpcLinkStatus" in data:
+    if data.get("vpcLinkStatus") is not None:
         import capo_apigatewayv2.types.vpc_link_status
 
         out["vpc_link_status"] = (
@@ -137,9 +137,9 @@ def deserialize_json(data: dict) -> UpdateVpcLinkResponse:
                 data["vpcLinkStatus"]
             )
         )
-    if "vpcLinkStatusMessage" in data:
+    if data.get("vpcLinkStatusMessage") is not None:
         out["vpc_link_status_message"] = data["vpcLinkStatusMessage"]
-    if "vpcLinkVersion" in data:
+    if data.get("vpcLinkVersion") is not None:
         import capo_apigatewayv2.types.vpc_link_version
 
         out["vpc_link_version"] = (

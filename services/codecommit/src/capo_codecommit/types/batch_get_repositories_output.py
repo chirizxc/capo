@@ -57,7 +57,7 @@ def serialize_aws_json_1_1(value: BatchGetRepositoriesOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetRepositoriesOutput:
     out: BatchGetRepositoriesOutput = {}  # type: ignore[typeddict-item]
-    if "repositories" in data:
+    if data.get("repositories") is not None:
         import capo_codecommit.types.repository_metadata_list
 
         out["repositories"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchGetRepositoriesOutput:
                 data["repositories"]
             )
         )
-    if "repositoriesNotFound" in data:
+    if data.get("repositoriesNotFound") is not None:
         import capo_codecommit.types.repository_not_found_list
 
         out["repositories_not_found"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchGetRepositoriesOutput:
                 data["repositoriesNotFound"]
             )
         )
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_codecommit.types.batch_get_repositories_errors_list
 
         out["errors"] = (

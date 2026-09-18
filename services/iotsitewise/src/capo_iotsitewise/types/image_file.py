@@ -32,7 +32,7 @@ def serialize_json(value: ImageFile) -> dict:
 
 def deserialize_json(data: dict) -> ImageFile:
     out: ImageFile = {}  # type: ignore[typeddict-item]
-    if "data" in data:
+    if data.get("data") is not None:
         import capo_iotsitewise.types.image_file_data
 
         out["data"] = capo_iotsitewise.types.image_file_data.deserialize_json(
@@ -40,7 +40,7 @@ def deserialize_json(data: dict) -> ImageFile:
         )
     else:
         raise DeserializationError("ImageFile.data required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_iotsitewise.types.image_file_type
 
         out["type"] = capo_iotsitewise.types.image_file_type.deserialize_json(

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ListPlaceIndexesResponseEntryList:
 
     out: ListPlaceIndexesResponseEntryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_location.types.list_place_indexes_response_entry.deserialize_json(item)
         )

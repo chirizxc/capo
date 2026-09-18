@@ -61,19 +61,19 @@ def serialize_json(value: DescribeAppVersionResourceRequest) -> dict:
 
 def deserialize_json(data: dict) -> DescribeAppVersionResourceRequest:
     out: DescribeAppVersionResourceRequest = {}  # type: ignore[typeddict-item]
-    if "appArn" in data:
+    if data.get("appArn") is not None:
         out["app_arn"] = data["appArn"]
     else:
         raise DeserializationError("DescribeAppVersionResourceRequest.app_arn required")
-    if "appVersion" in data:
+    if data.get("appVersion") is not None:
         out["app_version"] = data["appVersion"]
     else:
         raise DeserializationError(
             "DescribeAppVersionResourceRequest.app_version required"
         )
-    if "resourceName" in data:
+    if data.get("resourceName") is not None:
         out["resource_name"] = data["resourceName"]
-    if "logicalResourceId" in data:
+    if data.get("logicalResourceId") is not None:
         import capo_resiliencehub.types.logical_resource_id
 
         out["logical_resource_id"] = (
@@ -81,10 +81,10 @@ def deserialize_json(data: dict) -> DescribeAppVersionResourceRequest:
                 data["logicalResourceId"]
             )
         )
-    if "physicalResourceId" in data:
+    if data.get("physicalResourceId") is not None:
         out["physical_resource_id"] = data["physicalResourceId"]
-    if "awsRegion" in data:
+    if data.get("awsRegion") is not None:
         out["aws_region"] = data["awsRegion"]
-    if "awsAccountId" in data:
+    if data.get("awsAccountId") is not None:
         out["aws_account_id"] = data["awsAccountId"]
     return out

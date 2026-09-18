@@ -33,7 +33,7 @@ def serialize_json(value: ExchangeCodeForTokenRequest) -> dict:
 
 def deserialize_json(data: dict) -> ExchangeCodeForTokenRequest:
     out: ExchangeCodeForTokenRequest = {}  # type: ignore[typeddict-item]
-    if "request" in data:
+    if data.get("request") is not None:
         import capo_amplifyuibuilder.types.exchange_code_for_token_request_body
 
         out["request"] = (

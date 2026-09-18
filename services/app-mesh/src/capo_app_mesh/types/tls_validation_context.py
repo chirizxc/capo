@@ -41,7 +41,7 @@ def serialize_json(value: TlsValidationContext) -> dict:
 
 def deserialize_json(data: dict) -> TlsValidationContext:
     out: TlsValidationContext = {}  # type: ignore[typeddict-item]
-    if "trust" in data:
+    if data.get("trust") is not None:
         import capo_app_mesh.types.tls_validation_context_trust
 
         out["trust"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> TlsValidationContext:
         )
     else:
         raise DeserializationError("TlsValidationContext.trust required")
-    if "subjectAlternativeNames" in data:
+    if data.get("subjectAlternativeNames") is not None:
         import capo_app_mesh.types.subject_alternative_names
 
         out["subject_alternative_names"] = (

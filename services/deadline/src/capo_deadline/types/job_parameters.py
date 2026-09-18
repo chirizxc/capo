@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: JobParameters) -> dict:
 def deserialize_json(data: dict) -> JobParameters:
     out: JobParameters = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_deadline.types.job_parameter
 
         out[key] = capo_deadline.types.job_parameter.deserialize_json(value)

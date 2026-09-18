@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> UnprocessedGraphList:
 
     out: UnprocessedGraphList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_detective.types.unprocessed_graph.deserialize_json(item))
     return out

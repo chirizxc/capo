@@ -97,11 +97,11 @@ def serialize_aws_json_1_0(value: StreamDescription) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StreamDescription:
     out: StreamDescription = {}  # type: ignore[typeddict-item]
-    if "StreamArn" in data:
+    if data.get("StreamArn") is not None:
         out["stream_arn"] = data["StreamArn"]
-    if "StreamLabel" in data:
+    if data.get("StreamLabel") is not None:
         out["stream_label"] = data["StreamLabel"]
-    if "StreamStatus" in data:
+    if data.get("StreamStatus") is not None:
         import capo_dynamodb_streams.types.stream_status
 
         out["stream_status"] = (
@@ -109,7 +109,7 @@ def deserialize_aws_json_1_0(data: dict) -> StreamDescription:
                 data["StreamStatus"]
             )
         )
-    if "StreamViewType" in data:
+    if data.get("StreamViewType") is not None:
         import capo_dynamodb_streams.types.stream_view_type
 
         out["stream_view_type"] = (
@@ -117,7 +117,7 @@ def deserialize_aws_json_1_0(data: dict) -> StreamDescription:
                 data["StreamViewType"]
             )
         )
-    if "CreationRequestDateTime" in data:
+    if data.get("CreationRequestDateTime") is not None:
         import capo_dynamodb_streams.types.date
 
         out["creation_request_date_time"] = (
@@ -125,9 +125,9 @@ def deserialize_aws_json_1_0(data: dict) -> StreamDescription:
                 data["CreationRequestDateTime"]
             )
         )
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
-    if "KeySchema" in data:
+    if data.get("KeySchema") is not None:
         import capo_dynamodb_streams.types.key_schema
 
         out["key_schema"] = (
@@ -135,7 +135,7 @@ def deserialize_aws_json_1_0(data: dict) -> StreamDescription:
                 data["KeySchema"]
             )
         )
-    if "Shards" in data:
+    if data.get("Shards") is not None:
         import capo_dynamodb_streams.types.shard_description_list
 
         out["shards"] = (
@@ -143,6 +143,6 @@ def deserialize_aws_json_1_0(data: dict) -> StreamDescription:
                 data["Shards"]
             )
         )
-    if "LastEvaluatedShardId" in data:
+    if data.get("LastEvaluatedShardId") is not None:
         out["last_evaluated_shard_id"] = data["LastEvaluatedShardId"]
     return out

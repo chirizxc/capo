@@ -31,10 +31,10 @@ def serialize_json(value: DeleteLFTagExpressionRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteLFTagExpressionRequest:
     out: DeleteLFTagExpressionRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("DeleteLFTagExpressionRequest.name required")
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
     return out

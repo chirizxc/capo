@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: EntityNotFoundException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EntityNotFoundException_:
     out: EntityNotFoundException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "FromFederationSource" in data:
+    if data.get("FromFederationSource") is not None:
         out["from_federation_source"] = data["FromFederationSource"]
     return out
 
@@ -44,15 +44,18 @@ class EntityNotFoundException(ServiceError):
 
     code: str | None = "EntityNotFoundException"
 
-    def __init__(self, data: EntityNotFoundException_):
+    def __init__(self, data: EntityNotFoundException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="EntityNotFoundException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "EntityNotFoundException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "EntityNotFoundException":
+        return cls(deserialize_aws_json_1_1(data), message)

@@ -31,7 +31,7 @@ def serialize_json(value: LogAnomalyShowcase) -> dict:
 
 def deserialize_json(data: dict) -> LogAnomalyShowcase:
     out: LogAnomalyShowcase = {}  # type: ignore[typeddict-item]
-    if "LogAnomalyClasses" in data:
+    if data.get("LogAnomalyClasses") is not None:
         import capo_devops_guru.types.log_anomaly_classes
 
         out["log_anomaly_classes"] = (

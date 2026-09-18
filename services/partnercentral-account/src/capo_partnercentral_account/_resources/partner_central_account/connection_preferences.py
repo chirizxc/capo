@@ -68,14 +68,16 @@ class ConnectionPreferences:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_account.types.get_connection_preferences_request.GetConnectionPreferencesRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
+        input_: capo_partnercentral_account.types.get_connection_preferences_request.GetConnectionPreferencesRequest = {
+            "catalog": catalog
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_connection_preferences(
@@ -121,10 +123,11 @@ class ConnectionPreferences:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_account.types.update_connection_preferences_request.UpdateConnectionPreferencesRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["revision"] = revision
-        input_["access_type"] = access_type
+        input_: capo_partnercentral_account.types.update_connection_preferences_request.UpdateConnectionPreferencesRequest = {
+            "catalog": catalog,
+            "revision": revision,
+            "access_type": access_type,
+        }
         if excluded_participant_identifiers is not None:
             input_["excluded_participant_identifiers"] = (
                 excluded_participant_identifiers
@@ -135,6 +138,7 @@ class ConnectionPreferences:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -177,14 +181,16 @@ class AsyncConnectionPreferences:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_account.types.get_connection_preferences_request.GetConnectionPreferencesRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
+        input_: capo_partnercentral_account.types.get_connection_preferences_request.GetConnectionPreferencesRequest = {
+            "catalog": catalog
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_connection_preferences(
@@ -231,10 +237,11 @@ class AsyncConnectionPreferences:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_account.types.update_connection_preferences_request.UpdateConnectionPreferencesRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["revision"] = revision
-        input_["access_type"] = access_type
+        input_: capo_partnercentral_account.types.update_connection_preferences_request.UpdateConnectionPreferencesRequest = {
+            "catalog": catalog,
+            "revision": revision,
+            "access_type": access_type,
+        }
         if excluded_participant_identifiers is not None:
             input_["excluded_participant_identifiers"] = (
                 excluded_participant_identifiers
@@ -245,4 +252,5 @@ class AsyncConnectionPreferences:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

@@ -95,40 +95,40 @@ def serialize_json(value: GetServiceResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetServiceResponse:
     out: GetServiceResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_vpc_lattice.types.timestamp
 
         out["created_at"] = capo_vpc_lattice.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_vpc_lattice.types.timestamp
 
         out["last_updated_at"] = capo_vpc_lattice.types.timestamp.deserialize_json(
             data["lastUpdatedAt"]
         )
-    if "dnsEntry" in data:
+    if data.get("dnsEntry") is not None:
         import capo_vpc_lattice.types.dns_entry
 
         out["dns_entry"] = capo_vpc_lattice.types.dns_entry.deserialize_json(
             data["dnsEntry"]
         )
-    if "customDomainName" in data:
+    if data.get("customDomainName") is not None:
         out["custom_domain_name"] = data["customDomainName"]
-    if "certificateArn" in data:
+    if data.get("certificateArn") is not None:
         out["certificate_arn"] = data["certificateArn"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "authType" in data:
+    if data.get("authType") is not None:
         out["auth_type"] = data["authType"]
-    if "failureCode" in data:
+    if data.get("failureCode") is not None:
         out["failure_code"] = data["failureCode"]
-    if "failureMessage" in data:
+    if data.get("failureMessage") is not None:
         out["failure_message"] = data["failureMessage"]
     return out

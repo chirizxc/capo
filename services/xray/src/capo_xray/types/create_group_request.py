@@ -49,13 +49,13 @@ def serialize_json(value: CreateGroupRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateGroupRequest:
     out: CreateGroupRequest = {}  # type: ignore[typeddict-item]
-    if "GroupName" in data:
+    if data.get("GroupName") is not None:
         out["group_name"] = data["GroupName"]
     else:
         raise DeserializationError("CreateGroupRequest.group_name required")
-    if "FilterExpression" in data:
+    if data.get("FilterExpression") is not None:
         out["filter_expression"] = data["FilterExpression"]
-    if "InsightsConfiguration" in data:
+    if data.get("InsightsConfiguration") is not None:
         import capo_xray.types.insights_configuration
 
         out["insights_configuration"] = (
@@ -63,7 +63,7 @@ def deserialize_json(data: dict) -> CreateGroupRequest:
                 data["InsightsConfiguration"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_xray.types.tag_list
 
         out["tags"] = capo_xray.types.tag_list.deserialize_json(data["Tags"])

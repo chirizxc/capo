@@ -37,15 +37,18 @@ class ScheduledActionNotFoundFault(ServiceError):
 
     code: str | None = "ScheduledActionNotFoundFault"
 
-    def __init__(self, data: ScheduledActionNotFoundFault_):
+    def __init__(self, data: ScheduledActionNotFoundFault_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ScheduledActionNotFoundFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "ScheduledActionNotFoundFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "ScheduledActionNotFoundFault":
+        return cls(deserialize_query(el), message)

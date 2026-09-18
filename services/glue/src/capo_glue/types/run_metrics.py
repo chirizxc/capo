@@ -39,12 +39,12 @@ def serialize_aws_json_1_1(value: RunMetrics) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RunMetrics:
     out: RunMetrics = {}  # type: ignore[typeddict-item]
-    if "NumberOfBytesCompacted" in data:
+    if data.get("NumberOfBytesCompacted") is not None:
         out["number_of_bytes_compacted"] = data["NumberOfBytesCompacted"]
-    if "NumberOfFilesCompacted" in data:
+    if data.get("NumberOfFilesCompacted") is not None:
         out["number_of_files_compacted"] = data["NumberOfFilesCompacted"]
-    if "NumberOfDpus" in data:
+    if data.get("NumberOfDpus") is not None:
         out["number_of_dpus"] = data["NumberOfDpus"]
-    if "JobDurationInHour" in data:
+    if data.get("JobDurationInHour") is not None:
         out["job_duration_in_hour"] = data["JobDurationInHour"]
     return out

@@ -39,11 +39,11 @@ def serialize_json(value: CreateVpcEndpointRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateVpcEndpointRequest:
     out: CreateVpcEndpointRequest = {}  # type: ignore[typeddict-item]
-    if "DomainArn" in data:
+    if data.get("DomainArn") is not None:
         out["domain_arn"] = data["DomainArn"]
     else:
         raise DeserializationError("CreateVpcEndpointRequest.domain_arn required")
-    if "VpcOptions" in data:
+    if data.get("VpcOptions") is not None:
         import capo_elasticsearch_service.types.vpc_options
 
         out["vpc_options"] = (
@@ -53,6 +53,6 @@ def deserialize_json(data: dict) -> CreateVpcEndpointRequest:
         )
     else:
         raise DeserializationError("CreateVpcEndpointRequest.vpc_options required")
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

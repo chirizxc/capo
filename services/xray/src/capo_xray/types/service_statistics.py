@@ -44,28 +44,36 @@ def serialize_json(value: ServiceStatistics) -> dict:
     if "total_count" in value:
         out["TotalCount"] = value["total_count"]
     if "total_response_time" in value:
-        out["TotalResponseTime"] = value["total_response_time"]
+        out["TotalResponseTime"] = (
+            "NaN"
+            if value["total_response_time"] != value["total_response_time"]
+            else "Infinity"
+            if value["total_response_time"] == float("inf")
+            else "-Infinity"
+            if value["total_response_time"] == float("-inf")
+            else value["total_response_time"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> ServiceStatistics:
     out: ServiceStatistics = {}  # type: ignore[typeddict-item]
-    if "OkCount" in data:
+    if data.get("OkCount") is not None:
         out["ok_count"] = data["OkCount"]
-    if "ErrorStatistics" in data:
+    if data.get("ErrorStatistics") is not None:
         import capo_xray.types.error_statistics
 
         out["error_statistics"] = capo_xray.types.error_statistics.deserialize_json(
             data["ErrorStatistics"]
         )
-    if "FaultStatistics" in data:
+    if data.get("FaultStatistics") is not None:
         import capo_xray.types.fault_statistics
 
         out["fault_statistics"] = capo_xray.types.fault_statistics.deserialize_json(
             data["FaultStatistics"]
         )
-    if "TotalCount" in data:
+    if data.get("TotalCount") is not None:
         out["total_count"] = data["TotalCount"]
-    if "TotalResponseTime" in data:
-        out["total_response_time"] = data["TotalResponseTime"]
+    if data.get("TotalResponseTime") is not None:
+        out["total_response_time"] = float(data["TotalResponseTime"])
     return out

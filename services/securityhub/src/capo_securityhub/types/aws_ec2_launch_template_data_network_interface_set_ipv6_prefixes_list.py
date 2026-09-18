@@ -33,6 +33,8 @@ def deserialize_json(
 
     out: AwsEc2LaunchTemplateDataNetworkInterfaceSetIpv6PrefixesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_ec2_launch_template_data_network_interface_set_ipv6_prefixes_details.deserialize_json(
                 item

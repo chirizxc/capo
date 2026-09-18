@@ -29,11 +29,27 @@ class RoadSnapTracePoint(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: RoadSnapTracePoint) -> dict:
     out: dict = {}
-    out["Heading"] = value.get("heading", 0)
+    out["Heading"] = (
+        "NaN"
+        if value.get("heading", 0) != value.get("heading", 0)
+        else "Infinity"
+        if value.get("heading", 0) == float("inf")
+        else "-Infinity"
+        if value.get("heading", 0) == float("-inf")
+        else value.get("heading", 0)
+    )
     import capo_geo_routes.types.position
 
     out["Position"] = capo_geo_routes.types.position.serialize_json(value["position"])
-    out["Speed"] = value.get("speed", 0)
+    out["Speed"] = (
+        "NaN"
+        if value.get("speed", 0) != value.get("speed", 0)
+        else "Infinity"
+        if value.get("speed", 0) == float("inf")
+        else "-Infinity"
+        if value.get("speed", 0) == float("-inf")
+        else value.get("speed", 0)
+    )
     if "timestamp" in value:
         out["Timestamp"] = value["timestamp"]
     return out
@@ -41,11 +57,11 @@ def serialize_json(value: RoadSnapTracePoint) -> dict:
 
 def deserialize_json(data: dict) -> RoadSnapTracePoint:
     out: RoadSnapTracePoint = {}  # type: ignore[typeddict-item]
-    if "Heading" in data:
-        out["heading"] = data["Heading"]
+    if data.get("Heading") is not None:
+        out["heading"] = float(data["Heading"])
     else:
         out["heading"] = 0
-    if "Position" in data:
+    if data.get("Position") is not None:
         import capo_geo_routes.types.position
 
         out["position"] = capo_geo_routes.types.position.deserialize_json(
@@ -53,10 +69,10 @@ def deserialize_json(data: dict) -> RoadSnapTracePoint:
         )
     else:
         raise DeserializationError("RoadSnapTracePoint.position required")
-    if "Speed" in data:
-        out["speed"] = data["Speed"]
+    if data.get("Speed") is not None:
+        out["speed"] = float(data["Speed"])
     else:
         out["speed"] = 0
-    if "Timestamp" in data:
+    if data.get("Timestamp") is not None:
         out["timestamp"] = data["Timestamp"]
     return out

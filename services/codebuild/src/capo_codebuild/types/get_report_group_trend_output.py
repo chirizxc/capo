@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: GetReportGroupTrendOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetReportGroupTrendOutput:
     out: GetReportGroupTrendOutput = {}  # type: ignore[typeddict-item]
-    if "stats" in data:
+    if data.get("stats") is not None:
         import capo_codebuild.types.report_group_trend_stats
 
         out["stats"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetReportGroupTrendOutput:
                 data["stats"]
             )
         )
-    if "rawData" in data:
+    if data.get("rawData") is not None:
         import capo_codebuild.types.report_group_trend_raw_data_list
 
         out["raw_data"] = (

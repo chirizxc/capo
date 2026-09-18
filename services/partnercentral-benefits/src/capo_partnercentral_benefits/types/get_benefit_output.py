@@ -80,17 +80,17 @@ def serialize_aws_json_1_0(value: GetBenefitOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetBenefitOutput:
     out: GetBenefitOutput = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Programs" in data:
+    if data.get("Programs") is not None:
         import capo_partnercentral_benefits.types.programs
 
         out["programs"] = (
@@ -98,7 +98,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetBenefitOutput:
                 data["Programs"]
             )
         )
-    if "FulfillmentTypes" in data:
+    if data.get("FulfillmentTypes") is not None:
         import capo_partnercentral_benefits.types.fulfillment_types
 
         out["fulfillment_types"] = (
@@ -106,9 +106,9 @@ def deserialize_aws_json_1_0(data: dict) -> GetBenefitOutput:
                 data["FulfillmentTypes"]
             )
         )
-    if "BenefitRequestSchema" in data:
+    if data.get("BenefitRequestSchema") is not None:
         out["benefit_request_schema"] = data["BenefitRequestSchema"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_partnercentral_benefits.types.benefit_status
 
         out["status"] = (

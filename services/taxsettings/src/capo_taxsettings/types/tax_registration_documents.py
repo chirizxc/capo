@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> TaxRegistrationDocuments:
 
     out: TaxRegistrationDocuments = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_taxsettings.types.tax_registration_document.deserialize_json(item)
         )

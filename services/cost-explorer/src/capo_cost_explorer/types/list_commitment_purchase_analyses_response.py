@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: ListCommitmentPurchaseAnalysesResponse) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> ListCommitmentPurchaseAnalysesResponse:
     out: ListCommitmentPurchaseAnalysesResponse = {}  # type: ignore[typeddict-item]
-    if "AnalysisSummaryList" in data:
+    if data.get("AnalysisSummaryList") is not None:
         import capo_cost_explorer.types.analysis_summary_list
 
         out["analysis_summary_list"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListCommitmentPurchaseAnalysesRespon
                 data["AnalysisSummaryList"]
             )
         )
-    if "NextPageToken" in data:
+    if data.get("NextPageToken") is not None:
         out["next_page_token"] = data["NextPageToken"]
     return out

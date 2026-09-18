@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: AggregateOperation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AggregateOperation:
     out: AggregateOperation = {}  # type: ignore[typeddict-item]
-    if "Column" in data:
+    if data.get("Column") is not None:
         import capo_glue.types.enclosed_in_string_properties
 
         out["column"] = (
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(data: dict) -> AggregateOperation:
         )
     else:
         raise DeserializationError("AggregateOperation.column required")
-    if "AggFunc" in data:
+    if data.get("AggFunc") is not None:
         import capo_glue.types.agg_function
 
         out["agg_func"] = capo_glue.types.agg_function.deserialize_aws_json_1_1(

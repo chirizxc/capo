@@ -80,37 +80,37 @@ def serialize_json(value: Dashboard) -> dict:
 
 def deserialize_json(data: dict) -> Dashboard:
     out: Dashboard = {}  # type: ignore[typeddict-item]
-    if "DashboardId" in data:
+    if data.get("DashboardId") is not None:
         out["dashboard_id"] = data["DashboardId"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Version" in data:
+    if data.get("Version") is not None:
         import capo_quicksight.types.dashboard_version
 
         out["version"] = capo_quicksight.types.dashboard_version.deserialize_json(
             data["Version"]
         )
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_quicksight.types.timestamp
 
         out["created_time"] = capo_quicksight.types.timestamp.deserialize_json(
             data["CreatedTime"]
         )
-    if "LastPublishedTime" in data:
+    if data.get("LastPublishedTime") is not None:
         import capo_quicksight.types.timestamp
 
         out["last_published_time"] = capo_quicksight.types.timestamp.deserialize_json(
             data["LastPublishedTime"]
         )
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_quicksight.types.timestamp
 
         out["last_updated_time"] = capo_quicksight.types.timestamp.deserialize_json(
             data["LastUpdatedTime"]
         )
-    if "LinkEntities" in data:
+    if data.get("LinkEntities") is not None:
         import capo_quicksight.types.link_entity_arn_list
 
         out["link_entities"] = (

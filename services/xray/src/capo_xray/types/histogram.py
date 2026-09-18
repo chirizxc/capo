@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Histogram:
 
     out: Histogram = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_xray.types.histogram_entry.deserialize_json(item))
     return out

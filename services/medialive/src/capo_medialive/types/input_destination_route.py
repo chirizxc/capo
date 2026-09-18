@@ -27,8 +27,8 @@ def serialize_json(value: InputDestinationRoute) -> dict:
 
 def deserialize_json(data: dict) -> InputDestinationRoute:
     out: InputDestinationRoute = {}  # type: ignore[typeddict-item]
-    if "cidr" in data:
+    if data.get("cidr") is not None:
         out["cidr"] = data["cidr"]
-    if "gateway" in data:
+    if data.get("gateway") is not None:
         out["gateway"] = data["gateway"]
     return out

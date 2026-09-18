@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> UsageBasedRateCardList:
 
     out: UsageBasedRateCardList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_marketplace_agreement.types.usage_based_rate_card_item.deserialize_aws_json_1_0(
                 item

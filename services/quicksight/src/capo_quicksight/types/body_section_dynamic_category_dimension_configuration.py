@@ -47,7 +47,7 @@ def serialize_json(value: BodySectionDynamicCategoryDimensionConfiguration) -> d
 
 def deserialize_json(data: dict) -> BodySectionDynamicCategoryDimensionConfiguration:
     out: BodySectionDynamicCategoryDimensionConfiguration = {}  # type: ignore[typeddict-item]
-    if "Column" in data:
+    if data.get("Column") is not None:
         import capo_quicksight.types.column_identifier
 
         out["column"] = capo_quicksight.types.column_identifier.deserialize_json(
@@ -57,9 +57,9 @@ def deserialize_json(data: dict) -> BodySectionDynamicCategoryDimensionConfigura
         raise DeserializationError(
             "BodySectionDynamicCategoryDimensionConfiguration.column required"
         )
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
-    if "SortByMetrics" in data:
+    if data.get("SortByMetrics") is not None:
         import capo_quicksight.types.body_section_dynamic_dimension_sort_configuration_list
 
         out["sort_by_metrics"] = (

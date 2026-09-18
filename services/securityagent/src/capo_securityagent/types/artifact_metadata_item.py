@@ -30,9 +30,9 @@ def serialize_json(value: ArtifactMetadataItem) -> dict:
     out["agentSpaceId"] = value["agent_space_id"]
     out["artifactId"] = value["artifact_id"]
     out["fileName"] = value["file_name"]
-    import capo_securityagent.types._prelude.timestamp
+    import capo_securityagent._protocol.serialize
 
-    out["updatedAt"] = capo_securityagent.types._prelude.timestamp.serialize_json(
+    out["updatedAt"] = capo_securityagent._protocol.serialize.fmt_date_time(
         value["updated_at"]
     )
     return out
@@ -40,25 +40,23 @@ def serialize_json(value: ArtifactMetadataItem) -> dict:
 
 def deserialize_json(data: dict) -> ArtifactMetadataItem:
     out: ArtifactMetadataItem = {}  # type: ignore[typeddict-item]
-    if "agentSpaceId" in data:
+    if data.get("agentSpaceId") is not None:
         out["agent_space_id"] = data["agentSpaceId"]
     else:
         raise DeserializationError("ArtifactMetadataItem.agent_space_id required")
-    if "artifactId" in data:
+    if data.get("artifactId") is not None:
         out["artifact_id"] = data["artifactId"]
     else:
         raise DeserializationError("ArtifactMetadataItem.artifact_id required")
-    if "fileName" in data:
+    if data.get("fileName") is not None:
         out["file_name"] = data["fileName"]
     else:
         raise DeserializationError("ArtifactMetadataItem.file_name required")
-    if "updatedAt" in data:
-        import capo_securityagent.types._prelude.timestamp
+    if data.get("updatedAt") is not None:
+        import datetime
 
-        out["updated_at"] = (
-            capo_securityagent.types._prelude.timestamp.deserialize_json(
-                data["updatedAt"]
-            )
+        out["updated_at"] = datetime.datetime.fromisoformat(
+            data["updatedAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("ArtifactMetadataItem.updated_at required")

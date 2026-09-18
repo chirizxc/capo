@@ -28,7 +28,7 @@ def serialize_json(value: UpdateSolNetworkPackageOutput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSolNetworkPackageOutput:
     out: UpdateSolNetworkPackageOutput = {}  # type: ignore[typeddict-item]
-    if "nsdOperationalState" in data:
+    if data.get("nsdOperationalState") is not None:
         import capo_tnb.types.nsd_operational_state
 
         out["nsd_operational_state"] = (

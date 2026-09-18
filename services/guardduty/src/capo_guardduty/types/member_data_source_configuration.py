@@ -49,9 +49,9 @@ def serialize_json(value: MemberDataSourceConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> MemberDataSourceConfiguration:
     out: MemberDataSourceConfiguration = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "dataSources" in data:
+    if data.get("dataSources") is not None:
         import capo_guardduty.types.data_source_configurations_result
 
         out["data_sources"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> MemberDataSourceConfiguration:
                 data["dataSources"]
             )
         )
-    if "features" in data:
+    if data.get("features") is not None:
         import capo_guardduty.types.member_features_configurations_results
 
         out["features"] = (

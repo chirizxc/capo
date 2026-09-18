@@ -43,16 +43,16 @@ def serialize_aws_json_1_1(value: Parameter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Parameter:
     out: Parameter = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DataType" in data:
+    if data.get("DataType") is not None:
         out["data_type"] = data["DataType"]
-    if "AllowedValues" in data:
+    if data.get("AllowedValues") is not None:
         out["allowed_values"] = data["AllowedValues"]
-    if "MinimumEngineVersion" in data:
+    if data.get("MinimumEngineVersion") is not None:
         out["minimum_engine_version"] = data["MinimumEngineVersion"]
     return out

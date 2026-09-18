@@ -34,11 +34,11 @@ def serialize_aws_json_1_1(value: RevokeIpRulesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RevokeIpRulesRequest:
     out: RevokeIpRulesRequest = {}  # type: ignore[typeddict-item]
-    if "GroupId" in data:
+    if data.get("GroupId") is not None:
         out["group_id"] = data["GroupId"]
     else:
         raise DeserializationError("RevokeIpRulesRequest.group_id required")
-    if "UserRules" in data:
+    if data.get("UserRules") is not None:
         import capo_workspaces.types.ip_revoked_rule_list
 
         out["user_rules"] = (

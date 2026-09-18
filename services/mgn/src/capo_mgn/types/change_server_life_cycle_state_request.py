@@ -39,13 +39,13 @@ def serialize_json(value: ChangeServerLifeCycleStateRequest) -> dict:
 
 def deserialize_json(data: dict) -> ChangeServerLifeCycleStateRequest:
     out: ChangeServerLifeCycleStateRequest = {}  # type: ignore[typeddict-item]
-    if "sourceServerID" in data:
+    if data.get("sourceServerID") is not None:
         out["source_server_id"] = data["sourceServerID"]
     else:
         raise DeserializationError(
             "ChangeServerLifeCycleStateRequest.source_server_id required"
         )
-    if "lifeCycle" in data:
+    if data.get("lifeCycle") is not None:
         import capo_mgn.types.change_server_life_cycle_state_source_server_lifecycle
 
         out["life_cycle"] = (
@@ -57,6 +57,6 @@ def deserialize_json(data: dict) -> ChangeServerLifeCycleStateRequest:
         raise DeserializationError(
             "ChangeServerLifeCycleStateRequest.life_cycle required"
         )
-    if "accountID" in data:
+    if data.get("accountID") is not None:
         out["account_id"] = data["accountID"]
     return out

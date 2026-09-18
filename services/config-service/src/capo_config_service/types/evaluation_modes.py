@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> EvaluationModes:
 
     out: EvaluationModes = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_config_service.types.evaluation_mode_configuration.deserialize_aws_json_1_1(
                 item

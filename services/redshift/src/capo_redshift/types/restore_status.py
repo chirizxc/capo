@@ -42,7 +42,18 @@ def serialize_query(
         pairs.append(
             (
                 f"{key_prefix}CurrentRestoreRateInMegaBytesPerSecond",
-                str(value["current_restore_rate_in_mega_bytes_per_second"]),
+                (
+                    "NaN"
+                    if value["current_restore_rate_in_mega_bytes_per_second"]
+                    != value["current_restore_rate_in_mega_bytes_per_second"]
+                    else "Infinity"
+                    if value["current_restore_rate_in_mega_bytes_per_second"]
+                    == float("inf")
+                    else "-Infinity"
+                    if value["current_restore_rate_in_mega_bytes_per_second"]
+                    == float("-inf")
+                    else str(value["current_restore_rate_in_mega_bytes_per_second"])
+                ),
             )
         )
     if "snapshot_size_in_mega_bytes" in value:

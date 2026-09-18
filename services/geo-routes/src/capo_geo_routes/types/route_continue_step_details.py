@@ -28,7 +28,7 @@ def serialize_json(value: RouteContinueStepDetails) -> dict:
 
 def deserialize_json(data: dict) -> RouteContinueStepDetails:
     out: RouteContinueStepDetails = {}  # type: ignore[typeddict-item]
-    if "Intersection" in data:
+    if data.get("Intersection") is not None:
         import capo_geo_routes.types.localized_string_list
 
         out["intersection"] = (

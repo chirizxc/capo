@@ -38,9 +38,9 @@ def deserialize_json(
     data: dict,
 ) -> AwsEc2LaunchTemplateDataInstanceMarketOptionsDetails:
     out: AwsEc2LaunchTemplateDataInstanceMarketOptionsDetails = {}  # type: ignore[typeddict-item]
-    if "MarketType" in data:
+    if data.get("MarketType") is not None:
         out["market_type"] = data["MarketType"]
-    if "SpotOptions" in data:
+    if data.get("SpotOptions") is not None:
         import capo_securityhub.types.aws_ec2_launch_template_data_instance_market_options_spot_options_details
 
         out["spot_options"] = (

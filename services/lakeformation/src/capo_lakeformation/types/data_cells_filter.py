@@ -68,35 +68,35 @@ def serialize_json(value: DataCellsFilter) -> dict:
 
 def deserialize_json(data: dict) -> DataCellsFilter:
     out: DataCellsFilter = {}  # type: ignore[typeddict-item]
-    if "TableCatalogId" in data:
+    if data.get("TableCatalogId") is not None:
         out["table_catalog_id"] = data["TableCatalogId"]
     else:
         raise DeserializationError("DataCellsFilter.table_catalog_id required")
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
     else:
         raise DeserializationError("DataCellsFilter.database_name required")
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
     else:
         raise DeserializationError("DataCellsFilter.table_name required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("DataCellsFilter.name required")
-    if "RowFilter" in data:
+    if data.get("RowFilter") is not None:
         import capo_lakeformation.types.row_filter
 
         out["row_filter"] = capo_lakeformation.types.row_filter.deserialize_json(
             data["RowFilter"]
         )
-    if "ColumnNames" in data:
+    if data.get("ColumnNames") is not None:
         import capo_lakeformation.types.column_names
 
         out["column_names"] = capo_lakeformation.types.column_names.deserialize_json(
             data["ColumnNames"]
         )
-    if "ColumnWildcard" in data:
+    if data.get("ColumnWildcard") is not None:
         import capo_lakeformation.types.column_wildcard
 
         out["column_wildcard"] = (
@@ -104,6 +104,6 @@ def deserialize_json(data: dict) -> DataCellsFilter:
                 data["ColumnWildcard"]
             )
         )
-    if "VersionId" in data:
+    if data.get("VersionId") is not None:
         out["version_id"] = data["VersionId"]
     return out

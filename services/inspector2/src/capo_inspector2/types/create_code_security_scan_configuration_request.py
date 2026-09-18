@@ -58,13 +58,13 @@ def serialize_json(value: CreateCodeSecurityScanConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateCodeSecurityScanConfigurationRequest:
     out: CreateCodeSecurityScanConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError(
             "CreateCodeSecurityScanConfigurationRequest.name required"
         )
-    if "level" in data:
+    if data.get("level") is not None:
         import capo_inspector2.types.configuration_level
 
         out["level"] = capo_inspector2.types.configuration_level.deserialize_json(
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> CreateCodeSecurityScanConfigurationRequest:
         raise DeserializationError(
             "CreateCodeSecurityScanConfigurationRequest.level required"
         )
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_inspector2.types.code_security_scan_configuration
 
         out["configuration"] = (
@@ -86,13 +86,13 @@ def deserialize_json(data: dict) -> CreateCodeSecurityScanConfigurationRequest:
         raise DeserializationError(
             "CreateCodeSecurityScanConfigurationRequest.configuration required"
         )
-    if "scopeSettings" in data:
+    if data.get("scopeSettings") is not None:
         import capo_inspector2.types.scope_settings
 
         out["scope_settings"] = capo_inspector2.types.scope_settings.deserialize_json(
             data["scopeSettings"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_inspector2.types.tag_map
 
         out["tags"] = capo_inspector2.types.tag_map.deserialize_json(data["tags"])

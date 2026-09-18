@@ -46,15 +46,23 @@ def serialize_aws_json_1_1(value: BillingRecord) -> dict:
         out["BillDate"] = capo_route_53_domains.types.timestamp.serialize_aws_json_1_1(
             value["bill_date"]
         )
-    out["Price"] = value.get("price", 0)
+    out["Price"] = (
+        "NaN"
+        if value.get("price", 0) != value.get("price", 0)
+        else "Infinity"
+        if value.get("price", 0) == float("inf")
+        else "-Infinity"
+        if value.get("price", 0) == float("-inf")
+        else value.get("price", 0)
+    )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> BillingRecord:
     out: BillingRecord = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
-    if "Operation" in data:
+    if data.get("Operation") is not None:
         import capo_route_53_domains.types.operation_type
 
         out["operation"] = (
@@ -62,9 +70,9 @@ def deserialize_aws_json_1_1(data: dict) -> BillingRecord:
                 data["Operation"]
             )
         )
-    if "InvoiceId" in data:
+    if data.get("InvoiceId") is not None:
         out["invoice_id"] = data["InvoiceId"]
-    if "BillDate" in data:
+    if data.get("BillDate") is not None:
         import capo_route_53_domains.types.timestamp
 
         out["bill_date"] = (
@@ -72,8 +80,8 @@ def deserialize_aws_json_1_1(data: dict) -> BillingRecord:
                 data["BillDate"]
             )
         )
-    if "Price" in data:
-        out["price"] = data["Price"]
+    if data.get("Price") is not None:
+        out["price"] = float(data["Price"])
     else:
         out["price"] = 0
     return out

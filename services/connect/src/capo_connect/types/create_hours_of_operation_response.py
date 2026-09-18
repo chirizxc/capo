@@ -30,8 +30,8 @@ def serialize_json(value: CreateHoursOfOperationResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateHoursOfOperationResponse:
     out: CreateHoursOfOperationResponse = {}  # type: ignore[typeddict-item]
-    if "HoursOfOperationId" in data:
+    if data.get("HoursOfOperationId") is not None:
         out["hours_of_operation_id"] = data["HoursOfOperationId"]
-    if "HoursOfOperationArn" in data:
+    if data.get("HoursOfOperationArn") is not None:
         out["hours_of_operation_arn"] = data["HoursOfOperationArn"]
     return out

@@ -29,10 +29,10 @@ def serialize_json(value: QuickResponseOrderField) -> dict:
 
 def deserialize_json(data: dict) -> QuickResponseOrderField:
     out: QuickResponseOrderField = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("QuickResponseOrderField.name required")
-    if "order" in data:
+    if data.get("order") is not None:
         out["order"] = data["order"]
     return out

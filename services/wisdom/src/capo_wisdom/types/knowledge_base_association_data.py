@@ -28,8 +28,8 @@ def serialize_json(value: KnowledgeBaseAssociationData) -> dict:
 
 def deserialize_json(data: dict) -> KnowledgeBaseAssociationData:
     out: KnowledgeBaseAssociationData = {}  # type: ignore[typeddict-item]
-    if "knowledgeBaseId" in data:
+    if data.get("knowledgeBaseId") is not None:
         out["knowledge_base_id"] = data["knowledgeBaseId"]
-    if "knowledgeBaseArn" in data:
+    if data.get("knowledgeBaseArn") is not None:
         out["knowledge_base_arn"] = data["knowledgeBaseArn"]
     return out

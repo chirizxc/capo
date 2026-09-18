@@ -28,7 +28,7 @@ def serialize_json(value: CreateLoggingConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateLoggingConfigurationResponse:
     out: CreateLoggingConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_amp.types.logging_configuration_status
 
         out["status"] = capo_amp.types.logging_configuration_status.deserialize_json(

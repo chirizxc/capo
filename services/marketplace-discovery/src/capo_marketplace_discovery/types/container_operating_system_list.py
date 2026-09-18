@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ContainerOperatingSystemList:
 
     out: ContainerOperatingSystemList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_marketplace_discovery.types.container_operating_system.deserialize_json(
                 item

@@ -55,9 +55,16 @@ def serialize_json(value: BehaviorModelTrainingSummary) -> dict:
             value["model_status"]
         )
     if "datapoints_collection_percentage" in value:
-        out["datapointsCollectionPercentage"] = value[
-            "datapoints_collection_percentage"
-        ]
+        out["datapointsCollectionPercentage"] = (
+            "NaN"
+            if value["datapoints_collection_percentage"]
+            != value["datapoints_collection_percentage"]
+            else "Infinity"
+            if value["datapoints_collection_percentage"] == float("inf")
+            else "-Infinity"
+            if value["datapoints_collection_percentage"] == float("-inf")
+            else value["datapoints_collection_percentage"]
+        )
     if "last_model_refresh_date" in value:
         import capo_iot.types.timestamp
 
@@ -69,11 +76,11 @@ def serialize_json(value: BehaviorModelTrainingSummary) -> dict:
 
 def deserialize_json(data: dict) -> BehaviorModelTrainingSummary:
     out: BehaviorModelTrainingSummary = {}  # type: ignore[typeddict-item]
-    if "securityProfileName" in data:
+    if data.get("securityProfileName") is not None:
         out["security_profile_name"] = data["securityProfileName"]
-    if "behaviorName" in data:
+    if data.get("behaviorName") is not None:
         out["behavior_name"] = data["behaviorName"]
-    if "trainingDataCollectionStartDate" in data:
+    if data.get("trainingDataCollectionStartDate") is not None:
         import capo_iot.types.timestamp
 
         out["training_data_collection_start_date"] = (
@@ -81,15 +88,17 @@ def deserialize_json(data: dict) -> BehaviorModelTrainingSummary:
                 data["trainingDataCollectionStartDate"]
             )
         )
-    if "modelStatus" in data:
+    if data.get("modelStatus") is not None:
         import capo_iot.types.model_status
 
         out["model_status"] = capo_iot.types.model_status.deserialize_json(
             data["modelStatus"]
         )
-    if "datapointsCollectionPercentage" in data:
-        out["datapoints_collection_percentage"] = data["datapointsCollectionPercentage"]
-    if "lastModelRefreshDate" in data:
+    if data.get("datapointsCollectionPercentage") is not None:
+        out["datapoints_collection_percentage"] = float(
+            data["datapointsCollectionPercentage"]
+        )
+    if data.get("lastModelRefreshDate") is not None:
         import capo_iot.types.timestamp
 
         out["last_model_refresh_date"] = capo_iot.types.timestamp.deserialize_json(

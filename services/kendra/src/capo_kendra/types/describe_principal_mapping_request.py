@@ -33,13 +33,13 @@ def serialize_aws_json_1_1(value: DescribePrincipalMappingRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribePrincipalMappingRequest:
     out: DescribePrincipalMappingRequest = {}  # type: ignore[typeddict-item]
-    if "IndexId" in data:
+    if data.get("IndexId") is not None:
         out["index_id"] = data["IndexId"]
     else:
         raise DeserializationError("DescribePrincipalMappingRequest.index_id required")
-    if "DataSourceId" in data:
+    if data.get("DataSourceId") is not None:
         out["data_source_id"] = data["DataSourceId"]
-    if "GroupId" in data:
+    if data.get("GroupId") is not None:
         out["group_id"] = data["GroupId"]
     else:
         raise DeserializationError("DescribePrincipalMappingRequest.group_id required")

@@ -13,9 +13,9 @@ from capo_marketplace_catalog import AsyncMarketplaceCatalogClient
 
 
 async def main():
-    async with AsyncMarketplaceCatalogClient() as s3:
+    async with AsyncMarketplaceCatalogClient() as marketplace_catalog:
         # Example: call the batch_describe_entities operation
-        response = await s3.batch_describe_entities()
+        response = await marketplace_catalog.batch_describe_entities()
         print(response["entity_details"])
 ```
 
@@ -28,9 +28,9 @@ from capo_marketplace_catalog import AsyncMarketplaceCatalogClient
 
 
 async def main():
-    async with AsyncMarketplaceCatalogClient() as s3:
+    async with AsyncMarketplaceCatalogClient() as marketplace_catalog:
         # Example: paginate over list_change_sets
-        async for item in s3.iter_list_change_sets():
+        async for item in marketplace_catalog.iter_list_change_sets():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_marketplace_catalog.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncMarketplaceCatalogClient() as s3:
+    async with AsyncMarketplaceCatalogClient() as marketplace_catalog:
         try:
-            await s3.batch_describe_entities()
+            await marketplace_catalog.batch_describe_entities()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_marketplace_catalog import AsyncMarketplaceCatalogClient
 
 
 async def main():
-    async with AsyncMarketplaceCatalogClient() as s3:
+    async with AsyncMarketplaceCatalogClient() as marketplace_catalog:
         # Default: 3 attempts for every operation
-        response = await s3.batch_describe_entities()
+        response = await marketplace_catalog.batch_describe_entities()
 
         # Override per operation
-        response = await s3.batch_describe_entities(config_overrides={"retry_max_attempts": 5})
+        response = await marketplace_catalog.batch_describe_entities(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.batch_describe_entities(config_overrides={"retry_max_attempts": 1})
+        response = await marketplace_catalog.batch_describe_entities(config_overrides={"retry_max_attempts": 1})
 ```

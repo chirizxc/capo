@@ -54,7 +54,7 @@ def serialize_json(value: GetResourceShareInvitationsRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetResourceShareInvitationsRequest:
     out: GetResourceShareInvitationsRequest = {}  # type: ignore[typeddict-item]
-    if "resourceShareInvitationArns" in data:
+    if data.get("resourceShareInvitationArns") is not None:
         import capo_ram.types.resource_share_invitation_arn_list
 
         out["resource_share_invitation_arns"] = (
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> GetResourceShareInvitationsRequest:
                 data["resourceShareInvitationArns"]
             )
         )
-    if "resourceShareArns" in data:
+    if data.get("resourceShareArns") is not None:
         import capo_ram.types.resource_share_arn_list
 
         out["resource_share_arns"] = (
@@ -70,8 +70,8 @@ def deserialize_json(data: dict) -> GetResourceShareInvitationsRequest:
                 data["resourceShareArns"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

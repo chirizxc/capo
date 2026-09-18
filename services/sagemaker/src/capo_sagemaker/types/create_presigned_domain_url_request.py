@@ -56,18 +56,18 @@ def serialize_aws_json_1_1(value: CreatePresignedDomainUrlRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreatePresignedDomainUrlRequest:
     out: CreatePresignedDomainUrlRequest = {}  # type: ignore[typeddict-item]
-    if "DomainId" in data:
+    if data.get("DomainId") is not None:
         out["domain_id"] = data["DomainId"]
-    if "UserProfileName" in data:
+    if data.get("UserProfileName") is not None:
         out["user_profile_name"] = data["UserProfileName"]
-    if "SessionExpirationDurationInSeconds" in data:
+    if data.get("SessionExpirationDurationInSeconds") is not None:
         out["session_expiration_duration_in_seconds"] = data[
             "SessionExpirationDurationInSeconds"
         ]
-    if "ExpiresInSeconds" in data:
+    if data.get("ExpiresInSeconds") is not None:
         out["expires_in_seconds"] = data["ExpiresInSeconds"]
-    if "SpaceName" in data:
+    if data.get("SpaceName") is not None:
         out["space_name"] = data["SpaceName"]
-    if "LandingUri" in data:
+    if data.get("LandingUri") is not None:
         out["landing_uri"] = data["LandingUri"]
     return out

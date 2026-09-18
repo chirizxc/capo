@@ -82,23 +82,23 @@ def serialize_json(value: S3Location) -> dict:
 
 def deserialize_json(data: dict) -> S3Location:
     out: S3Location = {}  # type: ignore[typeddict-item]
-    if "BucketName" in data:
+    if data.get("BucketName") is not None:
         out["bucket_name"] = data["BucketName"]
-    if "Prefix" in data:
+    if data.get("Prefix") is not None:
         out["prefix"] = data["Prefix"]
-    if "Encryption" in data:
+    if data.get("Encryption") is not None:
         import capo_glacier.types.encryption
 
         out["encryption"] = capo_glacier.types.encryption.deserialize_json(
             data["Encryption"]
         )
-    if "CannedACL" in data:
+    if data.get("CannedACL") is not None:
         import capo_glacier.types.canned_acl
 
         out["canned_acl"] = capo_glacier.types.canned_acl.deserialize_json(
             data["CannedACL"]
         )
-    if "AccessControlList" in data:
+    if data.get("AccessControlList") is not None:
         import capo_glacier.types.access_control_policy_list
 
         out["access_control_list"] = (
@@ -106,17 +106,17 @@ def deserialize_json(data: dict) -> S3Location:
                 data["AccessControlList"]
             )
         )
-    if "Tagging" in data:
+    if data.get("Tagging") is not None:
         import capo_glacier.types.hashmap
 
         out["tagging"] = capo_glacier.types.hashmap.deserialize_json(data["Tagging"])
-    if "UserMetadata" in data:
+    if data.get("UserMetadata") is not None:
         import capo_glacier.types.hashmap
 
         out["user_metadata"] = capo_glacier.types.hashmap.deserialize_json(
             data["UserMetadata"]
         )
-    if "StorageClass" in data:
+    if data.get("StorageClass") is not None:
         import capo_glacier.types.storage_class
 
         out["storage_class"] = capo_glacier.types.storage_class.deserialize_json(

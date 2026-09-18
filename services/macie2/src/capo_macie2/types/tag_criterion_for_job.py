@@ -40,13 +40,13 @@ def serialize_json(value: TagCriterionForJob) -> dict:
 
 def deserialize_json(data: dict) -> TagCriterionForJob:
     out: TagCriterionForJob = {}  # type: ignore[typeddict-item]
-    if "comparator" in data:
+    if data.get("comparator") is not None:
         import capo_macie2.types.job_comparator
 
         out["comparator"] = capo_macie2.types.job_comparator.deserialize_json(
             data["comparator"]
         )
-    if "tagValues" in data:
+    if data.get("tagValues") is not None:
         import capo_macie2.types.__list_of_tag_criterion_pair_for_job
 
         out["tag_values"] = (

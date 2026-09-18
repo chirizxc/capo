@@ -27,8 +27,8 @@ def serialize_json(value: MultiplexProgramServiceDescriptor) -> dict:
 
 def deserialize_json(data: dict) -> MultiplexProgramServiceDescriptor:
     out: MultiplexProgramServiceDescriptor = {}  # type: ignore[typeddict-item]
-    if "providerName" in data:
+    if data.get("providerName") is not None:
         out["provider_name"] = data["providerName"]
-    if "serviceName" in data:
+    if data.get("serviceName") is not None:
         out["service_name"] = data["serviceName"]
     return out

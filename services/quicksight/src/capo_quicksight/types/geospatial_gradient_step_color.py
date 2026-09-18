@@ -22,18 +22,26 @@ class GeospatialGradientStepColor(TypedDict, closed=True):
 def serialize_json(value: GeospatialGradientStepColor) -> dict:
     out: dict = {}
     out["Color"] = value["color"]
-    out["DataValue"] = value.get("data_value", 0)
+    out["DataValue"] = (
+        "NaN"
+        if value.get("data_value", 0) != value.get("data_value", 0)
+        else "Infinity"
+        if value.get("data_value", 0) == float("inf")
+        else "-Infinity"
+        if value.get("data_value", 0) == float("-inf")
+        else value.get("data_value", 0)
+    )
     return out
 
 
 def deserialize_json(data: dict) -> GeospatialGradientStepColor:
     out: GeospatialGradientStepColor = {}  # type: ignore[typeddict-item]
-    if "Color" in data:
+    if data.get("Color") is not None:
         out["color"] = data["Color"]
     else:
         raise DeserializationError("GeospatialGradientStepColor.color required")
-    if "DataValue" in data:
-        out["data_value"] = data["DataValue"]
+    if data.get("DataValue") is not None:
+        out["data_value"] = float(data["DataValue"])
     else:
         out["data_value"] = 0
     return out

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 from capo_verifiedpermissions._services._pipeline import (
@@ -133,10 +134,12 @@ class PolicyStore:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_verifiedpermissions.types.create_policy_store_input.CreatePolicyStoreInput = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["validation_settings"] = validation_settings
+        input_: capo_verifiedpermissions.types.create_policy_store_input.CreatePolicyStoreInput = {
+            "validation_settings": validation_settings
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if description is not None:
             input_["description"] = description
         if deletion_protection is not None:
@@ -151,6 +154,7 @@ class PolicyStore:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -200,8 +204,9 @@ class PolicyStore:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_verifiedpermissions.types.get_policy_store_input.GetPolicyStoreInput = {}  # type: ignore[typeddict-item]
-        input_["policy_store_id"] = policy_store_id
+        input_: capo_verifiedpermissions.types.get_policy_store_input.GetPolicyStoreInput = {
+            "policy_store_id": policy_store_id
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -210,6 +215,7 @@ class PolicyStore:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -264,9 +270,10 @@ class PolicyStore:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_verifiedpermissions.types.update_policy_store_input.UpdatePolicyStoreInput = {}  # type: ignore[typeddict-item]
-        input_["policy_store_id"] = policy_store_id
-        input_["validation_settings"] = validation_settings
+        input_: capo_verifiedpermissions.types.update_policy_store_input.UpdatePolicyStoreInput = {
+            "policy_store_id": policy_store_id,
+            "validation_settings": validation_settings,
+        }
         if deletion_protection is not None:
             input_["deletion_protection"] = deletion_protection
         if description is not None:
@@ -277,6 +284,7 @@ class PolicyStore:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -320,14 +328,16 @@ class PolicyStore:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_verifiedpermissions.types.delete_policy_store_input.DeletePolicyStoreInput = {}  # type: ignore[typeddict-item]
-        input_["policy_store_id"] = policy_store_id
+        input_: capo_verifiedpermissions.types.delete_policy_store_input.DeletePolicyStoreInput = {
+            "policy_store_id": policy_store_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -376,7 +386,7 @@ class PolicyStore:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_verifiedpermissions.types.list_policy_stores_input.ListPolicyStoresInput = {}  # type: ignore[typeddict-item]
+        input_: capo_verifiedpermissions.types.list_policy_stores_input.ListPolicyStoresInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -387,6 +397,7 @@ class PolicyStore:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_is_authorized(
@@ -436,17 +447,19 @@ class PolicyStore:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_verifiedpermissions.types.batch_is_authorized_input.BatchIsAuthorizedInput = {}  # type: ignore[typeddict-item]
-        input_["policy_store_id"] = policy_store_id
+        input_: capo_verifiedpermissions.types.batch_is_authorized_input.BatchIsAuthorizedInput = {
+            "policy_store_id": policy_store_id,
+            "requests": requests,
+        }
         if entities is not None:
             input_["entities"] = entities
-        input_["requests"] = requests
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_is_authorized_with_token(
@@ -500,21 +513,23 @@ class PolicyStore:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_verifiedpermissions.types.batch_is_authorized_with_token_input.BatchIsAuthorizedWithTokenInput = {}  # type: ignore[typeddict-item]
-        input_["policy_store_id"] = policy_store_id
+        input_: capo_verifiedpermissions.types.batch_is_authorized_with_token_input.BatchIsAuthorizedWithTokenInput = {
+            "policy_store_id": policy_store_id,
+            "requests": requests,
+        }
         if identity_token is not None:
             input_["identity_token"] = identity_token
         if access_token is not None:
             input_["access_token"] = access_token
         if entities is not None:
             input_["entities"] = entities
-        input_["requests"] = requests
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_schema(
@@ -563,14 +578,16 @@ class PolicyStore:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_verifiedpermissions.types.get_schema_input.GetSchemaInput = {}  # type: ignore[typeddict-item]
-        input_["policy_store_id"] = policy_store_id
+        input_: capo_verifiedpermissions.types.get_schema_input.GetSchemaInput = {
+            "policy_store_id": policy_store_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def is_authorized(
@@ -640,8 +657,9 @@ class PolicyStore:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_verifiedpermissions.types.is_authorized_input.IsAuthorizedInput = {}  # type: ignore[typeddict-item]
-        input_["policy_store_id"] = policy_store_id
+        input_: capo_verifiedpermissions.types.is_authorized_input.IsAuthorizedInput = {
+            "policy_store_id": policy_store_id
+        }
         if principal is not None:
             input_["principal"] = principal
         if action is not None:
@@ -658,6 +676,7 @@ class PolicyStore:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def is_authorized_with_token(
@@ -727,8 +746,9 @@ class PolicyStore:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_verifiedpermissions.types.is_authorized_with_token_input.IsAuthorizedWithTokenInput = {}  # type: ignore[typeddict-item]
-        input_["policy_store_id"] = policy_store_id
+        input_: capo_verifiedpermissions.types.is_authorized_with_token_input.IsAuthorizedWithTokenInput = {
+            "policy_store_id": policy_store_id
+        }
         if identity_token is not None:
             input_["identity_token"] = identity_token
         if access_token is not None:
@@ -747,6 +767,7 @@ class PolicyStore:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_schema(
@@ -799,15 +820,17 @@ class PolicyStore:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_verifiedpermissions.types.put_schema_input.PutSchemaInput = {}  # type: ignore[typeddict-item]
-        input_["policy_store_id"] = policy_store_id
-        input_["definition"] = definition
+        input_: capo_verifiedpermissions.types.put_schema_input.PutSchemaInput = {
+            "policy_store_id": policy_store_id,
+            "definition": definition,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_get_policy(
@@ -854,14 +877,16 @@ class PolicyStore:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_verifiedpermissions.types.batch_get_policy_input.BatchGetPolicyInput = {}  # type: ignore[typeddict-item]
-        input_["requests"] = requests
+        input_: capo_verifiedpermissions.types.batch_get_policy_input.BatchGetPolicyInput = {
+            "requests": requests
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -934,10 +959,12 @@ class AsyncPolicyStore:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_verifiedpermissions.types.create_policy_store_input.CreatePolicyStoreInput = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["validation_settings"] = validation_settings
+        input_: capo_verifiedpermissions.types.create_policy_store_input.CreatePolicyStoreInput = {
+            "validation_settings": validation_settings
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if description is not None:
             input_["description"] = description
         if deletion_protection is not None:
@@ -952,6 +979,7 @@ class AsyncPolicyStore:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -1002,8 +1030,9 @@ class AsyncPolicyStore:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_verifiedpermissions.types.get_policy_store_input.GetPolicyStoreInput = {}  # type: ignore[typeddict-item]
-        input_["policy_store_id"] = policy_store_id
+        input_: capo_verifiedpermissions.types.get_policy_store_input.GetPolicyStoreInput = {
+            "policy_store_id": policy_store_id
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -1012,6 +1041,7 @@ class AsyncPolicyStore:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -1067,9 +1097,10 @@ class AsyncPolicyStore:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_verifiedpermissions.types.update_policy_store_input.UpdatePolicyStoreInput = {}  # type: ignore[typeddict-item]
-        input_["policy_store_id"] = policy_store_id
-        input_["validation_settings"] = validation_settings
+        input_: capo_verifiedpermissions.types.update_policy_store_input.UpdatePolicyStoreInput = {
+            "policy_store_id": policy_store_id,
+            "validation_settings": validation_settings,
+        }
         if deletion_protection is not None:
             input_["deletion_protection"] = deletion_protection
         if description is not None:
@@ -1080,6 +1111,7 @@ class AsyncPolicyStore:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -1124,14 +1156,16 @@ class AsyncPolicyStore:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_verifiedpermissions.types.delete_policy_store_input.DeletePolicyStoreInput = {}  # type: ignore[typeddict-item]
-        input_["policy_store_id"] = policy_store_id
+        input_: capo_verifiedpermissions.types.delete_policy_store_input.DeletePolicyStoreInput = {
+            "policy_store_id": policy_store_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -1181,7 +1215,7 @@ class AsyncPolicyStore:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_verifiedpermissions.types.list_policy_stores_input.ListPolicyStoresInput = {}  # type: ignore[typeddict-item]
+        input_: capo_verifiedpermissions.types.list_policy_stores_input.ListPolicyStoresInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1192,6 +1226,7 @@ class AsyncPolicyStore:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_is_authorized(
@@ -1242,17 +1277,19 @@ class AsyncPolicyStore:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_verifiedpermissions.types.batch_is_authorized_input.BatchIsAuthorizedInput = {}  # type: ignore[typeddict-item]
-        input_["policy_store_id"] = policy_store_id
+        input_: capo_verifiedpermissions.types.batch_is_authorized_input.BatchIsAuthorizedInput = {
+            "policy_store_id": policy_store_id,
+            "requests": requests,
+        }
         if entities is not None:
             input_["entities"] = entities
-        input_["requests"] = requests
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_is_authorized_with_token(
@@ -1307,21 +1344,23 @@ class AsyncPolicyStore:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_verifiedpermissions.types.batch_is_authorized_with_token_input.BatchIsAuthorizedWithTokenInput = {}  # type: ignore[typeddict-item]
-        input_["policy_store_id"] = policy_store_id
+        input_: capo_verifiedpermissions.types.batch_is_authorized_with_token_input.BatchIsAuthorizedWithTokenInput = {
+            "policy_store_id": policy_store_id,
+            "requests": requests,
+        }
         if identity_token is not None:
             input_["identity_token"] = identity_token
         if access_token is not None:
             input_["access_token"] = access_token
         if entities is not None:
             input_["entities"] = entities
-        input_["requests"] = requests
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_schema(
@@ -1371,14 +1410,16 @@ class AsyncPolicyStore:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_verifiedpermissions.types.get_schema_input.GetSchemaInput = {}  # type: ignore[typeddict-item]
-        input_["policy_store_id"] = policy_store_id
+        input_: capo_verifiedpermissions.types.get_schema_input.GetSchemaInput = {
+            "policy_store_id": policy_store_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def is_authorized(
@@ -1449,8 +1490,9 @@ class AsyncPolicyStore:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_verifiedpermissions.types.is_authorized_input.IsAuthorizedInput = {}  # type: ignore[typeddict-item]
-        input_["policy_store_id"] = policy_store_id
+        input_: capo_verifiedpermissions.types.is_authorized_input.IsAuthorizedInput = {
+            "policy_store_id": policy_store_id
+        }
         if principal is not None:
             input_["principal"] = principal
         if action is not None:
@@ -1467,6 +1509,7 @@ class AsyncPolicyStore:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def is_authorized_with_token(
@@ -1537,8 +1580,9 @@ class AsyncPolicyStore:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_verifiedpermissions.types.is_authorized_with_token_input.IsAuthorizedWithTokenInput = {}  # type: ignore[typeddict-item]
-        input_["policy_store_id"] = policy_store_id
+        input_: capo_verifiedpermissions.types.is_authorized_with_token_input.IsAuthorizedWithTokenInput = {
+            "policy_store_id": policy_store_id
+        }
         if identity_token is not None:
             input_["identity_token"] = identity_token
         if access_token is not None:
@@ -1557,6 +1601,7 @@ class AsyncPolicyStore:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_schema(
@@ -1610,15 +1655,17 @@ class AsyncPolicyStore:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_verifiedpermissions.types.put_schema_input.PutSchemaInput = {}  # type: ignore[typeddict-item]
-        input_["policy_store_id"] = policy_store_id
-        input_["definition"] = definition
+        input_: capo_verifiedpermissions.types.put_schema_input.PutSchemaInput = {
+            "policy_store_id": policy_store_id,
+            "definition": definition,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_policy(
@@ -1666,12 +1713,14 @@ class AsyncPolicyStore:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_verifiedpermissions.types.batch_get_policy_input.BatchGetPolicyInput = {}  # type: ignore[typeddict-item]
-        input_["requests"] = requests
+        input_: capo_verifiedpermissions.types.batch_get_policy_input.BatchGetPolicyInput = {
+            "requests": requests
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

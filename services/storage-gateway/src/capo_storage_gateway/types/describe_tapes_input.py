@@ -44,11 +44,11 @@ def serialize_aws_json_1_1(value: DescribeTapesInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeTapesInput:
     out: DescribeTapesInput = {}  # type: ignore[typeddict-item]
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
     else:
         raise DeserializationError("DescribeTapesInput.gateway_arn required")
-    if "TapeARNs" in data:
+    if data.get("TapeARNs") is not None:
         import capo_storage_gateway.types.tape_ar_ns
 
         out["tape_ar_ns"] = (
@@ -56,8 +56,8 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeTapesInput:
                 data["TapeARNs"]
             )
         )
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
     return out

@@ -46,23 +46,23 @@ def serialize_json(value: EvaluationFormNumericQuestionOption) -> dict:
 
 def deserialize_json(data: dict) -> EvaluationFormNumericQuestionOption:
     out: EvaluationFormNumericQuestionOption = {}  # type: ignore[typeddict-item]
-    if "MinValue" in data:
+    if data.get("MinValue") is not None:
         out["min_value"] = data["MinValue"]
     else:
         out["min_value"] = 0
-    if "MaxValue" in data:
+    if data.get("MaxValue") is not None:
         out["max_value"] = data["MaxValue"]
     else:
         out["max_value"] = 0
-    if "Score" in data:
+    if data.get("Score") is not None:
         out["score"] = data["Score"]
     else:
         out["score"] = 0
-    if "AutomaticFail" in data:
+    if data.get("AutomaticFail") is not None:
         out["automatic_fail"] = data["AutomaticFail"]
     else:
         out["automatic_fail"] = False
-    if "AutomaticFailConfiguration" in data:
+    if data.get("AutomaticFailConfiguration") is not None:
         import capo_connect.types.automatic_fail_configuration
 
         out["automatic_fail_configuration"] = (

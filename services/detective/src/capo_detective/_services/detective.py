@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.detective#AmazonDetective``."""
 
 import warnings
+from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +17,7 @@ from capo_detective._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_detective._auth._zapros_handler import AuthMiddleware
+from capo_detective._pagination import resolve_path as _resolve_path
 from capo_detective._services._aws_config import aws_config
 from capo_detective._services._pipeline import (
     Interceptor,
@@ -224,14 +226,16 @@ class DetectiveClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_detective.types.accept_invitation_request.AcceptInvitationRequest = {}  # type: ignore[typeddict-item]
-        input_["graph_arn"] = graph_arn
+        input_: capo_detective.types.accept_invitation_request.AcceptInvitationRequest = {
+            "graph_arn": graph_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_get_graph_member_datasources(
@@ -270,15 +274,17 @@ class DetectiveClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_detective.types.batch_get_graph_member_datasources_request.BatchGetGraphMemberDatasourcesRequest = {}  # type: ignore[typeddict-item]
-        input_["graph_arn"] = graph_arn
-        input_["account_ids"] = account_ids
+        input_: capo_detective.types.batch_get_graph_member_datasources_request.BatchGetGraphMemberDatasourcesRequest = {
+            "graph_arn": graph_arn,
+            "account_ids": account_ids,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_get_membership_datasources(
@@ -315,14 +321,16 @@ class DetectiveClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_detective.types.batch_get_membership_datasources_request.BatchGetMembershipDatasourcesRequest = {}  # type: ignore[typeddict-item]
-        input_["graph_arns"] = graph_arns
+        input_: capo_detective.types.batch_get_membership_datasources_request.BatchGetMembershipDatasourcesRequest = {
+            "graph_arns": graph_arns
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_graph(
@@ -359,7 +367,7 @@ class DetectiveClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_detective.types.create_graph_request.CreateGraphRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_detective.types.create_graph_request.CreateGraphRequest = {}
         if tags is not None:
             input_["tags"] = tags
 
@@ -368,6 +376,7 @@ class DetectiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_members(
@@ -413,19 +422,21 @@ class DetectiveClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_detective.types.create_members_request.CreateMembersRequest = {}  # type: ignore[typeddict-item]
-        input_["graph_arn"] = graph_arn
+        input_: capo_detective.types.create_members_request.CreateMembersRequest = {
+            "graph_arn": graph_arn,
+            "accounts": accounts,
+        }
         if message is not None:
             input_["message"] = message
         if disable_email_notification is not None:
             input_["disable_email_notification"] = disable_email_notification
-        input_["accounts"] = accounts
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_graph(
@@ -460,14 +471,16 @@ class DetectiveClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_detective.types.delete_graph_request.DeleteGraphRequest = {}  # type: ignore[typeddict-item]
-        input_["graph_arn"] = graph_arn
+        input_: capo_detective.types.delete_graph_request.DeleteGraphRequest = {
+            "graph_arn": graph_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_members(
@@ -507,15 +520,17 @@ class DetectiveClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_detective.types.delete_members_request.DeleteMembersRequest = {}  # type: ignore[typeddict-item]
-        input_["graph_arn"] = graph_arn
-        input_["account_ids"] = account_ids
+        input_: capo_detective.types.delete_members_request.DeleteMembersRequest = {
+            "graph_arn": graph_arn,
+            "account_ids": account_ids,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_organization_configuration(
@@ -552,14 +567,16 @@ class DetectiveClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_detective.types.describe_organization_configuration_request.DescribeOrganizationConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["graph_arn"] = graph_arn
+        input_: capo_detective.types.describe_organization_configuration_request.DescribeOrganizationConfigurationRequest = {
+            "graph_arn": graph_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disable_organization_admin_account(
@@ -592,6 +609,7 @@ class DetectiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_membership(
@@ -627,14 +645,16 @@ class DetectiveClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_detective.types.disassociate_membership_request.DisassociateMembershipRequest = {}  # type: ignore[typeddict-item]
-        input_["graph_arn"] = graph_arn
+        input_: capo_detective.types.disassociate_membership_request.DisassociateMembershipRequest = {
+            "graph_arn": graph_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def enable_organization_admin_account(
@@ -669,14 +689,16 @@ class DetectiveClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_detective.types.enable_organization_admin_account_request.EnableOrganizationAdminAccountRequest = {}  # type: ignore[typeddict-item]
-        input_["account_id"] = account_id
+        input_: capo_detective.types.enable_organization_admin_account_request.EnableOrganizationAdminAccountRequest = {
+            "account_id": account_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_investigation(
@@ -716,15 +738,17 @@ class DetectiveClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_detective.types.get_investigation_request.GetInvestigationRequest = {}  # type: ignore[typeddict-item]
-        input_["graph_arn"] = graph_arn
-        input_["investigation_id"] = investigation_id
+        input_: capo_detective.types.get_investigation_request.GetInvestigationRequest = {
+            "graph_arn": graph_arn,
+            "investigation_id": investigation_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_members(
@@ -763,15 +787,17 @@ class DetectiveClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_detective.types.get_members_request.GetMembersRequest = {}  # type: ignore[typeddict-item]
-        input_["graph_arn"] = graph_arn
-        input_["account_ids"] = account_ids
+        input_: capo_detective.types.get_members_request.GetMembersRequest = {
+            "graph_arn": graph_arn,
+            "account_ids": account_ids,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_datasource_packages(
@@ -816,8 +842,9 @@ class DetectiveClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_detective.types.list_datasource_packages_request.ListDatasourcePackagesRequest = {}  # type: ignore[typeddict-item]
-        input_["graph_arn"] = graph_arn
+        input_: capo_detective.types.list_datasource_packages_request.ListDatasourcePackagesRequest = {
+            "graph_arn": graph_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -828,7 +855,33 @@ class DetectiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_datasource_packages(
+        self,
+        graph_arn: "capo_detective.types.graph_arn.GraphArn",
+        *,
+        config_overrides: Optional[DetectiveClientConfig] = None,
+        next_token: Optional[
+            "capo_detective.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional[
+            "capo_detective.types.member_results_limit.MemberResultsLimit"
+        ] = None,
+    ) -> "Iterator[capo_detective.types.list_datasource_packages_response.ListDatasourcePackagesResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_datasource_packages(
+                graph_arn,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_graphs(
         self,
@@ -869,7 +922,7 @@ class DetectiveClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_detective.types.list_graphs_request.ListGraphsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_detective.types.list_graphs_request.ListGraphsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -880,7 +933,31 @@ class DetectiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_graphs(
+        self,
+        *,
+        config_overrides: Optional[DetectiveClientConfig] = None,
+        next_token: Optional[
+            "capo_detective.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional[
+            "capo_detective.types.member_results_limit.MemberResultsLimit"
+        ] = None,
+    ) -> "Iterator[capo_detective.types.list_graphs_response.ListGraphsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_graphs(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_indicators(
         self,
@@ -929,9 +1006,10 @@ class DetectiveClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_detective.types.list_indicators_request.ListIndicatorsRequest = {}  # type: ignore[typeddict-item]
-        input_["graph_arn"] = graph_arn
-        input_["investigation_id"] = investigation_id
+        input_: capo_detective.types.list_indicators_request.ListIndicatorsRequest = {
+            "graph_arn": graph_arn,
+            "investigation_id": investigation_id,
+        }
         if indicator_type is not None:
             input_["indicator_type"] = indicator_type
         if next_token is not None:
@@ -944,6 +1022,7 @@ class DetectiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_investigations(
@@ -995,8 +1074,9 @@ class DetectiveClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_detective.types.list_investigations_request.ListInvestigationsRequest = {}  # type: ignore[typeddict-item]
-        input_["graph_arn"] = graph_arn
+        input_: capo_detective.types.list_investigations_request.ListInvestigationsRequest = {
+            "graph_arn": graph_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1011,6 +1091,7 @@ class DetectiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_invitations(
@@ -1052,7 +1133,7 @@ class DetectiveClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_detective.types.list_invitations_request.ListInvitationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_detective.types.list_invitations_request.ListInvitationsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1063,7 +1144,31 @@ class DetectiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_invitations(
+        self,
+        *,
+        config_overrides: Optional[DetectiveClientConfig] = None,
+        next_token: Optional[
+            "capo_detective.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional[
+            "capo_detective.types.member_results_limit.MemberResultsLimit"
+        ] = None,
+    ) -> "Iterator[capo_detective.types.list_invitations_response.ListInvitationsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_invitations(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_members(
         self,
@@ -1107,8 +1212,9 @@ class DetectiveClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_detective.types.list_members_request.ListMembersRequest = {}  # type: ignore[typeddict-item]
-        input_["graph_arn"] = graph_arn
+        input_: capo_detective.types.list_members_request.ListMembersRequest = {
+            "graph_arn": graph_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1119,7 +1225,33 @@ class DetectiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_members(
+        self,
+        graph_arn: "capo_detective.types.graph_arn.GraphArn",
+        *,
+        config_overrides: Optional[DetectiveClientConfig] = None,
+        next_token: Optional[
+            "capo_detective.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional[
+            "capo_detective.types.member_results_limit.MemberResultsLimit"
+        ] = None,
+    ) -> "Iterator[capo_detective.types.list_members_response.ListMembersResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_members(
+                graph_arn,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_organization_admin_accounts(
         self,
@@ -1161,7 +1293,7 @@ class DetectiveClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_detective.types.list_organization_admin_accounts_request.ListOrganizationAdminAccountsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_detective.types.list_organization_admin_accounts_request.ListOrganizationAdminAccountsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1172,7 +1304,31 @@ class DetectiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_organization_admin_accounts(
+        self,
+        *,
+        config_overrides: Optional[DetectiveClientConfig] = None,
+        next_token: Optional[
+            "capo_detective.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional[
+            "capo_detective.types.member_results_limit.MemberResultsLimit"
+        ] = None,
+    ) -> "Iterator[capo_detective.types.list_organization_admin_accounts_response.ListOrganizationAdminAccountsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_organization_admin_accounts(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_tags_for_resource(
         self,
@@ -1208,14 +1364,16 @@ class DetectiveClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_detective.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_detective.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def reject_invitation(
@@ -1251,14 +1409,16 @@ class DetectiveClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_detective.types.reject_invitation_request.RejectInvitationRequest = {}  # type: ignore[typeddict-item]
-        input_["graph_arn"] = graph_arn
+        input_: capo_detective.types.reject_invitation_request.RejectInvitationRequest = {
+            "graph_arn": graph_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_investigation(
@@ -1302,17 +1462,19 @@ class DetectiveClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_detective.types.start_investigation_request.StartInvestigationRequest = {}  # type: ignore[typeddict-item]
-        input_["graph_arn"] = graph_arn
-        input_["entity_arn"] = entity_arn
-        input_["scope_start_time"] = scope_start_time
-        input_["scope_end_time"] = scope_end_time
+        input_: capo_detective.types.start_investigation_request.StartInvestigationRequest = {
+            "graph_arn": graph_arn,
+            "entity_arn": entity_arn,
+            "scope_start_time": scope_start_time,
+            "scope_end_time": scope_end_time,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_monitoring_member(
@@ -1351,15 +1513,17 @@ class DetectiveClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_detective.types.start_monitoring_member_request.StartMonitoringMemberRequest = {}  # type: ignore[typeddict-item]
-        input_["graph_arn"] = graph_arn
-        input_["account_id"] = account_id
+        input_: capo_detective.types.start_monitoring_member_request.StartMonitoringMemberRequest = {
+            "graph_arn": graph_arn,
+            "account_id": account_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -1398,15 +1562,17 @@ class DetectiveClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_detective.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_detective.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -1445,15 +1611,17 @@ class DetectiveClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_detective.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_detective.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_datasource_packages(
@@ -1491,15 +1659,17 @@ class DetectiveClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_detective.types.update_datasource_packages_request.UpdateDatasourcePackagesRequest = {}  # type: ignore[typeddict-item]
-        input_["graph_arn"] = graph_arn
-        input_["datasource_packages"] = datasource_packages
+        input_: capo_detective.types.update_datasource_packages_request.UpdateDatasourcePackagesRequest = {
+            "graph_arn": graph_arn,
+            "datasource_packages": datasource_packages,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_investigation_state(
@@ -1539,16 +1709,18 @@ class DetectiveClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_detective.types.update_investigation_state_request.UpdateInvestigationStateRequest = {}  # type: ignore[typeddict-item]
-        input_["graph_arn"] = graph_arn
-        input_["investigation_id"] = investigation_id
-        input_["state"] = state
+        input_: capo_detective.types.update_investigation_state_request.UpdateInvestigationStateRequest = {
+            "graph_arn": graph_arn,
+            "investigation_id": investigation_id,
+            "state": state,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_organization_configuration(
@@ -1585,8 +1757,9 @@ class DetectiveClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_detective.types.update_organization_configuration_request.UpdateOrganizationConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["graph_arn"] = graph_arn
+        input_: capo_detective.types.update_organization_configuration_request.UpdateOrganizationConfigurationRequest = {
+            "graph_arn": graph_arn
+        }
         if auto_enable is not None:
             input_["auto_enable"] = auto_enable
 
@@ -1595,6 +1768,7 @@ class DetectiveClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

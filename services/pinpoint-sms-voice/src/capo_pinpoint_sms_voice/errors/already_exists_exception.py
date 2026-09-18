@@ -24,7 +24,7 @@ def serialize_json(value: AlreadyExistsException_) -> dict:
 
 def deserialize_json(data: dict) -> AlreadyExistsException_:
     out: AlreadyExistsException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class AlreadyExistsException(ServiceError):
 
     code: str | None = "AlreadyExistsException"
 
-    def __init__(self, data: AlreadyExistsException_):
+    def __init__(self, data: AlreadyExistsException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="AlreadyExistsException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "AlreadyExistsException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "AlreadyExistsException":
+        return cls(deserialize_json(data), message)

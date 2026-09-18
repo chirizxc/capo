@@ -167,7 +167,7 @@ def serialize_json(value: IntentConfirmationSetting) -> dict:
 
 def deserialize_json(data: dict) -> IntentConfirmationSetting:
     out: IntentConfirmationSetting = {}  # type: ignore[typeddict-item]
-    if "promptSpecification" in data:
+    if data.get("promptSpecification") is not None:
         import capo_lex_models_v2.types.prompt_specification
 
         out["prompt_specification"] = (
@@ -179,7 +179,7 @@ def deserialize_json(data: dict) -> IntentConfirmationSetting:
         raise DeserializationError(
             "IntentConfirmationSetting.prompt_specification required"
         )
-    if "declinationResponse" in data:
+    if data.get("declinationResponse") is not None:
         import capo_lex_models_v2.types.response_specification
 
         out["declination_response"] = (
@@ -187,9 +187,9 @@ def deserialize_json(data: dict) -> IntentConfirmationSetting:
                 data["declinationResponse"]
             )
         )
-    if "active" in data:
+    if data.get("active") is not None:
         out["active"] = data["active"]
-    if "confirmationResponse" in data:
+    if data.get("confirmationResponse") is not None:
         import capo_lex_models_v2.types.response_specification
 
         out["confirmation_response"] = (
@@ -197,7 +197,7 @@ def deserialize_json(data: dict) -> IntentConfirmationSetting:
                 data["confirmationResponse"]
             )
         )
-    if "confirmationNextStep" in data:
+    if data.get("confirmationNextStep") is not None:
         import capo_lex_models_v2.types.dialog_state
 
         out["confirmation_next_step"] = (
@@ -205,7 +205,7 @@ def deserialize_json(data: dict) -> IntentConfirmationSetting:
                 data["confirmationNextStep"]
             )
         )
-    if "confirmationConditional" in data:
+    if data.get("confirmationConditional") is not None:
         import capo_lex_models_v2.types.conditional_specification
 
         out["confirmation_conditional"] = (
@@ -213,7 +213,7 @@ def deserialize_json(data: dict) -> IntentConfirmationSetting:
                 data["confirmationConditional"]
             )
         )
-    if "declinationNextStep" in data:
+    if data.get("declinationNextStep") is not None:
         import capo_lex_models_v2.types.dialog_state
 
         out["declination_next_step"] = (
@@ -221,7 +221,7 @@ def deserialize_json(data: dict) -> IntentConfirmationSetting:
                 data["declinationNextStep"]
             )
         )
-    if "declinationConditional" in data:
+    if data.get("declinationConditional") is not None:
         import capo_lex_models_v2.types.conditional_specification
 
         out["declination_conditional"] = (
@@ -229,7 +229,7 @@ def deserialize_json(data: dict) -> IntentConfirmationSetting:
                 data["declinationConditional"]
             )
         )
-    if "failureResponse" in data:
+    if data.get("failureResponse") is not None:
         import capo_lex_models_v2.types.response_specification
 
         out["failure_response"] = (
@@ -237,7 +237,7 @@ def deserialize_json(data: dict) -> IntentConfirmationSetting:
                 data["failureResponse"]
             )
         )
-    if "failureNextStep" in data:
+    if data.get("failureNextStep") is not None:
         import capo_lex_models_v2.types.dialog_state
 
         out["failure_next_step"] = (
@@ -245,7 +245,7 @@ def deserialize_json(data: dict) -> IntentConfirmationSetting:
                 data["failureNextStep"]
             )
         )
-    if "failureConditional" in data:
+    if data.get("failureConditional") is not None:
         import capo_lex_models_v2.types.conditional_specification
 
         out["failure_conditional"] = (
@@ -253,7 +253,7 @@ def deserialize_json(data: dict) -> IntentConfirmationSetting:
                 data["failureConditional"]
             )
         )
-    if "codeHook" in data:
+    if data.get("codeHook") is not None:
         import capo_lex_models_v2.types.dialog_code_hook_invocation_setting
 
         out["code_hook"] = (
@@ -261,7 +261,7 @@ def deserialize_json(data: dict) -> IntentConfirmationSetting:
                 data["codeHook"]
             )
         )
-    if "elicitationCodeHook" in data:
+    if data.get("elicitationCodeHook") is not None:
         import capo_lex_models_v2.types.elicitation_code_hook_invocation_setting
 
         out["elicitation_code_hook"] = (

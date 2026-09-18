@@ -41,7 +41,7 @@ def serialize_json(value: JobDriver) -> dict:
 
 
 def deserialize_json(data: dict) -> JobDriver:
-    if "sparkSubmit" in data:
+    if data.get("sparkSubmit") is not None:
         import capo_emr_serverless.types.spark_submit
 
         return {
@@ -49,7 +49,7 @@ def deserialize_json(data: dict) -> JobDriver:
                 data["sparkSubmit"]
             )
         }
-    elif "hive" in data:
+    elif data.get("hive") is not None:
         import capo_emr_serverless.types.hive
 
         return {"hive": capo_emr_serverless.types.hive.deserialize_json(data["hive"])}

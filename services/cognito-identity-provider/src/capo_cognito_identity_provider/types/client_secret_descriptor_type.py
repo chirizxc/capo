@@ -45,11 +45,11 @@ def serialize_aws_json_1_1(value: ClientSecretDescriptorType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClientSecretDescriptorType:
     out: ClientSecretDescriptorType = {}  # type: ignore[typeddict-item]
-    if "ClientSecretId" in data:
+    if data.get("ClientSecretId") is not None:
         out["client_secret_id"] = data["ClientSecretId"]
-    if "ClientSecretValue" in data:
+    if data.get("ClientSecretValue") is not None:
         out["client_secret_value"] = data["ClientSecretValue"]
-    if "ClientSecretCreateDate" in data:
+    if data.get("ClientSecretCreateDate") is not None:
         import capo_cognito_identity_provider.types.date_type
 
         out["client_secret_create_date"] = (

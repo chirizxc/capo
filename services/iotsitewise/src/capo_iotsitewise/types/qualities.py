@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Qualities:
 
     out: Qualities = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iotsitewise.types.quality.deserialize_json(item))
     return out

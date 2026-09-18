@@ -43,7 +43,7 @@ def serialize_json(value: AppflowIntegrationWorkflowAttributes) -> dict:
 
 def deserialize_json(data: dict) -> AppflowIntegrationWorkflowAttributes:
     out: AppflowIntegrationWorkflowAttributes = {}  # type: ignore[typeddict-item]
-    if "SourceConnectorType" in data:
+    if data.get("SourceConnectorType") is not None:
         import capo_customer_profiles.types.source_connector_type
 
         out["source_connector_type"] = (
@@ -55,12 +55,12 @@ def deserialize_json(data: dict) -> AppflowIntegrationWorkflowAttributes:
         raise DeserializationError(
             "AppflowIntegrationWorkflowAttributes.source_connector_type required"
         )
-    if "ConnectorProfileName" in data:
+    if data.get("ConnectorProfileName") is not None:
         out["connector_profile_name"] = data["ConnectorProfileName"]
     else:
         raise DeserializationError(
             "AppflowIntegrationWorkflowAttributes.connector_profile_name required"
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     return out

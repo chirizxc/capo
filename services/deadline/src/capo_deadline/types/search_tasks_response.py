@@ -37,7 +37,7 @@ def serialize_json(value: SearchTasksResponse) -> dict:
 
 def deserialize_json(data: dict) -> SearchTasksResponse:
     out: SearchTasksResponse = {}  # type: ignore[typeddict-item]
-    if "tasks" in data:
+    if data.get("tasks") is not None:
         import capo_deadline.types.task_search_summaries
 
         out["tasks"] = capo_deadline.types.task_search_summaries.deserialize_json(
@@ -45,9 +45,9 @@ def deserialize_json(data: dict) -> SearchTasksResponse:
         )
     else:
         raise DeserializationError("SearchTasksResponse.tasks required")
-    if "nextItemOffset" in data:
+    if data.get("nextItemOffset") is not None:
         out["next_item_offset"] = data["nextItemOffset"]
-    if "totalResults" in data:
+    if data.get("totalResults") is not None:
         out["total_results"] = data["totalResults"]
     else:
         raise DeserializationError("SearchTasksResponse.total_results required")

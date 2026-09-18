@@ -19,16 +19,32 @@ class GeoLocation(TypedDict, closed=True):
 def serialize_json(value: GeoLocation) -> dict:
     out: dict = {}
     if "lon" in value:
-        out["Lon"] = value["lon"]
+        out["Lon"] = (
+            "NaN"
+            if value["lon"] != value["lon"]
+            else "Infinity"
+            if value["lon"] == float("inf")
+            else "-Infinity"
+            if value["lon"] == float("-inf")
+            else value["lon"]
+        )
     if "lat" in value:
-        out["Lat"] = value["lat"]
+        out["Lat"] = (
+            "NaN"
+            if value["lat"] != value["lat"]
+            else "Infinity"
+            if value["lat"] == float("inf")
+            else "-Infinity"
+            if value["lat"] == float("-inf")
+            else value["lat"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> GeoLocation:
     out: GeoLocation = {}  # type: ignore[typeddict-item]
-    if "Lon" in data:
-        out["lon"] = data["Lon"]
-    if "Lat" in data:
-        out["lat"] = data["Lat"]
+    if data.get("Lon") is not None:
+        out["lon"] = float(data["Lon"])
+    if data.get("Lat") is not None:
+        out["lat"] = float(data["Lat"])
     return out

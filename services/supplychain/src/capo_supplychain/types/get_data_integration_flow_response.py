@@ -28,7 +28,7 @@ def serialize_json(value: GetDataIntegrationFlowResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetDataIntegrationFlowResponse:
     out: GetDataIntegrationFlowResponse = {}  # type: ignore[typeddict-item]
-    if "flow" in data:
+    if data.get("flow") is not None:
         import capo_supplychain.types.data_integration_flow
 
         out["flow"] = capo_supplychain.types.data_integration_flow.deserialize_json(

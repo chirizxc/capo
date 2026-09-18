@@ -44,17 +44,17 @@ def serialize_json(value: UpdateStreamStorageConfigurationInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateStreamStorageConfigurationInput:
     out: UpdateStreamStorageConfigurationInput = {}  # type: ignore[typeddict-item]
-    if "StreamName" in data:
+    if data.get("StreamName") is not None:
         out["stream_name"] = data["StreamName"]
-    if "StreamARN" in data:
+    if data.get("StreamARN") is not None:
         out["stream_arn"] = data["StreamARN"]
-    if "CurrentVersion" in data:
+    if data.get("CurrentVersion") is not None:
         out["current_version"] = data["CurrentVersion"]
     else:
         raise DeserializationError(
             "UpdateStreamStorageConfigurationInput.current_version required"
         )
-    if "StreamStorageConfiguration" in data:
+    if data.get("StreamStorageConfiguration") is not None:
         import capo_kinesis_video.types.stream_storage_configuration
 
         out["stream_storage_configuration"] = (

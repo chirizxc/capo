@@ -40,11 +40,11 @@ def serialize_aws_json_1_1(value: Subnet) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Subnet:
     out: Subnet = {}  # type: ignore[typeddict-item]
-    if "SubnetIdentifier" in data:
+    if data.get("SubnetIdentifier") is not None:
         out["subnet_identifier"] = data["SubnetIdentifier"]
-    if "SubnetAvailabilityZone" in data:
+    if data.get("SubnetAvailabilityZone") is not None:
         out["subnet_availability_zone"] = data["SubnetAvailabilityZone"]
-    if "SupportedNetworkTypes" in data:
+    if data.get("SupportedNetworkTypes") is not None:
         import capo_dax.types.network_type_list
 
         out["supported_network_types"] = (

@@ -43,7 +43,7 @@ def serialize_aws_json_1_1(value: FleetStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FleetStatus:
     out: FleetStatus = {}  # type: ignore[typeddict-item]
-    if "statusCode" in data:
+    if data.get("statusCode") is not None:
         import capo_codebuild.types.fleet_status_code
 
         out["status_code"] = (
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_1(data: dict) -> FleetStatus:
                 data["statusCode"]
             )
         )
-    if "context" in data:
+    if data.get("context") is not None:
         import capo_codebuild.types.fleet_context_code
 
         out["context"] = (
@@ -59,6 +59,6 @@ def deserialize_aws_json_1_1(data: dict) -> FleetStatus:
                 data["context"]
             )
         )
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out

@@ -34,9 +34,9 @@ def serialize_aws_json_1_1(value: DescribeModelPackageInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeModelPackageInput:
     out: DescribeModelPackageInput = {}  # type: ignore[typeddict-item]
-    if "ModelPackageName" in data:
+    if data.get("ModelPackageName") is not None:
         out["model_package_name"] = data["ModelPackageName"]
-    if "IncludedData" in data:
+    if data.get("IncludedData") is not None:
         import capo_sagemaker.types.included_data
 
         out["included_data"] = (

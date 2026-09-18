@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: ListAllowedMultiRegionClusterUpdatesRequest) -
 
 def deserialize_aws_json_1_1(data: dict) -> ListAllowedMultiRegionClusterUpdatesRequest:
     out: ListAllowedMultiRegionClusterUpdatesRequest = {}  # type: ignore[typeddict-item]
-    if "MultiRegionClusterName" in data:
+    if data.get("MultiRegionClusterName") is not None:
         out["multi_region_cluster_name"] = data["MultiRegionClusterName"]
     else:
         raise DeserializationError(

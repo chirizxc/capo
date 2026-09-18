@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsEc2VpnConnectionVgwTelemetryList:
 
     out: AwsEc2VpnConnectionVgwTelemetryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_ec2_vpn_connection_vgw_telemetry_details.deserialize_json(
                 item

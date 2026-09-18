@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AwsJobAbortCriteriaList:
 
     out: AwsJobAbortCriteriaList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot.types.aws_job_abort_criteria.deserialize_json(item))
     return out

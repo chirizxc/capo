@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AddonVersionInfoList:
 
     out: AddonVersionInfoList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_eks.types.addon_version_info.deserialize_json(item))
     return out

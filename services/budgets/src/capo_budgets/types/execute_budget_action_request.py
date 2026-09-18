@@ -38,19 +38,19 @@ def serialize_aws_json_1_1(value: ExecuteBudgetActionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExecuteBudgetActionRequest:
     out: ExecuteBudgetActionRequest = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
     else:
         raise DeserializationError("ExecuteBudgetActionRequest.account_id required")
-    if "BudgetName" in data:
+    if data.get("BudgetName") is not None:
         out["budget_name"] = data["BudgetName"]
     else:
         raise DeserializationError("ExecuteBudgetActionRequest.budget_name required")
-    if "ActionId" in data:
+    if data.get("ActionId") is not None:
         out["action_id"] = data["ActionId"]
     else:
         raise DeserializationError("ExecuteBudgetActionRequest.action_id required")
-    if "ExecutionType" in data:
+    if data.get("ExecutionType") is not None:
         import capo_budgets.types.execution_type
 
         out["execution_type"] = (

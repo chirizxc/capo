@@ -44,7 +44,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DescribeOrganizationConfigRuleStatusesRequest:
     out: DescribeOrganizationConfigRuleStatusesRequest = {}  # type: ignore[typeddict-item]
-    if "OrganizationConfigRuleNames" in data:
+    if data.get("OrganizationConfigRuleNames") is not None:
         import capo_config_service.types.organization_config_rule_names
 
         out["organization_config_rule_names"] = (
@@ -52,10 +52,10 @@ def deserialize_aws_json_1_1(
                 data["OrganizationConfigRuleNames"]
             )
         )
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
     else:
         out["limit"] = 0
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

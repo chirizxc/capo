@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: DescribeParametersResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeParametersResponse:
     out: DescribeParametersResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_dax.types.parameter_list
 
         out["parameters"] = capo_dax.types.parameter_list.deserialize_aws_json_1_1(

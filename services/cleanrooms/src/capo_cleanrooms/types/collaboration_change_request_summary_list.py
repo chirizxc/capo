@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> CollaborationChangeRequestSummaryList:
 
     out: CollaborationChangeRequestSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cleanrooms.types.collaboration_change_request_summary.deserialize_json(
                 item

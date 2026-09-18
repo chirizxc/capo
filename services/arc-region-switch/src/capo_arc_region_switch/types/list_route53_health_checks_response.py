@@ -36,7 +36,7 @@ def serialize_aws_json_1_0(value: ListRoute53HealthChecksResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListRoute53HealthChecksResponse:
     out: ListRoute53HealthChecksResponse = {}  # type: ignore[typeddict-item]
-    if "healthChecks" in data:
+    if data.get("healthChecks") is not None:
         import capo_arc_region_switch.types.route53_health_check_list
 
         out["health_checks"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListRoute53HealthChecksResponse:
                 data["healthChecks"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

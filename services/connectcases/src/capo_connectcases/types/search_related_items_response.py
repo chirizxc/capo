@@ -35,9 +35,9 @@ def serialize_json(value: SearchRelatedItemsResponse) -> dict:
 
 def deserialize_json(data: dict) -> SearchRelatedItemsResponse:
     out: SearchRelatedItemsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "relatedItems" in data:
+    if data.get("relatedItems") is not None:
         import capo_connectcases.types.search_related_items_response_item_list
 
         out["related_items"] = (

@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: GetOutcomesResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetOutcomesResult:
     out: GetOutcomesResult = {}  # type: ignore[typeddict-item]
-    if "outcomes" in data:
+    if data.get("outcomes") is not None:
         import capo_frauddetector.types.outcome_list
 
         out["outcomes"] = (
@@ -40,6 +40,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetOutcomesResult:
                 data["outcomes"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

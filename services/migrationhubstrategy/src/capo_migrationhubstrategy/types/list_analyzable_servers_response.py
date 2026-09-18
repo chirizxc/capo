@@ -36,7 +36,7 @@ def serialize_json(value: ListAnalyzableServersResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListAnalyzableServersResponse:
     out: ListAnalyzableServersResponse = {}  # type: ignore[typeddict-item]
-    if "analyzableServers" in data:
+    if data.get("analyzableServers") is not None:
         import capo_migrationhubstrategy.types.analyzable_server_summary_list
 
         out["analyzable_servers"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListAnalyzableServersResponse:
                 data["analyzableServers"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

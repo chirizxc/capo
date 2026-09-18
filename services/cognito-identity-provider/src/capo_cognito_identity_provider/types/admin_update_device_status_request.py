@@ -47,21 +47,21 @@ def serialize_aws_json_1_1(value: AdminUpdateDeviceStatusRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AdminUpdateDeviceStatusRequest:
     out: AdminUpdateDeviceStatusRequest = {}  # type: ignore[typeddict-item]
-    if "UserPoolId" in data:
+    if data.get("UserPoolId") is not None:
         out["user_pool_id"] = data["UserPoolId"]
     else:
         raise DeserializationError(
             "AdminUpdateDeviceStatusRequest.user_pool_id required"
         )
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
     else:
         raise DeserializationError("AdminUpdateDeviceStatusRequest.username required")
-    if "DeviceKey" in data:
+    if data.get("DeviceKey") is not None:
         out["device_key"] = data["DeviceKey"]
     else:
         raise DeserializationError("AdminUpdateDeviceStatusRequest.device_key required")
-    if "DeviceRememberedStatus" in data:
+    if data.get("DeviceRememberedStatus") is not None:
         import capo_cognito_identity_provider.types.device_remembered_status_type
 
         out["device_remembered_status"] = (

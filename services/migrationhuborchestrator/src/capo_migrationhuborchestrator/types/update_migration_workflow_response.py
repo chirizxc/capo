@@ -109,19 +109,19 @@ def serialize_json(value: UpdateMigrationWorkflowResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateMigrationWorkflowResponse:
     out: UpdateMigrationWorkflowResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "templateId" in data:
+    if data.get("templateId") is not None:
         out["template_id"] = data["templateId"]
-    if "adsApplicationConfigurationId" in data:
+    if data.get("adsApplicationConfigurationId") is not None:
         out["ads_application_configuration_id"] = data["adsApplicationConfigurationId"]
-    if "workflowInputs" in data:
+    if data.get("workflowInputs") is not None:
         import capo_migrationhuborchestrator.types.step_input_parameters
 
         out["workflow_inputs"] = (
@@ -129,7 +129,7 @@ def deserialize_json(data: dict) -> UpdateMigrationWorkflowResponse:
                 data["workflowInputs"]
             )
         )
-    if "stepTargets" in data:
+    if data.get("stepTargets") is not None:
         import capo_migrationhuborchestrator.types.string_list
 
         out["step_targets"] = (
@@ -137,9 +137,9 @@ def deserialize_json(data: dict) -> UpdateMigrationWorkflowResponse:
                 data["stepTargets"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_migrationhuborchestrator.types._prelude.timestamp
 
         out["creation_time"] = (
@@ -147,7 +147,7 @@ def deserialize_json(data: dict) -> UpdateMigrationWorkflowResponse:
                 data["creationTime"]
             )
         )
-    if "lastModifiedTime" in data:
+    if data.get("lastModifiedTime") is not None:
         import capo_migrationhuborchestrator.types._prelude.timestamp
 
         out["last_modified_time"] = (
@@ -155,7 +155,7 @@ def deserialize_json(data: dict) -> UpdateMigrationWorkflowResponse:
                 data["lastModifiedTime"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_migrationhuborchestrator.types.string_map
 
         out["tags"] = capo_migrationhuborchestrator.types.string_map.deserialize_json(

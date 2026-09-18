@@ -453,7 +453,7 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.create_api_request.CreateApiRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_apigatewayv2.types.create_api_request.CreateApiRequest = {}
         if api_key_selection_expression is not None:
             input_["api_key_selection_expression"] = api_key_selection_expression
         if cors_configuration is not None:
@@ -488,6 +488,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_api_mapping(
@@ -535,12 +536,13 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.create_api_mapping_request.CreateApiMappingRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_apigatewayv2.types.create_api_mapping_request.CreateApiMappingRequest = {
+            "domain_name": domain_name
+        }
         if api_id is not None:
             input_["api_id"] = api_id
         if api_mapping_key is not None:
             input_["api_mapping_key"] = api_mapping_key
-        input_["domain_name"] = domain_name
         if stage is not None:
             input_["stage"] = stage
 
@@ -549,6 +551,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_authorizer(
@@ -624,8 +627,9 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.create_authorizer_request.CreateAuthorizerRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
+        input_: capo_apigatewayv2.types.create_authorizer_request.CreateAuthorizerRequest = {
+            "api_id": api_id
+        }
         if authorizer_credentials_arn is not None:
             input_["authorizer_credentials_arn"] = authorizer_credentials_arn
         if authorizer_payload_format_version is not None:
@@ -656,6 +660,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_deployment(
@@ -701,8 +706,9 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.create_deployment_request.CreateDeploymentRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
+        input_: capo_apigatewayv2.types.create_deployment_request.CreateDeploymentRequest = {
+            "api_id": api_id
+        }
         if description is not None:
             input_["description"] = description
         if stage_name is not None:
@@ -713,6 +719,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_domain_name(
@@ -767,7 +774,7 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.create_domain_name_request.CreateDomainNameRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_apigatewayv2.types.create_domain_name_request.CreateDomainNameRequest = {}
         if domain_name is not None:
             input_["domain_name"] = domain_name
         if domain_name_configurations is not None:
@@ -784,6 +791,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_integration(
@@ -887,8 +895,9 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.create_integration_request.CreateIntegrationRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
+        input_: capo_apigatewayv2.types.create_integration_request.CreateIntegrationRequest = {
+            "api_id": api_id
+        }
         if connection_id is not None:
             input_["connection_id"] = connection_id
         if connection_type is not None:
@@ -929,6 +938,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_integration_response(
@@ -988,11 +998,12 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.create_integration_response_request.CreateIntegrationResponseRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
+        input_: capo_apigatewayv2.types.create_integration_response_request.CreateIntegrationResponseRequest = {
+            "api_id": api_id,
+            "integration_id": integration_id,
+        }
         if content_handling_strategy is not None:
             input_["content_handling_strategy"] = content_handling_strategy
-        input_["integration_id"] = integration_id
         if integration_response_key is not None:
             input_["integration_response_key"] = integration_response_key
         if response_parameters is not None:
@@ -1007,6 +1018,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_model(
@@ -1060,8 +1072,9 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.create_model_request.CreateModelRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
+        input_: capo_apigatewayv2.types.create_model_request.CreateModelRequest = {
+            "api_id": api_id
+        }
         if content_type is not None:
             input_["content_type"] = content_type
         if description is not None:
@@ -1076,6 +1089,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_portal(
@@ -1136,7 +1150,7 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.create_portal_request.CreatePortalRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_apigatewayv2.types.create_portal_request.CreatePortalRequest = {}
         if authorization is not None:
             input_["authorization"] = authorization
         if endpoint_configuration is not None:
@@ -1157,6 +1171,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_portal_product(
@@ -1201,7 +1216,7 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.create_portal_product_request.CreatePortalProductRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_apigatewayv2.types.create_portal_product_request.CreatePortalProductRequest = {}
         if description is not None:
             input_["description"] = description
         if display_name is not None:
@@ -1214,6 +1229,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_product_page(
@@ -1257,16 +1273,18 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.create_product_page_request.CreateProductPageRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_apigatewayv2.types.create_product_page_request.CreateProductPageRequest = {
+            "portal_product_id": portal_product_id
+        }
         if display_content is not None:
             input_["display_content"] = display_content
-        input_["portal_product_id"] = portal_product_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_product_rest_endpoint_page(
@@ -1316,10 +1334,11 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.create_product_rest_endpoint_page_request.CreateProductRestEndpointPageRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_apigatewayv2.types.create_product_rest_endpoint_page_request.CreateProductRestEndpointPageRequest = {
+            "portal_product_id": portal_product_id
+        }
         if display_content is not None:
             input_["display_content"] = display_content
-        input_["portal_product_id"] = portal_product_id
         if rest_endpoint_identifier is not None:
             input_["rest_endpoint_identifier"] = rest_endpoint_identifier
         if try_it_state is not None:
@@ -1330,6 +1349,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_route(
@@ -1409,8 +1429,9 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.create_route_request.CreateRouteRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
+        input_: capo_apigatewayv2.types.create_route_request.CreateRouteRequest = {
+            "api_id": api_id
+        }
         if api_key_required is not None:
             input_["api_key_required"] = api_key_required
         if authorization_scopes is not None:
@@ -1441,6 +1462,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_route_response(
@@ -1496,15 +1518,16 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.create_route_response_request.CreateRouteResponseRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
+        input_: capo_apigatewayv2.types.create_route_response_request.CreateRouteResponseRequest = {
+            "api_id": api_id,
+            "route_id": route_id,
+        }
         if model_selection_expression is not None:
             input_["model_selection_expression"] = model_selection_expression
         if response_models is not None:
             input_["response_models"] = response_models
         if response_parameters is not None:
             input_["response_parameters"] = response_parameters
-        input_["route_id"] = route_id
         if route_response_key is not None:
             input_["route_response_key"] = route_response_key
 
@@ -1513,6 +1536,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_routing_rule(
@@ -1566,12 +1590,13 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.create_routing_rule_request.CreateRoutingRuleRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_apigatewayv2.types.create_routing_rule_request.CreateRoutingRuleRequest = {
+            "domain_name": domain_name
+        }
         if actions is not None:
             input_["actions"] = actions
         if conditions is not None:
             input_["conditions"] = conditions
-        input_["domain_name"] = domain_name
         if domain_name_id is not None:
             input_["domain_name_id"] = domain_name_id
         if priority is not None:
@@ -1582,6 +1607,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_stage(
@@ -1651,10 +1677,11 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.create_stage_request.CreateStageRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_apigatewayv2.types.create_stage_request.CreateStageRequest = {
+            "api_id": api_id
+        }
         if access_log_settings is not None:
             input_["access_log_settings"] = access_log_settings
-        input_["api_id"] = api_id
         if auto_deploy is not None:
             input_["auto_deploy"] = auto_deploy
         if client_certificate_id is not None:
@@ -1679,6 +1706,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_vpc_link(
@@ -1726,7 +1754,7 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.create_vpc_link_request.CreateVpcLinkRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_apigatewayv2.types.create_vpc_link_request.CreateVpcLinkRequest = {}
         if name is not None:
             input_["name"] = name
         if security_group_ids is not None:
@@ -1741,6 +1769,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_access_log_settings(
@@ -1776,15 +1805,17 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.delete_access_log_settings_request.DeleteAccessLogSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["stage_name"] = stage_name
+        input_: capo_apigatewayv2.types.delete_access_log_settings_request.DeleteAccessLogSettingsRequest = {
+            "api_id": api_id,
+            "stage_name": stage_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_api(
@@ -1818,14 +1849,16 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.delete_api_request.DeleteApiRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
+        input_: capo_apigatewayv2.types.delete_api_request.DeleteApiRequest = {
+            "api_id": api_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_api_mapping(
@@ -1862,15 +1895,17 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.delete_api_mapping_request.DeleteApiMappingRequest = {}  # type: ignore[typeddict-item]
-        input_["api_mapping_id"] = api_mapping_id
-        input_["domain_name"] = domain_name
+        input_: capo_apigatewayv2.types.delete_api_mapping_request.DeleteApiMappingRequest = {
+            "api_mapping_id": api_mapping_id,
+            "domain_name": domain_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_authorizer(
@@ -1906,15 +1941,17 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.delete_authorizer_request.DeleteAuthorizerRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["authorizer_id"] = authorizer_id
+        input_: capo_apigatewayv2.types.delete_authorizer_request.DeleteAuthorizerRequest = {
+            "api_id": api_id,
+            "authorizer_id": authorizer_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_cors_configuration(
@@ -1948,14 +1985,16 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.delete_cors_configuration_request.DeleteCorsConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
+        input_: capo_apigatewayv2.types.delete_cors_configuration_request.DeleteCorsConfigurationRequest = {
+            "api_id": api_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_deployment(
@@ -1991,15 +2030,17 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.delete_deployment_request.DeleteDeploymentRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["deployment_id"] = deployment_id
+        input_: capo_apigatewayv2.types.delete_deployment_request.DeleteDeploymentRequest = {
+            "api_id": api_id,
+            "deployment_id": deployment_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_domain_name(
@@ -2033,14 +2074,16 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.delete_domain_name_request.DeleteDomainNameRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_apigatewayv2.types.delete_domain_name_request.DeleteDomainNameRequest = {
+            "domain_name": domain_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_integration(
@@ -2076,15 +2119,17 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.delete_integration_request.DeleteIntegrationRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["integration_id"] = integration_id
+        input_: capo_apigatewayv2.types.delete_integration_request.DeleteIntegrationRequest = {
+            "api_id": api_id,
+            "integration_id": integration_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_integration_response(
@@ -2122,16 +2167,18 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.delete_integration_response_request.DeleteIntegrationResponseRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["integration_id"] = integration_id
-        input_["integration_response_id"] = integration_response_id
+        input_: capo_apigatewayv2.types.delete_integration_response_request.DeleteIntegrationResponseRequest = {
+            "api_id": api_id,
+            "integration_id": integration_id,
+            "integration_response_id": integration_response_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_model(
@@ -2167,15 +2214,17 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.delete_model_request.DeleteModelRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["model_id"] = model_id
+        input_: capo_apigatewayv2.types.delete_model_request.DeleteModelRequest = {
+            "api_id": api_id,
+            "model_id": model_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_portal(
@@ -2210,14 +2259,16 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.delete_portal_request.DeletePortalRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_id"] = portal_id
+        input_: capo_apigatewayv2.types.delete_portal_request.DeletePortalRequest = {
+            "portal_id": portal_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_portal_product(
@@ -2253,14 +2304,16 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.delete_portal_product_request.DeletePortalProductRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_product_id"] = portal_product_id
+        input_: capo_apigatewayv2.types.delete_portal_product_request.DeletePortalProductRequest = {
+            "portal_product_id": portal_product_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_portal_product_sharing_policy(
@@ -2296,14 +2349,16 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.delete_portal_product_sharing_policy_request.DeletePortalProductSharingPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_product_id"] = portal_product_id
+        input_: capo_apigatewayv2.types.delete_portal_product_sharing_policy_request.DeletePortalProductSharingPolicyRequest = {
+            "portal_product_id": portal_product_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_product_page(
@@ -2341,15 +2396,17 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.delete_product_page_request.DeleteProductPageRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_product_id"] = portal_product_id
-        input_["product_page_id"] = product_page_id
+        input_: capo_apigatewayv2.types.delete_product_page_request.DeleteProductPageRequest = {
+            "portal_product_id": portal_product_id,
+            "product_page_id": product_page_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_product_rest_endpoint_page(
@@ -2387,15 +2444,17 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.delete_product_rest_endpoint_page_request.DeleteProductRestEndpointPageRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_product_id"] = portal_product_id
-        input_["product_rest_endpoint_page_id"] = product_rest_endpoint_page_id
+        input_: capo_apigatewayv2.types.delete_product_rest_endpoint_page_request.DeleteProductRestEndpointPageRequest = {
+            "portal_product_id": portal_product_id,
+            "product_rest_endpoint_page_id": product_rest_endpoint_page_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_route(
@@ -2431,15 +2490,17 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.delete_route_request.DeleteRouteRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["route_id"] = route_id
+        input_: capo_apigatewayv2.types.delete_route_request.DeleteRouteRequest = {
+            "api_id": api_id,
+            "route_id": route_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_route_request_parameter(
@@ -2477,16 +2538,18 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.delete_route_request_parameter_request.DeleteRouteRequestParameterRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["request_parameter_key"] = request_parameter_key
-        input_["route_id"] = route_id
+        input_: capo_apigatewayv2.types.delete_route_request_parameter_request.DeleteRouteRequestParameterRequest = {
+            "api_id": api_id,
+            "request_parameter_key": request_parameter_key,
+            "route_id": route_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_route_response(
@@ -2524,16 +2587,18 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.delete_route_response_request.DeleteRouteResponseRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["route_id"] = route_id
-        input_["route_response_id"] = route_response_id
+        input_: capo_apigatewayv2.types.delete_route_response_request.DeleteRouteResponseRequest = {
+            "api_id": api_id,
+            "route_id": route_id,
+            "route_response_id": route_response_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_route_settings(
@@ -2571,16 +2636,18 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.delete_route_settings_request.DeleteRouteSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["route_key"] = route_key
-        input_["stage_name"] = stage_name
+        input_: capo_apigatewayv2.types.delete_route_settings_request.DeleteRouteSettingsRequest = {
+            "api_id": api_id,
+            "route_key": route_key,
+            "stage_name": stage_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_routing_rule(
@@ -2619,17 +2686,19 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.delete_routing_rule_request.DeleteRoutingRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_apigatewayv2.types.delete_routing_rule_request.DeleteRoutingRuleRequest = {
+            "domain_name": domain_name,
+            "routing_rule_id": routing_rule_id,
+        }
         if domain_name_id is not None:
             input_["domain_name_id"] = domain_name_id
-        input_["routing_rule_id"] = routing_rule_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_stage(
@@ -2665,15 +2734,17 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.delete_stage_request.DeleteStageRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["stage_name"] = stage_name
+        input_: capo_apigatewayv2.types.delete_stage_request.DeleteStageRequest = {
+            "api_id": api_id,
+            "stage_name": stage_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_vpc_link(
@@ -2709,14 +2780,16 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.delete_vpc_link_request.DeleteVpcLinkRequest = {}  # type: ignore[typeddict-item]
-        input_["vpc_link_id"] = vpc_link_id
+        input_: capo_apigatewayv2.types.delete_vpc_link_request.DeleteVpcLinkRequest = {
+            "vpc_link_id": vpc_link_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disable_portal(
@@ -2753,14 +2826,16 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.disable_portal_request.DisablePortalRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_id"] = portal_id
+        input_: capo_apigatewayv2.types.disable_portal_request.DisablePortalRequest = {
+            "portal_id": portal_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def export_api(
@@ -2809,15 +2884,16 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.export_api_request.ExportApiRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
+        input_: capo_apigatewayv2.types.export_api_request.ExportApiRequest = {
+            "api_id": api_id,
+            "specification": specification,
+        }
         if export_version is not None:
             input_["export_version"] = export_version
         if include_extensions is not None:
             input_["include_extensions"] = include_extensions
         if output_type is not None:
             input_["output_type"] = output_type
-        input_["specification"] = specification
         if stage_name is not None:
             input_["stage_name"] = stage_name
 
@@ -2826,6 +2902,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_api(
@@ -2861,14 +2938,16 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.get_api_request.GetApiRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
+        input_: capo_apigatewayv2.types.get_api_request.GetApiRequest = {
+            "api_id": api_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_api_mapping(
@@ -2907,15 +2986,17 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.get_api_mapping_request.GetApiMappingRequest = {}  # type: ignore[typeddict-item]
-        input_["api_mapping_id"] = api_mapping_id
-        input_["domain_name"] = domain_name
+        input_: capo_apigatewayv2.types.get_api_mapping_request.GetApiMappingRequest = {
+            "api_mapping_id": api_mapping_id,
+            "domain_name": domain_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_api_mappings(
@@ -2956,8 +3037,9 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.get_api_mappings_request.GetApiMappingsRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_apigatewayv2.types.get_api_mappings_request.GetApiMappingsRequest = {
+            "domain_name": domain_name
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2968,6 +3050,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_apis(
@@ -3006,7 +3089,7 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.get_apis_request.GetApisRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_apigatewayv2.types.get_apis_request.GetApisRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3017,6 +3100,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_authorizer(
@@ -3054,15 +3138,17 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.get_authorizer_request.GetAuthorizerRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["authorizer_id"] = authorizer_id
+        input_: capo_apigatewayv2.types.get_authorizer_request.GetAuthorizerRequest = {
+            "api_id": api_id,
+            "authorizer_id": authorizer_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_authorizers(
@@ -3103,8 +3189,9 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.get_authorizers_request.GetAuthorizersRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
+        input_: capo_apigatewayv2.types.get_authorizers_request.GetAuthorizersRequest = {
+            "api_id": api_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3115,6 +3202,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_deployment(
@@ -3152,15 +3240,17 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.get_deployment_request.GetDeploymentRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["deployment_id"] = deployment_id
+        input_: capo_apigatewayv2.types.get_deployment_request.GetDeploymentRequest = {
+            "api_id": api_id,
+            "deployment_id": deployment_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_deployments(
@@ -3201,8 +3291,9 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.get_deployments_request.GetDeploymentsRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
+        input_: capo_apigatewayv2.types.get_deployments_request.GetDeploymentsRequest = {
+            "api_id": api_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3213,6 +3304,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_domain_name(
@@ -3248,14 +3340,16 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.get_domain_name_request.GetDomainNameRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_apigatewayv2.types.get_domain_name_request.GetDomainNameRequest = {
+            "domain_name": domain_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_domain_names(
@@ -3294,7 +3388,7 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.get_domain_names_request.GetDomainNamesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_apigatewayv2.types.get_domain_names_request.GetDomainNamesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3305,6 +3399,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_integration(
@@ -3342,15 +3437,17 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.get_integration_request.GetIntegrationRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["integration_id"] = integration_id
+        input_: capo_apigatewayv2.types.get_integration_request.GetIntegrationRequest = {
+            "api_id": api_id,
+            "integration_id": integration_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_integration_response(
@@ -3390,16 +3487,18 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.get_integration_response_request.GetIntegrationResponseRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["integration_id"] = integration_id
-        input_["integration_response_id"] = integration_response_id
+        input_: capo_apigatewayv2.types.get_integration_response_request.GetIntegrationResponseRequest = {
+            "api_id": api_id,
+            "integration_id": integration_id,
+            "integration_response_id": integration_response_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_integration_responses(
@@ -3442,9 +3541,10 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.get_integration_responses_request.GetIntegrationResponsesRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["integration_id"] = integration_id
+        input_: capo_apigatewayv2.types.get_integration_responses_request.GetIntegrationResponsesRequest = {
+            "api_id": api_id,
+            "integration_id": integration_id,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3455,6 +3555,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_integrations(
@@ -3495,8 +3596,9 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.get_integrations_request.GetIntegrationsRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
+        input_: capo_apigatewayv2.types.get_integrations_request.GetIntegrationsRequest = {
+            "api_id": api_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3507,6 +3609,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_model(
@@ -3544,15 +3647,17 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.get_model_request.GetModelRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["model_id"] = model_id
+        input_: capo_apigatewayv2.types.get_model_request.GetModelRequest = {
+            "api_id": api_id,
+            "model_id": model_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_models(
@@ -3593,8 +3698,9 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.get_models_request.GetModelsRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
+        input_: capo_apigatewayv2.types.get_models_request.GetModelsRequest = {
+            "api_id": api_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3605,6 +3711,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_model_template(
@@ -3642,15 +3749,17 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.get_model_template_request.GetModelTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["model_id"] = model_id
+        input_: capo_apigatewayv2.types.get_model_template_request.GetModelTemplateRequest = {
+            "api_id": api_id,
+            "model_id": model_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_portal(
@@ -3688,14 +3797,16 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.get_portal_request.GetPortalRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_id"] = portal_id
+        input_: capo_apigatewayv2.types.get_portal_request.GetPortalRequest = {
+            "portal_id": portal_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_portal_product(
@@ -3737,8 +3848,9 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.get_portal_product_request.GetPortalProductRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_product_id"] = portal_product_id
+        input_: capo_apigatewayv2.types.get_portal_product_request.GetPortalProductRequest = {
+            "portal_product_id": portal_product_id
+        }
         if resource_owner_account_id is not None:
             input_["resource_owner_account_id"] = resource_owner_account_id
 
@@ -3747,6 +3859,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_portal_product_sharing_policy(
@@ -3784,14 +3897,16 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.get_portal_product_sharing_policy_request.GetPortalProductSharingPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_product_id"] = portal_product_id
+        input_: capo_apigatewayv2.types.get_portal_product_sharing_policy_request.GetPortalProductSharingPolicyRequest = {
+            "portal_product_id": portal_product_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_product_page(
@@ -3835,9 +3950,10 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.get_product_page_request.GetProductPageRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_product_id"] = portal_product_id
-        input_["product_page_id"] = product_page_id
+        input_: capo_apigatewayv2.types.get_product_page_request.GetProductPageRequest = {
+            "portal_product_id": portal_product_id,
+            "product_page_id": product_page_id,
+        }
         if resource_owner_account_id is not None:
             input_["resource_owner_account_id"] = resource_owner_account_id
 
@@ -3846,6 +3962,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_product_rest_endpoint_page(
@@ -3893,11 +4010,12 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.get_product_rest_endpoint_page_request.GetProductRestEndpointPageRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_apigatewayv2.types.get_product_rest_endpoint_page_request.GetProductRestEndpointPageRequest = {
+            "portal_product_id": portal_product_id,
+            "product_rest_endpoint_page_id": product_rest_endpoint_page_id,
+        }
         if include_raw_display_content is not None:
             input_["include_raw_display_content"] = include_raw_display_content
-        input_["portal_product_id"] = portal_product_id
-        input_["product_rest_endpoint_page_id"] = product_rest_endpoint_page_id
         if resource_owner_account_id is not None:
             input_["resource_owner_account_id"] = resource_owner_account_id
 
@@ -3906,6 +4024,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_route(
@@ -3943,15 +4062,17 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.get_route_request.GetRouteRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["route_id"] = route_id
+        input_: capo_apigatewayv2.types.get_route_request.GetRouteRequest = {
+            "api_id": api_id,
+            "route_id": route_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_route_response(
@@ -3991,16 +4112,18 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.get_route_response_request.GetRouteResponseRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["route_id"] = route_id
-        input_["route_response_id"] = route_response_id
+        input_: capo_apigatewayv2.types.get_route_response_request.GetRouteResponseRequest = {
+            "api_id": api_id,
+            "route_id": route_id,
+            "route_response_id": route_response_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_route_responses(
@@ -4045,19 +4168,21 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.get_route_responses_request.GetRouteResponsesRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
+        input_: capo_apigatewayv2.types.get_route_responses_request.GetRouteResponsesRequest = {
+            "api_id": api_id,
+            "route_id": route_id,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["route_id"] = route_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_routes(
@@ -4098,8 +4223,9 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.get_routes_request.GetRoutesRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
+        input_: capo_apigatewayv2.types.get_routes_request.GetRoutesRequest = {
+            "api_id": api_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -4110,6 +4236,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_routing_rule(
@@ -4150,17 +4277,19 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.get_routing_rule_request.GetRoutingRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_apigatewayv2.types.get_routing_rule_request.GetRoutingRuleRequest = {
+            "domain_name": domain_name,
+            "routing_rule_id": routing_rule_id,
+        }
         if domain_name_id is not None:
             input_["domain_name_id"] = domain_name_id
-        input_["routing_rule_id"] = routing_rule_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_stage(
@@ -4198,15 +4327,17 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.get_stage_request.GetStageRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["stage_name"] = stage_name
+        input_: capo_apigatewayv2.types.get_stage_request.GetStageRequest = {
+            "api_id": api_id,
+            "stage_name": stage_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_stages(
@@ -4247,8 +4378,9 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.get_stages_request.GetStagesRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
+        input_: capo_apigatewayv2.types.get_stages_request.GetStagesRequest = {
+            "api_id": api_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -4259,6 +4391,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_tags(
@@ -4296,14 +4429,16 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.get_tags_request.GetTagsRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_apigatewayv2.types.get_tags_request.GetTagsRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_vpc_link(
@@ -4339,14 +4474,16 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.get_vpc_link_request.GetVpcLinkRequest = {}  # type: ignore[typeddict-item]
-        input_["vpc_link_id"] = vpc_link_id
+        input_: capo_apigatewayv2.types.get_vpc_link_request.GetVpcLinkRequest = {
+            "vpc_link_id": vpc_link_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_vpc_links(
@@ -4384,7 +4521,7 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.get_vpc_links_request.GetVpcLinksRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_apigatewayv2.types.get_vpc_links_request.GetVpcLinksRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -4395,6 +4532,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def import_api(
@@ -4438,7 +4576,7 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.import_api_request.ImportApiRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_apigatewayv2.types.import_api_request.ImportApiRequest = {}
         if basepath is not None:
             input_["basepath"] = basepath
         if body is not None:
@@ -4451,6 +4589,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_portal_products(
@@ -4491,7 +4630,7 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.list_portal_products_request.ListPortalProductsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_apigatewayv2.types.list_portal_products_request.ListPortalProductsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -4504,6 +4643,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_portals(
@@ -4542,7 +4682,7 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.list_portals_request.ListPortalsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_apigatewayv2.types.list_portals_request.ListPortalsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -4553,6 +4693,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_product_pages(
@@ -4598,12 +4739,13 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.list_product_pages_request.ListProductPagesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_apigatewayv2.types.list_product_pages_request.ListProductPagesRequest = {
+            "portal_product_id": portal_product_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["portal_product_id"] = portal_product_id
         if resource_owner_account_id is not None:
             input_["resource_owner_account_id"] = resource_owner_account_id
 
@@ -4612,6 +4754,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_product_rest_endpoint_pages(
@@ -4657,12 +4800,13 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.list_product_rest_endpoint_pages_request.ListProductRestEndpointPagesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_apigatewayv2.types.list_product_rest_endpoint_pages_request.ListProductRestEndpointPagesRequest = {
+            "portal_product_id": portal_product_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["portal_product_id"] = portal_product_id
         if resource_owner_account_id is not None:
             input_["resource_owner_account_id"] = resource_owner_account_id
 
@@ -4671,6 +4815,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_routing_rules(
@@ -4713,8 +4858,9 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.list_routing_rules_request.ListRoutingRulesRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_apigatewayv2.types.list_routing_rules_request.ListRoutingRulesRequest = {
+            "domain_name": domain_name
+        }
         if domain_name_id is not None:
             input_["domain_name_id"] = domain_name_id
         if max_results is not None:
@@ -4727,6 +4873,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_routing_rules(
@@ -4790,14 +4937,16 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.preview_portal_request.PreviewPortalRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_id"] = portal_id
+        input_: capo_apigatewayv2.types.preview_portal_request.PreviewPortalRequest = {
+            "portal_id": portal_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def publish_portal(
@@ -4840,16 +4989,18 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.publish_portal_request.PublishPortalRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_apigatewayv2.types.publish_portal_request.PublishPortalRequest = {
+            "portal_id": portal_id
+        }
         if description is not None:
             input_["description"] = description
-        input_["portal_id"] = portal_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_portal_product_sharing_policy(
@@ -4891,16 +5042,18 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.put_portal_product_sharing_policy_request.PutPortalProductSharingPolicyRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_apigatewayv2.types.put_portal_product_sharing_policy_request.PutPortalProductSharingPolicyRequest = {
+            "portal_product_id": portal_product_id
+        }
         if policy_document is not None:
             input_["policy_document"] = policy_document
-        input_["portal_product_id"] = portal_product_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_routing_rule(
@@ -4954,23 +5107,25 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.put_routing_rule_request.PutRoutingRuleRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_apigatewayv2.types.put_routing_rule_request.PutRoutingRuleRequest = {
+            "domain_name": domain_name,
+            "routing_rule_id": routing_rule_id,
+        }
         if actions is not None:
             input_["actions"] = actions
         if conditions is not None:
             input_["conditions"] = conditions
-        input_["domain_name"] = domain_name
         if domain_name_id is not None:
             input_["domain_name_id"] = domain_name_id
         if priority is not None:
             input_["priority"] = priority
-        input_["routing_rule_id"] = routing_rule_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def reimport_api(
@@ -5016,8 +5171,9 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.reimport_api_request.ReimportApiRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
+        input_: capo_apigatewayv2.types.reimport_api_request.ReimportApiRequest = {
+            "api_id": api_id
+        }
         if basepath is not None:
             input_["basepath"] = basepath
         if body is not None:
@@ -5030,6 +5186,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def reset_authorizers_cache(
@@ -5065,15 +5222,17 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.reset_authorizers_cache_request.ResetAuthorizersCacheRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["stage_name"] = stage_name
+        input_: capo_apigatewayv2.types.reset_authorizers_cache_request.ResetAuthorizersCacheRequest = {
+            "api_id": api_id,
+            "stage_name": stage_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -5113,8 +5272,9 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_apigatewayv2.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -5123,6 +5283,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -5162,8 +5323,9 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_apigatewayv2.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if tag_keys is not None:
             input_["tag_keys"] = tag_keys
 
@@ -5172,6 +5334,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_api(
@@ -5253,8 +5416,9 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.update_api_request.UpdateApiRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
+        input_: capo_apigatewayv2.types.update_api_request.UpdateApiRequest = {
+            "api_id": api_id
+        }
         if api_key_selection_expression is not None:
             input_["api_key_selection_expression"] = api_key_selection_expression
         if cors_configuration is not None:
@@ -5285,6 +5449,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_api_mapping(
@@ -5334,13 +5499,14 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.update_api_mapping_request.UpdateApiMappingRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_apigatewayv2.types.update_api_mapping_request.UpdateApiMappingRequest = {
+            "api_mapping_id": api_mapping_id,
+            "domain_name": domain_name,
+        }
         if api_id is not None:
             input_["api_id"] = api_id
-        input_["api_mapping_id"] = api_mapping_id
         if api_mapping_key is not None:
             input_["api_mapping_key"] = api_mapping_key
-        input_["domain_name"] = domain_name
         if stage is not None:
             input_["stage"] = stage
 
@@ -5349,6 +5515,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_authorizer(
@@ -5426,11 +5593,12 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.update_authorizer_request.UpdateAuthorizerRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
+        input_: capo_apigatewayv2.types.update_authorizer_request.UpdateAuthorizerRequest = {
+            "api_id": api_id,
+            "authorizer_id": authorizer_id,
+        }
         if authorizer_credentials_arn is not None:
             input_["authorizer_credentials_arn"] = authorizer_credentials_arn
-        input_["authorizer_id"] = authorizer_id
         if authorizer_payload_format_version is not None:
             input_["authorizer_payload_format_version"] = (
                 authorizer_payload_format_version
@@ -5459,6 +5627,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_deployment(
@@ -5502,9 +5671,10 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.update_deployment_request.UpdateDeploymentRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
-        input_["deployment_id"] = deployment_id
+        input_: capo_apigatewayv2.types.update_deployment_request.UpdateDeploymentRequest = {
+            "api_id": api_id,
+            "deployment_id": deployment_id,
+        }
         if description is not None:
             input_["description"] = description
 
@@ -5513,6 +5683,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_domain_name(
@@ -5562,8 +5733,9 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.update_domain_name_request.UpdateDomainNameRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_apigatewayv2.types.update_domain_name_request.UpdateDomainNameRequest = {
+            "domain_name": domain_name
+        }
         if domain_name_configurations is not None:
             input_["domain_name_configurations"] = domain_name_configurations
         if mutual_tls_authentication is not None:
@@ -5576,6 +5748,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_integration(
@@ -5681,8 +5854,10 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.update_integration_request.UpdateIntegrationRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
+        input_: capo_apigatewayv2.types.update_integration_request.UpdateIntegrationRequest = {
+            "api_id": api_id,
+            "integration_id": integration_id,
+        }
         if connection_id is not None:
             input_["connection_id"] = connection_id
         if connection_type is not None:
@@ -5693,7 +5868,6 @@ class AsyncApiGatewayV2Client:
             input_["credentials_arn"] = credentials_arn
         if description is not None:
             input_["description"] = description
-        input_["integration_id"] = integration_id
         if integration_method is not None:
             input_["integration_method"] = integration_method
         if integration_subtype is not None:
@@ -5724,6 +5898,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_integration_response(
@@ -5785,12 +5960,13 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.update_integration_response_request.UpdateIntegrationResponseRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
+        input_: capo_apigatewayv2.types.update_integration_response_request.UpdateIntegrationResponseRequest = {
+            "api_id": api_id,
+            "integration_id": integration_id,
+            "integration_response_id": integration_response_id,
+        }
         if content_handling_strategy is not None:
             input_["content_handling_strategy"] = content_handling_strategy
-        input_["integration_id"] = integration_id
-        input_["integration_response_id"] = integration_response_id
         if integration_response_key is not None:
             input_["integration_response_key"] = integration_response_key
         if response_parameters is not None:
@@ -5805,6 +5981,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_model(
@@ -5860,13 +6037,14 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.update_model_request.UpdateModelRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
+        input_: capo_apigatewayv2.types.update_model_request.UpdateModelRequest = {
+            "api_id": api_id,
+            "model_id": model_id,
+        }
         if content_type is not None:
             input_["content_type"] = content_type
         if description is not None:
             input_["description"] = description
-        input_["model_id"] = model_id
         if name is not None:
             input_["name"] = name
         if schema is not None:
@@ -5877,6 +6055,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_portal(
@@ -5939,7 +6118,9 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.update_portal_request.UpdatePortalRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_apigatewayv2.types.update_portal_request.UpdatePortalRequest = {
+            "portal_id": portal_id
+        }
         if authorization is not None:
             input_["authorization"] = authorization
         if endpoint_configuration is not None:
@@ -5950,7 +6131,6 @@ class AsyncApiGatewayV2Client:
             input_["logo_uri"] = logo_uri
         if portal_content is not None:
             input_["portal_content"] = portal_content
-        input_["portal_id"] = portal_id
         if rum_app_monitor_name is not None:
             input_["rum_app_monitor_name"] = rum_app_monitor_name
 
@@ -5959,6 +6139,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_portal_product(
@@ -6008,20 +6189,22 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.update_portal_product_request.UpdatePortalProductRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_apigatewayv2.types.update_portal_product_request.UpdatePortalProductRequest = {
+            "portal_product_id": portal_product_id
+        }
         if description is not None:
             input_["description"] = description
         if display_name is not None:
             input_["display_name"] = display_name
         if display_order is not None:
             input_["display_order"] = display_order
-        input_["portal_product_id"] = portal_product_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_product_page(
@@ -6067,17 +6250,19 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.update_product_page_request.UpdateProductPageRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_apigatewayv2.types.update_product_page_request.UpdateProductPageRequest = {
+            "portal_product_id": portal_product_id,
+            "product_page_id": product_page_id,
+        }
         if display_content is not None:
             input_["display_content"] = display_content
-        input_["portal_product_id"] = portal_product_id
-        input_["product_page_id"] = product_page_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_product_rest_endpoint_page(
@@ -6125,11 +6310,12 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.update_product_rest_endpoint_page_request.UpdateProductRestEndpointPageRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_apigatewayv2.types.update_product_rest_endpoint_page_request.UpdateProductRestEndpointPageRequest = {
+            "portal_product_id": portal_product_id,
+            "product_rest_endpoint_page_id": product_rest_endpoint_page_id,
+        }
         if display_content is not None:
             input_["display_content"] = display_content
-        input_["portal_product_id"] = portal_product_id
-        input_["product_rest_endpoint_page_id"] = product_rest_endpoint_page_id
         if try_it_state is not None:
             input_["try_it_state"] = try_it_state
 
@@ -6138,6 +6324,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_route(
@@ -6219,8 +6406,10 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.update_route_request.UpdateRouteRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
+        input_: capo_apigatewayv2.types.update_route_request.UpdateRouteRequest = {
+            "api_id": api_id,
+            "route_id": route_id,
+        }
         if api_key_required is not None:
             input_["api_key_required"] = api_key_required
         if authorization_scopes is not None:
@@ -6237,7 +6426,6 @@ class AsyncApiGatewayV2Client:
             input_["request_models"] = request_models
         if request_parameters is not None:
             input_["request_parameters"] = request_parameters
-        input_["route_id"] = route_id
         if route_key is not None:
             input_["route_key"] = route_key
         if route_response_selection_expression is not None:
@@ -6252,6 +6440,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_route_response(
@@ -6309,16 +6498,17 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.update_route_response_request.UpdateRouteResponseRequest = {}  # type: ignore[typeddict-item]
-        input_["api_id"] = api_id
+        input_: capo_apigatewayv2.types.update_route_response_request.UpdateRouteResponseRequest = {
+            "api_id": api_id,
+            "route_id": route_id,
+            "route_response_id": route_response_id,
+        }
         if model_selection_expression is not None:
             input_["model_selection_expression"] = model_selection_expression
         if response_models is not None:
             input_["response_models"] = response_models
         if response_parameters is not None:
             input_["response_parameters"] = response_parameters
-        input_["route_id"] = route_id
-        input_["route_response_id"] = route_response_id
         if route_response_key is not None:
             input_["route_response_key"] = route_response_key
 
@@ -6327,6 +6517,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_stage(
@@ -6392,10 +6583,12 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.update_stage_request.UpdateStageRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_apigatewayv2.types.update_stage_request.UpdateStageRequest = {
+            "api_id": api_id,
+            "stage_name": stage_name,
+        }
         if access_log_settings is not None:
             input_["access_log_settings"] = access_log_settings
-        input_["api_id"] = api_id
         if auto_deploy is not None:
             input_["auto_deploy"] = auto_deploy
         if client_certificate_id is not None:
@@ -6408,7 +6601,6 @@ class AsyncApiGatewayV2Client:
             input_["description"] = description
         if route_settings is not None:
             input_["route_settings"] = route_settings
-        input_["stage_name"] = stage_name
         if stage_variables is not None:
             input_["stage_variables"] = stage_variables
 
@@ -6417,6 +6609,7 @@ class AsyncApiGatewayV2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_vpc_link(
@@ -6457,16 +6650,18 @@ class AsyncApiGatewayV2Client:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_apigatewayv2.types.update_vpc_link_request.UpdateVpcLinkRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_apigatewayv2.types.update_vpc_link_request.UpdateVpcLinkRequest = {
+            "vpc_link_id": vpc_link_id
+        }
         if name is not None:
             input_["name"] = name
-        input_["vpc_link_id"] = vpc_link_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

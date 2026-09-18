@@ -40,16 +40,16 @@ def serialize_json(value: ListIndexesInput) -> dict:
 
 def deserialize_json(data: dict) -> ListIndexesInput:
     out: ListIndexesInput = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "Regions" in data:
+    if data.get("Regions") is not None:
         import capo_resource_explorer_2.types.region_list
 
         out["regions"] = capo_resource_explorer_2.types.region_list.deserialize_json(
             data["Regions"]
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

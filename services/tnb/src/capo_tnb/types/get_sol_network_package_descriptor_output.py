@@ -29,7 +29,7 @@ def serialize_json(value: GetSolNetworkPackageDescriptorOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetSolNetworkPackageDescriptorOutput:
     out: GetSolNetworkPackageDescriptorOutput = {}  # type: ignore[typeddict-item]
-    if "nsd" in data:
+    if data.get("nsd") is not None:
         import capo_tnb.types._prelude.blob
 
         out["nsd"] = capo_tnb.types._prelude.blob.deserialize_json(data["nsd"])

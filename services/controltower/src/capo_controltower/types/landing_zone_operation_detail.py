@@ -72,7 +72,7 @@ def serialize_json(value: LandingZoneOperationDetail) -> dict:
 
 def deserialize_json(data: dict) -> LandingZoneOperationDetail:
     out: LandingZoneOperationDetail = {}  # type: ignore[typeddict-item]
-    if "operationType" in data:
+    if data.get("operationType") is not None:
         import capo_controltower.types.landing_zone_operation_type
 
         out["operation_type"] = (
@@ -80,9 +80,9 @@ def deserialize_json(data: dict) -> LandingZoneOperationDetail:
                 data["operationType"]
             )
         )
-    if "operationIdentifier" in data:
+    if data.get("operationIdentifier") is not None:
         out["operation_identifier"] = data["operationIdentifier"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_controltower.types.landing_zone_operation_status
 
         out["status"] = (
@@ -90,18 +90,18 @@ def deserialize_json(data: dict) -> LandingZoneOperationDetail:
                 data["status"]
             )
         )
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_controltower.types.timestamp
 
         out["start_time"] = capo_controltower.types.timestamp.deserialize_json(
             data["startTime"]
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_controltower.types.timestamp
 
         out["end_time"] = capo_controltower.types.timestamp.deserialize_json(
             data["endTime"]
         )
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
     return out

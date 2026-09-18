@@ -18,6 +18,6 @@ def serialize_json(value: DeleteGatewayResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteGatewayResponse:
     out: DeleteGatewayResponse = {}  # type: ignore[typeddict-item]
-    if "gatewayArn" in data:
+    if data.get("gatewayArn") is not None:
         out["gateway_arn"] = data["gatewayArn"]
     return out

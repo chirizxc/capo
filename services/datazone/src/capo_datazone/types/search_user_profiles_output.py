@@ -34,12 +34,12 @@ def serialize_json(value: SearchUserProfilesOutput) -> dict:
 
 def deserialize_json(data: dict) -> SearchUserProfilesOutput:
     out: SearchUserProfilesOutput = {}  # type: ignore[typeddict-item]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_datazone.types.user_profile_summaries
 
         out["items"] = capo_datazone.types.user_profile_summaries.deserialize_json(
             data["items"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

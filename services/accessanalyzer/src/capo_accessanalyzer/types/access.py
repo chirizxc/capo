@@ -34,7 +34,7 @@ def serialize_json(value: Access) -> dict:
 
 def deserialize_json(data: dict) -> Access:
     out: Access = {}  # type: ignore[typeddict-item]
-    if "actions" in data:
+    if data.get("actions") is not None:
         import capo_accessanalyzer.types.actions_list
 
         out["actions"] = capo_accessanalyzer.types.actions_list.deserialize_json(
@@ -42,7 +42,7 @@ def deserialize_json(data: dict) -> Access:
         )
     else:
         out["actions"] = []
-    if "resources" in data:
+    if data.get("resources") is not None:
         import capo_accessanalyzer.types.resources_list
 
         out["resources"] = capo_accessanalyzer.types.resources_list.deserialize_json(

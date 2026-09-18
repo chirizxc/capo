@@ -83,19 +83,21 @@ class AssetType:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.create_asset_type_input.CreateAssetTypeInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["name"] = name
+        input_: capo_datazone.types.create_asset_type_input.CreateAssetTypeInput = {
+            "domain_identifier": domain_identifier,
+            "name": name,
+            "forms_input": forms_input,
+            "owning_project_identifier": owning_project_identifier,
+        }
         if description is not None:
             input_["description"] = description
-        input_["forms_input"] = forms_input
-        input_["owning_project_identifier"] = owning_project_identifier
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_asset_type(
@@ -137,15 +139,17 @@ class AssetType:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.delete_asset_type_input.DeleteAssetTypeInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.delete_asset_type_input.DeleteAssetTypeInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_asset_type(
@@ -188,9 +192,10 @@ class AssetType:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.get_asset_type_input.GetAssetTypeInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.get_asset_type_input.GetAssetTypeInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
         if revision is not None:
             input_["revision"] = revision
 
@@ -199,6 +204,7 @@ class AssetType:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -252,19 +258,21 @@ class AsyncAssetType:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.create_asset_type_input.CreateAssetTypeInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["name"] = name
+        input_: capo_datazone.types.create_asset_type_input.CreateAssetTypeInput = {
+            "domain_identifier": domain_identifier,
+            "name": name,
+            "forms_input": forms_input,
+            "owning_project_identifier": owning_project_identifier,
+        }
         if description is not None:
             input_["description"] = description
-        input_["forms_input"] = forms_input
-        input_["owning_project_identifier"] = owning_project_identifier
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_asset_type(
@@ -307,15 +315,17 @@ class AsyncAssetType:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.delete_asset_type_input.DeleteAssetTypeInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.delete_asset_type_input.DeleteAssetTypeInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_asset_type(
@@ -359,9 +369,10 @@ class AsyncAssetType:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.get_asset_type_input.GetAssetTypeInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.get_asset_type_input.GetAssetTypeInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
         if revision is not None:
             input_["revision"] = revision
 
@@ -370,4 +381,5 @@ class AsyncAssetType:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

@@ -60,24 +60,24 @@ def serialize_json(value: NodeSummary) -> dict:
 
 def deserialize_json(data: dict) -> NodeSummary:
     out: NodeSummary = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_managedblockchain.types.node_status
 
         out["status"] = capo_managedblockchain.types.node_status.deserialize_json(
             data["Status"]
         )
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         import capo_managedblockchain.types.timestamp
 
         out["creation_date"] = capo_managedblockchain.types.timestamp.deserialize_json(
             data["CreationDate"]
         )
-    if "AvailabilityZone" in data:
+    if data.get("AvailabilityZone") is not None:
         out["availability_zone"] = data["AvailabilityZone"]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         out["instance_type"] = data["InstanceType"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     return out

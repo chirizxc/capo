@@ -27,11 +27,11 @@ def serialize_aws_json_1_1(value: ProjectSourceVersion) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProjectSourceVersion:
     out: ProjectSourceVersion = {}  # type: ignore[typeddict-item]
-    if "sourceIdentifier" in data:
+    if data.get("sourceIdentifier") is not None:
         out["source_identifier"] = data["sourceIdentifier"]
     else:
         raise DeserializationError("ProjectSourceVersion.source_identifier required")
-    if "sourceVersion" in data:
+    if data.get("sourceVersion") is not None:
         out["source_version"] = data["sourceVersion"]
     else:
         raise DeserializationError("ProjectSourceVersion.source_version required")

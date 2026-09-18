@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: CreateDeploymentConfigOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateDeploymentConfigOutput:
     out: CreateDeploymentConfigOutput = {}  # type: ignore[typeddict-item]
-    if "deploymentConfigId" in data:
+    if data.get("deploymentConfigId") is not None:
         out["deployment_config_id"] = data["deploymentConfigId"]
     return out

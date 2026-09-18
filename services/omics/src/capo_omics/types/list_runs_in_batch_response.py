@@ -30,10 +30,10 @@ def serialize_json(value: ListRunsInBatchResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListRunsInBatchResponse:
     out: ListRunsInBatchResponse = {}  # type: ignore[typeddict-item]
-    if "runs" in data:
+    if data.get("runs") is not None:
         import capo_omics.types.run_batch_list
 
         out["runs"] = capo_omics.types.run_batch_list.deserialize_json(data["runs"])
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

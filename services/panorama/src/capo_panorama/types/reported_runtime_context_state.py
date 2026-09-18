@@ -42,23 +42,23 @@ def serialize_json(value: ReportedRuntimeContextState) -> dict:
 
 def deserialize_json(data: dict) -> ReportedRuntimeContextState:
     out: ReportedRuntimeContextState = {}  # type: ignore[typeddict-item]
-    if "DesiredState" in data:
+    if data.get("DesiredState") is not None:
         out["desired_state"] = data["DesiredState"]
     else:
         raise DeserializationError("ReportedRuntimeContextState.desired_state required")
-    if "RuntimeContextName" in data:
+    if data.get("RuntimeContextName") is not None:
         out["runtime_context_name"] = data["RuntimeContextName"]
     else:
         raise DeserializationError(
             "ReportedRuntimeContextState.runtime_context_name required"
         )
-    if "DeviceReportedStatus" in data:
+    if data.get("DeviceReportedStatus") is not None:
         out["device_reported_status"] = data["DeviceReportedStatus"]
     else:
         raise DeserializationError(
             "ReportedRuntimeContextState.device_reported_status required"
         )
-    if "DeviceReportedTime" in data:
+    if data.get("DeviceReportedTime") is not None:
         import capo_panorama.types.time_stamp
 
         out["device_reported_time"] = capo_panorama.types.time_stamp.deserialize_json(

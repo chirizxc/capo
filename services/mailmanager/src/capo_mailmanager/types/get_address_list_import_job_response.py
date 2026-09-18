@@ -103,15 +103,15 @@ def serialize_aws_json_1_0(value: GetAddressListImportJobResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetAddressListImportJobResponse:
     out: GetAddressListImportJobResponse = {}  # type: ignore[typeddict-item]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
     else:
         raise DeserializationError("GetAddressListImportJobResponse.job_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("GetAddressListImportJobResponse.name required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_mailmanager.types.import_job_status
 
         out["status"] = (
@@ -121,17 +121,17 @@ def deserialize_aws_json_1_0(data: dict) -> GetAddressListImportJobResponse:
         )
     else:
         raise DeserializationError("GetAddressListImportJobResponse.status required")
-    if "PreSignedUrl" in data:
+    if data.get("PreSignedUrl") is not None:
         out["pre_signed_url"] = data["PreSignedUrl"]
     else:
         raise DeserializationError(
             "GetAddressListImportJobResponse.pre_signed_url required"
         )
-    if "ImportedItemsCount" in data:
+    if data.get("ImportedItemsCount") is not None:
         out["imported_items_count"] = data["ImportedItemsCount"]
-    if "FailedItemsCount" in data:
+    if data.get("FailedItemsCount") is not None:
         out["failed_items_count"] = data["FailedItemsCount"]
-    if "ImportDataFormat" in data:
+    if data.get("ImportDataFormat") is not None:
         import capo_mailmanager.types.import_data_format
 
         out["import_data_format"] = (
@@ -143,13 +143,13 @@ def deserialize_aws_json_1_0(data: dict) -> GetAddressListImportJobResponse:
         raise DeserializationError(
             "GetAddressListImportJobResponse.import_data_format required"
         )
-    if "AddressListId" in data:
+    if data.get("AddressListId") is not None:
         out["address_list_id"] = data["AddressListId"]
     else:
         raise DeserializationError(
             "GetAddressListImportJobResponse.address_list_id required"
         )
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_mailmanager.types._prelude.timestamp
 
         out["created_timestamp"] = (
@@ -161,7 +161,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetAddressListImportJobResponse:
         raise DeserializationError(
             "GetAddressListImportJobResponse.created_timestamp required"
         )
-    if "StartTimestamp" in data:
+    if data.get("StartTimestamp") is not None:
         import capo_mailmanager.types._prelude.timestamp
 
         out["start_timestamp"] = (
@@ -169,7 +169,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetAddressListImportJobResponse:
                 data["StartTimestamp"]
             )
         )
-    if "CompletedTimestamp" in data:
+    if data.get("CompletedTimestamp") is not None:
         import capo_mailmanager.types._prelude.timestamp
 
         out["completed_timestamp"] = (
@@ -177,6 +177,6 @@ def deserialize_aws_json_1_0(data: dict) -> GetAddressListImportJobResponse:
                 data["CompletedTimestamp"]
             )
         )
-    if "Error" in data:
+    if data.get("Error") is not None:
         out["error"] = data["Error"]
     return out

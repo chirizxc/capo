@@ -47,13 +47,13 @@ def serialize_json(value: Member) -> dict:
 
 def deserialize_json(data: dict) -> Member:
     out: Member = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "relationshipStatus" in data:
+    if data.get("relationshipStatus") is not None:
         out["relationship_status"] = data["relationshipStatus"]
-    if "delegatedAdminAccountId" in data:
+    if data.get("delegatedAdminAccountId") is not None:
         out["delegated_admin_account_id"] = data["delegatedAdminAccountId"]
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_inspector2.types.date_time_timestamp
 
         out["updated_at"] = capo_inspector2.types.date_time_timestamp.deserialize_json(

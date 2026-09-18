@@ -62,31 +62,31 @@ def serialize_json(value: ScatterPlotCategoricallyAggregatedFieldWells) -> dict:
 
 def deserialize_json(data: dict) -> ScatterPlotCategoricallyAggregatedFieldWells:
     out: ScatterPlotCategoricallyAggregatedFieldWells = {}  # type: ignore[typeddict-item]
-    if "XAxis" in data:
+    if data.get("XAxis") is not None:
         import capo_quicksight.types.measure_field_list
 
         out["x_axis"] = capo_quicksight.types.measure_field_list.deserialize_json(
             data["XAxis"]
         )
-    if "YAxis" in data:
+    if data.get("YAxis") is not None:
         import capo_quicksight.types.measure_field_list
 
         out["y_axis"] = capo_quicksight.types.measure_field_list.deserialize_json(
             data["YAxis"]
         )
-    if "Category" in data:
+    if data.get("Category") is not None:
         import capo_quicksight.types.dimension_field_list
 
         out["category"] = capo_quicksight.types.dimension_field_list.deserialize_json(
             data["Category"]
         )
-    if "Size" in data:
+    if data.get("Size") is not None:
         import capo_quicksight.types.measure_field_list
 
         out["size"] = capo_quicksight.types.measure_field_list.deserialize_json(
             data["Size"]
         )
-    if "Label" in data:
+    if data.get("Label") is not None:
         import capo_quicksight.types.dimension_field_list
 
         out["label"] = capo_quicksight.types.dimension_field_list.deserialize_json(

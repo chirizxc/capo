@@ -34,9 +34,9 @@ def serialize_json(value: ListAccessSourcesOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListAccessSourcesOutput:
     out: ListAccessSourcesOutput = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "accessSources" in data:
+    if data.get("accessSources") is not None:
         import capo_route53globalresolver.types.access_sources
 
         out["access_sources"] = (

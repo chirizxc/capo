@@ -72,7 +72,7 @@ def serialize_json(value: ReplicationInfo) -> dict:
 
 def deserialize_json(data: dict) -> ReplicationInfo:
     out: ReplicationInfo = {}  # type: ignore[typeddict-item]
-    if "consumerGroupReplication" in data:
+    if data.get("consumerGroupReplication") is not None:
         import capo_kafka.types.consumer_group_replication
 
         out["consumer_group_replication"] = (
@@ -80,11 +80,11 @@ def deserialize_json(data: dict) -> ReplicationInfo:
                 data["consumerGroupReplication"]
             )
         )
-    if "sourceKafkaClusterArn" in data:
+    if data.get("sourceKafkaClusterArn") is not None:
         out["source_kafka_cluster_arn"] = data["sourceKafkaClusterArn"]
-    if "sourceKafkaClusterId" in data:
+    if data.get("sourceKafkaClusterId") is not None:
         out["source_kafka_cluster_id"] = data["sourceKafkaClusterId"]
-    if "targetCompressionType" in data:
+    if data.get("targetCompressionType") is not None:
         import capo_kafka.types.target_compression_type
 
         out["target_compression_type"] = (
@@ -92,11 +92,11 @@ def deserialize_json(data: dict) -> ReplicationInfo:
                 data["targetCompressionType"]
             )
         )
-    if "targetKafkaClusterArn" in data:
+    if data.get("targetKafkaClusterArn") is not None:
         out["target_kafka_cluster_arn"] = data["targetKafkaClusterArn"]
-    if "targetKafkaClusterId" in data:
+    if data.get("targetKafkaClusterId") is not None:
         out["target_kafka_cluster_id"] = data["targetKafkaClusterId"]
-    if "topicReplication" in data:
+    if data.get("topicReplication") is not None:
         import capo_kafka.types.topic_replication
 
         out["topic_replication"] = capo_kafka.types.topic_replication.deserialize_json(

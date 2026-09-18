@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> WorkflowRunSortCriteriaList:
 
     out: WorkflowRunSortCriteriaList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codecatalyst.types.workflow_run_sort_criteria.deserialize_json(item)
         )

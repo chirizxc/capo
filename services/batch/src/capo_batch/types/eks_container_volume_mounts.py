@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> EksContainerVolumeMounts:
 
     out: EksContainerVolumeMounts = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_batch.types.eks_container_volume_mount.deserialize_json(item))
     return out

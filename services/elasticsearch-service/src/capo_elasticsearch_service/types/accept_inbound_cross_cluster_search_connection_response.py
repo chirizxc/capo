@@ -31,7 +31,7 @@ def serialize_json(value: AcceptInboundCrossClusterSearchConnectionResponse) -> 
 
 def deserialize_json(data: dict) -> AcceptInboundCrossClusterSearchConnectionResponse:
     out: AcceptInboundCrossClusterSearchConnectionResponse = {}  # type: ignore[typeddict-item]
-    if "CrossClusterSearchConnection" in data:
+    if data.get("CrossClusterSearchConnection") is not None:
         import capo_elasticsearch_service.types.inbound_cross_cluster_search_connection
 
         out["cross_cluster_search_connection"] = (

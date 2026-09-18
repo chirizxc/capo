@@ -24,7 +24,7 @@ def serialize_json(value: RequiredField) -> dict:
 
 def deserialize_json(data: dict) -> RequiredField:
     out: RequiredField = {}  # type: ignore[typeddict-item]
-    if "fieldId" in data:
+    if data.get("fieldId") is not None:
         out["field_id"] = data["fieldId"]
     else:
         raise DeserializationError("RequiredField.field_id required")

@@ -32,12 +32,12 @@ def serialize_json(value: ListOutpostsWithS3Result) -> dict:
 
 def deserialize_json(data: dict) -> ListOutpostsWithS3Result:
     out: ListOutpostsWithS3Result = {}  # type: ignore[typeddict-item]
-    if "Outposts" in data:
+    if data.get("Outposts") is not None:
         import capo_s3outposts.types.outposts
 
         out["outposts"] = capo_s3outposts.types.outposts.deserialize_json(
             data["Outposts"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -40,13 +40,13 @@ def serialize_aws_json_1_1(value: GeoMatchStatement) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GeoMatchStatement:
     out: GeoMatchStatement = {}  # type: ignore[typeddict-item]
-    if "CountryCodes" in data:
+    if data.get("CountryCodes") is not None:
         import capo_wafv2.types.country_codes
 
         out["country_codes"] = capo_wafv2.types.country_codes.deserialize_aws_json_1_1(
             data["CountryCodes"]
         )
-    if "ForwardedIPConfig" in data:
+    if data.get("ForwardedIPConfig") is not None:
         import capo_wafv2.types.forwarded_ip_config
 
         out["forwarded_ip_config"] = (

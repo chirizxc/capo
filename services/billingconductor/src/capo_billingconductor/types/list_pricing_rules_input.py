@@ -50,9 +50,9 @@ def serialize_json(value: ListPricingRulesInput) -> dict:
 
 def deserialize_json(data: dict) -> ListPricingRulesInput:
     out: ListPricingRulesInput = {}  # type: ignore[typeddict-item]
-    if "BillingPeriod" in data:
+    if data.get("BillingPeriod") is not None:
         out["billing_period"] = data["BillingPeriod"]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_billingconductor.types.list_pricing_rules_filter
 
         out["filters"] = (
@@ -60,8 +60,8 @@ def deserialize_json(data: dict) -> ListPricingRulesInput:
                 data["Filters"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

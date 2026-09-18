@@ -23,6 +23,6 @@ def serialize_json(value: StartDetectorModelAnalysisResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartDetectorModelAnalysisResponse:
     out: StartDetectorModelAnalysisResponse = {}  # type: ignore[typeddict-item]
-    if "analysisId" in data:
+    if data.get("analysisId") is not None:
         out["analysis_id"] = data["analysisId"]
     return out

@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: CreateMicrosoftADResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateMicrosoftADResult:
     out: CreateMicrosoftADResult = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
     return out

@@ -61,31 +61,31 @@ def serialize_json(value: DescribeDashboardResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeDashboardResponse:
     out: DescribeDashboardResponse = {}  # type: ignore[typeddict-item]
-    if "dashboardId" in data:
+    if data.get("dashboardId") is not None:
         out["dashboard_id"] = data["dashboardId"]
     else:
         raise DeserializationError("DescribeDashboardResponse.dashboard_id required")
-    if "dashboardArn" in data:
+    if data.get("dashboardArn") is not None:
         out["dashboard_arn"] = data["dashboardArn"]
     else:
         raise DeserializationError("DescribeDashboardResponse.dashboard_arn required")
-    if "dashboardName" in data:
+    if data.get("dashboardName") is not None:
         out["dashboard_name"] = data["dashboardName"]
     else:
         raise DeserializationError("DescribeDashboardResponse.dashboard_name required")
-    if "projectId" in data:
+    if data.get("projectId") is not None:
         out["project_id"] = data["projectId"]
     else:
         raise DeserializationError("DescribeDashboardResponse.project_id required")
-    if "dashboardDescription" in data:
+    if data.get("dashboardDescription") is not None:
         out["dashboard_description"] = data["dashboardDescription"]
-    if "dashboardDefinition" in data:
+    if data.get("dashboardDefinition") is not None:
         out["dashboard_definition"] = data["dashboardDefinition"]
     else:
         raise DeserializationError(
             "DescribeDashboardResponse.dashboard_definition required"
         )
-    if "dashboardCreationDate" in data:
+    if data.get("dashboardCreationDate") is not None:
         import capo_iotsitewise.types.timestamp
 
         out["dashboard_creation_date"] = (
@@ -97,7 +97,7 @@ def deserialize_json(data: dict) -> DescribeDashboardResponse:
         raise DeserializationError(
             "DescribeDashboardResponse.dashboard_creation_date required"
         )
-    if "dashboardLastUpdateDate" in data:
+    if data.get("dashboardLastUpdateDate") is not None:
         import capo_iotsitewise.types.timestamp
 
         out["dashboard_last_update_date"] = (

@@ -73,19 +73,19 @@ def serialize_json(value: GeneratePinDataInput) -> dict:
 
 def deserialize_json(data: dict) -> GeneratePinDataInput:
     out: GeneratePinDataInput = {}  # type: ignore[typeddict-item]
-    if "GenerationKeyIdentifier" in data:
+    if data.get("GenerationKeyIdentifier") is not None:
         out["generation_key_identifier"] = data["GenerationKeyIdentifier"]
     else:
         raise DeserializationError(
             "GeneratePinDataInput.generation_key_identifier required"
         )
-    if "EncryptionKeyIdentifier" in data:
+    if data.get("EncryptionKeyIdentifier") is not None:
         out["encryption_key_identifier"] = data["EncryptionKeyIdentifier"]
     else:
         raise DeserializationError(
             "GeneratePinDataInput.encryption_key_identifier required"
         )
-    if "GenerationAttributes" in data:
+    if data.get("GenerationAttributes") is not None:
         import capo_payment_cryptography_data.types.pin_generation_attributes
 
         out["generation_attributes"] = (
@@ -97,11 +97,11 @@ def deserialize_json(data: dict) -> GeneratePinDataInput:
         raise DeserializationError(
             "GeneratePinDataInput.generation_attributes required"
         )
-    if "PinDataLength" in data:
+    if data.get("PinDataLength") is not None:
         out["pin_data_length"] = data["PinDataLength"]
-    if "PrimaryAccountNumber" in data:
+    if data.get("PrimaryAccountNumber") is not None:
         out["primary_account_number"] = data["PrimaryAccountNumber"]
-    if "PinBlockFormat" in data:
+    if data.get("PinBlockFormat") is not None:
         import capo_payment_cryptography_data.types.pin_block_format_for_pin_data
 
         out["pin_block_format"] = (
@@ -111,7 +111,7 @@ def deserialize_json(data: dict) -> GeneratePinDataInput:
         )
     else:
         raise DeserializationError("GeneratePinDataInput.pin_block_format required")
-    if "EncryptionWrappedKey" in data:
+    if data.get("EncryptionWrappedKey") is not None:
         import capo_payment_cryptography_data.types.wrapped_key
 
         out["encryption_wrapped_key"] = (

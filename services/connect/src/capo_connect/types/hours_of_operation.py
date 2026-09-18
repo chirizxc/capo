@@ -94,17 +94,17 @@ def serialize_json(value: HoursOfOperation) -> dict:
 
 def deserialize_json(data: dict) -> HoursOfOperation:
     out: HoursOfOperation = {}  # type: ignore[typeddict-item]
-    if "HoursOfOperationId" in data:
+    if data.get("HoursOfOperationId") is not None:
         out["hours_of_operation_id"] = data["HoursOfOperationId"]
-    if "HoursOfOperationArn" in data:
+    if data.get("HoursOfOperationArn") is not None:
         out["hours_of_operation_arn"] = data["HoursOfOperationArn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "TimeZone" in data:
+    if data.get("TimeZone") is not None:
         out["time_zone"] = data["TimeZone"]
-    if "Config" in data:
+    if data.get("Config") is not None:
         import capo_connect.types.hours_of_operation_config_list
 
         out["config"] = (
@@ -112,7 +112,7 @@ def deserialize_json(data: dict) -> HoursOfOperation:
                 data["Config"]
             )
         )
-    if "ParentHoursOfOperations" in data:
+    if data.get("ParentHoursOfOperations") is not None:
         import capo_connect.types.parent_hours_of_operations_list
 
         out["parent_hours_of_operations"] = (
@@ -120,16 +120,16 @@ def deserialize_json(data: dict) -> HoursOfOperation:
                 data["ParentHoursOfOperations"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_connect.types.timestamp
 
         out["last_modified_time"] = capo_connect.types.timestamp.deserialize_json(
             data["LastModifiedTime"]
         )
-    if "LastModifiedRegion" in data:
+    if data.get("LastModifiedRegion") is not None:
         out["last_modified_region"] = data["LastModifiedRegion"]
     return out

@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: NetworkAclIcmpTypeCode) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NetworkAclIcmpTypeCode:
     out: NetworkAclIcmpTypeCode = {}  # type: ignore[typeddict-item]
-    if "Code" in data:
+    if data.get("Code") is not None:
         out["code"] = data["Code"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     return out

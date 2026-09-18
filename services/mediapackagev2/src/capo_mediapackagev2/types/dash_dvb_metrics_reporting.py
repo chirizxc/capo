@@ -23,10 +23,10 @@ def serialize_json(value: DashDvbMetricsReporting) -> dict:
 
 def deserialize_json(data: dict) -> DashDvbMetricsReporting:
     out: DashDvbMetricsReporting = {}  # type: ignore[typeddict-item]
-    if "ReportingUrl" in data:
+    if data.get("ReportingUrl") is not None:
         out["reporting_url"] = data["ReportingUrl"]
     else:
         raise DeserializationError("DashDvbMetricsReporting.reporting_url required")
-    if "Probability" in data:
+    if data.get("Probability") is not None:
         out["probability"] = data["Probability"]
     return out

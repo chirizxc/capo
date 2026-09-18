@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.securityhub#SecurityHubAPIService``."""
 
+import uuid
 import warnings
 from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -485,7 +486,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.accept_administrator_invitation_request.AcceptAdministratorInvitationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.accept_administrator_invitation_request.AcceptAdministratorInvitationRequest = {}
         if administrator_id is not None:
             input_["administrator_id"] = administrator_id
         if invitation_id is not None:
@@ -496,6 +497,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def accept_invitation(
@@ -540,7 +542,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.accept_invitation_request.AcceptInvitationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.accept_invitation_request.AcceptInvitationRequest = {}
         if master_id is not None:
             input_["master_id"] = master_id
         if invitation_id is not None:
@@ -551,6 +553,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_delete_automation_rules(
@@ -597,7 +600,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.batch_delete_automation_rules_request.BatchDeleteAutomationRulesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.batch_delete_automation_rules_request.BatchDeleteAutomationRulesRequest = {}
         if automation_rules_arns is not None:
             input_["automation_rules_arns"] = automation_rules_arns
 
@@ -606,6 +609,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_disable_standards(
@@ -652,7 +656,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.batch_disable_standards_request.BatchDisableStandardsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.batch_disable_standards_request.BatchDisableStandardsRequest = {}
         if standards_subscription_arns is not None:
             input_["standards_subscription_arns"] = standards_subscription_arns
 
@@ -661,6 +665,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_enable_standards(
@@ -707,7 +712,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.batch_enable_standards_request.BatchEnableStandardsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.batch_enable_standards_request.BatchEnableStandardsRequest = {}
         if standards_subscription_requests is not None:
             input_["standards_subscription_requests"] = standards_subscription_requests
 
@@ -716,6 +721,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_automation_rules(
@@ -763,7 +769,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.batch_get_automation_rules_request.BatchGetAutomationRulesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.batch_get_automation_rules_request.BatchGetAutomationRulesRequest = {}
         if automation_rules_arns is not None:
             input_["automation_rules_arns"] = automation_rules_arns
 
@@ -772,6 +778,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_configuration_policy_associations(
@@ -819,7 +826,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.batch_get_configuration_policy_associations_request.BatchGetConfigurationPolicyAssociationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.batch_get_configuration_policy_associations_request.BatchGetConfigurationPolicyAssociationsRequest = {}
         if configuration_policy_association_identifiers is not None:
             input_["configuration_policy_association_identifiers"] = (
                 configuration_policy_association_identifiers
@@ -830,6 +837,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_security_controls(
@@ -875,7 +883,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.batch_get_security_controls_request.BatchGetSecurityControlsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.batch_get_security_controls_request.BatchGetSecurityControlsRequest = {}
         if security_control_ids is not None:
             input_["security_control_ids"] = security_control_ids
 
@@ -884,6 +892,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_standards_control_associations(
@@ -923,7 +932,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.batch_get_standards_control_associations_request.BatchGetStandardsControlAssociationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.batch_get_standards_control_associations_request.BatchGetStandardsControlAssociationsRequest = {}
         if standards_control_association_ids is not None:
             input_["standards_control_association_ids"] = (
                 standards_control_association_ids
@@ -934,6 +943,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_import_findings(
@@ -979,7 +989,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.batch_import_findings_request.BatchImportFindingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.batch_import_findings_request.BatchImportFindingsRequest = {}
         if findings is not None:
             input_["findings"] = findings
 
@@ -988,6 +998,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_update_automation_rules(
@@ -1034,7 +1045,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.batch_update_automation_rules_request.BatchUpdateAutomationRulesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.batch_update_automation_rules_request.BatchUpdateAutomationRulesRequest = {}
         if update_automation_rules_request_items is not None:
             input_["update_automation_rules_request_items"] = (
                 update_automation_rules_request_items
@@ -1045,6 +1056,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_update_findings(
@@ -1117,7 +1129,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.batch_update_findings_request.BatchUpdateFindingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.batch_update_findings_request.BatchUpdateFindingsRequest = {}
         if finding_identifiers is not None:
             input_["finding_identifiers"] = finding_identifiers
         if note is not None:
@@ -1144,6 +1156,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_update_findings_v2(
@@ -1196,7 +1209,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.batch_update_findings_v2_request.BatchUpdateFindingsV2Request = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.batch_update_findings_v2_request.BatchUpdateFindingsV2Request = {}
         if metadata_uids is not None:
             input_["metadata_uids"] = metadata_uids
         if finding_identifiers is not None:
@@ -1213,6 +1226,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_update_standards_control_associations(
@@ -1259,7 +1273,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.batch_update_standards_control_associations_request.BatchUpdateStandardsControlAssociationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.batch_update_standards_control_associations_request.BatchUpdateStandardsControlAssociationsRequest = {}
         if standards_control_association_updates is not None:
             input_["standards_control_association_updates"] = (
                 standards_control_association_updates
@@ -1270,6 +1284,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_action_target(
@@ -1320,7 +1335,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.create_action_target_request.CreateActionTargetRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.create_action_target_request.CreateActionTargetRequest = {}
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -1333,6 +1348,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_aggregator_v2(
@@ -1385,21 +1401,23 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.create_aggregator_v2_request.CreateAggregatorV2Request = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.create_aggregator_v2_request.CreateAggregatorV2Request = {}
         if region_linking_mode is not None:
             input_["region_linking_mode"] = region_linking_mode
         if linked_regions is not None:
             input_["linked_regions"] = linked_regions
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_automation_rule(
@@ -1466,7 +1484,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.create_automation_rule_request.CreateAutomationRuleRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.create_automation_rule_request.CreateAutomationRuleRequest = {}
         if tags is not None:
             input_["tags"] = tags
         if rule_status is not None:
@@ -1489,6 +1507,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_automation_rule_v2(
@@ -1554,7 +1573,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.create_automation_rule_v2_request.CreateAutomationRuleV2Request = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.create_automation_rule_v2_request.CreateAutomationRuleV2Request = {}
         if rule_name is not None:
             input_["rule_name"] = rule_name
         if rule_status is not None:
@@ -1569,14 +1588,16 @@ class AsyncSecurityHubClient:
             input_["actions"] = actions
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_configuration_policy(
@@ -1630,7 +1651,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.create_configuration_policy_request.CreateConfigurationPolicyRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.create_configuration_policy_request.CreateConfigurationPolicyRequest = {}
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -1645,6 +1666,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_connector_v2(
@@ -1705,7 +1727,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.create_connector_v2_request.CreateConnectorV2Request = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.create_connector_v2_request.CreateConnectorV2Request = {}
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -1716,14 +1738,16 @@ class AsyncSecurityHubClient:
             input_["kms_key_arn"] = kms_key_arn
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_finding_aggregator(
@@ -1772,7 +1796,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.create_finding_aggregator_request.CreateFindingAggregatorRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.create_finding_aggregator_request.CreateFindingAggregatorRequest = {}
         if region_linking_mode is not None:
             input_["region_linking_mode"] = region_linking_mode
         if regions is not None:
@@ -1783,6 +1807,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_insight(
@@ -1835,7 +1860,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.create_insight_request.CreateInsightRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.create_insight_request.CreateInsightRequest = {}
         if name is not None:
             input_["name"] = name
         if filters is not None:
@@ -1848,6 +1873,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_members(
@@ -1895,7 +1921,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.create_members_request.CreateMembersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.create_members_request.CreateMembersRequest = {}
         if account_details is not None:
             input_["account_details"] = account_details
 
@@ -1904,6 +1930,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_ticket_v2(
@@ -1957,13 +1984,14 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.create_ticket_v2_request.CreateTicketV2Request = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.create_ticket_v2_request.CreateTicketV2Request = {}
         if connector_id is not None:
             input_["connector_id"] = connector_id
         if finding_metadata_uid is not None:
             input_["finding_metadata_uid"] = finding_metadata_uid
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if mode is not None:
             input_["mode"] = mode
 
@@ -1972,6 +2000,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def decline_invitations(
@@ -2019,7 +2048,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.decline_invitations_request.DeclineInvitationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.decline_invitations_request.DeclineInvitationsRequest = {}
         if account_ids is not None:
             input_["account_ids"] = account_ids
 
@@ -2028,6 +2057,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_action_target(
@@ -2071,14 +2101,16 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.delete_action_target_request.DeleteActionTargetRequest = {}  # type: ignore[typeddict-item]
-        input_["action_target_arn"] = action_target_arn
+        input_: capo_securityhub.types.delete_action_target_request.DeleteActionTargetRequest = {
+            "action_target_arn": action_target_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_aggregator_v2(
@@ -2118,14 +2150,16 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.delete_aggregator_v2_request.DeleteAggregatorV2Request = {}  # type: ignore[typeddict-item]
-        input_["aggregator_v2_arn"] = aggregator_v2_arn
+        input_: capo_securityhub.types.delete_aggregator_v2_request.DeleteAggregatorV2Request = {
+            "aggregator_v2_arn": aggregator_v2_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_automation_rule_v2(
@@ -2165,14 +2199,16 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.delete_automation_rule_v2_request.DeleteAutomationRuleV2Request = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_securityhub.types.delete_automation_rule_v2_request.DeleteAutomationRuleV2Request = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_configuration_policy(
@@ -2219,14 +2255,16 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.delete_configuration_policy_request.DeleteConfigurationPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_securityhub.types.delete_configuration_policy_request.DeleteConfigurationPolicyRequest = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_connector_v2(
@@ -2268,14 +2306,16 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.delete_connector_v2_request.DeleteConnectorV2Request = {}  # type: ignore[typeddict-item]
-        input_["connector_id"] = connector_id
+        input_: capo_securityhub.types.delete_connector_v2_request.DeleteConnectorV2Request = {
+            "connector_id": connector_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_finding_aggregator(
@@ -2321,14 +2361,16 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.delete_finding_aggregator_request.DeleteFindingAggregatorRequest = {}  # type: ignore[typeddict-item]
-        input_["finding_aggregator_arn"] = finding_aggregator_arn
+        input_: capo_securityhub.types.delete_finding_aggregator_request.DeleteFindingAggregatorRequest = {
+            "finding_aggregator_arn": finding_aggregator_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_insight(
@@ -2373,14 +2415,16 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.delete_insight_request.DeleteInsightRequest = {}  # type: ignore[typeddict-item]
-        input_["insight_arn"] = insight_arn
+        input_: capo_securityhub.types.delete_insight_request.DeleteInsightRequest = {
+            "insight_arn": insight_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_invitations(
@@ -2427,7 +2471,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.delete_invitations_request.DeleteInvitationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.delete_invitations_request.DeleteInvitationsRequest = {}
         if account_ids is not None:
             input_["account_ids"] = account_ids
 
@@ -2436,6 +2480,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_members(
@@ -2482,7 +2527,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.delete_members_request.DeleteMembersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.delete_members_request.DeleteMembersRequest = {}
         if account_ids is not None:
             input_["account_ids"] = account_ids
 
@@ -2491,6 +2536,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_action_targets(
@@ -2538,7 +2584,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.describe_action_targets_request.DescribeActionTargetsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.describe_action_targets_request.DescribeActionTargetsRequest = {}
         if action_target_arns is not None:
             input_["action_target_arns"] = action_target_arns
         if next_token is not None:
@@ -2551,6 +2597,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_action_targets(
@@ -2620,7 +2667,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.describe_hub_request.DescribeHubRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.describe_hub_request.DescribeHubRequest = {}
         if hub_arn is not None:
             input_["hub_arn"] = hub_arn
 
@@ -2629,6 +2676,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_organization_configuration(
@@ -2666,13 +2714,14 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.describe_organization_configuration_request.DescribeOrganizationConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.describe_organization_configuration_request.DescribeOrganizationConfigurationRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_products(
@@ -2722,7 +2771,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.describe_products_request.DescribeProductsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.describe_products_request.DescribeProductsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2735,6 +2784,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_products(
@@ -2800,7 +2850,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.describe_products_v2_request.DescribeProductsV2Request = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.describe_products_v2_request.DescribeProductsV2Request = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2811,6 +2861,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_products_v2(
@@ -2863,13 +2914,14 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.describe_security_hub_v2_request.DescribeSecurityHubV2Request = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.describe_security_hub_v2_request.DescribeSecurityHubV2Request = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_standards(
@@ -2914,7 +2966,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.describe_standards_request.DescribeStandardsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.describe_standards_request.DescribeStandardsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2925,6 +2977,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_standards(
@@ -2987,8 +3040,9 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.describe_standards_controls_request.DescribeStandardsControlsRequest = {}  # type: ignore[typeddict-item]
-        input_["standards_subscription_arn"] = standards_subscription_arn
+        input_: capo_securityhub.types.describe_standards_controls_request.DescribeStandardsControlsRequest = {
+            "standards_subscription_arn": standards_subscription_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2999,6 +3053,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_standards_controls(
@@ -3066,14 +3121,16 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.disable_import_findings_for_product_request.DisableImportFindingsForProductRequest = {}  # type: ignore[typeddict-item]
-        input_["product_subscription_arn"] = product_subscription_arn
+        input_: capo_securityhub.types.disable_import_findings_for_product_request.DisableImportFindingsForProductRequest = {
+            "product_subscription_arn": product_subscription_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disable_organization_admin_account(
@@ -3124,7 +3181,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.disable_organization_admin_account_request.DisableOrganizationAdminAccountRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.disable_organization_admin_account_request.DisableOrganizationAdminAccountRequest = {}
         if admin_account_id is not None:
             input_["admin_account_id"] = admin_account_id
         if feature is not None:
@@ -3135,6 +3192,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disable_security_hub(
@@ -3173,13 +3231,14 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.disable_security_hub_request.DisableSecurityHubRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.disable_security_hub_request.DisableSecurityHubRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disable_security_hub_v2(
@@ -3211,13 +3270,14 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.disable_security_hub_v2_request.DisableSecurityHubV2Request = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.disable_security_hub_v2_request.DisableSecurityHubV2Request = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_from_administrator_account(
@@ -3256,13 +3316,14 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.disassociate_from_administrator_account_request.DisassociateFromAdministratorAccountRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.disassociate_from_administrator_account_request.DisassociateFromAdministratorAccountRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_from_master_account(
@@ -3295,13 +3356,14 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.disassociate_from_master_account_request.DisassociateFromMasterAccountRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.disassociate_from_master_account_request.DisassociateFromMasterAccountRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_members(
@@ -3349,7 +3411,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.disassociate_members_request.DisassociateMembersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.disassociate_members_request.DisassociateMembersRequest = {}
         if account_ids is not None:
             input_["account_ids"] = account_ids
 
@@ -3358,6 +3420,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def enable_import_findings_for_product(
@@ -3404,7 +3467,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.enable_import_findings_for_product_request.EnableImportFindingsForProductRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.enable_import_findings_for_product_request.EnableImportFindingsForProductRequest = {}
         if product_arn is not None:
             input_["product_arn"] = product_arn
 
@@ -3413,6 +3476,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def enable_organization_admin_account(
@@ -3463,7 +3527,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.enable_organization_admin_account_request.EnableOrganizationAdminAccountRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.enable_organization_admin_account_request.EnableOrganizationAdminAccountRequest = {}
         if admin_account_id is not None:
             input_["admin_account_id"] = admin_account_id
         if feature is not None:
@@ -3474,6 +3538,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def enable_security_hub(
@@ -3528,7 +3593,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.enable_security_hub_request.EnableSecurityHubRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.enable_security_hub_request.EnableSecurityHubRequest = {}
         if tags is not None:
             input_["tags"] = tags
         if enable_default_standards is not None:
@@ -3541,6 +3606,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def enable_security_hub_v2(
@@ -3578,7 +3644,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.enable_security_hub_v2_request.EnableSecurityHubV2Request = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.enable_security_hub_v2_request.EnableSecurityHubV2Request = {}
         if tags is not None:
             input_["tags"] = tags
 
@@ -3587,6 +3653,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def generate_recommended_policy_v2(
@@ -3626,14 +3693,16 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.generate_recommended_policy_v2_request.GenerateRecommendedPolicyV2Request = {}  # type: ignore[typeddict-item]
-        input_["metadata_uid"] = metadata_uid
+        input_: capo_securityhub.types.generate_recommended_policy_v2_request.GenerateRecommendedPolicyV2Request = {
+            "metadata_uid": metadata_uid
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_administrator_account(
@@ -3666,13 +3735,14 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.get_administrator_account_request.GetAdministratorAccountRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.get_administrator_account_request.GetAdministratorAccountRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_aggregator_v2(
@@ -3712,14 +3782,16 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.get_aggregator_v2_request.GetAggregatorV2Request = {}  # type: ignore[typeddict-item]
-        input_["aggregator_v2_arn"] = aggregator_v2_arn
+        input_: capo_securityhub.types.get_aggregator_v2_request.GetAggregatorV2Request = {
+            "aggregator_v2_arn": aggregator_v2_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_automation_rule_v2(
@@ -3759,14 +3831,16 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.get_automation_rule_v2_request.GetAutomationRuleV2Request = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_securityhub.types.get_automation_rule_v2_request.GetAutomationRuleV2Request = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_configuration_policy(
@@ -3812,14 +3886,16 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.get_configuration_policy_request.GetConfigurationPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_securityhub.types.get_configuration_policy_request.GetConfigurationPolicyRequest = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_configuration_policy_association(
@@ -3865,7 +3941,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.get_configuration_policy_association_request.GetConfigurationPolicyAssociationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.get_configuration_policy_association_request.GetConfigurationPolicyAssociationRequest = {}
         if target is not None:
             input_["target"] = target
 
@@ -3874,6 +3950,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_connector_v2(
@@ -3913,14 +3990,16 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.get_connector_v2_request.GetConnectorV2Request = {}  # type: ignore[typeddict-item]
-        input_["connector_id"] = connector_id
+        input_: capo_securityhub.types.get_connector_v2_request.GetConnectorV2Request = {
+            "connector_id": connector_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_enabled_standards(
@@ -3970,7 +4049,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.get_enabled_standards_request.GetEnabledStandardsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.get_enabled_standards_request.GetEnabledStandardsRequest = {}
         if standards_subscription_arns is not None:
             input_["standards_subscription_arns"] = standards_subscription_arns
         if next_token is not None:
@@ -3983,6 +4062,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_get_enabled_standards(
@@ -4053,14 +4133,16 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.get_finding_aggregator_request.GetFindingAggregatorRequest = {}  # type: ignore[typeddict-item]
-        input_["finding_aggregator_arn"] = finding_aggregator_arn
+        input_: capo_securityhub.types.get_finding_aggregator_request.GetFindingAggregatorRequest = {
+            "finding_aggregator_arn": finding_aggregator_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_finding_history(
@@ -4109,7 +4191,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.get_finding_history_request.GetFindingHistoryRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.get_finding_history_request.GetFindingHistoryRequest = {}
         if finding_identifier is not None:
             input_["finding_identifier"] = finding_identifier
         if start_time is not None:
@@ -4126,6 +4208,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_get_finding_history(
@@ -4208,7 +4291,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.get_findings_request.GetFindingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.get_findings_request.GetFindingsRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if sort_criteria is not None:
@@ -4223,6 +4306,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_get_findings(
@@ -4304,7 +4388,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.get_finding_statistics_v2_request.GetFindingStatisticsV2Request = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.get_finding_statistics_v2_request.GetFindingStatisticsV2Request = {}
         if group_by_rules is not None:
             input_["group_by_rules"] = group_by_rules
         if scopes is not None:
@@ -4319,6 +4403,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_findings_trends_v2(
@@ -4366,7 +4451,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.get_findings_trends_v2_request.GetFindingsTrendsV2Request = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.get_findings_trends_v2_request.GetFindingsTrendsV2Request = {}
         if filters is not None:
             input_["filters"] = filters
         if start_time is not None:
@@ -4383,6 +4468,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_get_findings_trends_v2(
@@ -4464,7 +4550,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.get_findings_v2_request.GetFindingsV2Request = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.get_findings_v2_request.GetFindingsV2Request = {}
         if filters is not None:
             input_["filters"] = filters
         if scopes is not None:
@@ -4481,6 +4567,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_get_findings_v2(
@@ -4558,14 +4645,16 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.get_insight_results_request.GetInsightResultsRequest = {}  # type: ignore[typeddict-item]
-        input_["insight_arn"] = insight_arn
+        input_: capo_securityhub.types.get_insight_results_request.GetInsightResultsRequest = {
+            "insight_arn": insight_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_insights(
@@ -4614,7 +4703,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.get_insights_request.GetInsightsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.get_insights_request.GetInsightsRequest = {}
         if insight_arns is not None:
             input_["insight_arns"] = insight_arns
         if next_token is not None:
@@ -4627,6 +4716,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_get_insights(
@@ -4689,13 +4779,14 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.get_invitations_count_request.GetInvitationsCountRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.get_invitations_count_request.GetInvitationsCountRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_master_account(
@@ -4728,13 +4819,14 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.get_master_account_request.GetMasterAccountRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.get_master_account_request.GetMasterAccountRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_members(
@@ -4775,7 +4867,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.get_members_request.GetMembersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.get_members_request.GetMembersRequest = {}
         if account_ids is not None:
             input_["account_ids"] = account_ids
 
@@ -4784,6 +4876,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_recommended_policy_v2(
@@ -4827,8 +4920,9 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.get_recommended_policy_v2_request.GetRecommendedPolicyV2Request = {}  # type: ignore[typeddict-item]
-        input_["metadata_uid"] = metadata_uid
+        input_: capo_securityhub.types.get_recommended_policy_v2_request.GetRecommendedPolicyV2Request = {
+            "metadata_uid": metadata_uid
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -4839,6 +4933,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_get_recommended_policy_v2(
@@ -4915,7 +5010,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.get_resources_statistics_v2_request.GetResourcesStatisticsV2Request = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.get_resources_statistics_v2_request.GetResourcesStatisticsV2Request = {}
         if group_by_rules is not None:
             input_["group_by_rules"] = group_by_rules
         if scopes is not None:
@@ -4930,6 +5025,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_resources_trends_v2(
@@ -4977,7 +5073,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.get_resources_trends_v2_request.GetResourcesTrendsV2Request = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.get_resources_trends_v2_request.GetResourcesTrendsV2Request = {}
         if filters is not None:
             input_["filters"] = filters
         if start_time is not None:
@@ -4994,6 +5090,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_get_resources_trends_v2(
@@ -5078,7 +5175,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.get_resources_v2_request.GetResourcesV2Request = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.get_resources_v2_request.GetResourcesV2Request = {}
         if filters is not None:
             input_["filters"] = filters
         if scopes is not None:
@@ -5095,6 +5192,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_get_resources_v2(
@@ -5174,7 +5272,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.get_security_control_definition_request.GetSecurityControlDefinitionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.get_security_control_definition_request.GetSecurityControlDefinitionRequest = {}
         if security_control_id is not None:
             input_["security_control_id"] = security_control_id
 
@@ -5183,6 +5281,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def invite_members(
@@ -5229,7 +5328,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.invite_members_request.InviteMembersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.invite_members_request.InviteMembersRequest = {}
         if account_ids is not None:
             input_["account_ids"] = account_ids
 
@@ -5238,6 +5337,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_aggregators_v2(
@@ -5281,7 +5381,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.list_aggregators_v2_request.ListAggregatorsV2Request = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.list_aggregators_v2_request.ListAggregatorsV2Request = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -5292,6 +5392,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_aggregators_v2(
@@ -5359,7 +5460,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.list_automation_rules_request.ListAutomationRulesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.list_automation_rules_request.ListAutomationRulesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -5370,6 +5471,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_automation_rules_v2(
@@ -5410,7 +5512,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.list_automation_rules_v2_request.ListAutomationRulesV2Request = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.list_automation_rules_v2_request.ListAutomationRulesV2Request = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -5421,6 +5523,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_configuration_policies(
@@ -5467,7 +5570,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.list_configuration_policies_request.ListConfigurationPoliciesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.list_configuration_policies_request.ListConfigurationPoliciesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -5478,6 +5581,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_configuration_policies(
@@ -5549,7 +5653,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.list_configuration_policy_associations_request.ListConfigurationPolicyAssociationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.list_configuration_policy_associations_request.ListConfigurationPolicyAssociationsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -5562,6 +5666,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_configuration_policy_associations(
@@ -5638,7 +5743,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.list_connectors_v2_request.ListConnectorsV2Request = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.list_connectors_v2_request.ListConnectorsV2Request = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -5653,6 +5758,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_enabled_products_for_import(
@@ -5697,7 +5803,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.list_enabled_products_for_import_request.ListEnabledProductsForImportRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.list_enabled_products_for_import_request.ListEnabledProductsForImportRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -5708,6 +5814,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_enabled_products_for_import(
@@ -5775,7 +5882,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.list_finding_aggregators_request.ListFindingAggregatorsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.list_finding_aggregators_request.ListFindingAggregatorsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -5786,6 +5893,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_finding_aggregators(
@@ -5848,7 +5956,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.list_invitations_request.ListInvitationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.list_invitations_request.ListInvitationsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -5859,6 +5967,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_invitations(
@@ -5925,7 +6034,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.list_members_request.ListMembersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.list_members_request.ListMembersRequest = {}
         if only_associated is not None:
             input_["only_associated"] = only_associated
         if max_results is not None:
@@ -5938,6 +6047,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_members(
@@ -6014,7 +6124,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.list_organization_admin_accounts_request.ListOrganizationAdminAccountsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.list_organization_admin_accounts_request.ListOrganizationAdminAccountsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -6027,6 +6137,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_organization_admin_accounts(
@@ -6103,7 +6214,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.list_security_control_definitions_request.ListSecurityControlDefinitionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.list_security_control_definitions_request.ListSecurityControlDefinitionsRequest = {}
         if standards_arn is not None:
             input_["standards_arn"] = standards_arn
         if next_token is not None:
@@ -6116,6 +6227,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_security_control_definitions(
@@ -6184,7 +6296,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.list_standards_control_associations_request.ListStandardsControlAssociationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.list_standards_control_associations_request.ListStandardsControlAssociationsRequest = {}
         if security_control_id is not None:
             input_["security_control_id"] = security_control_id
         if next_token is not None:
@@ -6197,6 +6309,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_standards_control_associations(
@@ -6266,14 +6379,16 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_securityhub.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def register_connector_v2(
@@ -6319,7 +6434,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.register_connector_v2_request.RegisterConnectorV2Request = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.register_connector_v2_request.RegisterConnectorV2Request = {}
         if auth_code is not None:
             input_["auth_code"] = auth_code
         if auth_state is not None:
@@ -6330,6 +6445,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_configuration_policy_association(
@@ -6379,7 +6495,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.start_configuration_policy_association_request.StartConfigurationPolicyAssociationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.start_configuration_policy_association_request.StartConfigurationPolicyAssociationRequest = {}
         if configuration_policy_identifier is not None:
             input_["configuration_policy_identifier"] = configuration_policy_identifier
         if target is not None:
@@ -6390,6 +6506,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_configuration_policy_disassociation(
@@ -6439,7 +6556,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.start_configuration_policy_disassociation_request.StartConfigurationPolicyDisassociationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.start_configuration_policy_disassociation_request.StartConfigurationPolicyDisassociationRequest = {}
         if target is not None:
             input_["target"] = target
         if configuration_policy_identifier is not None:
@@ -6450,6 +6567,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -6494,8 +6612,9 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_securityhub.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -6504,6 +6623,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -6548,8 +6668,9 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_securityhub.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if tag_keys is not None:
             input_["tag_keys"] = tag_keys
 
@@ -6558,6 +6679,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_action_target(
@@ -6607,8 +6729,9 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.update_action_target_request.UpdateActionTargetRequest = {}  # type: ignore[typeddict-item]
-        input_["action_target_arn"] = action_target_arn
+        input_: capo_securityhub.types.update_action_target_request.UpdateActionTargetRequest = {
+            "action_target_arn": action_target_arn
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -6619,6 +6742,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_aggregator_v2(
@@ -6666,8 +6790,9 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.update_aggregator_v2_request.UpdateAggregatorV2Request = {}  # type: ignore[typeddict-item]
-        input_["aggregator_v2_arn"] = aggregator_v2_arn
+        input_: capo_securityhub.types.update_aggregator_v2_request.UpdateAggregatorV2Request = {
+            "aggregator_v2_arn": aggregator_v2_arn
+        }
         if region_linking_mode is not None:
             input_["region_linking_mode"] = region_linking_mode
         if linked_regions is not None:
@@ -6678,6 +6803,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_automation_rule_v2(
@@ -6739,8 +6865,9 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.update_automation_rule_v2_request.UpdateAutomationRuleV2Request = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_securityhub.types.update_automation_rule_v2_request.UpdateAutomationRuleV2Request = {
+            "identifier": identifier
+        }
         if rule_status is not None:
             input_["rule_status"] = rule_status
         if rule_order is not None:
@@ -6759,6 +6886,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_configuration_policy(
@@ -6817,8 +6945,9 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.update_configuration_policy_request.UpdateConfigurationPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_securityhub.types.update_configuration_policy_request.UpdateConfigurationPolicyRequest = {
+            "identifier": identifier
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -6833,6 +6962,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_connector_v2(
@@ -6882,8 +7012,9 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.update_connector_v2_request.UpdateConnectorV2Request = {}  # type: ignore[typeddict-item]
-        input_["connector_id"] = connector_id
+        input_: capo_securityhub.types.update_connector_v2_request.UpdateConnectorV2Request = {
+            "connector_id": connector_id
+        }
         if description is not None:
             input_["description"] = description
         if provider is not None:
@@ -6894,6 +7025,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_finding_aggregator(
@@ -6947,7 +7079,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.update_finding_aggregator_request.UpdateFindingAggregatorRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.update_finding_aggregator_request.UpdateFindingAggregatorRequest = {}
         if finding_aggregator_arn is not None:
             input_["finding_aggregator_arn"] = finding_aggregator_arn
         if region_linking_mode is not None:
@@ -6960,6 +7092,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_findings(
@@ -7006,7 +7139,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.update_findings_request.UpdateFindingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.update_findings_request.UpdateFindingsRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if note is not None:
@@ -7019,6 +7152,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_insight(
@@ -7073,8 +7207,9 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.update_insight_request.UpdateInsightRequest = {}  # type: ignore[typeddict-item]
-        input_["insight_arn"] = insight_arn
+        input_: capo_securityhub.types.update_insight_request.UpdateInsightRequest = {
+            "insight_arn": insight_arn
+        }
         if name is not None:
             input_["name"] = name
         if filters is not None:
@@ -7087,6 +7222,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_organization_configuration(
@@ -7140,7 +7276,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.update_organization_configuration_request.UpdateOrganizationConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.update_organization_configuration_request.UpdateOrganizationConfigurationRequest = {}
         if auto_enable is not None:
             input_["auto_enable"] = auto_enable
         if auto_enable_standards is not None:
@@ -7153,6 +7289,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_security_control(
@@ -7207,7 +7344,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.update_security_control_request.UpdateSecurityControlRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.update_security_control_request.UpdateSecurityControlRequest = {}
         if security_control_id is not None:
             input_["security_control_id"] = security_control_id
         if parameters is not None:
@@ -7220,6 +7357,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_security_hub_configuration(
@@ -7269,7 +7407,7 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.update_security_hub_configuration_request.UpdateSecurityHubConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_securityhub.types.update_security_hub_configuration_request.UpdateSecurityHubConfigurationRequest = {}
         if auto_enable_controls is not None:
             input_["auto_enable_controls"] = auto_enable_controls
         if control_finding_generator is not None:
@@ -7280,6 +7418,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_standards_control(
@@ -7332,8 +7471,9 @@ class AsyncSecurityHubClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_securityhub.types.update_standards_control_request.UpdateStandardsControlRequest = {}  # type: ignore[typeddict-item]
-        input_["standards_control_arn"] = standards_control_arn
+        input_: capo_securityhub.types.update_standards_control_request.UpdateStandardsControlRequest = {
+            "standards_control_arn": standards_control_arn
+        }
         if control_status is not None:
             input_["control_status"] = control_status
         if disabled_reason is not None:
@@ -7344,6 +7484,7 @@ class AsyncSecurityHubClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

@@ -34,13 +34,13 @@ def serialize_aws_json_1_1(value: AttachInstancesToLoadBalancerRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AttachInstancesToLoadBalancerRequest:
     out: AttachInstancesToLoadBalancerRequest = {}  # type: ignore[typeddict-item]
-    if "loadBalancerName" in data:
+    if data.get("loadBalancerName") is not None:
         out["load_balancer_name"] = data["loadBalancerName"]
     else:
         raise DeserializationError(
             "AttachInstancesToLoadBalancerRequest.load_balancer_name required"
         )
-    if "instanceNames" in data:
+    if data.get("instanceNames") is not None:
         import capo_lightsail.types.resource_name_list
 
         out["instance_names"] = (

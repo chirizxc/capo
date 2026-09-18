@@ -93,15 +93,15 @@ def serialize_aws_json_1_0(value: SecurityConfigDetail) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SecurityConfigDetail:
     out: SecurityConfigDetail = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "configVersion" in data:
+    if data.get("configVersion") is not None:
         out["config_version"] = data["configVersion"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "samlOptions" in data:
+    if data.get("samlOptions") is not None:
         import capo_opensearchserverless.types.saml_config_options
 
         out["saml_options"] = (
@@ -109,7 +109,7 @@ def deserialize_aws_json_1_0(data: dict) -> SecurityConfigDetail:
                 data["samlOptions"]
             )
         )
-    if "iamIdentityCenterOptions" in data:
+    if data.get("iamIdentityCenterOptions") is not None:
         import capo_opensearchserverless.types.iam_identity_center_config_options
 
         out["iam_identity_center_options"] = (
@@ -117,7 +117,7 @@ def deserialize_aws_json_1_0(data: dict) -> SecurityConfigDetail:
                 data["iamIdentityCenterOptions"]
             )
         )
-    if "iamFederationOptions" in data:
+    if data.get("iamFederationOptions") is not None:
         import capo_opensearchserverless.types.iam_federation_config_options
 
         out["iam_federation_options"] = (
@@ -125,8 +125,8 @@ def deserialize_aws_json_1_0(data: dict) -> SecurityConfigDetail:
                 data["iamFederationOptions"]
             )
         )
-    if "createdDate" in data:
+    if data.get("createdDate") is not None:
         out["created_date"] = data["createdDate"]
-    if "lastModifiedDate" in data:
+    if data.get("lastModifiedDate") is not None:
         out["last_modified_date"] = data["lastModifiedDate"]
     return out

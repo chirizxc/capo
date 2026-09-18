@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: ListFleetsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListFleetsOutput:
     out: ListFleetsOutput = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "fleets" in data:
+    if data.get("fleets") is not None:
         import capo_codebuild.types.fleet_arns
 
         out["fleets"] = capo_codebuild.types.fleet_arns.deserialize_aws_json_1_1(

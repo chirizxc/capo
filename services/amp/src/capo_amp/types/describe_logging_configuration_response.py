@@ -32,7 +32,7 @@ def serialize_json(value: DescribeLoggingConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeLoggingConfigurationResponse:
     out: DescribeLoggingConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "loggingConfiguration" in data:
+    if data.get("loggingConfiguration") is not None:
         import capo_amp.types.logging_configuration_metadata
 
         out["logging_configuration"] = (

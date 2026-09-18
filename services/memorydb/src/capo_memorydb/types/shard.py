@@ -45,18 +45,18 @@ def serialize_aws_json_1_1(value: Shard) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Shard:
     out: Shard = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "Slots" in data:
+    if data.get("Slots") is not None:
         out["slots"] = data["Slots"]
-    if "Nodes" in data:
+    if data.get("Nodes") is not None:
         import capo_memorydb.types.node_list
 
         out["nodes"] = capo_memorydb.types.node_list.deserialize_aws_json_1_1(
             data["Nodes"]
         )
-    if "NumberOfNodes" in data:
+    if data.get("NumberOfNodes") is not None:
         out["number_of_nodes"] = data["NumberOfNodes"]
     return out

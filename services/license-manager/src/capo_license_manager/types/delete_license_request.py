@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: DeleteLicenseRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteLicenseRequest:
     out: DeleteLicenseRequest = {}  # type: ignore[typeddict-item]
-    if "LicenseArn" in data:
+    if data.get("LicenseArn") is not None:
         out["license_arn"] = data["LicenseArn"]
     else:
         raise DeserializationError("DeleteLicenseRequest.license_arn required")
-    if "SourceVersion" in data:
+    if data.get("SourceVersion") is not None:
         out["source_version"] = data["SourceVersion"]
     else:
         raise DeserializationError("DeleteLicenseRequest.source_version required")

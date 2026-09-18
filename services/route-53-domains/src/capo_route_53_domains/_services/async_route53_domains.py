@@ -261,15 +261,17 @@ class AsyncRoute53DomainsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route_53_domains.types.accept_domain_transfer_from_another_aws_account_request.AcceptDomainTransferFromAnotherAwsAccountRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["password"] = password
+        input_: capo_route_53_domains.types.accept_domain_transfer_from_another_aws_account_request.AcceptDomainTransferFromAnotherAwsAccountRequest = {
+            "domain_name": domain_name,
+            "password": password,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_delegation_signer_to_domain(
@@ -311,15 +313,17 @@ class AsyncRoute53DomainsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route_53_domains.types.associate_delegation_signer_to_domain_request.AssociateDelegationSignerToDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["signing_attributes"] = signing_attributes
+        input_: capo_route_53_domains.types.associate_delegation_signer_to_domain_request.AssociateDelegationSignerToDomainRequest = {
+            "domain_name": domain_name,
+            "signing_attributes": signing_attributes,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def cancel_domain_transfer_to_another_aws_account(
@@ -356,14 +360,16 @@ class AsyncRoute53DomainsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route_53_domains.types.cancel_domain_transfer_to_another_aws_account_request.CancelDomainTransferToAnotherAwsAccountRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_route_53_domains.types.cancel_domain_transfer_to_another_aws_account_request.CancelDomainTransferToAnotherAwsAccountRequest = {
+            "domain_name": domain_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def check_domain_availability(
@@ -404,8 +410,9 @@ class AsyncRoute53DomainsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route_53_domains.types.check_domain_availability_request.CheckDomainAvailabilityRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_route_53_domains.types.check_domain_availability_request.CheckDomainAvailabilityRequest = {
+            "domain_name": domain_name
+        }
         if idn_lang_code is not None:
             input_["idn_lang_code"] = idn_lang_code
 
@@ -414,6 +421,7 @@ class AsyncRoute53DomainsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def check_domain_transferability(
@@ -454,8 +462,9 @@ class AsyncRoute53DomainsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route_53_domains.types.check_domain_transferability_request.CheckDomainTransferabilityRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_route_53_domains.types.check_domain_transferability_request.CheckDomainTransferabilityRequest = {
+            "domain_name": domain_name
+        }
         if auth_code is not None:
             input_["auth_code"] = auth_code
 
@@ -464,6 +473,7 @@ class AsyncRoute53DomainsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_domain(
@@ -501,14 +511,16 @@ class AsyncRoute53DomainsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route_53_domains.types.delete_domain_request.DeleteDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_route_53_domains.types.delete_domain_request.DeleteDomainRequest = {
+            "domain_name": domain_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_tags_for_domain(
@@ -547,15 +559,17 @@ class AsyncRoute53DomainsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route_53_domains.types.delete_tags_for_domain_request.DeleteTagsForDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["tags_to_delete"] = tags_to_delete
+        input_: capo_route_53_domains.types.delete_tags_for_domain_request.DeleteTagsForDomainRequest = {
+            "domain_name": domain_name,
+            "tags_to_delete": tags_to_delete,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disable_domain_auto_renew(
@@ -591,14 +605,16 @@ class AsyncRoute53DomainsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route_53_domains.types.disable_domain_auto_renew_request.DisableDomainAutoRenewRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_route_53_domains.types.disable_domain_auto_renew_request.DisableDomainAutoRenewRequest = {
+            "domain_name": domain_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disable_domain_transfer_lock(
@@ -637,14 +653,16 @@ class AsyncRoute53DomainsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route_53_domains.types.disable_domain_transfer_lock_request.DisableDomainTransferLockRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_route_53_domains.types.disable_domain_transfer_lock_request.DisableDomainTransferLockRequest = {
+            "domain_name": domain_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_delegation_signer_from_domain(
@@ -685,15 +703,17 @@ class AsyncRoute53DomainsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route_53_domains.types.disassociate_delegation_signer_from_domain_request.DisassociateDelegationSignerFromDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["id"] = id
+        input_: capo_route_53_domains.types.disassociate_delegation_signer_from_domain_request.DisassociateDelegationSignerFromDomainRequest = {
+            "domain_name": domain_name,
+            "id": id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def enable_domain_auto_renew(
@@ -730,14 +750,16 @@ class AsyncRoute53DomainsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route_53_domains.types.enable_domain_auto_renew_request.EnableDomainAutoRenewRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_route_53_domains.types.enable_domain_auto_renew_request.EnableDomainAutoRenewRequest = {
+            "domain_name": domain_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def enable_domain_transfer_lock(
@@ -776,14 +798,16 @@ class AsyncRoute53DomainsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route_53_domains.types.enable_domain_transfer_lock_request.EnableDomainTransferLockRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_route_53_domains.types.enable_domain_transfer_lock_request.EnableDomainTransferLockRequest = {
+            "domain_name": domain_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_contact_reachability_status(
@@ -822,7 +846,7 @@ class AsyncRoute53DomainsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route_53_domains.types.get_contact_reachability_status_request.GetContactReachabilityStatusRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_route_53_domains.types.get_contact_reachability_status_request.GetContactReachabilityStatusRequest = {}
         if domain_name is not None:
             input_["domain_name"] = domain_name
 
@@ -831,6 +855,7 @@ class AsyncRoute53DomainsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_domain_detail(
@@ -868,14 +893,16 @@ class AsyncRoute53DomainsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route_53_domains.types.get_domain_detail_request.GetDomainDetailRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_route_53_domains.types.get_domain_detail_request.GetDomainDetailRequest = {
+            "domain_name": domain_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_domain_suggestions(
@@ -916,16 +943,18 @@ class AsyncRoute53DomainsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route_53_domains.types.get_domain_suggestions_request.GetDomainSuggestionsRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["suggestion_count"] = suggestion_count
-        input_["only_available"] = only_available
+        input_: capo_route_53_domains.types.get_domain_suggestions_request.GetDomainSuggestionsRequest = {
+            "domain_name": domain_name,
+            "suggestion_count": suggestion_count,
+            "only_available": only_available,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_operation_detail(
@@ -960,14 +989,16 @@ class AsyncRoute53DomainsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route_53_domains.types.get_operation_detail_request.GetOperationDetailRequest = {}  # type: ignore[typeddict-item]
-        input_["operation_id"] = operation_id
+        input_: capo_route_53_domains.types.get_operation_detail_request.GetOperationDetailRequest = {
+            "operation_id": operation_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_domains(
@@ -1014,7 +1045,7 @@ class AsyncRoute53DomainsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route_53_domains.types.list_domains_request.ListDomainsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_route_53_domains.types.list_domains_request.ListDomainsRequest = {}
         if filter_conditions is not None:
             input_["filter_conditions"] = filter_conditions
         if sort_condition is not None:
@@ -1029,6 +1060,7 @@ class AsyncRoute53DomainsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_domains(
@@ -1116,7 +1148,7 @@ class AsyncRoute53DomainsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route_53_domains.types.list_operations_request.ListOperationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_route_53_domains.types.list_operations_request.ListOperationsRequest = {}
         if submitted_since is not None:
             input_["submitted_since"] = submitted_since
         if marker is not None:
@@ -1137,6 +1169,7 @@ class AsyncRoute53DomainsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_operations(
@@ -1221,7 +1254,7 @@ class AsyncRoute53DomainsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route_53_domains.types.list_prices_request.ListPricesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_route_53_domains.types.list_prices_request.ListPricesRequest = {}
         if tld is not None:
             input_["tld"] = tld
         if marker is not None:
@@ -1234,6 +1267,7 @@ class AsyncRoute53DomainsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_prices(
@@ -1295,14 +1329,16 @@ class AsyncRoute53DomainsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route_53_domains.types.list_tags_for_domain_request.ListTagsForDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_route_53_domains.types.list_tags_for_domain_request.ListTagsForDomainRequest = {
+            "domain_name": domain_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def push_domain(
@@ -1340,15 +1376,17 @@ class AsyncRoute53DomainsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route_53_domains.types.push_domain_request.PushDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["target"] = target
+        input_: capo_route_53_domains.types.push_domain_request.PushDomainRequest = {
+            "domain_name": domain_name,
+            "target": target,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def register_domain(
@@ -1422,16 +1460,17 @@ class AsyncRoute53DomainsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route_53_domains.types.register_domain_request.RegisterDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_route_53_domains.types.register_domain_request.RegisterDomainRequest = {
+            "domain_name": domain_name,
+            "duration_in_years": duration_in_years,
+            "admin_contact": admin_contact,
+            "registrant_contact": registrant_contact,
+            "tech_contact": tech_contact,
+        }
         if idn_lang_code is not None:
             input_["idn_lang_code"] = idn_lang_code
-        input_["duration_in_years"] = duration_in_years
         if auto_renew is not None:
             input_["auto_renew"] = auto_renew
-        input_["admin_contact"] = admin_contact
-        input_["registrant_contact"] = registrant_contact
-        input_["tech_contact"] = tech_contact
         if privacy_protect_admin_contact is not None:
             input_["privacy_protect_admin_contact"] = privacy_protect_admin_contact
         if privacy_protect_registrant_contact is not None:
@@ -1450,6 +1489,7 @@ class AsyncRoute53DomainsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def reject_domain_transfer_from_another_aws_account(
@@ -1486,14 +1526,16 @@ class AsyncRoute53DomainsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route_53_domains.types.reject_domain_transfer_from_another_aws_account_request.RejectDomainTransferFromAnotherAwsAccountRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_route_53_domains.types.reject_domain_transfer_from_another_aws_account_request.RejectDomainTransferFromAnotherAwsAccountRequest = {
+            "domain_name": domain_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def renew_domain(
@@ -1538,17 +1580,19 @@ class AsyncRoute53DomainsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route_53_domains.types.renew_domain_request.RenewDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_route_53_domains.types.renew_domain_request.RenewDomainRequest = {
+            "domain_name": domain_name,
+            "current_expiry_year": current_expiry_year,
+        }
         if duration_in_years is not None:
             input_["duration_in_years"] = duration_in_years
-        input_["current_expiry_year"] = current_expiry_year
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def resend_contact_reachability_email(
@@ -1588,7 +1632,7 @@ class AsyncRoute53DomainsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route_53_domains.types.resend_contact_reachability_email_request.ResendContactReachabilityEmailRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_route_53_domains.types.resend_contact_reachability_email_request.ResendContactReachabilityEmailRequest = {}
         if domain_name is not None:
             input_["domain_name"] = domain_name
 
@@ -1597,6 +1641,7 @@ class AsyncRoute53DomainsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def resend_operation_authorization(
@@ -1630,14 +1675,16 @@ class AsyncRoute53DomainsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route_53_domains.types.resend_operation_authorization_request.ResendOperationAuthorizationRequest = {}  # type: ignore[typeddict-item]
-        input_["operation_id"] = operation_id
+        input_: capo_route_53_domains.types.resend_operation_authorization_request.ResendOperationAuthorizationRequest = {
+            "operation_id": operation_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def retrieve_domain_auth_code(
@@ -1674,14 +1721,16 @@ class AsyncRoute53DomainsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route_53_domains.types.retrieve_domain_auth_code_request.RetrieveDomainAuthCodeRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_route_53_domains.types.retrieve_domain_auth_code_request.RetrieveDomainAuthCodeRequest = {
+            "domain_name": domain_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def transfer_domain(
@@ -1765,8 +1814,12 @@ class AsyncRoute53DomainsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route_53_domains.types.transfer_domain_request.TransferDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_route_53_domains.types.transfer_domain_request.TransferDomainRequest = {
+            "domain_name": domain_name,
+            "admin_contact": admin_contact,
+            "registrant_contact": registrant_contact,
+            "tech_contact": tech_contact,
+        }
         if idn_lang_code is not None:
             input_["idn_lang_code"] = idn_lang_code
         if duration_in_years is not None:
@@ -1777,9 +1830,6 @@ class AsyncRoute53DomainsClient:
             input_["auth_code"] = auth_code
         if auto_renew is not None:
             input_["auto_renew"] = auto_renew
-        input_["admin_contact"] = admin_contact
-        input_["registrant_contact"] = registrant_contact
-        input_["tech_contact"] = tech_contact
         if privacy_protect_admin_contact is not None:
             input_["privacy_protect_admin_contact"] = privacy_protect_admin_contact
         if privacy_protect_registrant_contact is not None:
@@ -1798,6 +1848,7 @@ class AsyncRoute53DomainsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def transfer_domain_to_another_aws_account(
@@ -1837,15 +1888,17 @@ class AsyncRoute53DomainsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route_53_domains.types.transfer_domain_to_another_aws_account_request.TransferDomainToAnotherAwsAccountRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
-        input_["account_id"] = account_id
+        input_: capo_route_53_domains.types.transfer_domain_to_another_aws_account_request.TransferDomainToAnotherAwsAccountRequest = {
+            "domain_name": domain_name,
+            "account_id": account_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_domain_contact(
@@ -1902,8 +1955,9 @@ class AsyncRoute53DomainsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route_53_domains.types.update_domain_contact_request.UpdateDomainContactRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_route_53_domains.types.update_domain_contact_request.UpdateDomainContactRequest = {
+            "domain_name": domain_name
+        }
         if admin_contact is not None:
             input_["admin_contact"] = admin_contact
         if registrant_contact is not None:
@@ -1920,6 +1974,7 @@ class AsyncRoute53DomainsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_domain_contact_privacy(
@@ -1968,8 +2023,9 @@ class AsyncRoute53DomainsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route_53_domains.types.update_domain_contact_privacy_request.UpdateDomainContactPrivacyRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_route_53_domains.types.update_domain_contact_privacy_request.UpdateDomainContactPrivacyRequest = {
+            "domain_name": domain_name
+        }
         if admin_privacy is not None:
             input_["admin_privacy"] = admin_privacy
         if registrant_privacy is not None:
@@ -1984,6 +2040,7 @@ class AsyncRoute53DomainsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_domain_nameservers(
@@ -2028,17 +2085,19 @@ class AsyncRoute53DomainsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route_53_domains.types.update_domain_nameservers_request.UpdateDomainNameserversRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_route_53_domains.types.update_domain_nameservers_request.UpdateDomainNameserversRequest = {
+            "domain_name": domain_name,
+            "nameservers": nameservers,
+        }
         if fi_auth_key is not None:
             input_["fi_auth_key"] = fi_auth_key
-        input_["nameservers"] = nameservers
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_tags_for_domain(
@@ -2077,8 +2136,9 @@ class AsyncRoute53DomainsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route_53_domains.types.update_tags_for_domain_request.UpdateTagsForDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_name"] = domain_name
+        input_: capo_route_53_domains.types.update_tags_for_domain_request.UpdateTagsForDomainRequest = {
+            "domain_name": domain_name
+        }
         if tags_to_update is not None:
             input_["tags_to_update"] = tags_to_update
 
@@ -2087,6 +2147,7 @@ class AsyncRoute53DomainsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def view_billing(
@@ -2129,7 +2190,7 @@ class AsyncRoute53DomainsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_route_53_domains.types.view_billing_request.ViewBillingRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_route_53_domains.types.view_billing_request.ViewBillingRequest = {}
         if start is not None:
             input_["start"] = start
         if end is not None:
@@ -2144,6 +2205,7 @@ class AsyncRoute53DomainsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_view_billing(

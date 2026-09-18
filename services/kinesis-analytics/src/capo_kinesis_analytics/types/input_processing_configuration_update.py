@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: InputProcessingConfigurationUpdate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InputProcessingConfigurationUpdate:
     out: InputProcessingConfigurationUpdate = {}  # type: ignore[typeddict-item]
-    if "InputLambdaProcessorUpdate" in data:
+    if data.get("InputLambdaProcessorUpdate") is not None:
         import capo_kinesis_analytics.types.input_lambda_processor_update
 
         out["input_lambda_processor_update"] = (

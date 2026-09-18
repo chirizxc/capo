@@ -51,7 +51,7 @@ def serialize_json(value: KeyUsageProperty) -> dict:
 
 
 def deserialize_json(data: dict) -> KeyUsageProperty:
-    if "PropertyType" in data:
+    if data.get("PropertyType") is not None:
         import capo_pca_connector_ad.types.key_usage_property_type
 
         return {
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> KeyUsageProperty:
                 data["PropertyType"]
             )
         }
-    elif "PropertyFlags" in data:
+    elif data.get("PropertyFlags") is not None:
         import capo_pca_connector_ad.types.key_usage_property_flags
 
         return {

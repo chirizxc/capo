@@ -22,8 +22,8 @@ def serialize_json(value: CpuOptions) -> dict:
 
 def deserialize_json(data: dict) -> CpuOptions:
     out: CpuOptions = {}  # type: ignore[typeddict-item]
-    if "coreCount" in data:
+    if data.get("coreCount") is not None:
         out["core_count"] = data["coreCount"]
-    if "threadsPerCore" in data:
+    if data.get("threadsPerCore") is not None:
         out["threads_per_core"] = data["threadsPerCore"]
     return out

@@ -36,11 +36,11 @@ def serialize_aws_json_1_1(value: UpdateRuleGroupRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateRuleGroupRequest:
     out: UpdateRuleGroupRequest = {}  # type: ignore[typeddict-item]
-    if "RuleGroupId" in data:
+    if data.get("RuleGroupId") is not None:
         out["rule_group_id"] = data["RuleGroupId"]
     else:
         raise DeserializationError("UpdateRuleGroupRequest.rule_group_id required")
-    if "Updates" in data:
+    if data.get("Updates") is not None:
         import capo_waf_regional.types.rule_group_updates
 
         out["updates"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateRuleGroupRequest:
         )
     else:
         raise DeserializationError("UpdateRuleGroupRequest.updates required")
-    if "ChangeToken" in data:
+    if data.get("ChangeToken") is not None:
         out["change_token"] = data["ChangeToken"]
     else:
         raise DeserializationError("UpdateRuleGroupRequest.change_token required")

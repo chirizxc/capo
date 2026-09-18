@@ -68,7 +68,7 @@ def serialize_json(value: HeatMapSortConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> HeatMapSortConfiguration:
     out: HeatMapSortConfiguration = {}  # type: ignore[typeddict-item]
-    if "HeatMapRowSort" in data:
+    if data.get("HeatMapRowSort") is not None:
         import capo_quicksight.types.field_sort_options_list
 
         out["heat_map_row_sort"] = (
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> HeatMapSortConfiguration:
                 data["HeatMapRowSort"]
             )
         )
-    if "HeatMapColumnSort" in data:
+    if data.get("HeatMapColumnSort") is not None:
         import capo_quicksight.types.field_sort_options_list
 
         out["heat_map_column_sort"] = (
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> HeatMapSortConfiguration:
                 data["HeatMapColumnSort"]
             )
         )
-    if "HeatMapRowItemsLimitConfiguration" in data:
+    if data.get("HeatMapRowItemsLimitConfiguration") is not None:
         import capo_quicksight.types.items_limit_configuration
 
         out["heat_map_row_items_limit_configuration"] = (
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> HeatMapSortConfiguration:
                 data["HeatMapRowItemsLimitConfiguration"]
             )
         )
-    if "HeatMapColumnItemsLimitConfiguration" in data:
+    if data.get("HeatMapColumnItemsLimitConfiguration") is not None:
         import capo_quicksight.types.items_limit_configuration
 
         out["heat_map_column_items_limit_configuration"] = (

@@ -28,11 +28,11 @@ def serialize_aws_json_1_0(value: MqttTopicConfig) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> MqttTopicConfig:
     out: MqttTopicConfig = {}  # type: ignore[typeddict-item]
-    if "mqttTopicArn" in data:
+    if data.get("mqttTopicArn") is not None:
         out["mqtt_topic_arn"] = data["mqttTopicArn"]
     else:
         raise DeserializationError("MqttTopicConfig.mqtt_topic_arn required")
-    if "executionRoleArn" in data:
+    if data.get("executionRoleArn") is not None:
         out["execution_role_arn"] = data["executionRoleArn"]
     else:
         raise DeserializationError("MqttTopicConfig.execution_role_arn required")

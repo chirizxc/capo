@@ -43,16 +43,16 @@ def serialize_aws_json_1_1(value: DeltaTarget) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeltaTarget:
     out: DeltaTarget = {}  # type: ignore[typeddict-item]
-    if "DeltaTables" in data:
+    if data.get("DeltaTables") is not None:
         import capo_glue.types.path_list
 
         out["delta_tables"] = capo_glue.types.path_list.deserialize_aws_json_1_1(
             data["DeltaTables"]
         )
-    if "ConnectionName" in data:
+    if data.get("ConnectionName") is not None:
         out["connection_name"] = data["ConnectionName"]
-    if "WriteManifest" in data:
+    if data.get("WriteManifest") is not None:
         out["write_manifest"] = data["WriteManifest"]
-    if "CreateNativeDeltaTable" in data:
+    if data.get("CreateNativeDeltaTable") is not None:
         out["create_native_delta_table"] = data["CreateNativeDeltaTable"]
     return out

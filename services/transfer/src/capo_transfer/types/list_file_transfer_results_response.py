@@ -35,7 +35,7 @@ def serialize_aws_json_1_1(value: ListFileTransferResultsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListFileTransferResultsResponse:
     out: ListFileTransferResultsResponse = {}  # type: ignore[typeddict-item]
-    if "FileTransferResults" in data:
+    if data.get("FileTransferResults") is not None:
         import capo_transfer.types.connector_file_transfer_results
 
         out["file_transfer_results"] = (
@@ -47,6 +47,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListFileTransferResultsResponse:
         raise DeserializationError(
             "ListFileTransferResultsResponse.file_transfer_results required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

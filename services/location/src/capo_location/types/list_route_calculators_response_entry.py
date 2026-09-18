@@ -51,27 +51,27 @@ def serialize_json(value: ListRouteCalculatorsResponseEntry) -> dict:
 
 def deserialize_json(data: dict) -> ListRouteCalculatorsResponseEntry:
     out: ListRouteCalculatorsResponseEntry = {}  # type: ignore[typeddict-item]
-    if "CalculatorName" in data:
+    if data.get("CalculatorName") is not None:
         out["calculator_name"] = data["CalculatorName"]
     else:
         raise DeserializationError(
             "ListRouteCalculatorsResponseEntry.calculator_name required"
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     else:
         raise DeserializationError(
             "ListRouteCalculatorsResponseEntry.description required"
         )
-    if "DataSource" in data:
+    if data.get("DataSource") is not None:
         out["data_source"] = data["DataSource"]
     else:
         raise DeserializationError(
             "ListRouteCalculatorsResponseEntry.data_source required"
         )
-    if "PricingPlan" in data:
+    if data.get("PricingPlan") is not None:
         out["pricing_plan"] = data["PricingPlan"]
-    if "CreateTime" in data:
+    if data.get("CreateTime") is not None:
         import capo_location.types.timestamp
 
         out["create_time"] = capo_location.types.timestamp.deserialize_json(
@@ -81,7 +81,7 @@ def deserialize_json(data: dict) -> ListRouteCalculatorsResponseEntry:
         raise DeserializationError(
             "ListRouteCalculatorsResponseEntry.create_time required"
         )
-    if "UpdateTime" in data:
+    if data.get("UpdateTime") is not None:
         import capo_location.types.timestamp
 
         out["update_time"] = capo_location.types.timestamp.deserialize_json(

@@ -31,10 +31,10 @@ def serialize_aws_json_1_1(value: IamIdentity) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IamIdentity:
     out: IamIdentity = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "PrincipalId" in data:
+    if data.get("PrincipalId") is not None:
         out["principal_id"] = data["PrincipalId"]
-    if "SourceIdentity" in data:
+    if data.get("SourceIdentity") is not None:
         out["source_identity"] = data["SourceIdentity"]
     return out

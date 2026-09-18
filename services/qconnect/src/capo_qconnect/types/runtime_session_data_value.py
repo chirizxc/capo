@@ -28,7 +28,7 @@ def serialize_json(value: RuntimeSessionDataValue) -> dict:
 
 
 def deserialize_json(data: dict) -> RuntimeSessionDataValue:
-    if "stringValue" in data:
+    if data.get("stringValue") is not None:
         return {"stringValue": data["stringValue"]}
     else:
         raise DeserializationError("RuntimeSessionDataValue: no recognized variant key")

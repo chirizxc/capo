@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: Snapshot) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Snapshot:
     out: Snapshot = {}  # type: ignore[typeddict-item]
-    if "SnapshotTime" in data:
+    if data.get("SnapshotTime") is not None:
         import capo_workspaces.types.timestamp
 
         out["snapshot_time"] = capo_workspaces.types.timestamp.deserialize_aws_json_1_1(

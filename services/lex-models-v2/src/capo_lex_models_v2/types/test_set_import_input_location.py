@@ -28,11 +28,11 @@ def serialize_json(value: TestSetImportInputLocation) -> dict:
 
 def deserialize_json(data: dict) -> TestSetImportInputLocation:
     out: TestSetImportInputLocation = {}  # type: ignore[typeddict-item]
-    if "s3BucketName" in data:
+    if data.get("s3BucketName") is not None:
         out["s3_bucket_name"] = data["s3BucketName"]
     else:
         raise DeserializationError("TestSetImportInputLocation.s3_bucket_name required")
-    if "s3Path" in data:
+    if data.get("s3Path") is not None:
         out["s3_path"] = data["s3Path"]
     else:
         raise DeserializationError("TestSetImportInputLocation.s3_path required")

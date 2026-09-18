@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SubjectSummaries:
 
     out: SubjectSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_rolesanywhere.types.subject_summary.deserialize_json(item))
     return out

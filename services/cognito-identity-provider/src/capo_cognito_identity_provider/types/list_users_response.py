@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: ListUsersResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListUsersResponse:
     out: ListUsersResponse = {}  # type: ignore[typeddict-item]
-    if "Users" in data:
+    if data.get("Users") is not None:
         import capo_cognito_identity_provider.types.users_list_type
 
         out["users"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListUsersResponse:
                 data["Users"]
             )
         )
-    if "PaginationToken" in data:
+    if data.get("PaginationToken") is not None:
         out["pagination_token"] = data["PaginationToken"]
     return out

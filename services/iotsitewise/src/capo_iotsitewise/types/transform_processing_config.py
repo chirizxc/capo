@@ -40,7 +40,7 @@ def serialize_json(value: TransformProcessingConfig) -> dict:
 
 def deserialize_json(data: dict) -> TransformProcessingConfig:
     out: TransformProcessingConfig = {}  # type: ignore[typeddict-item]
-    if "computeLocation" in data:
+    if data.get("computeLocation") is not None:
         import capo_iotsitewise.types.compute_location
 
         out["compute_location"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> TransformProcessingConfig:
         raise DeserializationError(
             "TransformProcessingConfig.compute_location required"
         )
-    if "forwardingConfig" in data:
+    if data.get("forwardingConfig") is not None:
         import capo_iotsitewise.types.forwarding_config
 
         out["forwarding_config"] = (

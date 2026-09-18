@@ -76,33 +76,33 @@ def serialize_aws_json_1_1(value: UserDefinedFunction) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UserDefinedFunction:
     out: UserDefinedFunction = {}  # type: ignore[typeddict-item]
-    if "FunctionName" in data:
+    if data.get("FunctionName") is not None:
         out["function_name"] = data["FunctionName"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
-    if "ClassName" in data:
+    if data.get("ClassName") is not None:
         out["class_name"] = data["ClassName"]
-    if "OwnerName" in data:
+    if data.get("OwnerName") is not None:
         out["owner_name"] = data["OwnerName"]
-    if "FunctionType" in data:
+    if data.get("FunctionType") is not None:
         import capo_glue.types.function_type
 
         out["function_type"] = capo_glue.types.function_type.deserialize_aws_json_1_1(
             data["FunctionType"]
         )
-    if "OwnerType" in data:
+    if data.get("OwnerType") is not None:
         import capo_glue.types.principal_type
 
         out["owner_type"] = capo_glue.types.principal_type.deserialize_aws_json_1_1(
             data["OwnerType"]
         )
-    if "CreateTime" in data:
+    if data.get("CreateTime") is not None:
         import capo_glue.types.timestamp
 
         out["create_time"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["CreateTime"]
         )
-    if "ResourceUris" in data:
+    if data.get("ResourceUris") is not None:
         import capo_glue.types.resource_uri_list
 
         out["resource_uris"] = (
@@ -110,6 +110,6 @@ def deserialize_aws_json_1_1(data: dict) -> UserDefinedFunction:
                 data["ResourceUris"]
             )
         )
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
     return out

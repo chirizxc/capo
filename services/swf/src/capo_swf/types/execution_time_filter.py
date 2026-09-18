@@ -36,7 +36,7 @@ def serialize_aws_json_1_0(value: ExecutionTimeFilter) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ExecutionTimeFilter:
     out: ExecutionTimeFilter = {}  # type: ignore[typeddict-item]
-    if "oldestDate" in data:
+    if data.get("oldestDate") is not None:
         import capo_swf.types.timestamp
 
         out["oldest_date"] = capo_swf.types.timestamp.deserialize_aws_json_1_0(
@@ -44,7 +44,7 @@ def deserialize_aws_json_1_0(data: dict) -> ExecutionTimeFilter:
         )
     else:
         raise DeserializationError("ExecutionTimeFilter.oldest_date required")
-    if "latestDate" in data:
+    if data.get("latestDate") is not None:
         import capo_swf.types.timestamp
 
         out["latest_date"] = capo_swf.types.timestamp.deserialize_aws_json_1_0(

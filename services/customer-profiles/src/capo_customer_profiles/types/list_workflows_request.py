@@ -64,7 +64,7 @@ def serialize_json(value: ListWorkflowsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListWorkflowsRequest:
     out: ListWorkflowsRequest = {}  # type: ignore[typeddict-item]
-    if "WorkflowType" in data:
+    if data.get("WorkflowType") is not None:
         import capo_customer_profiles.types.workflow_type
 
         out["workflow_type"] = (
@@ -72,13 +72,13 @@ def deserialize_json(data: dict) -> ListWorkflowsRequest:
                 data["WorkflowType"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_customer_profiles.types.status
 
         out["status"] = capo_customer_profiles.types.status.deserialize_json(
             data["Status"]
         )
-    if "QueryStartDate" in data:
+    if data.get("QueryStartDate") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["query_start_date"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> ListWorkflowsRequest:
                 data["QueryStartDate"]
             )
         )
-    if "QueryEndDate" in data:
+    if data.get("QueryEndDate") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["query_end_date"] = capo_customer_profiles.types.timestamp.deserialize_json(

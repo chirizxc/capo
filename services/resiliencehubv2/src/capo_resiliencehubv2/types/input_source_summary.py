@@ -74,17 +74,17 @@ def serialize_json(value: InputSourceSummary) -> dict:
 
 def deserialize_json(data: dict) -> InputSourceSummary:
     out: InputSourceSummary = {}  # type: ignore[typeddict-item]
-    if "inputSourceId" in data:
+    if data.get("inputSourceId") is not None:
         out["input_source_id"] = data["inputSourceId"]
     else:
         raise DeserializationError("InputSourceSummary.input_source_id required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_resiliencehubv2.types.input_source_type
 
         out["type"] = capo_resiliencehubv2.types.input_source_type.deserialize_json(
             data["type"]
         )
-    if "resourceTags" in data:
+    if data.get("resourceTags") is not None:
         import capo_resiliencehubv2.types.resource_tag_list
 
         out["resource_tags"] = (
@@ -92,17 +92,17 @@ def deserialize_json(data: dict) -> InputSourceSummary:
                 data["resourceTags"]
             )
         )
-    if "cfnStackArn" in data:
+    if data.get("cfnStackArn") is not None:
         out["cfn_stack_arn"] = data["cfnStackArn"]
-    if "tfStateFileUrl" in data:
+    if data.get("tfStateFileUrl") is not None:
         out["tf_state_file_url"] = data["tfStateFileUrl"]
-    if "eks" in data:
+    if data.get("eks") is not None:
         import capo_resiliencehubv2.types.eks_source
 
         out["eks"] = capo_resiliencehubv2.types.eks_source.deserialize_json(data["eks"])
-    if "designFileS3Url" in data:
+    if data.get("designFileS3Url") is not None:
         out["design_file_s3_url"] = data["designFileS3Url"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_resiliencehubv2.types._prelude.timestamp
 
         out["created_at"] = (

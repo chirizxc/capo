@@ -83,9 +83,25 @@ def serialize_json(value: ReservedInstance) -> dict:
         )
     out["Duration"] = value.get("duration", 0)
     if "fixed_price" in value:
-        out["FixedPrice"] = value["fixed_price"]
+        out["FixedPrice"] = (
+            "NaN"
+            if value["fixed_price"] != value["fixed_price"]
+            else "Infinity"
+            if value["fixed_price"] == float("inf")
+            else "-Infinity"
+            if value["fixed_price"] == float("-inf")
+            else value["fixed_price"]
+        )
     if "usage_price" in value:
-        out["UsagePrice"] = value["usage_price"]
+        out["UsagePrice"] = (
+            "NaN"
+            if value["usage_price"] != value["usage_price"]
+            else "Infinity"
+            if value["usage_price"] == float("inf")
+            else "-Infinity"
+            if value["usage_price"] == float("-inf")
+            else value["usage_price"]
+        )
     if "currency_code" in value:
         out["CurrencyCode"] = value["currency_code"]
     out["InstanceCount"] = value.get("instance_count", 0)
@@ -112,15 +128,15 @@ def serialize_json(value: ReservedInstance) -> dict:
 
 def deserialize_json(data: dict) -> ReservedInstance:
     out: ReservedInstance = {}  # type: ignore[typeddict-item]
-    if "ReservationName" in data:
+    if data.get("ReservationName") is not None:
         out["reservation_name"] = data["ReservationName"]
-    if "ReservedInstanceId" in data:
+    if data.get("ReservedInstanceId") is not None:
         out["reserved_instance_id"] = data["ReservedInstanceId"]
-    if "BillingSubscriptionId" in data:
+    if data.get("BillingSubscriptionId") is not None:
         out["billing_subscription_id"] = data["BillingSubscriptionId"]
-    if "ReservedInstanceOfferingId" in data:
+    if data.get("ReservedInstanceOfferingId") is not None:
         out["reserved_instance_offering_id"] = data["ReservedInstanceOfferingId"]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         import capo_opensearch.types.open_search_partition_instance_type
 
         out["instance_type"] = (
@@ -128,29 +144,29 @@ def deserialize_json(data: dict) -> ReservedInstance:
                 data["InstanceType"]
             )
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_opensearch.types.update_timestamp
 
         out["start_time"] = capo_opensearch.types.update_timestamp.deserialize_json(
             data["StartTime"]
         )
-    if "Duration" in data:
+    if data.get("Duration") is not None:
         out["duration"] = data["Duration"]
     else:
         out["duration"] = 0
-    if "FixedPrice" in data:
-        out["fixed_price"] = data["FixedPrice"]
-    if "UsagePrice" in data:
-        out["usage_price"] = data["UsagePrice"]
-    if "CurrencyCode" in data:
+    if data.get("FixedPrice") is not None:
+        out["fixed_price"] = float(data["FixedPrice"])
+    if data.get("UsagePrice") is not None:
+        out["usage_price"] = float(data["UsagePrice"])
+    if data.get("CurrencyCode") is not None:
         out["currency_code"] = data["CurrencyCode"]
-    if "InstanceCount" in data:
+    if data.get("InstanceCount") is not None:
         out["instance_count"] = data["InstanceCount"]
     else:
         out["instance_count"] = 0
-    if "State" in data:
+    if data.get("State") is not None:
         out["state"] = data["State"]
-    if "PaymentOption" in data:
+    if data.get("PaymentOption") is not None:
         import capo_opensearch.types.reserved_instance_payment_option
 
         out["payment_option"] = (
@@ -158,7 +174,7 @@ def deserialize_json(data: dict) -> ReservedInstance:
                 data["PaymentOption"]
             )
         )
-    if "RecurringCharges" in data:
+    if data.get("RecurringCharges") is not None:
         import capo_opensearch.types.recurring_charge_list
 
         out["recurring_charges"] = (

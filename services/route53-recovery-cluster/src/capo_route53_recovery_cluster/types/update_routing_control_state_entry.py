@@ -36,13 +36,13 @@ def serialize_aws_json_1_0(value: UpdateRoutingControlStateEntry) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateRoutingControlStateEntry:
     out: UpdateRoutingControlStateEntry = {}  # type: ignore[typeddict-item]
-    if "RoutingControlArn" in data:
+    if data.get("RoutingControlArn") is not None:
         out["routing_control_arn"] = data["RoutingControlArn"]
     else:
         raise DeserializationError(
             "UpdateRoutingControlStateEntry.routing_control_arn required"
         )
-    if "RoutingControlState" in data:
+    if data.get("RoutingControlState") is not None:
         import capo_route53_recovery_cluster.types.routing_control_state
 
         out["routing_control_state"] = (

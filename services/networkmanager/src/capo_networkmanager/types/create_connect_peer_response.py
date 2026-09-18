@@ -27,7 +27,7 @@ def serialize_json(value: CreateConnectPeerResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateConnectPeerResponse:
     out: CreateConnectPeerResponse = {}  # type: ignore[typeddict-item]
-    if "ConnectPeer" in data:
+    if data.get("ConnectPeer") is not None:
         import capo_networkmanager.types.connect_peer
 
         out["connect_peer"] = capo_networkmanager.types.connect_peer.deserialize_json(

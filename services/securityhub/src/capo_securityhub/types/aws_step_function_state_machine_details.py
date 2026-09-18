@@ -71,9 +71,9 @@ def serialize_json(value: AwsStepFunctionStateMachineDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsStepFunctionStateMachineDetails:
     out: AwsStepFunctionStateMachineDetails = {}  # type: ignore[typeddict-item]
-    if "Label" in data:
+    if data.get("Label") is not None:
         out["label"] = data["Label"]
-    if "LoggingConfiguration" in data:
+    if data.get("LoggingConfiguration") is not None:
         import capo_securityhub.types.aws_step_function_state_machine_logging_configuration_details
 
         out["logging_configuration"] = (
@@ -81,15 +81,15 @@ def deserialize_json(data: dict) -> AwsStepFunctionStateMachineDetails:
                 data["LoggingConfiguration"]
             )
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "StateMachineArn" in data:
+    if data.get("StateMachineArn") is not None:
         out["state_machine_arn"] = data["StateMachineArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "TracingConfiguration" in data:
+    if data.get("TracingConfiguration") is not None:
         import capo_securityhub.types.aws_step_function_state_machine_tracing_configuration_details
 
         out["tracing_configuration"] = (
@@ -97,6 +97,6 @@ def deserialize_json(data: dict) -> AwsStepFunctionStateMachineDetails:
                 data["TracingConfiguration"]
             )
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     return out

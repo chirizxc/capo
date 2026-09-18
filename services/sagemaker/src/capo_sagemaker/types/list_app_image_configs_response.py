@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: ListAppImageConfigsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListAppImageConfigsResponse:
     out: ListAppImageConfigsResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "AppImageConfigs" in data:
+    if data.get("AppImageConfigs") is not None:
         import capo_sagemaker.types.app_image_config_list
 
         out["app_image_configs"] = (

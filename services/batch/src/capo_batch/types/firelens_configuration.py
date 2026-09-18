@@ -42,13 +42,13 @@ def serialize_json(value: FirelensConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> FirelensConfiguration:
     out: FirelensConfiguration = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_batch.types.firelens_configuration_type
 
         out["type"] = capo_batch.types.firelens_configuration_type.deserialize_json(
             data["type"]
         )
-    if "options" in data:
+    if data.get("options") is not None:
         import capo_batch.types.firelens_configuration_options_map
 
         out["options"] = (

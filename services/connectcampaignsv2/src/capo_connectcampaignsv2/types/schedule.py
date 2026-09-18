@@ -39,7 +39,7 @@ def serialize_json(value: Schedule) -> dict:
 
 def deserialize_json(data: dict) -> Schedule:
     out: Schedule = {}  # type: ignore[typeddict-item]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_connectcampaignsv2.types.time_stamp
 
         out["start_time"] = capo_connectcampaignsv2.types.time_stamp.deserialize_json(
@@ -47,7 +47,7 @@ def deserialize_json(data: dict) -> Schedule:
         )
     else:
         raise DeserializationError("Schedule.start_time required")
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_connectcampaignsv2.types.time_stamp
 
         out["end_time"] = capo_connectcampaignsv2.types.time_stamp.deserialize_json(
@@ -55,6 +55,6 @@ def deserialize_json(data: dict) -> Schedule:
         )
     else:
         raise DeserializationError("Schedule.end_time required")
-    if "refreshFrequency" in data:
+    if data.get("refreshFrequency") is not None:
         out["refresh_frequency"] = data["refreshFrequency"]
     return out

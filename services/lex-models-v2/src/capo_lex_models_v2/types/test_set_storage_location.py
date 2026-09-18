@@ -33,14 +33,14 @@ def serialize_json(value: TestSetStorageLocation) -> dict:
 
 def deserialize_json(data: dict) -> TestSetStorageLocation:
     out: TestSetStorageLocation = {}  # type: ignore[typeddict-item]
-    if "s3BucketName" in data:
+    if data.get("s3BucketName") is not None:
         out["s3_bucket_name"] = data["s3BucketName"]
     else:
         raise DeserializationError("TestSetStorageLocation.s3_bucket_name required")
-    if "s3Path" in data:
+    if data.get("s3Path") is not None:
         out["s3_path"] = data["s3Path"]
     else:
         raise DeserializationError("TestSetStorageLocation.s3_path required")
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
     return out

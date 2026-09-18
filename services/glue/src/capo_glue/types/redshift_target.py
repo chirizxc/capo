@@ -62,11 +62,11 @@ def serialize_aws_json_1_1(value: RedshiftTarget) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RedshiftTarget:
     out: RedshiftTarget = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("RedshiftTarget.name required")
-    if "Inputs" in data:
+    if data.get("Inputs") is not None:
         import capo_glue.types.one_input
 
         out["inputs"] = capo_glue.types.one_input.deserialize_aws_json_1_1(
@@ -74,19 +74,19 @@ def deserialize_aws_json_1_1(data: dict) -> RedshiftTarget:
         )
     else:
         raise DeserializationError("RedshiftTarget.inputs required")
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
     else:
         raise DeserializationError("RedshiftTarget.database required")
-    if "Table" in data:
+    if data.get("Table") is not None:
         out["table"] = data["Table"]
     else:
         raise DeserializationError("RedshiftTarget.table required")
-    if "RedshiftTmpDir" in data:
+    if data.get("RedshiftTmpDir") is not None:
         out["redshift_tmp_dir"] = data["RedshiftTmpDir"]
-    if "TmpDirIAMRole" in data:
+    if data.get("TmpDirIAMRole") is not None:
         out["tmp_dir_iam_role"] = data["TmpDirIAMRole"]
-    if "UpsertRedshiftOptions" in data:
+    if data.get("UpsertRedshiftOptions") is not None:
         import capo_glue.types.upsert_redshift_target_options
 
         out["upsert_redshift_options"] = (

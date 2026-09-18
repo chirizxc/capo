@@ -45,15 +45,18 @@ class InvalidSnsTopicException(ServiceError):
 
     code: str | None = "InvalidSnsTopicException"
 
-    def __init__(self, data: InvalidSnsTopicException_):
+    def __init__(self, data: InvalidSnsTopicException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidSnsTopicException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "InvalidSnsTopicException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "InvalidSnsTopicException":
+        return cls(deserialize_query(el), message)

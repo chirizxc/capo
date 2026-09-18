@@ -25,6 +25,8 @@ def serialize_aws_json_1_1(input_to_serialize: CustomResponseBodies) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> CustomResponseBodies:
     out: CustomResponseBodies = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_wafv2.types.custom_response_body
 
         out[key] = capo_wafv2.types.custom_response_body.deserialize_aws_json_1_1(value)

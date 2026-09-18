@@ -23,7 +23,7 @@ def serialize_json(value: CustomerProfilesIntegrationIdentifier) -> dict:
 
 def deserialize_json(data: dict) -> CustomerProfilesIntegrationIdentifier:
     out: CustomerProfilesIntegrationIdentifier = {}  # type: ignore[typeddict-item]
-    if "domainArn" in data:
+    if data.get("domainArn") is not None:
         out["domain_arn"] = data["domainArn"]
     else:
         raise DeserializationError(

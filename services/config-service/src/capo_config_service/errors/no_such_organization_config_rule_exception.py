@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: NoSuchOrganizationConfigRuleException_) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> NoSuchOrganizationConfigRuleException_:
     out: NoSuchOrganizationConfigRuleException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,20 @@ class NoSuchOrganizationConfigRuleException(ServiceError):
 
     code: str | None = "NoSuchOrganizationConfigRuleException"
 
-    def __init__(self, data: NoSuchOrganizationConfigRuleException_):
+    def __init__(
+        self, data: NoSuchOrganizationConfigRuleException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="NoSuchOrganizationConfigRuleException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "NoSuchOrganizationConfigRuleException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "NoSuchOrganizationConfigRuleException":
+        return cls(deserialize_aws_json_1_1(data), message)

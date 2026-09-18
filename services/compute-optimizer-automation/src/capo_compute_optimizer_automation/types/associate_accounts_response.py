@@ -44,7 +44,7 @@ def serialize_aws_json_1_0(value: AssociateAccountsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AssociateAccountsResponse:
     out: AssociateAccountsResponse = {}  # type: ignore[typeddict-item]
-    if "accountIds" in data:
+    if data.get("accountIds") is not None:
         import capo_compute_optimizer_automation.types.account_id_list
 
         out["account_ids"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_0(data: dict) -> AssociateAccountsResponse:
                 data["accountIds"]
             )
         )
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_compute_optimizer_automation.types.string_list
 
         out["errors"] = (

@@ -28,11 +28,11 @@ def serialize_json(value: SubSlotTypeComposition) -> dict:
 
 def deserialize_json(data: dict) -> SubSlotTypeComposition:
     out: SubSlotTypeComposition = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("SubSlotTypeComposition.name required")
-    if "slotTypeId" in data:
+    if data.get("slotTypeId") is not None:
         out["slot_type_id"] = data["slotTypeId"]
     else:
         raise DeserializationError("SubSlotTypeComposition.slot_type_id required")

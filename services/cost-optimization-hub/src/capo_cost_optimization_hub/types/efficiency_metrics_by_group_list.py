@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> EfficiencyMetricsByGroupList:
 
     out: EfficiencyMetricsByGroupList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cost_optimization_hub.types.efficiency_metrics_by_group.deserialize_aws_json_1_0(
                 item

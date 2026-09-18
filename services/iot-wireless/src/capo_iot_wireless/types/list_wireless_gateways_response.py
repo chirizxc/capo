@@ -36,9 +36,9 @@ def serialize_json(value: ListWirelessGatewaysResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListWirelessGatewaysResponse:
     out: ListWirelessGatewaysResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "WirelessGatewayList" in data:
+    if data.get("WirelessGatewayList") is not None:
         import capo_iot_wireless.types.wireless_gateway_statistics_list
 
         out["wireless_gateway_list"] = (

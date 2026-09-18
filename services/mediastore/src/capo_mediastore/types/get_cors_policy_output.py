@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: GetCorsPolicyOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetCorsPolicyOutput:
     out: GetCorsPolicyOutput = {}  # type: ignore[typeddict-item]
-    if "CorsPolicy" in data:
+    if data.get("CorsPolicy") is not None:
         import capo_mediastore.types.cors_policy
 
         out["cors_policy"] = capo_mediastore.types.cors_policy.deserialize_aws_json_1_1(

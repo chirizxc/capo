@@ -49,7 +49,7 @@ def serialize_aws_json_1_1(value: UpdateFirewallRuleGroupAssociationRequest) -> 
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateFirewallRuleGroupAssociationRequest:
     out: UpdateFirewallRuleGroupAssociationRequest = {}  # type: ignore[typeddict-item]
-    if "FirewallRuleGroupAssociationId" in data:
+    if data.get("FirewallRuleGroupAssociationId") is not None:
         out["firewall_rule_group_association_id"] = data[
             "FirewallRuleGroupAssociationId"
         ]
@@ -57,9 +57,9 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateFirewallRuleGroupAssociationRe
         raise DeserializationError(
             "UpdateFirewallRuleGroupAssociationRequest.firewall_rule_group_association_id required"
         )
-    if "Priority" in data:
+    if data.get("Priority") is not None:
         out["priority"] = data["Priority"]
-    if "MutationProtection" in data:
+    if data.get("MutationProtection") is not None:
         import capo_route53resolver.types.mutation_protection_status
 
         out["mutation_protection"] = (
@@ -67,6 +67,6 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateFirewallRuleGroupAssociationRe
                 data["MutationProtection"]
             )
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     return out

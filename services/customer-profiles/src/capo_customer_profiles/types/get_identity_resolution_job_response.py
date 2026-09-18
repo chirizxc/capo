@@ -112,11 +112,11 @@ def serialize_json(value: GetIdentityResolutionJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetIdentityResolutionJobResponse:
     out: GetIdentityResolutionJobResponse = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_customer_profiles.types.identity_resolution_job_status
 
         out["status"] = (
@@ -124,21 +124,21 @@ def deserialize_json(data: dict) -> GetIdentityResolutionJobResponse:
                 data["Status"]
             )
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "JobStartTime" in data:
+    if data.get("JobStartTime") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["job_start_time"] = capo_customer_profiles.types.timestamp.deserialize_json(
             data["JobStartTime"]
         )
-    if "JobEndTime" in data:
+    if data.get("JobEndTime") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["job_end_time"] = capo_customer_profiles.types.timestamp.deserialize_json(
             data["JobEndTime"]
         )
-    if "LastUpdatedAt" in data:
+    if data.get("LastUpdatedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["last_updated_at"] = (
@@ -146,7 +146,7 @@ def deserialize_json(data: dict) -> GetIdentityResolutionJobResponse:
                 data["LastUpdatedAt"]
             )
         )
-    if "JobExpirationTime" in data:
+    if data.get("JobExpirationTime") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["job_expiration_time"] = (
@@ -154,7 +154,7 @@ def deserialize_json(data: dict) -> GetIdentityResolutionJobResponse:
                 data["JobExpirationTime"]
             )
         )
-    if "AutoMerging" in data:
+    if data.get("AutoMerging") is not None:
         import capo_customer_profiles.types.auto_merging
 
         out["auto_merging"] = (
@@ -162,7 +162,7 @@ def deserialize_json(data: dict) -> GetIdentityResolutionJobResponse:
                 data["AutoMerging"]
             )
         )
-    if "ExportingLocation" in data:
+    if data.get("ExportingLocation") is not None:
         import capo_customer_profiles.types.exporting_location
 
         out["exporting_location"] = (
@@ -170,7 +170,7 @@ def deserialize_json(data: dict) -> GetIdentityResolutionJobResponse:
                 data["ExportingLocation"]
             )
         )
-    if "JobStats" in data:
+    if data.get("JobStats") is not None:
         import capo_customer_profiles.types.job_stats
 
         out["job_stats"] = capo_customer_profiles.types.job_stats.deserialize_json(

@@ -24,7 +24,7 @@ def serialize_json(value: CreateDataRetentionBotChallengeResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateDataRetentionBotChallengeResponse:
     out: CreateDataRetentionBotChallengeResponse = {}  # type: ignore[typeddict-item]
-    if "challenge" in data:
+    if data.get("challenge") is not None:
         out["challenge"] = data["challenge"]
     else:
         raise DeserializationError(

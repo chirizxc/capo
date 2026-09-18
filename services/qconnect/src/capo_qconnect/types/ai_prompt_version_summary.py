@@ -34,7 +34,7 @@ def serialize_json(value: AIPromptVersionSummary) -> dict:
 
 def deserialize_json(data: dict) -> AIPromptVersionSummary:
     out: AIPromptVersionSummary = {}  # type: ignore[typeddict-item]
-    if "aiPromptSummary" in data:
+    if data.get("aiPromptSummary") is not None:
         import capo_qconnect.types.ai_prompt_summary
 
         out["ai_prompt_summary"] = (
@@ -42,6 +42,6 @@ def deserialize_json(data: dict) -> AIPromptVersionSummary:
                 data["aiPromptSummary"]
             )
         )
-    if "versionNumber" in data:
+    if data.get("versionNumber") is not None:
         out["version_number"] = data["versionNumber"]
     return out

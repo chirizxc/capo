@@ -68,7 +68,7 @@ def serialize_aws_json_1_1(value: RotationShift) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RotationShift:
     out: RotationShift = {}  # type: ignore[typeddict-item]
-    if "ContactIds" in data:
+    if data.get("ContactIds") is not None:
         import capo_ssm_contacts.types.ssm_contacts_arn_list
 
         out["contact_ids"] = (
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_1(data: dict) -> RotationShift:
                 data["ContactIds"]
             )
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_ssm_contacts.types.date_time
 
         out["start_time"] = capo_ssm_contacts.types.date_time.deserialize_aws_json_1_1(
@@ -84,7 +84,7 @@ def deserialize_aws_json_1_1(data: dict) -> RotationShift:
         )
     else:
         raise DeserializationError("RotationShift.start_time required")
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_ssm_contacts.types.date_time
 
         out["end_time"] = capo_ssm_contacts.types.date_time.deserialize_aws_json_1_1(
@@ -92,13 +92,13 @@ def deserialize_aws_json_1_1(data: dict) -> RotationShift:
         )
     else:
         raise DeserializationError("RotationShift.end_time required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_ssm_contacts.types.shift_type
 
         out["type"] = capo_ssm_contacts.types.shift_type.deserialize_aws_json_1_1(
             data["Type"]
         )
-    if "ShiftDetails" in data:
+    if data.get("ShiftDetails") is not None:
         import capo_ssm_contacts.types.shift_details
 
         out["shift_details"] = (

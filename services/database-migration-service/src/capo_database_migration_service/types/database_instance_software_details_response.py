@@ -50,18 +50,18 @@ def serialize_aws_json_1_1(value: DatabaseInstanceSoftwareDetailsResponse) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> DatabaseInstanceSoftwareDetailsResponse:
     out: DatabaseInstanceSoftwareDetailsResponse = {}  # type: ignore[typeddict-item]
-    if "Engine" in data:
+    if data.get("Engine") is not None:
         out["engine"] = data["Engine"]
-    if "EngineVersion" in data:
+    if data.get("EngineVersion") is not None:
         out["engine_version"] = data["EngineVersion"]
-    if "EngineEdition" in data:
+    if data.get("EngineEdition") is not None:
         out["engine_edition"] = data["EngineEdition"]
-    if "ServicePack" in data:
+    if data.get("ServicePack") is not None:
         out["service_pack"] = data["ServicePack"]
-    if "SupportLevel" in data:
+    if data.get("SupportLevel") is not None:
         out["support_level"] = data["SupportLevel"]
-    if "OsArchitecture" in data:
+    if data.get("OsArchitecture") is not None:
         out["os_architecture"] = data["OsArchitecture"]
-    if "Tooltip" in data:
+    if data.get("Tooltip") is not None:
         out["tooltip"] = data["Tooltip"]
     return out

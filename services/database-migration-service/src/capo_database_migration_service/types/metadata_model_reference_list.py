@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> MetadataModelReferenceList:
 
     out: MetadataModelReferenceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_database_migration_service.types.metadata_model_reference.deserialize_aws_json_1_1(
                 item

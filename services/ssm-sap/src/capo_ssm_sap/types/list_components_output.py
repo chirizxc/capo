@@ -34,12 +34,12 @@ def serialize_json(value: ListComponentsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListComponentsOutput:
     out: ListComponentsOutput = {}  # type: ignore[typeddict-item]
-    if "Components" in data:
+    if data.get("Components") is not None:
         import capo_ssm_sap.types.component_summary_list
 
         out["components"] = capo_ssm_sap.types.component_summary_list.deserialize_json(
             data["Components"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

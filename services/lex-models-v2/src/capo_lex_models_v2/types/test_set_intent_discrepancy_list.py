@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> TestSetIntentDiscrepancyList:
 
     out: TestSetIntentDiscrepancyList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lex_models_v2.types.test_set_intent_discrepancy_item.deserialize_json(
                 item

@@ -39,11 +39,11 @@ def serialize_json(value: PutS3AccessPolicyResponse) -> dict:
 
 def deserialize_json(data: dict) -> PutS3AccessPolicyResponse:
     out: PutS3AccessPolicyResponse = {}  # type: ignore[typeddict-item]
-    if "s3AccessPointArn" in data:
+    if data.get("s3AccessPointArn") is not None:
         out["s3_access_point_arn"] = data["s3AccessPointArn"]
-    if "storeId" in data:
+    if data.get("storeId") is not None:
         out["store_id"] = data["storeId"]
-    if "storeType" in data:
+    if data.get("storeType") is not None:
         import capo_omics.types.store_type
 
         out["store_type"] = capo_omics.types.store_type.deserialize_json(

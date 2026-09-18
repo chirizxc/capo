@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> CrossRegionCopyTargetList:
 
     out: CrossRegionCopyTargetList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_dlm.types.cross_region_copy_target.deserialize_json(item))
     return out

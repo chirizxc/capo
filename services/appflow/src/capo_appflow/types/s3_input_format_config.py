@@ -29,7 +29,7 @@ def serialize_json(value: S3InputFormatConfig) -> dict:
 
 def deserialize_json(data: dict) -> S3InputFormatConfig:
     out: S3InputFormatConfig = {}  # type: ignore[typeddict-item]
-    if "s3InputFileType" in data:
+    if data.get("s3InputFileType") is not None:
         import capo_appflow.types.s3_input_file_type
 
         out["s3_input_file_type"] = (

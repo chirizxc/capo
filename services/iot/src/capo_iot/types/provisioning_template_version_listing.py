@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ProvisioningTemplateVersionListing:
 
     out: ProvisioningTemplateVersionListing = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot.types.provisioning_template_version_summary.deserialize_json(item)
         )

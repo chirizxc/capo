@@ -60,19 +60,19 @@ def serialize_aws_json_1_1(value: CreateProjectRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateProjectRequest:
     out: CreateProjectRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateProjectRequest.name required")
-    if "defaultJobTimeoutMinutes" in data:
+    if data.get("defaultJobTimeoutMinutes") is not None:
         out["default_job_timeout_minutes"] = data["defaultJobTimeoutMinutes"]
-    if "vpcConfig" in data:
+    if data.get("vpcConfig") is not None:
         import capo_device_farm.types.vpc_config
 
         out["vpc_config"] = capo_device_farm.types.vpc_config.deserialize_aws_json_1_1(
             data["vpcConfig"]
         )
-    if "environmentVariables" in data:
+    if data.get("environmentVariables") is not None:
         import capo_device_farm.types.environment_variables
 
         out["environment_variables"] = (
@@ -80,6 +80,6 @@ def deserialize_aws_json_1_1(data: dict) -> CreateProjectRequest:
                 data["environmentVariables"]
             )
         )
-    if "executionRoleArn" in data:
+    if data.get("executionRoleArn") is not None:
         out["execution_role_arn"] = data["executionRoleArn"]
     return out

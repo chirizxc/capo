@@ -51,19 +51,19 @@ def serialize_aws_json_1_1(value: CreateGUISessionAccessDetailsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateGUISessionAccessDetailsResult:
     out: CreateGUISessionAccessDetailsResult = {}  # type: ignore[typeddict-item]
-    if "resourceName" in data:
+    if data.get("resourceName") is not None:
         out["resource_name"] = data["resourceName"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_lightsail.types.status
 
         out["status"] = capo_lightsail.types.status.deserialize_aws_json_1_1(
             data["status"]
         )
-    if "percentageComplete" in data:
+    if data.get("percentageComplete") is not None:
         out["percentage_complete"] = data["percentageComplete"]
-    if "failureReason" in data:
+    if data.get("failureReason") is not None:
         out["failure_reason"] = data["failureReason"]
-    if "sessions" in data:
+    if data.get("sessions") is not None:
         import capo_lightsail.types.sessions
 
         out["sessions"] = capo_lightsail.types.sessions.deserialize_aws_json_1_1(

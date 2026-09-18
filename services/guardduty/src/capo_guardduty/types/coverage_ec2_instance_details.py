@@ -49,19 +49,19 @@ def serialize_json(value: CoverageEc2InstanceDetails) -> dict:
 
 def deserialize_json(data: dict) -> CoverageEc2InstanceDetails:
     out: CoverageEc2InstanceDetails = {}  # type: ignore[typeddict-item]
-    if "instanceId" in data:
+    if data.get("instanceId") is not None:
         out["instance_id"] = data["instanceId"]
-    if "instanceType" in data:
+    if data.get("instanceType") is not None:
         out["instance_type"] = data["instanceType"]
-    if "clusterArn" in data:
+    if data.get("clusterArn") is not None:
         out["cluster_arn"] = data["clusterArn"]
-    if "agentDetails" in data:
+    if data.get("agentDetails") is not None:
         import capo_guardduty.types.agent_details
 
         out["agent_details"] = capo_guardduty.types.agent_details.deserialize_json(
             data["agentDetails"]
         )
-    if "managementType" in data:
+    if data.get("managementType") is not None:
         import capo_guardduty.types.management_type
 
         out["management_type"] = capo_guardduty.types.management_type.deserialize_json(

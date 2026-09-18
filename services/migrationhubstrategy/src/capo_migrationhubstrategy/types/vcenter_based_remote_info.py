@@ -30,8 +30,8 @@ def serialize_json(value: VcenterBasedRemoteInfo) -> dict:
 
 def deserialize_json(data: dict) -> VcenterBasedRemoteInfo:
     out: VcenterBasedRemoteInfo = {}  # type: ignore[typeddict-item]
-    if "vcenterConfigurationTimeStamp" in data:
+    if data.get("vcenterConfigurationTimeStamp") is not None:
         out["vcenter_configuration_time_stamp"] = data["vcenterConfigurationTimeStamp"]
-    if "osType" in data:
+    if data.get("osType") is not None:
         out["os_type"] = data["osType"]
     return out

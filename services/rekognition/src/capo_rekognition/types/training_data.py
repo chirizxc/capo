@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: TrainingData) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TrainingData:
     out: TrainingData = {}  # type: ignore[typeddict-item]
-    if "Assets" in data:
+    if data.get("Assets") is not None:
         import capo_rekognition.types.assets
 
         out["assets"] = capo_rekognition.types.assets.deserialize_aws_json_1_1(

@@ -96,23 +96,23 @@ def serialize_json(value: NetworkResource) -> dict:
 
 def deserialize_json(data: dict) -> NetworkResource:
     out: NetworkResource = {}  # type: ignore[typeddict-item]
-    if "RegisteredGatewayArn" in data:
+    if data.get("RegisteredGatewayArn") is not None:
         out["registered_gateway_arn"] = data["RegisteredGatewayArn"]
-    if "CoreNetworkId" in data:
+    if data.get("CoreNetworkId") is not None:
         out["core_network_id"] = data["CoreNetworkId"]
-    if "AwsRegion" in data:
+    if data.get("AwsRegion") is not None:
         out["aws_region"] = data["AwsRegion"]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "Definition" in data:
+    if data.get("Definition") is not None:
         out["definition"] = data["Definition"]
-    if "DefinitionTimestamp" in data:
+    if data.get("DefinitionTimestamp") is not None:
         import capo_networkmanager.types.date_time
 
         out["definition_timestamp"] = (
@@ -120,11 +120,11 @@ def deserialize_json(data: dict) -> NetworkResource:
                 data["DefinitionTimestamp"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_networkmanager.types.tag_list
 
         out["tags"] = capo_networkmanager.types.tag_list.deserialize_json(data["Tags"])
-    if "Metadata" in data:
+    if data.get("Metadata") is not None:
         import capo_networkmanager.types.network_resource_metadata_map
 
         out["metadata"] = (

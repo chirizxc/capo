@@ -31,7 +31,7 @@ def serialize_json(value: ListVoiceConnectorTerminationCredentialsResponse) -> d
 
 def deserialize_json(data: dict) -> ListVoiceConnectorTerminationCredentialsResponse:
     out: ListVoiceConnectorTerminationCredentialsResponse = {}  # type: ignore[typeddict-item]
-    if "Usernames" in data:
+    if data.get("Usernames") is not None:
         import capo_chime_sdk_voice.types.sensitive_string_list
 
         out["usernames"] = (

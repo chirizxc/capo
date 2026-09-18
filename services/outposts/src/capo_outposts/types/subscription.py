@@ -85,17 +85,33 @@ def serialize_json(value: Subscription) -> dict:
             value["currency"]
         )
     if "monthly_recurring_price" in value:
-        out["MonthlyRecurringPrice"] = value["monthly_recurring_price"]
+        out["MonthlyRecurringPrice"] = (
+            "NaN"
+            if value["monthly_recurring_price"] != value["monthly_recurring_price"]
+            else "Infinity"
+            if value["monthly_recurring_price"] == float("inf")
+            else "-Infinity"
+            if value["monthly_recurring_price"] == float("-inf")
+            else value["monthly_recurring_price"]
+        )
     if "upfront_price" in value:
-        out["UpfrontPrice"] = value["upfront_price"]
+        out["UpfrontPrice"] = (
+            "NaN"
+            if value["upfront_price"] != value["upfront_price"]
+            else "Infinity"
+            if value["upfront_price"] == float("inf")
+            else "-Infinity"
+            if value["upfront_price"] == float("-inf")
+            else value["upfront_price"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> Subscription:
     out: Subscription = {}  # type: ignore[typeddict-item]
-    if "SubscriptionId" in data:
+    if data.get("SubscriptionId") is not None:
         out["subscription_id"] = data["SubscriptionId"]
-    if "SubscriptionType" in data:
+    if data.get("SubscriptionType") is not None:
         import capo_outposts.types.subscription_type
 
         out["subscription_type"] = (
@@ -103,7 +119,7 @@ def deserialize_json(data: dict) -> Subscription:
                 data["SubscriptionType"]
             )
         )
-    if "SubscriptionStatus" in data:
+    if data.get("SubscriptionStatus") is not None:
         import capo_outposts.types.subscription_status
 
         out["subscription_status"] = (
@@ -111,32 +127,32 @@ def deserialize_json(data: dict) -> Subscription:
                 data["SubscriptionStatus"]
             )
         )
-    if "OrderIds" in data:
+    if data.get("OrderIds") is not None:
         import capo_outposts.types.order_id_list
 
         out["order_ids"] = capo_outposts.types.order_id_list.deserialize_json(
             data["OrderIds"]
         )
-    if "BeginDate" in data:
+    if data.get("BeginDate") is not None:
         import capo_outposts.types.iso8601_timestamp
 
         out["begin_date"] = capo_outposts.types.iso8601_timestamp.deserialize_json(
             data["BeginDate"]
         )
-    if "EndDate" in data:
+    if data.get("EndDate") is not None:
         import capo_outposts.types.iso8601_timestamp
 
         out["end_date"] = capo_outposts.types.iso8601_timestamp.deserialize_json(
             data["EndDate"]
         )
-    if "Currency" in data:
+    if data.get("Currency") is not None:
         import capo_outposts.types.currency_code
 
         out["currency"] = capo_outposts.types.currency_code.deserialize_json(
             data["Currency"]
         )
-    if "MonthlyRecurringPrice" in data:
-        out["monthly_recurring_price"] = data["MonthlyRecurringPrice"]
-    if "UpfrontPrice" in data:
-        out["upfront_price"] = data["UpfrontPrice"]
+    if data.get("MonthlyRecurringPrice") is not None:
+        out["monthly_recurring_price"] = float(data["MonthlyRecurringPrice"])
+    if data.get("UpfrontPrice") is not None:
+        out["upfront_price"] = float(data["UpfrontPrice"])
     return out

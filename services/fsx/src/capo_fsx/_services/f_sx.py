@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.fsx#AWSSimbaAPIService_v20180301``."""
 
+import uuid
 import warnings
 from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -357,9 +358,10 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.associate_file_system_aliases_request.AssociateFileSystemAliasesRequest = {}  # type: ignore[typeddict-item]
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        input_: capo_fsx.types.associate_file_system_aliases_request.AssociateFileSystemAliasesRequest = {}
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if file_system_id is not None:
             input_["file_system_id"] = file_system_id
         if aliases is not None:
@@ -370,6 +372,7 @@ class FSxClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_data_repository_task(
@@ -407,7 +410,7 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.cancel_data_repository_task_request.CancelDataRepositoryTaskRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fsx.types.cancel_data_repository_task_request.CancelDataRepositoryTaskRequest = {}
         if task_id is not None:
             input_["task_id"] = task_id
 
@@ -416,6 +419,7 @@ class FSxClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def copy_backup(
@@ -476,9 +480,10 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.copy_backup_request.CopyBackupRequest = {}  # type: ignore[typeddict-item]
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        input_: capo_fsx.types.copy_backup_request.CopyBackupRequest = {}
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if source_backup_id is not None:
             input_["source_backup_id"] = source_backup_id
         if source_region is not None:
@@ -495,6 +500,7 @@ class FSxClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def copy_snapshot_and_update_volume(
@@ -543,9 +549,10 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.copy_snapshot_and_update_volume_request.CopySnapshotAndUpdateVolumeRequest = {}  # type: ignore[typeddict-item]
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        input_: capo_fsx.types.copy_snapshot_and_update_volume_request.CopySnapshotAndUpdateVolumeRequest = {}
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if volume_id is not None:
             input_["volume_id"] = volume_id
         if source_snapshot_arn is not None:
@@ -560,6 +567,7 @@ class FSxClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_and_attach_s3_access_point(
@@ -621,9 +629,10 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.create_and_attach_s3_access_point_request.CreateAndAttachS3AccessPointRequest = {}  # type: ignore[typeddict-item]
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        input_: capo_fsx.types.create_and_attach_s3_access_point_request.CreateAndAttachS3AccessPointRequest = {}
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if name is not None:
             input_["name"] = name
         if type is not None:
@@ -640,6 +649,7 @@ class FSxClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_backup(
@@ -688,11 +698,12 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.create_backup_request.CreateBackupRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fsx.types.create_backup_request.CreateBackupRequest = {}
         if file_system_id is not None:
             input_["file_system_id"] = file_system_id
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if tags is not None:
             input_["tags"] = tags
         if volume_id is not None:
@@ -703,6 +714,7 @@ class FSxClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_data_repository_association(
@@ -760,7 +772,7 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.create_data_repository_association_request.CreateDataRepositoryAssociationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fsx.types.create_data_repository_association_request.CreateDataRepositoryAssociationRequest = {}
         if file_system_id is not None:
             input_["file_system_id"] = file_system_id
         if file_system_path is not None:
@@ -775,8 +787,9 @@ class FSxClient:
             input_["imported_file_chunk_size"] = imported_file_chunk_size
         if s3 is not None:
             input_["s3"] = s3
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -785,6 +798,7 @@ class FSxClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_data_repository_task(
@@ -845,7 +859,7 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.create_data_repository_task_request.CreateDataRepositoryTaskRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fsx.types.create_data_repository_task_request.CreateDataRepositoryTaskRequest = {}
         if type is not None:
             input_["type"] = type
         if paths is not None:
@@ -854,8 +868,9 @@ class FSxClient:
             input_["file_system_id"] = file_system_id
         if report is not None:
             input_["report"] = report
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if tags is not None:
             input_["tags"] = tags
         if capacity_to_release is not None:
@@ -868,6 +883,7 @@ class FSxClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_file_cache(
@@ -941,9 +957,10 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.create_file_cache_request.CreateFileCacheRequest = {}  # type: ignore[typeddict-item]
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        input_: capo_fsx.types.create_file_cache_request.CreateFileCacheRequest = {}
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if file_cache_type is not None:
             input_["file_cache_type"] = file_cache_type
         if file_cache_type_version is not None:
@@ -972,6 +989,7 @@ class FSxClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_file_system(
@@ -1055,9 +1073,10 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.create_file_system_request.CreateFileSystemRequest = {}  # type: ignore[typeddict-item]
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        input_: capo_fsx.types.create_file_system_request.CreateFileSystemRequest = {}
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if file_system_type is not None:
             input_["file_system_type"] = file_system_type
         if storage_capacity is not None:
@@ -1090,6 +1109,7 @@ class FSxClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_file_system_from_backup(
@@ -1166,11 +1186,12 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.create_file_system_from_backup_request.CreateFileSystemFromBackupRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fsx.types.create_file_system_from_backup_request.CreateFileSystemFromBackupRequest = {}
         if backup_id is not None:
             input_["backup_id"] = backup_id
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if subnet_ids is not None:
             input_["subnet_ids"] = subnet_ids
         if security_group_ids is not None:
@@ -1199,6 +1220,7 @@ class FSxClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_snapshot(
@@ -1241,9 +1263,10 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.create_snapshot_request.CreateSnapshotRequest = {}  # type: ignore[typeddict-item]
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        input_: capo_fsx.types.create_snapshot_request.CreateSnapshotRequest = {}
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if name is not None:
             input_["name"] = name
         if volume_id is not None:
@@ -1256,6 +1279,7 @@ class FSxClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_storage_virtual_machine(
@@ -1314,11 +1338,12 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.create_storage_virtual_machine_request.CreateStorageVirtualMachineRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fsx.types.create_storage_virtual_machine_request.CreateStorageVirtualMachineRequest = {}
         if active_directory_configuration is not None:
             input_["active_directory_configuration"] = active_directory_configuration
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if file_system_id is not None:
             input_["file_system_id"] = file_system_id
         if name is not None:
@@ -1335,6 +1360,7 @@ class FSxClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_volume(
@@ -1389,9 +1415,10 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.create_volume_request.CreateVolumeRequest = {}  # type: ignore[typeddict-item]
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        input_: capo_fsx.types.create_volume_request.CreateVolumeRequest = {}
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if volume_type is not None:
             input_["volume_type"] = volume_type
         if name is not None:
@@ -1408,6 +1435,7 @@ class FSxClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_volume_from_backup(
@@ -1457,11 +1485,12 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.create_volume_from_backup_request.CreateVolumeFromBackupRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fsx.types.create_volume_from_backup_request.CreateVolumeFromBackupRequest = {}
         if backup_id is not None:
             input_["backup_id"] = backup_id
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if name is not None:
             input_["name"] = name
         if ontap_configuration is not None:
@@ -1474,6 +1503,7 @@ class FSxClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_backup(
@@ -1523,17 +1553,19 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.delete_backup_request.DeleteBackupRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fsx.types.delete_backup_request.DeleteBackupRequest = {}
         if backup_id is not None:
             input_["backup_id"] = backup_id
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_data_repository_association(
@@ -1580,11 +1612,12 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.delete_data_repository_association_request.DeleteDataRepositoryAssociationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fsx.types.delete_data_repository_association_request.DeleteDataRepositoryAssociationRequest = {}
         if association_id is not None:
             input_["association_id"] = association_id
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if delete_data_in_file_system is not None:
             input_["delete_data_in_file_system"] = delete_data_in_file_system
 
@@ -1593,6 +1626,7 @@ class FSxClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_file_cache(
@@ -1633,17 +1667,19 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.delete_file_cache_request.DeleteFileCacheRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fsx.types.delete_file_cache_request.DeleteFileCacheRequest = {}
         if file_cache_id is not None:
             input_["file_cache_id"] = file_cache_id
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_file_system(
@@ -1701,11 +1737,12 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.delete_file_system_request.DeleteFileSystemRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fsx.types.delete_file_system_request.DeleteFileSystemRequest = {}
         if file_system_id is not None:
             input_["file_system_id"] = file_system_id
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if windows_configuration is not None:
             input_["windows_configuration"] = windows_configuration
         if lustre_configuration is not None:
@@ -1718,6 +1755,7 @@ class FSxClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_snapshot(
@@ -1756,9 +1794,10 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.delete_snapshot_request.DeleteSnapshotRequest = {}  # type: ignore[typeddict-item]
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        input_: capo_fsx.types.delete_snapshot_request.DeleteSnapshotRequest = {}
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if snapshot_id is not None:
             input_["snapshot_id"] = snapshot_id
 
@@ -1767,6 +1806,7 @@ class FSxClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_storage_virtual_machine(
@@ -1808,9 +1848,10 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.delete_storage_virtual_machine_request.DeleteStorageVirtualMachineRequest = {}  # type: ignore[typeddict-item]
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        input_: capo_fsx.types.delete_storage_virtual_machine_request.DeleteStorageVirtualMachineRequest = {}
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if storage_virtual_machine_id is not None:
             input_["storage_virtual_machine_id"] = storage_virtual_machine_id
 
@@ -1819,6 +1860,7 @@ class FSxClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_volume(
@@ -1867,9 +1909,10 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.delete_volume_request.DeleteVolumeRequest = {}  # type: ignore[typeddict-item]
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        input_: capo_fsx.types.delete_volume_request.DeleteVolumeRequest = {}
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if volume_id is not None:
             input_["volume_id"] = volume_id
         if ontap_configuration is not None:
@@ -1882,6 +1925,7 @@ class FSxClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_backups(
@@ -1925,7 +1969,7 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.describe_backups_request.DescribeBackupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fsx.types.describe_backups_request.DescribeBackupsRequest = {}
         if backup_ids is not None:
             input_["backup_ids"] = backup_ids
         if filters is not None:
@@ -1940,7 +1984,31 @@ class FSxClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_describe_backups(
+        self,
+        *,
+        config_overrides: Optional[FSxClientConfig] = None,
+        backup_ids: Optional["capo_fsx.types.backup_ids.BackupIds"] = None,
+        filters: Optional["capo_fsx.types.filters.Filters"] = None,
+        max_results: Optional["capo_fsx.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_fsx.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_fsx.types.describe_backups_response.DescribeBackupsResponse]":
+        _token = next_token
+        while True:
+            _response = self.describe_backups(
+                config_overrides=config_overrides,
+                backup_ids=backup_ids,
+                filters=filters,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def describe_data_repository_associations(
         self,
@@ -1985,7 +2053,7 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.describe_data_repository_associations_request.DescribeDataRepositoryAssociationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fsx.types.describe_data_repository_associations_request.DescribeDataRepositoryAssociationsRequest = {}
         if association_ids is not None:
             input_["association_ids"] = association_ids
         if filters is not None:
@@ -2000,7 +2068,35 @@ class FSxClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_describe_data_repository_associations(
+        self,
+        *,
+        config_overrides: Optional[FSxClientConfig] = None,
+        association_ids: Optional[
+            "capo_fsx.types.data_repository_association_ids.DataRepositoryAssociationIds"
+        ] = None,
+        filters: Optional["capo_fsx.types.filters.Filters"] = None,
+        max_results: Optional[
+            "capo_fsx.types.limited_max_results.LimitedMaxResults"
+        ] = None,
+        next_token: Optional["capo_fsx.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_fsx.types.describe_data_repository_associations_response.DescribeDataRepositoryAssociationsResponse]":
+        _token = next_token
+        while True:
+            _response = self.describe_data_repository_associations(
+                config_overrides=config_overrides,
+                association_ids=association_ids,
+                filters=filters,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def describe_data_repository_tasks(
         self,
@@ -2042,7 +2138,7 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.describe_data_repository_tasks_request.DescribeDataRepositoryTasksRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fsx.types.describe_data_repository_tasks_request.DescribeDataRepositoryTasksRequest = {}
         if task_ids is not None:
             input_["task_ids"] = task_ids
         if filters is not None:
@@ -2057,7 +2153,33 @@ class FSxClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_describe_data_repository_tasks(
+        self,
+        *,
+        config_overrides: Optional[FSxClientConfig] = None,
+        task_ids: Optional["capo_fsx.types.task_ids.TaskIds"] = None,
+        filters: Optional[
+            "capo_fsx.types.data_repository_task_filters.DataRepositoryTaskFilters"
+        ] = None,
+        max_results: Optional["capo_fsx.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_fsx.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_fsx.types.describe_data_repository_tasks_response.DescribeDataRepositoryTasksResponse]":
+        _token = next_token
+        while True:
+            _response = self.describe_data_repository_tasks(
+                config_overrides=config_overrides,
+                task_ids=task_ids,
+                filters=filters,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def describe_file_caches(
         self,
@@ -2094,7 +2216,7 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.describe_file_caches_request.DescribeFileCachesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fsx.types.describe_file_caches_request.DescribeFileCachesRequest = {}
         if file_cache_ids is not None:
             input_["file_cache_ids"] = file_cache_ids
         if max_results is not None:
@@ -2107,7 +2229,29 @@ class FSxClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_describe_file_caches(
+        self,
+        *,
+        config_overrides: Optional[FSxClientConfig] = None,
+        file_cache_ids: Optional["capo_fsx.types.file_cache_ids.FileCacheIds"] = None,
+        max_results: Optional["capo_fsx.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_fsx.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_fsx.types.describe_file_caches_response.DescribeFileCachesResponse]":
+        _token = next_token
+        while True:
+            _response = self.describe_file_caches(
+                config_overrides=config_overrides,
+                file_cache_ids=file_cache_ids,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def describe_file_system_aliases(
         self,
@@ -2149,9 +2293,10 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.describe_file_system_aliases_request.DescribeFileSystemAliasesRequest = {}  # type: ignore[typeddict-item]
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        input_: capo_fsx.types.describe_file_system_aliases_request.DescribeFileSystemAliasesRequest = {}
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if file_system_id is not None:
             input_["file_system_id"] = file_system_id
         if max_results is not None:
@@ -2164,7 +2309,33 @@ class FSxClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_describe_file_system_aliases(
+        self,
+        *,
+        config_overrides: Optional[FSxClientConfig] = None,
+        client_request_token: Optional[
+            "capo_fsx.types.client_request_token.ClientRequestToken"
+        ] = None,
+        file_system_id: Optional["capo_fsx.types.file_system_id.FileSystemId"] = None,
+        max_results: Optional["capo_fsx.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_fsx.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_fsx.types.describe_file_system_aliases_response.DescribeFileSystemAliasesResponse]":
+        _token = next_token
+        while True:
+            _response = self.describe_file_system_aliases(
+                config_overrides=config_overrides,
+                client_request_token=client_request_token,
+                file_system_id=file_system_id,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def describe_file_systems(
         self,
@@ -2205,7 +2376,7 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.describe_file_systems_request.DescribeFileSystemsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fsx.types.describe_file_systems_request.DescribeFileSystemsRequest = {}
         if file_system_ids is not None:
             input_["file_system_ids"] = file_system_ids
         if max_results is not None:
@@ -2218,7 +2389,31 @@ class FSxClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_describe_file_systems(
+        self,
+        *,
+        config_overrides: Optional[FSxClientConfig] = None,
+        file_system_ids: Optional[
+            "capo_fsx.types.file_system_ids.FileSystemIds"
+        ] = None,
+        max_results: Optional["capo_fsx.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_fsx.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_fsx.types.describe_file_systems_response.DescribeFileSystemsResponse]":
+        _token = next_token
+        while True:
+            _response = self.describe_file_systems(
+                config_overrides=config_overrides,
+                file_system_ids=file_system_ids,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def describe_s3_access_point_attachments(
         self,
@@ -2262,7 +2457,7 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.describe_s3_access_point_attachments_request.DescribeS3AccessPointAttachmentsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fsx.types.describe_s3_access_point_attachments_request.DescribeS3AccessPointAttachmentsRequest = {}
         if names is not None:
             input_["names"] = names
         if filters is not None:
@@ -2277,6 +2472,7 @@ class FSxClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_s3_access_point_attachments(
@@ -2334,13 +2530,14 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.describe_shared_vpc_configuration_request.DescribeSharedVpcConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fsx.types.describe_shared_vpc_configuration_request.DescribeSharedVpcConfigurationRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_snapshots(
@@ -2382,7 +2579,7 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.describe_snapshots_request.DescribeSnapshotsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fsx.types.describe_snapshots_request.DescribeSnapshotsRequest = {}
         if snapshot_ids is not None:
             input_["snapshot_ids"] = snapshot_ids
         if filters is not None:
@@ -2399,6 +2596,7 @@ class FSxClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_snapshots(
@@ -2469,7 +2667,7 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.describe_storage_virtual_machines_request.DescribeStorageVirtualMachinesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fsx.types.describe_storage_virtual_machines_request.DescribeStorageVirtualMachinesRequest = {}
         if storage_virtual_machine_ids is not None:
             input_["storage_virtual_machine_ids"] = storage_virtual_machine_ids
         if filters is not None:
@@ -2484,6 +2682,7 @@ class FSxClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_storage_virtual_machines(
@@ -2552,7 +2751,7 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.describe_volumes_request.DescribeVolumesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fsx.types.describe_volumes_request.DescribeVolumesRequest = {}
         if volume_ids is not None:
             input_["volume_ids"] = volume_ids
         if filters is not None:
@@ -2567,6 +2766,7 @@ class FSxClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_volumes(
@@ -2634,9 +2834,10 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.detach_and_delete_s3_access_point_request.DetachAndDeleteS3AccessPointRequest = {}  # type: ignore[typeddict-item]
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        input_: capo_fsx.types.detach_and_delete_s3_access_point_request.DetachAndDeleteS3AccessPointRequest = {}
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if name is not None:
             input_["name"] = name
 
@@ -2645,6 +2846,7 @@ class FSxClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_file_system_aliases(
@@ -2687,9 +2889,10 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.disassociate_file_system_aliases_request.DisassociateFileSystemAliasesRequest = {}  # type: ignore[typeddict-item]
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        input_: capo_fsx.types.disassociate_file_system_aliases_request.DisassociateFileSystemAliasesRequest = {}
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if file_system_id is not None:
             input_["file_system_id"] = file_system_id
         if aliases is not None:
@@ -2700,6 +2903,7 @@ class FSxClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_tags_for_resource(
@@ -2747,7 +2951,7 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fsx.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}
         if resource_arn is not None:
             input_["resource_arn"] = resource_arn
         if max_results is not None:
@@ -2760,7 +2964,29 @@ class FSxClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_tags_for_resource(
+        self,
+        *,
+        config_overrides: Optional[FSxClientConfig] = None,
+        resource_arn: Optional["capo_fsx.types.resource_arn.ResourceARN"] = None,
+        max_results: Optional["capo_fsx.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_fsx.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_fsx.types.list_tags_for_resource_response.ListTagsForResourceResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_tags_for_resource(
+                config_overrides=config_overrides,
+                resource_arn=resource_arn,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def release_file_system_nfs_v3_locks(
         self,
@@ -2797,17 +3023,19 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.release_file_system_nfs_v3_locks_request.ReleaseFileSystemNfsV3LocksRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fsx.types.release_file_system_nfs_v3_locks_request.ReleaseFileSystemNfsV3LocksRequest = {}
         if file_system_id is not None:
             input_["file_system_id"] = file_system_id
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def restore_volume_from_snapshot(
@@ -2852,9 +3080,10 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.restore_volume_from_snapshot_request.RestoreVolumeFromSnapshotRequest = {}  # type: ignore[typeddict-item]
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        input_: capo_fsx.types.restore_volume_from_snapshot_request.RestoreVolumeFromSnapshotRequest = {}
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if volume_id is not None:
             input_["volume_id"] = volume_id
         if snapshot_id is not None:
@@ -2867,6 +3096,7 @@ class FSxClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_misconfigured_state_recovery(
@@ -2902,9 +3132,10 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.start_misconfigured_state_recovery_request.StartMisconfiguredStateRecoveryRequest = {}  # type: ignore[typeddict-item]
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        input_: capo_fsx.types.start_misconfigured_state_recovery_request.StartMisconfiguredStateRecoveryRequest = {}
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if file_system_id is not None:
             input_["file_system_id"] = file_system_id
 
@@ -2913,6 +3144,7 @@ class FSxClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -2958,7 +3190,7 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fsx.types.tag_resource_request.TagResourceRequest = {}
         if resource_arn is not None:
             input_["resource_arn"] = resource_arn
         if tags is not None:
@@ -2969,6 +3201,7 @@ class FSxClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -3014,7 +3247,7 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fsx.types.untag_resource_request.UntagResourceRequest = {}
         if resource_arn is not None:
             input_["resource_arn"] = resource_arn
         if tag_keys is not None:
@@ -3025,6 +3258,7 @@ class FSxClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_data_repository_association(
@@ -3073,11 +3307,12 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.update_data_repository_association_request.UpdateDataRepositoryAssociationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fsx.types.update_data_repository_association_request.UpdateDataRepositoryAssociationRequest = {}
         if association_id is not None:
             input_["association_id"] = association_id
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if imported_file_chunk_size is not None:
             input_["imported_file_chunk_size"] = imported_file_chunk_size
         if s3 is not None:
@@ -3088,6 +3323,7 @@ class FSxClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_file_cache(
@@ -3134,11 +3370,12 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.update_file_cache_request.UpdateFileCacheRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fsx.types.update_file_cache_request.UpdateFileCacheRequest = {}
         if file_cache_id is not None:
             input_["file_cache_id"] = file_cache_id
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if lustre_configuration is not None:
             input_["lustre_configuration"] = lustre_configuration
 
@@ -3147,6 +3384,7 @@ class FSxClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_file_system(
@@ -3216,11 +3454,12 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.update_file_system_request.UpdateFileSystemRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fsx.types.update_file_system_request.UpdateFileSystemRequest = {}
         if file_system_id is not None:
             input_["file_system_id"] = file_system_id
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if storage_capacity is not None:
             input_["storage_capacity"] = storage_capacity
         if windows_configuration is not None:
@@ -3243,6 +3482,7 @@ class FSxClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_shared_vpc_configuration(
@@ -3283,19 +3523,21 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.update_shared_vpc_configuration_request.UpdateSharedVpcConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fsx.types.update_shared_vpc_configuration_request.UpdateSharedVpcConfigurationRequest = {}
         if enable_fsx_route_table_updates_from_participant_accounts is not None:
             input_["enable_fsx_route_table_updates_from_participant_accounts"] = (
                 enable_fsx_route_table_updates_from_participant_accounts
             )
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_snapshot(
@@ -3336,9 +3578,10 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.update_snapshot_request.UpdateSnapshotRequest = {}  # type: ignore[typeddict-item]
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        input_: capo_fsx.types.update_snapshot_request.UpdateSnapshotRequest = {}
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if name is not None:
             input_["name"] = name
         if snapshot_id is not None:
@@ -3349,6 +3592,7 @@ class FSxClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_storage_virtual_machine(
@@ -3399,11 +3643,12 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.update_storage_virtual_machine_request.UpdateStorageVirtualMachineRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_fsx.types.update_storage_virtual_machine_request.UpdateStorageVirtualMachineRequest = {}
         if active_directory_configuration is not None:
             input_["active_directory_configuration"] = active_directory_configuration
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if storage_virtual_machine_id is not None:
             input_["storage_virtual_machine_id"] = storage_virtual_machine_id
         if svm_admin_password is not None:
@@ -3414,6 +3659,7 @@ class FSxClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_volume(
@@ -3464,9 +3710,10 @@ class FSxClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_fsx.types.update_volume_request.UpdateVolumeRequest = {}  # type: ignore[typeddict-item]
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        input_: capo_fsx.types.update_volume_request.UpdateVolumeRequest = {}
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if volume_id is not None:
             input_["volume_id"] = volume_id
         if ontap_configuration is not None:
@@ -3481,6 +3728,7 @@ class FSxClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

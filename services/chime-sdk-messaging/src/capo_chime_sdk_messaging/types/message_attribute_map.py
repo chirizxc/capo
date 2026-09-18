@@ -27,6 +27,8 @@ def serialize_json(input_to_serialize: MessageAttributeMap) -> dict:
 def deserialize_json(data: dict) -> MessageAttributeMap:
     out: MessageAttributeMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_chime_sdk_messaging.types.message_attribute_value
 
         out[key] = (

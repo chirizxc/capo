@@ -41,15 +41,15 @@ def serialize_json(value: UpdateRelatedItemsInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRelatedItemsInput:
     out: UpdateRelatedItemsInput = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "incidentRecordArn" in data:
+    if data.get("incidentRecordArn") is not None:
         out["incident_record_arn"] = data["incidentRecordArn"]
     else:
         raise DeserializationError(
             "UpdateRelatedItemsInput.incident_record_arn required"
         )
-    if "relatedItemsUpdate" in data:
+    if data.get("relatedItemsUpdate") is not None:
         import capo_ssm_incidents.types.related_items_update
 
         out["related_items_update"] = (

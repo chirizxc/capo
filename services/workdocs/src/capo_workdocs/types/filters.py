@@ -127,7 +127,7 @@ def serialize_json(value: Filters) -> dict:
 
 def deserialize_json(data: dict) -> Filters:
     out: Filters = {}  # type: ignore[typeddict-item]
-    if "TextLocales" in data:
+    if data.get("TextLocales") is not None:
         import capo_workdocs.types.text_locale_type_list
 
         out["text_locales"] = (
@@ -135,7 +135,7 @@ def deserialize_json(data: dict) -> Filters:
                 data["TextLocales"]
             )
         )
-    if "ContentCategories" in data:
+    if data.get("ContentCategories") is not None:
         import capo_workdocs.types.search_content_category_type_list
 
         out["content_categories"] = (
@@ -143,7 +143,7 @@ def deserialize_json(data: dict) -> Filters:
                 data["ContentCategories"]
             )
         )
-    if "ResourceTypes" in data:
+    if data.get("ResourceTypes") is not None:
         import capo_workdocs.types.search_resource_type_list
 
         out["resource_types"] = (
@@ -151,13 +151,13 @@ def deserialize_json(data: dict) -> Filters:
                 data["ResourceTypes"]
             )
         )
-    if "Labels" in data:
+    if data.get("Labels") is not None:
         import capo_workdocs.types.search_label_list
 
         out["labels"] = capo_workdocs.types.search_label_list.deserialize_json(
             data["Labels"]
         )
-    if "Principals" in data:
+    if data.get("Principals") is not None:
         import capo_workdocs.types.search_principal_type_list
 
         out["principals"] = (
@@ -165,7 +165,7 @@ def deserialize_json(data: dict) -> Filters:
                 data["Principals"]
             )
         )
-    if "AncestorIds" in data:
+    if data.get("AncestorIds") is not None:
         import capo_workdocs.types.search_ancestor_id_list
 
         out["ancestor_ids"] = (
@@ -173,7 +173,7 @@ def deserialize_json(data: dict) -> Filters:
                 data["AncestorIds"]
             )
         )
-    if "SearchCollectionTypes" in data:
+    if data.get("SearchCollectionTypes") is not None:
         import capo_workdocs.types.search_collection_type_list
 
         out["search_collection_types"] = (
@@ -181,19 +181,19 @@ def deserialize_json(data: dict) -> Filters:
                 data["SearchCollectionTypes"]
             )
         )
-    if "SizeRange" in data:
+    if data.get("SizeRange") is not None:
         import capo_workdocs.types.long_range_type
 
         out["size_range"] = capo_workdocs.types.long_range_type.deserialize_json(
             data["SizeRange"]
         )
-    if "CreatedRange" in data:
+    if data.get("CreatedRange") is not None:
         import capo_workdocs.types.date_range_type
 
         out["created_range"] = capo_workdocs.types.date_range_type.deserialize_json(
             data["CreatedRange"]
         )
-    if "ModifiedRange" in data:
+    if data.get("ModifiedRange") is not None:
         import capo_workdocs.types.date_range_type
 
         out["modified_range"] = capo_workdocs.types.date_range_type.deserialize_json(

@@ -32,9 +32,9 @@ def serialize_json(value: QueryFilter) -> dict:
 
 def deserialize_json(data: dict) -> QueryFilter:
     out: QueryFilter = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_rum.types.query_filter_value_list
 
         out["values"] = capo_rum.types.query_filter_value_list.deserialize_json(

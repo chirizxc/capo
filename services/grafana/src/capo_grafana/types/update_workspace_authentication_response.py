@@ -32,7 +32,7 @@ def serialize_json(value: UpdateWorkspaceAuthenticationResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateWorkspaceAuthenticationResponse:
     out: UpdateWorkspaceAuthenticationResponse = {}  # type: ignore[typeddict-item]
-    if "authentication" in data:
+    if data.get("authentication") is not None:
         import capo_grafana.types.authentication_description
 
         out["authentication"] = (

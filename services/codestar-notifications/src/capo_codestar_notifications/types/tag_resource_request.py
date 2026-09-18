@@ -30,11 +30,11 @@ def serialize_json(value: TagResourceRequest) -> dict:
 
 def deserialize_json(data: dict) -> TagResourceRequest:
     out: TagResourceRequest = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("TagResourceRequest.arn required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_codestar_notifications.types.tags
 
         out["tags"] = capo_codestar_notifications.types.tags.deserialize_json(

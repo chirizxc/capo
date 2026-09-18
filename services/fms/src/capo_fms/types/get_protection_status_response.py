@@ -46,9 +46,9 @@ def serialize_aws_json_1_1(value: GetProtectionStatusResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetProtectionStatusResponse:
     out: GetProtectionStatusResponse = {}  # type: ignore[typeddict-item]
-    if "AdminAccountId" in data:
+    if data.get("AdminAccountId") is not None:
         out["admin_account_id"] = data["AdminAccountId"]
-    if "ServiceType" in data:
+    if data.get("ServiceType") is not None:
         import capo_fms.types.security_service_type
 
         out["service_type"] = (
@@ -56,8 +56,8 @@ def deserialize_aws_json_1_1(data: dict) -> GetProtectionStatusResponse:
                 data["ServiceType"]
             )
         )
-    if "Data" in data:
+    if data.get("Data") is not None:
         out["data"] = data["Data"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

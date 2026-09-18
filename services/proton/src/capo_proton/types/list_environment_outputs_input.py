@@ -34,14 +34,14 @@ def serialize_aws_json_1_0(value: ListEnvironmentOutputsInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListEnvironmentOutputsInput:
     out: ListEnvironmentOutputsInput = {}  # type: ignore[typeddict-item]
-    if "environmentName" in data:
+    if data.get("environmentName") is not None:
         out["environment_name"] = data["environmentName"]
     else:
         raise DeserializationError(
             "ListEnvironmentOutputsInput.environment_name required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "deploymentId" in data:
+    if data.get("deploymentId") is not None:
         out["deployment_id"] = data["deploymentId"]
     return out

@@ -43,9 +43,9 @@ def serialize_aws_json_1_1(value: DeleteHubContentReferenceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteHubContentReferenceRequest:
     out: DeleteHubContentReferenceRequest = {}  # type: ignore[typeddict-item]
-    if "HubName" in data:
+    if data.get("HubName") is not None:
         out["hub_name"] = data["HubName"]
-    if "HubContentType" in data:
+    if data.get("HubContentType") is not None:
         import capo_sagemaker.types.hub_content_type
 
         out["hub_content_type"] = (
@@ -53,6 +53,6 @@ def deserialize_aws_json_1_1(data: dict) -> DeleteHubContentReferenceRequest:
                 data["HubContentType"]
             )
         )
-    if "HubContentName" in data:
+    if data.get("HubContentName") is not None:
         out["hub_content_name"] = data["HubContentName"]
     return out

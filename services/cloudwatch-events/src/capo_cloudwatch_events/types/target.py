@@ -186,21 +186,21 @@ def serialize_aws_json_1_1(value: Target) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Target:
     out: Target = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("Target.id required")
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("Target.arn required")
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "Input" in data:
+    if data.get("Input") is not None:
         out["input"] = data["Input"]
-    if "InputPath" in data:
+    if data.get("InputPath") is not None:
         out["input_path"] = data["InputPath"]
-    if "InputTransformer" in data:
+    if data.get("InputTransformer") is not None:
         import capo_cloudwatch_events.types.input_transformer
 
         out["input_transformer"] = (
@@ -208,7 +208,7 @@ def deserialize_aws_json_1_1(data: dict) -> Target:
                 data["InputTransformer"]
             )
         )
-    if "KinesisParameters" in data:
+    if data.get("KinesisParameters") is not None:
         import capo_cloudwatch_events.types.kinesis_parameters
 
         out["kinesis_parameters"] = (
@@ -216,7 +216,7 @@ def deserialize_aws_json_1_1(data: dict) -> Target:
                 data["KinesisParameters"]
             )
         )
-    if "RunCommandParameters" in data:
+    if data.get("RunCommandParameters") is not None:
         import capo_cloudwatch_events.types.run_command_parameters
 
         out["run_command_parameters"] = (
@@ -224,7 +224,7 @@ def deserialize_aws_json_1_1(data: dict) -> Target:
                 data["RunCommandParameters"]
             )
         )
-    if "EcsParameters" in data:
+    if data.get("EcsParameters") is not None:
         import capo_cloudwatch_events.types.ecs_parameters
 
         out["ecs_parameters"] = (
@@ -232,7 +232,7 @@ def deserialize_aws_json_1_1(data: dict) -> Target:
                 data["EcsParameters"]
             )
         )
-    if "BatchParameters" in data:
+    if data.get("BatchParameters") is not None:
         import capo_cloudwatch_events.types.batch_parameters
 
         out["batch_parameters"] = (
@@ -240,7 +240,7 @@ def deserialize_aws_json_1_1(data: dict) -> Target:
                 data["BatchParameters"]
             )
         )
-    if "SqsParameters" in data:
+    if data.get("SqsParameters") is not None:
         import capo_cloudwatch_events.types.sqs_parameters
 
         out["sqs_parameters"] = (
@@ -248,7 +248,7 @@ def deserialize_aws_json_1_1(data: dict) -> Target:
                 data["SqsParameters"]
             )
         )
-    if "HttpParameters" in data:
+    if data.get("HttpParameters") is not None:
         import capo_cloudwatch_events.types.http_parameters
 
         out["http_parameters"] = (
@@ -256,7 +256,7 @@ def deserialize_aws_json_1_1(data: dict) -> Target:
                 data["HttpParameters"]
             )
         )
-    if "RedshiftDataParameters" in data:
+    if data.get("RedshiftDataParameters") is not None:
         import capo_cloudwatch_events.types.redshift_data_parameters
 
         out["redshift_data_parameters"] = (
@@ -264,7 +264,7 @@ def deserialize_aws_json_1_1(data: dict) -> Target:
                 data["RedshiftDataParameters"]
             )
         )
-    if "SageMakerPipelineParameters" in data:
+    if data.get("SageMakerPipelineParameters") is not None:
         import capo_cloudwatch_events.types.sage_maker_pipeline_parameters
 
         out["sage_maker_pipeline_parameters"] = (
@@ -272,7 +272,7 @@ def deserialize_aws_json_1_1(data: dict) -> Target:
                 data["SageMakerPipelineParameters"]
             )
         )
-    if "DeadLetterConfig" in data:
+    if data.get("DeadLetterConfig") is not None:
         import capo_cloudwatch_events.types.dead_letter_config
 
         out["dead_letter_config"] = (
@@ -280,7 +280,7 @@ def deserialize_aws_json_1_1(data: dict) -> Target:
                 data["DeadLetterConfig"]
             )
         )
-    if "RetryPolicy" in data:
+    if data.get("RetryPolicy") is not None:
         import capo_cloudwatch_events.types.retry_policy
 
         out["retry_policy"] = (

@@ -34,14 +34,14 @@ def serialize_aws_json_1_1(value: DescribeWorkspaceImagePermissionsRequest) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeWorkspaceImagePermissionsRequest:
     out: DescribeWorkspaceImagePermissionsRequest = {}  # type: ignore[typeddict-item]
-    if "ImageId" in data:
+    if data.get("ImageId") is not None:
         out["image_id"] = data["ImageId"]
     else:
         raise DeserializationError(
             "DescribeWorkspaceImagePermissionsRequest.image_id required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

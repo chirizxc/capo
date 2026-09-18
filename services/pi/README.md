@@ -13,9 +13,9 @@ from capo_pi import AsyncPIClient
 
 
 async def main():
-    async with AsyncPIClient() as s3:
+    async with AsyncPIClient() as pi:
         # Example: call the create_performance_analysis_report operation
-        response = await s3.create_performance_analysis_report()
+        response = await pi.create_performance_analysis_report()
         print(response["analysis_report_id"])
 ```
 
@@ -28,9 +28,9 @@ from capo_pi import AsyncPIClient
 
 
 async def main():
-    async with AsyncPIClient() as s3:
-        # Example: paginate over list_performance_analysis_report_recommendations
-        async for item in s3.iter_list_performance_analysis_report_recommendations():
+    async with AsyncPIClient() as pi:
+        # Example: paginate over describe_dimension_keys
+        async for item in pi.iter_describe_dimension_keys():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_pi.error import InternalServiceError
 
 
 async def main():
-    async with AsyncPIClient() as s3:
+    async with AsyncPIClient() as pi:
         try:
-            await s3.create_performance_analysis_report()
+            await pi.create_performance_analysis_report()
         except InternalServiceError as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_pi import AsyncPIClient
 
 
 async def main():
-    async with AsyncPIClient() as s3:
+    async with AsyncPIClient() as pi:
         # Default: 3 attempts for every operation
-        response = await s3.create_performance_analysis_report()
+        response = await pi.create_performance_analysis_report()
 
         # Override per operation
-        response = await s3.create_performance_analysis_report(config_overrides={"retry_max_attempts": 5})
+        response = await pi.create_performance_analysis_report(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_performance_analysis_report(config_overrides={"retry_max_attempts": 1})
+        response = await pi.create_performance_analysis_report(config_overrides={"retry_max_attempts": 1})
 ```

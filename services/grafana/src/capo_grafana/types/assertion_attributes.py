@@ -43,16 +43,16 @@ def serialize_json(value: AssertionAttributes) -> dict:
 
 def deserialize_json(data: dict) -> AssertionAttributes:
     out: AssertionAttributes = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "login" in data:
+    if data.get("login") is not None:
         out["login"] = data["login"]
-    if "email" in data:
+    if data.get("email") is not None:
         out["email"] = data["email"]
-    if "groups" in data:
+    if data.get("groups") is not None:
         out["groups"] = data["groups"]
-    if "role" in data:
+    if data.get("role") is not None:
         out["role"] = data["role"]
-    if "org" in data:
+    if data.get("org") is not None:
         out["org"] = data["org"]
     return out

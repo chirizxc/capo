@@ -35,7 +35,7 @@ def serialize_json(value: DateRangeFilter) -> dict:
 
 def deserialize_json(data: dict) -> DateRangeFilter:
     out: DateRangeFilter = {}  # type: ignore[typeddict-item]
-    if "startDateTime" in data:
+    if data.get("startDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["start_date_time"] = capo_lex_models_v2.types.timestamp.deserialize_json(
@@ -43,7 +43,7 @@ def deserialize_json(data: dict) -> DateRangeFilter:
         )
     else:
         raise DeserializationError("DateRangeFilter.start_date_time required")
-    if "endDateTime" in data:
+    if data.get("endDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["end_date_time"] = capo_lex_models_v2.types.timestamp.deserialize_json(

@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> NestedFiltersList:
 
     out: NestedFiltersList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_sagemaker.types.nested_filters.deserialize_aws_json_1_1(item))
     return out

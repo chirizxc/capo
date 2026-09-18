@@ -151,7 +151,15 @@ def serialize_aws_json_1_0(value: CloudVmClusterSummary) -> dict:
             )
         )
     if "data_storage_size_in_t_bs" in value:
-        out["dataStorageSizeInTBs"] = value["data_storage_size_in_t_bs"]
+        out["dataStorageSizeInTBs"] = (
+            "NaN"
+            if value["data_storage_size_in_t_bs"] != value["data_storage_size_in_t_bs"]
+            else "Infinity"
+            if value["data_storage_size_in_t_bs"] == float("inf")
+            else "-Infinity"
+            if value["data_storage_size_in_t_bs"] == float("-inf")
+            else value["data_storage_size_in_t_bs"]
+        )
     if "db_node_storage_size_in_g_bs" in value:
         out["dbNodeStorageSizeInGBs"] = value["db_node_storage_size_in_g_bs"]
     if "db_servers" in value:
@@ -229,9 +237,9 @@ def serialize_aws_json_1_0(value: CloudVmClusterSummary) -> dict:
     if "system_version" in value:
         out["systemVersion"] = value["system_version"]
     if "created_at" in value:
-        import capo_odb.types._prelude.timestamp
+        import capo_odb._protocol.serialize
 
-        out["createdAt"] = capo_odb.types._prelude.timestamp.serialize_aws_json_1_0(
+        out["createdAt"] = capo_odb._protocol.serialize.fmt_date_time(
             value["created_at"]
         )
     if "time_zone" in value:
@@ -247,7 +255,15 @@ def serialize_aws_json_1_0(value: CloudVmClusterSummary) -> dict:
     if "odb_network_arn" in value:
         out["odbNetworkArn"] = value["odb_network_arn"]
     if "percent_progress" in value:
-        out["percentProgress"] = value["percent_progress"]
+        out["percentProgress"] = (
+            "NaN"
+            if value["percent_progress"] != value["percent_progress"]
+            else "Infinity"
+            if value["percent_progress"] == float("inf")
+            else "-Infinity"
+            if value["percent_progress"] == float("-inf")
+            else value["percent_progress"]
+        )
     if "compute_model" in value:
         import capo_odb.types.compute_model
 
@@ -265,31 +281,31 @@ def serialize_aws_json_1_0(value: CloudVmClusterSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CloudVmClusterSummary:
     out: CloudVmClusterSummary = {}  # type: ignore[typeddict-item]
-    if "cloudVmClusterId" in data:
+    if data.get("cloudVmClusterId") is not None:
         out["cloud_vm_cluster_id"] = data["cloudVmClusterId"]
     else:
         raise DeserializationError("CloudVmClusterSummary.cloud_vm_cluster_id required")
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_odb.types.resource_status
 
         out["status"] = capo_odb.types.resource_status.deserialize_aws_json_1_0(
             data["status"]
         )
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "cloudVmClusterArn" in data:
+    if data.get("cloudVmClusterArn") is not None:
         out["cloud_vm_cluster_arn"] = data["cloudVmClusterArn"]
-    if "cloudExadataInfrastructureId" in data:
+    if data.get("cloudExadataInfrastructureId") is not None:
         out["cloud_exadata_infrastructure_id"] = data["cloudExadataInfrastructureId"]
-    if "cloudExadataInfrastructureArn" in data:
+    if data.get("cloudExadataInfrastructureArn") is not None:
         out["cloud_exadata_infrastructure_arn"] = data["cloudExadataInfrastructureArn"]
-    if "clusterName" in data:
+    if data.get("clusterName") is not None:
         out["cluster_name"] = data["clusterName"]
-    if "cpuCoreCount" in data:
+    if data.get("cpuCoreCount") is not None:
         out["cpu_core_count"] = data["cpuCoreCount"]
-    if "dataCollectionOptions" in data:
+    if data.get("dataCollectionOptions") is not None:
         import capo_odb.types.data_collection_options
 
         out["data_collection_options"] = (
@@ -297,17 +313,17 @@ def deserialize_aws_json_1_0(data: dict) -> CloudVmClusterSummary:
                 data["dataCollectionOptions"]
             )
         )
-    if "dataStorageSizeInTBs" in data:
-        out["data_storage_size_in_t_bs"] = data["dataStorageSizeInTBs"]
-    if "dbNodeStorageSizeInGBs" in data:
+    if data.get("dataStorageSizeInTBs") is not None:
+        out["data_storage_size_in_t_bs"] = float(data["dataStorageSizeInTBs"])
+    if data.get("dbNodeStorageSizeInGBs") is not None:
         out["db_node_storage_size_in_g_bs"] = data["dbNodeStorageSizeInGBs"]
-    if "dbServers" in data:
+    if data.get("dbServers") is not None:
         import capo_odb.types.string_list
 
         out["db_servers"] = capo_odb.types.string_list.deserialize_aws_json_1_0(
             data["dbServers"]
         )
-    if "diskRedundancy" in data:
+    if data.get("diskRedundancy") is not None:
         import capo_odb.types.disk_redundancy
 
         out["disk_redundancy"] = (
@@ -315,11 +331,11 @@ def deserialize_aws_json_1_0(data: dict) -> CloudVmClusterSummary:
                 data["diskRedundancy"]
             )
         )
-    if "giVersion" in data:
+    if data.get("giVersion") is not None:
         out["gi_version"] = data["giVersion"]
-    if "hostname" in data:
+    if data.get("hostname") is not None:
         out["hostname"] = data["hostname"]
-    if "iormConfigCache" in data:
+    if data.get("iormConfigCache") is not None:
         import capo_odb.types.exadata_iorm_config
 
         out["iorm_config_cache"] = (
@@ -327,45 +343,45 @@ def deserialize_aws_json_1_0(data: dict) -> CloudVmClusterSummary:
                 data["iormConfigCache"]
             )
         )
-    if "isLocalBackupEnabled" in data:
+    if data.get("isLocalBackupEnabled") is not None:
         out["is_local_backup_enabled"] = data["isLocalBackupEnabled"]
-    if "isSparseDiskgroupEnabled" in data:
+    if data.get("isSparseDiskgroupEnabled") is not None:
         out["is_sparse_diskgroup_enabled"] = data["isSparseDiskgroupEnabled"]
-    if "lastUpdateHistoryEntryId" in data:
+    if data.get("lastUpdateHistoryEntryId") is not None:
         out["last_update_history_entry_id"] = data["lastUpdateHistoryEntryId"]
-    if "licenseModel" in data:
+    if data.get("licenseModel") is not None:
         import capo_odb.types.license_model
 
         out["license_model"] = capo_odb.types.license_model.deserialize_aws_json_1_0(
             data["licenseModel"]
         )
-    if "listenerPort" in data:
+    if data.get("listenerPort") is not None:
         out["listener_port"] = data["listenerPort"]
-    if "memorySizeInGBs" in data:
+    if data.get("memorySizeInGBs") is not None:
         out["memory_size_in_g_bs"] = data["memorySizeInGBs"]
-    if "nodeCount" in data:
+    if data.get("nodeCount") is not None:
         out["node_count"] = data["nodeCount"]
-    if "ocid" in data:
+    if data.get("ocid") is not None:
         out["ocid"] = data["ocid"]
-    if "ociResourceAnchorName" in data:
+    if data.get("ociResourceAnchorName") is not None:
         out["oci_resource_anchor_name"] = data["ociResourceAnchorName"]
-    if "ociUrl" in data:
+    if data.get("ociUrl") is not None:
         out["oci_url"] = data["ociUrl"]
-    if "domain" in data:
+    if data.get("domain") is not None:
         out["domain"] = data["domain"]
-    if "scanDnsName" in data:
+    if data.get("scanDnsName") is not None:
         out["scan_dns_name"] = data["scanDnsName"]
-    if "scanDnsRecordId" in data:
+    if data.get("scanDnsRecordId") is not None:
         out["scan_dns_record_id"] = data["scanDnsRecordId"]
-    if "scanIpIds" in data:
+    if data.get("scanIpIds") is not None:
         import capo_odb.types.string_list
 
         out["scan_ip_ids"] = capo_odb.types.string_list.deserialize_aws_json_1_0(
             data["scanIpIds"]
         )
-    if "shape" in data:
+    if data.get("shape") is not None:
         out["shape"] = data["shape"]
-    if "sshPublicKeys" in data:
+    if data.get("sshPublicKeys") is not None:
         import capo_odb.types.sensitive_string_list
 
         out["ssh_public_keys"] = (
@@ -373,37 +389,37 @@ def deserialize_aws_json_1_0(data: dict) -> CloudVmClusterSummary:
                 data["sshPublicKeys"]
             )
         )
-    if "storageSizeInGBs" in data:
+    if data.get("storageSizeInGBs") is not None:
         out["storage_size_in_g_bs"] = data["storageSizeInGBs"]
-    if "systemVersion" in data:
+    if data.get("systemVersion") is not None:
         out["system_version"] = data["systemVersion"]
-    if "createdAt" in data:
-        import capo_odb.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = capo_odb.types._prelude.timestamp.deserialize_aws_json_1_0(
-            data["createdAt"]
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
-    if "timeZone" in data:
+    if data.get("timeZone") is not None:
         out["time_zone"] = data["timeZone"]
-    if "vipIds" in data:
+    if data.get("vipIds") is not None:
         import capo_odb.types.string_list
 
         out["vip_ids"] = capo_odb.types.string_list.deserialize_aws_json_1_0(
             data["vipIds"]
         )
-    if "odbNetworkId" in data:
+    if data.get("odbNetworkId") is not None:
         out["odb_network_id"] = data["odbNetworkId"]
-    if "odbNetworkArn" in data:
+    if data.get("odbNetworkArn") is not None:
         out["odb_network_arn"] = data["odbNetworkArn"]
-    if "percentProgress" in data:
-        out["percent_progress"] = data["percentProgress"]
-    if "computeModel" in data:
+    if data.get("percentProgress") is not None:
+        out["percent_progress"] = float(data["percentProgress"])
+    if data.get("computeModel") is not None:
         import capo_odb.types.compute_model
 
         out["compute_model"] = capo_odb.types.compute_model.deserialize_aws_json_1_0(
             data["computeModel"]
         )
-    if "iamRoles" in data:
+    if data.get("iamRoles") is not None:
         import capo_odb.types.iam_role_list
 
         out["iam_roles"] = capo_odb.types.iam_role_list.deserialize_aws_json_1_0(

@@ -36,13 +36,13 @@ def serialize_aws_json_1_0(value: TestConversionResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TestConversionResponse:
     out: TestConversionResponse = {}  # type: ignore[typeddict-item]
-    if "convertedFileContent" in data:
+    if data.get("convertedFileContent") is not None:
         out["converted_file_content"] = data["convertedFileContent"]
     else:
         raise DeserializationError(
             "TestConversionResponse.converted_file_content required"
         )
-    if "validationMessages" in data:
+    if data.get("validationMessages") is not None:
         import capo_b2bi.types.validation_messages
 
         out["validation_messages"] = (

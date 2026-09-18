@@ -54,23 +54,23 @@ def serialize_json(value: Index) -> dict:
 
 def deserialize_json(data: dict) -> Index:
     out: Index = {}  # type: ignore[typeddict-item]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "indexId" in data:
+    if data.get("indexId") is not None:
         out["index_id"] = data["indexId"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_qbusiness.types.timestamp
 
         out["created_at"] = capo_qbusiness.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_qbusiness.types.timestamp
 
         out["updated_at"] = capo_qbusiness.types.timestamp.deserialize_json(
             data["updatedAt"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_qbusiness.types.index_status
 
         out["status"] = capo_qbusiness.types.index_status.deserialize_json(

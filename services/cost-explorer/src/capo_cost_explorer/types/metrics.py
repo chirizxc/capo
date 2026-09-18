@@ -25,6 +25,8 @@ def serialize_aws_json_1_1(input_to_serialize: Metrics) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> Metrics:
     out: Metrics = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_cost_explorer.types.metric_value
 
         out[key] = capo_cost_explorer.types.metric_value.deserialize_aws_json_1_1(value)

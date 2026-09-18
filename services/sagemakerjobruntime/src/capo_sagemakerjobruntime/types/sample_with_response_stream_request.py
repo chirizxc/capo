@@ -34,7 +34,7 @@ def serialize_json(value: SampleWithResponseStreamRequest) -> dict:
 
 def deserialize_json(data: dict) -> SampleWithResponseStreamRequest:
     out: SampleWithResponseStreamRequest = {}  # type: ignore[typeddict-item]
-    if "Body" in data:
+    if data.get("Body") is not None:
         import capo_sagemakerjobruntime.types.inference_request_body
 
         out["body"] = (

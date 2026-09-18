@@ -80,13 +80,13 @@ def serialize_json(value: TopicIR) -> dict:
 
 def deserialize_json(data: dict) -> TopicIR:
     out: TopicIR = {}  # type: ignore[typeddict-item]
-    if "Metrics" in data:
+    if data.get("Metrics") is not None:
         import capo_quicksight.types.topic_ir_metric_list
 
         out["metrics"] = capo_quicksight.types.topic_ir_metric_list.deserialize_json(
             data["Metrics"]
         )
-    if "GroupByList" in data:
+    if data.get("GroupByList") is not None:
         import capo_quicksight.types.topic_ir_group_by_list
 
         out["group_by_list"] = (
@@ -94,19 +94,19 @@ def deserialize_json(data: dict) -> TopicIR:
                 data["GroupByList"]
             )
         )
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_quicksight.types.topic_ir_filter_list
 
         out["filters"] = capo_quicksight.types.topic_ir_filter_list.deserialize_json(
             data["Filters"]
         )
-    if "Sort" in data:
+    if data.get("Sort") is not None:
         import capo_quicksight.types.topic_sort_clause
 
         out["sort"] = capo_quicksight.types.topic_sort_clause.deserialize_json(
             data["Sort"]
         )
-    if "ContributionAnalysis" in data:
+    if data.get("ContributionAnalysis") is not None:
         import capo_quicksight.types.topic_ir_contribution_analysis
 
         out["contribution_analysis"] = (
@@ -114,7 +114,7 @@ def deserialize_json(data: dict) -> TopicIR:
                 data["ContributionAnalysis"]
             )
         )
-    if "Visual" in data:
+    if data.get("Visual") is not None:
         import capo_quicksight.types.visual_options
 
         out["visual"] = capo_quicksight.types.visual_options.deserialize_json(

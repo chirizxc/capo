@@ -33,7 +33,7 @@ def serialize_json(value: AddMaintenance) -> dict:
 
 def deserialize_json(data: dict) -> AddMaintenance:
     out: AddMaintenance = {}  # type: ignore[typeddict-item]
-    if "maintenanceDay" in data:
+    if data.get("maintenanceDay") is not None:
         import capo_mediaconnect.types.maintenance_day
 
         out["maintenance_day"] = (
@@ -41,6 +41,6 @@ def deserialize_json(data: dict) -> AddMaintenance:
                 data["maintenanceDay"]
             )
         )
-    if "maintenanceStartHour" in data:
+    if data.get("maintenanceStartHour") is not None:
         out["maintenance_start_hour"] = data["maintenanceStartHour"]
     return out

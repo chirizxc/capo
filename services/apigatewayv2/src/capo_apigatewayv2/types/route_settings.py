@@ -40,24 +40,32 @@ def serialize_json(value: RouteSettings) -> dict:
     if "throttling_burst_limit" in value:
         out["throttlingBurstLimit"] = value["throttling_burst_limit"]
     if "throttling_rate_limit" in value:
-        out["throttlingRateLimit"] = value["throttling_rate_limit"]
+        out["throttlingRateLimit"] = (
+            "NaN"
+            if value["throttling_rate_limit"] != value["throttling_rate_limit"]
+            else "Infinity"
+            if value["throttling_rate_limit"] == float("inf")
+            else "-Infinity"
+            if value["throttling_rate_limit"] == float("-inf")
+            else value["throttling_rate_limit"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> RouteSettings:
     out: RouteSettings = {}  # type: ignore[typeddict-item]
-    if "dataTraceEnabled" in data:
+    if data.get("dataTraceEnabled") is not None:
         out["data_trace_enabled"] = data["dataTraceEnabled"]
-    if "detailedMetricsEnabled" in data:
+    if data.get("detailedMetricsEnabled") is not None:
         out["detailed_metrics_enabled"] = data["detailedMetricsEnabled"]
-    if "loggingLevel" in data:
+    if data.get("loggingLevel") is not None:
         import capo_apigatewayv2.types.logging_level
 
         out["logging_level"] = capo_apigatewayv2.types.logging_level.deserialize_json(
             data["loggingLevel"]
         )
-    if "throttlingBurstLimit" in data:
+    if data.get("throttlingBurstLimit") is not None:
         out["throttling_burst_limit"] = data["throttlingBurstLimit"]
-    if "throttlingRateLimit" in data:
-        out["throttling_rate_limit"] = data["throttlingRateLimit"]
+    if data.get("throttlingRateLimit") is not None:
+        out["throttling_rate_limit"] = float(data["throttlingRateLimit"])
     return out

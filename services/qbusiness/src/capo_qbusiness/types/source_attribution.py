@@ -70,21 +70,21 @@ def serialize_json(value: SourceAttribution) -> dict:
 
 def deserialize_json(data: dict) -> SourceAttribution:
     out: SourceAttribution = {}  # type: ignore[typeddict-item]
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
-    if "snippet" in data:
+    if data.get("snippet") is not None:
         out["snippet"] = data["snippet"]
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
-    if "citationNumber" in data:
+    if data.get("citationNumber") is not None:
         out["citation_number"] = data["citationNumber"]
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_qbusiness.types.timestamp
 
         out["updated_at"] = capo_qbusiness.types.timestamp.deserialize_json(
             data["updatedAt"]
         )
-    if "textMessageSegments" in data:
+    if data.get("textMessageSegments") is not None:
         import capo_qbusiness.types.text_segment_list
 
         out["text_message_segments"] = (
@@ -92,10 +92,10 @@ def deserialize_json(data: dict) -> SourceAttribution:
                 data["textMessageSegments"]
             )
         )
-    if "documentId" in data:
+    if data.get("documentId") is not None:
         out["document_id"] = data["documentId"]
-    if "indexId" in data:
+    if data.get("indexId") is not None:
         out["index_id"] = data["indexId"]
-    if "datasourceId" in data:
+    if data.get("datasourceId") is not None:
         out["datasource_id"] = data["datasourceId"]
     return out

@@ -52,7 +52,7 @@ def serialize_aws_json_1_1(value: CostComparisonDriver) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CostComparisonDriver:
     out: CostComparisonDriver = {}  # type: ignore[typeddict-item]
-    if "CostSelector" in data:
+    if data.get("CostSelector") is not None:
         import capo_cost_explorer.types.expression
 
         out["cost_selector"] = (
@@ -60,7 +60,7 @@ def deserialize_aws_json_1_1(data: dict) -> CostComparisonDriver:
                 data["CostSelector"]
             )
         )
-    if "Metrics" in data:
+    if data.get("Metrics") is not None:
         import capo_cost_explorer.types.comparison_metrics
 
         out["metrics"] = (
@@ -68,7 +68,7 @@ def deserialize_aws_json_1_1(data: dict) -> CostComparisonDriver:
                 data["Metrics"]
             )
         )
-    if "CostDrivers" in data:
+    if data.get("CostDrivers") is not None:
         import capo_cost_explorer.types.cost_drivers
 
         out["cost_drivers"] = (

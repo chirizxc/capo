@@ -36,7 +36,7 @@ def serialize_json(value: GetTableObjectsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetTableObjectsResponse:
     out: GetTableObjectsResponse = {}  # type: ignore[typeddict-item]
-    if "Objects" in data:
+    if data.get("Objects") is not None:
         import capo_lakeformation.types.partitioned_table_objects_list
 
         out["objects"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> GetTableObjectsResponse:
                 data["Objects"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

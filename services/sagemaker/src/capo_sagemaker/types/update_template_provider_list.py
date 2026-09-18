@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> UpdateTemplateProviderList:
 
     out: UpdateTemplateProviderList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.update_template_provider.deserialize_aws_json_1_1(item)
         )

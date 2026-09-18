@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> RepositoryTriggerExecutionFailureLis
 
     out: RepositoryTriggerExecutionFailureList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codecommit.types.repository_trigger_execution_failure.deserialize_aws_json_1_1(
                 item

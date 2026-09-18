@@ -27,8 +27,8 @@ def serialize_json(value: CreateResourceShareRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateResourceShareRequest:
     out: CreateResourceShareRequest = {}  # type: ignore[typeddict-item]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
-    if "supportCaseId" in data:
+    if data.get("supportCaseId") is not None:
         out["support_case_id"] = data["supportCaseId"]
     return out

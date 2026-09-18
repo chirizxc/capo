@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> BudgetSummaries:
 
     out: BudgetSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_deadline.types.budget_summary.deserialize_json(item))
     return out

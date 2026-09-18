@@ -31,7 +31,7 @@ def serialize_json(value: PredictionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> PredictionConfiguration:
     out: PredictionConfiguration = {}  # type: ignore[typeddict-item]
-    if "businessNameGeneration" in data:
+    if data.get("businessNameGeneration") is not None:
         import capo_datazone.types.business_name_generation_configuration
 
         out["business_name_generation"] = (

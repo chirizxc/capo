@@ -32,7 +32,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DescribeTrustedAdvisorCheckSummariesResponse:
     out: DescribeTrustedAdvisorCheckSummariesResponse = {}  # type: ignore[typeddict-item]
-    if "summaries" in data:
+    if data.get("summaries") is not None:
         import capo_support.types.trusted_advisor_check_summary_list
 
         out["summaries"] = (

@@ -32,7 +32,7 @@ def serialize_json(value: StreamStorageConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> StreamStorageConfiguration:
     out: StreamStorageConfiguration = {}  # type: ignore[typeddict-item]
-    if "DefaultStorageTier" in data:
+    if data.get("DefaultStorageTier") is not None:
         import capo_kinesis_video.types.default_storage_tier
 
         out["default_storage_tier"] = (

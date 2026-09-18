@@ -109,11 +109,11 @@ def serialize_aws_json_1_0(value: ListEngagementsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListEngagementsRequest:
     out: ListEngagementsRequest = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("ListEngagementsRequest.catalog required")
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         import capo_partnercentral_selling.types.aws_account_list
 
         out["created_by"] = (
@@ -121,7 +121,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListEngagementsRequest:
                 data["CreatedBy"]
             )
         )
-    if "ExcludeCreatedBy" in data:
+    if data.get("ExcludeCreatedBy") is not None:
         import capo_partnercentral_selling.types.aws_account_list
 
         out["exclude_created_by"] = (
@@ -129,7 +129,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListEngagementsRequest:
                 data["ExcludeCreatedBy"]
             )
         )
-    if "ContextTypes" in data:
+    if data.get("ContextTypes") is not None:
         import capo_partnercentral_selling.types.engagement_context_type_list
 
         out["context_types"] = (
@@ -137,7 +137,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListEngagementsRequest:
                 data["ContextTypes"]
             )
         )
-    if "ExcludeContextTypes" in data:
+    if data.get("ExcludeContextTypes") is not None:
         import capo_partnercentral_selling.types.engagement_context_type_list
 
         out["exclude_context_types"] = (
@@ -145,7 +145,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListEngagementsRequest:
                 data["ExcludeContextTypes"]
             )
         )
-    if "Sort" in data:
+    if data.get("Sort") is not None:
         import capo_partnercentral_selling.types.engagement_sort
 
         out["sort"] = (
@@ -153,13 +153,13 @@ def deserialize_aws_json_1_0(data: dict) -> ListEngagementsRequest:
                 data["Sort"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     else:
         out["max_results"] = 20
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "EngagementIdentifier" in data:
+    if data.get("EngagementIdentifier") is not None:
         import capo_partnercentral_selling.types.engagement_identifiers
 
         out["engagement_identifier"] = (

@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: Ec2InstanceConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Ec2InstanceConfiguration:
     out: Ec2InstanceConfiguration = {}  # type: ignore[typeddict-item]
-    if "instance" in data:
+    if data.get("instance") is not None:
         import capo_cost_optimization_hub.types.instance_configuration
 
         out["instance"] = (

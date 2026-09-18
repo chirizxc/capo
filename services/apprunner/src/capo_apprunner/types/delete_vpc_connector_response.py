@@ -28,7 +28,7 @@ def serialize_aws_json_1_0(value: DeleteVpcConnectorResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteVpcConnectorResponse:
     out: DeleteVpcConnectorResponse = {}  # type: ignore[typeddict-item]
-    if "VpcConnector" in data:
+    if data.get("VpcConnector") is not None:
         import capo_apprunner.types.vpc_connector
 
         out["vpc_connector"] = (

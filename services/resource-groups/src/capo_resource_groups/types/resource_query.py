@@ -30,7 +30,7 @@ def serialize_json(value: ResourceQuery) -> dict:
 
 def deserialize_json(data: dict) -> ResourceQuery:
     out: ResourceQuery = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_resource_groups.types.query_type
 
         out["type"] = capo_resource_groups.types.query_type.deserialize_json(
@@ -38,7 +38,7 @@ def deserialize_json(data: dict) -> ResourceQuery:
         )
     else:
         raise DeserializationError("ResourceQuery.type required")
-    if "Query" in data:
+    if data.get("Query") is not None:
         out["query"] = data["Query"]
     else:
         raise DeserializationError("ResourceQuery.query required")

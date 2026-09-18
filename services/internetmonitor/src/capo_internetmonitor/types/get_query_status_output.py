@@ -24,7 +24,7 @@ def serialize_json(value: GetQueryStatusOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetQueryStatusOutput:
     out: GetQueryStatusOutput = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     else:
         raise DeserializationError("GetQueryStatusOutput.status required")

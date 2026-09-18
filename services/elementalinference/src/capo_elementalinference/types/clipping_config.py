@@ -25,6 +25,6 @@ def serialize_json(value: ClippingConfig) -> dict:
 
 def deserialize_json(data: dict) -> ClippingConfig:
     out: ClippingConfig = {}  # type: ignore[typeddict-item]
-    if "callbackMetadata" in data:
+    if data.get("callbackMetadata") is not None:
         out["callback_metadata"] = data["callbackMetadata"]
     return out

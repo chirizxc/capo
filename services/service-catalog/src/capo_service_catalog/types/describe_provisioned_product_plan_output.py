@@ -49,7 +49,7 @@ def serialize_aws_json_1_1(value: DescribeProvisionedProductPlanOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeProvisionedProductPlanOutput:
     out: DescribeProvisionedProductPlanOutput = {}  # type: ignore[typeddict-item]
-    if "ProvisionedProductPlanDetails" in data:
+    if data.get("ProvisionedProductPlanDetails") is not None:
         import capo_service_catalog.types.provisioned_product_plan_details
 
         out["provisioned_product_plan_details"] = (
@@ -57,7 +57,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeProvisionedProductPlanOutput
                 data["ProvisionedProductPlanDetails"]
             )
         )
-    if "ResourceChanges" in data:
+    if data.get("ResourceChanges") is not None:
         import capo_service_catalog.types.resource_changes
 
         out["resource_changes"] = (
@@ -65,6 +65,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeProvisionedProductPlanOutput
                 data["ResourceChanges"]
             )
         )
-    if "NextPageToken" in data:
+    if data.get("NextPageToken") is not None:
         out["next_page_token"] = data["NextPageToken"]
     return out

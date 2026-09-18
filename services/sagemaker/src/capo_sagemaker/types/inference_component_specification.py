@@ -108,7 +108,7 @@ def serialize_aws_json_1_1(value: InferenceComponentSpecification) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InferenceComponentSpecification:
     out: InferenceComponentSpecification = {}  # type: ignore[typeddict-item]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         import capo_sagemaker.types.production_variant_instance_type
 
         out["instance_type"] = (
@@ -116,9 +116,9 @@ def deserialize_aws_json_1_1(data: dict) -> InferenceComponentSpecification:
                 data["InstanceType"]
             )
         )
-    if "ModelName" in data:
+    if data.get("ModelName") is not None:
         out["model_name"] = data["ModelName"]
-    if "Container" in data:
+    if data.get("Container") is not None:
         import capo_sagemaker.types.inference_component_container_specification
 
         out["container"] = (
@@ -126,7 +126,7 @@ def deserialize_aws_json_1_1(data: dict) -> InferenceComponentSpecification:
                 data["Container"]
             )
         )
-    if "StartupParameters" in data:
+    if data.get("StartupParameters") is not None:
         import capo_sagemaker.types.inference_component_startup_parameters
 
         out["startup_parameters"] = (
@@ -134,7 +134,7 @@ def deserialize_aws_json_1_1(data: dict) -> InferenceComponentSpecification:
                 data["StartupParameters"]
             )
         )
-    if "ComputeResourceRequirements" in data:
+    if data.get("ComputeResourceRequirements") is not None:
         import capo_sagemaker.types.inference_component_compute_resource_requirements
 
         out["compute_resource_requirements"] = (
@@ -142,9 +142,9 @@ def deserialize_aws_json_1_1(data: dict) -> InferenceComponentSpecification:
                 data["ComputeResourceRequirements"]
             )
         )
-    if "BaseInferenceComponentName" in data:
+    if data.get("BaseInferenceComponentName") is not None:
         out["base_inference_component_name"] = data["BaseInferenceComponentName"]
-    if "DataCacheConfig" in data:
+    if data.get("DataCacheConfig") is not None:
         import capo_sagemaker.types.inference_component_data_cache_config
 
         out["data_cache_config"] = (
@@ -152,7 +152,7 @@ def deserialize_aws_json_1_1(data: dict) -> InferenceComponentSpecification:
                 data["DataCacheConfig"]
             )
         )
-    if "SchedulingConfig" in data:
+    if data.get("SchedulingConfig") is not None:
         import capo_sagemaker.types.inference_component_scheduling_config
 
         out["scheduling_config"] = (

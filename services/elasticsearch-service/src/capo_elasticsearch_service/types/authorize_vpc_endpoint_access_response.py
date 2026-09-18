@@ -32,7 +32,7 @@ def serialize_json(value: AuthorizeVpcEndpointAccessResponse) -> dict:
 
 def deserialize_json(data: dict) -> AuthorizeVpcEndpointAccessResponse:
     out: AuthorizeVpcEndpointAccessResponse = {}  # type: ignore[typeddict-item]
-    if "AuthorizedPrincipal" in data:
+    if data.get("AuthorizedPrincipal") is not None:
         import capo_elasticsearch_service.types.authorized_principal
 
         out["authorized_principal"] = (

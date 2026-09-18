@@ -39,7 +39,7 @@ def serialize_json(value: SendFeedbackRequest) -> dict:
 
 def deserialize_json(data: dict) -> SendFeedbackRequest:
     out: SendFeedbackRequest = {}  # type: ignore[typeddict-item]
-    if "usefulness" in data:
+    if data.get("usefulness") is not None:
         import capo_security_ir.types.usefulness_rating
 
         out["usefulness"] = capo_security_ir.types.usefulness_rating.deserialize_json(
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> SendFeedbackRequest:
         )
     else:
         raise DeserializationError("SendFeedbackRequest.usefulness required")
-    if "comment" in data:
+    if data.get("comment") is not None:
         out["comment"] = data["comment"]
     return out

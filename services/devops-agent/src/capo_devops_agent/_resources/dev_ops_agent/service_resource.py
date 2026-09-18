@@ -104,9 +104,10 @@ class ServiceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_devops_agent.types.register_service_input.RegisterServiceInput = {}  # type: ignore[typeddict-item]
-        input_["service"] = service
-        input_["service_details"] = service_details
+        input_: capo_devops_agent.types.register_service_input.RegisterServiceInput = {
+            "service": service,
+            "service_details": service_details,
+        }
         if kms_key_arn is not None:
             input_["kms_key_arn"] = kms_key_arn
         if private_connection_name is not None:
@@ -129,6 +130,7 @@ class ServiceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -170,14 +172,16 @@ class ServiceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_devops_agent.types.get_service_input.GetServiceInput = {}  # type: ignore[typeddict-item]
-        input_["service_id"] = service_id
+        input_: capo_devops_agent.types.get_service_input.GetServiceInput = {
+            "service_id": service_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -219,14 +223,16 @@ class ServiceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_devops_agent.types.deregister_service_input.DeregisterServiceInput = {}  # type: ignore[typeddict-item]
-        input_["service_id"] = service_id
+        input_: capo_devops_agent.types.deregister_service_input.DeregisterServiceInput = {
+            "service_id": service_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_services(
@@ -272,7 +278,7 @@ class ServiceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_devops_agent.types.list_services_input.ListServicesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_devops_agent.types.list_services_input.ListServicesInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -285,6 +291,7 @@ class ServiceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -351,9 +358,10 @@ class AsyncServiceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_devops_agent.types.register_service_input.RegisterServiceInput = {}  # type: ignore[typeddict-item]
-        input_["service"] = service
-        input_["service_details"] = service_details
+        input_: capo_devops_agent.types.register_service_input.RegisterServiceInput = {
+            "service": service,
+            "service_details": service_details,
+        }
         if kms_key_arn is not None:
             input_["kms_key_arn"] = kms_key_arn
         if private_connection_name is not None:
@@ -376,6 +384,7 @@ class AsyncServiceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -418,14 +427,16 @@ class AsyncServiceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_devops_agent.types.get_service_input.GetServiceInput = {}  # type: ignore[typeddict-item]
-        input_["service_id"] = service_id
+        input_: capo_devops_agent.types.get_service_input.GetServiceInput = {
+            "service_id": service_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -468,14 +479,16 @@ class AsyncServiceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_devops_agent.types.deregister_service_input.DeregisterServiceInput = {}  # type: ignore[typeddict-item]
-        input_["service_id"] = service_id
+        input_: capo_devops_agent.types.deregister_service_input.DeregisterServiceInput = {
+            "service_id": service_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_services(
@@ -522,7 +535,7 @@ class AsyncServiceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_devops_agent.types.list_services_input.ListServicesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_devops_agent.types.list_services_input.ListServicesInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -535,4 +548,5 @@ class AsyncServiceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

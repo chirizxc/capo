@@ -56,7 +56,7 @@ def serialize_aws_json_1_1(value: ParameterConstraints) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ParameterConstraints:
     out: ParameterConstraints = {}  # type: ignore[typeddict-item]
-    if "AllowedValues" in data:
+    if data.get("AllowedValues") is not None:
         import capo_service_catalog.types.allowed_values
 
         out["allowed_values"] = (
@@ -64,16 +64,16 @@ def deserialize_aws_json_1_1(data: dict) -> ParameterConstraints:
                 data["AllowedValues"]
             )
         )
-    if "AllowedPattern" in data:
+    if data.get("AllowedPattern") is not None:
         out["allowed_pattern"] = data["AllowedPattern"]
-    if "ConstraintDescription" in data:
+    if data.get("ConstraintDescription") is not None:
         out["constraint_description"] = data["ConstraintDescription"]
-    if "MaxLength" in data:
+    if data.get("MaxLength") is not None:
         out["max_length"] = data["MaxLength"]
-    if "MinLength" in data:
+    if data.get("MinLength") is not None:
         out["min_length"] = data["MinLength"]
-    if "MaxValue" in data:
+    if data.get("MaxValue") is not None:
         out["max_value"] = data["MaxValue"]
-    if "MinValue" in data:
+    if data.get("MinValue") is not None:
         out["min_value"] = data["MinValue"]
     return out

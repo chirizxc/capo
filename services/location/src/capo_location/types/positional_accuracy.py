@@ -18,14 +18,22 @@ class PositionalAccuracy(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: PositionalAccuracy) -> dict:
     out: dict = {}
-    out["Horizontal"] = value["horizontal"]
+    out["Horizontal"] = (
+        "NaN"
+        if value["horizontal"] != value["horizontal"]
+        else "Infinity"
+        if value["horizontal"] == float("inf")
+        else "-Infinity"
+        if value["horizontal"] == float("-inf")
+        else value["horizontal"]
+    )
     return out
 
 
 def deserialize_json(data: dict) -> PositionalAccuracy:
     out: PositionalAccuracy = {}  # type: ignore[typeddict-item]
-    if "Horizontal" in data:
-        out["horizontal"] = data["Horizontal"]
+    if data.get("Horizontal") is not None:
+        out["horizontal"] = float(data["Horizontal"])
     else:
         raise DeserializationError("PositionalAccuracy.horizontal required")
     return out

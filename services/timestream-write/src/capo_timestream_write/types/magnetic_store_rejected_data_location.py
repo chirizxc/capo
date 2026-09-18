@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: MagneticStoreRejectedDataLocation) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> MagneticStoreRejectedDataLocation:
     out: MagneticStoreRejectedDataLocation = {}  # type: ignore[typeddict-item]
-    if "S3Configuration" in data:
+    if data.get("S3Configuration") is not None:
         import capo_timestream_write.types.s3_configuration
 
         out["s3_configuration"] = (

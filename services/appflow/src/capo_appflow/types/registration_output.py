@@ -36,11 +36,11 @@ def serialize_json(value: RegistrationOutput) -> dict:
 
 def deserialize_json(data: dict) -> RegistrationOutput:
     out: RegistrationOutput = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "result" in data:
+    if data.get("result") is not None:
         out["result"] = data["result"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_appflow.types.execution_status
 
         out["status"] = capo_appflow.types.execution_status.deserialize_json(

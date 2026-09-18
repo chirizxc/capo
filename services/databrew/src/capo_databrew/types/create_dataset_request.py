@@ -60,35 +60,35 @@ def serialize_json(value: CreateDatasetRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDatasetRequest:
     out: CreateDatasetRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateDatasetRequest.name required")
-    if "Format" in data:
+    if data.get("Format") is not None:
         import capo_databrew.types.input_format
 
         out["format"] = capo_databrew.types.input_format.deserialize_json(
             data["Format"]
         )
-    if "FormatOptions" in data:
+    if data.get("FormatOptions") is not None:
         import capo_databrew.types.format_options
 
         out["format_options"] = capo_databrew.types.format_options.deserialize_json(
             data["FormatOptions"]
         )
-    if "Input" in data:
+    if data.get("Input") is not None:
         import capo_databrew.types.input
 
         out["input"] = capo_databrew.types.input.deserialize_json(data["Input"])
     else:
         raise DeserializationError("CreateDatasetRequest.input required")
-    if "PathOptions" in data:
+    if data.get("PathOptions") is not None:
         import capo_databrew.types.path_options
 
         out["path_options"] = capo_databrew.types.path_options.deserialize_json(
             data["PathOptions"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_databrew.types.tag_map
 
         out["tags"] = capo_databrew.types.tag_map.deserialize_json(data["Tags"])

@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: CancelArchivalOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CancelArchivalOutput:
     out: CancelArchivalOutput = {}  # type: ignore[typeddict-item]
-    if "TapeARN" in data:
+    if data.get("TapeARN") is not None:
         out["tape_arn"] = data["TapeARN"]
     return out

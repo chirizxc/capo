@@ -30,7 +30,7 @@ def serialize_json(value: UpdateAutoshiftObserverNotificationStatusRequest) -> d
 
 def deserialize_json(data: dict) -> UpdateAutoshiftObserverNotificationStatusRequest:
     out: UpdateAutoshiftObserverNotificationStatusRequest = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_arc_zonal_shift.types.autoshift_observer_notification_status
 
         out["status"] = (

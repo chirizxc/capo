@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: StartCrawlerScheduleRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartCrawlerScheduleRequest:
     out: StartCrawlerScheduleRequest = {}  # type: ignore[typeddict-item]
-    if "CrawlerName" in data:
+    if data.get("CrawlerName") is not None:
         out["crawler_name"] = data["CrawlerName"]
     else:
         raise DeserializationError("StartCrawlerScheduleRequest.crawler_name required")

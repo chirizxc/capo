@@ -23,6 +23,6 @@ def serialize_json(value: AwsDynamoDbTableProvisionedThroughputOverride) -> dict
 
 def deserialize_json(data: dict) -> AwsDynamoDbTableProvisionedThroughputOverride:
     out: AwsDynamoDbTableProvisionedThroughputOverride = {}  # type: ignore[typeddict-item]
-    if "ReadCapacityUnits" in data:
+    if data.get("ReadCapacityUnits") is not None:
         out["read_capacity_units"] = data["ReadCapacityUnits"]
     return out

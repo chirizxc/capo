@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: TagResourceResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TagResourceResponse:
     out: TagResourceResponse = {}  # type: ignore[typeddict-item]
-    if "TagList" in data:
+    if data.get("TagList") is not None:
         import capo_memorydb.types.tag_list
 
         out["tag_list"] = capo_memorydb.types.tag_list.deserialize_aws_json_1_1(

@@ -33,12 +33,12 @@ def serialize_json(value: ListLinkRoutingRulesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListLinkRoutingRulesResponse:
     out: ListLinkRoutingRulesResponse = {}  # type: ignore[typeddict-item]
-    if "rules" in data:
+    if data.get("rules") is not None:
         import capo_rtbfabric.types.link_routing_rule_list
 
         out["rules"] = capo_rtbfabric.types.link_routing_rule_list.deserialize_json(
             data["rules"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

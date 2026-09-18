@@ -328,7 +328,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.add_role_to_db_cluster_message.AddRoleToDBClusterMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.add_role_to_db_cluster_message.AddRoleToDBClusterMessage = {}
         if db_cluster_identifier is not None:
             input_["db_cluster_identifier"] = db_cluster_identifier
         if role_arn is not None:
@@ -341,6 +341,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def add_source_identifier_to_subscription(
@@ -377,7 +378,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.add_source_identifier_to_subscription_message.AddSourceIdentifierToSubscriptionMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.add_source_identifier_to_subscription_message.AddSourceIdentifierToSubscriptionMessage = {}
         if subscription_name is not None:
             input_["subscription_name"] = subscription_name
         if source_identifier is not None:
@@ -388,6 +389,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def add_tags_to_resource(
@@ -423,7 +425,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.add_tags_to_resource_message.AddTagsToResourceMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.add_tags_to_resource_message.AddTagsToResourceMessage = {}
         if resource_name is not None:
             input_["resource_name"] = resource_name
         if tags is not None:
@@ -434,6 +436,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def apply_pending_maintenance_action(
@@ -471,7 +474,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.apply_pending_maintenance_action_message.ApplyPendingMaintenanceActionMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.apply_pending_maintenance_action_message.ApplyPendingMaintenanceActionMessage = {}
         if resource_identifier is not None:
             input_["resource_identifier"] = resource_identifier
         if apply_action is not None:
@@ -484,6 +487,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def copy_db_cluster_parameter_group(
@@ -531,7 +535,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.copy_db_cluster_parameter_group_message.CopyDBClusterParameterGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.copy_db_cluster_parameter_group_message.CopyDBClusterParameterGroupMessage = {}
         if source_db_cluster_parameter_group_identifier is not None:
             input_["source_db_cluster_parameter_group_identifier"] = (
                 source_db_cluster_parameter_group_identifier
@@ -552,6 +556,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def copy_db_cluster_snapshot(
@@ -608,7 +613,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.copy_db_cluster_snapshot_message.CopyDBClusterSnapshotMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.copy_db_cluster_snapshot_message.CopyDBClusterSnapshotMessage = {}
         if source_db_cluster_snapshot_identifier is not None:
             input_["source_db_cluster_snapshot_identifier"] = (
                 source_db_cluster_snapshot_identifier
@@ -631,6 +636,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def copy_db_parameter_group(
@@ -678,7 +684,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.copy_db_parameter_group_message.CopyDBParameterGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.copy_db_parameter_group_message.CopyDBParameterGroupMessage = {}
         if source_db_parameter_group_identifier is not None:
             input_["source_db_parameter_group_identifier"] = (
                 source_db_parameter_group_identifier
@@ -699,6 +705,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_db_cluster(
@@ -831,7 +838,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.create_db_cluster_message.CreateDBClusterMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.create_db_cluster_message.CreateDBClusterMessage = {}
         if availability_zones is not None:
             input_["availability_zones"] = availability_zones
         if backup_retention_period is not None:
@@ -900,6 +907,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_db_cluster_endpoint(
@@ -950,7 +958,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.create_db_cluster_endpoint_message.CreateDBClusterEndpointMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.create_db_cluster_endpoint_message.CreateDBClusterEndpointMessage = {}
         if db_cluster_identifier is not None:
             input_["db_cluster_identifier"] = db_cluster_identifier
         if db_cluster_endpoint_identifier is not None:
@@ -969,6 +977,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_db_cluster_parameter_group(
@@ -1011,7 +1020,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.create_db_cluster_parameter_group_message.CreateDBClusterParameterGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.create_db_cluster_parameter_group_message.CreateDBClusterParameterGroupMessage = {}
         if db_cluster_parameter_group_name is not None:
             input_["db_cluster_parameter_group_name"] = db_cluster_parameter_group_name
         if db_parameter_group_family is not None:
@@ -1026,6 +1035,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_db_cluster_snapshot(
@@ -1069,7 +1079,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.create_db_cluster_snapshot_message.CreateDBClusterSnapshotMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.create_db_cluster_snapshot_message.CreateDBClusterSnapshotMessage = {}
         if db_cluster_snapshot_identifier is not None:
             input_["db_cluster_snapshot_identifier"] = db_cluster_snapshot_identifier
         if db_cluster_identifier is not None:
@@ -1082,6 +1092,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_db_instance(
@@ -1252,7 +1263,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.create_db_instance_message.CreateDBInstanceMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.create_db_instance_message.CreateDBInstanceMessage = {}
         if db_name is not None:
             input_["db_name"] = db_name
         if db_instance_identifier is not None:
@@ -1347,6 +1358,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_db_parameter_group(
@@ -1387,7 +1399,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.create_db_parameter_group_message.CreateDBParameterGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.create_db_parameter_group_message.CreateDBParameterGroupMessage = {}
         if db_parameter_group_name is not None:
             input_["db_parameter_group_name"] = db_parameter_group_name
         if db_parameter_group_family is not None:
@@ -1402,6 +1414,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_db_subnet_group(
@@ -1449,7 +1462,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.create_db_subnet_group_message.CreateDBSubnetGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.create_db_subnet_group_message.CreateDBSubnetGroupMessage = {}
         if db_subnet_group_name is not None:
             input_["db_subnet_group_name"] = db_subnet_group_name
         if db_subnet_group_description is not None:
@@ -1464,6 +1477,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_event_subscription(
@@ -1517,7 +1531,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.create_event_subscription_message.CreateEventSubscriptionMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.create_event_subscription_message.CreateEventSubscriptionMessage = {}
         if subscription_name is not None:
             input_["subscription_name"] = subscription_name
         if sns_topic_arn is not None:
@@ -1538,6 +1552,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_global_cluster(
@@ -1596,7 +1611,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.create_global_cluster_message.CreateGlobalClusterMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.create_global_cluster_message.CreateGlobalClusterMessage = {}
         if global_cluster_identifier is not None:
             input_["global_cluster_identifier"] = global_cluster_identifier
         if source_db_cluster_identifier is not None:
@@ -1619,6 +1634,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_db_cluster(
@@ -1662,7 +1678,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.delete_db_cluster_message.DeleteDBClusterMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.delete_db_cluster_message.DeleteDBClusterMessage = {}
         if db_cluster_identifier is not None:
             input_["db_cluster_identifier"] = db_cluster_identifier
         if skip_final_snapshot is not None:
@@ -1675,6 +1691,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_db_cluster_endpoint(
@@ -1712,7 +1729,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.delete_db_cluster_endpoint_message.DeleteDBClusterEndpointMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.delete_db_cluster_endpoint_message.DeleteDBClusterEndpointMessage = {}
         if db_cluster_endpoint_identifier is not None:
             input_["db_cluster_endpoint_identifier"] = db_cluster_endpoint_identifier
 
@@ -1721,6 +1738,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_db_cluster_parameter_group(
@@ -1755,7 +1773,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.delete_db_cluster_parameter_group_message.DeleteDBClusterParameterGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.delete_db_cluster_parameter_group_message.DeleteDBClusterParameterGroupMessage = {}
         if db_cluster_parameter_group_name is not None:
             input_["db_cluster_parameter_group_name"] = db_cluster_parameter_group_name
 
@@ -1764,6 +1782,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_db_cluster_snapshot(
@@ -1800,7 +1819,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.delete_db_cluster_snapshot_message.DeleteDBClusterSnapshotMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.delete_db_cluster_snapshot_message.DeleteDBClusterSnapshotMessage = {}
         if db_cluster_snapshot_identifier is not None:
             input_["db_cluster_snapshot_identifier"] = db_cluster_snapshot_identifier
 
@@ -1809,6 +1828,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_db_instance(
@@ -1852,7 +1872,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.delete_db_instance_message.DeleteDBInstanceMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.delete_db_instance_message.DeleteDBInstanceMessage = {}
         if db_instance_identifier is not None:
             input_["db_instance_identifier"] = db_instance_identifier
         if skip_final_snapshot is not None:
@@ -1865,6 +1885,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_db_parameter_group(
@@ -1897,7 +1918,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.delete_db_parameter_group_message.DeleteDBParameterGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.delete_db_parameter_group_message.DeleteDBParameterGroupMessage = {}
         if db_parameter_group_name is not None:
             input_["db_parameter_group_name"] = db_parameter_group_name
 
@@ -1906,6 +1927,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_db_subnet_group(
@@ -1939,7 +1961,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.delete_db_subnet_group_message.DeleteDBSubnetGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.delete_db_subnet_group_message.DeleteDBSubnetGroupMessage = {}
         if db_subnet_group_name is not None:
             input_["db_subnet_group_name"] = db_subnet_group_name
 
@@ -1948,6 +1970,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_event_subscription(
@@ -1982,7 +2005,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.delete_event_subscription_message.DeleteEventSubscriptionMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.delete_event_subscription_message.DeleteEventSubscriptionMessage = {}
         if subscription_name is not None:
             input_["subscription_name"] = subscription_name
 
@@ -1991,6 +2014,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_global_cluster(
@@ -2027,7 +2051,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.delete_global_cluster_message.DeleteGlobalClusterMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.delete_global_cluster_message.DeleteGlobalClusterMessage = {}
         if global_cluster_identifier is not None:
             input_["global_cluster_identifier"] = global_cluster_identifier
 
@@ -2036,6 +2060,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_db_cluster_endpoints(
@@ -2081,7 +2106,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.describe_db_cluster_endpoints_message.DescribeDBClusterEndpointsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.describe_db_cluster_endpoints_message.DescribeDBClusterEndpointsMessage = {}
         if db_cluster_identifier is not None:
             input_["db_cluster_identifier"] = db_cluster_identifier
         if db_cluster_endpoint_identifier is not None:
@@ -2098,6 +2123,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_db_cluster_endpoints(
@@ -2172,7 +2198,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.describe_db_cluster_parameter_groups_message.DescribeDBClusterParameterGroupsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.describe_db_cluster_parameter_groups_message.DescribeDBClusterParameterGroupsMessage = {}
         if db_cluster_parameter_group_name is not None:
             input_["db_cluster_parameter_group_name"] = db_cluster_parameter_group_name
         if filters is not None:
@@ -2187,6 +2213,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_db_cluster_parameter_groups(
@@ -2261,7 +2288,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.describe_db_cluster_parameters_message.DescribeDBClusterParametersMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.describe_db_cluster_parameters_message.DescribeDBClusterParametersMessage = {}
         if db_cluster_parameter_group_name is not None:
             input_["db_cluster_parameter_group_name"] = db_cluster_parameter_group_name
         if source is not None:
@@ -2278,6 +2305,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_db_cluster_parameters(
@@ -2350,7 +2378,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.describe_db_clusters_message.DescribeDBClustersMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.describe_db_clusters_message.DescribeDBClustersMessage = {}
         if db_cluster_identifier is not None:
             input_["db_cluster_identifier"] = db_cluster_identifier
         if filters is not None:
@@ -2365,6 +2393,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_db_clusters(
@@ -2427,7 +2456,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.describe_db_cluster_snapshot_attributes_message.DescribeDBClusterSnapshotAttributesMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.describe_db_cluster_snapshot_attributes_message.DescribeDBClusterSnapshotAttributesMessage = {}
         if db_cluster_snapshot_identifier is not None:
             input_["db_cluster_snapshot_identifier"] = db_cluster_snapshot_identifier
 
@@ -2436,6 +2465,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_db_cluster_snapshots(
@@ -2487,7 +2517,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.describe_db_cluster_snapshots_message.DescribeDBClusterSnapshotsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.describe_db_cluster_snapshots_message.DescribeDBClusterSnapshotsMessage = {}
         if db_cluster_identifier is not None:
             input_["db_cluster_identifier"] = db_cluster_identifier
         if db_cluster_snapshot_identifier is not None:
@@ -2510,6 +2540,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_db_cluster_snapshots(
@@ -2601,7 +2632,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.describe_db_engine_versions_message.DescribeDBEngineVersionsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.describe_db_engine_versions_message.DescribeDBEngineVersionsMessage = {}
         if engine is not None:
             input_["engine"] = engine
         if engine_version is not None:
@@ -2626,6 +2657,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_db_engine_versions(
@@ -2708,7 +2740,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.describe_db_instances_message.DescribeDBInstancesMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.describe_db_instances_message.DescribeDBInstancesMessage = {}
         if db_instance_identifier is not None:
             input_["db_instance_identifier"] = db_instance_identifier
         if filters is not None:
@@ -2723,6 +2755,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_db_instances(
@@ -2791,7 +2824,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.describe_db_parameter_groups_message.DescribeDBParameterGroupsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.describe_db_parameter_groups_message.DescribeDBParameterGroupsMessage = {}
         if db_parameter_group_name is not None:
             input_["db_parameter_group_name"] = db_parameter_group_name
         if filters is not None:
@@ -2806,6 +2839,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_db_parameter_groups(
@@ -2876,7 +2910,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.describe_db_parameters_message.DescribeDBParametersMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.describe_db_parameters_message.DescribeDBParametersMessage = {}
         if db_parameter_group_name is not None:
             input_["db_parameter_group_name"] = db_parameter_group_name
         if source is not None:
@@ -2893,6 +2927,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_db_parameters(
@@ -2963,7 +2998,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.describe_db_subnet_groups_message.DescribeDBSubnetGroupsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.describe_db_subnet_groups_message.DescribeDBSubnetGroupsMessage = {}
         if db_subnet_group_name is not None:
             input_["db_subnet_group_name"] = db_subnet_group_name
         if filters is not None:
@@ -2978,6 +3013,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_db_subnet_groups(
@@ -3045,7 +3081,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.describe_engine_default_cluster_parameters_message.DescribeEngineDefaultClusterParametersMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.describe_engine_default_cluster_parameters_message.DescribeEngineDefaultClusterParametersMessage = {}
         if db_parameter_group_family is not None:
             input_["db_parameter_group_family"] = db_parameter_group_family
         if filters is not None:
@@ -3060,6 +3096,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_engine_default_parameters(
@@ -3100,7 +3137,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.describe_engine_default_parameters_message.DescribeEngineDefaultParametersMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.describe_engine_default_parameters_message.DescribeEngineDefaultParametersMessage = {}
         if db_parameter_group_family is not None:
             input_["db_parameter_group_family"] = db_parameter_group_family
         if filters is not None:
@@ -3115,6 +3152,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_engine_default_parameters(
@@ -3176,7 +3214,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.describe_event_categories_message.DescribeEventCategoriesMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.describe_event_categories_message.DescribeEventCategoriesMessage = {}
         if source_type is not None:
             input_["source_type"] = source_type
         if filters is not None:
@@ -3187,6 +3225,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_events(
@@ -3239,7 +3278,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.describe_events_message.DescribeEventsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.describe_events_message.DescribeEventsMessage = {}
         if source_identifier is not None:
             input_["source_identifier"] = source_identifier
         if source_type is not None:
@@ -3264,6 +3303,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_events(
@@ -3346,7 +3386,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.describe_event_subscriptions_message.DescribeEventSubscriptionsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.describe_event_subscriptions_message.DescribeEventSubscriptionsMessage = {}
         if subscription_name is not None:
             input_["subscription_name"] = subscription_name
         if filters is not None:
@@ -3361,6 +3401,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_event_subscriptions(
@@ -3429,7 +3470,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.describe_global_clusters_message.DescribeGlobalClustersMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.describe_global_clusters_message.DescribeGlobalClustersMessage = {}
         if global_cluster_identifier is not None:
             input_["global_cluster_identifier"] = global_cluster_identifier
         if max_records is not None:
@@ -3442,6 +3483,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_global_clusters(
@@ -3517,7 +3559,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.describe_orderable_db_instance_options_message.DescribeOrderableDBInstanceOptionsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.describe_orderable_db_instance_options_message.DescribeOrderableDBInstanceOptionsMessage = {}
         if engine is not None:
             input_["engine"] = engine
         if engine_version is not None:
@@ -3540,6 +3582,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_orderable_db_instance_options(
@@ -3616,7 +3659,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.describe_pending_maintenance_actions_message.DescribePendingMaintenanceActionsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.describe_pending_maintenance_actions_message.DescribePendingMaintenanceActionsMessage = {}
         if resource_identifier is not None:
             input_["resource_identifier"] = resource_identifier
         if filters is not None:
@@ -3631,6 +3674,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_pending_maintenance_actions(
@@ -3692,7 +3736,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.describe_valid_db_instance_modifications_message.DescribeValidDBInstanceModificationsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.describe_valid_db_instance_modifications_message.DescribeValidDBInstanceModificationsMessage = {}
         if db_instance_identifier is not None:
             input_["db_instance_identifier"] = db_instance_identifier
 
@@ -3701,6 +3745,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def failover_db_cluster(
@@ -3740,7 +3785,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.failover_db_cluster_message.FailoverDBClusterMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.failover_db_cluster_message.FailoverDBClusterMessage = {}
         if db_cluster_identifier is not None:
             input_["db_cluster_identifier"] = db_cluster_identifier
         if target_db_instance_identifier is not None:
@@ -3751,6 +3796,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def failover_global_cluster(
@@ -3803,7 +3849,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.failover_global_cluster_message.FailoverGlobalClusterMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.failover_global_cluster_message.FailoverGlobalClusterMessage = {}
         if global_cluster_identifier is not None:
             input_["global_cluster_identifier"] = global_cluster_identifier
         if target_db_cluster_identifier is not None:
@@ -3818,6 +3864,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_tags_for_resource(
@@ -3853,7 +3900,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.list_tags_for_resource_message.ListTagsForResourceMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.list_tags_for_resource_message.ListTagsForResourceMessage = {}
         if resource_name is not None:
             input_["resource_name"] = resource_name
         if filters is not None:
@@ -3864,6 +3911,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def modify_db_cluster(
@@ -3971,7 +4019,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.modify_db_cluster_message.ModifyDBClusterMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.modify_db_cluster_message.ModifyDBClusterMessage = {}
         if db_cluster_identifier is not None:
             input_["db_cluster_identifier"] = db_cluster_identifier
         if new_db_cluster_identifier is not None:
@@ -4028,6 +4076,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def modify_db_cluster_endpoint(
@@ -4073,7 +4122,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.modify_db_cluster_endpoint_message.ModifyDBClusterEndpointMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.modify_db_cluster_endpoint_message.ModifyDBClusterEndpointMessage = {}
         if db_cluster_endpoint_identifier is not None:
             input_["db_cluster_endpoint_identifier"] = db_cluster_endpoint_identifier
         if endpoint_type is not None:
@@ -4088,6 +4137,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def modify_db_cluster_parameter_group(
@@ -4128,7 +4178,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.modify_db_cluster_parameter_group_message.ModifyDBClusterParameterGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.modify_db_cluster_parameter_group_message.ModifyDBClusterParameterGroupMessage = {}
         if db_cluster_parameter_group_name is not None:
             input_["db_cluster_parameter_group_name"] = db_cluster_parameter_group_name
         if parameters is not None:
@@ -4139,6 +4189,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def modify_db_cluster_snapshot_attribute(
@@ -4186,7 +4237,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.modify_db_cluster_snapshot_attribute_message.ModifyDBClusterSnapshotAttributeMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.modify_db_cluster_snapshot_attribute_message.ModifyDBClusterSnapshotAttributeMessage = {}
         if db_cluster_snapshot_identifier is not None:
             input_["db_cluster_snapshot_identifier"] = db_cluster_snapshot_identifier
         if attribute_name is not None:
@@ -4201,6 +4252,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def modify_db_instance(
@@ -4359,7 +4411,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.modify_db_instance_message.ModifyDBInstanceMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.modify_db_instance_message.ModifyDBInstanceMessage = {}
         if db_instance_identifier is not None:
             input_["db_instance_identifier"] = db_instance_identifier
         if allocated_storage is not None:
@@ -4444,6 +4496,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def modify_db_parameter_group(
@@ -4484,7 +4537,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.modify_db_parameter_group_message.ModifyDBParameterGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.modify_db_parameter_group_message.ModifyDBParameterGroupMessage = {}
         if db_parameter_group_name is not None:
             input_["db_parameter_group_name"] = db_parameter_group_name
         if parameters is not None:
@@ -4495,6 +4548,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def modify_db_subnet_group(
@@ -4540,7 +4594,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.modify_db_subnet_group_message.ModifyDBSubnetGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.modify_db_subnet_group_message.ModifyDBSubnetGroupMessage = {}
         if db_subnet_group_name is not None:
             input_["db_subnet_group_name"] = db_subnet_group_name
         if db_subnet_group_description is not None:
@@ -4553,6 +4607,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def modify_event_subscription(
@@ -4601,7 +4656,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.modify_event_subscription_message.ModifyEventSubscriptionMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.modify_event_subscription_message.ModifyEventSubscriptionMessage = {}
         if subscription_name is not None:
             input_["subscription_name"] = subscription_name
         if sns_topic_arn is not None:
@@ -4618,6 +4673,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def modify_global_cluster(
@@ -4671,7 +4727,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.modify_global_cluster_message.ModifyGlobalClusterMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.modify_global_cluster_message.ModifyGlobalClusterMessage = {}
         if global_cluster_identifier is not None:
             input_["global_cluster_identifier"] = global_cluster_identifier
         if new_global_cluster_identifier is not None:
@@ -4688,6 +4744,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def promote_read_replica_db_cluster(
@@ -4722,7 +4779,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.promote_read_replica_db_cluster_message.PromoteReadReplicaDBClusterMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.promote_read_replica_db_cluster_message.PromoteReadReplicaDBClusterMessage = {}
         if db_cluster_identifier is not None:
             input_["db_cluster_identifier"] = db_cluster_identifier
 
@@ -4731,6 +4788,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def reboot_db_instance(
@@ -4769,7 +4827,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.reboot_db_instance_message.RebootDBInstanceMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.reboot_db_instance_message.RebootDBInstanceMessage = {}
         if db_instance_identifier is not None:
             input_["db_instance_identifier"] = db_instance_identifier
         if force_failover is not None:
@@ -4780,6 +4838,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def remove_from_global_cluster(
@@ -4819,7 +4878,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.remove_from_global_cluster_message.RemoveFromGlobalClusterMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.remove_from_global_cluster_message.RemoveFromGlobalClusterMessage = {}
         if global_cluster_identifier is not None:
             input_["global_cluster_identifier"] = global_cluster_identifier
         if db_cluster_identifier is not None:
@@ -4830,6 +4889,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def remove_role_from_db_cluster(
@@ -4867,7 +4927,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.remove_role_from_db_cluster_message.RemoveRoleFromDBClusterMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.remove_role_from_db_cluster_message.RemoveRoleFromDBClusterMessage = {}
         if db_cluster_identifier is not None:
             input_["db_cluster_identifier"] = db_cluster_identifier
         if role_arn is not None:
@@ -4880,6 +4940,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def remove_source_identifier_from_subscription(
@@ -4916,7 +4977,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.remove_source_identifier_from_subscription_message.RemoveSourceIdentifierFromSubscriptionMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.remove_source_identifier_from_subscription_message.RemoveSourceIdentifierFromSubscriptionMessage = {}
         if subscription_name is not None:
             input_["subscription_name"] = subscription_name
         if source_identifier is not None:
@@ -4927,6 +4988,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def remove_tags_from_resource(
@@ -4962,7 +5024,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.remove_tags_from_resource_message.RemoveTagsFromResourceMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.remove_tags_from_resource_message.RemoveTagsFromResourceMessage = {}
         if resource_name is not None:
             input_["resource_name"] = resource_name
         if tag_keys is not None:
@@ -4973,6 +5035,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def reset_db_cluster_parameter_group(
@@ -5015,7 +5078,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.reset_db_cluster_parameter_group_message.ResetDBClusterParameterGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.reset_db_cluster_parameter_group_message.ResetDBClusterParameterGroupMessage = {}
         if db_cluster_parameter_group_name is not None:
             input_["db_cluster_parameter_group_name"] = db_cluster_parameter_group_name
         if reset_all_parameters is not None:
@@ -5028,6 +5091,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def reset_db_parameter_group(
@@ -5070,7 +5134,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.reset_db_parameter_group_message.ResetDBParameterGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.reset_db_parameter_group_message.ResetDBParameterGroupMessage = {}
         if db_parameter_group_name is not None:
             input_["db_parameter_group_name"] = db_parameter_group_name
         if reset_all_parameters is not None:
@@ -5083,6 +5147,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def restore_db_cluster_from_snapshot(
@@ -5186,7 +5251,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.restore_db_cluster_from_snapshot_message.RestoreDBClusterFromSnapshotMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.restore_db_cluster_from_snapshot_message.RestoreDBClusterFromSnapshotMessage = {}
         if availability_zones is not None:
             input_["availability_zones"] = availability_zones
         if db_cluster_identifier is not None:
@@ -5237,6 +5302,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def restore_db_cluster_to_point_in_time(
@@ -5337,7 +5403,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.restore_db_cluster_to_point_in_time_message.RestoreDBClusterToPointInTimeMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.restore_db_cluster_to_point_in_time_message.RestoreDBClusterToPointInTimeMessage = {}
         if db_cluster_identifier is not None:
             input_["db_cluster_identifier"] = db_cluster_identifier
         if restore_type is not None:
@@ -5384,6 +5450,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_db_cluster(
@@ -5419,7 +5486,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.start_db_cluster_message.StartDBClusterMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.start_db_cluster_message.StartDBClusterMessage = {}
         if db_cluster_identifier is not None:
             input_["db_cluster_identifier"] = db_cluster_identifier
 
@@ -5428,6 +5495,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_db_cluster(
@@ -5463,7 +5531,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.stop_db_cluster_message.StopDBClusterMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.stop_db_cluster_message.StopDBClusterMessage = {}
         if db_cluster_identifier is not None:
             input_["db_cluster_identifier"] = db_cluster_identifier
 
@@ -5472,6 +5540,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def switchover_global_cluster(
@@ -5514,7 +5583,7 @@ class NeptuneClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_neptune.types.switchover_global_cluster_message.SwitchoverGlobalClusterMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_neptune.types.switchover_global_cluster_message.SwitchoverGlobalClusterMessage = {}
         if global_cluster_identifier is not None:
             input_["global_cluster_identifier"] = global_cluster_identifier
         if target_db_cluster_identifier is not None:
@@ -5525,6 +5594,7 @@ class NeptuneClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ControlMappingSources:
 
     out: ControlMappingSources = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_auditmanager.types.control_mapping_source.deserialize_json(item)
         )

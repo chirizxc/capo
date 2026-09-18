@@ -129,11 +129,11 @@ def serialize_json(value: CreateJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateJobRequest:
     out: CreateJobRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError("CreateJobRequest.client_token required")
-    if "algorithmSpecification" in data:
+    if data.get("algorithmSpecification") is not None:
         import capo_braket.types.algorithm_specification
 
         out["algorithm_specification"] = (
@@ -143,13 +143,13 @@ def deserialize_json(data: dict) -> CreateJobRequest:
         )
     else:
         raise DeserializationError("CreateJobRequest.algorithm_specification required")
-    if "inputDataConfig" in data:
+    if data.get("inputDataConfig") is not None:
         import capo_braket.types.input_config_list
 
         out["input_data_config"] = capo_braket.types.input_config_list.deserialize_json(
             data["inputDataConfig"]
         )
-    if "outputDataConfig" in data:
+    if data.get("outputDataConfig") is not None:
         import capo_braket.types.job_output_data_config
 
         out["output_data_config"] = (
@@ -159,7 +159,7 @@ def deserialize_json(data: dict) -> CreateJobRequest:
         )
     else:
         raise DeserializationError("CreateJobRequest.output_data_config required")
-    if "checkpointConfig" in data:
+    if data.get("checkpointConfig") is not None:
         import capo_braket.types.job_checkpoint_config
 
         out["checkpoint_config"] = (
@@ -167,15 +167,15 @@ def deserialize_json(data: dict) -> CreateJobRequest:
                 data["checkpointConfig"]
             )
         )
-    if "jobName" in data:
+    if data.get("jobName") is not None:
         out["job_name"] = data["jobName"]
     else:
         raise DeserializationError("CreateJobRequest.job_name required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("CreateJobRequest.role_arn required")
-    if "stoppingCondition" in data:
+    if data.get("stoppingCondition") is not None:
         import capo_braket.types.job_stopping_condition
 
         out["stopping_condition"] = (
@@ -183,7 +183,7 @@ def deserialize_json(data: dict) -> CreateJobRequest:
                 data["stoppingCondition"]
             )
         )
-    if "instanceConfig" in data:
+    if data.get("instanceConfig") is not None:
         import capo_braket.types.instance_config
 
         out["instance_config"] = capo_braket.types.instance_config.deserialize_json(
@@ -191,13 +191,13 @@ def deserialize_json(data: dict) -> CreateJobRequest:
         )
     else:
         raise DeserializationError("CreateJobRequest.instance_config required")
-    if "hyperParameters" in data:
+    if data.get("hyperParameters") is not None:
         import capo_braket.types.hyper_parameters
 
         out["hyper_parameters"] = capo_braket.types.hyper_parameters.deserialize_json(
             data["hyperParameters"]
         )
-    if "deviceConfig" in data:
+    if data.get("deviceConfig") is not None:
         import capo_braket.types.device_config
 
         out["device_config"] = capo_braket.types.device_config.deserialize_json(
@@ -205,11 +205,11 @@ def deserialize_json(data: dict) -> CreateJobRequest:
         )
     else:
         raise DeserializationError("CreateJobRequest.device_config required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_braket.types.tags_map
 
         out["tags"] = capo_braket.types.tags_map.deserialize_json(data["tags"])
-    if "associations" in data:
+    if data.get("associations") is not None:
         import capo_braket.types.associations
 
         out["associations"] = capo_braket.types.associations.deserialize_json(

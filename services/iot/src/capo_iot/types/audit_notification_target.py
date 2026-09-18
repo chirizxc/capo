@@ -32,11 +32,11 @@ def serialize_json(value: AuditNotificationTarget) -> dict:
 
 def deserialize_json(data: dict) -> AuditNotificationTarget:
     out: AuditNotificationTarget = {}  # type: ignore[typeddict-item]
-    if "targetArn" in data:
+    if data.get("targetArn") is not None:
         out["target_arn"] = data["targetArn"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
     else:
         out["enabled"] = False

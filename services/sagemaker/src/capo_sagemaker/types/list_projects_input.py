@@ -76,7 +76,7 @@ def serialize_aws_json_1_1(value: ListProjectsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListProjectsInput:
     out: ListProjectsInput = {}  # type: ignore[typeddict-item]
-    if "CreationTimeAfter" in data:
+    if data.get("CreationTimeAfter") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time_after"] = (
@@ -84,7 +84,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListProjectsInput:
                 data["CreationTimeAfter"]
             )
         )
-    if "CreationTimeBefore" in data:
+    if data.get("CreationTimeBefore") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time_before"] = (
@@ -92,19 +92,19 @@ def deserialize_aws_json_1_1(data: dict) -> ListProjectsInput:
                 data["CreationTimeBefore"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NameContains" in data:
+    if data.get("NameContains") is not None:
         out["name_contains"] = data["NameContains"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "SortBy" in data:
+    if data.get("SortBy") is not None:
         import capo_sagemaker.types.project_sort_by
 
         out["sort_by"] = capo_sagemaker.types.project_sort_by.deserialize_aws_json_1_1(
             data["SortBy"]
         )
-    if "SortOrder" in data:
+    if data.get("SortOrder") is not None:
         import capo_sagemaker.types.project_sort_order
 
         out["sort_order"] = (

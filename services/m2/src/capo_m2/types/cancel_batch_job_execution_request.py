@@ -30,6 +30,6 @@ def serialize_json(value: CancelBatchJobExecutionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CancelBatchJobExecutionRequest:
     out: CancelBatchJobExecutionRequest = {}  # type: ignore[typeddict-item]
-    if "authSecretsManagerArn" in data:
+    if data.get("authSecretsManagerArn") is not None:
         out["auth_secrets_manager_arn"] = data["authSecretsManagerArn"]
     return out

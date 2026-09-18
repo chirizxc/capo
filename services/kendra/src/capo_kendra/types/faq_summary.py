@@ -68,34 +68,34 @@ def serialize_aws_json_1_1(value: FaqSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FaqSummary:
     out: FaqSummary = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_kendra.types.faq_status
 
         out["status"] = capo_kendra.types.faq_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_kendra.types.timestamp
 
         out["created_at"] = capo_kendra.types.timestamp.deserialize_aws_json_1_1(
             data["CreatedAt"]
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_kendra.types.timestamp
 
         out["updated_at"] = capo_kendra.types.timestamp.deserialize_aws_json_1_1(
             data["UpdatedAt"]
         )
-    if "FileFormat" in data:
+    if data.get("FileFormat") is not None:
         import capo_kendra.types.faq_file_format
 
         out["file_format"] = capo_kendra.types.faq_file_format.deserialize_aws_json_1_1(
             data["FileFormat"]
         )
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         out["language_code"] = data["LanguageCode"]
     return out

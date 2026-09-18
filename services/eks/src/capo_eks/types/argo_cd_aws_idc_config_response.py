@@ -31,10 +31,10 @@ def serialize_json(value: ArgoCdAwsIdcConfigResponse) -> dict:
 
 def deserialize_json(data: dict) -> ArgoCdAwsIdcConfigResponse:
     out: ArgoCdAwsIdcConfigResponse = {}  # type: ignore[typeddict-item]
-    if "idcInstanceArn" in data:
+    if data.get("idcInstanceArn") is not None:
         out["idc_instance_arn"] = data["idcInstanceArn"]
-    if "idcRegion" in data:
+    if data.get("idcRegion") is not None:
         out["idc_region"] = data["idcRegion"]
-    if "idcManagedApplicationArn" in data:
+    if data.get("idcManagedApplicationArn") is not None:
         out["idc_managed_application_arn"] = data["idcManagedApplicationArn"]
     return out

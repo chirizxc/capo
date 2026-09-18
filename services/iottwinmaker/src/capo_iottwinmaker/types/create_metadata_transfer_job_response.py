@@ -46,17 +46,17 @@ def serialize_json(value: CreateMetadataTransferJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateMetadataTransferJobResponse:
     out: CreateMetadataTransferJobResponse = {}  # type: ignore[typeddict-item]
-    if "metadataTransferJobId" in data:
+    if data.get("metadataTransferJobId") is not None:
         out["metadata_transfer_job_id"] = data["metadataTransferJobId"]
     else:
         raise DeserializationError(
             "CreateMetadataTransferJobResponse.metadata_transfer_job_id required"
         )
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("CreateMetadataTransferJobResponse.arn required")
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_iottwinmaker.types.timestamp
 
         out["creation_date_time"] = capo_iottwinmaker.types.timestamp.deserialize_json(
@@ -66,7 +66,7 @@ def deserialize_json(data: dict) -> CreateMetadataTransferJobResponse:
         raise DeserializationError(
             "CreateMetadataTransferJobResponse.creation_date_time required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iottwinmaker.types.metadata_transfer_job_status
 
         out["status"] = (

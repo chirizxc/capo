@@ -33,7 +33,7 @@ def deserialize_json(
     data: dict,
 ) -> CloudFormationCostEstimationResourceCollectionFilter:
     out: CloudFormationCostEstimationResourceCollectionFilter = {}  # type: ignore[typeddict-item]
-    if "StackNames" in data:
+    if data.get("StackNames") is not None:
         import capo_devops_guru.types.cost_estimation_stack_names
 
         out["stack_names"] = (

@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListCommandExecutionsForSandboxOutput) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> ListCommandExecutionsForSandboxOutput:
     out: ListCommandExecutionsForSandboxOutput = {}  # type: ignore[typeddict-item]
-    if "commandExecutions" in data:
+    if data.get("commandExecutions") is not None:
         import capo_codebuild.types.command_executions
 
         out["command_executions"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListCommandExecutionsForSandboxOutpu
                 data["commandExecutions"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

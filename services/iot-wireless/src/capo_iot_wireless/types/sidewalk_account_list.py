@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> SidewalkAccountList:
 
     out: SidewalkAccountList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot_wireless.types.sidewalk_account_info_with_fingerprint.deserialize_json(
                 item

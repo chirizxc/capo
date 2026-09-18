@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.serverlessapplicationrepository#ServerlessApplicationRepository``."""
 
 import warnings
+from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +17,9 @@ from capo_serverlessapplicationrepository._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_serverlessapplicationrepository._auth._zapros_handler import AuthMiddleware
+from capo_serverlessapplicationrepository._pagination import (
+    resolve_path as _resolve_path,
+)
 from capo_serverlessapplicationrepository._services._aws_config import aaws_config
 from capo_serverlessapplicationrepository._services._pipeline import (
     AsyncInterceptor,
@@ -258,7 +262,7 @@ class AsyncServerlessApplicationRepositoryClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_serverlessapplicationrepository.types.create_application_request.CreateApplicationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_serverlessapplicationrepository.types.create_application_request.CreateApplicationRequest = {}
         if author is not None:
             input_["author"] = author
         if description is not None:
@@ -295,6 +299,7 @@ class AsyncServerlessApplicationRepositoryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_application_version(
@@ -353,9 +358,10 @@ class AsyncServerlessApplicationRepositoryClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_serverlessapplicationrepository.types.create_application_version_request.CreateApplicationVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["semantic_version"] = semantic_version
+        input_: capo_serverlessapplicationrepository.types.create_application_version_request.CreateApplicationVersionRequest = {
+            "application_id": application_id,
+            "semantic_version": semantic_version,
+        }
         if source_code_archive_url is not None:
             input_["source_code_archive_url"] = source_code_archive_url
         if source_code_url is not None:
@@ -370,6 +376,7 @@ class AsyncServerlessApplicationRepositoryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_cloud_formation_change_set(
@@ -457,8 +464,9 @@ class AsyncServerlessApplicationRepositoryClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_serverlessapplicationrepository.types.create_cloud_formation_change_set_request.CreateCloudFormationChangeSetRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_serverlessapplicationrepository.types.create_cloud_formation_change_set_request.CreateCloudFormationChangeSetRequest = {
+            "application_id": application_id
+        }
         if capabilities is not None:
             input_["capabilities"] = capabilities
         if change_set_name is not None:
@@ -489,6 +497,7 @@ class AsyncServerlessApplicationRepositoryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_cloud_formation_template(
@@ -533,8 +542,9 @@ class AsyncServerlessApplicationRepositoryClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_serverlessapplicationrepository.types.create_cloud_formation_template_request.CreateCloudFormationTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_serverlessapplicationrepository.types.create_cloud_formation_template_request.CreateCloudFormationTemplateRequest = {
+            "application_id": application_id
+        }
         if semantic_version is not None:
             input_["semantic_version"] = semantic_version
 
@@ -543,6 +553,7 @@ class AsyncServerlessApplicationRepositoryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_application(
@@ -582,14 +593,16 @@ class AsyncServerlessApplicationRepositoryClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_serverlessapplicationrepository.types.delete_application_request.DeleteApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_serverlessapplicationrepository.types.delete_application_request.DeleteApplicationRequest = {
+            "application_id": application_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_application(
@@ -634,8 +647,9 @@ class AsyncServerlessApplicationRepositoryClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_serverlessapplicationrepository.types.get_application_request.GetApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_serverlessapplicationrepository.types.get_application_request.GetApplicationRequest = {
+            "application_id": application_id
+        }
         if semantic_version is not None:
             input_["semantic_version"] = semantic_version
 
@@ -644,6 +658,7 @@ class AsyncServerlessApplicationRepositoryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_application_policy(
@@ -684,14 +699,16 @@ class AsyncServerlessApplicationRepositoryClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_serverlessapplicationrepository.types.get_application_policy_request.GetApplicationPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_serverlessapplicationrepository.types.get_application_policy_request.GetApplicationPolicyRequest = {
+            "application_id": application_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_cloud_formation_template(
@@ -734,15 +751,17 @@ class AsyncServerlessApplicationRepositoryClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_serverlessapplicationrepository.types.get_cloud_formation_template_request.GetCloudFormationTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["template_id"] = template_id
+        input_: capo_serverlessapplicationrepository.types.get_cloud_formation_template_request.GetCloudFormationTemplateRequest = {
+            "application_id": application_id,
+            "template_id": template_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_application_dependencies(
@@ -795,8 +814,9 @@ class AsyncServerlessApplicationRepositoryClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_serverlessapplicationrepository.types.list_application_dependencies_request.ListApplicationDependenciesRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_serverlessapplicationrepository.types.list_application_dependencies_request.ListApplicationDependenciesRequest = {
+            "application_id": application_id
+        }
         if max_items is not None:
             input_["max_items"] = max_items
         if next_token is not None:
@@ -809,7 +829,39 @@ class AsyncServerlessApplicationRepositoryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_application_dependencies(
+        self,
+        application_id: "capo_serverlessapplicationrepository.types.__string.__string",
+        *,
+        config_overrides: Optional[
+            AsyncServerlessApplicationRepositoryClientConfig
+        ] = None,
+        max_items: Optional[
+            "capo_serverlessapplicationrepository.types.max_items.MaxItems"
+        ] = None,
+        next_token: Optional[
+            "capo_serverlessapplicationrepository.types.__string.__string"
+        ] = None,
+        semantic_version: Optional[
+            "capo_serverlessapplicationrepository.types.__string.__string"
+        ] = None,
+    ) -> "AsyncIterator[capo_serverlessapplicationrepository.types.list_application_dependencies_response.ListApplicationDependenciesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_application_dependencies(
+                application_id,
+                config_overrides=config_overrides,
+                max_items=max_items,
+                next_token=_token,
+                semantic_version=semantic_version,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_applications(
         self,
@@ -854,7 +906,7 @@ class AsyncServerlessApplicationRepositoryClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_serverlessapplicationrepository.types.list_applications_request.ListApplicationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_serverlessapplicationrepository.types.list_applications_request.ListApplicationsRequest = {}
         if max_items is not None:
             input_["max_items"] = max_items
         if next_token is not None:
@@ -865,7 +917,33 @@ class AsyncServerlessApplicationRepositoryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_applications(
+        self,
+        *,
+        config_overrides: Optional[
+            AsyncServerlessApplicationRepositoryClientConfig
+        ] = None,
+        max_items: Optional[
+            "capo_serverlessapplicationrepository.types.max_items.MaxItems"
+        ] = None,
+        next_token: Optional[
+            "capo_serverlessapplicationrepository.types.__string.__string"
+        ] = None,
+    ) -> "AsyncIterator[capo_serverlessapplicationrepository.types.list_applications_response.ListApplicationsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_applications(
+                config_overrides=config_overrides,
+                max_items=max_items,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_application_versions(
         self,
@@ -913,8 +991,9 @@ class AsyncServerlessApplicationRepositoryClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_serverlessapplicationrepository.types.list_application_versions_request.ListApplicationVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_serverlessapplicationrepository.types.list_application_versions_request.ListApplicationVersionsRequest = {
+            "application_id": application_id
+        }
         if max_items is not None:
             input_["max_items"] = max_items
         if next_token is not None:
@@ -925,7 +1004,35 @@ class AsyncServerlessApplicationRepositoryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_application_versions(
+        self,
+        application_id: "capo_serverlessapplicationrepository.types.__string.__string",
+        *,
+        config_overrides: Optional[
+            AsyncServerlessApplicationRepositoryClientConfig
+        ] = None,
+        max_items: Optional[
+            "capo_serverlessapplicationrepository.types.max_items.MaxItems"
+        ] = None,
+        next_token: Optional[
+            "capo_serverlessapplicationrepository.types.__string.__string"
+        ] = None,
+    ) -> "AsyncIterator[capo_serverlessapplicationrepository.types.list_application_versions_response.ListApplicationVersionsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_application_versions(
+                application_id,
+                config_overrides=config_overrides,
+                max_items=max_items,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def put_application_policy(
         self,
@@ -969,8 +1076,9 @@ class AsyncServerlessApplicationRepositoryClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_serverlessapplicationrepository.types.put_application_policy_request.PutApplicationPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_serverlessapplicationrepository.types.put_application_policy_request.PutApplicationPolicyRequest = {
+            "application_id": application_id
+        }
         if statements is not None:
             input_["statements"] = statements
 
@@ -979,6 +1087,7 @@ class AsyncServerlessApplicationRepositoryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def unshare_application(
@@ -1021,8 +1130,9 @@ class AsyncServerlessApplicationRepositoryClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_serverlessapplicationrepository.types.unshare_application_request.UnshareApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_serverlessapplicationrepository.types.unshare_application_request.UnshareApplicationRequest = {
+            "application_id": application_id
+        }
         if organization_id is not None:
             input_["organization_id"] = organization_id
 
@@ -1031,6 +1141,7 @@ class AsyncServerlessApplicationRepositoryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_application(
@@ -1096,8 +1207,9 @@ class AsyncServerlessApplicationRepositoryClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_serverlessapplicationrepository.types.update_application_request.UpdateApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_serverlessapplicationrepository.types.update_application_request.UpdateApplicationRequest = {
+            "application_id": application_id
+        }
         if author is not None:
             input_["author"] = author
         if description is not None:
@@ -1116,6 +1228,7 @@ class AsyncServerlessApplicationRepositoryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

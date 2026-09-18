@@ -30,7 +30,7 @@ def serialize_json(value: GetNotificationsAccessForOrganizationResponse) -> dict
 
 def deserialize_json(data: dict) -> GetNotificationsAccessForOrganizationResponse:
     out: GetNotificationsAccessForOrganizationResponse = {}  # type: ignore[typeddict-item]
-    if "notificationsAccessForOrganization" in data:
+    if data.get("notificationsAccessForOrganization") is not None:
         import capo_notifications.types.notifications_access_for_organization
 
         out["notifications_access_for_organization"] = (

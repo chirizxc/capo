@@ -23,6 +23,6 @@ def serialize_json(value: BooleanConfigurationOptions) -> dict:
 
 def deserialize_json(data: dict) -> BooleanConfigurationOptions:
     out: BooleanConfigurationOptions = {}  # type: ignore[typeddict-item]
-    if "DefaultValue" in data:
+    if data.get("DefaultValue") is not None:
         out["default_value"] = data["DefaultValue"]
     return out

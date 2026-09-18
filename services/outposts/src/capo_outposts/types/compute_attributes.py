@@ -61,15 +61,15 @@ def serialize_json(value: ComputeAttributes) -> dict:
 
 def deserialize_json(data: dict) -> ComputeAttributes:
     out: ComputeAttributes = {}  # type: ignore[typeddict-item]
-    if "HostId" in data:
+    if data.get("HostId") is not None:
         out["host_id"] = data["HostId"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_outposts.types.compute_asset_state
 
         out["state"] = capo_outposts.types.compute_asset_state.deserialize_json(
             data["State"]
         )
-    if "InstanceFamilies" in data:
+    if data.get("InstanceFamilies") is not None:
         import capo_outposts.types.instance_families
 
         out["instance_families"] = (
@@ -77,7 +77,7 @@ def deserialize_json(data: dict) -> ComputeAttributes:
                 data["InstanceFamilies"]
             )
         )
-    if "InstanceTypeCapacities" in data:
+    if data.get("InstanceTypeCapacities") is not None:
         import capo_outposts.types.asset_instance_capacity_list
 
         out["instance_type_capacities"] = (
@@ -85,6 +85,6 @@ def deserialize_json(data: dict) -> ComputeAttributes:
                 data["InstanceTypeCapacities"]
             )
         )
-    if "MaxVcpus" in data:
+    if data.get("MaxVcpus") is not None:
         out["max_vcpus"] = data["MaxVcpus"]
     return out

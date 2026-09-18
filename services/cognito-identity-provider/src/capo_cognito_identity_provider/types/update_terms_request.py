@@ -74,17 +74,17 @@ def serialize_aws_json_1_1(value: UpdateTermsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateTermsRequest:
     out: UpdateTermsRequest = {}  # type: ignore[typeddict-item]
-    if "TermsId" in data:
+    if data.get("TermsId") is not None:
         out["terms_id"] = data["TermsId"]
     else:
         raise DeserializationError("UpdateTermsRequest.terms_id required")
-    if "UserPoolId" in data:
+    if data.get("UserPoolId") is not None:
         out["user_pool_id"] = data["UserPoolId"]
     else:
         raise DeserializationError("UpdateTermsRequest.user_pool_id required")
-    if "TermsName" in data:
+    if data.get("TermsName") is not None:
         out["terms_name"] = data["TermsName"]
-    if "TermsSource" in data:
+    if data.get("TermsSource") is not None:
         import capo_cognito_identity_provider.types.terms_source_type
 
         out["terms_source"] = (
@@ -92,7 +92,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateTermsRequest:
                 data["TermsSource"]
             )
         )
-    if "Enforcement" in data:
+    if data.get("Enforcement") is not None:
         import capo_cognito_identity_provider.types.terms_enforcement_type
 
         out["enforcement"] = (
@@ -100,7 +100,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateTermsRequest:
                 data["Enforcement"]
             )
         )
-    if "Links" in data:
+    if data.get("Links") is not None:
         import capo_cognito_identity_provider.types.links_type
 
         out["links"] = (

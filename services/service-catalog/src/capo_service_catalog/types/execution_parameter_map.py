@@ -29,6 +29,8 @@ def serialize_aws_json_1_1(input_to_serialize: ExecutionParameterMap) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> ExecutionParameterMap:
     out: ExecutionParameterMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_service_catalog.types.execution_parameter_value_list
 
         out[key] = (

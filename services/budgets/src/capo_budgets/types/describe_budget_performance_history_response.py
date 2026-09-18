@@ -35,7 +35,7 @@ def serialize_aws_json_1_1(value: DescribeBudgetPerformanceHistoryResponse) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeBudgetPerformanceHistoryResponse:
     out: DescribeBudgetPerformanceHistoryResponse = {}  # type: ignore[typeddict-item]
-    if "BudgetPerformanceHistory" in data:
+    if data.get("BudgetPerformanceHistory") is not None:
         import capo_budgets.types.budget_performance_history
 
         out["budget_performance_history"] = (
@@ -43,6 +43,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeBudgetPerformanceHistoryResp
                 data["BudgetPerformanceHistory"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

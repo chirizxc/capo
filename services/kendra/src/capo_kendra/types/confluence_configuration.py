@@ -152,15 +152,15 @@ def serialize_aws_json_1_1(value: ConfluenceConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConfluenceConfiguration:
     out: ConfluenceConfiguration = {}  # type: ignore[typeddict-item]
-    if "ServerUrl" in data:
+    if data.get("ServerUrl") is not None:
         out["server_url"] = data["ServerUrl"]
     else:
         raise DeserializationError("ConfluenceConfiguration.server_url required")
-    if "SecretArn" in data:
+    if data.get("SecretArn") is not None:
         out["secret_arn"] = data["SecretArn"]
     else:
         raise DeserializationError("ConfluenceConfiguration.secret_arn required")
-    if "Version" in data:
+    if data.get("Version") is not None:
         import capo_kendra.types.confluence_version
 
         out["version"] = capo_kendra.types.confluence_version.deserialize_aws_json_1_1(
@@ -168,7 +168,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConfluenceConfiguration:
         )
     else:
         raise DeserializationError("ConfluenceConfiguration.version required")
-    if "SpaceConfiguration" in data:
+    if data.get("SpaceConfiguration") is not None:
         import capo_kendra.types.confluence_space_configuration
 
         out["space_configuration"] = (
@@ -176,7 +176,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConfluenceConfiguration:
                 data["SpaceConfiguration"]
             )
         )
-    if "PageConfiguration" in data:
+    if data.get("PageConfiguration") is not None:
         import capo_kendra.types.confluence_page_configuration
 
         out["page_configuration"] = (
@@ -184,7 +184,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConfluenceConfiguration:
                 data["PageConfiguration"]
             )
         )
-    if "BlogConfiguration" in data:
+    if data.get("BlogConfiguration") is not None:
         import capo_kendra.types.confluence_blog_configuration
 
         out["blog_configuration"] = (
@@ -192,7 +192,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConfluenceConfiguration:
                 data["BlogConfiguration"]
             )
         )
-    if "AttachmentConfiguration" in data:
+    if data.get("AttachmentConfiguration") is not None:
         import capo_kendra.types.confluence_attachment_configuration
 
         out["attachment_configuration"] = (
@@ -200,7 +200,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConfluenceConfiguration:
                 data["AttachmentConfiguration"]
             )
         )
-    if "VpcConfiguration" in data:
+    if data.get("VpcConfiguration") is not None:
         import capo_kendra.types.data_source_vpc_configuration
 
         out["vpc_configuration"] = (
@@ -208,7 +208,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConfluenceConfiguration:
                 data["VpcConfiguration"]
             )
         )
-    if "InclusionPatterns" in data:
+    if data.get("InclusionPatterns") is not None:
         import capo_kendra.types.data_source_inclusions_exclusions_strings
 
         out["inclusion_patterns"] = (
@@ -216,7 +216,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConfluenceConfiguration:
                 data["InclusionPatterns"]
             )
         )
-    if "ExclusionPatterns" in data:
+    if data.get("ExclusionPatterns") is not None:
         import capo_kendra.types.data_source_inclusions_exclusions_strings
 
         out["exclusion_patterns"] = (
@@ -224,7 +224,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConfluenceConfiguration:
                 data["ExclusionPatterns"]
             )
         )
-    if "ProxyConfiguration" in data:
+    if data.get("ProxyConfiguration") is not None:
         import capo_kendra.types.proxy_configuration
 
         out["proxy_configuration"] = (
@@ -232,7 +232,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConfluenceConfiguration:
                 data["ProxyConfiguration"]
             )
         )
-    if "AuthenticationType" in data:
+    if data.get("AuthenticationType") is not None:
         import capo_kendra.types.confluence_authentication_type
 
         out["authentication_type"] = (

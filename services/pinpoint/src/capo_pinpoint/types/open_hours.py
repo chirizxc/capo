@@ -77,7 +77,7 @@ def serialize_json(value: OpenHours) -> dict:
 
 def deserialize_json(data: dict) -> OpenHours:
     out: OpenHours = {}  # type: ignore[typeddict-item]
-    if "EMAIL" in data:
+    if data.get("EMAIL") is not None:
         import capo_pinpoint.types.map_of_list_of_open_hours_rules
 
         out["email"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> OpenHours:
                 data["EMAIL"]
             )
         )
-    if "SMS" in data:
+    if data.get("SMS") is not None:
         import capo_pinpoint.types.map_of_list_of_open_hours_rules
 
         out["sms"] = (
@@ -93,7 +93,7 @@ def deserialize_json(data: dict) -> OpenHours:
                 data["SMS"]
             )
         )
-    if "PUSH" in data:
+    if data.get("PUSH") is not None:
         import capo_pinpoint.types.map_of_list_of_open_hours_rules
 
         out["push"] = (
@@ -101,7 +101,7 @@ def deserialize_json(data: dict) -> OpenHours:
                 data["PUSH"]
             )
         )
-    if "VOICE" in data:
+    if data.get("VOICE") is not None:
         import capo_pinpoint.types.map_of_list_of_open_hours_rules
 
         out["voice"] = (
@@ -109,7 +109,7 @@ def deserialize_json(data: dict) -> OpenHours:
                 data["VOICE"]
             )
         )
-    if "CUSTOM" in data:
+    if data.get("CUSTOM") is not None:
         import capo_pinpoint.types.map_of_list_of_open_hours_rules
 
         out["custom"] = (

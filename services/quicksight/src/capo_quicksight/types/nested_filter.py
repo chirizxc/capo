@@ -46,11 +46,11 @@ def serialize_json(value: NestedFilter) -> dict:
 
 def deserialize_json(data: dict) -> NestedFilter:
     out: NestedFilter = {}  # type: ignore[typeddict-item]
-    if "FilterId" in data:
+    if data.get("FilterId") is not None:
         out["filter_id"] = data["FilterId"]
     else:
         raise DeserializationError("NestedFilter.filter_id required")
-    if "Column" in data:
+    if data.get("Column") is not None:
         import capo_quicksight.types.column_identifier
 
         out["column"] = capo_quicksight.types.column_identifier.deserialize_json(
@@ -58,11 +58,11 @@ def deserialize_json(data: dict) -> NestedFilter:
         )
     else:
         raise DeserializationError("NestedFilter.column required")
-    if "IncludeInnerSet" in data:
+    if data.get("IncludeInnerSet") is not None:
         out["include_inner_set"] = data["IncludeInnerSet"]
     else:
         out["include_inner_set"] = False
-    if "InnerFilter" in data:
+    if data.get("InnerFilter") is not None:
         import capo_quicksight.types.inner_filter
 
         out["inner_filter"] = capo_quicksight.types.inner_filter.deserialize_json(

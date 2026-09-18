@@ -27,7 +27,7 @@ def serialize_json(value: BadRequestDetail) -> dict:
 
 def deserialize_json(data: dict) -> BadRequestDetail:
     out: BadRequestDetail = {}  # type: ignore[typeddict-item]
-    if "codeErrors" in data:
+    if data.get("codeErrors") is not None:
         import capo_appsync.types.code_errors
 
         out["code_errors"] = capo_appsync.types.code_errors.deserialize_json(

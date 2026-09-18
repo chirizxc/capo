@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> BatchCreateCategoryInputCategoryList:
 
     out: BatchCreateCategoryInputCategoryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_qapps.types.batch_create_category_input_category.deserialize_json(item)
         )

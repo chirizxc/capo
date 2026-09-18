@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: GetCommitOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetCommitOutput:
     out: GetCommitOutput = {}  # type: ignore[typeddict-item]
-    if "commit" in data:
+    if data.get("commit") is not None:
         import capo_codecommit.types.commit
 
         out["commit"] = capo_codecommit.types.commit.deserialize_aws_json_1_1(

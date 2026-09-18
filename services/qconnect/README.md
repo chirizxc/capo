@@ -13,9 +13,9 @@ from capo_qconnect import AsyncQConnectClient
 
 
 async def main():
-    async with AsyncQConnectClient() as s3:
+    async with AsyncQConnectClient() as q_connect:
         # Example: call the list_tags_for_resource operation
-        response = await s3.list_tags_for_resource()
+        response = await q_connect.list_tags_for_resource()
         print(response["tags"])
 ```
 
@@ -29,9 +29,9 @@ from capo_qconnect.error import ResourceNotFoundException
 
 
 async def main():
-    async with AsyncQConnectClient() as s3:
+    async with AsyncQConnectClient() as q_connect:
         try:
-            await s3.list_tags_for_resource()
+            await q_connect.list_tags_for_resource()
         except ResourceNotFoundException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_qconnect import AsyncQConnectClient
 
 
 async def main():
-    async with AsyncQConnectClient() as s3:
+    async with AsyncQConnectClient() as q_connect:
         # Default: 3 attempts for every operation
-        response = await s3.list_tags_for_resource()
+        response = await q_connect.list_tags_for_resource()
 
         # Override per operation
-        response = await s3.list_tags_for_resource(config_overrides={"retry_max_attempts": 5})
+        response = await q_connect.list_tags_for_resource(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.list_tags_for_resource(config_overrides={"retry_max_attempts": 1})
+        response = await q_connect.list_tags_for_resource(config_overrides={"retry_max_attempts": 1})
 ```

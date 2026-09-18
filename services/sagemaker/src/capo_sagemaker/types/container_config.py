@@ -57,7 +57,7 @@ def serialize_aws_json_1_1(value: ContainerConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ContainerConfig:
     out: ContainerConfig = {}  # type: ignore[typeddict-item]
-    if "ContainerArguments" in data:
+    if data.get("ContainerArguments") is not None:
         import capo_sagemaker.types.custom_image_container_arguments
 
         out["container_arguments"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> ContainerConfig:
                 data["ContainerArguments"]
             )
         )
-    if "ContainerEntrypoint" in data:
+    if data.get("ContainerEntrypoint") is not None:
         import capo_sagemaker.types.custom_image_container_entrypoint
 
         out["container_entrypoint"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> ContainerConfig:
                 data["ContainerEntrypoint"]
             )
         )
-    if "ContainerEnvironmentVariables" in data:
+    if data.get("ContainerEnvironmentVariables") is not None:
         import capo_sagemaker.types.custom_image_container_environment_variables
 
         out["container_environment_variables"] = (

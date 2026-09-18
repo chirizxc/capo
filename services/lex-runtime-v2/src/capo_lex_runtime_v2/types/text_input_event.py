@@ -34,13 +34,13 @@ def serialize_json(value: TextInputEvent) -> dict:
 
 def deserialize_json(data: dict) -> TextInputEvent:
     out: TextInputEvent = {}  # type: ignore[typeddict-item]
-    if "text" in data:
+    if data.get("text") is not None:
         out["text"] = data["text"]
     else:
         raise DeserializationError("TextInputEvent.text required")
-    if "eventId" in data:
+    if data.get("eventId") is not None:
         out["event_id"] = data["eventId"]
-    if "clientTimestampMillis" in data:
+    if data.get("clientTimestampMillis") is not None:
         out["client_timestamp_millis"] = data["clientTimestampMillis"]
     else:
         out["client_timestamp_millis"] = 0

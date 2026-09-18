@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: DeleteModelRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteModelRequest:
     out: DeleteModelRequest = {}  # type: ignore[typeddict-item]
-    if "modelId" in data:
+    if data.get("modelId") is not None:
         out["model_id"] = data["modelId"]
     else:
         raise DeserializationError("DeleteModelRequest.model_id required")
-    if "modelType" in data:
+    if data.get("modelType") is not None:
         import capo_frauddetector.types.model_type_enum
 
         out["model_type"] = (

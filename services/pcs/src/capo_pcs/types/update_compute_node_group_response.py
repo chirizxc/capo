@@ -30,7 +30,7 @@ def serialize_aws_json_1_0(value: UpdateComputeNodeGroupResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateComputeNodeGroupResponse:
     out: UpdateComputeNodeGroupResponse = {}  # type: ignore[typeddict-item]
-    if "computeNodeGroup" in data:
+    if data.get("computeNodeGroup") is not None:
         import capo_pcs.types.compute_node_group
 
         out["compute_node_group"] = (

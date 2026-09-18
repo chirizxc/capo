@@ -35,14 +35,14 @@ def serialize_json(value: PromotionalEmbeddedImage) -> dict:
 
 def deserialize_json(data: dict) -> PromotionalEmbeddedImage:
     out: PromotionalEmbeddedImage = {}  # type: ignore[typeddict-item]
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
     else:
         raise DeserializationError("PromotionalEmbeddedImage.title required")
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
     else:
         raise DeserializationError("PromotionalEmbeddedImage.url required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

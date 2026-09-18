@@ -41,13 +41,13 @@ def serialize_json(value: SetIdentityPoolConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> SetIdentityPoolConfigurationRequest:
     out: SetIdentityPoolConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "PushSync" in data:
+    if data.get("PushSync") is not None:
         import capo_cognito_sync.types.push_sync
 
         out["push_sync"] = capo_cognito_sync.types.push_sync.deserialize_json(
             data["PushSync"]
         )
-    if "CognitoStreams" in data:
+    if data.get("CognitoStreams") is not None:
         import capo_cognito_sync.types.cognito_streams
 
         out["cognito_streams"] = (

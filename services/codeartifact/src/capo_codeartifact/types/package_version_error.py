@@ -36,7 +36,7 @@ def serialize_json(value: PackageVersionError) -> dict:
 
 def deserialize_json(data: dict) -> PackageVersionError:
     out: PackageVersionError = {}  # type: ignore[typeddict-item]
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         import capo_codeartifact.types.package_version_error_code
 
         out["error_code"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> PackageVersionError:
                 data["errorCode"]
             )
         )
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     return out

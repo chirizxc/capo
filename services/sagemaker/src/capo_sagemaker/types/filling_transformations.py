@@ -29,6 +29,8 @@ def serialize_aws_json_1_1(input_to_serialize: FillingTransformations) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> FillingTransformations:
     out: FillingTransformations = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_sagemaker.types.filling_transformation_map
 
         out[key] = (

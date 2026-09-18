@@ -117,7 +117,7 @@ def serialize_json(value: LambdaExecutionParameters) -> dict:
 
 def deserialize_json(data: dict) -> LambdaExecutionParameters:
     out: LambdaExecutionParameters = {}  # type: ignore[typeddict-item]
-    if "eventSources" in data:
+    if data.get("eventSources") is not None:
         import capo_greengrassv2.types.lambda_event_source_list
 
         out["event_sources"] = (
@@ -125,19 +125,19 @@ def deserialize_json(data: dict) -> LambdaExecutionParameters:
                 data["eventSources"]
             )
         )
-    if "maxQueueSize" in data:
+    if data.get("maxQueueSize") is not None:
         out["max_queue_size"] = data["maxQueueSize"]
-    if "maxInstancesCount" in data:
+    if data.get("maxInstancesCount") is not None:
         out["max_instances_count"] = data["maxInstancesCount"]
-    if "maxIdleTimeInSeconds" in data:
+    if data.get("maxIdleTimeInSeconds") is not None:
         out["max_idle_time_in_seconds"] = data["maxIdleTimeInSeconds"]
-    if "timeoutInSeconds" in data:
+    if data.get("timeoutInSeconds") is not None:
         out["timeout_in_seconds"] = data["timeoutInSeconds"]
-    if "statusTimeoutInSeconds" in data:
+    if data.get("statusTimeoutInSeconds") is not None:
         out["status_timeout_in_seconds"] = data["statusTimeoutInSeconds"]
-    if "pinned" in data:
+    if data.get("pinned") is not None:
         out["pinned"] = data["pinned"]
-    if "inputPayloadEncodingType" in data:
+    if data.get("inputPayloadEncodingType") is not None:
         import capo_greengrassv2.types.lambda_input_payload_encoding_type
 
         out["input_payload_encoding_type"] = (
@@ -145,7 +145,7 @@ def deserialize_json(data: dict) -> LambdaExecutionParameters:
                 data["inputPayloadEncodingType"]
             )
         )
-    if "execArgs" in data:
+    if data.get("execArgs") is not None:
         import capo_greengrassv2.types.lambda_exec_args_list
 
         out["exec_args"] = (
@@ -153,7 +153,7 @@ def deserialize_json(data: dict) -> LambdaExecutionParameters:
                 data["execArgs"]
             )
         )
-    if "environmentVariables" in data:
+    if data.get("environmentVariables") is not None:
         import capo_greengrassv2.types.lambda_environment_variables
 
         out["environment_variables"] = (
@@ -161,7 +161,7 @@ def deserialize_json(data: dict) -> LambdaExecutionParameters:
                 data["environmentVariables"]
             )
         )
-    if "linuxProcessParams" in data:
+    if data.get("linuxProcessParams") is not None:
         import capo_greengrassv2.types.lambda_linux_process_params
 
         out["linux_process_params"] = (

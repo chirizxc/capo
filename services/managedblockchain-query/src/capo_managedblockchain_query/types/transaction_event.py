@@ -94,41 +94,41 @@ def serialize_json(value: TransactionEvent) -> dict:
 
 def deserialize_json(data: dict) -> TransactionEvent:
     out: TransactionEvent = {}  # type: ignore[typeddict-item]
-    if "network" in data:
+    if data.get("network") is not None:
         out["network"] = data["network"]
     else:
         raise DeserializationError("TransactionEvent.network required")
-    if "transactionHash" in data:
+    if data.get("transactionHash") is not None:
         out["transaction_hash"] = data["transactionHash"]
     else:
         raise DeserializationError("TransactionEvent.transaction_hash required")
-    if "eventType" in data:
+    if data.get("eventType") is not None:
         out["event_type"] = data["eventType"]
     else:
         raise DeserializationError("TransactionEvent.event_type required")
-    if "from" in data:
+    if data.get("from") is not None:
         out["from"] = data["from"]
-    if "to" in data:
+    if data.get("to") is not None:
         out["to"] = data["to"]
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
-    if "contractAddress" in data:
+    if data.get("contractAddress") is not None:
         out["contract_address"] = data["contractAddress"]
-    if "tokenId" in data:
+    if data.get("tokenId") is not None:
         out["token_id"] = data["tokenId"]
-    if "transactionId" in data:
+    if data.get("transactionId") is not None:
         out["transaction_id"] = data["transactionId"]
-    if "voutIndex" in data:
+    if data.get("voutIndex") is not None:
         out["vout_index"] = data["voutIndex"]
-    if "voutSpent" in data:
+    if data.get("voutSpent") is not None:
         out["vout_spent"] = data["voutSpent"]
-    if "spentVoutTransactionId" in data:
+    if data.get("spentVoutTransactionId") is not None:
         out["spent_vout_transaction_id"] = data["spentVoutTransactionId"]
-    if "spentVoutTransactionHash" in data:
+    if data.get("spentVoutTransactionHash") is not None:
         out["spent_vout_transaction_hash"] = data["spentVoutTransactionHash"]
-    if "spentVoutIndex" in data:
+    if data.get("spentVoutIndex") is not None:
         out["spent_vout_index"] = data["spentVoutIndex"]
-    if "blockchainInstant" in data:
+    if data.get("blockchainInstant") is not None:
         import capo_managedblockchain_query.types.blockchain_instant
 
         out["blockchain_instant"] = (
@@ -136,6 +136,6 @@ def deserialize_json(data: dict) -> TransactionEvent:
                 data["blockchainInstant"]
             )
         )
-    if "confirmationStatus" in data:
+    if data.get("confirmationStatus") is not None:
         out["confirmation_status"] = data["confirmationStatus"]
     return out

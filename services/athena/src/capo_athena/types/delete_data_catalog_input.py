@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: DeleteDataCatalogInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteDataCatalogInput:
     out: DeleteDataCatalogInput = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("DeleteDataCatalogInput.name required")
-    if "DeleteCatalogOnly" in data:
+    if data.get("DeleteCatalogOnly") is not None:
         out["delete_catalog_only"] = data["DeleteCatalogOnly"]
     else:
         out["delete_catalog_only"] = False

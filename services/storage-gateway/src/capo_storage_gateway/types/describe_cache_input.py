@@ -23,7 +23,7 @@ def serialize_aws_json_1_1(value: DescribeCacheInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeCacheInput:
     out: DescribeCacheInput = {}  # type: ignore[typeddict-item]
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
     else:
         raise DeserializationError("DescribeCacheInput.gateway_arn required")

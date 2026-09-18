@@ -52,17 +52,17 @@ def serialize_aws_json_1_0(value: AccountEnrollmentStatus) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AccountEnrollmentStatus:
     out: AccountEnrollmentStatus = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_compute_optimizer.types.status
 
         out["status"] = capo_compute_optimizer.types.status.deserialize_aws_json_1_0(
             data["status"]
         )
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "lastUpdatedTimestamp" in data:
+    if data.get("lastUpdatedTimestamp") is not None:
         import capo_compute_optimizer.types.last_updated_timestamp
 
         out["last_updated_timestamp"] = (

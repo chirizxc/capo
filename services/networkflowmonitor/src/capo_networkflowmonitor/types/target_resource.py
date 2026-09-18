@@ -36,7 +36,7 @@ def serialize_json(value: TargetResource) -> dict:
 
 def deserialize_json(data: dict) -> TargetResource:
     out: TargetResource = {}  # type: ignore[typeddict-item]
-    if "targetIdentifier" in data:
+    if data.get("targetIdentifier") is not None:
         import capo_networkflowmonitor.types.target_identifier
 
         out["target_identifier"] = (
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> TargetResource:
         )
     else:
         raise DeserializationError("TargetResource.target_identifier required")
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
     else:
         raise DeserializationError("TargetResource.region required")

@@ -59,15 +59,15 @@ def serialize_aws_json_1_1(value: CreateForecastRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateForecastRequest:
     out: CreateForecastRequest = {}  # type: ignore[typeddict-item]
-    if "ForecastName" in data:
+    if data.get("ForecastName") is not None:
         out["forecast_name"] = data["ForecastName"]
     else:
         raise DeserializationError("CreateForecastRequest.forecast_name required")
-    if "PredictorArn" in data:
+    if data.get("PredictorArn") is not None:
         out["predictor_arn"] = data["PredictorArn"]
     else:
         raise DeserializationError("CreateForecastRequest.predictor_arn required")
-    if "ForecastTypes" in data:
+    if data.get("ForecastTypes") is not None:
         import capo_forecast.types.forecast_types
 
         out["forecast_types"] = (
@@ -75,11 +75,11 @@ def deserialize_aws_json_1_1(data: dict) -> CreateForecastRequest:
                 data["ForecastTypes"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_forecast.types.tags
 
         out["tags"] = capo_forecast.types.tags.deserialize_aws_json_1_1(data["Tags"])
-    if "TimeSeriesSelector" in data:
+    if data.get("TimeSeriesSelector") is not None:
         import capo_forecast.types.time_series_selector
 
         out["time_series_selector"] = (

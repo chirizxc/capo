@@ -40,7 +40,7 @@ def serialize_aws_json_1_0(value: FraudRiskDetails) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> FraudRiskDetails:
     out: FraudRiskDetails = {}  # type: ignore[typeddict-item]
-    if "KnownFraudsterRisk" in data:
+    if data.get("KnownFraudsterRisk") is not None:
         import capo_voice_id.types.known_fraudster_risk
 
         out["known_fraudster_risk"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_0(data: dict) -> FraudRiskDetails:
         )
     else:
         raise DeserializationError("FraudRiskDetails.known_fraudster_risk required")
-    if "VoiceSpoofingRisk" in data:
+    if data.get("VoiceSpoofingRisk") is not None:
         import capo_voice_id.types.voice_spoofing_risk
 
         out["voice_spoofing_risk"] = (

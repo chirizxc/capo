@@ -27,7 +27,7 @@ def serialize_json(value: GetDomainPermissionsPolicyResult) -> dict:
 
 def deserialize_json(data: dict) -> GetDomainPermissionsPolicyResult:
     out: GetDomainPermissionsPolicyResult = {}  # type: ignore[typeddict-item]
-    if "policy" in data:
+    if data.get("policy") is not None:
         import capo_codeartifact.types.resource_policy
 
         out["policy"] = capo_codeartifact.types.resource_policy.deserialize_json(

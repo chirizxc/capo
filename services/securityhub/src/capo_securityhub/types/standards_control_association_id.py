@@ -29,8 +29,8 @@ def serialize_json(value: StandardsControlAssociationId) -> dict:
 
 def deserialize_json(data: dict) -> StandardsControlAssociationId:
     out: StandardsControlAssociationId = {}  # type: ignore[typeddict-item]
-    if "SecurityControlId" in data:
+    if data.get("SecurityControlId") is not None:
         out["security_control_id"] = data["SecurityControlId"]
-    if "StandardsArn" in data:
+    if data.get("StandardsArn") is not None:
         out["standards_arn"] = data["StandardsArn"]
     return out

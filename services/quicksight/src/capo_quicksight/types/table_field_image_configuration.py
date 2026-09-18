@@ -31,7 +31,7 @@ def serialize_json(value: TableFieldImageConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> TableFieldImageConfiguration:
     out: TableFieldImageConfiguration = {}  # type: ignore[typeddict-item]
-    if "SizingOptions" in data:
+    if data.get("SizingOptions") is not None:
         import capo_quicksight.types.table_cell_image_sizing_configuration
 
         out["sizing_options"] = (

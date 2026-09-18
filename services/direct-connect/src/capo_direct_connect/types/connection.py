@@ -182,13 +182,13 @@ def serialize_aws_json_1_1(value: Connection) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Connection:
     out: Connection = {}  # type: ignore[typeddict-item]
-    if "ownerAccount" in data:
+    if data.get("ownerAccount") is not None:
         out["owner_account"] = data["ownerAccount"]
-    if "connectionId" in data:
+    if data.get("connectionId") is not None:
         out["connection_id"] = data["connectionId"]
-    if "connectionName" in data:
+    if data.get("connectionName") is not None:
         out["connection_name"] = data["connectionName"]
-    if "connectionState" in data:
+    if data.get("connectionState") is not None:
         import capo_direct_connect.types.connection_state
 
         out["connection_state"] = (
@@ -196,19 +196,19 @@ def deserialize_aws_json_1_1(data: dict) -> Connection:
                 data["connectionState"]
             )
         )
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
-    if "location" in data:
+    if data.get("location") is not None:
         out["location"] = data["location"]
-    if "bandwidth" in data:
+    if data.get("bandwidth") is not None:
         out["bandwidth"] = data["bandwidth"]
-    if "vlan" in data:
+    if data.get("vlan") is not None:
         out["vlan"] = data["vlan"]
     else:
         out["vlan"] = 0
-    if "partnerName" in data:
+    if data.get("partnerName") is not None:
         out["partner_name"] = data["partnerName"]
-    if "loaIssueTime" in data:
+    if data.get("loaIssueTime") is not None:
         import capo_direct_connect.types.loa_issue_time
 
         out["loa_issue_time"] = (
@@ -216,17 +216,17 @@ def deserialize_aws_json_1_1(data: dict) -> Connection:
                 data["loaIssueTime"]
             )
         )
-    if "lagId" in data:
+    if data.get("lagId") is not None:
         out["lag_id"] = data["lagId"]
-    if "awsDevice" in data:
+    if data.get("awsDevice") is not None:
         out["aws_device"] = data["awsDevice"]
-    if "jumboFrameCapable" in data:
+    if data.get("jumboFrameCapable") is not None:
         out["jumbo_frame_capable"] = data["jumboFrameCapable"]
-    if "awsDeviceV2" in data:
+    if data.get("awsDeviceV2") is not None:
         out["aws_device_v2"] = data["awsDeviceV2"]
-    if "awsLogicalDeviceId" in data:
+    if data.get("awsLogicalDeviceId") is not None:
         out["aws_logical_device_id"] = data["awsLogicalDeviceId"]
-    if "hasLogicalRedundancy" in data:
+    if data.get("hasLogicalRedundancy") is not None:
         import capo_direct_connect.types.has_logical_redundancy
 
         out["has_logical_redundancy"] = (
@@ -234,21 +234,21 @@ def deserialize_aws_json_1_1(data: dict) -> Connection:
                 data["hasLogicalRedundancy"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_direct_connect.types.tag_list
 
         out["tags"] = capo_direct_connect.types.tag_list.deserialize_aws_json_1_1(
             data["tags"]
         )
-    if "providerName" in data:
+    if data.get("providerName") is not None:
         out["provider_name"] = data["providerName"]
-    if "macSecCapable" in data:
+    if data.get("macSecCapable") is not None:
         out["mac_sec_capable"] = data["macSecCapable"]
-    if "portEncryptionStatus" in data:
+    if data.get("portEncryptionStatus") is not None:
         out["port_encryption_status"] = data["portEncryptionStatus"]
-    if "encryptionMode" in data:
+    if data.get("encryptionMode") is not None:
         out["encryption_mode"] = data["encryptionMode"]
-    if "macSecKeys" in data:
+    if data.get("macSecKeys") is not None:
         import capo_direct_connect.types.mac_sec_key_list
 
         out["mac_sec_keys"] = (
@@ -256,7 +256,7 @@ def deserialize_aws_json_1_1(data: dict) -> Connection:
                 data["macSecKeys"]
             )
         )
-    if "partnerInterconnectMacSecCapable" in data:
+    if data.get("partnerInterconnectMacSecCapable") is not None:
         out["partner_interconnect_mac_sec_capable"] = data[
             "partnerInterconnectMacSecCapable"
         ]

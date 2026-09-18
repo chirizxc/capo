@@ -26,9 +26,9 @@ def serialize_json(value: IsolineGranularityOptions) -> dict:
 
 def deserialize_json(data: dict) -> IsolineGranularityOptions:
     out: IsolineGranularityOptions = {}  # type: ignore[typeddict-item]
-    if "MaxPoints" in data:
+    if data.get("MaxPoints") is not None:
         out["max_points"] = data["MaxPoints"]
-    if "MaxResolution" in data:
+    if data.get("MaxResolution") is not None:
         out["max_resolution"] = data["MaxResolution"]
     else:
         out["max_resolution"] = 0

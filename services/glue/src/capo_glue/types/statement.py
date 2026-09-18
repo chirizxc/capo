@@ -48,7 +48,15 @@ def serialize_aws_json_1_1(value: Statement) -> dict:
         out["Output"] = capo_glue.types.statement_output.serialize_aws_json_1_1(
             value["output"]
         )
-    out["Progress"] = value.get("progress", 0)
+    out["Progress"] = (
+        "NaN"
+        if value.get("progress", 0) != value.get("progress", 0)
+        else "Infinity"
+        if value.get("progress", 0) == float("inf")
+        else "-Infinity"
+        if value.get("progress", 0) == float("-inf")
+        else value.get("progress", 0)
+    )
     out["StartedOn"] = value.get("started_on", 0)
     out["CompletedOn"] = value.get("completed_on", 0)
     return out
@@ -56,33 +64,33 @@ def serialize_aws_json_1_1(value: Statement) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Statement:
     out: Statement = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         out["id"] = 0
-    if "Code" in data:
+    if data.get("Code") is not None:
         out["code"] = data["Code"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_glue.types.statement_state
 
         out["state"] = capo_glue.types.statement_state.deserialize_aws_json_1_1(
             data["State"]
         )
-    if "Output" in data:
+    if data.get("Output") is not None:
         import capo_glue.types.statement_output
 
         out["output"] = capo_glue.types.statement_output.deserialize_aws_json_1_1(
             data["Output"]
         )
-    if "Progress" in data:
-        out["progress"] = data["Progress"]
+    if data.get("Progress") is not None:
+        out["progress"] = float(data["Progress"])
     else:
         out["progress"] = 0
-    if "StartedOn" in data:
+    if data.get("StartedOn") is not None:
         out["started_on"] = data["StartedOn"]
     else:
         out["started_on"] = 0
-    if "CompletedOn" in data:
+    if data.get("CompletedOn") is not None:
         out["completed_on"] = data["CompletedOn"]
     else:
         out["completed_on"] = 0

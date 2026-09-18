@@ -43,15 +43,15 @@ def serialize_json(value: AssociateMergedGraphqlApiRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociateMergedGraphqlApiRequest:
     out: AssociateMergedGraphqlApiRequest = {}  # type: ignore[typeddict-item]
-    if "mergedApiIdentifier" in data:
+    if data.get("mergedApiIdentifier") is not None:
         out["merged_api_identifier"] = data["mergedApiIdentifier"]
     else:
         raise DeserializationError(
             "AssociateMergedGraphqlApiRequest.merged_api_identifier required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "sourceApiAssociationConfig" in data:
+    if data.get("sourceApiAssociationConfig") is not None:
         import capo_appsync.types.source_api_association_config
 
         out["source_api_association_config"] = (

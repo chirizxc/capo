@@ -38,9 +38,9 @@ def serialize_aws_json_1_1(value: MetricsConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MetricsConfig:
     out: MetricsConfig = {}  # type: ignore[typeddict-item]
-    if "EnableEnhancedMetrics" in data:
+    if data.get("EnableEnhancedMetrics") is not None:
         out["enable_enhanced_metrics"] = data["EnableEnhancedMetrics"]
-    if "MetricPublishFrequencyInSeconds" in data:
+    if data.get("MetricPublishFrequencyInSeconds") is not None:
         import capo_sagemaker.types.metric_publish_frequency_in_seconds
 
         out["metric_publish_frequency_in_seconds"] = (

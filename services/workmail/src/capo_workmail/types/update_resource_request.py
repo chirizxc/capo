@@ -67,17 +67,17 @@ def serialize_aws_json_1_1(value: UpdateResourceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateResourceRequest:
     out: UpdateResourceRequest = {}  # type: ignore[typeddict-item]
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
     else:
         raise DeserializationError("UpdateResourceRequest.organization_id required")
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     else:
         raise DeserializationError("UpdateResourceRequest.resource_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "BookingOptions" in data:
+    if data.get("BookingOptions") is not None:
         import capo_workmail.types.booking_options
 
         out["booking_options"] = (
@@ -85,14 +85,14 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateResourceRequest:
                 data["BookingOptions"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_workmail.types.resource_type
 
         out["type"] = capo_workmail.types.resource_type.deserialize_aws_json_1_1(
             data["Type"]
         )
-    if "HiddenFromGlobalAddressList" in data:
+    if data.get("HiddenFromGlobalAddressList") is not None:
         out["hidden_from_global_address_list"] = data["HiddenFromGlobalAddressList"]
     return out

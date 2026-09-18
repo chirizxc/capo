@@ -64,19 +64,19 @@ def serialize_aws_json_1_1(value: EventTracker) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EventTracker:
     out: EventTracker = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "eventTrackerArn" in data:
+    if data.get("eventTrackerArn") is not None:
         out["event_tracker_arn"] = data["eventTrackerArn"]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "trackingId" in data:
+    if data.get("trackingId") is not None:
         out["tracking_id"] = data["trackingId"]
-    if "datasetGroupArn" in data:
+    if data.get("datasetGroupArn") is not None:
         out["dataset_group_arn"] = data["datasetGroupArn"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_personalize.types.date
 
         out["creation_date_time"] = (
@@ -84,7 +84,7 @@ def deserialize_aws_json_1_1(data: dict) -> EventTracker:
                 data["creationDateTime"]
             )
         )
-    if "lastUpdatedDateTime" in data:
+    if data.get("lastUpdatedDateTime") is not None:
         import capo_personalize.types.date
 
         out["last_updated_date_time"] = (

@@ -43,7 +43,7 @@ def serialize_aws_json_1_1(value: PullRequestBuildPolicy) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PullRequestBuildPolicy:
     out: PullRequestBuildPolicy = {}  # type: ignore[typeddict-item]
-    if "requiresCommentApproval" in data:
+    if data.get("requiresCommentApproval") is not None:
         import capo_codebuild.types.pull_request_build_comment_approval
 
         out["requires_comment_approval"] = (
@@ -55,7 +55,7 @@ def deserialize_aws_json_1_1(data: dict) -> PullRequestBuildPolicy:
         raise DeserializationError(
             "PullRequestBuildPolicy.requires_comment_approval required"
         )
-    if "approverRoles" in data:
+    if data.get("approverRoles") is not None:
         import capo_codebuild.types.pull_request_build_approver_roles
 
         out["approver_roles"] = (

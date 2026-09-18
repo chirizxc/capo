@@ -28,13 +28,13 @@ def serialize_aws_json_1_1(value: GetAWSDefaultServiceQuotaRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetAWSDefaultServiceQuotaRequest:
     out: GetAWSDefaultServiceQuotaRequest = {}  # type: ignore[typeddict-item]
-    if "ServiceCode" in data:
+    if data.get("ServiceCode") is not None:
         out["service_code"] = data["ServiceCode"]
     else:
         raise DeserializationError(
             "GetAWSDefaultServiceQuotaRequest.service_code required"
         )
-    if "QuotaCode" in data:
+    if data.get("QuotaCode") is not None:
         out["quota_code"] = data["QuotaCode"]
     else:
         raise DeserializationError(

@@ -32,7 +32,7 @@ def serialize_json(value: RedshiftScopeUnion) -> dict:
 
 
 def deserialize_json(data: dict) -> RedshiftScopeUnion:
-    if "RedshiftConnect" in data:
+    if data.get("RedshiftConnect") is not None:
         import capo_lakeformation.types.redshift_connect
 
         return {

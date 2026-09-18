@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: ResultSetMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResultSetMetadata:
     out: ResultSetMetadata = {}  # type: ignore[typeddict-item]
-    if "ColumnInfo" in data:
+    if data.get("ColumnInfo") is not None:
         import capo_athena.types.column_info_list
 
         out["column_info"] = (

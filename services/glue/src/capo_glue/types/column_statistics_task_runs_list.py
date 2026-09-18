@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ColumnStatisticsTaskRunsList:
 
     out: ColumnStatisticsTaskRunsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_glue.types.column_statistics_task_run.deserialize_aws_json_1_1(item)
         )

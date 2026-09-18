@@ -60,11 +60,11 @@ def serialize_aws_json_1_0(value: DescribeLabelGroupResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeLabelGroupResponse:
     out: DescribeLabelGroupResponse = {}  # type: ignore[typeddict-item]
-    if "LabelGroupName" in data:
+    if data.get("LabelGroupName") is not None:
         out["label_group_name"] = data["LabelGroupName"]
-    if "LabelGroupArn" in data:
+    if data.get("LabelGroupArn") is not None:
         out["label_group_arn"] = data["LabelGroupArn"]
-    if "FaultCodes" in data:
+    if data.get("FaultCodes") is not None:
         import capo_lookoutequipment.types.fault_codes
 
         out["fault_codes"] = (
@@ -72,7 +72,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeLabelGroupResponse:
                 data["FaultCodes"]
             )
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["created_at"] = (
@@ -80,7 +80,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeLabelGroupResponse:
                 data["CreatedAt"]
             )
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["updated_at"] = (

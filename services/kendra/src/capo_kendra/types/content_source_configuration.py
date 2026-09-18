@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: ContentSourceConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ContentSourceConfiguration:
     out: ContentSourceConfiguration = {}  # type: ignore[typeddict-item]
-    if "DataSourceIds" in data:
+    if data.get("DataSourceIds") is not None:
         import capo_kendra.types.data_source_id_list
 
         out["data_source_ids"] = (
@@ -52,13 +52,13 @@ def deserialize_aws_json_1_1(data: dict) -> ContentSourceConfiguration:
                 data["DataSourceIds"]
             )
         )
-    if "FaqIds" in data:
+    if data.get("FaqIds") is not None:
         import capo_kendra.types.faq_ids_list
 
         out["faq_ids"] = capo_kendra.types.faq_ids_list.deserialize_aws_json_1_1(
             data["FaqIds"]
         )
-    if "DirectPutContent" in data:
+    if data.get("DirectPutContent") is not None:
         out["direct_put_content"] = data["DirectPutContent"]
     else:
         out["direct_put_content"] = False

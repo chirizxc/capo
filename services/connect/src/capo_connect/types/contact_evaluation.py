@@ -65,32 +65,32 @@ def serialize_json(value: ContactEvaluation) -> dict:
 
 def deserialize_json(data: dict) -> ContactEvaluation:
     out: ContactEvaluation = {}  # type: ignore[typeddict-item]
-    if "FormId" in data:
+    if data.get("FormId") is not None:
         out["form_id"] = data["FormId"]
-    if "EvaluationArn" in data:
+    if data.get("EvaluationArn") is not None:
         out["evaluation_arn"] = data["EvaluationArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_connect.types.status
 
         out["status"] = capo_connect.types.status.deserialize_json(data["Status"])
-    if "StartTimestamp" in data:
+    if data.get("StartTimestamp") is not None:
         import capo_connect.types.timestamp
 
         out["start_timestamp"] = capo_connect.types.timestamp.deserialize_json(
             data["StartTimestamp"]
         )
-    if "EndTimestamp" in data:
+    if data.get("EndTimestamp") is not None:
         import capo_connect.types.timestamp
 
         out["end_timestamp"] = capo_connect.types.timestamp.deserialize_json(
             data["EndTimestamp"]
         )
-    if "DeleteTimestamp" in data:
+    if data.get("DeleteTimestamp") is not None:
         import capo_connect.types.timestamp
 
         out["delete_timestamp"] = capo_connect.types.timestamp.deserialize_json(
             data["DeleteTimestamp"]
         )
-    if "ExportLocation" in data:
+    if data.get("ExportLocation") is not None:
         out["export_location"] = data["ExportLocation"]
     return out

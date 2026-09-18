@@ -35,13 +35,13 @@ def serialize_aws_json_1_1(value: TimeRange) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TimeRange:
     out: TimeRange = {}  # type: ignore[typeddict-item]
-    if "FromInclusive" in data:
+    if data.get("FromInclusive") is not None:
         import capo_shield.types.timestamp
 
         out["from_inclusive"] = capo_shield.types.timestamp.deserialize_aws_json_1_1(
             data["FromInclusive"]
         )
-    if "ToExclusive" in data:
+    if data.get("ToExclusive") is not None:
         import capo_shield.types.timestamp
 
         out["to_exclusive"] = capo_shield.types.timestamp.deserialize_aws_json_1_1(

@@ -31,7 +31,7 @@ def serialize_json(value: SpeechModelConfig) -> dict:
 
 def deserialize_json(data: dict) -> SpeechModelConfig:
     out: SpeechModelConfig = {}  # type: ignore[typeddict-item]
-    if "deepgramConfig" in data:
+    if data.get("deepgramConfig") is not None:
         import capo_lex_models_v2.types.deepgram_speech_model_config
 
         out["deepgram_config"] = (

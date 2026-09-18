@@ -37,15 +37,18 @@ class ClusterAlreadyExistsFault(ServiceError):
 
     code: str | None = "ClusterAlreadyExistsFault"
 
-    def __init__(self, data: ClusterAlreadyExistsFault_):
+    def __init__(self, data: ClusterAlreadyExistsFault_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ClusterAlreadyExistsFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "ClusterAlreadyExistsFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "ClusterAlreadyExistsFault":
+        return cls(deserialize_query(el), message)

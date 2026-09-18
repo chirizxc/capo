@@ -14,6 +14,9 @@ UserList: TypeAlias = list["capo_elasticache.types.user.User"]
 def serialize_query(value: UserList, pairs: list[tuple[str, str]], prefix: str) -> None:
     import capo_elasticache.types.user
 
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         capo_elasticache.types.user.serialize_query(item, pairs, f"{prefix}.member.{n}")
 
@@ -32,6 +35,9 @@ def serialize_query_flat(
 ) -> None:
     import capo_elasticache.types.user
 
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         capo_elasticache.types.user.serialize_query(item, pairs, f"{prefix}.{n}")
 

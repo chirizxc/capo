@@ -92,8 +92,9 @@ class Solution:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.list_solutions_request.ListSolutionsRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
+        input_: capo_partnercentral_selling.types.list_solutions_request.ListSolutionsRequest = {
+            "catalog": catalog
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -112,6 +113,7 @@ class Solution:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -177,8 +179,9 @@ class AsyncSolution:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.list_solutions_request.ListSolutionsRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
+        input_: capo_partnercentral_selling.types.list_solutions_request.ListSolutionsRequest = {
+            "catalog": catalog
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -197,4 +200,5 @@ class AsyncSolution:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

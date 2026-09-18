@@ -24,7 +24,7 @@ def serialize_json(value: FirehoseLogDestinationParameters) -> dict:
 
 def deserialize_json(data: dict) -> FirehoseLogDestinationParameters:
     out: FirehoseLogDestinationParameters = {}  # type: ignore[typeddict-item]
-    if "DeliveryStreamArn" in data:
+    if data.get("DeliveryStreamArn") is not None:
         out["delivery_stream_arn"] = data["DeliveryStreamArn"]
     else:
         raise DeserializationError(

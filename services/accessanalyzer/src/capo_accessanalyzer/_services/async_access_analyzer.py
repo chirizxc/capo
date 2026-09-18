@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.accessanalyzer#AccessAnalyzer``."""
 
+import uuid
 import warnings
 from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -37,6 +38,7 @@ if TYPE_CHECKING:
     import capo_accessanalyzer.types.access_preview_id
     import capo_accessanalyzer.types.analyzer_arn
     import capo_accessanalyzer.types.analyzer_configuration
+    import capo_accessanalyzer.types.analyzer_name
     import capo_accessanalyzer.types.apply_archive_rule_request
     import capo_accessanalyzer.types.cancel_policy_generation_request
     import capo_accessanalyzer.types.cancel_policy_generation_response
@@ -50,8 +52,14 @@ if TYPE_CHECKING:
     import capo_accessanalyzer.types.configurations_map
     import capo_accessanalyzer.types.create_access_preview_request
     import capo_accessanalyzer.types.create_access_preview_response
+    import capo_accessanalyzer.types.create_analyzer_request
+    import capo_accessanalyzer.types.create_analyzer_response
+    import capo_accessanalyzer.types.create_archive_rule_request
     import capo_accessanalyzer.types.create_service_linked_analyzer_request
     import capo_accessanalyzer.types.create_service_linked_analyzer_response
+    import capo_accessanalyzer.types.delete_analyzer_request
+    import capo_accessanalyzer.types.delete_archive_rule_request
+    import capo_accessanalyzer.types.delete_service_linked_analyzer_request
     import capo_accessanalyzer.types.filter_criteria_map
     import capo_accessanalyzer.types.finding_id
     import capo_accessanalyzer.types.finding_id_list
@@ -61,6 +69,10 @@ if TYPE_CHECKING:
     import capo_accessanalyzer.types.get_access_preview_response
     import capo_accessanalyzer.types.get_analyzed_resource_request
     import capo_accessanalyzer.types.get_analyzed_resource_response
+    import capo_accessanalyzer.types.get_analyzer_request
+    import capo_accessanalyzer.types.get_analyzer_response
+    import capo_accessanalyzer.types.get_archive_rule_request
+    import capo_accessanalyzer.types.get_archive_rule_response
     import capo_accessanalyzer.types.get_finding_recommendation_request
     import capo_accessanalyzer.types.get_finding_recommendation_response
     import capo_accessanalyzer.types.get_finding_request
@@ -79,6 +91,10 @@ if TYPE_CHECKING:
     import capo_accessanalyzer.types.list_access_previews_response
     import capo_accessanalyzer.types.list_analyzed_resources_request
     import capo_accessanalyzer.types.list_analyzed_resources_response
+    import capo_accessanalyzer.types.list_analyzers_request
+    import capo_accessanalyzer.types.list_analyzers_response
+    import capo_accessanalyzer.types.list_archive_rules_request
+    import capo_accessanalyzer.types.list_archive_rules_response
     import capo_accessanalyzer.types.list_findings_request
     import capo_accessanalyzer.types.list_findings_response
     import capo_accessanalyzer.types.list_findings_v2_request
@@ -108,6 +124,9 @@ if TYPE_CHECKING:
     import capo_accessanalyzer.types.type
     import capo_accessanalyzer.types.untag_resource_request
     import capo_accessanalyzer.types.untag_resource_response
+    import capo_accessanalyzer.types.update_analyzer_request
+    import capo_accessanalyzer.types.update_analyzer_response
+    import capo_accessanalyzer.types.update_archive_rule_request
     import capo_accessanalyzer.types.update_findings_request
     import capo_accessanalyzer.types.validate_policy_request
     import capo_accessanalyzer.types.validate_policy_resource_type
@@ -248,17 +267,20 @@ class AsyncAccessAnalyzerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_accessanalyzer.types.apply_archive_rule_request.ApplyArchiveRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["analyzer_arn"] = analyzer_arn
-        input_["rule_name"] = rule_name
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_accessanalyzer.types.apply_archive_rule_request.ApplyArchiveRuleRequest = {
+            "analyzer_arn": analyzer_arn,
+            "rule_name": rule_name,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def cancel_policy_generation(
@@ -296,14 +318,16 @@ class AsyncAccessAnalyzerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_accessanalyzer.types.cancel_policy_generation_request.CancelPolicyGenerationRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_accessanalyzer.types.cancel_policy_generation_request.CancelPolicyGenerationRequest = {
+            "job_id": job_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def check_access_not_granted(
@@ -358,16 +382,18 @@ class AsyncAccessAnalyzerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_accessanalyzer.types.check_access_not_granted_request.CheckAccessNotGrantedRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_document"] = policy_document
-        input_["access"] = access
-        input_["policy_type"] = policy_type
+        input_: capo_accessanalyzer.types.check_access_not_granted_request.CheckAccessNotGrantedRequest = {
+            "policy_document": policy_document,
+            "access": access,
+            "policy_type": policy_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def check_no_new_access(
@@ -411,16 +437,18 @@ class AsyncAccessAnalyzerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_accessanalyzer.types.check_no_new_access_request.CheckNoNewAccessRequest = {}  # type: ignore[typeddict-item]
-        input_["new_policy_document"] = new_policy_document
-        input_["existing_policy_document"] = existing_policy_document
-        input_["policy_type"] = policy_type
+        input_: capo_accessanalyzer.types.check_no_new_access_request.CheckNoNewAccessRequest = {
+            "new_policy_document": new_policy_document,
+            "existing_policy_document": existing_policy_document,
+            "policy_type": policy_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def check_no_public_access(
@@ -470,15 +498,17 @@ class AsyncAccessAnalyzerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_accessanalyzer.types.check_no_public_access_request.CheckNoPublicAccessRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_document"] = policy_document
-        input_["resource_type"] = resource_type
+        input_: capo_accessanalyzer.types.check_no_public_access_request.CheckNoPublicAccessRequest = {
+            "policy_document": policy_document,
+            "resource_type": resource_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_access_preview(
@@ -523,17 +553,20 @@ class AsyncAccessAnalyzerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_accessanalyzer.types.create_access_preview_request.CreateAccessPreviewRequest = {}  # type: ignore[typeddict-item]
-        input_["analyzer_arn"] = analyzer_arn
-        input_["configurations"] = configurations
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_accessanalyzer.types.create_access_preview_request.CreateAccessPreviewRequest = {
+            "analyzer_arn": analyzer_arn,
+            "configurations": configurations,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_service_linked_analyzer(
@@ -583,12 +616,14 @@ class AsyncAccessAnalyzerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_accessanalyzer.types.create_service_linked_analyzer_request.CreateServiceLinkedAnalyzerRequest = {}  # type: ignore[typeddict-item]
-        input_["type"] = type
+        input_: capo_accessanalyzer.types.create_service_linked_analyzer_request.CreateServiceLinkedAnalyzerRequest = {
+            "type": type
+        }
         if archive_rules is not None:
             input_["archive_rules"] = archive_rules
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if configuration is not None:
             input_["configuration"] = configuration
 
@@ -597,6 +632,7 @@ class AsyncAccessAnalyzerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def generate_finding_recommendation(
@@ -642,15 +678,17 @@ class AsyncAccessAnalyzerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_accessanalyzer.types.generate_finding_recommendation_request.GenerateFindingRecommendationRequest = {}  # type: ignore[typeddict-item]
-        input_["analyzer_arn"] = analyzer_arn
-        input_["id"] = id
+        input_: capo_accessanalyzer.types.generate_finding_recommendation_request.GenerateFindingRecommendationRequest = {
+            "analyzer_arn": analyzer_arn,
+            "id": id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_access_preview(
@@ -693,15 +731,17 @@ class AsyncAccessAnalyzerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_accessanalyzer.types.get_access_preview_request.GetAccessPreviewRequest = {}  # type: ignore[typeddict-item]
-        input_["access_preview_id"] = access_preview_id
-        input_["analyzer_arn"] = analyzer_arn
+        input_: capo_accessanalyzer.types.get_access_preview_request.GetAccessPreviewRequest = {
+            "access_preview_id": access_preview_id,
+            "analyzer_arn": analyzer_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_analyzed_resource(
@@ -742,15 +782,17 @@ class AsyncAccessAnalyzerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_accessanalyzer.types.get_analyzed_resource_request.GetAnalyzedResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["analyzer_arn"] = analyzer_arn
-        input_["resource_arn"] = resource_arn
+        input_: capo_accessanalyzer.types.get_analyzed_resource_request.GetAnalyzedResourceRequest = {
+            "analyzer_arn": analyzer_arn,
+            "resource_arn": resource_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_finding(
@@ -791,15 +833,17 @@ class AsyncAccessAnalyzerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_accessanalyzer.types.get_finding_request.GetFindingRequest = {}  # type: ignore[typeddict-item]
-        input_["analyzer_arn"] = analyzer_arn
-        input_["id"] = id
+        input_: capo_accessanalyzer.types.get_finding_request.GetFindingRequest = {
+            "analyzer_arn": analyzer_arn,
+            "id": id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_finding_recommendation(
@@ -858,9 +902,10 @@ class AsyncAccessAnalyzerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_accessanalyzer.types.get_finding_recommendation_request.GetFindingRecommendationRequest = {}  # type: ignore[typeddict-item]
-        input_["analyzer_arn"] = analyzer_arn
-        input_["id"] = id
+        input_: capo_accessanalyzer.types.get_finding_recommendation_request.GetFindingRecommendationRequest = {
+            "analyzer_arn": analyzer_arn,
+            "id": id,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -871,6 +916,7 @@ class AsyncAccessAnalyzerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_get_finding_recommendation(
@@ -934,14 +980,16 @@ class AsyncAccessAnalyzerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_accessanalyzer.types.get_findings_statistics_request.GetFindingsStatisticsRequest = {}  # type: ignore[typeddict-item]
-        input_["analyzer_arn"] = analyzer_arn
+        input_: capo_accessanalyzer.types.get_findings_statistics_request.GetFindingsStatisticsRequest = {
+            "analyzer_arn": analyzer_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_finding_v2(
@@ -986,9 +1034,10 @@ class AsyncAccessAnalyzerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_accessanalyzer.types.get_finding_v2_request.GetFindingV2Request = {}  # type: ignore[typeddict-item]
-        input_["analyzer_arn"] = analyzer_arn
-        input_["id"] = id
+        input_: capo_accessanalyzer.types.get_finding_v2_request.GetFindingV2Request = {
+            "analyzer_arn": analyzer_arn,
+            "id": id,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -999,6 +1048,7 @@ class AsyncAccessAnalyzerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_generated_policy(
@@ -1040,8 +1090,9 @@ class AsyncAccessAnalyzerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_accessanalyzer.types.get_generated_policy_request.GetGeneratedPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_accessanalyzer.types.get_generated_policy_request.GetGeneratedPolicyRequest = {
+            "job_id": job_id
+        }
         if include_resource_placeholders is not None:
             input_["include_resource_placeholders"] = include_resource_placeholders
         if include_service_level_template is not None:
@@ -1052,6 +1103,7 @@ class AsyncAccessAnalyzerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_access_preview_findings(
@@ -1101,9 +1153,10 @@ class AsyncAccessAnalyzerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_accessanalyzer.types.list_access_preview_findings_request.ListAccessPreviewFindingsRequest = {}  # type: ignore[typeddict-item]
-        input_["access_preview_id"] = access_preview_id
-        input_["analyzer_arn"] = analyzer_arn
+        input_: capo_accessanalyzer.types.list_access_preview_findings_request.ListAccessPreviewFindingsRequest = {
+            "access_preview_id": access_preview_id,
+            "analyzer_arn": analyzer_arn,
+        }
         if filter is not None:
             input_["filter"] = filter
         if next_token is not None:
@@ -1116,6 +1169,7 @@ class AsyncAccessAnalyzerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_access_previews(
@@ -1158,8 +1212,9 @@ class AsyncAccessAnalyzerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_accessanalyzer.types.list_access_previews_request.ListAccessPreviewsRequest = {}  # type: ignore[typeddict-item]
-        input_["analyzer_arn"] = analyzer_arn
+        input_: capo_accessanalyzer.types.list_access_previews_request.ListAccessPreviewsRequest = {
+            "analyzer_arn": analyzer_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1170,6 +1225,7 @@ class AsyncAccessAnalyzerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_analyzed_resources(
@@ -1216,8 +1272,9 @@ class AsyncAccessAnalyzerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_accessanalyzer.types.list_analyzed_resources_request.ListAnalyzedResourcesRequest = {}  # type: ignore[typeddict-item]
-        input_["analyzer_arn"] = analyzer_arn
+        input_: capo_accessanalyzer.types.list_analyzed_resources_request.ListAnalyzedResourcesRequest = {
+            "analyzer_arn": analyzer_arn
+        }
         if resource_type is not None:
             input_["resource_type"] = resource_type
         if next_token is not None:
@@ -1230,6 +1287,7 @@ class AsyncAccessAnalyzerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_findings(
@@ -1278,8 +1336,9 @@ class AsyncAccessAnalyzerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_accessanalyzer.types.list_findings_request.ListFindingsRequest = {}  # type: ignore[typeddict-item]
-        input_["analyzer_arn"] = analyzer_arn
+        input_: capo_accessanalyzer.types.list_findings_request.ListFindingsRequest = {
+            "analyzer_arn": analyzer_arn
+        }
         if filter is not None:
             input_["filter"] = filter
         if sort is not None:
@@ -1294,6 +1353,7 @@ class AsyncAccessAnalyzerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_findings_v2(
@@ -1341,8 +1401,9 @@ class AsyncAccessAnalyzerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_accessanalyzer.types.list_findings_v2_request.ListFindingsV2Request = {}  # type: ignore[typeddict-item]
-        input_["analyzer_arn"] = analyzer_arn
+        input_: capo_accessanalyzer.types.list_findings_v2_request.ListFindingsV2Request = {
+            "analyzer_arn": analyzer_arn
+        }
         if filter is not None:
             input_["filter"] = filter
         if max_results is not None:
@@ -1357,6 +1418,7 @@ class AsyncAccessAnalyzerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_policy_generations(
@@ -1400,7 +1462,7 @@ class AsyncAccessAnalyzerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_accessanalyzer.types.list_policy_generations_request.ListPolicyGenerationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_accessanalyzer.types.list_policy_generations_request.ListPolicyGenerationsRequest = {}
         if principal_arn is not None:
             input_["principal_arn"] = principal_arn
         if max_results is not None:
@@ -1413,6 +1475,7 @@ class AsyncAccessAnalyzerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_tags_for_resource(
@@ -1451,14 +1514,16 @@ class AsyncAccessAnalyzerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_accessanalyzer.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_accessanalyzer.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_policy_generation(
@@ -1504,18 +1569,21 @@ class AsyncAccessAnalyzerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_accessanalyzer.types.start_policy_generation_request.StartPolicyGenerationRequest = {}  # type: ignore[typeddict-item]
-        input_["policy_generation_details"] = policy_generation_details
+        input_: capo_accessanalyzer.types.start_policy_generation_request.StartPolicyGenerationRequest = {
+            "policy_generation_details": policy_generation_details
+        }
         if cloud_trail_details is not None:
             input_["cloud_trail_details"] = cloud_trail_details
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_resource_scan(
@@ -1556,9 +1624,10 @@ class AsyncAccessAnalyzerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_accessanalyzer.types.start_resource_scan_request.StartResourceScanRequest = {}  # type: ignore[typeddict-item]
-        input_["analyzer_arn"] = analyzer_arn
-        input_["resource_arn"] = resource_arn
+        input_: capo_accessanalyzer.types.start_resource_scan_request.StartResourceScanRequest = {
+            "analyzer_arn": analyzer_arn,
+            "resource_arn": resource_arn,
+        }
         if resource_owner_account is not None:
             input_["resource_owner_account"] = resource_owner_account
 
@@ -1567,6 +1636,7 @@ class AsyncAccessAnalyzerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -1607,15 +1677,17 @@ class AsyncAccessAnalyzerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_accessanalyzer.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_accessanalyzer.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -1656,15 +1728,17 @@ class AsyncAccessAnalyzerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_accessanalyzer.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_accessanalyzer.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_findings(
@@ -1711,21 +1785,24 @@ class AsyncAccessAnalyzerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_accessanalyzer.types.update_findings_request.UpdateFindingsRequest = {}  # type: ignore[typeddict-item]
-        input_["analyzer_arn"] = analyzer_arn
-        input_["status"] = status
+        input_: capo_accessanalyzer.types.update_findings_request.UpdateFindingsRequest = {
+            "analyzer_arn": analyzer_arn,
+            "status": status,
+        }
         if ids is not None:
             input_["ids"] = ids
         if resource_arn is not None:
             input_["resource_arn"] = resource_arn
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def validate_policy(
@@ -1775,15 +1852,16 @@ class AsyncAccessAnalyzerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_accessanalyzer.types.validate_policy_request.ValidatePolicyRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_accessanalyzer.types.validate_policy_request.ValidatePolicyRequest = {
+            "policy_document": policy_document,
+            "policy_type": policy_type,
+        }
         if locale is not None:
             input_["locale"] = locale
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["policy_document"] = policy_document
-        input_["policy_type"] = policy_type
         if validate_policy_resource_type is not None:
             input_["validate_policy_resource_type"] = validate_policy_resource_type
 
@@ -1792,6 +1870,618 @@ class AsyncAccessAnalyzerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
+        return response.output
+
+    async def create_analyzer(
+        self,
+        analyzer_name: "capo_accessanalyzer.types.analyzer_name.AnalyzerName",
+        type: "capo_accessanalyzer.types.type.Type",
+        *,
+        config_overrides: Optional[AsyncAccessAnalyzerClientConfig] = None,
+        archive_rules: Optional[
+            "capo_accessanalyzer.types.inline_archive_rules_list.InlineArchiveRulesList"
+        ] = None,
+        tags: Optional["capo_accessanalyzer.types.tags_map.TagsMap"] = None,
+        client_token: Optional[str] = None,
+        configuration: Optional[
+            "capo_accessanalyzer.types.analyzer_configuration.AnalyzerConfiguration"
+        ] = None,
+    ) -> "capo_accessanalyzer.types.create_analyzer_response.CreateAnalyzerResponse":
+        """<p>Creates an analyzer for your account.</p>
+
+        Args:
+            analyzer_name: <p>The name of the analyzer to create.</p>
+            type: <p>The type of analyzer to create. You can create only one analyzer per account per Region. You can create up to 5 analyzers per organization per Region.</p>
+            archive_rules: <p>Specifies the archive rules to add for the analyzer. Archive rules automatically archive findings that meet the criteria you define for the rule.</p>
+            tags: <p>An array of key-value pairs to apply to the analyzer. You can use the set of Unicode letters, digits, whitespace, <code>_</code>, <code>.</code>, <code>/</code>, <code>=</code>, <code>+</code>, and <code>-</code>.</p> <p>For the tag key, you can specify a value that is 1 to 128 characters in length and cannot be prefixed with <code>aws:</code>.</p> <p>For the tag value, you can specify a value that is 0 to 256 characters in length.</p>
+            client_token: <p>A client token.</p>
+            configuration: <p>Specifies the configuration of the analyzer. If the analyzer is an unused access analyzer, the specified scope of unused access is used for the configuration. If the analyzer is an internal access analyzer, the specified internal access analysis rules are used for the configuration.</p>
+
+        Raises:
+            capo_accessanalyzer.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_accessanalyzer.errors.conflict_exception.ConflictException: <p>A conflict exception error.</p>
+            capo_accessanalyzer.errors.internal_server_exception.InternalServerException: <p>Internal server error.</p>
+            capo_accessanalyzer.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Service quote met error.</p>
+            capo_accessanalyzer.errors.throttling_exception.ThrottlingException: <p>Throttling limit exceeded error.</p>
+            capo_accessanalyzer.errors.validation_exception.ValidationException: <p>Validation exception error.</p>
+            capo_accessanalyzer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_accessanalyzer.types.create_analyzer_request.CreateAnalyzerRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_accessanalyzer.types.create_analyzer_response.CreateAnalyzerResponse"
+        ]:
+            import capo_accessanalyzer._operations.access_analyzer.create_analyzer
+
+            (
+                output,
+                http_response,
+            ) = await capo_accessanalyzer._operations.access_analyzer.create_analyzer.async_create_analyzer(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_accessanalyzer.types.create_analyzer_request.CreateAnalyzerRequest = {
+            "analyzer_name": analyzer_name,
+            "type": type,
+        }
+        if archive_rules is not None:
+            input_["archive_rules"] = archive_rules
+        if tags is not None:
+            input_["tags"] = tags
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+        if configuration is not None:
+            input_["configuration"] = configuration
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_analyzer(
+        self,
+        analyzer_name: "capo_accessanalyzer.types.analyzer_name.AnalyzerName",
+        *,
+        config_overrides: Optional[AsyncAccessAnalyzerClientConfig] = None,
+    ) -> "capo_accessanalyzer.types.get_analyzer_response.GetAnalyzerResponse":
+        """<p>Retrieves information about the specified analyzer.</p>
+
+        Args:
+            analyzer_name: <p>The name of the analyzer retrieved.</p>
+
+        Raises:
+            capo_accessanalyzer.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_accessanalyzer.errors.internal_server_exception.InternalServerException: <p>Internal server error.</p>
+            capo_accessanalyzer.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource could not be found.</p>
+            capo_accessanalyzer.errors.throttling_exception.ThrottlingException: <p>Throttling limit exceeded error.</p>
+            capo_accessanalyzer.errors.validation_exception.ValidationException: <p>Validation exception error.</p>
+            capo_accessanalyzer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_accessanalyzer.types.get_analyzer_request.GetAnalyzerRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_accessanalyzer.types.get_analyzer_response.GetAnalyzerResponse"
+        ]:
+            import capo_accessanalyzer._operations.access_analyzer.get_analyzer
+
+            (
+                output,
+                http_response,
+            ) = await capo_accessanalyzer._operations.access_analyzer.get_analyzer.async_get_analyzer(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_accessanalyzer.types.get_analyzer_request.GetAnalyzerRequest = {
+            "analyzer_name": analyzer_name
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_analyzer(
+        self,
+        analyzer_name: "capo_accessanalyzer.types.analyzer_name.AnalyzerName",
+        *,
+        config_overrides: Optional[AsyncAccessAnalyzerClientConfig] = None,
+        configuration: Optional[
+            "capo_accessanalyzer.types.analyzer_configuration.AnalyzerConfiguration"
+        ] = None,
+    ) -> "capo_accessanalyzer.types.update_analyzer_response.UpdateAnalyzerResponse":
+        """<p>Modifies the configuration of an existing analyzer.</p> <note> <p>This action is not supported for external access analyzers.</p> </note>
+
+        Args:
+            analyzer_name: <p>The name of the analyzer to modify.</p>
+
+        Raises:
+            capo_accessanalyzer.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_accessanalyzer.errors.conflict_exception.ConflictException: <p>A conflict exception error.</p>
+            capo_accessanalyzer.errors.internal_server_exception.InternalServerException: <p>Internal server error.</p>
+            capo_accessanalyzer.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource could not be found.</p>
+            capo_accessanalyzer.errors.throttling_exception.ThrottlingException: <p>Throttling limit exceeded error.</p>
+            capo_accessanalyzer.errors.validation_exception.ValidationException: <p>Validation exception error.</p>
+            capo_accessanalyzer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_accessanalyzer.types.update_analyzer_request.UpdateAnalyzerRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_accessanalyzer.types.update_analyzer_response.UpdateAnalyzerResponse"
+        ]:
+            import capo_accessanalyzer._operations.access_analyzer.update_analyzer
+
+            (
+                output,
+                http_response,
+            ) = await capo_accessanalyzer._operations.access_analyzer.update_analyzer.async_update_analyzer(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_accessanalyzer.types.update_analyzer_request.UpdateAnalyzerRequest = {
+            "analyzer_name": analyzer_name
+        }
+        if configuration is not None:
+            input_["configuration"] = configuration
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_analyzer(
+        self,
+        analyzer_name: "capo_accessanalyzer.types.analyzer_name.AnalyzerName",
+        *,
+        config_overrides: Optional[AsyncAccessAnalyzerClientConfig] = None,
+        client_token: Optional[str] = None,
+    ) -> None:
+        """<p>Deletes the specified analyzer. When you delete an analyzer, IAM Access Analyzer is disabled for the account or organization in the current or specific Region. All findings that were generated by the analyzer are deleted. You cannot undo this action.</p>
+
+        Args:
+            analyzer_name: <p>The name of the analyzer to delete.</p>
+            client_token: <p>A client token.</p>
+
+        Raises:
+            capo_accessanalyzer.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_accessanalyzer.errors.internal_server_exception.InternalServerException: <p>Internal server error.</p>
+            capo_accessanalyzer.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource could not be found.</p>
+            capo_accessanalyzer.errors.throttling_exception.ThrottlingException: <p>Throttling limit exceeded error.</p>
+            capo_accessanalyzer.errors.validation_exception.ValidationException: <p>Validation exception error.</p>
+            capo_accessanalyzer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_accessanalyzer.types.delete_analyzer_request.DeleteAnalyzerRequest]",
+        ) -> AsyncOperationResponse[None]:
+            import capo_accessanalyzer._operations.access_analyzer.delete_analyzer
+
+            (
+                output,
+                http_response,
+            ) = await capo_accessanalyzer._operations.access_analyzer.delete_analyzer.async_delete_analyzer(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_accessanalyzer.types.delete_analyzer_request.DeleteAnalyzerRequest = {
+            "analyzer_name": analyzer_name
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_analyzers(
+        self,
+        *,
+        config_overrides: Optional[AsyncAccessAnalyzerClientConfig] = None,
+        next_token: Optional["capo_accessanalyzer.types.token.Token"] = None,
+        max_results: Optional[int] = None,
+        type: Optional["capo_accessanalyzer.types.type.Type"] = None,
+    ) -> "capo_accessanalyzer.types.list_analyzers_response.ListAnalyzersResponse":
+        """<p>Retrieves a list of analyzers.</p>
+
+        Args:
+            next_token: <p>A token used for pagination of results returned.</p>
+            max_results: <p>The maximum number of results to return in the response.</p>
+            type: <p>The type of analyzer.</p>
+
+        Raises:
+            capo_accessanalyzer.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_accessanalyzer.errors.internal_server_exception.InternalServerException: <p>Internal server error.</p>
+            capo_accessanalyzer.errors.throttling_exception.ThrottlingException: <p>Throttling limit exceeded error.</p>
+            capo_accessanalyzer.errors.validation_exception.ValidationException: <p>Validation exception error.</p>
+            capo_accessanalyzer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_accessanalyzer.types.list_analyzers_request.ListAnalyzersRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_accessanalyzer.types.list_analyzers_response.ListAnalyzersResponse"
+        ]:
+            import capo_accessanalyzer._operations.access_analyzer.list_analyzers
+
+            (
+                output,
+                http_response,
+            ) = await capo_accessanalyzer._operations.access_analyzer.list_analyzers.async_list_analyzers(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_accessanalyzer.types.list_analyzers_request.ListAnalyzersRequest = {}
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+        if type is not None:
+            input_["type"] = type
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_service_linked_analyzer(
+        self,
+        analyzer_name: "capo_accessanalyzer.types.analyzer_name.AnalyzerName",
+        *,
+        config_overrides: Optional[AsyncAccessAnalyzerClientConfig] = None,
+        client_token: Optional[str] = None,
+    ) -> None:
+        """<p>Deletes a service-linked analyzer. This operation can be invoked by both authorized Amazon Web Services services and customers.</p> <p>When invoked by a customer, IAM Access Analyzer performs a callback to the managing service to verify whether the analyzer is still in use and can be deleted. If the service indicates the analyzer is still in use, the deletion is rejected with <code>ConflictException</code>.</p>
+
+        Args:
+            analyzer_name: <p>The name of the service-linked analyzer to delete. Service-linked analyzer names follow the format <code>_AccessAnalyzerFor{ServiceName}-{Id}</code>.</p>
+            client_token: <p>A client token.</p>
+
+        Raises:
+            capo_accessanalyzer.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_accessanalyzer.errors.conflict_exception.ConflictException: <p>A conflict exception error.</p>
+            capo_accessanalyzer.errors.internal_server_exception.InternalServerException: <p>Internal server error.</p>
+            capo_accessanalyzer.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource could not be found.</p>
+            capo_accessanalyzer.errors.throttling_exception.ThrottlingException: <p>Throttling limit exceeded error.</p>
+            capo_accessanalyzer.errors.validation_exception.ValidationException: <p>Validation exception error.</p>
+            capo_accessanalyzer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_accessanalyzer.types.delete_service_linked_analyzer_request.DeleteServiceLinkedAnalyzerRequest]",
+        ) -> AsyncOperationResponse[None]:
+            import capo_accessanalyzer._operations.access_analyzer.delete_service_linked_analyzer
+
+            (
+                output,
+                http_response,
+            ) = await capo_accessanalyzer._operations.access_analyzer.delete_service_linked_analyzer.async_delete_service_linked_analyzer(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_accessanalyzer.types.delete_service_linked_analyzer_request.DeleteServiceLinkedAnalyzerRequest = {
+            "analyzer_name": analyzer_name
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def create_archive_rule(
+        self,
+        analyzer_name: "capo_accessanalyzer.types.analyzer_name.AnalyzerName",
+        rule_name: "capo_accessanalyzer.types.name.Name",
+        filter: "capo_accessanalyzer.types.filter_criteria_map.FilterCriteriaMap",
+        *,
+        config_overrides: Optional[AsyncAccessAnalyzerClientConfig] = None,
+        client_token: Optional[str] = None,
+    ) -> None:
+        r"""<p>Creates an archive rule for the specified analyzer. Archive rules automatically archive new findings that meet the criteria you define when you create the rule.</p> <p>To learn about filter keys that you can use to create an archive rule, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-filter-keys.html\">IAM Access Analyzer filter keys</a> in the <b>IAM User Guide</b>.</p>
+
+        Args:
+            analyzer_name: <p>The name of the created analyzer.</p>
+            rule_name: <p>The name of the rule to create.</p>
+            filter: <p>The criteria for the rule.</p>
+            client_token: <p>A client token.</p>
+
+        Raises:
+            capo_accessanalyzer.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_accessanalyzer.errors.conflict_exception.ConflictException: <p>A conflict exception error.</p>
+            capo_accessanalyzer.errors.internal_server_exception.InternalServerException: <p>Internal server error.</p>
+            capo_accessanalyzer.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource could not be found.</p>
+            capo_accessanalyzer.errors.service_quota_exceeded_exception.ServiceQuotaExceededException: <p>Service quote met error.</p>
+            capo_accessanalyzer.errors.throttling_exception.ThrottlingException: <p>Throttling limit exceeded error.</p>
+            capo_accessanalyzer.errors.validation_exception.ValidationException: <p>Validation exception error.</p>
+            capo_accessanalyzer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_accessanalyzer.types.create_archive_rule_request.CreateArchiveRuleRequest]",
+        ) -> AsyncOperationResponse[None]:
+            import capo_accessanalyzer._operations.access_analyzer.create_archive_rule
+
+            (
+                output,
+                http_response,
+            ) = await capo_accessanalyzer._operations.access_analyzer.create_archive_rule.async_create_archive_rule(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_accessanalyzer.types.create_archive_rule_request.CreateArchiveRuleRequest = {
+            "analyzer_name": analyzer_name,
+            "rule_name": rule_name,
+            "filter": filter,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def get_archive_rule(
+        self,
+        analyzer_name: "capo_accessanalyzer.types.analyzer_name.AnalyzerName",
+        rule_name: "capo_accessanalyzer.types.name.Name",
+        *,
+        config_overrides: Optional[AsyncAccessAnalyzerClientConfig] = None,
+    ) -> "capo_accessanalyzer.types.get_archive_rule_response.GetArchiveRuleResponse":
+        r"""<p>Retrieves information about an archive rule.</p> <p>To learn about filter keys that you can use to create an archive rule, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-filter-keys.html\">IAM Access Analyzer filter keys</a> in the <b>IAM User Guide</b>.</p>
+
+        Args:
+            analyzer_name: <p>The name of the analyzer to retrieve rules from.</p>
+            rule_name: <p>The name of the rule to retrieve.</p>
+
+        Raises:
+            capo_accessanalyzer.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_accessanalyzer.errors.internal_server_exception.InternalServerException: <p>Internal server error.</p>
+            capo_accessanalyzer.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource could not be found.</p>
+            capo_accessanalyzer.errors.throttling_exception.ThrottlingException: <p>Throttling limit exceeded error.</p>
+            capo_accessanalyzer.errors.validation_exception.ValidationException: <p>Validation exception error.</p>
+            capo_accessanalyzer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_accessanalyzer.types.get_archive_rule_request.GetArchiveRuleRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_accessanalyzer.types.get_archive_rule_response.GetArchiveRuleResponse"
+        ]:
+            import capo_accessanalyzer._operations.access_analyzer.get_archive_rule
+
+            (
+                output,
+                http_response,
+            ) = await capo_accessanalyzer._operations.access_analyzer.get_archive_rule.async_get_archive_rule(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_accessanalyzer.types.get_archive_rule_request.GetArchiveRuleRequest = {
+            "analyzer_name": analyzer_name,
+            "rule_name": rule_name,
+        }
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def update_archive_rule(
+        self,
+        analyzer_name: "capo_accessanalyzer.types.analyzer_name.AnalyzerName",
+        rule_name: "capo_accessanalyzer.types.name.Name",
+        filter: "capo_accessanalyzer.types.filter_criteria_map.FilterCriteriaMap",
+        *,
+        config_overrides: Optional[AsyncAccessAnalyzerClientConfig] = None,
+        client_token: Optional[str] = None,
+    ) -> None:
+        """<p>Updates the criteria and values for the specified archive rule.</p>
+
+        Args:
+            analyzer_name: <p>The name of the analyzer to update the archive rules for.</p>
+            rule_name: <p>The name of the rule to update.</p>
+            filter: <p>A filter to match for the rules to update. Only rules that match the filter are updated.</p>
+            client_token: <p>A client token.</p>
+
+        Raises:
+            capo_accessanalyzer.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_accessanalyzer.errors.internal_server_exception.InternalServerException: <p>Internal server error.</p>
+            capo_accessanalyzer.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource could not be found.</p>
+            capo_accessanalyzer.errors.throttling_exception.ThrottlingException: <p>Throttling limit exceeded error.</p>
+            capo_accessanalyzer.errors.validation_exception.ValidationException: <p>Validation exception error.</p>
+            capo_accessanalyzer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_accessanalyzer.types.update_archive_rule_request.UpdateArchiveRuleRequest]",
+        ) -> AsyncOperationResponse[None]:
+            import capo_accessanalyzer._operations.access_analyzer.update_archive_rule
+
+            (
+                output,
+                http_response,
+            ) = await capo_accessanalyzer._operations.access_analyzer.update_archive_rule.async_update_archive_rule(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_accessanalyzer.types.update_archive_rule_request.UpdateArchiveRuleRequest = {
+            "analyzer_name": analyzer_name,
+            "rule_name": rule_name,
+            "filter": filter,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def delete_archive_rule(
+        self,
+        analyzer_name: "capo_accessanalyzer.types.analyzer_name.AnalyzerName",
+        rule_name: "capo_accessanalyzer.types.name.Name",
+        *,
+        config_overrides: Optional[AsyncAccessAnalyzerClientConfig] = None,
+        client_token: Optional[str] = None,
+    ) -> None:
+        """<p>Deletes the specified archive rule.</p>
+
+        Args:
+            analyzer_name: <p>The name of the analyzer that associated with the archive rule to delete.</p>
+            rule_name: <p>The name of the rule to delete.</p>
+            client_token: <p>A client token.</p>
+
+        Raises:
+            capo_accessanalyzer.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_accessanalyzer.errors.internal_server_exception.InternalServerException: <p>Internal server error.</p>
+            capo_accessanalyzer.errors.resource_not_found_exception.ResourceNotFoundException: <p>The specified resource could not be found.</p>
+            capo_accessanalyzer.errors.throttling_exception.ThrottlingException: <p>Throttling limit exceeded error.</p>
+            capo_accessanalyzer.errors.validation_exception.ValidationException: <p>Validation exception error.</p>
+            capo_accessanalyzer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_accessanalyzer.types.delete_archive_rule_request.DeleteArchiveRuleRequest]",
+        ) -> AsyncOperationResponse[None]:
+            import capo_accessanalyzer._operations.access_analyzer.delete_archive_rule
+
+            (
+                output,
+                http_response,
+            ) = await capo_accessanalyzer._operations.access_analyzer.delete_archive_rule.async_delete_archive_rule(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_accessanalyzer.types.delete_archive_rule_request.DeleteArchiveRuleRequest = {
+            "analyzer_name": analyzer_name,
+            "rule_name": rule_name,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
+        return response.output
+
+    async def list_archive_rules(
+        self,
+        analyzer_name: "capo_accessanalyzer.types.analyzer_name.AnalyzerName",
+        *,
+        config_overrides: Optional[AsyncAccessAnalyzerClientConfig] = None,
+        next_token: Optional["capo_accessanalyzer.types.token.Token"] = None,
+        max_results: Optional[int] = None,
+    ) -> (
+        "capo_accessanalyzer.types.list_archive_rules_response.ListArchiveRulesResponse"
+    ):
+        """<p>Retrieves a list of archive rules created for the specified analyzer.</p>
+
+        Args:
+            analyzer_name: <p>The name of the analyzer to retrieve rules from.</p>
+            next_token: <p>A token used for pagination of results returned.</p>
+            max_results: <p>The maximum number of results to return in the request.</p>
+
+        Raises:
+            capo_accessanalyzer.errors.access_denied_exception.AccessDeniedException: <p>You do not have sufficient access to perform this action.</p>
+            capo_accessanalyzer.errors.internal_server_exception.InternalServerException: <p>Internal server error.</p>
+            capo_accessanalyzer.errors.throttling_exception.ThrottlingException: <p>Throttling limit exceeded error.</p>
+            capo_accessanalyzer.errors.validation_exception.ValidationException: <p>Validation exception error.</p>
+            capo_accessanalyzer.errors.UnknownServiceError: The service returned an error code this client does not model.
+        """
+
+        async def _handler(
+            req: "AsyncOperationRequest[capo_accessanalyzer.types.list_archive_rules_request.ListArchiveRulesRequest]",
+        ) -> AsyncOperationResponse[
+            "capo_accessanalyzer.types.list_archive_rules_response.ListArchiveRulesResponse"
+        ]:
+            import capo_accessanalyzer._operations.access_analyzer.list_archive_rules
+
+            (
+                output,
+                http_response,
+            ) = await capo_accessanalyzer._operations.access_analyzer.list_archive_rules.async_list_archive_rules(
+                req.options, req.input
+            )
+            return AsyncOperationResponse(output=output, response=http_response)
+
+        interceptors_, options_ = self.operation_options(config_overrides)
+        input_: capo_accessanalyzer.types.list_archive_rules_request.ListArchiveRulesRequest = {
+            "analyzer_name": analyzer_name
+        }
+        if next_token is not None:
+            input_["next_token"] = next_token
+        if max_results is not None:
+            input_["max_results"] = max_results
+
+        response = await aexecute_pipeline(
+            AsyncOperationRequest(input=input_, options=options_),
+            handler=_handler,
+            interceptors=list(interceptors_),
+        )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

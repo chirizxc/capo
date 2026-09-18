@@ -62,9 +62,25 @@ def serialize_aws_json_1_0(value: Attribute) -> dict:
             )
         )
     if "min" in value:
-        out["min"] = value["min"]
+        out["min"] = (
+            "NaN"
+            if value["min"] != value["min"]
+            else "Infinity"
+            if value["min"] == float("inf")
+            else "-Infinity"
+            if value["min"] == float("-inf")
+            else value["min"]
+        )
     if "max" in value:
-        out["max"] = value["max"]
+        out["max"] = (
+            "NaN"
+            if value["max"] != value["max"]
+            else "Infinity"
+            if value["max"] == float("inf")
+            else "-Infinity"
+            if value["max"] == float("-inf")
+            else value["max"]
+        )
     if "assigned_value" in value:
         out["assignedValue"] = value["assigned_value"]
     if "default_value" in value:
@@ -78,11 +94,11 @@ def serialize_aws_json_1_0(value: Attribute) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Attribute:
     out: Attribute = {}  # type: ignore[typeddict-item]
-    if "fullyQualifiedName" in data:
+    if data.get("fullyQualifiedName") is not None:
         out["fully_qualified_name"] = data["fullyQualifiedName"]
     else:
         raise DeserializationError("Attribute.fully_qualified_name required")
-    if "dataType" in data:
+    if data.get("dataType") is not None:
         import capo_iotfleetwise.types.node_data_type
 
         out["data_type"] = (
@@ -92,11 +108,11 @@ def deserialize_aws_json_1_0(data: dict) -> Attribute:
         )
     else:
         raise DeserializationError("Attribute.data_type required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "unit" in data:
+    if data.get("unit") is not None:
         out["unit"] = data["unit"]
-    if "allowedValues" in data:
+    if data.get("allowedValues") is not None:
         import capo_iotfleetwise.types.list_of_strings
 
         out["allowed_values"] = (
@@ -104,16 +120,16 @@ def deserialize_aws_json_1_0(data: dict) -> Attribute:
                 data["allowedValues"]
             )
         )
-    if "min" in data:
-        out["min"] = data["min"]
-    if "max" in data:
-        out["max"] = data["max"]
-    if "assignedValue" in data:
+    if data.get("min") is not None:
+        out["min"] = float(data["min"])
+    if data.get("max") is not None:
+        out["max"] = float(data["max"])
+    if data.get("assignedValue") is not None:
         out["assigned_value"] = data["assignedValue"]
-    if "defaultValue" in data:
+    if data.get("defaultValue") is not None:
         out["default_value"] = data["defaultValue"]
-    if "deprecationMessage" in data:
+    if data.get("deprecationMessage") is not None:
         out["deprecation_message"] = data["deprecationMessage"]
-    if "comment" in data:
+    if data.get("comment") is not None:
         out["comment"] = data["comment"]
     return out

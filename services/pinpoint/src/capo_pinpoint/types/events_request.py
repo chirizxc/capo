@@ -27,7 +27,7 @@ def serialize_json(value: EventsRequest) -> dict:
 
 def deserialize_json(data: dict) -> EventsRequest:
     out: EventsRequest = {}  # type: ignore[typeddict-item]
-    if "BatchItem" in data:
+    if data.get("BatchItem") is not None:
         import capo_pinpoint.types.map_of_events_batch
 
         out["batch_item"] = capo_pinpoint.types.map_of_events_batch.deserialize_json(

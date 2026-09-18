@@ -29,13 +29,13 @@ def serialize_json(value: IdMappingTableInputSource) -> dict:
 
 def deserialize_json(data: dict) -> IdMappingTableInputSource:
     out: IdMappingTableInputSource = {}  # type: ignore[typeddict-item]
-    if "idNamespaceAssociationId" in data:
+    if data.get("idNamespaceAssociationId") is not None:
         out["id_namespace_association_id"] = data["idNamespaceAssociationId"]
     else:
         raise DeserializationError(
             "IdMappingTableInputSource.id_namespace_association_id required"
         )
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_cleanrooms.types.id_namespace_type
 
         out["type"] = capo_cleanrooms.types.id_namespace_type.deserialize_json(

@@ -24,7 +24,7 @@ def serialize_json(value: DemodulationConfig) -> dict:
 
 def deserialize_json(data: dict) -> DemodulationConfig:
     out: DemodulationConfig = {}  # type: ignore[typeddict-item]
-    if "unvalidatedJSON" in data:
+    if data.get("unvalidatedJSON") is not None:
         out["unvalidated_json"] = data["unvalidatedJSON"]
     else:
         raise DeserializationError("DemodulationConfig.unvalidated_json required")

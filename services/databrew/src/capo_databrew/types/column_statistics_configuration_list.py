@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ColumnStatisticsConfigurationList:
 
     out: ColumnStatisticsConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_databrew.types.column_statistics_configuration.deserialize_json(item)
         )

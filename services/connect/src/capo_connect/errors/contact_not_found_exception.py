@@ -25,7 +25,7 @@ def serialize_json(value: ContactNotFoundException_) -> dict:
 
 def deserialize_json(data: dict) -> ContactNotFoundException_:
     out: ContactNotFoundException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -35,15 +35,18 @@ class ContactNotFoundException(ServiceError):
 
     code: str | None = "ContactNotFoundException"
 
-    def __init__(self, data: ContactNotFoundException_):
+    def __init__(self, data: ContactNotFoundException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ContactNotFoundException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ContactNotFoundException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "ContactNotFoundException":
+        return cls(deserialize_json(data), message)

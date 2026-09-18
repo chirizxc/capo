@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> WeightedQuantileLosses:
 
     out: WeightedQuantileLosses = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_forecast.types.weighted_quantile_loss.deserialize_aws_json_1_1(item)
         )

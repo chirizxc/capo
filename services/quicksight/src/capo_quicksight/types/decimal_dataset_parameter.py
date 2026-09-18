@@ -53,15 +53,15 @@ def serialize_json(value: DecimalDatasetParameter) -> dict:
 
 def deserialize_json(data: dict) -> DecimalDatasetParameter:
     out: DecimalDatasetParameter = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("DecimalDatasetParameter.id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("DecimalDatasetParameter.name required")
-    if "ValueType" in data:
+    if data.get("ValueType") is not None:
         import capo_quicksight.types.dataset_parameter_value_type
 
         out["value_type"] = (
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> DecimalDatasetParameter:
         )
     else:
         raise DeserializationError("DecimalDatasetParameter.value_type required")
-    if "DefaultValues" in data:
+    if data.get("DefaultValues") is not None:
         import capo_quicksight.types.decimal_dataset_parameter_default_values
 
         out["default_values"] = (

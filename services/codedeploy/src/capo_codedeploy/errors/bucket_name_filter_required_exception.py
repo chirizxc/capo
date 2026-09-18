@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: BucketNameFilterRequiredException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BucketNameFilterRequiredException_:
     out: BucketNameFilterRequiredException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,20 @@ class BucketNameFilterRequiredException(ServiceError):
 
     code: str | None = "BucketNameFilterRequiredException"
 
-    def __init__(self, data: BucketNameFilterRequiredException_):
+    def __init__(
+        self, data: BucketNameFilterRequiredException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="BucketNameFilterRequiredException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "BucketNameFilterRequiredException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "BucketNameFilterRequiredException":
+        return cls(deserialize_aws_json_1_1(data), message)

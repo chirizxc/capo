@@ -30,7 +30,7 @@ def serialize_json(value: CodegenGenericDataEnum) -> dict:
 
 def deserialize_json(data: dict) -> CodegenGenericDataEnum:
     out: CodegenGenericDataEnum = {}  # type: ignore[typeddict-item]
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_amplifyuibuilder.types.codegen_generic_data_enum_values_list
 
         out["values"] = (

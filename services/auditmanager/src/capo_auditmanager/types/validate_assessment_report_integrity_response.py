@@ -49,15 +49,15 @@ def serialize_json(value: ValidateAssessmentReportIntegrityResponse) -> dict:
 
 def deserialize_json(data: dict) -> ValidateAssessmentReportIntegrityResponse:
     out: ValidateAssessmentReportIntegrityResponse = {}  # type: ignore[typeddict-item]
-    if "signatureValid" in data:
+    if data.get("signatureValid") is not None:
         out["signature_valid"] = data["signatureValid"]
-    if "signatureAlgorithm" in data:
+    if data.get("signatureAlgorithm") is not None:
         out["signature_algorithm"] = data["signatureAlgorithm"]
-    if "signatureDateTime" in data:
+    if data.get("signatureDateTime") is not None:
         out["signature_date_time"] = data["signatureDateTime"]
-    if "signatureKeyId" in data:
+    if data.get("signatureKeyId") is not None:
         out["signature_key_id"] = data["signatureKeyId"]
-    if "validationErrors" in data:
+    if data.get("validationErrors") is not None:
         import capo_auditmanager.types.validation_errors
 
         out["validation_errors"] = (

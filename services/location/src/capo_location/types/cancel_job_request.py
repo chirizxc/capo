@@ -24,7 +24,7 @@ def serialize_json(value: CancelJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> CancelJobRequest:
     out: CancelJobRequest = {}  # type: ignore[typeddict-item]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
     else:
         raise DeserializationError("CancelJobRequest.job_id required")

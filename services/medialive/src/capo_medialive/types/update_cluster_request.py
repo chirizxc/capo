@@ -38,9 +38,9 @@ def serialize_json(value: UpdateClusterRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateClusterRequest:
     out: UpdateClusterRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "networkSettings" in data:
+    if data.get("networkSettings") is not None:
         import capo_medialive.types.cluster_network_settings_update_request
 
         out["network_settings"] = (

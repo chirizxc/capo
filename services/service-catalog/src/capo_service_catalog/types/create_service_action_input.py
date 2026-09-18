@@ -62,11 +62,11 @@ def serialize_aws_json_1_1(value: CreateServiceActionInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateServiceActionInput:
     out: CreateServiceActionInput = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateServiceActionInput.name required")
-    if "DefinitionType" in data:
+    if data.get("DefinitionType") is not None:
         import capo_service_catalog.types.service_action_definition_type
 
         out["definition_type"] = (
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateServiceActionInput:
         )
     else:
         raise DeserializationError("CreateServiceActionInput.definition_type required")
-    if "Definition" in data:
+    if data.get("Definition") is not None:
         import capo_service_catalog.types.service_action_definition_map
 
         out["definition"] = (
@@ -86,11 +86,11 @@ def deserialize_aws_json_1_1(data: dict) -> CreateServiceActionInput:
         )
     else:
         raise DeserializationError("CreateServiceActionInput.definition required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "AcceptLanguage" in data:
+    if data.get("AcceptLanguage") is not None:
         out["accept_language"] = data["AcceptLanguage"]
-    if "IdempotencyToken" in data:
+    if data.get("IdempotencyToken") is not None:
         out["idempotency_token"] = data["IdempotencyToken"]
     else:
         raise DeserializationError(

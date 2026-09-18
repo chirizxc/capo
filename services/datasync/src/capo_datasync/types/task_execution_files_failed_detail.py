@@ -31,19 +31,19 @@ def serialize_aws_json_1_1(value: TaskExecutionFilesFailedDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TaskExecutionFilesFailedDetail:
     out: TaskExecutionFilesFailedDetail = {}  # type: ignore[typeddict-item]
-    if "Prepare" in data:
+    if data.get("Prepare") is not None:
         out["prepare"] = data["Prepare"]
     else:
         out["prepare"] = 0
-    if "Transfer" in data:
+    if data.get("Transfer") is not None:
         out["transfer"] = data["Transfer"]
     else:
         out["transfer"] = 0
-    if "Verify" in data:
+    if data.get("Verify") is not None:
         out["verify"] = data["Verify"]
     else:
         out["verify"] = 0
-    if "Delete" in data:
+    if data.get("Delete") is not None:
         out["delete"] = data["Delete"]
     else:
         out["delete"] = 0

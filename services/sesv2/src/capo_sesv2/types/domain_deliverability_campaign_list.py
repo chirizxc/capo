@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> DomainDeliverabilityCampaignList:
 
     out: DomainDeliverabilityCampaignList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sesv2.types.domain_deliverability_campaign.deserialize_json(item)
         )

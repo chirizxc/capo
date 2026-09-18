@@ -53,7 +53,7 @@ def serialize_aws_json_1_1(value: SourceDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SourceDetail:
     out: SourceDetail = {}  # type: ignore[typeddict-item]
-    if "EventSource" in data:
+    if data.get("EventSource") is not None:
         import capo_config_service.types.event_source
 
         out["event_source"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_1(data: dict) -> SourceDetail:
                 data["EventSource"]
             )
         )
-    if "MessageType" in data:
+    if data.get("MessageType") is not None:
         import capo_config_service.types.message_type
 
         out["message_type"] = (
@@ -69,7 +69,7 @@ def deserialize_aws_json_1_1(data: dict) -> SourceDetail:
                 data["MessageType"]
             )
         )
-    if "MaximumExecutionFrequency" in data:
+    if data.get("MaximumExecutionFrequency") is not None:
         import capo_config_service.types.maximum_execution_frequency
 
         out["maximum_execution_frequency"] = (

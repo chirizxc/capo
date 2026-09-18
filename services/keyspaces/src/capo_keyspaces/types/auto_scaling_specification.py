@@ -43,7 +43,7 @@ def serialize_aws_json_1_0(value: AutoScalingSpecification) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AutoScalingSpecification:
     out: AutoScalingSpecification = {}  # type: ignore[typeddict-item]
-    if "writeCapacityAutoScaling" in data:
+    if data.get("writeCapacityAutoScaling") is not None:
         import capo_keyspaces.types.auto_scaling_settings
 
         out["write_capacity_auto_scaling"] = (
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_0(data: dict) -> AutoScalingSpecification:
                 data["writeCapacityAutoScaling"]
             )
         )
-    if "readCapacityAutoScaling" in data:
+    if data.get("readCapacityAutoScaling") is not None:
         import capo_keyspaces.types.auto_scaling_settings
 
         out["read_capacity_auto_scaling"] = (

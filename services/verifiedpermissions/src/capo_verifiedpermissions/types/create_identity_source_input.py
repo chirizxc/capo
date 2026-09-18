@@ -48,13 +48,13 @@ def serialize_aws_json_1_0(value: CreateIdentitySourceInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateIdentitySourceInput:
     out: CreateIdentitySourceInput = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "policyStoreId" in data:
+    if data.get("policyStoreId") is not None:
         out["policy_store_id"] = data["policyStoreId"]
     else:
         raise DeserializationError("CreateIdentitySourceInput.policy_store_id required")
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_verifiedpermissions.types.configuration
 
         out["configuration"] = (
@@ -64,6 +64,6 @@ def deserialize_aws_json_1_0(data: dict) -> CreateIdentitySourceInput:
         )
     else:
         raise DeserializationError("CreateIdentitySourceInput.configuration required")
-    if "principalEntityType" in data:
+    if data.get("principalEntityType") is not None:
         out["principal_entity_type"] = data["principalEntityType"]
     return out

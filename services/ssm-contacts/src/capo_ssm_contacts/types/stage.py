@@ -34,11 +34,11 @@ def serialize_aws_json_1_1(value: Stage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Stage:
     out: Stage = {}  # type: ignore[typeddict-item]
-    if "DurationInMinutes" in data:
+    if data.get("DurationInMinutes") is not None:
         out["duration_in_minutes"] = data["DurationInMinutes"]
     else:
         raise DeserializationError("Stage.duration_in_minutes required")
-    if "Targets" in data:
+    if data.get("Targets") is not None:
         import capo_ssm_contacts.types.targets_list
 
         out["targets"] = capo_ssm_contacts.types.targets_list.deserialize_aws_json_1_1(

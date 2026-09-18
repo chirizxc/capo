@@ -26,10 +26,10 @@ def serialize_json(value: OpenIdConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> OpenIdConfiguration:
     out: OpenIdConfiguration = {}  # type: ignore[typeddict-item]
-    if "Issuer" in data:
+    if data.get("Issuer") is not None:
         out["issuer"] = data["Issuer"]
-    if "Subject" in data:
+    if data.get("Subject") is not None:
         out["subject"] = data["Subject"]
-    if "Audience" in data:
+    if data.get("Audience") is not None:
         out["audience"] = data["Audience"]
     return out

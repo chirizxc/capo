@@ -49,7 +49,7 @@ def serialize_json(value: InputClippingSettings) -> dict:
 
 def deserialize_json(data: dict) -> InputClippingSettings:
     out: InputClippingSettings = {}  # type: ignore[typeddict-item]
-    if "inputTimecodeSource" in data:
+    if data.get("inputTimecodeSource") is not None:
         import capo_medialive.types.input_timecode_source
 
         out["input_timecode_source"] = (
@@ -57,13 +57,13 @@ def deserialize_json(data: dict) -> InputClippingSettings:
                 data["inputTimecodeSource"]
             )
         )
-    if "startTimecode" in data:
+    if data.get("startTimecode") is not None:
         import capo_medialive.types.start_timecode
 
         out["start_timecode"] = capo_medialive.types.start_timecode.deserialize_json(
             data["startTimecode"]
         )
-    if "stopTimecode" in data:
+    if data.get("stopTimecode") is not None:
         import capo_medialive.types.stop_timecode
 
         out["stop_timecode"] = capo_medialive.types.stop_timecode.deserialize_json(

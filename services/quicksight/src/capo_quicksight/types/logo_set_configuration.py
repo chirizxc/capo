@@ -38,7 +38,7 @@ def serialize_json(value: LogoSetConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> LogoSetConfiguration:
     out: LogoSetConfiguration = {}  # type: ignore[typeddict-item]
-    if "Primary" in data:
+    if data.get("Primary") is not None:
         import capo_quicksight.types.image_set_configuration
 
         out["primary"] = capo_quicksight.types.image_set_configuration.deserialize_json(
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> LogoSetConfiguration:
         )
     else:
         raise DeserializationError("LogoSetConfiguration.primary required")
-    if "Favicon" in data:
+    if data.get("Favicon") is not None:
         import capo_quicksight.types.image_set_configuration
 
         out["favicon"] = capo_quicksight.types.image_set_configuration.deserialize_json(

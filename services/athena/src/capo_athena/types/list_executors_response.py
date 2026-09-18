@@ -44,13 +44,13 @@ def serialize_aws_json_1_1(value: ListExecutorsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListExecutorsResponse:
     out: ListExecutorsResponse = {}  # type: ignore[typeddict-item]
-    if "SessionId" in data:
+    if data.get("SessionId") is not None:
         out["session_id"] = data["SessionId"]
     else:
         raise DeserializationError("ListExecutorsResponse.session_id required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "ExecutorsSummary" in data:
+    if data.get("ExecutorsSummary") is not None:
         import capo_athena.types.executors_summary_list
 
         out["executors_summary"] = (

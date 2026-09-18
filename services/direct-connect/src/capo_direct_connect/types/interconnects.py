@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: Interconnects) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Interconnects:
     out: Interconnects = {}  # type: ignore[typeddict-item]
-    if "interconnects" in data:
+    if data.get("interconnects") is not None:
         import capo_direct_connect.types.interconnect_list
 
         out["interconnects"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_1(data: dict) -> Interconnects:
                 data["interconnects"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -28,7 +28,7 @@ def serialize_json(value: TerminateSolNetworkInstanceInput) -> dict:
 
 def deserialize_json(data: dict) -> TerminateSolNetworkInstanceInput:
     out: TerminateSolNetworkInstanceInput = {}  # type: ignore[typeddict-item]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_tnb.types.tag_map
 
         out["tags"] = capo_tnb.types.tag_map.deserialize_json(data["tags"])

@@ -52,11 +52,11 @@ def serialize_json(value: ListChangeSetsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListChangeSetsRequest:
     out: ListChangeSetsRequest = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("ListChangeSetsRequest.catalog required")
-    if "FilterList" in data:
+    if data.get("FilterList") is not None:
         import capo_marketplace_catalog.types.filter_list
 
         out["filter_list"] = (
@@ -64,12 +64,12 @@ def deserialize_json(data: dict) -> ListChangeSetsRequest:
                 data["FilterList"]
             )
         )
-    if "Sort" in data:
+    if data.get("Sort") is not None:
         import capo_marketplace_catalog.types.sort
 
         out["sort"] = capo_marketplace_catalog.types.sort.deserialize_json(data["Sort"])
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

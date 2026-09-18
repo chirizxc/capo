@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: BatchGetTableOptimizerResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetTableOptimizerResponse:
     out: BatchGetTableOptimizerResponse = {}  # type: ignore[typeddict-item]
-    if "TableOptimizers" in data:
+    if data.get("TableOptimizers") is not None:
         import capo_glue.types.batch_table_optimizers
 
         out["table_optimizers"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchGetTableOptimizerResponse:
                 data["TableOptimizers"]
             )
         )
-    if "Failures" in data:
+    if data.get("Failures") is not None:
         import capo_glue.types.batch_get_table_optimizer_errors
 
         out["failures"] = (

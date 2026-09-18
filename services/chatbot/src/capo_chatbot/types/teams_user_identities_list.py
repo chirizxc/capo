@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> TeamsUserIdentitiesList:
 
     out: TeamsUserIdentitiesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_chatbot.types.teams_user_identity.deserialize_json(item))
     return out

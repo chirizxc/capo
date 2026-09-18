@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> DirectoryList:
 
     out: DirectoryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_clouddirectory.types.directory.deserialize_json(item))
     return out

@@ -60,27 +60,27 @@ def serialize_json(value: GetProfileObjectTypeTemplateResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetProfileObjectTypeTemplateResponse:
     out: GetProfileObjectTypeTemplateResponse = {}  # type: ignore[typeddict-item]
-    if "TemplateId" in data:
+    if data.get("TemplateId") is not None:
         out["template_id"] = data["TemplateId"]
-    if "SourceName" in data:
+    if data.get("SourceName") is not None:
         out["source_name"] = data["SourceName"]
-    if "SourceObject" in data:
+    if data.get("SourceObject") is not None:
         out["source_object"] = data["SourceObject"]
-    if "AllowProfileCreation" in data:
+    if data.get("AllowProfileCreation") is not None:
         out["allow_profile_creation"] = data["AllowProfileCreation"]
     else:
         out["allow_profile_creation"] = False
-    if "SourceLastUpdatedTimestampFormat" in data:
+    if data.get("SourceLastUpdatedTimestampFormat") is not None:
         out["source_last_updated_timestamp_format"] = data[
             "SourceLastUpdatedTimestampFormat"
         ]
-    if "Fields" in data:
+    if data.get("Fields") is not None:
         import capo_customer_profiles.types.field_map
 
         out["fields"] = capo_customer_profiles.types.field_map.deserialize_json(
             data["Fields"]
         )
-    if "Keys" in data:
+    if data.get("Keys") is not None:
         import capo_customer_profiles.types.key_map
 
         out["keys"] = capo_customer_profiles.types.key_map.deserialize_json(

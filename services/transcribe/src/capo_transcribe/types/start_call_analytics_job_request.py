@@ -49,6 +49,7 @@ class StartCallAnalyticsJobRequest(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: StartCallAnalyticsJobRequest) -> dict:
     out: dict = {}
+    out["CallAnalyticsJobName"] = value["call_analytics_job_name"]
     import capo_transcribe.types.media
 
     out["Media"] = capo_transcribe.types.media.serialize_aws_json_1_1(value["media"])
@@ -85,7 +86,13 @@ def serialize_aws_json_1_1(value: StartCallAnalyticsJobRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartCallAnalyticsJobRequest:
     out: StartCallAnalyticsJobRequest = {}  # type: ignore[typeddict-item]
-    if "Media" in data:
+    if data.get("CallAnalyticsJobName") is not None:
+        out["call_analytics_job_name"] = data["CallAnalyticsJobName"]
+    else:
+        raise DeserializationError(
+            "StartCallAnalyticsJobRequest.call_analytics_job_name required"
+        )
+    if data.get("Media") is not None:
         import capo_transcribe.types.media
 
         out["media"] = capo_transcribe.types.media.deserialize_aws_json_1_1(
@@ -93,13 +100,13 @@ def deserialize_aws_json_1_1(data: dict) -> StartCallAnalyticsJobRequest:
         )
     else:
         raise DeserializationError("StartCallAnalyticsJobRequest.media required")
-    if "OutputLocation" in data:
+    if data.get("OutputLocation") is not None:
         out["output_location"] = data["OutputLocation"]
-    if "OutputEncryptionKMSKeyId" in data:
+    if data.get("OutputEncryptionKMSKeyId") is not None:
         out["output_encryption_kms_key_id"] = data["OutputEncryptionKMSKeyId"]
-    if "DataAccessRoleArn" in data:
+    if data.get("DataAccessRoleArn") is not None:
         out["data_access_role_arn"] = data["DataAccessRoleArn"]
-    if "Settings" in data:
+    if data.get("Settings") is not None:
         import capo_transcribe.types.call_analytics_job_settings
 
         out["settings"] = (
@@ -107,13 +114,13 @@ def deserialize_aws_json_1_1(data: dict) -> StartCallAnalyticsJobRequest:
                 data["Settings"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_transcribe.types.tag_list
 
         out["tags"] = capo_transcribe.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "ChannelDefinitions" in data:
+    if data.get("ChannelDefinitions") is not None:
         import capo_transcribe.types.channel_definitions
 
         out["channel_definitions"] = (

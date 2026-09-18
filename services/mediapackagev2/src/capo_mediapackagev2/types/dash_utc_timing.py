@@ -35,7 +35,7 @@ def serialize_json(value: DashUtcTiming) -> dict:
 
 def deserialize_json(data: dict) -> DashUtcTiming:
     out: DashUtcTiming = {}  # type: ignore[typeddict-item]
-    if "TimingMode" in data:
+    if data.get("TimingMode") is not None:
         import capo_mediapackagev2.types.dash_utc_timing_mode
 
         out["timing_mode"] = (
@@ -43,6 +43,6 @@ def deserialize_json(data: dict) -> DashUtcTiming:
                 data["TimingMode"]
             )
         )
-    if "TimingSource" in data:
+    if data.get("TimingSource") is not None:
         out["timing_source"] = data["TimingSource"]
     return out

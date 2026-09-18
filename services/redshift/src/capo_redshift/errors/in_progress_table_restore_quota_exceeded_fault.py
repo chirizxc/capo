@@ -39,15 +39,22 @@ class InProgressTableRestoreQuotaExceededFault(ServiceError):
 
     code: str | None = "InProgressTableRestoreQuotaExceededFault"
 
-    def __init__(self, data: InProgressTableRestoreQuotaExceededFault_):
+    def __init__(
+        self,
+        data: InProgressTableRestoreQuotaExceededFault_,
+        message: str | None = None,
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InProgressTableRestoreQuotaExceededFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "InProgressTableRestoreQuotaExceededFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "InProgressTableRestoreQuotaExceededFault":
+        return cls(deserialize_query(el), message)

@@ -39,14 +39,14 @@ def serialize_aws_json_1_1(value: ReservationPurchaseRecommendationSummary) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> ReservationPurchaseRecommendationSummary:
     out: ReservationPurchaseRecommendationSummary = {}  # type: ignore[typeddict-item]
-    if "TotalEstimatedMonthlySavingsAmount" in data:
+    if data.get("TotalEstimatedMonthlySavingsAmount") is not None:
         out["total_estimated_monthly_savings_amount"] = data[
             "TotalEstimatedMonthlySavingsAmount"
         ]
-    if "TotalEstimatedMonthlySavingsPercentage" in data:
+    if data.get("TotalEstimatedMonthlySavingsPercentage") is not None:
         out["total_estimated_monthly_savings_percentage"] = data[
             "TotalEstimatedMonthlySavingsPercentage"
         ]
-    if "CurrencyCode" in data:
+    if data.get("CurrencyCode") is not None:
         out["currency_code"] = data["CurrencyCode"]
     return out

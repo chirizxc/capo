@@ -32,7 +32,7 @@ def serialize_json(value: UpdateQueueStatusRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateQueueStatusRequest:
     out: UpdateQueueStatusRequest = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_connect.types.queue_status
 
         out["status"] = capo_connect.types.queue_status.deserialize_json(data["Status"])

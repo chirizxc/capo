@@ -33,7 +33,7 @@ def serialize_json(value: PutMessagingStreamingConfigurationsRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutMessagingStreamingConfigurationsRequest:
     out: PutMessagingStreamingConfigurationsRequest = {}  # type: ignore[typeddict-item]
-    if "StreamingConfigurations" in data:
+    if data.get("StreamingConfigurations") is not None:
         import capo_chime_sdk_messaging.types.streaming_configuration_list
 
         out["streaming_configurations"] = (

@@ -86,43 +86,43 @@ def serialize_json(value: LineageNodeSummary) -> dict:
 
 def deserialize_json(data: dict) -> LineageNodeSummary:
     out: LineageNodeSummary = {}  # type: ignore[typeddict-item]
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
     else:
         raise DeserializationError("LineageNodeSummary.domain_id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_datazone.types.created_at
 
         out["created_at"] = capo_datazone.types.created_at.deserialize_json(
             data["createdAt"]
         )
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_datazone.types.updated_at
 
         out["updated_at"] = capo_datazone.types.updated_at.deserialize_json(
             data["updatedAt"]
         )
-    if "updatedBy" in data:
+    if data.get("updatedBy") is not None:
         out["updated_by"] = data["updatedBy"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("LineageNodeSummary.id required")
-    if "typeName" in data:
+    if data.get("typeName") is not None:
         out["type_name"] = data["typeName"]
     else:
         raise DeserializationError("LineageNodeSummary.type_name required")
-    if "typeRevision" in data:
+    if data.get("typeRevision") is not None:
         out["type_revision"] = data["typeRevision"]
-    if "sourceIdentifier" in data:
+    if data.get("sourceIdentifier") is not None:
         out["source_identifier"] = data["sourceIdentifier"]
-    if "eventTimestamp" in data:
+    if data.get("eventTimestamp") is not None:
         import capo_datazone.types._prelude.timestamp
 
         out["event_timestamp"] = (

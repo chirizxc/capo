@@ -42,16 +42,16 @@ def serialize_aws_json_1_1(value: DescribeUsersRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeUsersRequest:
     out: DescribeUsersRequest = {}  # type: ignore[typeddict-item]
-    if "UserName" in data:
+    if data.get("UserName") is not None:
         out["user_name"] = data["UserName"]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_memorydb.types.filter_list
 
         out["filters"] = capo_memorydb.types.filter_list.deserialize_aws_json_1_1(
             data["Filters"]
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

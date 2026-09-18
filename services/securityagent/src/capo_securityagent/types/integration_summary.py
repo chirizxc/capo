@@ -45,15 +45,15 @@ def serialize_json(value: IntegrationSummary) -> dict:
 
 def deserialize_json(data: dict) -> IntegrationSummary:
     out: IntegrationSummary = {}  # type: ignore[typeddict-item]
-    if "integrationId" in data:
+    if data.get("integrationId") is not None:
         out["integration_id"] = data["integrationId"]
     else:
         raise DeserializationError("IntegrationSummary.integration_id required")
-    if "installationId" in data:
+    if data.get("installationId") is not None:
         out["installation_id"] = data["installationId"]
     else:
         raise DeserializationError("IntegrationSummary.installation_id required")
-    if "provider" in data:
+    if data.get("provider") is not None:
         import capo_securityagent.types.provider
 
         out["provider"] = capo_securityagent.types.provider.deserialize_json(
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> IntegrationSummary:
         )
     else:
         raise DeserializationError("IntegrationSummary.provider required")
-    if "providerType" in data:
+    if data.get("providerType") is not None:
         import capo_securityagent.types.provider_type
 
         out["provider_type"] = capo_securityagent.types.provider_type.deserialize_json(
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> IntegrationSummary:
         )
     else:
         raise DeserializationError("IntegrationSummary.provider_type required")
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     else:
         raise DeserializationError("IntegrationSummary.display_name required")

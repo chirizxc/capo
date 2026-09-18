@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> UpdateActions:
 
     out: UpdateActions = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mpa.types.update_action.deserialize_json(item))
     return out

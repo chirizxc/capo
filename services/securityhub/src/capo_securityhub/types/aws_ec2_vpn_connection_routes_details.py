@@ -29,8 +29,8 @@ def serialize_json(value: AwsEc2VpnConnectionRoutesDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEc2VpnConnectionRoutesDetails:
     out: AwsEc2VpnConnectionRoutesDetails = {}  # type: ignore[typeddict-item]
-    if "DestinationCidrBlock" in data:
+    if data.get("DestinationCidrBlock") is not None:
         out["destination_cidr_block"] = data["DestinationCidrBlock"]
-    if "State" in data:
+    if data.get("State") is not None:
         out["state"] = data["State"]
     return out

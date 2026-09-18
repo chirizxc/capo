@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> CloudFormationStackRecordSourceInfoL
 
     out: CloudFormationStackRecordSourceInfoList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lightsail.types.cloud_formation_stack_record_source_info.deserialize_aws_json_1_1(
                 item

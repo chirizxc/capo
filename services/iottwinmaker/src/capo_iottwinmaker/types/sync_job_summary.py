@@ -59,25 +59,25 @@ def serialize_json(value: SyncJobSummary) -> dict:
 
 def deserialize_json(data: dict) -> SyncJobSummary:
     out: SyncJobSummary = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "workspaceId" in data:
+    if data.get("workspaceId") is not None:
         out["workspace_id"] = data["workspaceId"]
-    if "syncSource" in data:
+    if data.get("syncSource") is not None:
         out["sync_source"] = data["syncSource"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iottwinmaker.types.sync_job_status
 
         out["status"] = capo_iottwinmaker.types.sync_job_status.deserialize_json(
             data["status"]
         )
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_iottwinmaker.types.timestamp
 
         out["creation_date_time"] = capo_iottwinmaker.types.timestamp.deserialize_json(
             data["creationDateTime"]
         )
-    if "updateDateTime" in data:
+    if data.get("updateDateTime") is not None:
         import capo_iottwinmaker.types.timestamp
 
         out["update_date_time"] = capo_iottwinmaker.types.timestamp.deserialize_json(

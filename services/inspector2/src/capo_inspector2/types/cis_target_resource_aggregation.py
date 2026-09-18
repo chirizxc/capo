@@ -84,15 +84,15 @@ def serialize_json(value: CisTargetResourceAggregation) -> dict:
 
 def deserialize_json(data: dict) -> CisTargetResourceAggregation:
     out: CisTargetResourceAggregation = {}  # type: ignore[typeddict-item]
-    if "scanArn" in data:
+    if data.get("scanArn") is not None:
         out["scan_arn"] = data["scanArn"]
     else:
         raise DeserializationError("CisTargetResourceAggregation.scan_arn required")
-    if "targetResourceId" in data:
+    if data.get("targetResourceId") is not None:
         out["target_resource_id"] = data["targetResourceId"]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "targetResourceTags" in data:
+    if data.get("targetResourceTags") is not None:
         import capo_inspector2.types.target_resource_tags
 
         out["target_resource_tags"] = (
@@ -100,21 +100,21 @@ def deserialize_json(data: dict) -> CisTargetResourceAggregation:
                 data["targetResourceTags"]
             )
         )
-    if "statusCounts" in data:
+    if data.get("statusCounts") is not None:
         import capo_inspector2.types.status_counts
 
         out["status_counts"] = capo_inspector2.types.status_counts.deserialize_json(
             data["statusCounts"]
         )
-    if "platform" in data:
+    if data.get("platform") is not None:
         out["platform"] = data["platform"]
-    if "targetStatus" in data:
+    if data.get("targetStatus") is not None:
         import capo_inspector2.types.cis_target_status
 
         out["target_status"] = capo_inspector2.types.cis_target_status.deserialize_json(
             data["targetStatus"]
         )
-    if "targetStatusReason" in data:
+    if data.get("targetStatusReason") is not None:
         import capo_inspector2.types.cis_target_status_reason
 
         out["target_status_reason"] = (

@@ -52,11 +52,11 @@ def serialize_json(value: RecurringPaymentTerm) -> dict:
 
 def deserialize_json(data: dict) -> RecurringPaymentTerm:
     out: RecurringPaymentTerm = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("RecurringPaymentTerm.id required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_marketplace_discovery.types.term_type
 
         out["type"] = capo_marketplace_discovery.types.term_type.deserialize_json(
@@ -64,11 +64,11 @@ def deserialize_json(data: dict) -> RecurringPaymentTerm:
         )
     else:
         raise DeserializationError("RecurringPaymentTerm.type required")
-    if "currencyCode" in data:
+    if data.get("currencyCode") is not None:
         out["currency_code"] = data["currencyCode"]
     else:
         raise DeserializationError("RecurringPaymentTerm.currency_code required")
-    if "billingPeriod" in data:
+    if data.get("billingPeriod") is not None:
         import capo_marketplace_discovery.types.billing_period_type
 
         out["billing_period"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> RecurringPaymentTerm:
         )
     else:
         raise DeserializationError("RecurringPaymentTerm.billing_period required")
-    if "price" in data:
+    if data.get("price") is not None:
         out["price"] = data["price"]
     else:
         raise DeserializationError("RecurringPaymentTerm.price required")

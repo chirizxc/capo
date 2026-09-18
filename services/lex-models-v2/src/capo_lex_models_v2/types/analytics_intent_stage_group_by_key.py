@@ -38,7 +38,7 @@ def serialize_json(value: AnalyticsIntentStageGroupByKey) -> dict:
 
 def deserialize_json(data: dict) -> AnalyticsIntentStageGroupByKey:
     out: AnalyticsIntentStageGroupByKey = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         import capo_lex_models_v2.types.analytics_intent_stage_field
 
         out["name"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> AnalyticsIntentStageGroupByKey:
                 data["name"]
             )
         )
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     return out

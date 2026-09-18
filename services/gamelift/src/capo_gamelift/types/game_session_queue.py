@@ -103,13 +103,13 @@ def serialize_aws_json_1_1(value: GameSessionQueue) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GameSessionQueue:
     out: GameSessionQueue = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "GameSessionQueueArn" in data:
+    if data.get("GameSessionQueueArn") is not None:
         out["game_session_queue_arn"] = data["GameSessionQueueArn"]
-    if "TimeoutInSeconds" in data:
+    if data.get("TimeoutInSeconds") is not None:
         out["timeout_in_seconds"] = data["TimeoutInSeconds"]
-    if "PlayerLatencyPolicies" in data:
+    if data.get("PlayerLatencyPolicies") is not None:
         import capo_gamelift.types.player_latency_policy_list
 
         out["player_latency_policies"] = (
@@ -117,7 +117,7 @@ def deserialize_aws_json_1_1(data: dict) -> GameSessionQueue:
                 data["PlayerLatencyPolicies"]
             )
         )
-    if "Destinations" in data:
+    if data.get("Destinations") is not None:
         import capo_gamelift.types.game_session_queue_destination_list
 
         out["destinations"] = (
@@ -125,7 +125,7 @@ def deserialize_aws_json_1_1(data: dict) -> GameSessionQueue:
                 data["Destinations"]
             )
         )
-    if "FilterConfiguration" in data:
+    if data.get("FilterConfiguration") is not None:
         import capo_gamelift.types.filter_configuration
 
         out["filter_configuration"] = (
@@ -133,7 +133,7 @@ def deserialize_aws_json_1_1(data: dict) -> GameSessionQueue:
                 data["FilterConfiguration"]
             )
         )
-    if "PriorityConfiguration" in data:
+    if data.get("PriorityConfiguration") is not None:
         import capo_gamelift.types.priority_configuration
 
         out["priority_configuration"] = (
@@ -141,8 +141,8 @@ def deserialize_aws_json_1_1(data: dict) -> GameSessionQueue:
                 data["PriorityConfiguration"]
             )
         )
-    if "CustomEventData" in data:
+    if data.get("CustomEventData") is not None:
         out["custom_event_data"] = data["CustomEventData"]
-    if "NotificationTarget" in data:
+    if data.get("NotificationTarget") is not None:
         out["notification_target"] = data["NotificationTarget"]
     return out

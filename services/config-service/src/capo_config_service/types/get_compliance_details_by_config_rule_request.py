@@ -48,13 +48,13 @@ def serialize_aws_json_1_1(value: GetComplianceDetailsByConfigRuleRequest) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> GetComplianceDetailsByConfigRuleRequest:
     out: GetComplianceDetailsByConfigRuleRequest = {}  # type: ignore[typeddict-item]
-    if "ConfigRuleName" in data:
+    if data.get("ConfigRuleName") is not None:
         out["config_rule_name"] = data["ConfigRuleName"]
     else:
         raise DeserializationError(
             "GetComplianceDetailsByConfigRuleRequest.config_rule_name required"
         )
-    if "ComplianceTypes" in data:
+    if data.get("ComplianceTypes") is not None:
         import capo_config_service.types.compliance_types
 
         out["compliance_types"] = (
@@ -62,10 +62,10 @@ def deserialize_aws_json_1_1(data: dict) -> GetComplianceDetailsByConfigRuleRequ
                 data["ComplianceTypes"]
             )
         )
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
     else:
         out["limit"] = 0
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

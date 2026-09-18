@@ -90,21 +90,21 @@ def serialize_json(value: FlowSummary) -> dict:
 
 def deserialize_json(data: dict) -> FlowSummary:
     out: FlowSummary = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("FlowSummary.arn required")
-    if "FlowId" in data:
+    if data.get("FlowId") is not None:
         out["flow_id"] = data["FlowId"]
     else:
         raise DeserializationError("FlowSummary.flow_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("FlowSummary.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_quicksight.types.timestamp
 
         out["created_time"] = capo_quicksight.types.timestamp.deserialize_json(
@@ -112,17 +112,17 @@ def deserialize_json(data: dict) -> FlowSummary:
         )
     else:
         raise DeserializationError("FlowSummary.created_time required")
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         out["created_by"] = data["CreatedBy"]
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_quicksight.types.timestamp
 
         out["last_updated_time"] = capo_quicksight.types.timestamp.deserialize_json(
             data["LastUpdatedTime"]
         )
-    if "LastUpdatedBy" in data:
+    if data.get("LastUpdatedBy") is not None:
         out["last_updated_by"] = data["LastUpdatedBy"]
-    if "PublishState" in data:
+    if data.get("PublishState") is not None:
         import capo_quicksight.types.flow_publish_state
 
         out["publish_state"] = (
@@ -130,17 +130,17 @@ def deserialize_json(data: dict) -> FlowSummary:
                 data["PublishState"]
             )
         )
-    if "RunCount" in data:
+    if data.get("RunCount") is not None:
         out["run_count"] = data["RunCount"]
     else:
         out["run_count"] = 0
-    if "UserCount" in data:
+    if data.get("UserCount") is not None:
         out["user_count"] = data["UserCount"]
     else:
         out["user_count"] = 0
-    if "LastPublishedBy" in data:
+    if data.get("LastPublishedBy") is not None:
         out["last_published_by"] = data["LastPublishedBy"]
-    if "LastPublishedAt" in data:
+    if data.get("LastPublishedAt") is not None:
         import capo_quicksight.types.timestamp
 
         out["last_published_at"] = capo_quicksight.types.timestamp.deserialize_json(

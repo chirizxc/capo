@@ -28,11 +28,11 @@ def serialize_aws_json_1_0(value: BatchGetPolicyInputItem) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> BatchGetPolicyInputItem:
     out: BatchGetPolicyInputItem = {}  # type: ignore[typeddict-item]
-    if "policyStoreId" in data:
+    if data.get("policyStoreId") is not None:
         out["policy_store_id"] = data["policyStoreId"]
     else:
         raise DeserializationError("BatchGetPolicyInputItem.policy_store_id required")
-    if "policyId" in data:
+    if data.get("policyId") is not None:
         out["policy_id"] = data["policyId"]
     else:
         raise DeserializationError("BatchGetPolicyInputItem.policy_id required")

@@ -60,14 +60,16 @@ class ModelResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_nova_act.types.list_models_request.ListModelsRequest = {}  # type: ignore[typeddict-item]
-        input_["client_compatibility_version"] = client_compatibility_version
+        input_: capo_nova_act.types.list_models_request.ListModelsRequest = {
+            "client_compatibility_version": client_compatibility_version
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -109,12 +111,14 @@ class AsyncModelResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_nova_act.types.list_models_request.ListModelsRequest = {}  # type: ignore[typeddict-item]
-        input_["client_compatibility_version"] = client_compatibility_version
+        input_: capo_nova_act.types.list_models_request.ListModelsRequest = {
+            "client_compatibility_version": client_compatibility_version
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

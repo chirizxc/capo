@@ -67,15 +67,15 @@ def serialize_json(value: TimelineEvent) -> dict:
 
 def deserialize_json(data: dict) -> TimelineEvent:
     out: TimelineEvent = {}  # type: ignore[typeddict-item]
-    if "incidentRecordArn" in data:
+    if data.get("incidentRecordArn") is not None:
         out["incident_record_arn"] = data["incidentRecordArn"]
     else:
         raise DeserializationError("TimelineEvent.incident_record_arn required")
-    if "eventId" in data:
+    if data.get("eventId") is not None:
         out["event_id"] = data["eventId"]
     else:
         raise DeserializationError("TimelineEvent.event_id required")
-    if "eventTime" in data:
+    if data.get("eventTime") is not None:
         import capo_ssm_incidents.types._prelude.timestamp
 
         out["event_time"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> TimelineEvent:
         )
     else:
         raise DeserializationError("TimelineEvent.event_time required")
-    if "eventUpdatedTime" in data:
+    if data.get("eventUpdatedTime") is not None:
         import capo_ssm_incidents.types._prelude.timestamp
 
         out["event_updated_time"] = (
@@ -95,15 +95,15 @@ def deserialize_json(data: dict) -> TimelineEvent:
         )
     else:
         raise DeserializationError("TimelineEvent.event_updated_time required")
-    if "eventType" in data:
+    if data.get("eventType") is not None:
         out["event_type"] = data["eventType"]
     else:
         raise DeserializationError("TimelineEvent.event_type required")
-    if "eventData" in data:
+    if data.get("eventData") is not None:
         out["event_data"] = data["eventData"]
     else:
         raise DeserializationError("TimelineEvent.event_data required")
-    if "eventReferences" in data:
+    if data.get("eventReferences") is not None:
         import capo_ssm_incidents.types.event_reference_list
 
         out["event_references"] = (

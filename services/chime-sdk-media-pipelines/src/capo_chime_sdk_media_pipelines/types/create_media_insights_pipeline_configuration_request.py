@@ -69,7 +69,7 @@ def serialize_json(value: CreateMediaInsightsPipelineConfigurationRequest) -> di
 
 def deserialize_json(data: dict) -> CreateMediaInsightsPipelineConfigurationRequest:
     out: CreateMediaInsightsPipelineConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "MediaInsightsPipelineConfigurationName" in data:
+    if data.get("MediaInsightsPipelineConfigurationName") is not None:
         out["media_insights_pipeline_configuration_name"] = data[
             "MediaInsightsPipelineConfigurationName"
         ]
@@ -77,13 +77,13 @@ def deserialize_json(data: dict) -> CreateMediaInsightsPipelineConfigurationRequ
         raise DeserializationError(
             "CreateMediaInsightsPipelineConfigurationRequest.media_insights_pipeline_configuration_name required"
         )
-    if "ResourceAccessRoleArn" in data:
+    if data.get("ResourceAccessRoleArn") is not None:
         out["resource_access_role_arn"] = data["ResourceAccessRoleArn"]
     else:
         raise DeserializationError(
             "CreateMediaInsightsPipelineConfigurationRequest.resource_access_role_arn required"
         )
-    if "RealTimeAlertConfiguration" in data:
+    if data.get("RealTimeAlertConfiguration") is not None:
         import capo_chime_sdk_media_pipelines.types.real_time_alert_configuration
 
         out["real_time_alert_configuration"] = (
@@ -91,7 +91,7 @@ def deserialize_json(data: dict) -> CreateMediaInsightsPipelineConfigurationRequ
                 data["RealTimeAlertConfiguration"]
             )
         )
-    if "Elements" in data:
+    if data.get("Elements") is not None:
         import capo_chime_sdk_media_pipelines.types.media_insights_pipeline_configuration_elements
 
         out["elements"] = (
@@ -103,12 +103,12 @@ def deserialize_json(data: dict) -> CreateMediaInsightsPipelineConfigurationRequ
         raise DeserializationError(
             "CreateMediaInsightsPipelineConfigurationRequest.elements required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_chime_sdk_media_pipelines.types.tag_list
 
         out["tags"] = capo_chime_sdk_media_pipelines.types.tag_list.deserialize_json(
             data["Tags"]
         )
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
     return out

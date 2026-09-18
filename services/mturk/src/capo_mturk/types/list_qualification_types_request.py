@@ -42,18 +42,18 @@ def serialize_aws_json_1_1(value: ListQualificationTypesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListQualificationTypesRequest:
     out: ListQualificationTypesRequest = {}  # type: ignore[typeddict-item]
-    if "Query" in data:
+    if data.get("Query") is not None:
         out["query"] = data["Query"]
-    if "MustBeRequestable" in data:
+    if data.get("MustBeRequestable") is not None:
         out["must_be_requestable"] = data["MustBeRequestable"]
     else:
         raise DeserializationError(
             "ListQualificationTypesRequest.must_be_requestable required"
         )
-    if "MustBeOwnedByCaller" in data:
+    if data.get("MustBeOwnedByCaller") is not None:
         out["must_be_owned_by_caller"] = data["MustBeOwnedByCaller"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

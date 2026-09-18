@@ -30,16 +30,24 @@ def serialize_json(value: GeospatialNullSymbolStyle) -> dict:
     if "stroke_color" in value:
         out["StrokeColor"] = value["stroke_color"]
     if "stroke_width" in value:
-        out["StrokeWidth"] = value["stroke_width"]
+        out["StrokeWidth"] = (
+            "NaN"
+            if value["stroke_width"] != value["stroke_width"]
+            else "Infinity"
+            if value["stroke_width"] == float("inf")
+            else "-Infinity"
+            if value["stroke_width"] == float("-inf")
+            else value["stroke_width"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> GeospatialNullSymbolStyle:
     out: GeospatialNullSymbolStyle = {}  # type: ignore[typeddict-item]
-    if "FillColor" in data:
+    if data.get("FillColor") is not None:
         out["fill_color"] = data["FillColor"]
-    if "StrokeColor" in data:
+    if data.get("StrokeColor") is not None:
         out["stroke_color"] = data["StrokeColor"]
-    if "StrokeWidth" in data:
-        out["stroke_width"] = data["StrokeWidth"]
+    if data.get("StrokeWidth") is not None:
+        out["stroke_width"] = float(data["StrokeWidth"])
     return out

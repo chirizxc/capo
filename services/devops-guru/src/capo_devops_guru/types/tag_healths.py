@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> TagHealths:
 
     out: TagHealths = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_devops_guru.types.tag_health.deserialize_json(item))
     return out

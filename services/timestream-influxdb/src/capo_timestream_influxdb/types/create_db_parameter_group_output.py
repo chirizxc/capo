@@ -47,21 +47,21 @@ def serialize_aws_json_1_0(value: CreateDbParameterGroupOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateDbParameterGroupOutput:
     out: CreateDbParameterGroupOutput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("CreateDbParameterGroupOutput.id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateDbParameterGroupOutput.name required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("CreateDbParameterGroupOutput.arn required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_timestream_influxdb.types.parameters
 
         out["parameters"] = (

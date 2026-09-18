@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> BatchGetSessionActionErrors:
 
     out: BatchGetSessionActionErrors = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_deadline.types.batch_get_session_action_error.deserialize_json(item)
         )

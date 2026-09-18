@@ -57,26 +57,26 @@ def serialize_json(value: Behavior) -> dict:
 
 def deserialize_json(data: dict) -> Behavior:
     out: Behavior = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("Behavior.name required")
-    if "metric" in data:
+    if data.get("metric") is not None:
         out["metric"] = data["metric"]
-    if "metricDimension" in data:
+    if data.get("metricDimension") is not None:
         import capo_iot.types.metric_dimension
 
         out["metric_dimension"] = capo_iot.types.metric_dimension.deserialize_json(
             data["metricDimension"]
         )
-    if "criteria" in data:
+    if data.get("criteria") is not None:
         import capo_iot.types.behavior_criteria
 
         out["criteria"] = capo_iot.types.behavior_criteria.deserialize_json(
             data["criteria"]
         )
-    if "suppressAlerts" in data:
+    if data.get("suppressAlerts") is not None:
         out["suppress_alerts"] = data["suppressAlerts"]
-    if "exportMetric" in data:
+    if data.get("exportMetric") is not None:
         out["export_metric"] = data["exportMetric"]
     return out

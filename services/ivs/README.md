@@ -13,9 +13,9 @@ from capo_ivs import AsyncivsClient
 
 
 async def main():
-    async with AsyncivsClient() as s3:
+    async with AsyncivsClient() as ivs:
         # Example: call the batch_get_channel operation
-        response = await s3.batch_get_channel()
+        response = await ivs.batch_get_channel()
         print(response["access_control_allow_origin"])
 ```
 
@@ -28,9 +28,9 @@ from capo_ivs import AsyncivsClient
 
 
 async def main():
-    async with AsyncivsClient() as s3:
+    async with AsyncivsClient() as ivs:
         # Example: paginate over list_ad_configurations
-        async for item in s3.iter_list_ad_configurations():
+        async for item in ivs.iter_list_ad_configurations():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_ivs.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncivsClient() as s3:
+    async with AsyncivsClient() as ivs:
         try:
-            await s3.batch_get_channel()
+            await ivs.batch_get_channel()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_ivs import AsyncivsClient
 
 
 async def main():
-    async with AsyncivsClient() as s3:
+    async with AsyncivsClient() as ivs:
         # Default: 3 attempts for every operation
-        response = await s3.batch_get_channel()
+        response = await ivs.batch_get_channel()
 
         # Override per operation
-        response = await s3.batch_get_channel(config_overrides={"retry_max_attempts": 5})
+        response = await ivs.batch_get_channel(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.batch_get_channel(config_overrides={"retry_max_attempts": 1})
+        response = await ivs.batch_get_channel(config_overrides={"retry_max_attempts": 1})
 ```

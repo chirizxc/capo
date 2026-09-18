@@ -41,7 +41,7 @@ def serialize_json(value: BatchGetAccountStatusResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetAccountStatusResponse:
     out: BatchGetAccountStatusResponse = {}  # type: ignore[typeddict-item]
-    if "accounts" in data:
+    if data.get("accounts") is not None:
         import capo_inspector2.types.account_state_list
 
         out["accounts"] = capo_inspector2.types.account_state_list.deserialize_json(
@@ -49,7 +49,7 @@ def deserialize_json(data: dict) -> BatchGetAccountStatusResponse:
         )
     else:
         raise DeserializationError("BatchGetAccountStatusResponse.accounts required")
-    if "failedAccounts" in data:
+    if data.get("failedAccounts") is not None:
         import capo_inspector2.types.failed_account_list
 
         out["failed_accounts"] = (

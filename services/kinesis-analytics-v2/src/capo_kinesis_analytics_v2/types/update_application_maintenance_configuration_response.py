@@ -42,9 +42,9 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> UpdateApplicationMaintenanceConfigurationResponse:
     out: UpdateApplicationMaintenanceConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "ApplicationARN" in data:
+    if data.get("ApplicationARN") is not None:
         out["application_arn"] = data["ApplicationARN"]
-    if "ApplicationMaintenanceConfigurationDescription" in data:
+    if data.get("ApplicationMaintenanceConfigurationDescription") is not None:
         import capo_kinesis_analytics_v2.types.application_maintenance_configuration_description
 
         out["application_maintenance_configuration_description"] = (

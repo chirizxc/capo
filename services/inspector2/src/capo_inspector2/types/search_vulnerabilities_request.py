@@ -35,7 +35,7 @@ def serialize_json(value: SearchVulnerabilitiesRequest) -> dict:
 
 def deserialize_json(data: dict) -> SearchVulnerabilitiesRequest:
     out: SearchVulnerabilitiesRequest = {}  # type: ignore[typeddict-item]
-    if "filterCriteria" in data:
+    if data.get("filterCriteria") is not None:
         import capo_inspector2.types.search_vulnerabilities_filter_criteria
 
         out["filter_criteria"] = (
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> SearchVulnerabilitiesRequest:
         raise DeserializationError(
             "SearchVulnerabilitiesRequest.filter_criteria required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

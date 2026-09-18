@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ConfigurableActionParameterList:
 
     out: ConfigurableActionParameterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_datazone.types.configurable_action_parameter.deserialize_json(item)
         )

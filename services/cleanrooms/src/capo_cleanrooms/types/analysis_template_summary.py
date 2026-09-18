@@ -74,11 +74,11 @@ def serialize_json(value: AnalysisTemplateSummary) -> dict:
 
 def deserialize_json(data: dict) -> AnalysisTemplateSummary:
     out: AnalysisTemplateSummary = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("AnalysisTemplateSummary.arn required")
-    if "createTime" in data:
+    if data.get("createTime") is not None:
         import capo_cleanrooms.types._prelude.timestamp
 
         out["create_time"] = capo_cleanrooms.types._prelude.timestamp.deserialize_json(
@@ -86,15 +86,15 @@ def deserialize_json(data: dict) -> AnalysisTemplateSummary:
         )
     else:
         raise DeserializationError("AnalysisTemplateSummary.create_time required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("AnalysisTemplateSummary.id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("AnalysisTemplateSummary.name required")
-    if "updateTime" in data:
+    if data.get("updateTime") is not None:
         import capo_cleanrooms.types._prelude.timestamp
 
         out["update_time"] = capo_cleanrooms.types._prelude.timestamp.deserialize_json(
@@ -102,24 +102,24 @@ def deserialize_json(data: dict) -> AnalysisTemplateSummary:
         )
     else:
         raise DeserializationError("AnalysisTemplateSummary.update_time required")
-    if "membershipArn" in data:
+    if data.get("membershipArn") is not None:
         out["membership_arn"] = data["membershipArn"]
     else:
         raise DeserializationError("AnalysisTemplateSummary.membership_arn required")
-    if "membershipId" in data:
+    if data.get("membershipId") is not None:
         out["membership_id"] = data["membershipId"]
     else:
         raise DeserializationError("AnalysisTemplateSummary.membership_id required")
-    if "collaborationArn" in data:
+    if data.get("collaborationArn") is not None:
         out["collaboration_arn"] = data["collaborationArn"]
     else:
         raise DeserializationError("AnalysisTemplateSummary.collaboration_arn required")
-    if "collaborationId" in data:
+    if data.get("collaborationId") is not None:
         out["collaboration_id"] = data["collaborationId"]
     else:
         raise DeserializationError("AnalysisTemplateSummary.collaboration_id required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "isSyntheticData" in data:
+    if data.get("isSyntheticData") is not None:
         out["is_synthetic_data"] = data["isSyntheticData"]
     return out

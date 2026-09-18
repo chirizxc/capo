@@ -41,15 +41,20 @@ class AvailabilityZoneNotSupportedException(ServiceError):
 
     code: str | None = "AvailabilityZoneNotSupportedException"
 
-    def __init__(self, data: AvailabilityZoneNotSupportedException_):
+    def __init__(
+        self, data: AvailabilityZoneNotSupportedException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="AvailabilityZoneNotSupportedException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "AvailabilityZoneNotSupportedException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "AvailabilityZoneNotSupportedException":
+        return cls(deserialize_query(el), message)

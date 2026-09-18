@@ -59,11 +59,11 @@ def serialize_aws_json_1_1(value: FlowDefinitionSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FlowDefinitionSummary:
     out: FlowDefinitionSummary = {}  # type: ignore[typeddict-item]
-    if "FlowDefinitionName" in data:
+    if data.get("FlowDefinitionName") is not None:
         out["flow_definition_name"] = data["FlowDefinitionName"]
-    if "FlowDefinitionArn" in data:
+    if data.get("FlowDefinitionArn") is not None:
         out["flow_definition_arn"] = data["FlowDefinitionArn"]
-    if "FlowDefinitionStatus" in data:
+    if data.get("FlowDefinitionStatus") is not None:
         import capo_sagemaker.types.flow_definition_status
 
         out["flow_definition_status"] = (
@@ -71,12 +71,12 @@ def deserialize_aws_json_1_1(data: dict) -> FlowDefinitionSummary:
                 data["FlowDefinitionStatus"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
     return out

@@ -45,17 +45,17 @@ def serialize_aws_json_1_0(value: StartProfileUpdateTaskRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StartProfileUpdateTaskRequest:
     out: StartProfileUpdateTaskRequest = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("StartProfileUpdateTaskRequest.catalog required")
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
     else:
         raise DeserializationError("StartProfileUpdateTaskRequest.identifier required")
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "TaskDetails" in data:
+    if data.get("TaskDetails") is not None:
         import capo_partnercentral_account.types.task_details
 
         out["task_details"] = (

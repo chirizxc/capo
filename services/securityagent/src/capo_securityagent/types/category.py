@@ -22,8 +22,8 @@ def serialize_json(value: Category) -> dict:
 
 def deserialize_json(data: dict) -> Category:
     out: Category = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "isPrimary" in data:
+    if data.get("isPrimary") is not None:
         out["is_primary"] = data["isPrimary"]
     return out

@@ -36,19 +36,19 @@ def serialize_json(value: MediaElement) -> dict:
 
 def deserialize_json(data: dict) -> MediaElement:
     out: MediaElement = {}  # type: ignore[typeddict-item]
-    if "mediaId" in data:
+    if data.get("mediaId") is not None:
         out["media_id"] = data["mediaId"]
     else:
         raise DeserializationError("MediaElement.media_id required")
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("MediaElement.type required")
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
     else:
         raise DeserializationError("MediaElement.url required")
-    if "caption" in data:
+    if data.get("caption") is not None:
         out["caption"] = data["caption"]
     else:
         raise DeserializationError("MediaElement.caption required")

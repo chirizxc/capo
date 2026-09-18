@@ -40,13 +40,13 @@ def serialize_json(value: PassthroughSettings) -> dict:
 
 def deserialize_json(data: dict) -> PassthroughSettings:
     out: PassthroughSettings = {}  # type: ignore[typeddict-item]
-    if "frameControl" in data:
+    if data.get("frameControl") is not None:
         import capo_mediaconvert.types.frame_control
 
         out["frame_control"] = capo_mediaconvert.types.frame_control.deserialize_json(
             data["frameControl"]
         )
-    if "videoSelectorMode" in data:
+    if data.get("videoSelectorMode") is not None:
         import capo_mediaconvert.types.video_selector_mode
 
         out["video_selector_mode"] = (

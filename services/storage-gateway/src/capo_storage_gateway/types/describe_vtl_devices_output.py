@@ -38,9 +38,9 @@ def serialize_aws_json_1_1(value: DescribeVTLDevicesOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeVTLDevicesOutput:
     out: DescribeVTLDevicesOutput = {}  # type: ignore[typeddict-item]
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
-    if "VTLDevices" in data:
+    if data.get("VTLDevices") is not None:
         import capo_storage_gateway.types.vtl_devices
 
         out["vtl_devices"] = (
@@ -48,6 +48,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeVTLDevicesOutput:
                 data["VTLDevices"]
             )
         )
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
     return out

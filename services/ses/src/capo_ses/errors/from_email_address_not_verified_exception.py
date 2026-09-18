@@ -49,15 +49,20 @@ class FromEmailAddressNotVerifiedException(ServiceError):
 
     code: str | None = "FromEmailAddressNotVerifiedException"
 
-    def __init__(self, data: FromEmailAddressNotVerifiedException_):
+    def __init__(
+        self, data: FromEmailAddressNotVerifiedException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="FromEmailAddressNotVerifiedException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "FromEmailAddressNotVerifiedException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "FromEmailAddressNotVerifiedException":
+        return cls(deserialize_query(el), message)

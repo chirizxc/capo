@@ -62,9 +62,9 @@ def serialize_aws_json_1_1(value: UpdateSnaplockConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateSnaplockConfiguration:
     out: UpdateSnaplockConfiguration = {}  # type: ignore[typeddict-item]
-    if "AuditLogVolume" in data:
+    if data.get("AuditLogVolume") is not None:
         out["audit_log_volume"] = data["AuditLogVolume"]
-    if "AutocommitPeriod" in data:
+    if data.get("AutocommitPeriod") is not None:
         import capo_fsx.types.autocommit_period
 
         out["autocommit_period"] = (
@@ -72,7 +72,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateSnaplockConfiguration:
                 data["AutocommitPeriod"]
             )
         )
-    if "PrivilegedDelete" in data:
+    if data.get("PrivilegedDelete") is not None:
         import capo_fsx.types.privileged_delete
 
         out["privileged_delete"] = (
@@ -80,7 +80,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateSnaplockConfiguration:
                 data["PrivilegedDelete"]
             )
         )
-    if "RetentionPeriod" in data:
+    if data.get("RetentionPeriod") is not None:
         import capo_fsx.types.snaplock_retention_period
 
         out["retention_period"] = (
@@ -88,6 +88,6 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateSnaplockConfiguration:
                 data["RetentionPeriod"]
             )
         )
-    if "VolumeAppendModeEnabled" in data:
+    if data.get("VolumeAppendModeEnabled") is not None:
         out["volume_append_mode_enabled"] = data["VolumeAppendModeEnabled"]
     return out

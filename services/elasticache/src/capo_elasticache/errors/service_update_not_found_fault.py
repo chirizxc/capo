@@ -37,15 +37,18 @@ class ServiceUpdateNotFoundFault(ServiceError):
 
     code: str | None = "ServiceUpdateNotFoundFault"
 
-    def __init__(self, data: ServiceUpdateNotFoundFault_):
+    def __init__(self, data: ServiceUpdateNotFoundFault_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ServiceUpdateNotFoundFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "ServiceUpdateNotFoundFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "ServiceUpdateNotFoundFault":
+        return cls(deserialize_query(el), message)

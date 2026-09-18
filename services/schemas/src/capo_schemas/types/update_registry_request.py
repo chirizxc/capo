@@ -28,6 +28,6 @@ def serialize_json(value: UpdateRegistryRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRegistryRequest:
     out: UpdateRegistryRequest = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

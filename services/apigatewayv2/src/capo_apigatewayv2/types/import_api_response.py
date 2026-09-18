@@ -145,21 +145,21 @@ def serialize_json(value: ImportApiResponse) -> dict:
 
 def deserialize_json(data: dict) -> ImportApiResponse:
     out: ImportApiResponse = {}  # type: ignore[typeddict-item]
-    if "apiEndpoint" in data:
+    if data.get("apiEndpoint") is not None:
         out["api_endpoint"] = data["apiEndpoint"]
-    if "apiGatewayManaged" in data:
+    if data.get("apiGatewayManaged") is not None:
         out["api_gateway_managed"] = data["apiGatewayManaged"]
-    if "apiId" in data:
+    if data.get("apiId") is not None:
         out["api_id"] = data["apiId"]
-    if "apiKeySelectionExpression" in data:
+    if data.get("apiKeySelectionExpression") is not None:
         out["api_key_selection_expression"] = data["apiKeySelectionExpression"]
-    if "corsConfiguration" in data:
+    if data.get("corsConfiguration") is not None:
         import capo_apigatewayv2.types.cors
 
         out["cors_configuration"] = capo_apigatewayv2.types.cors.deserialize_json(
             data["corsConfiguration"]
         )
-    if "createdDate" in data:
+    if data.get("createdDate") is not None:
         import capo_apigatewayv2.types.__timestamp_iso8601
 
         out["created_date"] = (
@@ -167,19 +167,19 @@ def deserialize_json(data: dict) -> ImportApiResponse:
                 data["createdDate"]
             )
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "disableSchemaValidation" in data:
+    if data.get("disableSchemaValidation") is not None:
         out["disable_schema_validation"] = data["disableSchemaValidation"]
-    if "disableExecuteApiEndpoint" in data:
+    if data.get("disableExecuteApiEndpoint") is not None:
         out["disable_execute_api_endpoint"] = data["disableExecuteApiEndpoint"]
-    if "importInfo" in data:
+    if data.get("importInfo") is not None:
         import capo_apigatewayv2.types.__list_of__string
 
         out["import_info"] = capo_apigatewayv2.types.__list_of__string.deserialize_json(
             data["importInfo"]
         )
-    if "ipAddressType" in data:
+    if data.get("ipAddressType") is not None:
         import capo_apigatewayv2.types.ip_address_type
 
         out["ip_address_type"] = (
@@ -187,23 +187,23 @@ def deserialize_json(data: dict) -> ImportApiResponse:
                 data["ipAddressType"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "protocolType" in data:
+    if data.get("protocolType") is not None:
         import capo_apigatewayv2.types.protocol_type
 
         out["protocol_type"] = capo_apigatewayv2.types.protocol_type.deserialize_json(
             data["protocolType"]
         )
-    if "routeSelectionExpression" in data:
+    if data.get("routeSelectionExpression") is not None:
         out["route_selection_expression"] = data["routeSelectionExpression"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_apigatewayv2.types.tags
 
         out["tags"] = capo_apigatewayv2.types.tags.deserialize_json(data["tags"])
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
-    if "warnings" in data:
+    if data.get("warnings") is not None:
         import capo_apigatewayv2.types.__list_of__string
 
         out["warnings"] = capo_apigatewayv2.types.__list_of__string.deserialize_json(

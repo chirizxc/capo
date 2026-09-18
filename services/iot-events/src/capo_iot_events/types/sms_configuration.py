@@ -40,11 +40,11 @@ def serialize_json(value: SMSConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SMSConfiguration:
     out: SMSConfiguration = {}  # type: ignore[typeddict-item]
-    if "senderId" in data:
+    if data.get("senderId") is not None:
         out["sender_id"] = data["senderId"]
-    if "additionalMessage" in data:
+    if data.get("additionalMessage") is not None:
         out["additional_message"] = data["additionalMessage"]
-    if "recipients" in data:
+    if data.get("recipients") is not None:
         import capo_iot_events.types.recipient_details
 
         out["recipients"] = capo_iot_events.types.recipient_details.deserialize_json(

@@ -72,15 +72,15 @@ def serialize_json(value: BotImportSpecification) -> dict:
 
 def deserialize_json(data: dict) -> BotImportSpecification:
     out: BotImportSpecification = {}  # type: ignore[typeddict-item]
-    if "botName" in data:
+    if data.get("botName") is not None:
         out["bot_name"] = data["botName"]
     else:
         raise DeserializationError("BotImportSpecification.bot_name required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("BotImportSpecification.role_arn required")
-    if "dataPrivacy" in data:
+    if data.get("dataPrivacy") is not None:
         import capo_lex_models_v2.types.data_privacy
 
         out["data_privacy"] = capo_lex_models_v2.types.data_privacy.deserialize_json(
@@ -88,7 +88,7 @@ def deserialize_json(data: dict) -> BotImportSpecification:
         )
     else:
         raise DeserializationError("BotImportSpecification.data_privacy required")
-    if "errorLogSettings" in data:
+    if data.get("errorLogSettings") is not None:
         import capo_lex_models_v2.types.error_log_settings
 
         out["error_log_settings"] = (
@@ -96,15 +96,15 @@ def deserialize_json(data: dict) -> BotImportSpecification:
                 data["errorLogSettings"]
             )
         )
-    if "idleSessionTTLInSeconds" in data:
+    if data.get("idleSessionTTLInSeconds") is not None:
         out["idle_session_ttl_in_seconds"] = data["idleSessionTTLInSeconds"]
-    if "botTags" in data:
+    if data.get("botTags") is not None:
         import capo_lex_models_v2.types.tag_map
 
         out["bot_tags"] = capo_lex_models_v2.types.tag_map.deserialize_json(
             data["botTags"]
         )
-    if "testBotAliasTags" in data:
+    if data.get("testBotAliasTags") is not None:
         import capo_lex_models_v2.types.tag_map
 
         out["test_bot_alias_tags"] = capo_lex_models_v2.types.tag_map.deserialize_json(

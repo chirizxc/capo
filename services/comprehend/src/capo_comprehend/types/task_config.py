@@ -54,7 +54,7 @@ def serialize_aws_json_1_1(value: TaskConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TaskConfig:
     out: TaskConfig = {}  # type: ignore[typeddict-item]
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         import capo_comprehend.types.language_code
 
         out["language_code"] = (
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_1(data: dict) -> TaskConfig:
         )
     else:
         raise DeserializationError("TaskConfig.language_code required")
-    if "DocumentClassificationConfig" in data:
+    if data.get("DocumentClassificationConfig") is not None:
         import capo_comprehend.types.document_classification_config
 
         out["document_classification_config"] = (
@@ -72,7 +72,7 @@ def deserialize_aws_json_1_1(data: dict) -> TaskConfig:
                 data["DocumentClassificationConfig"]
             )
         )
-    if "EntityRecognitionConfig" in data:
+    if data.get("EntityRecognitionConfig") is not None:
         import capo_comprehend.types.entity_recognition_config
 
         out["entity_recognition_config"] = (

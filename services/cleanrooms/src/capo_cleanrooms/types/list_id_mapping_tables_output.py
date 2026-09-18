@@ -37,7 +37,7 @@ def serialize_json(value: ListIdMappingTablesOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListIdMappingTablesOutput:
     out: ListIdMappingTablesOutput = {}  # type: ignore[typeddict-item]
-    if "idMappingTableSummaries" in data:
+    if data.get("idMappingTableSummaries") is not None:
         import capo_cleanrooms.types.id_mapping_table_summary_list
 
         out["id_mapping_table_summaries"] = (
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> ListIdMappingTablesOutput:
         raise DeserializationError(
             "ListIdMappingTablesOutput.id_mapping_table_summaries required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

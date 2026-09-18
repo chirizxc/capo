@@ -26,8 +26,8 @@ def serialize_json(value: SystemPolicyAssociatedMetadata) -> dict:
 
 def deserialize_json(data: dict) -> SystemPolicyAssociatedMetadata:
     out: SystemPolicyAssociatedMetadata = {}  # type: ignore[typeddict-item]
-    if "policyName" in data:
+    if data.get("policyName") is not None:
         out["policy_name"] = data["policyName"]
-    if "policyArn" in data:
+    if data.get("policyArn") is not None:
         out["policy_arn"] = data["policyArn"]
     return out

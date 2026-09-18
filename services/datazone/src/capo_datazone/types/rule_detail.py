@@ -48,7 +48,7 @@ def serialize_json(value: RuleDetail) -> dict:
 
 
 def deserialize_json(data: dict) -> RuleDetail:
-    if "metadataFormEnforcementDetail" in data:
+    if data.get("metadataFormEnforcementDetail") is not None:
         import capo_datazone.types.metadata_form_enforcement_detail
 
         return {
@@ -56,7 +56,7 @@ def deserialize_json(data: dict) -> RuleDetail:
                 data["metadataFormEnforcementDetail"]
             )
         }
-    elif "glossaryTermEnforcementDetail" in data:
+    elif data.get("glossaryTermEnforcementDetail") is not None:
         import capo_datazone.types.glossary_term_enforcement_detail
 
         return {

@@ -41,14 +41,14 @@ def serialize_json(value: AlarmModelSummary) -> dict:
 
 def deserialize_json(data: dict) -> AlarmModelSummary:
     out: AlarmModelSummary = {}  # type: ignore[typeddict-item]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_iot_events.types.timestamp
 
         out["creation_time"] = capo_iot_events.types.timestamp.deserialize_json(
             data["creationTime"]
         )
-    if "alarmModelDescription" in data:
+    if data.get("alarmModelDescription") is not None:
         out["alarm_model_description"] = data["alarmModelDescription"]
-    if "alarmModelName" in data:
+    if data.get("alarmModelName") is not None:
         out["alarm_model_name"] = data["alarmModelName"]
     return out

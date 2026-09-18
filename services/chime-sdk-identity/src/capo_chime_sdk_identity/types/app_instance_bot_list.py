@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AppInstanceBotList:
 
     out: AppInstanceBotList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_chime_sdk_identity.types.app_instance_bot_summary.deserialize_json(
                 item

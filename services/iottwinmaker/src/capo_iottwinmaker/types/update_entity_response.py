@@ -32,7 +32,7 @@ def serialize_json(value: UpdateEntityResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateEntityResponse:
     out: UpdateEntityResponse = {}  # type: ignore[typeddict-item]
-    if "updateDateTime" in data:
+    if data.get("updateDateTime") is not None:
         import capo_iottwinmaker.types.timestamp
 
         out["update_date_time"] = capo_iottwinmaker.types.timestamp.deserialize_json(
@@ -40,7 +40,7 @@ def deserialize_json(data: dict) -> UpdateEntityResponse:
         )
     else:
         raise DeserializationError("UpdateEntityResponse.update_date_time required")
-    if "state" in data:
+    if data.get("state") is not None:
         out["state"] = data["state"]
     else:
         raise DeserializationError("UpdateEntityResponse.state required")

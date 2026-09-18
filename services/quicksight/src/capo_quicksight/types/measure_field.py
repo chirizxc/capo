@@ -70,7 +70,7 @@ def serialize_json(value: MeasureField) -> dict:
 
 def deserialize_json(data: dict) -> MeasureField:
     out: MeasureField = {}  # type: ignore[typeddict-item]
-    if "NumericalMeasureField" in data:
+    if data.get("NumericalMeasureField") is not None:
         import capo_quicksight.types.numerical_measure_field
 
         out["numerical_measure_field"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> MeasureField:
                 data["NumericalMeasureField"]
             )
         )
-    if "CategoricalMeasureField" in data:
+    if data.get("CategoricalMeasureField") is not None:
         import capo_quicksight.types.categorical_measure_field
 
         out["categorical_measure_field"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> MeasureField:
                 data["CategoricalMeasureField"]
             )
         )
-    if "DateMeasureField" in data:
+    if data.get("DateMeasureField") is not None:
         import capo_quicksight.types.date_measure_field
 
         out["date_measure_field"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> MeasureField:
                 data["DateMeasureField"]
             )
         )
-    if "CalculatedMeasureField" in data:
+    if data.get("CalculatedMeasureField") is not None:
         import capo_quicksight.types.calculated_measure_field
 
         out["calculated_measure_field"] = (

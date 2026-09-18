@@ -65,7 +65,7 @@ def serialize_aws_json_1_1(value: ListConfigurationsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListConfigurationsRequest:
     out: ListConfigurationsRequest = {}  # type: ignore[typeddict-item]
-    if "configurationType" in data:
+    if data.get("configurationType") is not None:
         import capo_application_discovery_service.types.configuration_item_type
 
         out["configuration_type"] = (
@@ -77,7 +77,7 @@ def deserialize_aws_json_1_1(data: dict) -> ListConfigurationsRequest:
         raise DeserializationError(
             "ListConfigurationsRequest.configuration_type required"
         )
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_application_discovery_service.types.filters
 
         out["filters"] = (
@@ -85,13 +85,13 @@ def deserialize_aws_json_1_1(data: dict) -> ListConfigurationsRequest:
                 data["filters"]
             )
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     else:
         out["max_results"] = 0
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "orderBy" in data:
+    if data.get("orderBy") is not None:
         import capo_application_discovery_service.types.order_by_list
 
         out["order_by"] = (

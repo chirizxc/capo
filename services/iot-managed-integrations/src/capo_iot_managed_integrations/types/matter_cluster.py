@@ -56,11 +56,11 @@ def serialize_json(value: MatterCluster) -> dict:
 
 def deserialize_json(data: dict) -> MatterCluster:
     out: MatterCluster = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         out["attributes"] = data["attributes"]
-    if "commands" in data:
+    if data.get("commands") is not None:
         import capo_iot_managed_integrations.types.matter_commands
 
         out["commands"] = (
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> MatterCluster:
                 data["commands"]
             )
         )
-    if "events" in data:
+    if data.get("events") is not None:
         import capo_iot_managed_integrations.types.matter_events
 
         out["events"] = (

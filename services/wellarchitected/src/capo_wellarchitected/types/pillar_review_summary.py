@@ -49,19 +49,19 @@ def serialize_json(value: PillarReviewSummary) -> dict:
 
 def deserialize_json(data: dict) -> PillarReviewSummary:
     out: PillarReviewSummary = {}  # type: ignore[typeddict-item]
-    if "PillarId" in data:
+    if data.get("PillarId") is not None:
         out["pillar_id"] = data["PillarId"]
-    if "PillarName" in data:
+    if data.get("PillarName") is not None:
         out["pillar_name"] = data["PillarName"]
-    if "Notes" in data:
+    if data.get("Notes") is not None:
         out["notes"] = data["Notes"]
-    if "RiskCounts" in data:
+    if data.get("RiskCounts") is not None:
         import capo_wellarchitected.types.risk_counts
 
         out["risk_counts"] = capo_wellarchitected.types.risk_counts.deserialize_json(
             data["RiskCounts"]
         )
-    if "PrioritizedRiskCounts" in data:
+    if data.get("PrioritizedRiskCounts") is not None:
         import capo_wellarchitected.types.risk_counts
 
         out["prioritized_risk_counts"] = (

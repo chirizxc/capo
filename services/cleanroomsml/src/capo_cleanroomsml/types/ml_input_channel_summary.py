@@ -52,14 +52,14 @@ class MLInputChannelSummary(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: MLInputChannelSummary) -> dict:
     out: dict = {}
-    import capo_cleanroomsml.types._prelude.timestamp
+    import capo_cleanroomsml._protocol.serialize
 
-    out["createTime"] = capo_cleanroomsml.types._prelude.timestamp.serialize_json(
+    out["createTime"] = capo_cleanroomsml._protocol.serialize.fmt_date_time(
         value["create_time"]
     )
-    import capo_cleanroomsml.types._prelude.timestamp
+    import capo_cleanroomsml._protocol.serialize
 
-    out["updateTime"] = capo_cleanroomsml.types._prelude.timestamp.serialize_json(
+    out["updateTime"] = capo_cleanroomsml._protocol.serialize.fmt_date_time(
         value["update_time"]
     )
     out["membershipIdentifier"] = value["membership_identifier"]
@@ -95,43 +95,39 @@ def serialize_json(value: MLInputChannelSummary) -> dict:
 
 def deserialize_json(data: dict) -> MLInputChannelSummary:
     out: MLInputChannelSummary = {}  # type: ignore[typeddict-item]
-    if "createTime" in data:
-        import capo_cleanroomsml.types._prelude.timestamp
+    if data.get("createTime") is not None:
+        import datetime
 
-        out["create_time"] = (
-            capo_cleanroomsml.types._prelude.timestamp.deserialize_json(
-                data["createTime"]
-            )
+        out["create_time"] = datetime.datetime.fromisoformat(
+            data["createTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("MLInputChannelSummary.create_time required")
-    if "updateTime" in data:
-        import capo_cleanroomsml.types._prelude.timestamp
+    if data.get("updateTime") is not None:
+        import datetime
 
-        out["update_time"] = (
-            capo_cleanroomsml.types._prelude.timestamp.deserialize_json(
-                data["updateTime"]
-            )
+        out["update_time"] = datetime.datetime.fromisoformat(
+            data["updateTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("MLInputChannelSummary.update_time required")
-    if "membershipIdentifier" in data:
+    if data.get("membershipIdentifier") is not None:
         out["membership_identifier"] = data["membershipIdentifier"]
     else:
         raise DeserializationError(
             "MLInputChannelSummary.membership_identifier required"
         )
-    if "collaborationIdentifier" in data:
+    if data.get("collaborationIdentifier") is not None:
         out["collaboration_identifier"] = data["collaborationIdentifier"]
     else:
         raise DeserializationError(
             "MLInputChannelSummary.collaboration_identifier required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("MLInputChannelSummary.name required")
-    if "configuredModelAlgorithmAssociations" in data:
+    if data.get("configuredModelAlgorithmAssociations") is not None:
         import capo_cleanroomsml.types.configured_model_algorithm_association_arn_list
 
         out["configured_model_algorithm_associations"] = (
@@ -143,15 +139,15 @@ def deserialize_json(data: dict) -> MLInputChannelSummary:
         raise DeserializationError(
             "MLInputChannelSummary.configured_model_algorithm_associations required"
         )
-    if "protectedQueryIdentifier" in data:
+    if data.get("protectedQueryIdentifier") is not None:
         out["protected_query_identifier"] = data["protectedQueryIdentifier"]
-    if "mlInputChannelArn" in data:
+    if data.get("mlInputChannelArn") is not None:
         out["ml_input_channel_arn"] = data["mlInputChannelArn"]
     else:
         raise DeserializationError(
             "MLInputChannelSummary.ml_input_channel_arn required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_cleanroomsml.types.ml_input_channel_status
 
         out["status"] = (
@@ -161,9 +157,9 @@ def deserialize_json(data: dict) -> MLInputChannelSummary:
         )
     else:
         raise DeserializationError("MLInputChannelSummary.status required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "payerConfiguration" in data:
+    if data.get("payerConfiguration") is not None:
         import capo_cleanroomsml.types.payer_configuration
 
         out["payer_configuration"] = (

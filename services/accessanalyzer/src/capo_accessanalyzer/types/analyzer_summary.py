@@ -93,19 +93,19 @@ def serialize_json(value: AnalyzerSummary) -> dict:
 
 def deserialize_json(data: dict) -> AnalyzerSummary:
     out: AnalyzerSummary = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("AnalyzerSummary.arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("AnalyzerSummary.name required")
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("AnalyzerSummary.type required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_accessanalyzer.types.timestamp
 
         out["created_at"] = capo_accessanalyzer.types.timestamp.deserialize_json(
@@ -113,9 +113,9 @@ def deserialize_json(data: dict) -> AnalyzerSummary:
         )
     else:
         raise DeserializationError("AnalyzerSummary.created_at required")
-    if "lastResourceAnalyzed" in data:
+    if data.get("lastResourceAnalyzed") is not None:
         out["last_resource_analyzed"] = data["lastResourceAnalyzed"]
-    if "lastResourceAnalyzedAt" in data:
+    if data.get("lastResourceAnalyzedAt") is not None:
         import capo_accessanalyzer.types.timestamp
 
         out["last_resource_analyzed_at"] = (
@@ -123,21 +123,21 @@ def deserialize_json(data: dict) -> AnalyzerSummary:
                 data["lastResourceAnalyzedAt"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_accessanalyzer.types.tags_map
 
         out["tags"] = capo_accessanalyzer.types.tags_map.deserialize_json(data["tags"])
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("AnalyzerSummary.status required")
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         import capo_accessanalyzer.types.status_reason
 
         out["status_reason"] = capo_accessanalyzer.types.status_reason.deserialize_json(
             data["statusReason"]
         )
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_accessanalyzer.types.analyzer_configuration
 
         out["configuration"] = (
@@ -145,6 +145,6 @@ def deserialize_json(data: dict) -> AnalyzerSummary:
                 data["configuration"]
             )
         )
-    if "managedBy" in data:
+    if data.get("managedBy") is not None:
         out["managed_by"] = data["managedBy"]
     return out

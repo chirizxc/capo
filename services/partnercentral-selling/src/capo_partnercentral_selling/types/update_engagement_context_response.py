@@ -44,19 +44,19 @@ def serialize_aws_json_1_0(value: UpdateEngagementContextResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateEngagementContextResponse:
     out: UpdateEngagementContextResponse = {}  # type: ignore[typeddict-item]
-    if "EngagementId" in data:
+    if data.get("EngagementId") is not None:
         out["engagement_id"] = data["EngagementId"]
     else:
         raise DeserializationError(
             "UpdateEngagementContextResponse.engagement_id required"
         )
-    if "EngagementArn" in data:
+    if data.get("EngagementArn") is not None:
         out["engagement_arn"] = data["EngagementArn"]
     else:
         raise DeserializationError(
             "UpdateEngagementContextResponse.engagement_arn required"
         )
-    if "EngagementLastModifiedAt" in data:
+    if data.get("EngagementLastModifiedAt") is not None:
         import capo_partnercentral_selling.types.date_time
 
         out["engagement_last_modified_at"] = (
@@ -68,7 +68,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateEngagementContextResponse:
         raise DeserializationError(
             "UpdateEngagementContextResponse.engagement_last_modified_at required"
         )
-    if "ContextId" in data:
+    if data.get("ContextId") is not None:
         out["context_id"] = data["ContextId"]
     else:
         raise DeserializationError(

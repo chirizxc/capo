@@ -68,7 +68,7 @@ def serialize_json(value: PivotTableTotalOptions) -> dict:
 
 def deserialize_json(data: dict) -> PivotTableTotalOptions:
     out: PivotTableTotalOptions = {}  # type: ignore[typeddict-item]
-    if "RowSubtotalOptions" in data:
+    if data.get("RowSubtotalOptions") is not None:
         import capo_quicksight.types.subtotal_options
 
         out["row_subtotal_options"] = (
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> PivotTableTotalOptions:
                 data["RowSubtotalOptions"]
             )
         )
-    if "ColumnSubtotalOptions" in data:
+    if data.get("ColumnSubtotalOptions") is not None:
         import capo_quicksight.types.subtotal_options
 
         out["column_subtotal_options"] = (
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> PivotTableTotalOptions:
                 data["ColumnSubtotalOptions"]
             )
         )
-    if "RowTotalOptions" in data:
+    if data.get("RowTotalOptions") is not None:
         import capo_quicksight.types.pivot_total_options
 
         out["row_total_options"] = (
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> PivotTableTotalOptions:
                 data["RowTotalOptions"]
             )
         )
-    if "ColumnTotalOptions" in data:
+    if data.get("ColumnTotalOptions") is not None:
         import capo_quicksight.types.pivot_total_options
 
         out["column_total_options"] = (

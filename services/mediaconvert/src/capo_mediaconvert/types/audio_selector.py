@@ -153,7 +153,7 @@ def serialize_json(value: AudioSelector) -> dict:
 
 def deserialize_json(data: dict) -> AudioSelector:
     out: AudioSelector = {}  # type: ignore[typeddict-item]
-    if "audioDurationCorrection" in data:
+    if data.get("audioDurationCorrection") is not None:
         import capo_mediaconvert.types.audio_duration_correction
 
         out["audio_duration_correction"] = (
@@ -161,9 +161,9 @@ def deserialize_json(data: dict) -> AudioSelector:
                 data["audioDurationCorrection"]
             )
         )
-    if "customLanguageCode" in data:
+    if data.get("customLanguageCode") is not None:
         out["custom_language_code"] = data["customLanguageCode"]
-    if "defaultSelection" in data:
+    if data.get("defaultSelection") is not None:
         import capo_mediaconvert.types.audio_default_selection
 
         out["default_selection"] = (
@@ -171,9 +171,9 @@ def deserialize_json(data: dict) -> AudioSelector:
                 data["defaultSelection"]
             )
         )
-    if "externalAudioFileInput" in data:
+    if data.get("externalAudioFileInput") is not None:
         out["external_audio_file_input"] = data["externalAudioFileInput"]
-    if "hlsRenditionGroupSettings" in data:
+    if data.get("hlsRenditionGroupSettings") is not None:
         import capo_mediaconvert.types.hls_rendition_group_settings
 
         out["hls_rendition_group_settings"] = (
@@ -181,15 +181,15 @@ def deserialize_json(data: dict) -> AudioSelector:
                 data["hlsRenditionGroupSettings"]
             )
         )
-    if "languageCode" in data:
+    if data.get("languageCode") is not None:
         import capo_mediaconvert.types.language_code
 
         out["language_code"] = capo_mediaconvert.types.language_code.deserialize_json(
             data["languageCode"]
         )
-    if "offset" in data:
+    if data.get("offset") is not None:
         out["offset"] = data["offset"]
-    if "pids" in data:
+    if data.get("pids") is not None:
         import capo_mediaconvert.types.__list_of__integer_min1_max2147483647
 
         out["pids"] = (
@@ -197,15 +197,15 @@ def deserialize_json(data: dict) -> AudioSelector:
                 data["pids"]
             )
         )
-    if "programSelection" in data:
+    if data.get("programSelection") is not None:
         out["program_selection"] = data["programSelection"]
-    if "remixSettings" in data:
+    if data.get("remixSettings") is not None:
         import capo_mediaconvert.types.remix_settings
 
         out["remix_settings"] = capo_mediaconvert.types.remix_settings.deserialize_json(
             data["remixSettings"]
         )
-    if "selectorType" in data:
+    if data.get("selectorType") is not None:
         import capo_mediaconvert.types.audio_selector_type
 
         out["selector_type"] = (
@@ -213,7 +213,7 @@ def deserialize_json(data: dict) -> AudioSelector:
                 data["selectorType"]
             )
         )
-    if "streams" in data:
+    if data.get("streams") is not None:
         import capo_mediaconvert.types.__list_of__integer_min1_max2147483647
 
         out["streams"] = (
@@ -221,7 +221,7 @@ def deserialize_json(data: dict) -> AudioSelector:
                 data["streams"]
             )
         )
-    if "tracks" in data:
+    if data.get("tracks") is not None:
         import capo_mediaconvert.types.__list_of__integer_min1_max2147483647
 
         out["tracks"] = (

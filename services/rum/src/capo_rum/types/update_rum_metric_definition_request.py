@@ -46,15 +46,15 @@ def serialize_json(value: UpdateRumMetricDefinitionRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRumMetricDefinitionRequest:
     out: UpdateRumMetricDefinitionRequest = {}  # type: ignore[typeddict-item]
-    if "Destination" in data:
+    if data.get("Destination") is not None:
         out["destination"] = data["Destination"]
     else:
         raise DeserializationError(
             "UpdateRumMetricDefinitionRequest.destination required"
         )
-    if "DestinationArn" in data:
+    if data.get("DestinationArn") is not None:
         out["destination_arn"] = data["DestinationArn"]
-    if "MetricDefinition" in data:
+    if data.get("MetricDefinition") is not None:
         import capo_rum.types.metric_definition_request
 
         out["metric_definition"] = (
@@ -66,7 +66,7 @@ def deserialize_json(data: dict) -> UpdateRumMetricDefinitionRequest:
         raise DeserializationError(
             "UpdateRumMetricDefinitionRequest.metric_definition required"
         )
-    if "MetricDefinitionId" in data:
+    if data.get("MetricDefinitionId") is not None:
         out["metric_definition_id"] = data["MetricDefinitionId"]
     else:
         raise DeserializationError(

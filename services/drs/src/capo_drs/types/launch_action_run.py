@@ -40,14 +40,14 @@ def serialize_json(value: LaunchActionRun) -> dict:
 
 def deserialize_json(data: dict) -> LaunchActionRun:
     out: LaunchActionRun = {}  # type: ignore[typeddict-item]
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_drs.types.launch_action
 
         out["action"] = capo_drs.types.launch_action.deserialize_json(data["action"])
-    if "runId" in data:
+    if data.get("runId") is not None:
         out["run_id"] = data["runId"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "failureReason" in data:
+    if data.get("failureReason") is not None:
         out["failure_reason"] = data["failureReason"]
     return out

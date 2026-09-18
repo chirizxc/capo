@@ -34,13 +34,13 @@ def serialize_aws_json_1_1(value: CreatePrivateVirtualInterfaceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreatePrivateVirtualInterfaceRequest:
     out: CreatePrivateVirtualInterfaceRequest = {}  # type: ignore[typeddict-item]
-    if "connectionId" in data:
+    if data.get("connectionId") is not None:
         out["connection_id"] = data["connectionId"]
     else:
         raise DeserializationError(
             "CreatePrivateVirtualInterfaceRequest.connection_id required"
         )
-    if "newPrivateVirtualInterface" in data:
+    if data.get("newPrivateVirtualInterface") is not None:
         import capo_direct_connect.types.new_private_virtual_interface
 
         out["new_private_virtual_interface"] = (

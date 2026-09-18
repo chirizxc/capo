@@ -31,7 +31,7 @@ def serialize_json(value: BatchUpdateDevicePositionRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchUpdateDevicePositionRequest:
     out: BatchUpdateDevicePositionRequest = {}  # type: ignore[typeddict-item]
-    if "Updates" in data:
+    if data.get("Updates") is not None:
         import capo_location.types.device_position_update_list
 
         out["updates"] = (

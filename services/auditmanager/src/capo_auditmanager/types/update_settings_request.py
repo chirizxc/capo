@@ -81,9 +81,9 @@ def serialize_json(value: UpdateSettingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSettingsRequest:
     out: UpdateSettingsRequest = {}  # type: ignore[typeddict-item]
-    if "snsTopic" in data:
+    if data.get("snsTopic") is not None:
         out["sns_topic"] = data["snsTopic"]
-    if "defaultAssessmentReportsDestination" in data:
+    if data.get("defaultAssessmentReportsDestination") is not None:
         import capo_auditmanager.types.assessment_reports_destination
 
         out["default_assessment_reports_destination"] = (
@@ -91,17 +91,17 @@ def deserialize_json(data: dict) -> UpdateSettingsRequest:
                 data["defaultAssessmentReportsDestination"]
             )
         )
-    if "defaultProcessOwners" in data:
+    if data.get("defaultProcessOwners") is not None:
         import capo_auditmanager.types.roles
 
         out["default_process_owners"] = capo_auditmanager.types.roles.deserialize_json(
             data["defaultProcessOwners"]
         )
-    if "kmsKey" in data:
+    if data.get("kmsKey") is not None:
         out["kms_key"] = data["kmsKey"]
-    if "evidenceFinderEnabled" in data:
+    if data.get("evidenceFinderEnabled") is not None:
         out["evidence_finder_enabled"] = data["evidenceFinderEnabled"]
-    if "deregistrationPolicy" in data:
+    if data.get("deregistrationPolicy") is not None:
         import capo_auditmanager.types.deregistration_policy
 
         out["deregistration_policy"] = (
@@ -109,7 +109,7 @@ def deserialize_json(data: dict) -> UpdateSettingsRequest:
                 data["deregistrationPolicy"]
             )
         )
-    if "defaultExportDestination" in data:
+    if data.get("defaultExportDestination") is not None:
         import capo_auditmanager.types.default_export_destination
 
         out["default_export_destination"] = (

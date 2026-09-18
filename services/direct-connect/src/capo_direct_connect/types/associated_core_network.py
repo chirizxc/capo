@@ -37,10 +37,10 @@ def serialize_aws_json_1_1(value: AssociatedCoreNetwork) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AssociatedCoreNetwork:
     out: AssociatedCoreNetwork = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "ownerAccount" in data:
+    if data.get("ownerAccount") is not None:
         out["owner_account"] = data["ownerAccount"]
-    if "attachmentId" in data:
+    if data.get("attachmentId") is not None:
         out["attachment_id"] = data["attachmentId"]
     return out

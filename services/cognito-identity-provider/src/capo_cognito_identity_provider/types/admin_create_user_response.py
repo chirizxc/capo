@@ -29,7 +29,7 @@ def serialize_aws_json_1_1(value: AdminCreateUserResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AdminCreateUserResponse:
     out: AdminCreateUserResponse = {}  # type: ignore[typeddict-item]
-    if "User" in data:
+    if data.get("User") is not None:
         import capo_cognito_identity_provider.types.user_type
 
         out["user"] = (

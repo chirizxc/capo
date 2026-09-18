@@ -72,17 +72,17 @@ def serialize_json(value: CisScanConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> CisScanConfiguration:
     out: CisScanConfiguration = {}  # type: ignore[typeddict-item]
-    if "scanConfigurationArn" in data:
+    if data.get("scanConfigurationArn") is not None:
         out["scan_configuration_arn"] = data["scanConfigurationArn"]
     else:
         raise DeserializationError(
             "CisScanConfiguration.scan_configuration_arn required"
         )
-    if "ownerId" in data:
+    if data.get("ownerId") is not None:
         out["owner_id"] = data["ownerId"]
-    if "scanName" in data:
+    if data.get("scanName") is not None:
         out["scan_name"] = data["scanName"]
-    if "securityLevel" in data:
+    if data.get("securityLevel") is not None:
         import capo_inspector2.types.cis_security_level
 
         out["security_level"] = (
@@ -90,19 +90,19 @@ def deserialize_json(data: dict) -> CisScanConfiguration:
                 data["securityLevel"]
             )
         )
-    if "schedule" in data:
+    if data.get("schedule") is not None:
         import capo_inspector2.types.schedule
 
         out["schedule"] = capo_inspector2.types.schedule.deserialize_json(
             data["schedule"]
         )
-    if "targets" in data:
+    if data.get("targets") is not None:
         import capo_inspector2.types.cis_targets
 
         out["targets"] = capo_inspector2.types.cis_targets.deserialize_json(
             data["targets"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_inspector2.types.cis_tag_map
 
         out["tags"] = capo_inspector2.types.cis_tag_map.deserialize_json(data["tags"])

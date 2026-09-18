@@ -45,11 +45,11 @@ def serialize_json(value: PermissionGroupByUser) -> dict:
 
 def deserialize_json(data: dict) -> PermissionGroupByUser:
     out: PermissionGroupByUser = {}  # type: ignore[typeddict-item]
-    if "permissionGroupId" in data:
+    if data.get("permissionGroupId") is not None:
         out["permission_group_id"] = data["permissionGroupId"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "membershipStatus" in data:
+    if data.get("membershipStatus") is not None:
         import capo_finspace_data.types.permission_group_membership_status
 
         out["membership_status"] = (

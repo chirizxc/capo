@@ -49,19 +49,19 @@ def serialize_json(value: PrefixConfig) -> dict:
 
 def deserialize_json(data: dict) -> PrefixConfig:
     out: PrefixConfig = {}  # type: ignore[typeddict-item]
-    if "prefixType" in data:
+    if data.get("prefixType") is not None:
         import capo_appflow.types.prefix_type
 
         out["prefix_type"] = capo_appflow.types.prefix_type.deserialize_json(
             data["prefixType"]
         )
-    if "prefixFormat" in data:
+    if data.get("prefixFormat") is not None:
         import capo_appflow.types.prefix_format
 
         out["prefix_format"] = capo_appflow.types.prefix_format.deserialize_json(
             data["prefixFormat"]
         )
-    if "pathPrefixHierarchy" in data:
+    if data.get("pathPrefixHierarchy") is not None:
         import capo_appflow.types.path_prefix_hierarchy
 
         out["path_prefix_hierarchy"] = (

@@ -58,19 +58,19 @@ def serialize_json(value: PeeringError) -> dict:
 
 def deserialize_json(data: dict) -> PeeringError:
     out: PeeringError = {}  # type: ignore[typeddict-item]
-    if "Code" in data:
+    if data.get("Code") is not None:
         import capo_networkmanager.types.peering_error_code
 
         out["code"] = capo_networkmanager.types.peering_error_code.deserialize_json(
             data["Code"]
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
-    if "MissingPermissionsContext" in data:
+    if data.get("MissingPermissionsContext") is not None:
         import capo_networkmanager.types.permissions_error_context
 
         out["missing_permissions_context"] = (

@@ -43,17 +43,17 @@ def serialize_json(value: MCPServerSigV4ServiceDetails) -> dict:
 
 def deserialize_json(data: dict) -> MCPServerSigV4ServiceDetails:
     out: MCPServerSigV4ServiceDetails = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("MCPServerSigV4ServiceDetails.name required")
-    if "endpoint" in data:
+    if data.get("endpoint") is not None:
         out["endpoint"] = data["endpoint"]
     else:
         raise DeserializationError("MCPServerSigV4ServiceDetails.endpoint required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "authorizationConfig" in data:
+    if data.get("authorizationConfig") is not None:
         import capo_devops_agent.types.mcp_server_sig_v4_authorization_config
 
         out["authorization_config"] = (

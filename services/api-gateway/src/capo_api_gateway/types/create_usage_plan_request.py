@@ -66,31 +66,31 @@ def serialize_json(value: CreateUsagePlanRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateUsagePlanRequest:
     out: CreateUsagePlanRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateUsagePlanRequest.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "apiStages" in data:
+    if data.get("apiStages") is not None:
         import capo_api_gateway.types.list_of_api_stage
 
         out["api_stages"] = capo_api_gateway.types.list_of_api_stage.deserialize_json(
             data["apiStages"]
         )
-    if "throttle" in data:
+    if data.get("throttle") is not None:
         import capo_api_gateway.types.throttle_settings
 
         out["throttle"] = capo_api_gateway.types.throttle_settings.deserialize_json(
             data["throttle"]
         )
-    if "quota" in data:
+    if data.get("quota") is not None:
         import capo_api_gateway.types.quota_settings
 
         out["quota"] = capo_api_gateway.types.quota_settings.deserialize_json(
             data["quota"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_api_gateway.types.map_of_string_to_string
 
         out["tags"] = capo_api_gateway.types.map_of_string_to_string.deserialize_json(

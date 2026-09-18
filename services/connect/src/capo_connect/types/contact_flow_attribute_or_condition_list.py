@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ContactFlowAttributeOrConditionList:
 
     out: ContactFlowAttributeOrConditionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.contact_flow_attribute_and_condition.deserialize_json(
                 item

@@ -23,5 +23,7 @@ def serialize_json(input_to_serialize: Metadata) -> dict:
 def deserialize_json(data: dict) -> Metadata:
     out: Metadata = {}
     for key, value in data.items():
+        if value is None:
+            continue
         out[key] = value
     return out

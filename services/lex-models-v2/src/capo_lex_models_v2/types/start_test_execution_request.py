@@ -52,7 +52,7 @@ def serialize_json(value: StartTestExecutionRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartTestExecutionRequest:
     out: StartTestExecutionRequest = {}  # type: ignore[typeddict-item]
-    if "target" in data:
+    if data.get("target") is not None:
         import capo_lex_models_v2.types.test_execution_target
 
         out["target"] = capo_lex_models_v2.types.test_execution_target.deserialize_json(
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> StartTestExecutionRequest:
         )
     else:
         raise DeserializationError("StartTestExecutionRequest.target required")
-    if "apiMode" in data:
+    if data.get("apiMode") is not None:
         import capo_lex_models_v2.types.test_execution_api_mode
 
         out["api_mode"] = (
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> StartTestExecutionRequest:
         )
     else:
         raise DeserializationError("StartTestExecutionRequest.api_mode required")
-    if "testExecutionModality" in data:
+    if data.get("testExecutionModality") is not None:
         import capo_lex_models_v2.types.test_execution_modality
 
         out["test_execution_modality"] = (

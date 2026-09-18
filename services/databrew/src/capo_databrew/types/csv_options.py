@@ -28,8 +28,8 @@ def serialize_json(value: CsvOptions) -> dict:
 
 def deserialize_json(data: dict) -> CsvOptions:
     out: CsvOptions = {}  # type: ignore[typeddict-item]
-    if "Delimiter" in data:
+    if data.get("Delimiter") is not None:
         out["delimiter"] = data["Delimiter"]
-    if "HeaderRow" in data:
+    if data.get("HeaderRow") is not None:
         out["header_row"] = data["HeaderRow"]
     return out

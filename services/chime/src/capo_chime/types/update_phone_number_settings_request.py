@@ -24,7 +24,7 @@ def serialize_json(value: UpdatePhoneNumberSettingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePhoneNumberSettingsRequest:
     out: UpdatePhoneNumberSettingsRequest = {}  # type: ignore[typeddict-item]
-    if "CallingName" in data:
+    if data.get("CallingName") is not None:
         out["calling_name"] = data["CallingName"]
     else:
         raise DeserializationError(

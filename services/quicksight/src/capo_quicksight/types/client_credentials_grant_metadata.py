@@ -50,13 +50,13 @@ def serialize_json(value: ClientCredentialsGrantMetadata) -> dict:
 
 def deserialize_json(data: dict) -> ClientCredentialsGrantMetadata:
     out: ClientCredentialsGrantMetadata = {}  # type: ignore[typeddict-item]
-    if "BaseEndpoint" in data:
+    if data.get("BaseEndpoint") is not None:
         out["base_endpoint"] = data["BaseEndpoint"]
     else:
         raise DeserializationError(
             "ClientCredentialsGrantMetadata.base_endpoint required"
         )
-    if "ClientCredentialsSource" in data:
+    if data.get("ClientCredentialsSource") is not None:
         import capo_quicksight.types.client_credentials_source
 
         out["client_credentials_source"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> ClientCredentialsGrantMetadata:
                 data["ClientCredentialsSource"]
             )
         )
-    if "ClientCredentialsDetails" in data:
+    if data.get("ClientCredentialsDetails") is not None:
         import capo_quicksight.types.client_credentials_details
 
         out["client_credentials_details"] = (

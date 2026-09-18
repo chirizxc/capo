@@ -45,14 +45,14 @@ def serialize_aws_json_1_1(value: RightsizingRecommendationSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RightsizingRecommendationSummary:
     out: RightsizingRecommendationSummary = {}  # type: ignore[typeddict-item]
-    if "TotalRecommendationCount" in data:
+    if data.get("TotalRecommendationCount") is not None:
         out["total_recommendation_count"] = data["TotalRecommendationCount"]
-    if "EstimatedTotalMonthlySavingsAmount" in data:
+    if data.get("EstimatedTotalMonthlySavingsAmount") is not None:
         out["estimated_total_monthly_savings_amount"] = data[
             "EstimatedTotalMonthlySavingsAmount"
         ]
-    if "SavingsCurrencyCode" in data:
+    if data.get("SavingsCurrencyCode") is not None:
         out["savings_currency_code"] = data["SavingsCurrencyCode"]
-    if "SavingsPercentage" in data:
+    if data.get("SavingsPercentage") is not None:
         out["savings_percentage"] = data["SavingsPercentage"]
     return out

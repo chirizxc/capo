@@ -28,13 +28,13 @@ def serialize_json(value: PredefinedAttributeConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> PredefinedAttributeConfiguration:
     out: PredefinedAttributeConfiguration = {}  # type: ignore[typeddict-item]
-    if "EnableValueValidationOnAssociation" in data:
+    if data.get("EnableValueValidationOnAssociation") is not None:
         out["enable_value_validation_on_association"] = data[
             "EnableValueValidationOnAssociation"
         ]
     else:
         out["enable_value_validation_on_association"] = False
-    if "IsReadOnly" in data:
+    if data.get("IsReadOnly") is not None:
         out["is_read_only"] = data["IsReadOnly"]
     else:
         out["is_read_only"] = False

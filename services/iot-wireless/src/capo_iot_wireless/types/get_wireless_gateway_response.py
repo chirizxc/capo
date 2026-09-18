@@ -59,22 +59,22 @@ def serialize_json(value: GetWirelessGatewayResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetWirelessGatewayResponse:
     out: GetWirelessGatewayResponse = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "LoRaWAN" in data:
+    if data.get("LoRaWAN") is not None:
         import capo_iot_wireless.types.lo_ra_wan_gateway
 
         out["lo_ra_wan"] = capo_iot_wireless.types.lo_ra_wan_gateway.deserialize_json(
             data["LoRaWAN"]
         )
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "ThingName" in data:
+    if data.get("ThingName") is not None:
         out["thing_name"] = data["ThingName"]
-    if "ThingArn" in data:
+    if data.get("ThingArn") is not None:
         out["thing_arn"] = data["ThingArn"]
     return out

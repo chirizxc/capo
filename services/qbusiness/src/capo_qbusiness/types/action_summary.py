@@ -35,12 +35,12 @@ def serialize_json(value: ActionSummary) -> dict:
 
 def deserialize_json(data: dict) -> ActionSummary:
     out: ActionSummary = {}  # type: ignore[typeddict-item]
-    if "actionIdentifier" in data:
+    if data.get("actionIdentifier") is not None:
         out["action_identifier"] = data["actionIdentifier"]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "instructionExample" in data:
+    if data.get("instructionExample") is not None:
         out["instruction_example"] = data["instructionExample"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

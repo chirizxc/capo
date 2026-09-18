@@ -45,13 +45,13 @@ def serialize_json(value: UpdateConnectorRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateConnectorRequest:
     out: UpdateConnectorRequest = {}  # type: ignore[typeddict-item]
-    if "capacity" in data:
+    if data.get("capacity") is not None:
         import capo_kafkaconnect.types.capacity_update
 
         out["capacity"] = capo_kafkaconnect.types.capacity_update.deserialize_json(
             data["capacity"]
         )
-    if "connectorConfiguration" in data:
+    if data.get("connectorConfiguration") is not None:
         import capo_kafkaconnect.types.connector_configuration_update
 
         out["connector_configuration"] = (

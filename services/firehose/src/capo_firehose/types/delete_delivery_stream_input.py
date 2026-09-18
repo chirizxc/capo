@@ -29,12 +29,12 @@ def serialize_aws_json_1_1(value: DeleteDeliveryStreamInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteDeliveryStreamInput:
     out: DeleteDeliveryStreamInput = {}  # type: ignore[typeddict-item]
-    if "DeliveryStreamName" in data:
+    if data.get("DeliveryStreamName") is not None:
         out["delivery_stream_name"] = data["DeliveryStreamName"]
     else:
         raise DeserializationError(
             "DeleteDeliveryStreamInput.delivery_stream_name required"
         )
-    if "AllowForceDelete" in data:
+    if data.get("AllowForceDelete") is not None:
         out["allow_force_delete"] = data["AllowForceDelete"]
     return out

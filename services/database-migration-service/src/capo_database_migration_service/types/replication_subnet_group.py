@@ -76,19 +76,19 @@ def serialize_aws_json_1_1(value: ReplicationSubnetGroup) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReplicationSubnetGroup:
     out: ReplicationSubnetGroup = {}  # type: ignore[typeddict-item]
-    if "ReplicationSubnetGroupIdentifier" in data:
+    if data.get("ReplicationSubnetGroupIdentifier") is not None:
         out["replication_subnet_group_identifier"] = data[
             "ReplicationSubnetGroupIdentifier"
         ]
-    if "ReplicationSubnetGroupDescription" in data:
+    if data.get("ReplicationSubnetGroupDescription") is not None:
         out["replication_subnet_group_description"] = data[
             "ReplicationSubnetGroupDescription"
         ]
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
-    if "SubnetGroupStatus" in data:
+    if data.get("SubnetGroupStatus") is not None:
         out["subnet_group_status"] = data["SubnetGroupStatus"]
-    if "Subnets" in data:
+    if data.get("Subnets") is not None:
         import capo_database_migration_service.types.subnet_list
 
         out["subnets"] = (
@@ -96,7 +96,7 @@ def deserialize_aws_json_1_1(data: dict) -> ReplicationSubnetGroup:
                 data["Subnets"]
             )
         )
-    if "SupportedNetworkTypes" in data:
+    if data.get("SupportedNetworkTypes") is not None:
         import capo_database_migration_service.types.string_list
 
         out["supported_network_types"] = (
@@ -104,6 +104,6 @@ def deserialize_aws_json_1_1(data: dict) -> ReplicationSubnetGroup:
                 data["SupportedNetworkTypes"]
             )
         )
-    if "IsReadOnly" in data:
+    if data.get("IsReadOnly") is not None:
         out["is_read_only"] = data["IsReadOnly"]
     return out

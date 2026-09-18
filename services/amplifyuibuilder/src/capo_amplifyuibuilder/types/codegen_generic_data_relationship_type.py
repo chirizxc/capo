@@ -79,7 +79,7 @@ def serialize_json(value: CodegenGenericDataRelationshipType) -> dict:
 
 def deserialize_json(data: dict) -> CodegenGenericDataRelationshipType:
     out: CodegenGenericDataRelationshipType = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_amplifyuibuilder.types.generic_data_relationship_type
 
         out["type"] = (
@@ -89,13 +89,13 @@ def deserialize_json(data: dict) -> CodegenGenericDataRelationshipType:
         )
     else:
         raise DeserializationError("CodegenGenericDataRelationshipType.type required")
-    if "relatedModelName" in data:
+    if data.get("relatedModelName") is not None:
         out["related_model_name"] = data["relatedModelName"]
     else:
         raise DeserializationError(
             "CodegenGenericDataRelationshipType.related_model_name required"
         )
-    if "relatedModelFields" in data:
+    if data.get("relatedModelFields") is not None:
         import capo_amplifyuibuilder.types.related_model_fields_list
 
         out["related_model_fields"] = (
@@ -103,15 +103,15 @@ def deserialize_json(data: dict) -> CodegenGenericDataRelationshipType:
                 data["relatedModelFields"]
             )
         )
-    if "canUnlinkAssociatedModel" in data:
+    if data.get("canUnlinkAssociatedModel") is not None:
         out["can_unlink_associated_model"] = data["canUnlinkAssociatedModel"]
-    if "relatedJoinFieldName" in data:
+    if data.get("relatedJoinFieldName") is not None:
         out["related_join_field_name"] = data["relatedJoinFieldName"]
-    if "relatedJoinTableName" in data:
+    if data.get("relatedJoinTableName") is not None:
         out["related_join_table_name"] = data["relatedJoinTableName"]
-    if "belongsToFieldOnRelatedModel" in data:
+    if data.get("belongsToFieldOnRelatedModel") is not None:
         out["belongs_to_field_on_related_model"] = data["belongsToFieldOnRelatedModel"]
-    if "associatedFields" in data:
+    if data.get("associatedFields") is not None:
         import capo_amplifyuibuilder.types.associated_fields_list
 
         out["associated_fields"] = (
@@ -119,6 +119,6 @@ def deserialize_json(data: dict) -> CodegenGenericDataRelationshipType:
                 data["associatedFields"]
             )
         )
-    if "isHasManyIndex" in data:
+    if data.get("isHasManyIndex") is not None:
         out["is_has_many_index"] = data["isHasManyIndex"]
     return out

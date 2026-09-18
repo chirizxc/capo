@@ -44,11 +44,11 @@ def serialize_json(value: GetClipInput) -> dict:
 
 def deserialize_json(data: dict) -> GetClipInput:
     out: GetClipInput = {}  # type: ignore[typeddict-item]
-    if "StreamName" in data:
+    if data.get("StreamName") is not None:
         out["stream_name"] = data["StreamName"]
-    if "StreamARN" in data:
+    if data.get("StreamARN") is not None:
         out["stream_arn"] = data["StreamARN"]
-    if "ClipFragmentSelector" in data:
+    if data.get("ClipFragmentSelector") is not None:
         import capo_kinesis_video_archived_media.types.clip_fragment_selector
 
         out["clip_fragment_selector"] = (

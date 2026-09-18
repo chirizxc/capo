@@ -43,14 +43,14 @@ def serialize_json(value: UpdateRecommendationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRecommendationRequest:
     out: UpdateRecommendationRequest = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_devops_agent.types.recommendation_status
 
         out["status"] = capo_devops_agent.types.recommendation_status.deserialize_json(
             data["status"]
         )
-    if "additionalContext" in data:
+    if data.get("additionalContext") is not None:
         out["additional_context"] = data["additionalContext"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

@@ -53,17 +53,17 @@ def serialize_json(value: EndpointSendConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> EndpointSendConfiguration:
     out: EndpointSendConfiguration = {}  # type: ignore[typeddict-item]
-    if "BodyOverride" in data:
+    if data.get("BodyOverride") is not None:
         out["body_override"] = data["BodyOverride"]
-    if "Context" in data:
+    if data.get("Context") is not None:
         import capo_pinpoint.types.map_of__string
 
         out["context"] = capo_pinpoint.types.map_of__string.deserialize_json(
             data["Context"]
         )
-    if "RawContent" in data:
+    if data.get("RawContent") is not None:
         out["raw_content"] = data["RawContent"]
-    if "Substitutions" in data:
+    if data.get("Substitutions") is not None:
         import capo_pinpoint.types.map_of_list_of__string
 
         out["substitutions"] = (
@@ -71,6 +71,6 @@ def deserialize_json(data: dict) -> EndpointSendConfiguration:
                 data["Substitutions"]
             )
         )
-    if "TitleOverride" in data:
+    if data.get("TitleOverride") is not None:
         out["title_override"] = data["TitleOverride"]
     return out

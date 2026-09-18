@@ -95,13 +95,13 @@ def serialize_json(value: KinesisVideoStreamPoolConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> KinesisVideoStreamPoolConfiguration:
     out: KinesisVideoStreamPoolConfiguration = {}  # type: ignore[typeddict-item]
-    if "PoolArn" in data:
+    if data.get("PoolArn") is not None:
         out["pool_arn"] = data["PoolArn"]
-    if "PoolName" in data:
+    if data.get("PoolName") is not None:
         out["pool_name"] = data["PoolName"]
-    if "PoolId" in data:
+    if data.get("PoolId") is not None:
         out["pool_id"] = data["PoolId"]
-    if "PoolStatus" in data:
+    if data.get("PoolStatus") is not None:
         import capo_chime_sdk_media_pipelines.types.kinesis_video_stream_pool_status
 
         out["pool_status"] = (
@@ -109,9 +109,9 @@ def deserialize_json(data: dict) -> KinesisVideoStreamPoolConfiguration:
                 data["PoolStatus"]
             )
         )
-    if "PoolSize" in data:
+    if data.get("PoolSize") is not None:
         out["pool_size"] = data["PoolSize"]
-    if "StreamConfiguration" in data:
+    if data.get("StreamConfiguration") is not None:
         import capo_chime_sdk_media_pipelines.types.kinesis_video_stream_configuration
 
         out["stream_configuration"] = (
@@ -119,7 +119,7 @@ def deserialize_json(data: dict) -> KinesisVideoStreamPoolConfiguration:
                 data["StreamConfiguration"]
             )
         )
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_chime_sdk_media_pipelines.types.iso8601_timestamp
 
         out["created_timestamp"] = (
@@ -127,7 +127,7 @@ def deserialize_json(data: dict) -> KinesisVideoStreamPoolConfiguration:
                 data["CreatedTimestamp"]
             )
         )
-    if "UpdatedTimestamp" in data:
+    if data.get("UpdatedTimestamp") is not None:
         import capo_chime_sdk_media_pipelines.types.iso8601_timestamp
 
         out["updated_timestamp"] = (

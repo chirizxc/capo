@@ -97,7 +97,7 @@ def serialize_json(value: AwsElbv2LoadBalancerDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsElbv2LoadBalancerDetails:
     out: AwsElbv2LoadBalancerDetails = {}  # type: ignore[typeddict-item]
-    if "AvailabilityZones" in data:
+    if data.get("AvailabilityZones") is not None:
         import capo_securityhub.types.availability_zones
 
         out["availability_zones"] = (
@@ -105,17 +105,17 @@ def deserialize_json(data: dict) -> AwsElbv2LoadBalancerDetails:
                 data["AvailabilityZones"]
             )
         )
-    if "CanonicalHostedZoneId" in data:
+    if data.get("CanonicalHostedZoneId") is not None:
         out["canonical_hosted_zone_id"] = data["CanonicalHostedZoneId"]
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         out["created_time"] = data["CreatedTime"]
-    if "DNSName" in data:
+    if data.get("DNSName") is not None:
         out["dns_name"] = data["DNSName"]
-    if "IpAddressType" in data:
+    if data.get("IpAddressType") is not None:
         out["ip_address_type"] = data["IpAddressType"]
-    if "Scheme" in data:
+    if data.get("Scheme") is not None:
         out["scheme"] = data["Scheme"]
-    if "SecurityGroups" in data:
+    if data.get("SecurityGroups") is not None:
         import capo_securityhub.types.security_groups
 
         out["security_groups"] = (
@@ -123,17 +123,17 @@ def deserialize_json(data: dict) -> AwsElbv2LoadBalancerDetails:
                 data["SecurityGroups"]
             )
         )
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_securityhub.types.load_balancer_state
 
         out["state"] = capo_securityhub.types.load_balancer_state.deserialize_json(
             data["State"]
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
-    if "LoadBalancerAttributes" in data:
+    if data.get("LoadBalancerAttributes") is not None:
         import capo_securityhub.types.aws_elbv2_load_balancer_attributes
 
         out["load_balancer_attributes"] = (

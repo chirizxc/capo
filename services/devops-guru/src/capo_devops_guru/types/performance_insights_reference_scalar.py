@@ -19,12 +19,20 @@ class PerformanceInsightsReferenceScalar(TypedDict, closed=True):
 def serialize_json(value: PerformanceInsightsReferenceScalar) -> dict:
     out: dict = {}
     if "value" in value:
-        out["Value"] = value["value"]
+        out["Value"] = (
+            "NaN"
+            if value["value"] != value["value"]
+            else "Infinity"
+            if value["value"] == float("inf")
+            else "-Infinity"
+            if value["value"] == float("-inf")
+            else value["value"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> PerformanceInsightsReferenceScalar:
     out: PerformanceInsightsReferenceScalar = {}  # type: ignore[typeddict-item]
-    if "Value" in data:
-        out["value"] = data["Value"]
+    if data.get("Value") is not None:
+        out["value"] = float(data["Value"])
     return out

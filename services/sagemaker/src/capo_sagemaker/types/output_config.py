@@ -55,9 +55,9 @@ def serialize_aws_json_1_1(value: OutputConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OutputConfig:
     out: OutputConfig = {}  # type: ignore[typeddict-item]
-    if "S3OutputLocation" in data:
+    if data.get("S3OutputLocation") is not None:
         out["s3_output_location"] = data["S3OutputLocation"]
-    if "TargetDevice" in data:
+    if data.get("TargetDevice") is not None:
         import capo_sagemaker.types.target_device
 
         out["target_device"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> OutputConfig:
                 data["TargetDevice"]
             )
         )
-    if "TargetPlatform" in data:
+    if data.get("TargetPlatform") is not None:
         import capo_sagemaker.types.target_platform
 
         out["target_platform"] = (
@@ -73,8 +73,8 @@ def deserialize_aws_json_1_1(data: dict) -> OutputConfig:
                 data["TargetPlatform"]
             )
         )
-    if "CompilerOptions" in data:
+    if data.get("CompilerOptions") is not None:
         out["compiler_options"] = data["CompilerOptions"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
     return out

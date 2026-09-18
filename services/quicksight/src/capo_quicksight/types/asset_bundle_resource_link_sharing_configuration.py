@@ -31,7 +31,7 @@ def serialize_json(value: AssetBundleResourceLinkSharingConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AssetBundleResourceLinkSharingConfiguration:
     out: AssetBundleResourceLinkSharingConfiguration = {}  # type: ignore[typeddict-item]
-    if "Permissions" in data:
+    if data.get("Permissions") is not None:
         import capo_quicksight.types.asset_bundle_resource_permissions
 
         out["permissions"] = (

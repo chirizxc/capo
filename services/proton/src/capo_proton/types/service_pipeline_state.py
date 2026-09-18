@@ -40,19 +40,19 @@ def serialize_aws_json_1_0(value: ServicePipelineState) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ServicePipelineState:
     out: ServicePipelineState = {}  # type: ignore[typeddict-item]
-    if "spec" in data:
+    if data.get("spec") is not None:
         out["spec"] = data["spec"]
-    if "templateName" in data:
+    if data.get("templateName") is not None:
         out["template_name"] = data["templateName"]
     else:
         raise DeserializationError("ServicePipelineState.template_name required")
-    if "templateMajorVersion" in data:
+    if data.get("templateMajorVersion") is not None:
         out["template_major_version"] = data["templateMajorVersion"]
     else:
         raise DeserializationError(
             "ServicePipelineState.template_major_version required"
         )
-    if "templateMinorVersion" in data:
+    if data.get("templateMinorVersion") is not None:
         out["template_minor_version"] = data["templateMinorVersion"]
     else:
         raise DeserializationError(

@@ -30,7 +30,7 @@ def serialize_json(value: WaypointOptimizationAvoidanceArea) -> dict:
 
 def deserialize_json(data: dict) -> WaypointOptimizationAvoidanceArea:
     out: WaypointOptimizationAvoidanceArea = {}  # type: ignore[typeddict-item]
-    if "Geometry" in data:
+    if data.get("Geometry") is not None:
         import capo_geo_routes.types.waypoint_optimization_avoidance_area_geometry
 
         out["geometry"] = (

@@ -34,11 +34,11 @@ def serialize_json(value: DescribeFlowResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeFlowResponse:
     out: DescribeFlowResponse = {}  # type: ignore[typeddict-item]
-    if "flow" in data:
+    if data.get("flow") is not None:
         import capo_mediaconnect.types.flow
 
         out["flow"] = capo_mediaconnect.types.flow.deserialize_json(data["flow"])
-    if "messages" in data:
+    if data.get("messages") is not None:
         import capo_mediaconnect.types.messages
 
         out["messages"] = capo_mediaconnect.types.messages.deserialize_json(

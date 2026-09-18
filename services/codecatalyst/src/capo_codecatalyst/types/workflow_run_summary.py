@@ -49,20 +49,20 @@ def serialize_json(value: WorkflowRunSummary) -> dict:
                 value["status_reasons"]
             )
         )
-    import capo_codecatalyst.types.timestamp
+    import capo_codecatalyst._protocol.serialize
 
-    out["startTime"] = capo_codecatalyst.types.timestamp.serialize_json(
+    out["startTime"] = capo_codecatalyst._protocol.serialize.fmt_date_time(
         value["start_time"]
     )
     if "end_time" in value:
-        import capo_codecatalyst.types.timestamp
+        import capo_codecatalyst._protocol.serialize
 
-        out["endTime"] = capo_codecatalyst.types.timestamp.serialize_json(
+        out["endTime"] = capo_codecatalyst._protocol.serialize.fmt_date_time(
             value["end_time"]
         )
-    import capo_codecatalyst.types.timestamp
+    import capo_codecatalyst._protocol.serialize
 
-    out["lastUpdatedTime"] = capo_codecatalyst.types.timestamp.serialize_json(
+    out["lastUpdatedTime"] = capo_codecatalyst._protocol.serialize.fmt_date_time(
         value["last_updated_time"]
     )
     return out
@@ -70,23 +70,23 @@ def serialize_json(value: WorkflowRunSummary) -> dict:
 
 def deserialize_json(data: dict) -> WorkflowRunSummary:
     out: WorkflowRunSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("WorkflowRunSummary.id required")
-    if "workflowId" in data:
+    if data.get("workflowId") is not None:
         out["workflow_id"] = data["workflowId"]
     else:
         raise DeserializationError("WorkflowRunSummary.workflow_id required")
-    if "workflowName" in data:
+    if data.get("workflowName") is not None:
         out["workflow_name"] = data["workflowName"]
     else:
         raise DeserializationError("WorkflowRunSummary.workflow_name required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("WorkflowRunSummary.status required")
-    if "statusReasons" in data:
+    if data.get("statusReasons") is not None:
         import capo_codecatalyst.types.workflow_run_status_reasons
 
         out["status_reasons"] = (
@@ -94,25 +94,25 @@ def deserialize_json(data: dict) -> WorkflowRunSummary:
                 data["statusReasons"]
             )
         )
-    if "startTime" in data:
-        import capo_codecatalyst.types.timestamp
+    if data.get("startTime") is not None:
+        import datetime
 
-        out["start_time"] = capo_codecatalyst.types.timestamp.deserialize_json(
-            data["startTime"]
+        out["start_time"] = datetime.datetime.fromisoformat(
+            data["startTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("WorkflowRunSummary.start_time required")
-    if "endTime" in data:
-        import capo_codecatalyst.types.timestamp
+    if data.get("endTime") is not None:
+        import datetime
 
-        out["end_time"] = capo_codecatalyst.types.timestamp.deserialize_json(
-            data["endTime"]
+        out["end_time"] = datetime.datetime.fromisoformat(
+            data["endTime"].replace("Z", "+00:00")
         )
-    if "lastUpdatedTime" in data:
-        import capo_codecatalyst.types.timestamp
+    if data.get("lastUpdatedTime") is not None:
+        import datetime
 
-        out["last_updated_time"] = capo_codecatalyst.types.timestamp.deserialize_json(
-            data["lastUpdatedTime"]
+        out["last_updated_time"] = datetime.datetime.fromisoformat(
+            data["lastUpdatedTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("WorkflowRunSummary.last_updated_time required")

@@ -47,15 +47,15 @@ def serialize_aws_json_1_1(value: ListApplicationsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListApplicationsRequest:
     out: ListApplicationsRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceArn" in data:
+    if data.get("InstanceArn") is not None:
         out["instance_arn"] = data["InstanceArn"]
     else:
         raise DeserializationError("ListApplicationsRequest.instance_arn required")
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_sso_admin.types.list_applications_filter
 
         out["filter"] = (

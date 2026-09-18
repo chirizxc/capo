@@ -36,15 +36,15 @@ def serialize_aws_json_1_0(value: UpdateServiceSyncBlockerOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateServiceSyncBlockerOutput:
     out: UpdateServiceSyncBlockerOutput = {}  # type: ignore[typeddict-item]
-    if "serviceName" in data:
+    if data.get("serviceName") is not None:
         out["service_name"] = data["serviceName"]
     else:
         raise DeserializationError(
             "UpdateServiceSyncBlockerOutput.service_name required"
         )
-    if "serviceInstanceName" in data:
+    if data.get("serviceInstanceName") is not None:
         out["service_instance_name"] = data["serviceInstanceName"]
-    if "serviceSyncBlocker" in data:
+    if data.get("serviceSyncBlocker") is not None:
         import capo_proton.types.sync_blocker
 
         out["service_sync_blocker"] = (

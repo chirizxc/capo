@@ -33,7 +33,7 @@ def serialize_json(value: UpdateThingTypeRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateThingTypeRequest:
     out: UpdateThingTypeRequest = {}  # type: ignore[typeddict-item]
-    if "thingTypeProperties" in data:
+    if data.get("thingTypeProperties") is not None:
         import capo_iot.types.thing_type_properties
 
         out["thing_type_properties"] = (

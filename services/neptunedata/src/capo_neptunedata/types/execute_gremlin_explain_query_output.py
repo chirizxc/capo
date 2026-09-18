@@ -27,7 +27,7 @@ def serialize_json(value: ExecuteGremlinExplainQueryOutput) -> dict:
 
 def deserialize_json(data: dict) -> ExecuteGremlinExplainQueryOutput:
     out: ExecuteGremlinExplainQueryOutput = {}  # type: ignore[typeddict-item]
-    if "output" in data:
+    if data.get("output") is not None:
         import capo_neptunedata.types.report_as_text
 
         out["output"] = capo_neptunedata.types.report_as_text.deserialize_json(

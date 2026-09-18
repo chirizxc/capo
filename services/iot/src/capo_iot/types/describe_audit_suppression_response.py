@@ -53,9 +53,9 @@ def serialize_json(value: DescribeAuditSuppressionResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeAuditSuppressionResponse:
     out: DescribeAuditSuppressionResponse = {}  # type: ignore[typeddict-item]
-    if "checkName" in data:
+    if data.get("checkName") is not None:
         out["check_name"] = data["checkName"]
-    if "resourceIdentifier" in data:
+    if data.get("resourceIdentifier") is not None:
         import capo_iot.types.resource_identifier
 
         out["resource_identifier"] = (
@@ -63,14 +63,14 @@ def deserialize_json(data: dict) -> DescribeAuditSuppressionResponse:
                 data["resourceIdentifier"]
             )
         )
-    if "expirationDate" in data:
+    if data.get("expirationDate") is not None:
         import capo_iot.types.timestamp
 
         out["expiration_date"] = capo_iot.types.timestamp.deserialize_json(
             data["expirationDate"]
         )
-    if "suppressIndefinitely" in data:
+    if data.get("suppressIndefinitely") is not None:
         out["suppress_indefinitely"] = data["suppressIndefinitely"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

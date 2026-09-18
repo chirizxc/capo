@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_workspaces_web._auth._signers
@@ -139,12 +140,13 @@ class UserSettingsResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.create_user_settings_request.CreateUserSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["copy_allowed"] = copy_allowed
-        input_["paste_allowed"] = paste_allowed
-        input_["download_allowed"] = download_allowed
-        input_["upload_allowed"] = upload_allowed
-        input_["print_allowed"] = print_allowed
+        input_: capo_workspaces_web.types.create_user_settings_request.CreateUserSettingsRequest = {
+            "copy_allowed": copy_allowed,
+            "paste_allowed": paste_allowed,
+            "download_allowed": download_allowed,
+            "upload_allowed": upload_allowed,
+            "print_allowed": print_allowed,
+        }
         if tags is not None:
             input_["tags"] = tags
         if disconnect_timeout_in_minutes is not None:
@@ -153,8 +155,9 @@ class UserSettingsResource:
             input_["idle_disconnect_timeout_in_minutes"] = (
                 idle_disconnect_timeout_in_minutes
             )
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if cookie_synchronization_configuration is not None:
             input_["cookie_synchronization_configuration"] = (
                 cookie_synchronization_configuration
@@ -177,6 +180,7 @@ class UserSettingsResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -214,14 +218,16 @@ class UserSettingsResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.get_user_settings_request.GetUserSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["user_settings_arn"] = user_settings_arn
+        input_: capo_workspaces_web.types.get_user_settings_request.GetUserSettingsRequest = {
+            "user_settings_arn": user_settings_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -311,8 +317,9 @@ class UserSettingsResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.update_user_settings_request.UpdateUserSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["user_settings_arn"] = user_settings_arn
+        input_: capo_workspaces_web.types.update_user_settings_request.UpdateUserSettingsRequest = {
+            "user_settings_arn": user_settings_arn
+        }
         if copy_allowed is not None:
             input_["copy_allowed"] = copy_allowed
         if paste_allowed is not None:
@@ -329,8 +336,9 @@ class UserSettingsResource:
             input_["idle_disconnect_timeout_in_minutes"] = (
                 idle_disconnect_timeout_in_minutes
             )
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if cookie_synchronization_configuration is not None:
             input_["cookie_synchronization_configuration"] = (
                 cookie_synchronization_configuration
@@ -349,6 +357,7 @@ class UserSettingsResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -386,14 +395,16 @@ class UserSettingsResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.delete_user_settings_request.DeleteUserSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["user_settings_arn"] = user_settings_arn
+        input_: capo_workspaces_web.types.delete_user_settings_request.DeleteUserSettingsRequest = {
+            "user_settings_arn": user_settings_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -438,7 +449,7 @@ class UserSettingsResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.list_user_settings_request.ListUserSettingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces_web.types.list_user_settings_request.ListUserSettingsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -449,6 +460,7 @@ class UserSettingsResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -544,12 +556,13 @@ class AsyncUserSettingsResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.create_user_settings_request.CreateUserSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["copy_allowed"] = copy_allowed
-        input_["paste_allowed"] = paste_allowed
-        input_["download_allowed"] = download_allowed
-        input_["upload_allowed"] = upload_allowed
-        input_["print_allowed"] = print_allowed
+        input_: capo_workspaces_web.types.create_user_settings_request.CreateUserSettingsRequest = {
+            "copy_allowed": copy_allowed,
+            "paste_allowed": paste_allowed,
+            "download_allowed": download_allowed,
+            "upload_allowed": upload_allowed,
+            "print_allowed": print_allowed,
+        }
         if tags is not None:
             input_["tags"] = tags
         if disconnect_timeout_in_minutes is not None:
@@ -558,8 +571,9 @@ class AsyncUserSettingsResource:
             input_["idle_disconnect_timeout_in_minutes"] = (
                 idle_disconnect_timeout_in_minutes
             )
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if cookie_synchronization_configuration is not None:
             input_["cookie_synchronization_configuration"] = (
                 cookie_synchronization_configuration
@@ -582,6 +596,7 @@ class AsyncUserSettingsResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -620,14 +635,16 @@ class AsyncUserSettingsResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.get_user_settings_request.GetUserSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["user_settings_arn"] = user_settings_arn
+        input_: capo_workspaces_web.types.get_user_settings_request.GetUserSettingsRequest = {
+            "user_settings_arn": user_settings_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -718,8 +735,9 @@ class AsyncUserSettingsResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.update_user_settings_request.UpdateUserSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["user_settings_arn"] = user_settings_arn
+        input_: capo_workspaces_web.types.update_user_settings_request.UpdateUserSettingsRequest = {
+            "user_settings_arn": user_settings_arn
+        }
         if copy_allowed is not None:
             input_["copy_allowed"] = copy_allowed
         if paste_allowed is not None:
@@ -736,8 +754,9 @@ class AsyncUserSettingsResource:
             input_["idle_disconnect_timeout_in_minutes"] = (
                 idle_disconnect_timeout_in_minutes
             )
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if cookie_synchronization_configuration is not None:
             input_["cookie_synchronization_configuration"] = (
                 cookie_synchronization_configuration
@@ -756,6 +775,7 @@ class AsyncUserSettingsResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -794,14 +814,16 @@ class AsyncUserSettingsResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.delete_user_settings_request.DeleteUserSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["user_settings_arn"] = user_settings_arn
+        input_: capo_workspaces_web.types.delete_user_settings_request.DeleteUserSettingsRequest = {
+            "user_settings_arn": user_settings_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -847,7 +869,7 @@ class AsyncUserSettingsResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.list_user_settings_request.ListUserSettingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces_web.types.list_user_settings_request.ListUserSettingsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -858,4 +880,5 @@ class AsyncUserSettingsResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

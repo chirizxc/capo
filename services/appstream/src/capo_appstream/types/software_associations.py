@@ -49,9 +49,9 @@ def serialize_aws_json_1_1(value: SoftwareAssociations) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SoftwareAssociations:
     out: SoftwareAssociations = {}  # type: ignore[typeddict-item]
-    if "SoftwareName" in data:
+    if data.get("SoftwareName") is not None:
         out["software_name"] = data["SoftwareName"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_appstream.types.software_deployment_status
 
         out["status"] = (
@@ -59,7 +59,7 @@ def deserialize_aws_json_1_1(data: dict) -> SoftwareAssociations:
                 data["Status"]
             )
         )
-    if "DeploymentError" in data:
+    if data.get("DeploymentError") is not None:
         import capo_appstream.types.error_details_list
 
         out["deployment_error"] = (

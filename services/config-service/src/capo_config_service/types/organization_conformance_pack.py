@@ -78,7 +78,7 @@ def serialize_aws_json_1_1(value: OrganizationConformancePack) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OrganizationConformancePack:
     out: OrganizationConformancePack = {}  # type: ignore[typeddict-item]
-    if "OrganizationConformancePackName" in data:
+    if data.get("OrganizationConformancePackName") is not None:
         out["organization_conformance_pack_name"] = data[
             "OrganizationConformancePackName"
         ]
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_1(data: dict) -> OrganizationConformancePack:
         raise DeserializationError(
             "OrganizationConformancePack.organization_conformance_pack_name required"
         )
-    if "OrganizationConformancePackArn" in data:
+    if data.get("OrganizationConformancePackArn") is not None:
         out["organization_conformance_pack_arn"] = data[
             "OrganizationConformancePackArn"
         ]
@@ -94,11 +94,11 @@ def deserialize_aws_json_1_1(data: dict) -> OrganizationConformancePack:
         raise DeserializationError(
             "OrganizationConformancePack.organization_conformance_pack_arn required"
         )
-    if "DeliveryS3Bucket" in data:
+    if data.get("DeliveryS3Bucket") is not None:
         out["delivery_s3_bucket"] = data["DeliveryS3Bucket"]
-    if "DeliveryS3KeyPrefix" in data:
+    if data.get("DeliveryS3KeyPrefix") is not None:
         out["delivery_s3_key_prefix"] = data["DeliveryS3KeyPrefix"]
-    if "ConformancePackInputParameters" in data:
+    if data.get("ConformancePackInputParameters") is not None:
         import capo_config_service.types.conformance_pack_input_parameters
 
         out["conformance_pack_input_parameters"] = (
@@ -106,7 +106,7 @@ def deserialize_aws_json_1_1(data: dict) -> OrganizationConformancePack:
                 data["ConformancePackInputParameters"]
             )
         )
-    if "ExcludedAccounts" in data:
+    if data.get("ExcludedAccounts") is not None:
         import capo_config_service.types.excluded_accounts
 
         out["excluded_accounts"] = (
@@ -114,7 +114,7 @@ def deserialize_aws_json_1_1(data: dict) -> OrganizationConformancePack:
                 data["ExcludedAccounts"]
             )
         )
-    if "LastUpdateTime" in data:
+    if data.get("LastUpdateTime") is not None:
         import capo_config_service.types.date
 
         out["last_update_time"] = (

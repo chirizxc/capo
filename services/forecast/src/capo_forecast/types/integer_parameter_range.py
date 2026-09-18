@@ -40,19 +40,19 @@ def serialize_aws_json_1_1(value: IntegerParameterRange) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IntegerParameterRange:
     out: IntegerParameterRange = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("IntegerParameterRange.name required")
-    if "MaxValue" in data:
+    if data.get("MaxValue") is not None:
         out["max_value"] = data["MaxValue"]
     else:
         raise DeserializationError("IntegerParameterRange.max_value required")
-    if "MinValue" in data:
+    if data.get("MinValue") is not None:
         out["min_value"] = data["MinValue"]
     else:
         raise DeserializationError("IntegerParameterRange.min_value required")
-    if "ScalingType" in data:
+    if data.get("ScalingType") is not None:
         import capo_forecast.types.scaling_type
 
         out["scaling_type"] = capo_forecast.types.scaling_type.deserialize_aws_json_1_1(

@@ -64,7 +64,7 @@ def serialize_json(value: AlarmState) -> dict:
 
 def deserialize_json(data: dict) -> AlarmState:
     out: AlarmState = {}  # type: ignore[typeddict-item]
-    if "stateName" in data:
+    if data.get("stateName") is not None:
         import capo_iot_events_data.types.alarm_state_name
 
         out["state_name"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> AlarmState:
                 data["stateName"]
             )
         )
-    if "ruleEvaluation" in data:
+    if data.get("ruleEvaluation") is not None:
         import capo_iot_events_data.types.rule_evaluation
 
         out["rule_evaluation"] = (
@@ -80,7 +80,7 @@ def deserialize_json(data: dict) -> AlarmState:
                 data["ruleEvaluation"]
             )
         )
-    if "customerAction" in data:
+    if data.get("customerAction") is not None:
         import capo_iot_events_data.types.customer_action
 
         out["customer_action"] = (
@@ -88,7 +88,7 @@ def deserialize_json(data: dict) -> AlarmState:
                 data["customerAction"]
             )
         )
-    if "systemEvent" in data:
+    if data.get("systemEvent") is not None:
         import capo_iot_events_data.types.system_event
 
         out["system_event"] = capo_iot_events_data.types.system_event.deserialize_json(

@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: CarrierLookupRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CarrierLookupRequest:
     out: CarrierLookupRequest = {}  # type: ignore[typeddict-item]
-    if "PhoneNumber" in data:
+    if data.get("PhoneNumber") is not None:
         out["phone_number"] = data["PhoneNumber"]
     else:
         raise DeserializationError("CarrierLookupRequest.phone_number required")

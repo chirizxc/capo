@@ -46,15 +46,15 @@ def serialize_json(value: TestSetTurnRecord) -> dict:
 
 def deserialize_json(data: dict) -> TestSetTurnRecord:
     out: TestSetTurnRecord = {}  # type: ignore[typeddict-item]
-    if "recordNumber" in data:
+    if data.get("recordNumber") is not None:
         out["record_number"] = data["recordNumber"]
     else:
         raise DeserializationError("TestSetTurnRecord.record_number required")
-    if "conversationId" in data:
+    if data.get("conversationId") is not None:
         out["conversation_id"] = data["conversationId"]
-    if "turnNumber" in data:
+    if data.get("turnNumber") is not None:
         out["turn_number"] = data["turnNumber"]
-    if "turnSpecification" in data:
+    if data.get("turnSpecification") is not None:
         import capo_lex_models_v2.types.turn_specification
 
         out["turn_specification"] = (

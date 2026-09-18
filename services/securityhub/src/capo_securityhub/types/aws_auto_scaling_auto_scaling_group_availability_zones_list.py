@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsAutoScalingAutoScalingGroupAvailabilityZo
 
     out: AwsAutoScalingAutoScalingGroupAvailabilityZonesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_auto_scaling_auto_scaling_group_availability_zones_list_details.deserialize_json(
                 item

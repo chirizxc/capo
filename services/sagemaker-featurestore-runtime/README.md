@@ -13,9 +13,9 @@ from capo_sagemaker_featurestore_runtime import AsyncSageMakerFeatureStoreRuntim
 
 
 async def main():
-    async with AsyncSageMakerFeatureStoreRuntimeClient() as s3:
+    async with AsyncSageMakerFeatureStoreRuntimeClient() as sage_maker_feature_store_runtime:
         # Example: call the batch_get_record operation
-        response = await s3.batch_get_record()
+        response = await sage_maker_feature_store_runtime.batch_get_record()
         print(response["records"])
 ```
 
@@ -29,9 +29,9 @@ from capo_sagemaker_featurestore_runtime.error import AccessForbidden
 
 
 async def main():
-    async with AsyncSageMakerFeatureStoreRuntimeClient() as s3:
+    async with AsyncSageMakerFeatureStoreRuntimeClient() as sage_maker_feature_store_runtime:
         try:
-            await s3.batch_get_record()
+            await sage_maker_feature_store_runtime.batch_get_record()
         except AccessForbidden as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_sagemaker_featurestore_runtime import AsyncSageMakerFeatureStoreRuntim
 
 
 async def main():
-    async with AsyncSageMakerFeatureStoreRuntimeClient() as s3:
+    async with AsyncSageMakerFeatureStoreRuntimeClient() as sage_maker_feature_store_runtime:
         # Default: 3 attempts for every operation
-        response = await s3.batch_get_record()
+        response = await sage_maker_feature_store_runtime.batch_get_record()
 
         # Override per operation
-        response = await s3.batch_get_record(config_overrides={"retry_max_attempts": 5})
+        response = await sage_maker_feature_store_runtime.batch_get_record(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.batch_get_record(config_overrides={"retry_max_attempts": 1})
+        response = await sage_maker_feature_store_runtime.batch_get_record(config_overrides={"retry_max_attempts": 1})
 ```

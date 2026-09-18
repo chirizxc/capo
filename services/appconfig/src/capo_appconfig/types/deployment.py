@@ -106,7 +106,15 @@ def serialize_json(value: Deployment) -> dict:
             value["growth_type"]
         )
     if "growth_factor" in value:
-        out["GrowthFactor"] = value["growth_factor"]
+        out["GrowthFactor"] = (
+            "NaN"
+            if value["growth_factor"] != value["growth_factor"]
+            else "Infinity"
+            if value["growth_factor"] == float("inf")
+            else "-Infinity"
+            if value["growth_factor"] == float("-inf")
+            else value["growth_factor"]
+        )
     out["FinalBakeTimeInMinutes"] = value.get("final_bake_time_in_minutes", 0)
     if "state" in value:
         import capo_appconfig.types.deployment_state
@@ -121,7 +129,15 @@ def serialize_json(value: Deployment) -> dict:
             value["event_log"]
         )
     if "percentage_complete" in value:
-        out["PercentageComplete"] = value["percentage_complete"]
+        out["PercentageComplete"] = (
+            "NaN"
+            if value["percentage_complete"] != value["percentage_complete"]
+            else "Infinity"
+            if value["percentage_complete"] == float("inf")
+            else "-Infinity"
+            if value["percentage_complete"] == float("-inf")
+            else value["percentage_complete"]
+        )
     if "started_at" in value:
         import capo_appconfig.types.iso8601_date_time
 
@@ -153,69 +169,69 @@ def serialize_json(value: Deployment) -> dict:
 
 def deserialize_json(data: dict) -> Deployment:
     out: Deployment = {}  # type: ignore[typeddict-item]
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
-    if "EnvironmentId" in data:
+    if data.get("EnvironmentId") is not None:
         out["environment_id"] = data["EnvironmentId"]
-    if "DeploymentStrategyId" in data:
+    if data.get("DeploymentStrategyId") is not None:
         out["deployment_strategy_id"] = data["DeploymentStrategyId"]
-    if "ConfigurationProfileId" in data:
+    if data.get("ConfigurationProfileId") is not None:
         out["configuration_profile_id"] = data["ConfigurationProfileId"]
-    if "DeploymentNumber" in data:
+    if data.get("DeploymentNumber") is not None:
         out["deployment_number"] = data["DeploymentNumber"]
     else:
         out["deployment_number"] = 0
-    if "ConfigurationName" in data:
+    if data.get("ConfigurationName") is not None:
         out["configuration_name"] = data["ConfigurationName"]
-    if "ConfigurationLocationUri" in data:
+    if data.get("ConfigurationLocationUri") is not None:
         out["configuration_location_uri"] = data["ConfigurationLocationUri"]
-    if "ConfigurationVersion" in data:
+    if data.get("ConfigurationVersion") is not None:
         out["configuration_version"] = data["ConfigurationVersion"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DeploymentDurationInMinutes" in data:
+    if data.get("DeploymentDurationInMinutes") is not None:
         out["deployment_duration_in_minutes"] = data["DeploymentDurationInMinutes"]
     else:
         out["deployment_duration_in_minutes"] = 0
-    if "GrowthType" in data:
+    if data.get("GrowthType") is not None:
         import capo_appconfig.types.growth_type
 
         out["growth_type"] = capo_appconfig.types.growth_type.deserialize_json(
             data["GrowthType"]
         )
-    if "GrowthFactor" in data:
-        out["growth_factor"] = data["GrowthFactor"]
-    if "FinalBakeTimeInMinutes" in data:
+    if data.get("GrowthFactor") is not None:
+        out["growth_factor"] = float(data["GrowthFactor"])
+    if data.get("FinalBakeTimeInMinutes") is not None:
         out["final_bake_time_in_minutes"] = data["FinalBakeTimeInMinutes"]
     else:
         out["final_bake_time_in_minutes"] = 0
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_appconfig.types.deployment_state
 
         out["state"] = capo_appconfig.types.deployment_state.deserialize_json(
             data["State"]
         )
-    if "EventLog" in data:
+    if data.get("EventLog") is not None:
         import capo_appconfig.types.deployment_events
 
         out["event_log"] = capo_appconfig.types.deployment_events.deserialize_json(
             data["EventLog"]
         )
-    if "PercentageComplete" in data:
-        out["percentage_complete"] = data["PercentageComplete"]
-    if "StartedAt" in data:
+    if data.get("PercentageComplete") is not None:
+        out["percentage_complete"] = float(data["PercentageComplete"])
+    if data.get("StartedAt") is not None:
         import capo_appconfig.types.iso8601_date_time
 
         out["started_at"] = capo_appconfig.types.iso8601_date_time.deserialize_json(
             data["StartedAt"]
         )
-    if "CompletedAt" in data:
+    if data.get("CompletedAt") is not None:
         import capo_appconfig.types.iso8601_date_time
 
         out["completed_at"] = capo_appconfig.types.iso8601_date_time.deserialize_json(
             data["CompletedAt"]
         )
-    if "AppliedExtensions" in data:
+    if data.get("AppliedExtensions") is not None:
         import capo_appconfig.types.applied_extensions
 
         out["applied_extensions"] = (
@@ -223,10 +239,10 @@ def deserialize_json(data: dict) -> Deployment:
                 data["AppliedExtensions"]
             )
         )
-    if "KmsKeyArn" in data:
+    if data.get("KmsKeyArn") is not None:
         out["kms_key_arn"] = data["KmsKeyArn"]
-    if "KmsKeyIdentifier" in data:
+    if data.get("KmsKeyIdentifier") is not None:
         out["kms_key_identifier"] = data["KmsKeyIdentifier"]
-    if "VersionLabel" in data:
+    if data.get("VersionLabel") is not None:
         out["version_label"] = data["VersionLabel"]
     return out

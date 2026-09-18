@@ -68,7 +68,7 @@ def serialize_aws_json_1_0(value: EncryptionKeyConfiguration) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> EncryptionKeyConfiguration:
-    if "awsEncryptionKey" in data:
+    if data.get("awsEncryptionKey") is not None:
         import capo_odb.types.aws_encryption_key_configuration
 
         return {
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_0(data: dict) -> EncryptionKeyConfiguration:
                 data["awsEncryptionKey"]
             )
         }
-    elif "ociEncryptionKey" in data:
+    elif data.get("ociEncryptionKey") is not None:
         import capo_odb.types.oci_encryption_key_configuration
 
         return {
@@ -84,7 +84,7 @@ def deserialize_aws_json_1_0(data: dict) -> EncryptionKeyConfiguration:
                 data["ociEncryptionKey"]
             )
         }
-    elif "okvEncryptionKey" in data:
+    elif data.get("okvEncryptionKey") is not None:
         import capo_odb.types.okv_encryption_key_configuration
 
         return {

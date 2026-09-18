@@ -34,12 +34,12 @@ def serialize_aws_json_1_1(value: ListPermissionSetsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListPermissionSetsRequest:
     out: ListPermissionSetsRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceArn" in data:
+    if data.get("InstanceArn") is not None:
         out["instance_arn"] = data["InstanceArn"]
     else:
         raise DeserializationError("ListPermissionSetsRequest.instance_arn required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

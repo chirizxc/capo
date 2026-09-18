@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AttributeList:
 
     out: AttributeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_customer_profiles.types.attribute_item.deserialize_json(item))
     return out

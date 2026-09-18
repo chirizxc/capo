@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: StartEventDataStoreIngestionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartEventDataStoreIngestionRequest:
     out: StartEventDataStoreIngestionRequest = {}  # type: ignore[typeddict-item]
-    if "EventDataStore" in data:
+    if data.get("EventDataStore") is not None:
         out["event_data_store"] = data["EventDataStore"]
     else:
         raise DeserializationError(

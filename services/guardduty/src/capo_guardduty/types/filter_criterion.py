@@ -38,13 +38,13 @@ def serialize_json(value: FilterCriterion) -> dict:
 
 def deserialize_json(data: dict) -> FilterCriterion:
     out: FilterCriterion = {}  # type: ignore[typeddict-item]
-    if "criterionKey" in data:
+    if data.get("criterionKey") is not None:
         import capo_guardduty.types.criterion_key
 
         out["criterion_key"] = capo_guardduty.types.criterion_key.deserialize_json(
             data["criterionKey"]
         )
-    if "filterCondition" in data:
+    if data.get("filterCondition") is not None:
         import capo_guardduty.types.filter_condition
 
         out["filter_condition"] = (

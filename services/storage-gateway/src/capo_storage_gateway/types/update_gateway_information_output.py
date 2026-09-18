@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: UpdateGatewayInformationOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateGatewayInformationOutput:
     out: UpdateGatewayInformationOutput = {}  # type: ignore[typeddict-item]
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
-    if "GatewayName" in data:
+    if data.get("GatewayName") is not None:
         out["gateway_name"] = data["GatewayName"]
     return out

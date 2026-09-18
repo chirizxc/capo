@@ -110,59 +110,59 @@ def serialize_json(value: StartMLModelTrainingJobInput) -> dict:
 
 def deserialize_json(data: dict) -> StartMLModelTrainingJobInput:
     out: StartMLModelTrainingJobInput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "previousModelTrainingJobId" in data:
+    if data.get("previousModelTrainingJobId") is not None:
         out["previous_model_training_job_id"] = data["previousModelTrainingJobId"]
-    if "dataProcessingJobId" in data:
+    if data.get("dataProcessingJobId") is not None:
         out["data_processing_job_id"] = data["dataProcessingJobId"]
     else:
         raise DeserializationError(
             "StartMLModelTrainingJobInput.data_processing_job_id required"
         )
-    if "trainModelS3Location" in data:
+    if data.get("trainModelS3Location") is not None:
         out["train_model_s3_location"] = data["trainModelS3Location"]
     else:
         raise DeserializationError(
             "StartMLModelTrainingJobInput.train_model_s3_location required"
         )
-    if "sagemakerIamRoleArn" in data:
+    if data.get("sagemakerIamRoleArn") is not None:
         out["sagemaker_iam_role_arn"] = data["sagemakerIamRoleArn"]
-    if "neptuneIamRoleArn" in data:
+    if data.get("neptuneIamRoleArn") is not None:
         out["neptune_iam_role_arn"] = data["neptuneIamRoleArn"]
-    if "baseProcessingInstanceType" in data:
+    if data.get("baseProcessingInstanceType") is not None:
         out["base_processing_instance_type"] = data["baseProcessingInstanceType"]
-    if "trainingInstanceType" in data:
+    if data.get("trainingInstanceType") is not None:
         out["training_instance_type"] = data["trainingInstanceType"]
-    if "trainingInstanceVolumeSizeInGB" in data:
+    if data.get("trainingInstanceVolumeSizeInGB") is not None:
         out["training_instance_volume_size_in_gb"] = data[
             "trainingInstanceVolumeSizeInGB"
         ]
-    if "trainingTimeOutInSeconds" in data:
+    if data.get("trainingTimeOutInSeconds") is not None:
         out["training_time_out_in_seconds"] = data["trainingTimeOutInSeconds"]
-    if "maxHPONumberOfTrainingJobs" in data:
+    if data.get("maxHPONumberOfTrainingJobs") is not None:
         out["max_hpo_number_of_training_jobs"] = data["maxHPONumberOfTrainingJobs"]
-    if "maxHPOParallelTrainingJobs" in data:
+    if data.get("maxHPOParallelTrainingJobs") is not None:
         out["max_hpo_parallel_training_jobs"] = data["maxHPOParallelTrainingJobs"]
-    if "subnets" in data:
+    if data.get("subnets") is not None:
         import capo_neptunedata.types.string_list
 
         out["subnets"] = capo_neptunedata.types.string_list.deserialize_json(
             data["subnets"]
         )
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_neptunedata.types.string_list
 
         out["security_group_ids"] = capo_neptunedata.types.string_list.deserialize_json(
             data["securityGroupIds"]
         )
-    if "volumeEncryptionKMSKey" in data:
+    if data.get("volumeEncryptionKMSKey") is not None:
         out["volume_encryption_kms_key"] = data["volumeEncryptionKMSKey"]
-    if "s3OutputEncryptionKMSKey" in data:
+    if data.get("s3OutputEncryptionKMSKey") is not None:
         out["s3_output_encryption_kms_key"] = data["s3OutputEncryptionKMSKey"]
-    if "enableManagedSpotTraining" in data:
+    if data.get("enableManagedSpotTraining") is not None:
         out["enable_managed_spot_training"] = data["enableManagedSpotTraining"]
-    if "customModelTrainingParameters" in data:
+    if data.get("customModelTrainingParameters") is not None:
         import capo_neptunedata.types.custom_model_training_parameters
 
         out["custom_model_training_parameters"] = (

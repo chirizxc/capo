@@ -33,10 +33,10 @@ def serialize_json(value: CreateEnvironmentResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateEnvironmentResponse:
     out: CreateEnvironmentResponse = {}  # type: ignore[typeddict-item]
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
-    if "environmentArn" in data:
+    if data.get("environmentArn") is not None:
         out["environment_arn"] = data["environmentArn"]
-    if "environmentUrl" in data:
+    if data.get("environmentUrl") is not None:
         out["environment_url"] = data["environmentUrl"]
     return out

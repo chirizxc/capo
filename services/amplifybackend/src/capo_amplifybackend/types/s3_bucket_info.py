@@ -27,8 +27,8 @@ def serialize_json(value: S3BucketInfo) -> dict:
 
 def deserialize_json(data: dict) -> S3BucketInfo:
     out: S3BucketInfo = {}  # type: ignore[typeddict-item]
-    if "creationDate" in data:
+    if data.get("creationDate") is not None:
         out["creation_date"] = data["creationDate"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     return out

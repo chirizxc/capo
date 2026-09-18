@@ -36,11 +36,11 @@ def serialize_json(value: Submission) -> dict:
 
 def deserialize_json(data: dict) -> Submission:
     out: Submission = {}  # type: ignore[typeddict-item]
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
-    if "submissionId" in data:
+    if data.get("submissionId") is not None:
         out["submission_id"] = data["submissionId"]
-    if "timestamp" in data:
+    if data.get("timestamp") is not None:
         import capo_qapps.types.q_apps_timestamp
 
         out["timestamp"] = capo_qapps.types.q_apps_timestamp.deserialize_json(

@@ -48,18 +48,18 @@ def serialize_json(value: JobPostLaunchActionsLaunchStatus) -> dict:
 
 def deserialize_json(data: dict) -> JobPostLaunchActionsLaunchStatus:
     out: JobPostLaunchActionsLaunchStatus = {}  # type: ignore[typeddict-item]
-    if "ssmDocument" in data:
+    if data.get("ssmDocument") is not None:
         import capo_mgn.types.ssm_document
 
         out["ssm_document"] = capo_mgn.types.ssm_document.deserialize_json(
             data["ssmDocument"]
         )
-    if "ssmDocumentType" in data:
+    if data.get("ssmDocumentType") is not None:
         out["ssm_document_type"] = data["ssmDocumentType"]
-    if "executionID" in data:
+    if data.get("executionID") is not None:
         out["execution_id"] = data["executionID"]
-    if "executionStatus" in data:
+    if data.get("executionStatus") is not None:
         out["execution_status"] = data["executionStatus"]
-    if "failureReason" in data:
+    if data.get("failureReason") is not None:
         out["failure_reason"] = data["failureReason"]
     return out

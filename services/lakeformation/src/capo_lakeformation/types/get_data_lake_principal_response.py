@@ -23,6 +23,6 @@ def serialize_json(value: GetDataLakePrincipalResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetDataLakePrincipalResponse:
     out: GetDataLakePrincipalResponse = {}  # type: ignore[typeddict-item]
-    if "Identity" in data:
+    if data.get("Identity") is not None:
         out["identity"] = data["Identity"]
     return out

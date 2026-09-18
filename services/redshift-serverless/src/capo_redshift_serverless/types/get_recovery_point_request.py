@@ -19,7 +19,7 @@ def serialize_aws_json_1_1(value: GetRecoveryPointRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetRecoveryPointRequest:
     out: GetRecoveryPointRequest = {}  # type: ignore[typeddict-item]
-    if "recoveryPointId" in data:
+    if data.get("recoveryPointId") is not None:
         out["recovery_point_id"] = data["recoveryPointId"]
     else:
         raise DeserializationError("GetRecoveryPointRequest.recovery_point_id required")

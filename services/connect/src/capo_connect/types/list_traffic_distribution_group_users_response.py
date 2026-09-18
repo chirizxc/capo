@@ -36,9 +36,9 @@ def serialize_json(value: ListTrafficDistributionGroupUsersResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListTrafficDistributionGroupUsersResponse:
     out: ListTrafficDistributionGroupUsersResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "TrafficDistributionGroupUserSummaryList" in data:
+    if data.get("TrafficDistributionGroupUserSummaryList") is not None:
         import capo_connect.types.traffic_distribution_group_user_summary_list
 
         out["traffic_distribution_group_user_summary_list"] = (

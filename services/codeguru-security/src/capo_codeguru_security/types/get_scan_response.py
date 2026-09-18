@@ -79,15 +79,15 @@ def serialize_json(value: GetScanResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetScanResponse:
     out: GetScanResponse = {}  # type: ignore[typeddict-item]
-    if "scanName" in data:
+    if data.get("scanName") is not None:
         out["scan_name"] = data["scanName"]
     else:
         raise DeserializationError("GetScanResponse.scan_name required")
-    if "runId" in data:
+    if data.get("runId") is not None:
         out["run_id"] = data["runId"]
     else:
         raise DeserializationError("GetScanResponse.run_id required")
-    if "scanState" in data:
+    if data.get("scanState") is not None:
         import capo_codeguru_security.types.scan_state
 
         out["scan_state"] = capo_codeguru_security.types.scan_state.deserialize_json(
@@ -95,7 +95,7 @@ def deserialize_json(data: dict) -> GetScanResponse:
         )
     else:
         raise DeserializationError("GetScanResponse.scan_state required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_codeguru_security.types._prelude.timestamp
 
         out["created_at"] = (
@@ -105,7 +105,7 @@ def deserialize_json(data: dict) -> GetScanResponse:
         )
     else:
         raise DeserializationError("GetScanResponse.created_at required")
-    if "analysisType" in data:
+    if data.get("analysisType") is not None:
         import capo_codeguru_security.types.analysis_type
 
         out["analysis_type"] = (
@@ -115,7 +115,7 @@ def deserialize_json(data: dict) -> GetScanResponse:
         )
     else:
         raise DeserializationError("GetScanResponse.analysis_type required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_codeguru_security.types._prelude.timestamp
 
         out["updated_at"] = (
@@ -123,10 +123,10 @@ def deserialize_json(data: dict) -> GetScanResponse:
                 data["updatedAt"]
             )
         )
-    if "numberOfRevisions" in data:
+    if data.get("numberOfRevisions") is not None:
         out["number_of_revisions"] = data["numberOfRevisions"]
-    if "scanNameArn" in data:
+    if data.get("scanNameArn") is not None:
         out["scan_name_arn"] = data["scanNameArn"]
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     return out

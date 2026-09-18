@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: LastUpdateStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LastUpdateStatus:
     out: LastUpdateStatus = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.last_update_status_value
 
         out["status"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> LastUpdateStatus:
                 data["Status"]
             )
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
     return out

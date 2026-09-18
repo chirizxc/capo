@@ -111,19 +111,19 @@ def serialize_json(value: CreateChannelResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateChannelResponse:
     out: CreateChannelResponse = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("CreateChannelResponse.arn required")
-    if "ChannelName" in data:
+    if data.get("ChannelName") is not None:
         out["channel_name"] = data["ChannelName"]
     else:
         raise DeserializationError("CreateChannelResponse.channel_name required")
-    if "ChannelGroupName" in data:
+    if data.get("ChannelGroupName") is not None:
         out["channel_group_name"] = data["ChannelGroupName"]
     else:
         raise DeserializationError("CreateChannelResponse.channel_group_name required")
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_mediapackagev2.types._prelude.timestamp
 
         out["created_at"] = (
@@ -133,7 +133,7 @@ def deserialize_json(data: dict) -> CreateChannelResponse:
         )
     else:
         raise DeserializationError("CreateChannelResponse.created_at required")
-    if "ModifiedAt" in data:
+    if data.get("ModifiedAt") is not None:
         import capo_mediapackagev2.types._prelude.timestamp
 
         out["modified_at"] = (
@@ -143,9 +143,9 @@ def deserialize_json(data: dict) -> CreateChannelResponse:
         )
     else:
         raise DeserializationError("CreateChannelResponse.modified_at required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "IngestEndpoints" in data:
+    if data.get("IngestEndpoints") is not None:
         import capo_mediapackagev2.types.ingest_endpoint_list
 
         out["ingest_endpoints"] = (
@@ -153,19 +153,19 @@ def deserialize_json(data: dict) -> CreateChannelResponse:
                 data["IngestEndpoints"]
             )
         )
-    if "InputType" in data:
+    if data.get("InputType") is not None:
         import capo_mediapackagev2.types.input_type
 
         out["input_type"] = capo_mediapackagev2.types.input_type.deserialize_json(
             data["InputType"]
         )
-    if "ETag" in data:
+    if data.get("ETag") is not None:
         out["e_tag"] = data["ETag"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_mediapackagev2.types.tag_map
 
         out["tags"] = capo_mediapackagev2.types.tag_map.deserialize_json(data["Tags"])
-    if "InputSwitchConfiguration" in data:
+    if data.get("InputSwitchConfiguration") is not None:
         import capo_mediapackagev2.types.input_switch_configuration
 
         out["input_switch_configuration"] = (
@@ -173,7 +173,7 @@ def deserialize_json(data: dict) -> CreateChannelResponse:
                 data["InputSwitchConfiguration"]
             )
         )
-    if "OutputHeaderConfiguration" in data:
+    if data.get("OutputHeaderConfiguration") is not None:
         import capo_mediapackagev2.types.output_header_configuration
 
         out["output_header_configuration"] = (

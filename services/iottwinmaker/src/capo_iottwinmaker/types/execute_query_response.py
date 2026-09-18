@@ -43,7 +43,7 @@ def serialize_json(value: ExecuteQueryResponse) -> dict:
 
 def deserialize_json(data: dict) -> ExecuteQueryResponse:
     out: ExecuteQueryResponse = {}  # type: ignore[typeddict-item]
-    if "columnDescriptions" in data:
+    if data.get("columnDescriptions") is not None:
         import capo_iottwinmaker.types.column_descriptions
 
         out["column_descriptions"] = (
@@ -51,10 +51,10 @@ def deserialize_json(data: dict) -> ExecuteQueryResponse:
                 data["columnDescriptions"]
             )
         )
-    if "rows" in data:
+    if data.get("rows") is not None:
         import capo_iottwinmaker.types.rows
 
         out["rows"] = capo_iottwinmaker.types.rows.deserialize_json(data["rows"])
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

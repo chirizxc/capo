@@ -58,9 +58,9 @@ def serialize_json(value: SpekeKeyProvider) -> dict:
 
 def deserialize_json(data: dict) -> SpekeKeyProvider:
     out: SpekeKeyProvider = {}  # type: ignore[typeddict-item]
-    if "certificateArn" in data:
+    if data.get("certificateArn") is not None:
         out["certificate_arn"] = data["certificateArn"]
-    if "encryptionContractConfiguration" in data:
+    if data.get("encryptionContractConfiguration") is not None:
         import capo_mediapackage.types.encryption_contract_configuration
 
         out["encryption_contract_configuration"] = (
@@ -68,16 +68,16 @@ def deserialize_json(data: dict) -> SpekeKeyProvider:
                 data["encryptionContractConfiguration"]
             )
         )
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         out["resource_id"] = data["resourceId"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "systemIds" in data:
+    if data.get("systemIds") is not None:
         import capo_mediapackage.types.__list_of__string
 
         out["system_ids"] = capo_mediapackage.types.__list_of__string.deserialize_json(
             data["systemIds"]
         )
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
     return out

@@ -58,29 +58,29 @@ def serialize_json(value: SuggestResultItem) -> dict:
 
 def deserialize_json(data: dict) -> SuggestResultItem:
     out: SuggestResultItem = {}  # type: ignore[typeddict-item]
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
     else:
         raise DeserializationError("SuggestResultItem.title required")
-    if "SuggestResultItemType" in data:
+    if data.get("SuggestResultItemType") is not None:
         out["suggest_result_item_type"] = data["SuggestResultItemType"]
     else:
         raise DeserializationError(
             "SuggestResultItem.suggest_result_item_type required"
         )
-    if "Place" in data:
+    if data.get("Place") is not None:
         import capo_geo_places.types.suggest_place_result
 
         out["place"] = capo_geo_places.types.suggest_place_result.deserialize_json(
             data["Place"]
         )
-    if "Query" in data:
+    if data.get("Query") is not None:
         import capo_geo_places.types.suggest_query_result
 
         out["query"] = capo_geo_places.types.suggest_query_result.deserialize_json(
             data["Query"]
         )
-    if "Highlights" in data:
+    if data.get("Highlights") is not None:
         import capo_geo_places.types.suggest_highlights
 
         out["highlights"] = capo_geo_places.types.suggest_highlights.deserialize_json(

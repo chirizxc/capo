@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfServiceOverride:
 
     out: __listOfServiceOverride = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mediaconvert.types.service_override.deserialize_json(item))
     return out

@@ -42,13 +42,13 @@ def serialize_json(value: CloudWatchDimensionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> CloudWatchDimensionConfiguration:
     out: CloudWatchDimensionConfiguration = {}  # type: ignore[typeddict-item]
-    if "DimensionName" in data:
+    if data.get("DimensionName") is not None:
         out["dimension_name"] = data["DimensionName"]
     else:
         raise DeserializationError(
             "CloudWatchDimensionConfiguration.dimension_name required"
         )
-    if "DimensionValueSource" in data:
+    if data.get("DimensionValueSource") is not None:
         import capo_pinpoint_email.types.dimension_value_source
 
         out["dimension_value_source"] = (
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> CloudWatchDimensionConfiguration:
         raise DeserializationError(
             "CloudWatchDimensionConfiguration.dimension_value_source required"
         )
-    if "DefaultDimensionValue" in data:
+    if data.get("DefaultDimensionValue") is not None:
         out["default_dimension_value"] = data["DefaultDimensionValue"]
     else:
         raise DeserializationError(

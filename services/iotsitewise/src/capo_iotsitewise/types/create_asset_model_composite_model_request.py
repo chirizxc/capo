@@ -94,37 +94,37 @@ def serialize_json(value: CreateAssetModelCompositeModelRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateAssetModelCompositeModelRequest:
     out: CreateAssetModelCompositeModelRequest = {}  # type: ignore[typeddict-item]
-    if "assetModelCompositeModelExternalId" in data:
+    if data.get("assetModelCompositeModelExternalId") is not None:
         out["asset_model_composite_model_external_id"] = data[
             "assetModelCompositeModelExternalId"
         ]
-    if "parentAssetModelCompositeModelId" in data:
+    if data.get("parentAssetModelCompositeModelId") is not None:
         out["parent_asset_model_composite_model_id"] = data[
             "parentAssetModelCompositeModelId"
         ]
-    if "assetModelCompositeModelId" in data:
+    if data.get("assetModelCompositeModelId") is not None:
         out["asset_model_composite_model_id"] = data["assetModelCompositeModelId"]
-    if "assetModelCompositeModelDescription" in data:
+    if data.get("assetModelCompositeModelDescription") is not None:
         out["asset_model_composite_model_description"] = data[
             "assetModelCompositeModelDescription"
         ]
-    if "assetModelCompositeModelName" in data:
+    if data.get("assetModelCompositeModelName") is not None:
         out["asset_model_composite_model_name"] = data["assetModelCompositeModelName"]
     else:
         raise DeserializationError(
             "CreateAssetModelCompositeModelRequest.asset_model_composite_model_name required"
         )
-    if "assetModelCompositeModelType" in data:
+    if data.get("assetModelCompositeModelType") is not None:
         out["asset_model_composite_model_type"] = data["assetModelCompositeModelType"]
     else:
         raise DeserializationError(
             "CreateAssetModelCompositeModelRequest.asset_model_composite_model_type required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "composedAssetModelId" in data:
+    if data.get("composedAssetModelId") is not None:
         out["composed_asset_model_id"] = data["composedAssetModelId"]
-    if "assetModelCompositeModelProperties" in data:
+    if data.get("assetModelCompositeModelProperties") is not None:
         import capo_iotsitewise.types.asset_model_property_definitions
 
         out["asset_model_composite_model_properties"] = (

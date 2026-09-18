@@ -54,11 +54,11 @@ def serialize_json(value: CreateLinkInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateLinkInput:
     out: CreateLinkInput = {}  # type: ignore[typeddict-item]
-    if "LabelTemplate" in data:
+    if data.get("LabelTemplate") is not None:
         out["label_template"] = data["LabelTemplate"]
     else:
         raise DeserializationError("CreateLinkInput.label_template required")
-    if "ResourceTypes" in data:
+    if data.get("ResourceTypes") is not None:
         import capo_oam.types.resource_types_input
 
         out["resource_types"] = capo_oam.types.resource_types_input.deserialize_json(
@@ -66,15 +66,15 @@ def deserialize_json(data: dict) -> CreateLinkInput:
         )
     else:
         raise DeserializationError("CreateLinkInput.resource_types required")
-    if "SinkIdentifier" in data:
+    if data.get("SinkIdentifier") is not None:
         out["sink_identifier"] = data["SinkIdentifier"]
     else:
         raise DeserializationError("CreateLinkInput.sink_identifier required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_oam.types.tag_map_input
 
         out["tags"] = capo_oam.types.tag_map_input.deserialize_json(data["Tags"])
-    if "LinkConfiguration" in data:
+    if data.get("LinkConfiguration") is not None:
         import capo_oam.types.link_configuration
 
         out["link_configuration"] = capo_oam.types.link_configuration.deserialize_json(

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> BatchDeleteKnowledgeBaseSuccessList:
 
     out: BatchDeleteKnowledgeBaseSuccessList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.batch_delete_knowledge_base_success.deserialize_json(
                 item

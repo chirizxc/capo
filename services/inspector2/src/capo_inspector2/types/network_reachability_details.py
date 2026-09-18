@@ -40,7 +40,7 @@ def serialize_json(value: NetworkReachabilityDetails) -> dict:
 
 def deserialize_json(data: dict) -> NetworkReachabilityDetails:
     out: NetworkReachabilityDetails = {}  # type: ignore[typeddict-item]
-    if "openPortRange" in data:
+    if data.get("openPortRange") is not None:
         import capo_inspector2.types.port_range
 
         out["open_port_range"] = capo_inspector2.types.port_range.deserialize_json(
@@ -50,11 +50,11 @@ def deserialize_json(data: dict) -> NetworkReachabilityDetails:
         raise DeserializationError(
             "NetworkReachabilityDetails.open_port_range required"
         )
-    if "protocol" in data:
+    if data.get("protocol") is not None:
         out["protocol"] = data["protocol"]
     else:
         raise DeserializationError("NetworkReachabilityDetails.protocol required")
-    if "networkPath" in data:
+    if data.get("networkPath") is not None:
         import capo_inspector2.types.network_path
 
         out["network_path"] = capo_inspector2.types.network_path.deserialize_json(

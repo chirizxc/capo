@@ -46,7 +46,7 @@ def serialize_json(value: UpdateTaskRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateTaskRequest:
     out: UpdateTaskRequest = {}  # type: ignore[typeddict-item]
-    if "targetRunStatus" in data:
+    if data.get("targetRunStatus") is not None:
         import capo_deadline.types.task_target_run_status
 
         out["target_run_status"] = (

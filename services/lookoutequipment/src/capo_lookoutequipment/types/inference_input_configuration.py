@@ -51,7 +51,7 @@ def serialize_aws_json_1_0(value: InferenceInputConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> InferenceInputConfiguration:
     out: InferenceInputConfiguration = {}  # type: ignore[typeddict-item]
-    if "S3InputConfiguration" in data:
+    if data.get("S3InputConfiguration") is not None:
         import capo_lookoutequipment.types.inference_s3_input_configuration
 
         out["s3_input_configuration"] = (
@@ -59,9 +59,9 @@ def deserialize_aws_json_1_0(data: dict) -> InferenceInputConfiguration:
                 data["S3InputConfiguration"]
             )
         )
-    if "InputTimeZoneOffset" in data:
+    if data.get("InputTimeZoneOffset") is not None:
         out["input_time_zone_offset"] = data["InputTimeZoneOffset"]
-    if "InferenceInputNameConfiguration" in data:
+    if data.get("InferenceInputNameConfiguration") is not None:
         import capo_lookoutequipment.types.inference_input_name_configuration
 
         out["inference_input_name_configuration"] = (

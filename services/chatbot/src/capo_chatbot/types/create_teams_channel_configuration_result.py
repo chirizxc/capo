@@ -31,7 +31,7 @@ def serialize_json(value: CreateTeamsChannelConfigurationResult) -> dict:
 
 def deserialize_json(data: dict) -> CreateTeamsChannelConfigurationResult:
     out: CreateTeamsChannelConfigurationResult = {}  # type: ignore[typeddict-item]
-    if "ChannelConfiguration" in data:
+    if data.get("ChannelConfiguration") is not None:
         import capo_chatbot.types.teams_channel_configuration
 
         out["channel_configuration"] = (

@@ -41,7 +41,7 @@ def serialize_aws_json_1_1(value: HookConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HookConfiguration:
     out: HookConfiguration = {}  # type: ignore[typeddict-item]
-    if "InvocationCondition" in data:
+    if data.get("InvocationCondition") is not None:
         import capo_kendra.types.document_attribute_condition
 
         out["invocation_condition"] = (
@@ -49,11 +49,11 @@ def deserialize_aws_json_1_1(data: dict) -> HookConfiguration:
                 data["InvocationCondition"]
             )
         )
-    if "LambdaArn" in data:
+    if data.get("LambdaArn") is not None:
         out["lambda_arn"] = data["LambdaArn"]
     else:
         raise DeserializationError("HookConfiguration.lambda_arn required")
-    if "S3Bucket" in data:
+    if data.get("S3Bucket") is not None:
         out["s3_bucket"] = data["S3Bucket"]
     else:
         raise DeserializationError("HookConfiguration.s3_bucket required")

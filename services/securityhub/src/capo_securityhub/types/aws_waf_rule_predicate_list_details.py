@@ -32,10 +32,10 @@ def serialize_json(value: AwsWafRulePredicateListDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsWafRulePredicateListDetails:
     out: AwsWafRulePredicateListDetails = {}  # type: ignore[typeddict-item]
-    if "DataId" in data:
+    if data.get("DataId") is not None:
         out["data_id"] = data["DataId"]
-    if "Negated" in data:
+    if data.get("Negated") is not None:
         out["negated"] = data["Negated"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     return out

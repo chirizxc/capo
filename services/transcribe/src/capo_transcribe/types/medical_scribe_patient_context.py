@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: MedicalScribePatientContext) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MedicalScribePatientContext:
     out: MedicalScribePatientContext = {}  # type: ignore[typeddict-item]
-    if "Pronouns" in data:
+    if data.get("Pronouns") is not None:
         import capo_transcribe.types.pronouns
 
         out["pronouns"] = capo_transcribe.types.pronouns.deserialize_aws_json_1_1(

@@ -57,13 +57,13 @@ def serialize_aws_json_1_1(value: ReferenceDataSourceUpdate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReferenceDataSourceUpdate:
     out: ReferenceDataSourceUpdate = {}  # type: ignore[typeddict-item]
-    if "ReferenceId" in data:
+    if data.get("ReferenceId") is not None:
         out["reference_id"] = data["ReferenceId"]
     else:
         raise DeserializationError("ReferenceDataSourceUpdate.reference_id required")
-    if "TableNameUpdate" in data:
+    if data.get("TableNameUpdate") is not None:
         out["table_name_update"] = data["TableNameUpdate"]
-    if "S3ReferenceDataSourceUpdate" in data:
+    if data.get("S3ReferenceDataSourceUpdate") is not None:
         import capo_kinesis_analytics_v2.types.s3_reference_data_source_update
 
         out["s3_reference_data_source_update"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_1(data: dict) -> ReferenceDataSourceUpdate:
                 data["S3ReferenceDataSourceUpdate"]
             )
         )
-    if "ReferenceSchemaUpdate" in data:
+    if data.get("ReferenceSchemaUpdate") is not None:
         import capo_kinesis_analytics_v2.types.source_schema
 
         out["reference_schema_update"] = (

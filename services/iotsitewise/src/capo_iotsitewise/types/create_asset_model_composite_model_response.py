@@ -41,13 +41,13 @@ def serialize_json(value: CreateAssetModelCompositeModelResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateAssetModelCompositeModelResponse:
     out: CreateAssetModelCompositeModelResponse = {}  # type: ignore[typeddict-item]
-    if "assetModelCompositeModelId" in data:
+    if data.get("assetModelCompositeModelId") is not None:
         out["asset_model_composite_model_id"] = data["assetModelCompositeModelId"]
     else:
         raise DeserializationError(
             "CreateAssetModelCompositeModelResponse.asset_model_composite_model_id required"
         )
-    if "assetModelCompositeModelPath" in data:
+    if data.get("assetModelCompositeModelPath") is not None:
         import capo_iotsitewise.types.asset_model_composite_model_path
 
         out["asset_model_composite_model_path"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> CreateAssetModelCompositeModelResponse:
         raise DeserializationError(
             "CreateAssetModelCompositeModelResponse.asset_model_composite_model_path required"
         )
-    if "assetModelStatus" in data:
+    if data.get("assetModelStatus") is not None:
         import capo_iotsitewise.types.asset_model_status
 
         out["asset_model_status"] = (

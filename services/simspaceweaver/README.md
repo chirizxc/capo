@@ -13,9 +13,9 @@ from capo_simspaceweaver import AsyncSimSpaceWeaverClient
 
 
 async def main():
-    async with AsyncSimSpaceWeaverClient() as s3:
+    async with AsyncSimSpaceWeaverClient() as sim_space_weaver:
         # Example: call the list_tags_for_resource operation
-        response = await s3.list_tags_for_resource()
+        response = await sim_space_weaver.list_tags_for_resource()
         print(response["tags"])
 ```
 
@@ -29,9 +29,9 @@ from capo_simspaceweaver.error import ResourceNotFoundException
 
 
 async def main():
-    async with AsyncSimSpaceWeaverClient() as s3:
+    async with AsyncSimSpaceWeaverClient() as sim_space_weaver:
         try:
-            await s3.list_tags_for_resource()
+            await sim_space_weaver.list_tags_for_resource()
         except ResourceNotFoundException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_simspaceweaver import AsyncSimSpaceWeaverClient
 
 
 async def main():
-    async with AsyncSimSpaceWeaverClient() as s3:
+    async with AsyncSimSpaceWeaverClient() as sim_space_weaver:
         # Default: 3 attempts for every operation
-        response = await s3.list_tags_for_resource()
+        response = await sim_space_weaver.list_tags_for_resource()
 
         # Override per operation
-        response = await s3.list_tags_for_resource(config_overrides={"retry_max_attempts": 5})
+        response = await sim_space_weaver.list_tags_for_resource(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.list_tags_for_resource(config_overrides={"retry_max_attempts": 1})
+        response = await sim_space_weaver.list_tags_for_resource(config_overrides={"retry_max_attempts": 1})
 ```

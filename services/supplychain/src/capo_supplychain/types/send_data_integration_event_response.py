@@ -24,7 +24,7 @@ def serialize_json(value: SendDataIntegrationEventResponse) -> dict:
 
 def deserialize_json(data: dict) -> SendDataIntegrationEventResponse:
     out: SendDataIntegrationEventResponse = {}  # type: ignore[typeddict-item]
-    if "eventId" in data:
+    if data.get("eventId") is not None:
         out["event_id"] = data["eventId"]
     else:
         raise DeserializationError("SendDataIntegrationEventResponse.event_id required")

@@ -59,23 +59,23 @@ def serialize_json(value: Container) -> dict:
 
 def deserialize_json(data: dict) -> Container:
     out: Container = {}  # type: ignore[typeddict-item]
-    if "containerRuntime" in data:
+    if data.get("containerRuntime") is not None:
         out["container_runtime"] = data["containerRuntime"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "image" in data:
+    if data.get("image") is not None:
         out["image"] = data["image"]
-    if "imagePrefix" in data:
+    if data.get("imagePrefix") is not None:
         out["image_prefix"] = data["imagePrefix"]
-    if "volumeMounts" in data:
+    if data.get("volumeMounts") is not None:
         import capo_guardduty.types.volume_mounts
 
         out["volume_mounts"] = capo_guardduty.types.volume_mounts.deserialize_json(
             data["volumeMounts"]
         )
-    if "securityContext" in data:
+    if data.get("securityContext") is not None:
         import capo_guardduty.types.security_context
 
         out["security_context"] = (

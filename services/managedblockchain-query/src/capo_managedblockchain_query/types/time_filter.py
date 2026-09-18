@@ -45,7 +45,7 @@ def serialize_json(value: TimeFilter) -> dict:
 
 def deserialize_json(data: dict) -> TimeFilter:
     out: TimeFilter = {}  # type: ignore[typeddict-item]
-    if "from" in data:
+    if data.get("from") is not None:
         import capo_managedblockchain_query.types.blockchain_instant
 
         out["from"] = (
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> TimeFilter:
                 data["from"]
             )
         )
-    if "to" in data:
+    if data.get("to") is not None:
         import capo_managedblockchain_query.types.blockchain_instant
 
         out["to"] = (

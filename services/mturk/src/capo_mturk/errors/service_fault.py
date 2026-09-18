@@ -28,9 +28,9 @@ def serialize_aws_json_1_1(value: ServiceFault_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ServiceFault_:
     out: ServiceFault_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "TurkErrorCode" in data:
+    if data.get("TurkErrorCode") is not None:
         out["turk_error_code"] = data["TurkErrorCode"]
     return out
 
@@ -40,12 +40,18 @@ class ServiceFault(ServiceError):
 
     code: str | None = "ServiceFault"
 
-    def __init__(self, data: ServiceFault_):
+    def __init__(self, data: ServiceFault_, message: str | None = None):
         super().__init__(
-            "server", is_throttling_error=False, is_retryable=False, code="ServiceFault"
+            "server",
+            is_throttling_error=False,
+            is_retryable=False,
+            code="ServiceFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "ServiceFault":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "ServiceFault":
+        return cls(deserialize_aws_json_1_1(data), message)

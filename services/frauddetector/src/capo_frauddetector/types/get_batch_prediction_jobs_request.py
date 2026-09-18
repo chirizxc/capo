@@ -35,10 +35,10 @@ def serialize_aws_json_1_1(value: GetBatchPredictionJobsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetBatchPredictionJobsRequest:
     out: GetBatchPredictionJobsRequest = {}  # type: ignore[typeddict-item]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

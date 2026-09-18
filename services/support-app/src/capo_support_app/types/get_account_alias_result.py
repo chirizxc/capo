@@ -25,6 +25,6 @@ def serialize_json(value: GetAccountAliasResult) -> dict:
 
 def deserialize_json(data: dict) -> GetAccountAliasResult:
     out: GetAccountAliasResult = {}  # type: ignore[typeddict-item]
-    if "accountAlias" in data:
+    if data.get("accountAlias") is not None:
         out["account_alias"] = data["accountAlias"]
     return out

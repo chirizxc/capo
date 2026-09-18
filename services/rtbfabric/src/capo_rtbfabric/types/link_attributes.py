@@ -38,7 +38,7 @@ def serialize_json(value: LinkAttributes) -> dict:
 
 def deserialize_json(data: dict) -> LinkAttributes:
     out: LinkAttributes = {}  # type: ignore[typeddict-item]
-    if "responderErrorMasking" in data:
+    if data.get("responderErrorMasking") is not None:
         import capo_rtbfabric.types.responder_error_masking
 
         out["responder_error_masking"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> LinkAttributes:
                 data["responderErrorMasking"]
             )
         )
-    if "customerProvidedId" in data:
+    if data.get("customerProvidedId") is not None:
         out["customer_provided_id"] = data["customerProvidedId"]
     return out

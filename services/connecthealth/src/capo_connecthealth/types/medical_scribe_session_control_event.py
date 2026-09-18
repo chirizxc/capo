@@ -33,7 +33,7 @@ def serialize_json(value: MedicalScribeSessionControlEvent) -> dict:
 
 def deserialize_json(data: dict) -> MedicalScribeSessionControlEvent:
     out: MedicalScribeSessionControlEvent = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_connecthealth.types.medical_scribe_session_control_event_type
 
         out["type"] = (

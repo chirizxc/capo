@@ -22,8 +22,8 @@ def serialize_json(value: SchedulerConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SchedulerConfiguration:
     out: SchedulerConfiguration = {}  # type: ignore[typeddict-item]
-    if "queueTimeoutMinutes" in data:
+    if data.get("queueTimeoutMinutes") is not None:
         out["queue_timeout_minutes"] = data["queueTimeoutMinutes"]
-    if "maxConcurrentRuns" in data:
+    if data.get("maxConcurrentRuns") is not None:
         out["max_concurrent_runs"] = data["maxConcurrentRuns"]
     return out

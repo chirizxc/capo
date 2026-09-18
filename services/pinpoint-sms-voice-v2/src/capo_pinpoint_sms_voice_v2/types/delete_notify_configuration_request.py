@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: DeleteNotifyConfigurationRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteNotifyConfigurationRequest:
     out: DeleteNotifyConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "NotifyConfigurationId" in data:
+    if data.get("NotifyConfigurationId") is not None:
         out["notify_configuration_id"] = data["NotifyConfigurationId"]
     else:
         raise DeserializationError(

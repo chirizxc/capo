@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> CvssScoreList:
 
     out: CvssScoreList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_imagebuilder.types.cvss_score.deserialize_json(item))
     return out

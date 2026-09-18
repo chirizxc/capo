@@ -54,9 +54,9 @@ def serialize_aws_json_1_1(value: ProcessingOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProcessingOutput:
     out: ProcessingOutput = {}  # type: ignore[typeddict-item]
-    if "OutputName" in data:
+    if data.get("OutputName") is not None:
         out["output_name"] = data["OutputName"]
-    if "S3Output" in data:
+    if data.get("S3Output") is not None:
         import capo_sagemaker.types.processing_s3_output
 
         out["s3_output"] = (
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_1(data: dict) -> ProcessingOutput:
                 data["S3Output"]
             )
         )
-    if "FeatureStoreOutput" in data:
+    if data.get("FeatureStoreOutput") is not None:
         import capo_sagemaker.types.processing_feature_store_output
 
         out["feature_store_output"] = (
@@ -72,6 +72,6 @@ def deserialize_aws_json_1_1(data: dict) -> ProcessingOutput:
                 data["FeatureStoreOutput"]
             )
         )
-    if "AppManaged" in data:
+    if data.get("AppManaged") is not None:
         out["app_managed"] = data["AppManaged"]
     return out

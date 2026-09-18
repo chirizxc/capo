@@ -43,9 +43,9 @@ def serialize_aws_json_1_1(value: CreateFaceLivenessSessionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateFaceLivenessSessionRequest:
     out: CreateFaceLivenessSessionRequest = {}  # type: ignore[typeddict-item]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "Settings" in data:
+    if data.get("Settings") is not None:
         import capo_rekognition.types.create_face_liveness_session_request_settings
 
         out["settings"] = (
@@ -53,6 +53,6 @@ def deserialize_aws_json_1_1(data: dict) -> CreateFaceLivenessSessionRequest:
                 data["Settings"]
             )
         )
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
     return out

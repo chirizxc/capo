@@ -33,10 +33,10 @@ def serialize_json(value: ActionTarget) -> dict:
 
 def deserialize_json(data: dict) -> ActionTarget:
     out: ActionTarget = {}  # type: ignore[typeddict-item]
-    if "ActionTargetArn" in data:
+    if data.get("ActionTargetArn") is not None:
         out["action_target_arn"] = data["ActionTargetArn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

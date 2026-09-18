@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> WaypointOptimizationAvoidanceAreaList:
 
     out: WaypointOptimizationAvoidanceAreaList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_geo_routes.types.waypoint_optimization_avoidance_area.deserialize_json(
                 item

@@ -114,15 +114,15 @@ def serialize_json(value: CreateDataSourceRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDataSourceRequest:
     out: CreateDataSourceRequest = {}  # type: ignore[typeddict-item]
-    if "DataSourceId" in data:
+    if data.get("DataSourceId") is not None:
         out["data_source_id"] = data["DataSourceId"]
     else:
         raise DeserializationError("CreateDataSourceRequest.data_source_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateDataSourceRequest.name required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_quicksight.types.data_source_type
 
         out["type"] = capo_quicksight.types.data_source_type.deserialize_json(
@@ -130,7 +130,7 @@ def deserialize_json(data: dict) -> CreateDataSourceRequest:
         )
     else:
         raise DeserializationError("CreateDataSourceRequest.type required")
-    if "DataSourceParameters" in data:
+    if data.get("DataSourceParameters") is not None:
         import capo_quicksight.types.data_source_parameters
 
         out["data_source_parameters"] = (
@@ -138,7 +138,7 @@ def deserialize_json(data: dict) -> CreateDataSourceRequest:
                 data["DataSourceParameters"]
             )
         )
-    if "Credentials" in data:
+    if data.get("Credentials") is not None:
         import capo_quicksight.types.data_source_credentials
 
         out["credentials"] = (
@@ -146,7 +146,7 @@ def deserialize_json(data: dict) -> CreateDataSourceRequest:
                 data["Credentials"]
             )
         )
-    if "Permissions" in data:
+    if data.get("Permissions") is not None:
         import capo_quicksight.types.resource_permission_list
 
         out["permissions"] = (
@@ -154,7 +154,7 @@ def deserialize_json(data: dict) -> CreateDataSourceRequest:
                 data["Permissions"]
             )
         )
-    if "VpcConnectionProperties" in data:
+    if data.get("VpcConnectionProperties") is not None:
         import capo_quicksight.types.vpc_connection_properties
 
         out["vpc_connection_properties"] = (
@@ -162,17 +162,17 @@ def deserialize_json(data: dict) -> CreateDataSourceRequest:
                 data["VpcConnectionProperties"]
             )
         )
-    if "SslProperties" in data:
+    if data.get("SslProperties") is not None:
         import capo_quicksight.types.ssl_properties
 
         out["ssl_properties"] = capo_quicksight.types.ssl_properties.deserialize_json(
             data["SslProperties"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_quicksight.types.tag_list
 
         out["tags"] = capo_quicksight.types.tag_list.deserialize_json(data["Tags"])
-    if "FolderArns" in data:
+    if data.get("FolderArns") is not None:
         import capo_quicksight.types.folder_arn_list
 
         out["folder_arns"] = capo_quicksight.types.folder_arn_list.deserialize_json(

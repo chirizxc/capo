@@ -30,9 +30,9 @@ def serialize_aws_json_1_1(value: DuplicateRequest_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DuplicateRequest_:
     out: DuplicateRequest_ = {}  # type: ignore[typeddict-item]
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -42,15 +42,18 @@ class DuplicateRequest(ServiceError):
 
     code: str | None = "DuplicateRequest"
 
-    def __init__(self, data: DuplicateRequest_):
+    def __init__(self, data: DuplicateRequest_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="DuplicateRequest",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "DuplicateRequest":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "DuplicateRequest":
+        return cls(deserialize_aws_json_1_1(data), message)

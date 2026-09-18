@@ -36,9 +36,9 @@ def serialize_json(value: RuleGroupSourceStatelessRulesDetails) -> dict:
 
 def deserialize_json(data: dict) -> RuleGroupSourceStatelessRulesDetails:
     out: RuleGroupSourceStatelessRulesDetails = {}  # type: ignore[typeddict-item]
-    if "Priority" in data:
+    if data.get("Priority") is not None:
         out["priority"] = data["Priority"]
-    if "RuleDefinition" in data:
+    if data.get("RuleDefinition") is not None:
         import capo_securityhub.types.rule_group_source_stateless_rule_definition
 
         out["rule_definition"] = (

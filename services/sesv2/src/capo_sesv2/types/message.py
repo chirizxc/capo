@@ -50,25 +50,25 @@ def serialize_json(value: Message) -> dict:
 
 def deserialize_json(data: dict) -> Message:
     out: Message = {}  # type: ignore[typeddict-item]
-    if "Subject" in data:
+    if data.get("Subject") is not None:
         import capo_sesv2.types.content
 
         out["subject"] = capo_sesv2.types.content.deserialize_json(data["Subject"])
     else:
         raise DeserializationError("Message.subject required")
-    if "Body" in data:
+    if data.get("Body") is not None:
         import capo_sesv2.types.body
 
         out["body"] = capo_sesv2.types.body.deserialize_json(data["Body"])
     else:
         raise DeserializationError("Message.body required")
-    if "Headers" in data:
+    if data.get("Headers") is not None:
         import capo_sesv2.types.message_header_list
 
         out["headers"] = capo_sesv2.types.message_header_list.deserialize_json(
             data["Headers"]
         )
-    if "Attachments" in data:
+    if data.get("Attachments") is not None:
         import capo_sesv2.types.attachment_list
 
         out["attachments"] = capo_sesv2.types.attachment_list.deserialize_json(

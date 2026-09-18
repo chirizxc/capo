@@ -34,7 +34,7 @@ def serialize_json(value: CreateRefreshScheduleRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateRefreshScheduleRequest:
     out: CreateRefreshScheduleRequest = {}  # type: ignore[typeddict-item]
-    if "Schedule" in data:
+    if data.get("Schedule") is not None:
         import capo_quicksight.types.refresh_schedule
 
         out["schedule"] = capo_quicksight.types.refresh_schedule.deserialize_json(

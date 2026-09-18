@@ -66,9 +66,9 @@ def serialize_json(value: ClassificationResult) -> dict:
 
 def deserialize_json(data: dict) -> ClassificationResult:
     out: ClassificationResult = {}  # type: ignore[typeddict-item]
-    if "additionalOccurrences" in data:
+    if data.get("additionalOccurrences") is not None:
         out["additional_occurrences"] = data["additionalOccurrences"]
-    if "customDataIdentifiers" in data:
+    if data.get("customDataIdentifiers") is not None:
         import capo_macie2.types.custom_data_identifiers
 
         out["custom_data_identifiers"] = (
@@ -76,17 +76,17 @@ def deserialize_json(data: dict) -> ClassificationResult:
                 data["customDataIdentifiers"]
             )
         )
-    if "mimeType" in data:
+    if data.get("mimeType") is not None:
         out["mime_type"] = data["mimeType"]
-    if "sensitiveData" in data:
+    if data.get("sensitiveData") is not None:
         import capo_macie2.types.sensitive_data
 
         out["sensitive_data"] = capo_macie2.types.sensitive_data.deserialize_json(
             data["sensitiveData"]
         )
-    if "sizeClassified" in data:
+    if data.get("sizeClassified") is not None:
         out["size_classified"] = data["sizeClassified"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_macie2.types.classification_result_status
 
         out["status"] = capo_macie2.types.classification_result_status.deserialize_json(

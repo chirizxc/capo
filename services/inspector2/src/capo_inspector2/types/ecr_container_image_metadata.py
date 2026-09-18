@@ -50,11 +50,11 @@ def serialize_json(value: EcrContainerImageMetadata) -> dict:
 
 def deserialize_json(data: dict) -> EcrContainerImageMetadata:
     out: EcrContainerImageMetadata = {}  # type: ignore[typeddict-item]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_inspector2.types.tag_list
 
         out["tags"] = capo_inspector2.types.tag_list.deserialize_json(data["tags"])
-    if "imagePulledAt" in data:
+    if data.get("imagePulledAt") is not None:
         import capo_inspector2.types.date_time_timestamp
 
         out["image_pulled_at"] = (
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> EcrContainerImageMetadata:
                 data["imagePulledAt"]
             )
         )
-    if "lastInUseAt" in data:
+    if data.get("lastInUseAt") is not None:
         import capo_inspector2.types.date_time_timestamp
 
         out["last_in_use_at"] = (
@@ -70,6 +70,6 @@ def deserialize_json(data: dict) -> EcrContainerImageMetadata:
                 data["lastInUseAt"]
             )
         )
-    if "inUseCount" in data:
+    if data.get("inUseCount") is not None:
         out["in_use_count"] = data["inUseCount"]
     return out

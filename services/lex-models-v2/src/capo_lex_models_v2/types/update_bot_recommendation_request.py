@@ -41,7 +41,7 @@ def serialize_json(value: UpdateBotRecommendationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateBotRecommendationRequest:
     out: UpdateBotRecommendationRequest = {}  # type: ignore[typeddict-item]
-    if "encryptionSetting" in data:
+    if data.get("encryptionSetting") is not None:
         import capo_lex_models_v2.types.encryption_setting
 
         out["encryption_setting"] = (

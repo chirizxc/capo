@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: MeterUsageResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MeterUsageResult:
     out: MeterUsageResult = {}  # type: ignore[typeddict-item]
-    if "MeteringRecordId" in data:
+    if data.get("MeteringRecordId") is not None:
         out["metering_record_id"] = data["MeteringRecordId"]
     return out

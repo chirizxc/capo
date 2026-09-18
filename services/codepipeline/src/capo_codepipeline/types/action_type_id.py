@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: ActionTypeId) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ActionTypeId:
     out: ActionTypeId = {}  # type: ignore[typeddict-item]
-    if "category" in data:
+    if data.get("category") is not None:
         import capo_codepipeline.types.action_category
 
         out["category"] = (
@@ -54,7 +54,7 @@ def deserialize_aws_json_1_1(data: dict) -> ActionTypeId:
         )
     else:
         raise DeserializationError("ActionTypeId.category required")
-    if "owner" in data:
+    if data.get("owner") is not None:
         import capo_codepipeline.types.action_owner
 
         out["owner"] = capo_codepipeline.types.action_owner.deserialize_aws_json_1_1(
@@ -62,11 +62,11 @@ def deserialize_aws_json_1_1(data: dict) -> ActionTypeId:
         )
     else:
         raise DeserializationError("ActionTypeId.owner required")
-    if "provider" in data:
+    if data.get("provider") is not None:
         out["provider"] = data["provider"]
     else:
         raise DeserializationError("ActionTypeId.provider required")
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     else:
         raise DeserializationError("ActionTypeId.version required")

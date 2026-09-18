@@ -62,15 +62,15 @@ def serialize_json(value: SlotTypeSummary) -> dict:
 
 def deserialize_json(data: dict) -> SlotTypeSummary:
     out: SlotTypeSummary = {}  # type: ignore[typeddict-item]
-    if "slotTypeId" in data:
+    if data.get("slotTypeId") is not None:
         out["slot_type_id"] = data["slotTypeId"]
-    if "slotTypeName" in data:
+    if data.get("slotTypeName") is not None:
         out["slot_type_name"] = data["slotTypeName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "parentSlotTypeSignature" in data:
+    if data.get("parentSlotTypeSignature") is not None:
         out["parent_slot_type_signature"] = data["parentSlotTypeSignature"]
-    if "lastUpdatedDateTime" in data:
+    if data.get("lastUpdatedDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["last_updated_date_time"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> SlotTypeSummary:
                 data["lastUpdatedDateTime"]
             )
         )
-    if "slotTypeCategory" in data:
+    if data.get("slotTypeCategory") is not None:
         import capo_lex_models_v2.types.slot_type_category
 
         out["slot_type_category"] = (

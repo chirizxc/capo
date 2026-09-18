@@ -38,11 +38,11 @@ def serialize_json(value: TriggerDetails) -> dict:
 
 def deserialize_json(data: dict) -> TriggerDetails:
     out: TriggerDetails = {}  # type: ignore[typeddict-item]
-    if "guardDutyFindingId" in data:
+    if data.get("guardDutyFindingId") is not None:
         out["guard_duty_finding_id"] = data["guardDutyFindingId"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "triggerType" in data:
+    if data.get("triggerType") is not None:
         import capo_guardduty.types.trigger_type
 
         out["trigger_type"] = capo_guardduty.types.trigger_type.deserialize_json(

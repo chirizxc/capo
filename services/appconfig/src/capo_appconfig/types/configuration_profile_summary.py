@@ -55,15 +55,15 @@ def serialize_json(value: ConfigurationProfileSummary) -> dict:
 
 def deserialize_json(data: dict) -> ConfigurationProfileSummary:
     out: ConfigurationProfileSummary = {}  # type: ignore[typeddict-item]
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "LocationUri" in data:
+    if data.get("LocationUri") is not None:
         out["location_uri"] = data["LocationUri"]
-    if "ValidatorTypes" in data:
+    if data.get("ValidatorTypes") is not None:
         import capo_appconfig.types.validator_type_list
 
         out["validator_types"] = (
@@ -71,6 +71,6 @@ def deserialize_json(data: dict) -> ConfigurationProfileSummary:
                 data["ValidatorTypes"]
             )
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     return out

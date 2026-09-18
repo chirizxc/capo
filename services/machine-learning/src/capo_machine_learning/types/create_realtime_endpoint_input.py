@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: CreateRealtimeEndpointInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateRealtimeEndpointInput:
     out: CreateRealtimeEndpointInput = {}  # type: ignore[typeddict-item]
-    if "MLModelId" in data:
+    if data.get("MLModelId") is not None:
         out["ml_model_id"] = data["MLModelId"]
     else:
         raise DeserializationError("CreateRealtimeEndpointInput.ml_model_id required")

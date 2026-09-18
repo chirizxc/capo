@@ -138,19 +138,19 @@ def serialize_json(value: ProtectedQuery) -> dict:
 
 def deserialize_json(data: dict) -> ProtectedQuery:
     out: ProtectedQuery = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("ProtectedQuery.id required")
-    if "membershipId" in data:
+    if data.get("membershipId") is not None:
         out["membership_id"] = data["membershipId"]
     else:
         raise DeserializationError("ProtectedQuery.membership_id required")
-    if "membershipArn" in data:
+    if data.get("membershipArn") is not None:
         out["membership_arn"] = data["membershipArn"]
     else:
         raise DeserializationError("ProtectedQuery.membership_arn required")
-    if "createTime" in data:
+    if data.get("createTime") is not None:
         import capo_cleanrooms.types._prelude.timestamp
 
         out["create_time"] = capo_cleanrooms.types._prelude.timestamp.deserialize_json(
@@ -158,7 +158,7 @@ def deserialize_json(data: dict) -> ProtectedQuery:
         )
     else:
         raise DeserializationError("ProtectedQuery.create_time required")
-    if "sqlParameters" in data:
+    if data.get("sqlParameters") is not None:
         import capo_cleanrooms.types.protected_query_sql_parameters
 
         out["sql_parameters"] = (
@@ -166,11 +166,11 @@ def deserialize_json(data: dict) -> ProtectedQuery:
                 data["sqlParameters"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("ProtectedQuery.status required")
-    if "resultConfiguration" in data:
+    if data.get("resultConfiguration") is not None:
         import capo_cleanrooms.types.protected_query_result_configuration
 
         out["result_configuration"] = (
@@ -178,7 +178,7 @@ def deserialize_json(data: dict) -> ProtectedQuery:
                 data["resultConfiguration"]
             )
         )
-    if "statistics" in data:
+    if data.get("statistics") is not None:
         import capo_cleanrooms.types.protected_query_statistics
 
         out["statistics"] = (
@@ -186,19 +186,19 @@ def deserialize_json(data: dict) -> ProtectedQuery:
                 data["statistics"]
             )
         )
-    if "result" in data:
+    if data.get("result") is not None:
         import capo_cleanrooms.types.protected_query_result
 
         out["result"] = capo_cleanrooms.types.protected_query_result.deserialize_json(
             data["result"]
         )
-    if "error" in data:
+    if data.get("error") is not None:
         import capo_cleanrooms.types.protected_query_error
 
         out["error"] = capo_cleanrooms.types.protected_query_error.deserialize_json(
             data["error"]
         )
-    if "differentialPrivacy" in data:
+    if data.get("differentialPrivacy") is not None:
         import capo_cleanrooms.types.differential_privacy_parameters
 
         out["differential_privacy"] = (
@@ -206,7 +206,7 @@ def deserialize_json(data: dict) -> ProtectedQuery:
                 data["differentialPrivacy"]
             )
         )
-    if "computeConfiguration" in data:
+    if data.get("computeConfiguration") is not None:
         import capo_cleanrooms.types.compute_configuration
 
         out["compute_configuration"] = (
@@ -214,6 +214,6 @@ def deserialize_json(data: dict) -> ProtectedQuery:
                 data["computeConfiguration"]
             )
         )
-    if "queryComputePayerAccountId" in data:
+    if data.get("queryComputePayerAccountId") is not None:
         out["query_compute_payer_account_id"] = data["queryComputePayerAccountId"]
     return out

@@ -32,13 +32,13 @@ def serialize_json(value: DeleteAppAssessmentResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteAppAssessmentResponse:
     out: DeleteAppAssessmentResponse = {}  # type: ignore[typeddict-item]
-    if "assessmentArn" in data:
+    if data.get("assessmentArn") is not None:
         out["assessment_arn"] = data["assessmentArn"]
     else:
         raise DeserializationError(
             "DeleteAppAssessmentResponse.assessment_arn required"
         )
-    if "assessmentStatus" in data:
+    if data.get("assessmentStatus") is not None:
         import capo_resiliencehub.types.assessment_status
 
         out["assessment_status"] = (

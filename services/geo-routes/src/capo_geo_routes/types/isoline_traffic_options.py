@@ -33,11 +33,11 @@ def serialize_json(value: IsolineTrafficOptions) -> dict:
 
 def deserialize_json(data: dict) -> IsolineTrafficOptions:
     out: IsolineTrafficOptions = {}  # type: ignore[typeddict-item]
-    if "FlowEventThresholdOverride" in data:
+    if data.get("FlowEventThresholdOverride") is not None:
         out["flow_event_threshold_override"] = data["FlowEventThresholdOverride"]
     else:
         out["flow_event_threshold_override"] = 0
-    if "Usage" in data:
+    if data.get("Usage") is not None:
         import capo_geo_routes.types.traffic_usage
 
         out["usage"] = capo_geo_routes.types.traffic_usage.deserialize_json(

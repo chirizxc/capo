@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> DeepHealthCheckConfigurations:
 
     out: DeepHealthCheckConfigurations = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.instance_group_health_check_configuration.deserialize_aws_json_1_1(
                 item

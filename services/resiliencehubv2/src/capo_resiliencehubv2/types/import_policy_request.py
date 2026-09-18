@@ -76,13 +76,13 @@ def serialize_json(value: ImportPolicyRequest) -> dict:
 
 def deserialize_json(data: dict) -> ImportPolicyRequest:
     out: ImportPolicyRequest = {}  # type: ignore[typeddict-item]
-    if "v1PolicyArn" in data:
+    if data.get("v1PolicyArn") is not None:
         out["v1_policy_arn"] = data["v1PolicyArn"]
     else:
         raise DeserializationError("ImportPolicyRequest.v1_policy_arn required")
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
-    if "availabilitySlo" in data:
+    if data.get("availabilitySlo") is not None:
         import capo_resiliencehubv2.types.availability_slo
 
         out["availability_slo"] = (
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> ImportPolicyRequest:
                 data["availabilitySlo"]
             )
         )
-    if "multiAzDisasterRecoveryApproach" in data:
+    if data.get("multiAzDisasterRecoveryApproach") is not None:
         import capo_resiliencehubv2.types.multi_az_disaster_recovery_approach
 
         out["multi_az_disaster_recovery_approach"] = (
@@ -98,7 +98,7 @@ def deserialize_json(data: dict) -> ImportPolicyRequest:
                 data["multiAzDisasterRecoveryApproach"]
             )
         )
-    if "multiRegionDisasterRecoveryApproach" in data:
+    if data.get("multiRegionDisasterRecoveryApproach") is not None:
         import capo_resiliencehubv2.types.multi_region_disaster_recovery_approach
 
         out["multi_region_disaster_recovery_approach"] = (
@@ -106,10 +106,10 @@ def deserialize_json(data: dict) -> ImportPolicyRequest:
                 data["multiRegionDisasterRecoveryApproach"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_resiliencehubv2.types.tag_map
 
         out["tags"] = capo_resiliencehubv2.types.tag_map.deserialize_json(data["tags"])
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

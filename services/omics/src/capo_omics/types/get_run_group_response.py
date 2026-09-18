@@ -65,28 +65,28 @@ def serialize_json(value: GetRunGroupResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetRunGroupResponse:
     out: GetRunGroupResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "maxCpus" in data:
+    if data.get("maxCpus") is not None:
         out["max_cpus"] = data["maxCpus"]
-    if "maxRuns" in data:
+    if data.get("maxRuns") is not None:
         out["max_runs"] = data["maxRuns"]
-    if "maxDuration" in data:
+    if data.get("maxDuration") is not None:
         out["max_duration"] = data["maxDuration"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_omics.types.run_group_timestamp
 
         out["creation_time"] = capo_omics.types.run_group_timestamp.deserialize_json(
             data["creationTime"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_omics.types.tag_map
 
         out["tags"] = capo_omics.types.tag_map.deserialize_json(data["tags"])
-    if "maxGpus" in data:
+    if data.get("maxGpus") is not None:
         out["max_gpus"] = data["maxGpus"]
     return out

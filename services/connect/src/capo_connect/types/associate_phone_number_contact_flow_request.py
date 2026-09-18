@@ -31,13 +31,13 @@ def serialize_json(value: AssociatePhoneNumberContactFlowRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociatePhoneNumberContactFlowRequest:
     out: AssociatePhoneNumberContactFlowRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
     else:
         raise DeserializationError(
             "AssociatePhoneNumberContactFlowRequest.instance_id required"
         )
-    if "ContactFlowId" in data:
+    if data.get("ContactFlowId") is not None:
         out["contact_flow_id"] = data["ContactFlowId"]
     else:
         raise DeserializationError(

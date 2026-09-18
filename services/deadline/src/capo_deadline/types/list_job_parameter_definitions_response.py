@@ -37,7 +37,7 @@ def serialize_json(value: ListJobParameterDefinitionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListJobParameterDefinitionsResponse:
     out: ListJobParameterDefinitionsResponse = {}  # type: ignore[typeddict-item]
-    if "jobParameterDefinitions" in data:
+    if data.get("jobParameterDefinitions") is not None:
         import capo_deadline.types.job_parameter_definitions
 
         out["job_parameter_definitions"] = (
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> ListJobParameterDefinitionsResponse:
         raise DeserializationError(
             "ListJobParameterDefinitionsResponse.job_parameter_definitions required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

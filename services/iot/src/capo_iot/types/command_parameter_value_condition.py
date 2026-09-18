@@ -40,7 +40,7 @@ def serialize_json(value: CommandParameterValueCondition) -> dict:
 
 def deserialize_json(data: dict) -> CommandParameterValueCondition:
     out: CommandParameterValueCondition = {}  # type: ignore[typeddict-item]
-    if "comparisonOperator" in data:
+    if data.get("comparisonOperator") is not None:
         import capo_iot.types.command_parameter_value_comparison_operator
 
         out["comparison_operator"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> CommandParameterValueCondition:
         raise DeserializationError(
             "CommandParameterValueCondition.comparison_operator required"
         )
-    if "operand" in data:
+    if data.get("operand") is not None:
         import capo_iot.types.command_parameter_value_comparison_operand
 
         out["operand"] = (

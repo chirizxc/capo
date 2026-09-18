@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.workspacesinstances#EUCMIFrontendAPIService``."""
 
+import uuid
 import warnings
 from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -207,16 +208,18 @@ class AsyncWorkspacesInstancesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces_instances.types.associate_volume_request.AssociateVolumeRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_instance_id"] = workspace_instance_id
-        input_["volume_id"] = volume_id
-        input_["device"] = device
+        input_: capo_workspaces_instances.types.associate_volume_request.AssociateVolumeRequest = {
+            "workspace_instance_id": workspace_instance_id,
+            "volume_id": volume_id,
+            "device": device,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_volume(
@@ -290,10 +293,12 @@ class AsyncWorkspacesInstancesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces_instances.types.create_volume_request.CreateVolumeRequest = {}  # type: ignore[typeddict-item]
-        input_["availability_zone"] = availability_zone
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_workspaces_instances.types.create_volume_request.CreateVolumeRequest = {
+            "availability_zone": availability_zone
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if encrypted is not None:
             input_["encrypted"] = encrypted
         if iops is not None:
@@ -316,6 +321,7 @@ class AsyncWorkspacesInstancesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_workspace_instance(
@@ -365,12 +371,14 @@ class AsyncWorkspacesInstancesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces_instances.types.create_workspace_instance_request.CreateWorkspaceInstanceRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_workspaces_instances.types.create_workspace_instance_request.CreateWorkspaceInstanceRequest = {
+            "managed_instance": managed_instance
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
-        input_["managed_instance"] = managed_instance
         if billing_configuration is not None:
             input_["billing_configuration"] = billing_configuration
 
@@ -379,6 +387,7 @@ class AsyncWorkspacesInstancesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_volume(
@@ -418,14 +427,16 @@ class AsyncWorkspacesInstancesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces_instances.types.delete_volume_request.DeleteVolumeRequest = {}  # type: ignore[typeddict-item]
-        input_["volume_id"] = volume_id
+        input_: capo_workspaces_instances.types.delete_volume_request.DeleteVolumeRequest = {
+            "volume_id": volume_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_workspace_instance(
@@ -465,14 +476,16 @@ class AsyncWorkspacesInstancesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces_instances.types.delete_workspace_instance_request.DeleteWorkspaceInstanceRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_instance_id"] = workspace_instance_id
+        input_: capo_workspaces_instances.types.delete_workspace_instance_request.DeleteWorkspaceInstanceRequest = {
+            "workspace_instance_id": workspace_instance_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_volume(
@@ -522,9 +535,10 @@ class AsyncWorkspacesInstancesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces_instances.types.disassociate_volume_request.DisassociateVolumeRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_instance_id"] = workspace_instance_id
-        input_["volume_id"] = volume_id
+        input_: capo_workspaces_instances.types.disassociate_volume_request.DisassociateVolumeRequest = {
+            "workspace_instance_id": workspace_instance_id,
+            "volume_id": volume_id,
+        }
         if device is not None:
             input_["device"] = device
         if disassociate_mode is not None:
@@ -535,6 +549,7 @@ class AsyncWorkspacesInstancesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_workspace_instance(
@@ -573,14 +588,16 @@ class AsyncWorkspacesInstancesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces_instances.types.get_workspace_instance_request.GetWorkspaceInstanceRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_instance_id"] = workspace_instance_id
+        input_: capo_workspaces_instances.types.get_workspace_instance_request.GetWorkspaceInstanceRequest = {
+            "workspace_instance_id": workspace_instance_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_instance_types(
@@ -628,7 +645,7 @@ class AsyncWorkspacesInstancesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces_instances.types.list_instance_types_request.ListInstanceTypesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces_instances.types.list_instance_types_request.ListInstanceTypesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -641,6 +658,7 @@ class AsyncWorkspacesInstancesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_instance_types(
@@ -713,7 +731,7 @@ class AsyncWorkspacesInstancesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces_instances.types.list_regions_request.ListRegionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces_instances.types.list_regions_request.ListRegionsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -724,6 +742,7 @@ class AsyncWorkspacesInstancesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_regions(
@@ -787,14 +806,16 @@ class AsyncWorkspacesInstancesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces_instances.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_instance_id"] = workspace_instance_id
+        input_: capo_workspaces_instances.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "workspace_instance_id": workspace_instance_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_workspace_instances(
@@ -842,7 +863,7 @@ class AsyncWorkspacesInstancesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces_instances.types.list_workspace_instances_request.ListWorkspaceInstancesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces_instances.types.list_workspace_instances_request.ListWorkspaceInstancesRequest = {}
         if provision_states is not None:
             input_["provision_states"] = provision_states
         if max_results is not None:
@@ -855,6 +876,7 @@ class AsyncWorkspacesInstancesClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_workspace_instances(
@@ -924,15 +946,17 @@ class AsyncWorkspacesInstancesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces_instances.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_instance_id"] = workspace_instance_id
-        input_["tags"] = tags
+        input_: capo_workspaces_instances.types.tag_resource_request.TagResourceRequest = {
+            "workspace_instance_id": workspace_instance_id,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -975,15 +999,17 @@ class AsyncWorkspacesInstancesClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces_instances.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_instance_id"] = workspace_instance_id
-        input_["tag_keys"] = tag_keys
+        input_: capo_workspaces_instances.types.untag_resource_request.UntagResourceRequest = {
+            "workspace_instance_id": workspace_instance_id,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

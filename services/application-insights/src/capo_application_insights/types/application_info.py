@@ -95,25 +95,25 @@ def serialize_aws_json_1_1(value: ApplicationInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ApplicationInfo:
     out: ApplicationInfo = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "ResourceGroupName" in data:
+    if data.get("ResourceGroupName") is not None:
         out["resource_group_name"] = data["ResourceGroupName"]
-    if "LifeCycle" in data:
+    if data.get("LifeCycle") is not None:
         out["life_cycle"] = data["LifeCycle"]
-    if "OpsItemSNSTopicArn" in data:
+    if data.get("OpsItemSNSTopicArn") is not None:
         out["ops_item_sns_topic_arn"] = data["OpsItemSNSTopicArn"]
-    if "SNSNotificationArn" in data:
+    if data.get("SNSNotificationArn") is not None:
         out["sns_notification_arn"] = data["SNSNotificationArn"]
-    if "OpsCenterEnabled" in data:
+    if data.get("OpsCenterEnabled") is not None:
         out["ops_center_enabled"] = data["OpsCenterEnabled"]
-    if "CWEMonitorEnabled" in data:
+    if data.get("CWEMonitorEnabled") is not None:
         out["cwe_monitor_enabled"] = data["CWEMonitorEnabled"]
-    if "Remarks" in data:
+    if data.get("Remarks") is not None:
         out["remarks"] = data["Remarks"]
-    if "AutoConfigEnabled" in data:
+    if data.get("AutoConfigEnabled") is not None:
         out["auto_config_enabled"] = data["AutoConfigEnabled"]
-    if "DiscoveryType" in data:
+    if data.get("DiscoveryType") is not None:
         import capo_application_insights.types.discovery_type
 
         out["discovery_type"] = (
@@ -121,6 +121,6 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationInfo:
                 data["DiscoveryType"]
             )
         )
-    if "AttachMissingPermission" in data:
+    if data.get("AttachMissingPermission") is not None:
         out["attach_missing_permission"] = data["AttachMissingPermission"]
     return out

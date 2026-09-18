@@ -41,17 +41,17 @@ def serialize_json(value: EmailChannelSubtypeParameters) -> dict:
 
 def deserialize_json(data: dict) -> EmailChannelSubtypeParameters:
     out: EmailChannelSubtypeParameters = {}  # type: ignore[typeddict-item]
-    if "destinationEmailAddress" in data:
+    if data.get("destinationEmailAddress") is not None:
         out["destination_email_address"] = data["destinationEmailAddress"]
     else:
         raise DeserializationError(
             "EmailChannelSubtypeParameters.destination_email_address required"
         )
-    if "connectSourceEmailAddress" in data:
+    if data.get("connectSourceEmailAddress") is not None:
         out["connect_source_email_address"] = data["connectSourceEmailAddress"]
-    if "templateArn" in data:
+    if data.get("templateArn") is not None:
         out["template_arn"] = data["templateArn"]
-    if "templateParameters" in data:
+    if data.get("templateParameters") is not None:
         import capo_connectcampaignsv2.types.attributes
 
         out["template_parameters"] = (

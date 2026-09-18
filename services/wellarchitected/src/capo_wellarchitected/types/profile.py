@@ -88,15 +88,15 @@ def serialize_json(value: Profile) -> dict:
 
 def deserialize_json(data: dict) -> Profile:
     out: Profile = {}  # type: ignore[typeddict-item]
-    if "ProfileArn" in data:
+    if data.get("ProfileArn") is not None:
         out["profile_arn"] = data["ProfileArn"]
-    if "ProfileVersion" in data:
+    if data.get("ProfileVersion") is not None:
         out["profile_version"] = data["ProfileVersion"]
-    if "ProfileName" in data:
+    if data.get("ProfileName") is not None:
         out["profile_name"] = data["ProfileName"]
-    if "ProfileDescription" in data:
+    if data.get("ProfileDescription") is not None:
         out["profile_description"] = data["ProfileDescription"]
-    if "ProfileQuestions" in data:
+    if data.get("ProfileQuestions") is not None:
         import capo_wellarchitected.types.profile_questions
 
         out["profile_questions"] = (
@@ -104,23 +104,23 @@ def deserialize_json(data: dict) -> Profile:
                 data["ProfileQuestions"]
             )
         )
-    if "Owner" in data:
+    if data.get("Owner") is not None:
         out["owner"] = data["Owner"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_wellarchitected.types.timestamp
 
         out["created_at"] = capo_wellarchitected.types.timestamp.deserialize_json(
             data["CreatedAt"]
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_wellarchitected.types.timestamp
 
         out["updated_at"] = capo_wellarchitected.types.timestamp.deserialize_json(
             data["UpdatedAt"]
         )
-    if "ShareInvitationId" in data:
+    if data.get("ShareInvitationId") is not None:
         out["share_invitation_id"] = data["ShareInvitationId"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_wellarchitected.types.tag_map
 
         out["tags"] = capo_wellarchitected.types.tag_map.deserialize_json(data["Tags"])

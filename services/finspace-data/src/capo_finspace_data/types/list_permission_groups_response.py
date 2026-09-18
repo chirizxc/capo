@@ -36,7 +36,7 @@ def serialize_json(value: ListPermissionGroupsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListPermissionGroupsResponse:
     out: ListPermissionGroupsResponse = {}  # type: ignore[typeddict-item]
-    if "permissionGroups" in data:
+    if data.get("permissionGroups") is not None:
         import capo_finspace_data.types.permission_group_list
 
         out["permission_groups"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListPermissionGroupsResponse:
                 data["permissionGroups"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

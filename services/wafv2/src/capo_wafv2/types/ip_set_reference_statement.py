@@ -37,11 +37,11 @@ def serialize_aws_json_1_1(value: IPSetReferenceStatement) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IPSetReferenceStatement:
     out: IPSetReferenceStatement = {}  # type: ignore[typeddict-item]
-    if "ARN" in data:
+    if data.get("ARN") is not None:
         out["arn"] = data["ARN"]
     else:
         raise DeserializationError("IPSetReferenceStatement.arn required")
-    if "IPSetForwardedIPConfig" in data:
+    if data.get("IPSetForwardedIPConfig") is not None:
         import capo_wafv2.types.ip_set_forwarded_ip_config
 
         out["ip_set_forwarded_ip_config"] = (

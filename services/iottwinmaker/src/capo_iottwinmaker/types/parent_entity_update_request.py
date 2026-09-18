@@ -33,10 +33,10 @@ def serialize_json(value: ParentEntityUpdateRequest) -> dict:
 
 def deserialize_json(data: dict) -> ParentEntityUpdateRequest:
     out: ParentEntityUpdateRequest = {}  # type: ignore[typeddict-item]
-    if "updateType" in data:
+    if data.get("updateType") is not None:
         out["update_type"] = data["updateType"]
     else:
         raise DeserializationError("ParentEntityUpdateRequest.update_type required")
-    if "parentEntityId" in data:
+    if data.get("parentEntityId") is not None:
         out["parent_entity_id"] = data["parentEntityId"]
     return out

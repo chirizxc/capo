@@ -47,22 +47,22 @@ def serialize_json(value: ListGoalsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListGoalsRequest:
     out: ListGoalsRequest = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_devops_agent.types.goal_status
 
         out["status"] = capo_devops_agent.types.goal_status.deserialize_json(
             data["status"]
         )
-    if "goalType" in data:
+    if data.get("goalType") is not None:
         import capo_devops_agent.types.goal_type
 
         out["goal_type"] = capo_devops_agent.types.goal_type.deserialize_json(
             data["goalType"]
         )
-    if "limit" in data:
+    if data.get("limit") is not None:
         out["limit"] = data["limit"]
     else:
         out["limit"] = 50
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

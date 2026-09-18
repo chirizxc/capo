@@ -35,10 +35,10 @@ def serialize_json(value: ListWorkloadsInput) -> dict:
 
 def deserialize_json(data: dict) -> ListWorkloadsInput:
     out: ListWorkloadsInput = {}  # type: ignore[typeddict-item]
-    if "WorkloadNamePrefix" in data:
+    if data.get("WorkloadNamePrefix") is not None:
         out["workload_name_prefix"] = data["WorkloadNamePrefix"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> RealTimeContactAnalysisIssuesDetected:
 
     out: RealTimeContactAnalysisIssuesDetected = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.real_time_contact_analysis_issue_detected.deserialize_json(
                 item

@@ -23,6 +23,6 @@ def serialize_json(value: ExternalIntegrationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ExternalIntegrationConfiguration:
     out: ExternalIntegrationConfiguration = {}  # type: ignore[typeddict-item]
-    if "ConnectorArn" in data:
+    if data.get("ConnectorArn") is not None:
         out["connector_arn"] = data["ConnectorArn"]
     return out

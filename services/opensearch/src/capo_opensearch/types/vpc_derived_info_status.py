@@ -34,7 +34,7 @@ def serialize_json(value: VPCDerivedInfoStatus) -> dict:
 
 def deserialize_json(data: dict) -> VPCDerivedInfoStatus:
     out: VPCDerivedInfoStatus = {}  # type: ignore[typeddict-item]
-    if "Options" in data:
+    if data.get("Options") is not None:
         import capo_opensearch.types.vpc_derived_info
 
         out["options"] = capo_opensearch.types.vpc_derived_info.deserialize_json(
@@ -42,7 +42,7 @@ def deserialize_json(data: dict) -> VPCDerivedInfoStatus:
         )
     else:
         raise DeserializationError("VPCDerivedInfoStatus.options required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_opensearch.types.option_status
 
         out["status"] = capo_opensearch.types.option_status.deserialize_json(

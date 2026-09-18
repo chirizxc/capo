@@ -26,7 +26,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> MaterializedViewRefreshTaskRunningException_:
     out: MaterializedViewRefreshTaskRunningException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -36,17 +36,22 @@ class MaterializedViewRefreshTaskRunningException(ServiceError):
 
     code: str | None = "MaterializedViewRefreshTaskRunningException"
 
-    def __init__(self, data: MaterializedViewRefreshTaskRunningException_):
+    def __init__(
+        self,
+        data: MaterializedViewRefreshTaskRunningException_,
+        message: str | None = None,
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="MaterializedViewRefreshTaskRunningException",
+            message=message,
         )
         self.data = data
 
     @classmethod
     def from_aws_json_1_1(
-        cls, data: dict
+        cls, data: dict, message: str | None = None
     ) -> "MaterializedViewRefreshTaskRunningException":
-        return cls(deserialize_aws_json_1_1(data))
+        return cls(deserialize_aws_json_1_1(data), message)

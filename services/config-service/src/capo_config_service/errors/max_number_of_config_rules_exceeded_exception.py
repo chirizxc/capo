@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: MaxNumberOfConfigRulesExceededException_) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> MaxNumberOfConfigRulesExceededException_:
     out: MaxNumberOfConfigRulesExceededException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,20 @@ class MaxNumberOfConfigRulesExceededException(ServiceError):
 
     code: str | None = "MaxNumberOfConfigRulesExceededException"
 
-    def __init__(self, data: MaxNumberOfConfigRulesExceededException_):
+    def __init__(
+        self, data: MaxNumberOfConfigRulesExceededException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="MaxNumberOfConfigRulesExceededException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "MaxNumberOfConfigRulesExceededException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "MaxNumberOfConfigRulesExceededException":
+        return cls(deserialize_aws_json_1_1(data), message)

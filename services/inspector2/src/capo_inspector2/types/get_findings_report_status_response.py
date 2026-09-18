@@ -60,21 +60,21 @@ def serialize_json(value: GetFindingsReportStatusResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetFindingsReportStatusResponse:
     out: GetFindingsReportStatusResponse = {}  # type: ignore[typeddict-item]
-    if "reportId" in data:
+    if data.get("reportId") is not None:
         out["report_id"] = data["reportId"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         out["error_code"] = data["errorCode"]
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
-    if "destination" in data:
+    if data.get("destination") is not None:
         import capo_inspector2.types.destination
 
         out["destination"] = capo_inspector2.types.destination.deserialize_json(
             data["destination"]
         )
-    if "filterCriteria" in data:
+    if data.get("filterCriteria") is not None:
         import capo_inspector2.types.filter_criteria
 
         out["filter_criteria"] = capo_inspector2.types.filter_criteria.deserialize_json(

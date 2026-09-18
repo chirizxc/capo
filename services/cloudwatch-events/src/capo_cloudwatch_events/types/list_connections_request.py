@@ -48,9 +48,9 @@ def serialize_aws_json_1_1(value: ListConnectionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListConnectionsRequest:
     out: ListConnectionsRequest = {}  # type: ignore[typeddict-item]
-    if "NamePrefix" in data:
+    if data.get("NamePrefix") is not None:
         out["name_prefix"] = data["NamePrefix"]
-    if "ConnectionState" in data:
+    if data.get("ConnectionState") is not None:
         import capo_cloudwatch_events.types.connection_state
 
         out["connection_state"] = (
@@ -58,8 +58,8 @@ def deserialize_aws_json_1_1(data: dict) -> ListConnectionsRequest:
                 data["ConnectionState"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
     return out

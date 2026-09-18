@@ -87,13 +87,13 @@ def serialize_json(value: DataProtectionSettings) -> dict:
 
 def deserialize_json(data: dict) -> DataProtectionSettings:
     out: DataProtectionSettings = {}  # type: ignore[typeddict-item]
-    if "dataProtectionSettingsArn" in data:
+    if data.get("dataProtectionSettingsArn") is not None:
         out["data_protection_settings_arn"] = data["dataProtectionSettingsArn"]
     else:
         raise DeserializationError(
             "DataProtectionSettings.data_protection_settings_arn required"
         )
-    if "inlineRedactionConfiguration" in data:
+    if data.get("inlineRedactionConfiguration") is not None:
         import capo_workspaces_web.types.inline_redaction_configuration
 
         out["inline_redaction_configuration"] = (
@@ -101,7 +101,7 @@ def deserialize_json(data: dict) -> DataProtectionSettings:
                 data["inlineRedactionConfiguration"]
             )
         )
-    if "associatedPortalArns" in data:
+    if data.get("associatedPortalArns") is not None:
         import capo_workspaces_web.types.arn_list
 
         out["associated_portal_arns"] = (
@@ -109,19 +109,19 @@ def deserialize_json(data: dict) -> DataProtectionSettings:
                 data["associatedPortalArns"]
             )
         )
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "creationDate" in data:
+    if data.get("creationDate") is not None:
         import capo_workspaces_web.types.timestamp
 
         out["creation_date"] = capo_workspaces_web.types.timestamp.deserialize_json(
             data["creationDate"]
         )
-    if "customerManagedKey" in data:
+    if data.get("customerManagedKey") is not None:
         out["customer_managed_key"] = data["customerManagedKey"]
-    if "additionalEncryptionContext" in data:
+    if data.get("additionalEncryptionContext") is not None:
         import capo_workspaces_web.types.encryption_context_map
 
         out["additional_encryption_context"] = (

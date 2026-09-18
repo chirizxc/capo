@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DescribeTextTranslationJobResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeTextTranslationJobResponse:
     out: DescribeTextTranslationJobResponse = {}  # type: ignore[typeddict-item]
-    if "TextTranslationJobProperties" in data:
+    if data.get("TextTranslationJobProperties") is not None:
         import capo_translate.types.text_translation_job_properties
 
         out["text_translation_job_properties"] = (

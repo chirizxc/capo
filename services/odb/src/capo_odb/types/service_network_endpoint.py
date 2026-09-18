@@ -33,9 +33,9 @@ def serialize_aws_json_1_0(value: ServiceNetworkEndpoint) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ServiceNetworkEndpoint:
     out: ServiceNetworkEndpoint = {}  # type: ignore[typeddict-item]
-    if "vpcEndpointId" in data:
+    if data.get("vpcEndpointId") is not None:
         out["vpc_endpoint_id"] = data["vpcEndpointId"]
-    if "vpcEndpointType" in data:
+    if data.get("vpcEndpointType") is not None:
         import capo_odb.types.vpc_endpoint_type
 
         out["vpc_endpoint_type"] = (

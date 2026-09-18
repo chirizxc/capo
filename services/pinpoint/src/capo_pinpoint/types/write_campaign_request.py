@@ -139,7 +139,7 @@ def serialize_json(value: WriteCampaignRequest) -> dict:
 
 def deserialize_json(data: dict) -> WriteCampaignRequest:
     out: WriteCampaignRequest = {}  # type: ignore[typeddict-item]
-    if "AdditionalTreatments" in data:
+    if data.get("AdditionalTreatments") is not None:
         import capo_pinpoint.types.list_of_write_treatment_resource
 
         out["additional_treatments"] = (
@@ -147,7 +147,7 @@ def deserialize_json(data: dict) -> WriteCampaignRequest:
                 data["AdditionalTreatments"]
             )
         )
-    if "CustomDeliveryConfiguration" in data:
+    if data.get("CustomDeliveryConfiguration") is not None:
         import capo_pinpoint.types.custom_delivery_configuration
 
         out["custom_delivery_configuration"] = (
@@ -155,23 +155,23 @@ def deserialize_json(data: dict) -> WriteCampaignRequest:
                 data["CustomDeliveryConfiguration"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "HoldoutPercent" in data:
+    if data.get("HoldoutPercent") is not None:
         out["holdout_percent"] = data["HoldoutPercent"]
-    if "Hook" in data:
+    if data.get("Hook") is not None:
         import capo_pinpoint.types.campaign_hook
 
         out["hook"] = capo_pinpoint.types.campaign_hook.deserialize_json(data["Hook"])
-    if "IsPaused" in data:
+    if data.get("IsPaused") is not None:
         out["is_paused"] = data["IsPaused"]
-    if "Limits" in data:
+    if data.get("Limits") is not None:
         import capo_pinpoint.types.campaign_limits
 
         out["limits"] = capo_pinpoint.types.campaign_limits.deserialize_json(
             data["Limits"]
         )
-    if "MessageConfiguration" in data:
+    if data.get("MessageConfiguration") is not None:
         import capo_pinpoint.types.message_configuration
 
         out["message_configuration"] = (
@@ -179,23 +179,23 @@ def deserialize_json(data: dict) -> WriteCampaignRequest:
                 data["MessageConfiguration"]
             )
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Schedule" in data:
+    if data.get("Schedule") is not None:
         import capo_pinpoint.types.schedule
 
         out["schedule"] = capo_pinpoint.types.schedule.deserialize_json(
             data["Schedule"]
         )
-    if "SegmentId" in data:
+    if data.get("SegmentId") is not None:
         out["segment_id"] = data["SegmentId"]
-    if "SegmentVersion" in data:
+    if data.get("SegmentVersion") is not None:
         out["segment_version"] = data["SegmentVersion"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_pinpoint.types.map_of__string
 
         out["tags"] = capo_pinpoint.types.map_of__string.deserialize_json(data["tags"])
-    if "TemplateConfiguration" in data:
+    if data.get("TemplateConfiguration") is not None:
         import capo_pinpoint.types.template_configuration
 
         out["template_configuration"] = (
@@ -203,10 +203,10 @@ def deserialize_json(data: dict) -> WriteCampaignRequest:
                 data["TemplateConfiguration"]
             )
         )
-    if "TreatmentDescription" in data:
+    if data.get("TreatmentDescription") is not None:
         out["treatment_description"] = data["TreatmentDescription"]
-    if "TreatmentName" in data:
+    if data.get("TreatmentName") is not None:
         out["treatment_name"] = data["TreatmentName"]
-    if "Priority" in data:
+    if data.get("Priority") is not None:
         out["priority"] = data["Priority"]
     return out

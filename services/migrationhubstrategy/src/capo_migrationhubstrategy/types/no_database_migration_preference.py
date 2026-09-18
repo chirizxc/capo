@@ -32,7 +32,7 @@ def serialize_json(value: NoDatabaseMigrationPreference) -> dict:
 
 def deserialize_json(data: dict) -> NoDatabaseMigrationPreference:
     out: NoDatabaseMigrationPreference = {}  # type: ignore[typeddict-item]
-    if "targetDatabaseEngine" in data:
+    if data.get("targetDatabaseEngine") is not None:
         import capo_migrationhubstrategy.types.target_database_engines
 
         out["target_database_engine"] = (

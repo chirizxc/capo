@@ -32,11 +32,11 @@ def serialize_json(value: UpdateDataTableAttributeResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDataTableAttributeResponse:
     out: UpdateDataTableAttributeResponse = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("UpdateDataTableAttributeResponse.name required")
-    if "LockVersion" in data:
+    if data.get("LockVersion") is not None:
         import capo_connect.types.data_table_lock_version
 
         out["lock_version"] = (

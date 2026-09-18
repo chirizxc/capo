@@ -62,7 +62,7 @@ def serialize_aws_json_1_1(value: GetAccuracyMetricsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetAccuracyMetricsResponse:
     out: GetAccuracyMetricsResponse = {}  # type: ignore[typeddict-item]
-    if "PredictorEvaluationResults" in data:
+    if data.get("PredictorEvaluationResults") is not None:
         import capo_forecast.types.predictor_evaluation_results
 
         out["predictor_evaluation_results"] = (
@@ -70,9 +70,9 @@ def deserialize_aws_json_1_1(data: dict) -> GetAccuracyMetricsResponse:
                 data["PredictorEvaluationResults"]
             )
         )
-    if "IsAutoPredictor" in data:
+    if data.get("IsAutoPredictor") is not None:
         out["is_auto_predictor"] = data["IsAutoPredictor"]
-    if "AutoMLOverrideStrategy" in data:
+    if data.get("AutoMLOverrideStrategy") is not None:
         import capo_forecast.types.auto_ml_override_strategy
 
         out["auto_ml_override_strategy"] = (
@@ -80,7 +80,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetAccuracyMetricsResponse:
                 data["AutoMLOverrideStrategy"]
             )
         )
-    if "OptimizationMetric" in data:
+    if data.get("OptimizationMetric") is not None:
         import capo_forecast.types.optimization_metric
 
         out["optimization_metric"] = (

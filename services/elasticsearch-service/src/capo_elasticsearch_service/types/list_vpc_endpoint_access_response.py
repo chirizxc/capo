@@ -34,7 +34,7 @@ def serialize_json(value: ListVpcEndpointAccessResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListVpcEndpointAccessResponse:
     out: ListVpcEndpointAccessResponse = {}  # type: ignore[typeddict-item]
-    if "AuthorizedPrincipalList" in data:
+    if data.get("AuthorizedPrincipalList") is not None:
         import capo_elasticsearch_service.types.authorized_principal_list
 
         out["authorized_principal_list"] = (
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> ListVpcEndpointAccessResponse:
         raise DeserializationError(
             "ListVpcEndpointAccessResponse.authorized_principal_list required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     else:
         raise DeserializationError("ListVpcEndpointAccessResponse.next_token required")

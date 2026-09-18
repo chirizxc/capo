@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> RepositoriesInput:
 
     out: RepositoriesInput = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_codecatalyst.types.repository_input.deserialize_json(item))
     return out

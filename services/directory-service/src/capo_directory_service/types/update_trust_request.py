@@ -37,11 +37,11 @@ def serialize_aws_json_1_1(value: UpdateTrustRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateTrustRequest:
     out: UpdateTrustRequest = {}  # type: ignore[typeddict-item]
-    if "TrustId" in data:
+    if data.get("TrustId") is not None:
         out["trust_id"] = data["TrustId"]
     else:
         raise DeserializationError("UpdateTrustRequest.trust_id required")
-    if "SelectiveAuth" in data:
+    if data.get("SelectiveAuth") is not None:
         import capo_directory_service.types.selective_auth
 
         out["selective_auth"] = (

@@ -52,11 +52,11 @@ def serialize_aws_json_1_1(value: DebugHookConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DebugHookConfig:
     out: DebugHookConfig = {}  # type: ignore[typeddict-item]
-    if "LocalPath" in data:
+    if data.get("LocalPath") is not None:
         out["local_path"] = data["LocalPath"]
-    if "S3OutputPath" in data:
+    if data.get("S3OutputPath") is not None:
         out["s3_output_path"] = data["S3OutputPath"]
-    if "HookParameters" in data:
+    if data.get("HookParameters") is not None:
         import capo_sagemaker.types.hook_parameters
 
         out["hook_parameters"] = (
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_1(data: dict) -> DebugHookConfig:
                 data["HookParameters"]
             )
         )
-    if "CollectionConfigurations" in data:
+    if data.get("CollectionConfigurations") is not None:
         import capo_sagemaker.types.collection_configurations
 
         out["collection_configurations"] = (

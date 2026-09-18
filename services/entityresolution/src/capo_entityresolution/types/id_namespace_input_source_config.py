@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> IdNamespaceInputSourceConfig:
 
     out: IdNamespaceInputSourceConfig = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_entityresolution.types.id_namespace_input_source.deserialize_json(item)
         )

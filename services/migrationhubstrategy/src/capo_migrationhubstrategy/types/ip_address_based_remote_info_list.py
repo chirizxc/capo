@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> IPAddressBasedRemoteInfoList:
 
     out: IPAddressBasedRemoteInfoList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_migrationhubstrategy.types.ip_address_based_remote_info.deserialize_json(
                 item

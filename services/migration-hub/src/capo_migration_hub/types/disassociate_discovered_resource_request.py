@@ -40,25 +40,25 @@ def serialize_aws_json_1_1(value: DisassociateDiscoveredResourceRequest) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> DisassociateDiscoveredResourceRequest:
     out: DisassociateDiscoveredResourceRequest = {}  # type: ignore[typeddict-item]
-    if "ProgressUpdateStream" in data:
+    if data.get("ProgressUpdateStream") is not None:
         out["progress_update_stream"] = data["ProgressUpdateStream"]
     else:
         raise DeserializationError(
             "DisassociateDiscoveredResourceRequest.progress_update_stream required"
         )
-    if "MigrationTaskName" in data:
+    if data.get("MigrationTaskName") is not None:
         out["migration_task_name"] = data["MigrationTaskName"]
     else:
         raise DeserializationError(
             "DisassociateDiscoveredResourceRequest.migration_task_name required"
         )
-    if "ConfigurationId" in data:
+    if data.get("ConfigurationId") is not None:
         out["configuration_id"] = data["ConfigurationId"]
     else:
         raise DeserializationError(
             "DisassociateDiscoveredResourceRequest.configuration_id required"
         )
-    if "DryRun" in data:
+    if data.get("DryRun") is not None:
         out["dry_run"] = data["DryRun"]
     else:
         out["dry_run"] = False

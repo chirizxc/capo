@@ -34,14 +34,14 @@ def serialize_aws_json_1_1(value: GetRelationalDatabaseEventsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetRelationalDatabaseEventsRequest:
     out: GetRelationalDatabaseEventsRequest = {}  # type: ignore[typeddict-item]
-    if "relationalDatabaseName" in data:
+    if data.get("relationalDatabaseName") is not None:
         out["relational_database_name"] = data["relationalDatabaseName"]
     else:
         raise DeserializationError(
             "GetRelationalDatabaseEventsRequest.relational_database_name required"
         )
-    if "durationInMinutes" in data:
+    if data.get("durationInMinutes") is not None:
         out["duration_in_minutes"] = data["durationInMinutes"]
-    if "pageToken" in data:
+    if data.get("pageToken") is not None:
         out["page_token"] = data["pageToken"]
     return out

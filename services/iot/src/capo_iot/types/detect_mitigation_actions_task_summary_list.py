@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> DetectMitigationActionsTaskSummaryList:
 
     out: DetectMitigationActionsTaskSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot.types.detect_mitigation_actions_task_summary.deserialize_json(item)
         )

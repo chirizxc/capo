@@ -25,6 +25,6 @@ def serialize_json(value: NetworkInterface) -> dict:
 
 def deserialize_json(data: dict) -> NetworkInterface:
     out: NetworkInterface = {}  # type: ignore[typeddict-item]
-    if "NetworkInterfaceId" in data:
+    if data.get("NetworkInterfaceId") is not None:
         out["network_interface_id"] = data["NetworkInterfaceId"]
     return out

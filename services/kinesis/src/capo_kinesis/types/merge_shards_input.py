@@ -42,18 +42,18 @@ def serialize_aws_json_1_1(value: MergeShardsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MergeShardsInput:
     out: MergeShardsInput = {}  # type: ignore[typeddict-item]
-    if "StreamName" in data:
+    if data.get("StreamName") is not None:
         out["stream_name"] = data["StreamName"]
-    if "ShardToMerge" in data:
+    if data.get("ShardToMerge") is not None:
         out["shard_to_merge"] = data["ShardToMerge"]
     else:
         raise DeserializationError("MergeShardsInput.shard_to_merge required")
-    if "AdjacentShardToMerge" in data:
+    if data.get("AdjacentShardToMerge") is not None:
         out["adjacent_shard_to_merge"] = data["AdjacentShardToMerge"]
     else:
         raise DeserializationError("MergeShardsInput.adjacent_shard_to_merge required")
-    if "StreamARN" in data:
+    if data.get("StreamARN") is not None:
         out["stream_arn"] = data["StreamARN"]
-    if "StreamId" in data:
+    if data.get("StreamId") is not None:
         out["stream_id"] = data["StreamId"]
     return out

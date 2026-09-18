@@ -71,7 +71,7 @@ def serialize_json(value: StartDetectMitigationActionsTaskRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartDetectMitigationActionsTaskRequest:
     out: StartDetectMitigationActionsTaskRequest = {}  # type: ignore[typeddict-item]
-    if "target" in data:
+    if data.get("target") is not None:
         import capo_iot.types.detect_mitigation_actions_task_target
 
         out["target"] = (
@@ -83,7 +83,7 @@ def deserialize_json(data: dict) -> StartDetectMitigationActionsTaskRequest:
         raise DeserializationError(
             "StartDetectMitigationActionsTaskRequest.target required"
         )
-    if "actions" in data:
+    if data.get("actions") is not None:
         import capo_iot.types.detect_mitigation_actions_to_execute_list
 
         out["actions"] = (
@@ -95,7 +95,7 @@ def deserialize_json(data: dict) -> StartDetectMitigationActionsTaskRequest:
         raise DeserializationError(
             "StartDetectMitigationActionsTaskRequest.actions required"
         )
-    if "violationEventOccurrenceRange" in data:
+    if data.get("violationEventOccurrenceRange") is not None:
         import capo_iot.types.violation_event_occurrence_range
 
         out["violation_event_occurrence_range"] = (
@@ -103,11 +103,11 @@ def deserialize_json(data: dict) -> StartDetectMitigationActionsTaskRequest:
                 data["violationEventOccurrenceRange"]
             )
         )
-    if "includeOnlyActiveViolations" in data:
+    if data.get("includeOnlyActiveViolations") is not None:
         out["include_only_active_violations"] = data["includeOnlyActiveViolations"]
-    if "includeSuppressedAlerts" in data:
+    if data.get("includeSuppressedAlerts") is not None:
         out["include_suppressed_alerts"] = data["includeSuppressedAlerts"]
-    if "clientRequestToken" in data:
+    if data.get("clientRequestToken") is not None:
         out["client_request_token"] = data["clientRequestToken"]
     else:
         raise DeserializationError(

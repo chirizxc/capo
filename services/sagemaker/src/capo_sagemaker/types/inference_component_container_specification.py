@@ -39,11 +39,11 @@ def serialize_aws_json_1_1(value: InferenceComponentContainerSpecification) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> InferenceComponentContainerSpecification:
     out: InferenceComponentContainerSpecification = {}  # type: ignore[typeddict-item]
-    if "Image" in data:
+    if data.get("Image") is not None:
         out["image"] = data["Image"]
-    if "ArtifactUrl" in data:
+    if data.get("ArtifactUrl") is not None:
         out["artifact_url"] = data["ArtifactUrl"]
-    if "Environment" in data:
+    if data.get("Environment") is not None:
         import capo_sagemaker.types.environment_map
 
         out["environment"] = (

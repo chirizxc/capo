@@ -29,10 +29,10 @@ def serialize_json(value: AddRegionAction) -> dict:
 
 def deserialize_json(data: dict) -> AddRegionAction:
     out: AddRegionAction = {}  # type: ignore[typeddict-item]
-    if "regionName" in data:
+    if data.get("regionName") is not None:
         out["region_name"] = data["regionName"]
     else:
         raise DeserializationError("AddRegionAction.region_name required")
-    if "sseKmsKeyId" in data:
+    if data.get("sseKmsKeyId") is not None:
         out["sse_kms_key_id"] = data["sseKmsKeyId"]
     return out

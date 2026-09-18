@@ -69,33 +69,33 @@ def serialize_json(value: EbsVolumeScanDetails) -> dict:
 
 def deserialize_json(data: dict) -> EbsVolumeScanDetails:
     out: EbsVolumeScanDetails = {}  # type: ignore[typeddict-item]
-    if "scanId" in data:
+    if data.get("scanId") is not None:
         out["scan_id"] = data["scanId"]
-    if "scanStartedAt" in data:
+    if data.get("scanStartedAt") is not None:
         import capo_guardduty.types.timestamp
 
         out["scan_started_at"] = capo_guardduty.types.timestamp.deserialize_json(
             data["scanStartedAt"]
         )
-    if "scanCompletedAt" in data:
+    if data.get("scanCompletedAt") is not None:
         import capo_guardduty.types.timestamp
 
         out["scan_completed_at"] = capo_guardduty.types.timestamp.deserialize_json(
             data["scanCompletedAt"]
         )
-    if "triggerFindingId" in data:
+    if data.get("triggerFindingId") is not None:
         out["trigger_finding_id"] = data["triggerFindingId"]
-    if "sources" in data:
+    if data.get("sources") is not None:
         import capo_guardduty.types.sources
 
         out["sources"] = capo_guardduty.types.sources.deserialize_json(data["sources"])
-    if "scanDetections" in data:
+    if data.get("scanDetections") is not None:
         import capo_guardduty.types.scan_detections
 
         out["scan_detections"] = capo_guardduty.types.scan_detections.deserialize_json(
             data["scanDetections"]
         )
-    if "scanType" in data:
+    if data.get("scanType") is not None:
         import capo_guardduty.types.scan_type
 
         out["scan_type"] = capo_guardduty.types.scan_type.deserialize_json(

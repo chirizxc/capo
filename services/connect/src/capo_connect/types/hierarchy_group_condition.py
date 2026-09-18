@@ -36,9 +36,9 @@ def serialize_json(value: HierarchyGroupCondition) -> dict:
 
 def deserialize_json(data: dict) -> HierarchyGroupCondition:
     out: HierarchyGroupCondition = {}  # type: ignore[typeddict-item]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
-    if "HierarchyGroupMatchType" in data:
+    if data.get("HierarchyGroupMatchType") is not None:
         import capo_connect.types.hierarchy_group_match_type
 
         out["hierarchy_group_match_type"] = (

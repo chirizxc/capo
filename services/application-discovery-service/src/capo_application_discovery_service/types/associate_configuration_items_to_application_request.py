@@ -40,13 +40,13 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> AssociateConfigurationItemsToApplicationRequest:
     out: AssociateConfigurationItemsToApplicationRequest = {}  # type: ignore[typeddict-item]
-    if "applicationConfigurationId" in data:
+    if data.get("applicationConfigurationId") is not None:
         out["application_configuration_id"] = data["applicationConfigurationId"]
     else:
         raise DeserializationError(
             "AssociateConfigurationItemsToApplicationRequest.application_configuration_id required"
         )
-    if "configurationIds" in data:
+    if data.get("configurationIds") is not None:
         import capo_application_discovery_service.types.configuration_id_list
 
         out["configuration_ids"] = (

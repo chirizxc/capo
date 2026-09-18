@@ -39,10 +39,10 @@ def serialize_aws_json_1_0(value: DisasterRecoveryConfiguration) -> dict:
     if "is_snapshot_standby" in value:
         out["isSnapshotStandby"] = value["is_snapshot_standby"]
     if "time_snapshot_standby_enabled_till" in value:
-        import capo_odb.types._prelude.timestamp
+        import capo_odb._protocol.serialize
 
         out["timeSnapshotStandbyEnabledTill"] = (
-            capo_odb.types._prelude.timestamp.serialize_aws_json_1_0(
+            capo_odb._protocol.serialize.fmt_date_time(
                 value["time_snapshot_standby_enabled_till"]
             )
         )
@@ -51,7 +51,7 @@ def serialize_aws_json_1_0(value: DisasterRecoveryConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DisasterRecoveryConfiguration:
     out: DisasterRecoveryConfiguration = {}  # type: ignore[typeddict-item]
-    if "disasterRecoveryType" in data:
+    if data.get("disasterRecoveryType") is not None:
         import capo_odb.types.disaster_recovery_type
 
         out["disaster_recovery_type"] = (
@@ -59,16 +59,14 @@ def deserialize_aws_json_1_0(data: dict) -> DisasterRecoveryConfiguration:
                 data["disasterRecoveryType"]
             )
         )
-    if "isReplicateAutomaticBackups" in data:
+    if data.get("isReplicateAutomaticBackups") is not None:
         out["is_replicate_automatic_backups"] = data["isReplicateAutomaticBackups"]
-    if "isSnapshotStandby" in data:
+    if data.get("isSnapshotStandby") is not None:
         out["is_snapshot_standby"] = data["isSnapshotStandby"]
-    if "timeSnapshotStandbyEnabledTill" in data:
-        import capo_odb.types._prelude.timestamp
+    if data.get("timeSnapshotStandbyEnabledTill") is not None:
+        import datetime
 
-        out["time_snapshot_standby_enabled_till"] = (
-            capo_odb.types._prelude.timestamp.deserialize_aws_json_1_0(
-                data["timeSnapshotStandbyEnabledTill"]
-            )
+        out["time_snapshot_standby_enabled_till"] = datetime.datetime.fromisoformat(
+            data["timeSnapshotStandbyEnabledTill"].replace("Z", "+00:00")
         )
     return out

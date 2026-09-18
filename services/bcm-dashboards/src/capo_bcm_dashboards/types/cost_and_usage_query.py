@@ -66,7 +66,7 @@ def serialize_aws_json_1_0(value: CostAndUsageQuery) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CostAndUsageQuery:
     out: CostAndUsageQuery = {}  # type: ignore[typeddict-item]
-    if "metrics" in data:
+    if data.get("metrics") is not None:
         import capo_bcm_dashboards.types.metric_names
 
         out["metrics"] = (
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_0(data: dict) -> CostAndUsageQuery:
         )
     else:
         raise DeserializationError("CostAndUsageQuery.metrics required")
-    if "timeRange" in data:
+    if data.get("timeRange") is not None:
         import capo_bcm_dashboards.types.date_time_range
 
         out["time_range"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_0(data: dict) -> CostAndUsageQuery:
         )
     else:
         raise DeserializationError("CostAndUsageQuery.time_range required")
-    if "granularity" in data:
+    if data.get("granularity") is not None:
         import capo_bcm_dashboards.types.granularity
 
         out["granularity"] = (
@@ -96,7 +96,7 @@ def deserialize_aws_json_1_0(data: dict) -> CostAndUsageQuery:
         )
     else:
         raise DeserializationError("CostAndUsageQuery.granularity required")
-    if "groupBy" in data:
+    if data.get("groupBy") is not None:
         import capo_bcm_dashboards.types.group_definitions
 
         out["group_by"] = (
@@ -104,7 +104,7 @@ def deserialize_aws_json_1_0(data: dict) -> CostAndUsageQuery:
                 data["groupBy"]
             )
         )
-    if "filter" in data:
+    if data.get("filter") is not None:
         import capo_bcm_dashboards.types.expression
 
         out["filter"] = capo_bcm_dashboards.types.expression.deserialize_aws_json_1_0(

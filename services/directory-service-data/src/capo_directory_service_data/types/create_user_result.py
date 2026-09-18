@@ -37,10 +37,10 @@ def serialize_json(value: CreateUserResult) -> dict:
 
 def deserialize_json(data: dict) -> CreateUserResult:
     out: CreateUserResult = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
-    if "SID" in data:
+    if data.get("SID") is not None:
         out["sid"] = data["SID"]
-    if "SAMAccountName" in data:
+    if data.get("SAMAccountName") is not None:
         out["sam_account_name"] = data["SAMAccountName"]
     return out

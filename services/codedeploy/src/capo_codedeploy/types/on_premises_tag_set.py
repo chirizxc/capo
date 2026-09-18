@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: OnPremisesTagSet) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OnPremisesTagSet:
     out: OnPremisesTagSet = {}  # type: ignore[typeddict-item]
-    if "onPremisesTagSetList" in data:
+    if data.get("onPremisesTagSetList") is not None:
         import capo_codedeploy.types.on_premises_tag_set_list
 
         out["on_premises_tag_set_list"] = (

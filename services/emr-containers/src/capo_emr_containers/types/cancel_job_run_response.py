@@ -29,8 +29,8 @@ def serialize_json(value: CancelJobRunResponse) -> dict:
 
 def deserialize_json(data: dict) -> CancelJobRunResponse:
     out: CancelJobRunResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "virtualClusterId" in data:
+    if data.get("virtualClusterId") is not None:
         out["virtual_cluster_id"] = data["virtualClusterId"]
     return out

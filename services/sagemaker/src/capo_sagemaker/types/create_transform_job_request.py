@@ -163,13 +163,13 @@ def serialize_aws_json_1_1(value: CreateTransformJobRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateTransformJobRequest:
     out: CreateTransformJobRequest = {}  # type: ignore[typeddict-item]
-    if "TransformJobName" in data:
+    if data.get("TransformJobName") is not None:
         out["transform_job_name"] = data["TransformJobName"]
-    if "ModelName" in data:
+    if data.get("ModelName") is not None:
         out["model_name"] = data["ModelName"]
-    if "MaxConcurrentTransforms" in data:
+    if data.get("MaxConcurrentTransforms") is not None:
         out["max_concurrent_transforms"] = data["MaxConcurrentTransforms"]
-    if "ModelClientConfig" in data:
+    if data.get("ModelClientConfig") is not None:
         import capo_sagemaker.types.model_client_config
 
         out["model_client_config"] = (
@@ -177,9 +177,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTransformJobRequest:
                 data["ModelClientConfig"]
             )
         )
-    if "MaxPayloadInMB" in data:
+    if data.get("MaxPayloadInMB") is not None:
         out["max_payload_in_mb"] = data["MaxPayloadInMB"]
-    if "BatchStrategy" in data:
+    if data.get("BatchStrategy") is not None:
         import capo_sagemaker.types.batch_strategy
 
         out["batch_strategy"] = (
@@ -187,7 +187,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTransformJobRequest:
                 data["BatchStrategy"]
             )
         )
-    if "Environment" in data:
+    if data.get("Environment") is not None:
         import capo_sagemaker.types.transform_environment_map
 
         out["environment"] = (
@@ -195,7 +195,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTransformJobRequest:
                 data["Environment"]
             )
         )
-    if "TransformInput" in data:
+    if data.get("TransformInput") is not None:
         import capo_sagemaker.types.transform_input
 
         out["transform_input"] = (
@@ -203,7 +203,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTransformJobRequest:
                 data["TransformInput"]
             )
         )
-    if "TransformOutput" in data:
+    if data.get("TransformOutput") is not None:
         import capo_sagemaker.types.transform_output
 
         out["transform_output"] = (
@@ -211,7 +211,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTransformJobRequest:
                 data["TransformOutput"]
             )
         )
-    if "DataCaptureConfig" in data:
+    if data.get("DataCaptureConfig") is not None:
         import capo_sagemaker.types.batch_data_capture_config
 
         out["data_capture_config"] = (
@@ -219,7 +219,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTransformJobRequest:
                 data["DataCaptureConfig"]
             )
         )
-    if "TransformResources" in data:
+    if data.get("TransformResources") is not None:
         import capo_sagemaker.types.transform_resources
 
         out["transform_resources"] = (
@@ -227,7 +227,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTransformJobRequest:
                 data["TransformResources"]
             )
         )
-    if "DataProcessing" in data:
+    if data.get("DataProcessing") is not None:
         import capo_sagemaker.types.data_processing
 
         out["data_processing"] = (
@@ -235,13 +235,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTransformJobRequest:
                 data["DataProcessing"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "ExperimentConfig" in data:
+    if data.get("ExperimentConfig") is not None:
         import capo_sagemaker.types.experiment_config
 
         out["experiment_config"] = (

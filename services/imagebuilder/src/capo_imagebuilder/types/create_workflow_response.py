@@ -43,11 +43,11 @@ def serialize_json(value: CreateWorkflowResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateWorkflowResponse:
     out: CreateWorkflowResponse = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "workflowBuildVersionArn" in data:
+    if data.get("workflowBuildVersionArn") is not None:
         out["workflow_build_version_arn"] = data["workflowBuildVersionArn"]
-    if "latestVersionReferences" in data:
+    if data.get("latestVersionReferences") is not None:
         import capo_imagebuilder.types.latest_version_references
 
         out["latest_version_references"] = (

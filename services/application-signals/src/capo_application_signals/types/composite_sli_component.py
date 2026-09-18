@@ -26,7 +26,7 @@ def serialize_json(value: CompositeSliComponent) -> dict:
 
 
 def deserialize_json(data: dict) -> CompositeSliComponent:
-    if "OperationName" in data:
+    if data.get("OperationName") is not None:
         return {"OperationName": data["OperationName"]}
     else:
         raise DeserializationError("CompositeSliComponent: no recognized variant key")

@@ -24,7 +24,7 @@ def serialize_json(value: UnsupportedResultException_) -> dict:
 
 def deserialize_json(data: dict) -> UnsupportedResultException_:
     out: UnsupportedResultException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,18 @@ class UnsupportedResultException(ServiceError):
 
     code: str | None = "UnsupportedResultException"
 
-    def __init__(self, data: UnsupportedResultException_):
+    def __init__(self, data: UnsupportedResultException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="UnsupportedResultException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "UnsupportedResultException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "UnsupportedResultException":
+        return cls(deserialize_json(data), message)

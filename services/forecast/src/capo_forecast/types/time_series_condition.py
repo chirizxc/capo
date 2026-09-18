@@ -36,15 +36,15 @@ def serialize_aws_json_1_1(value: TimeSeriesCondition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TimeSeriesCondition:
     out: TimeSeriesCondition = {}  # type: ignore[typeddict-item]
-    if "AttributeName" in data:
+    if data.get("AttributeName") is not None:
         out["attribute_name"] = data["AttributeName"]
     else:
         raise DeserializationError("TimeSeriesCondition.attribute_name required")
-    if "AttributeValue" in data:
+    if data.get("AttributeValue") is not None:
         out["attribute_value"] = data["AttributeValue"]
     else:
         raise DeserializationError("TimeSeriesCondition.attribute_value required")
-    if "Condition" in data:
+    if data.get("Condition") is not None:
         import capo_forecast.types.condition
 
         out["condition"] = capo_forecast.types.condition.deserialize_aws_json_1_1(

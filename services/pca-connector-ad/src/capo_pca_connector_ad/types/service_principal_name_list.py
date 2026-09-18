@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ServicePrincipalNameList:
 
     out: ServicePrincipalNameList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_pca_connector_ad.types.service_principal_name_summary.deserialize_json(
                 item

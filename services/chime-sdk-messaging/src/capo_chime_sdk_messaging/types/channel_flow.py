@@ -66,9 +66,9 @@ def serialize_json(value: ChannelFlow) -> dict:
 
 def deserialize_json(data: dict) -> ChannelFlow:
     out: ChannelFlow = {}  # type: ignore[typeddict-item]
-    if "ChannelFlowArn" in data:
+    if data.get("ChannelFlowArn") is not None:
         out["channel_flow_arn"] = data["ChannelFlowArn"]
-    if "Processors" in data:
+    if data.get("Processors") is not None:
         import capo_chime_sdk_messaging.types.processor_list
 
         out["processors"] = (
@@ -76,9 +76,9 @@ def deserialize_json(data: dict) -> ChannelFlow:
                 data["Processors"]
             )
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_chime_sdk_messaging.types.timestamp
 
         out["created_timestamp"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> ChannelFlow:
                 data["CreatedTimestamp"]
             )
         )
-    if "LastUpdatedTimestamp" in data:
+    if data.get("LastUpdatedTimestamp") is not None:
         import capo_chime_sdk_messaging.types.timestamp
 
         out["last_updated_timestamp"] = (

@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: RateLimitJA3Fingerprint) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RateLimitJA3Fingerprint:
     out: RateLimitJA3Fingerprint = {}  # type: ignore[typeddict-item]
-    if "FallbackBehavior" in data:
+    if data.get("FallbackBehavior") is not None:
         import capo_wafv2.types.fallback_behavior
 
         out["fallback_behavior"] = (

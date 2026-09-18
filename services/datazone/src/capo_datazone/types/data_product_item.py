@@ -48,7 +48,7 @@ def serialize_json(value: DataProductItem) -> dict:
 
 def deserialize_json(data: dict) -> DataProductItem:
     out: DataProductItem = {}  # type: ignore[typeddict-item]
-    if "itemType" in data:
+    if data.get("itemType") is not None:
         import capo_datazone.types.data_product_item_type
 
         out["item_type"] = capo_datazone.types.data_product_item_type.deserialize_json(
@@ -56,13 +56,13 @@ def deserialize_json(data: dict) -> DataProductItem:
         )
     else:
         raise DeserializationError("DataProductItem.item_type required")
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         out["identifier"] = data["identifier"]
     else:
         raise DeserializationError("DataProductItem.identifier required")
-    if "revision" in data:
+    if data.get("revision") is not None:
         out["revision"] = data["revision"]
-    if "glossaryTerms" in data:
+    if data.get("glossaryTerms") is not None:
         import capo_datazone.types.item_glossary_terms
 
         out["glossary_terms"] = (

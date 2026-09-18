@@ -33,6 +33,8 @@ def deserialize_aws_json_1_1(
 
     out: SalesforceCustomKnowledgeArticleTypeConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_kendra.types.salesforce_custom_knowledge_article_type_configuration.deserialize_aws_json_1_1(
                 item

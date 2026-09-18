@@ -25,7 +25,7 @@ def serialize_json(value: ServerlessSasl) -> dict:
 
 def deserialize_json(data: dict) -> ServerlessSasl:
     out: ServerlessSasl = {}  # type: ignore[typeddict-item]
-    if "iam" in data:
+    if data.get("iam") is not None:
         import capo_kafka.types.iam
 
         out["iam"] = capo_kafka.types.iam.deserialize_json(data["iam"])

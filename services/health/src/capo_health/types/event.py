@@ -125,13 +125,13 @@ def serialize_aws_json_1_1(value: Event) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Event:
     out: Event = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "service" in data:
+    if data.get("service") is not None:
         out["service"] = data["service"]
-    if "eventTypeCode" in data:
+    if data.get("eventTypeCode") is not None:
         out["event_type_code"] = data["eventTypeCode"]
-    if "eventTypeCategory" in data:
+    if data.get("eventTypeCategory") is not None:
         import capo_health.types.event_type_category
 
         out["event_type_category"] = (
@@ -139,29 +139,29 @@ def deserialize_aws_json_1_1(data: dict) -> Event:
                 data["eventTypeCategory"]
             )
         )
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
-    if "availabilityZone" in data:
+    if data.get("availabilityZone") is not None:
         out["availability_zone"] = data["availabilityZone"]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_health.types.timestamp
 
         out["start_time"] = capo_health.types.timestamp.deserialize_aws_json_1_1(
             data["startTime"]
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_health.types.timestamp
 
         out["end_time"] = capo_health.types.timestamp.deserialize_aws_json_1_1(
             data["endTime"]
         )
-    if "lastUpdatedTime" in data:
+    if data.get("lastUpdatedTime") is not None:
         import capo_health.types.timestamp
 
         out["last_updated_time"] = capo_health.types.timestamp.deserialize_aws_json_1_1(
             data["lastUpdatedTime"]
         )
-    if "statusCode" in data:
+    if data.get("statusCode") is not None:
         import capo_health.types.event_status_code
 
         out["status_code"] = (
@@ -169,7 +169,7 @@ def deserialize_aws_json_1_1(data: dict) -> Event:
                 data["statusCode"]
             )
         )
-    if "eventScopeCode" in data:
+    if data.get("eventScopeCode") is not None:
         import capo_health.types.event_scope_code
 
         out["event_scope_code"] = (
@@ -177,7 +177,7 @@ def deserialize_aws_json_1_1(data: dict) -> Event:
                 data["eventScopeCode"]
             )
         )
-    if "actionability" in data:
+    if data.get("actionability") is not None:
         import capo_health.types.event_actionability
 
         out["actionability"] = (
@@ -185,7 +185,7 @@ def deserialize_aws_json_1_1(data: dict) -> Event:
                 data["actionability"]
             )
         )
-    if "personas" in data:
+    if data.get("personas") is not None:
         import capo_health.types.event_persona_list
 
         out["personas"] = capo_health.types.event_persona_list.deserialize_aws_json_1_1(

@@ -79,7 +79,7 @@ def serialize_json(value: ImageGenerationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ImageGenerationConfiguration:
     out: ImageGenerationConfiguration = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_kinesis_video.types.configuration_status
 
         out["status"] = capo_kinesis_video.types.configuration_status.deserialize_json(
@@ -87,7 +87,7 @@ def deserialize_json(data: dict) -> ImageGenerationConfiguration:
         )
     else:
         raise DeserializationError("ImageGenerationConfiguration.status required")
-    if "ImageSelectorType" in data:
+    if data.get("ImageSelectorType") is not None:
         import capo_kinesis_video.types.image_selector_type
 
         out["image_selector_type"] = (
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> ImageGenerationConfiguration:
         raise DeserializationError(
             "ImageGenerationConfiguration.image_selector_type required"
         )
-    if "DestinationConfig" in data:
+    if data.get("DestinationConfig") is not None:
         import capo_kinesis_video.types.image_generation_destination_config
 
         out["destination_config"] = (
@@ -111,26 +111,26 @@ def deserialize_json(data: dict) -> ImageGenerationConfiguration:
         raise DeserializationError(
             "ImageGenerationConfiguration.destination_config required"
         )
-    if "SamplingInterval" in data:
+    if data.get("SamplingInterval") is not None:
         out["sampling_interval"] = data["SamplingInterval"]
     else:
         raise DeserializationError(
             "ImageGenerationConfiguration.sampling_interval required"
         )
-    if "Format" in data:
+    if data.get("Format") is not None:
         import capo_kinesis_video.types.format
 
         out["format"] = capo_kinesis_video.types.format.deserialize_json(data["Format"])
     else:
         raise DeserializationError("ImageGenerationConfiguration.format required")
-    if "FormatConfig" in data:
+    if data.get("FormatConfig") is not None:
         import capo_kinesis_video.types.format_config
 
         out["format_config"] = capo_kinesis_video.types.format_config.deserialize_json(
             data["FormatConfig"]
         )
-    if "WidthPixels" in data:
+    if data.get("WidthPixels") is not None:
         out["width_pixels"] = data["WidthPixels"]
-    if "HeightPixels" in data:
+    if data.get("HeightPixels") is not None:
         out["height_pixels"] = data["HeightPixels"]
     return out

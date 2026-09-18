@@ -57,7 +57,7 @@ def serialize_json(value: GifSettings) -> dict:
 
 def deserialize_json(data: dict) -> GifSettings:
     out: GifSettings = {}  # type: ignore[typeddict-item]
-    if "framerateControl" in data:
+    if data.get("framerateControl") is not None:
         import capo_mediaconvert.types.gif_framerate_control
 
         out["framerate_control"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> GifSettings:
                 data["framerateControl"]
             )
         )
-    if "framerateConversionAlgorithm" in data:
+    if data.get("framerateConversionAlgorithm") is not None:
         import capo_mediaconvert.types.gif_framerate_conversion_algorithm
 
         out["framerate_conversion_algorithm"] = (
@@ -73,8 +73,8 @@ def deserialize_json(data: dict) -> GifSettings:
                 data["framerateConversionAlgorithm"]
             )
         )
-    if "framerateDenominator" in data:
+    if data.get("framerateDenominator") is not None:
         out["framerate_denominator"] = data["framerateDenominator"]
-    if "framerateNumerator" in data:
+    if data.get("framerateNumerator") is not None:
         out["framerate_numerator"] = data["framerateNumerator"]
     return out

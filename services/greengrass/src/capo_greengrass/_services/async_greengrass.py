@@ -368,8 +368,9 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.associate_role_to_group_request.AssociateRoleToGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["group_id"] = group_id
+        input_: capo_greengrass.types.associate_role_to_group_request.AssociateRoleToGroupRequest = {
+            "group_id": group_id
+        }
         if role_arn is not None:
             input_["role_arn"] = role_arn
 
@@ -378,6 +379,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_service_role_to_account(
@@ -413,7 +415,7 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.associate_service_role_to_account_request.AssociateServiceRoleToAccountRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrass.types.associate_service_role_to_account_request.AssociateServiceRoleToAccountRequest = {}
         if role_arn is not None:
             input_["role_arn"] = role_arn
 
@@ -422,6 +424,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_connector_definition(
@@ -464,7 +467,7 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.create_connector_definition_request.CreateConnectorDefinitionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrass.types.create_connector_definition_request.CreateConnectorDefinitionRequest = {}
         if amzn_client_token is not None:
             input_["amzn_client_token"] = amzn_client_token
         if initial_version is not None:
@@ -479,6 +482,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_connector_definition_version(
@@ -519,10 +523,11 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.create_connector_definition_version_request.CreateConnectorDefinitionVersionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrass.types.create_connector_definition_version_request.CreateConnectorDefinitionVersionRequest = {
+            "connector_definition_id": connector_definition_id
+        }
         if amzn_client_token is not None:
             input_["amzn_client_token"] = amzn_client_token
-        input_["connector_definition_id"] = connector_definition_id
         if connectors is not None:
             input_["connectors"] = connectors
 
@@ -531,6 +536,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_core_definition(
@@ -573,7 +579,7 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.create_core_definition_request.CreateCoreDefinitionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrass.types.create_core_definition_request.CreateCoreDefinitionRequest = {}
         if amzn_client_token is not None:
             input_["amzn_client_token"] = amzn_client_token
         if initial_version is not None:
@@ -588,6 +594,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_core_definition_version(
@@ -626,10 +633,11 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.create_core_definition_version_request.CreateCoreDefinitionVersionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrass.types.create_core_definition_version_request.CreateCoreDefinitionVersionRequest = {
+            "core_definition_id": core_definition_id
+        }
         if amzn_client_token is not None:
             input_["amzn_client_token"] = amzn_client_token
-        input_["core_definition_id"] = core_definition_id
         if cores is not None:
             input_["cores"] = cores
 
@@ -638,6 +646,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_deployment(
@@ -682,14 +691,15 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.create_deployment_request.CreateDeploymentRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrass.types.create_deployment_request.CreateDeploymentRequest = {
+            "group_id": group_id
+        }
         if amzn_client_token is not None:
             input_["amzn_client_token"] = amzn_client_token
         if deployment_id is not None:
             input_["deployment_id"] = deployment_id
         if deployment_type is not None:
             input_["deployment_type"] = deployment_type
-        input_["group_id"] = group_id
         if group_version_id is not None:
             input_["group_version_id"] = group_version_id
 
@@ -698,6 +708,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_device_definition(
@@ -740,7 +751,7 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.create_device_definition_request.CreateDeviceDefinitionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrass.types.create_device_definition_request.CreateDeviceDefinitionRequest = {}
         if amzn_client_token is not None:
             input_["amzn_client_token"] = amzn_client_token
         if initial_version is not None:
@@ -755,6 +766,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_device_definition_version(
@@ -795,10 +807,11 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.create_device_definition_version_request.CreateDeviceDefinitionVersionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrass.types.create_device_definition_version_request.CreateDeviceDefinitionVersionRequest = {
+            "device_definition_id": device_definition_id
+        }
         if amzn_client_token is not None:
             input_["amzn_client_token"] = amzn_client_token
-        input_["device_definition_id"] = device_definition_id
         if devices is not None:
             input_["devices"] = devices
 
@@ -807,6 +820,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_function_definition(
@@ -849,7 +863,7 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.create_function_definition_request.CreateFunctionDefinitionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrass.types.create_function_definition_request.CreateFunctionDefinitionRequest = {}
         if amzn_client_token is not None:
             input_["amzn_client_token"] = amzn_client_token
         if initial_version is not None:
@@ -864,6 +878,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_function_definition_version(
@@ -908,12 +923,13 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.create_function_definition_version_request.CreateFunctionDefinitionVersionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrass.types.create_function_definition_version_request.CreateFunctionDefinitionVersionRequest = {
+            "function_definition_id": function_definition_id
+        }
         if amzn_client_token is not None:
             input_["amzn_client_token"] = amzn_client_token
         if default_config is not None:
             input_["default_config"] = default_config
-        input_["function_definition_id"] = function_definition_id
         if functions is not None:
             input_["functions"] = functions
 
@@ -922,6 +938,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_group(
@@ -964,7 +981,7 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.create_group_request.CreateGroupRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrass.types.create_group_request.CreateGroupRequest = {}
         if amzn_client_token is not None:
             input_["amzn_client_token"] = amzn_client_token
         if initial_version is not None:
@@ -979,6 +996,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_group_certificate_authority(
@@ -1016,16 +1034,18 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.create_group_certificate_authority_request.CreateGroupCertificateAuthorityRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrass.types.create_group_certificate_authority_request.CreateGroupCertificateAuthorityRequest = {
+            "group_id": group_id
+        }
         if amzn_client_token is not None:
             input_["amzn_client_token"] = amzn_client_token
-        input_["group_id"] = group_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_group_version(
@@ -1092,7 +1112,9 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.create_group_version_request.CreateGroupVersionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrass.types.create_group_version_request.CreateGroupVersionRequest = {
+            "group_id": group_id
+        }
         if amzn_client_token is not None:
             input_["amzn_client_token"] = amzn_client_token
         if connector_definition_version_arn is not None:
@@ -1105,7 +1127,6 @@ class AsyncGreengrassClient:
             input_["device_definition_version_arn"] = device_definition_version_arn
         if function_definition_version_arn is not None:
             input_["function_definition_version_arn"] = function_definition_version_arn
-        input_["group_id"] = group_id
         if logger_definition_version_arn is not None:
             input_["logger_definition_version_arn"] = logger_definition_version_arn
         if resource_definition_version_arn is not None:
@@ -1120,6 +1141,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_logger_definition(
@@ -1162,7 +1184,7 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.create_logger_definition_request.CreateLoggerDefinitionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrass.types.create_logger_definition_request.CreateLoggerDefinitionRequest = {}
         if amzn_client_token is not None:
             input_["amzn_client_token"] = amzn_client_token
         if initial_version is not None:
@@ -1177,6 +1199,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_logger_definition_version(
@@ -1217,10 +1240,11 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.create_logger_definition_version_request.CreateLoggerDefinitionVersionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrass.types.create_logger_definition_version_request.CreateLoggerDefinitionVersionRequest = {
+            "logger_definition_id": logger_definition_id
+        }
         if amzn_client_token is not None:
             input_["amzn_client_token"] = amzn_client_token
-        input_["logger_definition_id"] = logger_definition_id
         if loggers is not None:
             input_["loggers"] = loggers
 
@@ -1229,6 +1253,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_resource_definition(
@@ -1271,7 +1296,7 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.create_resource_definition_request.CreateResourceDefinitionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrass.types.create_resource_definition_request.CreateResourceDefinitionRequest = {}
         if amzn_client_token is not None:
             input_["amzn_client_token"] = amzn_client_token
         if initial_version is not None:
@@ -1286,6 +1311,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_resource_definition_version(
@@ -1326,10 +1352,11 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.create_resource_definition_version_request.CreateResourceDefinitionVersionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrass.types.create_resource_definition_version_request.CreateResourceDefinitionVersionRequest = {
+            "resource_definition_id": resource_definition_id
+        }
         if amzn_client_token is not None:
             input_["amzn_client_token"] = amzn_client_token
-        input_["resource_definition_id"] = resource_definition_id
         if resources is not None:
             input_["resources"] = resources
 
@@ -1338,6 +1365,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_software_update_job(
@@ -1391,7 +1419,7 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.create_software_update_job_request.CreateSoftwareUpdateJobRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrass.types.create_software_update_job_request.CreateSoftwareUpdateJobRequest = {}
         if amzn_client_token is not None:
             input_["amzn_client_token"] = amzn_client_token
         if s3_url_signer_role is not None:
@@ -1412,6 +1440,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_subscription_definition(
@@ -1454,7 +1483,7 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.create_subscription_definition_request.CreateSubscriptionDefinitionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrass.types.create_subscription_definition_request.CreateSubscriptionDefinitionRequest = {}
         if amzn_client_token is not None:
             input_["amzn_client_token"] = amzn_client_token
         if initial_version is not None:
@@ -1469,6 +1498,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_subscription_definition_version(
@@ -1509,10 +1539,11 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.create_subscription_definition_version_request.CreateSubscriptionDefinitionVersionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrass.types.create_subscription_definition_version_request.CreateSubscriptionDefinitionVersionRequest = {
+            "subscription_definition_id": subscription_definition_id
+        }
         if amzn_client_token is not None:
             input_["amzn_client_token"] = amzn_client_token
-        input_["subscription_definition_id"] = subscription_definition_id
         if subscriptions is not None:
             input_["subscriptions"] = subscriptions
 
@@ -1521,6 +1552,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_connector_definition(
@@ -1555,14 +1587,16 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.delete_connector_definition_request.DeleteConnectorDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["connector_definition_id"] = connector_definition_id
+        input_: capo_greengrass.types.delete_connector_definition_request.DeleteConnectorDefinitionRequest = {
+            "connector_definition_id": connector_definition_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_core_definition(
@@ -1597,14 +1631,16 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.delete_core_definition_request.DeleteCoreDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["core_definition_id"] = core_definition_id
+        input_: capo_greengrass.types.delete_core_definition_request.DeleteCoreDefinitionRequest = {
+            "core_definition_id": core_definition_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_device_definition(
@@ -1639,14 +1675,16 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.delete_device_definition_request.DeleteDeviceDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["device_definition_id"] = device_definition_id
+        input_: capo_greengrass.types.delete_device_definition_request.DeleteDeviceDefinitionRequest = {
+            "device_definition_id": device_definition_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_function_definition(
@@ -1681,14 +1719,16 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.delete_function_definition_request.DeleteFunctionDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["function_definition_id"] = function_definition_id
+        input_: capo_greengrass.types.delete_function_definition_request.DeleteFunctionDefinitionRequest = {
+            "function_definition_id": function_definition_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_group(
@@ -1723,14 +1763,16 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.delete_group_request.DeleteGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["group_id"] = group_id
+        input_: capo_greengrass.types.delete_group_request.DeleteGroupRequest = {
+            "group_id": group_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_logger_definition(
@@ -1765,14 +1807,16 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.delete_logger_definition_request.DeleteLoggerDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["logger_definition_id"] = logger_definition_id
+        input_: capo_greengrass.types.delete_logger_definition_request.DeleteLoggerDefinitionRequest = {
+            "logger_definition_id": logger_definition_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_resource_definition(
@@ -1807,14 +1851,16 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.delete_resource_definition_request.DeleteResourceDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_definition_id"] = resource_definition_id
+        input_: capo_greengrass.types.delete_resource_definition_request.DeleteResourceDefinitionRequest = {
+            "resource_definition_id": resource_definition_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_subscription_definition(
@@ -1849,14 +1895,16 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.delete_subscription_definition_request.DeleteSubscriptionDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["subscription_definition_id"] = subscription_definition_id
+        input_: capo_greengrass.types.delete_subscription_definition_request.DeleteSubscriptionDefinitionRequest = {
+            "subscription_definition_id": subscription_definition_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_role_from_group(
@@ -1892,14 +1940,16 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.disassociate_role_from_group_request.DisassociateRoleFromGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["group_id"] = group_id
+        input_: capo_greengrass.types.disassociate_role_from_group_request.DisassociateRoleFromGroupRequest = {
+            "group_id": group_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_service_role_from_account(
@@ -1928,13 +1978,14 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.disassociate_service_role_from_account_request.DisassociateServiceRoleFromAccountRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrass.types.disassociate_service_role_from_account_request.DisassociateServiceRoleFromAccountRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_associated_role(
@@ -1970,14 +2021,16 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.get_associated_role_request.GetAssociatedRoleRequest = {}  # type: ignore[typeddict-item]
-        input_["group_id"] = group_id
+        input_: capo_greengrass.types.get_associated_role_request.GetAssociatedRoleRequest = {
+            "group_id": group_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_bulk_deployment_status(
@@ -2012,14 +2065,16 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.get_bulk_deployment_status_request.GetBulkDeploymentStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["bulk_deployment_id"] = bulk_deployment_id
+        input_: capo_greengrass.types.get_bulk_deployment_status_request.GetBulkDeploymentStatusRequest = {
+            "bulk_deployment_id": bulk_deployment_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_connectivity_info(
@@ -2055,14 +2110,16 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.get_connectivity_info_request.GetConnectivityInfoRequest = {}  # type: ignore[typeddict-item]
-        input_["thing_name"] = thing_name
+        input_: capo_greengrass.types.get_connectivity_info_request.GetConnectivityInfoRequest = {
+            "thing_name": thing_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_connector_definition(
@@ -2097,14 +2154,16 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.get_connector_definition_request.GetConnectorDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["connector_definition_id"] = connector_definition_id
+        input_: capo_greengrass.types.get_connector_definition_request.GetConnectorDefinitionRequest = {
+            "connector_definition_id": connector_definition_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_connector_definition_version(
@@ -2143,9 +2202,10 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.get_connector_definition_version_request.GetConnectorDefinitionVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["connector_definition_id"] = connector_definition_id
-        input_["connector_definition_version_id"] = connector_definition_version_id
+        input_: capo_greengrass.types.get_connector_definition_version_request.GetConnectorDefinitionVersionRequest = {
+            "connector_definition_id": connector_definition_id,
+            "connector_definition_version_id": connector_definition_version_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -2154,6 +2214,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_core_definition(
@@ -2188,14 +2249,16 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.get_core_definition_request.GetCoreDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["core_definition_id"] = core_definition_id
+        input_: capo_greengrass.types.get_core_definition_request.GetCoreDefinitionRequest = {
+            "core_definition_id": core_definition_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_core_definition_version(
@@ -2232,15 +2295,17 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.get_core_definition_version_request.GetCoreDefinitionVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["core_definition_id"] = core_definition_id
-        input_["core_definition_version_id"] = core_definition_version_id
+        input_: capo_greengrass.types.get_core_definition_version_request.GetCoreDefinitionVersionRequest = {
+            "core_definition_id": core_definition_id,
+            "core_definition_version_id": core_definition_version_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_deployment_status(
@@ -2277,15 +2342,17 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.get_deployment_status_request.GetDeploymentStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["deployment_id"] = deployment_id
-        input_["group_id"] = group_id
+        input_: capo_greengrass.types.get_deployment_status_request.GetDeploymentStatusRequest = {
+            "deployment_id": deployment_id,
+            "group_id": group_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_device_definition(
@@ -2320,14 +2387,16 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.get_device_definition_request.GetDeviceDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["device_definition_id"] = device_definition_id
+        input_: capo_greengrass.types.get_device_definition_request.GetDeviceDefinitionRequest = {
+            "device_definition_id": device_definition_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_device_definition_version(
@@ -2366,9 +2435,10 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.get_device_definition_version_request.GetDeviceDefinitionVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["device_definition_id"] = device_definition_id
-        input_["device_definition_version_id"] = device_definition_version_id
+        input_: capo_greengrass.types.get_device_definition_version_request.GetDeviceDefinitionVersionRequest = {
+            "device_definition_id": device_definition_id,
+            "device_definition_version_id": device_definition_version_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -2377,6 +2447,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_function_definition(
@@ -2411,14 +2482,16 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.get_function_definition_request.GetFunctionDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["function_definition_id"] = function_definition_id
+        input_: capo_greengrass.types.get_function_definition_request.GetFunctionDefinitionRequest = {
+            "function_definition_id": function_definition_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_function_definition_version(
@@ -2457,9 +2530,10 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.get_function_definition_version_request.GetFunctionDefinitionVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["function_definition_id"] = function_definition_id
-        input_["function_definition_version_id"] = function_definition_version_id
+        input_: capo_greengrass.types.get_function_definition_version_request.GetFunctionDefinitionVersionRequest = {
+            "function_definition_id": function_definition_id,
+            "function_definition_version_id": function_definition_version_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -2468,6 +2542,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_group(
@@ -2502,14 +2577,16 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.get_group_request.GetGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["group_id"] = group_id
+        input_: capo_greengrass.types.get_group_request.GetGroupRequest = {
+            "group_id": group_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_group_certificate_authority(
@@ -2547,15 +2624,17 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.get_group_certificate_authority_request.GetGroupCertificateAuthorityRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_authority_id"] = certificate_authority_id
-        input_["group_id"] = group_id
+        input_: capo_greengrass.types.get_group_certificate_authority_request.GetGroupCertificateAuthorityRequest = {
+            "certificate_authority_id": certificate_authority_id,
+            "group_id": group_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_group_certificate_configuration(
@@ -2591,14 +2670,16 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.get_group_certificate_configuration_request.GetGroupCertificateConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["group_id"] = group_id
+        input_: capo_greengrass.types.get_group_certificate_configuration_request.GetGroupCertificateConfigurationRequest = {
+            "group_id": group_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_group_version(
@@ -2635,15 +2716,17 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.get_group_version_request.GetGroupVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["group_id"] = group_id
-        input_["group_version_id"] = group_version_id
+        input_: capo_greengrass.types.get_group_version_request.GetGroupVersionRequest = {
+            "group_id": group_id,
+            "group_version_id": group_version_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_logger_definition(
@@ -2678,14 +2761,16 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.get_logger_definition_request.GetLoggerDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["logger_definition_id"] = logger_definition_id
+        input_: capo_greengrass.types.get_logger_definition_request.GetLoggerDefinitionRequest = {
+            "logger_definition_id": logger_definition_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_logger_definition_version(
@@ -2724,9 +2809,10 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.get_logger_definition_version_request.GetLoggerDefinitionVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["logger_definition_id"] = logger_definition_id
-        input_["logger_definition_version_id"] = logger_definition_version_id
+        input_: capo_greengrass.types.get_logger_definition_version_request.GetLoggerDefinitionVersionRequest = {
+            "logger_definition_id": logger_definition_id,
+            "logger_definition_version_id": logger_definition_version_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -2735,6 +2821,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_resource_definition(
@@ -2769,14 +2856,16 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.get_resource_definition_request.GetResourceDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_definition_id"] = resource_definition_id
+        input_: capo_greengrass.types.get_resource_definition_request.GetResourceDefinitionRequest = {
+            "resource_definition_id": resource_definition_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_resource_definition_version(
@@ -2813,15 +2902,17 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.get_resource_definition_version_request.GetResourceDefinitionVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_definition_id"] = resource_definition_id
-        input_["resource_definition_version_id"] = resource_definition_version_id
+        input_: capo_greengrass.types.get_resource_definition_version_request.GetResourceDefinitionVersionRequest = {
+            "resource_definition_id": resource_definition_id,
+            "resource_definition_version_id": resource_definition_version_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_service_role_for_account(
@@ -2850,13 +2941,14 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.get_service_role_for_account_request.GetServiceRoleForAccountRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrass.types.get_service_role_for_account_request.GetServiceRoleForAccountRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_subscription_definition(
@@ -2891,14 +2983,16 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.get_subscription_definition_request.GetSubscriptionDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["subscription_definition_id"] = subscription_definition_id
+        input_: capo_greengrass.types.get_subscription_definition_request.GetSubscriptionDefinitionRequest = {
+            "subscription_definition_id": subscription_definition_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_subscription_definition_version(
@@ -2937,19 +3031,19 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.get_subscription_definition_version_request.GetSubscriptionDefinitionVersionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrass.types.get_subscription_definition_version_request.GetSubscriptionDefinitionVersionRequest = {
+            "subscription_definition_id": subscription_definition_id,
+            "subscription_definition_version_id": subscription_definition_version_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["subscription_definition_id"] = subscription_definition_id
-        input_["subscription_definition_version_id"] = (
-            subscription_definition_version_id
-        )
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_thing_runtime_configuration(
@@ -2985,14 +3079,16 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.get_thing_runtime_configuration_request.GetThingRuntimeConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["thing_name"] = thing_name
+        input_: capo_greengrass.types.get_thing_runtime_configuration_request.GetThingRuntimeConfigurationRequest = {
+            "thing_name": thing_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_bulk_deployment_detailed_reports(
@@ -3031,8 +3127,9 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.list_bulk_deployment_detailed_reports_request.ListBulkDeploymentDetailedReportsRequest = {}  # type: ignore[typeddict-item]
-        input_["bulk_deployment_id"] = bulk_deployment_id
+        input_: capo_greengrass.types.list_bulk_deployment_detailed_reports_request.ListBulkDeploymentDetailedReportsRequest = {
+            "bulk_deployment_id": bulk_deployment_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3043,6 +3140,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_bulk_deployments(
@@ -3079,7 +3177,7 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.list_bulk_deployments_request.ListBulkDeploymentsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrass.types.list_bulk_deployments_request.ListBulkDeploymentsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3090,6 +3188,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_connector_definitions(
@@ -3125,7 +3224,7 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.list_connector_definitions_request.ListConnectorDefinitionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrass.types.list_connector_definitions_request.ListConnectorDefinitionsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3136,6 +3235,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_connector_definition_versions(
@@ -3174,8 +3274,9 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.list_connector_definition_versions_request.ListConnectorDefinitionVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["connector_definition_id"] = connector_definition_id
+        input_: capo_greengrass.types.list_connector_definition_versions_request.ListConnectorDefinitionVersionsRequest = {
+            "connector_definition_id": connector_definition_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3186,6 +3287,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_core_definitions(
@@ -3221,7 +3323,7 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.list_core_definitions_request.ListCoreDefinitionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrass.types.list_core_definitions_request.ListCoreDefinitionsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3232,6 +3334,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_core_definition_versions(
@@ -3270,8 +3373,9 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.list_core_definition_versions_request.ListCoreDefinitionVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["core_definition_id"] = core_definition_id
+        input_: capo_greengrass.types.list_core_definition_versions_request.ListCoreDefinitionVersionsRequest = {
+            "core_definition_id": core_definition_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3282,6 +3386,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_deployments(
@@ -3320,8 +3425,9 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.list_deployments_request.ListDeploymentsRequest = {}  # type: ignore[typeddict-item]
-        input_["group_id"] = group_id
+        input_: capo_greengrass.types.list_deployments_request.ListDeploymentsRequest = {
+            "group_id": group_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3332,6 +3438,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_device_definitions(
@@ -3367,7 +3474,7 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.list_device_definitions_request.ListDeviceDefinitionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrass.types.list_device_definitions_request.ListDeviceDefinitionsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3378,6 +3485,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_device_definition_versions(
@@ -3416,8 +3524,9 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.list_device_definition_versions_request.ListDeviceDefinitionVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["device_definition_id"] = device_definition_id
+        input_: capo_greengrass.types.list_device_definition_versions_request.ListDeviceDefinitionVersionsRequest = {
+            "device_definition_id": device_definition_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3428,6 +3537,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_function_definitions(
@@ -3463,7 +3573,7 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.list_function_definitions_request.ListFunctionDefinitionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrass.types.list_function_definitions_request.ListFunctionDefinitionsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3474,6 +3584,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_function_definition_versions(
@@ -3512,8 +3623,9 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.list_function_definition_versions_request.ListFunctionDefinitionVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["function_definition_id"] = function_definition_id
+        input_: capo_greengrass.types.list_function_definition_versions_request.ListFunctionDefinitionVersionsRequest = {
+            "function_definition_id": function_definition_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3524,6 +3636,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_group_certificate_authorities(
@@ -3559,14 +3672,16 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.list_group_certificate_authorities_request.ListGroupCertificateAuthoritiesRequest = {}  # type: ignore[typeddict-item]
-        input_["group_id"] = group_id
+        input_: capo_greengrass.types.list_group_certificate_authorities_request.ListGroupCertificateAuthoritiesRequest = {
+            "group_id": group_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_groups(
@@ -3602,7 +3717,7 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.list_groups_request.ListGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrass.types.list_groups_request.ListGroupsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3613,6 +3728,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_group_versions(
@@ -3651,8 +3767,9 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.list_group_versions_request.ListGroupVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["group_id"] = group_id
+        input_: capo_greengrass.types.list_group_versions_request.ListGroupVersionsRequest = {
+            "group_id": group_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3663,6 +3780,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_logger_definitions(
@@ -3698,7 +3816,7 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.list_logger_definitions_request.ListLoggerDefinitionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrass.types.list_logger_definitions_request.ListLoggerDefinitionsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3709,6 +3827,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_logger_definition_versions(
@@ -3747,8 +3866,9 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.list_logger_definition_versions_request.ListLoggerDefinitionVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["logger_definition_id"] = logger_definition_id
+        input_: capo_greengrass.types.list_logger_definition_versions_request.ListLoggerDefinitionVersionsRequest = {
+            "logger_definition_id": logger_definition_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3759,6 +3879,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_resource_definitions(
@@ -3794,7 +3915,7 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.list_resource_definitions_request.ListResourceDefinitionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrass.types.list_resource_definitions_request.ListResourceDefinitionsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3805,6 +3926,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_resource_definition_versions(
@@ -3843,18 +3965,20 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.list_resource_definition_versions_request.ListResourceDefinitionVersionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrass.types.list_resource_definition_versions_request.ListResourceDefinitionVersionsRequest = {
+            "resource_definition_id": resource_definition_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["resource_definition_id"] = resource_definition_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_subscription_definitions(
@@ -3890,7 +4014,7 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.list_subscription_definitions_request.ListSubscriptionDefinitionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrass.types.list_subscription_definitions_request.ListSubscriptionDefinitionsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3901,6 +4025,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_subscription_definition_versions(
@@ -3939,18 +4064,20 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.list_subscription_definition_versions_request.ListSubscriptionDefinitionVersionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrass.types.list_subscription_definition_versions_request.ListSubscriptionDefinitionVersionsRequest = {
+            "subscription_definition_id": subscription_definition_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["subscription_definition_id"] = subscription_definition_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_tags_for_resource(
@@ -3985,14 +4112,16 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_greengrass.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def reset_deployments(
@@ -4031,18 +4160,20 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.reset_deployments_request.ResetDeploymentsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrass.types.reset_deployments_request.ResetDeploymentsRequest = {
+            "group_id": group_id
+        }
         if amzn_client_token is not None:
             input_["amzn_client_token"] = amzn_client_token
         if force is not None:
             input_["force"] = force
-        input_["group_id"] = group_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_bulk_deployment(
@@ -4083,7 +4214,7 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.start_bulk_deployment_request.StartBulkDeploymentRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrass.types.start_bulk_deployment_request.StartBulkDeploymentRequest = {}
         if amzn_client_token is not None:
             input_["amzn_client_token"] = amzn_client_token
         if execution_role_arn is not None:
@@ -4098,6 +4229,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_bulk_deployment(
@@ -4134,14 +4266,16 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.stop_bulk_deployment_request.StopBulkDeploymentRequest = {}  # type: ignore[typeddict-item]
-        input_["bulk_deployment_id"] = bulk_deployment_id
+        input_: capo_greengrass.types.stop_bulk_deployment_request.StopBulkDeploymentRequest = {
+            "bulk_deployment_id": bulk_deployment_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -4175,8 +4309,9 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_greengrass.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -4185,6 +4320,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -4221,8 +4357,9 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_greengrass.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if tag_keys is not None:
             input_["tag_keys"] = tag_keys
 
@@ -4231,6 +4368,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_connectivity_info(
@@ -4270,16 +4408,18 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.update_connectivity_info_request.UpdateConnectivityInfoRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrass.types.update_connectivity_info_request.UpdateConnectivityInfoRequest = {
+            "thing_name": thing_name
+        }
         if connectivity_info is not None:
             input_["connectivity_info"] = connectivity_info
-        input_["thing_name"] = thing_name
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_connector_definition(
@@ -4316,8 +4456,9 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.update_connector_definition_request.UpdateConnectorDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["connector_definition_id"] = connector_definition_id
+        input_: capo_greengrass.types.update_connector_definition_request.UpdateConnectorDefinitionRequest = {
+            "connector_definition_id": connector_definition_id
+        }
         if name is not None:
             input_["name"] = name
 
@@ -4326,6 +4467,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_core_definition(
@@ -4362,8 +4504,9 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.update_core_definition_request.UpdateCoreDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["core_definition_id"] = core_definition_id
+        input_: capo_greengrass.types.update_core_definition_request.UpdateCoreDefinitionRequest = {
+            "core_definition_id": core_definition_id
+        }
         if name is not None:
             input_["name"] = name
 
@@ -4372,6 +4515,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_device_definition(
@@ -4408,8 +4552,9 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.update_device_definition_request.UpdateDeviceDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["device_definition_id"] = device_definition_id
+        input_: capo_greengrass.types.update_device_definition_request.UpdateDeviceDefinitionRequest = {
+            "device_definition_id": device_definition_id
+        }
         if name is not None:
             input_["name"] = name
 
@@ -4418,6 +4563,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_function_definition(
@@ -4454,8 +4600,9 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.update_function_definition_request.UpdateFunctionDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["function_definition_id"] = function_definition_id
+        input_: capo_greengrass.types.update_function_definition_request.UpdateFunctionDefinitionRequest = {
+            "function_definition_id": function_definition_id
+        }
         if name is not None:
             input_["name"] = name
 
@@ -4464,6 +4611,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_group(
@@ -4500,8 +4648,9 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.update_group_request.UpdateGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["group_id"] = group_id
+        input_: capo_greengrass.types.update_group_request.UpdateGroupRequest = {
+            "group_id": group_id
+        }
         if name is not None:
             input_["name"] = name
 
@@ -4510,6 +4659,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_group_certificate_configuration(
@@ -4549,18 +4699,20 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.update_group_certificate_configuration_request.UpdateGroupCertificateConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrass.types.update_group_certificate_configuration_request.UpdateGroupCertificateConfigurationRequest = {
+            "group_id": group_id
+        }
         if certificate_expiry_in_milliseconds is not None:
             input_["certificate_expiry_in_milliseconds"] = (
                 certificate_expiry_in_milliseconds
             )
-        input_["group_id"] = group_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_logger_definition(
@@ -4597,8 +4749,9 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.update_logger_definition_request.UpdateLoggerDefinitionRequest = {}  # type: ignore[typeddict-item]
-        input_["logger_definition_id"] = logger_definition_id
+        input_: capo_greengrass.types.update_logger_definition_request.UpdateLoggerDefinitionRequest = {
+            "logger_definition_id": logger_definition_id
+        }
         if name is not None:
             input_["name"] = name
 
@@ -4607,6 +4760,7 @@ class AsyncGreengrassClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_resource_definition(
@@ -4643,16 +4797,18 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.update_resource_definition_request.UpdateResourceDefinitionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrass.types.update_resource_definition_request.UpdateResourceDefinitionRequest = {
+            "resource_definition_id": resource_definition_id
+        }
         if name is not None:
             input_["name"] = name
-        input_["resource_definition_id"] = resource_definition_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_subscription_definition(
@@ -4689,16 +4845,18 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.update_subscription_definition_request.UpdateSubscriptionDefinitionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrass.types.update_subscription_definition_request.UpdateSubscriptionDefinitionRequest = {
+            "subscription_definition_id": subscription_definition_id
+        }
         if name is not None:
             input_["name"] = name
-        input_["subscription_definition_id"] = subscription_definition_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_thing_runtime_configuration(
@@ -4738,16 +4896,18 @@ class AsyncGreengrassClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_greengrass.types.update_thing_runtime_configuration_request.UpdateThingRuntimeConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_greengrass.types.update_thing_runtime_configuration_request.UpdateThingRuntimeConfigurationRequest = {
+            "thing_name": thing_name
+        }
         if telemetry_configuration is not None:
             input_["telemetry_configuration"] = telemetry_configuration
-        input_["thing_name"] = thing_name
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

@@ -31,7 +31,7 @@ def serialize_json(value: LogDestination) -> dict:
 
 def deserialize_json(data: dict) -> LogDestination:
     out: LogDestination = {}  # type: ignore[typeddict-item]
-    if "CloudWatchLogsLogGroup" in data:
+    if data.get("CloudWatchLogsLogGroup") is not None:
         import capo_simspaceweaver.types.cloud_watch_logs_log_group
 
         out["cloud_watch_logs_log_group"] = (

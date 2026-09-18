@@ -13,10 +13,25 @@ from capo_b2bi import Asyncb2biClient
 
 
 async def main():
-    async with Asyncb2biClient() as s3:
+    async with Asyncb2biClient() as b2bi:
         # Example: call the create_starter_mapping_template operation
-        response = await s3.create_starter_mapping_template()
+        response = await b2bi.create_starter_mapping_template()
         print(response["mapping_template"])
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_b2bi import Asyncb2biClient
+
+
+async def main():
+    async with Asyncb2biClient() as b2bi:
+        # Example: paginate over list_capabilities
+        async for item in b2bi.iter_list_capabilities():
+            print(item)
 ```
 
 ## Error Handling
@@ -29,9 +44,9 @@ from capo_b2bi.error import AccessDeniedException
 
 
 async def main():
-    async with Asyncb2biClient() as s3:
+    async with Asyncb2biClient() as b2bi:
         try:
-            await s3.create_starter_mapping_template()
+            await b2bi.create_starter_mapping_template()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +63,13 @@ from capo_b2bi import Asyncb2biClient
 
 
 async def main():
-    async with Asyncb2biClient() as s3:
+    async with Asyncb2biClient() as b2bi:
         # Default: 3 attempts for every operation
-        response = await s3.create_starter_mapping_template()
+        response = await b2bi.create_starter_mapping_template()
 
         # Override per operation
-        response = await s3.create_starter_mapping_template(config_overrides={"retry_max_attempts": 5})
+        response = await b2bi.create_starter_mapping_template(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_starter_mapping_template(config_overrides={"retry_max_attempts": 1})
+        response = await b2bi.create_starter_mapping_template(config_overrides={"retry_max_attempts": 1})
 ```

@@ -29,10 +29,10 @@ def serialize_aws_json_1_1(value: WebhookFilterRule) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WebhookFilterRule:
     out: WebhookFilterRule = {}  # type: ignore[typeddict-item]
-    if "jsonPath" in data:
+    if data.get("jsonPath") is not None:
         out["json_path"] = data["jsonPath"]
     else:
         raise DeserializationError("WebhookFilterRule.json_path required")
-    if "matchEquals" in data:
+    if data.get("matchEquals") is not None:
         out["match_equals"] = data["matchEquals"]
     return out

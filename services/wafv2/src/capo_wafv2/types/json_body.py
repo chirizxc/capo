@@ -62,7 +62,7 @@ def serialize_aws_json_1_1(value: JsonBody) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> JsonBody:
     out: JsonBody = {}  # type: ignore[typeddict-item]
-    if "MatchPattern" in data:
+    if data.get("MatchPattern") is not None:
         import capo_wafv2.types.json_match_pattern
 
         out["match_pattern"] = (
@@ -72,7 +72,7 @@ def deserialize_aws_json_1_1(data: dict) -> JsonBody:
         )
     else:
         raise DeserializationError("JsonBody.match_pattern required")
-    if "MatchScope" in data:
+    if data.get("MatchScope") is not None:
         import capo_wafv2.types.json_match_scope
 
         out["match_scope"] = capo_wafv2.types.json_match_scope.deserialize_aws_json_1_1(
@@ -80,7 +80,7 @@ def deserialize_aws_json_1_1(data: dict) -> JsonBody:
         )
     else:
         raise DeserializationError("JsonBody.match_scope required")
-    if "InvalidFallbackBehavior" in data:
+    if data.get("InvalidFallbackBehavior") is not None:
         import capo_wafv2.types.body_parsing_fallback_behavior
 
         out["invalid_fallback_behavior"] = (
@@ -88,7 +88,7 @@ def deserialize_aws_json_1_1(data: dict) -> JsonBody:
                 data["InvalidFallbackBehavior"]
             )
         )
-    if "OversizeHandling" in data:
+    if data.get("OversizeHandling") is not None:
         import capo_wafv2.types.oversize_handling
 
         out["oversize_handling"] = (

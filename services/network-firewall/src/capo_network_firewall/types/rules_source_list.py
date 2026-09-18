@@ -50,7 +50,7 @@ def serialize_aws_json_1_0(value: RulesSourceList) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RulesSourceList:
     out: RulesSourceList = {}  # type: ignore[typeddict-item]
-    if "Targets" in data:
+    if data.get("Targets") is not None:
         import capo_network_firewall.types.rule_targets
 
         out["targets"] = (
@@ -60,7 +60,7 @@ def deserialize_aws_json_1_0(data: dict) -> RulesSourceList:
         )
     else:
         raise DeserializationError("RulesSourceList.targets required")
-    if "TargetTypes" in data:
+    if data.get("TargetTypes") is not None:
         import capo_network_firewall.types.target_types
 
         out["target_types"] = (
@@ -70,7 +70,7 @@ def deserialize_aws_json_1_0(data: dict) -> RulesSourceList:
         )
     else:
         raise DeserializationError("RulesSourceList.target_types required")
-    if "GeneratedRulesType" in data:
+    if data.get("GeneratedRulesType") is not None:
         import capo_network_firewall.types.generated_rules_type
 
         out["generated_rules_type"] = (

@@ -26,6 +26,6 @@ def serialize_json(value: DeleteGroupMembershipResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteGroupMembershipResponse:
     out: DeleteGroupMembershipResponse = {}  # type: ignore[typeddict-item]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> TagFilters:
 
     out: TagFilters = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_ram.types.tag_filter.deserialize_json(item))
     return out

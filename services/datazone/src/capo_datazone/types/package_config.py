@@ -30,7 +30,7 @@ def serialize_json(value: PackageConfig) -> dict:
 
 def deserialize_json(data: dict) -> PackageConfig:
     out: PackageConfig = {}  # type: ignore[typeddict-item]
-    if "packageManager" in data:
+    if data.get("packageManager") is not None:
         import capo_datazone.types.package_manager
 
         out["package_manager"] = capo_datazone.types.package_manager.deserialize_json(
@@ -38,6 +38,6 @@ def deserialize_json(data: dict) -> PackageConfig:
         )
     else:
         out["package_manager"] = "UV"
-    if "packageSpecification" in data:
+    if data.get("packageSpecification") is not None:
         out["package_specification"] = data["packageSpecification"]
     return out

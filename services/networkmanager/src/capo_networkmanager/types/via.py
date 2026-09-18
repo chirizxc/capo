@@ -44,7 +44,7 @@ def serialize_json(value: Via) -> dict:
 
 def deserialize_json(data: dict) -> Via:
     out: Via = {}  # type: ignore[typeddict-item]
-    if "NetworkFunctionGroups" in data:
+    if data.get("NetworkFunctionGroups") is not None:
         import capo_networkmanager.types.network_function_group_list
 
         out["network_function_groups"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> Via:
                 data["NetworkFunctionGroups"]
             )
         )
-    if "WithEdgeOverrides" in data:
+    if data.get("WithEdgeOverrides") is not None:
         import capo_networkmanager.types.with_edge_overrides_list
 
         out["with_edge_overrides"] = (

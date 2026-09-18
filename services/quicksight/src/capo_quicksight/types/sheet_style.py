@@ -45,17 +45,17 @@ def serialize_json(value: SheetStyle) -> dict:
 
 def deserialize_json(data: dict) -> SheetStyle:
     out: SheetStyle = {}  # type: ignore[typeddict-item]
-    if "Tile" in data:
+    if data.get("Tile") is not None:
         import capo_quicksight.types.tile_style
 
         out["tile"] = capo_quicksight.types.tile_style.deserialize_json(data["Tile"])
-    if "TileLayout" in data:
+    if data.get("TileLayout") is not None:
         import capo_quicksight.types.tile_layout_style
 
         out["tile_layout"] = capo_quicksight.types.tile_layout_style.deserialize_json(
             data["TileLayout"]
         )
-    if "Background" in data:
+    if data.get("Background") is not None:
         import capo_quicksight.types.sheet_background_style
 
         out["background"] = (

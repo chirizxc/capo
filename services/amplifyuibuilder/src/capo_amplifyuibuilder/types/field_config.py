@@ -61,17 +61,17 @@ def serialize_json(value: FieldConfig) -> dict:
 
 def deserialize_json(data: dict) -> FieldConfig:
     out: FieldConfig = {}  # type: ignore[typeddict-item]
-    if "label" in data:
+    if data.get("label") is not None:
         out["label"] = data["label"]
-    if "position" in data:
+    if data.get("position") is not None:
         import capo_amplifyuibuilder.types.field_position
 
         out["position"] = capo_amplifyuibuilder.types.field_position.deserialize_json(
             data["position"]
         )
-    if "excluded" in data:
+    if data.get("excluded") is not None:
         out["excluded"] = data["excluded"]
-    if "inputType" in data:
+    if data.get("inputType") is not None:
         import capo_amplifyuibuilder.types.field_input_config
 
         out["input_type"] = (
@@ -79,7 +79,7 @@ def deserialize_json(data: dict) -> FieldConfig:
                 data["inputType"]
             )
         )
-    if "validations" in data:
+    if data.get("validations") is not None:
         import capo_amplifyuibuilder.types.validations_list
 
         out["validations"] = (

@@ -61,7 +61,7 @@ def serialize_aws_json_1_1(value: CampaignConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CampaignConfig:
     out: CampaignConfig = {}  # type: ignore[typeddict-item]
-    if "itemExplorationConfig" in data:
+    if data.get("itemExplorationConfig") is not None:
         import capo_personalize.types.hyper_parameters
 
         out["item_exploration_config"] = (
@@ -69,13 +69,13 @@ def deserialize_aws_json_1_1(data: dict) -> CampaignConfig:
                 data["itemExplorationConfig"]
             )
         )
-    if "enableMetadataWithRecommendations" in data:
+    if data.get("enableMetadataWithRecommendations") is not None:
         out["enable_metadata_with_recommendations"] = data[
             "enableMetadataWithRecommendations"
         ]
-    if "syncWithLatestSolutionVersion" in data:
+    if data.get("syncWithLatestSolutionVersion") is not None:
         out["sync_with_latest_solution_version"] = data["syncWithLatestSolutionVersion"]
-    if "rankingInfluence" in data:
+    if data.get("rankingInfluence") is not None:
         import capo_personalize.types.ranking_influence
 
         out["ranking_influence"] = (

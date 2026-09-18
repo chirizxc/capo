@@ -44,9 +44,9 @@ def serialize_json(value: GetSynchronizationConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetSynchronizationConfigurationResponse:
     out: GetSynchronizationConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "latestVersionNumber" in data:
+    if data.get("latestVersionNumber") is not None:
         out["latest_version_number"] = data["latestVersionNumber"]
-    if "importDataRules" in data:
+    if data.get("importDataRules") is not None:
         import capo_s3files.types.import_data_rule_list
 
         out["import_data_rules"] = (
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> GetSynchronizationConfigurationResponse:
         raise DeserializationError(
             "GetSynchronizationConfigurationResponse.import_data_rules required"
         )
-    if "expirationDataRules" in data:
+    if data.get("expirationDataRules") is not None:
         import capo_s3files.types.expiration_data_rule_list
 
         out["expiration_data_rules"] = (

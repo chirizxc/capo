@@ -46,11 +46,11 @@ def serialize_json(value: TopicNumericRangeFilter) -> dict:
 
 def deserialize_json(data: dict) -> TopicNumericRangeFilter:
     out: TopicNumericRangeFilter = {}  # type: ignore[typeddict-item]
-    if "Inclusive" in data:
+    if data.get("Inclusive") is not None:
         out["inclusive"] = data["Inclusive"]
     else:
         out["inclusive"] = False
-    if "Constant" in data:
+    if data.get("Constant") is not None:
         import capo_quicksight.types.topic_range_filter_constant
 
         out["constant"] = (
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> TopicNumericRangeFilter:
                 data["Constant"]
             )
         )
-    if "Aggregation" in data:
+    if data.get("Aggregation") is not None:
         import capo_quicksight.types.named_filter_agg_type
 
         out["aggregation"] = (

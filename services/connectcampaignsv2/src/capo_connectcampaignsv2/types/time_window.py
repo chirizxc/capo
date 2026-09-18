@@ -39,7 +39,7 @@ def serialize_json(value: TimeWindow) -> dict:
 
 def deserialize_json(data: dict) -> TimeWindow:
     out: TimeWindow = {}  # type: ignore[typeddict-item]
-    if "openHours" in data:
+    if data.get("openHours") is not None:
         import capo_connectcampaignsv2.types.open_hours
 
         out["open_hours"] = capo_connectcampaignsv2.types.open_hours.deserialize_json(
@@ -47,7 +47,7 @@ def deserialize_json(data: dict) -> TimeWindow:
         )
     else:
         raise DeserializationError("TimeWindow.open_hours required")
-    if "restrictedPeriods" in data:
+    if data.get("restrictedPeriods") is not None:
         import capo_connectcampaignsv2.types.restricted_periods
 
         out["restricted_periods"] = (

@@ -27,7 +27,7 @@ def serialize_json(value: GetManagedViewOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetManagedViewOutput:
     out: GetManagedViewOutput = {}  # type: ignore[typeddict-item]
-    if "ManagedView" in data:
+    if data.get("ManagedView") is not None:
         import capo_resource_explorer_2.types.managed_view
 
         out["managed_view"] = (

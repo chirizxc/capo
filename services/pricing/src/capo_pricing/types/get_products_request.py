@@ -49,20 +49,20 @@ def serialize_aws_json_1_1(value: GetProductsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetProductsRequest:
     out: GetProductsRequest = {}  # type: ignore[typeddict-item]
-    if "ServiceCode" in data:
+    if data.get("ServiceCode") is not None:
         out["service_code"] = data["ServiceCode"]
     else:
         raise DeserializationError("GetProductsRequest.service_code required")
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_pricing.types.filters
 
         out["filters"] = capo_pricing.types.filters.deserialize_aws_json_1_1(
             data["Filters"]
         )
-    if "FormatVersion" in data:
+    if data.get("FormatVersion") is not None:
         out["format_version"] = data["FormatVersion"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

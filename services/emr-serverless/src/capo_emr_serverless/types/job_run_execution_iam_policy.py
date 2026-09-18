@@ -32,9 +32,9 @@ def serialize_json(value: JobRunExecutionIamPolicy) -> dict:
 
 def deserialize_json(data: dict) -> JobRunExecutionIamPolicy:
     out: JobRunExecutionIamPolicy = {}  # type: ignore[typeddict-item]
-    if "policy" in data:
+    if data.get("policy") is not None:
         out["policy"] = data["policy"]
-    if "policyArns" in data:
+    if data.get("policyArns") is not None:
         import capo_emr_serverless.types.policy_arn_list
 
         out["policy_arns"] = capo_emr_serverless.types.policy_arn_list.deserialize_json(

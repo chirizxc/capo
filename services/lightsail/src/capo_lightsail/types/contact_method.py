@@ -97,9 +97,9 @@ def serialize_aws_json_1_1(value: ContactMethod) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ContactMethod:
     out: ContactMethod = {}  # type: ignore[typeddict-item]
-    if "contactEndpoint" in data:
+    if data.get("contactEndpoint") is not None:
         out["contact_endpoint"] = data["contactEndpoint"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_lightsail.types.contact_method_status
 
         out["status"] = (
@@ -107,7 +107,7 @@ def deserialize_aws_json_1_1(data: dict) -> ContactMethod:
                 data["status"]
             )
         )
-    if "protocol" in data:
+    if data.get("protocol") is not None:
         import capo_lightsail.types.contact_protocol
 
         out["protocol"] = (
@@ -115,17 +115,17 @@ def deserialize_aws_json_1_1(data: dict) -> ContactMethod:
                 data["protocol"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_lightsail.types.iso_date
 
         out["created_at"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
             data["createdAt"]
         )
-    if "location" in data:
+    if data.get("location") is not None:
         import capo_lightsail.types.resource_location
 
         out["location"] = (
@@ -133,7 +133,7 @@ def deserialize_aws_json_1_1(data: dict) -> ContactMethod:
                 data["location"]
             )
         )
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_lightsail.types.resource_type
 
         out["resource_type"] = (
@@ -141,9 +141,9 @@ def deserialize_aws_json_1_1(data: dict) -> ContactMethod:
                 data["resourceType"]
             )
         )
-    if "supportCode" in data:
+    if data.get("supportCode") is not None:
         out["support_code"] = data["supportCode"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_lightsail.types.tag_list
 
         out["tags"] = capo_lightsail.types.tag_list.deserialize_aws_json_1_1(

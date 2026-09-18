@@ -97,13 +97,13 @@ def serialize_aws_json_1_1(value: DescribedUser) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribedUser:
     out: DescribedUser = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("DescribedUser.arn required")
-    if "HomeDirectory" in data:
+    if data.get("HomeDirectory") is not None:
         out["home_directory"] = data["HomeDirectory"]
-    if "HomeDirectoryMappings" in data:
+    if data.get("HomeDirectoryMappings") is not None:
         import capo_transfer.types.home_directory_mappings
 
         out["home_directory_mappings"] = (
@@ -111,7 +111,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribedUser:
                 data["HomeDirectoryMappings"]
             )
         )
-    if "HomeDirectoryType" in data:
+    if data.get("HomeDirectoryType") is not None:
         import capo_transfer.types.home_directory_type
 
         out["home_directory_type"] = (
@@ -119,9 +119,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribedUser:
                 data["HomeDirectoryType"]
             )
         )
-    if "Policy" in data:
+    if data.get("Policy") is not None:
         out["policy"] = data["Policy"]
-    if "PosixProfile" in data:
+    if data.get("PosixProfile") is not None:
         import capo_transfer.types.posix_profile
 
         out["posix_profile"] = (
@@ -129,9 +129,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribedUser:
                 data["PosixProfile"]
             )
         )
-    if "Role" in data:
+    if data.get("Role") is not None:
         out["role"] = data["Role"]
-    if "SshPublicKeys" in data:
+    if data.get("SshPublicKeys") is not None:
         import capo_transfer.types.ssh_public_keys
 
         out["ssh_public_keys"] = (
@@ -139,10 +139,10 @@ def deserialize_aws_json_1_1(data: dict) -> DescribedUser:
                 data["SshPublicKeys"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_transfer.types.tags
 
         out["tags"] = capo_transfer.types.tags.deserialize_aws_json_1_1(data["Tags"])
-    if "UserName" in data:
+    if data.get("UserName") is not None:
         out["user_name"] = data["UserName"]
     return out

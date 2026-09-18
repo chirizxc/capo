@@ -44,7 +44,7 @@ def serialize_json(value: DASHFragmentSelector) -> dict:
 
 def deserialize_json(data: dict) -> DASHFragmentSelector:
     out: DASHFragmentSelector = {}  # type: ignore[typeddict-item]
-    if "FragmentSelectorType" in data:
+    if data.get("FragmentSelectorType") is not None:
         import capo_kinesis_video_archived_media.types.dash_fragment_selector_type
 
         out["fragment_selector_type"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> DASHFragmentSelector:
                 data["FragmentSelectorType"]
             )
         )
-    if "TimestampRange" in data:
+    if data.get("TimestampRange") is not None:
         import capo_kinesis_video_archived_media.types.dash_timestamp_range
 
         out["timestamp_range"] = (

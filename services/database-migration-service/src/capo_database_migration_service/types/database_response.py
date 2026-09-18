@@ -77,15 +77,15 @@ def serialize_aws_json_1_1(value: DatabaseResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DatabaseResponse:
     out: DatabaseResponse = {}  # type: ignore[typeddict-item]
-    if "DatabaseId" in data:
+    if data.get("DatabaseId") is not None:
         out["database_id"] = data["DatabaseId"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
-    if "IpAddress" in data:
+    if data.get("IpAddress") is not None:
         out["ip_address"] = data["IpAddress"]
-    if "NumberOfSchemas" in data:
+    if data.get("NumberOfSchemas") is not None:
         out["number_of_schemas"] = data["NumberOfSchemas"]
-    if "Server" in data:
+    if data.get("Server") is not None:
         import capo_database_migration_service.types.server_short_info_response
 
         out["server"] = (
@@ -93,7 +93,7 @@ def deserialize_aws_json_1_1(data: dict) -> DatabaseResponse:
                 data["Server"]
             )
         )
-    if "SoftwareDetails" in data:
+    if data.get("SoftwareDetails") is not None:
         import capo_database_migration_service.types.database_instance_software_details_response
 
         out["software_details"] = (
@@ -101,7 +101,7 @@ def deserialize_aws_json_1_1(data: dict) -> DatabaseResponse:
                 data["SoftwareDetails"]
             )
         )
-    if "Collectors" in data:
+    if data.get("Collectors") is not None:
         import capo_database_migration_service.types.collectors_list
 
         out["collectors"] = (

@@ -30,13 +30,21 @@ def serialize_aws_json_1_1(value: SNOMEDCTTrait) -> dict:
             )
         )
     if "score" in value:
-        out["Score"] = value["score"]
+        out["Score"] = (
+            "NaN"
+            if value["score"] != value["score"]
+            else "Infinity"
+            if value["score"] == float("inf")
+            else "-Infinity"
+            if value["score"] == float("-inf")
+            else value["score"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> SNOMEDCTTrait:
     out: SNOMEDCTTrait = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         import capo_comprehendmedical.types.snomedct_trait_name
 
         out["name"] = (
@@ -44,6 +52,6 @@ def deserialize_aws_json_1_1(data: dict) -> SNOMEDCTTrait:
                 data["Name"]
             )
         )
-    if "Score" in data:
-        out["score"] = data["Score"]
+    if data.get("Score") is not None:
+        out["score"] = float(data["Score"])
     return out

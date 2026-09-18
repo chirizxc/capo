@@ -36,7 +36,7 @@ def serialize_json(value: ListMicrosoftTeamsUserIdentitiesResult) -> dict:
 
 def deserialize_json(data: dict) -> ListMicrosoftTeamsUserIdentitiesResult:
     out: ListMicrosoftTeamsUserIdentitiesResult = {}  # type: ignore[typeddict-item]
-    if "TeamsUserIdentities" in data:
+    if data.get("TeamsUserIdentities") is not None:
         import capo_chatbot.types.teams_user_identities_list
 
         out["teams_user_identities"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListMicrosoftTeamsUserIdentitiesResult:
                 data["TeamsUserIdentities"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

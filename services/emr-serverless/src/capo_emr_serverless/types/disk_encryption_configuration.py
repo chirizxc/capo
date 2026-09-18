@@ -38,7 +38,7 @@ def serialize_json(value: DiskEncryptionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DiskEncryptionConfiguration:
     out: DiskEncryptionConfiguration = {}  # type: ignore[typeddict-item]
-    if "encryptionContext" in data:
+    if data.get("encryptionContext") is not None:
         import capo_emr_serverless.types.encryption_context
 
         out["encryption_context"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> DiskEncryptionConfiguration:
                 data["encryptionContext"]
             )
         )
-    if "encryptionKeyArn" in data:
+    if data.get("encryptionKeyArn") is not None:
         out["encryption_key_arn"] = data["encryptionKeyArn"]
     return out

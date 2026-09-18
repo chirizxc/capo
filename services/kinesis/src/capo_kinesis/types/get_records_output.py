@@ -49,7 +49,7 @@ def serialize_aws_json_1_1(value: GetRecordsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetRecordsOutput:
     out: GetRecordsOutput = {}  # type: ignore[typeddict-item]
-    if "Records" in data:
+    if data.get("Records") is not None:
         import capo_kinesis.types.record_list
 
         out["records"] = capo_kinesis.types.record_list.deserialize_aws_json_1_1(
@@ -57,11 +57,11 @@ def deserialize_aws_json_1_1(data: dict) -> GetRecordsOutput:
         )
     else:
         raise DeserializationError("GetRecordsOutput.records required")
-    if "NextShardIterator" in data:
+    if data.get("NextShardIterator") is not None:
         out["next_shard_iterator"] = data["NextShardIterator"]
-    if "MillisBehindLatest" in data:
+    if data.get("MillisBehindLatest") is not None:
         out["millis_behind_latest"] = data["MillisBehindLatest"]
-    if "ChildShards" in data:
+    if data.get("ChildShards") is not None:
         import capo_kinesis.types.child_shard_list
 
         out["child_shards"] = (

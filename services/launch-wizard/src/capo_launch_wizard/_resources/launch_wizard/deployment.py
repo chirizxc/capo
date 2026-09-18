@@ -102,11 +102,12 @@ class Deployment:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_launch_wizard.types.create_deployment_input.CreateDeploymentInput = {}  # type: ignore[typeddict-item]
-        input_["workload_name"] = workload_name
-        input_["deployment_pattern_name"] = deployment_pattern_name
-        input_["name"] = name
-        input_["specifications"] = specifications
+        input_: capo_launch_wizard.types.create_deployment_input.CreateDeploymentInput = {
+            "workload_name": workload_name,
+            "deployment_pattern_name": deployment_pattern_name,
+            "name": name,
+            "specifications": specifications,
+        }
         if dry_run is not None:
             input_["dry_run"] = dry_run
         if tags is not None:
@@ -117,6 +118,7 @@ class Deployment:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -157,14 +159,16 @@ class Deployment:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_launch_wizard.types.get_deployment_input.GetDeploymentInput = {}  # type: ignore[typeddict-item]
-        input_["deployment_id"] = deployment_id
+        input_: capo_launch_wizard.types.get_deployment_input.GetDeploymentInput = {
+            "deployment_id": deployment_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -223,9 +227,10 @@ class Deployment:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_launch_wizard.types.update_deployment_input.UpdateDeploymentInput = {}  # type: ignore[typeddict-item]
-        input_["deployment_id"] = deployment_id
-        input_["specifications"] = specifications
+        input_: capo_launch_wizard.types.update_deployment_input.UpdateDeploymentInput = {
+            "deployment_id": deployment_id,
+            "specifications": specifications,
+        }
         if workload_version_name is not None:
             input_["workload_version_name"] = workload_version_name
         if deployment_pattern_version_name is not None:
@@ -240,6 +245,7 @@ class Deployment:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -281,14 +287,16 @@ class Deployment:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_launch_wizard.types.delete_deployment_input.DeleteDeploymentInput = {}  # type: ignore[typeddict-item]
-        input_["deployment_id"] = deployment_id
+        input_: capo_launch_wizard.types.delete_deployment_input.DeleteDeploymentInput = {
+            "deployment_id": deployment_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -336,7 +344,7 @@ class Deployment:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_launch_wizard.types.list_deployments_input.ListDeploymentsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_launch_wizard.types.list_deployments_input.ListDeploymentsInput = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -349,6 +357,7 @@ class Deployment:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -409,11 +418,12 @@ class AsyncDeployment:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_launch_wizard.types.create_deployment_input.CreateDeploymentInput = {}  # type: ignore[typeddict-item]
-        input_["workload_name"] = workload_name
-        input_["deployment_pattern_name"] = deployment_pattern_name
-        input_["name"] = name
-        input_["specifications"] = specifications
+        input_: capo_launch_wizard.types.create_deployment_input.CreateDeploymentInput = {
+            "workload_name": workload_name,
+            "deployment_pattern_name": deployment_pattern_name,
+            "name": name,
+            "specifications": specifications,
+        }
         if dry_run is not None:
             input_["dry_run"] = dry_run
         if tags is not None:
@@ -424,6 +434,7 @@ class AsyncDeployment:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -465,14 +476,16 @@ class AsyncDeployment:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_launch_wizard.types.get_deployment_input.GetDeploymentInput = {}  # type: ignore[typeddict-item]
-        input_["deployment_id"] = deployment_id
+        input_: capo_launch_wizard.types.get_deployment_input.GetDeploymentInput = {
+            "deployment_id": deployment_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -532,9 +545,10 @@ class AsyncDeployment:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_launch_wizard.types.update_deployment_input.UpdateDeploymentInput = {}  # type: ignore[typeddict-item]
-        input_["deployment_id"] = deployment_id
-        input_["specifications"] = specifications
+        input_: capo_launch_wizard.types.update_deployment_input.UpdateDeploymentInput = {
+            "deployment_id": deployment_id,
+            "specifications": specifications,
+        }
         if workload_version_name is not None:
             input_["workload_version_name"] = workload_version_name
         if deployment_pattern_version_name is not None:
@@ -549,6 +563,7 @@ class AsyncDeployment:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -591,14 +606,16 @@ class AsyncDeployment:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_launch_wizard.types.delete_deployment_input.DeleteDeploymentInput = {}  # type: ignore[typeddict-item]
-        input_["deployment_id"] = deployment_id
+        input_: capo_launch_wizard.types.delete_deployment_input.DeleteDeploymentInput = {
+            "deployment_id": deployment_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -647,7 +664,7 @@ class AsyncDeployment:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_launch_wizard.types.list_deployments_input.ListDeploymentsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_launch_wizard.types.list_deployments_input.ListDeploymentsInput = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -660,4 +677,5 @@ class AsyncDeployment:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

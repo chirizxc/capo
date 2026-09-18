@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: WebACLUpdate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WebACLUpdate:
     out: WebACLUpdate = {}  # type: ignore[typeddict-item]
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_waf.types.change_action
 
         out["action"] = capo_waf.types.change_action.deserialize_aws_json_1_1(
@@ -42,7 +42,7 @@ def deserialize_aws_json_1_1(data: dict) -> WebACLUpdate:
         )
     else:
         raise DeserializationError("WebACLUpdate.action required")
-    if "ActivatedRule" in data:
+    if data.get("ActivatedRule") is not None:
         import capo_waf.types.activated_rule
 
         out["activated_rule"] = capo_waf.types.activated_rule.deserialize_aws_json_1_1(

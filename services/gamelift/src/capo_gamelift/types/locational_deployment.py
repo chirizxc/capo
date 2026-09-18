@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: LocationalDeployment) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LocationalDeployment:
     out: LocationalDeployment = {}  # type: ignore[typeddict-item]
-    if "DeploymentStatus" in data:
+    if data.get("DeploymentStatus") is not None:
         import capo_gamelift.types.deployment_status
 
         out["deployment_status"] = (

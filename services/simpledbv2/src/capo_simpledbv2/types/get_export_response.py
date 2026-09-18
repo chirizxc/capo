@@ -115,15 +115,15 @@ def serialize_json(value: GetExportResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetExportResponse:
     out: GetExportResponse = {}  # type: ignore[typeddict-item]
-    if "exportArn" in data:
+    if data.get("exportArn") is not None:
         out["export_arn"] = data["exportArn"]
     else:
         raise DeserializationError("GetExportResponse.export_arn required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError("GetExportResponse.client_token required")
-    if "exportStatus" in data:
+    if data.get("exportStatus") is not None:
         import capo_simpledbv2.types.export_status
 
         out["export_status"] = capo_simpledbv2.types.export_status.deserialize_json(
@@ -131,11 +131,11 @@ def deserialize_json(data: dict) -> GetExportResponse:
         )
     else:
         raise DeserializationError("GetExportResponse.export_status required")
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
     else:
         raise DeserializationError("GetExportResponse.domain_name required")
-    if "requestedAt" in data:
+    if data.get("requestedAt") is not None:
         import capo_simpledbv2.types.requested_at
 
         out["requested_at"] = capo_simpledbv2.types.requested_at.deserialize_json(
@@ -143,13 +143,13 @@ def deserialize_json(data: dict) -> GetExportResponse:
         )
     else:
         raise DeserializationError("GetExportResponse.requested_at required")
-    if "s3Bucket" in data:
+    if data.get("s3Bucket") is not None:
         out["s3_bucket"] = data["s3Bucket"]
     else:
         raise DeserializationError("GetExportResponse.s3_bucket required")
-    if "s3KeyPrefix" in data:
+    if data.get("s3KeyPrefix") is not None:
         out["s3_key_prefix"] = data["s3KeyPrefix"]
-    if "s3SseAlgorithm" in data:
+    if data.get("s3SseAlgorithm") is not None:
         import capo_simpledbv2.types.s3_sse_algorithm
 
         out["s3_sse_algorithm"] = (
@@ -157,19 +157,19 @@ def deserialize_json(data: dict) -> GetExportResponse:
                 data["s3SseAlgorithm"]
             )
         )
-    if "s3SseKmsKeyId" in data:
+    if data.get("s3SseKmsKeyId") is not None:
         out["s3_sse_kms_key_id"] = data["s3SseKmsKeyId"]
-    if "s3BucketOwner" in data:
+    if data.get("s3BucketOwner") is not None:
         out["s3_bucket_owner"] = data["s3BucketOwner"]
-    if "failureCode" in data:
+    if data.get("failureCode") is not None:
         out["failure_code"] = data["failureCode"]
-    if "failureMessage" in data:
+    if data.get("failureMessage") is not None:
         out["failure_message"] = data["failureMessage"]
-    if "exportManifest" in data:
+    if data.get("exportManifest") is not None:
         out["export_manifest"] = data["exportManifest"]
-    if "itemsCount" in data:
+    if data.get("itemsCount") is not None:
         out["items_count"] = data["itemsCount"]
-    if "exportDataCutoffTime" in data:
+    if data.get("exportDataCutoffTime") is not None:
         import capo_simpledbv2.types.export_data_cutoff_time
 
         out["export_data_cutoff_time"] = (

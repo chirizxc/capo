@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: RuleGroupSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RuleGroupSummary:
     out: RuleGroupSummary = {}  # type: ignore[typeddict-item]
-    if "RuleGroupId" in data:
+    if data.get("RuleGroupId") is not None:
         out["rule_group_id"] = data["RuleGroupId"]
     else:
         raise DeserializationError("RuleGroupSummary.rule_group_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("RuleGroupSummary.name required")

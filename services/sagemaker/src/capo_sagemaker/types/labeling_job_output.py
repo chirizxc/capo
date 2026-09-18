@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: LabelingJobOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LabelingJobOutput:
     out: LabelingJobOutput = {}  # type: ignore[typeddict-item]
-    if "OutputDatasetS3Uri" in data:
+    if data.get("OutputDatasetS3Uri") is not None:
         out["output_dataset_s3_uri"] = data["OutputDatasetS3Uri"]
-    if "FinalActiveLearningModelArn" in data:
+    if data.get("FinalActiveLearningModelArn") is not None:
         out["final_active_learning_model_arn"] = data["FinalActiveLearningModelArn"]
     return out

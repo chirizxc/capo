@@ -52,13 +52,13 @@ def serialize_aws_json_1_1(value: UpdateScriptInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateScriptInput:
     out: UpdateScriptInput = {}  # type: ignore[typeddict-item]
-    if "ScriptId" in data:
+    if data.get("ScriptId") is not None:
         out["script_id"] = data["ScriptId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
-    if "StorageLocation" in data:
+    if data.get("StorageLocation") is not None:
         import capo_gamelift.types.s3_location
 
         out["storage_location"] = (
@@ -66,7 +66,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateScriptInput:
                 data["StorageLocation"]
             )
         )
-    if "ZipFile" in data:
+    if data.get("ZipFile") is not None:
         import capo_gamelift.types.zip_blob
 
         out["zip_file"] = capo_gamelift.types.zip_blob.deserialize_aws_json_1_1(

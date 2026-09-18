@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> RecurringChargeList:
 
     out: RecurringChargeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_opensearch.types.recurring_charge.deserialize_json(item))
     return out

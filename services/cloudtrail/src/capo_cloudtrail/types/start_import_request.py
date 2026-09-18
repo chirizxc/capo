@@ -64,7 +64,7 @@ def serialize_aws_json_1_1(value: StartImportRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartImportRequest:
     out: StartImportRequest = {}  # type: ignore[typeddict-item]
-    if "Destinations" in data:
+    if data.get("Destinations") is not None:
         import capo_cloudtrail.types.import_destinations
 
         out["destinations"] = (
@@ -72,7 +72,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartImportRequest:
                 data["Destinations"]
             )
         )
-    if "ImportSource" in data:
+    if data.get("ImportSource") is not None:
         import capo_cloudtrail.types.import_source
 
         out["import_source"] = (
@@ -80,18 +80,18 @@ def deserialize_aws_json_1_1(data: dict) -> StartImportRequest:
                 data["ImportSource"]
             )
         )
-    if "StartEventTime" in data:
+    if data.get("StartEventTime") is not None:
         import capo_cloudtrail.types.date
 
         out["start_event_time"] = capo_cloudtrail.types.date.deserialize_aws_json_1_1(
             data["StartEventTime"]
         )
-    if "EndEventTime" in data:
+    if data.get("EndEventTime") is not None:
         import capo_cloudtrail.types.date
 
         out["end_event_time"] = capo_cloudtrail.types.date.deserialize_aws_json_1_1(
             data["EndEventTime"]
         )
-    if "ImportId" in data:
+    if data.get("ImportId") is not None:
         out["import_id"] = data["ImportId"]
     return out

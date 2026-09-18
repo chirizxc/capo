@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import datetime
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_networkflowmonitor._auth._signers
@@ -110,14 +111,16 @@ class MonitorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkflowmonitor.types.create_monitor_input.CreateMonitorInput = {}  # type: ignore[typeddict-item]
-        input_["monitor_name"] = monitor_name
-        input_["local_resources"] = local_resources
+        input_: capo_networkflowmonitor.types.create_monitor_input.CreateMonitorInput = {
+            "monitor_name": monitor_name,
+            "local_resources": local_resources,
+            "scope_arn": scope_arn,
+        }
         if remote_resources is not None:
             input_["remote_resources"] = remote_resources
-        input_["scope_arn"] = scope_arn
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -126,6 +129,7 @@ class MonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -163,14 +167,16 @@ class MonitorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkflowmonitor.types.get_monitor_input.GetMonitorInput = {}  # type: ignore[typeddict-item]
-        input_["monitor_name"] = monitor_name
+        input_: capo_networkflowmonitor.types.get_monitor_input.GetMonitorInput = {
+            "monitor_name": monitor_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -228,8 +234,9 @@ class MonitorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkflowmonitor.types.update_monitor_input.UpdateMonitorInput = {}  # type: ignore[typeddict-item]
-        input_["monitor_name"] = monitor_name
+        input_: capo_networkflowmonitor.types.update_monitor_input.UpdateMonitorInput = {
+            "monitor_name": monitor_name
+        }
         if local_resources_to_add is not None:
             input_["local_resources_to_add"] = local_resources_to_add
         if local_resources_to_remove is not None:
@@ -238,14 +245,16 @@ class MonitorResource:
             input_["remote_resources_to_add"] = remote_resources_to_add
         if remote_resources_to_remove is not None:
             input_["remote_resources_to_remove"] = remote_resources_to_remove
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -284,14 +293,16 @@ class MonitorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkflowmonitor.types.delete_monitor_input.DeleteMonitorInput = {}  # type: ignore[typeddict-item]
-        input_["monitor_name"] = monitor_name
+        input_: capo_networkflowmonitor.types.delete_monitor_input.DeleteMonitorInput = {
+            "monitor_name": monitor_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -336,7 +347,7 @@ class MonitorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkflowmonitor.types.list_monitors_input.ListMonitorsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_networkflowmonitor.types.list_monitors_input.ListMonitorsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -349,6 +360,7 @@ class MonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_query_results_monitor_top_contributors(
@@ -393,9 +405,10 @@ class MonitorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkflowmonitor.types.get_query_results_monitor_top_contributors_input.GetQueryResultsMonitorTopContributorsInput = {}  # type: ignore[typeddict-item]
-        input_["monitor_name"] = monitor_name
-        input_["query_id"] = query_id
+        input_: capo_networkflowmonitor.types.get_query_results_monitor_top_contributors_input.GetQueryResultsMonitorTopContributorsInput = {
+            "monitor_name": monitor_name,
+            "query_id": query_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -406,6 +419,7 @@ class MonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_query_status_monitor_top_contributors(
@@ -445,15 +459,17 @@ class MonitorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkflowmonitor.types.get_query_status_monitor_top_contributors_input.GetQueryStatusMonitorTopContributorsInput = {}  # type: ignore[typeddict-item]
-        input_["monitor_name"] = monitor_name
-        input_["query_id"] = query_id
+        input_: capo_networkflowmonitor.types.get_query_status_monitor_top_contributors_input.GetQueryStatusMonitorTopContributorsInput = {
+            "monitor_name": monitor_name,
+            "query_id": query_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_query_monitor_top_contributors(
@@ -501,12 +517,13 @@ class MonitorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkflowmonitor.types.start_query_monitor_top_contributors_input.StartQueryMonitorTopContributorsInput = {}  # type: ignore[typeddict-item]
-        input_["monitor_name"] = monitor_name
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
-        input_["metric_name"] = metric_name
-        input_["destination_category"] = destination_category
+        input_: capo_networkflowmonitor.types.start_query_monitor_top_contributors_input.StartQueryMonitorTopContributorsInput = {
+            "monitor_name": monitor_name,
+            "start_time": start_time,
+            "end_time": end_time,
+            "metric_name": metric_name,
+            "destination_category": destination_category,
+        }
         if limit is not None:
             input_["limit"] = limit
 
@@ -515,6 +532,7 @@ class MonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_query_monitor_top_contributors(
@@ -554,15 +572,17 @@ class MonitorResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkflowmonitor.types.stop_query_monitor_top_contributors_input.StopQueryMonitorTopContributorsInput = {}  # type: ignore[typeddict-item]
-        input_["monitor_name"] = monitor_name
-        input_["query_id"] = query_id
+        input_: capo_networkflowmonitor.types.stop_query_monitor_top_contributors_input.StopQueryMonitorTopContributorsInput = {
+            "monitor_name": monitor_name,
+            "query_id": query_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -621,14 +641,16 @@ class AsyncMonitorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkflowmonitor.types.create_monitor_input.CreateMonitorInput = {}  # type: ignore[typeddict-item]
-        input_["monitor_name"] = monitor_name
-        input_["local_resources"] = local_resources
+        input_: capo_networkflowmonitor.types.create_monitor_input.CreateMonitorInput = {
+            "monitor_name": monitor_name,
+            "local_resources": local_resources,
+            "scope_arn": scope_arn,
+        }
         if remote_resources is not None:
             input_["remote_resources"] = remote_resources
-        input_["scope_arn"] = scope_arn
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -637,6 +659,7 @@ class AsyncMonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -675,14 +698,16 @@ class AsyncMonitorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkflowmonitor.types.get_monitor_input.GetMonitorInput = {}  # type: ignore[typeddict-item]
-        input_["monitor_name"] = monitor_name
+        input_: capo_networkflowmonitor.types.get_monitor_input.GetMonitorInput = {
+            "monitor_name": monitor_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -741,8 +766,9 @@ class AsyncMonitorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkflowmonitor.types.update_monitor_input.UpdateMonitorInput = {}  # type: ignore[typeddict-item]
-        input_["monitor_name"] = monitor_name
+        input_: capo_networkflowmonitor.types.update_monitor_input.UpdateMonitorInput = {
+            "monitor_name": monitor_name
+        }
         if local_resources_to_add is not None:
             input_["local_resources_to_add"] = local_resources_to_add
         if local_resources_to_remove is not None:
@@ -751,14 +777,16 @@ class AsyncMonitorResource:
             input_["remote_resources_to_add"] = remote_resources_to_add
         if remote_resources_to_remove is not None:
             input_["remote_resources_to_remove"] = remote_resources_to_remove
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -798,14 +826,16 @@ class AsyncMonitorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkflowmonitor.types.delete_monitor_input.DeleteMonitorInput = {}  # type: ignore[typeddict-item]
-        input_["monitor_name"] = monitor_name
+        input_: capo_networkflowmonitor.types.delete_monitor_input.DeleteMonitorInput = {
+            "monitor_name": monitor_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -851,7 +881,7 @@ class AsyncMonitorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkflowmonitor.types.list_monitors_input.ListMonitorsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_networkflowmonitor.types.list_monitors_input.ListMonitorsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -864,6 +894,7 @@ class AsyncMonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_query_results_monitor_top_contributors(
@@ -909,9 +940,10 @@ class AsyncMonitorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkflowmonitor.types.get_query_results_monitor_top_contributors_input.GetQueryResultsMonitorTopContributorsInput = {}  # type: ignore[typeddict-item]
-        input_["monitor_name"] = monitor_name
-        input_["query_id"] = query_id
+        input_: capo_networkflowmonitor.types.get_query_results_monitor_top_contributors_input.GetQueryResultsMonitorTopContributorsInput = {
+            "monitor_name": monitor_name,
+            "query_id": query_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -922,6 +954,7 @@ class AsyncMonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_query_status_monitor_top_contributors(
@@ -962,15 +995,17 @@ class AsyncMonitorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkflowmonitor.types.get_query_status_monitor_top_contributors_input.GetQueryStatusMonitorTopContributorsInput = {}  # type: ignore[typeddict-item]
-        input_["monitor_name"] = monitor_name
-        input_["query_id"] = query_id
+        input_: capo_networkflowmonitor.types.get_query_status_monitor_top_contributors_input.GetQueryStatusMonitorTopContributorsInput = {
+            "monitor_name": monitor_name,
+            "query_id": query_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_query_monitor_top_contributors(
@@ -1019,12 +1054,13 @@ class AsyncMonitorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkflowmonitor.types.start_query_monitor_top_contributors_input.StartQueryMonitorTopContributorsInput = {}  # type: ignore[typeddict-item]
-        input_["monitor_name"] = monitor_name
-        input_["start_time"] = start_time
-        input_["end_time"] = end_time
-        input_["metric_name"] = metric_name
-        input_["destination_category"] = destination_category
+        input_: capo_networkflowmonitor.types.start_query_monitor_top_contributors_input.StartQueryMonitorTopContributorsInput = {
+            "monitor_name": monitor_name,
+            "start_time": start_time,
+            "end_time": end_time,
+            "metric_name": metric_name,
+            "destination_category": destination_category,
+        }
         if limit is not None:
             input_["limit"] = limit
 
@@ -1033,6 +1069,7 @@ class AsyncMonitorResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_query_monitor_top_contributors(
@@ -1073,13 +1110,15 @@ class AsyncMonitorResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_networkflowmonitor.types.stop_query_monitor_top_contributors_input.StopQueryMonitorTopContributorsInput = {}  # type: ignore[typeddict-item]
-        input_["monitor_name"] = monitor_name
-        input_["query_id"] = query_id
+        input_: capo_networkflowmonitor.types.stop_query_monitor_top_contributors_input.StopQueryMonitorTopContributorsInput = {
+            "monitor_name": monitor_name,
+            "query_id": query_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

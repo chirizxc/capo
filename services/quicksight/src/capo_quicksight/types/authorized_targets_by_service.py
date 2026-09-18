@@ -40,13 +40,13 @@ def serialize_json(value: AuthorizedTargetsByService) -> dict:
 
 def deserialize_json(data: dict) -> AuthorizedTargetsByService:
     out: AuthorizedTargetsByService = {}  # type: ignore[typeddict-item]
-    if "Service" in data:
+    if data.get("Service") is not None:
         import capo_quicksight.types.service_type
 
         out["service"] = capo_quicksight.types.service_type.deserialize_json(
             data["Service"]
         )
-    if "AuthorizedTargets" in data:
+    if data.get("AuthorizedTargets") is not None:
         import capo_quicksight.types.authorized_targets_list
 
         out["authorized_targets"] = (

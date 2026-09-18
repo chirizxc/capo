@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: KMSNotFoundException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> KMSNotFoundException_:
     out: KMSNotFoundException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -36,18 +36,21 @@ class KMSNotFoundException(ServiceError):
 
     code: str | None = "KMSNotFoundException"
 
-    def __init__(self, data: KMSNotFoundException_):
+    def __init__(self, data: KMSNotFoundException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="KMSNotFoundException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "KMSNotFoundException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "KMSNotFoundException":
+        return cls(deserialize_aws_json_1_1(data), message)
 
 
 def serialize_event_aws_json_1_1(value: KMSNotFoundException_) -> bytes:

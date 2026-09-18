@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetSnapshotLimitsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetSnapshotLimitsResult:
     out: GetSnapshotLimitsResult = {}  # type: ignore[typeddict-item]
-    if "SnapshotLimits" in data:
+    if data.get("SnapshotLimits") is not None:
         import capo_directory_service.types.snapshot_limits
 
         out["snapshot_limits"] = (

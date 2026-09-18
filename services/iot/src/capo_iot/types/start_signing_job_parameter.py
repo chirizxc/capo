@@ -47,7 +47,7 @@ def serialize_json(value: StartSigningJobParameter) -> dict:
 
 def deserialize_json(data: dict) -> StartSigningJobParameter:
     out: StartSigningJobParameter = {}  # type: ignore[typeddict-item]
-    if "signingProfileParameter" in data:
+    if data.get("signingProfileParameter") is not None:
         import capo_iot.types.signing_profile_parameter
 
         out["signing_profile_parameter"] = (
@@ -55,9 +55,9 @@ def deserialize_json(data: dict) -> StartSigningJobParameter:
                 data["signingProfileParameter"]
             )
         )
-    if "signingProfileName" in data:
+    if data.get("signingProfileName") is not None:
         out["signing_profile_name"] = data["signingProfileName"]
-    if "destination" in data:
+    if data.get("destination") is not None:
         import capo_iot.types.destination
 
         out["destination"] = capo_iot.types.destination.deserialize_json(

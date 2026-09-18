@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> WorkerAttributeCapabilityList:
 
     out: WorkerAttributeCapabilityList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_deadline.types.worker_attribute_capability.deserialize_json(item)
         )

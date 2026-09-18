@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> RowList:
 
     out: RowList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_resiliencehub.types.row.deserialize_json(item))
     return out

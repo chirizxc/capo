@@ -30,8 +30,8 @@ def serialize_json(value: SecureNamespaceInfo) -> dict:
 
 def deserialize_json(data: dict) -> SecureNamespaceInfo:
     out: SecureNamespaceInfo = {}  # type: ignore[typeddict-item]
-    if "clusterId" in data:
+    if data.get("clusterId") is not None:
         out["cluster_id"] = data["clusterId"]
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         out["namespace"] = data["namespace"]
     return out

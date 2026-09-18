@@ -31,7 +31,7 @@ def serialize_json(value: TotalAggregationFunction) -> dict:
 
 def deserialize_json(data: dict) -> TotalAggregationFunction:
     out: TotalAggregationFunction = {}  # type: ignore[typeddict-item]
-    if "SimpleTotalAggregationFunction" in data:
+    if data.get("SimpleTotalAggregationFunction") is not None:
         import capo_quicksight.types.simple_total_aggregation_function
 
         out["simple_total_aggregation_function"] = (

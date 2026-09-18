@@ -24,7 +24,7 @@ def serialize_json(value: DeleteResponsePlanInput) -> dict:
 
 def deserialize_json(data: dict) -> DeleteResponsePlanInput:
     out: DeleteResponsePlanInput = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("DeleteResponsePlanInput.arn required")

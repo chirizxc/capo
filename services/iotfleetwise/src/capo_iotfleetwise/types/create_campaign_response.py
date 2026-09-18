@@ -28,8 +28,8 @@ def serialize_aws_json_1_0(value: CreateCampaignResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateCampaignResponse:
     out: CreateCampaignResponse = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     return out

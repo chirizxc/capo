@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ThrottlingReasonList:
 
     out: ThrottlingReasonList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_polly.types.throttling_reason.deserialize_json(item))
     return out

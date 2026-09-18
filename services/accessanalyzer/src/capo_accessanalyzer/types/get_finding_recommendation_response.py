@@ -79,7 +79,7 @@ def serialize_json(value: GetFindingRecommendationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetFindingRecommendationResponse:
     out: GetFindingRecommendationResponse = {}  # type: ignore[typeddict-item]
-    if "startedAt" in data:
+    if data.get("startedAt") is not None:
         import capo_accessanalyzer.types.timestamp
 
         out["started_at"] = capo_accessanalyzer.types.timestamp.deserialize_json(
@@ -89,27 +89,27 @@ def deserialize_json(data: dict) -> GetFindingRecommendationResponse:
         raise DeserializationError(
             "GetFindingRecommendationResponse.started_at required"
         )
-    if "completedAt" in data:
+    if data.get("completedAt") is not None:
         import capo_accessanalyzer.types.timestamp
 
         out["completed_at"] = capo_accessanalyzer.types.timestamp.deserialize_json(
             data["completedAt"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "error" in data:
+    if data.get("error") is not None:
         import capo_accessanalyzer.types.recommendation_error
 
         out["error"] = capo_accessanalyzer.types.recommendation_error.deserialize_json(
             data["error"]
         )
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     else:
         raise DeserializationError(
             "GetFindingRecommendationResponse.resource_arn required"
         )
-    if "recommendedSteps" in data:
+    if data.get("recommendedSteps") is not None:
         import capo_accessanalyzer.types.recommended_step_list
 
         out["recommended_steps"] = (
@@ -117,13 +117,13 @@ def deserialize_json(data: dict) -> GetFindingRecommendationResponse:
                 data["recommendedSteps"]
             )
         )
-    if "recommendationType" in data:
+    if data.get("recommendationType") is not None:
         out["recommendation_type"] = data["recommendationType"]
     else:
         raise DeserializationError(
             "GetFindingRecommendationResponse.recommendation_type required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("GetFindingRecommendationResponse.status required")

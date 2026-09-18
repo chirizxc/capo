@@ -74,10 +74,11 @@ class ConfigurationSession:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_appconfigdata.types.start_configuration_session_request.StartConfigurationSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["application_identifier"] = application_identifier
-        input_["environment_identifier"] = environment_identifier
-        input_["configuration_profile_identifier"] = configuration_profile_identifier
+        input_: capo_appconfigdata.types.start_configuration_session_request.StartConfigurationSessionRequest = {
+            "application_identifier": application_identifier,
+            "environment_identifier": environment_identifier,
+            "configuration_profile_identifier": configuration_profile_identifier,
+        }
         if required_minimum_poll_interval_in_seconds is not None:
             input_["required_minimum_poll_interval_in_seconds"] = (
                 required_minimum_poll_interval_in_seconds
@@ -88,6 +89,7 @@ class ConfigurationSession:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -138,10 +140,11 @@ class AsyncConfigurationSession:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_appconfigdata.types.start_configuration_session_request.StartConfigurationSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["application_identifier"] = application_identifier
-        input_["environment_identifier"] = environment_identifier
-        input_["configuration_profile_identifier"] = configuration_profile_identifier
+        input_: capo_appconfigdata.types.start_configuration_session_request.StartConfigurationSessionRequest = {
+            "application_identifier": application_identifier,
+            "environment_identifier": environment_identifier,
+            "configuration_profile_identifier": configuration_profile_identifier,
+        }
         if required_minimum_poll_interval_in_seconds is not None:
             input_["required_minimum_poll_interval_in_seconds"] = (
                 required_minimum_poll_interval_in_seconds
@@ -152,4 +155,5 @@ class AsyncConfigurationSession:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

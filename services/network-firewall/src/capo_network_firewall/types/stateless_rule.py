@@ -34,7 +34,7 @@ def serialize_aws_json_1_0(value: StatelessRule) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StatelessRule:
     out: StatelessRule = {}  # type: ignore[typeddict-item]
-    if "RuleDefinition" in data:
+    if data.get("RuleDefinition") is not None:
         import capo_network_firewall.types.rule_definition
 
         out["rule_definition"] = (
@@ -44,7 +44,7 @@ def deserialize_aws_json_1_0(data: dict) -> StatelessRule:
         )
     else:
         raise DeserializationError("StatelessRule.rule_definition required")
-    if "Priority" in data:
+    if data.get("Priority") is not None:
         out["priority"] = data["Priority"]
     else:
         raise DeserializationError("StatelessRule.priority required")

@@ -87,25 +87,25 @@ def serialize_json(value: DescribeDashboardDefinitionResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeDashboardDefinitionResponse:
     out: DescribeDashboardDefinitionResponse = {}  # type: ignore[typeddict-item]
-    if "DashboardId" in data:
+    if data.get("DashboardId") is not None:
         out["dashboard_id"] = data["DashboardId"]
-    if "Errors" in data:
+    if data.get("Errors") is not None:
         import capo_quicksight.types.dashboard_error_list
 
         out["errors"] = capo_quicksight.types.dashboard_error_list.deserialize_json(
             data["Errors"]
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ResourceStatus" in data:
+    if data.get("ResourceStatus") is not None:
         import capo_quicksight.types.resource_status
 
         out["resource_status"] = capo_quicksight.types.resource_status.deserialize_json(
             data["ResourceStatus"]
         )
-    if "ThemeArn" in data:
+    if data.get("ThemeArn") is not None:
         out["theme_arn"] = data["ThemeArn"]
-    if "Definition" in data:
+    if data.get("Definition") is not None:
         import capo_quicksight.types.dashboard_version_definition
 
         out["definition"] = (
@@ -113,9 +113,9 @@ def deserialize_json(data: dict) -> DescribeDashboardDefinitionResponse:
                 data["Definition"]
             )
         )
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
-    if "DashboardPublishOptions" in data:
+    if data.get("DashboardPublishOptions") is not None:
         import capo_quicksight.types.dashboard_publish_options
 
         out["dashboard_publish_options"] = (

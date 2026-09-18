@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.auditmanager#BedrockAssessmentManagerLambda``."""
 
 import warnings
+from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +17,7 @@ from capo_auditmanager._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_auditmanager._auth._zapros_handler import AuthMiddleware
+from capo_auditmanager._pagination import resolve_path as _resolve_path
 from capo_auditmanager._services._aws_config import aaws_config
 from capo_auditmanager._services._pipeline import (
     AsyncInterceptor,
@@ -338,15 +340,17 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.associate_assessment_report_evidence_folder_request.AssociateAssessmentReportEvidenceFolderRequest = {}  # type: ignore[typeddict-item]
-        input_["assessment_id"] = assessment_id
-        input_["evidence_folder_id"] = evidence_folder_id
+        input_: capo_auditmanager.types.associate_assessment_report_evidence_folder_request.AssociateAssessmentReportEvidenceFolderRequest = {
+            "assessment_id": assessment_id,
+            "evidence_folder_id": evidence_folder_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_associate_assessment_report_evidence(
@@ -388,16 +392,18 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.batch_associate_assessment_report_evidence_request.BatchAssociateAssessmentReportEvidenceRequest = {}  # type: ignore[typeddict-item]
-        input_["assessment_id"] = assessment_id
-        input_["evidence_folder_id"] = evidence_folder_id
-        input_["evidence_ids"] = evidence_ids
+        input_: capo_auditmanager.types.batch_associate_assessment_report_evidence_request.BatchAssociateAssessmentReportEvidenceRequest = {
+            "assessment_id": assessment_id,
+            "evidence_folder_id": evidence_folder_id,
+            "evidence_ids": evidence_ids,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_create_delegation_by_assessment(
@@ -437,15 +443,17 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.batch_create_delegation_by_assessment_request.BatchCreateDelegationByAssessmentRequest = {}  # type: ignore[typeddict-item]
-        input_["create_delegation_requests"] = create_delegation_requests
-        input_["assessment_id"] = assessment_id
+        input_: capo_auditmanager.types.batch_create_delegation_by_assessment_request.BatchCreateDelegationByAssessmentRequest = {
+            "create_delegation_requests": create_delegation_requests,
+            "assessment_id": assessment_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_delete_delegation_by_assessment(
@@ -485,15 +493,17 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.batch_delete_delegation_by_assessment_request.BatchDeleteDelegationByAssessmentRequest = {}  # type: ignore[typeddict-item]
-        input_["delegation_ids"] = delegation_ids
-        input_["assessment_id"] = assessment_id
+        input_: capo_auditmanager.types.batch_delete_delegation_by_assessment_request.BatchDeleteDelegationByAssessmentRequest = {
+            "delegation_ids": delegation_ids,
+            "assessment_id": assessment_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_disassociate_assessment_report_evidence(
@@ -535,16 +545,18 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.batch_disassociate_assessment_report_evidence_request.BatchDisassociateAssessmentReportEvidenceRequest = {}  # type: ignore[typeddict-item]
-        input_["assessment_id"] = assessment_id
-        input_["evidence_folder_id"] = evidence_folder_id
-        input_["evidence_ids"] = evidence_ids
+        input_: capo_auditmanager.types.batch_disassociate_assessment_report_evidence_request.BatchDisassociateAssessmentReportEvidenceRequest = {
+            "assessment_id": assessment_id,
+            "evidence_folder_id": evidence_folder_id,
+            "evidence_ids": evidence_ids,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_import_evidence_to_assessment_control(
@@ -589,17 +601,19 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.batch_import_evidence_to_assessment_control_request.BatchImportEvidenceToAssessmentControlRequest = {}  # type: ignore[typeddict-item]
-        input_["assessment_id"] = assessment_id
-        input_["control_set_id"] = control_set_id
-        input_["control_id"] = control_id
-        input_["manual_evidence"] = manual_evidence
+        input_: capo_auditmanager.types.batch_import_evidence_to_assessment_control_request.BatchImportEvidenceToAssessmentControlRequest = {
+            "assessment_id": assessment_id,
+            "control_set_id": control_set_id,
+            "control_id": control_id,
+            "manual_evidence": manual_evidence,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_assessment(
@@ -652,14 +666,15 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.create_assessment_request.CreateAssessmentRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_auditmanager.types.create_assessment_request.CreateAssessmentRequest = {
+            "name": name,
+            "assessment_reports_destination": assessment_reports_destination,
+            "scope": scope,
+            "roles": roles,
+            "framework_id": framework_id,
+        }
         if description is not None:
             input_["description"] = description
-        input_["assessment_reports_destination"] = assessment_reports_destination
-        input_["scope"] = scope
-        input_["roles"] = roles
-        input_["framework_id"] = framework_id
         if tags is not None:
             input_["tags"] = tags
 
@@ -668,6 +683,7 @@ class AsyncAuditManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_assessment_framework(
@@ -718,13 +734,14 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.create_assessment_framework_request.CreateAssessmentFrameworkRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_auditmanager.types.create_assessment_framework_request.CreateAssessmentFrameworkRequest = {
+            "name": name,
+            "control_sets": control_sets,
+        }
         if description is not None:
             input_["description"] = description
         if compliance_type is not None:
             input_["compliance_type"] = compliance_type
-        input_["control_sets"] = control_sets
         if tags is not None:
             input_["tags"] = tags
 
@@ -733,6 +750,7 @@ class AsyncAuditManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_assessment_report(
@@ -780,11 +798,12 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.create_assessment_report_request.CreateAssessmentReportRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_auditmanager.types.create_assessment_report_request.CreateAssessmentReportRequest = {
+            "name": name,
+            "assessment_id": assessment_id,
+        }
         if description is not None:
             input_["description"] = description
-        input_["assessment_id"] = assessment_id
         if query_statement is not None:
             input_["query_statement"] = query_statement
 
@@ -793,6 +812,7 @@ class AsyncAuditManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_control(
@@ -851,8 +871,10 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.create_control_request.CreateControlRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_auditmanager.types.create_control_request.CreateControlRequest = {
+            "name": name,
+            "control_mapping_sources": control_mapping_sources,
+        }
         if description is not None:
             input_["description"] = description
         if testing_information is not None:
@@ -861,7 +883,6 @@ class AsyncAuditManagerClient:
             input_["action_plan_title"] = action_plan_title
         if action_plan_instructions is not None:
             input_["action_plan_instructions"] = action_plan_instructions
-        input_["control_mapping_sources"] = control_mapping_sources
         if tags is not None:
             input_["tags"] = tags
 
@@ -870,6 +891,7 @@ class AsyncAuditManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_assessment(
@@ -907,14 +929,16 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.delete_assessment_request.DeleteAssessmentRequest = {}  # type: ignore[typeddict-item]
-        input_["assessment_id"] = assessment_id
+        input_: capo_auditmanager.types.delete_assessment_request.DeleteAssessmentRequest = {
+            "assessment_id": assessment_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_assessment_framework(
@@ -952,14 +976,16 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.delete_assessment_framework_request.DeleteAssessmentFrameworkRequest = {}  # type: ignore[typeddict-item]
-        input_["framework_id"] = framework_id
+        input_: capo_auditmanager.types.delete_assessment_framework_request.DeleteAssessmentFrameworkRequest = {
+            "framework_id": framework_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_assessment_framework_share(
@@ -999,15 +1025,17 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.delete_assessment_framework_share_request.DeleteAssessmentFrameworkShareRequest = {}  # type: ignore[typeddict-item]
-        input_["request_id"] = request_id
-        input_["request_type"] = request_type
+        input_: capo_auditmanager.types.delete_assessment_framework_share_request.DeleteAssessmentFrameworkShareRequest = {
+            "request_id": request_id,
+            "request_type": request_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_assessment_report(
@@ -1047,15 +1075,17 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.delete_assessment_report_request.DeleteAssessmentReportRequest = {}  # type: ignore[typeddict-item]
-        input_["assessment_id"] = assessment_id
-        input_["assessment_report_id"] = assessment_report_id
+        input_: capo_auditmanager.types.delete_assessment_report_request.DeleteAssessmentReportRequest = {
+            "assessment_id": assessment_id,
+            "assessment_report_id": assessment_report_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_control(
@@ -1093,14 +1123,16 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.delete_control_request.DeleteControlRequest = {}  # type: ignore[typeddict-item]
-        input_["control_id"] = control_id
+        input_: capo_auditmanager.types.delete_control_request.DeleteControlRequest = {
+            "control_id": control_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def deregister_account(
@@ -1134,13 +1166,14 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.deregister_account_request.DeregisterAccountRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_auditmanager.types.deregister_account_request.DeregisterAccountRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def deregister_organization_admin_account(
@@ -1180,7 +1213,7 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.deregister_organization_admin_account_request.DeregisterOrganizationAdminAccountRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_auditmanager.types.deregister_organization_admin_account_request.DeregisterOrganizationAdminAccountRequest = {}
         if admin_account_id is not None:
             input_["admin_account_id"] = admin_account_id
 
@@ -1189,6 +1222,7 @@ class AsyncAuditManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_assessment_report_evidence_folder(
@@ -1228,15 +1262,17 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.disassociate_assessment_report_evidence_folder_request.DisassociateAssessmentReportEvidenceFolderRequest = {}  # type: ignore[typeddict-item]
-        input_["assessment_id"] = assessment_id
-        input_["evidence_folder_id"] = evidence_folder_id
+        input_: capo_auditmanager.types.disassociate_assessment_report_evidence_folder_request.DisassociateAssessmentReportEvidenceFolderRequest = {
+            "assessment_id": assessment_id,
+            "evidence_folder_id": evidence_folder_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_account_status(
@@ -1265,13 +1301,14 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.get_account_status_request.GetAccountStatusRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_auditmanager.types.get_account_status_request.GetAccountStatusRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_assessment(
@@ -1309,14 +1346,16 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.get_assessment_request.GetAssessmentRequest = {}  # type: ignore[typeddict-item]
-        input_["assessment_id"] = assessment_id
+        input_: capo_auditmanager.types.get_assessment_request.GetAssessmentRequest = {
+            "assessment_id": assessment_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_assessment_framework(
@@ -1354,14 +1393,16 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.get_assessment_framework_request.GetAssessmentFrameworkRequest = {}  # type: ignore[typeddict-item]
-        input_["framework_id"] = framework_id
+        input_: capo_auditmanager.types.get_assessment_framework_request.GetAssessmentFrameworkRequest = {
+            "framework_id": framework_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_assessment_report_url(
@@ -1401,15 +1442,17 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.get_assessment_report_url_request.GetAssessmentReportUrlRequest = {}  # type: ignore[typeddict-item]
-        input_["assessment_report_id"] = assessment_report_id
-        input_["assessment_id"] = assessment_id
+        input_: capo_auditmanager.types.get_assessment_report_url_request.GetAssessmentReportUrlRequest = {
+            "assessment_report_id": assessment_report_id,
+            "assessment_id": assessment_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_change_logs(
@@ -1457,8 +1500,9 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.get_change_logs_request.GetChangeLogsRequest = {}  # type: ignore[typeddict-item]
-        input_["assessment_id"] = assessment_id
+        input_: capo_auditmanager.types.get_change_logs_request.GetChangeLogsRequest = {
+            "assessment_id": assessment_id
+        }
         if control_set_id is not None:
             input_["control_set_id"] = control_set_id
         if control_id is not None:
@@ -1473,7 +1517,35 @@ class AsyncAuditManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_change_logs(
+        self,
+        assessment_id: "capo_auditmanager.types.uuid.UUID",
+        *,
+        config_overrides: Optional[AsyncAuditManagerClientConfig] = None,
+        control_set_id: Optional[
+            "capo_auditmanager.types.control_set_id.ControlSetId"
+        ] = None,
+        control_id: Optional["capo_auditmanager.types.uuid.UUID"] = None,
+        next_token: Optional["capo_auditmanager.types.token.Token"] = None,
+        max_results: Optional["capo_auditmanager.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_auditmanager.types.get_change_logs_response.GetChangeLogsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.get_change_logs(
+                assessment_id,
+                config_overrides=config_overrides,
+                control_set_id=control_set_id,
+                control_id=control_id,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_control(
         self,
@@ -1510,14 +1582,16 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.get_control_request.GetControlRequest = {}  # type: ignore[typeddict-item]
-        input_["control_id"] = control_id
+        input_: capo_auditmanager.types.get_control_request.GetControlRequest = {
+            "control_id": control_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_delegations(
@@ -1556,7 +1630,7 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.get_delegations_request.GetDelegationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_auditmanager.types.get_delegations_request.GetDelegationsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1567,7 +1641,27 @@ class AsyncAuditManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_delegations(
+        self,
+        *,
+        config_overrides: Optional[AsyncAuditManagerClientConfig] = None,
+        next_token: Optional["capo_auditmanager.types.token.Token"] = None,
+        max_results: Optional["capo_auditmanager.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_auditmanager.types.get_delegations_response.GetDelegationsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.get_delegations(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_evidence(
         self,
@@ -1610,17 +1704,19 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.get_evidence_request.GetEvidenceRequest = {}  # type: ignore[typeddict-item]
-        input_["assessment_id"] = assessment_id
-        input_["control_set_id"] = control_set_id
-        input_["evidence_folder_id"] = evidence_folder_id
-        input_["evidence_id"] = evidence_id
+        input_: capo_auditmanager.types.get_evidence_request.GetEvidenceRequest = {
+            "assessment_id": assessment_id,
+            "control_set_id": control_set_id,
+            "evidence_folder_id": evidence_folder_id,
+            "evidence_id": evidence_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_evidence_by_evidence_folder(
@@ -1666,10 +1762,11 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.get_evidence_by_evidence_folder_request.GetEvidenceByEvidenceFolderRequest = {}  # type: ignore[typeddict-item]
-        input_["assessment_id"] = assessment_id
-        input_["control_set_id"] = control_set_id
-        input_["evidence_folder_id"] = evidence_folder_id
+        input_: capo_auditmanager.types.get_evidence_by_evidence_folder_request.GetEvidenceByEvidenceFolderRequest = {
+            "assessment_id": assessment_id,
+            "control_set_id": control_set_id,
+            "evidence_folder_id": evidence_folder_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1680,7 +1777,33 @@ class AsyncAuditManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_evidence_by_evidence_folder(
+        self,
+        assessment_id: "capo_auditmanager.types.uuid.UUID",
+        control_set_id: "capo_auditmanager.types.control_set_id.ControlSetId",
+        evidence_folder_id: "capo_auditmanager.types.uuid.UUID",
+        *,
+        config_overrides: Optional[AsyncAuditManagerClientConfig] = None,
+        next_token: Optional["capo_auditmanager.types.token.Token"] = None,
+        max_results: Optional["capo_auditmanager.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_auditmanager.types.get_evidence_by_evidence_folder_response.GetEvidenceByEvidenceFolderResponse]":
+        _token = next_token
+        while True:
+            _response = await self.get_evidence_by_evidence_folder(
+                assessment_id,
+                control_set_id,
+                evidence_folder_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_evidence_file_upload_url(
         self,
@@ -1717,14 +1840,16 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.get_evidence_file_upload_url_request.GetEvidenceFileUploadUrlRequest = {}  # type: ignore[typeddict-item]
-        input_["file_name"] = file_name
+        input_: capo_auditmanager.types.get_evidence_file_upload_url_request.GetEvidenceFileUploadUrlRequest = {
+            "file_name": file_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_evidence_folder(
@@ -1768,16 +1893,18 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.get_evidence_folder_request.GetEvidenceFolderRequest = {}  # type: ignore[typeddict-item]
-        input_["assessment_id"] = assessment_id
-        input_["control_set_id"] = control_set_id
-        input_["evidence_folder_id"] = evidence_folder_id
+        input_: capo_auditmanager.types.get_evidence_folder_request.GetEvidenceFolderRequest = {
+            "assessment_id": assessment_id,
+            "control_set_id": control_set_id,
+            "evidence_folder_id": evidence_folder_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_evidence_folders_by_assessment(
@@ -1819,8 +1946,9 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.get_evidence_folders_by_assessment_request.GetEvidenceFoldersByAssessmentRequest = {}  # type: ignore[typeddict-item]
-        input_["assessment_id"] = assessment_id
+        input_: capo_auditmanager.types.get_evidence_folders_by_assessment_request.GetEvidenceFoldersByAssessmentRequest = {
+            "assessment_id": assessment_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1831,7 +1959,29 @@ class AsyncAuditManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_evidence_folders_by_assessment(
+        self,
+        assessment_id: "capo_auditmanager.types.uuid.UUID",
+        *,
+        config_overrides: Optional[AsyncAuditManagerClientConfig] = None,
+        next_token: Optional["capo_auditmanager.types.token.Token"] = None,
+        max_results: Optional["capo_auditmanager.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_auditmanager.types.get_evidence_folders_by_assessment_response.GetEvidenceFoldersByAssessmentResponse]":
+        _token = next_token
+        while True:
+            _response = await self.get_evidence_folders_by_assessment(
+                assessment_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_evidence_folders_by_assessment_control(
         self,
@@ -1876,10 +2026,11 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.get_evidence_folders_by_assessment_control_request.GetEvidenceFoldersByAssessmentControlRequest = {}  # type: ignore[typeddict-item]
-        input_["assessment_id"] = assessment_id
-        input_["control_set_id"] = control_set_id
-        input_["control_id"] = control_id
+        input_: capo_auditmanager.types.get_evidence_folders_by_assessment_control_request.GetEvidenceFoldersByAssessmentControlRequest = {
+            "assessment_id": assessment_id,
+            "control_set_id": control_set_id,
+            "control_id": control_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1890,7 +2041,33 @@ class AsyncAuditManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_evidence_folders_by_assessment_control(
+        self,
+        assessment_id: "capo_auditmanager.types.uuid.UUID",
+        control_set_id: "capo_auditmanager.types.control_set_id.ControlSetId",
+        control_id: "capo_auditmanager.types.uuid.UUID",
+        *,
+        config_overrides: Optional[AsyncAuditManagerClientConfig] = None,
+        next_token: Optional["capo_auditmanager.types.token.Token"] = None,
+        max_results: Optional["capo_auditmanager.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_auditmanager.types.get_evidence_folders_by_assessment_control_response.GetEvidenceFoldersByAssessmentControlResponse]":
+        _token = next_token
+        while True:
+            _response = await self.get_evidence_folders_by_assessment_control(
+                assessment_id,
+                control_set_id,
+                control_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_insights(
         self, *, config_overrides: Optional[AsyncAuditManagerClientConfig] = None
@@ -1919,13 +2096,14 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.get_insights_request.GetInsightsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_auditmanager.types.get_insights_request.GetInsightsRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_insights_by_assessment(
@@ -1963,14 +2141,16 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.get_insights_by_assessment_request.GetInsightsByAssessmentRequest = {}  # type: ignore[typeddict-item]
-        input_["assessment_id"] = assessment_id
+        input_: capo_auditmanager.types.get_insights_by_assessment_request.GetInsightsByAssessmentRequest = {
+            "assessment_id": assessment_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_organization_admin_account(
@@ -2002,13 +2182,14 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.get_organization_admin_account_request.GetOrganizationAdminAccountRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_auditmanager.types.get_organization_admin_account_request.GetOrganizationAdminAccountRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_services_in_scope(
@@ -2039,13 +2220,14 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.get_services_in_scope_request.GetServicesInScopeRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_auditmanager.types.get_services_in_scope_request.GetServicesInScopeRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_settings(
@@ -2081,14 +2263,16 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.get_settings_request.GetSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["attribute"] = attribute
+        input_: capo_auditmanager.types.get_settings_request.GetSettingsRequest = {
+            "attribute": attribute
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_assessment_control_insights_by_control_domain(
@@ -2132,9 +2316,10 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.list_assessment_control_insights_by_control_domain_request.ListAssessmentControlInsightsByControlDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["control_domain_id"] = control_domain_id
-        input_["assessment_id"] = assessment_id
+        input_: capo_auditmanager.types.list_assessment_control_insights_by_control_domain_request.ListAssessmentControlInsightsByControlDomainRequest = {
+            "control_domain_id": control_domain_id,
+            "assessment_id": assessment_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2145,7 +2330,31 @@ class AsyncAuditManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_assessment_control_insights_by_control_domain(
+        self,
+        control_domain_id: "capo_auditmanager.types.control_domain_id.ControlDomainId",
+        assessment_id: "capo_auditmanager.types.uuid.UUID",
+        *,
+        config_overrides: Optional[AsyncAuditManagerClientConfig] = None,
+        next_token: Optional["capo_auditmanager.types.token.Token"] = None,
+        max_results: Optional["capo_auditmanager.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_auditmanager.types.list_assessment_control_insights_by_control_domain_response.ListAssessmentControlInsightsByControlDomainResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_assessment_control_insights_by_control_domain(
+                control_domain_id,
+                assessment_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_assessment_frameworks(
         self,
@@ -2185,8 +2394,9 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.list_assessment_frameworks_request.ListAssessmentFrameworksRequest = {}  # type: ignore[typeddict-item]
-        input_["framework_type"] = framework_type
+        input_: capo_auditmanager.types.list_assessment_frameworks_request.ListAssessmentFrameworksRequest = {
+            "framework_type": framework_type
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2197,7 +2407,29 @@ class AsyncAuditManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_assessment_frameworks(
+        self,
+        framework_type: "capo_auditmanager.types.framework_type.FrameworkType",
+        *,
+        config_overrides: Optional[AsyncAuditManagerClientConfig] = None,
+        next_token: Optional["capo_auditmanager.types.token.Token"] = None,
+        max_results: Optional["capo_auditmanager.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_auditmanager.types.list_assessment_frameworks_response.ListAssessmentFrameworksResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_assessment_frameworks(
+                framework_type,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_assessment_framework_share_requests(
         self,
@@ -2237,8 +2469,9 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.list_assessment_framework_share_requests_request.ListAssessmentFrameworkShareRequestsRequest = {}  # type: ignore[typeddict-item]
-        input_["request_type"] = request_type
+        input_: capo_auditmanager.types.list_assessment_framework_share_requests_request.ListAssessmentFrameworkShareRequestsRequest = {
+            "request_type": request_type
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2249,7 +2482,29 @@ class AsyncAuditManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_assessment_framework_share_requests(
+        self,
+        request_type: "capo_auditmanager.types.share_request_type.ShareRequestType",
+        *,
+        config_overrides: Optional[AsyncAuditManagerClientConfig] = None,
+        next_token: Optional["capo_auditmanager.types.token.Token"] = None,
+        max_results: Optional["capo_auditmanager.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_auditmanager.types.list_assessment_framework_share_requests_response.ListAssessmentFrameworkShareRequestsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_assessment_framework_share_requests(
+                request_type,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_assessment_reports(
         self,
@@ -2287,7 +2542,7 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.list_assessment_reports_request.ListAssessmentReportsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_auditmanager.types.list_assessment_reports_request.ListAssessmentReportsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2298,7 +2553,27 @@ class AsyncAuditManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_assessment_reports(
+        self,
+        *,
+        config_overrides: Optional[AsyncAuditManagerClientConfig] = None,
+        next_token: Optional["capo_auditmanager.types.token.Token"] = None,
+        max_results: Optional["capo_auditmanager.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_auditmanager.types.list_assessment_reports_response.ListAssessmentReportsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_assessment_reports(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_assessments(
         self,
@@ -2340,7 +2615,7 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.list_assessments_request.ListAssessmentsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_auditmanager.types.list_assessments_request.ListAssessmentsRequest = {}
         if status is not None:
             input_["status"] = status
         if next_token is not None:
@@ -2353,7 +2628,31 @@ class AsyncAuditManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_assessments(
+        self,
+        *,
+        config_overrides: Optional[AsyncAuditManagerClientConfig] = None,
+        status: Optional[
+            "capo_auditmanager.types.assessment_status.AssessmentStatus"
+        ] = None,
+        next_token: Optional["capo_auditmanager.types.token.Token"] = None,
+        max_results: Optional["capo_auditmanager.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_auditmanager.types.list_assessments_response.ListAssessmentsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_assessments(
+                config_overrides=config_overrides,
+                status=status,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_control_domain_insights(
         self,
@@ -2392,7 +2691,7 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.list_control_domain_insights_request.ListControlDomainInsightsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_auditmanager.types.list_control_domain_insights_request.ListControlDomainInsightsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2403,7 +2702,27 @@ class AsyncAuditManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_control_domain_insights(
+        self,
+        *,
+        config_overrides: Optional[AsyncAuditManagerClientConfig] = None,
+        next_token: Optional["capo_auditmanager.types.token.Token"] = None,
+        max_results: Optional["capo_auditmanager.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_auditmanager.types.list_control_domain_insights_response.ListControlDomainInsightsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_control_domain_insights(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_control_domain_insights_by_assessment(
         self,
@@ -2444,8 +2763,9 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.list_control_domain_insights_by_assessment_request.ListControlDomainInsightsByAssessmentRequest = {}  # type: ignore[typeddict-item]
-        input_["assessment_id"] = assessment_id
+        input_: capo_auditmanager.types.list_control_domain_insights_by_assessment_request.ListControlDomainInsightsByAssessmentRequest = {
+            "assessment_id": assessment_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2456,7 +2776,29 @@ class AsyncAuditManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_control_domain_insights_by_assessment(
+        self,
+        assessment_id: "capo_auditmanager.types.uuid.UUID",
+        *,
+        config_overrides: Optional[AsyncAuditManagerClientConfig] = None,
+        next_token: Optional["capo_auditmanager.types.token.Token"] = None,
+        max_results: Optional["capo_auditmanager.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_auditmanager.types.list_control_domain_insights_by_assessment_response.ListControlDomainInsightsByAssessmentResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_control_domain_insights_by_assessment(
+                assessment_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_control_insights_by_control_domain(
         self,
@@ -2497,8 +2839,9 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.list_control_insights_by_control_domain_request.ListControlInsightsByControlDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["control_domain_id"] = control_domain_id
+        input_: capo_auditmanager.types.list_control_insights_by_control_domain_request.ListControlInsightsByControlDomainRequest = {
+            "control_domain_id": control_domain_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2509,7 +2852,29 @@ class AsyncAuditManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_control_insights_by_control_domain(
+        self,
+        control_domain_id: "capo_auditmanager.types.control_domain_id.ControlDomainId",
+        *,
+        config_overrides: Optional[AsyncAuditManagerClientConfig] = None,
+        next_token: Optional["capo_auditmanager.types.token.Token"] = None,
+        max_results: Optional["capo_auditmanager.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_auditmanager.types.list_control_insights_by_control_domain_response.ListControlInsightsByControlDomainResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_control_insights_by_control_domain(
+                control_domain_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_controls(
         self,
@@ -2553,8 +2918,9 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.list_controls_request.ListControlsRequest = {}  # type: ignore[typeddict-item]
-        input_["control_type"] = control_type
+        input_: capo_auditmanager.types.list_controls_request.ListControlsRequest = {
+            "control_type": control_type
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2567,7 +2933,33 @@ class AsyncAuditManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_controls(
+        self,
+        control_type: "capo_auditmanager.types.control_type.ControlType",
+        *,
+        config_overrides: Optional[AsyncAuditManagerClientConfig] = None,
+        next_token: Optional["capo_auditmanager.types.token.Token"] = None,
+        max_results: Optional["capo_auditmanager.types.max_results.MaxResults"] = None,
+        control_catalog_id: Optional[
+            "capo_auditmanager.types.control_catalog_id.ControlCatalogId"
+        ] = None,
+    ) -> "AsyncIterator[capo_auditmanager.types.list_controls_response.ListControlsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_controls(
+                control_type,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                control_catalog_id=control_catalog_id,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_keywords_for_data_source(
         self,
@@ -2607,8 +2999,9 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.list_keywords_for_data_source_request.ListKeywordsForDataSourceRequest = {}  # type: ignore[typeddict-item]
-        input_["source"] = source
+        input_: capo_auditmanager.types.list_keywords_for_data_source_request.ListKeywordsForDataSourceRequest = {
+            "source": source
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2619,7 +3012,29 @@ class AsyncAuditManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_keywords_for_data_source(
+        self,
+        source: "capo_auditmanager.types.data_source_type.DataSourceType",
+        *,
+        config_overrides: Optional[AsyncAuditManagerClientConfig] = None,
+        next_token: Optional["capo_auditmanager.types.token.Token"] = None,
+        max_results: Optional["capo_auditmanager.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_auditmanager.types.list_keywords_for_data_source_response.ListKeywordsForDataSourceResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_keywords_for_data_source(
+                source,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_notifications(
         self,
@@ -2659,7 +3074,7 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.list_notifications_request.ListNotificationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_auditmanager.types.list_notifications_request.ListNotificationsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2670,7 +3085,27 @@ class AsyncAuditManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_notifications(
+        self,
+        *,
+        config_overrides: Optional[AsyncAuditManagerClientConfig] = None,
+        next_token: Optional["capo_auditmanager.types.token.Token"] = None,
+        max_results: Optional["capo_auditmanager.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_auditmanager.types.list_notifications_response.ListNotificationsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_notifications(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_tags_for_resource(
         self,
@@ -2706,14 +3141,16 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_auditmanager.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def register_account(
@@ -2756,7 +3193,7 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.register_account_request.RegisterAccountRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_auditmanager.types.register_account_request.RegisterAccountRequest = {}
         if kms_key is not None:
             input_["kms_key"] = kms_key
         if delegated_admin_account is not None:
@@ -2767,6 +3204,7 @@ class AsyncAuditManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def register_organization_admin_account(
@@ -2805,14 +3243,16 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.register_organization_admin_account_request.RegisterOrganizationAdminAccountRequest = {}  # type: ignore[typeddict-item]
-        input_["admin_account_id"] = admin_account_id
+        input_: capo_auditmanager.types.register_organization_admin_account_request.RegisterOrganizationAdminAccountRequest = {
+            "admin_account_id": admin_account_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_assessment_framework_share(
@@ -2858,10 +3298,11 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.start_assessment_framework_share_request.StartAssessmentFrameworkShareRequest = {}  # type: ignore[typeddict-item]
-        input_["framework_id"] = framework_id
-        input_["destination_account"] = destination_account
-        input_["destination_region"] = destination_region
+        input_: capo_auditmanager.types.start_assessment_framework_share_request.StartAssessmentFrameworkShareRequest = {
+            "framework_id": framework_id,
+            "destination_account": destination_account,
+            "destination_region": destination_region,
+        }
         if comment is not None:
             input_["comment"] = comment
 
@@ -2870,6 +3311,7 @@ class AsyncAuditManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -2908,15 +3350,17 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_auditmanager.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -2955,15 +3399,17 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_auditmanager.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_assessment(
@@ -3019,13 +3465,14 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.update_assessment_request.UpdateAssessmentRequest = {}  # type: ignore[typeddict-item]
-        input_["assessment_id"] = assessment_id
+        input_: capo_auditmanager.types.update_assessment_request.UpdateAssessmentRequest = {
+            "assessment_id": assessment_id,
+            "scope": scope,
+        }
         if assessment_name is not None:
             input_["assessment_name"] = assessment_name
         if assessment_description is not None:
             input_["assessment_description"] = assessment_description
-        input_["scope"] = scope
         if assessment_reports_destination is not None:
             input_["assessment_reports_destination"] = assessment_reports_destination
         if roles is not None:
@@ -3036,6 +3483,7 @@ class AsyncAuditManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_assessment_control(
@@ -3085,10 +3533,11 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.update_assessment_control_request.UpdateAssessmentControlRequest = {}  # type: ignore[typeddict-item]
-        input_["assessment_id"] = assessment_id
-        input_["control_set_id"] = control_set_id
-        input_["control_id"] = control_id
+        input_: capo_auditmanager.types.update_assessment_control_request.UpdateAssessmentControlRequest = {
+            "assessment_id": assessment_id,
+            "control_set_id": control_set_id,
+            "control_id": control_id,
+        }
         if control_status is not None:
             input_["control_status"] = control_status
         if comment_body is not None:
@@ -3099,6 +3548,7 @@ class AsyncAuditManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_assessment_control_set_status(
@@ -3142,17 +3592,19 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.update_assessment_control_set_status_request.UpdateAssessmentControlSetStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["assessment_id"] = assessment_id
-        input_["control_set_id"] = control_set_id
-        input_["status"] = status
-        input_["comment"] = comment
+        input_: capo_auditmanager.types.update_assessment_control_set_status_request.UpdateAssessmentControlSetStatusRequest = {
+            "assessment_id": assessment_id,
+            "control_set_id": control_set_id,
+            "status": status,
+            "comment": comment,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_assessment_framework(
@@ -3203,20 +3655,22 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.update_assessment_framework_request.UpdateAssessmentFrameworkRequest = {}  # type: ignore[typeddict-item]
-        input_["framework_id"] = framework_id
-        input_["name"] = name
+        input_: capo_auditmanager.types.update_assessment_framework_request.UpdateAssessmentFrameworkRequest = {
+            "framework_id": framework_id,
+            "name": name,
+            "control_sets": control_sets,
+        }
         if description is not None:
             input_["description"] = description
         if compliance_type is not None:
             input_["compliance_type"] = compliance_type
-        input_["control_sets"] = control_sets
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_assessment_framework_share(
@@ -3259,16 +3713,18 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.update_assessment_framework_share_request.UpdateAssessmentFrameworkShareRequest = {}  # type: ignore[typeddict-item]
-        input_["request_id"] = request_id
-        input_["request_type"] = request_type
-        input_["action"] = action
+        input_: capo_auditmanager.types.update_assessment_framework_share_request.UpdateAssessmentFrameworkShareRequest = {
+            "request_id": request_id,
+            "request_type": request_type,
+            "action": action,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_assessment_status(
@@ -3309,15 +3765,17 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.update_assessment_status_request.UpdateAssessmentStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["assessment_id"] = assessment_id
-        input_["status"] = status
+        input_: capo_auditmanager.types.update_assessment_status_request.UpdateAssessmentStatusRequest = {
+            "assessment_id": assessment_id,
+            "status": status,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_control(
@@ -3375,9 +3833,11 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.update_control_request.UpdateControlRequest = {}  # type: ignore[typeddict-item]
-        input_["control_id"] = control_id
-        input_["name"] = name
+        input_: capo_auditmanager.types.update_control_request.UpdateControlRequest = {
+            "control_id": control_id,
+            "name": name,
+            "control_mapping_sources": control_mapping_sources,
+        }
         if description is not None:
             input_["description"] = description
         if testing_information is not None:
@@ -3386,13 +3846,13 @@ class AsyncAuditManagerClient:
             input_["action_plan_title"] = action_plan_title
         if action_plan_instructions is not None:
             input_["action_plan_instructions"] = action_plan_instructions
-        input_["control_mapping_sources"] = control_mapping_sources
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_settings(
@@ -3449,7 +3909,7 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.update_settings_request.UpdateSettingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_auditmanager.types.update_settings_request.UpdateSettingsRequest = {}
         if sns_topic is not None:
             input_["sns_topic"] = sns_topic
         if default_assessment_reports_destination is not None:
@@ -3472,6 +3932,7 @@ class AsyncAuditManagerClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def validate_assessment_report_integrity(
@@ -3509,14 +3970,16 @@ class AsyncAuditManagerClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_auditmanager.types.validate_assessment_report_integrity_request.ValidateAssessmentReportIntegrityRequest = {}  # type: ignore[typeddict-item]
-        input_["s3_relative_path"] = s3_relative_path
+        input_: capo_auditmanager.types.validate_assessment_report_integrity_request.ValidateAssessmentReportIntegrityRequest = {
+            "s3_relative_path": s3_relative_path
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

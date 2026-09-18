@@ -48,20 +48,20 @@ def serialize_aws_json_1_1(value: TimestreamSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TimestreamSettings:
     out: TimestreamSettings = {}  # type: ignore[typeddict-item]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
     else:
         raise DeserializationError("TimestreamSettings.database_name required")
-    if "MemoryDuration" in data:
+    if data.get("MemoryDuration") is not None:
         out["memory_duration"] = data["MemoryDuration"]
     else:
         raise DeserializationError("TimestreamSettings.memory_duration required")
-    if "MagneticDuration" in data:
+    if data.get("MagneticDuration") is not None:
         out["magnetic_duration"] = data["MagneticDuration"]
     else:
         raise DeserializationError("TimestreamSettings.magnetic_duration required")
-    if "CdcInsertsAndUpdates" in data:
+    if data.get("CdcInsertsAndUpdates") is not None:
         out["cdc_inserts_and_updates"] = data["CdcInsertsAndUpdates"]
-    if "EnableMagneticStoreWrites" in data:
+    if data.get("EnableMagneticStoreWrites") is not None:
         out["enable_magnetic_store_writes"] = data["EnableMagneticStoreWrites"]
     return out

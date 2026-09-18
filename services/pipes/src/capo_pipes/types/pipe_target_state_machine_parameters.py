@@ -25,6 +25,6 @@ def serialize_json(value: PipeTargetStateMachineParameters) -> dict:
 
 def deserialize_json(data: dict) -> PipeTargetStateMachineParameters:
     out: PipeTargetStateMachineParameters = {}  # type: ignore[typeddict-item]
-    if "InvocationType" in data:
+    if data.get("InvocationType") is not None:
         out["invocation_type"] = data["InvocationType"]
     return out

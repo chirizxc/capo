@@ -42,7 +42,7 @@ def serialize_json(value: LineSeriesAxisDisplayOptions) -> dict:
 
 def deserialize_json(data: dict) -> LineSeriesAxisDisplayOptions:
     out: LineSeriesAxisDisplayOptions = {}  # type: ignore[typeddict-item]
-    if "AxisOptions" in data:
+    if data.get("AxisOptions") is not None:
         import capo_quicksight.types.axis_display_options
 
         out["axis_options"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> LineSeriesAxisDisplayOptions:
                 data["AxisOptions"]
             )
         )
-    if "MissingDataConfigurations" in data:
+    if data.get("MissingDataConfigurations") is not None:
         import capo_quicksight.types.missing_data_configuration_list
 
         out["missing_data_configurations"] = (

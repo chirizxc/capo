@@ -65,13 +65,13 @@ def serialize_json(value: ReferenceLine) -> dict:
 
 def deserialize_json(data: dict) -> ReferenceLine:
     out: ReferenceLine = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_quicksight.types.widget_status
 
         out["status"] = capo_quicksight.types.widget_status.deserialize_json(
             data["Status"]
         )
-    if "DataConfiguration" in data:
+    if data.get("DataConfiguration") is not None:
         import capo_quicksight.types.reference_line_data_configuration
 
         out["data_configuration"] = (
@@ -81,7 +81,7 @@ def deserialize_json(data: dict) -> ReferenceLine:
         )
     else:
         raise DeserializationError("ReferenceLine.data_configuration required")
-    if "StyleConfiguration" in data:
+    if data.get("StyleConfiguration") is not None:
         import capo_quicksight.types.reference_line_style_configuration
 
         out["style_configuration"] = (
@@ -89,7 +89,7 @@ def deserialize_json(data: dict) -> ReferenceLine:
                 data["StyleConfiguration"]
             )
         )
-    if "LabelConfiguration" in data:
+    if data.get("LabelConfiguration") is not None:
         import capo_quicksight.types.reference_line_label_configuration
 
         out["label_configuration"] = (

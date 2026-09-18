@@ -24,7 +24,7 @@ def serialize_json(value: VirtualNodeGrpcConnectionPool) -> dict:
 
 def deserialize_json(data: dict) -> VirtualNodeGrpcConnectionPool:
     out: VirtualNodeGrpcConnectionPool = {}  # type: ignore[typeddict-item]
-    if "maxRequests" in data:
+    if data.get("maxRequests") is not None:
         out["max_requests"] = data["maxRequests"]
     else:
         raise DeserializationError(

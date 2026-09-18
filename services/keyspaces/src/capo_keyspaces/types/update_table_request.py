@@ -161,15 +161,15 @@ def serialize_aws_json_1_0(value: UpdateTableRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateTableRequest:
     out: UpdateTableRequest = {}  # type: ignore[typeddict-item]
-    if "keyspaceName" in data:
+    if data.get("keyspaceName") is not None:
         out["keyspace_name"] = data["keyspaceName"]
     else:
         raise DeserializationError("UpdateTableRequest.keyspace_name required")
-    if "tableName" in data:
+    if data.get("tableName") is not None:
         out["table_name"] = data["tableName"]
     else:
         raise DeserializationError("UpdateTableRequest.table_name required")
-    if "addColumns" in data:
+    if data.get("addColumns") is not None:
         import capo_keyspaces.types.column_definition_list
 
         out["add_columns"] = (
@@ -177,7 +177,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateTableRequest:
                 data["addColumns"]
             )
         )
-    if "capacitySpecification" in data:
+    if data.get("capacitySpecification") is not None:
         import capo_keyspaces.types.capacity_specification
 
         out["capacity_specification"] = (
@@ -185,7 +185,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateTableRequest:
                 data["capacitySpecification"]
             )
         )
-    if "encryptionSpecification" in data:
+    if data.get("encryptionSpecification") is not None:
         import capo_keyspaces.types.encryption_specification
 
         out["encryption_specification"] = (
@@ -193,7 +193,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateTableRequest:
                 data["encryptionSpecification"]
             )
         )
-    if "pointInTimeRecovery" in data:
+    if data.get("pointInTimeRecovery") is not None:
         import capo_keyspaces.types.point_in_time_recovery
 
         out["point_in_time_recovery"] = (
@@ -201,15 +201,15 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateTableRequest:
                 data["pointInTimeRecovery"]
             )
         )
-    if "ttl" in data:
+    if data.get("ttl") is not None:
         import capo_keyspaces.types.time_to_live
 
         out["ttl"] = capo_keyspaces.types.time_to_live.deserialize_aws_json_1_0(
             data["ttl"]
         )
-    if "defaultTimeToLive" in data:
+    if data.get("defaultTimeToLive") is not None:
         out["default_time_to_live"] = data["defaultTimeToLive"]
-    if "clientSideTimestamps" in data:
+    if data.get("clientSideTimestamps") is not None:
         import capo_keyspaces.types.client_side_timestamps
 
         out["client_side_timestamps"] = (
@@ -217,7 +217,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateTableRequest:
                 data["clientSideTimestamps"]
             )
         )
-    if "autoScalingSpecification" in data:
+    if data.get("autoScalingSpecification") is not None:
         import capo_keyspaces.types.auto_scaling_specification
 
         out["auto_scaling_specification"] = (
@@ -225,7 +225,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateTableRequest:
                 data["autoScalingSpecification"]
             )
         )
-    if "replicaSpecifications" in data:
+    if data.get("replicaSpecifications") is not None:
         import capo_keyspaces.types.replica_specification_list
 
         out["replica_specifications"] = (
@@ -233,7 +233,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateTableRequest:
                 data["replicaSpecifications"]
             )
         )
-    if "cdcSpecification" in data:
+    if data.get("cdcSpecification") is not None:
         import capo_keyspaces.types.cdc_specification
 
         out["cdc_specification"] = (
@@ -241,7 +241,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateTableRequest:
                 data["cdcSpecification"]
             )
         )
-    if "warmThroughputSpecification" in data:
+    if data.get("warmThroughputSpecification") is not None:
         import capo_keyspaces.types.warm_throughput_specification
 
         out["warm_throughput_specification"] = (

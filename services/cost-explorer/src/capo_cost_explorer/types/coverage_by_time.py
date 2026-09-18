@@ -51,7 +51,7 @@ def serialize_aws_json_1_1(value: CoverageByTime) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CoverageByTime:
     out: CoverageByTime = {}  # type: ignore[typeddict-item]
-    if "TimePeriod" in data:
+    if data.get("TimePeriod") is not None:
         import capo_cost_explorer.types.date_interval
 
         out["time_period"] = (
@@ -59,7 +59,7 @@ def deserialize_aws_json_1_1(data: dict) -> CoverageByTime:
                 data["TimePeriod"]
             )
         )
-    if "Groups" in data:
+    if data.get("Groups") is not None:
         import capo_cost_explorer.types.reservation_coverage_groups
 
         out["groups"] = (
@@ -67,7 +67,7 @@ def deserialize_aws_json_1_1(data: dict) -> CoverageByTime:
                 data["Groups"]
             )
         )
-    if "Total" in data:
+    if data.get("Total") is not None:
         import capo_cost_explorer.types.coverage
 
         out["total"] = capo_cost_explorer.types.coverage.deserialize_aws_json_1_1(

@@ -23,12 +23,12 @@ def serialize_json(value: MergeRouterInputIndexedStreamDetails) -> dict:
 
 def deserialize_json(data: dict) -> MergeRouterInputIndexedStreamDetails:
     out: MergeRouterInputIndexedStreamDetails = {}  # type: ignore[typeddict-item]
-    if "sourceIndex" in data:
+    if data.get("sourceIndex") is not None:
         out["source_index"] = data["sourceIndex"]
     else:
         raise DeserializationError(
             "MergeRouterInputIndexedStreamDetails.source_index required"
         )
-    if "sourceIpAddress" in data:
+    if data.get("sourceIpAddress") is not None:
         out["source_ip_address"] = data["sourceIpAddress"]
     return out

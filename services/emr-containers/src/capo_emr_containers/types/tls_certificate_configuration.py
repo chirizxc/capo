@@ -44,7 +44,7 @@ def serialize_json(value: TLSCertificateConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> TLSCertificateConfiguration:
     out: TLSCertificateConfiguration = {}  # type: ignore[typeddict-item]
-    if "certificateProviderType" in data:
+    if data.get("certificateProviderType") is not None:
         import capo_emr_containers.types.certificate_provider_type
 
         out["certificate_provider_type"] = (
@@ -52,8 +52,8 @@ def deserialize_json(data: dict) -> TLSCertificateConfiguration:
                 data["certificateProviderType"]
             )
         )
-    if "publicCertificateSecretArn" in data:
+    if data.get("publicCertificateSecretArn") is not None:
         out["public_certificate_secret_arn"] = data["publicCertificateSecretArn"]
-    if "privateCertificateSecretArn" in data:
+    if data.get("privateCertificateSecretArn") is not None:
         out["private_certificate_secret_arn"] = data["privateCertificateSecretArn"]
     return out

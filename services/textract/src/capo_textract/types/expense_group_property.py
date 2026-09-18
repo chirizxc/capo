@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: ExpenseGroupProperty) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExpenseGroupProperty:
     out: ExpenseGroupProperty = {}  # type: ignore[typeddict-item]
-    if "Types" in data:
+    if data.get("Types") is not None:
         import capo_textract.types.string_list
 
         out["types"] = capo_textract.types.string_list.deserialize_aws_json_1_1(
             data["Types"]
         )
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     return out

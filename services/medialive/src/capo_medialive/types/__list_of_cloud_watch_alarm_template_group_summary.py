@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> __listOfCloudWatchAlarmTemplateGroupSummary:
 
     out: __listOfCloudWatchAlarmTemplateGroupSummary = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_medialive.types.cloud_watch_alarm_template_group_summary.deserialize_json(
                 item

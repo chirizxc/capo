@@ -26,13 +26,13 @@ def serialize_json(value: SourceEventMetadataSummary) -> dict:
 
 def deserialize_json(data: dict) -> SourceEventMetadataSummary:
     out: SourceEventMetadataSummary = {}  # type: ignore[typeddict-item]
-    if "eventOriginRegion" in data:
+    if data.get("eventOriginRegion") is not None:
         out["event_origin_region"] = data["eventOriginRegion"]
-    if "source" in data:
+    if data.get("source") is not None:
         out["source"] = data["source"]
     else:
         raise DeserializationError("SourceEventMetadataSummary.source required")
-    if "eventType" in data:
+    if data.get("eventType") is not None:
         out["event_type"] = data["eventType"]
     else:
         raise DeserializationError("SourceEventMetadataSummary.event_type required")

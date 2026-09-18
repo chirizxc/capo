@@ -38,11 +38,11 @@ def serialize_json(value: GetMembersResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetMembersResponse:
     out: GetMembersResponse = {}  # type: ignore[typeddict-item]
-    if "members" in data:
+    if data.get("members") is not None:
         import capo_guardduty.types.members
 
         out["members"] = capo_guardduty.types.members.deserialize_json(data["members"])
-    if "unprocessedAccounts" in data:
+    if data.get("unprocessedAccounts") is not None:
         import capo_guardduty.types.unprocessed_accounts
 
         out["unprocessed_accounts"] = (

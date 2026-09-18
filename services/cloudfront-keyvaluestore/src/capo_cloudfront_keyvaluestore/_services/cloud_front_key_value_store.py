@@ -181,16 +181,18 @@ class CloudFrontKeyValueStoreClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudfront_keyvaluestore.types.delete_key_request.DeleteKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["kvs_arn"] = kvs_arn
-        input_["key"] = key
-        input_["if_match"] = if_match
+        input_: capo_cloudfront_keyvaluestore.types.delete_key_request.DeleteKeyRequest = {
+            "kvs_arn": kvs_arn,
+            "key": key,
+            "if_match": if_match,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_key_value_store(
@@ -235,14 +237,16 @@ class CloudFrontKeyValueStoreClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudfront_keyvaluestore.types.describe_key_value_store_request.DescribeKeyValueStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["kvs_arn"] = kvs_arn
+        input_: capo_cloudfront_keyvaluestore.types.describe_key_value_store_request.DescribeKeyValueStoreRequest = {
+            "kvs_arn": kvs_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_key(
@@ -286,15 +290,17 @@ class CloudFrontKeyValueStoreClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudfront_keyvaluestore.types.get_key_request.GetKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["kvs_arn"] = kvs_arn
-        input_["key"] = key
+        input_: capo_cloudfront_keyvaluestore.types.get_key_request.GetKeyRequest = {
+            "kvs_arn": kvs_arn,
+            "key": key,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_keys(
@@ -344,8 +350,9 @@ class CloudFrontKeyValueStoreClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudfront_keyvaluestore.types.list_keys_request.ListKeysRequest = {}  # type: ignore[typeddict-item]
-        input_["kvs_arn"] = kvs_arn
+        input_: capo_cloudfront_keyvaluestore.types.list_keys_request.ListKeysRequest = {
+            "kvs_arn": kvs_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -356,6 +363,7 @@ class CloudFrontKeyValueStoreClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_keys(
@@ -428,17 +436,19 @@ class CloudFrontKeyValueStoreClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudfront_keyvaluestore.types.put_key_request.PutKeyRequest = {}  # type: ignore[typeddict-item]
-        input_["key"] = key
-        input_["value"] = value
-        input_["kvs_arn"] = kvs_arn
-        input_["if_match"] = if_match
+        input_: capo_cloudfront_keyvaluestore.types.put_key_request.PutKeyRequest = {
+            "key": key,
+            "value": value,
+            "kvs_arn": kvs_arn,
+            "if_match": if_match,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_keys(
@@ -498,9 +508,10 @@ class CloudFrontKeyValueStoreClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudfront_keyvaluestore.types.update_keys_request.UpdateKeysRequest = {}  # type: ignore[typeddict-item]
-        input_["kvs_arn"] = kvs_arn
-        input_["if_match"] = if_match
+        input_: capo_cloudfront_keyvaluestore.types.update_keys_request.UpdateKeysRequest = {
+            "kvs_arn": kvs_arn,
+            "if_match": if_match,
+        }
         if puts is not None:
             input_["puts"] = puts
         if deletes is not None:
@@ -511,6 +522,7 @@ class CloudFrontKeyValueStoreClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

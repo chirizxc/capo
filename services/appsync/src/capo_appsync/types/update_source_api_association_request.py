@@ -40,9 +40,9 @@ def serialize_json(value: UpdateSourceApiAssociationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSourceApiAssociationRequest:
     out: UpdateSourceApiAssociationRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "sourceApiAssociationConfig" in data:
+    if data.get("sourceApiAssociationConfig") is not None:
         import capo_appsync.types.source_api_association_config
 
         out["source_api_association_config"] = (

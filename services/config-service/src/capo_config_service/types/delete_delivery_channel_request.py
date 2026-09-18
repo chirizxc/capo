@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteDeliveryChannelRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteDeliveryChannelRequest:
     out: DeleteDeliveryChannelRequest = {}  # type: ignore[typeddict-item]
-    if "DeliveryChannelName" in data:
+    if data.get("DeliveryChannelName") is not None:
         out["delivery_channel_name"] = data["DeliveryChannelName"]
     else:
         raise DeserializationError(

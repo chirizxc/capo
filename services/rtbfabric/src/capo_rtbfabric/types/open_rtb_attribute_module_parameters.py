@@ -43,13 +43,21 @@ def serialize_json(value: OpenRtbAttributeModuleParameters) -> dict:
     import capo_rtbfabric.types.action
 
     out["action"] = capo_rtbfabric.types.action.serialize_json(value["action"])
-    out["holdbackPercentage"] = value["holdback_percentage"]
+    out["holdbackPercentage"] = (
+        "NaN"
+        if value["holdback_percentage"] != value["holdback_percentage"]
+        else "Infinity"
+        if value["holdback_percentage"] == float("inf")
+        else "-Infinity"
+        if value["holdback_percentage"] == float("-inf")
+        else value["holdback_percentage"]
+    )
     return out
 
 
 def deserialize_json(data: dict) -> OpenRtbAttributeModuleParameters:
     out: OpenRtbAttributeModuleParameters = {}  # type: ignore[typeddict-item]
-    if "filterType" in data:
+    if data.get("filterType") is not None:
         import capo_rtbfabric.types.filter_type
 
         out["filter_type"] = capo_rtbfabric.types.filter_type.deserialize_json(
@@ -59,7 +67,7 @@ def deserialize_json(data: dict) -> OpenRtbAttributeModuleParameters:
         raise DeserializationError(
             "OpenRtbAttributeModuleParameters.filter_type required"
         )
-    if "filterConfiguration" in data:
+    if data.get("filterConfiguration") is not None:
         import capo_rtbfabric.types.filter_configuration
 
         out["filter_configuration"] = (
@@ -71,14 +79,14 @@ def deserialize_json(data: dict) -> OpenRtbAttributeModuleParameters:
         raise DeserializationError(
             "OpenRtbAttributeModuleParameters.filter_configuration required"
         )
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_rtbfabric.types.action
 
         out["action"] = capo_rtbfabric.types.action.deserialize_json(data["action"])
     else:
         raise DeserializationError("OpenRtbAttributeModuleParameters.action required")
-    if "holdbackPercentage" in data:
-        out["holdback_percentage"] = data["holdbackPercentage"]
+    if data.get("holdbackPercentage") is not None:
+        out["holdback_percentage"] = float(data["holdbackPercentage"])
     else:
         raise DeserializationError(
             "OpenRtbAttributeModuleParameters.holdback_percentage required"

@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> ProvisioningArtifactDetails:
 
     out: ProvisioningArtifactDetails = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_service_catalog.types.provisioning_artifact_detail.deserialize_aws_json_1_1(
                 item

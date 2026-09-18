@@ -162,7 +162,7 @@ def serialize_json(value: RoutePedestrianTravelStep) -> dict:
 
 def deserialize_json(data: dict) -> RoutePedestrianTravelStep:
     out: RoutePedestrianTravelStep = {}  # type: ignore[typeddict-item]
-    if "ContinueStepDetails" in data:
+    if data.get("ContinueStepDetails") is not None:
         import capo_geo_routes.types.route_continue_step_details
 
         out["continue_step_details"] = (
@@ -170,21 +170,21 @@ def deserialize_json(data: dict) -> RoutePedestrianTravelStep:
                 data["ContinueStepDetails"]
             )
         )
-    if "CurrentRoad" in data:
+    if data.get("CurrentRoad") is not None:
         import capo_geo_routes.types.route_road
 
         out["current_road"] = capo_geo_routes.types.route_road.deserialize_json(
             data["CurrentRoad"]
         )
-    if "Distance" in data:
+    if data.get("Distance") is not None:
         out["distance"] = data["Distance"]
     else:
         out["distance"] = 0
-    if "Duration" in data:
+    if data.get("Duration") is not None:
         out["duration"] = data["Duration"]
     else:
         out["duration"] = 0
-    if "ExitNumber" in data:
+    if data.get("ExitNumber") is not None:
         import capo_geo_routes.types.localized_string_list
 
         out["exit_number"] = (
@@ -192,11 +192,11 @@ def deserialize_json(data: dict) -> RoutePedestrianTravelStep:
                 data["ExitNumber"]
             )
         )
-    if "GeometryOffset" in data:
+    if data.get("GeometryOffset") is not None:
         out["geometry_offset"] = data["GeometryOffset"]
-    if "Instruction" in data:
+    if data.get("Instruction") is not None:
         out["instruction"] = data["Instruction"]
-    if "KeepStepDetails" in data:
+    if data.get("KeepStepDetails") is not None:
         import capo_geo_routes.types.route_keep_step_details
 
         out["keep_step_details"] = (
@@ -204,13 +204,13 @@ def deserialize_json(data: dict) -> RoutePedestrianTravelStep:
                 data["KeepStepDetails"]
             )
         )
-    if "NextRoad" in data:
+    if data.get("NextRoad") is not None:
         import capo_geo_routes.types.route_road
 
         out["next_road"] = capo_geo_routes.types.route_road.deserialize_json(
             data["NextRoad"]
         )
-    if "RoundaboutEnterStepDetails" in data:
+    if data.get("RoundaboutEnterStepDetails") is not None:
         import capo_geo_routes.types.route_roundabout_enter_step_details
 
         out["roundabout_enter_step_details"] = (
@@ -218,7 +218,7 @@ def deserialize_json(data: dict) -> RoutePedestrianTravelStep:
                 data["RoundaboutEnterStepDetails"]
             )
         )
-    if "RoundaboutExitStepDetails" in data:
+    if data.get("RoundaboutExitStepDetails") is not None:
         import capo_geo_routes.types.route_roundabout_exit_step_details
 
         out["roundabout_exit_step_details"] = (
@@ -226,7 +226,7 @@ def deserialize_json(data: dict) -> RoutePedestrianTravelStep:
                 data["RoundaboutExitStepDetails"]
             )
         )
-    if "RoundaboutPassStepDetails" in data:
+    if data.get("RoundaboutPassStepDetails") is not None:
         import capo_geo_routes.types.route_roundabout_pass_step_details
 
         out["roundabout_pass_step_details"] = (
@@ -234,13 +234,13 @@ def deserialize_json(data: dict) -> RoutePedestrianTravelStep:
                 data["RoundaboutPassStepDetails"]
             )
         )
-    if "Signpost" in data:
+    if data.get("Signpost") is not None:
         import capo_geo_routes.types.route_signpost
 
         out["signpost"] = capo_geo_routes.types.route_signpost.deserialize_json(
             data["Signpost"]
         )
-    if "TurnStepDetails" in data:
+    if data.get("TurnStepDetails") is not None:
         import capo_geo_routes.types.route_turn_step_details
 
         out["turn_step_details"] = (
@@ -248,7 +248,7 @@ def deserialize_json(data: dict) -> RoutePedestrianTravelStep:
                 data["TurnStepDetails"]
             )
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_geo_routes.types.route_pedestrian_travel_step_type
 
         out["type"] = (

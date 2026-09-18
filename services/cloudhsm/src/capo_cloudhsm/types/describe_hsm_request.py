@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: DescribeHsmRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeHsmRequest:
     out: DescribeHsmRequest = {}  # type: ignore[typeddict-item]
-    if "HsmArn" in data:
+    if data.get("HsmArn") is not None:
         out["hsm_arn"] = data["HsmArn"]
-    if "HsmSerialNumber" in data:
+    if data.get("HsmSerialNumber") is not None:
         out["hsm_serial_number"] = data["HsmSerialNumber"]
     return out

@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: UserTokenConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UserTokenConfiguration:
     out: UserTokenConfiguration = {}  # type: ignore[typeddict-item]
-    if "JwtTokenTypeConfiguration" in data:
+    if data.get("JwtTokenTypeConfiguration") is not None:
         import capo_kendra.types.jwt_token_type_configuration
 
         out["jwt_token_type_configuration"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> UserTokenConfiguration:
                 data["JwtTokenTypeConfiguration"]
             )
         )
-    if "JsonTokenTypeConfiguration" in data:
+    if data.get("JsonTokenTypeConfiguration") is not None:
         import capo_kendra.types.json_token_type_configuration
 
         out["json_token_type_configuration"] = (

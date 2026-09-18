@@ -126,19 +126,19 @@ def serialize_json(value: GetProductOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetProductOutput:
     out: GetProductOutput = {}  # type: ignore[typeddict-item]
-    if "productId" in data:
+    if data.get("productId") is not None:
         out["product_id"] = data["productId"]
     else:
         raise DeserializationError("GetProductOutput.product_id required")
-    if "catalog" in data:
+    if data.get("catalog") is not None:
         out["catalog"] = data["catalog"]
     else:
         raise DeserializationError("GetProductOutput.catalog required")
-    if "productName" in data:
+    if data.get("productName") is not None:
         out["product_name"] = data["productName"]
     else:
         raise DeserializationError("GetProductOutput.product_name required")
-    if "deployedOnAws" in data:
+    if data.get("deployedOnAws") is not None:
         import capo_marketplace_discovery.types.deployed_on_aws_status
 
         out["deployed_on_aws"] = (
@@ -148,15 +148,15 @@ def deserialize_json(data: dict) -> GetProductOutput:
         )
     else:
         raise DeserializationError("GetProductOutput.deployed_on_aws required")
-    if "shortDescription" in data:
+    if data.get("shortDescription") is not None:
         out["short_description"] = data["shortDescription"]
     else:
         raise DeserializationError("GetProductOutput.short_description required")
-    if "longDescription" in data:
+    if data.get("longDescription") is not None:
         out["long_description"] = data["longDescription"]
     else:
         raise DeserializationError("GetProductOutput.long_description required")
-    if "manufacturer" in data:
+    if data.get("manufacturer") is not None:
         import capo_marketplace_discovery.types.seller_information
 
         out["manufacturer"] = (
@@ -166,11 +166,11 @@ def deserialize_json(data: dict) -> GetProductOutput:
         )
     else:
         raise DeserializationError("GetProductOutput.manufacturer required")
-    if "logoThumbnailUrl" in data:
+    if data.get("logoThumbnailUrl") is not None:
         out["logo_thumbnail_url"] = data["logoThumbnailUrl"]
     else:
         raise DeserializationError("GetProductOutput.logo_thumbnail_url required")
-    if "fulfillmentOptionSummaries" in data:
+    if data.get("fulfillmentOptionSummaries") is not None:
         import capo_marketplace_discovery.types.fulfillment_option_summary_list
 
         out["fulfillment_option_summaries"] = (
@@ -182,7 +182,7 @@ def deserialize_json(data: dict) -> GetProductOutput:
         raise DeserializationError(
             "GetProductOutput.fulfillment_option_summaries required"
         )
-    if "categories" in data:
+    if data.get("categories") is not None:
         import capo_marketplace_discovery.types.category_list
 
         out["categories"] = (
@@ -192,7 +192,7 @@ def deserialize_json(data: dict) -> GetProductOutput:
         )
     else:
         raise DeserializationError("GetProductOutput.categories required")
-    if "highlights" in data:
+    if data.get("highlights") is not None:
         import capo_marketplace_discovery.types.highlight_list
 
         out["highlights"] = (
@@ -202,7 +202,7 @@ def deserialize_json(data: dict) -> GetProductOutput:
         )
     else:
         raise DeserializationError("GetProductOutput.highlights required")
-    if "promotionalMedia" in data:
+    if data.get("promotionalMedia") is not None:
         import capo_marketplace_discovery.types.promotional_media_list
 
         out["promotional_media"] = (
@@ -212,7 +212,7 @@ def deserialize_json(data: dict) -> GetProductOutput:
         )
     else:
         raise DeserializationError("GetProductOutput.promotional_media required")
-    if "resources" in data:
+    if data.get("resources") is not None:
         import capo_marketplace_discovery.types.resource_list
 
         out["resources"] = (
@@ -222,7 +222,7 @@ def deserialize_json(data: dict) -> GetProductOutput:
         )
     else:
         raise DeserializationError("GetProductOutput.resources required")
-    if "sellerEngagements" in data:
+    if data.get("sellerEngagements") is not None:
         import capo_marketplace_discovery.types.seller_engagement_list
 
         out["seller_engagements"] = (

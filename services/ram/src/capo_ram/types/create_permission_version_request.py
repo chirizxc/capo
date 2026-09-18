@@ -32,18 +32,18 @@ def serialize_json(value: CreatePermissionVersionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreatePermissionVersionRequest:
     out: CreatePermissionVersionRequest = {}  # type: ignore[typeddict-item]
-    if "permissionArn" in data:
+    if data.get("permissionArn") is not None:
         out["permission_arn"] = data["permissionArn"]
     else:
         raise DeserializationError(
             "CreatePermissionVersionRequest.permission_arn required"
         )
-    if "policyTemplate" in data:
+    if data.get("policyTemplate") is not None:
         out["policy_template"] = data["policyTemplate"]
     else:
         raise DeserializationError(
             "CreatePermissionVersionRequest.policy_template required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

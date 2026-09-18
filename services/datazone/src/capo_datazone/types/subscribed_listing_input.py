@@ -24,7 +24,7 @@ def serialize_json(value: SubscribedListingInput) -> dict:
 
 def deserialize_json(data: dict) -> SubscribedListingInput:
     out: SubscribedListingInput = {}  # type: ignore[typeddict-item]
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         out["identifier"] = data["identifier"]
     else:
         raise DeserializationError("SubscribedListingInput.identifier required")

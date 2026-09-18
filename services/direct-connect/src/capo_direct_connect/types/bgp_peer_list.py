@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> BGPPeerList:
 
     out: BGPPeerList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_direct_connect.types.bgp_peer.deserialize_aws_json_1_1(item))
     return out

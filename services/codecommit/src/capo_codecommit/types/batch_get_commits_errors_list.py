@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> BatchGetCommitsErrorsList:
 
     out: BatchGetCommitsErrorsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codecommit.types.batch_get_commits_error.deserialize_aws_json_1_1(item)
         )

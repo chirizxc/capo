@@ -41,18 +41,18 @@ def serialize_aws_json_1_1(value: ListSessionsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListSessionsResponse:
     out: ListSessionsResponse = {}  # type: ignore[typeddict-item]
-    if "Ids" in data:
+    if data.get("Ids") is not None:
         import capo_glue.types.session_id_list
 
         out["ids"] = capo_glue.types.session_id_list.deserialize_aws_json_1_1(
             data["Ids"]
         )
-    if "Sessions" in data:
+    if data.get("Sessions") is not None:
         import capo_glue.types.session_list
 
         out["sessions"] = capo_glue.types.session_list.deserialize_aws_json_1_1(
             data["Sessions"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

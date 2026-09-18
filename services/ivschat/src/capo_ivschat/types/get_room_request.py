@@ -24,7 +24,7 @@ def serialize_json(value: GetRoomRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetRoomRequest:
     out: GetRoomRequest = {}  # type: ignore[typeddict-item]
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         out["identifier"] = data["identifier"]
     else:
         raise DeserializationError("GetRoomRequest.identifier required")

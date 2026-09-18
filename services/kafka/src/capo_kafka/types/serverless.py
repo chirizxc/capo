@@ -53,13 +53,13 @@ def serialize_json(value: Serverless) -> dict:
 
 def deserialize_json(data: dict) -> Serverless:
     out: Serverless = {}  # type: ignore[typeddict-item]
-    if "vpcConfigs" in data:
+    if data.get("vpcConfigs") is not None:
         import capo_kafka.types.__list_of_vpc_config
 
         out["vpc_configs"] = capo_kafka.types.__list_of_vpc_config.deserialize_json(
             data["vpcConfigs"]
         )
-    if "clientAuthentication" in data:
+    if data.get("clientAuthentication") is not None:
         import capo_kafka.types.serverless_client_authentication
 
         out["client_authentication"] = (
@@ -67,7 +67,7 @@ def deserialize_json(data: dict) -> Serverless:
                 data["clientAuthentication"]
             )
         )
-    if "connectivityInfo" in data:
+    if data.get("connectivityInfo") is not None:
         import capo_kafka.types.serverless_connectivity_info
 
         out["connectivity_info"] = (

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfRtmpAdMarkers:
 
     out: __listOfRtmpAdMarkers = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_medialive.types.rtmp_ad_markers.deserialize_json(item))
     return out

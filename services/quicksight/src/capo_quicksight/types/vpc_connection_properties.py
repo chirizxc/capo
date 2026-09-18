@@ -24,7 +24,7 @@ def serialize_json(value: VpcConnectionProperties) -> dict:
 
 def deserialize_json(data: dict) -> VpcConnectionProperties:
     out: VpcConnectionProperties = {}  # type: ignore[typeddict-item]
-    if "VpcConnectionArn" in data:
+    if data.get("VpcConnectionArn") is not None:
         out["vpc_connection_arn"] = data["VpcConnectionArn"]
     else:
         raise DeserializationError(

@@ -87,27 +87,27 @@ def serialize_aws_json_1_1(value: CreateCommitInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateCommitInput:
     out: CreateCommitInput = {}  # type: ignore[typeddict-item]
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
     else:
         raise DeserializationError("CreateCommitInput.repository_name required")
-    if "branchName" in data:
+    if data.get("branchName") is not None:
         out["branch_name"] = data["branchName"]
     else:
         raise DeserializationError("CreateCommitInput.branch_name required")
-    if "parentCommitId" in data:
+    if data.get("parentCommitId") is not None:
         out["parent_commit_id"] = data["parentCommitId"]
-    if "authorName" in data:
+    if data.get("authorName") is not None:
         out["author_name"] = data["authorName"]
-    if "email" in data:
+    if data.get("email") is not None:
         out["email"] = data["email"]
-    if "commitMessage" in data:
+    if data.get("commitMessage") is not None:
         out["commit_message"] = data["commitMessage"]
-    if "keepEmptyFolders" in data:
+    if data.get("keepEmptyFolders") is not None:
         out["keep_empty_folders"] = data["keepEmptyFolders"]
     else:
         out["keep_empty_folders"] = False
-    if "putFiles" in data:
+    if data.get("putFiles") is not None:
         import capo_codecommit.types.put_file_entries
 
         out["put_files"] = (
@@ -115,7 +115,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateCommitInput:
                 data["putFiles"]
             )
         )
-    if "deleteFiles" in data:
+    if data.get("deleteFiles") is not None:
         import capo_codecommit.types.delete_file_entries
 
         out["delete_files"] = (
@@ -123,7 +123,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateCommitInput:
                 data["deleteFiles"]
             )
         )
-    if "setFileModes" in data:
+    if data.get("setFileModes") is not None:
         import capo_codecommit.types.set_file_mode_entries
 
         out["set_file_modes"] = (

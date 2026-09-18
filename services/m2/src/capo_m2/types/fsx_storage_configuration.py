@@ -27,11 +27,11 @@ def serialize_json(value: FsxStorageConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> FsxStorageConfiguration:
     out: FsxStorageConfiguration = {}  # type: ignore[typeddict-item]
-    if "file-system-id" in data:
+    if data.get("file-system-id") is not None:
         out["file_system_id"] = data["file-system-id"]
     else:
         raise DeserializationError("FsxStorageConfiguration.file_system_id required")
-    if "mount-point" in data:
+    if data.get("mount-point") is not None:
         out["mount_point"] = data["mount-point"]
     else:
         raise DeserializationError("FsxStorageConfiguration.mount_point required")

@@ -43,14 +43,14 @@ def serialize_json(value: UpdateEnvironmentActionInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateEnvironmentActionInput:
     out: UpdateEnvironmentActionInput = {}  # type: ignore[typeddict-item]
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_datazone.types.action_parameters
 
         out["parameters"] = capo_datazone.types.action_parameters.deserialize_json(
             data["parameters"]
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: PrivateDnsPropertiesMutableChange) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PrivateDnsPropertiesMutableChange:
     out: PrivateDnsPropertiesMutableChange = {}  # type: ignore[typeddict-item]
-    if "SOA" in data:
+    if data.get("SOA") is not None:
         import capo_servicediscovery.types.soa_change
 
         out["soa"] = capo_servicediscovery.types.soa_change.deserialize_aws_json_1_1(

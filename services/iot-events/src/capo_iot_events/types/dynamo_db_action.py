@@ -68,31 +68,31 @@ def serialize_json(value: DynamoDBAction) -> dict:
 
 def deserialize_json(data: dict) -> DynamoDBAction:
     out: DynamoDBAction = {}  # type: ignore[typeddict-item]
-    if "hashKeyType" in data:
+    if data.get("hashKeyType") is not None:
         out["hash_key_type"] = data["hashKeyType"]
-    if "hashKeyField" in data:
+    if data.get("hashKeyField") is not None:
         out["hash_key_field"] = data["hashKeyField"]
     else:
         raise DeserializationError("DynamoDBAction.hash_key_field required")
-    if "hashKeyValue" in data:
+    if data.get("hashKeyValue") is not None:
         out["hash_key_value"] = data["hashKeyValue"]
     else:
         raise DeserializationError("DynamoDBAction.hash_key_value required")
-    if "rangeKeyType" in data:
+    if data.get("rangeKeyType") is not None:
         out["range_key_type"] = data["rangeKeyType"]
-    if "rangeKeyField" in data:
+    if data.get("rangeKeyField") is not None:
         out["range_key_field"] = data["rangeKeyField"]
-    if "rangeKeyValue" in data:
+    if data.get("rangeKeyValue") is not None:
         out["range_key_value"] = data["rangeKeyValue"]
-    if "operation" in data:
+    if data.get("operation") is not None:
         out["operation"] = data["operation"]
-    if "payloadField" in data:
+    if data.get("payloadField") is not None:
         out["payload_field"] = data["payloadField"]
-    if "tableName" in data:
+    if data.get("tableName") is not None:
         out["table_name"] = data["tableName"]
     else:
         raise DeserializationError("DynamoDBAction.table_name required")
-    if "payload" in data:
+    if data.get("payload") is not None:
         import capo_iot_events.types.payload
 
         out["payload"] = capo_iot_events.types.payload.deserialize_json(data["payload"])

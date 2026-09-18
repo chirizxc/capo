@@ -32,8 +32,8 @@ def serialize_json(value: CodeGenerationOutputFormatStatusDetails) -> dict:
 
 def deserialize_json(data: dict) -> CodeGenerationOutputFormatStatusDetails:
     out: CodeGenerationOutputFormatStatusDetails = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "statusDetailList" in data:
+    if data.get("statusDetailList") is not None:
         out["status_detail_list"] = data["statusDetailList"]
     return out

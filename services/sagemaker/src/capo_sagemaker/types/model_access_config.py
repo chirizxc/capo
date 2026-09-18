@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: ModelAccessConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModelAccessConfig:
     out: ModelAccessConfig = {}  # type: ignore[typeddict-item]
-    if "AcceptEula" in data:
+    if data.get("AcceptEula") is not None:
         out["accept_eula"] = data["AcceptEula"]
     return out

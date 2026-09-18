@@ -45,13 +45,13 @@ def serialize_aws_json_1_1(value: ResolverDnssecConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResolverDnssecConfig:
     out: ResolverDnssecConfig = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "OwnerId" in data:
+    if data.get("OwnerId") is not None:
         out["owner_id"] = data["OwnerId"]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
-    if "ValidationStatus" in data:
+    if data.get("ValidationStatus") is not None:
         import capo_route53resolver.types.resolver_dnssec_validation_status
 
         out["validation_status"] = (

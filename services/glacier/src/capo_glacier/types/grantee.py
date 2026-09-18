@@ -43,18 +43,18 @@ def serialize_json(value: Grantee) -> dict:
 
 def deserialize_json(data: dict) -> Grantee:
     out: Grantee = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_glacier.types.type
 
         out["type"] = capo_glacier.types.type.deserialize_json(data["Type"])
     else:
         raise DeserializationError("Grantee.type required")
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "URI" in data:
+    if data.get("URI") is not None:
         out["uri"] = data["URI"]
-    if "ID" in data:
+    if data.get("ID") is not None:
         out["id"] = data["ID"]
-    if "EmailAddress" in data:
+    if data.get("EmailAddress") is not None:
         out["email_address"] = data["EmailAddress"]
     return out

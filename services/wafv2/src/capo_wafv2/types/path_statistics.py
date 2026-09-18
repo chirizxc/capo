@@ -38,7 +38,15 @@ def serialize_aws_json_1_1(value: PathStatistics) -> dict:
         )
     out["Path"] = value["path"]
     out["RequestCount"] = value.get("request_count", 0)
-    out["Percentage"] = value.get("percentage", 0)
+    out["Percentage"] = (
+        "NaN"
+        if value.get("percentage", 0) != value.get("percentage", 0)
+        else "Infinity"
+        if value.get("percentage", 0) == float("inf")
+        else "-Infinity"
+        if value.get("percentage", 0) == float("-inf")
+        else value.get("percentage", 0)
+    )
     if "top_bots" in value:
         import capo_wafv2.types.bot_statistics_list
 
@@ -50,25 +58,25 @@ def serialize_aws_json_1_1(value: PathStatistics) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PathStatistics:
     out: PathStatistics = {}  # type: ignore[typeddict-item]
-    if "Source" in data:
+    if data.get("Source") is not None:
         import capo_wafv2.types.filter_source
 
         out["source"] = capo_wafv2.types.filter_source.deserialize_aws_json_1_1(
             data["Source"]
         )
-    if "Path" in data:
+    if data.get("Path") is not None:
         out["path"] = data["Path"]
     else:
         raise DeserializationError("PathStatistics.path required")
-    if "RequestCount" in data:
+    if data.get("RequestCount") is not None:
         out["request_count"] = data["RequestCount"]
     else:
         out["request_count"] = 0
-    if "Percentage" in data:
-        out["percentage"] = data["Percentage"]
+    if data.get("Percentage") is not None:
+        out["percentage"] = float(data["Percentage"])
     else:
         out["percentage"] = 0
-    if "TopBots" in data:
+    if data.get("TopBots") is not None:
         import capo_wafv2.types.bot_statistics_list
 
         out["top_bots"] = capo_wafv2.types.bot_statistics_list.deserialize_aws_json_1_1(

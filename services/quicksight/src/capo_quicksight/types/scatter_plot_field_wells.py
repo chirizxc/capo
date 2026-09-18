@@ -44,7 +44,7 @@ def serialize_json(value: ScatterPlotFieldWells) -> dict:
 
 def deserialize_json(data: dict) -> ScatterPlotFieldWells:
     out: ScatterPlotFieldWells = {}  # type: ignore[typeddict-item]
-    if "ScatterPlotCategoricallyAggregatedFieldWells" in data:
+    if data.get("ScatterPlotCategoricallyAggregatedFieldWells") is not None:
         import capo_quicksight.types.scatter_plot_categorically_aggregated_field_wells
 
         out["scatter_plot_categorically_aggregated_field_wells"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> ScatterPlotFieldWells:
                 data["ScatterPlotCategoricallyAggregatedFieldWells"]
             )
         )
-    if "ScatterPlotUnaggregatedFieldWells" in data:
+    if data.get("ScatterPlotUnaggregatedFieldWells") is not None:
         import capo_quicksight.types.scatter_plot_unaggregated_field_wells
 
         out["scatter_plot_unaggregated_field_wells"] = (

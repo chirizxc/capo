@@ -31,7 +31,7 @@ def serialize_json(value: MissingDataConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> MissingDataConfiguration:
     out: MissingDataConfiguration = {}  # type: ignore[typeddict-item]
-    if "TreatmentOption" in data:
+    if data.get("TreatmentOption") is not None:
         import capo_quicksight.types.missing_data_treatment_option
 
         out["treatment_option"] = (

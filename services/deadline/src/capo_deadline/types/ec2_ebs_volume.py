@@ -30,15 +30,15 @@ def serialize_json(value: Ec2EbsVolume) -> dict:
 
 def deserialize_json(data: dict) -> Ec2EbsVolume:
     out: Ec2EbsVolume = {}  # type: ignore[typeddict-item]
-    if "sizeGiB" in data:
+    if data.get("sizeGiB") is not None:
         out["size_gi_b"] = data["sizeGiB"]
     else:
         out["size_gi_b"] = 250
-    if "iops" in data:
+    if data.get("iops") is not None:
         out["iops"] = data["iops"]
     else:
         out["iops"] = 3000
-    if "throughputMiB" in data:
+    if data.get("throughputMiB") is not None:
         out["throughput_mi_b"] = data["throughputMiB"]
     else:
         out["throughput_mi_b"] = 125

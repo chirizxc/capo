@@ -56,15 +56,15 @@ def serialize_json(value: CreateProfilingGroupRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateProfilingGroupRequest:
     out: CreateProfilingGroupRequest = {}  # type: ignore[typeddict-item]
-    if "profilingGroupName" in data:
+    if data.get("profilingGroupName") is not None:
         out["profiling_group_name"] = data["profilingGroupName"]
     else:
         raise DeserializationError(
             "CreateProfilingGroupRequest.profiling_group_name required"
         )
-    if "computePlatform" in data:
+    if data.get("computePlatform") is not None:
         out["compute_platform"] = data["computePlatform"]
-    if "agentOrchestrationConfig" in data:
+    if data.get("agentOrchestrationConfig") is not None:
         import capo_codeguruprofiler.types.agent_orchestration_config
 
         out["agent_orchestration_config"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> CreateProfilingGroupRequest:
                 data["agentOrchestrationConfig"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_codeguruprofiler.types.tags_map
 
         out["tags"] = capo_codeguruprofiler.types.tags_map.deserialize_json(

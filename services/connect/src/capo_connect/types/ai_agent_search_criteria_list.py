@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AiAgentSearchCriteriaList:
 
     out: AiAgentSearchCriteriaList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.ai_agent_search_criteria.deserialize_json(item))
     return out

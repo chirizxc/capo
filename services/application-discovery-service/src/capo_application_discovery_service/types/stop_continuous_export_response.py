@@ -43,7 +43,7 @@ def serialize_aws_json_1_1(value: StopContinuousExportResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StopContinuousExportResponse:
     out: StopContinuousExportResponse = {}  # type: ignore[typeddict-item]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_application_discovery_service.types.time_stamp
 
         out["start_time"] = (
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_1(data: dict) -> StopContinuousExportResponse:
                 data["startTime"]
             )
         )
-    if "stopTime" in data:
+    if data.get("stopTime") is not None:
         import capo_application_discovery_service.types.time_stamp
 
         out["stop_time"] = (

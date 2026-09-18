@@ -31,7 +31,7 @@ def serialize_json(value: AdvancedRecognitionSetting) -> dict:
 
 def deserialize_json(data: dict) -> AdvancedRecognitionSetting:
     out: AdvancedRecognitionSetting = {}  # type: ignore[typeddict-item]
-    if "audioRecognitionStrategy" in data:
+    if data.get("audioRecognitionStrategy") is not None:
         import capo_lex_models_v2.types.audio_recognition_strategy
 
         out["audio_recognition_strategy"] = (

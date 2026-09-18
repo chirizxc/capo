@@ -100,17 +100,17 @@ def serialize_aws_json_1_1(value: JobFlowInstancesDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> JobFlowInstancesDetail:
     out: JobFlowInstancesDetail = {}  # type: ignore[typeddict-item]
-    if "MasterInstanceType" in data:
+    if data.get("MasterInstanceType") is not None:
         out["master_instance_type"] = data["MasterInstanceType"]
-    if "MasterPublicDnsName" in data:
+    if data.get("MasterPublicDnsName") is not None:
         out["master_public_dns_name"] = data["MasterPublicDnsName"]
-    if "MasterInstanceId" in data:
+    if data.get("MasterInstanceId") is not None:
         out["master_instance_id"] = data["MasterInstanceId"]
-    if "SlaveInstanceType" in data:
+    if data.get("SlaveInstanceType") is not None:
         out["slave_instance_type"] = data["SlaveInstanceType"]
-    if "InstanceCount" in data:
+    if data.get("InstanceCount") is not None:
         out["instance_count"] = data["InstanceCount"]
-    if "InstanceGroups" in data:
+    if data.get("InstanceGroups") is not None:
         import capo_emr.types.instance_group_detail_list
 
         out["instance_groups"] = (
@@ -118,24 +118,24 @@ def deserialize_aws_json_1_1(data: dict) -> JobFlowInstancesDetail:
                 data["InstanceGroups"]
             )
         )
-    if "NormalizedInstanceHours" in data:
+    if data.get("NormalizedInstanceHours") is not None:
         out["normalized_instance_hours"] = data["NormalizedInstanceHours"]
-    if "Ec2KeyName" in data:
+    if data.get("Ec2KeyName") is not None:
         out["ec2_key_name"] = data["Ec2KeyName"]
-    if "Ec2SubnetId" in data:
+    if data.get("Ec2SubnetId") is not None:
         out["ec2_subnet_id"] = data["Ec2SubnetId"]
-    if "Placement" in data:
+    if data.get("Placement") is not None:
         import capo_emr.types.placement_type
 
         out["placement"] = capo_emr.types.placement_type.deserialize_aws_json_1_1(
             data["Placement"]
         )
-    if "KeepJobFlowAliveWhenNoSteps" in data:
+    if data.get("KeepJobFlowAliveWhenNoSteps") is not None:
         out["keep_job_flow_alive_when_no_steps"] = data["KeepJobFlowAliveWhenNoSteps"]
-    if "TerminationProtected" in data:
+    if data.get("TerminationProtected") is not None:
         out["termination_protected"] = data["TerminationProtected"]
-    if "UnhealthyNodeReplacement" in data:
+    if data.get("UnhealthyNodeReplacement") is not None:
         out["unhealthy_node_replacement"] = data["UnhealthyNodeReplacement"]
-    if "HadoopVersion" in data:
+    if data.get("HadoopVersion") is not None:
         out["hadoop_version"] = data["HadoopVersion"]
     return out

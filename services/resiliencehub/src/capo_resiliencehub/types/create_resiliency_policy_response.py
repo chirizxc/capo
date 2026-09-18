@@ -28,7 +28,7 @@ def serialize_json(value: CreateResiliencyPolicyResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateResiliencyPolicyResponse:
     out: CreateResiliencyPolicyResponse = {}  # type: ignore[typeddict-item]
-    if "policy" in data:
+    if data.get("policy") is not None:
         import capo_resiliencehub.types.resiliency_policy
 
         out["policy"] = capo_resiliencehub.types.resiliency_policy.deserialize_json(

@@ -25,11 +25,11 @@ def serialize_json(value: RealTimeContactAnalysisCharacterInterval) -> dict:
 
 def deserialize_json(data: dict) -> RealTimeContactAnalysisCharacterInterval:
     out: RealTimeContactAnalysisCharacterInterval = {}  # type: ignore[typeddict-item]
-    if "BeginOffsetChar" in data:
+    if data.get("BeginOffsetChar") is not None:
         out["begin_offset_char"] = data["BeginOffsetChar"]
     else:
         out["begin_offset_char"] = 0
-    if "EndOffsetChar" in data:
+    if data.get("EndOffsetChar") is not None:
         out["end_offset_char"] = data["EndOffsetChar"]
     else:
         out["end_offset_char"] = 0

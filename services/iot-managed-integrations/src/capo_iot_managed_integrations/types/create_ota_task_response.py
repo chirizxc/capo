@@ -35,10 +35,10 @@ def serialize_json(value: CreateOtaTaskResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateOtaTaskResponse:
     out: CreateOtaTaskResponse = {}  # type: ignore[typeddict-item]
-    if "TaskId" in data:
+    if data.get("TaskId") is not None:
         out["task_id"] = data["TaskId"]
-    if "TaskArn" in data:
+    if data.get("TaskArn") is not None:
         out["task_arn"] = data["TaskArn"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

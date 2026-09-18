@@ -28,8 +28,11 @@ def serialize_json(input_to_serialize: AssessmentCompliance) -> dict:
 def deserialize_json(data: dict) -> AssessmentCompliance:
     out: AssessmentCompliance = {}
     for key, value in data.items():
-        import capo_resiliencehub.types.disruption_compliance
         import capo_resiliencehub.types.disruption_type
+
+        if value is None:
+            continue
+        import capo_resiliencehub.types.disruption_compliance
 
         out[capo_resiliencehub.types.disruption_type.deserialize_json(key)] = (
             capo_resiliencehub.types.disruption_compliance.deserialize_json(value)

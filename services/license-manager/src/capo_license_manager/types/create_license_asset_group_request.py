@@ -77,13 +77,13 @@ def serialize_aws_json_1_1(value: CreateLicenseAssetGroupRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateLicenseAssetGroupRequest:
     out: CreateLicenseAssetGroupRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateLicenseAssetGroupRequest.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "LicenseAssetGroupConfigurations" in data:
+    if data.get("LicenseAssetGroupConfigurations") is not None:
         import capo_license_manager.types.license_asset_group_configuration_list
 
         out["license_asset_group_configurations"] = (
@@ -95,7 +95,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateLicenseAssetGroupRequest:
         raise DeserializationError(
             "CreateLicenseAssetGroupRequest.license_asset_group_configurations required"
         )
-    if "AssociatedLicenseAssetRulesetARNs" in data:
+    if data.get("AssociatedLicenseAssetRulesetARNs") is not None:
         import capo_license_manager.types.license_asset_ruleset_arn_list
 
         out["associated_license_asset_ruleset_ar_ns"] = (
@@ -107,7 +107,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateLicenseAssetGroupRequest:
         raise DeserializationError(
             "CreateLicenseAssetGroupRequest.associated_license_asset_ruleset_ar_ns required"
         )
-    if "Properties" in data:
+    if data.get("Properties") is not None:
         import capo_license_manager.types.license_asset_group_property_list
 
         out["properties"] = (
@@ -115,13 +115,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreateLicenseAssetGroupRequest:
                 data["Properties"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_license_manager.types.tag_list
 
         out["tags"] = capo_license_manager.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     else:
         raise DeserializationError(

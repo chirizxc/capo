@@ -13,9 +13,9 @@ from capo_lakeformation import AsyncLakeFormationClient
 
 
 async def main():
-    async with AsyncLakeFormationClient() as s3:
+    async with AsyncLakeFormationClient() as lake_formation:
         # Example: call the add_lf_tags_to_resource operation
-        response = await s3.add_lf_tags_to_resource()
+        response = await lake_formation.add_lf_tags_to_resource()
         print(response["failures"])
 ```
 
@@ -28,9 +28,9 @@ from capo_lakeformation import AsyncLakeFormationClient
 
 
 async def main():
-    async with AsyncLakeFormationClient() as s3:
-        # Example: paginate over get_work_units
-        async for item in s3.iter_get_work_units():
+    async with AsyncLakeFormationClient() as lake_formation:
+        # Example: paginate over get_effective_permissions_for_path
+        async for item in lake_formation.iter_get_effective_permissions_for_path():
             print(item)
 ```
 
@@ -43,9 +43,9 @@ from capo_lakeformation import AsyncLakeFormationClient
 
 
 async def main():
-    async with AsyncLakeFormationClient() as s3:
+    async with AsyncLakeFormationClient() as lake_formation:
         # Example: call get_work_unit_results and read the streaming response
-        async with s3.get_work_unit_results() as response:
+        async with lake_formation.get_work_unit_results() as response:
             async for chunk in response["result_stream"]:
                 print(chunk)
 ```
@@ -60,9 +60,9 @@ from capo_lakeformation.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncLakeFormationClient() as s3:
+    async with AsyncLakeFormationClient() as lake_formation:
         try:
-            await s3.add_lf_tags_to_resource()
+            await lake_formation.add_lf_tags_to_resource()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -79,13 +79,13 @@ from capo_lakeformation import AsyncLakeFormationClient
 
 
 async def main():
-    async with AsyncLakeFormationClient() as s3:
+    async with AsyncLakeFormationClient() as lake_formation:
         # Default: 3 attempts for every operation
-        response = await s3.add_lf_tags_to_resource()
+        response = await lake_formation.add_lf_tags_to_resource()
 
         # Override per operation
-        response = await s3.add_lf_tags_to_resource(config_overrides={"retry_max_attempts": 5})
+        response = await lake_formation.add_lf_tags_to_resource(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.add_lf_tags_to_resource(config_overrides={"retry_max_attempts": 1})
+        response = await lake_formation.add_lf_tags_to_resource(config_overrides={"retry_max_attempts": 1})
 ```

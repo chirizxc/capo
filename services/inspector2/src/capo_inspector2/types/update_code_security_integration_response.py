@@ -34,13 +34,13 @@ def serialize_json(value: UpdateCodeSecurityIntegrationResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateCodeSecurityIntegrationResponse:
     out: UpdateCodeSecurityIntegrationResponse = {}  # type: ignore[typeddict-item]
-    if "integrationArn" in data:
+    if data.get("integrationArn") is not None:
         out["integration_arn"] = data["integrationArn"]
     else:
         raise DeserializationError(
             "UpdateCodeSecurityIntegrationResponse.integration_arn required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_inspector2.types.integration_status
 
         out["status"] = capo_inspector2.types.integration_status.deserialize_json(

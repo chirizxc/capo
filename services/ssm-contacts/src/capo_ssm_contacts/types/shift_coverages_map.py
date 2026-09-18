@@ -28,8 +28,11 @@ def serialize_aws_json_1_1(input_to_serialize: ShiftCoveragesMap) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> ShiftCoveragesMap:
     out: ShiftCoveragesMap = {}
     for key, value in data.items():
-        import capo_ssm_contacts.types.coverage_times
         import capo_ssm_contacts.types.day_of_week
+
+        if value is None:
+            continue
+        import capo_ssm_contacts.types.coverage_times
 
         out[capo_ssm_contacts.types.day_of_week.deserialize_aws_json_1_1(key)] = (
             capo_ssm_contacts.types.coverage_times.deserialize_aws_json_1_1(value)

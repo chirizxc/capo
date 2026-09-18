@@ -28,11 +28,11 @@ def serialize_json(value: Intent) -> dict:
 
 def deserialize_json(data: dict) -> Intent:
     out: Intent = {}  # type: ignore[typeddict-item]
-    if "intentName" in data:
+    if data.get("intentName") is not None:
         out["intent_name"] = data["intentName"]
     else:
         raise DeserializationError("Intent.intent_name required")
-    if "intentVersion" in data:
+    if data.get("intentVersion") is not None:
         out["intent_version"] = data["intentVersion"]
     else:
         raise DeserializationError("Intent.intent_version required")

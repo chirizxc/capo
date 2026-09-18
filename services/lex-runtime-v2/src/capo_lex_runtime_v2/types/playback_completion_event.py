@@ -29,9 +29,9 @@ def serialize_json(value: PlaybackCompletionEvent) -> dict:
 
 def deserialize_json(data: dict) -> PlaybackCompletionEvent:
     out: PlaybackCompletionEvent = {}  # type: ignore[typeddict-item]
-    if "eventId" in data:
+    if data.get("eventId") is not None:
         out["event_id"] = data["eventId"]
-    if "clientTimestampMillis" in data:
+    if data.get("clientTimestampMillis") is not None:
         out["client_timestamp_millis"] = data["clientTimestampMillis"]
     else:
         out["client_timestamp_millis"] = 0

@@ -29,6 +29,9 @@ def deserialize_json(data: dict) -> MapOfListOfOpenHoursRules:
     out: MapOfListOfOpenHoursRules = {}
     for key, value in data.items():
         import capo_pinpoint.types.day_of_week
+
+        if value is None:
+            continue
         import capo_pinpoint.types.list_of_open_hours_rules
 
         out[capo_pinpoint.types.day_of_week.deserialize_json(key)] = (

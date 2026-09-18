@@ -38,7 +38,7 @@ def serialize_json(value: Scte20SourceSettings) -> dict:
 
 def deserialize_json(data: dict) -> Scte20SourceSettings:
     out: Scte20SourceSettings = {}  # type: ignore[typeddict-item]
-    if "convert608To708" in data:
+    if data.get("convert608To708") is not None:
         import capo_medialive.types.scte20_convert608_to708
 
         out["convert608_to708"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> Scte20SourceSettings:
                 data["convert608To708"]
             )
         )
-    if "source608ChannelNumber" in data:
+    if data.get("source608ChannelNumber") is not None:
         out["source608_channel_number"] = data["source608ChannelNumber"]
     return out

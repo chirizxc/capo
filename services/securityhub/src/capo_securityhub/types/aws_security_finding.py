@@ -353,99 +353,99 @@ def serialize_json(value: AwsSecurityFinding) -> dict:
 
 def deserialize_json(data: dict) -> AwsSecurityFinding:
     out: AwsSecurityFinding = {}  # type: ignore[typeddict-item]
-    if "SchemaVersion" in data:
+    if data.get("SchemaVersion") is not None:
         out["schema_version"] = data["SchemaVersion"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "ProductArn" in data:
+    if data.get("ProductArn") is not None:
         out["product_arn"] = data["ProductArn"]
-    if "ProductName" in data:
+    if data.get("ProductName") is not None:
         out["product_name"] = data["ProductName"]
-    if "CompanyName" in data:
+    if data.get("CompanyName") is not None:
         out["company_name"] = data["CompanyName"]
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
-    if "GeneratorId" in data:
+    if data.get("GeneratorId") is not None:
         out["generator_id"] = data["GeneratorId"]
-    if "AwsAccountId" in data:
+    if data.get("AwsAccountId") is not None:
         out["aws_account_id"] = data["AwsAccountId"]
-    if "Types" in data:
+    if data.get("Types") is not None:
         import capo_securityhub.types.type_list
 
         out["types"] = capo_securityhub.types.type_list.deserialize_json(data["Types"])
-    if "FirstObservedAt" in data:
+    if data.get("FirstObservedAt") is not None:
         out["first_observed_at"] = data["FirstObservedAt"]
-    if "LastObservedAt" in data:
+    if data.get("LastObservedAt") is not None:
         out["last_observed_at"] = data["LastObservedAt"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         out["created_at"] = data["CreatedAt"]
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         out["updated_at"] = data["UpdatedAt"]
-    if "Severity" in data:
+    if data.get("Severity") is not None:
         import capo_securityhub.types.severity
 
         out["severity"] = capo_securityhub.types.severity.deserialize_json(
             data["Severity"]
         )
-    if "Confidence" in data:
+    if data.get("Confidence") is not None:
         out["confidence"] = data["Confidence"]
-    if "Criticality" in data:
+    if data.get("Criticality") is not None:
         out["criticality"] = data["Criticality"]
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Remediation" in data:
+    if data.get("Remediation") is not None:
         import capo_securityhub.types.remediation
 
         out["remediation"] = capo_securityhub.types.remediation.deserialize_json(
             data["Remediation"]
         )
-    if "SourceUrl" in data:
+    if data.get("SourceUrl") is not None:
         out["source_url"] = data["SourceUrl"]
-    if "ProductFields" in data:
+    if data.get("ProductFields") is not None:
         import capo_securityhub.types.field_map
 
         out["product_fields"] = capo_securityhub.types.field_map.deserialize_json(
             data["ProductFields"]
         )
-    if "UserDefinedFields" in data:
+    if data.get("UserDefinedFields") is not None:
         import capo_securityhub.types.field_map
 
         out["user_defined_fields"] = capo_securityhub.types.field_map.deserialize_json(
             data["UserDefinedFields"]
         )
-    if "Malware" in data:
+    if data.get("Malware") is not None:
         import capo_securityhub.types.malware_list
 
         out["malware"] = capo_securityhub.types.malware_list.deserialize_json(
             data["Malware"]
         )
-    if "Network" in data:
+    if data.get("Network") is not None:
         import capo_securityhub.types.network
 
         out["network"] = capo_securityhub.types.network.deserialize_json(
             data["Network"]
         )
-    if "NetworkPath" in data:
+    if data.get("NetworkPath") is not None:
         import capo_securityhub.types.network_path_list
 
         out["network_path"] = capo_securityhub.types.network_path_list.deserialize_json(
             data["NetworkPath"]
         )
-    if "Process" in data:
+    if data.get("Process") is not None:
         import capo_securityhub.types.process_details
 
         out["process"] = capo_securityhub.types.process_details.deserialize_json(
             data["Process"]
         )
-    if "Threats" in data:
+    if data.get("Threats") is not None:
         import capo_securityhub.types.threat_list
 
         out["threats"] = capo_securityhub.types.threat_list.deserialize_json(
             data["Threats"]
         )
-    if "ThreatIntelIndicators" in data:
+    if data.get("ThreatIntelIndicators") is not None:
         import capo_securityhub.types.threat_intel_indicator_list
 
         out["threat_intel_indicators"] = (
@@ -453,19 +453,19 @@ def deserialize_json(data: dict) -> AwsSecurityFinding:
                 data["ThreatIntelIndicators"]
             )
         )
-    if "Resources" in data:
+    if data.get("Resources") is not None:
         import capo_securityhub.types.resource_list
 
         out["resources"] = capo_securityhub.types.resource_list.deserialize_json(
             data["Resources"]
         )
-    if "Compliance" in data:
+    if data.get("Compliance") is not None:
         import capo_securityhub.types.compliance
 
         out["compliance"] = capo_securityhub.types.compliance.deserialize_json(
             data["Compliance"]
         )
-    if "VerificationState" in data:
+    if data.get("VerificationState") is not None:
         import capo_securityhub.types.verification_state
 
         out["verification_state"] = (
@@ -473,25 +473,25 @@ def deserialize_json(data: dict) -> AwsSecurityFinding:
                 data["VerificationState"]
             )
         )
-    if "WorkflowState" in data:
+    if data.get("WorkflowState") is not None:
         import capo_securityhub.types.workflow_state
 
         out["workflow_state"] = capo_securityhub.types.workflow_state.deserialize_json(
             data["WorkflowState"]
         )
-    if "Workflow" in data:
+    if data.get("Workflow") is not None:
         import capo_securityhub.types.workflow
 
         out["workflow"] = capo_securityhub.types.workflow.deserialize_json(
             data["Workflow"]
         )
-    if "RecordState" in data:
+    if data.get("RecordState") is not None:
         import capo_securityhub.types.record_state
 
         out["record_state"] = capo_securityhub.types.record_state.deserialize_json(
             data["RecordState"]
         )
-    if "RelatedFindings" in data:
+    if data.get("RelatedFindings") is not None:
         import capo_securityhub.types.related_finding_list
 
         out["related_findings"] = (
@@ -499,11 +499,11 @@ def deserialize_json(data: dict) -> AwsSecurityFinding:
                 data["RelatedFindings"]
             )
         )
-    if "Note" in data:
+    if data.get("Note") is not None:
         import capo_securityhub.types.note
 
         out["note"] = capo_securityhub.types.note.deserialize_json(data["Note"])
-    if "Vulnerabilities" in data:
+    if data.get("Vulnerabilities") is not None:
         import capo_securityhub.types.vulnerability_list
 
         out["vulnerabilities"] = (
@@ -511,17 +511,17 @@ def deserialize_json(data: dict) -> AwsSecurityFinding:
                 data["Vulnerabilities"]
             )
         )
-    if "PatchSummary" in data:
+    if data.get("PatchSummary") is not None:
         import capo_securityhub.types.patch_summary
 
         out["patch_summary"] = capo_securityhub.types.patch_summary.deserialize_json(
             data["PatchSummary"]
         )
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_securityhub.types.action
 
         out["action"] = capo_securityhub.types.action.deserialize_json(data["Action"])
-    if "FindingProviderFields" in data:
+    if data.get("FindingProviderFields") is not None:
         import capo_securityhub.types.finding_provider_fields
 
         out["finding_provider_fields"] = (
@@ -529,9 +529,9 @@ def deserialize_json(data: dict) -> AwsSecurityFinding:
                 data["FindingProviderFields"]
             )
         )
-    if "Sample" in data:
+    if data.get("Sample") is not None:
         out["sample"] = data["Sample"]
-    if "GeneratorDetails" in data:
+    if data.get("GeneratorDetails") is not None:
         import capo_securityhub.types.generator_details
 
         out["generator_details"] = (
@@ -539,11 +539,11 @@ def deserialize_json(data: dict) -> AwsSecurityFinding:
                 data["GeneratorDetails"]
             )
         )
-    if "ProcessedAt" in data:
+    if data.get("ProcessedAt") is not None:
         out["processed_at"] = data["ProcessedAt"]
-    if "AwsAccountName" in data:
+    if data.get("AwsAccountName") is not None:
         out["aws_account_name"] = data["AwsAccountName"]
-    if "Detection" in data:
+    if data.get("Detection") is not None:
         import capo_securityhub.types.detection
 
         out["detection"] = capo_securityhub.types.detection.deserialize_json(

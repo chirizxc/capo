@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListConnectionTypesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListConnectionTypesResponse:
     out: ListConnectionTypesResponse = {}  # type: ignore[typeddict-item]
-    if "ConnectionTypes" in data:
+    if data.get("ConnectionTypes") is not None:
         import capo_glue.types.connection_type_list
 
         out["connection_types"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListConnectionTypesResponse:
                 data["ConnectionTypes"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

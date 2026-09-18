@@ -55,31 +55,31 @@ def serialize_json(value: ValidateE911AddressRequest) -> dict:
 
 def deserialize_json(data: dict) -> ValidateE911AddressRequest:
     out: ValidateE911AddressRequest = {}  # type: ignore[typeddict-item]
-    if "AwsAccountId" in data:
+    if data.get("AwsAccountId") is not None:
         out["aws_account_id"] = data["AwsAccountId"]
     else:
         raise DeserializationError("ValidateE911AddressRequest.aws_account_id required")
-    if "StreetNumber" in data:
+    if data.get("StreetNumber") is not None:
         out["street_number"] = data["StreetNumber"]
     else:
         raise DeserializationError("ValidateE911AddressRequest.street_number required")
-    if "StreetInfo" in data:
+    if data.get("StreetInfo") is not None:
         out["street_info"] = data["StreetInfo"]
     else:
         raise DeserializationError("ValidateE911AddressRequest.street_info required")
-    if "City" in data:
+    if data.get("City") is not None:
         out["city"] = data["City"]
     else:
         raise DeserializationError("ValidateE911AddressRequest.city required")
-    if "State" in data:
+    if data.get("State") is not None:
         out["state"] = data["State"]
     else:
         raise DeserializationError("ValidateE911AddressRequest.state required")
-    if "Country" in data:
+    if data.get("Country") is not None:
         out["country"] = data["Country"]
     else:
         raise DeserializationError("ValidateE911AddressRequest.country required")
-    if "PostalCode" in data:
+    if data.get("PostalCode") is not None:
         out["postal_code"] = data["PostalCode"]
     else:
         raise DeserializationError("ValidateE911AddressRequest.postal_code required")

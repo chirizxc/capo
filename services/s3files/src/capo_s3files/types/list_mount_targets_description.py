@@ -80,38 +80,38 @@ def serialize_json(value: ListMountTargetsDescription) -> dict:
 
 def deserialize_json(data: dict) -> ListMountTargetsDescription:
     out: ListMountTargetsDescription = {}  # type: ignore[typeddict-item]
-    if "availabilityZoneId" in data:
+    if data.get("availabilityZoneId") is not None:
         out["availability_zone_id"] = data["availabilityZoneId"]
-    if "fileSystemId" in data:
+    if data.get("fileSystemId") is not None:
         out["file_system_id"] = data["fileSystemId"]
-    if "ipv4Address" in data:
+    if data.get("ipv4Address") is not None:
         out["ipv4_address"] = data["ipv4Address"]
-    if "ipv6Address" in data:
+    if data.get("ipv6Address") is not None:
         out["ipv6_address"] = data["ipv6Address"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_s3files.types.life_cycle_state
 
         out["status"] = capo_s3files.types.life_cycle_state.deserialize_json(
             data["status"]
         )
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
-    if "mountTargetId" in data:
+    if data.get("mountTargetId") is not None:
         out["mount_target_id"] = data["mountTargetId"]
     else:
         raise DeserializationError(
             "ListMountTargetsDescription.mount_target_id required"
         )
-    if "networkInterfaceId" in data:
+    if data.get("networkInterfaceId") is not None:
         out["network_interface_id"] = data["networkInterfaceId"]
-    if "ownerId" in data:
+    if data.get("ownerId") is not None:
         out["owner_id"] = data["ownerId"]
     else:
         raise DeserializationError("ListMountTargetsDescription.owner_id required")
-    if "subnetId" in data:
+    if data.get("subnetId") is not None:
         out["subnet_id"] = data["subnetId"]
     else:
         raise DeserializationError("ListMountTargetsDescription.subnet_id required")
-    if "vpcId" in data:
+    if data.get("vpcId") is not None:
         out["vpc_id"] = data["vpcId"]
     return out

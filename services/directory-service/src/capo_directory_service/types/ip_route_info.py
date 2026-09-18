@@ -71,13 +71,13 @@ def serialize_aws_json_1_1(value: IpRouteInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IpRouteInfo:
     out: IpRouteInfo = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
-    if "CidrIp" in data:
+    if data.get("CidrIp") is not None:
         out["cidr_ip"] = data["CidrIp"]
-    if "CidrIpv6" in data:
+    if data.get("CidrIpv6") is not None:
         out["cidr_ipv6"] = data["CidrIpv6"]
-    if "IpRouteStatusMsg" in data:
+    if data.get("IpRouteStatusMsg") is not None:
         import capo_directory_service.types.ip_route_status_msg
 
         out["ip_route_status_msg"] = (
@@ -85,7 +85,7 @@ def deserialize_aws_json_1_1(data: dict) -> IpRouteInfo:
                 data["IpRouteStatusMsg"]
             )
         )
-    if "AddedDateTime" in data:
+    if data.get("AddedDateTime") is not None:
         import capo_directory_service.types.added_date_time
 
         out["added_date_time"] = (
@@ -93,8 +93,8 @@ def deserialize_aws_json_1_1(data: dict) -> IpRouteInfo:
                 data["AddedDateTime"]
             )
         )
-    if "IpRouteStatusReason" in data:
+    if data.get("IpRouteStatusReason") is not None:
         out["ip_route_status_reason"] = data["IpRouteStatusReason"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

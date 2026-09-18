@@ -173,13 +173,13 @@ def serialize_json(value: Flow) -> dict:
 
 def deserialize_json(data: dict) -> Flow:
     out: Flow = {}  # type: ignore[typeddict-item]
-    if "availabilityZone" in data:
+    if data.get("availabilityZone") is not None:
         out["availability_zone"] = data["availabilityZone"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "egressIp" in data:
+    if data.get("egressIp") is not None:
         out["egress_ip"] = data["egressIp"]
-    if "entitlements" in data:
+    if data.get("entitlements") is not None:
         import capo_mediaconnect.types.__list_of_entitlement
 
         out["entitlements"] = (
@@ -187,9 +187,9 @@ def deserialize_json(data: dict) -> Flow:
                 data["entitlements"]
             )
         )
-    if "flowArn" in data:
+    if data.get("flowArn") is not None:
         out["flow_arn"] = data["flowArn"]
-    if "mediaStreams" in data:
+    if data.get("mediaStreams") is not None:
         import capo_mediaconnect.types.__list_of_media_stream
 
         out["media_streams"] = (
@@ -197,19 +197,19 @@ def deserialize_json(data: dict) -> Flow:
                 data["mediaStreams"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "outputs" in data:
+    if data.get("outputs") is not None:
         import capo_mediaconnect.types.__list_of_output
 
         out["outputs"] = capo_mediaconnect.types.__list_of_output.deserialize_json(
             data["outputs"]
         )
-    if "source" in data:
+    if data.get("source") is not None:
         import capo_mediaconnect.types.source
 
         out["source"] = capo_mediaconnect.types.source.deserialize_json(data["source"])
-    if "sourceFailoverConfig" in data:
+    if data.get("sourceFailoverConfig") is not None:
         import capo_mediaconnect.types.failover_config
 
         out["source_failover_config"] = (
@@ -217,17 +217,17 @@ def deserialize_json(data: dict) -> Flow:
                 data["sourceFailoverConfig"]
             )
         )
-    if "sources" in data:
+    if data.get("sources") is not None:
         import capo_mediaconnect.types.__list_of_source
 
         out["sources"] = capo_mediaconnect.types.__list_of_source.deserialize_json(
             data["sources"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_mediaconnect.types.status
 
         out["status"] = capo_mediaconnect.types.status.deserialize_json(data["status"])
-    if "vpcInterfaces" in data:
+    if data.get("vpcInterfaces") is not None:
         import capo_mediaconnect.types.__list_of_vpc_interface
 
         out["vpc_interfaces"] = (
@@ -235,13 +235,13 @@ def deserialize_json(data: dict) -> Flow:
                 data["vpcInterfaces"]
             )
         )
-    if "maintenance" in data:
+    if data.get("maintenance") is not None:
         import capo_mediaconnect.types.maintenance
 
         out["maintenance"] = capo_mediaconnect.types.maintenance.deserialize_json(
             data["maintenance"]
         )
-    if "sourceMonitoringConfig" in data:
+    if data.get("sourceMonitoringConfig") is not None:
         import capo_mediaconnect.types.monitoring_config
 
         out["source_monitoring_config"] = (
@@ -249,19 +249,19 @@ def deserialize_json(data: dict) -> Flow:
                 data["sourceMonitoringConfig"]
             )
         )
-    if "flowSize" in data:
+    if data.get("flowSize") is not None:
         import capo_mediaconnect.types.flow_size
 
         out["flow_size"] = capo_mediaconnect.types.flow_size.deserialize_json(
             data["flowSize"]
         )
-    if "ndiConfig" in data:
+    if data.get("ndiConfig") is not None:
         import capo_mediaconnect.types.ndi_config
 
         out["ndi_config"] = capo_mediaconnect.types.ndi_config.deserialize_json(
             data["ndiConfig"]
         )
-    if "encodingConfig" in data:
+    if data.get("encodingConfig") is not None:
         import capo_mediaconnect.types.encoding_config
 
         out["encoding_config"] = (

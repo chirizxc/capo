@@ -24,7 +24,7 @@ def serialize_json(value: FilterByEntity) -> dict:
 
 def deserialize_json(data: dict) -> FilterByEntity:
     out: FilterByEntity = {}  # type: ignore[typeddict-item]
-    if "entityId" in data:
+    if data.get("entityId") is not None:
         out["entity_id"] = data["entityId"]
     else:
         raise DeserializationError("FilterByEntity.entity_id required")

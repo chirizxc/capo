@@ -25,6 +25,6 @@ def serialize_json(value: TlsConfigInput) -> dict:
 
 def deserialize_json(data: dict) -> TlsConfigInput:
     out: TlsConfigInput = {}  # type: ignore[typeddict-item]
-    if "serverNameToVerify" in data:
+    if data.get("serverNameToVerify") is not None:
         out["server_name_to_verify"] = data["serverNameToVerify"]
     return out

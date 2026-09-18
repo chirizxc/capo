@@ -104,9 +104,9 @@ def serialize_json(value: ReviewTemplate) -> dict:
 
 def deserialize_json(data: dict) -> ReviewTemplate:
     out: ReviewTemplate = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Lenses" in data:
+    if data.get("Lenses") is not None:
         import capo_wellarchitected.types.review_template_lenses
 
         out["lenses"] = (
@@ -114,9 +114,9 @@ def deserialize_json(data: dict) -> ReviewTemplate:
                 data["Lenses"]
             )
         )
-    if "Notes" in data:
+    if data.get("Notes") is not None:
         out["notes"] = data["Notes"]
-    if "QuestionCounts" in data:
+    if data.get("QuestionCounts") is not None:
         import capo_wellarchitected.types.question_counts
 
         out["question_counts"] = (
@@ -124,23 +124,23 @@ def deserialize_json(data: dict) -> ReviewTemplate:
                 data["QuestionCounts"]
             )
         )
-    if "Owner" in data:
+    if data.get("Owner") is not None:
         out["owner"] = data["Owner"]
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_wellarchitected.types.timestamp
 
         out["updated_at"] = capo_wellarchitected.types.timestamp.deserialize_json(
             data["UpdatedAt"]
         )
-    if "TemplateArn" in data:
+    if data.get("TemplateArn") is not None:
         out["template_arn"] = data["TemplateArn"]
-    if "TemplateName" in data:
+    if data.get("TemplateName") is not None:
         out["template_name"] = data["TemplateName"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_wellarchitected.types.tag_map
 
         out["tags"] = capo_wellarchitected.types.tag_map.deserialize_json(data["Tags"])
-    if "UpdateStatus" in data:
+    if data.get("UpdateStatus") is not None:
         import capo_wellarchitected.types.review_template_update_status
 
         out["update_status"] = (
@@ -148,6 +148,6 @@ def deserialize_json(data: dict) -> ReviewTemplate:
                 data["UpdateStatus"]
             )
         )
-    if "ShareInvitationId" in data:
+    if data.get("ShareInvitationId") is not None:
         out["share_invitation_id"] = data["ShareInvitationId"]
     return out

@@ -64,19 +64,19 @@ def serialize_json(value: NdiMediaStreamInfo) -> dict:
 
 def deserialize_json(data: dict) -> NdiMediaStreamInfo:
     out: NdiMediaStreamInfo = {}  # type: ignore[typeddict-item]
-    if "streamType" in data:
+    if data.get("streamType") is not None:
         out["stream_type"] = data["streamType"]
-    if "codec" in data:
+    if data.get("codec") is not None:
         out["codec"] = data["codec"]
-    if "streamId" in data:
+    if data.get("streamId") is not None:
         out["stream_id"] = data["streamId"]
-    if "scanMode" in data:
+    if data.get("scanMode") is not None:
         import capo_mediaconnect.types.scan_mode
 
         out["scan_mode"] = capo_mediaconnect.types.scan_mode.deserialize_json(
             data["scanMode"]
         )
-    if "frameResolution" in data:
+    if data.get("frameResolution") is not None:
         import capo_mediaconnect.types.frame_resolution
 
         out["frame_resolution"] = (
@@ -84,10 +84,10 @@ def deserialize_json(data: dict) -> NdiMediaStreamInfo:
                 data["frameResolution"]
             )
         )
-    if "frameRate" in data:
+    if data.get("frameRate") is not None:
         out["frame_rate"] = data["frameRate"]
-    if "channels" in data:
+    if data.get("channels") is not None:
         out["channels"] = data["channels"]
-    if "sampleRate" in data:
+    if data.get("sampleRate") is not None:
         out["sample_rate"] = data["sampleRate"]
     return out

@@ -44,7 +44,7 @@ def serialize_json(value: WordCloudAggregatedFieldWells) -> dict:
 
 def deserialize_json(data: dict) -> WordCloudAggregatedFieldWells:
     out: WordCloudAggregatedFieldWells = {}  # type: ignore[typeddict-item]
-    if "GroupBy" in data:
+    if data.get("GroupBy") is not None:
         import capo_quicksight.types.word_cloud_dimension_field_list
 
         out["group_by"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> WordCloudAggregatedFieldWells:
                 data["GroupBy"]
             )
         )
-    if "Size" in data:
+    if data.get("Size") is not None:
         import capo_quicksight.types.word_cloud_measure_field_list
 
         out["size"] = (

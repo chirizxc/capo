@@ -23,6 +23,6 @@ def serialize_json(value: ValidationError) -> dict:
 
 def deserialize_json(data: dict) -> ValidationError:
     out: ValidationError = {}  # type: ignore[typeddict-item]
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     return out

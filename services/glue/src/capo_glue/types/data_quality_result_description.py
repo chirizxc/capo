@@ -50,19 +50,19 @@ def serialize_aws_json_1_1(value: DataQualityResultDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataQualityResultDescription:
     out: DataQualityResultDescription = {}  # type: ignore[typeddict-item]
-    if "ResultId" in data:
+    if data.get("ResultId") is not None:
         out["result_id"] = data["ResultId"]
-    if "DataSource" in data:
+    if data.get("DataSource") is not None:
         import capo_glue.types.data_source
 
         out["data_source"] = capo_glue.types.data_source.deserialize_aws_json_1_1(
             data["DataSource"]
         )
-    if "JobName" in data:
+    if data.get("JobName") is not None:
         out["job_name"] = data["JobName"]
-    if "JobRunId" in data:
+    if data.get("JobRunId") is not None:
         out["job_run_id"] = data["JobRunId"]
-    if "StartedOn" in data:
+    if data.get("StartedOn") is not None:
         import capo_glue.types.timestamp
 
         out["started_on"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(

@@ -52,9 +52,9 @@ def serialize_json(value: UpdateBridgeNetworkSourceRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateBridgeNetworkSourceRequest:
     out: UpdateBridgeNetworkSourceRequest = {}  # type: ignore[typeddict-item]
-    if "multicastIp" in data:
+    if data.get("multicastIp") is not None:
         out["multicast_ip"] = data["multicastIp"]
-    if "multicastSourceSettings" in data:
+    if data.get("multicastSourceSettings") is not None:
         import capo_mediaconnect.types.multicast_source_settings
 
         out["multicast_source_settings"] = (
@@ -62,11 +62,11 @@ def deserialize_json(data: dict) -> UpdateBridgeNetworkSourceRequest:
                 data["multicastSourceSettings"]
             )
         )
-    if "networkName" in data:
+    if data.get("networkName") is not None:
         out["network_name"] = data["networkName"]
-    if "port" in data:
+    if data.get("port") is not None:
         out["port"] = data["port"]
-    if "protocol" in data:
+    if data.get("protocol") is not None:
         import capo_mediaconnect.types.protocol
 
         out["protocol"] = capo_mediaconnect.types.protocol.deserialize_json(

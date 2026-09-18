@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> IdNamespaceAssociationSummaryList:
 
     out: IdNamespaceAssociationSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cleanrooms.types.id_namespace_association_summary.deserialize_json(
                 item

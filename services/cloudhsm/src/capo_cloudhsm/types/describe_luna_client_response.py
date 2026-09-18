@@ -45,14 +45,14 @@ def serialize_aws_json_1_1(value: DescribeLunaClientResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeLunaClientResponse:
     out: DescribeLunaClientResponse = {}  # type: ignore[typeddict-item]
-    if "ClientArn" in data:
+    if data.get("ClientArn") is not None:
         out["client_arn"] = data["ClientArn"]
-    if "Certificate" in data:
+    if data.get("Certificate") is not None:
         out["certificate"] = data["Certificate"]
-    if "CertificateFingerprint" in data:
+    if data.get("CertificateFingerprint") is not None:
         out["certificate_fingerprint"] = data["CertificateFingerprint"]
-    if "LastModifiedTimestamp" in data:
+    if data.get("LastModifiedTimestamp") is not None:
         out["last_modified_timestamp"] = data["LastModifiedTimestamp"]
-    if "Label" in data:
+    if data.get("Label") is not None:
         out["label"] = data["Label"]
     return out

@@ -53,23 +53,23 @@ def serialize_json(value: ChangeProgressStatus) -> dict:
 
 def deserialize_json(data: dict) -> ChangeProgressStatus:
     out: ChangeProgressStatus = {}  # type: ignore[typeddict-item]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_osis.types.timestamp
 
         out["start_time"] = capo_osis.types.timestamp.deserialize_json(
             data["StartTime"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_osis.types.change_progress_statuses
 
         out["status"] = capo_osis.types.change_progress_statuses.deserialize_json(
             data["Status"]
         )
-    if "TotalNumberOfStages" in data:
+    if data.get("TotalNumberOfStages") is not None:
         out["total_number_of_stages"] = data["TotalNumberOfStages"]
     else:
         out["total_number_of_stages"] = 0
-    if "ChangeProgressStages" in data:
+    if data.get("ChangeProgressStages") is not None:
         import capo_osis.types.change_progress_stage_list
 
         out["change_progress_stages"] = (

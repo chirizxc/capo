@@ -61,33 +61,33 @@ def serialize_aws_json_1_1(value: AssociateFirewallRuleGroupRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AssociateFirewallRuleGroupRequest:
     out: AssociateFirewallRuleGroupRequest = {}  # type: ignore[typeddict-item]
-    if "CreatorRequestId" in data:
+    if data.get("CreatorRequestId") is not None:
         out["creator_request_id"] = data["CreatorRequestId"]
     else:
         raise DeserializationError(
             "AssociateFirewallRuleGroupRequest.creator_request_id required"
         )
-    if "FirewallRuleGroupId" in data:
+    if data.get("FirewallRuleGroupId") is not None:
         out["firewall_rule_group_id"] = data["FirewallRuleGroupId"]
     else:
         raise DeserializationError(
             "AssociateFirewallRuleGroupRequest.firewall_rule_group_id required"
         )
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
     else:
         raise DeserializationError("AssociateFirewallRuleGroupRequest.vpc_id required")
-    if "Priority" in data:
+    if data.get("Priority") is not None:
         out["priority"] = data["Priority"]
     else:
         raise DeserializationError(
             "AssociateFirewallRuleGroupRequest.priority required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("AssociateFirewallRuleGroupRequest.name required")
-    if "MutationProtection" in data:
+    if data.get("MutationProtection") is not None:
         import capo_route53resolver.types.mutation_protection_status
 
         out["mutation_protection"] = (
@@ -95,7 +95,7 @@ def deserialize_aws_json_1_1(data: dict) -> AssociateFirewallRuleGroupRequest:
                 data["MutationProtection"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_route53resolver.types.tag_list
 
         out["tags"] = capo_route53resolver.types.tag_list.deserialize_aws_json_1_1(

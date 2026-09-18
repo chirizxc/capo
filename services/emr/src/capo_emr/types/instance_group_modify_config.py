@@ -76,11 +76,11 @@ def serialize_aws_json_1_1(value: InstanceGroupModifyConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InstanceGroupModifyConfig:
     out: InstanceGroupModifyConfig = {}  # type: ignore[typeddict-item]
-    if "InstanceGroupId" in data:
+    if data.get("InstanceGroupId") is not None:
         out["instance_group_id"] = data["InstanceGroupId"]
-    if "InstanceCount" in data:
+    if data.get("InstanceCount") is not None:
         out["instance_count"] = data["InstanceCount"]
-    if "EC2InstanceIdsToTerminate" in data:
+    if data.get("EC2InstanceIdsToTerminate") is not None:
         import capo_emr.types.ec2_instance_ids_to_terminate_list
 
         out["ec2_instance_ids_to_terminate"] = (
@@ -88,13 +88,13 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceGroupModifyConfig:
                 data["EC2InstanceIdsToTerminate"]
             )
         )
-    if "ShrinkPolicy" in data:
+    if data.get("ShrinkPolicy") is not None:
         import capo_emr.types.shrink_policy
 
         out["shrink_policy"] = capo_emr.types.shrink_policy.deserialize_aws_json_1_1(
             data["ShrinkPolicy"]
         )
-    if "ReconfigurationType" in data:
+    if data.get("ReconfigurationType") is not None:
         import capo_emr.types.reconfiguration_type
 
         out["reconfiguration_type"] = (
@@ -102,7 +102,7 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceGroupModifyConfig:
                 data["ReconfigurationType"]
             )
         )
-    if "Configurations" in data:
+    if data.get("Configurations") is not None:
         import capo_emr.types.configuration_list
 
         out["configurations"] = (

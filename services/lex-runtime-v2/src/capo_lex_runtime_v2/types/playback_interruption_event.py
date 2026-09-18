@@ -42,7 +42,7 @@ def serialize_json(value: PlaybackInterruptionEvent) -> dict:
 
 def deserialize_json(data: dict) -> PlaybackInterruptionEvent:
     out: PlaybackInterruptionEvent = {}  # type: ignore[typeddict-item]
-    if "eventReason" in data:
+    if data.get("eventReason") is not None:
         import capo_lex_runtime_v2.types.playback_interruption_reason
 
         out["event_reason"] = (
@@ -50,9 +50,9 @@ def deserialize_json(data: dict) -> PlaybackInterruptionEvent:
                 data["eventReason"]
             )
         )
-    if "causedByEventId" in data:
+    if data.get("causedByEventId") is not None:
         out["caused_by_event_id"] = data["causedByEventId"]
-    if "eventId" in data:
+    if data.get("eventId") is not None:
         out["event_id"] = data["eventId"]
     return out
 

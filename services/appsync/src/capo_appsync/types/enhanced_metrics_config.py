@@ -52,7 +52,7 @@ def serialize_json(value: EnhancedMetricsConfig) -> dict:
 
 def deserialize_json(data: dict) -> EnhancedMetricsConfig:
     out: EnhancedMetricsConfig = {}  # type: ignore[typeddict-item]
-    if "resolverLevelMetricsBehavior" in data:
+    if data.get("resolverLevelMetricsBehavior") is not None:
         import capo_appsync.types.resolver_level_metrics_behavior
 
         out["resolver_level_metrics_behavior"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> EnhancedMetricsConfig:
         raise DeserializationError(
             "EnhancedMetricsConfig.resolver_level_metrics_behavior required"
         )
-    if "dataSourceLevelMetricsBehavior" in data:
+    if data.get("dataSourceLevelMetricsBehavior") is not None:
         import capo_appsync.types.data_source_level_metrics_behavior
 
         out["data_source_level_metrics_behavior"] = (
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> EnhancedMetricsConfig:
         raise DeserializationError(
             "EnhancedMetricsConfig.data_source_level_metrics_behavior required"
         )
-    if "operationLevelMetricsConfig" in data:
+    if data.get("operationLevelMetricsConfig") is not None:
         import capo_appsync.types.operation_level_metrics_config
 
         out["operation_level_metrics_config"] = (

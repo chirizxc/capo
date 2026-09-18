@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: AssociateSourceViewsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AssociateSourceViewsResponse:
     out: AssociateSourceViewsResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("AssociateSourceViewsResponse.arn required")

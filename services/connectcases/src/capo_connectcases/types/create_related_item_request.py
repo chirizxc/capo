@@ -49,11 +49,11 @@ def serialize_json(value: CreateRelatedItemRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateRelatedItemRequest:
     out: CreateRelatedItemRequest = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("CreateRelatedItemRequest.type required")
-    if "content" in data:
+    if data.get("content") is not None:
         import capo_connectcases.types.related_item_input_content
 
         out["content"] = (
@@ -63,7 +63,7 @@ def deserialize_json(data: dict) -> CreateRelatedItemRequest:
         )
     else:
         raise DeserializationError("CreateRelatedItemRequest.content required")
-    if "performedBy" in data:
+    if data.get("performedBy") is not None:
         import capo_connectcases.types.user_union
 
         out["performed_by"] = capo_connectcases.types.user_union.deserialize_json(

@@ -34,7 +34,7 @@ def serialize_json(value: UpdateRoutingProfileConcurrencyRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRoutingProfileConcurrencyRequest:
     out: UpdateRoutingProfileConcurrencyRequest = {}  # type: ignore[typeddict-item]
-    if "MediaConcurrencies" in data:
+    if data.get("MediaConcurrencies") is not None:
         import capo_connect.types.media_concurrencies
 
         out["media_concurrencies"] = (

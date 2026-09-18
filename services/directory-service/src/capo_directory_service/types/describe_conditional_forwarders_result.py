@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DescribeConditionalForwardersResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeConditionalForwardersResult:
     out: DescribeConditionalForwardersResult = {}  # type: ignore[typeddict-item]
-    if "ConditionalForwarders" in data:
+    if data.get("ConditionalForwarders") is not None:
         import capo_directory_service.types.conditional_forwarders
 
         out["conditional_forwarders"] = (

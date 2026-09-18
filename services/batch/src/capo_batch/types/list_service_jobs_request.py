@@ -50,19 +50,19 @@ def serialize_json(value: ListServiceJobsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListServiceJobsRequest:
     out: ListServiceJobsRequest = {}  # type: ignore[typeddict-item]
-    if "jobQueue" in data:
+    if data.get("jobQueue") is not None:
         out["job_queue"] = data["jobQueue"]
-    if "jobStatus" in data:
+    if data.get("jobStatus") is not None:
         import capo_batch.types.service_job_status
 
         out["job_status"] = capo_batch.types.service_job_status.deserialize_json(
             data["jobStatus"]
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_batch.types.list_jobs_filter_list
 
         out["filters"] = capo_batch.types.list_jobs_filter_list.deserialize_json(

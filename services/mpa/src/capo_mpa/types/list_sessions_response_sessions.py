@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ListSessionsResponseSessions:
 
     out: ListSessionsResponseSessions = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mpa.types.list_sessions_response_session.deserialize_json(item))
     return out

@@ -33,7 +33,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DescribeDominantLanguageDetectionJobResponse:
     out: DescribeDominantLanguageDetectionJobResponse = {}  # type: ignore[typeddict-item]
-    if "DominantLanguageDetectionJobProperties" in data:
+    if data.get("DominantLanguageDetectionJobProperties") is not None:
         import capo_comprehend.types.dominant_language_detection_job_properties
 
         out["dominant_language_detection_job_properties"] = (

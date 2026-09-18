@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> CfnStackParameters:
 
     out: CfnStackParameters = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.cfn_stack_parameter.deserialize_aws_json_1_1(item)
         )

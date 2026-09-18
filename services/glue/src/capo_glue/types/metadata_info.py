@@ -43,11 +43,11 @@ def serialize_aws_json_1_1(value: MetadataInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MetadataInfo:
     out: MetadataInfo = {}  # type: ignore[typeddict-item]
-    if "MetadataValue" in data:
+    if data.get("MetadataValue") is not None:
         out["metadata_value"] = data["MetadataValue"]
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         out["created_time"] = data["CreatedTime"]
-    if "OtherMetadataValueList" in data:
+    if data.get("OtherMetadataValueList") is not None:
         import capo_glue.types.other_metadata_value_list
 
         out["other_metadata_value_list"] = (

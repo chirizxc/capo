@@ -29,7 +29,7 @@ def serialize_json(value: Ec2Vpc) -> dict:
 
 def deserialize_json(data: dict) -> Ec2Vpc:
     out: Ec2Vpc = {}  # type: ignore[typeddict-item]
-    if "ec2InstanceUids" in data:
+    if data.get("ec2InstanceUids") is not None:
         import capo_guardduty.types.ec2_instance_uids
 
         out["ec2_instance_uids"] = (

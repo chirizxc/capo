@@ -36,7 +36,7 @@ def serialize_json(value: ListS3BucketsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListS3BucketsResponse:
     out: ListS3BucketsResponse = {}  # type: ignore[typeddict-item]
-    if "buckets" in data:
+    if data.get("buckets") is not None:
         import capo_amplifybackend.types.list_of_s3_bucket_info
 
         out["buckets"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListS3BucketsResponse:
                 data["buckets"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

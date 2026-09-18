@@ -111,13 +111,14 @@ class ConfiguredTableResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.create_configured_table_input.CreateConfiguredTableInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_cleanrooms.types.create_configured_table_input.CreateConfiguredTableInput = {
+            "name": name,
+            "table_reference": table_reference,
+            "allowed_columns": allowed_columns,
+            "analysis_method": analysis_method,
+        }
         if description is not None:
             input_["description"] = description
-        input_["table_reference"] = table_reference
-        input_["allowed_columns"] = allowed_columns
-        input_["analysis_method"] = analysis_method
         if selected_analysis_methods is not None:
             input_["selected_analysis_methods"] = selected_analysis_methods
         if tags is not None:
@@ -128,6 +129,7 @@ class ConfiguredTableResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -165,14 +167,16 @@ class ConfiguredTableResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.get_configured_table_input.GetConfiguredTableInput = {}  # type: ignore[typeddict-item]
-        input_["configured_table_identifier"] = configured_table_identifier
+        input_: capo_cleanrooms.types.get_configured_table_input.GetConfiguredTableInput = {
+            "configured_table_identifier": configured_table_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -233,8 +237,9 @@ class ConfiguredTableResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.update_configured_table_input.UpdateConfiguredTableInput = {}  # type: ignore[typeddict-item]
-        input_["configured_table_identifier"] = configured_table_identifier
+        input_: capo_cleanrooms.types.update_configured_table_input.UpdateConfiguredTableInput = {
+            "configured_table_identifier": configured_table_identifier
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -253,6 +258,7 @@ class ConfiguredTableResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -291,14 +297,16 @@ class ConfiguredTableResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.delete_configured_table_input.DeleteConfiguredTableInput = {}  # type: ignore[typeddict-item]
-        input_["configured_table_identifier"] = configured_table_identifier
+        input_: capo_cleanrooms.types.delete_configured_table_input.DeleteConfiguredTableInput = {
+            "configured_table_identifier": configured_table_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -341,7 +349,7 @@ class ConfiguredTableResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.list_configured_tables_input.ListConfiguredTablesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cleanrooms.types.list_configured_tables_input.ListConfiguredTablesInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -352,6 +360,7 @@ class ConfiguredTableResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_configured_table_analysis_rule(
@@ -395,16 +404,18 @@ class ConfiguredTableResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.create_configured_table_analysis_rule_input.CreateConfiguredTableAnalysisRuleInput = {}  # type: ignore[typeddict-item]
-        input_["configured_table_identifier"] = configured_table_identifier
-        input_["analysis_rule_type"] = analysis_rule_type
-        input_["analysis_rule_policy"] = analysis_rule_policy
+        input_: capo_cleanrooms.types.create_configured_table_analysis_rule_input.CreateConfiguredTableAnalysisRuleInput = {
+            "configured_table_identifier": configured_table_identifier,
+            "analysis_rule_type": analysis_rule_type,
+            "analysis_rule_policy": analysis_rule_policy,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_configured_table_analysis_rule(
@@ -445,15 +456,17 @@ class ConfiguredTableResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.delete_configured_table_analysis_rule_input.DeleteConfiguredTableAnalysisRuleInput = {}  # type: ignore[typeddict-item]
-        input_["configured_table_identifier"] = configured_table_identifier
-        input_["analysis_rule_type"] = analysis_rule_type
+        input_: capo_cleanrooms.types.delete_configured_table_analysis_rule_input.DeleteConfiguredTableAnalysisRuleInput = {
+            "configured_table_identifier": configured_table_identifier,
+            "analysis_rule_type": analysis_rule_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_configured_table_analysis_rule(
@@ -493,15 +506,17 @@ class ConfiguredTableResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.get_configured_table_analysis_rule_input.GetConfiguredTableAnalysisRuleInput = {}  # type: ignore[typeddict-item]
-        input_["configured_table_identifier"] = configured_table_identifier
-        input_["analysis_rule_type"] = analysis_rule_type
+        input_: capo_cleanrooms.types.get_configured_table_analysis_rule_input.GetConfiguredTableAnalysisRuleInput = {
+            "configured_table_identifier": configured_table_identifier,
+            "analysis_rule_type": analysis_rule_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_configured_table_analysis_rule(
@@ -544,16 +559,18 @@ class ConfiguredTableResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.update_configured_table_analysis_rule_input.UpdateConfiguredTableAnalysisRuleInput = {}  # type: ignore[typeddict-item]
-        input_["configured_table_identifier"] = configured_table_identifier
-        input_["analysis_rule_type"] = analysis_rule_type
-        input_["analysis_rule_policy"] = analysis_rule_policy
+        input_: capo_cleanrooms.types.update_configured_table_analysis_rule_input.UpdateConfiguredTableAnalysisRuleInput = {
+            "configured_table_identifier": configured_table_identifier,
+            "analysis_rule_type": analysis_rule_type,
+            "analysis_rule_policy": analysis_rule_policy,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -615,13 +632,14 @@ class AsyncConfiguredTableResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.create_configured_table_input.CreateConfiguredTableInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_cleanrooms.types.create_configured_table_input.CreateConfiguredTableInput = {
+            "name": name,
+            "table_reference": table_reference,
+            "allowed_columns": allowed_columns,
+            "analysis_method": analysis_method,
+        }
         if description is not None:
             input_["description"] = description
-        input_["table_reference"] = table_reference
-        input_["allowed_columns"] = allowed_columns
-        input_["analysis_method"] = analysis_method
         if selected_analysis_methods is not None:
             input_["selected_analysis_methods"] = selected_analysis_methods
         if tags is not None:
@@ -632,6 +650,7 @@ class AsyncConfiguredTableResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -670,14 +689,16 @@ class AsyncConfiguredTableResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.get_configured_table_input.GetConfiguredTableInput = {}  # type: ignore[typeddict-item]
-        input_["configured_table_identifier"] = configured_table_identifier
+        input_: capo_cleanrooms.types.get_configured_table_input.GetConfiguredTableInput = {
+            "configured_table_identifier": configured_table_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -739,8 +760,9 @@ class AsyncConfiguredTableResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.update_configured_table_input.UpdateConfiguredTableInput = {}  # type: ignore[typeddict-item]
-        input_["configured_table_identifier"] = configured_table_identifier
+        input_: capo_cleanrooms.types.update_configured_table_input.UpdateConfiguredTableInput = {
+            "configured_table_identifier": configured_table_identifier
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -759,6 +781,7 @@ class AsyncConfiguredTableResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -798,14 +821,16 @@ class AsyncConfiguredTableResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.delete_configured_table_input.DeleteConfiguredTableInput = {}  # type: ignore[typeddict-item]
-        input_["configured_table_identifier"] = configured_table_identifier
+        input_: capo_cleanrooms.types.delete_configured_table_input.DeleteConfiguredTableInput = {
+            "configured_table_identifier": configured_table_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -849,7 +874,7 @@ class AsyncConfiguredTableResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.list_configured_tables_input.ListConfiguredTablesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_cleanrooms.types.list_configured_tables_input.ListConfiguredTablesInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -860,6 +885,7 @@ class AsyncConfiguredTableResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_configured_table_analysis_rule(
@@ -904,16 +930,18 @@ class AsyncConfiguredTableResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.create_configured_table_analysis_rule_input.CreateConfiguredTableAnalysisRuleInput = {}  # type: ignore[typeddict-item]
-        input_["configured_table_identifier"] = configured_table_identifier
-        input_["analysis_rule_type"] = analysis_rule_type
-        input_["analysis_rule_policy"] = analysis_rule_policy
+        input_: capo_cleanrooms.types.create_configured_table_analysis_rule_input.CreateConfiguredTableAnalysisRuleInput = {
+            "configured_table_identifier": configured_table_identifier,
+            "analysis_rule_type": analysis_rule_type,
+            "analysis_rule_policy": analysis_rule_policy,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_configured_table_analysis_rule(
@@ -955,15 +983,17 @@ class AsyncConfiguredTableResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.delete_configured_table_analysis_rule_input.DeleteConfiguredTableAnalysisRuleInput = {}  # type: ignore[typeddict-item]
-        input_["configured_table_identifier"] = configured_table_identifier
-        input_["analysis_rule_type"] = analysis_rule_type
+        input_: capo_cleanrooms.types.delete_configured_table_analysis_rule_input.DeleteConfiguredTableAnalysisRuleInput = {
+            "configured_table_identifier": configured_table_identifier,
+            "analysis_rule_type": analysis_rule_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_configured_table_analysis_rule(
@@ -1004,15 +1034,17 @@ class AsyncConfiguredTableResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.get_configured_table_analysis_rule_input.GetConfiguredTableAnalysisRuleInput = {}  # type: ignore[typeddict-item]
-        input_["configured_table_identifier"] = configured_table_identifier
-        input_["analysis_rule_type"] = analysis_rule_type
+        input_: capo_cleanrooms.types.get_configured_table_analysis_rule_input.GetConfiguredTableAnalysisRuleInput = {
+            "configured_table_identifier": configured_table_identifier,
+            "analysis_rule_type": analysis_rule_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_configured_table_analysis_rule(
@@ -1056,14 +1088,16 @@ class AsyncConfiguredTableResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanrooms.types.update_configured_table_analysis_rule_input.UpdateConfiguredTableAnalysisRuleInput = {}  # type: ignore[typeddict-item]
-        input_["configured_table_identifier"] = configured_table_identifier
-        input_["analysis_rule_type"] = analysis_rule_type
-        input_["analysis_rule_policy"] = analysis_rule_policy
+        input_: capo_cleanrooms.types.update_configured_table_analysis_rule_input.UpdateConfiguredTableAnalysisRuleInput = {
+            "configured_table_identifier": configured_table_identifier,
+            "analysis_rule_type": analysis_rule_type,
+            "analysis_rule_policy": analysis_rule_policy,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

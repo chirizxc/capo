@@ -49,9 +49,9 @@ def serialize_json(value: CancelDomainConfigChangeResponse) -> dict:
 
 def deserialize_json(data: dict) -> CancelDomainConfigChangeResponse:
     out: CancelDomainConfigChangeResponse = {}  # type: ignore[typeddict-item]
-    if "DryRun" in data:
+    if data.get("DryRun") is not None:
         out["dry_run"] = data["DryRun"]
-    if "CancelledChangeIds" in data:
+    if data.get("CancelledChangeIds") is not None:
         import capo_elasticsearch_service.types.guid_list
 
         out["cancelled_change_ids"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> CancelDomainConfigChangeResponse:
                 data["CancelledChangeIds"]
             )
         )
-    if "CancelledChangeProperties" in data:
+    if data.get("CancelledChangeProperties") is not None:
         import capo_elasticsearch_service.types.cancelled_change_property_list
 
         out["cancelled_change_properties"] = (

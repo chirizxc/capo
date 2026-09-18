@@ -32,8 +32,8 @@ def serialize_aws_json_1_0(value: DescribeProxyConfigurationRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeProxyConfigurationRequest:
     out: DescribeProxyConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "ProxyConfigurationName" in data:
+    if data.get("ProxyConfigurationName") is not None:
         out["proxy_configuration_name"] = data["ProxyConfigurationName"]
-    if "ProxyConfigurationArn" in data:
+    if data.get("ProxyConfigurationArn") is not None:
         out["proxy_configuration_arn"] = data["ProxyConfigurationArn"]
     return out

@@ -43,15 +43,15 @@ def serialize_json(value: RealTimeContactAnalysisTranscriptItemWithContent) -> d
 
 def deserialize_json(data: dict) -> RealTimeContactAnalysisTranscriptItemWithContent:
     out: RealTimeContactAnalysisTranscriptItemWithContent = {}  # type: ignore[typeddict-item]
-    if "Content" in data:
+    if data.get("Content") is not None:
         out["content"] = data["Content"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError(
             "RealTimeContactAnalysisTranscriptItemWithContent.id required"
         )
-    if "CharacterOffsets" in data:
+    if data.get("CharacterOffsets") is not None:
         import capo_connect.types.real_time_contact_analysis_character_interval
 
         out["character_offsets"] = (

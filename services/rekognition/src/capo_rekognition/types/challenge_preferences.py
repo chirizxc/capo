@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ChallengePreferences:
 
     out: ChallengePreferences = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_rekognition.types.challenge_preference.deserialize_aws_json_1_1(item)
         )

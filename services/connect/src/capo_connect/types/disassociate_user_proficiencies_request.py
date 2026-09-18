@@ -36,7 +36,7 @@ def serialize_json(value: DisassociateUserProficienciesRequest) -> dict:
 
 def deserialize_json(data: dict) -> DisassociateUserProficienciesRequest:
     out: DisassociateUserProficienciesRequest = {}  # type: ignore[typeddict-item]
-    if "UserProficiencies" in data:
+    if data.get("UserProficiencies") is not None:
         import capo_connect.types.user_proficiency_disassociate_list
 
         out["user_proficiencies"] = (

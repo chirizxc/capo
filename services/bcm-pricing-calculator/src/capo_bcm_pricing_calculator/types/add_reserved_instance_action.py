@@ -32,8 +32,8 @@ def serialize_aws_json_1_0(value: AddReservedInstanceAction) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AddReservedInstanceAction:
     out: AddReservedInstanceAction = {}  # type: ignore[typeddict-item]
-    if "reservedInstancesOfferingId" in data:
+    if data.get("reservedInstancesOfferingId") is not None:
         out["reserved_instances_offering_id"] = data["reservedInstancesOfferingId"]
-    if "instanceCount" in data:
+    if data.get("instanceCount") is not None:
         out["instance_count"] = data["instanceCount"]
     return out

@@ -28,11 +28,11 @@ def serialize_aws_json_1_0(value: OptOutSpeakerRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> OptOutSpeakerRequest:
     out: OptOutSpeakerRequest = {}  # type: ignore[typeddict-item]
-    if "DomainId" in data:
+    if data.get("DomainId") is not None:
         out["domain_id"] = data["DomainId"]
     else:
         raise DeserializationError("OptOutSpeakerRequest.domain_id required")
-    if "SpeakerId" in data:
+    if data.get("SpeakerId") is not None:
         out["speaker_id"] = data["SpeakerId"]
     else:
         raise DeserializationError("OptOutSpeakerRequest.speaker_id required")

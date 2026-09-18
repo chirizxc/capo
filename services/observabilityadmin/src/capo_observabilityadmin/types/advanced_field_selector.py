@@ -72,35 +72,35 @@ def serialize_json(value: AdvancedFieldSelector) -> dict:
 
 def deserialize_json(data: dict) -> AdvancedFieldSelector:
     out: AdvancedFieldSelector = {}  # type: ignore[typeddict-item]
-    if "Field" in data:
+    if data.get("Field") is not None:
         out["field"] = data["Field"]
     else:
         raise DeserializationError("AdvancedFieldSelector.field required")
-    if "Equals" in data:
+    if data.get("Equals") is not None:
         import capo_observabilityadmin.types.string_list
 
         out["equals"] = capo_observabilityadmin.types.string_list.deserialize_json(
             data["Equals"]
         )
-    if "StartsWith" in data:
+    if data.get("StartsWith") is not None:
         import capo_observabilityadmin.types.string_list
 
         out["starts_with"] = capo_observabilityadmin.types.string_list.deserialize_json(
             data["StartsWith"]
         )
-    if "EndsWith" in data:
+    if data.get("EndsWith") is not None:
         import capo_observabilityadmin.types.string_list
 
         out["ends_with"] = capo_observabilityadmin.types.string_list.deserialize_json(
             data["EndsWith"]
         )
-    if "NotEquals" in data:
+    if data.get("NotEquals") is not None:
         import capo_observabilityadmin.types.string_list
 
         out["not_equals"] = capo_observabilityadmin.types.string_list.deserialize_json(
             data["NotEquals"]
         )
-    if "NotStartsWith" in data:
+    if data.get("NotStartsWith") is not None:
         import capo_observabilityadmin.types.string_list
 
         out["not_starts_with"] = (
@@ -108,7 +108,7 @@ def deserialize_json(data: dict) -> AdvancedFieldSelector:
                 data["NotStartsWith"]
             )
         )
-    if "NotEndsWith" in data:
+    if data.get("NotEndsWith") is not None:
         import capo_observabilityadmin.types.string_list
 
         out["not_ends_with"] = (

@@ -26,14 +26,22 @@ def serialize_json(value: PerformanceInsightsStat) -> dict:
     if "type" in value:
         out["Type"] = value["type"]
     if "value" in value:
-        out["Value"] = value["value"]
+        out["Value"] = (
+            "NaN"
+            if value["value"] != value["value"]
+            else "Infinity"
+            if value["value"] == float("inf")
+            else "-Infinity"
+            if value["value"] == float("-inf")
+            else value["value"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> PerformanceInsightsStat:
     out: PerformanceInsightsStat = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "Value" in data:
-        out["value"] = data["Value"]
+    if data.get("Value") is not None:
+        out["value"] = float(data["Value"])
     return out

@@ -24,7 +24,7 @@ def serialize_json(value: StorageLimitWillExceedException_) -> dict:
 
 def deserialize_json(data: dict) -> StorageLimitWillExceedException_:
     out: StorageLimitWillExceedException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,20 @@ class StorageLimitWillExceedException(ServiceError):
 
     code: str | None = "StorageLimitWillExceedException"
 
-    def __init__(self, data: StorageLimitWillExceedException_):
+    def __init__(
+        self, data: StorageLimitWillExceedException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="StorageLimitWillExceedException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "StorageLimitWillExceedException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "StorageLimitWillExceedException":
+        return cls(deserialize_json(data), message)

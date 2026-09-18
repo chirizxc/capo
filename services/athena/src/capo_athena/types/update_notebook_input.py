@@ -46,15 +46,15 @@ def serialize_aws_json_1_1(value: UpdateNotebookInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateNotebookInput:
     out: UpdateNotebookInput = {}  # type: ignore[typeddict-item]
-    if "NotebookId" in data:
+    if data.get("NotebookId") is not None:
         out["notebook_id"] = data["NotebookId"]
     else:
         raise DeserializationError("UpdateNotebookInput.notebook_id required")
-    if "Payload" in data:
+    if data.get("Payload") is not None:
         out["payload"] = data["Payload"]
     else:
         raise DeserializationError("UpdateNotebookInput.payload required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_athena.types.notebook_type
 
         out["type"] = capo_athena.types.notebook_type.deserialize_aws_json_1_1(
@@ -62,8 +62,8 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateNotebookInput:
         )
     else:
         raise DeserializationError("UpdateNotebookInput.type required")
-    if "SessionId" in data:
+    if data.get("SessionId") is not None:
         out["session_id"] = data["SessionId"]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
     return out

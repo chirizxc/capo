@@ -46,7 +46,7 @@ def serialize_json(value: SearchField) -> dict:
 
 def deserialize_json(data: dict) -> SearchField:
     out: SearchField = {}  # type: ignore[typeddict-item]
-    if "Key" in data:
+    if data.get("Key") is not None:
         import capo_chime_sdk_messaging.types.search_field_key
 
         out["key"] = capo_chime_sdk_messaging.types.search_field_key.deserialize_json(
@@ -54,7 +54,7 @@ def deserialize_json(data: dict) -> SearchField:
         )
     else:
         raise DeserializationError("SearchField.key required")
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_chime_sdk_messaging.types.search_field_values
 
         out["values"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> SearchField:
         )
     else:
         raise DeserializationError("SearchField.values required")
-    if "Operator" in data:
+    if data.get("Operator") is not None:
         import capo_chime_sdk_messaging.types.search_field_operator
 
         out["operator"] = (

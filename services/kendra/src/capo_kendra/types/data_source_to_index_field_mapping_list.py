@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> DataSourceToIndexFieldMappingList:
 
     out: DataSourceToIndexFieldMappingList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_kendra.types.data_source_to_index_field_mapping.deserialize_aws_json_1_1(
                 item

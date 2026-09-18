@@ -54,21 +54,21 @@ def serialize_json(value: VsamDetailAttributes) -> dict:
 
 def deserialize_json(data: dict) -> VsamDetailAttributes:
     out: VsamDetailAttributes = {}  # type: ignore[typeddict-item]
-    if "encoding" in data:
+    if data.get("encoding") is not None:
         out["encoding"] = data["encoding"]
-    if "recordFormat" in data:
+    if data.get("recordFormat") is not None:
         out["record_format"] = data["recordFormat"]
-    if "compressed" in data:
+    if data.get("compressed") is not None:
         out["compressed"] = data["compressed"]
-    if "cacheAtStartup" in data:
+    if data.get("cacheAtStartup") is not None:
         out["cache_at_startup"] = data["cacheAtStartup"]
-    if "primaryKey" in data:
+    if data.get("primaryKey") is not None:
         import capo_m2.types.primary_key
 
         out["primary_key"] = capo_m2.types.primary_key.deserialize_json(
             data["primaryKey"]
         )
-    if "alternateKeys" in data:
+    if data.get("alternateKeys") is not None:
         import capo_m2.types.alternate_key_list
 
         out["alternate_keys"] = capo_m2.types.alternate_key_list.deserialize_json(

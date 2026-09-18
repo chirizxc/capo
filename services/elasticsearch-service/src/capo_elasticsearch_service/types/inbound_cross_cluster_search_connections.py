@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> InboundCrossClusterSearchConnections:
 
     out: InboundCrossClusterSearchConnections = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_elasticsearch_service.types.inbound_cross_cluster_search_connection.deserialize_json(
                 item

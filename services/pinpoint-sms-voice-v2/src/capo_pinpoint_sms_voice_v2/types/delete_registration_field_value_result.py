@@ -56,31 +56,31 @@ def serialize_aws_json_1_0(value: DeleteRegistrationFieldValueResult) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteRegistrationFieldValueResult:
     out: DeleteRegistrationFieldValueResult = {}  # type: ignore[typeddict-item]
-    if "RegistrationArn" in data:
+    if data.get("RegistrationArn") is not None:
         out["registration_arn"] = data["RegistrationArn"]
     else:
         raise DeserializationError(
             "DeleteRegistrationFieldValueResult.registration_arn required"
         )
-    if "RegistrationId" in data:
+    if data.get("RegistrationId") is not None:
         out["registration_id"] = data["RegistrationId"]
     else:
         raise DeserializationError(
             "DeleteRegistrationFieldValueResult.registration_id required"
         )
-    if "VersionNumber" in data:
+    if data.get("VersionNumber") is not None:
         out["version_number"] = data["VersionNumber"]
     else:
         raise DeserializationError(
             "DeleteRegistrationFieldValueResult.version_number required"
         )
-    if "FieldPath" in data:
+    if data.get("FieldPath") is not None:
         out["field_path"] = data["FieldPath"]
     else:
         raise DeserializationError(
             "DeleteRegistrationFieldValueResult.field_path required"
         )
-    if "SelectChoices" in data:
+    if data.get("SelectChoices") is not None:
         import capo_pinpoint_sms_voice_v2.types.select_choice_list
 
         out["select_choices"] = (
@@ -88,8 +88,8 @@ def deserialize_aws_json_1_0(data: dict) -> DeleteRegistrationFieldValueResult:
                 data["SelectChoices"]
             )
         )
-    if "TextValue" in data:
+    if data.get("TextValue") is not None:
         out["text_value"] = data["TextValue"]
-    if "RegistrationAttachmentId" in data:
+    if data.get("RegistrationAttachmentId") is not None:
         out["registration_attachment_id"] = data["RegistrationAttachmentId"]
     return out

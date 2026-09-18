@@ -46,13 +46,13 @@ def serialize_json(value: CreateSuiteDefinitionResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateSuiteDefinitionResponse:
     out: CreateSuiteDefinitionResponse = {}  # type: ignore[typeddict-item]
-    if "suiteDefinitionId" in data:
+    if data.get("suiteDefinitionId") is not None:
         out["suite_definition_id"] = data["suiteDefinitionId"]
-    if "suiteDefinitionArn" in data:
+    if data.get("suiteDefinitionArn") is not None:
         out["suite_definition_arn"] = data["suiteDefinitionArn"]
-    if "suiteDefinitionName" in data:
+    if data.get("suiteDefinitionName") is not None:
         out["suite_definition_name"] = data["suiteDefinitionName"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_iotdeviceadvisor.types.timestamp
 
         out["created_at"] = capo_iotdeviceadvisor.types.timestamp.deserialize_json(

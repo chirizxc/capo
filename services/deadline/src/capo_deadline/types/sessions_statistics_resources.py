@@ -43,13 +43,13 @@ def serialize_json(value: SessionsStatisticsResources) -> dict:
 
 
 def deserialize_json(data: dict) -> SessionsStatisticsResources:
-    if "queueIds" in data:
+    if data.get("queueIds") is not None:
         import capo_deadline.types.queue_ids
 
         return {
             "queueIds": capo_deadline.types.queue_ids.deserialize_json(data["queueIds"])
         }
-    elif "fleetIds" in data:
+    elif data.get("fleetIds") is not None:
         import capo_deadline.types.fleet_ids
 
         return {

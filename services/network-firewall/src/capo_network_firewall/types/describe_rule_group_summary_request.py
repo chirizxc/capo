@@ -41,11 +41,11 @@ def serialize_aws_json_1_0(value: DescribeRuleGroupSummaryRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeRuleGroupSummaryRequest:
     out: DescribeRuleGroupSummaryRequest = {}  # type: ignore[typeddict-item]
-    if "RuleGroupName" in data:
+    if data.get("RuleGroupName") is not None:
         out["rule_group_name"] = data["RuleGroupName"]
-    if "RuleGroupArn" in data:
+    if data.get("RuleGroupArn") is not None:
         out["rule_group_arn"] = data["RuleGroupArn"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_network_firewall.types.rule_group_type
 
         out["type"] = (

@@ -37,9 +37,9 @@ def serialize_json(value: ListNotificationEventsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListNotificationEventsResponse:
     out: ListNotificationEventsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "notificationEvents" in data:
+    if data.get("notificationEvents") is not None:
         import capo_notifications.types.notification_events
 
         out["notification_events"] = (

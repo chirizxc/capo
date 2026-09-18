@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> BatchReadOperationResponseList:
 
     out: BatchReadOperationResponseList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_clouddirectory.types.batch_read_operation_response.deserialize_json(
                 item

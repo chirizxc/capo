@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AwsRedshiftClusterIamRoles:
 
     out: AwsRedshiftClusterIamRoles = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_redshift_cluster_iam_role.deserialize_json(item)
         )

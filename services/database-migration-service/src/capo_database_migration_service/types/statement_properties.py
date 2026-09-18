@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: StatementProperties) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StatementProperties:
     out: StatementProperties = {}  # type: ignore[typeddict-item]
-    if "Definition" in data:
+    if data.get("Definition") is not None:
         out["definition"] = data["Definition"]
     else:
         raise DeserializationError("StatementProperties.definition required")

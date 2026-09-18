@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: AddTagsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AddTagsInput:
     out: AddTagsInput = {}  # type: ignore[typeddict-item]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeletePullRequestApprovalRuleOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeletePullRequestApprovalRuleOutput:
     out: DeletePullRequestApprovalRuleOutput = {}  # type: ignore[typeddict-item]
-    if "approvalRuleId" in data:
+    if data.get("approvalRuleId") is not None:
         out["approval_rule_id"] = data["approvalRuleId"]
     else:
         raise DeserializationError(

@@ -52,7 +52,7 @@ def serialize_json(value: ListProfilingGroupsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListProfilingGroupsResponse:
     out: ListProfilingGroupsResponse = {}  # type: ignore[typeddict-item]
-    if "profilingGroupNames" in data:
+    if data.get("profilingGroupNames") is not None:
         import capo_codeguruprofiler.types.profiling_group_names
 
         out["profiling_group_names"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> ListProfilingGroupsResponse:
         raise DeserializationError(
             "ListProfilingGroupsResponse.profiling_group_names required"
         )
-    if "profilingGroups" in data:
+    if data.get("profilingGroups") is not None:
         import capo_codeguruprofiler.types.profiling_group_descriptions
 
         out["profiling_groups"] = (
@@ -72,6 +72,6 @@ def deserialize_json(data: dict) -> ListProfilingGroupsResponse:
                 data["profilingGroups"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

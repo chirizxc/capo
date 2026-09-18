@@ -23,5 +23,7 @@ def serialize_json(input_to_serialize: DimensionsV2Map) -> dict:
 def deserialize_json(data: dict) -> DimensionsV2Map:
     out: DimensionsV2Map = {}
     for key, value in data.items():
+        if value is None:
+            continue
         out[key] = value
     return out

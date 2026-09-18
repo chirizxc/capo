@@ -35,10 +35,10 @@ def serialize_aws_json_1_1(value: Device) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Device:
     out: Device = {}  # type: ignore[typeddict-item]
-    if "DeviceName" in data:
+    if data.get("DeviceName") is not None:
         out["device_name"] = data["DeviceName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "IotThingName" in data:
+    if data.get("IotThingName") is not None:
         out["iot_thing_name"] = data["IotThingName"]
     return out

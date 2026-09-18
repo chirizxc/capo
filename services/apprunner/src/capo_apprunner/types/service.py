@@ -153,21 +153,21 @@ def serialize_aws_json_1_0(value: Service) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Service:
     out: Service = {}  # type: ignore[typeddict-item]
-    if "ServiceName" in data:
+    if data.get("ServiceName") is not None:
         out["service_name"] = data["ServiceName"]
     else:
         raise DeserializationError("Service.service_name required")
-    if "ServiceId" in data:
+    if data.get("ServiceId") is not None:
         out["service_id"] = data["ServiceId"]
     else:
         raise DeserializationError("Service.service_id required")
-    if "ServiceArn" in data:
+    if data.get("ServiceArn") is not None:
         out["service_arn"] = data["ServiceArn"]
     else:
         raise DeserializationError("Service.service_arn required")
-    if "ServiceUrl" in data:
+    if data.get("ServiceUrl") is not None:
         out["service_url"] = data["ServiceUrl"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_apprunner.types.timestamp
 
         out["created_at"] = capo_apprunner.types.timestamp.deserialize_aws_json_1_0(
@@ -175,7 +175,7 @@ def deserialize_aws_json_1_0(data: dict) -> Service:
         )
     else:
         raise DeserializationError("Service.created_at required")
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_apprunner.types.timestamp
 
         out["updated_at"] = capo_apprunner.types.timestamp.deserialize_aws_json_1_0(
@@ -183,13 +183,13 @@ def deserialize_aws_json_1_0(data: dict) -> Service:
         )
     else:
         raise DeserializationError("Service.updated_at required")
-    if "DeletedAt" in data:
+    if data.get("DeletedAt") is not None:
         import capo_apprunner.types.timestamp
 
         out["deleted_at"] = capo_apprunner.types.timestamp.deserialize_aws_json_1_0(
             data["DeletedAt"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_apprunner.types.service_status
 
         out["status"] = capo_apprunner.types.service_status.deserialize_aws_json_1_0(
@@ -197,7 +197,7 @@ def deserialize_aws_json_1_0(data: dict) -> Service:
         )
     else:
         raise DeserializationError("Service.status required")
-    if "SourceConfiguration" in data:
+    if data.get("SourceConfiguration") is not None:
         import capo_apprunner.types.source_configuration
 
         out["source_configuration"] = (
@@ -207,7 +207,7 @@ def deserialize_aws_json_1_0(data: dict) -> Service:
         )
     else:
         raise DeserializationError("Service.source_configuration required")
-    if "InstanceConfiguration" in data:
+    if data.get("InstanceConfiguration") is not None:
         import capo_apprunner.types.instance_configuration
 
         out["instance_configuration"] = (
@@ -217,7 +217,7 @@ def deserialize_aws_json_1_0(data: dict) -> Service:
         )
     else:
         raise DeserializationError("Service.instance_configuration required")
-    if "EncryptionConfiguration" in data:
+    if data.get("EncryptionConfiguration") is not None:
         import capo_apprunner.types.encryption_configuration
 
         out["encryption_configuration"] = (
@@ -225,7 +225,7 @@ def deserialize_aws_json_1_0(data: dict) -> Service:
                 data["EncryptionConfiguration"]
             )
         )
-    if "HealthCheckConfiguration" in data:
+    if data.get("HealthCheckConfiguration") is not None:
         import capo_apprunner.types.health_check_configuration
 
         out["health_check_configuration"] = (
@@ -233,7 +233,7 @@ def deserialize_aws_json_1_0(data: dict) -> Service:
                 data["HealthCheckConfiguration"]
             )
         )
-    if "AutoScalingConfigurationSummary" in data:
+    if data.get("AutoScalingConfigurationSummary") is not None:
         import capo_apprunner.types.auto_scaling_configuration_summary
 
         out["auto_scaling_configuration_summary"] = (
@@ -245,7 +245,7 @@ def deserialize_aws_json_1_0(data: dict) -> Service:
         raise DeserializationError(
             "Service.auto_scaling_configuration_summary required"
         )
-    if "NetworkConfiguration" in data:
+    if data.get("NetworkConfiguration") is not None:
         import capo_apprunner.types.network_configuration
 
         out["network_configuration"] = (
@@ -255,7 +255,7 @@ def deserialize_aws_json_1_0(data: dict) -> Service:
         )
     else:
         raise DeserializationError("Service.network_configuration required")
-    if "ObservabilityConfiguration" in data:
+    if data.get("ObservabilityConfiguration") is not None:
         import capo_apprunner.types.service_observability_configuration
 
         out["observability_configuration"] = (

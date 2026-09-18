@@ -46,16 +46,16 @@ def serialize_aws_json_1_1(value: SecurityGroupRuleDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SecurityGroupRuleDescription:
     out: SecurityGroupRuleDescription = {}  # type: ignore[typeddict-item]
-    if "IPV4Range" in data:
+    if data.get("IPV4Range") is not None:
         out["ipv4_range"] = data["IPV4Range"]
-    if "IPV6Range" in data:
+    if data.get("IPV6Range") is not None:
         out["ipv6_range"] = data["IPV6Range"]
-    if "PrefixListId" in data:
+    if data.get("PrefixListId") is not None:
         out["prefix_list_id"] = data["PrefixListId"]
-    if "Protocol" in data:
+    if data.get("Protocol") is not None:
         out["protocol"] = data["Protocol"]
-    if "FromPort" in data:
+    if data.get("FromPort") is not None:
         out["from_port"] = data["FromPort"]
-    if "ToPort" in data:
+    if data.get("ToPort") is not None:
         out["to_port"] = data["ToPort"]
     return out

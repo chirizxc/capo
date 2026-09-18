@@ -57,7 +57,7 @@ def serialize_aws_json_1_1(value: HttpParameters) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HttpParameters:
     out: HttpParameters = {}  # type: ignore[typeddict-item]
-    if "PathParameterValues" in data:
+    if data.get("PathParameterValues") is not None:
         import capo_cloudwatch_events.types.path_parameter_list
 
         out["path_parameter_values"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> HttpParameters:
                 data["PathParameterValues"]
             )
         )
-    if "HeaderParameters" in data:
+    if data.get("HeaderParameters") is not None:
         import capo_cloudwatch_events.types.header_parameters_map
 
         out["header_parameters"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> HttpParameters:
                 data["HeaderParameters"]
             )
         )
-    if "QueryStringParameters" in data:
+    if data.get("QueryStringParameters") is not None:
         import capo_cloudwatch_events.types.query_string_parameters_map
 
         out["query_string_parameters"] = (

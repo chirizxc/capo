@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetLicenseUsageRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetLicenseUsageRequest:
     out: GetLicenseUsageRequest = {}  # type: ignore[typeddict-item]
-    if "LicenseArn" in data:
+    if data.get("LicenseArn") is not None:
         out["license_arn"] = data["LicenseArn"]
     else:
         raise DeserializationError("GetLicenseUsageRequest.license_arn required")

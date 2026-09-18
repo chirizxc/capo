@@ -13,9 +13,9 @@ from capo_sagemakerjobruntime import AsyncSagemakerJobRuntimeClient
 
 
 async def main():
-    async with AsyncSagemakerJobRuntimeClient() as s3:
+    async with AsyncSagemakerJobRuntimeClient() as sagemaker_job_runtime:
         # Example: call the complete_rollout operation
-        response = await s3.complete_rollout()
+        response = await sagemaker_job_runtime.complete_rollout()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_sagemakerjobruntime import AsyncSagemakerJobRuntimeClient
 
 
 async def main():
-    async with AsyncSagemakerJobRuntimeClient() as s3:
+    async with AsyncSagemakerJobRuntimeClient() as sagemaker_job_runtime:
         # Example: call sample_with_response_stream and read the streaming response
-        async with s3.sample_with_response_stream() as response:
+        async with sagemaker_job_runtime.sample_with_response_stream() as response:
             async for chunk in response["body"]:
                 print(chunk)
 ```
@@ -45,9 +45,9 @@ from capo_sagemakerjobruntime.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncSagemakerJobRuntimeClient() as s3:
+    async with AsyncSagemakerJobRuntimeClient() as sagemaker_job_runtime:
         try:
-            await s3.complete_rollout()
+            await sagemaker_job_runtime.complete_rollout()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -64,13 +64,13 @@ from capo_sagemakerjobruntime import AsyncSagemakerJobRuntimeClient
 
 
 async def main():
-    async with AsyncSagemakerJobRuntimeClient() as s3:
+    async with AsyncSagemakerJobRuntimeClient() as sagemaker_job_runtime:
         # Default: 3 attempts for every operation
-        response = await s3.complete_rollout()
+        response = await sagemaker_job_runtime.complete_rollout()
 
         # Override per operation
-        response = await s3.complete_rollout(config_overrides={"retry_max_attempts": 5})
+        response = await sagemaker_job_runtime.complete_rollout(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.complete_rollout(config_overrides={"retry_max_attempts": 1})
+        response = await sagemaker_job_runtime.complete_rollout(config_overrides={"retry_max_attempts": 1})
 ```

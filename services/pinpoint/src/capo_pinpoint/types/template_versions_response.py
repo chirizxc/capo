@@ -44,7 +44,7 @@ def serialize_json(value: TemplateVersionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> TemplateVersionsResponse:
     out: TemplateVersionsResponse = {}  # type: ignore[typeddict-item]
-    if "Item" in data:
+    if data.get("Item") is not None:
         import capo_pinpoint.types.list_of_template_version_response
 
         out["item"] = (
@@ -52,10 +52,10 @@ def deserialize_json(data: dict) -> TemplateVersionsResponse:
                 data["Item"]
             )
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "RequestID" in data:
+    if data.get("RequestID") is not None:
         out["request_id"] = data["RequestID"]
     return out

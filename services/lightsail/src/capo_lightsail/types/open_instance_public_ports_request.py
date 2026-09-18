@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: OpenInstancePublicPortsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OpenInstancePublicPortsRequest:
     out: OpenInstancePublicPortsRequest = {}  # type: ignore[typeddict-item]
-    if "portInfo" in data:
+    if data.get("portInfo") is not None:
         import capo_lightsail.types.port_info
 
         out["port_info"] = capo_lightsail.types.port_info.deserialize_aws_json_1_1(
@@ -40,7 +40,7 @@ def deserialize_aws_json_1_1(data: dict) -> OpenInstancePublicPortsRequest:
         )
     else:
         raise DeserializationError("OpenInstancePublicPortsRequest.port_info required")
-    if "instanceName" in data:
+    if data.get("instanceName") is not None:
         out["instance_name"] = data["instanceName"]
     else:
         raise DeserializationError(

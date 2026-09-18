@@ -52,7 +52,7 @@ def serialize_aws_json_1_0(value: GetServiceInstanceSyncStatusOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetServiceInstanceSyncStatusOutput:
     out: GetServiceInstanceSyncStatusOutput = {}  # type: ignore[typeddict-item]
-    if "latestSync" in data:
+    if data.get("latestSync") is not None:
         import capo_proton.types.resource_sync_attempt
 
         out["latest_sync"] = (
@@ -60,7 +60,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetServiceInstanceSyncStatusOutput:
                 data["latestSync"]
             )
         )
-    if "latestSuccessfulSync" in data:
+    if data.get("latestSuccessfulSync") is not None:
         import capo_proton.types.resource_sync_attempt
 
         out["latest_successful_sync"] = (
@@ -68,7 +68,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetServiceInstanceSyncStatusOutput:
                 data["latestSuccessfulSync"]
             )
         )
-    if "desiredState" in data:
+    if data.get("desiredState") is not None:
         import capo_proton.types.revision
 
         out["desired_state"] = capo_proton.types.revision.deserialize_aws_json_1_0(

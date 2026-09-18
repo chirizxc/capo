@@ -29,10 +29,10 @@ def serialize_json(value: DeleteWaveRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteWaveRequest:
     out: DeleteWaveRequest = {}  # type: ignore[typeddict-item]
-    if "waveID" in data:
+    if data.get("waveID") is not None:
         out["wave_id"] = data["waveID"]
     else:
         raise DeserializationError("DeleteWaveRequest.wave_id required")
-    if "accountID" in data:
+    if data.get("accountID") is not None:
         out["account_id"] = data["accountID"]
     return out

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> UnprocessedTraceSegmentList:
 
     out: UnprocessedTraceSegmentList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_xray.types.unprocessed_trace_segment.deserialize_json(item))
     return out

@@ -32,7 +32,7 @@ def serialize_aws_json_1_0(value: BatchUpdateVehicleRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> BatchUpdateVehicleRequest:
     out: BatchUpdateVehicleRequest = {}  # type: ignore[typeddict-item]
-    if "vehicles" in data:
+    if data.get("vehicles") is not None:
         import capo_iotfleetwise.types.update_vehicle_request_items
 
         out["vehicles"] = (

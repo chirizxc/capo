@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> RedshiftServiceIntegrations:
 
     out: RedshiftServiceIntegrations = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_lakeformation.types.redshift_scope_union.deserialize_json(item))
     return out

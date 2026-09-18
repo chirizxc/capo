@@ -30,8 +30,8 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DescribeEmailMonitoringConfigurationResponse:
     out: DescribeEmailMonitoringConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "LogGroupArn" in data:
+    if data.get("LogGroupArn") is not None:
         out["log_group_arn"] = data["LogGroupArn"]
     return out

@@ -28,7 +28,7 @@ def serialize_json(value: SearchVulnerabilitiesFilterCriteria) -> dict:
 
 def deserialize_json(data: dict) -> SearchVulnerabilitiesFilterCriteria:
     out: SearchVulnerabilitiesFilterCriteria = {}  # type: ignore[typeddict-item]
-    if "vulnerabilityIds" in data:
+    if data.get("vulnerabilityIds") is not None:
         import capo_inspector2.types.vuln_id_list
 
         out["vulnerability_ids"] = capo_inspector2.types.vuln_id_list.deserialize_json(

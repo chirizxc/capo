@@ -29,8 +29,8 @@ def serialize_json(value: GetEvidenceFileUploadUrlResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetEvidenceFileUploadUrlResponse:
     out: GetEvidenceFileUploadUrlResponse = {}  # type: ignore[typeddict-item]
-    if "evidenceFileName" in data:
+    if data.get("evidenceFileName") is not None:
         out["evidence_file_name"] = data["evidenceFileName"]
-    if "uploadUrl" in data:
+    if data.get("uploadUrl") is not None:
         out["upload_url"] = data["uploadUrl"]
     return out

@@ -25,6 +25,6 @@ def serialize_json(value: GetPrimaryEmailResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetPrimaryEmailResponse:
     out: GetPrimaryEmailResponse = {}  # type: ignore[typeddict-item]
-    if "PrimaryEmail" in data:
+    if data.get("PrimaryEmail") is not None:
         out["primary_email"] = data["PrimaryEmail"]
     return out

@@ -28,7 +28,7 @@ def serialize_json(value: HttpRouteAction) -> dict:
 
 def deserialize_json(data: dict) -> HttpRouteAction:
     out: HttpRouteAction = {}  # type: ignore[typeddict-item]
-    if "weightedTargets" in data:
+    if data.get("weightedTargets") is not None:
         import capo_app_mesh.types.weighted_targets
 
         out["weighted_targets"] = capo_app_mesh.types.weighted_targets.deserialize_json(

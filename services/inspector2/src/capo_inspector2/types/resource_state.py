@@ -52,29 +52,29 @@ def serialize_json(value: ResourceState) -> dict:
 
 def deserialize_json(data: dict) -> ResourceState:
     out: ResourceState = {}  # type: ignore[typeddict-item]
-    if "ec2" in data:
+    if data.get("ec2") is not None:
         import capo_inspector2.types.state
 
         out["ec2"] = capo_inspector2.types.state.deserialize_json(data["ec2"])
     else:
         raise DeserializationError("ResourceState.ec2 required")
-    if "ecr" in data:
+    if data.get("ecr") is not None:
         import capo_inspector2.types.state
 
         out["ecr"] = capo_inspector2.types.state.deserialize_json(data["ecr"])
     else:
         raise DeserializationError("ResourceState.ecr required")
-    if "lambda" in data:
+    if data.get("lambda") is not None:
         import capo_inspector2.types.state
 
         out["lambda"] = capo_inspector2.types.state.deserialize_json(data["lambda"])
-    if "lambdaCode" in data:
+    if data.get("lambdaCode") is not None:
         import capo_inspector2.types.state
 
         out["lambda_code"] = capo_inspector2.types.state.deserialize_json(
             data["lambdaCode"]
         )
-    if "codeRepository" in data:
+    if data.get("codeRepository") is not None:
         import capo_inspector2.types.state
 
         out["code_repository"] = capo_inspector2.types.state.deserialize_json(

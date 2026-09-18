@@ -31,7 +31,7 @@ def serialize_json(value: OtaTaskAbortConfig) -> dict:
 
 def deserialize_json(data: dict) -> OtaTaskAbortConfig:
     out: OtaTaskAbortConfig = {}  # type: ignore[typeddict-item]
-    if "AbortConfigCriteriaList" in data:
+    if data.get("AbortConfigCriteriaList") is not None:
         import capo_iot_managed_integrations.types.abort_config_criteria_list
 
         out["abort_config_criteria_list"] = (

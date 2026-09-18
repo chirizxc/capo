@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: NotificationWithSubscribers) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NotificationWithSubscribers:
     out: NotificationWithSubscribers = {}  # type: ignore[typeddict-item]
-    if "Notification" in data:
+    if data.get("Notification") is not None:
         import capo_budgets.types.notification
 
         out["notification"] = capo_budgets.types.notification.deserialize_aws_json_1_1(
@@ -44,7 +44,7 @@ def deserialize_aws_json_1_1(data: dict) -> NotificationWithSubscribers:
         )
     else:
         raise DeserializationError("NotificationWithSubscribers.notification required")
-    if "Subscribers" in data:
+    if data.get("Subscribers") is not None:
         import capo_budgets.types.subscribers
 
         out["subscribers"] = capo_budgets.types.subscribers.deserialize_aws_json_1_1(

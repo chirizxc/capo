@@ -39,10 +39,10 @@ def serialize_aws_json_1_1(value: MessageTemplateType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MessageTemplateType:
     out: MessageTemplateType = {}  # type: ignore[typeddict-item]
-    if "SMSMessage" in data:
+    if data.get("SMSMessage") is not None:
         out["sms_message"] = data["SMSMessage"]
-    if "EmailMessage" in data:
+    if data.get("EmailMessage") is not None:
         out["email_message"] = data["EmailMessage"]
-    if "EmailSubject" in data:
+    if data.get("EmailSubject") is not None:
         out["email_subject"] = data["EmailSubject"]
     return out

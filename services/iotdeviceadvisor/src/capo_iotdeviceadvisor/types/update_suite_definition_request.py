@@ -34,7 +34,7 @@ def serialize_json(value: UpdateSuiteDefinitionRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSuiteDefinitionRequest:
     out: UpdateSuiteDefinitionRequest = {}  # type: ignore[typeddict-item]
-    if "suiteDefinitionConfiguration" in data:
+    if data.get("suiteDefinitionConfiguration") is not None:
         import capo_iotdeviceadvisor.types.suite_definition_configuration
 
         out["suite_definition_configuration"] = (

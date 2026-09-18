@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetRuleGroupRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetRuleGroupRequest:
     out: GetRuleGroupRequest = {}  # type: ignore[typeddict-item]
-    if "RuleGroupId" in data:
+    if data.get("RuleGroupId") is not None:
         out["rule_group_id"] = data["RuleGroupId"]
     else:
         raise DeserializationError("GetRuleGroupRequest.rule_group_id required")

@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: TimeBasedSignalFetchConfig) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TimeBasedSignalFetchConfig:
     out: TimeBasedSignalFetchConfig = {}  # type: ignore[typeddict-item]
-    if "executionFrequencyMs" in data:
+    if data.get("executionFrequencyMs") is not None:
         out["execution_frequency_ms"] = data["executionFrequencyMs"]
     else:
         raise DeserializationError(

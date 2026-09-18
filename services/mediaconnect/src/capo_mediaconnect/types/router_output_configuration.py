@@ -62,7 +62,7 @@ def serialize_json(value: RouterOutputConfiguration) -> dict:
 
 
 def deserialize_json(data: dict) -> RouterOutputConfiguration:
-    if "standard" in data:
+    if data.get("standard") is not None:
         import capo_mediaconnect.types.standard_router_output_configuration
 
         return {
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> RouterOutputConfiguration:
                 data["standard"]
             )
         }
-    elif "mediaConnectFlow" in data:
+    elif data.get("mediaConnectFlow") is not None:
         import capo_mediaconnect.types.media_connect_flow_router_output_configuration
 
         return {
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> RouterOutputConfiguration:
                 data["mediaConnectFlow"]
             )
         }
-    elif "mediaLiveInput" in data:
+    elif data.get("mediaLiveInput") is not None:
         import capo_mediaconnect.types.media_live_input_router_output_configuration
 
         return {

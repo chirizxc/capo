@@ -66,7 +66,7 @@ def serialize_json(value: DescribeSourceServersRequestFilters) -> dict:
 
 def deserialize_json(data: dict) -> DescribeSourceServersRequestFilters:
     out: DescribeSourceServersRequestFilters = {}  # type: ignore[typeddict-item]
-    if "sourceServerIDs" in data:
+    if data.get("sourceServerIDs") is not None:
         import capo_mgn.types.describe_source_servers_request_filters_i_ds
 
         out["source_server_i_ds"] = (
@@ -74,21 +74,21 @@ def deserialize_json(data: dict) -> DescribeSourceServersRequestFilters:
                 data["sourceServerIDs"]
             )
         )
-    if "isArchived" in data:
+    if data.get("isArchived") is not None:
         out["is_archived"] = data["isArchived"]
-    if "replicationTypes" in data:
+    if data.get("replicationTypes") is not None:
         import capo_mgn.types.replication_types
 
         out["replication_types"] = capo_mgn.types.replication_types.deserialize_json(
             data["replicationTypes"]
         )
-    if "lifeCycleStates" in data:
+    if data.get("lifeCycleStates") is not None:
         import capo_mgn.types.life_cycle_states
 
         out["life_cycle_states"] = capo_mgn.types.life_cycle_states.deserialize_json(
             data["lifeCycleStates"]
         )
-    if "applicationIDs" in data:
+    if data.get("applicationIDs") is not None:
         import capo_mgn.types.describe_source_servers_request_application_i_ds
 
         out["application_i_ds"] = (

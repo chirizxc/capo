@@ -34,11 +34,11 @@ def serialize_json(value: RestartBatchJobIdentifier) -> dict:
 
 def deserialize_json(data: dict) -> RestartBatchJobIdentifier:
     out: RestartBatchJobIdentifier = {}  # type: ignore[typeddict-item]
-    if "executionId" in data:
+    if data.get("executionId") is not None:
         out["execution_id"] = data["executionId"]
     else:
         raise DeserializationError("RestartBatchJobIdentifier.execution_id required")
-    if "jobStepRestartMarker" in data:
+    if data.get("jobStepRestartMarker") is not None:
         import capo_m2.types.job_step_restart_marker
 
         out["job_step_restart_marker"] = (

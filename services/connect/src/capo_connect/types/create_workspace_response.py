@@ -28,11 +28,11 @@ def serialize_json(value: CreateWorkspaceResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateWorkspaceResponse:
     out: CreateWorkspaceResponse = {}  # type: ignore[typeddict-item]
-    if "WorkspaceId" in data:
+    if data.get("WorkspaceId") is not None:
         out["workspace_id"] = data["WorkspaceId"]
     else:
         raise DeserializationError("CreateWorkspaceResponse.workspace_id required")
-    if "WorkspaceArn" in data:
+    if data.get("WorkspaceArn") is not None:
         out["workspace_arn"] = data["WorkspaceArn"]
     else:
         raise DeserializationError("CreateWorkspaceResponse.workspace_arn required")

@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> CertificateSummaryList:
 
     out: CertificateSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lightsail.types.certificate_summary.deserialize_aws_json_1_1(item)
         )

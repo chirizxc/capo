@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SchemaStatusReasonList:
 
     out: SchemaStatusReasonList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_cleanrooms.types.schema_status_reason.deserialize_json(item))
     return out

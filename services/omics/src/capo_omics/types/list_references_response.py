@@ -33,9 +33,9 @@ def serialize_json(value: ListReferencesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListReferencesResponse:
     out: ListReferencesResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "references" in data:
+    if data.get("references") is not None:
         import capo_omics.types.reference_list
 
         out["references"] = capo_omics.types.reference_list.deserialize_json(

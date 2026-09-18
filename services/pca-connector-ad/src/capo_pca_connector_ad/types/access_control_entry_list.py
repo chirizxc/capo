@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AccessControlEntryList:
 
     out: AccessControlEntryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_pca_connector_ad.types.access_control_entry_summary.deserialize_json(
                 item

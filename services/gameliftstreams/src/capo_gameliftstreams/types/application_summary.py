@@ -78,21 +78,21 @@ def serialize_json(value: ApplicationSummary) -> dict:
 
 def deserialize_json(data: dict) -> ApplicationSummary:
     out: ApplicationSummary = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("ApplicationSummary.arn required")
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_gameliftstreams.types.application_status
 
         out["status"] = capo_gameliftstreams.types.application_status.deserialize_json(
             data["Status"]
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_gameliftstreams.types._prelude.timestamp
 
         out["created_at"] = (
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> ApplicationSummary:
                 data["CreatedAt"]
             )
         )
-    if "LastUpdatedAt" in data:
+    if data.get("LastUpdatedAt") is not None:
         import capo_gameliftstreams.types._prelude.timestamp
 
         out["last_updated_at"] = (
@@ -108,7 +108,7 @@ def deserialize_json(data: dict) -> ApplicationSummary:
                 data["LastUpdatedAt"]
             )
         )
-    if "RuntimeEnvironment" in data:
+    if data.get("RuntimeEnvironment") is not None:
         import capo_gameliftstreams.types.runtime_environment
 
         out["runtime_environment"] = (

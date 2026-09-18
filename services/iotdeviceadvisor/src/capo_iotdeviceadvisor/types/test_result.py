@@ -27,7 +27,7 @@ def serialize_json(value: TestResult) -> dict:
 
 def deserialize_json(data: dict) -> TestResult:
     out: TestResult = {}  # type: ignore[typeddict-item]
-    if "groups" in data:
+    if data.get("groups") is not None:
         import capo_iotdeviceadvisor.types.group_result_list
 
         out["groups"] = capo_iotdeviceadvisor.types.group_result_list.deserialize_json(

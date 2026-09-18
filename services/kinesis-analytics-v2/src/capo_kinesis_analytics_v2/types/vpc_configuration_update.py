@@ -50,13 +50,13 @@ def serialize_aws_json_1_1(value: VpcConfigurationUpdate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> VpcConfigurationUpdate:
     out: VpcConfigurationUpdate = {}  # type: ignore[typeddict-item]
-    if "VpcConfigurationId" in data:
+    if data.get("VpcConfigurationId") is not None:
         out["vpc_configuration_id"] = data["VpcConfigurationId"]
     else:
         raise DeserializationError(
             "VpcConfigurationUpdate.vpc_configuration_id required"
         )
-    if "SubnetIdUpdates" in data:
+    if data.get("SubnetIdUpdates") is not None:
         import capo_kinesis_analytics_v2.types.subnet_ids
 
         out["subnet_id_updates"] = (
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_1(data: dict) -> VpcConfigurationUpdate:
                 data["SubnetIdUpdates"]
             )
         )
-    if "SecurityGroupIdUpdates" in data:
+    if data.get("SecurityGroupIdUpdates") is not None:
         import capo_kinesis_analytics_v2.types.security_group_ids
 
         out["security_group_id_updates"] = (

@@ -51,24 +51,24 @@ def serialize_json(value: RouteFerrySpan) -> dict:
 
 def deserialize_json(data: dict) -> RouteFerrySpan:
     out: RouteFerrySpan = {}  # type: ignore[typeddict-item]
-    if "Country" in data:
+    if data.get("Country") is not None:
         out["country"] = data["Country"]
-    if "Distance" in data:
+    if data.get("Distance") is not None:
         out["distance"] = data["Distance"]
     else:
         out["distance"] = 0
-    if "Duration" in data:
+    if data.get("Duration") is not None:
         out["duration"] = data["Duration"]
     else:
         out["duration"] = 0
-    if "GeometryOffset" in data:
+    if data.get("GeometryOffset") is not None:
         out["geometry_offset"] = data["GeometryOffset"]
-    if "Names" in data:
+    if data.get("Names") is not None:
         import capo_geo_routes.types.localized_string_list
 
         out["names"] = capo_geo_routes.types.localized_string_list.deserialize_json(
             data["Names"]
         )
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
     return out

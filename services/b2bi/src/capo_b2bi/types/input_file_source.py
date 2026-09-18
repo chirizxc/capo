@@ -23,7 +23,7 @@ def serialize_aws_json_1_0(value: InputFileSource) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> InputFileSource:
-    if "fileContent" in data:
+    if data.get("fileContent") is not None:
         return {"fileContent": data["fileContent"]}
     else:
         raise DeserializationError("InputFileSource: no recognized variant key")

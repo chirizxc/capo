@@ -88,39 +88,39 @@ def serialize_json(value: CreateAssetInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateAssetInput:
     out: CreateAssetInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateAssetInput.name required")
-    if "externalIdentifier" in data:
+    if data.get("externalIdentifier") is not None:
         out["external_identifier"] = data["externalIdentifier"]
-    if "typeIdentifier" in data:
+    if data.get("typeIdentifier") is not None:
         out["type_identifier"] = data["typeIdentifier"]
     else:
         raise DeserializationError("CreateAssetInput.type_identifier required")
-    if "typeRevision" in data:
+    if data.get("typeRevision") is not None:
         out["type_revision"] = data["typeRevision"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "glossaryTerms" in data:
+    if data.get("glossaryTerms") is not None:
         import capo_datazone.types.glossary_terms
 
         out["glossary_terms"] = capo_datazone.types.glossary_terms.deserialize_json(
             data["glossaryTerms"]
         )
-    if "formsInput" in data:
+    if data.get("formsInput") is not None:
         import capo_datazone.types.form_input_list
 
         out["forms_input"] = capo_datazone.types.form_input_list.deserialize_json(
             data["formsInput"]
         )
-    if "owningProjectIdentifier" in data:
+    if data.get("owningProjectIdentifier") is not None:
         out["owning_project_identifier"] = data["owningProjectIdentifier"]
     else:
         raise DeserializationError(
             "CreateAssetInput.owning_project_identifier required"
         )
-    if "predictionConfiguration" in data:
+    if data.get("predictionConfiguration") is not None:
         import capo_datazone.types.prediction_configuration
 
         out["prediction_configuration"] = (
@@ -128,6 +128,6 @@ def deserialize_json(data: dict) -> CreateAssetInput:
                 data["predictionConfiguration"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

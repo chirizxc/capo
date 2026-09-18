@@ -46,13 +46,13 @@ def serialize_aws_json_1_0(value: CreateObservabilityConfigurationRequest) -> di
 
 def deserialize_aws_json_1_0(data: dict) -> CreateObservabilityConfigurationRequest:
     out: CreateObservabilityConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "ObservabilityConfigurationName" in data:
+    if data.get("ObservabilityConfigurationName") is not None:
         out["observability_configuration_name"] = data["ObservabilityConfigurationName"]
     else:
         raise DeserializationError(
             "CreateObservabilityConfigurationRequest.observability_configuration_name required"
         )
-    if "TraceConfiguration" in data:
+    if data.get("TraceConfiguration") is not None:
         import capo_apprunner.types.trace_configuration
 
         out["trace_configuration"] = (
@@ -60,7 +60,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateObservabilityConfigurationRequ
                 data["TraceConfiguration"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_apprunner.types.tag_list
 
         out["tags"] = capo_apprunner.types.tag_list.deserialize_aws_json_1_0(

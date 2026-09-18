@@ -44,7 +44,7 @@ def serialize_json(value: Condition) -> dict:
 
 def deserialize_json(data: dict) -> Condition:
     out: Condition = {}  # type: ignore[typeddict-item]
-    if "ActionCondition" in data:
+    if data.get("ActionCondition") is not None:
         import capo_observabilityadmin.types.action_condition
 
         out["action_condition"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> Condition:
                 data["ActionCondition"]
             )
         )
-    if "LabelNameCondition" in data:
+    if data.get("LabelNameCondition") is not None:
         import capo_observabilityadmin.types.label_name_condition
 
         out["label_name_condition"] = (

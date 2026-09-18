@@ -96,17 +96,17 @@ def serialize_json(value: OfferSummary) -> dict:
 
 def deserialize_json(data: dict) -> OfferSummary:
     out: OfferSummary = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ProductId" in data:
+    if data.get("ProductId") is not None:
         out["product_id"] = data["ProductId"]
-    if "ResaleAuthorizationId" in data:
+    if data.get("ResaleAuthorizationId") is not None:
         out["resale_authorization_id"] = data["ResaleAuthorizationId"]
-    if "ReleaseDate" in data:
+    if data.get("ReleaseDate") is not None:
         out["release_date"] = data["ReleaseDate"]
-    if "AvailabilityEndDate" in data:
+    if data.get("AvailabilityEndDate") is not None:
         out["availability_end_date"] = data["AvailabilityEndDate"]
-    if "BuyerAccounts" in data:
+    if data.get("BuyerAccounts") is not None:
         import capo_marketplace_catalog.types.offer_buyer_accounts_list
 
         out["buyer_accounts"] = (
@@ -114,7 +114,7 @@ def deserialize_json(data: dict) -> OfferSummary:
                 data["BuyerAccounts"]
             )
         )
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_marketplace_catalog.types.offer_state_string
 
         out["state"] = (
@@ -122,7 +122,7 @@ def deserialize_json(data: dict) -> OfferSummary:
                 data["State"]
             )
         )
-    if "Targeting" in data:
+    if data.get("Targeting") is not None:
         import capo_marketplace_catalog.types.offer_targeting_list
 
         out["targeting"] = (
@@ -130,6 +130,6 @@ def deserialize_json(data: dict) -> OfferSummary:
                 data["Targeting"]
             )
         )
-    if "OfferSetId" in data:
+    if data.get("OfferSetId") is not None:
         out["offer_set_id"] = data["OfferSetId"]
     return out

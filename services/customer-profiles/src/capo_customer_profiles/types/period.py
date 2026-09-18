@@ -41,7 +41,7 @@ def serialize_json(value: Period) -> dict:
 
 def deserialize_json(data: dict) -> Period:
     out: Period = {}  # type: ignore[typeddict-item]
-    if "Unit" in data:
+    if data.get("Unit") is not None:
         import capo_customer_profiles.types.period_unit
 
         out["unit"] = capo_customer_profiles.types.period_unit.deserialize_json(
@@ -49,13 +49,13 @@ def deserialize_json(data: dict) -> Period:
         )
     else:
         raise DeserializationError("Period.unit required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         raise DeserializationError("Period.value required")
-    if "MaxInvocationsPerProfile" in data:
+    if data.get("MaxInvocationsPerProfile") is not None:
         out["max_invocations_per_profile"] = data["MaxInvocationsPerProfile"]
-    if "Unlimited" in data:
+    if data.get("Unlimited") is not None:
         out["unlimited"] = data["Unlimited"]
     else:
         out["unlimited"] = False

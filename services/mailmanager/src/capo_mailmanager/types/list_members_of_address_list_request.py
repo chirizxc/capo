@@ -43,20 +43,20 @@ def serialize_aws_json_1_0(value: ListMembersOfAddressListRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListMembersOfAddressListRequest:
     out: ListMembersOfAddressListRequest = {}  # type: ignore[typeddict-item]
-    if "AddressListId" in data:
+    if data.get("AddressListId") is not None:
         out["address_list_id"] = data["AddressListId"]
     else:
         raise DeserializationError(
             "ListMembersOfAddressListRequest.address_list_id required"
         )
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_mailmanager.types.address_filter
 
         out["filter"] = capo_mailmanager.types.address_filter.deserialize_aws_json_1_0(
             data["Filter"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "PageSize" in data:
+    if data.get("PageSize") is not None:
         out["page_size"] = data["PageSize"]
     return out

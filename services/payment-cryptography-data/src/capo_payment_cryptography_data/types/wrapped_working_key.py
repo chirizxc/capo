@@ -36,15 +36,15 @@ def serialize_json(value: WrappedWorkingKey) -> dict:
 
 def deserialize_json(data: dict) -> WrappedWorkingKey:
     out: WrappedWorkingKey = {}  # type: ignore[typeddict-item]
-    if "WrappedKeyMaterial" in data:
+    if data.get("WrappedKeyMaterial") is not None:
         out["wrapped_key_material"] = data["WrappedKeyMaterial"]
     else:
         raise DeserializationError("WrappedWorkingKey.wrapped_key_material required")
-    if "KeyCheckValue" in data:
+    if data.get("KeyCheckValue") is not None:
         out["key_check_value"] = data["KeyCheckValue"]
     else:
         raise DeserializationError("WrappedWorkingKey.key_check_value required")
-    if "WrappedKeyMaterialFormat" in data:
+    if data.get("WrappedKeyMaterialFormat") is not None:
         out["wrapped_key_material_format"] = data["WrappedKeyMaterialFormat"]
     else:
         raise DeserializationError(

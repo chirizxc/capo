@@ -44,11 +44,11 @@ def serialize_json(value: InputDestinationRequest) -> dict:
 
 def deserialize_json(data: dict) -> InputDestinationRequest:
     out: InputDestinationRequest = {}  # type: ignore[typeddict-item]
-    if "streamName" in data:
+    if data.get("streamName") is not None:
         out["stream_name"] = data["streamName"]
-    if "network" in data:
+    if data.get("network") is not None:
         out["network"] = data["network"]
-    if "networkRoutes" in data:
+    if data.get("networkRoutes") is not None:
         import capo_medialive.types.__list_of_input_request_destination_route
 
         out["network_routes"] = (
@@ -56,6 +56,6 @@ def deserialize_json(data: dict) -> InputDestinationRequest:
                 data["networkRoutes"]
             )
         )
-    if "staticIpAddress" in data:
+    if data.get("staticIpAddress") is not None:
         out["static_ip_address"] = data["staticIpAddress"]
     return out

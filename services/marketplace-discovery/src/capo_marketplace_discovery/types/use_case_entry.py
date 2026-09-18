@@ -28,7 +28,7 @@ def serialize_json(value: UseCaseEntry) -> dict:
 
 def deserialize_json(data: dict) -> UseCaseEntry:
     out: UseCaseEntry = {}  # type: ignore[typeddict-item]
-    if "useCase" in data:
+    if data.get("useCase") is not None:
         import capo_marketplace_discovery.types.use_case
 
         out["use_case"] = capo_marketplace_discovery.types.use_case.deserialize_json(

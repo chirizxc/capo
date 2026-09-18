@@ -80,27 +80,27 @@ def serialize_aws_json_1_1(value: DescribeWhatIfAnalysisResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeWhatIfAnalysisResponse:
     out: DescribeWhatIfAnalysisResponse = {}  # type: ignore[typeddict-item]
-    if "WhatIfAnalysisName" in data:
+    if data.get("WhatIfAnalysisName") is not None:
         out["what_if_analysis_name"] = data["WhatIfAnalysisName"]
-    if "WhatIfAnalysisArn" in data:
+    if data.get("WhatIfAnalysisArn") is not None:
         out["what_if_analysis_arn"] = data["WhatIfAnalysisArn"]
-    if "ForecastArn" in data:
+    if data.get("ForecastArn") is not None:
         out["forecast_arn"] = data["ForecastArn"]
-    if "EstimatedTimeRemainingInMinutes" in data:
+    if data.get("EstimatedTimeRemainingInMinutes") is not None:
         out["estimated_time_remaining_in_minutes"] = data[
             "EstimatedTimeRemainingInMinutes"
         ]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_forecast.types.timestamp
 
         out["creation_time"] = capo_forecast.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModificationTime" in data:
+    if data.get("LastModificationTime") is not None:
         import capo_forecast.types.timestamp
 
         out["last_modification_time"] = (
@@ -108,7 +108,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeWhatIfAnalysisResponse:
                 data["LastModificationTime"]
             )
         )
-    if "TimeSeriesSelector" in data:
+    if data.get("TimeSeriesSelector") is not None:
         import capo_forecast.types.time_series_selector
 
         out["time_series_selector"] = (

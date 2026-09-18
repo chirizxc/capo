@@ -36,9 +36,9 @@ def serialize_json(value: ListResourcePoliciesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListResourcePoliciesResponse:
     out: ListResourcePoliciesResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "ResourcePolicies" in data:
+    if data.get("ResourcePolicies") is not None:
         import capo_mpa.types.list_resource_policies_response_resource_policies
 
         out["resource_policies"] = (

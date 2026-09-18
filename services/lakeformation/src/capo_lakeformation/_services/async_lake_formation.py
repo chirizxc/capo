@@ -356,17 +356,19 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.add_lf_tags_to_resource_request.AddLFTagsToResourceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lakeformation.types.add_lf_tags_to_resource_request.AddLFTagsToResourceRequest = {
+            "resource": resource,
+            "lf_tags": lf_tags,
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["resource"] = resource
-        input_["lf_tags"] = lf_tags
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def assume_decorated_role_with_saml(
@@ -413,10 +415,11 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.assume_decorated_role_with_saml_request.AssumeDecoratedRoleWithSAMLRequest = {}  # type: ignore[typeddict-item]
-        input_["saml_assertion"] = saml_assertion
-        input_["role_arn"] = role_arn
-        input_["principal_arn"] = principal_arn
+        input_: capo_lakeformation.types.assume_decorated_role_with_saml_request.AssumeDecoratedRoleWithSAMLRequest = {
+            "saml_assertion": saml_assertion,
+            "role_arn": role_arn,
+            "principal_arn": principal_arn,
+        }
         if duration_seconds is not None:
             input_["duration_seconds"] = duration_seconds
 
@@ -425,6 +428,7 @@ class AsyncLakeFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_grant_permissions(
@@ -464,16 +468,18 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.batch_grant_permissions_request.BatchGrantPermissionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lakeformation.types.batch_grant_permissions_request.BatchGrantPermissionsRequest = {
+            "entries": entries
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["entries"] = entries
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_revoke_permissions(
@@ -513,16 +519,18 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.batch_revoke_permissions_request.BatchRevokePermissionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lakeformation.types.batch_revoke_permissions_request.BatchRevokePermissionsRequest = {
+            "entries": entries
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["entries"] = entries
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def cancel_transaction(
@@ -565,14 +573,16 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.cancel_transaction_request.CancelTransactionRequest = {}  # type: ignore[typeddict-item]
-        input_["transaction_id"] = transaction_id
+        input_: capo_lakeformation.types.cancel_transaction_request.CancelTransactionRequest = {
+            "transaction_id": transaction_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def commit_transaction(
@@ -614,14 +624,16 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.commit_transaction_request.CommitTransactionRequest = {}  # type: ignore[typeddict-item]
-        input_["transaction_id"] = transaction_id
+        input_: capo_lakeformation.types.commit_transaction_request.CommitTransactionRequest = {
+            "transaction_id": transaction_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_data_cells_filter(
@@ -662,14 +674,16 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.create_data_cells_filter_request.CreateDataCellsFilterRequest = {}  # type: ignore[typeddict-item]
-        input_["table_data"] = table_data
+        input_: capo_lakeformation.types.create_data_cells_filter_request.CreateDataCellsFilterRequest = {
+            "table_data": table_data
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_lake_formation_identity_center_configuration(
@@ -727,7 +741,7 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.create_lake_formation_identity_center_configuration_request.CreateLakeFormationIdentityCenterConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lakeformation.types.create_lake_formation_identity_center_configuration_request.CreateLakeFormationIdentityCenterConfigurationRequest = {}
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
         if instance_arn is not None:
@@ -744,6 +758,7 @@ class AsyncLakeFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_lake_formation_opt_in(
@@ -783,9 +798,10 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.create_lake_formation_opt_in_request.CreateLakeFormationOptInRequest = {}  # type: ignore[typeddict-item]
-        input_["principal"] = principal
-        input_["resource"] = resource
+        input_: capo_lakeformation.types.create_lake_formation_opt_in_request.CreateLakeFormationOptInRequest = {
+            "principal": principal,
+            "resource": resource,
+        }
         if condition is not None:
             input_["condition"] = condition
 
@@ -794,6 +810,7 @@ class AsyncLakeFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_lf_tag(
@@ -839,17 +856,19 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.create_lf_tag_request.CreateLFTagRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lakeformation.types.create_lf_tag_request.CreateLFTagRequest = {
+            "tag_key": tag_key,
+            "tag_values": tag_values,
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["tag_key"] = tag_key
-        input_["tag_values"] = tag_values
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_lf_tag_expression(
@@ -899,19 +918,21 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.create_lf_tag_expression_request.CreateLFTagExpressionRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_lakeformation.types.create_lf_tag_expression_request.CreateLFTagExpressionRequest = {
+            "name": name,
+            "expression": expression,
+        }
         if description is not None:
             input_["description"] = description
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["expression"] = expression
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_data_cells_filter(
@@ -960,7 +981,7 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.delete_data_cells_filter_request.DeleteDataCellsFilterRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lakeformation.types.delete_data_cells_filter_request.DeleteDataCellsFilterRequest = {}
         if table_catalog_id is not None:
             input_["table_catalog_id"] = table_catalog_id
         if database_name is not None:
@@ -975,6 +996,7 @@ class AsyncLakeFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_lake_formation_identity_center_configuration(
@@ -1016,7 +1038,7 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.delete_lake_formation_identity_center_configuration_request.DeleteLakeFormationIdentityCenterConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lakeformation.types.delete_lake_formation_identity_center_configuration_request.DeleteLakeFormationIdentityCenterConfigurationRequest = {}
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
 
@@ -1025,6 +1047,7 @@ class AsyncLakeFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_lake_formation_opt_in(
@@ -1063,9 +1086,10 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.delete_lake_formation_opt_in_request.DeleteLakeFormationOptInRequest = {}  # type: ignore[typeddict-item]
-        input_["principal"] = principal
-        input_["resource"] = resource
+        input_: capo_lakeformation.types.delete_lake_formation_opt_in_request.DeleteLakeFormationOptInRequest = {
+            "principal": principal,
+            "resource": resource,
+        }
         if condition is not None:
             input_["condition"] = condition
 
@@ -1074,6 +1098,7 @@ class AsyncLakeFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_lf_tag(
@@ -1116,16 +1141,18 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.delete_lf_tag_request.DeleteLFTagRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lakeformation.types.delete_lf_tag_request.DeleteLFTagRequest = {
+            "tag_key": tag_key
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["tag_key"] = tag_key
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_lf_tag_expression(
@@ -1168,8 +1195,9 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.delete_lf_tag_expression_request.DeleteLFTagExpressionRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_lakeformation.types.delete_lf_tag_expression_request.DeleteLFTagExpressionRequest = {
+            "name": name
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
 
@@ -1178,6 +1206,7 @@ class AsyncLakeFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_objects_on_cancel(
@@ -1229,19 +1258,21 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.delete_objects_on_cancel_request.DeleteObjectsOnCancelRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lakeformation.types.delete_objects_on_cancel_request.DeleteObjectsOnCancelRequest = {
+            "database_name": database_name,
+            "table_name": table_name,
+            "transaction_id": transaction_id,
+            "objects": objects,
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
-        input_["transaction_id"] = transaction_id
-        input_["objects"] = objects
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def deregister_resource(
@@ -1279,14 +1310,16 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.deregister_resource_request.DeregisterResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_lakeformation.types.deregister_resource_request.DeregisterResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_lake_formation_identity_center_configuration(
@@ -1327,7 +1360,7 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.describe_lake_formation_identity_center_configuration_request.DescribeLakeFormationIdentityCenterConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lakeformation.types.describe_lake_formation_identity_center_configuration_request.DescribeLakeFormationIdentityCenterConfigurationRequest = {}
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
 
@@ -1336,6 +1369,7 @@ class AsyncLakeFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_resource(
@@ -1373,14 +1407,16 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.describe_resource_request.DescribeResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_lakeformation.types.describe_resource_request.DescribeResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_transaction(
@@ -1418,14 +1454,16 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.describe_transaction_request.DescribeTransactionRequest = {}  # type: ignore[typeddict-item]
-        input_["transaction_id"] = transaction_id
+        input_: capo_lakeformation.types.describe_transaction_request.DescribeTransactionRequest = {
+            "transaction_id": transaction_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def extend_transaction(
@@ -1470,7 +1508,7 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.extend_transaction_request.ExtendTransactionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lakeformation.types.extend_transaction_request.ExtendTransactionRequest = {}
         if transaction_id is not None:
             input_["transaction_id"] = transaction_id
 
@@ -1479,6 +1517,7 @@ class AsyncLakeFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_data_cells_filter(
@@ -1523,17 +1562,19 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.get_data_cells_filter_request.GetDataCellsFilterRequest = {}  # type: ignore[typeddict-item]
-        input_["table_catalog_id"] = table_catalog_id
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
-        input_["name"] = name
+        input_: capo_lakeformation.types.get_data_cells_filter_request.GetDataCellsFilterRequest = {
+            "table_catalog_id": table_catalog_id,
+            "database_name": database_name,
+            "table_name": table_name,
+            "name": name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_data_lake_principal(
@@ -1564,13 +1605,14 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.get_data_lake_principal_request.GetDataLakePrincipalRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lakeformation.types.get_data_lake_principal_request.GetDataLakePrincipalRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_data_lake_settings(
@@ -1609,7 +1651,7 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.get_data_lake_settings_request.GetDataLakeSettingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lakeformation.types.get_data_lake_settings_request.GetDataLakeSettingsRequest = {}
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
 
@@ -1618,6 +1660,7 @@ class AsyncLakeFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_effective_permissions_for_path(
@@ -1663,10 +1706,11 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.get_effective_permissions_for_path_request.GetEffectivePermissionsForPathRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lakeformation.types.get_effective_permissions_for_path_request.GetEffectivePermissionsForPathRequest = {
+            "resource_arn": resource_arn
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["resource_arn"] = resource_arn
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1677,7 +1721,33 @@ class AsyncLakeFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_effective_permissions_for_path(
+        self,
+        resource_arn: "capo_lakeformation.types.resource_arn_string.ResourceArnString",
+        *,
+        config_overrides: Optional[AsyncLakeFormationClientConfig] = None,
+        catalog_id: Optional[
+            "capo_lakeformation.types.catalog_id_string.CatalogIdString"
+        ] = None,
+        next_token: Optional["capo_lakeformation.types.token.Token"] = None,
+        max_results: Optional["capo_lakeformation.types.page_size.PageSize"] = None,
+    ) -> "AsyncIterator[capo_lakeformation.types.get_effective_permissions_for_path_response.GetEffectivePermissionsForPathResponse]":
+        _token = next_token
+        while True:
+            _response = await self.get_effective_permissions_for_path(
+                resource_arn,
+                config_overrides=config_overrides,
+                catalog_id=catalog_id,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_lf_tag(
         self,
@@ -1719,16 +1789,18 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.get_lf_tag_request.GetLFTagRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lakeformation.types.get_lf_tag_request.GetLFTagRequest = {
+            "tag_key": tag_key
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["tag_key"] = tag_key
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_lf_tag_expression(
@@ -1771,8 +1843,9 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.get_lf_tag_expression_request.GetLFTagExpressionRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_lakeformation.types.get_lf_tag_expression_request.GetLFTagExpressionRequest = {
+            "name": name
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
 
@@ -1781,6 +1854,7 @@ class AsyncLakeFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_query_state(
@@ -1817,14 +1891,16 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.get_query_state_request.GetQueryStateRequest = {}  # type: ignore[typeddict-item]
-        input_["query_id"] = query_id
+        input_: capo_lakeformation.types.get_query_state_request.GetQueryStateRequest = {
+            "query_id": query_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_query_statistics(
@@ -1864,14 +1940,16 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.get_query_statistics_request.GetQueryStatisticsRequest = {}  # type: ignore[typeddict-item]
-        input_["query_id"] = query_id
+        input_: capo_lakeformation.types.get_query_statistics_request.GetQueryStatisticsRequest = {
+            "query_id": query_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_resource_lf_tags(
@@ -1919,10 +1997,11 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.get_resource_lf_tags_request.GetResourceLFTagsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lakeformation.types.get_resource_lf_tags_request.GetResourceLFTagsRequest = {
+            "resource": resource
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["resource"] = resource
         if show_assigned_lf_tags is not None:
             input_["show_assigned_lf_tags"] = show_assigned_lf_tags
 
@@ -1931,6 +2010,7 @@ class AsyncLakeFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_table_objects(
@@ -1995,11 +2075,12 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.get_table_objects_request.GetTableObjectsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lakeformation.types.get_table_objects_request.GetTableObjectsRequest = {
+            "database_name": database_name,
+            "table_name": table_name,
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
         if transaction_id is not None:
             input_["transaction_id"] = transaction_id
         if query_as_of_time is not None:
@@ -2016,7 +2097,49 @@ class AsyncLakeFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_table_objects(
+        self,
+        database_name: "capo_lakeformation.types.name_string.NameString",
+        table_name: "capo_lakeformation.types.name_string.NameString",
+        *,
+        config_overrides: Optional[AsyncLakeFormationClientConfig] = None,
+        catalog_id: Optional[
+            "capo_lakeformation.types.catalog_id_string.CatalogIdString"
+        ] = None,
+        transaction_id: Optional[
+            "capo_lakeformation.types.transaction_id_string.TransactionIdString"
+        ] = None,
+        query_as_of_time: Optional[
+            "capo_lakeformation.types.timestamp.Timestamp"
+        ] = None,
+        partition_predicate: Optional[
+            "capo_lakeformation.types.predicate_string.PredicateString"
+        ] = None,
+        max_results: Optional["capo_lakeformation.types.page_size.PageSize"] = None,
+        next_token: Optional[
+            "capo_lakeformation.types.token_string.TokenString"
+        ] = None,
+    ) -> "AsyncIterator[capo_lakeformation.types.get_table_objects_response.GetTableObjectsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.get_table_objects(
+                database_name,
+                table_name,
+                config_overrides=config_overrides,
+                catalog_id=catalog_id,
+                transaction_id=transaction_id,
+                query_as_of_time=query_as_of_time,
+                partition_predicate=partition_predicate,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_temporary_data_location_credentials(
         self,
@@ -2069,7 +2192,7 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.get_temporary_data_location_credentials_request.GetTemporaryDataLocationCredentialsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lakeformation.types.get_temporary_data_location_credentials_request.GetTemporaryDataLocationCredentialsRequest = {}
         if duration_seconds is not None:
             input_["duration_seconds"] = duration_seconds
         if audit_context is not None:
@@ -2084,6 +2207,7 @@ class AsyncLakeFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_temporary_glue_partition_credentials(
@@ -2141,9 +2265,10 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.get_temporary_glue_partition_credentials_request.GetTemporaryGluePartitionCredentialsRequest = {}  # type: ignore[typeddict-item]
-        input_["table_arn"] = table_arn
-        input_["partition"] = partition
+        input_: capo_lakeformation.types.get_temporary_glue_partition_credentials_request.GetTemporaryGluePartitionCredentialsRequest = {
+            "table_arn": table_arn,
+            "partition": partition,
+        }
         if permissions is not None:
             input_["permissions"] = permissions
         if duration_seconds is not None:
@@ -2158,6 +2283,7 @@ class AsyncLakeFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_temporary_glue_table_credentials(
@@ -2219,8 +2345,9 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.get_temporary_glue_table_credentials_request.GetTemporaryGlueTableCredentialsRequest = {}  # type: ignore[typeddict-item]
-        input_["table_arn"] = table_arn
+        input_: capo_lakeformation.types.get_temporary_glue_table_credentials_request.GetTemporaryGlueTableCredentialsRequest = {
+            "table_arn": table_arn
+        }
         if permissions is not None:
             input_["permissions"] = permissions
         if duration_seconds is not None:
@@ -2239,6 +2366,7 @@ class AsyncLakeFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     @asynccontextmanager
@@ -2282,17 +2410,21 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.get_work_unit_results_request.GetWorkUnitResultsRequest = {}  # type: ignore[typeddict-item]
-        input_["query_id"] = query_id
-        input_["work_unit_id"] = work_unit_id
-        input_["work_unit_token"] = work_unit_token
+        input_: capo_lakeformation.types.get_work_unit_results_request.GetWorkUnitResultsRequest = {
+            "query_id": query_id,
+            "work_unit_id": work_unit_id,
+            "work_unit_token": work_unit_token,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
-        yield response.output
+        try:
+            yield response.output
+        finally:
+            await response.response.aclose()
 
     async def get_work_units(
         self,
@@ -2334,18 +2466,20 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.get_work_units_request.GetWorkUnitsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lakeformation.types.get_work_units_request.GetWorkUnitsRequest = {
+            "query_id": query_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if page_size is not None:
             input_["page_size"] = page_size
-        input_["query_id"] = query_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_get_work_units(
@@ -2418,12 +2552,13 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.grant_permissions_request.GrantPermissionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lakeformation.types.grant_permissions_request.GrantPermissionsRequest = {
+            "principal": principal,
+            "resource": resource,
+            "permissions": permissions,
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["principal"] = principal
-        input_["resource"] = resource
-        input_["permissions"] = permissions
         if condition is not None:
             input_["condition"] = condition
         if permissions_with_grant_option is not None:
@@ -2434,6 +2569,7 @@ class AsyncLakeFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_data_cells_filter(
@@ -2475,7 +2611,7 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.list_data_cells_filter_request.ListDataCellsFilterRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lakeformation.types.list_data_cells_filter_request.ListDataCellsFilterRequest = {}
         if table is not None:
             input_["table"] = table
         if next_token is not None:
@@ -2488,6 +2624,7 @@ class AsyncLakeFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_data_cells_filter(
@@ -2555,7 +2692,7 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.list_lake_formation_opt_ins_request.ListLakeFormationOptInsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lakeformation.types.list_lake_formation_opt_ins_request.ListLakeFormationOptInsRequest = {}
         if principal is not None:
             input_["principal"] = principal
         if resource is not None:
@@ -2570,7 +2707,33 @@ class AsyncLakeFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_lake_formation_opt_ins(
+        self,
+        *,
+        config_overrides: Optional[AsyncLakeFormationClientConfig] = None,
+        principal: Optional[
+            "capo_lakeformation.types.data_lake_principal.DataLakePrincipal"
+        ] = None,
+        resource: Optional["capo_lakeformation.types.resource.Resource"] = None,
+        max_results: Optional["capo_lakeformation.types.page_size.PageSize"] = None,
+        next_token: Optional["capo_lakeformation.types.token.Token"] = None,
+    ) -> "AsyncIterator[capo_lakeformation.types.list_lake_formation_opt_ins_response.ListLakeFormationOptInsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_lake_formation_opt_ins(
+                config_overrides=config_overrides,
+                principal=principal,
+                resource=resource,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_lf_tag_expressions(
         self,
@@ -2614,7 +2777,7 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.list_lf_tag_expressions_request.ListLFTagExpressionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lakeformation.types.list_lf_tag_expressions_request.ListLFTagExpressionsRequest = {}
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
         if max_results is not None:
@@ -2627,6 +2790,7 @@ class AsyncLakeFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_lf_tag_expressions(
@@ -2700,7 +2864,7 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.list_lf_tags_request.ListLFTagsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lakeformation.types.list_lf_tags_request.ListLFTagsRequest = {}
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
         if resource_share_type is not None:
@@ -2715,6 +2879,7 @@ class AsyncLakeFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_lf_tags(
@@ -2800,7 +2965,7 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.list_permissions_request.ListPermissionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lakeformation.types.list_permissions_request.ListPermissionsRequest = {}
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
         if principal is not None:
@@ -2821,7 +2986,45 @@ class AsyncLakeFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_permissions(
+        self,
+        *,
+        config_overrides: Optional[AsyncLakeFormationClientConfig] = None,
+        catalog_id: Optional[
+            "capo_lakeformation.types.catalog_id_string.CatalogIdString"
+        ] = None,
+        principal: Optional[
+            "capo_lakeformation.types.data_lake_principal.DataLakePrincipal"
+        ] = None,
+        resource_type: Optional[
+            "capo_lakeformation.types.data_lake_resource_type.DataLakeResourceType"
+        ] = None,
+        resource: Optional["capo_lakeformation.types.resource.Resource"] = None,
+        next_token: Optional["capo_lakeformation.types.token.Token"] = None,
+        max_results: Optional["capo_lakeformation.types.page_size.PageSize"] = None,
+        include_related: Optional[
+            "capo_lakeformation.types.true_false_string.TrueFalseString"
+        ] = None,
+    ) -> "AsyncIterator[capo_lakeformation.types.list_permissions_response.ListPermissionsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_permissions(
+                config_overrides=config_overrides,
+                catalog_id=catalog_id,
+                principal=principal,
+                resource_type=resource_type,
+                resource=resource,
+                next_token=_token,
+                max_results=max_results,
+                include_related=include_related,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_resources(
         self,
@@ -2863,7 +3066,7 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.list_resources_request.ListResourcesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lakeformation.types.list_resources_request.ListResourcesRequest = {}
         if filter_condition_list is not None:
             input_["filter_condition_list"] = filter_condition_list
         if max_results is not None:
@@ -2876,7 +3079,31 @@ class AsyncLakeFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_resources(
+        self,
+        *,
+        config_overrides: Optional[AsyncLakeFormationClientConfig] = None,
+        filter_condition_list: Optional[
+            "capo_lakeformation.types.filter_condition_list.FilterConditionList"
+        ] = None,
+        max_results: Optional["capo_lakeformation.types.page_size.PageSize"] = None,
+        next_token: Optional["capo_lakeformation.types.token.Token"] = None,
+    ) -> "AsyncIterator[capo_lakeformation.types.list_resources_response.ListResourcesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_resources(
+                config_overrides=config_overrides,
+                filter_condition_list=filter_condition_list,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_table_storage_optimizers(
         self,
@@ -2927,11 +3154,12 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.list_table_storage_optimizers_request.ListTableStorageOptimizersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lakeformation.types.list_table_storage_optimizers_request.ListTableStorageOptimizersRequest = {
+            "database_name": database_name,
+            "table_name": table_name,
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
         if storage_optimizer_type is not None:
             input_["storage_optimizer_type"] = storage_optimizer_type
         if max_results is not None:
@@ -2944,7 +3172,39 @@ class AsyncLakeFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_table_storage_optimizers(
+        self,
+        database_name: "capo_lakeformation.types.name_string.NameString",
+        table_name: "capo_lakeformation.types.name_string.NameString",
+        *,
+        config_overrides: Optional[AsyncLakeFormationClientConfig] = None,
+        catalog_id: Optional[
+            "capo_lakeformation.types.catalog_id_string.CatalogIdString"
+        ] = None,
+        storage_optimizer_type: Optional[
+            "capo_lakeformation.types.optimizer_type.OptimizerType"
+        ] = None,
+        max_results: Optional["capo_lakeformation.types.page_size.PageSize"] = None,
+        next_token: Optional["capo_lakeformation.types.token.Token"] = None,
+    ) -> "AsyncIterator[capo_lakeformation.types.list_table_storage_optimizers_response.ListTableStorageOptimizersResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_table_storage_optimizers(
+                database_name,
+                table_name,
+                config_overrides=config_overrides,
+                catalog_id=catalog_id,
+                storage_optimizer_type=storage_optimizer_type,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_transactions(
         self,
@@ -2992,7 +3252,7 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.list_transactions_request.ListTransactionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lakeformation.types.list_transactions_request.ListTransactionsRequest = {}
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
         if status_filter is not None:
@@ -3007,7 +3267,37 @@ class AsyncLakeFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_transactions(
+        self,
+        *,
+        config_overrides: Optional[AsyncLakeFormationClientConfig] = None,
+        catalog_id: Optional[
+            "capo_lakeformation.types.catalog_id_string.CatalogIdString"
+        ] = None,
+        status_filter: Optional[
+            "capo_lakeformation.types.transaction_status_filter.TransactionStatusFilter"
+        ] = None,
+        max_results: Optional["capo_lakeformation.types.page_size.PageSize"] = None,
+        next_token: Optional[
+            "capo_lakeformation.types.token_string.TokenString"
+        ] = None,
+    ) -> "AsyncIterator[capo_lakeformation.types.list_transactions_response.ListTransactionsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_transactions(
+                config_overrides=config_overrides,
+                catalog_id=catalog_id,
+                status_filter=status_filter,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def put_data_lake_settings(
         self,
@@ -3046,16 +3336,18 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.put_data_lake_settings_request.PutDataLakeSettingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lakeformation.types.put_data_lake_settings_request.PutDataLakeSettingsRequest = {
+            "data_lake_settings": data_lake_settings
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["data_lake_settings"] = data_lake_settings
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def register_resource(
@@ -3118,8 +3410,9 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.register_resource_request.RegisterResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_lakeformation.types.register_resource_request.RegisterResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if use_service_linked_role is not None:
             input_["use_service_linked_role"] = use_service_linked_role
         if role_arn is not None:
@@ -3138,6 +3431,7 @@ class AsyncLakeFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def remove_lf_tags_from_resource(
@@ -3184,17 +3478,19 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.remove_lf_tags_from_resource_request.RemoveLFTagsFromResourceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lakeformation.types.remove_lf_tags_from_resource_request.RemoveLFTagsFromResourceRequest = {
+            "resource": resource,
+            "lf_tags": lf_tags,
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["resource"] = resource
-        input_["lf_tags"] = lf_tags
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def revoke_permissions(
@@ -3246,12 +3542,13 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.revoke_permissions_request.RevokePermissionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lakeformation.types.revoke_permissions_request.RevokePermissionsRequest = {
+            "principal": principal,
+            "resource": resource,
+            "permissions": permissions,
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["principal"] = principal
-        input_["resource"] = resource
-        input_["permissions"] = permissions
         if condition is not None:
             input_["condition"] = condition
         if permissions_with_grant_option is not None:
@@ -3262,6 +3559,7 @@ class AsyncLakeFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def search_databases_by_lf_tags(
@@ -3311,20 +3609,22 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.search_databases_by_lf_tags_request.SearchDatabasesByLFTagsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lakeformation.types.search_databases_by_lf_tags_request.SearchDatabasesByLFTagsRequest = {
+            "expression": expression
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["expression"] = expression
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_search_databases_by_lf_tags(
@@ -3403,20 +3703,22 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.search_tables_by_lf_tags_request.SearchTablesByLFTagsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lakeformation.types.search_tables_by_lf_tags_request.SearchTablesByLFTagsRequest = {
+            "expression": expression
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["expression"] = expression
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_search_tables_by_lf_tags(
@@ -3485,15 +3787,17 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.start_query_planning_request.StartQueryPlanningRequest = {}  # type: ignore[typeddict-item]
-        input_["query_planning_context"] = query_planning_context
-        input_["query_string"] = query_string
+        input_: capo_lakeformation.types.start_query_planning_request.StartQueryPlanningRequest = {
+            "query_planning_context": query_planning_context,
+            "query_string": query_string,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_transaction(
@@ -3531,7 +3835,7 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.start_transaction_request.StartTransactionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lakeformation.types.start_transaction_request.StartTransactionRequest = {}
         if transaction_type is not None:
             input_["transaction_type"] = transaction_type
 
@@ -3540,6 +3844,7 @@ class AsyncLakeFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_data_cells_filter(
@@ -3579,14 +3884,16 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.update_data_cells_filter_request.UpdateDataCellsFilterRequest = {}  # type: ignore[typeddict-item]
-        input_["table_data"] = table_data
+        input_: capo_lakeformation.types.update_data_cells_filter_request.UpdateDataCellsFilterRequest = {
+            "table_data": table_data
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_lake_formation_identity_center_configuration(
@@ -3644,7 +3951,7 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.update_lake_formation_identity_center_configuration_request.UpdateLakeFormationIdentityCenterConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lakeformation.types.update_lake_formation_identity_center_configuration_request.UpdateLakeFormationIdentityCenterConfigurationRequest = {}
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
         if share_recipients is not None:
@@ -3661,6 +3968,7 @@ class AsyncLakeFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_lf_tag(
@@ -3712,10 +4020,11 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.update_lf_tag_request.UpdateLFTagRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lakeformation.types.update_lf_tag_request.UpdateLFTagRequest = {
+            "tag_key": tag_key
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["tag_key"] = tag_key
         if tag_values_to_delete is not None:
             input_["tag_values_to_delete"] = tag_values_to_delete
         if tag_values_to_add is not None:
@@ -3726,6 +4035,7 @@ class AsyncLakeFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_lf_tag_expression(
@@ -3775,19 +4085,21 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.update_lf_tag_expression_request.UpdateLFTagExpressionRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_lakeformation.types.update_lf_tag_expression_request.UpdateLFTagExpressionRequest = {
+            "name": name,
+            "expression": expression,
+        }
         if description is not None:
             input_["description"] = description
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["expression"] = expression
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_resource(
@@ -3839,9 +4151,10 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.update_resource_request.UpdateResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["role_arn"] = role_arn
-        input_["resource_arn"] = resource_arn
+        input_: capo_lakeformation.types.update_resource_request.UpdateResourceRequest = {
+            "role_arn": role_arn,
+            "resource_arn": resource_arn,
+        }
         if with_federation is not None:
             input_["with_federation"] = with_federation
         if hybrid_access_enabled is not None:
@@ -3854,6 +4167,7 @@ class AsyncLakeFormationClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_table_objects(
@@ -3908,20 +4222,22 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.update_table_objects_request.UpdateTableObjectsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lakeformation.types.update_table_objects_request.UpdateTableObjectsRequest = {
+            "database_name": database_name,
+            "table_name": table_name,
+            "write_operations": write_operations,
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
         if transaction_id is not None:
             input_["transaction_id"] = transaction_id
-        input_["write_operations"] = write_operations
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_table_storage_optimizer(
@@ -3967,18 +4283,20 @@ class AsyncLakeFormationClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_lakeformation.types.update_table_storage_optimizer_request.UpdateTableStorageOptimizerRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_lakeformation.types.update_table_storage_optimizer_request.UpdateTableStorageOptimizerRequest = {
+            "database_name": database_name,
+            "table_name": table_name,
+            "storage_optimizer_config": storage_optimizer_config,
+        }
         if catalog_id is not None:
             input_["catalog_id"] = catalog_id
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
-        input_["storage_optimizer_config"] = storage_optimizer_config
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

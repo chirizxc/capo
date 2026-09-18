@@ -57,21 +57,21 @@ def serialize_aws_json_1_1(value: CreateQuerySuggestionsBlockListRequest) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> CreateQuerySuggestionsBlockListRequest:
     out: CreateQuerySuggestionsBlockListRequest = {}  # type: ignore[typeddict-item]
-    if "IndexId" in data:
+    if data.get("IndexId") is not None:
         out["index_id"] = data["IndexId"]
     else:
         raise DeserializationError(
             "CreateQuerySuggestionsBlockListRequest.index_id required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError(
             "CreateQuerySuggestionsBlockListRequest.name required"
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "SourceS3Path" in data:
+    if data.get("SourceS3Path") is not None:
         import capo_kendra.types.s3_path
 
         out["source_s3_path"] = capo_kendra.types.s3_path.deserialize_aws_json_1_1(
@@ -81,15 +81,15 @@ def deserialize_aws_json_1_1(data: dict) -> CreateQuerySuggestionsBlockListReque
         raise DeserializationError(
             "CreateQuerySuggestionsBlockListRequest.source_s3_path required"
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     else:
         raise DeserializationError(
             "CreateQuerySuggestionsBlockListRequest.role_arn required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_kendra.types.tag_list
 
         out["tags"] = capo_kendra.types.tag_list.deserialize_aws_json_1_1(data["Tags"])

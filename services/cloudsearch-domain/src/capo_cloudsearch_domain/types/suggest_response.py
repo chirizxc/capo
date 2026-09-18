@@ -36,13 +36,13 @@ def serialize_json(value: SuggestResponse) -> dict:
 
 def deserialize_json(data: dict) -> SuggestResponse:
     out: SuggestResponse = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_cloudsearch_domain.types.suggest_status
 
         out["status"] = capo_cloudsearch_domain.types.suggest_status.deserialize_json(
             data["status"]
         )
-    if "suggest" in data:
+    if data.get("suggest") is not None:
         import capo_cloudsearch_domain.types.suggest_model
 
         out["suggest"] = capo_cloudsearch_domain.types.suggest_model.deserialize_json(

@@ -34,7 +34,7 @@ def deserialize_json(
     data: dict,
 ) -> GetCollaborationConfiguredAudienceModelAssociationOutput:
     out: GetCollaborationConfiguredAudienceModelAssociationOutput = {}  # type: ignore[typeddict-item]
-    if "collaborationConfiguredAudienceModelAssociation" in data:
+    if data.get("collaborationConfiguredAudienceModelAssociation") is not None:
         import capo_cleanrooms.types.collaboration_configured_audience_model_association
 
         out["collaboration_configured_audience_model_association"] = (

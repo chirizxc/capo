@@ -29,10 +29,10 @@ def serialize_aws_json_1_1(value: ListJobsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListJobsRequest:
     out: ListJobsRequest = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("ListJobsRequest.arn required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

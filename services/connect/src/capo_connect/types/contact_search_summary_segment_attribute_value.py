@@ -36,9 +36,9 @@ def serialize_json(value: ContactSearchSummarySegmentAttributeValue) -> dict:
 
 def deserialize_json(data: dict) -> ContactSearchSummarySegmentAttributeValue:
     out: ContactSearchSummarySegmentAttributeValue = {}  # type: ignore[typeddict-item]
-    if "ValueString" in data:
+    if data.get("ValueString") is not None:
         out["value_string"] = data["ValueString"]
-    if "ValueMap" in data:
+    if data.get("ValueMap") is not None:
         import capo_connect.types.segment_attribute_value_map
 
         out["value_map"] = (

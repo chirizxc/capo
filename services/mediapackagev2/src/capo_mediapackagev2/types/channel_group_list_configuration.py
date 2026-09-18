@@ -49,17 +49,17 @@ def serialize_json(value: ChannelGroupListConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ChannelGroupListConfiguration:
     out: ChannelGroupListConfiguration = {}  # type: ignore[typeddict-item]
-    if "ChannelGroupName" in data:
+    if data.get("ChannelGroupName") is not None:
         out["channel_group_name"] = data["ChannelGroupName"]
     else:
         raise DeserializationError(
             "ChannelGroupListConfiguration.channel_group_name required"
         )
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("ChannelGroupListConfiguration.arn required")
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_mediapackagev2.types._prelude.timestamp
 
         out["created_at"] = (
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> ChannelGroupListConfiguration:
         )
     else:
         raise DeserializationError("ChannelGroupListConfiguration.created_at required")
-    if "ModifiedAt" in data:
+    if data.get("ModifiedAt") is not None:
         import capo_mediapackagev2.types._prelude.timestamp
 
         out["modified_at"] = (
@@ -79,6 +79,6 @@ def deserialize_json(data: dict) -> ChannelGroupListConfiguration:
         )
     else:
         raise DeserializationError("ChannelGroupListConfiguration.modified_at required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

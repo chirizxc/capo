@@ -53,7 +53,7 @@ def serialize_aws_json_1_1(value: GetDataQualityModelResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDataQualityModelResponse:
     out: GetDataQualityModelResponse = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_glue.types.data_quality_model_status
 
         out["status"] = (
@@ -61,18 +61,18 @@ def deserialize_aws_json_1_1(data: dict) -> GetDataQualityModelResponse:
                 data["Status"]
             )
         )
-    if "StartedOn" in data:
+    if data.get("StartedOn") is not None:
         import capo_glue.types.timestamp
 
         out["started_on"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["StartedOn"]
         )
-    if "CompletedOn" in data:
+    if data.get("CompletedOn") is not None:
         import capo_glue.types.timestamp
 
         out["completed_on"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["CompletedOn"]
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
     return out

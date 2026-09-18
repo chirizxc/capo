@@ -27,7 +27,7 @@ def serialize_json(value: DeletePeeringResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeletePeeringResponse:
     out: DeletePeeringResponse = {}  # type: ignore[typeddict-item]
-    if "Peering" in data:
+    if data.get("Peering") is not None:
         import capo_networkmanager.types.peering
 
         out["peering"] = capo_networkmanager.types.peering.deserialize_json(

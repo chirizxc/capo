@@ -50,17 +50,17 @@ def serialize_json(value: PackageDescription) -> dict:
 
 def deserialize_json(data: dict) -> PackageDescription:
     out: PackageDescription = {}  # type: ignore[typeddict-item]
-    if "format" in data:
+    if data.get("format") is not None:
         import capo_codeartifact.types.package_format
 
         out["format"] = capo_codeartifact.types.package_format.deserialize_json(
             data["format"]
         )
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         out["namespace"] = data["namespace"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "originConfiguration" in data:
+    if data.get("originConfiguration") is not None:
         import capo_codeartifact.types.package_origin_configuration
 
         out["origin_configuration"] = (

@@ -31,7 +31,7 @@ def serialize_json(value: ProbeRequest) -> dict:
 
 def deserialize_json(data: dict) -> ProbeRequest:
     out: ProbeRequest = {}  # type: ignore[typeddict-item]
-    if "inputFiles" in data:
+    if data.get("inputFiles") is not None:
         import capo_mediaconvert.types.__list_of_probe_input_file
 
         out["input_files"] = (

@@ -36,7 +36,7 @@ def serialize_json(value: ListPromptsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListPromptsResponse:
     out: ListPromptsResponse = {}  # type: ignore[typeddict-item]
-    if "PromptSummaryList" in data:
+    if data.get("PromptSummaryList") is not None:
         import capo_connect.types.prompt_summary_list
 
         out["prompt_summary_list"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListPromptsResponse:
                 data["PromptSummaryList"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

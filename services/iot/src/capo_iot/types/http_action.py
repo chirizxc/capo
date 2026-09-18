@@ -56,23 +56,23 @@ def serialize_json(value: HttpAction) -> dict:
 
 def deserialize_json(data: dict) -> HttpAction:
     out: HttpAction = {}  # type: ignore[typeddict-item]
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
     else:
         raise DeserializationError("HttpAction.url required")
-    if "confirmationUrl" in data:
+    if data.get("confirmationUrl") is not None:
         out["confirmation_url"] = data["confirmationUrl"]
-    if "headers" in data:
+    if data.get("headers") is not None:
         import capo_iot.types.header_list
 
         out["headers"] = capo_iot.types.header_list.deserialize_json(data["headers"])
-    if "auth" in data:
+    if data.get("auth") is not None:
         import capo_iot.types.http_authorization
 
         out["auth"] = capo_iot.types.http_authorization.deserialize_json(data["auth"])
-    if "enableBatching" in data:
+    if data.get("enableBatching") is not None:
         out["enable_batching"] = data["enableBatching"]
-    if "batchConfig" in data:
+    if data.get("batchConfig") is not None:
         import capo_iot.types.batch_config
 
         out["batch_config"] = capo_iot.types.batch_config.deserialize_json(

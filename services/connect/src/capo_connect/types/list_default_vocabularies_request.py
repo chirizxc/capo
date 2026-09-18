@@ -46,7 +46,7 @@ def serialize_json(value: ListDefaultVocabulariesRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListDefaultVocabulariesRequest:
     out: ListDefaultVocabulariesRequest = {}  # type: ignore[typeddict-item]
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         import capo_connect.types.vocabulary_language_code
 
         out["language_code"] = (
@@ -54,8 +54,8 @@ def deserialize_json(data: dict) -> ListDefaultVocabulariesRequest:
                 data["LanguageCode"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

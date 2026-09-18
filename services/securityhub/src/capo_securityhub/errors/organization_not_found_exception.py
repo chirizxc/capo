@@ -27,9 +27,9 @@ def serialize_json(value: OrganizationNotFoundException_) -> dict:
 
 def deserialize_json(data: dict) -> OrganizationNotFoundException_:
     out: OrganizationNotFoundException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "Code" in data:
+    if data.get("Code") is not None:
         out["code"] = data["Code"]
     return out
 
@@ -39,15 +39,20 @@ class OrganizationNotFoundException(ServiceError):
 
     code: str | None = "OrganizationNotFoundException"
 
-    def __init__(self, data: OrganizationNotFoundException_):
+    def __init__(
+        self, data: OrganizationNotFoundException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="OrganizationNotFoundException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "OrganizationNotFoundException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "OrganizationNotFoundException":
+        return cls(deserialize_json(data), message)

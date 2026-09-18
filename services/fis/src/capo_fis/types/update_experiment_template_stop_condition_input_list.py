@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> UpdateExperimentTemplateStopConditionInputLi
 
     out: UpdateExperimentTemplateStopConditionInputList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_fis.types.update_experiment_template_stop_condition_input.deserialize_json(
                 item

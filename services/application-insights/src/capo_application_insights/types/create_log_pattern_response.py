@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: CreateLogPatternResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateLogPatternResponse:
     out: CreateLogPatternResponse = {}  # type: ignore[typeddict-item]
-    if "LogPattern" in data:
+    if data.get("LogPattern") is not None:
         import capo_application_insights.types.log_pattern
 
         out["log_pattern"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> CreateLogPatternResponse:
                 data["LogPattern"]
             )
         )
-    if "ResourceGroupName" in data:
+    if data.get("ResourceGroupName") is not None:
         out["resource_group_name"] = data["ResourceGroupName"]
     return out

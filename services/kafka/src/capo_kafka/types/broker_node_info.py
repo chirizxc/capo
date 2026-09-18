@@ -34,7 +34,15 @@ def serialize_json(value: BrokerNodeInfo) -> dict:
     if "attached_eni_id" in value:
         out["attachedENIId"] = value["attached_eni_id"]
     if "broker_id" in value:
-        out["brokerId"] = value["broker_id"]
+        out["brokerId"] = (
+            "NaN"
+            if value["broker_id"] != value["broker_id"]
+            else "Infinity"
+            if value["broker_id"] == float("inf")
+            else "-Infinity"
+            if value["broker_id"] == float("-inf")
+            else value["broker_id"]
+        )
     if "client_subnet" in value:
         out["clientSubnet"] = value["client_subnet"]
     if "client_vpc_ip_address" in value:
@@ -58,15 +66,15 @@ def serialize_json(value: BrokerNodeInfo) -> dict:
 
 def deserialize_json(data: dict) -> BrokerNodeInfo:
     out: BrokerNodeInfo = {}  # type: ignore[typeddict-item]
-    if "attachedENIId" in data:
+    if data.get("attachedENIId") is not None:
         out["attached_eni_id"] = data["attachedENIId"]
-    if "brokerId" in data:
-        out["broker_id"] = data["brokerId"]
-    if "clientSubnet" in data:
+    if data.get("brokerId") is not None:
+        out["broker_id"] = float(data["brokerId"])
+    if data.get("clientSubnet") is not None:
         out["client_subnet"] = data["clientSubnet"]
-    if "clientVpcIpAddress" in data:
+    if data.get("clientVpcIpAddress") is not None:
         out["client_vpc_ip_address"] = data["clientVpcIpAddress"]
-    if "currentBrokerSoftwareInfo" in data:
+    if data.get("currentBrokerSoftwareInfo") is not None:
         import capo_kafka.types.broker_software_info
 
         out["current_broker_software_info"] = (
@@ -74,7 +82,7 @@ def deserialize_json(data: dict) -> BrokerNodeInfo:
                 data["currentBrokerSoftwareInfo"]
             )
         )
-    if "endpoints" in data:
+    if data.get("endpoints") is not None:
         import capo_kafka.types.__list_of__string
 
         out["endpoints"] = capo_kafka.types.__list_of__string.deserialize_json(

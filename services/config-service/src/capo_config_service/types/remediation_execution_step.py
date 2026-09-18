@@ -57,9 +57,9 @@ def serialize_aws_json_1_1(value: RemediationExecutionStep) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RemediationExecutionStep:
     out: RemediationExecutionStep = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_config_service.types.remediation_execution_step_state
 
         out["state"] = (
@@ -67,15 +67,15 @@ def deserialize_aws_json_1_1(data: dict) -> RemediationExecutionStep:
                 data["State"]
             )
         )
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_config_service.types.date
 
         out["start_time"] = capo_config_service.types.date.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "StopTime" in data:
+    if data.get("StopTime") is not None:
         import capo_config_service.types.date
 
         out["stop_time"] = capo_config_service.types.date.deserialize_aws_json_1_1(

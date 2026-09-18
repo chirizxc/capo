@@ -44,19 +44,19 @@ def serialize_json(value: StartNotebookExportInput) -> dict:
 
 def deserialize_json(data: dict) -> StartNotebookExportInput:
     out: StartNotebookExportInput = {}  # type: ignore[typeddict-item]
-    if "notebookIdentifier" in data:
+    if data.get("notebookIdentifier") is not None:
         out["notebook_identifier"] = data["notebookIdentifier"]
     else:
         raise DeserializationError(
             "StartNotebookExportInput.notebook_identifier required"
         )
-    if "owningProjectIdentifier" in data:
+    if data.get("owningProjectIdentifier") is not None:
         out["owning_project_identifier"] = data["owningProjectIdentifier"]
     else:
         raise DeserializationError(
             "StartNotebookExportInput.owning_project_identifier required"
         )
-    if "fileFormat" in data:
+    if data.get("fileFormat") is not None:
         import capo_datazone.types.file_format
 
         out["file_format"] = capo_datazone.types.file_format.deserialize_json(
@@ -64,6 +64,6 @@ def deserialize_json(data: dict) -> StartNotebookExportInput:
         )
     else:
         raise DeserializationError("StartNotebookExportInput.file_format required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

@@ -148,9 +148,9 @@ def serialize_json(value: AwsEc2VpnConnectionOptionsTunnelOptionsDetails) -> dic
 
 def deserialize_json(data: dict) -> AwsEc2VpnConnectionOptionsTunnelOptionsDetails:
     out: AwsEc2VpnConnectionOptionsTunnelOptionsDetails = {}  # type: ignore[typeddict-item]
-    if "DpdTimeoutSeconds" in data:
+    if data.get("DpdTimeoutSeconds") is not None:
         out["dpd_timeout_seconds"] = data["DpdTimeoutSeconds"]
-    if "IkeVersions" in data:
+    if data.get("IkeVersions") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["ike_versions"] = (
@@ -158,9 +158,9 @@ def deserialize_json(data: dict) -> AwsEc2VpnConnectionOptionsTunnelOptionsDetai
                 data["IkeVersions"]
             )
         )
-    if "OutsideIpAddress" in data:
+    if data.get("OutsideIpAddress") is not None:
         out["outside_ip_address"] = data["OutsideIpAddress"]
-    if "Phase1DhGroupNumbers" in data:
+    if data.get("Phase1DhGroupNumbers") is not None:
         import capo_securityhub.types.integer_list
 
         out["phase1_dh_group_numbers"] = (
@@ -168,7 +168,7 @@ def deserialize_json(data: dict) -> AwsEc2VpnConnectionOptionsTunnelOptionsDetai
                 data["Phase1DhGroupNumbers"]
             )
         )
-    if "Phase1EncryptionAlgorithms" in data:
+    if data.get("Phase1EncryptionAlgorithms") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["phase1_encryption_algorithms"] = (
@@ -176,7 +176,7 @@ def deserialize_json(data: dict) -> AwsEc2VpnConnectionOptionsTunnelOptionsDetai
                 data["Phase1EncryptionAlgorithms"]
             )
         )
-    if "Phase1IntegrityAlgorithms" in data:
+    if data.get("Phase1IntegrityAlgorithms") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["phase1_integrity_algorithms"] = (
@@ -184,9 +184,9 @@ def deserialize_json(data: dict) -> AwsEc2VpnConnectionOptionsTunnelOptionsDetai
                 data["Phase1IntegrityAlgorithms"]
             )
         )
-    if "Phase1LifetimeSeconds" in data:
+    if data.get("Phase1LifetimeSeconds") is not None:
         out["phase1_lifetime_seconds"] = data["Phase1LifetimeSeconds"]
-    if "Phase2DhGroupNumbers" in data:
+    if data.get("Phase2DhGroupNumbers") is not None:
         import capo_securityhub.types.integer_list
 
         out["phase2_dh_group_numbers"] = (
@@ -194,7 +194,7 @@ def deserialize_json(data: dict) -> AwsEc2VpnConnectionOptionsTunnelOptionsDetai
                 data["Phase2DhGroupNumbers"]
             )
         )
-    if "Phase2EncryptionAlgorithms" in data:
+    if data.get("Phase2EncryptionAlgorithms") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["phase2_encryption_algorithms"] = (
@@ -202,7 +202,7 @@ def deserialize_json(data: dict) -> AwsEc2VpnConnectionOptionsTunnelOptionsDetai
                 data["Phase2EncryptionAlgorithms"]
             )
         )
-    if "Phase2IntegrityAlgorithms" in data:
+    if data.get("Phase2IntegrityAlgorithms") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["phase2_integrity_algorithms"] = (
@@ -210,16 +210,16 @@ def deserialize_json(data: dict) -> AwsEc2VpnConnectionOptionsTunnelOptionsDetai
                 data["Phase2IntegrityAlgorithms"]
             )
         )
-    if "Phase2LifetimeSeconds" in data:
+    if data.get("Phase2LifetimeSeconds") is not None:
         out["phase2_lifetime_seconds"] = data["Phase2LifetimeSeconds"]
-    if "PreSharedKey" in data:
+    if data.get("PreSharedKey") is not None:
         out["pre_shared_key"] = data["PreSharedKey"]
-    if "RekeyFuzzPercentage" in data:
+    if data.get("RekeyFuzzPercentage") is not None:
         out["rekey_fuzz_percentage"] = data["RekeyFuzzPercentage"]
-    if "RekeyMarginTimeSeconds" in data:
+    if data.get("RekeyMarginTimeSeconds") is not None:
         out["rekey_margin_time_seconds"] = data["RekeyMarginTimeSeconds"]
-    if "ReplayWindowSize" in data:
+    if data.get("ReplayWindowSize") is not None:
         out["replay_window_size"] = data["ReplayWindowSize"]
-    if "TunnelInsideCidr" in data:
+    if data.get("TunnelInsideCidr") is not None:
         out["tunnel_inside_cidr"] = data["TunnelInsideCidr"]
     return out

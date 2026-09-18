@@ -73,33 +73,33 @@ def serialize_json(value: CreateAnnotationStoreRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateAnnotationStoreRequest:
     out: CreateAnnotationStoreRequest = {}  # type: ignore[typeddict-item]
-    if "reference" in data:
+    if data.get("reference") is not None:
         import capo_omics.types.reference_item
 
         out["reference"] = capo_omics.types.reference_item.deserialize_json(
             data["reference"]
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_omics.types.tag_map
 
         out["tags"] = capo_omics.types.tag_map.deserialize_json(data["tags"])
-    if "versionName" in data:
+    if data.get("versionName") is not None:
         out["version_name"] = data["versionName"]
-    if "sseConfig" in data:
+    if data.get("sseConfig") is not None:
         import capo_omics.types.sse_config
 
         out["sse_config"] = capo_omics.types.sse_config.deserialize_json(
             data["sseConfig"]
         )
-    if "storeFormat" in data:
+    if data.get("storeFormat") is not None:
         out["store_format"] = data["storeFormat"]
     else:
         raise DeserializationError("CreateAnnotationStoreRequest.store_format required")
-    if "storeOptions" in data:
+    if data.get("storeOptions") is not None:
         import capo_omics.types.store_options
 
         out["store_options"] = capo_omics.types.store_options.deserialize_json(

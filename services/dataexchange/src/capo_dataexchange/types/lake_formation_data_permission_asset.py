@@ -49,7 +49,7 @@ def serialize_json(value: LakeFormationDataPermissionAsset) -> dict:
 
 def deserialize_json(data: dict) -> LakeFormationDataPermissionAsset:
     out: LakeFormationDataPermissionAsset = {}  # type: ignore[typeddict-item]
-    if "LakeFormationDataPermissionDetails" in data:
+    if data.get("LakeFormationDataPermissionDetails") is not None:
         import capo_dataexchange.types.lake_formation_data_permission_details
 
         out["lake_formation_data_permission_details"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> LakeFormationDataPermissionAsset:
         raise DeserializationError(
             "LakeFormationDataPermissionAsset.lake_formation_data_permission_details required"
         )
-    if "LakeFormationDataPermissionType" in data:
+    if data.get("LakeFormationDataPermissionType") is not None:
         out["lake_formation_data_permission_type"] = data[
             "LakeFormationDataPermissionType"
         ]
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> LakeFormationDataPermissionAsset:
         raise DeserializationError(
             "LakeFormationDataPermissionAsset.lake_formation_data_permission_type required"
         )
-    if "Permissions" in data:
+    if data.get("Permissions") is not None:
         import capo_dataexchange.types.list_of_lf_permissions
 
         out["permissions"] = (
@@ -81,6 +81,6 @@ def deserialize_json(data: dict) -> LakeFormationDataPermissionAsset:
         raise DeserializationError(
             "LakeFormationDataPermissionAsset.permissions required"
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     return out

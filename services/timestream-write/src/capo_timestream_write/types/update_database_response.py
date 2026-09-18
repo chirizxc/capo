@@ -26,7 +26,7 @@ def serialize_aws_json_1_0(value: UpdateDatabaseResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateDatabaseResponse:
     out: UpdateDatabaseResponse = {}  # type: ignore[typeddict-item]
-    if "Database" in data:
+    if data.get("Database") is not None:
         import capo_timestream_write.types.database
 
         out["database"] = capo_timestream_write.types.database.deserialize_aws_json_1_0(

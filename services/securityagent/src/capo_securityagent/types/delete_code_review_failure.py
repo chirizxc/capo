@@ -22,8 +22,8 @@ def serialize_json(value: DeleteCodeReviewFailure) -> dict:
 
 def deserialize_json(data: dict) -> DeleteCodeReviewFailure:
     out: DeleteCodeReviewFailure = {}  # type: ignore[typeddict-item]
-    if "codeReviewId" in data:
+    if data.get("codeReviewId") is not None:
         out["code_review_id"] = data["codeReviewId"]
-    if "reason" in data:
+    if data.get("reason") is not None:
         out["reason"] = data["reason"]
     return out

@@ -32,11 +32,11 @@ def serialize_json(value: AccessDeniedException_) -> dict:
 
 def deserialize_json(data: dict) -> AccessDeniedException_:
     out: AccessDeniedException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("AccessDeniedException_.message required")
-    if "context" in data:
+    if data.get("context") is not None:
         import capo_deadline.types.exception_context
 
         out["context"] = capo_deadline.types.exception_context.deserialize_json(
@@ -50,15 +50,18 @@ class AccessDeniedException(ServiceError):
 
     code: str | None = "AccessDeniedException"
 
-    def __init__(self, data: AccessDeniedException_):
+    def __init__(self, data: AccessDeniedException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="AccessDeniedException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "AccessDeniedException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "AccessDeniedException":
+        return cls(deserialize_json(data), message)

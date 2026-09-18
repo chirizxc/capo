@@ -28,11 +28,11 @@ def serialize_json(value: UpdateMonitorOutput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateMonitorOutput:
     out: UpdateMonitorOutput = {}  # type: ignore[typeddict-item]
-    if "MonitorArn" in data:
+    if data.get("MonitorArn") is not None:
         out["monitor_arn"] = data["MonitorArn"]
     else:
         raise DeserializationError("UpdateMonitorOutput.monitor_arn required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     else:
         raise DeserializationError("UpdateMonitorOutput.status required")

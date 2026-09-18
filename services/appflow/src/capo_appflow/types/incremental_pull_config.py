@@ -25,6 +25,6 @@ def serialize_json(value: IncrementalPullConfig) -> dict:
 
 def deserialize_json(data: dict) -> IncrementalPullConfig:
     out: IncrementalPullConfig = {}  # type: ignore[typeddict-item]
-    if "datetimeTypeFieldName" in data:
+    if data.get("datetimeTypeFieldName") is not None:
         out["datetime_type_field_name"] = data["datetimeTypeFieldName"]
     return out

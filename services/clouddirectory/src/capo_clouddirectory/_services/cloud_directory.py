@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.clouddirectory#AmazonCloudDirectory_20170111``."""
 
 import warnings
+from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +17,7 @@ from capo_clouddirectory._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_clouddirectory._auth._zapros_handler import AuthMiddleware
+from capo_clouddirectory._pagination import resolve_path as _resolve_path
 from capo_clouddirectory._services._aws_config import aws_config
 from capo_clouddirectory._services._pipeline import (
     Interceptor,
@@ -343,18 +345,20 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.add_facet_to_object_request.AddFacetToObjectRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_arn"] = directory_arn
-        input_["schema_facet"] = schema_facet
+        input_: capo_clouddirectory.types.add_facet_to_object_request.AddFacetToObjectRequest = {
+            "directory_arn": directory_arn,
+            "schema_facet": schema_facet,
+            "object_reference": object_reference,
+        }
         if object_attribute_list is not None:
             input_["object_attribute_list"] = object_attribute_list
-        input_["object_reference"] = object_reference
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def apply_schema(
@@ -403,15 +407,17 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.apply_schema_request.ApplySchemaRequest = {}  # type: ignore[typeddict-item]
-        input_["published_schema_arn"] = published_schema_arn
-        input_["directory_arn"] = directory_arn
+        input_: capo_clouddirectory.types.apply_schema_request.ApplySchemaRequest = {
+            "published_schema_arn": published_schema_arn,
+            "directory_arn": directory_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def attach_object(
@@ -466,17 +472,19 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.attach_object_request.AttachObjectRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_arn"] = directory_arn
-        input_["parent_reference"] = parent_reference
-        input_["child_reference"] = child_reference
-        input_["link_name"] = link_name
+        input_: capo_clouddirectory.types.attach_object_request.AttachObjectRequest = {
+            "directory_arn": directory_arn,
+            "parent_reference": parent_reference,
+            "child_reference": child_reference,
+            "link_name": link_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def attach_policy(
@@ -527,16 +535,18 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.attach_policy_request.AttachPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_arn"] = directory_arn
-        input_["policy_reference"] = policy_reference
-        input_["object_reference"] = object_reference
+        input_: capo_clouddirectory.types.attach_policy_request.AttachPolicyRequest = {
+            "directory_arn": directory_arn,
+            "policy_reference": policy_reference,
+            "object_reference": object_reference,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def attach_to_index(
@@ -590,16 +600,18 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.attach_to_index_request.AttachToIndexRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_arn"] = directory_arn
-        input_["index_reference"] = index_reference
-        input_["target_reference"] = target_reference
+        input_: capo_clouddirectory.types.attach_to_index_request.AttachToIndexRequest = {
+            "directory_arn": directory_arn,
+            "index_reference": index_reference,
+            "target_reference": target_reference,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def attach_typed_link(
@@ -655,18 +667,20 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.attach_typed_link_request.AttachTypedLinkRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_arn"] = directory_arn
-        input_["source_object_reference"] = source_object_reference
-        input_["target_object_reference"] = target_object_reference
-        input_["typed_link_facet"] = typed_link_facet
-        input_["attributes"] = attributes
+        input_: capo_clouddirectory.types.attach_typed_link_request.AttachTypedLinkRequest = {
+            "directory_arn": directory_arn,
+            "source_object_reference": source_object_reference,
+            "target_object_reference": target_object_reference,
+            "typed_link_facet": typed_link_facet,
+            "attributes": attributes,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_read(
@@ -717,9 +731,10 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.batch_read_request.BatchReadRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_arn"] = directory_arn
-        input_["operations"] = operations
+        input_: capo_clouddirectory.types.batch_read_request.BatchReadRequest = {
+            "directory_arn": directory_arn,
+            "operations": operations,
+        }
         if consistency_level is not None:
             input_["consistency_level"] = consistency_level
 
@@ -728,6 +743,7 @@ class CloudDirectoryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_write(
@@ -775,15 +791,17 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.batch_write_request.BatchWriteRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_arn"] = directory_arn
-        input_["operations"] = operations
+        input_: capo_clouddirectory.types.batch_write_request.BatchWriteRequest = {
+            "directory_arn": directory_arn,
+            "operations": operations,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_directory(
@@ -831,15 +849,17 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.create_directory_request.CreateDirectoryRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["schema_arn"] = schema_arn
+        input_: capo_clouddirectory.types.create_directory_request.CreateDirectoryRequest = {
+            "name": name,
+            "schema_arn": schema_arn,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_facet(
@@ -901,9 +921,10 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.create_facet_request.CreateFacetRequest = {}  # type: ignore[typeddict-item]
-        input_["schema_arn"] = schema_arn
-        input_["name"] = name
+        input_: capo_clouddirectory.types.create_facet_request.CreateFacetRequest = {
+            "schema_arn": schema_arn,
+            "name": name,
+        }
         if attributes is not None:
             input_["attributes"] = attributes
         if object_type is not None:
@@ -916,6 +937,7 @@ class CloudDirectoryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_index(
@@ -974,10 +996,11 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.create_index_request.CreateIndexRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_arn"] = directory_arn
-        input_["ordered_indexed_attribute_list"] = ordered_indexed_attribute_list
-        input_["is_unique"] = is_unique
+        input_: capo_clouddirectory.types.create_index_request.CreateIndexRequest = {
+            "directory_arn": directory_arn,
+            "ordered_indexed_attribute_list": ordered_indexed_attribute_list,
+            "is_unique": is_unique,
+        }
         if parent_reference is not None:
             input_["parent_reference"] = parent_reference
         if link_name is not None:
@@ -988,6 +1011,7 @@ class CloudDirectoryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_object(
@@ -1048,9 +1072,10 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.create_object_request.CreateObjectRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_arn"] = directory_arn
-        input_["schema_facets"] = schema_facets
+        input_: capo_clouddirectory.types.create_object_request.CreateObjectRequest = {
+            "directory_arn": directory_arn,
+            "schema_facets": schema_facets,
+        }
         if object_attribute_list is not None:
             input_["object_attribute_list"] = object_attribute_list
         if parent_reference is not None:
@@ -1063,6 +1088,7 @@ class CloudDirectoryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_schema(
@@ -1107,14 +1133,16 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.create_schema_request.CreateSchemaRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_clouddirectory.types.create_schema_request.CreateSchemaRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_typed_link_facet(
@@ -1164,15 +1192,17 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.create_typed_link_facet_request.CreateTypedLinkFacetRequest = {}  # type: ignore[typeddict-item]
-        input_["schema_arn"] = schema_arn
-        input_["facet"] = facet
+        input_: capo_clouddirectory.types.create_typed_link_facet_request.CreateTypedLinkFacetRequest = {
+            "schema_arn": schema_arn,
+            "facet": facet,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_directory(
@@ -1219,14 +1249,16 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.delete_directory_request.DeleteDirectoryRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_arn"] = directory_arn
+        input_: capo_clouddirectory.types.delete_directory_request.DeleteDirectoryRequest = {
+            "directory_arn": directory_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_facet(
@@ -1275,15 +1307,17 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.delete_facet_request.DeleteFacetRequest = {}  # type: ignore[typeddict-item]
-        input_["schema_arn"] = schema_arn
-        input_["name"] = name
+        input_: capo_clouddirectory.types.delete_facet_request.DeleteFacetRequest = {
+            "schema_arn": schema_arn,
+            "name": name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_object(
@@ -1332,15 +1366,17 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.delete_object_request.DeleteObjectRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_arn"] = directory_arn
-        input_["object_reference"] = object_reference
+        input_: capo_clouddirectory.types.delete_object_request.DeleteObjectRequest = {
+            "directory_arn": directory_arn,
+            "object_reference": object_reference,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_schema(
@@ -1386,14 +1422,16 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.delete_schema_request.DeleteSchemaRequest = {}  # type: ignore[typeddict-item]
-        input_["schema_arn"] = schema_arn
+        input_: capo_clouddirectory.types.delete_schema_request.DeleteSchemaRequest = {
+            "schema_arn": schema_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_typed_link_facet(
@@ -1441,15 +1479,17 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.delete_typed_link_facet_request.DeleteTypedLinkFacetRequest = {}  # type: ignore[typeddict-item]
-        input_["schema_arn"] = schema_arn
-        input_["name"] = name
+        input_: capo_clouddirectory.types.delete_typed_link_facet_request.DeleteTypedLinkFacetRequest = {
+            "schema_arn": schema_arn,
+            "name": name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def detach_from_index(
@@ -1501,16 +1541,18 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.detach_from_index_request.DetachFromIndexRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_arn"] = directory_arn
-        input_["index_reference"] = index_reference
-        input_["target_reference"] = target_reference
+        input_: capo_clouddirectory.types.detach_from_index_request.DetachFromIndexRequest = {
+            "directory_arn": directory_arn,
+            "index_reference": index_reference,
+            "target_reference": target_reference,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def detach_object(
@@ -1561,16 +1603,18 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.detach_object_request.DetachObjectRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_arn"] = directory_arn
-        input_["parent_reference"] = parent_reference
-        input_["link_name"] = link_name
+        input_: capo_clouddirectory.types.detach_object_request.DetachObjectRequest = {
+            "directory_arn": directory_arn,
+            "parent_reference": parent_reference,
+            "link_name": link_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def detach_policy(
@@ -1621,16 +1665,18 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.detach_policy_request.DetachPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_arn"] = directory_arn
-        input_["policy_reference"] = policy_reference
-        input_["object_reference"] = object_reference
+        input_: capo_clouddirectory.types.detach_policy_request.DetachPolicyRequest = {
+            "directory_arn": directory_arn,
+            "policy_reference": policy_reference,
+            "object_reference": object_reference,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def detach_typed_link(
@@ -1677,15 +1723,17 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.detach_typed_link_request.DetachTypedLinkRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_arn"] = directory_arn
-        input_["typed_link_specifier"] = typed_link_specifier
+        input_: capo_clouddirectory.types.detach_typed_link_request.DetachTypedLinkRequest = {
+            "directory_arn": directory_arn,
+            "typed_link_specifier": typed_link_specifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disable_directory(
@@ -1733,14 +1781,16 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.disable_directory_request.DisableDirectoryRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_arn"] = directory_arn
+        input_: capo_clouddirectory.types.disable_directory_request.DisableDirectoryRequest = {
+            "directory_arn": directory_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def enable_directory(
@@ -1786,14 +1836,16 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.enable_directory_request.EnableDirectoryRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_arn"] = directory_arn
+        input_: capo_clouddirectory.types.enable_directory_request.EnableDirectoryRequest = {
+            "directory_arn": directory_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_applied_schema_version(
@@ -1833,14 +1885,16 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.get_applied_schema_version_request.GetAppliedSchemaVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["schema_arn"] = schema_arn
+        input_: capo_clouddirectory.types.get_applied_schema_version_request.GetAppliedSchemaVersionRequest = {
+            "schema_arn": schema_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_directory(
@@ -1884,14 +1938,16 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.get_directory_request.GetDirectoryRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_arn"] = directory_arn
+        input_: capo_clouddirectory.types.get_directory_request.GetDirectoryRequest = {
+            "directory_arn": directory_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_facet(
@@ -1939,15 +1995,17 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.get_facet_request.GetFacetRequest = {}  # type: ignore[typeddict-item]
-        input_["schema_arn"] = schema_arn
-        input_["name"] = name
+        input_: capo_clouddirectory.types.get_facet_request.GetFacetRequest = {
+            "schema_arn": schema_arn,
+            "name": name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_link_attributes(
@@ -1997,10 +2055,11 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.get_link_attributes_request.GetLinkAttributesRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_arn"] = directory_arn
-        input_["typed_link_specifier"] = typed_link_specifier
-        input_["attribute_names"] = attribute_names
+        input_: capo_clouddirectory.types.get_link_attributes_request.GetLinkAttributesRequest = {
+            "directory_arn": directory_arn,
+            "typed_link_specifier": typed_link_specifier,
+            "attribute_names": attribute_names,
+        }
         if consistency_level is not None:
             input_["consistency_level"] = consistency_level
 
@@ -2009,6 +2068,7 @@ class CloudDirectoryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_object_attributes(
@@ -2060,19 +2120,21 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.get_object_attributes_request.GetObjectAttributesRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_arn"] = directory_arn
-        input_["object_reference"] = object_reference
+        input_: capo_clouddirectory.types.get_object_attributes_request.GetObjectAttributesRequest = {
+            "directory_arn": directory_arn,
+            "object_reference": object_reference,
+            "schema_facet": schema_facet,
+            "attribute_names": attribute_names,
+        }
         if consistency_level is not None:
             input_["consistency_level"] = consistency_level
-        input_["schema_facet"] = schema_facet
-        input_["attribute_names"] = attribute_names
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_object_information(
@@ -2124,9 +2186,10 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.get_object_information_request.GetObjectInformationRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_arn"] = directory_arn
-        input_["object_reference"] = object_reference
+        input_: capo_clouddirectory.types.get_object_information_request.GetObjectInformationRequest = {
+            "directory_arn": directory_arn,
+            "object_reference": object_reference,
+        }
         if consistency_level is not None:
             input_["consistency_level"] = consistency_level
 
@@ -2135,6 +2198,7 @@ class CloudDirectoryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_schema_as_json(
@@ -2181,14 +2245,16 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.get_schema_as_json_request.GetSchemaAsJsonRequest = {}  # type: ignore[typeddict-item]
-        input_["schema_arn"] = schema_arn
+        input_: capo_clouddirectory.types.get_schema_as_json_request.GetSchemaAsJsonRequest = {
+            "schema_arn": schema_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_typed_link_facet_information(
@@ -2237,15 +2303,17 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.get_typed_link_facet_information_request.GetTypedLinkFacetInformationRequest = {}  # type: ignore[typeddict-item]
-        input_["schema_arn"] = schema_arn
-        input_["name"] = name
+        input_: capo_clouddirectory.types.get_typed_link_facet_information_request.GetTypedLinkFacetInformationRequest = {
+            "schema_arn": schema_arn,
+            "name": name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_applied_schema_arns(
@@ -2299,8 +2367,9 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.list_applied_schema_arns_request.ListAppliedSchemaArnsRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_arn"] = directory_arn
+        input_: capo_clouddirectory.types.list_applied_schema_arns_request.ListAppliedSchemaArnsRequest = {
+            "directory_arn": directory_arn
+        }
         if schema_arn is not None:
             input_["schema_arn"] = schema_arn
         if next_token is not None:
@@ -2313,7 +2382,33 @@ class CloudDirectoryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_applied_schema_arns(
+        self,
+        directory_arn: "capo_clouddirectory.types.arn.Arn",
+        *,
+        config_overrides: Optional[CloudDirectoryClientConfig] = None,
+        schema_arn: Optional["capo_clouddirectory.types.arn.Arn"] = None,
+        next_token: Optional["capo_clouddirectory.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_clouddirectory.types.number_results.NumberResults"
+        ] = None,
+    ) -> "Iterator[capo_clouddirectory.types.list_applied_schema_arns_response.ListAppliedSchemaArnsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_applied_schema_arns(
+                directory_arn,
+                config_overrides=config_overrides,
+                schema_arn=schema_arn,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_attached_indices(
         self,
@@ -2370,9 +2465,10 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.list_attached_indices_request.ListAttachedIndicesRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_arn"] = directory_arn
-        input_["target_reference"] = target_reference
+        input_: capo_clouddirectory.types.list_attached_indices_request.ListAttachedIndicesRequest = {
+            "directory_arn": directory_arn,
+            "target_reference": target_reference,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2385,7 +2481,37 @@ class CloudDirectoryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_attached_indices(
+        self,
+        directory_arn: "capo_clouddirectory.types.arn.Arn",
+        target_reference: "capo_clouddirectory.types.object_reference.ObjectReference",
+        *,
+        config_overrides: Optional[CloudDirectoryClientConfig] = None,
+        next_token: Optional["capo_clouddirectory.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_clouddirectory.types.number_results.NumberResults"
+        ] = None,
+        consistency_level: Optional[
+            "capo_clouddirectory.types.consistency_level.ConsistencyLevel"
+        ] = None,
+    ) -> "Iterator[capo_clouddirectory.types.list_attached_indices_response.ListAttachedIndicesResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_attached_indices(
+                directory_arn,
+                target_reference,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                consistency_level=consistency_level,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_development_schema_arns(
         self,
@@ -2434,7 +2560,7 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.list_development_schema_arns_request.ListDevelopmentSchemaArnsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_clouddirectory.types.list_development_schema_arns_request.ListDevelopmentSchemaArnsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2445,7 +2571,29 @@ class CloudDirectoryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_development_schema_arns(
+        self,
+        *,
+        config_overrides: Optional[CloudDirectoryClientConfig] = None,
+        next_token: Optional["capo_clouddirectory.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_clouddirectory.types.number_results.NumberResults"
+        ] = None,
+    ) -> "Iterator[capo_clouddirectory.types.list_development_schema_arns_response.ListDevelopmentSchemaArnsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_development_schema_arns(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_directories(
         self,
@@ -2497,7 +2645,7 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.list_directories_request.ListDirectoriesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_clouddirectory.types.list_directories_request.ListDirectoriesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2510,7 +2658,33 @@ class CloudDirectoryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_directories(
+        self,
+        *,
+        config_overrides: Optional[CloudDirectoryClientConfig] = None,
+        next_token: Optional["capo_clouddirectory.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_clouddirectory.types.number_results.NumberResults"
+        ] = None,
+        state: Optional[
+            "capo_clouddirectory.types.directory_state.DirectoryState"
+        ] = None,
+    ) -> "Iterator[capo_clouddirectory.types.list_directories_response.ListDirectoriesResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_directories(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                state=state,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_facet_attributes(
         self,
@@ -2564,9 +2738,10 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.list_facet_attributes_request.ListFacetAttributesRequest = {}  # type: ignore[typeddict-item]
-        input_["schema_arn"] = schema_arn
-        input_["name"] = name
+        input_: capo_clouddirectory.types.list_facet_attributes_request.ListFacetAttributesRequest = {
+            "schema_arn": schema_arn,
+            "name": name,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2577,7 +2752,33 @@ class CloudDirectoryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_facet_attributes(
+        self,
+        schema_arn: "capo_clouddirectory.types.arn.Arn",
+        name: "capo_clouddirectory.types.facet_name.FacetName",
+        *,
+        config_overrides: Optional[CloudDirectoryClientConfig] = None,
+        next_token: Optional["capo_clouddirectory.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_clouddirectory.types.number_results.NumberResults"
+        ] = None,
+    ) -> "Iterator[capo_clouddirectory.types.list_facet_attributes_response.ListFacetAttributesResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_facet_attributes(
+                schema_arn,
+                name,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_facet_names(
         self,
@@ -2628,8 +2829,9 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.list_facet_names_request.ListFacetNamesRequest = {}  # type: ignore[typeddict-item]
-        input_["schema_arn"] = schema_arn
+        input_: capo_clouddirectory.types.list_facet_names_request.ListFacetNamesRequest = {
+            "schema_arn": schema_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2640,7 +2842,31 @@ class CloudDirectoryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_facet_names(
+        self,
+        schema_arn: "capo_clouddirectory.types.arn.Arn",
+        *,
+        config_overrides: Optional[CloudDirectoryClientConfig] = None,
+        next_token: Optional["capo_clouddirectory.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_clouddirectory.types.number_results.NumberResults"
+        ] = None,
+    ) -> "Iterator[capo_clouddirectory.types.list_facet_names_response.ListFacetNamesResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_facet_names(
+                schema_arn,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_incoming_typed_links(
         self,
@@ -2707,9 +2933,10 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.list_incoming_typed_links_request.ListIncomingTypedLinksRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_arn"] = directory_arn
-        input_["object_reference"] = object_reference
+        input_: capo_clouddirectory.types.list_incoming_typed_links_request.ListIncomingTypedLinksRequest = {
+            "directory_arn": directory_arn,
+            "object_reference": object_reference,
+        }
         if filter_attribute_ranges is not None:
             input_["filter_attribute_ranges"] = filter_attribute_ranges
         if filter_typed_link is not None:
@@ -2726,6 +2953,7 @@ class CloudDirectoryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_index(
@@ -2790,11 +3018,12 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.list_index_request.ListIndexRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_arn"] = directory_arn
+        input_: capo_clouddirectory.types.list_index_request.ListIndexRequest = {
+            "directory_arn": directory_arn,
+            "index_reference": index_reference,
+        }
         if ranges_on_indexed_values is not None:
             input_["ranges_on_indexed_values"] = ranges_on_indexed_values
-        input_["index_reference"] = index_reference
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2807,7 +3036,41 @@ class CloudDirectoryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_index(
+        self,
+        directory_arn: "capo_clouddirectory.types.arn.Arn",
+        index_reference: "capo_clouddirectory.types.object_reference.ObjectReference",
+        *,
+        config_overrides: Optional[CloudDirectoryClientConfig] = None,
+        ranges_on_indexed_values: Optional[
+            "capo_clouddirectory.types.object_attribute_range_list.ObjectAttributeRangeList"
+        ] = None,
+        max_results: Optional[
+            "capo_clouddirectory.types.number_results.NumberResults"
+        ] = None,
+        next_token: Optional["capo_clouddirectory.types.next_token.NextToken"] = None,
+        consistency_level: Optional[
+            "capo_clouddirectory.types.consistency_level.ConsistencyLevel"
+        ] = None,
+    ) -> "Iterator[capo_clouddirectory.types.list_index_response.ListIndexResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_index(
+                directory_arn,
+                index_reference,
+                config_overrides=config_overrides,
+                ranges_on_indexed_values=ranges_on_indexed_values,
+                max_results=max_results,
+                next_token=_token,
+                consistency_level=consistency_level,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_managed_schema_arns(
         self,
@@ -2851,7 +3114,7 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.list_managed_schema_arns_request.ListManagedSchemaArnsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_clouddirectory.types.list_managed_schema_arns_request.ListManagedSchemaArnsRequest = {}
         if schema_arn is not None:
             input_["schema_arn"] = schema_arn
         if next_token is not None:
@@ -2864,7 +3127,31 @@ class CloudDirectoryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_managed_schema_arns(
+        self,
+        *,
+        config_overrides: Optional[CloudDirectoryClientConfig] = None,
+        schema_arn: Optional["capo_clouddirectory.types.arn.Arn"] = None,
+        next_token: Optional["capo_clouddirectory.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_clouddirectory.types.number_results.NumberResults"
+        ] = None,
+    ) -> "Iterator[capo_clouddirectory.types.list_managed_schema_arns_response.ListManagedSchemaArnsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_managed_schema_arns(
+                config_overrides=config_overrides,
+                schema_arn=schema_arn,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_object_attributes(
         self,
@@ -2927,9 +3214,10 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.list_object_attributes_request.ListObjectAttributesRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_arn"] = directory_arn
-        input_["object_reference"] = object_reference
+        input_: capo_clouddirectory.types.list_object_attributes_request.ListObjectAttributesRequest = {
+            "directory_arn": directory_arn,
+            "object_reference": object_reference,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -2944,7 +3232,41 @@ class CloudDirectoryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_object_attributes(
+        self,
+        directory_arn: "capo_clouddirectory.types.arn.Arn",
+        object_reference: "capo_clouddirectory.types.object_reference.ObjectReference",
+        *,
+        config_overrides: Optional[CloudDirectoryClientConfig] = None,
+        next_token: Optional["capo_clouddirectory.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_clouddirectory.types.number_results.NumberResults"
+        ] = None,
+        consistency_level: Optional[
+            "capo_clouddirectory.types.consistency_level.ConsistencyLevel"
+        ] = None,
+        facet_filter: Optional[
+            "capo_clouddirectory.types.schema_facet.SchemaFacet"
+        ] = None,
+    ) -> "Iterator[capo_clouddirectory.types.list_object_attributes_response.ListObjectAttributesResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_object_attributes(
+                directory_arn,
+                object_reference,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                consistency_level=consistency_level,
+                facet_filter=facet_filter,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_object_children(
         self,
@@ -3003,9 +3325,10 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.list_object_children_request.ListObjectChildrenRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_arn"] = directory_arn
-        input_["object_reference"] = object_reference
+        input_: capo_clouddirectory.types.list_object_children_request.ListObjectChildrenRequest = {
+            "directory_arn": directory_arn,
+            "object_reference": object_reference,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3018,7 +3341,37 @@ class CloudDirectoryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_object_children(
+        self,
+        directory_arn: "capo_clouddirectory.types.arn.Arn",
+        object_reference: "capo_clouddirectory.types.object_reference.ObjectReference",
+        *,
+        config_overrides: Optional[CloudDirectoryClientConfig] = None,
+        next_token: Optional["capo_clouddirectory.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_clouddirectory.types.number_results.NumberResults"
+        ] = None,
+        consistency_level: Optional[
+            "capo_clouddirectory.types.consistency_level.ConsistencyLevel"
+        ] = None,
+    ) -> "Iterator[capo_clouddirectory.types.list_object_children_response.ListObjectChildrenResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_object_children(
+                directory_arn,
+                object_reference,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                consistency_level=consistency_level,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_object_parent_paths(
         self,
@@ -3067,9 +3420,10 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.list_object_parent_paths_request.ListObjectParentPathsRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_arn"] = directory_arn
-        input_["object_reference"] = object_reference
+        input_: capo_clouddirectory.types.list_object_parent_paths_request.ListObjectParentPathsRequest = {
+            "directory_arn": directory_arn,
+            "object_reference": object_reference,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3080,7 +3434,33 @@ class CloudDirectoryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_object_parent_paths(
+        self,
+        directory_arn: "capo_clouddirectory.types.arn.Arn",
+        object_reference: "capo_clouddirectory.types.object_reference.ObjectReference",
+        *,
+        config_overrides: Optional[CloudDirectoryClientConfig] = None,
+        next_token: Optional["capo_clouddirectory.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_clouddirectory.types.number_results.NumberResults"
+        ] = None,
+    ) -> "Iterator[capo_clouddirectory.types.list_object_parent_paths_response.ListObjectParentPathsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_object_parent_paths(
+                directory_arn,
+                object_reference,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_object_parents(
         self,
@@ -3138,9 +3518,10 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.list_object_parents_request.ListObjectParentsRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_arn"] = directory_arn
-        input_["object_reference"] = object_reference
+        input_: capo_clouddirectory.types.list_object_parents_request.ListObjectParentsRequest = {
+            "directory_arn": directory_arn,
+            "object_reference": object_reference,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3157,7 +3538,41 @@ class CloudDirectoryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_object_parents(
+        self,
+        directory_arn: "capo_clouddirectory.types.arn.Arn",
+        object_reference: "capo_clouddirectory.types.object_reference.ObjectReference",
+        *,
+        config_overrides: Optional[CloudDirectoryClientConfig] = None,
+        next_token: Optional["capo_clouddirectory.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_clouddirectory.types.number_results.NumberResults"
+        ] = None,
+        consistency_level: Optional[
+            "capo_clouddirectory.types.consistency_level.ConsistencyLevel"
+        ] = None,
+        include_all_links_to_each_parent: Optional[
+            "capo_clouddirectory.types.bool.Bool"
+        ] = None,
+    ) -> "Iterator[capo_clouddirectory.types.list_object_parents_response.ListObjectParentsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_object_parents(
+                directory_arn,
+                object_reference,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                consistency_level=consistency_level,
+                include_all_links_to_each_parent=include_all_links_to_each_parent,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_object_policies(
         self,
@@ -3210,9 +3625,10 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.list_object_policies_request.ListObjectPoliciesRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_arn"] = directory_arn
-        input_["object_reference"] = object_reference
+        input_: capo_clouddirectory.types.list_object_policies_request.ListObjectPoliciesRequest = {
+            "directory_arn": directory_arn,
+            "object_reference": object_reference,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3225,7 +3641,37 @@ class CloudDirectoryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_object_policies(
+        self,
+        directory_arn: "capo_clouddirectory.types.arn.Arn",
+        object_reference: "capo_clouddirectory.types.object_reference.ObjectReference",
+        *,
+        config_overrides: Optional[CloudDirectoryClientConfig] = None,
+        next_token: Optional["capo_clouddirectory.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_clouddirectory.types.number_results.NumberResults"
+        ] = None,
+        consistency_level: Optional[
+            "capo_clouddirectory.types.consistency_level.ConsistencyLevel"
+        ] = None,
+    ) -> "Iterator[capo_clouddirectory.types.list_object_policies_response.ListObjectPoliciesResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_object_policies(
+                directory_arn,
+                object_reference,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                consistency_level=consistency_level,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_outgoing_typed_links(
         self,
@@ -3287,9 +3733,10 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.list_outgoing_typed_links_request.ListOutgoingTypedLinksRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_arn"] = directory_arn
-        input_["object_reference"] = object_reference
+        input_: capo_clouddirectory.types.list_outgoing_typed_links_request.ListOutgoingTypedLinksRequest = {
+            "directory_arn": directory_arn,
+            "object_reference": object_reference,
+        }
         if filter_attribute_ranges is not None:
             input_["filter_attribute_ranges"] = filter_attribute_ranges
         if filter_typed_link is not None:
@@ -3306,6 +3753,7 @@ class CloudDirectoryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_policy_attachments(
@@ -3360,9 +3808,10 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.list_policy_attachments_request.ListPolicyAttachmentsRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_arn"] = directory_arn
-        input_["policy_reference"] = policy_reference
+        input_: capo_clouddirectory.types.list_policy_attachments_request.ListPolicyAttachmentsRequest = {
+            "directory_arn": directory_arn,
+            "policy_reference": policy_reference,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3375,7 +3824,37 @@ class CloudDirectoryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_policy_attachments(
+        self,
+        directory_arn: "capo_clouddirectory.types.arn.Arn",
+        policy_reference: "capo_clouddirectory.types.object_reference.ObjectReference",
+        *,
+        config_overrides: Optional[CloudDirectoryClientConfig] = None,
+        next_token: Optional["capo_clouddirectory.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_clouddirectory.types.number_results.NumberResults"
+        ] = None,
+        consistency_level: Optional[
+            "capo_clouddirectory.types.consistency_level.ConsistencyLevel"
+        ] = None,
+    ) -> "Iterator[capo_clouddirectory.types.list_policy_attachments_response.ListPolicyAttachmentsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_policy_attachments(
+                directory_arn,
+                policy_reference,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                consistency_level=consistency_level,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_published_schema_arns(
         self,
@@ -3421,7 +3900,7 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.list_published_schema_arns_request.ListPublishedSchemaArnsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_clouddirectory.types.list_published_schema_arns_request.ListPublishedSchemaArnsRequest = {}
         if schema_arn is not None:
             input_["schema_arn"] = schema_arn
         if next_token is not None:
@@ -3434,7 +3913,31 @@ class CloudDirectoryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_published_schema_arns(
+        self,
+        *,
+        config_overrides: Optional[CloudDirectoryClientConfig] = None,
+        schema_arn: Optional["capo_clouddirectory.types.arn.Arn"] = None,
+        next_token: Optional["capo_clouddirectory.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_clouddirectory.types.number_results.NumberResults"
+        ] = None,
+    ) -> "Iterator[capo_clouddirectory.types.list_published_schema_arns_response.ListPublishedSchemaArnsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_published_schema_arns(
+                config_overrides=config_overrides,
+                schema_arn=schema_arn,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_tags_for_resource(
         self,
@@ -3480,8 +3983,9 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_clouddirectory.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3492,7 +3996,31 @@ class CloudDirectoryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_tags_for_resource(
+        self,
+        resource_arn: "capo_clouddirectory.types.arn.Arn",
+        *,
+        config_overrides: Optional[CloudDirectoryClientConfig] = None,
+        next_token: Optional["capo_clouddirectory.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_clouddirectory.types.tags_number_results.TagsNumberResults"
+        ] = None,
+    ) -> "Iterator[capo_clouddirectory.types.list_tags_for_resource_response.ListTagsForResourceResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_tags_for_resource(
+                resource_arn,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_typed_link_facet_attributes(
         self,
@@ -3541,9 +4069,10 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.list_typed_link_facet_attributes_request.ListTypedLinkFacetAttributesRequest = {}  # type: ignore[typeddict-item]
-        input_["schema_arn"] = schema_arn
-        input_["name"] = name
+        input_: capo_clouddirectory.types.list_typed_link_facet_attributes_request.ListTypedLinkFacetAttributesRequest = {
+            "schema_arn": schema_arn,
+            "name": name,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3554,7 +4083,33 @@ class CloudDirectoryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_typed_link_facet_attributes(
+        self,
+        schema_arn: "capo_clouddirectory.types.arn.Arn",
+        name: "capo_clouddirectory.types.typed_link_name.TypedLinkName",
+        *,
+        config_overrides: Optional[CloudDirectoryClientConfig] = None,
+        next_token: Optional["capo_clouddirectory.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_clouddirectory.types.number_results.NumberResults"
+        ] = None,
+    ) -> "Iterator[capo_clouddirectory.types.list_typed_link_facet_attributes_response.ListTypedLinkFacetAttributesResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_typed_link_facet_attributes(
+                schema_arn,
+                name,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_typed_link_facet_names(
         self,
@@ -3600,8 +4155,9 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.list_typed_link_facet_names_request.ListTypedLinkFacetNamesRequest = {}  # type: ignore[typeddict-item]
-        input_["schema_arn"] = schema_arn
+        input_: capo_clouddirectory.types.list_typed_link_facet_names_request.ListTypedLinkFacetNamesRequest = {
+            "schema_arn": schema_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3612,7 +4168,31 @@ class CloudDirectoryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_typed_link_facet_names(
+        self,
+        schema_arn: "capo_clouddirectory.types.arn.Arn",
+        *,
+        config_overrides: Optional[CloudDirectoryClientConfig] = None,
+        next_token: Optional["capo_clouddirectory.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_clouddirectory.types.number_results.NumberResults"
+        ] = None,
+    ) -> "Iterator[capo_clouddirectory.types.list_typed_link_facet_names_response.ListTypedLinkFacetNamesResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_typed_link_facet_names(
+                schema_arn,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def lookup_policy(
         self,
@@ -3661,9 +4241,10 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.lookup_policy_request.LookupPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_arn"] = directory_arn
-        input_["object_reference"] = object_reference
+        input_: capo_clouddirectory.types.lookup_policy_request.LookupPolicyRequest = {
+            "directory_arn": directory_arn,
+            "object_reference": object_reference,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3674,7 +4255,33 @@ class CloudDirectoryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_lookup_policy(
+        self,
+        directory_arn: "capo_clouddirectory.types.arn.Arn",
+        object_reference: "capo_clouddirectory.types.object_reference.ObjectReference",
+        *,
+        config_overrides: Optional[CloudDirectoryClientConfig] = None,
+        next_token: Optional["capo_clouddirectory.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_clouddirectory.types.number_results.NumberResults"
+        ] = None,
+    ) -> "Iterator[capo_clouddirectory.types.lookup_policy_response.LookupPolicyResponse]":
+        _token = next_token
+        while True:
+            _response = self.lookup_policy(
+                directory_arn,
+                object_reference,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def publish_schema(
         self,
@@ -3720,9 +4327,10 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.publish_schema_request.PublishSchemaRequest = {}  # type: ignore[typeddict-item]
-        input_["development_schema_arn"] = development_schema_arn
-        input_["version"] = version
+        input_: capo_clouddirectory.types.publish_schema_request.PublishSchemaRequest = {
+            "development_schema_arn": development_schema_arn,
+            "version": version,
+        }
         if minor_version is not None:
             input_["minor_version"] = minor_version
         if name is not None:
@@ -3733,6 +4341,7 @@ class CloudDirectoryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_schema_from_json(
@@ -3775,15 +4384,17 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.put_schema_from_json_request.PutSchemaFromJsonRequest = {}  # type: ignore[typeddict-item]
-        input_["schema_arn"] = schema_arn
-        input_["document"] = document
+        input_: capo_clouddirectory.types.put_schema_from_json_request.PutSchemaFromJsonRequest = {
+            "schema_arn": schema_arn,
+            "document": document,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def remove_facet_from_object(
@@ -3829,16 +4440,18 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.remove_facet_from_object_request.RemoveFacetFromObjectRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_arn"] = directory_arn
-        input_["schema_facet"] = schema_facet
-        input_["object_reference"] = object_reference
+        input_: capo_clouddirectory.types.remove_facet_from_object_request.RemoveFacetFromObjectRequest = {
+            "directory_arn": directory_arn,
+            "schema_facet": schema_facet,
+            "object_reference": object_reference,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -3881,15 +4494,17 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_clouddirectory.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -3932,15 +4547,17 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_clouddirectory.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_facet(
@@ -3994,9 +4611,10 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.update_facet_request.UpdateFacetRequest = {}  # type: ignore[typeddict-item]
-        input_["schema_arn"] = schema_arn
-        input_["name"] = name
+        input_: capo_clouddirectory.types.update_facet_request.UpdateFacetRequest = {
+            "schema_arn": schema_arn,
+            "name": name,
+        }
         if attribute_updates is not None:
             input_["attribute_updates"] = attribute_updates
         if object_type is not None:
@@ -4007,6 +4625,7 @@ class CloudDirectoryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_link_attributes(
@@ -4052,16 +4671,18 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.update_link_attributes_request.UpdateLinkAttributesRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_arn"] = directory_arn
-        input_["typed_link_specifier"] = typed_link_specifier
-        input_["attribute_updates"] = attribute_updates
+        input_: capo_clouddirectory.types.update_link_attributes_request.UpdateLinkAttributesRequest = {
+            "directory_arn": directory_arn,
+            "typed_link_specifier": typed_link_specifier,
+            "attribute_updates": attribute_updates,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_object_attributes(
@@ -4108,16 +4729,18 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.update_object_attributes_request.UpdateObjectAttributesRequest = {}  # type: ignore[typeddict-item]
-        input_["directory_arn"] = directory_arn
-        input_["object_reference"] = object_reference
-        input_["attribute_updates"] = attribute_updates
+        input_: capo_clouddirectory.types.update_object_attributes_request.UpdateObjectAttributesRequest = {
+            "directory_arn": directory_arn,
+            "object_reference": object_reference,
+            "attribute_updates": attribute_updates,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_schema(
@@ -4159,15 +4782,17 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.update_schema_request.UpdateSchemaRequest = {}  # type: ignore[typeddict-item]
-        input_["schema_arn"] = schema_arn
-        input_["name"] = name
+        input_: capo_clouddirectory.types.update_schema_request.UpdateSchemaRequest = {
+            "schema_arn": schema_arn,
+            "name": name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_typed_link_facet(
@@ -4217,17 +4842,19 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.update_typed_link_facet_request.UpdateTypedLinkFacetRequest = {}  # type: ignore[typeddict-item]
-        input_["schema_arn"] = schema_arn
-        input_["name"] = name
-        input_["attribute_updates"] = attribute_updates
-        input_["identity_attribute_order"] = identity_attribute_order
+        input_: capo_clouddirectory.types.update_typed_link_facet_request.UpdateTypedLinkFacetRequest = {
+            "schema_arn": schema_arn,
+            "name": name,
+            "attribute_updates": attribute_updates,
+            "identity_attribute_order": identity_attribute_order,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def upgrade_applied_schema(
@@ -4273,9 +4900,10 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.upgrade_applied_schema_request.UpgradeAppliedSchemaRequest = {}  # type: ignore[typeddict-item]
-        input_["published_schema_arn"] = published_schema_arn
-        input_["directory_arn"] = directory_arn
+        input_: capo_clouddirectory.types.upgrade_applied_schema_request.UpgradeAppliedSchemaRequest = {
+            "published_schema_arn": published_schema_arn,
+            "directory_arn": directory_arn,
+        }
         if dry_run is not None:
             input_["dry_run"] = dry_run
 
@@ -4284,6 +4912,7 @@ class CloudDirectoryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def upgrade_published_schema(
@@ -4331,10 +4960,11 @@ class CloudDirectoryClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_clouddirectory.types.upgrade_published_schema_request.UpgradePublishedSchemaRequest = {}  # type: ignore[typeddict-item]
-        input_["development_schema_arn"] = development_schema_arn
-        input_["published_schema_arn"] = published_schema_arn
-        input_["minor_version"] = minor_version
+        input_: capo_clouddirectory.types.upgrade_published_schema_request.UpgradePublishedSchemaRequest = {
+            "development_schema_arn": development_schema_arn,
+            "published_schema_arn": published_schema_arn,
+            "minor_version": minor_version,
+        }
         if dry_run is not None:
             input_["dry_run"] = dry_run
 
@@ -4343,6 +4973,7 @@ class CloudDirectoryClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

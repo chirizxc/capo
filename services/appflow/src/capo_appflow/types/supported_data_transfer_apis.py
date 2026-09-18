@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SupportedDataTransferApis:
 
     out: SupportedDataTransferApis = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_appflow.types.data_transfer_api.deserialize_json(item))
     return out

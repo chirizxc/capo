@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> PermissionsList:
 
     out: PermissionsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_cloud9.types.permissions.deserialize_aws_json_1_1(item))
     return out

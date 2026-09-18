@@ -31,14 +31,14 @@ def serialize_json(value: InstanceConfig) -> dict:
 
 def deserialize_json(data: dict) -> InstanceConfig:
     out: InstanceConfig = {}  # type: ignore[typeddict-item]
-    if "instanceType" in data:
+    if data.get("instanceType") is not None:
         out["instance_type"] = data["instanceType"]
     else:
         raise DeserializationError("InstanceConfig.instance_type required")
-    if "volumeSizeInGb" in data:
+    if data.get("volumeSizeInGb") is not None:
         out["volume_size_in_gb"] = data["volumeSizeInGb"]
     else:
         raise DeserializationError("InstanceConfig.volume_size_in_gb required")
-    if "instanceCount" in data:
+    if data.get("instanceCount") is not None:
         out["instance_count"] = data["instanceCount"]
     return out

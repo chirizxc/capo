@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: StepMonitoringConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StepMonitoringConfiguration:
     out: StepMonitoringConfiguration = {}  # type: ignore[typeddict-item]
-    if "S3MonitoringConfiguration" in data:
+    if data.get("S3MonitoringConfiguration") is not None:
         import capo_emr.types.s3_monitoring_configuration
 
         out["s3_monitoring_configuration"] = (

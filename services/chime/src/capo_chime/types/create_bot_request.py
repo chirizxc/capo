@@ -31,10 +31,10 @@ def serialize_json(value: CreateBotRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateBotRequest:
     out: CreateBotRequest = {}  # type: ignore[typeddict-item]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
     else:
         raise DeserializationError("CreateBotRequest.display_name required")
-    if "Domain" in data:
+    if data.get("Domain") is not None:
         out["domain"] = data["Domain"]
     return out

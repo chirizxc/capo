@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> GeospatialMapLayerList:
 
     out: GeospatialMapLayerList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.geospatial_layer_item.deserialize_json(item))
     return out

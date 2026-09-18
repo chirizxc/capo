@@ -34,15 +34,15 @@ def serialize_aws_json_1_1(value: VerifyUserAttributeRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> VerifyUserAttributeRequest:
     out: VerifyUserAttributeRequest = {}  # type: ignore[typeddict-item]
-    if "AccessToken" in data:
+    if data.get("AccessToken") is not None:
         out["access_token"] = data["AccessToken"]
     else:
         raise DeserializationError("VerifyUserAttributeRequest.access_token required")
-    if "AttributeName" in data:
+    if data.get("AttributeName") is not None:
         out["attribute_name"] = data["AttributeName"]
     else:
         raise DeserializationError("VerifyUserAttributeRequest.attribute_name required")
-    if "Code" in data:
+    if data.get("Code") is not None:
         out["code"] = data["Code"]
     else:
         raise DeserializationError("VerifyUserAttributeRequest.code required")

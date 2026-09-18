@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: GetKeyspaceRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetKeyspaceRequest:
     out: GetKeyspaceRequest = {}  # type: ignore[typeddict-item]
-    if "keyspaceName" in data:
+    if data.get("keyspaceName") is not None:
         out["keyspace_name"] = data["keyspaceName"]
     else:
         raise DeserializationError("GetKeyspaceRequest.keyspace_name required")

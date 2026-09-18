@@ -51,21 +51,21 @@ def serialize_json(value: ListAppVersionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListAppVersionsRequest:
     out: ListAppVersionsRequest = {}  # type: ignore[typeddict-item]
-    if "appArn" in data:
+    if data.get("appArn") is not None:
         out["app_arn"] = data["appArn"]
     else:
         raise DeserializationError("ListAppVersionsRequest.app_arn required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_resiliencehub.types.time_stamp
 
         out["start_time"] = capo_resiliencehub.types.time_stamp.deserialize_json(
             data["startTime"]
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_resiliencehub.types.time_stamp
 
         out["end_time"] = capo_resiliencehub.types.time_stamp.deserialize_json(

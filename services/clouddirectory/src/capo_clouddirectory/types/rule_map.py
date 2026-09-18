@@ -24,6 +24,8 @@ def serialize_json(input_to_serialize: RuleMap) -> dict:
 def deserialize_json(data: dict) -> RuleMap:
     out: RuleMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_clouddirectory.types.rule
 
         out[key] = capo_clouddirectory.types.rule.deserialize_json(value)

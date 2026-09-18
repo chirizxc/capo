@@ -38,14 +38,14 @@ def serialize_json(value: TransitGatewayRouteTableAttachment) -> dict:
 
 def deserialize_json(data: dict) -> TransitGatewayRouteTableAttachment:
     out: TransitGatewayRouteTableAttachment = {}  # type: ignore[typeddict-item]
-    if "Attachment" in data:
+    if data.get("Attachment") is not None:
         import capo_networkmanager.types.attachment
 
         out["attachment"] = capo_networkmanager.types.attachment.deserialize_json(
             data["Attachment"]
         )
-    if "PeeringId" in data:
+    if data.get("PeeringId") is not None:
         out["peering_id"] = data["PeeringId"]
-    if "TransitGatewayRouteTableArn" in data:
+    if data.get("TransitGatewayRouteTableArn") is not None:
         out["transit_gateway_route_table_arn"] = data["TransitGatewayRouteTableArn"]
     return out

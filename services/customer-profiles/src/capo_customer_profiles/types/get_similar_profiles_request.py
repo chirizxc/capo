@@ -44,7 +44,7 @@ def serialize_json(value: GetSimilarProfilesRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetSimilarProfilesRequest:
     out: GetSimilarProfilesRequest = {}  # type: ignore[typeddict-item]
-    if "MatchType" in data:
+    if data.get("MatchType") is not None:
         import capo_customer_profiles.types.match_type
 
         out["match_type"] = capo_customer_profiles.types.match_type.deserialize_json(
@@ -52,11 +52,11 @@ def deserialize_json(data: dict) -> GetSimilarProfilesRequest:
         )
     else:
         raise DeserializationError("GetSimilarProfilesRequest.match_type required")
-    if "SearchKey" in data:
+    if data.get("SearchKey") is not None:
         out["search_key"] = data["SearchKey"]
     else:
         raise DeserializationError("GetSimilarProfilesRequest.search_key required")
-    if "SearchValue" in data:
+    if data.get("SearchValue") is not None:
         out["search_value"] = data["SearchValue"]
     else:
         raise DeserializationError("GetSimilarProfilesRequest.search_value required")

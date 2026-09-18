@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> InfrastructureAndCodeRecommendationsList:
 
     out: InfrastructureAndCodeRecommendationsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_resiliencehubv2.types.infrastructure_and_code_recommendation.deserialize_json(
                 item

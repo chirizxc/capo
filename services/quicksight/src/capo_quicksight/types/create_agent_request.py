@@ -107,7 +107,7 @@ def serialize_json(value: CreateAgentRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateAgentRequest:
     out: CreateAgentRequest = {}  # type: ignore[typeddict-item]
-    if "Spaces" in data:
+    if data.get("Spaces") is not None:
         import capo_quicksight.types.create_agent_request_spaces_list
 
         out["spaces"] = (
@@ -115,7 +115,7 @@ def deserialize_json(data: dict) -> CreateAgentRequest:
                 data["Spaces"]
             )
         )
-    if "ActionConnectors" in data:
+    if data.get("ActionConnectors") is not None:
         import capo_quicksight.types.create_agent_request_action_connectors_list
 
         out["action_connectors"] = (
@@ -123,19 +123,19 @@ def deserialize_json(data: dict) -> CreateAgentRequest:
                 data["ActionConnectors"]
             )
         )
-    if "AgentId" in data:
+    if data.get("AgentId") is not None:
         out["agent_id"] = data["AgentId"]
     else:
         raise DeserializationError("CreateAgentRequest.agent_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateAgentRequest.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "IconId" in data:
+    if data.get("IconId") is not None:
         out["icon_id"] = data["IconId"]
-    if "StarterPrompts" in data:
+    if data.get("StarterPrompts") is not None:
         import capo_quicksight.types.starter_prompt_list
 
         out["starter_prompts"] = (
@@ -143,15 +143,15 @@ def deserialize_json(data: dict) -> CreateAgentRequest:
                 data["StarterPrompts"]
             )
         )
-    if "WelcomeMessage" in data:
+    if data.get("WelcomeMessage") is not None:
         out["welcome_message"] = data["WelcomeMessage"]
-    if "AgentLifecycle" in data:
+    if data.get("AgentLifecycle") is not None:
         import capo_quicksight.types.agent_lifecycle
 
         out["agent_lifecycle"] = capo_quicksight.types.agent_lifecycle.deserialize_json(
             data["AgentLifecycle"]
         )
-    if "CustomPromptInput" in data:
+    if data.get("CustomPromptInput") is not None:
         import capo_quicksight.types.custom_prompt_input
 
         out["custom_prompt_input"] = (

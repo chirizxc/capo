@@ -116,9 +116,9 @@ def serialize_json(value: CreateCaseRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateCaseRequest:
     out: CreateCaseRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "resolverType" in data:
+    if data.get("resolverType") is not None:
         import capo_security_ir.types.resolver_type
 
         out["resolver_type"] = capo_security_ir.types.resolver_type.deserialize_json(
@@ -126,15 +126,15 @@ def deserialize_json(data: dict) -> CreateCaseRequest:
         )
     else:
         raise DeserializationError("CreateCaseRequest.resolver_type required")
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
     else:
         raise DeserializationError("CreateCaseRequest.title required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     else:
         raise DeserializationError("CreateCaseRequest.description required")
-    if "engagementType" in data:
+    if data.get("engagementType") is not None:
         import capo_security_ir.types.engagement_type
 
         out["engagement_type"] = (
@@ -144,7 +144,7 @@ def deserialize_json(data: dict) -> CreateCaseRequest:
         )
     else:
         raise DeserializationError("CreateCaseRequest.engagement_type required")
-    if "reportedIncidentStartDate" in data:
+    if data.get("reportedIncidentStartDate") is not None:
         import capo_security_ir.types._prelude.timestamp
 
         out["reported_incident_start_date"] = (
@@ -156,7 +156,7 @@ def deserialize_json(data: dict) -> CreateCaseRequest:
         raise DeserializationError(
             "CreateCaseRequest.reported_incident_start_date required"
         )
-    if "impactedAccounts" in data:
+    if data.get("impactedAccounts") is not None:
         import capo_security_ir.types.impacted_accounts
 
         out["impacted_accounts"] = (
@@ -166,7 +166,7 @@ def deserialize_json(data: dict) -> CreateCaseRequest:
         )
     else:
         raise DeserializationError("CreateCaseRequest.impacted_accounts required")
-    if "watchers" in data:
+    if data.get("watchers") is not None:
         import capo_security_ir.types.watchers
 
         out["watchers"] = capo_security_ir.types.watchers.deserialize_json(
@@ -174,7 +174,7 @@ def deserialize_json(data: dict) -> CreateCaseRequest:
         )
     else:
         raise DeserializationError("CreateCaseRequest.watchers required")
-    if "threatActorIpAddresses" in data:
+    if data.get("threatActorIpAddresses") is not None:
         import capo_security_ir.types.threat_actor_ip_list
 
         out["threat_actor_ip_addresses"] = (
@@ -184,7 +184,7 @@ def deserialize_json(data: dict) -> CreateCaseRequest:
         )
     else:
         out["threat_actor_ip_addresses"] = []
-    if "impactedServices" in data:
+    if data.get("impactedServices") is not None:
         import capo_security_ir.types.impacted_services_list
 
         out["impacted_services"] = (
@@ -194,7 +194,7 @@ def deserialize_json(data: dict) -> CreateCaseRequest:
         )
     else:
         out["impacted_services"] = []
-    if "impactedAwsRegions" in data:
+    if data.get("impactedAwsRegions") is not None:
         import capo_security_ir.types.impacted_aws_region_list
 
         out["impacted_aws_regions"] = (
@@ -204,7 +204,7 @@ def deserialize_json(data: dict) -> CreateCaseRequest:
         )
     else:
         out["impacted_aws_regions"] = []
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_security_ir.types.tag_map
 
         out["tags"] = capo_security_ir.types.tag_map.deserialize_json(data["tags"])

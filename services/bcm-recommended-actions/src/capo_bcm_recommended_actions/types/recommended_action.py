@@ -86,9 +86,9 @@ def serialize_aws_json_1_0(value: RecommendedAction) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RecommendedAction:
     out: RecommendedAction = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_bcm_recommended_actions.types.action_type
 
         out["type"] = (
@@ -96,9 +96,9 @@ def deserialize_aws_json_1_0(data: dict) -> RecommendedAction:
                 data["type"]
             )
         )
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "severity" in data:
+    if data.get("severity") is not None:
         import capo_bcm_recommended_actions.types.severity
 
         out["severity"] = (
@@ -106,7 +106,7 @@ def deserialize_aws_json_1_0(data: dict) -> RecommendedAction:
                 data["severity"]
             )
         )
-    if "feature" in data:
+    if data.get("feature") is not None:
         import capo_bcm_recommended_actions.types.feature
 
         out["feature"] = (
@@ -114,7 +114,7 @@ def deserialize_aws_json_1_0(data: dict) -> RecommendedAction:
                 data["feature"]
             )
         )
-    if "context" in data:
+    if data.get("context") is not None:
         import capo_bcm_recommended_actions.types.context
 
         out["context"] = (
@@ -122,7 +122,7 @@ def deserialize_aws_json_1_0(data: dict) -> RecommendedAction:
                 data["context"]
             )
         )
-    if "nextSteps" in data:
+    if data.get("nextSteps") is not None:
         import capo_bcm_recommended_actions.types.next_steps
 
         out["next_steps"] = (
@@ -130,6 +130,6 @@ def deserialize_aws_json_1_0(data: dict) -> RecommendedAction:
                 data["nextSteps"]
             )
         )
-    if "lastUpdatedTimeStamp" in data:
+    if data.get("lastUpdatedTimeStamp") is not None:
         out["last_updated_time_stamp"] = data["lastUpdatedTimeStamp"]
     return out

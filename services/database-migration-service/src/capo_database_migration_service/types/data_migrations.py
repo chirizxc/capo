@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> DataMigrations:
 
     out: DataMigrations = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_database_migration_service.types.data_migration.deserialize_aws_json_1_1(
                 item

@@ -38,10 +38,10 @@ def serialize_json(value: UpdateRunCacheRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRunCacheRequest:
     out: UpdateRunCacheRequest = {}  # type: ignore[typeddict-item]
-    if "cacheBehavior" in data:
+    if data.get("cacheBehavior") is not None:
         out["cache_behavior"] = data["cacheBehavior"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     return out

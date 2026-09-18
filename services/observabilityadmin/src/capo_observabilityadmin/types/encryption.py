@@ -33,7 +33,7 @@ def serialize_json(value: Encryption) -> dict:
 
 def deserialize_json(data: dict) -> Encryption:
     out: Encryption = {}  # type: ignore[typeddict-item]
-    if "SseAlgorithm" in data:
+    if data.get("SseAlgorithm") is not None:
         import capo_observabilityadmin.types.sse_algorithm
 
         out["sse_algorithm"] = (
@@ -43,6 +43,6 @@ def deserialize_json(data: dict) -> Encryption:
         )
     else:
         raise DeserializationError("Encryption.sse_algorithm required")
-    if "KmsKeyArn" in data:
+    if data.get("KmsKeyArn") is not None:
         out["kms_key_arn"] = data["KmsKeyArn"]
     return out

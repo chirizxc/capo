@@ -90,7 +90,7 @@ def serialize_json(value: UpdateJobTemplateRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateJobTemplateRequest:
     out: UpdateJobTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "accelerationSettings" in data:
+    if data.get("accelerationSettings") is not None:
         import capo_mediaconvert.types.acceleration_settings
 
         out["acceleration_settings"] = (
@@ -98,11 +98,11 @@ def deserialize_json(data: dict) -> UpdateJobTemplateRequest:
                 data["accelerationSettings"]
             )
         )
-    if "category" in data:
+    if data.get("category") is not None:
         out["category"] = data["category"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "hopDestinations" in data:
+    if data.get("hopDestinations") is not None:
         import capo_mediaconvert.types.__list_of_hop_destination
 
         out["hop_destinations"] = (
@@ -110,11 +110,11 @@ def deserialize_json(data: dict) -> UpdateJobTemplateRequest:
                 data["hopDestinations"]
             )
         )
-    if "priority" in data:
+    if data.get("priority") is not None:
         out["priority"] = data["priority"]
-    if "queue" in data:
+    if data.get("queue") is not None:
         out["queue"] = data["queue"]
-    if "settings" in data:
+    if data.get("settings") is not None:
         import capo_mediaconvert.types.job_template_settings
 
         out["settings"] = (
@@ -122,7 +122,7 @@ def deserialize_json(data: dict) -> UpdateJobTemplateRequest:
                 data["settings"]
             )
         )
-    if "statusUpdateInterval" in data:
+    if data.get("statusUpdateInterval") is not None:
         import capo_mediaconvert.types.status_update_interval
 
         out["status_update_interval"] = (

@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> __listOfAllowedRenditionSize:
 
     out: __listOfAllowedRenditionSize = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mediaconvert.types.allowed_rendition_size.deserialize_json(item)
         )

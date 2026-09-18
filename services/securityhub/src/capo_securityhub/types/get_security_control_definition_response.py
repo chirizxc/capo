@@ -30,7 +30,7 @@ def serialize_json(value: GetSecurityControlDefinitionResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetSecurityControlDefinitionResponse:
     out: GetSecurityControlDefinitionResponse = {}  # type: ignore[typeddict-item]
-    if "SecurityControlDefinition" in data:
+    if data.get("SecurityControlDefinition") is not None:
         import capo_securityhub.types.security_control_definition
 
         out["security_control_definition"] = (

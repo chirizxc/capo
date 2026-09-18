@@ -34,7 +34,7 @@ def serialize_json(value: ConnectorProvisioningConfig) -> dict:
 
 def deserialize_json(data: dict) -> ConnectorProvisioningConfig:
     out: ConnectorProvisioningConfig = {}  # type: ignore[typeddict-item]
-    if "lambda" in data:
+    if data.get("lambda") is not None:
         import capo_appflow.types.lambda_connector_provisioning_config
 
         out["lambda"] = (

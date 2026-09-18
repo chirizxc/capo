@@ -75,17 +75,17 @@ def serialize_aws_json_1_1(value: TransformJobSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TransformJobSummary:
     out: TransformJobSummary = {}  # type: ignore[typeddict-item]
-    if "TransformJobName" in data:
+    if data.get("TransformJobName") is not None:
         out["transform_job_name"] = data["TransformJobName"]
-    if "TransformJobArn" in data:
+    if data.get("TransformJobArn") is not None:
         out["transform_job_arn"] = data["TransformJobArn"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "TransformEndTime" in data:
+    if data.get("TransformEndTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["transform_end_time"] = (
@@ -93,7 +93,7 @@ def deserialize_aws_json_1_1(data: dict) -> TransformJobSummary:
                 data["TransformEndTime"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (
@@ -101,7 +101,7 @@ def deserialize_aws_json_1_1(data: dict) -> TransformJobSummary:
                 data["LastModifiedTime"]
             )
         )
-    if "TransformJobStatus" in data:
+    if data.get("TransformJobStatus") is not None:
         import capo_sagemaker.types.transform_job_status
 
         out["transform_job_status"] = (
@@ -109,6 +109,6 @@ def deserialize_aws_json_1_1(data: dict) -> TransformJobSummary:
                 data["TransformJobStatus"]
             )
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
     return out

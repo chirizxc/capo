@@ -46,13 +46,13 @@ def serialize_aws_json_1_1(value: UpdateStreamModeInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateStreamModeInput:
     out: UpdateStreamModeInput = {}  # type: ignore[typeddict-item]
-    if "StreamARN" in data:
+    if data.get("StreamARN") is not None:
         out["stream_arn"] = data["StreamARN"]
     else:
         raise DeserializationError("UpdateStreamModeInput.stream_arn required")
-    if "StreamId" in data:
+    if data.get("StreamId") is not None:
         out["stream_id"] = data["StreamId"]
-    if "StreamModeDetails" in data:
+    if data.get("StreamModeDetails") is not None:
         import capo_kinesis.types.stream_mode_details
 
         out["stream_mode_details"] = (
@@ -62,6 +62,6 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateStreamModeInput:
         )
     else:
         raise DeserializationError("UpdateStreamModeInput.stream_mode_details required")
-    if "WarmThroughputMiBps" in data:
+    if data.get("WarmThroughputMiBps") is not None:
         out["warm_throughput_mi_bps"] = data["WarmThroughputMiBps"]
     return out

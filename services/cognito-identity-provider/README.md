@@ -13,9 +13,9 @@ from capo_cognito_identity_provider import AsyncCognitoIdentityProviderClient
 
 
 async def main():
-    async with AsyncCognitoIdentityProviderClient() as s3:
+    async with AsyncCognitoIdentityProviderClient() as cognito_identity_provider:
         # Example: call the add_custom_attributes operation
-        response = await s3.add_custom_attributes()
+        response = await cognito_identity_provider.add_custom_attributes()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_cognito_identity_provider import AsyncCognitoIdentityProviderClient
 
 
 async def main():
-    async with AsyncCognitoIdentityProviderClient() as s3:
+    async with AsyncCognitoIdentityProviderClient() as cognito_identity_provider:
         # Example: paginate over admin_list_groups_for_user
-        async for item in s3.iter_admin_list_groups_for_user():
+        async for item in cognito_identity_provider.iter_admin_list_groups_for_user():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_cognito_identity_provider.error import InternalErrorException
 
 
 async def main():
-    async with AsyncCognitoIdentityProviderClient() as s3:
+    async with AsyncCognitoIdentityProviderClient() as cognito_identity_provider:
         try:
-            await s3.add_custom_attributes()
+            await cognito_identity_provider.add_custom_attributes()
         except InternalErrorException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_cognito_identity_provider import AsyncCognitoIdentityProviderClient
 
 
 async def main():
-    async with AsyncCognitoIdentityProviderClient() as s3:
+    async with AsyncCognitoIdentityProviderClient() as cognito_identity_provider:
         # Default: 3 attempts for every operation
-        response = await s3.add_custom_attributes()
+        response = await cognito_identity_provider.add_custom_attributes()
 
         # Override per operation
-        response = await s3.add_custom_attributes(config_overrides={"retry_max_attempts": 5})
+        response = await cognito_identity_provider.add_custom_attributes(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.add_custom_attributes(config_overrides={"retry_max_attempts": 1})
+        response = await cognito_identity_provider.add_custom_attributes(config_overrides={"retry_max_attempts": 1})
 ```

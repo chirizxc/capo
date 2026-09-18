@@ -38,9 +38,9 @@ def serialize_aws_json_1_1(value: ModelQuantizationConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModelQuantizationConfig:
     out: ModelQuantizationConfig = {}  # type: ignore[typeddict-item]
-    if "Image" in data:
+    if data.get("Image") is not None:
         out["image"] = data["Image"]
-    if "OverrideEnvironment" in data:
+    if data.get("OverrideEnvironment") is not None:
         import capo_sagemaker.types.optimization_job_environment_variables
 
         out["override_environment"] = (

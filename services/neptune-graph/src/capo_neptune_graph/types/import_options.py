@@ -32,7 +32,7 @@ def serialize_json(value: ImportOptions) -> dict:
 
 
 def deserialize_json(data: dict) -> ImportOptions:
-    if "neptune" in data:
+    if data.get("neptune") is not None:
         import capo_neptune_graph.types.neptune_import_options
 
         return {

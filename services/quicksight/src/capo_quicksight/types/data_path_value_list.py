@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DataPathValueList:
 
     out: DataPathValueList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.data_path_value.deserialize_json(item))
     return out

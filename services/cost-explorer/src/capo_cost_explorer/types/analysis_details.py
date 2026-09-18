@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: AnalysisDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AnalysisDetails:
     out: AnalysisDetails = {}  # type: ignore[typeddict-item]
-    if "SavingsPlansPurchaseAnalysisDetails" in data:
+    if data.get("SavingsPlansPurchaseAnalysisDetails") is not None:
         import capo_cost_explorer.types.savings_plans_purchase_analysis_details
 
         out["savings_plans_purchase_analysis_details"] = (

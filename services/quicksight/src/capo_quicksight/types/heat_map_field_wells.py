@@ -31,7 +31,7 @@ def serialize_json(value: HeatMapFieldWells) -> dict:
 
 def deserialize_json(data: dict) -> HeatMapFieldWells:
     out: HeatMapFieldWells = {}  # type: ignore[typeddict-item]
-    if "HeatMapAggregatedFieldWells" in data:
+    if data.get("HeatMapAggregatedFieldWells") is not None:
         import capo_quicksight.types.heat_map_aggregated_field_wells
 
         out["heat_map_aggregated_field_wells"] = (

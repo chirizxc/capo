@@ -42,7 +42,7 @@ def serialize_aws_json_1_1(value: BatchDeleteImageResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchDeleteImageResponse:
     out: BatchDeleteImageResponse = {}  # type: ignore[typeddict-item]
-    if "imageIds" in data:
+    if data.get("imageIds") is not None:
         import capo_ecr_public.types.image_identifier_list
 
         out["image_ids"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchDeleteImageResponse:
                 data["imageIds"]
             )
         )
-    if "failures" in data:
+    if data.get("failures") is not None:
         import capo_ecr_public.types.image_failure_list
 
         out["failures"] = (

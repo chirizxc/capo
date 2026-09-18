@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetPipelineExecutionOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetPipelineExecutionOutput:
     out: GetPipelineExecutionOutput = {}  # type: ignore[typeddict-item]
-    if "pipelineExecution" in data:
+    if data.get("pipelineExecution") is not None:
         import capo_codepipeline.types.pipeline_execution
 
         out["pipeline_execution"] = (

@@ -40,11 +40,11 @@ def serialize_json(value: BatchImportFindingsResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchImportFindingsResponse:
     out: BatchImportFindingsResponse = {}  # type: ignore[typeddict-item]
-    if "FailedCount" in data:
+    if data.get("FailedCount") is not None:
         out["failed_count"] = data["FailedCount"]
-    if "SuccessCount" in data:
+    if data.get("SuccessCount") is not None:
         out["success_count"] = data["SuccessCount"]
-    if "FailedFindings" in data:
+    if data.get("FailedFindings") is not None:
         import capo_securityhub.types.import_findings_error_list
 
         out["failed_findings"] = (

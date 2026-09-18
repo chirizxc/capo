@@ -33,7 +33,7 @@ def serialize_json(value: ListStageSessionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListStageSessionsResponse:
     out: ListStageSessionsResponse = {}  # type: ignore[typeddict-item]
-    if "stageSessions" in data:
+    if data.get("stageSessions") is not None:
         import capo_ivs_realtime.types.stage_session_list
 
         out["stage_sessions"] = (
@@ -43,6 +43,6 @@ def deserialize_json(data: dict) -> ListStageSessionsResponse:
         )
     else:
         raise DeserializationError("ListStageSessionsResponse.stage_sessions required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

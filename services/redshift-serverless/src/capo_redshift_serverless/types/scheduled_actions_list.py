@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> ScheduledActionsList:
 
     out: ScheduledActionsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_redshift_serverless.types.scheduled_action_association.deserialize_aws_json_1_1(
                 item

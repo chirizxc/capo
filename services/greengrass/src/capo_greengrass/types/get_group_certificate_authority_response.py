@@ -35,10 +35,10 @@ def serialize_json(value: GetGroupCertificateAuthorityResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetGroupCertificateAuthorityResponse:
     out: GetGroupCertificateAuthorityResponse = {}  # type: ignore[typeddict-item]
-    if "GroupCertificateAuthorityArn" in data:
+    if data.get("GroupCertificateAuthorityArn") is not None:
         out["group_certificate_authority_arn"] = data["GroupCertificateAuthorityArn"]
-    if "GroupCertificateAuthorityId" in data:
+    if data.get("GroupCertificateAuthorityId") is not None:
         out["group_certificate_authority_id"] = data["GroupCertificateAuthorityId"]
-    if "PemEncodedCertificate" in data:
+    if data.get("PemEncodedCertificate") is not None:
         out["pem_encoded_certificate"] = data["PemEncodedCertificate"]
     return out

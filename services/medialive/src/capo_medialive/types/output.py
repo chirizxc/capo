@@ -64,7 +64,7 @@ def serialize_json(value: Output) -> dict:
 
 def deserialize_json(data: dict) -> Output:
     out: Output = {}  # type: ignore[typeddict-item]
-    if "audioDescriptionNames" in data:
+    if data.get("audioDescriptionNames") is not None:
         import capo_medialive.types.__list_of__string
 
         out["audio_description_names"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> Output:
                 data["audioDescriptionNames"]
             )
         )
-    if "captionDescriptionNames" in data:
+    if data.get("captionDescriptionNames") is not None:
         import capo_medialive.types.__list_of__string
 
         out["caption_description_names"] = (
@@ -80,14 +80,14 @@ def deserialize_json(data: dict) -> Output:
                 data["captionDescriptionNames"]
             )
         )
-    if "outputName" in data:
+    if data.get("outputName") is not None:
         out["output_name"] = data["outputName"]
-    if "outputSettings" in data:
+    if data.get("outputSettings") is not None:
         import capo_medialive.types.output_settings
 
         out["output_settings"] = capo_medialive.types.output_settings.deserialize_json(
             data["outputSettings"]
         )
-    if "videoDescriptionName" in data:
+    if data.get("videoDescriptionName") is not None:
         out["video_description_name"] = data["videoDescriptionName"]
     return out

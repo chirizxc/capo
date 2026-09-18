@@ -51,28 +51,28 @@ def serialize_json(value: QPluginCardInput) -> dict:
 
 def deserialize_json(data: dict) -> QPluginCardInput:
     out: QPluginCardInput = {}  # type: ignore[typeddict-item]
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
     else:
         raise DeserializationError("QPluginCardInput.title required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("QPluginCardInput.id required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_qapps.types.card_type
 
         out["type"] = capo_qapps.types.card_type.deserialize_json(data["type"])
     else:
         out["type"] = "q-plugin"
-    if "prompt" in data:
+    if data.get("prompt") is not None:
         out["prompt"] = data["prompt"]
     else:
         raise DeserializationError("QPluginCardInput.prompt required")
-    if "pluginId" in data:
+    if data.get("pluginId") is not None:
         out["plugin_id"] = data["pluginId"]
     else:
         raise DeserializationError("QPluginCardInput.plugin_id required")
-    if "actionIdentifier" in data:
+    if data.get("actionIdentifier") is not None:
         out["action_identifier"] = data["actionIdentifier"]
     return out

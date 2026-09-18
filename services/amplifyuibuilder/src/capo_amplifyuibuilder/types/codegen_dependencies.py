@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> CodegenDependencies:
 
     out: CodegenDependencies = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_amplifyuibuilder.types.codegen_dependency.deserialize_json(item)
         )

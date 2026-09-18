@@ -25,11 +25,11 @@ def serialize_json(value: RecordLength) -> dict:
 
 def deserialize_json(data: dict) -> RecordLength:
     out: RecordLength = {}  # type: ignore[typeddict-item]
-    if "min" in data:
+    if data.get("min") is not None:
         out["min"] = data["min"]
     else:
         out["min"] = 0
-    if "max" in data:
+    if data.get("max") is not None:
         out["max"] = data["max"]
     else:
         out["max"] = 0

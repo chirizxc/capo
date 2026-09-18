@@ -76,34 +76,34 @@ def serialize_aws_json_1_0(value: AutonomousVirtualMachineSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AutonomousVirtualMachineSummary:
     out: AutonomousVirtualMachineSummary = {}  # type: ignore[typeddict-item]
-    if "autonomousVirtualMachineId" in data:
+    if data.get("autonomousVirtualMachineId") is not None:
         out["autonomous_virtual_machine_id"] = data["autonomousVirtualMachineId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_odb.types.resource_status
 
         out["status"] = capo_odb.types.resource_status.deserialize_aws_json_1_0(
             data["status"]
         )
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "vmName" in data:
+    if data.get("vmName") is not None:
         out["vm_name"] = data["vmName"]
-    if "dbServerId" in data:
+    if data.get("dbServerId") is not None:
         out["db_server_id"] = data["dbServerId"]
-    if "dbServerDisplayName" in data:
+    if data.get("dbServerDisplayName") is not None:
         out["db_server_display_name"] = data["dbServerDisplayName"]
-    if "cpuCoreCount" in data:
+    if data.get("cpuCoreCount") is not None:
         out["cpu_core_count"] = data["cpuCoreCount"]
-    if "memorySizeInGBs" in data:
+    if data.get("memorySizeInGBs") is not None:
         out["memory_size_in_g_bs"] = data["memorySizeInGBs"]
-    if "dbNodeStorageSizeInGBs" in data:
+    if data.get("dbNodeStorageSizeInGBs") is not None:
         out["db_node_storage_size_in_g_bs"] = data["dbNodeStorageSizeInGBs"]
-    if "clientIpAddress" in data:
+    if data.get("clientIpAddress") is not None:
         out["client_ip_address"] = data["clientIpAddress"]
-    if "cloudAutonomousVmClusterId" in data:
+    if data.get("cloudAutonomousVmClusterId") is not None:
         out["cloud_autonomous_vm_cluster_id"] = data["cloudAutonomousVmClusterId"]
-    if "ocid" in data:
+    if data.get("ocid") is not None:
         out["ocid"] = data["ocid"]
-    if "ociResourceAnchorName" in data:
+    if data.get("ociResourceAnchorName") is not None:
         out["oci_resource_anchor_name"] = data["ociResourceAnchorName"]
     return out

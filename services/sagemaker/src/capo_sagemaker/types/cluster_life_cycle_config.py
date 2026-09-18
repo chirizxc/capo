@@ -36,10 +36,10 @@ def serialize_aws_json_1_1(value: ClusterLifeCycleConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClusterLifeCycleConfig:
     out: ClusterLifeCycleConfig = {}  # type: ignore[typeddict-item]
-    if "SourceS3Uri" in data:
+    if data.get("SourceS3Uri") is not None:
         out["source_s3_uri"] = data["SourceS3Uri"]
-    if "OnCreate" in data:
+    if data.get("OnCreate") is not None:
         out["on_create"] = data["OnCreate"]
-    if "OnInitComplete" in data:
+    if data.get("OnInitComplete") is not None:
         out["on_init_complete"] = data["OnInitComplete"]
     return out

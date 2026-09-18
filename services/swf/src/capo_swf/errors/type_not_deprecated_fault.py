@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: TypeNotDeprecatedFault_) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TypeNotDeprecatedFault_:
     out: TypeNotDeprecatedFault_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,18 @@ class TypeNotDeprecatedFault(ServiceError):
 
     code: str | None = "TypeNotDeprecatedFault"
 
-    def __init__(self, data: TypeNotDeprecatedFault_):
+    def __init__(self, data: TypeNotDeprecatedFault_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="TypeNotDeprecatedFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_0(cls, data: dict) -> "TypeNotDeprecatedFault":
-        return cls(deserialize_aws_json_1_0(data))
+    def from_aws_json_1_0(
+        cls, data: dict, message: str | None = None
+    ) -> "TypeNotDeprecatedFault":
+        return cls(deserialize_aws_json_1_0(data), message)

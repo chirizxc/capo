@@ -13,9 +13,9 @@ from capo_application_auto_scaling import AsyncApplicationAutoScalingClient
 
 
 async def main():
-    async with AsyncApplicationAutoScalingClient() as s3:
+    async with AsyncApplicationAutoScalingClient() as application_auto_scaling:
         # Example: call the delete_scaling_policy operation
-        response = await s3.delete_scaling_policy()
+        response = await application_auto_scaling.delete_scaling_policy()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_application_auto_scaling import AsyncApplicationAutoScalingClient
 
 
 async def main():
-    async with AsyncApplicationAutoScalingClient() as s3:
+    async with AsyncApplicationAutoScalingClient() as application_auto_scaling:
         # Example: paginate over describe_scalable_targets
-        async for item in s3.iter_describe_scalable_targets():
+        async for item in application_auto_scaling.iter_describe_scalable_targets():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_application_auto_scaling.error import ConcurrentUpdateException
 
 
 async def main():
-    async with AsyncApplicationAutoScalingClient() as s3:
+    async with AsyncApplicationAutoScalingClient() as application_auto_scaling:
         try:
-            await s3.delete_scaling_policy()
+            await application_auto_scaling.delete_scaling_policy()
         except ConcurrentUpdateException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_application_auto_scaling import AsyncApplicationAutoScalingClient
 
 
 async def main():
-    async with AsyncApplicationAutoScalingClient() as s3:
+    async with AsyncApplicationAutoScalingClient() as application_auto_scaling:
         # Default: 3 attempts for every operation
-        response = await s3.delete_scaling_policy()
+        response = await application_auto_scaling.delete_scaling_policy()
 
         # Override per operation
-        response = await s3.delete_scaling_policy(config_overrides={"retry_max_attempts": 5})
+        response = await application_auto_scaling.delete_scaling_policy(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.delete_scaling_policy(config_overrides={"retry_max_attempts": 1})
+        response = await application_auto_scaling.delete_scaling_policy(config_overrides={"retry_max_attempts": 1})
 ```

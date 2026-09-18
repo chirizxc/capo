@@ -22,6 +22,6 @@ def serialize_json(value: EventTrigger) -> dict:
 
 def deserialize_json(data: dict) -> EventTrigger:
     out: EventTrigger = {}  # type: ignore[typeddict-item]
-    if "customerProfilesDomainArn" in data:
+    if data.get("customerProfilesDomainArn") is not None:
         out["customer_profiles_domain_arn"] = data["customerProfilesDomainArn"]
     return out

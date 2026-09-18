@@ -23,6 +23,6 @@ def serialize_json(value: ExportLensOutput) -> dict:
 
 def deserialize_json(data: dict) -> ExportLensOutput:
     out: ExportLensOutput = {}  # type: ignore[typeddict-item]
-    if "LensJSON" in data:
+    if data.get("LensJSON") is not None:
         out["lens_json"] = data["LensJSON"]
     return out

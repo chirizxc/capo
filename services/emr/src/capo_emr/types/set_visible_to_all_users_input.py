@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: SetVisibleToAllUsersInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SetVisibleToAllUsersInput:
     out: SetVisibleToAllUsersInput = {}  # type: ignore[typeddict-item]
-    if "JobFlowIds" in data:
+    if data.get("JobFlowIds") is not None:
         import capo_emr.types.xml_string_list
 
         out["job_flow_ids"] = capo_emr.types.xml_string_list.deserialize_aws_json_1_1(
             data["JobFlowIds"]
         )
-    if "VisibleToAllUsers" in data:
+    if data.get("VisibleToAllUsers") is not None:
         out["visible_to_all_users"] = data["VisibleToAllUsers"]
     return out

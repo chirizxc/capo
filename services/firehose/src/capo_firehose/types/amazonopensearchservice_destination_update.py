@@ -139,17 +139,17 @@ def serialize_aws_json_1_1(value: AmazonopensearchserviceDestinationUpdate) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> AmazonopensearchserviceDestinationUpdate:
     out: AmazonopensearchserviceDestinationUpdate = {}  # type: ignore[typeddict-item]
-    if "RoleARN" in data:
+    if data.get("RoleARN") is not None:
         out["role_arn"] = data["RoleARN"]
-    if "DomainARN" in data:
+    if data.get("DomainARN") is not None:
         out["domain_arn"] = data["DomainARN"]
-    if "ClusterEndpoint" in data:
+    if data.get("ClusterEndpoint") is not None:
         out["cluster_endpoint"] = data["ClusterEndpoint"]
-    if "IndexName" in data:
+    if data.get("IndexName") is not None:
         out["index_name"] = data["IndexName"]
-    if "TypeName" in data:
+    if data.get("TypeName") is not None:
         out["type_name"] = data["TypeName"]
-    if "IndexRotationPeriod" in data:
+    if data.get("IndexRotationPeriod") is not None:
         import capo_firehose.types.amazonopensearchservice_index_rotation_period
 
         out["index_rotation_period"] = (
@@ -157,7 +157,7 @@ def deserialize_aws_json_1_1(data: dict) -> AmazonopensearchserviceDestinationUp
                 data["IndexRotationPeriod"]
             )
         )
-    if "BufferingHints" in data:
+    if data.get("BufferingHints") is not None:
         import capo_firehose.types.amazonopensearchservice_buffering_hints
 
         out["buffering_hints"] = (
@@ -165,7 +165,7 @@ def deserialize_aws_json_1_1(data: dict) -> AmazonopensearchserviceDestinationUp
                 data["BufferingHints"]
             )
         )
-    if "RetryOptions" in data:
+    if data.get("RetryOptions") is not None:
         import capo_firehose.types.amazonopensearchservice_retry_options
 
         out["retry_options"] = (
@@ -173,7 +173,7 @@ def deserialize_aws_json_1_1(data: dict) -> AmazonopensearchserviceDestinationUp
                 data["RetryOptions"]
             )
         )
-    if "S3Update" in data:
+    if data.get("S3Update") is not None:
         import capo_firehose.types.s3_destination_update
 
         out["s3_update"] = (
@@ -181,7 +181,7 @@ def deserialize_aws_json_1_1(data: dict) -> AmazonopensearchserviceDestinationUp
                 data["S3Update"]
             )
         )
-    if "ProcessingConfiguration" in data:
+    if data.get("ProcessingConfiguration") is not None:
         import capo_firehose.types.processing_configuration
 
         out["processing_configuration"] = (
@@ -189,7 +189,7 @@ def deserialize_aws_json_1_1(data: dict) -> AmazonopensearchserviceDestinationUp
                 data["ProcessingConfiguration"]
             )
         )
-    if "CloudWatchLoggingOptions" in data:
+    if data.get("CloudWatchLoggingOptions") is not None:
         import capo_firehose.types.cloud_watch_logging_options
 
         out["cloud_watch_logging_options"] = (
@@ -197,7 +197,7 @@ def deserialize_aws_json_1_1(data: dict) -> AmazonopensearchserviceDestinationUp
                 data["CloudWatchLoggingOptions"]
             )
         )
-    if "DocumentIdOptions" in data:
+    if data.get("DocumentIdOptions") is not None:
         import capo_firehose.types.document_id_options
 
         out["document_id_options"] = (

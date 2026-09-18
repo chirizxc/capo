@@ -45,16 +45,16 @@ def serialize_json(value: RuleGroupSourceStatefulRulesHeaderDetails) -> dict:
 
 def deserialize_json(data: dict) -> RuleGroupSourceStatefulRulesHeaderDetails:
     out: RuleGroupSourceStatefulRulesHeaderDetails = {}  # type: ignore[typeddict-item]
-    if "Destination" in data:
+    if data.get("Destination") is not None:
         out["destination"] = data["Destination"]
-    if "DestinationPort" in data:
+    if data.get("DestinationPort") is not None:
         out["destination_port"] = data["DestinationPort"]
-    if "Direction" in data:
+    if data.get("Direction") is not None:
         out["direction"] = data["Direction"]
-    if "Protocol" in data:
+    if data.get("Protocol") is not None:
         out["protocol"] = data["Protocol"]
-    if "Source" in data:
+    if data.get("Source") is not None:
         out["source"] = data["Source"]
-    if "SourcePort" in data:
+    if data.get("SourcePort") is not None:
         out["source_port"] = data["SourcePort"]
     return out

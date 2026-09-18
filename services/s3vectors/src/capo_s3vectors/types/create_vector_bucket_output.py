@@ -25,6 +25,6 @@ def serialize_json(value: CreateVectorBucketOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateVectorBucketOutput:
     out: CreateVectorBucketOutput = {}  # type: ignore[typeddict-item]
-    if "vectorBucketArn" in data:
+    if data.get("vectorBucketArn") is not None:
         out["vector_bucket_arn"] = data["vectorBucketArn"]
     return out

@@ -55,19 +55,19 @@ def serialize_aws_json_1_0(value: RegistrationVersionInformation) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RegistrationVersionInformation:
     out: RegistrationVersionInformation = {}  # type: ignore[typeddict-item]
-    if "VersionNumber" in data:
+    if data.get("VersionNumber") is not None:
         out["version_number"] = data["VersionNumber"]
     else:
         raise DeserializationError(
             "RegistrationVersionInformation.version_number required"
         )
-    if "RegistrationVersionStatus" in data:
+    if data.get("RegistrationVersionStatus") is not None:
         out["registration_version_status"] = data["RegistrationVersionStatus"]
     else:
         raise DeserializationError(
             "RegistrationVersionInformation.registration_version_status required"
         )
-    if "RegistrationVersionStatusHistory" in data:
+    if data.get("RegistrationVersionStatusHistory") is not None:
         import capo_pinpoint_sms_voice_v2.types.registration_version_status_history
 
         out["registration_version_status_history"] = (
@@ -79,7 +79,7 @@ def deserialize_aws_json_1_0(data: dict) -> RegistrationVersionInformation:
         raise DeserializationError(
             "RegistrationVersionInformation.registration_version_status_history required"
         )
-    if "DeniedReasons" in data:
+    if data.get("DeniedReasons") is not None:
         import capo_pinpoint_sms_voice_v2.types.registration_denied_reason_information_list
 
         out["denied_reasons"] = (
@@ -87,6 +87,6 @@ def deserialize_aws_json_1_0(data: dict) -> RegistrationVersionInformation:
                 data["DeniedReasons"]
             )
         )
-    if "Feedback" in data:
+    if data.get("Feedback") is not None:
         out["feedback"] = data["Feedback"]
     return out

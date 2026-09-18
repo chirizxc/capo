@@ -52,17 +52,17 @@ def serialize_aws_json_1_1(value: UpdatePartitionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdatePartitionRequest:
     out: UpdatePartitionRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
     else:
         raise DeserializationError("UpdatePartitionRequest.database_name required")
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
     else:
         raise DeserializationError("UpdatePartitionRequest.table_name required")
-    if "PartitionValueList" in data:
+    if data.get("PartitionValueList") is not None:
         import capo_glue.types.bounded_partition_value_list
 
         out["partition_value_list"] = (
@@ -74,7 +74,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdatePartitionRequest:
         raise DeserializationError(
             "UpdatePartitionRequest.partition_value_list required"
         )
-    if "PartitionInput" in data:
+    if data.get("PartitionInput") is not None:
         import capo_glue.types.partition_input
 
         out["partition_input"] = (

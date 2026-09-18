@@ -57,7 +57,7 @@ def serialize_json(value: StartImportRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartImportRequest:
     out: StartImportRequest = {}  # type: ignore[typeddict-item]
-    if "payload" in data:
+    if data.get("payload") is not None:
         import capo_lex_model_building_service.types.blob
 
         out["payload"] = capo_lex_model_building_service.types.blob.deserialize_json(
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> StartImportRequest:
         )
     else:
         raise DeserializationError("StartImportRequest.payload required")
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_lex_model_building_service.types.resource_type
 
         out["resource_type"] = (
@@ -75,7 +75,7 @@ def deserialize_json(data: dict) -> StartImportRequest:
         )
     else:
         raise DeserializationError("StartImportRequest.resource_type required")
-    if "mergeStrategy" in data:
+    if data.get("mergeStrategy") is not None:
         import capo_lex_model_building_service.types.merge_strategy
 
         out["merge_strategy"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> StartImportRequest:
         )
     else:
         raise DeserializationError("StartImportRequest.merge_strategy required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_lex_model_building_service.types.tag_list
 
         out["tags"] = capo_lex_model_building_service.types.tag_list.deserialize_json(

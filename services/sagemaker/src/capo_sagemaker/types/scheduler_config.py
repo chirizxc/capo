@@ -53,7 +53,7 @@ def serialize_aws_json_1_1(value: SchedulerConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SchedulerConfig:
     out: SchedulerConfig = {}  # type: ignore[typeddict-item]
-    if "PriorityClasses" in data:
+    if data.get("PriorityClasses") is not None:
         import capo_sagemaker.types.priority_class_list
 
         out["priority_classes"] = (
@@ -61,13 +61,13 @@ def deserialize_aws_json_1_1(data: dict) -> SchedulerConfig:
                 data["PriorityClasses"]
             )
         )
-    if "FairShare" in data:
+    if data.get("FairShare") is not None:
         import capo_sagemaker.types.fair_share
 
         out["fair_share"] = capo_sagemaker.types.fair_share.deserialize_aws_json_1_1(
             data["FairShare"]
         )
-    if "IdleResourceSharing" in data:
+    if data.get("IdleResourceSharing") is not None:
         import capo_sagemaker.types.idle_resource_sharing
 
         out["idle_resource_sharing"] = (

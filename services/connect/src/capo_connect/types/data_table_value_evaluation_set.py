@@ -39,13 +39,13 @@ def serialize_json(value: DataTableValueEvaluationSet) -> dict:
 
 def deserialize_json(data: dict) -> DataTableValueEvaluationSet:
     out: DataTableValueEvaluationSet = {}  # type: ignore[typeddict-item]
-    if "PrimaryValues" in data:
+    if data.get("PrimaryValues") is not None:
         import capo_connect.types.primary_values_set
 
         out["primary_values"] = capo_connect.types.primary_values_set.deserialize_json(
             data["PrimaryValues"]
         )
-    if "AttributeNames" in data:
+    if data.get("AttributeNames") is not None:
         import capo_connect.types.attribute_name_list
 
         out["attribute_names"] = (

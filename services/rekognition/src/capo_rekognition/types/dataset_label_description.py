@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: DatasetLabelDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DatasetLabelDescription:
     out: DatasetLabelDescription = {}  # type: ignore[typeddict-item]
-    if "LabelName" in data:
+    if data.get("LabelName") is not None:
         out["label_name"] = data["LabelName"]
-    if "LabelStats" in data:
+    if data.get("LabelStats") is not None:
         import capo_rekognition.types.dataset_label_stats
 
         out["label_stats"] = (

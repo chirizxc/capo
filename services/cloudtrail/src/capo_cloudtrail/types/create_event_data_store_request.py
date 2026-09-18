@@ -88,11 +88,11 @@ def serialize_aws_json_1_1(value: CreateEventDataStoreRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateEventDataStoreRequest:
     out: CreateEventDataStoreRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateEventDataStoreRequest.name required")
-    if "AdvancedEventSelectors" in data:
+    if data.get("AdvancedEventSelectors") is not None:
         import capo_cloudtrail.types.advanced_event_selectors
 
         out["advanced_event_selectors"] = (
@@ -100,25 +100,25 @@ def deserialize_aws_json_1_1(data: dict) -> CreateEventDataStoreRequest:
                 data["AdvancedEventSelectors"]
             )
         )
-    if "MultiRegionEnabled" in data:
+    if data.get("MultiRegionEnabled") is not None:
         out["multi_region_enabled"] = data["MultiRegionEnabled"]
-    if "OrganizationEnabled" in data:
+    if data.get("OrganizationEnabled") is not None:
         out["organization_enabled"] = data["OrganizationEnabled"]
-    if "RetentionPeriod" in data:
+    if data.get("RetentionPeriod") is not None:
         out["retention_period"] = data["RetentionPeriod"]
-    if "TerminationProtectionEnabled" in data:
+    if data.get("TerminationProtectionEnabled") is not None:
         out["termination_protection_enabled"] = data["TerminationProtectionEnabled"]
-    if "TagsList" in data:
+    if data.get("TagsList") is not None:
         import capo_cloudtrail.types.tags_list
 
         out["tags_list"] = capo_cloudtrail.types.tags_list.deserialize_aws_json_1_1(
             data["TagsList"]
         )
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "StartIngestion" in data:
+    if data.get("StartIngestion") is not None:
         out["start_ingestion"] = data["StartIngestion"]
-    if "BillingMode" in data:
+    if data.get("BillingMode") is not None:
         import capo_cloudtrail.types.billing_mode
 
         out["billing_mode"] = (

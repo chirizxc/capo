@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: StatementOutputData) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StatementOutputData:
     out: StatementOutputData = {}  # type: ignore[typeddict-item]
-    if "TextPlain" in data:
+    if data.get("TextPlain") is not None:
         out["text_plain"] = data["TextPlain"]
     return out

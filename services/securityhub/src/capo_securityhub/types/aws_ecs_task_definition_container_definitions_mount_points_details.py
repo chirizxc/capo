@@ -40,10 +40,10 @@ def deserialize_json(
     data: dict,
 ) -> AwsEcsTaskDefinitionContainerDefinitionsMountPointsDetails:
     out: AwsEcsTaskDefinitionContainerDefinitionsMountPointsDetails = {}  # type: ignore[typeddict-item]
-    if "ContainerPath" in data:
+    if data.get("ContainerPath") is not None:
         out["container_path"] = data["ContainerPath"]
-    if "ReadOnly" in data:
+    if data.get("ReadOnly") is not None:
         out["read_only"] = data["ReadOnly"]
-    if "SourceVolume" in data:
+    if data.get("SourceVolume") is not None:
         out["source_volume"] = data["SourceVolume"]
     return out

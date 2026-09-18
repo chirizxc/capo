@@ -53,19 +53,19 @@ def serialize_aws_json_1_1(value: ListedWebApp) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListedWebApp:
     out: ListedWebApp = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("ListedWebApp.arn required")
-    if "WebAppId" in data:
+    if data.get("WebAppId") is not None:
         out["web_app_id"] = data["WebAppId"]
     else:
         raise DeserializationError("ListedWebApp.web_app_id required")
-    if "AccessEndpoint" in data:
+    if data.get("AccessEndpoint") is not None:
         out["access_endpoint"] = data["AccessEndpoint"]
-    if "WebAppEndpoint" in data:
+    if data.get("WebAppEndpoint") is not None:
         out["web_app_endpoint"] = data["WebAppEndpoint"]
-    if "EndpointType" in data:
+    if data.get("EndpointType") is not None:
         import capo_transfer.types.web_app_endpoint_type
 
         out["endpoint_type"] = (

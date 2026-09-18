@@ -57,7 +57,7 @@ def serialize_json(value: FormatConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> FormatConfiguration:
     out: FormatConfiguration = {}  # type: ignore[typeddict-item]
-    if "StringFormatConfiguration" in data:
+    if data.get("StringFormatConfiguration") is not None:
         import capo_quicksight.types.string_format_configuration
 
         out["string_format_configuration"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> FormatConfiguration:
                 data["StringFormatConfiguration"]
             )
         )
-    if "NumberFormatConfiguration" in data:
+    if data.get("NumberFormatConfiguration") is not None:
         import capo_quicksight.types.number_format_configuration
 
         out["number_format_configuration"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> FormatConfiguration:
                 data["NumberFormatConfiguration"]
             )
         )
-    if "DateTimeFormatConfiguration" in data:
+    if data.get("DateTimeFormatConfiguration") is not None:
         import capo_quicksight.types.date_time_format_configuration
 
         out["date_time_format_configuration"] = (

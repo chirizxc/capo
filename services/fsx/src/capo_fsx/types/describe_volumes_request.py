@@ -44,20 +44,20 @@ def serialize_aws_json_1_1(value: DescribeVolumesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeVolumesRequest:
     out: DescribeVolumesRequest = {}  # type: ignore[typeddict-item]
-    if "VolumeIds" in data:
+    if data.get("VolumeIds") is not None:
         import capo_fsx.types.volume_ids
 
         out["volume_ids"] = capo_fsx.types.volume_ids.deserialize_aws_json_1_1(
             data["VolumeIds"]
         )
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_fsx.types.volume_filters
 
         out["filters"] = capo_fsx.types.volume_filters.deserialize_aws_json_1_1(
             data["Filters"]
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

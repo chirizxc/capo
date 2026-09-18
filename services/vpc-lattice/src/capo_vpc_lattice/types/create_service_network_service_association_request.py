@@ -42,21 +42,21 @@ def serialize_json(value: CreateServiceNetworkServiceAssociationRequest) -> dict
 
 def deserialize_json(data: dict) -> CreateServiceNetworkServiceAssociationRequest:
     out: CreateServiceNetworkServiceAssociationRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "serviceIdentifier" in data:
+    if data.get("serviceIdentifier") is not None:
         out["service_identifier"] = data["serviceIdentifier"]
     else:
         raise DeserializationError(
             "CreateServiceNetworkServiceAssociationRequest.service_identifier required"
         )
-    if "serviceNetworkIdentifier" in data:
+    if data.get("serviceNetworkIdentifier") is not None:
         out["service_network_identifier"] = data["serviceNetworkIdentifier"]
     else:
         raise DeserializationError(
             "CreateServiceNetworkServiceAssociationRequest.service_network_identifier required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_vpc_lattice.types.tag_map
 
         out["tags"] = capo_vpc_lattice.types.tag_map.deserialize_json(data["tags"])

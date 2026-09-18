@@ -99,15 +99,15 @@ def serialize_json(value: StartJobRunRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartJobRunRequest:
     out: StartJobRunRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError("StartJobRunRequest.client_token required")
-    if "executionRoleArn" in data:
+    if data.get("executionRoleArn") is not None:
         out["execution_role_arn"] = data["executionRoleArn"]
     else:
         raise DeserializationError("StartJobRunRequest.execution_role_arn required")
-    if "executionIamPolicy" in data:
+    if data.get("executionIamPolicy") is not None:
         import capo_emr_serverless.types.job_run_execution_iam_policy
 
         out["execution_iam_policy"] = (
@@ -115,13 +115,13 @@ def deserialize_json(data: dict) -> StartJobRunRequest:
                 data["executionIamPolicy"]
             )
         )
-    if "jobDriver" in data:
+    if data.get("jobDriver") is not None:
         import capo_emr_serverless.types.job_driver
 
         out["job_driver"] = capo_emr_serverless.types.job_driver.deserialize_json(
             data["jobDriver"]
         )
-    if "configurationOverrides" in data:
+    if data.get("configurationOverrides") is not None:
         import capo_emr_serverless.types.configuration_overrides
 
         out["configuration_overrides"] = (
@@ -129,17 +129,17 @@ def deserialize_json(data: dict) -> StartJobRunRequest:
                 data["configurationOverrides"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_emr_serverless.types.tag_map
 
         out["tags"] = capo_emr_serverless.types.tag_map.deserialize_json(data["tags"])
-    if "executionTimeoutMinutes" in data:
+    if data.get("executionTimeoutMinutes") is not None:
         out["execution_timeout_minutes"] = data["executionTimeoutMinutes"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "mode" in data:
+    if data.get("mode") is not None:
         out["mode"] = data["mode"]
-    if "retryPolicy" in data:
+    if data.get("retryPolicy") is not None:
         import capo_emr_serverless.types.retry_policy
 
         out["retry_policy"] = capo_emr_serverless.types.retry_policy.deserialize_json(

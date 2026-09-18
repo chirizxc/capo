@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> AwsEc2NetworkInterfaceViolations:
 
     out: AwsEc2NetworkInterfaceViolations = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_fms.types.aws_ec2_network_interface_violation.deserialize_aws_json_1_1(
                 item

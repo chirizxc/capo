@@ -31,7 +31,7 @@ def serialize_json(value: GetContactInformationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetContactInformationResponse:
     out: GetContactInformationResponse = {}  # type: ignore[typeddict-item]
-    if "ContactInformation" in data:
+    if data.get("ContactInformation") is not None:
         import capo_account.types.contact_information
 
         out["contact_information"] = (

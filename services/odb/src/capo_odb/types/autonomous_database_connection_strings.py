@@ -60,7 +60,7 @@ def serialize_aws_json_1_0(value: AutonomousDatabaseConnectionStrings) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AutonomousDatabaseConnectionStrings:
     out: AutonomousDatabaseConnectionStrings = {}  # type: ignore[typeddict-item]
-    if "allConnectionStrings" in data:
+    if data.get("allConnectionStrings") is not None:
         import capo_odb.types.database_connection_string_map
 
         out["all_connection_strings"] = (
@@ -68,15 +68,15 @@ def deserialize_aws_json_1_0(data: dict) -> AutonomousDatabaseConnectionStrings:
                 data["allConnectionStrings"]
             )
         )
-    if "dedicated" in data:
+    if data.get("dedicated") is not None:
         out["dedicated"] = data["dedicated"]
-    if "high" in data:
+    if data.get("high") is not None:
         out["high"] = data["high"]
-    if "medium" in data:
+    if data.get("medium") is not None:
         out["medium"] = data["medium"]
-    if "low" in data:
+    if data.get("low") is not None:
         out["low"] = data["low"]
-    if "profiles" in data:
+    if data.get("profiles") is not None:
         import capo_odb.types.database_connection_string_profile_list
 
         out["profiles"] = (

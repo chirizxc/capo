@@ -30,11 +30,11 @@ def serialize_json(value: DeleteAuditSuppressionRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteAuditSuppressionRequest:
     out: DeleteAuditSuppressionRequest = {}  # type: ignore[typeddict-item]
-    if "checkName" in data:
+    if data.get("checkName") is not None:
         out["check_name"] = data["checkName"]
     else:
         raise DeserializationError("DeleteAuditSuppressionRequest.check_name required")
-    if "resourceIdentifier" in data:
+    if data.get("resourceIdentifier") is not None:
         import capo_iot.types.resource_identifier
 
         out["resource_identifier"] = (

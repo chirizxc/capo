@@ -31,7 +31,7 @@ def deserialize_json(
     data: dict,
 ) -> AwsDmsReplicationInstanceReplicationSubnetGroupDetails:
     out: AwsDmsReplicationInstanceReplicationSubnetGroupDetails = {}  # type: ignore[typeddict-item]
-    if "ReplicationSubnetGroupIdentifier" in data:
+    if data.get("ReplicationSubnetGroupIdentifier") is not None:
         out["replication_subnet_group_identifier"] = data[
             "ReplicationSubnetGroupIdentifier"
         ]

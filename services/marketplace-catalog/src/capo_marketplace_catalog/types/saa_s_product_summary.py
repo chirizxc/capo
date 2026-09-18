@@ -38,9 +38,9 @@ def serialize_json(value: SaaSProductSummary) -> dict:
 
 def deserialize_json(data: dict) -> SaaSProductSummary:
     out: SaaSProductSummary = {}  # type: ignore[typeddict-item]
-    if "ProductTitle" in data:
+    if data.get("ProductTitle") is not None:
         out["product_title"] = data["ProductTitle"]
-    if "Visibility" in data:
+    if data.get("Visibility") is not None:
         import capo_marketplace_catalog.types.saa_s_product_visibility_string
 
         out["visibility"] = (

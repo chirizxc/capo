@@ -28,7 +28,7 @@ def serialize_json(value: CopyJobTemplateResponse) -> dict:
 
 def deserialize_json(data: dict) -> CopyJobTemplateResponse:
     out: CopyJobTemplateResponse = {}  # type: ignore[typeddict-item]
-    if "templateType" in data:
+    if data.get("templateType") is not None:
         import capo_deadline.types.job_template_type
 
         out["template_type"] = capo_deadline.types.job_template_type.deserialize_json(

@@ -23,6 +23,6 @@ def serialize_json(value: AssociatedStandard) -> dict:
 
 def deserialize_json(data: dict) -> AssociatedStandard:
     out: AssociatedStandard = {}  # type: ignore[typeddict-item]
-    if "StandardsId" in data:
+    if data.get("StandardsId") is not None:
         out["standards_id"] = data["StandardsId"]
     return out

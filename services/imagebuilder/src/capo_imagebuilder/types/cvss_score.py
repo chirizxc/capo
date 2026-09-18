@@ -28,7 +28,15 @@ class CvssScore(TypedDict, closed=True):
 def serialize_json(value: CvssScore) -> dict:
     out: dict = {}
     if "base_score" in value:
-        out["baseScore"] = value["base_score"]
+        out["baseScore"] = (
+            "NaN"
+            if value["base_score"] != value["base_score"]
+            else "Infinity"
+            if value["base_score"] == float("inf")
+            else "-Infinity"
+            if value["base_score"] == float("-inf")
+            else value["base_score"]
+        )
     if "scoring_vector" in value:
         out["scoringVector"] = value["scoring_vector"]
     if "version" in value:
@@ -40,12 +48,12 @@ def serialize_json(value: CvssScore) -> dict:
 
 def deserialize_json(data: dict) -> CvssScore:
     out: CvssScore = {}  # type: ignore[typeddict-item]
-    if "baseScore" in data:
-        out["base_score"] = data["baseScore"]
-    if "scoringVector" in data:
+    if data.get("baseScore") is not None:
+        out["base_score"] = float(data["baseScore"])
+    if data.get("scoringVector") is not None:
         out["scoring_vector"] = data["scoringVector"]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
-    if "source" in data:
+    if data.get("source") is not None:
         out["source"] = data["source"]
     return out

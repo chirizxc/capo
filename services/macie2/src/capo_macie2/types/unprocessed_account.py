@@ -36,14 +36,14 @@ def serialize_json(value: UnprocessedAccount) -> dict:
 
 def deserialize_json(data: dict) -> UnprocessedAccount:
     out: UnprocessedAccount = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         import capo_macie2.types.error_code
 
         out["error_code"] = capo_macie2.types.error_code.deserialize_json(
             data["errorCode"]
         )
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     return out

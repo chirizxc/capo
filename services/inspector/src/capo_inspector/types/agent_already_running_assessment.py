@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: AgentAlreadyRunningAssessment) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AgentAlreadyRunningAssessment:
     out: AgentAlreadyRunningAssessment = {}  # type: ignore[typeddict-item]
-    if "agentId" in data:
+    if data.get("agentId") is not None:
         out["agent_id"] = data["agentId"]
     else:
         raise DeserializationError("AgentAlreadyRunningAssessment.agent_id required")
-    if "assessmentRunArn" in data:
+    if data.get("assessmentRunArn") is not None:
         out["assessment_run_arn"] = data["assessmentRunArn"]
     else:
         raise DeserializationError(

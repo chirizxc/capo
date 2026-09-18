@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> FaultRootCauses:
 
     out: FaultRootCauses = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_xray.types.fault_root_cause.deserialize_json(item))
     return out

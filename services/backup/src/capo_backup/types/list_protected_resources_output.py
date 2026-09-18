@@ -34,12 +34,12 @@ def serialize_json(value: ListProtectedResourcesOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListProtectedResourcesOutput:
     out: ListProtectedResourcesOutput = {}  # type: ignore[typeddict-item]
-    if "Results" in data:
+    if data.get("Results") is not None:
         import capo_backup.types.protected_resources_list
 
         out["results"] = capo_backup.types.protected_resources_list.deserialize_json(
             data["Results"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

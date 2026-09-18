@@ -30,13 +30,13 @@ def serialize_json(value: PermissionEntry) -> dict:
 
 def deserialize_json(data: dict) -> PermissionEntry:
     out: PermissionEntry = {}  # type: ignore[typeddict-item]
-    if "user" in data:
+    if data.get("user") is not None:
         import capo_grafana.types.user
 
         out["user"] = capo_grafana.types.user.deserialize_json(data["user"])
     else:
         raise DeserializationError("PermissionEntry.user required")
-    if "role" in data:
+    if data.get("role") is not None:
         out["role"] = data["role"]
     else:
         raise DeserializationError("PermissionEntry.role required")

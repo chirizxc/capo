@@ -52,13 +52,13 @@ def serialize_json(value: MetadataEvent) -> dict:
 
 def deserialize_json(data: dict) -> MetadataEvent:
     out: MetadataEvent = {}  # type: ignore[typeddict-item]
-    if "conversationId" in data:
+    if data.get("conversationId") is not None:
         out["conversation_id"] = data["conversationId"]
-    if "userMessageId" in data:
+    if data.get("userMessageId") is not None:
         out["user_message_id"] = data["userMessageId"]
-    if "systemMessageId" in data:
+    if data.get("systemMessageId") is not None:
         out["system_message_id"] = data["systemMessageId"]
-    if "sourceAttributions" in data:
+    if data.get("sourceAttributions") is not None:
         import capo_qbusiness.types.source_attributions
 
         out["source_attributions"] = (
@@ -66,7 +66,7 @@ def deserialize_json(data: dict) -> MetadataEvent:
                 data["sourceAttributions"]
             )
         )
-    if "finalTextMessage" in data:
+    if data.get("finalTextMessage") is not None:
         out["final_text_message"] = data["finalTextMessage"]
     return out
 

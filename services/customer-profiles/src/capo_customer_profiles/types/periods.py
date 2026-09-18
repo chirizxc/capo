@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Periods:
 
     out: Periods = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_customer_profiles.types.period.deserialize_json(item))
     return out

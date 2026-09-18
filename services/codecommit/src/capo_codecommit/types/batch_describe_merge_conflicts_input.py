@@ -90,25 +90,25 @@ def serialize_aws_json_1_1(value: BatchDescribeMergeConflictsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchDescribeMergeConflictsInput:
     out: BatchDescribeMergeConflictsInput = {}  # type: ignore[typeddict-item]
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
     else:
         raise DeserializationError(
             "BatchDescribeMergeConflictsInput.repository_name required"
         )
-    if "destinationCommitSpecifier" in data:
+    if data.get("destinationCommitSpecifier") is not None:
         out["destination_commit_specifier"] = data["destinationCommitSpecifier"]
     else:
         raise DeserializationError(
             "BatchDescribeMergeConflictsInput.destination_commit_specifier required"
         )
-    if "sourceCommitSpecifier" in data:
+    if data.get("sourceCommitSpecifier") is not None:
         out["source_commit_specifier"] = data["sourceCommitSpecifier"]
     else:
         raise DeserializationError(
             "BatchDescribeMergeConflictsInput.source_commit_specifier required"
         )
-    if "mergeOption" in data:
+    if data.get("mergeOption") is not None:
         import capo_codecommit.types.merge_option_type_enum
 
         out["merge_option"] = (
@@ -120,17 +120,17 @@ def deserialize_aws_json_1_1(data: dict) -> BatchDescribeMergeConflictsInput:
         raise DeserializationError(
             "BatchDescribeMergeConflictsInput.merge_option required"
         )
-    if "maxMergeHunks" in data:
+    if data.get("maxMergeHunks") is not None:
         out["max_merge_hunks"] = data["maxMergeHunks"]
-    if "maxConflictFiles" in data:
+    if data.get("maxConflictFiles") is not None:
         out["max_conflict_files"] = data["maxConflictFiles"]
-    if "filePaths" in data:
+    if data.get("filePaths") is not None:
         import capo_codecommit.types.file_paths
 
         out["file_paths"] = capo_codecommit.types.file_paths.deserialize_aws_json_1_1(
             data["filePaths"]
         )
-    if "conflictDetailLevel" in data:
+    if data.get("conflictDetailLevel") is not None:
         import capo_codecommit.types.conflict_detail_level_type_enum
 
         out["conflict_detail_level"] = (
@@ -138,7 +138,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchDescribeMergeConflictsInput:
                 data["conflictDetailLevel"]
             )
         )
-    if "conflictResolutionStrategy" in data:
+    if data.get("conflictResolutionStrategy") is not None:
         import capo_codecommit.types.conflict_resolution_strategy_type_enum
 
         out["conflict_resolution_strategy"] = (
@@ -146,6 +146,6 @@ def deserialize_aws_json_1_1(data: dict) -> BatchDescribeMergeConflictsInput:
                 data["conflictResolutionStrategy"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

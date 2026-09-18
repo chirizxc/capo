@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> TransactionDescriptionList:
 
     out: TransactionDescriptionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lakeformation.types.transaction_description.deserialize_json(item)
         )

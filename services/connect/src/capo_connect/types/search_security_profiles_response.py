@@ -43,7 +43,7 @@ def serialize_json(value: SearchSecurityProfilesResponse) -> dict:
 
 def deserialize_json(data: dict) -> SearchSecurityProfilesResponse:
     out: SearchSecurityProfilesResponse = {}  # type: ignore[typeddict-item]
-    if "SecurityProfiles" in data:
+    if data.get("SecurityProfiles") is not None:
         import capo_connect.types.security_profiles_search_summary_list
 
         out["security_profiles"] = (
@@ -51,8 +51,8 @@ def deserialize_json(data: dict) -> SearchSecurityProfilesResponse:
                 data["SecurityProfiles"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "ApproximateTotalCount" in data:
+    if data.get("ApproximateTotalCount") is not None:
         out["approximate_total_count"] = data["ApproximateTotalCount"]
     return out

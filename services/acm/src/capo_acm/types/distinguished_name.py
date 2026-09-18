@@ -101,9 +101,9 @@ def serialize_aws_json_1_1(value: DistinguishedName) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DistinguishedName:
     out: DistinguishedName = {}  # type: ignore[typeddict-item]
-    if "CommonName" in data:
+    if data.get("CommonName") is not None:
         out["common_name"] = data["CommonName"]
-    if "DomainComponents" in data:
+    if data.get("DomainComponents") is not None:
         import capo_acm.types.domain_component_list
 
         out["domain_components"] = (
@@ -111,9 +111,9 @@ def deserialize_aws_json_1_1(data: dict) -> DistinguishedName:
                 data["DomainComponents"]
             )
         )
-    if "Country" in data:
+    if data.get("Country") is not None:
         out["country"] = data["Country"]
-    if "CustomAttributes" in data:
+    if data.get("CustomAttributes") is not None:
         import capo_acm.types.custom_attribute_list
 
         out["custom_attributes"] = (
@@ -121,28 +121,28 @@ def deserialize_aws_json_1_1(data: dict) -> DistinguishedName:
                 data["CustomAttributes"]
             )
         )
-    if "DistinguishedNameQualifier" in data:
+    if data.get("DistinguishedNameQualifier") is not None:
         out["distinguished_name_qualifier"] = data["DistinguishedNameQualifier"]
-    if "GenerationQualifier" in data:
+    if data.get("GenerationQualifier") is not None:
         out["generation_qualifier"] = data["GenerationQualifier"]
-    if "GivenName" in data:
+    if data.get("GivenName") is not None:
         out["given_name"] = data["GivenName"]
-    if "Initials" in data:
+    if data.get("Initials") is not None:
         out["initials"] = data["Initials"]
-    if "Locality" in data:
+    if data.get("Locality") is not None:
         out["locality"] = data["Locality"]
-    if "Organization" in data:
+    if data.get("Organization") is not None:
         out["organization"] = data["Organization"]
-    if "OrganizationalUnit" in data:
+    if data.get("OrganizationalUnit") is not None:
         out["organizational_unit"] = data["OrganizationalUnit"]
-    if "Pseudonym" in data:
+    if data.get("Pseudonym") is not None:
         out["pseudonym"] = data["Pseudonym"]
-    if "SerialNumber" in data:
+    if data.get("SerialNumber") is not None:
         out["serial_number"] = data["SerialNumber"]
-    if "State" in data:
+    if data.get("State") is not None:
         out["state"] = data["State"]
-    if "Surname" in data:
+    if data.get("Surname") is not None:
         out["surname"] = data["Surname"]
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
     return out

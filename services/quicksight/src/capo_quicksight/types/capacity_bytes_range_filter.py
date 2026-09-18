@@ -32,8 +32,8 @@ def serialize_json(value: CapacityBytesRangeFilter) -> dict:
 
 def deserialize_json(data: dict) -> CapacityBytesRangeFilter:
     out: CapacityBytesRangeFilter = {}  # type: ignore[typeddict-item]
-    if "minBytes" in data:
+    if data.get("minBytes") is not None:
         out["min_bytes"] = data["minBytes"]
-    if "maxBytes" in data:
+    if data.get("maxBytes") is not None:
         out["max_bytes"] = data["maxBytes"]
     return out

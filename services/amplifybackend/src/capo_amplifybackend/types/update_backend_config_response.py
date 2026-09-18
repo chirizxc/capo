@@ -44,13 +44,13 @@ def serialize_json(value: UpdateBackendConfigResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateBackendConfigResponse:
     out: UpdateBackendConfigResponse = {}  # type: ignore[typeddict-item]
-    if "appId" in data:
+    if data.get("appId") is not None:
         out["app_id"] = data["appId"]
-    if "backendManagerAppId" in data:
+    if data.get("backendManagerAppId") is not None:
         out["backend_manager_app_id"] = data["backendManagerAppId"]
-    if "error" in data:
+    if data.get("error") is not None:
         out["error"] = data["error"]
-    if "loginAuthConfig" in data:
+    if data.get("loginAuthConfig") is not None:
         import capo_amplifybackend.types.login_auth_config_req_obj
 
         out["login_auth_config"] = (

@@ -52,7 +52,7 @@ def serialize_aws_json_1_1(value: TargetGroupPairInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TargetGroupPairInfo:
     out: TargetGroupPairInfo = {}  # type: ignore[typeddict-item]
-    if "targetGroups" in data:
+    if data.get("targetGroups") is not None:
         import capo_codedeploy.types.target_group_info_list
 
         out["target_groups"] = (
@@ -60,7 +60,7 @@ def deserialize_aws_json_1_1(data: dict) -> TargetGroupPairInfo:
                 data["targetGroups"]
             )
         )
-    if "prodTrafficRoute" in data:
+    if data.get("prodTrafficRoute") is not None:
         import capo_codedeploy.types.traffic_route
 
         out["prod_traffic_route"] = (
@@ -68,7 +68,7 @@ def deserialize_aws_json_1_1(data: dict) -> TargetGroupPairInfo:
                 data["prodTrafficRoute"]
             )
         )
-    if "testTrafficRoute" in data:
+    if data.get("testTrafficRoute") is not None:
         import capo_codedeploy.types.traffic_route
 
         out["test_traffic_route"] = (

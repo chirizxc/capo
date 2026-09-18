@@ -44,7 +44,7 @@ def serialize_json(value: PerformanceInsightsReferenceComparisonValues) -> dict:
 
 def deserialize_json(data: dict) -> PerformanceInsightsReferenceComparisonValues:
     out: PerformanceInsightsReferenceComparisonValues = {}  # type: ignore[typeddict-item]
-    if "ReferenceScalar" in data:
+    if data.get("ReferenceScalar") is not None:
         import capo_devops_guru.types.performance_insights_reference_scalar
 
         out["reference_scalar"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> PerformanceInsightsReferenceComparisonValues
                 data["ReferenceScalar"]
             )
         )
-    if "ReferenceMetric" in data:
+    if data.get("ReferenceMetric") is not None:
         import capo_devops_guru.types.performance_insights_reference_metric
 
         out["reference_metric"] = (

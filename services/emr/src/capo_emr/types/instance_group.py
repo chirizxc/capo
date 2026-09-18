@@ -160,17 +160,17 @@ def serialize_aws_json_1_1(value: InstanceGroup) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InstanceGroup:
     out: InstanceGroup = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Market" in data:
+    if data.get("Market") is not None:
         import capo_emr.types.market_type
 
         out["market"] = capo_emr.types.market_type.deserialize_aws_json_1_1(
             data["Market"]
         )
-    if "InstanceGroupType" in data:
+    if data.get("InstanceGroupType") is not None:
         import capo_emr.types.instance_group_type
 
         out["instance_group_type"] = (
@@ -178,21 +178,21 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceGroup:
                 data["InstanceGroupType"]
             )
         )
-    if "BidPrice" in data:
+    if data.get("BidPrice") is not None:
         out["bid_price"] = data["BidPrice"]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         out["instance_type"] = data["InstanceType"]
-    if "RequestedInstanceCount" in data:
+    if data.get("RequestedInstanceCount") is not None:
         out["requested_instance_count"] = data["RequestedInstanceCount"]
-    if "RunningInstanceCount" in data:
+    if data.get("RunningInstanceCount") is not None:
         out["running_instance_count"] = data["RunningInstanceCount"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_emr.types.instance_group_status
 
         out["status"] = capo_emr.types.instance_group_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "Configurations" in data:
+    if data.get("Configurations") is not None:
         import capo_emr.types.configuration_list
 
         out["configurations"] = (
@@ -200,9 +200,9 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceGroup:
                 data["Configurations"]
             )
         )
-    if "ConfigurationsVersion" in data:
+    if data.get("ConfigurationsVersion") is not None:
         out["configurations_version"] = data["ConfigurationsVersion"]
-    if "LastSuccessfullyAppliedConfigurations" in data:
+    if data.get("LastSuccessfullyAppliedConfigurations") is not None:
         import capo_emr.types.configuration_list
 
         out["last_successfully_applied_configurations"] = (
@@ -210,11 +210,11 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceGroup:
                 data["LastSuccessfullyAppliedConfigurations"]
             )
         )
-    if "LastSuccessfullyAppliedConfigurationsVersion" in data:
+    if data.get("LastSuccessfullyAppliedConfigurationsVersion") is not None:
         out["last_successfully_applied_configurations_version"] = data[
             "LastSuccessfullyAppliedConfigurationsVersion"
         ]
-    if "EbsBlockDevices" in data:
+    if data.get("EbsBlockDevices") is not None:
         import capo_emr.types.ebs_block_device_list
 
         out["ebs_block_devices"] = (
@@ -222,15 +222,15 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceGroup:
                 data["EbsBlockDevices"]
             )
         )
-    if "EbsOptimized" in data:
+    if data.get("EbsOptimized") is not None:
         out["ebs_optimized"] = data["EbsOptimized"]
-    if "ShrinkPolicy" in data:
+    if data.get("ShrinkPolicy") is not None:
         import capo_emr.types.shrink_policy
 
         out["shrink_policy"] = capo_emr.types.shrink_policy.deserialize_aws_json_1_1(
             data["ShrinkPolicy"]
         )
-    if "AutoScalingPolicy" in data:
+    if data.get("AutoScalingPolicy") is not None:
         import capo_emr.types.auto_scaling_policy_description
 
         out["auto_scaling_policy"] = (
@@ -238,6 +238,6 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceGroup:
                 data["AutoScalingPolicy"]
             )
         )
-    if "CustomAmiId" in data:
+    if data.get("CustomAmiId") is not None:
         out["custom_ami_id"] = data["CustomAmiId"]
     return out

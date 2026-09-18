@@ -30,15 +30,15 @@ def serialize_json(value: Shard) -> dict:
 
 def deserialize_json(data: dict) -> Shard:
     out: Shard = {}  # type: ignore[typeddict-item]
-    if "shardId" in data:
+    if data.get("shardId") is not None:
         out["shard_id"] = data["shardId"]
     else:
         raise DeserializationError("Shard.shard_id required")
-    if "createTime" in data:
+    if data.get("createTime") is not None:
         out["create_time"] = data["createTime"]
     else:
         raise DeserializationError("Shard.create_time required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("Shard.status required")

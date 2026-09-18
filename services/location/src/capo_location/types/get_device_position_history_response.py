@@ -33,7 +33,7 @@ def serialize_json(value: GetDevicePositionHistoryResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetDevicePositionHistoryResponse:
     out: GetDevicePositionHistoryResponse = {}  # type: ignore[typeddict-item]
-    if "DevicePositions" in data:
+    if data.get("DevicePositions") is not None:
         import capo_location.types.device_position_list
 
         out["device_positions"] = (
@@ -45,6 +45,6 @@ def deserialize_json(data: dict) -> GetDevicePositionHistoryResponse:
         raise DeserializationError(
             "GetDevicePositionHistoryResponse.device_positions required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

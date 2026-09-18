@@ -30,7 +30,7 @@ def serialize_json(value: DataPrivacyScores) -> dict:
 
 def deserialize_json(data: dict) -> DataPrivacyScores:
     out: DataPrivacyScores = {}  # type: ignore[typeddict-item]
-    if "membershipInferenceAttackScores" in data:
+    if data.get("membershipInferenceAttackScores") is not None:
         import capo_cleanroomsml.types.membership_inference_attack_score_list
 
         out["membership_inference_attack_scores"] = (

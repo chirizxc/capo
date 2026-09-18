@@ -124,9 +124,9 @@ def serialize_aws_json_1_0(value: DbNodeSummary) -> dict:
     if "software_storage_size_in_gb" in value:
         out["softwareStorageSizeInGB"] = value["software_storage_size_in_gb"]
     if "created_at" in value:
-        import capo_odb.types._prelude.timestamp
+        import capo_odb._protocol.serialize
 
-        out["createdAt"] = capo_odb.types._prelude.timestamp.serialize_aws_json_1_0(
+        out["createdAt"] = capo_odb._protocol.serialize.fmt_date_time(
             value["created_at"]
         )
     if "time_maintenance_window_end" in value:
@@ -144,45 +144,45 @@ def serialize_aws_json_1_0(value: DbNodeSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DbNodeSummary:
     out: DbNodeSummary = {}  # type: ignore[typeddict-item]
-    if "dbNodeId" in data:
+    if data.get("dbNodeId") is not None:
         out["db_node_id"] = data["dbNodeId"]
-    if "dbNodeArn" in data:
+    if data.get("dbNodeArn") is not None:
         out["db_node_arn"] = data["dbNodeArn"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_odb.types.db_node_resource_status
 
         out["status"] = capo_odb.types.db_node_resource_status.deserialize_aws_json_1_0(
             data["status"]
         )
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "additionalDetails" in data:
+    if data.get("additionalDetails") is not None:
         out["additional_details"] = data["additionalDetails"]
-    if "backupIpId" in data:
+    if data.get("backupIpId") is not None:
         out["backup_ip_id"] = data["backupIpId"]
-    if "backupVnic2Id" in data:
+    if data.get("backupVnic2Id") is not None:
         out["backup_vnic2_id"] = data["backupVnic2Id"]
-    if "backupVnicId" in data:
+    if data.get("backupVnicId") is not None:
         out["backup_vnic_id"] = data["backupVnicId"]
-    if "cpuCoreCount" in data:
+    if data.get("cpuCoreCount") is not None:
         out["cpu_core_count"] = data["cpuCoreCount"]
-    if "dbNodeStorageSizeInGBs" in data:
+    if data.get("dbNodeStorageSizeInGBs") is not None:
         out["db_node_storage_size_in_g_bs"] = data["dbNodeStorageSizeInGBs"]
-    if "dbServerId" in data:
+    if data.get("dbServerId") is not None:
         out["db_server_id"] = data["dbServerId"]
-    if "dbSystemId" in data:
+    if data.get("dbSystemId") is not None:
         out["db_system_id"] = data["dbSystemId"]
-    if "faultDomain" in data:
+    if data.get("faultDomain") is not None:
         out["fault_domain"] = data["faultDomain"]
-    if "hostIpId" in data:
+    if data.get("hostIpId") is not None:
         out["host_ip_id"] = data["hostIpId"]
-    if "hostname" in data:
+    if data.get("hostname") is not None:
         out["hostname"] = data["hostname"]
-    if "ocid" in data:
+    if data.get("ocid") is not None:
         out["ocid"] = data["ocid"]
-    if "ociResourceAnchorName" in data:
+    if data.get("ociResourceAnchorName") is not None:
         out["oci_resource_anchor_name"] = data["ociResourceAnchorName"]
-    if "maintenanceType" in data:
+    if data.get("maintenanceType") is not None:
         import capo_odb.types.db_node_maintenance_type
 
         out["maintenance_type"] = (
@@ -190,24 +190,24 @@ def deserialize_aws_json_1_0(data: dict) -> DbNodeSummary:
                 data["maintenanceType"]
             )
         )
-    if "memorySizeInGBs" in data:
+    if data.get("memorySizeInGBs") is not None:
         out["memory_size_in_g_bs"] = data["memorySizeInGBs"]
-    if "softwareStorageSizeInGB" in data:
+    if data.get("softwareStorageSizeInGB") is not None:
         out["software_storage_size_in_gb"] = data["softwareStorageSizeInGB"]
-    if "createdAt" in data:
-        import capo_odb.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = capo_odb.types._prelude.timestamp.deserialize_aws_json_1_0(
-            data["createdAt"]
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
-    if "timeMaintenanceWindowEnd" in data:
+    if data.get("timeMaintenanceWindowEnd") is not None:
         out["time_maintenance_window_end"] = data["timeMaintenanceWindowEnd"]
-    if "timeMaintenanceWindowStart" in data:
+    if data.get("timeMaintenanceWindowStart") is not None:
         out["time_maintenance_window_start"] = data["timeMaintenanceWindowStart"]
-    if "totalCpuCoreCount" in data:
+    if data.get("totalCpuCoreCount") is not None:
         out["total_cpu_core_count"] = data["totalCpuCoreCount"]
-    if "vnic2Id" in data:
+    if data.get("vnic2Id") is not None:
         out["vnic2_id"] = data["vnic2Id"]
-    if "vnicId" in data:
+    if data.get("vnicId") is not None:
         out["vnic_id"] = data["vnicId"]
     return out

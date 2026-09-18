@@ -28,7 +28,7 @@ def serialize_json(value: SignInConfig) -> dict:
 
 def deserialize_json(data: dict) -> SignInConfig:
     out: SignInConfig = {}  # type: ignore[typeddict-item]
-    if "Distributions" in data:
+    if data.get("Distributions") is not None:
         import capo_connect.types.sign_in_distribution_list
 
         out["distributions"] = (

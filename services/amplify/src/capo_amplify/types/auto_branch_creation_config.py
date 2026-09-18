@@ -90,15 +90,15 @@ def serialize_json(value: AutoBranchCreationConfig) -> dict:
 
 def deserialize_json(data: dict) -> AutoBranchCreationConfig:
     out: AutoBranchCreationConfig = {}  # type: ignore[typeddict-item]
-    if "stage" in data:
+    if data.get("stage") is not None:
         import capo_amplify.types.stage
 
         out["stage"] = capo_amplify.types.stage.deserialize_json(data["stage"])
-    if "framework" in data:
+    if data.get("framework") is not None:
         out["framework"] = data["framework"]
-    if "enableAutoBuild" in data:
+    if data.get("enableAutoBuild") is not None:
         out["enable_auto_build"] = data["enableAutoBuild"]
-    if "environmentVariables" in data:
+    if data.get("environmentVariables") is not None:
         import capo_amplify.types.environment_variables
 
         out["environment_variables"] = (
@@ -106,16 +106,16 @@ def deserialize_json(data: dict) -> AutoBranchCreationConfig:
                 data["environmentVariables"]
             )
         )
-    if "basicAuthCredentials" in data:
+    if data.get("basicAuthCredentials") is not None:
         out["basic_auth_credentials"] = data["basicAuthCredentials"]
-    if "enableBasicAuth" in data:
+    if data.get("enableBasicAuth") is not None:
         out["enable_basic_auth"] = data["enableBasicAuth"]
-    if "enablePerformanceMode" in data:
+    if data.get("enablePerformanceMode") is not None:
         out["enable_performance_mode"] = data["enablePerformanceMode"]
-    if "buildSpec" in data:
+    if data.get("buildSpec") is not None:
         out["build_spec"] = data["buildSpec"]
-    if "enablePullRequestPreview" in data:
+    if data.get("enablePullRequestPreview") is not None:
         out["enable_pull_request_preview"] = data["enablePullRequestPreview"]
-    if "pullRequestEnvironmentName" in data:
+    if data.get("pullRequestEnvironmentName") is not None:
         out["pull_request_environment_name"] = data["pullRequestEnvironmentName"]
     return out

@@ -33,7 +33,7 @@ def serialize_json(value: UpdateBrandPublishedVersionRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateBrandPublishedVersionRequest:
     out: UpdateBrandPublishedVersionRequest = {}  # type: ignore[typeddict-item]
-    if "VersionId" in data:
+    if data.get("VersionId") is not None:
         out["version_id"] = data["VersionId"]
     else:
         raise DeserializationError(

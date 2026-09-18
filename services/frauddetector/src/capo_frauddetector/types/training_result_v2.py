@@ -68,7 +68,7 @@ def serialize_aws_json_1_1(value: TrainingResultV2) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TrainingResultV2:
     out: TrainingResultV2 = {}  # type: ignore[typeddict-item]
-    if "dataValidationMetrics" in data:
+    if data.get("dataValidationMetrics") is not None:
         import capo_frauddetector.types.data_validation_metrics
 
         out["data_validation_metrics"] = (
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_1(data: dict) -> TrainingResultV2:
                 data["dataValidationMetrics"]
             )
         )
-    if "trainingMetricsV2" in data:
+    if data.get("trainingMetricsV2") is not None:
         import capo_frauddetector.types.training_metrics_v2
 
         out["training_metrics_v2"] = (
@@ -84,7 +84,7 @@ def deserialize_aws_json_1_1(data: dict) -> TrainingResultV2:
                 data["trainingMetricsV2"]
             )
         )
-    if "variableImportanceMetrics" in data:
+    if data.get("variableImportanceMetrics") is not None:
         import capo_frauddetector.types.variable_importance_metrics
 
         out["variable_importance_metrics"] = (
@@ -92,7 +92,7 @@ def deserialize_aws_json_1_1(data: dict) -> TrainingResultV2:
                 data["variableImportanceMetrics"]
             )
         )
-    if "aggregatedVariablesImportanceMetrics" in data:
+    if data.get("aggregatedVariablesImportanceMetrics") is not None:
         import capo_frauddetector.types.aggregated_variables_importance_metrics
 
         out["aggregated_variables_importance_metrics"] = (

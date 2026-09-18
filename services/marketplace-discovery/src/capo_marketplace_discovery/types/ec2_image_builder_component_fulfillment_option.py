@@ -79,19 +79,19 @@ def serialize_json(value: Ec2ImageBuilderComponentFulfillmentOption) -> dict:
 
 def deserialize_json(data: dict) -> Ec2ImageBuilderComponentFulfillmentOption:
     out: Ec2ImageBuilderComponentFulfillmentOption = {}  # type: ignore[typeddict-item]
-    if "fulfillmentOptionId" in data:
+    if data.get("fulfillmentOptionId") is not None:
         out["fulfillment_option_id"] = data["fulfillmentOptionId"]
     else:
         raise DeserializationError(
             "Ec2ImageBuilderComponentFulfillmentOption.fulfillment_option_id required"
         )
-    if "fulfillmentOptionName" in data:
+    if data.get("fulfillmentOptionName") is not None:
         out["fulfillment_option_name"] = data["fulfillmentOptionName"]
     else:
         raise DeserializationError(
             "Ec2ImageBuilderComponentFulfillmentOption.fulfillment_option_name required"
         )
-    if "fulfillmentOptionType" in data:
+    if data.get("fulfillmentOptionType") is not None:
         import capo_marketplace_discovery.types.fulfillment_option_type
 
         out["fulfillment_option_type"] = (
@@ -103,15 +103,15 @@ def deserialize_json(data: dict) -> Ec2ImageBuilderComponentFulfillmentOption:
         raise DeserializationError(
             "Ec2ImageBuilderComponentFulfillmentOption.fulfillment_option_type required"
         )
-    if "fulfillmentOptionDisplayName" in data:
+    if data.get("fulfillmentOptionDisplayName") is not None:
         out["fulfillment_option_display_name"] = data["fulfillmentOptionDisplayName"]
     else:
         raise DeserializationError(
             "Ec2ImageBuilderComponentFulfillmentOption.fulfillment_option_display_name required"
         )
-    if "fulfillmentOptionVersion" in data:
+    if data.get("fulfillmentOptionVersion") is not None:
         out["fulfillment_option_version"] = data["fulfillmentOptionVersion"]
-    if "operatingSystems" in data:
+    if data.get("operatingSystems") is not None:
         import capo_marketplace_discovery.types.container_operating_system_list
 
         out["operating_systems"] = (
@@ -119,7 +119,7 @@ def deserialize_json(data: dict) -> Ec2ImageBuilderComponentFulfillmentOption:
                 data["operatingSystems"]
             )
         )
-    if "awsSupportedServices" in data:
+    if data.get("awsSupportedServices") is not None:
         import capo_marketplace_discovery.types.aws_supported_service_list
 
         out["aws_supported_services"] = (
@@ -127,8 +127,8 @@ def deserialize_json(data: dict) -> Ec2ImageBuilderComponentFulfillmentOption:
                 data["awsSupportedServices"]
             )
         )
-    if "releaseNotes" in data:
+    if data.get("releaseNotes") is not None:
         out["release_notes"] = data["releaseNotes"]
-    if "usageInstructions" in data:
+    if data.get("usageInstructions") is not None:
         out["usage_instructions"] = data["usageInstructions"]
     return out

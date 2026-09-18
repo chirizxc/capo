@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: SearchProductsAsAdminOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SearchProductsAsAdminOutput:
     out: SearchProductsAsAdminOutput = {}  # type: ignore[typeddict-item]
-    if "ProductViewDetails" in data:
+    if data.get("ProductViewDetails") is not None:
         import capo_service_catalog.types.product_view_details
 
         out["product_view_details"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> SearchProductsAsAdminOutput:
                 data["ProductViewDetails"]
             )
         )
-    if "NextPageToken" in data:
+    if data.get("NextPageToken") is not None:
         out["next_page_token"] = data["NextPageToken"]
     return out

@@ -49,11 +49,11 @@ def serialize_aws_json_1_1(value: QueryStagePlanNode) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> QueryStagePlanNode:
     out: QueryStagePlanNode = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
-    if "Children" in data:
+    if data.get("Children") is not None:
         import capo_athena.types.query_stage_plan_nodes
 
         out["children"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_1(data: dict) -> QueryStagePlanNode:
                 data["Children"]
             )
         )
-    if "RemoteSources" in data:
+    if data.get("RemoteSources") is not None:
         import capo_athena.types.string_list
 
         out["remote_sources"] = capo_athena.types.string_list.deserialize_aws_json_1_1(

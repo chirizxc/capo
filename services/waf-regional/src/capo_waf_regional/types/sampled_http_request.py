@@ -53,7 +53,7 @@ def serialize_aws_json_1_1(value: SampledHTTPRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SampledHTTPRequest:
     out: SampledHTTPRequest = {}  # type: ignore[typeddict-item]
-    if "Request" in data:
+    if data.get("Request") is not None:
         import capo_waf_regional.types.http_request
 
         out["request"] = capo_waf_regional.types.http_request.deserialize_aws_json_1_1(
@@ -61,18 +61,18 @@ def deserialize_aws_json_1_1(data: dict) -> SampledHTTPRequest:
         )
     else:
         raise DeserializationError("SampledHTTPRequest.request required")
-    if "Weight" in data:
+    if data.get("Weight") is not None:
         out["weight"] = data["Weight"]
     else:
         out["weight"] = 0
-    if "Timestamp" in data:
+    if data.get("Timestamp") is not None:
         import capo_waf_regional.types.timestamp
 
         out["timestamp"] = capo_waf_regional.types.timestamp.deserialize_aws_json_1_1(
             data["Timestamp"]
         )
-    if "Action" in data:
+    if data.get("Action") is not None:
         out["action"] = data["Action"]
-    if "RuleWithinRuleGroup" in data:
+    if data.get("RuleWithinRuleGroup") is not None:
         out["rule_within_rule_group"] = data["RuleWithinRuleGroup"]
     return out

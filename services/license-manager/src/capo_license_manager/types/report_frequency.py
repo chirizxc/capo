@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: ReportFrequency) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReportFrequency:
     out: ReportFrequency = {}  # type: ignore[typeddict-item]
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
-    if "period" in data:
+    if data.get("period") is not None:
         import capo_license_manager.types.report_frequency_type
 
         out["period"] = (

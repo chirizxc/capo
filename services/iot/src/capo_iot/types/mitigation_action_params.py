@@ -96,7 +96,7 @@ def serialize_json(value: MitigationActionParams) -> dict:
 
 def deserialize_json(data: dict) -> MitigationActionParams:
     out: MitigationActionParams = {}  # type: ignore[typeddict-item]
-    if "updateDeviceCertificateParams" in data:
+    if data.get("updateDeviceCertificateParams") is not None:
         import capo_iot.types.update_device_certificate_params
 
         out["update_device_certificate_params"] = (
@@ -104,7 +104,7 @@ def deserialize_json(data: dict) -> MitigationActionParams:
                 data["updateDeviceCertificateParams"]
             )
         )
-    if "updateCACertificateParams" in data:
+    if data.get("updateCACertificateParams") is not None:
         import capo_iot.types.update_ca_certificate_params
 
         out["update_ca_certificate_params"] = (
@@ -112,7 +112,7 @@ def deserialize_json(data: dict) -> MitigationActionParams:
                 data["updateCACertificateParams"]
             )
         )
-    if "addThingsToThingGroupParams" in data:
+    if data.get("addThingsToThingGroupParams") is not None:
         import capo_iot.types.add_things_to_thing_group_params
 
         out["add_things_to_thing_group_params"] = (
@@ -120,7 +120,7 @@ def deserialize_json(data: dict) -> MitigationActionParams:
                 data["addThingsToThingGroupParams"]
             )
         )
-    if "replaceDefaultPolicyVersionParams" in data:
+    if data.get("replaceDefaultPolicyVersionParams") is not None:
         import capo_iot.types.replace_default_policy_version_params
 
         out["replace_default_policy_version_params"] = (
@@ -128,7 +128,7 @@ def deserialize_json(data: dict) -> MitigationActionParams:
                 data["replaceDefaultPolicyVersionParams"]
             )
         )
-    if "enableIoTLoggingParams" in data:
+    if data.get("enableIoTLoggingParams") is not None:
         import capo_iot.types.enable_io_t_logging_params
 
         out["enable_io_t_logging_params"] = (
@@ -136,7 +136,7 @@ def deserialize_json(data: dict) -> MitigationActionParams:
                 data["enableIoTLoggingParams"]
             )
         )
-    if "publishFindingToSnsParams" in data:
+    if data.get("publishFindingToSnsParams") is not None:
         import capo_iot.types.publish_finding_to_sns_params
 
         out["publish_finding_to_sns_params"] = (

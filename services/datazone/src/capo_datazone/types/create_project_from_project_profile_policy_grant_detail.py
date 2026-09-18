@@ -35,9 +35,9 @@ def serialize_json(value: CreateProjectFromProjectProfilePolicyGrantDetail) -> d
 
 def deserialize_json(data: dict) -> CreateProjectFromProjectProfilePolicyGrantDetail:
     out: CreateProjectFromProjectProfilePolicyGrantDetail = {}  # type: ignore[typeddict-item]
-    if "includeChildDomainUnits" in data:
+    if data.get("includeChildDomainUnits") is not None:
         out["include_child_domain_units"] = data["includeChildDomainUnits"]
-    if "projectProfiles" in data:
+    if data.get("projectProfiles") is not None:
         import capo_datazone.types.project_profile_list
 
         out["project_profiles"] = (

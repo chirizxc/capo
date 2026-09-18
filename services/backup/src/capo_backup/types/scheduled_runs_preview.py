@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ScheduledRunsPreview:
 
     out: ScheduledRunsPreview = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_backup.types.scheduled_plan_execution_member.deserialize_json(item)
         )

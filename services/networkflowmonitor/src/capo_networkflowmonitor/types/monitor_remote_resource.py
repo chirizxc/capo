@@ -33,7 +33,7 @@ def serialize_json(value: MonitorRemoteResource) -> dict:
 
 def deserialize_json(data: dict) -> MonitorRemoteResource:
     out: MonitorRemoteResource = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_networkflowmonitor.types.monitor_remote_resource_type
 
         out["type"] = (
@@ -43,7 +43,7 @@ def deserialize_json(data: dict) -> MonitorRemoteResource:
         )
     else:
         raise DeserializationError("MonitorRemoteResource.type required")
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         out["identifier"] = data["identifier"]
     else:
         raise DeserializationError("MonitorRemoteResource.identifier required")

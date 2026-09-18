@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> PermissionSetProvisioningStatusList:
 
     out: PermissionSetProvisioningStatusList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sso_admin.types.permission_set_provisioning_status_metadata.deserialize_aws_json_1_1(
                 item

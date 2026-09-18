@@ -33,12 +33,12 @@ def serialize_json(value: DataBarsOptions) -> dict:
 
 def deserialize_json(data: dict) -> DataBarsOptions:
     out: DataBarsOptions = {}  # type: ignore[typeddict-item]
-    if "FieldId" in data:
+    if data.get("FieldId") is not None:
         out["field_id"] = data["FieldId"]
     else:
         raise DeserializationError("DataBarsOptions.field_id required")
-    if "PositiveColor" in data:
+    if data.get("PositiveColor") is not None:
         out["positive_color"] = data["PositiveColor"]
-    if "NegativeColor" in data:
+    if data.get("NegativeColor") is not None:
         out["negative_color"] = data["NegativeColor"]
     return out

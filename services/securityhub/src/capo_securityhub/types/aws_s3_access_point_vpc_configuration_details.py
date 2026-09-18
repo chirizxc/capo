@@ -23,6 +23,6 @@ def serialize_json(value: AwsS3AccessPointVpcConfigurationDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsS3AccessPointVpcConfigurationDetails:
     out: AwsS3AccessPointVpcConfigurationDetails = {}  # type: ignore[typeddict-item]
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
     return out

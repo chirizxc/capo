@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.billing#AWSBilling``."""
 
+import uuid
 import warnings
 from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -210,15 +211,17 @@ class BillingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_billing.types.associate_source_views_request.AssociateSourceViewsRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["source_views"] = source_views
+        input_: capo_billing.types.associate_source_views_request.AssociateSourceViewsRequest = {
+            "arn": arn,
+            "source_views": source_views,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_billing_view(
@@ -280,15 +283,17 @@ class BillingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_billing.types.create_billing_view_request.CreateBillingViewRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_billing.types.create_billing_view_request.CreateBillingViewRequest = {
+            "name": name,
+            "source_views": source_views,
+        }
         if description is not None:
             input_["description"] = description
-        input_["source_views"] = source_views
         if data_filter_expression is not None:
             input_["data_filter_expression"] = data_filter_expression
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if resource_tags is not None:
             input_["resource_tags"] = resource_tags
 
@@ -297,6 +302,7 @@ class BillingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_billing_view(
@@ -341,8 +347,9 @@ class BillingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_billing.types.delete_billing_view_request.DeleteBillingViewRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_billing.types.delete_billing_view_request.DeleteBillingViewRequest = {
+            "arn": arn
+        }
         if force is not None:
             input_["force"] = force
 
@@ -351,6 +358,7 @@ class BillingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_source_views(
@@ -397,15 +405,17 @@ class BillingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_billing.types.disassociate_source_views_request.DisassociateSourceViewsRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        input_["source_views"] = source_views
+        input_: capo_billing.types.disassociate_source_views_request.DisassociateSourceViewsRequest = {
+            "arn": arn,
+            "source_views": source_views,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_billing_view(
@@ -448,14 +458,16 @@ class BillingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_billing.types.get_billing_view_request.GetBillingViewRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_billing.types.get_billing_view_request.GetBillingViewRequest = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_resource_policy(
@@ -498,14 +510,16 @@ class BillingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_billing.types.get_resource_policy_request.GetResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_billing.types.get_resource_policy_request.GetResourcePolicyRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_billing_views(
@@ -572,7 +586,7 @@ class BillingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_billing.types.list_billing_views_request.ListBillingViewsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_billing.types.list_billing_views_request.ListBillingViewsRequest = {}
         if active_time_range is not None:
             input_["active_time_range"] = active_time_range
         if arns is not None:
@@ -595,6 +609,7 @@ class BillingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_billing_views(
@@ -686,8 +701,9 @@ class BillingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_billing.types.list_source_views_for_billing_view_request.ListSourceViewsForBillingViewRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_billing.types.list_source_views_for_billing_view_request.ListSourceViewsForBillingViewRequest = {
+            "arn": arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -698,6 +714,7 @@ class BillingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_source_views_for_billing_view(
@@ -767,14 +784,16 @@ class BillingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_billing.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_billing.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -819,15 +838,17 @@ class BillingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_billing.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["resource_tags"] = resource_tags
+        input_: capo_billing.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "resource_tags": resource_tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -872,15 +893,17 @@ class BillingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_billing.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["resource_tag_keys"] = resource_tag_keys
+        input_: capo_billing.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "resource_tag_keys": resource_tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_billing_view(
@@ -936,8 +959,9 @@ class BillingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_billing.types.update_billing_view_request.UpdateBillingViewRequest = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_billing.types.update_billing_view_request.UpdateBillingViewRequest = {
+            "arn": arn
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -950,6 +974,7 @@ class BillingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

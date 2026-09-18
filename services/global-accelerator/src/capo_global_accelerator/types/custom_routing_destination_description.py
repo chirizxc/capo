@@ -38,11 +38,11 @@ def serialize_aws_json_1_1(value: CustomRoutingDestinationDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CustomRoutingDestinationDescription:
     out: CustomRoutingDestinationDescription = {}  # type: ignore[typeddict-item]
-    if "FromPort" in data:
+    if data.get("FromPort") is not None:
         out["from_port"] = data["FromPort"]
-    if "ToPort" in data:
+    if data.get("ToPort") is not None:
         out["to_port"] = data["ToPort"]
-    if "Protocols" in data:
+    if data.get("Protocols") is not None:
         import capo_global_accelerator.types.protocols
 
         out["protocols"] = (

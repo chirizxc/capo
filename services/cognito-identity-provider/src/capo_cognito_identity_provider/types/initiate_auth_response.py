@@ -77,7 +77,7 @@ def serialize_aws_json_1_1(value: InitiateAuthResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InitiateAuthResponse:
     out: InitiateAuthResponse = {}  # type: ignore[typeddict-item]
-    if "ChallengeName" in data:
+    if data.get("ChallengeName") is not None:
         import capo_cognito_identity_provider.types.challenge_name_type
 
         out["challenge_name"] = (
@@ -85,9 +85,9 @@ def deserialize_aws_json_1_1(data: dict) -> InitiateAuthResponse:
                 data["ChallengeName"]
             )
         )
-    if "Session" in data:
+    if data.get("Session") is not None:
         out["session"] = data["Session"]
-    if "ChallengeParameters" in data:
+    if data.get("ChallengeParameters") is not None:
         import capo_cognito_identity_provider.types.challenge_parameters_type
 
         out["challenge_parameters"] = (
@@ -95,7 +95,7 @@ def deserialize_aws_json_1_1(data: dict) -> InitiateAuthResponse:
                 data["ChallengeParameters"]
             )
         )
-    if "AuthenticationResult" in data:
+    if data.get("AuthenticationResult") is not None:
         import capo_cognito_identity_provider.types.authentication_result_type
 
         out["authentication_result"] = (
@@ -103,7 +103,7 @@ def deserialize_aws_json_1_1(data: dict) -> InitiateAuthResponse:
                 data["AuthenticationResult"]
             )
         )
-    if "AvailableChallenges" in data:
+    if data.get("AvailableChallenges") is not None:
         import capo_cognito_identity_provider.types.available_challenge_list_type
 
         out["available_challenges"] = (

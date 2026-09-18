@@ -35,15 +35,18 @@ class TooManyRequestsException(ServiceError):
 
     code: str | None = "TooManyRequestsException"
 
-    def __init__(self, data: TooManyRequestsException_):
+    def __init__(self, data: TooManyRequestsException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="TooManyRequestsException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_xml(cls, el: Element) -> "TooManyRequestsException":
-        return cls(deserialize_xml(el))
+    def from_xml(
+        cls, el: Element, message: str | None = None
+    ) -> "TooManyRequestsException":
+        return cls(deserialize_xml(el), message)

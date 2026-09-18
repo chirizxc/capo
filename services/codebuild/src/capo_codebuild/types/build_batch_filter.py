@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: BuildBatchFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BuildBatchFilter:
     out: BuildBatchFilter = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_codebuild.types.status_type
 
         out["status"] = capo_codebuild.types.status_type.deserialize_aws_json_1_1(

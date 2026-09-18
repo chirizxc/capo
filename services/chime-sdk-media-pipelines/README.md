@@ -13,10 +13,25 @@ from capo_chime_sdk_media_pipelines import AsyncChimeSDKMediaPipelinesClient
 
 
 async def main():
-    async with AsyncChimeSDKMediaPipelinesClient() as s3:
+    async with AsyncChimeSDKMediaPipelinesClient() as chime_sdk_media_pipelines:
         # Example: call the create_media_capture_pipeline operation
-        response = await s3.create_media_capture_pipeline()
+        response = await chime_sdk_media_pipelines.create_media_capture_pipeline()
         print(response["media_capture_pipeline"])
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_chime_sdk_media_pipelines import AsyncChimeSDKMediaPipelinesClient
+
+
+async def main():
+    async with AsyncChimeSDKMediaPipelinesClient() as chime_sdk_media_pipelines:
+        # Example: paginate over list_media_capture_pipelines
+        async for item in chime_sdk_media_pipelines.iter_list_media_capture_pipelines():
+            print(item)
 ```
 
 ## Error Handling
@@ -29,9 +44,9 @@ from capo_chime_sdk_media_pipelines.error import BadRequestException
 
 
 async def main():
-    async with AsyncChimeSDKMediaPipelinesClient() as s3:
+    async with AsyncChimeSDKMediaPipelinesClient() as chime_sdk_media_pipelines:
         try:
-            await s3.create_media_capture_pipeline()
+            await chime_sdk_media_pipelines.create_media_capture_pipeline()
         except BadRequestException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +63,13 @@ from capo_chime_sdk_media_pipelines import AsyncChimeSDKMediaPipelinesClient
 
 
 async def main():
-    async with AsyncChimeSDKMediaPipelinesClient() as s3:
+    async with AsyncChimeSDKMediaPipelinesClient() as chime_sdk_media_pipelines:
         # Default: 3 attempts for every operation
-        response = await s3.create_media_capture_pipeline()
+        response = await chime_sdk_media_pipelines.create_media_capture_pipeline()
 
         # Override per operation
-        response = await s3.create_media_capture_pipeline(config_overrides={"retry_max_attempts": 5})
+        response = await chime_sdk_media_pipelines.create_media_capture_pipeline(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_media_capture_pipeline(config_overrides={"retry_max_attempts": 1})
+        response = await chime_sdk_media_pipelines.create_media_capture_pipeline(config_overrides={"retry_max_attempts": 1})
 ```

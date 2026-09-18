@@ -43,7 +43,7 @@ def serialize_aws_json_1_1(value: GitBranchFilterCriteria) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GitBranchFilterCriteria:
     out: GitBranchFilterCriteria = {}  # type: ignore[typeddict-item]
-    if "includes" in data:
+    if data.get("includes") is not None:
         import capo_codepipeline.types.git_branch_pattern_list
 
         out["includes"] = (
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_1(data: dict) -> GitBranchFilterCriteria:
                 data["includes"]
             )
         )
-    if "excludes" in data:
+    if data.get("excludes") is not None:
         import capo_codepipeline.types.git_branch_pattern_list
 
         out["excludes"] = (

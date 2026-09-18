@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> TargetsBatch:
 
     out: TargetsBatch = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codestar_notifications.types.target_summary.deserialize_json(item)
         )

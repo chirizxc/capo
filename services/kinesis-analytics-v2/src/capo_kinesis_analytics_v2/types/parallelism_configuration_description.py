@@ -56,7 +56,7 @@ def serialize_aws_json_1_1(value: ParallelismConfigurationDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ParallelismConfigurationDescription:
     out: ParallelismConfigurationDescription = {}  # type: ignore[typeddict-item]
-    if "ConfigurationType" in data:
+    if data.get("ConfigurationType") is not None:
         import capo_kinesis_analytics_v2.types.configuration_type
 
         out["configuration_type"] = (
@@ -64,12 +64,12 @@ def deserialize_aws_json_1_1(data: dict) -> ParallelismConfigurationDescription:
                 data["ConfigurationType"]
             )
         )
-    if "Parallelism" in data:
+    if data.get("Parallelism") is not None:
         out["parallelism"] = data["Parallelism"]
-    if "ParallelismPerKPU" in data:
+    if data.get("ParallelismPerKPU") is not None:
         out["parallelism_per_kpu"] = data["ParallelismPerKPU"]
-    if "CurrentParallelism" in data:
+    if data.get("CurrentParallelism") is not None:
         out["current_parallelism"] = data["CurrentParallelism"]
-    if "AutoScalingEnabled" in data:
+    if data.get("AutoScalingEnabled") is not None:
         out["auto_scaling_enabled"] = data["AutoScalingEnabled"]
     return out

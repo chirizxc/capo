@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfMssManifest:
 
     out: __listOfMssManifest = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mediapackage_vod.types.mss_manifest.deserialize_json(item))
     return out

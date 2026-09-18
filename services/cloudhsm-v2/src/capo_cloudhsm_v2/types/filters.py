@@ -24,6 +24,8 @@ def serialize_aws_json_1_1(input_to_serialize: Filters) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> Filters:
     out: Filters = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_cloudhsm_v2.types.strings
 
         out[key] = capo_cloudhsm_v2.types.strings.deserialize_aws_json_1_1(value)

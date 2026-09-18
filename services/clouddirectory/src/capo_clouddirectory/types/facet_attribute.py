@@ -63,11 +63,11 @@ def serialize_json(value: FacetAttribute) -> dict:
 
 def deserialize_json(data: dict) -> FacetAttribute:
     out: FacetAttribute = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("FacetAttribute.name required")
-    if "AttributeDefinition" in data:
+    if data.get("AttributeDefinition") is not None:
         import capo_clouddirectory.types.facet_attribute_definition
 
         out["attribute_definition"] = (
@@ -75,7 +75,7 @@ def deserialize_json(data: dict) -> FacetAttribute:
                 data["AttributeDefinition"]
             )
         )
-    if "AttributeReference" in data:
+    if data.get("AttributeReference") is not None:
         import capo_clouddirectory.types.facet_attribute_reference
 
         out["attribute_reference"] = (
@@ -83,7 +83,7 @@ def deserialize_json(data: dict) -> FacetAttribute:
                 data["AttributeReference"]
             )
         )
-    if "RequiredBehavior" in data:
+    if data.get("RequiredBehavior") is not None:
         import capo_clouddirectory.types.required_attribute_behavior
 
         out["required_behavior"] = (

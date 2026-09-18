@@ -253,47 +253,47 @@ def serialize_json(value: GetRunResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetRunResponse:
     out: GetRunResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "cacheId" in data:
+    if data.get("cacheId") is not None:
         out["cache_id"] = data["cacheId"]
-    if "cacheBehavior" in data:
+    if data.get("cacheBehavior") is not None:
         out["cache_behavior"] = data["cacheBehavior"]
-    if "engineVersion" in data:
+    if data.get("engineVersion") is not None:
         out["engine_version"] = data["engineVersion"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "workflowId" in data:
+    if data.get("workflowId") is not None:
         out["workflow_id"] = data["workflowId"]
-    if "workflowType" in data:
+    if data.get("workflowType") is not None:
         out["workflow_type"] = data["workflowType"]
-    if "runId" in data:
+    if data.get("runId") is not None:
         out["run_id"] = data["runId"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "runGroupId" in data:
+    if data.get("runGroupId") is not None:
         out["run_group_id"] = data["runGroupId"]
-    if "batchId" in data:
+    if data.get("batchId") is not None:
         out["batch_id"] = data["batchId"]
-    if "priority" in data:
+    if data.get("priority") is not None:
         out["priority"] = data["priority"]
-    if "definition" in data:
+    if data.get("definition") is not None:
         out["definition"] = data["definition"]
-    if "digest" in data:
+    if data.get("digest") is not None:
         out["digest"] = data["digest"]
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         out["parameters"] = data["parameters"]
-    if "storageCapacity" in data:
+    if data.get("storageCapacity") is not None:
         out["storage_capacity"] = data["storageCapacity"]
-    if "outputUri" in data:
+    if data.get("outputUri") is not None:
         out["output_uri"] = data["outputUri"]
-    if "logLevel" in data:
+    if data.get("logLevel") is not None:
         out["log_level"] = data["logLevel"]
-    if "resourceDigests" in data:
+    if data.get("resourceDigests") is not None:
         import capo_omics.types.run_resource_digests
 
         out["resource_digests"] = (
@@ -301,70 +301,70 @@ def deserialize_json(data: dict) -> GetRunResponse:
                 data["resourceDigests"]
             )
         )
-    if "startedBy" in data:
+    if data.get("startedBy") is not None:
         out["started_by"] = data["startedBy"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_omics.types.run_timestamp
 
         out["creation_time"] = capo_omics.types.run_timestamp.deserialize_json(
             data["creationTime"]
         )
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_omics.types.run_timestamp
 
         out["start_time"] = capo_omics.types.run_timestamp.deserialize_json(
             data["startTime"]
         )
-    if "stopTime" in data:
+    if data.get("stopTime") is not None:
         import capo_omics.types.run_timestamp
 
         out["stop_time"] = capo_omics.types.run_timestamp.deserialize_json(
             data["stopTime"]
         )
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_omics.types.tag_map
 
         out["tags"] = capo_omics.types.tag_map.deserialize_json(data["tags"])
-    if "accelerators" in data:
+    if data.get("accelerators") is not None:
         out["accelerators"] = data["accelerators"]
-    if "retentionMode" in data:
+    if data.get("retentionMode") is not None:
         out["retention_mode"] = data["retentionMode"]
-    if "failureReason" in data:
+    if data.get("failureReason") is not None:
         out["failure_reason"] = data["failureReason"]
-    if "logLocation" in data:
+    if data.get("logLocation") is not None:
         import capo_omics.types.run_log_location
 
         out["log_location"] = capo_omics.types.run_log_location.deserialize_json(
             data["logLocation"]
         )
-    if "uuid" in data:
+    if data.get("uuid") is not None:
         out["uuid"] = data["uuid"]
-    if "runOutputUri" in data:
+    if data.get("runOutputUri") is not None:
         out["run_output_uri"] = data["runOutputUri"]
-    if "storageType" in data:
+    if data.get("storageType") is not None:
         out["storage_type"] = data["storageType"]
-    if "workflowOwnerId" in data:
+    if data.get("workflowOwnerId") is not None:
         out["workflow_owner_id"] = data["workflowOwnerId"]
-    if "workflowVersionName" in data:
+    if data.get("workflowVersionName") is not None:
         out["workflow_version_name"] = data["workflowVersionName"]
-    if "workflowUuid" in data:
+    if data.get("workflowUuid") is not None:
         out["workflow_uuid"] = data["workflowUuid"]
-    if "networkingMode" in data:
+    if data.get("networkingMode") is not None:
         out["networking_mode"] = data["networkingMode"]
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_omics.types.configuration_details
 
         out["configuration"] = capo_omics.types.configuration_details.deserialize_json(
             data["configuration"]
         )
-    if "vpcConfig" in data:
+    if data.get("vpcConfig") is not None:
         import capo_omics.types.vpc_config_response
 
         out["vpc_config"] = capo_omics.types.vpc_config_response.deserialize_json(
             data["vpcConfig"]
         )
-    if "engineSettings" in data:
+    if data.get("engineSettings") is not None:
         out["engine_settings"] = data["engineSettings"]
     return out

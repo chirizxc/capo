@@ -39,7 +39,7 @@ def serialize_aws_json_1_1(value: GetAnomalyMonitorsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetAnomalyMonitorsRequest:
     out: GetAnomalyMonitorsRequest = {}  # type: ignore[typeddict-item]
-    if "MonitorArnList" in data:
+    if data.get("MonitorArnList") is not None:
         import capo_cost_explorer.types.values
 
         out["monitor_arn_list"] = (
@@ -47,8 +47,8 @@ def deserialize_aws_json_1_1(data: dict) -> GetAnomalyMonitorsRequest:
                 data["MonitorArnList"]
             )
         )
-    if "NextPageToken" in data:
+    if data.get("NextPageToken") is not None:
         out["next_page_token"] = data["NextPageToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

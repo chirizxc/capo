@@ -123,43 +123,43 @@ def serialize_json(value: Addon) -> dict:
 
 def deserialize_json(data: dict) -> Addon:
     out: Addon = {}  # type: ignore[typeddict-item]
-    if "addonName" in data:
+    if data.get("addonName") is not None:
         out["addon_name"] = data["addonName"]
-    if "clusterName" in data:
+    if data.get("clusterName") is not None:
         out["cluster_name"] = data["clusterName"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_eks.types.addon_status
 
         out["status"] = capo_eks.types.addon_status.deserialize_json(data["status"])
-    if "addonVersion" in data:
+    if data.get("addonVersion") is not None:
         out["addon_version"] = data["addonVersion"]
-    if "health" in data:
+    if data.get("health") is not None:
         import capo_eks.types.addon_health
 
         out["health"] = capo_eks.types.addon_health.deserialize_json(data["health"])
-    if "addonArn" in data:
+    if data.get("addonArn") is not None:
         out["addon_arn"] = data["addonArn"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_eks.types.timestamp
 
         out["created_at"] = capo_eks.types.timestamp.deserialize_json(data["createdAt"])
-    if "modifiedAt" in data:
+    if data.get("modifiedAt") is not None:
         import capo_eks.types.timestamp
 
         out["modified_at"] = capo_eks.types.timestamp.deserialize_json(
             data["modifiedAt"]
         )
-    if "serviceAccountRoleArn" in data:
+    if data.get("serviceAccountRoleArn") is not None:
         out["service_account_role_arn"] = data["serviceAccountRoleArn"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_eks.types.tag_map
 
         out["tags"] = capo_eks.types.tag_map.deserialize_json(data["tags"])
-    if "publisher" in data:
+    if data.get("publisher") is not None:
         out["publisher"] = data["publisher"]
-    if "owner" in data:
+    if data.get("owner") is not None:
         out["owner"] = data["owner"]
-    if "marketplaceInformation" in data:
+    if data.get("marketplaceInformation") is not None:
         import capo_eks.types.marketplace_information
 
         out["marketplace_information"] = (
@@ -167,15 +167,15 @@ def deserialize_json(data: dict) -> Addon:
                 data["marketplaceInformation"]
             )
         )
-    if "configurationValues" in data:
+    if data.get("configurationValues") is not None:
         out["configuration_values"] = data["configurationValues"]
-    if "podIdentityAssociations" in data:
+    if data.get("podIdentityAssociations") is not None:
         import capo_eks.types.string_list
 
         out["pod_identity_associations"] = capo_eks.types.string_list.deserialize_json(
             data["podIdentityAssociations"]
         )
-    if "namespaceConfig" in data:
+    if data.get("namespaceConfig") is not None:
         import capo_eks.types.addon_namespace_config_response
 
         out["namespace_config"] = (

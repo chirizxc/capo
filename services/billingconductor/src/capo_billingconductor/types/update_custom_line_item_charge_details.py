@@ -57,7 +57,7 @@ def serialize_json(value: UpdateCustomLineItemChargeDetails) -> dict:
 
 def deserialize_json(data: dict) -> UpdateCustomLineItemChargeDetails:
     out: UpdateCustomLineItemChargeDetails = {}  # type: ignore[typeddict-item]
-    if "Flat" in data:
+    if data.get("Flat") is not None:
         import capo_billingconductor.types.update_custom_line_item_flat_charge_details
 
         out["flat"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> UpdateCustomLineItemChargeDetails:
                 data["Flat"]
             )
         )
-    if "Percentage" in data:
+    if data.get("Percentage") is not None:
         import capo_billingconductor.types.update_custom_line_item_percentage_charge_details
 
         out["percentage"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> UpdateCustomLineItemChargeDetails:
                 data["Percentage"]
             )
         )
-    if "LineItemFilters" in data:
+    if data.get("LineItemFilters") is not None:
         import capo_billingconductor.types.line_item_filters_list
 
         out["line_item_filters"] = (

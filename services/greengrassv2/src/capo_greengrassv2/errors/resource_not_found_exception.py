@@ -29,15 +29,15 @@ def serialize_json(value: ResourceNotFoundException_) -> dict:
 
 def deserialize_json(data: dict) -> ResourceNotFoundException_:
     out: ResourceNotFoundException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("ResourceNotFoundException_.message required")
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         out["resource_id"] = data["resourceId"]
     else:
         raise DeserializationError("ResourceNotFoundException_.resource_id required")
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         out["resource_type"] = data["resourceType"]
     else:
         raise DeserializationError("ResourceNotFoundException_.resource_type required")
@@ -49,15 +49,18 @@ class ResourceNotFoundException(ServiceError):
 
     code: str | None = "ResourceNotFoundException"
 
-    def __init__(self, data: ResourceNotFoundException_):
+    def __init__(self, data: ResourceNotFoundException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ResourceNotFoundException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ResourceNotFoundException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "ResourceNotFoundException":
+        return cls(deserialize_json(data), message)

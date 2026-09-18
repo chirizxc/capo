@@ -75,13 +75,13 @@ def serialize_aws_json_1_1(value: ServerlessJobConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ServerlessJobConfig:
     out: ServerlessJobConfig = {}  # type: ignore[typeddict-item]
-    if "BaseModelArn" in data:
+    if data.get("BaseModelArn") is not None:
         out["base_model_arn"] = data["BaseModelArn"]
     else:
         raise DeserializationError("ServerlessJobConfig.base_model_arn required")
-    if "AcceptEula" in data:
+    if data.get("AcceptEula") is not None:
         out["accept_eula"] = data["AcceptEula"]
-    if "JobType" in data:
+    if data.get("JobType") is not None:
         import capo_sagemaker.types.serverless_job_type
 
         out["job_type"] = (
@@ -91,7 +91,7 @@ def deserialize_aws_json_1_1(data: dict) -> ServerlessJobConfig:
         )
     else:
         raise DeserializationError("ServerlessJobConfig.job_type required")
-    if "CustomizationTechnique" in data:
+    if data.get("CustomizationTechnique") is not None:
         import capo_sagemaker.types.customization_technique
 
         out["customization_technique"] = (
@@ -99,11 +99,11 @@ def deserialize_aws_json_1_1(data: dict) -> ServerlessJobConfig:
                 data["CustomizationTechnique"]
             )
         )
-    if "Peft" in data:
+    if data.get("Peft") is not None:
         import capo_sagemaker.types.peft
 
         out["peft"] = capo_sagemaker.types.peft.deserialize_aws_json_1_1(data["Peft"])
-    if "EvaluationType" in data:
+    if data.get("EvaluationType") is not None:
         import capo_sagemaker.types.evaluation_type
 
         out["evaluation_type"] = (
@@ -111,6 +111,6 @@ def deserialize_aws_json_1_1(data: dict) -> ServerlessJobConfig:
                 data["EvaluationType"]
             )
         )
-    if "EvaluatorArn" in data:
+    if data.get("EvaluatorArn") is not None:
         out["evaluator_arn"] = data["EvaluatorArn"]
     return out

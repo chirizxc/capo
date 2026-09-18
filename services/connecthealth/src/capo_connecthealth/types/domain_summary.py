@@ -49,19 +49,19 @@ def serialize_json(value: DomainSummary) -> dict:
 
 def deserialize_json(data: dict) -> DomainSummary:
     out: DomainSummary = {}  # type: ignore[typeddict-item]
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
     else:
         raise DeserializationError("DomainSummary.domain_id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("DomainSummary.arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("DomainSummary.name required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_connecthealth.types.domain_status
 
         out["status"] = capo_connecthealth.types.domain_status.deserialize_json(
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> DomainSummary:
         )
     else:
         raise DeserializationError("DomainSummary.status required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_connecthealth.types._prelude.timestamp
 
         out["created_at"] = (

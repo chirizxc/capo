@@ -53,11 +53,11 @@ def serialize_json(value: PutRumEventsRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutRumEventsRequest:
     out: PutRumEventsRequest = {}  # type: ignore[typeddict-item]
-    if "BatchId" in data:
+    if data.get("BatchId") is not None:
         out["batch_id"] = data["BatchId"]
     else:
         raise DeserializationError("PutRumEventsRequest.batch_id required")
-    if "AppMonitorDetails" in data:
+    if data.get("AppMonitorDetails") is not None:
         import capo_rum.types.app_monitor_details
 
         out["app_monitor_details"] = (
@@ -67,7 +67,7 @@ def deserialize_json(data: dict) -> PutRumEventsRequest:
         )
     else:
         raise DeserializationError("PutRumEventsRequest.app_monitor_details required")
-    if "UserDetails" in data:
+    if data.get("UserDetails") is not None:
         import capo_rum.types.user_details
 
         out["user_details"] = capo_rum.types.user_details.deserialize_json(
@@ -75,7 +75,7 @@ def deserialize_json(data: dict) -> PutRumEventsRequest:
         )
     else:
         raise DeserializationError("PutRumEventsRequest.user_details required")
-    if "RumEvents" in data:
+    if data.get("RumEvents") is not None:
         import capo_rum.types.rum_event_list
 
         out["rum_events"] = capo_rum.types.rum_event_list.deserialize_json(
@@ -83,6 +83,6 @@ def deserialize_json(data: dict) -> PutRumEventsRequest:
         )
     else:
         raise DeserializationError("PutRumEventsRequest.rum_events required")
-    if "Alias" in data:
+    if data.get("Alias") is not None:
         out["alias"] = data["Alias"]
     return out

@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> PrivateIpAddresses:
 
     out: PrivateIpAddresses = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_workspaces_instances.types.private_ip_address_specification.deserialize_aws_json_1_0(
                 item

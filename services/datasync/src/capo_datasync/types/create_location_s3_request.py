@@ -65,13 +65,13 @@ def serialize_aws_json_1_1(value: CreateLocationS3Request) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateLocationS3Request:
     out: CreateLocationS3Request = {}  # type: ignore[typeddict-item]
-    if "Subdirectory" in data:
+    if data.get("Subdirectory") is not None:
         out["subdirectory"] = data["Subdirectory"]
-    if "S3BucketArn" in data:
+    if data.get("S3BucketArn") is not None:
         out["s3_bucket_arn"] = data["S3BucketArn"]
     else:
         raise DeserializationError("CreateLocationS3Request.s3_bucket_arn required")
-    if "S3StorageClass" in data:
+    if data.get("S3StorageClass") is not None:
         import capo_datasync.types.s3_storage_class
 
         out["s3_storage_class"] = (
@@ -79,7 +79,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateLocationS3Request:
                 data["S3StorageClass"]
             )
         )
-    if "S3Config" in data:
+    if data.get("S3Config") is not None:
         import capo_datasync.types.s3_config
 
         out["s3_config"] = capo_datasync.types.s3_config.deserialize_aws_json_1_1(
@@ -87,13 +87,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreateLocationS3Request:
         )
     else:
         raise DeserializationError("CreateLocationS3Request.s3_config required")
-    if "AgentArns" in data:
+    if data.get("AgentArns") is not None:
         import capo_datasync.types.agent_arn_list
 
         out["agent_arns"] = capo_datasync.types.agent_arn_list.deserialize_aws_json_1_1(
             data["AgentArns"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_datasync.types.input_tag_list
 
         out["tags"] = capo_datasync.types.input_tag_list.deserialize_aws_json_1_1(

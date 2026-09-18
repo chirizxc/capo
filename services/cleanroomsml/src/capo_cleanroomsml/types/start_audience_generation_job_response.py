@@ -26,7 +26,7 @@ def serialize_json(value: StartAudienceGenerationJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartAudienceGenerationJobResponse:
     out: StartAudienceGenerationJobResponse = {}  # type: ignore[typeddict-item]
-    if "audienceGenerationJobArn" in data:
+    if data.get("audienceGenerationJobArn") is not None:
         out["audience_generation_job_arn"] = data["audienceGenerationJobArn"]
     else:
         raise DeserializationError(

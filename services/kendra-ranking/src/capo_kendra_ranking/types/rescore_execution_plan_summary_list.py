@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> RescoreExecutionPlanSummaryList:
 
     out: RescoreExecutionPlanSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_kendra_ranking.types.rescore_execution_plan_summary.deserialize_aws_json_1_0(
                 item

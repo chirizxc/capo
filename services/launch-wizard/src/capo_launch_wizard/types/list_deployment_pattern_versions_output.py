@@ -36,7 +36,7 @@ def serialize_json(value: ListDeploymentPatternVersionsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListDeploymentPatternVersionsOutput:
     out: ListDeploymentPatternVersionsOutput = {}  # type: ignore[typeddict-item]
-    if "deploymentPatternVersions" in data:
+    if data.get("deploymentPatternVersions") is not None:
         import capo_launch_wizard.types.deployment_pattern_version_data_summary_list
 
         out["deployment_pattern_versions"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListDeploymentPatternVersionsOutput:
                 data["deploymentPatternVersions"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

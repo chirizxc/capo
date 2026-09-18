@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: PredictionExplanations) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PredictionExplanations:
     out: PredictionExplanations = {}  # type: ignore[typeddict-item]
-    if "variableImpactExplanations" in data:
+    if data.get("variableImpactExplanations") is not None:
         import capo_frauddetector.types.list_of_variable_impact_explanations
 
         out["variable_impact_explanations"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> PredictionExplanations:
                 data["variableImpactExplanations"]
             )
         )
-    if "aggregatedVariablesImpactExplanations" in data:
+    if data.get("aggregatedVariablesImpactExplanations") is not None:
         import capo_frauddetector.types.list_of_aggregated_variables_impact_explanations
 
         out["aggregated_variables_impact_explanations"] = (

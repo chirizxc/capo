@@ -61,17 +61,17 @@ def serialize_json(value: StartIncidentInput) -> dict:
 
 def deserialize_json(data: dict) -> StartIncidentInput:
     out: StartIncidentInput = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "responsePlanArn" in data:
+    if data.get("responsePlanArn") is not None:
         out["response_plan_arn"] = data["responsePlanArn"]
     else:
         raise DeserializationError("StartIncidentInput.response_plan_arn required")
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
-    if "impact" in data:
+    if data.get("impact") is not None:
         out["impact"] = data["impact"]
-    if "triggerDetails" in data:
+    if data.get("triggerDetails") is not None:
         import capo_ssm_incidents.types.trigger_details
 
         out["trigger_details"] = (
@@ -79,7 +79,7 @@ def deserialize_json(data: dict) -> StartIncidentInput:
                 data["triggerDetails"]
             )
         )
-    if "relatedItems" in data:
+    if data.get("relatedItems") is not None:
         import capo_ssm_incidents.types.related_item_list
 
         out["related_items"] = (

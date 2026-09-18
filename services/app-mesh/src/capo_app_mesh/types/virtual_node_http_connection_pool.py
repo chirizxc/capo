@@ -31,12 +31,12 @@ def serialize_json(value: VirtualNodeHttpConnectionPool) -> dict:
 
 def deserialize_json(data: dict) -> VirtualNodeHttpConnectionPool:
     out: VirtualNodeHttpConnectionPool = {}  # type: ignore[typeddict-item]
-    if "maxConnections" in data:
+    if data.get("maxConnections") is not None:
         out["max_connections"] = data["maxConnections"]
     else:
         raise DeserializationError(
             "VirtualNodeHttpConnectionPool.max_connections required"
         )
-    if "maxPendingRequests" in data:
+    if data.get("maxPendingRequests") is not None:
         out["max_pending_requests"] = data["maxPendingRequests"]
     return out

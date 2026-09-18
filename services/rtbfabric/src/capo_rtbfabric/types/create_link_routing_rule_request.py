@@ -48,15 +48,15 @@ def serialize_json(value: CreateLinkRoutingRuleRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateLinkRoutingRuleRequest:
     out: CreateLinkRoutingRuleRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError("CreateLinkRoutingRuleRequest.client_token required")
-    if "priority" in data:
+    if data.get("priority") is not None:
         out["priority"] = data["priority"]
     else:
         raise DeserializationError("CreateLinkRoutingRuleRequest.priority required")
-    if "conditions" in data:
+    if data.get("conditions") is not None:
         import capo_rtbfabric.types.rule_condition
 
         out["conditions"] = capo_rtbfabric.types.rule_condition.deserialize_json(
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> CreateLinkRoutingRuleRequest:
         )
     else:
         raise DeserializationError("CreateLinkRoutingRuleRequest.conditions required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_rtbfabric.types.tags_map
 
         out["tags"] = capo_rtbfabric.types.tags_map.deserialize_json(data["tags"])

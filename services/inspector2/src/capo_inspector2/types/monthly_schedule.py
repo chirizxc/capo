@@ -32,7 +32,7 @@ def serialize_json(value: MonthlySchedule) -> dict:
 
 def deserialize_json(data: dict) -> MonthlySchedule:
     out: MonthlySchedule = {}  # type: ignore[typeddict-item]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_inspector2.types.time
 
         out["start_time"] = capo_inspector2.types.time.deserialize_json(
@@ -40,7 +40,7 @@ def deserialize_json(data: dict) -> MonthlySchedule:
         )
     else:
         raise DeserializationError("MonthlySchedule.start_time required")
-    if "day" in data:
+    if data.get("day") is not None:
         import capo_inspector2.types.day
 
         out["day"] = capo_inspector2.types.day.deserialize_json(data["day"])

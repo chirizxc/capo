@@ -68,8 +68,7 @@ class JobResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.delete_job_request.DeleteJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_mgn.types.delete_job_request.DeleteJobRequest = {"job_id": job_id}
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -78,6 +77,7 @@ class JobResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -120,7 +120,7 @@ class JobResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.describe_jobs_request.DescribeJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mgn.types.describe_jobs_request.DescribeJobsRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -135,6 +135,7 @@ class JobResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_job_log_items(
@@ -175,8 +176,9 @@ class JobResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.describe_job_log_items_request.DescribeJobLogItemsRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_mgn.types.describe_job_log_items_request.DescribeJobLogItemsRequest = {
+            "job_id": job_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -189,6 +191,7 @@ class JobResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -232,8 +235,7 @@ class AsyncJobResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.delete_job_request.DeleteJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_mgn.types.delete_job_request.DeleteJobRequest = {"job_id": job_id}
         if account_id is not None:
             input_["account_id"] = account_id
 
@@ -242,6 +244,7 @@ class AsyncJobResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -285,7 +288,7 @@ class AsyncJobResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.describe_jobs_request.DescribeJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mgn.types.describe_jobs_request.DescribeJobsRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if max_results is not None:
@@ -300,6 +303,7 @@ class AsyncJobResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_job_log_items(
@@ -341,8 +345,9 @@ class AsyncJobResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mgn.types.describe_job_log_items_request.DescribeJobLogItemsRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_mgn.types.describe_job_log_items_request.DescribeJobLogItemsRequest = {
+            "job_id": job_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -355,4 +360,5 @@ class AsyncJobResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

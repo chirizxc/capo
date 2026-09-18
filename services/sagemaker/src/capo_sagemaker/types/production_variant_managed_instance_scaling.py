@@ -58,7 +58,7 @@ def serialize_aws_json_1_1(value: ProductionVariantManagedInstanceScaling) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> ProductionVariantManagedInstanceScaling:
     out: ProductionVariantManagedInstanceScaling = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.managed_instance_scaling_status
 
         out["status"] = (
@@ -66,11 +66,11 @@ def deserialize_aws_json_1_1(data: dict) -> ProductionVariantManagedInstanceScal
                 data["Status"]
             )
         )
-    if "MinInstanceCount" in data:
+    if data.get("MinInstanceCount") is not None:
         out["min_instance_count"] = data["MinInstanceCount"]
-    if "MaxInstanceCount" in data:
+    if data.get("MaxInstanceCount") is not None:
         out["max_instance_count"] = data["MaxInstanceCount"]
-    if "ScaleInPolicy" in data:
+    if data.get("ScaleInPolicy") is not None:
         import capo_sagemaker.types.production_variant_managed_instance_scaling_scale_in_policy
 
         out["scale_in_policy"] = (

@@ -48,17 +48,17 @@ def serialize_json(value: StartExperimentRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartExperimentRequest:
     out: StartExperimentRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError("StartExperimentRequest.client_token required")
-    if "experimentTemplateId" in data:
+    if data.get("experimentTemplateId") is not None:
         out["experiment_template_id"] = data["experimentTemplateId"]
     else:
         raise DeserializationError(
             "StartExperimentRequest.experiment_template_id required"
         )
-    if "experimentOptions" in data:
+    if data.get("experimentOptions") is not None:
         import capo_fis.types.start_experiment_experiment_options_input
 
         out["experiment_options"] = (
@@ -66,7 +66,7 @@ def deserialize_json(data: dict) -> StartExperimentRequest:
                 data["experimentOptions"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_fis.types.tag_map
 
         out["tags"] = capo_fis.types.tag_map.deserialize_json(data["tags"])

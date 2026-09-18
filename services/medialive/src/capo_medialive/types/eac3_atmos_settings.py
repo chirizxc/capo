@@ -37,7 +37,15 @@ class Eac3AtmosSettings(TypedDict, closed=True):
 def serialize_json(value: Eac3AtmosSettings) -> dict:
     out: dict = {}
     if "bitrate" in value:
-        out["bitrate"] = value["bitrate"]
+        out["bitrate"] = (
+            "NaN"
+            if value["bitrate"] != value["bitrate"]
+            else "Infinity"
+            if value["bitrate"] == float("inf")
+            else "-Infinity"
+            if value["bitrate"] == float("-inf")
+            else value["bitrate"]
+        )
     if "coding_mode" in value:
         import capo_medialive.types.eac3_atmos_coding_mode
 
@@ -59,17 +67,33 @@ def serialize_json(value: Eac3AtmosSettings) -> dict:
             value["drc_rf"]
         )
     if "height_trim" in value:
-        out["heightTrim"] = value["height_trim"]
+        out["heightTrim"] = (
+            "NaN"
+            if value["height_trim"] != value["height_trim"]
+            else "Infinity"
+            if value["height_trim"] == float("inf")
+            else "-Infinity"
+            if value["height_trim"] == float("-inf")
+            else value["height_trim"]
+        )
     if "surround_trim" in value:
-        out["surroundTrim"] = value["surround_trim"]
+        out["surroundTrim"] = (
+            "NaN"
+            if value["surround_trim"] != value["surround_trim"]
+            else "Infinity"
+            if value["surround_trim"] == float("inf")
+            else "-Infinity"
+            if value["surround_trim"] == float("-inf")
+            else value["surround_trim"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> Eac3AtmosSettings:
     out: Eac3AtmosSettings = {}  # type: ignore[typeddict-item]
-    if "bitrate" in data:
-        out["bitrate"] = data["bitrate"]
-    if "codingMode" in data:
+    if data.get("bitrate") is not None:
+        out["bitrate"] = float(data["bitrate"])
+    if data.get("codingMode") is not None:
         import capo_medialive.types.eac3_atmos_coding_mode
 
         out["coding_mode"] = (
@@ -77,22 +101,22 @@ def deserialize_json(data: dict) -> Eac3AtmosSettings:
                 data["codingMode"]
             )
         )
-    if "dialnorm" in data:
+    if data.get("dialnorm") is not None:
         out["dialnorm"] = data["dialnorm"]
-    if "drcLine" in data:
+    if data.get("drcLine") is not None:
         import capo_medialive.types.eac3_atmos_drc_line
 
         out["drc_line"] = capo_medialive.types.eac3_atmos_drc_line.deserialize_json(
             data["drcLine"]
         )
-    if "drcRf" in data:
+    if data.get("drcRf") is not None:
         import capo_medialive.types.eac3_atmos_drc_rf
 
         out["drc_rf"] = capo_medialive.types.eac3_atmos_drc_rf.deserialize_json(
             data["drcRf"]
         )
-    if "heightTrim" in data:
-        out["height_trim"] = data["heightTrim"]
-    if "surroundTrim" in data:
-        out["surround_trim"] = data["surroundTrim"]
+    if data.get("heightTrim") is not None:
+        out["height_trim"] = float(data["heightTrim"])
+    if data.get("surroundTrim") is not None:
+        out["surround_trim"] = float(data["surroundTrim"])
     return out

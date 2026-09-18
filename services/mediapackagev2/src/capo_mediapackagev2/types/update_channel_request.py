@@ -59,9 +59,9 @@ def serialize_json(value: UpdateChannelRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateChannelRequest:
     out: UpdateChannelRequest = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "InputSwitchConfiguration" in data:
+    if data.get("InputSwitchConfiguration") is not None:
         import capo_mediapackagev2.types.input_switch_configuration
 
         out["input_switch_configuration"] = (
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> UpdateChannelRequest:
                 data["InputSwitchConfiguration"]
             )
         )
-    if "OutputHeaderConfiguration" in data:
+    if data.get("OutputHeaderConfiguration") is not None:
         import capo_mediapackagev2.types.output_header_configuration
 
         out["output_header_configuration"] = (

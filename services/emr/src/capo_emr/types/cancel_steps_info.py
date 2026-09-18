@@ -41,9 +41,9 @@ def serialize_aws_json_1_1(value: CancelStepsInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CancelStepsInfo:
     out: CancelStepsInfo = {}  # type: ignore[typeddict-item]
-    if "StepId" in data:
+    if data.get("StepId") is not None:
         out["step_id"] = data["StepId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_emr.types.cancel_steps_request_status
 
         out["status"] = (
@@ -51,6 +51,6 @@ def deserialize_aws_json_1_1(data: dict) -> CancelStepsInfo:
                 data["Status"]
             )
         )
-    if "Reason" in data:
+    if data.get("Reason") is not None:
         out["reason"] = data["Reason"]
     return out

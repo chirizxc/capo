@@ -24,7 +24,7 @@ def serialize_json(value: PutItemInput) -> dict:
 
 def deserialize_json(data: dict) -> PutItemInput:
     out: PutItemInput = {}  # type: ignore[typeddict-item]
-    if "tableName" in data:
+    if data.get("tableName") is not None:
         out["table_name"] = data["tableName"]
     else:
         raise DeserializationError("PutItemInput.table_name required")

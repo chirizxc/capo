@@ -13,9 +13,9 @@ from capo_backup import AsyncBackupClient
 
 
 async def main():
-    async with AsyncBackupClient() as s3:
+    async with AsyncBackupClient() as backup:
         # Example: call the associate_backup_vault_mpa_approval_team operation
-        response = await s3.associate_backup_vault_mpa_approval_team()
+        response = await backup.associate_backup_vault_mpa_approval_team()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_backup import AsyncBackupClient
 
 
 async def main():
-    async with AsyncBackupClient() as s3:
+    async with AsyncBackupClient() as backup:
         # Example: paginate over list_backup_jobs
-        async for item in s3.iter_list_backup_jobs():
+        async for item in backup.iter_list_backup_jobs():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_backup.error import InvalidParameterValueException
 
 
 async def main():
-    async with AsyncBackupClient() as s3:
+    async with AsyncBackupClient() as backup:
         try:
-            await s3.associate_backup_vault_mpa_approval_team()
+            await backup.associate_backup_vault_mpa_approval_team()
         except InvalidParameterValueException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_backup import AsyncBackupClient
 
 
 async def main():
-    async with AsyncBackupClient() as s3:
+    async with AsyncBackupClient() as backup:
         # Default: 3 attempts for every operation
-        response = await s3.associate_backup_vault_mpa_approval_team()
+        response = await backup.associate_backup_vault_mpa_approval_team()
 
         # Override per operation
-        response = await s3.associate_backup_vault_mpa_approval_team(config_overrides={"retry_max_attempts": 5})
+        response = await backup.associate_backup_vault_mpa_approval_team(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.associate_backup_vault_mpa_approval_team(config_overrides={"retry_max_attempts": 1})
+        response = await backup.associate_backup_vault_mpa_approval_team(config_overrides={"retry_max_attempts": 1})
 ```

@@ -32,7 +32,7 @@ def serialize_json(value: ReportOutputConfiguration) -> dict:
 
 
 def deserialize_json(data: dict) -> ReportOutputConfiguration:
-    if "s3" in data:
+    if data.get("s3") is not None:
         import capo_resiliencehubv2.types.s3_report_output_configuration
 
         return {

@@ -51,9 +51,9 @@ def serialize_aws_json_1_1(value: ShardDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ShardDetail:
     out: ShardDetail = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Configuration" in data:
+    if data.get("Configuration") is not None:
         import capo_memorydb.types.shard_configuration
 
         out["configuration"] = (
@@ -61,9 +61,9 @@ def deserialize_aws_json_1_1(data: dict) -> ShardDetail:
                 data["Configuration"]
             )
         )
-    if "Size" in data:
+    if data.get("Size") is not None:
         out["size"] = data["Size"]
-    if "SnapshotCreationTime" in data:
+    if data.get("SnapshotCreationTime") is not None:
         import capo_memorydb.types.t_stamp
 
         out["snapshot_creation_time"] = (

@@ -29,9 +29,9 @@ def serialize_json(value: RestApiServerException_) -> dict:
 
 def deserialize_json(data: dict) -> RestApiServerException_:
     out: RestApiServerException_ = {}  # type: ignore[typeddict-item]
-    if "RestApiStatusCode" in data:
+    if data.get("RestApiStatusCode") is not None:
         out["rest_api_status_code"] = data["RestApiStatusCode"]
-    if "RestApiResponse" in data:
+    if data.get("RestApiResponse") is not None:
         out["rest_api_response"] = data["RestApiResponse"]
     return out
 
@@ -41,15 +41,18 @@ class RestApiServerException(ServiceError):
 
     code: str | None = "RestApiServerException"
 
-    def __init__(self, data: RestApiServerException_):
+    def __init__(self, data: RestApiServerException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="RestApiServerException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "RestApiServerException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "RestApiServerException":
+        return cls(deserialize_json(data), message)

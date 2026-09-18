@@ -13,9 +13,9 @@ from capo_app_mesh import AsyncAppMeshClient
 
 
 async def main():
-    async with AsyncAppMeshClient() as s3:
+    async with AsyncAppMeshClient() as app_mesh:
         # Example: call the list_tags_for_resource operation
-        response = await s3.list_tags_for_resource()
+        response = await app_mesh.list_tags_for_resource()
         print(response["tags"])
 ```
 
@@ -28,9 +28,9 @@ from capo_app_mesh import AsyncAppMeshClient
 
 
 async def main():
-    async with AsyncAppMeshClient() as s3:
+    async with AsyncAppMeshClient() as app_mesh:
         # Example: paginate over list_tags_for_resource
-        async for item in s3.iter_list_tags_for_resource():
+        async for item in app_mesh.iter_list_tags_for_resource():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_app_mesh.error import BadRequestException
 
 
 async def main():
-    async with AsyncAppMeshClient() as s3:
+    async with AsyncAppMeshClient() as app_mesh:
         try:
-            await s3.list_tags_for_resource()
+            await app_mesh.list_tags_for_resource()
         except BadRequestException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_app_mesh import AsyncAppMeshClient
 
 
 async def main():
-    async with AsyncAppMeshClient() as s3:
+    async with AsyncAppMeshClient() as app_mesh:
         # Default: 3 attempts for every operation
-        response = await s3.list_tags_for_resource()
+        response = await app_mesh.list_tags_for_resource()
 
         # Override per operation
-        response = await s3.list_tags_for_resource(config_overrides={"retry_max_attempts": 5})
+        response = await app_mesh.list_tags_for_resource(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.list_tags_for_resource(config_overrides={"retry_max_attempts": 1})
+        response = await app_mesh.list_tags_for_resource(config_overrides={"retry_max_attempts": 1})
 ```

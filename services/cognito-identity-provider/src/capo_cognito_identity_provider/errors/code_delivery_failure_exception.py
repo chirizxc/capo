@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: CodeDeliveryFailureException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CodeDeliveryFailureException_:
     out: CodeDeliveryFailureException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -37,15 +37,18 @@ class CodeDeliveryFailureException(ServiceError):
 
     code: str | None = "CodeDeliveryFailureException"
 
-    def __init__(self, data: CodeDeliveryFailureException_):
+    def __init__(self, data: CodeDeliveryFailureException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="CodeDeliveryFailureException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "CodeDeliveryFailureException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "CodeDeliveryFailureException":
+        return cls(deserialize_aws_json_1_1(data), message)

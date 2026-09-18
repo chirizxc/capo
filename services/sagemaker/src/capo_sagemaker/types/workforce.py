@@ -129,11 +129,11 @@ def serialize_aws_json_1_1(value: Workforce) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Workforce:
     out: Workforce = {}  # type: ignore[typeddict-item]
-    if "WorkforceName" in data:
+    if data.get("WorkforceName") is not None:
         out["workforce_name"] = data["WorkforceName"]
-    if "WorkforceArn" in data:
+    if data.get("WorkforceArn") is not None:
         out["workforce_arn"] = data["WorkforceArn"]
-    if "LastUpdatedDate" in data:
+    if data.get("LastUpdatedDate") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_updated_date"] = (
@@ -141,7 +141,7 @@ def deserialize_aws_json_1_1(data: dict) -> Workforce:
                 data["LastUpdatedDate"]
             )
         )
-    if "SourceIpConfig" in data:
+    if data.get("SourceIpConfig") is not None:
         import capo_sagemaker.types.source_ip_config
 
         out["source_ip_config"] = (
@@ -149,9 +149,9 @@ def deserialize_aws_json_1_1(data: dict) -> Workforce:
                 data["SourceIpConfig"]
             )
         )
-    if "SubDomain" in data:
+    if data.get("SubDomain") is not None:
         out["sub_domain"] = data["SubDomain"]
-    if "CognitoConfig" in data:
+    if data.get("CognitoConfig") is not None:
         import capo_sagemaker.types.cognito_config
 
         out["cognito_config"] = (
@@ -159,7 +159,7 @@ def deserialize_aws_json_1_1(data: dict) -> Workforce:
                 data["CognitoConfig"]
             )
         )
-    if "OidcConfig" in data:
+    if data.get("OidcConfig") is not None:
         import capo_sagemaker.types.oidc_config_for_response
 
         out["oidc_config"] = (
@@ -167,13 +167,13 @@ def deserialize_aws_json_1_1(data: dict) -> Workforce:
                 data["OidcConfig"]
             )
         )
-    if "CreateDate" in data:
+    if data.get("CreateDate") is not None:
         import capo_sagemaker.types.timestamp
 
         out["create_date"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreateDate"]
         )
-    if "WorkforceVpcConfig" in data:
+    if data.get("WorkforceVpcConfig") is not None:
         import capo_sagemaker.types.workforce_vpc_config_response
 
         out["workforce_vpc_config"] = (
@@ -181,15 +181,15 @@ def deserialize_aws_json_1_1(data: dict) -> Workforce:
                 data["WorkforceVpcConfig"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.workforce_status
 
         out["status"] = capo_sagemaker.types.workforce_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "IpAddressType" in data:
+    if data.get("IpAddressType") is not None:
         import capo_sagemaker.types.workforce_ip_address_type
 
         out["ip_address_type"] = (

@@ -31,15 +31,15 @@ def serialize_json(value: TestSetSlotDiscrepancyItem) -> dict:
 
 def deserialize_json(data: dict) -> TestSetSlotDiscrepancyItem:
     out: TestSetSlotDiscrepancyItem = {}  # type: ignore[typeddict-item]
-    if "intentName" in data:
+    if data.get("intentName") is not None:
         out["intent_name"] = data["intentName"]
     else:
         raise DeserializationError("TestSetSlotDiscrepancyItem.intent_name required")
-    if "slotName" in data:
+    if data.get("slotName") is not None:
         out["slot_name"] = data["slotName"]
     else:
         raise DeserializationError("TestSetSlotDiscrepancyItem.slot_name required")
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     else:
         raise DeserializationError("TestSetSlotDiscrepancyItem.error_message required")

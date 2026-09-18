@@ -32,7 +32,7 @@ def serialize_json(value: CertificateList) -> dict:
 
 def deserialize_json(data: dict) -> CertificateList:
     out: CertificateList = {}  # type: ignore[typeddict-item]
-    if "SigningAlg" in data:
+    if data.get("SigningAlg") is not None:
         import capo_iot_wireless.types.signing_alg
 
         out["signing_alg"] = capo_iot_wireless.types.signing_alg.deserialize_json(
@@ -40,7 +40,7 @@ def deserialize_json(data: dict) -> CertificateList:
         )
     else:
         raise DeserializationError("CertificateList.signing_alg required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         raise DeserializationError("CertificateList.value required")

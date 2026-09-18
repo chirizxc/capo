@@ -36,7 +36,7 @@ def serialize_json(value: ListDatasourcePackagesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListDatasourcePackagesResponse:
     out: ListDatasourcePackagesResponse = {}  # type: ignore[typeddict-item]
-    if "DatasourcePackages" in data:
+    if data.get("DatasourcePackages") is not None:
         import capo_detective.types.datasource_package_ingest_details
 
         out["datasource_packages"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListDatasourcePackagesResponse:
                 data["DatasourcePackages"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

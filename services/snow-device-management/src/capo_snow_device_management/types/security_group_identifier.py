@@ -22,8 +22,8 @@ def serialize_json(value: SecurityGroupIdentifier) -> dict:
 
 def deserialize_json(data: dict) -> SecurityGroupIdentifier:
     out: SecurityGroupIdentifier = {}  # type: ignore[typeddict-item]
-    if "groupId" in data:
+    if data.get("groupId") is not None:
         out["group_id"] = data["groupId"]
-    if "groupName" in data:
+    if data.get("groupName") is not None:
         out["group_name"] = data["groupName"]
     return out

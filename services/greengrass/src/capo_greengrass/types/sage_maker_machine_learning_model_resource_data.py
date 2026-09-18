@@ -39,9 +39,9 @@ def serialize_json(value: SageMakerMachineLearningModelResourceData) -> dict:
 
 def deserialize_json(data: dict) -> SageMakerMachineLearningModelResourceData:
     out: SageMakerMachineLearningModelResourceData = {}  # type: ignore[typeddict-item]
-    if "DestinationPath" in data:
+    if data.get("DestinationPath") is not None:
         out["destination_path"] = data["DestinationPath"]
-    if "OwnerSetting" in data:
+    if data.get("OwnerSetting") is not None:
         import capo_greengrass.types.resource_download_owner_setting
 
         out["owner_setting"] = (
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> SageMakerMachineLearningModelResourceData:
                 data["OwnerSetting"]
             )
         )
-    if "SageMakerJobArn" in data:
+    if data.get("SageMakerJobArn") is not None:
         out["sage_maker_job_arn"] = data["SageMakerJobArn"]
     return out

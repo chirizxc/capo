@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> BodyParts:
 
     out: BodyParts = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_rekognition.types.protective_equipment_body_part.deserialize_aws_json_1_1(
                 item

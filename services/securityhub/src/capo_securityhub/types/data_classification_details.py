@@ -36,9 +36,9 @@ def serialize_json(value: DataClassificationDetails) -> dict:
 
 def deserialize_json(data: dict) -> DataClassificationDetails:
     out: DataClassificationDetails = {}  # type: ignore[typeddict-item]
-    if "DetailedResultsLocation" in data:
+    if data.get("DetailedResultsLocation") is not None:
         out["detailed_results_location"] = data["DetailedResultsLocation"]
-    if "Result" in data:
+    if data.get("Result") is not None:
         import capo_securityhub.types.classification_result
 
         out["result"] = capo_securityhub.types.classification_result.deserialize_json(

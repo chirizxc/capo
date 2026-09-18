@@ -59,13 +59,13 @@ def serialize_aws_json_1_1(value: RecipeSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RecipeSummary:
     out: RecipeSummary = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "recipeArn" in data:
+    if data.get("recipeArn") is not None:
         out["recipe_arn"] = data["recipeArn"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_personalize.types.date
 
         out["creation_date_time"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> RecipeSummary:
                 data["creationDateTime"]
             )
         )
-    if "lastUpdatedDateTime" in data:
+    if data.get("lastUpdatedDateTime") is not None:
         import capo_personalize.types.date
 
         out["last_updated_date_time"] = (
@@ -81,7 +81,7 @@ def deserialize_aws_json_1_1(data: dict) -> RecipeSummary:
                 data["lastUpdatedDateTime"]
             )
         )
-    if "domain" in data:
+    if data.get("domain") is not None:
         import capo_personalize.types.domain
 
         out["domain"] = capo_personalize.types.domain.deserialize_aws_json_1_1(

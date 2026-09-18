@@ -54,15 +54,15 @@ def serialize_json(value: MatchingWorkflowSummary) -> dict:
 
 def deserialize_json(data: dict) -> MatchingWorkflowSummary:
     out: MatchingWorkflowSummary = {}  # type: ignore[typeddict-item]
-    if "workflowName" in data:
+    if data.get("workflowName") is not None:
         out["workflow_name"] = data["workflowName"]
     else:
         raise DeserializationError("MatchingWorkflowSummary.workflow_name required")
-    if "workflowArn" in data:
+    if data.get("workflowArn") is not None:
         out["workflow_arn"] = data["workflowArn"]
     else:
         raise DeserializationError("MatchingWorkflowSummary.workflow_arn required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_entityresolution.types._prelude.timestamp
 
         out["created_at"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> MatchingWorkflowSummary:
         )
     else:
         raise DeserializationError("MatchingWorkflowSummary.created_at required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_entityresolution.types._prelude.timestamp
 
         out["updated_at"] = (
@@ -82,7 +82,7 @@ def deserialize_json(data: dict) -> MatchingWorkflowSummary:
         )
     else:
         raise DeserializationError("MatchingWorkflowSummary.updated_at required")
-    if "resolutionType" in data:
+    if data.get("resolutionType") is not None:
         import capo_entityresolution.types.resolution_type
 
         out["resolution_type"] = (

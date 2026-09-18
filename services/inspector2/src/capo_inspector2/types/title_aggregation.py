@@ -63,13 +63,13 @@ def serialize_json(value: TitleAggregation) -> dict:
 
 def deserialize_json(data: dict) -> TitleAggregation:
     out: TitleAggregation = {}  # type: ignore[typeddict-item]
-    if "titles" in data:
+    if data.get("titles") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["titles"] = capo_inspector2.types.string_filter_list.deserialize_json(
             data["titles"]
         )
-    if "vulnerabilityIds" in data:
+    if data.get("vulnerabilityIds") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["vulnerability_ids"] = (
@@ -77,12 +77,12 @@ def deserialize_json(data: dict) -> TitleAggregation:
                 data["vulnerabilityIds"]
             )
         )
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         out["resource_type"] = data["resourceType"]
-    if "sortOrder" in data:
+    if data.get("sortOrder") is not None:
         out["sort_order"] = data["sortOrder"]
-    if "sortBy" in data:
+    if data.get("sortBy") is not None:
         out["sort_by"] = data["sortBy"]
-    if "findingType" in data:
+    if data.get("findingType") is not None:
         out["finding_type"] = data["findingType"]
     return out

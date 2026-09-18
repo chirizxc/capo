@@ -63,9 +63,9 @@ def serialize_json(value: KxDataviewActiveVersion) -> dict:
 
 def deserialize_json(data: dict) -> KxDataviewActiveVersion:
     out: KxDataviewActiveVersion = {}  # type: ignore[typeddict-item]
-    if "changesetId" in data:
+    if data.get("changesetId") is not None:
         out["changeset_id"] = data["changesetId"]
-    if "segmentConfigurations" in data:
+    if data.get("segmentConfigurations") is not None:
         import capo_finspace.types.kx_dataview_segment_configuration_list
 
         out["segment_configurations"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> KxDataviewActiveVersion:
                 data["segmentConfigurations"]
             )
         )
-    if "attachedClusters" in data:
+    if data.get("attachedClusters") is not None:
         import capo_finspace.types.attached_cluster_list
 
         out["attached_clusters"] = (
@@ -81,12 +81,12 @@ def deserialize_json(data: dict) -> KxDataviewActiveVersion:
                 data["attachedClusters"]
             )
         )
-    if "createdTimestamp" in data:
+    if data.get("createdTimestamp") is not None:
         import capo_finspace.types.timestamp
 
         out["created_timestamp"] = capo_finspace.types.timestamp.deserialize_json(
             data["createdTimestamp"]
         )
-    if "versionId" in data:
+    if data.get("versionId") is not None:
         out["version_id"] = data["versionId"]
     return out

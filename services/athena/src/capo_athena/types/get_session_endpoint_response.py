@@ -35,15 +35,15 @@ def serialize_aws_json_1_1(value: GetSessionEndpointResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetSessionEndpointResponse:
     out: GetSessionEndpointResponse = {}  # type: ignore[typeddict-item]
-    if "EndpointUrl" in data:
+    if data.get("EndpointUrl") is not None:
         out["endpoint_url"] = data["EndpointUrl"]
     else:
         raise DeserializationError("GetSessionEndpointResponse.endpoint_url required")
-    if "AuthToken" in data:
+    if data.get("AuthToken") is not None:
         out["auth_token"] = data["AuthToken"]
     else:
         raise DeserializationError("GetSessionEndpointResponse.auth_token required")
-    if "AuthTokenExpirationTime" in data:
+    if data.get("AuthTokenExpirationTime") is not None:
         import capo_athena.types.timestamp
 
         out["auth_token_expiration_time"] = (

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ReportedRuntimeContextStates:
 
     out: ReportedRuntimeContextStates = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_panorama.types.reported_runtime_context_state.deserialize_json(item)
         )

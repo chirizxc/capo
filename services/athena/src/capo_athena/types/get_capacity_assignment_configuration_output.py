@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: GetCapacityAssignmentConfigurationOutput) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> GetCapacityAssignmentConfigurationOutput:
     out: GetCapacityAssignmentConfigurationOutput = {}  # type: ignore[typeddict-item]
-    if "CapacityAssignmentConfiguration" in data:
+    if data.get("CapacityAssignmentConfiguration") is not None:
         import capo_athena.types.capacity_assignment_configuration
 
         out["capacity_assignment_configuration"] = (

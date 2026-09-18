@@ -38,7 +38,15 @@ def serialize_aws_json_1_1(value: VideoMetadata) -> dict:
     if "format" in value:
         out["Format"] = value["format"]
     if "frame_rate" in value:
-        out["FrameRate"] = value["frame_rate"]
+        out["FrameRate"] = (
+            "NaN"
+            if value["frame_rate"] != value["frame_rate"]
+            else "Infinity"
+            if value["frame_rate"] == float("inf")
+            else "-Infinity"
+            if value["frame_rate"] == float("-inf")
+            else value["frame_rate"]
+        )
     if "frame_height" in value:
         out["FrameHeight"] = value["frame_height"]
     if "frame_width" in value:
@@ -56,19 +64,19 @@ def serialize_aws_json_1_1(value: VideoMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> VideoMetadata:
     out: VideoMetadata = {}  # type: ignore[typeddict-item]
-    if "Codec" in data:
+    if data.get("Codec") is not None:
         out["codec"] = data["Codec"]
-    if "DurationMillis" in data:
+    if data.get("DurationMillis") is not None:
         out["duration_millis"] = data["DurationMillis"]
-    if "Format" in data:
+    if data.get("Format") is not None:
         out["format"] = data["Format"]
-    if "FrameRate" in data:
-        out["frame_rate"] = data["FrameRate"]
-    if "FrameHeight" in data:
+    if data.get("FrameRate") is not None:
+        out["frame_rate"] = float(data["FrameRate"])
+    if data.get("FrameHeight") is not None:
         out["frame_height"] = data["FrameHeight"]
-    if "FrameWidth" in data:
+    if data.get("FrameWidth") is not None:
         out["frame_width"] = data["FrameWidth"]
-    if "ColorRange" in data:
+    if data.get("ColorRange") is not None:
         import capo_rekognition.types.video_color_range
 
         out["color_range"] = (

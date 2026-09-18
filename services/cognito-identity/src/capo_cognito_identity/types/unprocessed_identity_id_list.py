@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> UnprocessedIdentityIdList:
 
     out: UnprocessedIdentityIdList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cognito_identity.types.unprocessed_identity_id.deserialize_aws_json_1_1(
                 item

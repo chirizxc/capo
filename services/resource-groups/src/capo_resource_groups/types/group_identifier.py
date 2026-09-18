@@ -48,16 +48,16 @@ def serialize_json(value: GroupIdentifier) -> dict:
 
 def deserialize_json(data: dict) -> GroupIdentifier:
     out: GroupIdentifier = {}  # type: ignore[typeddict-item]
-    if "GroupName" in data:
+    if data.get("GroupName") is not None:
         out["group_name"] = data["GroupName"]
-    if "GroupArn" in data:
+    if data.get("GroupArn") is not None:
         out["group_arn"] = data["GroupArn"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Criticality" in data:
+    if data.get("Criticality") is not None:
         out["criticality"] = data["Criticality"]
-    if "Owner" in data:
+    if data.get("Owner") is not None:
         out["owner"] = data["Owner"]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
     return out

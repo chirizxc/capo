@@ -62,7 +62,7 @@ def serialize_json(value: RouteTransitIntermediateStop) -> dict:
 
 def deserialize_json(data: dict) -> RouteTransitIntermediateStop:
     out: RouteTransitIntermediateStop = {}  # type: ignore[typeddict-item]
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_geo_routes.types.route_transit_intermediate_stop_attribute_list
 
         out["attributes"] = (
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> RouteTransitIntermediateStop:
                 data["Attributes"]
             )
         )
-    if "Departure" in data:
+    if data.get("Departure") is not None:
         import capo_geo_routes.types.route_transit_departure
 
         out["departure"] = (
@@ -80,13 +80,13 @@ def deserialize_json(data: dict) -> RouteTransitIntermediateStop:
         )
     else:
         raise DeserializationError("RouteTransitIntermediateStop.departure required")
-    if "Duration" in data:
+    if data.get("Duration") is not None:
         out["duration"] = data["Duration"]
     else:
         raise DeserializationError("RouteTransitIntermediateStop.duration required")
-    if "GeometryOffset" in data:
+    if data.get("GeometryOffset") is not None:
         out["geometry_offset"] = data["GeometryOffset"]
-    if "Transport" in data:
+    if data.get("Transport") is not None:
         import capo_geo_routes.types.route_transit_transport_mode_details
 
         out["transport"] = (

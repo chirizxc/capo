@@ -104,7 +104,7 @@ def serialize_aws_json_1_1(value: SampledHTTPRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SampledHTTPRequest:
     out: SampledHTTPRequest = {}  # type: ignore[typeddict-item]
-    if "Request" in data:
+    if data.get("Request") is not None:
         import capo_wafv2.types.http_request
 
         out["request"] = capo_wafv2.types.http_request.deserialize_aws_json_1_1(
@@ -112,21 +112,21 @@ def deserialize_aws_json_1_1(data: dict) -> SampledHTTPRequest:
         )
     else:
         raise DeserializationError("SampledHTTPRequest.request required")
-    if "Weight" in data:
+    if data.get("Weight") is not None:
         out["weight"] = data["Weight"]
     else:
         out["weight"] = 0
-    if "Timestamp" in data:
+    if data.get("Timestamp") is not None:
         import capo_wafv2.types.timestamp
 
         out["timestamp"] = capo_wafv2.types.timestamp.deserialize_aws_json_1_1(
             data["Timestamp"]
         )
-    if "Action" in data:
+    if data.get("Action") is not None:
         out["action"] = data["Action"]
-    if "RuleNameWithinRuleGroup" in data:
+    if data.get("RuleNameWithinRuleGroup") is not None:
         out["rule_name_within_rule_group"] = data["RuleNameWithinRuleGroup"]
-    if "RequestHeadersInserted" in data:
+    if data.get("RequestHeadersInserted") is not None:
         import capo_wafv2.types.http_headers
 
         out["request_headers_inserted"] = (
@@ -134,13 +134,13 @@ def deserialize_aws_json_1_1(data: dict) -> SampledHTTPRequest:
                 data["RequestHeadersInserted"]
             )
         )
-    if "ResponseCodeSent" in data:
+    if data.get("ResponseCodeSent") is not None:
         out["response_code_sent"] = data["ResponseCodeSent"]
-    if "Labels" in data:
+    if data.get("Labels") is not None:
         import capo_wafv2.types.labels
 
         out["labels"] = capo_wafv2.types.labels.deserialize_aws_json_1_1(data["Labels"])
-    if "CaptchaResponse" in data:
+    if data.get("CaptchaResponse") is not None:
         import capo_wafv2.types.captcha_response
 
         out["captcha_response"] = (
@@ -148,7 +148,7 @@ def deserialize_aws_json_1_1(data: dict) -> SampledHTTPRequest:
                 data["CaptchaResponse"]
             )
         )
-    if "ChallengeResponse" in data:
+    if data.get("ChallengeResponse") is not None:
         import capo_wafv2.types.challenge_response
 
         out["challenge_response"] = (
@@ -156,6 +156,6 @@ def deserialize_aws_json_1_1(data: dict) -> SampledHTTPRequest:
                 data["ChallengeResponse"]
             )
         )
-    if "OverriddenAction" in data:
+    if data.get("OverriddenAction") is not None:
         out["overridden_action"] = data["OverriddenAction"]
     return out

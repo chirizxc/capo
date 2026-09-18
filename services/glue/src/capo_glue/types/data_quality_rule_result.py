@@ -84,13 +84,13 @@ def serialize_aws_json_1_1(value: DataQualityRuleResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataQualityRuleResult:
     out: DataQualityRuleResult = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "EvaluationMessage" in data:
+    if data.get("EvaluationMessage") is not None:
         out["evaluation_message"] = data["EvaluationMessage"]
-    if "Result" in data:
+    if data.get("Result") is not None:
         import capo_glue.types.data_quality_rule_result_status
 
         out["result"] = (
@@ -98,7 +98,7 @@ def deserialize_aws_json_1_1(data: dict) -> DataQualityRuleResult:
                 data["Result"]
             )
         )
-    if "EvaluatedMetrics" in data:
+    if data.get("EvaluatedMetrics") is not None:
         import capo_glue.types.evaluated_metrics_map
 
         out["evaluated_metrics"] = (
@@ -106,15 +106,15 @@ def deserialize_aws_json_1_1(data: dict) -> DataQualityRuleResult:
                 data["EvaluatedMetrics"]
             )
         )
-    if "EvaluatedRule" in data:
+    if data.get("EvaluatedRule") is not None:
         out["evaluated_rule"] = data["EvaluatedRule"]
-    if "RuleMetrics" in data:
+    if data.get("RuleMetrics") is not None:
         import capo_glue.types.rule_metrics_map
 
         out["rule_metrics"] = capo_glue.types.rule_metrics_map.deserialize_aws_json_1_1(
             data["RuleMetrics"]
         )
-    if "Labels" in data:
+    if data.get("Labels") is not None:
         import capo_glue.types.labels
 
         out["labels"] = capo_glue.types.labels.deserialize_aws_json_1_1(data["Labels"])

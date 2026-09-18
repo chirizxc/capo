@@ -32,7 +32,7 @@ def serialize_json(value: ListChannelsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListChannelsOutput:
     out: ListChannelsOutput = {}  # type: ignore[typeddict-item]
-    if "channels" in data:
+    if data.get("channels") is not None:
         import capo_repostspace.types.channels_list
 
         out["channels"] = capo_repostspace.types.channels_list.deserialize_json(
@@ -40,6 +40,6 @@ def deserialize_json(data: dict) -> ListChannelsOutput:
         )
     else:
         raise DeserializationError("ListChannelsOutput.channels required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

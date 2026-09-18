@@ -36,11 +36,11 @@ def serialize_json(value: SourceConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SourceConfiguration:
     out: SourceConfiguration = {}  # type: ignore[typeddict-item]
-    if "sourceEnvironment" in data:
+    if data.get("sourceEnvironment") is not None:
         out["source_environment"] = data["sourceEnvironment"]
     else:
         raise DeserializationError("SourceConfiguration.source_environment required")
-    if "sourceS3Configuration" in data:
+    if data.get("sourceS3Configuration") is not None:
         import capo_mgn.types.source_s3_configuration
 
         out["source_s3_configuration"] = (

@@ -31,11 +31,11 @@ def serialize_json(value: Body) -> dict:
 
 def deserialize_json(data: dict) -> Body:
     out: Body = {}  # type: ignore[typeddict-item]
-    if "Text" in data:
+    if data.get("Text") is not None:
         import capo_pinpoint_email.types.content
 
         out["text"] = capo_pinpoint_email.types.content.deserialize_json(data["Text"])
-    if "Html" in data:
+    if data.get("Html") is not None:
         import capo_pinpoint_email.types.content
 
         out["html"] = capo_pinpoint_email.types.content.deserialize_json(data["Html"])

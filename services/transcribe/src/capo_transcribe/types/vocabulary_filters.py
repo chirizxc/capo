@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> VocabularyFilters:
 
     out: VocabularyFilters = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_transcribe.types.vocabulary_filter_info.deserialize_aws_json_1_1(item)
         )

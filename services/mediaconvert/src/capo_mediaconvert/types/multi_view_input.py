@@ -25,6 +25,6 @@ def serialize_json(value: MultiViewInput) -> dict:
 
 def deserialize_json(data: dict) -> MultiViewInput:
     out: MultiViewInput = {}  # type: ignore[typeddict-item]
-    if "fileInput" in data:
+    if data.get("fileInput") is not None:
         out["file_input"] = data["fileInput"]
     return out

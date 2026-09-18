@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> AIBenchmarkInferenceComponentList:
 
     out: AIBenchmarkInferenceComponentList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.ai_benchmark_inference_component.deserialize_aws_json_1_1(
                 item

@@ -28,12 +28,12 @@ def serialize_json(value: ListDashManifestConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ListDashManifestConfiguration:
     out: ListDashManifestConfiguration = {}  # type: ignore[typeddict-item]
-    if "ManifestName" in data:
+    if data.get("ManifestName") is not None:
         out["manifest_name"] = data["ManifestName"]
     else:
         raise DeserializationError(
             "ListDashManifestConfiguration.manifest_name required"
         )
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
     return out

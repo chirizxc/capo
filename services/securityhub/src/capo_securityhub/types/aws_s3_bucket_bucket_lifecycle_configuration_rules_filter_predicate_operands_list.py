@@ -33,6 +33,8 @@ def deserialize_json(
 
     out: AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_s3_bucket_bucket_lifecycle_configuration_rules_filter_predicate_operands_details.deserialize_json(
                 item

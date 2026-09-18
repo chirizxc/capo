@@ -96,17 +96,17 @@ def serialize_json(value: GetOfferSetOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetOfferSetOutput:
     out: GetOfferSetOutput = {}  # type: ignore[typeddict-item]
-    if "offerSetId" in data:
+    if data.get("offerSetId") is not None:
         out["offer_set_id"] = data["offerSetId"]
     else:
         raise DeserializationError("GetOfferSetOutput.offer_set_id required")
-    if "catalog" in data:
+    if data.get("catalog") is not None:
         out["catalog"] = data["catalog"]
     else:
         raise DeserializationError("GetOfferSetOutput.catalog required")
-    if "offerSetName" in data:
+    if data.get("offerSetName") is not None:
         out["offer_set_name"] = data["offerSetName"]
-    if "availableFromTime" in data:
+    if data.get("availableFromTime") is not None:
         import capo_marketplace_discovery.types._prelude.timestamp
 
         out["available_from_time"] = (
@@ -114,7 +114,7 @@ def deserialize_json(data: dict) -> GetOfferSetOutput:
                 data["availableFromTime"]
             )
         )
-    if "expirationTime" in data:
+    if data.get("expirationTime") is not None:
         import capo_marketplace_discovery.types._prelude.timestamp
 
         out["expiration_time"] = (
@@ -122,9 +122,9 @@ def deserialize_json(data: dict) -> GetOfferSetOutput:
                 data["expirationTime"]
             )
         )
-    if "buyerNotes" in data:
+    if data.get("buyerNotes") is not None:
         out["buyer_notes"] = data["buyerNotes"]
-    if "sellerOfRecord" in data:
+    if data.get("sellerOfRecord") is not None:
         import capo_marketplace_discovery.types.seller_information
 
         out["seller_of_record"] = (
@@ -134,7 +134,7 @@ def deserialize_json(data: dict) -> GetOfferSetOutput:
         )
     else:
         raise DeserializationError("GetOfferSetOutput.seller_of_record required")
-    if "badges" in data:
+    if data.get("badges") is not None:
         import capo_marketplace_discovery.types.purchase_option_badge_list
 
         out["badges"] = (
@@ -144,7 +144,7 @@ def deserialize_json(data: dict) -> GetOfferSetOutput:
         )
     else:
         raise DeserializationError("GetOfferSetOutput.badges required")
-    if "associatedEntities" in data:
+    if data.get("associatedEntities") is not None:
         import capo_marketplace_discovery.types.offer_set_associated_entity_list
 
         out["associated_entities"] = (

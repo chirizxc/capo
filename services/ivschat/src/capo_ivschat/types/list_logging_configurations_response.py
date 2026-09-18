@@ -37,7 +37,7 @@ def serialize_json(value: ListLoggingConfigurationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListLoggingConfigurationsResponse:
     out: ListLoggingConfigurationsResponse = {}  # type: ignore[typeddict-item]
-    if "loggingConfigurations" in data:
+    if data.get("loggingConfigurations") is not None:
         import capo_ivschat.types.logging_configuration_list
 
         out["logging_configurations"] = (
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> ListLoggingConfigurationsResponse:
         raise DeserializationError(
             "ListLoggingConfigurationsResponse.logging_configurations required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

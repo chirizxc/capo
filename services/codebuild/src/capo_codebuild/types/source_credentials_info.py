@@ -46,20 +46,20 @@ def serialize_aws_json_1_1(value: SourceCredentialsInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SourceCredentialsInfo:
     out: SourceCredentialsInfo = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "serverType" in data:
+    if data.get("serverType") is not None:
         import capo_codebuild.types.server_type
 
         out["server_type"] = capo_codebuild.types.server_type.deserialize_aws_json_1_1(
             data["serverType"]
         )
-    if "authType" in data:
+    if data.get("authType") is not None:
         import capo_codebuild.types.auth_type
 
         out["auth_type"] = capo_codebuild.types.auth_type.deserialize_aws_json_1_1(
             data["authType"]
         )
-    if "resource" in data:
+    if data.get("resource") is not None:
         out["resource"] = data["resource"]
     return out

@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: Filter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Filter:
     out: Filter = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_route53resolver.types.filter_values
 
         out["values"] = (

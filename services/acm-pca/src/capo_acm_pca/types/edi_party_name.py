@@ -28,10 +28,10 @@ def serialize_aws_json_1_1(value: EdiPartyName) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EdiPartyName:
     out: EdiPartyName = {}  # type: ignore[typeddict-item]
-    if "PartyName" in data:
+    if data.get("PartyName") is not None:
         out["party_name"] = data["PartyName"]
     else:
         raise DeserializationError("EdiPartyName.party_name required")
-    if "NameAssigner" in data:
+    if data.get("NameAssigner") is not None:
         out["name_assigner"] = data["NameAssigner"]
     return out

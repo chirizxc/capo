@@ -89,7 +89,7 @@ def serialize_aws_json_1_1(value: TabularJobConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TabularJobConfig:
     out: TabularJobConfig = {}  # type: ignore[typeddict-item]
-    if "CandidateGenerationConfig" in data:
+    if data.get("CandidateGenerationConfig") is not None:
         import capo_sagemaker.types.candidate_generation_config
 
         out["candidate_generation_config"] = (
@@ -97,7 +97,7 @@ def deserialize_aws_json_1_1(data: dict) -> TabularJobConfig:
                 data["CandidateGenerationConfig"]
             )
         )
-    if "CompletionCriteria" in data:
+    if data.get("CompletionCriteria") is not None:
         import capo_sagemaker.types.auto_ml_job_completion_criteria
 
         out["completion_criteria"] = (
@@ -105,19 +105,19 @@ def deserialize_aws_json_1_1(data: dict) -> TabularJobConfig:
                 data["CompletionCriteria"]
             )
         )
-    if "FeatureSpecificationS3Uri" in data:
+    if data.get("FeatureSpecificationS3Uri") is not None:
         out["feature_specification_s3_uri"] = data["FeatureSpecificationS3Uri"]
-    if "Mode" in data:
+    if data.get("Mode") is not None:
         import capo_sagemaker.types.auto_ml_mode
 
         out["mode"] = capo_sagemaker.types.auto_ml_mode.deserialize_aws_json_1_1(
             data["Mode"]
         )
-    if "GenerateCandidateDefinitionsOnly" in data:
+    if data.get("GenerateCandidateDefinitionsOnly") is not None:
         out["generate_candidate_definitions_only"] = data[
             "GenerateCandidateDefinitionsOnly"
         ]
-    if "ProblemType" in data:
+    if data.get("ProblemType") is not None:
         import capo_sagemaker.types.problem_type
 
         out["problem_type"] = (
@@ -125,8 +125,8 @@ def deserialize_aws_json_1_1(data: dict) -> TabularJobConfig:
                 data["ProblemType"]
             )
         )
-    if "TargetAttributeName" in data:
+    if data.get("TargetAttributeName") is not None:
         out["target_attribute_name"] = data["TargetAttributeName"]
-    if "SampleWeightAttributeName" in data:
+    if data.get("SampleWeightAttributeName") is not None:
         out["sample_weight_attribute_name"] = data["SampleWeightAttributeName"]
     return out

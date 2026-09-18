@@ -43,11 +43,11 @@ def serialize_json(value: Parameters) -> dict:
 
 def deserialize_json(data: dict) -> Parameters:
     out: Parameters = {}  # type: ignore[typeddict-item]
-    if "ExcludeBootVolume" in data:
+    if data.get("ExcludeBootVolume") is not None:
         out["exclude_boot_volume"] = data["ExcludeBootVolume"]
-    if "NoReboot" in data:
+    if data.get("NoReboot") is not None:
         out["no_reboot"] = data["NoReboot"]
-    if "ExcludeDataVolumeTags" in data:
+    if data.get("ExcludeDataVolumeTags") is not None:
         import capo_dlm.types.exclude_data_volume_tag_list
 
         out["exclude_data_volume_tags"] = (

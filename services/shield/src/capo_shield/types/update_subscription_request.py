@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: UpdateSubscriptionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateSubscriptionRequest:
     out: UpdateSubscriptionRequest = {}  # type: ignore[typeddict-item]
-    if "AutoRenew" in data:
+    if data.get("AutoRenew") is not None:
         import capo_shield.types.auto_renew
 
         out["auto_renew"] = capo_shield.types.auto_renew.deserialize_aws_json_1_1(

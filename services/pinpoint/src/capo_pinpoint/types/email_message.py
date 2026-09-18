@@ -73,19 +73,19 @@ def serialize_json(value: EmailMessage) -> dict:
 
 def deserialize_json(data: dict) -> EmailMessage:
     out: EmailMessage = {}  # type: ignore[typeddict-item]
-    if "Body" in data:
+    if data.get("Body") is not None:
         out["body"] = data["Body"]
-    if "FeedbackForwardingAddress" in data:
+    if data.get("FeedbackForwardingAddress") is not None:
         out["feedback_forwarding_address"] = data["FeedbackForwardingAddress"]
-    if "FromAddress" in data:
+    if data.get("FromAddress") is not None:
         out["from_address"] = data["FromAddress"]
-    if "RawEmail" in data:
+    if data.get("RawEmail") is not None:
         import capo_pinpoint.types.raw_email
 
         out["raw_email"] = capo_pinpoint.types.raw_email.deserialize_json(
             data["RawEmail"]
         )
-    if "ReplyToAddresses" in data:
+    if data.get("ReplyToAddresses") is not None:
         import capo_pinpoint.types.list_of__string
 
         out["reply_to_addresses"] = (
@@ -93,13 +93,13 @@ def deserialize_json(data: dict) -> EmailMessage:
                 data["ReplyToAddresses"]
             )
         )
-    if "SimpleEmail" in data:
+    if data.get("SimpleEmail") is not None:
         import capo_pinpoint.types.simple_email
 
         out["simple_email"] = capo_pinpoint.types.simple_email.deserialize_json(
             data["SimpleEmail"]
         )
-    if "Substitutions" in data:
+    if data.get("Substitutions") is not None:
         import capo_pinpoint.types.map_of_list_of__string
 
         out["substitutions"] = (

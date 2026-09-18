@@ -37,7 +37,7 @@ def serialize_json(value: ListControlsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListControlsRequest:
     out: ListControlsRequest = {}  # type: ignore[typeddict-item]
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_controlcatalog.types.control_filter
 
         out["filter"] = capo_controlcatalog.types.control_filter.deserialize_json(

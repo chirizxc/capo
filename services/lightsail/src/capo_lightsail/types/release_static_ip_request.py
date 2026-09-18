@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: ReleaseStaticIpRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReleaseStaticIpRequest:
     out: ReleaseStaticIpRequest = {}  # type: ignore[typeddict-item]
-    if "staticIpName" in data:
+    if data.get("staticIpName") is not None:
         out["static_ip_name"] = data["staticIpName"]
     else:
         raise DeserializationError("ReleaseStaticIpRequest.static_ip_name required")

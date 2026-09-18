@@ -64,15 +64,15 @@ def serialize_aws_json_1_0(value: NotifyCountryInformation) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> NotifyCountryInformation:
     out: NotifyCountryInformation = {}  # type: ignore[typeddict-item]
-    if "IsoCountryCode" in data:
+    if data.get("IsoCountryCode") is not None:
         out["iso_country_code"] = data["IsoCountryCode"]
     else:
         raise DeserializationError("NotifyCountryInformation.iso_country_code required")
-    if "CountryName" in data:
+    if data.get("CountryName") is not None:
         out["country_name"] = data["CountryName"]
     else:
         raise DeserializationError("NotifyCountryInformation.country_name required")
-    if "SupportedChannels" in data:
+    if data.get("SupportedChannels") is not None:
         import capo_pinpoint_sms_voice_v2.types.notify_enabled_channels_list
 
         out["supported_channels"] = (
@@ -84,7 +84,7 @@ def deserialize_aws_json_1_0(data: dict) -> NotifyCountryInformation:
         raise DeserializationError(
             "NotifyCountryInformation.supported_channels required"
         )
-    if "SupportedUseCases" in data:
+    if data.get("SupportedUseCases") is not None:
         import capo_pinpoint_sms_voice_v2.types.notify_use_case_list
 
         out["supported_use_cases"] = (
@@ -96,7 +96,7 @@ def deserialize_aws_json_1_0(data: dict) -> NotifyCountryInformation:
         raise DeserializationError(
             "NotifyCountryInformation.supported_use_cases required"
         )
-    if "SupportedTiers" in data:
+    if data.get("SupportedTiers") is not None:
         import capo_pinpoint_sms_voice_v2.types.notify_tier_list
 
         out["supported_tiers"] = (
@@ -106,7 +106,7 @@ def deserialize_aws_json_1_0(data: dict) -> NotifyCountryInformation:
         )
     else:
         raise DeserializationError("NotifyCountryInformation.supported_tiers required")
-    if "CustomerOwnedIdentityRequired" in data:
+    if data.get("CustomerOwnedIdentityRequired") is not None:
         out["customer_owned_identity_required"] = data["CustomerOwnedIdentityRequired"]
     else:
         out["customer_owned_identity_required"] = False

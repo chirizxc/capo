@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> LteCellDetailsList:
 
     out: LteCellDetailsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_location.types.lte_cell_details.deserialize_json(item))
     return out

@@ -28,7 +28,7 @@ def serialize_aws_json_1_0(value: CancelResourceRequestOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CancelResourceRequestOutput:
     out: CancelResourceRequestOutput = {}  # type: ignore[typeddict-item]
-    if "ProgressEvent" in data:
+    if data.get("ProgressEvent") is not None:
         import capo_cloudcontrol.types.progress_event
 
         out["progress_event"] = (

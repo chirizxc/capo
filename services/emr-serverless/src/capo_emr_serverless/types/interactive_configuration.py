@@ -26,10 +26,10 @@ def serialize_json(value: InteractiveConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> InteractiveConfiguration:
     out: InteractiveConfiguration = {}  # type: ignore[typeddict-item]
-    if "studioEnabled" in data:
+    if data.get("studioEnabled") is not None:
         out["studio_enabled"] = data["studioEnabled"]
-    if "livyEndpointEnabled" in data:
+    if data.get("livyEndpointEnabled") is not None:
         out["livy_endpoint_enabled"] = data["livyEndpointEnabled"]
-    if "sessionEnabled" in data:
+    if data.get("sessionEnabled") is not None:
         out["session_enabled"] = data["sessionEnabled"]
     return out

@@ -44,7 +44,7 @@ def serialize_json(value: PostTimeSeriesDataPointsInput) -> dict:
 
 def deserialize_json(data: dict) -> PostTimeSeriesDataPointsInput:
     out: PostTimeSeriesDataPointsInput = {}  # type: ignore[typeddict-item]
-    if "forms" in data:
+    if data.get("forms") is not None:
         import capo_datazone.types.time_series_data_point_form_input_list
 
         out["forms"] = (
@@ -54,6 +54,6 @@ def deserialize_json(data: dict) -> PostTimeSeriesDataPointsInput:
         )
     else:
         raise DeserializationError("PostTimeSeriesDataPointsInput.forms required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

@@ -29,7 +29,7 @@ def serialize_aws_json_1_1(value: UpdateResolverRuleResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateResolverRuleResponse:
     out: UpdateResolverRuleResponse = {}  # type: ignore[typeddict-item]
-    if "ResolverRule" in data:
+    if data.get("ResolverRule") is not None:
         import capo_route53resolver.types.resolver_rule
 
         out["resolver_rule"] = (

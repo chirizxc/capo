@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ImportErrors:
 
     out: ImportErrors = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mgn.types.import_task_error.deserialize_json(item))
     return out

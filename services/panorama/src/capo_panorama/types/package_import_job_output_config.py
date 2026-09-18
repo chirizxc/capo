@@ -31,7 +31,7 @@ def serialize_json(value: PackageImportJobOutputConfig) -> dict:
 
 def deserialize_json(data: dict) -> PackageImportJobOutputConfig:
     out: PackageImportJobOutputConfig = {}  # type: ignore[typeddict-item]
-    if "PackageVersionOutputConfig" in data:
+    if data.get("PackageVersionOutputConfig") is not None:
         import capo_panorama.types.package_version_output_config
 
         out["package_version_output_config"] = (

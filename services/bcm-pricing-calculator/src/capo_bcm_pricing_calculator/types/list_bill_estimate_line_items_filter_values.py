@@ -11,4 +11,4 @@ def serialize_aws_json_1_0(value: ListBillEstimateLineItemsFilterValues) -> list
 
 
 def deserialize_aws_json_1_0(data: list) -> ListBillEstimateLineItemsFilterValues:
-    return list(data)
+    return [item for item in data if item is not None]

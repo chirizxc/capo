@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetTrackResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetTrackResponse:
     out: GetTrackResponse = {}  # type: ignore[typeddict-item]
-    if "track" in data:
+    if data.get("track") is not None:
         import capo_redshift_serverless.types.serverless_track
 
         out["track"] = (

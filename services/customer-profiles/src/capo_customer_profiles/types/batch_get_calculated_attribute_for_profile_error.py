@@ -32,19 +32,19 @@ def serialize_json(value: BatchGetCalculatedAttributeForProfileError) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetCalculatedAttributeForProfileError:
     out: BatchGetCalculatedAttributeForProfileError = {}  # type: ignore[typeddict-item]
-    if "Code" in data:
+    if data.get("Code") is not None:
         out["code"] = data["Code"]
     else:
         raise DeserializationError(
             "BatchGetCalculatedAttributeForProfileError.code required"
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     else:
         raise DeserializationError(
             "BatchGetCalculatedAttributeForProfileError.message required"
         )
-    if "ProfileId" in data:
+    if data.get("ProfileId") is not None:
         out["profile_id"] = data["ProfileId"]
     else:
         raise DeserializationError(

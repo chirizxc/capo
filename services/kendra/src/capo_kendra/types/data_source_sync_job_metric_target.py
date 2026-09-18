@@ -31,12 +31,12 @@ def serialize_aws_json_1_1(value: DataSourceSyncJobMetricTarget) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataSourceSyncJobMetricTarget:
     out: DataSourceSyncJobMetricTarget = {}  # type: ignore[typeddict-item]
-    if "DataSourceId" in data:
+    if data.get("DataSourceId") is not None:
         out["data_source_id"] = data["DataSourceId"]
     else:
         raise DeserializationError(
             "DataSourceSyncJobMetricTarget.data_source_id required"
         )
-    if "DataSourceSyncJobId" in data:
+    if data.get("DataSourceSyncJobId") is not None:
         out["data_source_sync_job_id"] = data["DataSourceSyncJobId"]
     return out

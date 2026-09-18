@@ -29,7 +29,7 @@ def serialize_aws_json_1_1(value: DescribePersistentAppUIOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribePersistentAppUIOutput:
     out: DescribePersistentAppUIOutput = {}  # type: ignore[typeddict-item]
-    if "PersistentAppUI" in data:
+    if data.get("PersistentAppUI") is not None:
         import capo_emr.types.persistent_app_ui
 
         out["persistent_app_ui"] = (

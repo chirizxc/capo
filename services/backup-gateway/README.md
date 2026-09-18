@@ -13,9 +13,9 @@ from capo_backup_gateway import AsyncBackupGatewayClient
 
 
 async def main():
-    async with AsyncBackupGatewayClient() as s3:
+    async with AsyncBackupGatewayClient() as backup_gateway:
         # Example: call the list_tags_for_resource operation
-        response = await s3.list_tags_for_resource()
+        response = await backup_gateway.list_tags_for_resource()
         print(response["resource_arn"])
 ```
 
@@ -29,9 +29,9 @@ from capo_backup_gateway.error import InternalServerException
 
 
 async def main():
-    async with AsyncBackupGatewayClient() as s3:
+    async with AsyncBackupGatewayClient() as backup_gateway:
         try:
-            await s3.list_tags_for_resource()
+            await backup_gateway.list_tags_for_resource()
         except InternalServerException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_backup_gateway import AsyncBackupGatewayClient
 
 
 async def main():
-    async with AsyncBackupGatewayClient() as s3:
+    async with AsyncBackupGatewayClient() as backup_gateway:
         # Default: 3 attempts for every operation
-        response = await s3.list_tags_for_resource()
+        response = await backup_gateway.list_tags_for_resource()
 
         # Override per operation
-        response = await s3.list_tags_for_resource(config_overrides={"retry_max_attempts": 5})
+        response = await backup_gateway.list_tags_for_resource(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.list_tags_for_resource(config_overrides={"retry_max_attempts": 1})
+        response = await backup_gateway.list_tags_for_resource(config_overrides={"retry_max_attempts": 1})
 ```

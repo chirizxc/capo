@@ -40,7 +40,7 @@ def serialize_json(value: UpdateEncryptionConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateEncryptionConfigurationRequest:
     out: UpdateEncryptionConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "encryptionType" in data:
+    if data.get("encryptionType") is not None:
         import capo_iot.types.encryption_type
 
         out["encryption_type"] = capo_iot.types.encryption_type.deserialize_json(
@@ -50,8 +50,8 @@ def deserialize_json(data: dict) -> UpdateEncryptionConfigurationRequest:
         raise DeserializationError(
             "UpdateEncryptionConfigurationRequest.encryption_type required"
         )
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
-    if "kmsAccessRoleArn" in data:
+    if data.get("kmsAccessRoleArn") is not None:
         out["kms_access_role_arn"] = data["kmsAccessRoleArn"]
     return out

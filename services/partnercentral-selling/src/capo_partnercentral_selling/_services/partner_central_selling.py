@@ -225,18 +225,20 @@ class PartnerCentralSellingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.create_engagement_context_request.CreateEngagementContextRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["engagement_identifier"] = engagement_identifier
-        input_["client_token"] = client_token
-        input_["type"] = type
-        input_["payload"] = payload
+        input_: capo_partnercentral_selling.types.create_engagement_context_request.CreateEngagementContextRequest = {
+            "catalog": catalog,
+            "engagement_identifier": engagement_identifier,
+            "client_token": client_token,
+            "type": type,
+            "payload": payload,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_selling_system_settings(
@@ -274,14 +276,16 @@ class PartnerCentralSellingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.get_selling_system_settings_request.GetSellingSystemSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
+        input_: capo_partnercentral_selling.types.get_selling_system_settings_request.GetSellingSystemSettingsRequest = {
+            "catalog": catalog
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_tags_for_resource(
@@ -319,14 +323,16 @@ class PartnerCentralSellingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_partnercentral_selling.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_selling_system_settings(
@@ -368,8 +374,9 @@ class PartnerCentralSellingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.put_selling_system_settings_request.PutSellingSystemSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
+        input_: capo_partnercentral_selling.types.put_selling_system_settings_request.PutSellingSystemSettingsRequest = {
+            "catalog": catalog
+        }
         if resource_snapshot_job_role_identifier is not None:
             input_["resource_snapshot_job_role_identifier"] = (
                 resource_snapshot_job_role_identifier
@@ -380,6 +387,7 @@ class PartnerCentralSellingClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -420,15 +428,17 @@ class PartnerCentralSellingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_partnercentral_selling.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -469,15 +479,17 @@ class PartnerCentralSellingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_partnercentral_selling.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_engagement_context(
@@ -527,19 +539,21 @@ class PartnerCentralSellingClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.update_engagement_context_request.UpdateEngagementContextRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["engagement_identifier"] = engagement_identifier
-        input_["context_identifier"] = context_identifier
-        input_["engagement_last_modified_at"] = engagement_last_modified_at
-        input_["type"] = type
-        input_["payload"] = payload
+        input_: capo_partnercentral_selling.types.update_engagement_context_request.UpdateEngagementContextRequest = {
+            "catalog": catalog,
+            "engagement_identifier": engagement_identifier,
+            "context_identifier": context_identifier,
+            "engagement_last_modified_at": engagement_last_modified_at,
+            "type": type,
+            "payload": payload,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

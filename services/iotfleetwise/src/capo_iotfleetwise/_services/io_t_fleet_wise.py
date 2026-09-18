@@ -226,14 +226,16 @@ class IoTFleetWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.batch_create_vehicle_request.BatchCreateVehicleRequest = {}  # type: ignore[typeddict-item]
-        input_["vehicles"] = vehicles
+        input_: capo_iotfleetwise.types.batch_create_vehicle_request.BatchCreateVehicleRequest = {
+            "vehicles": vehicles
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_update_vehicle(
@@ -271,14 +273,16 @@ class IoTFleetWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.batch_update_vehicle_request.BatchUpdateVehicleRequest = {}  # type: ignore[typeddict-item]
-        input_["vehicles"] = vehicles
+        input_: capo_iotfleetwise.types.batch_update_vehicle_request.BatchUpdateVehicleRequest = {
+            "vehicles": vehicles
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_encryption_configuration(
@@ -310,13 +314,14 @@ class IoTFleetWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.get_encryption_configuration_request.GetEncryptionConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotfleetwise.types.get_encryption_configuration_request.GetEncryptionConfigurationRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_logging_options(
@@ -348,13 +353,14 @@ class IoTFleetWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.get_logging_options_request.GetLoggingOptionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotfleetwise.types.get_logging_options_request.GetLoggingOptionsRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_register_account_status(
@@ -386,13 +392,14 @@ class IoTFleetWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.get_register_account_status_request.GetRegisterAccountStatusRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotfleetwise.types.get_register_account_status_request.GetRegisterAccountStatusRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_vehicle_status(
@@ -434,18 +441,20 @@ class IoTFleetWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.get_vehicle_status_request.GetVehicleStatusRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotfleetwise.types.get_vehicle_status_request.GetVehicleStatusRequest = {
+            "vehicle_name": vehicle_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["vehicle_name"] = vehicle_name
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_vehicle_status(
@@ -506,14 +515,16 @@ class IoTFleetWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_iotfleetwise.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_encryption_configuration(
@@ -554,16 +565,18 @@ class IoTFleetWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.put_encryption_configuration_request.PutEncryptionConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotfleetwise.types.put_encryption_configuration_request.PutEncryptionConfigurationRequest = {
+            "encryption_type": encryption_type
+        }
         if kms_key_id is not None:
             input_["kms_key_id"] = kms_key_id
-        input_["encryption_type"] = encryption_type
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_logging_options(
@@ -604,14 +617,16 @@ class IoTFleetWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.put_logging_options_request.PutLoggingOptionsRequest = {}  # type: ignore[typeddict-item]
-        input_["cloud_watch_log_delivery"] = cloud_watch_log_delivery
+        input_: capo_iotfleetwise.types.put_logging_options_request.PutLoggingOptionsRequest = {
+            "cloud_watch_log_delivery": cloud_watch_log_delivery
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def register_account(
@@ -655,7 +670,7 @@ class IoTFleetWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.register_account_request.RegisterAccountRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotfleetwise.types.register_account_request.RegisterAccountRequest = {}
         if timestream_resources is not None:
             input_["timestream_resources"] = timestream_resources
         if iam_resources is not None:
@@ -666,6 +681,7 @@ class IoTFleetWiseClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -705,15 +721,17 @@ class IoTFleetWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_iotfleetwise.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -753,15 +771,17 @@ class IoTFleetWiseClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_iotfleetwise.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

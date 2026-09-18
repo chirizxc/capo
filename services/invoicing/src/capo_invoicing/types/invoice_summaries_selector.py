@@ -34,7 +34,7 @@ def serialize_aws_json_1_0(value: InvoiceSummariesSelector) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> InvoiceSummariesSelector:
     out: InvoiceSummariesSelector = {}  # type: ignore[typeddict-item]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_invoicing.types.list_invoice_summaries_resource_type
 
         out["resource_type"] = (
@@ -44,7 +44,7 @@ def deserialize_aws_json_1_0(data: dict) -> InvoiceSummariesSelector:
         )
     else:
         raise DeserializationError("InvoiceSummariesSelector.resource_type required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         raise DeserializationError("InvoiceSummariesSelector.value required")

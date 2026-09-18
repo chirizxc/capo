@@ -36,15 +36,15 @@ def serialize_json(value: PagerDutyConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> PagerDutyConfiguration:
     out: PagerDutyConfiguration = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("PagerDutyConfiguration.name required")
-    if "secretId" in data:
+    if data.get("secretId") is not None:
         out["secret_id"] = data["secretId"]
     else:
         raise DeserializationError("PagerDutyConfiguration.secret_id required")
-    if "pagerDutyIncidentConfiguration" in data:
+    if data.get("pagerDutyIncidentConfiguration") is not None:
         import capo_ssm_incidents.types.pager_duty_incident_configuration
 
         out["pager_duty_incident_configuration"] = (

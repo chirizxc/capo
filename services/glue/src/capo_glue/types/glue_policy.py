@@ -45,17 +45,17 @@ def serialize_aws_json_1_1(value: GluePolicy) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GluePolicy:
     out: GluePolicy = {}  # type: ignore[typeddict-item]
-    if "PolicyInJson" in data:
+    if data.get("PolicyInJson") is not None:
         out["policy_in_json"] = data["PolicyInJson"]
-    if "PolicyHash" in data:
+    if data.get("PolicyHash") is not None:
         out["policy_hash"] = data["PolicyHash"]
-    if "CreateTime" in data:
+    if data.get("CreateTime") is not None:
         import capo_glue.types.timestamp
 
         out["create_time"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["CreateTime"]
         )
-    if "UpdateTime" in data:
+    if data.get("UpdateTime") is not None:
         import capo_glue.types.timestamp
 
         out["update_time"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(

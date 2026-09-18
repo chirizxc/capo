@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Problems:
 
     out: Problems = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.problem_detail.deserialize_json(item))
     return out

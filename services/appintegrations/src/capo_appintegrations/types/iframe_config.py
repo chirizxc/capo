@@ -41,7 +41,7 @@ def serialize_json(value: IframeConfig) -> dict:
 
 def deserialize_json(data: dict) -> IframeConfig:
     out: IframeConfig = {}  # type: ignore[typeddict-item]
-    if "Allow" in data:
+    if data.get("Allow") is not None:
         import capo_appintegrations.types.iframe_permission_list
 
         out["allow"] = (
@@ -49,7 +49,7 @@ def deserialize_json(data: dict) -> IframeConfig:
                 data["Allow"]
             )
         )
-    if "Sandbox" in data:
+    if data.get("Sandbox") is not None:
         import capo_appintegrations.types.iframe_permission_list
 
         out["sandbox"] = (

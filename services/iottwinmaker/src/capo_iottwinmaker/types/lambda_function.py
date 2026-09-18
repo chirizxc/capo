@@ -24,7 +24,7 @@ def serialize_json(value: LambdaFunction) -> dict:
 
 def deserialize_json(data: dict) -> LambdaFunction:
     out: LambdaFunction = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("LambdaFunction.arn required")

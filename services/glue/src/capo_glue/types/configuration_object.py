@@ -44,9 +44,9 @@ def serialize_aws_json_1_1(value: ConfigurationObject) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConfigurationObject:
     out: ConfigurationObject = {}  # type: ignore[typeddict-item]
-    if "DefaultValue" in data:
+    if data.get("DefaultValue") is not None:
         out["default_value"] = data["DefaultValue"]
-    if "AllowedValues" in data:
+    if data.get("AllowedValues") is not None:
         import capo_glue.types.allowed_values_string_list
 
         out["allowed_values"] = (
@@ -54,8 +54,8 @@ def deserialize_aws_json_1_1(data: dict) -> ConfigurationObject:
                 data["AllowedValues"]
             )
         )
-    if "MinValue" in data:
+    if data.get("MinValue") is not None:
         out["min_value"] = data["MinValue"]
-    if "MaxValue" in data:
+    if data.get("MaxValue") is not None:
         out["max_value"] = data["MaxValue"]
     return out

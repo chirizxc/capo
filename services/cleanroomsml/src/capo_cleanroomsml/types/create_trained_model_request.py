@@ -139,11 +139,11 @@ def serialize_json(value: CreateTrainedModelRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateTrainedModelRequest:
     out: CreateTrainedModelRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateTrainedModelRequest.name required")
-    if "configuredModelAlgorithmAssociationArn" in data:
+    if data.get("configuredModelAlgorithmAssociationArn") is not None:
         out["configured_model_algorithm_association_arn"] = data[
             "configuredModelAlgorithmAssociationArn"
         ]
@@ -151,7 +151,7 @@ def deserialize_json(data: dict) -> CreateTrainedModelRequest:
         raise DeserializationError(
             "CreateTrainedModelRequest.configured_model_algorithm_association_arn required"
         )
-    if "hyperparameters" in data:
+    if data.get("hyperparameters") is not None:
         import capo_cleanroomsml.types.hyper_parameters
 
         out["hyperparameters"] = (
@@ -159,13 +159,13 @@ def deserialize_json(data: dict) -> CreateTrainedModelRequest:
                 data["hyperparameters"]
             )
         )
-    if "environment" in data:
+    if data.get("environment") is not None:
         import capo_cleanroomsml.types.environment
 
         out["environment"] = capo_cleanroomsml.types.environment.deserialize_json(
             data["environment"]
         )
-    if "resourceConfig" in data:
+    if data.get("resourceConfig") is not None:
         import capo_cleanroomsml.types.resource_config
 
         out["resource_config"] = (
@@ -175,7 +175,7 @@ def deserialize_json(data: dict) -> CreateTrainedModelRequest:
         )
     else:
         raise DeserializationError("CreateTrainedModelRequest.resource_config required")
-    if "stoppingCondition" in data:
+    if data.get("stoppingCondition") is not None:
         import capo_cleanroomsml.types.stopping_condition
 
         out["stopping_condition"] = (
@@ -183,7 +183,7 @@ def deserialize_json(data: dict) -> CreateTrainedModelRequest:
                 data["stoppingCondition"]
             )
         )
-    if "incrementalTrainingDataChannels" in data:
+    if data.get("incrementalTrainingDataChannels") is not None:
         import capo_cleanroomsml.types.incremental_training_data_channels
 
         out["incremental_training_data_channels"] = (
@@ -191,7 +191,7 @@ def deserialize_json(data: dict) -> CreateTrainedModelRequest:
                 data["incrementalTrainingDataChannels"]
             )
         )
-    if "dataChannels" in data:
+    if data.get("dataChannels") is not None:
         import capo_cleanroomsml.types.model_training_data_channels
 
         out["data_channels"] = (
@@ -201,7 +201,7 @@ def deserialize_json(data: dict) -> CreateTrainedModelRequest:
         )
     else:
         raise DeserializationError("CreateTrainedModelRequest.data_channels required")
-    if "trainingInputMode" in data:
+    if data.get("trainingInputMode") is not None:
         import capo_cleanroomsml.types.training_input_mode
 
         out["training_input_mode"] = (
@@ -211,15 +211,15 @@ def deserialize_json(data: dict) -> CreateTrainedModelRequest:
         )
     else:
         out["training_input_mode"] = "File"
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_cleanroomsml.types.tag_map
 
         out["tags"] = capo_cleanroomsml.types.tag_map.deserialize_json(data["tags"])
-    if "mlModelTrainingPayerAccountId" in data:
+    if data.get("mlModelTrainingPayerAccountId") is not None:
         out["ml_model_training_payer_account_id"] = data[
             "mlModelTrainingPayerAccountId"
         ]

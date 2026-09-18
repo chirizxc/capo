@@ -31,7 +31,7 @@ def serialize_json(value: ListNetworkMigrationDefinitionsRequestFilters) -> dict
 
 def deserialize_json(data: dict) -> ListNetworkMigrationDefinitionsRequestFilters:
     out: ListNetworkMigrationDefinitionsRequestFilters = {}  # type: ignore[typeddict-item]
-    if "networkMigrationDefinitionIDs" in data:
+    if data.get("networkMigrationDefinitionIDs") is not None:
         import capo_mgn.types.network_migration_defintions_i_ds_filter
 
         out["network_migration_definition_i_ds"] = (

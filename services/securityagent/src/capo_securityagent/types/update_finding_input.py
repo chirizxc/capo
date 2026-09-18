@@ -44,21 +44,21 @@ def serialize_json(value: UpdateFindingInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateFindingInput:
     out: UpdateFindingInput = {}  # type: ignore[typeddict-item]
-    if "findingId" in data:
+    if data.get("findingId") is not None:
         out["finding_id"] = data["findingId"]
     else:
         raise DeserializationError("UpdateFindingInput.finding_id required")
-    if "agentSpaceId" in data:
+    if data.get("agentSpaceId") is not None:
         out["agent_space_id"] = data["agentSpaceId"]
     else:
         raise DeserializationError("UpdateFindingInput.agent_space_id required")
-    if "riskLevel" in data:
+    if data.get("riskLevel") is not None:
         import capo_securityagent.types.risk_level
 
         out["risk_level"] = capo_securityagent.types.risk_level.deserialize_json(
             data["riskLevel"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_securityagent.types.finding_status
 
         out["status"] = capo_securityagent.types.finding_status.deserialize_json(

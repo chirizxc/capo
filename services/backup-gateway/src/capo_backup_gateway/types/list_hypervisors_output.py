@@ -34,7 +34,7 @@ def serialize_aws_json_1_0(value: ListHypervisorsOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListHypervisorsOutput:
     out: ListHypervisorsOutput = {}  # type: ignore[typeddict-item]
-    if "Hypervisors" in data:
+    if data.get("Hypervisors") is not None:
         import capo_backup_gateway.types.hypervisors
 
         out["hypervisors"] = (
@@ -42,6 +42,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListHypervisorsOutput:
                 data["Hypervisors"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

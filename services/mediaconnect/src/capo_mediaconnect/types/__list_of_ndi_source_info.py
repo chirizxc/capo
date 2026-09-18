@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfNdiSourceInfo:
 
     out: __listOfNdiSourceInfo = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mediaconnect.types.ndi_source_info.deserialize_json(item))
     return out

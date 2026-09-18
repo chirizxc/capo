@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> LineItemAssetInformationList:
 
     out: LineItemAssetInformationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_outposts.types.line_item_asset_information.deserialize_json(item)
         )

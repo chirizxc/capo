@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> CostAllocationTagList:
 
     out: CostAllocationTagList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cost_explorer.types.cost_allocation_tag.deserialize_aws_json_1_1(item)
         )

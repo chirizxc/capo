@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: RouteParameters) -> dict:
 def deserialize_json(data: dict) -> RouteParameters:
     out: RouteParameters = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_apigatewayv2.types.parameter_constraints
 
         out[key] = capo_apigatewayv2.types.parameter_constraints.deserialize_json(value)

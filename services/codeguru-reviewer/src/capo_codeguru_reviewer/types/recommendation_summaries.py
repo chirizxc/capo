@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> RecommendationSummaries:
 
     out: RecommendationSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codeguru_reviewer.types.recommendation_summary.deserialize_json(item)
         )

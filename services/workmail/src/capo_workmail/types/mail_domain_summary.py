@@ -27,9 +27,9 @@ def serialize_aws_json_1_1(value: MailDomainSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MailDomainSummary:
     out: MailDomainSummary = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
-    if "DefaultDomain" in data:
+    if data.get("DefaultDomain") is not None:
         out["default_domain"] = data["DefaultDomain"]
     else:
         out["default_domain"] = False

@@ -38,12 +38,12 @@ def serialize_aws_json_1_1(value: DeregisterStreamConsumerInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeregisterStreamConsumerInput:
     out: DeregisterStreamConsumerInput = {}  # type: ignore[typeddict-item]
-    if "StreamARN" in data:
+    if data.get("StreamARN") is not None:
         out["stream_arn"] = data["StreamARN"]
-    if "ConsumerName" in data:
+    if data.get("ConsumerName") is not None:
         out["consumer_name"] = data["ConsumerName"]
-    if "ConsumerARN" in data:
+    if data.get("ConsumerARN") is not None:
         out["consumer_arn"] = data["ConsumerARN"]
-    if "StreamId" in data:
+    if data.get("StreamId") is not None:
         out["stream_id"] = data["StreamId"]
     return out

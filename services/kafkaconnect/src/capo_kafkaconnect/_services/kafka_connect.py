@@ -256,26 +256,23 @@ class KafkaConnectClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafkaconnect.types.create_connector_request.CreateConnectorRequest = {}  # type: ignore[typeddict-item]
-        input_["capacity"] = capacity
-        input_["connector_configuration"] = connector_configuration
+        input_: capo_kafkaconnect.types.create_connector_request.CreateConnectorRequest = {
+            "capacity": capacity,
+            "connector_configuration": connector_configuration,
+            "connector_name": connector_name,
+            "kafka_cluster": kafka_cluster,
+            "kafka_cluster_client_authentication": kafka_cluster_client_authentication,
+            "kafka_cluster_encryption_in_transit": kafka_cluster_encryption_in_transit,
+            "kafka_connect_version": kafka_connect_version,
+            "plugins": plugins,
+            "service_execution_role_arn": service_execution_role_arn,
+        }
         if connector_description is not None:
             input_["connector_description"] = connector_description
-        input_["connector_name"] = connector_name
-        input_["kafka_cluster"] = kafka_cluster
-        input_["kafka_cluster_client_authentication"] = (
-            kafka_cluster_client_authentication
-        )
-        input_["kafka_cluster_encryption_in_transit"] = (
-            kafka_cluster_encryption_in_transit
-        )
-        input_["kafka_connect_version"] = kafka_connect_version
         if log_delivery is not None:
             input_["log_delivery"] = log_delivery
         if network_type is not None:
             input_["network_type"] = network_type
-        input_["plugins"] = plugins
-        input_["service_execution_role_arn"] = service_execution_role_arn
         if worker_configuration is not None:
             input_["worker_configuration"] = worker_configuration
         if tags is not None:
@@ -286,6 +283,7 @@ class KafkaConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_custom_plugin(
@@ -336,12 +334,13 @@ class KafkaConnectClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafkaconnect.types.create_custom_plugin_request.CreateCustomPluginRequest = {}  # type: ignore[typeddict-item]
-        input_["content_type"] = content_type
+        input_: capo_kafkaconnect.types.create_custom_plugin_request.CreateCustomPluginRequest = {
+            "content_type": content_type,
+            "location": location,
+            "name": name,
+        }
         if description is not None:
             input_["description"] = description
-        input_["location"] = location
-        input_["name"] = name
         if tags is not None:
             input_["tags"] = tags
 
@@ -350,6 +349,7 @@ class KafkaConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_worker_configuration(
@@ -398,11 +398,12 @@ class KafkaConnectClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafkaconnect.types.create_worker_configuration_request.CreateWorkerConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_kafkaconnect.types.create_worker_configuration_request.CreateWorkerConfigurationRequest = {
+            "name": name,
+            "properties_file_content": properties_file_content,
+        }
         if description is not None:
             input_["description"] = description
-        input_["name"] = name
-        input_["properties_file_content"] = properties_file_content
         if tags is not None:
             input_["tags"] = tags
 
@@ -411,6 +412,7 @@ class KafkaConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_connector(
@@ -452,8 +454,9 @@ class KafkaConnectClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafkaconnect.types.delete_connector_request.DeleteConnectorRequest = {}  # type: ignore[typeddict-item]
-        input_["connector_arn"] = connector_arn
+        input_: capo_kafkaconnect.types.delete_connector_request.DeleteConnectorRequest = {
+            "connector_arn": connector_arn
+        }
         if current_version is not None:
             input_["current_version"] = current_version
 
@@ -462,6 +465,7 @@ class KafkaConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_custom_plugin(
@@ -501,14 +505,16 @@ class KafkaConnectClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafkaconnect.types.delete_custom_plugin_request.DeleteCustomPluginRequest = {}  # type: ignore[typeddict-item]
-        input_["custom_plugin_arn"] = custom_plugin_arn
+        input_: capo_kafkaconnect.types.delete_custom_plugin_request.DeleteCustomPluginRequest = {
+            "custom_plugin_arn": custom_plugin_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_worker_configuration(
@@ -548,14 +554,16 @@ class KafkaConnectClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafkaconnect.types.delete_worker_configuration_request.DeleteWorkerConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["worker_configuration_arn"] = worker_configuration_arn
+        input_: capo_kafkaconnect.types.delete_worker_configuration_request.DeleteWorkerConfigurationRequest = {
+            "worker_configuration_arn": worker_configuration_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_connector(
@@ -597,14 +605,16 @@ class KafkaConnectClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafkaconnect.types.describe_connector_request.DescribeConnectorRequest = {}  # type: ignore[typeddict-item]
-        input_["connector_arn"] = connector_arn
+        input_: capo_kafkaconnect.types.describe_connector_request.DescribeConnectorRequest = {
+            "connector_arn": connector_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_connector_operation(
@@ -644,14 +654,16 @@ class KafkaConnectClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafkaconnect.types.describe_connector_operation_request.DescribeConnectorOperationRequest = {}  # type: ignore[typeddict-item]
-        input_["connector_operation_arn"] = connector_operation_arn
+        input_: capo_kafkaconnect.types.describe_connector_operation_request.DescribeConnectorOperationRequest = {
+            "connector_operation_arn": connector_operation_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_custom_plugin(
@@ -691,14 +703,16 @@ class KafkaConnectClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafkaconnect.types.describe_custom_plugin_request.DescribeCustomPluginRequest = {}  # type: ignore[typeddict-item]
-        input_["custom_plugin_arn"] = custom_plugin_arn
+        input_: capo_kafkaconnect.types.describe_custom_plugin_request.DescribeCustomPluginRequest = {
+            "custom_plugin_arn": custom_plugin_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_worker_configuration(
@@ -738,14 +752,16 @@ class KafkaConnectClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafkaconnect.types.describe_worker_configuration_request.DescribeWorkerConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["worker_configuration_arn"] = worker_configuration_arn
+        input_: capo_kafkaconnect.types.describe_worker_configuration_request.DescribeWorkerConfigurationRequest = {
+            "worker_configuration_arn": worker_configuration_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_connector_operations(
@@ -789,8 +805,9 @@ class KafkaConnectClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafkaconnect.types.list_connector_operations_request.ListConnectorOperationsRequest = {}  # type: ignore[typeddict-item]
-        input_["connector_arn"] = connector_arn
+        input_: capo_kafkaconnect.types.list_connector_operations_request.ListConnectorOperationsRequest = {
+            "connector_arn": connector_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -801,6 +818,7 @@ class KafkaConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_connector_operations(
@@ -869,7 +887,7 @@ class KafkaConnectClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafkaconnect.types.list_connectors_request.ListConnectorsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_kafkaconnect.types.list_connectors_request.ListConnectorsRequest = {}
         if connector_name_prefix is not None:
             input_["connector_name_prefix"] = connector_name_prefix
         if max_results is not None:
@@ -882,6 +900,7 @@ class KafkaConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_connectors(
@@ -952,7 +971,7 @@ class KafkaConnectClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafkaconnect.types.list_custom_plugins_request.ListCustomPluginsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_kafkaconnect.types.list_custom_plugins_request.ListCustomPluginsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -965,6 +984,7 @@ class KafkaConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_custom_plugins(
@@ -1027,14 +1047,16 @@ class KafkaConnectClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafkaconnect.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_kafkaconnect.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_worker_configurations(
@@ -1078,7 +1100,7 @@ class KafkaConnectClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafkaconnect.types.list_worker_configurations_request.ListWorkerConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_kafkaconnect.types.list_worker_configurations_request.ListWorkerConfigurationsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1091,6 +1113,7 @@ class KafkaConnectClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_worker_configurations(
@@ -1156,15 +1179,17 @@ class KafkaConnectClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafkaconnect.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_kafkaconnect.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -1206,15 +1231,17 @@ class KafkaConnectClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafkaconnect.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_kafkaconnect.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_connector(
@@ -1264,19 +1291,21 @@ class KafkaConnectClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kafkaconnect.types.update_connector_request.UpdateConnectorRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_kafkaconnect.types.update_connector_request.UpdateConnectorRequest = {
+            "connector_arn": connector_arn,
+            "current_version": current_version,
+        }
         if capacity is not None:
             input_["capacity"] = capacity
         if connector_configuration is not None:
             input_["connector_configuration"] = connector_configuration
-        input_["connector_arn"] = connector_arn
-        input_["current_version"] = current_version
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

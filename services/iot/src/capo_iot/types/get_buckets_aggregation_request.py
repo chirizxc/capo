@@ -50,21 +50,21 @@ def serialize_json(value: GetBucketsAggregationRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetBucketsAggregationRequest:
     out: GetBucketsAggregationRequest = {}  # type: ignore[typeddict-item]
-    if "indexName" in data:
+    if data.get("indexName") is not None:
         out["index_name"] = data["indexName"]
-    if "queryString" in data:
+    if data.get("queryString") is not None:
         out["query_string"] = data["queryString"]
     else:
         raise DeserializationError("GetBucketsAggregationRequest.query_string required")
-    if "aggregationField" in data:
+    if data.get("aggregationField") is not None:
         out["aggregation_field"] = data["aggregationField"]
     else:
         raise DeserializationError(
             "GetBucketsAggregationRequest.aggregation_field required"
         )
-    if "queryVersion" in data:
+    if data.get("queryVersion") is not None:
         out["query_version"] = data["queryVersion"]
-    if "bucketsAggregationType" in data:
+    if data.get("bucketsAggregationType") is not None:
         import capo_iot.types.buckets_aggregation_type
 
         out["buckets_aggregation_type"] = (

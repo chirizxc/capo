@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: ReportExportConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReportExportConfig:
     out: ReportExportConfig = {}  # type: ignore[typeddict-item]
-    if "exportConfigType" in data:
+    if data.get("exportConfigType") is not None:
         import capo_codebuild.types.report_export_config_type
 
         out["export_config_type"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> ReportExportConfig:
                 data["exportConfigType"]
             )
         )
-    if "s3Destination" in data:
+    if data.get("s3Destination") is not None:
         import capo_codebuild.types.s3_report_export_config
 
         out["s3_destination"] = (

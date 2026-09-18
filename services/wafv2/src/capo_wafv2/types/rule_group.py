@@ -93,29 +93,29 @@ def serialize_aws_json_1_1(value: RuleGroup) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RuleGroup:
     out: RuleGroup = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("RuleGroup.name required")
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("RuleGroup.id required")
-    if "Capacity" in data:
+    if data.get("Capacity") is not None:
         out["capacity"] = data["Capacity"]
     else:
         raise DeserializationError("RuleGroup.capacity required")
-    if "ARN" in data:
+    if data.get("ARN") is not None:
         out["arn"] = data["ARN"]
     else:
         raise DeserializationError("RuleGroup.arn required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Rules" in data:
+    if data.get("Rules") is not None:
         import capo_wafv2.types.rules
 
         out["rules"] = capo_wafv2.types.rules.deserialize_aws_json_1_1(data["Rules"])
-    if "VisibilityConfig" in data:
+    if data.get("VisibilityConfig") is not None:
         import capo_wafv2.types.visibility_config
 
         out["visibility_config"] = (
@@ -125,9 +125,9 @@ def deserialize_aws_json_1_1(data: dict) -> RuleGroup:
         )
     else:
         raise DeserializationError("RuleGroup.visibility_config required")
-    if "LabelNamespace" in data:
+    if data.get("LabelNamespace") is not None:
         out["label_namespace"] = data["LabelNamespace"]
-    if "CustomResponseBodies" in data:
+    if data.get("CustomResponseBodies") is not None:
         import capo_wafv2.types.custom_response_bodies
 
         out["custom_response_bodies"] = (
@@ -135,7 +135,7 @@ def deserialize_aws_json_1_1(data: dict) -> RuleGroup:
                 data["CustomResponseBodies"]
             )
         )
-    if "AvailableLabels" in data:
+    if data.get("AvailableLabels") is not None:
         import capo_wafv2.types.label_summaries
 
         out["available_labels"] = (
@@ -143,7 +143,7 @@ def deserialize_aws_json_1_1(data: dict) -> RuleGroup:
                 data["AvailableLabels"]
             )
         )
-    if "ConsumedLabels" in data:
+    if data.get("ConsumedLabels") is not None:
         import capo_wafv2.types.label_summaries
 
         out["consumed_labels"] = (

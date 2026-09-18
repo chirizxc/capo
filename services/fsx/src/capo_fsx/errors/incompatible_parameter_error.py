@@ -29,9 +29,9 @@ def serialize_aws_json_1_1(value: IncompatibleParameterError_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IncompatibleParameterError_:
     out: IncompatibleParameterError_ = {}  # type: ignore[typeddict-item]
-    if "Parameter" in data:
+    if data.get("Parameter") is not None:
         out["parameter"] = data["Parameter"]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -41,15 +41,18 @@ class IncompatibleParameterError(ServiceError):
 
     code: str | None = "IncompatibleParameterError"
 
-    def __init__(self, data: IncompatibleParameterError_):
+    def __init__(self, data: IncompatibleParameterError_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="IncompatibleParameterError",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "IncompatibleParameterError":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "IncompatibleParameterError":
+        return cls(deserialize_aws_json_1_1(data), message)

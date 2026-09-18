@@ -58,7 +58,7 @@ def serialize_aws_json_1_1(value: DocumentReaderConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DocumentReaderConfig:
     out: DocumentReaderConfig = {}  # type: ignore[typeddict-item]
-    if "DocumentReadAction" in data:
+    if data.get("DocumentReadAction") is not None:
         import capo_comprehend.types.document_read_action
 
         out["document_read_action"] = (
@@ -68,7 +68,7 @@ def deserialize_aws_json_1_1(data: dict) -> DocumentReaderConfig:
         )
     else:
         raise DeserializationError("DocumentReaderConfig.document_read_action required")
-    if "DocumentReadMode" in data:
+    if data.get("DocumentReadMode") is not None:
         import capo_comprehend.types.document_read_mode
 
         out["document_read_mode"] = (
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_1(data: dict) -> DocumentReaderConfig:
                 data["DocumentReadMode"]
             )
         )
-    if "FeatureTypes" in data:
+    if data.get("FeatureTypes") is not None:
         import capo_comprehend.types.list_of_document_read_feature_types
 
         out["feature_types"] = (

@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: UsernameExistsException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UsernameExistsException_:
     out: UsernameExistsException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -37,15 +37,18 @@ class UsernameExistsException(ServiceError):
 
     code: str | None = "UsernameExistsException"
 
-    def __init__(self, data: UsernameExistsException_):
+    def __init__(self, data: UsernameExistsException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="UsernameExistsException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "UsernameExistsException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "UsernameExistsException":
+        return cls(deserialize_aws_json_1_1(data), message)

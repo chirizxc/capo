@@ -44,7 +44,7 @@ def serialize_json(value: UpdateIndexingConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateIndexingConfigurationRequest:
     out: UpdateIndexingConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "thingIndexingConfiguration" in data:
+    if data.get("thingIndexingConfiguration") is not None:
         import capo_iot.types.thing_indexing_configuration
 
         out["thing_indexing_configuration"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> UpdateIndexingConfigurationRequest:
                 data["thingIndexingConfiguration"]
             )
         )
-    if "thingGroupIndexingConfiguration" in data:
+    if data.get("thingGroupIndexingConfiguration") is not None:
         import capo_iot.types.thing_group_indexing_configuration
 
         out["thing_group_indexing_configuration"] = (

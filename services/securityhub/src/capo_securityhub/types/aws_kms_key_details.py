@@ -37,7 +37,15 @@ def serialize_json(value: AwsKmsKeyDetails) -> dict:
     if "aws_account_id" in value:
         out["AWSAccountId"] = value["aws_account_id"]
     if "creation_date" in value:
-        out["CreationDate"] = value["creation_date"]
+        out["CreationDate"] = (
+            "NaN"
+            if value["creation_date"] != value["creation_date"]
+            else "Infinity"
+            if value["creation_date"] == float("inf")
+            else "-Infinity"
+            if value["creation_date"] == float("-inf")
+            else value["creation_date"]
+        )
     if "key_id" in value:
         out["KeyId"] = value["key_id"]
     if "key_manager" in value:
@@ -55,20 +63,20 @@ def serialize_json(value: AwsKmsKeyDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsKmsKeyDetails:
     out: AwsKmsKeyDetails = {}  # type: ignore[typeddict-item]
-    if "AWSAccountId" in data:
+    if data.get("AWSAccountId") is not None:
         out["aws_account_id"] = data["AWSAccountId"]
-    if "CreationDate" in data:
-        out["creation_date"] = data["CreationDate"]
-    if "KeyId" in data:
+    if data.get("CreationDate") is not None:
+        out["creation_date"] = float(data["CreationDate"])
+    if data.get("KeyId") is not None:
         out["key_id"] = data["KeyId"]
-    if "KeyManager" in data:
+    if data.get("KeyManager") is not None:
         out["key_manager"] = data["KeyManager"]
-    if "KeyState" in data:
+    if data.get("KeyState") is not None:
         out["key_state"] = data["KeyState"]
-    if "Origin" in data:
+    if data.get("Origin") is not None:
         out["origin"] = data["Origin"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "KeyRotationStatus" in data:
+    if data.get("KeyRotationStatus") is not None:
         out["key_rotation_status"] = data["KeyRotationStatus"]
     return out

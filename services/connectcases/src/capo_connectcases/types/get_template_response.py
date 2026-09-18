@@ -126,21 +126,21 @@ def serialize_json(value: GetTemplateResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetTemplateResponse:
     out: GetTemplateResponse = {}  # type: ignore[typeddict-item]
-    if "templateId" in data:
+    if data.get("templateId") is not None:
         out["template_id"] = data["templateId"]
     else:
         raise DeserializationError("GetTemplateResponse.template_id required")
-    if "templateArn" in data:
+    if data.get("templateArn") is not None:
         out["template_arn"] = data["templateArn"]
     else:
         raise DeserializationError("GetTemplateResponse.template_arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("GetTemplateResponse.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "layoutConfiguration" in data:
+    if data.get("layoutConfiguration") is not None:
         import capo_connectcases.types.layout_configuration
 
         out["layout_configuration"] = (
@@ -148,7 +148,7 @@ def deserialize_json(data: dict) -> GetTemplateResponse:
                 data["layoutConfiguration"]
             )
         )
-    if "requiredFields" in data:
+    if data.get("requiredFields") is not None:
         import capo_connectcases.types.required_field_list
 
         out["required_fields"] = (
@@ -156,25 +156,25 @@ def deserialize_json(data: dict) -> GetTemplateResponse:
                 data["requiredFields"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_connectcases.types.tags
 
         out["tags"] = capo_connectcases.types.tags.deserialize_json(data["tags"])
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("GetTemplateResponse.status required")
-    if "deleted" in data:
+    if data.get("deleted") is not None:
         out["deleted"] = data["deleted"]
     else:
         out["deleted"] = False
-    if "createdTime" in data:
+    if data.get("createdTime") is not None:
         import capo_connectcases.types.created_time
 
         out["created_time"] = capo_connectcases.types.created_time.deserialize_json(
             data["createdTime"]
         )
-    if "lastModifiedTime" in data:
+    if data.get("lastModifiedTime") is not None:
         import capo_connectcases.types.last_modified_time
 
         out["last_modified_time"] = (
@@ -182,13 +182,13 @@ def deserialize_json(data: dict) -> GetTemplateResponse:
                 data["lastModifiedTime"]
             )
         )
-    if "rules" in data:
+    if data.get("rules") is not None:
         import capo_connectcases.types.template_case_rule_list
 
         out["rules"] = capo_connectcases.types.template_case_rule_list.deserialize_json(
             data["rules"]
         )
-    if "tagPropagationConfigurations" in data:
+    if data.get("tagPropagationConfigurations") is not None:
         import capo_connectcases.types.tag_propagation_configuration_list
 
         out["tag_propagation_configurations"] = (

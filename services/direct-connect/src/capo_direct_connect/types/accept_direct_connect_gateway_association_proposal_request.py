@@ -53,25 +53,25 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> AcceptDirectConnectGatewayAssociationProposalRequest:
     out: AcceptDirectConnectGatewayAssociationProposalRequest = {}  # type: ignore[typeddict-item]
-    if "directConnectGatewayId" in data:
+    if data.get("directConnectGatewayId") is not None:
         out["direct_connect_gateway_id"] = data["directConnectGatewayId"]
     else:
         raise DeserializationError(
             "AcceptDirectConnectGatewayAssociationProposalRequest.direct_connect_gateway_id required"
         )
-    if "proposalId" in data:
+    if data.get("proposalId") is not None:
         out["proposal_id"] = data["proposalId"]
     else:
         raise DeserializationError(
             "AcceptDirectConnectGatewayAssociationProposalRequest.proposal_id required"
         )
-    if "associatedGatewayOwnerAccount" in data:
+    if data.get("associatedGatewayOwnerAccount") is not None:
         out["associated_gateway_owner_account"] = data["associatedGatewayOwnerAccount"]
     else:
         raise DeserializationError(
             "AcceptDirectConnectGatewayAssociationProposalRequest.associated_gateway_owner_account required"
         )
-    if "overrideAllowedPrefixesToDirectConnectGateway" in data:
+    if data.get("overrideAllowedPrefixesToDirectConnectGateway") is not None:
         import capo_direct_connect.types.route_filter_prefix_list
 
         out["override_allowed_prefixes_to_direct_connect_gateway"] = (

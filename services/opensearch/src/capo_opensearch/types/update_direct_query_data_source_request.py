@@ -64,7 +64,7 @@ def serialize_json(value: UpdateDirectQueryDataSourceRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDirectQueryDataSourceRequest:
     out: UpdateDirectQueryDataSourceRequest = {}  # type: ignore[typeddict-item]
-    if "DataSourceType" in data:
+    if data.get("DataSourceType") is not None:
         import capo_opensearch.types.direct_query_data_source_type
 
         out["data_source_type"] = (
@@ -76,9 +76,9 @@ def deserialize_json(data: dict) -> UpdateDirectQueryDataSourceRequest:
         raise DeserializationError(
             "UpdateDirectQueryDataSourceRequest.data_source_type required"
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "OpenSearchArns" in data:
+    if data.get("OpenSearchArns") is not None:
         import capo_opensearch.types.direct_query_open_search_arn_list
 
         out["open_search_arns"] = (
@@ -86,6 +86,6 @@ def deserialize_json(data: dict) -> UpdateDirectQueryDataSourceRequest:
                 data["OpenSearchArns"]
             )
         )
-    if "DataSourceAccessPolicy" in data:
+    if data.get("DataSourceAccessPolicy") is not None:
         out["data_source_access_policy"] = data["DataSourceAccessPolicy"]
     return out

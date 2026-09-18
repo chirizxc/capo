@@ -67,13 +67,13 @@ def serialize_aws_json_1_0(value: DescribeFirewallMetadataResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeFirewallMetadataResponse:
     out: DescribeFirewallMetadataResponse = {}  # type: ignore[typeddict-item]
-    if "FirewallArn" in data:
+    if data.get("FirewallArn") is not None:
         out["firewall_arn"] = data["FirewallArn"]
-    if "FirewallPolicyArn" in data:
+    if data.get("FirewallPolicyArn") is not None:
         out["firewall_policy_arn"] = data["FirewallPolicyArn"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_network_firewall.types.firewall_status_value
 
         out["status"] = (
@@ -81,7 +81,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeFirewallMetadataResponse:
                 data["Status"]
             )
         )
-    if "SupportedAvailabilityZones" in data:
+    if data.get("SupportedAvailabilityZones") is not None:
         import capo_network_firewall.types.supported_availability_zones
 
         out["supported_availability_zones"] = (
@@ -89,6 +89,6 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeFirewallMetadataResponse:
                 data["SupportedAvailabilityZones"]
             )
         )
-    if "TransitGatewayAttachmentId" in data:
+    if data.get("TransitGatewayAttachmentId") is not None:
         out["transit_gateway_attachment_id"] = data["TransitGatewayAttachmentId"]
     return out

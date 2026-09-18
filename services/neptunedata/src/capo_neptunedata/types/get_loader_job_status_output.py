@@ -22,11 +22,11 @@ def serialize_json(value: GetLoaderJobStatusOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetLoaderJobStatusOutput:
     out: GetLoaderJobStatusOutput = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("GetLoaderJobStatusOutput.status required")
-    if "payload" in data:
+    if data.get("payload") is not None:
         out["payload"] = data["payload"]
     else:
         raise DeserializationError("GetLoaderJobStatusOutput.payload required")

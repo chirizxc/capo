@@ -32,12 +32,12 @@ def serialize_json(value: DescribeResourcePermissionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeResourcePermissionsResponse:
     out: DescribeResourcePermissionsResponse = {}  # type: ignore[typeddict-item]
-    if "Principals" in data:
+    if data.get("Principals") is not None:
         import capo_workdocs.types.principal_list
 
         out["principals"] = capo_workdocs.types.principal_list.deserialize_json(
             data["Principals"]
         )
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
     return out

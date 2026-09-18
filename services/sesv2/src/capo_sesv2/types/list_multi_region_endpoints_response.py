@@ -36,7 +36,7 @@ def serialize_json(value: ListMultiRegionEndpointsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListMultiRegionEndpointsResponse:
     out: ListMultiRegionEndpointsResponse = {}  # type: ignore[typeddict-item]
-    if "MultiRegionEndpoints" in data:
+    if data.get("MultiRegionEndpoints") is not None:
         import capo_sesv2.types.multi_region_endpoints
 
         out["multi_region_endpoints"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListMultiRegionEndpointsResponse:
                 data["MultiRegionEndpoints"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

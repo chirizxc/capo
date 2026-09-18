@@ -36,7 +36,7 @@ def serialize_json(value: ProvisioningConfiguration) -> dict:
 
 
 def deserialize_json(data: dict) -> ProvisioningConfiguration:
-    if "lakeFormationConfiguration" in data:
+    if data.get("lakeFormationConfiguration") is not None:
         import capo_datazone.types.lake_formation_configuration
 
         return {

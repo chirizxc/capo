@@ -68,29 +68,29 @@ def serialize_json(value: AccessorSummary) -> dict:
 
 def deserialize_json(data: dict) -> AccessorSummary:
     out: AccessorSummary = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_managedblockchain.types.accessor_type
 
         out["type"] = capo_managedblockchain.types.accessor_type.deserialize_json(
             data["Type"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_managedblockchain.types.accessor_status
 
         out["status"] = capo_managedblockchain.types.accessor_status.deserialize_json(
             data["Status"]
         )
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         import capo_managedblockchain.types.timestamp
 
         out["creation_date"] = capo_managedblockchain.types.timestamp.deserialize_json(
             data["CreationDate"]
         )
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "NetworkType" in data:
+    if data.get("NetworkType") is not None:
         import capo_managedblockchain.types.accessor_network_type
 
         out["network_type"] = (

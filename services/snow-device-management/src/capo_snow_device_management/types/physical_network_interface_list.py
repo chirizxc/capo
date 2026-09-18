@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> PhysicalNetworkInterfaceList:
 
     out: PhysicalNetworkInterfaceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_snow_device_management.types.physical_network_interface.deserialize_json(
                 item

@@ -39,15 +39,22 @@ class GlobalReplicationGroupAlreadyExistsFault(ServiceError):
 
     code: str | None = "GlobalReplicationGroupAlreadyExistsFault"
 
-    def __init__(self, data: GlobalReplicationGroupAlreadyExistsFault_):
+    def __init__(
+        self,
+        data: GlobalReplicationGroupAlreadyExistsFault_,
+        message: str | None = None,
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="GlobalReplicationGroupAlreadyExistsFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "GlobalReplicationGroupAlreadyExistsFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "GlobalReplicationGroupAlreadyExistsFault":
+        return cls(deserialize_query(el), message)

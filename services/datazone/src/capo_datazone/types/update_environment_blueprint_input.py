@@ -54,9 +54,9 @@ def serialize_json(value: UpdateEnvironmentBlueprintInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateEnvironmentBlueprintInput:
     out: UpdateEnvironmentBlueprintInput = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "provisioningProperties" in data:
+    if data.get("provisioningProperties") is not None:
         import capo_datazone.types.provisioning_properties
 
         out["provisioning_properties"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> UpdateEnvironmentBlueprintInput:
                 data["provisioningProperties"]
             )
         )
-    if "userParameters" in data:
+    if data.get("userParameters") is not None:
         import capo_datazone.types.custom_parameter_list
 
         out["user_parameters"] = (

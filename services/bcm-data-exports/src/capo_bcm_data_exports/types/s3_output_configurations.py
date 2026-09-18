@@ -58,7 +58,7 @@ def serialize_aws_json_1_1(value: S3OutputConfigurations) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3OutputConfigurations:
     out: S3OutputConfigurations = {}  # type: ignore[typeddict-item]
-    if "OutputType" in data:
+    if data.get("OutputType") is not None:
         import capo_bcm_data_exports.types.s3_output_type
 
         out["output_type"] = (
@@ -68,7 +68,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3OutputConfigurations:
         )
     else:
         raise DeserializationError("S3OutputConfigurations.output_type required")
-    if "Format" in data:
+    if data.get("Format") is not None:
         import capo_bcm_data_exports.types.format_option
 
         out["format"] = (
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3OutputConfigurations:
         )
     else:
         raise DeserializationError("S3OutputConfigurations.format required")
-    if "Compression" in data:
+    if data.get("Compression") is not None:
         import capo_bcm_data_exports.types.compression_option
 
         out["compression"] = (
@@ -88,7 +88,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3OutputConfigurations:
         )
     else:
         raise DeserializationError("S3OutputConfigurations.compression required")
-    if "Overwrite" in data:
+    if data.get("Overwrite") is not None:
         import capo_bcm_data_exports.types.overwrite_option
 
         out["overwrite"] = (

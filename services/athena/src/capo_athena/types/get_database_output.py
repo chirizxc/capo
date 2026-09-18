@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: GetDatabaseOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDatabaseOutput:
     out: GetDatabaseOutput = {}  # type: ignore[typeddict-item]
-    if "Database" in data:
+    if data.get("Database") is not None:
         import capo_athena.types.database
 
         out["database"] = capo_athena.types.database.deserialize_aws_json_1_1(

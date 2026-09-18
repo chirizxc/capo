@@ -57,22 +57,22 @@ def serialize_json(value: UpdateProbeInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateProbeInput:
     out: UpdateProbeInput = {}  # type: ignore[typeddict-item]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_networkmonitor.types.probe_state
 
         out["state"] = capo_networkmonitor.types.probe_state.deserialize_json(
             data["state"]
         )
-    if "destination" in data:
+    if data.get("destination") is not None:
         out["destination"] = data["destination"]
-    if "destinationPort" in data:
+    if data.get("destinationPort") is not None:
         out["destination_port"] = data["destinationPort"]
-    if "protocol" in data:
+    if data.get("protocol") is not None:
         import capo_networkmonitor.types.protocol
 
         out["protocol"] = capo_networkmonitor.types.protocol.deserialize_json(
             data["protocol"]
         )
-    if "packetSize" in data:
+    if data.get("packetSize") is not None:
         out["packet_size"] = data["packetSize"]
     return out

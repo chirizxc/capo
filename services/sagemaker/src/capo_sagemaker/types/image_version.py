@@ -70,19 +70,19 @@ def serialize_aws_json_1_1(value: ImageVersion) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ImageVersion:
     out: ImageVersion = {}  # type: ignore[typeddict-item]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "ImageArn" in data:
+    if data.get("ImageArn") is not None:
         out["image_arn"] = data["ImageArn"]
-    if "ImageVersionArn" in data:
+    if data.get("ImageVersionArn") is not None:
         out["image_version_arn"] = data["ImageVersionArn"]
-    if "ImageVersionStatus" in data:
+    if data.get("ImageVersionStatus") is not None:
         import capo_sagemaker.types.image_version_status
 
         out["image_version_status"] = (
@@ -90,7 +90,7 @@ def deserialize_aws_json_1_1(data: dict) -> ImageVersion:
                 data["ImageVersionStatus"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (
@@ -98,6 +98,6 @@ def deserialize_aws_json_1_1(data: dict) -> ImageVersion:
                 data["LastModifiedTime"]
             )
         )
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
     return out

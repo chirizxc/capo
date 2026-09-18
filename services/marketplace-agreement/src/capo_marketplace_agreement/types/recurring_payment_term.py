@@ -48,14 +48,14 @@ def serialize_aws_json_1_0(value: RecurringPaymentTerm) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RecurringPaymentTerm:
     out: RecurringPaymentTerm = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "currencyCode" in data:
+    if data.get("currencyCode") is not None:
         out["currency_code"] = data["currencyCode"]
-    if "billingPeriod" in data:
+    if data.get("billingPeriod") is not None:
         out["billing_period"] = data["billingPeriod"]
-    if "price" in data:
+    if data.get("price") is not None:
         out["price"] = data["price"]
     return out

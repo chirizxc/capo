@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: HttpEndpointRequestConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HttpEndpointRequestConfiguration:
     out: HttpEndpointRequestConfiguration = {}  # type: ignore[typeddict-item]
-    if "ContentEncoding" in data:
+    if data.get("ContentEncoding") is not None:
         import capo_firehose.types.content_encoding
 
         out["content_encoding"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> HttpEndpointRequestConfiguration:
                 data["ContentEncoding"]
             )
         )
-    if "CommonAttributes" in data:
+    if data.get("CommonAttributes") is not None:
         import capo_firehose.types.http_endpoint_common_attributes_list
 
         out["common_attributes"] = (

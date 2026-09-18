@@ -45,17 +45,17 @@ def serialize_json(value: AwsCloudMapServiceDiscovery) -> dict:
 
 def deserialize_json(data: dict) -> AwsCloudMapServiceDiscovery:
     out: AwsCloudMapServiceDiscovery = {}  # type: ignore[typeddict-item]
-    if "namespaceName" in data:
+    if data.get("namespaceName") is not None:
         out["namespace_name"] = data["namespaceName"]
     else:
         raise DeserializationError(
             "AwsCloudMapServiceDiscovery.namespace_name required"
         )
-    if "serviceName" in data:
+    if data.get("serviceName") is not None:
         out["service_name"] = data["serviceName"]
     else:
         raise DeserializationError("AwsCloudMapServiceDiscovery.service_name required")
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_app_mesh.types.aws_cloud_map_instance_attributes
 
         out["attributes"] = (
@@ -63,6 +63,6 @@ def deserialize_json(data: dict) -> AwsCloudMapServiceDiscovery:
                 data["attributes"]
             )
         )
-    if "ipPreference" in data:
+    if data.get("ipPreference") is not None:
         out["ip_preference"] = data["ipPreference"]
     return out

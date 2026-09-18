@@ -36,7 +36,7 @@ def serialize_json(value: UpdateEnabledControlInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateEnabledControlInput:
     out: UpdateEnabledControlInput = {}  # type: ignore[typeddict-item]
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_controltower.types.enabled_control_parameters
 
         out["parameters"] = (
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> UpdateEnabledControlInput:
         )
     else:
         raise DeserializationError("UpdateEnabledControlInput.parameters required")
-    if "enabledControlIdentifier" in data:
+    if data.get("enabledControlIdentifier") is not None:
         out["enabled_control_identifier"] = data["enabledControlIdentifier"]
     else:
         raise DeserializationError(

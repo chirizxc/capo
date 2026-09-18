@@ -37,7 +37,7 @@ def serialize_aws_json_1_0(value: ArchiveAction) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ArchiveAction:
     out: ArchiveAction = {}  # type: ignore[typeddict-item]
-    if "ActionFailurePolicy" in data:
+    if data.get("ActionFailurePolicy") is not None:
         import capo_mailmanager.types.action_failure_policy
 
         out["action_failure_policy"] = (
@@ -45,7 +45,7 @@ def deserialize_aws_json_1_0(data: dict) -> ArchiveAction:
                 data["ActionFailurePolicy"]
             )
         )
-    if "TargetArchive" in data:
+    if data.get("TargetArchive") is not None:
         out["target_archive"] = data["TargetArchive"]
     else:
         raise DeserializationError("ArchiveAction.target_archive required")

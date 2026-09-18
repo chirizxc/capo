@@ -38,11 +38,11 @@ def serialize_aws_json_1_1(value: UpdateChannelRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateChannelRequest:
     out: UpdateChannelRequest = {}  # type: ignore[typeddict-item]
-    if "Channel" in data:
+    if data.get("Channel") is not None:
         out["channel"] = data["Channel"]
     else:
         raise DeserializationError("UpdateChannelRequest.channel required")
-    if "Destinations" in data:
+    if data.get("Destinations") is not None:
         import capo_cloudtrail.types.destinations
 
         out["destinations"] = (
@@ -50,6 +50,6 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateChannelRequest:
                 data["Destinations"]
             )
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     return out

@@ -43,7 +43,7 @@ def serialize_json(value: BatchDeleteRumMetricDefinitionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchDeleteRumMetricDefinitionsResponse:
     out: BatchDeleteRumMetricDefinitionsResponse = {}  # type: ignore[typeddict-item]
-    if "Errors" in data:
+    if data.get("Errors") is not None:
         import capo_rum.types.batch_delete_rum_metric_definitions_errors
 
         out["errors"] = (
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> BatchDeleteRumMetricDefinitionsResponse:
         raise DeserializationError(
             "BatchDeleteRumMetricDefinitionsResponse.errors required"
         )
-    if "MetricDefinitionIds" in data:
+    if data.get("MetricDefinitionIds") is not None:
         import capo_rum.types.metric_definition_ids
 
         out["metric_definition_ids"] = (

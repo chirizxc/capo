@@ -30,7 +30,7 @@ def serialize_json(value: PrivacyConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> PrivacyConfiguration:
     out: PrivacyConfiguration = {}  # type: ignore[typeddict-item]
-    if "policies" in data:
+    if data.get("policies") is not None:
         import capo_cleanroomsml.types.privacy_configuration_policies
 
         out["policies"] = (

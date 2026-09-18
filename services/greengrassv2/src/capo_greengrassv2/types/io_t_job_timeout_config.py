@@ -25,6 +25,6 @@ def serialize_json(value: IoTJobTimeoutConfig) -> dict:
 
 def deserialize_json(data: dict) -> IoTJobTimeoutConfig:
     out: IoTJobTimeoutConfig = {}  # type: ignore[typeddict-item]
-    if "inProgressTimeoutInMinutes" in data:
+    if data.get("inProgressTimeoutInMinutes") is not None:
         out["in_progress_timeout_in_minutes"] = data["inProgressTimeoutInMinutes"]
     return out

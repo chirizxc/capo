@@ -53,7 +53,7 @@ def serialize_aws_json_1_0(value: StatefulEngineOptions) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StatefulEngineOptions:
     out: StatefulEngineOptions = {}  # type: ignore[typeddict-item]
-    if "RuleOrder" in data:
+    if data.get("RuleOrder") is not None:
         import capo_network_firewall.types.rule_order
 
         out["rule_order"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_0(data: dict) -> StatefulEngineOptions:
                 data["RuleOrder"]
             )
         )
-    if "StreamExceptionPolicy" in data:
+    if data.get("StreamExceptionPolicy") is not None:
         import capo_network_firewall.types.stream_exception_policy
 
         out["stream_exception_policy"] = (
@@ -69,7 +69,7 @@ def deserialize_aws_json_1_0(data: dict) -> StatefulEngineOptions:
                 data["StreamExceptionPolicy"]
             )
         )
-    if "FlowTimeouts" in data:
+    if data.get("FlowTimeouts") is not None:
         import capo_network_firewall.types.flow_timeouts
 
         out["flow_timeouts"] = (

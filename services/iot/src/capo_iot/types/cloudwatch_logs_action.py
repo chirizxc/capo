@@ -33,14 +33,14 @@ def serialize_json(value: CloudwatchLogsAction) -> dict:
 
 def deserialize_json(data: dict) -> CloudwatchLogsAction:
     out: CloudwatchLogsAction = {}  # type: ignore[typeddict-item]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("CloudwatchLogsAction.role_arn required")
-    if "logGroupName" in data:
+    if data.get("logGroupName") is not None:
         out["log_group_name"] = data["logGroupName"]
     else:
         raise DeserializationError("CloudwatchLogsAction.log_group_name required")
-    if "batchMode" in data:
+    if data.get("batchMode") is not None:
         out["batch_mode"] = data["batchMode"]
     return out

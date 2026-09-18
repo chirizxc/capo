@@ -39,12 +39,12 @@ def serialize_aws_json_1_1(value: SavingsPlansCoverageData) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SavingsPlansCoverageData:
     out: SavingsPlansCoverageData = {}  # type: ignore[typeddict-item]
-    if "SpendCoveredBySavingsPlans" in data:
+    if data.get("SpendCoveredBySavingsPlans") is not None:
         out["spend_covered_by_savings_plans"] = data["SpendCoveredBySavingsPlans"]
-    if "OnDemandCost" in data:
+    if data.get("OnDemandCost") is not None:
         out["on_demand_cost"] = data["OnDemandCost"]
-    if "TotalCost" in data:
+    if data.get("TotalCost") is not None:
         out["total_cost"] = data["TotalCost"]
-    if "CoveragePercentage" in data:
+    if data.get("CoveragePercentage") is not None:
         out["coverage_percentage"] = data["CoveragePercentage"]
     return out

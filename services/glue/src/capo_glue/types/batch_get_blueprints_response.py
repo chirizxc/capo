@@ -38,13 +38,13 @@ def serialize_aws_json_1_1(value: BatchGetBlueprintsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetBlueprintsResponse:
     out: BatchGetBlueprintsResponse = {}  # type: ignore[typeddict-item]
-    if "Blueprints" in data:
+    if data.get("Blueprints") is not None:
         import capo_glue.types.blueprints
 
         out["blueprints"] = capo_glue.types.blueprints.deserialize_aws_json_1_1(
             data["Blueprints"]
         )
-    if "MissingBlueprints" in data:
+    if data.get("MissingBlueprints") is not None:
         import capo_glue.types.blueprint_names
 
         out["missing_blueprints"] = (

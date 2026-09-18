@@ -46,9 +46,9 @@ def serialize_aws_json_1_1(value: PortfolioShareDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PortfolioShareDetail:
     out: PortfolioShareDetail = {}  # type: ignore[typeddict-item]
-    if "PrincipalId" in data:
+    if data.get("PrincipalId") is not None:
         out["principal_id"] = data["PrincipalId"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_service_catalog.types.describe_portfolio_share_type
 
         out["type"] = (
@@ -56,15 +56,15 @@ def deserialize_aws_json_1_1(data: dict) -> PortfolioShareDetail:
                 data["Type"]
             )
         )
-    if "Accepted" in data:
+    if data.get("Accepted") is not None:
         out["accepted"] = data["Accepted"]
     else:
         out["accepted"] = False
-    if "ShareTagOptions" in data:
+    if data.get("ShareTagOptions") is not None:
         out["share_tag_options"] = data["ShareTagOptions"]
     else:
         out["share_tag_options"] = False
-    if "SharePrincipals" in data:
+    if data.get("SharePrincipals") is not None:
         out["share_principals"] = data["SharePrincipals"]
     else:
         out["share_principals"] = False

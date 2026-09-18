@@ -26,7 +26,7 @@ def serialize_json(value: CreateJobForDevicesResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateJobForDevicesResponse:
     out: CreateJobForDevicesResponse = {}  # type: ignore[typeddict-item]
-    if "Jobs" in data:
+    if data.get("Jobs") is not None:
         import capo_panorama.types.job_list
 
         out["jobs"] = capo_panorama.types.job_list.deserialize_json(data["Jobs"])

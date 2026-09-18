@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: InvalidFileLocationException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidFileLocationException_:
     out: InvalidFileLocationException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,18 @@ class InvalidFileLocationException(ServiceError):
 
     code: str | None = "InvalidFileLocationException"
 
-    def __init__(self, data: InvalidFileLocationException_):
+    def __init__(self, data: InvalidFileLocationException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidFileLocationException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidFileLocationException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidFileLocationException":
+        return cls(deserialize_aws_json_1_1(data), message)

@@ -54,7 +54,7 @@ def serialize_json(value: DocumentEnrichmentConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DocumentEnrichmentConfiguration:
     out: DocumentEnrichmentConfiguration = {}  # type: ignore[typeddict-item]
-    if "inlineConfigurations" in data:
+    if data.get("inlineConfigurations") is not None:
         import capo_qbusiness.types.inline_document_enrichment_configurations
 
         out["inline_configurations"] = (
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> DocumentEnrichmentConfiguration:
                 data["inlineConfigurations"]
             )
         )
-    if "preExtractionHookConfiguration" in data:
+    if data.get("preExtractionHookConfiguration") is not None:
         import capo_qbusiness.types.hook_configuration
 
         out["pre_extraction_hook_configuration"] = (
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> DocumentEnrichmentConfiguration:
                 data["preExtractionHookConfiguration"]
             )
         )
-    if "postExtractionHookConfiguration" in data:
+    if data.get("postExtractionHookConfiguration") is not None:
         import capo_qbusiness.types.hook_configuration
 
         out["post_extraction_hook_configuration"] = (

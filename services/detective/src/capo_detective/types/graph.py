@@ -32,9 +32,9 @@ def serialize_json(value: Graph) -> dict:
 
 def deserialize_json(data: dict) -> Graph:
     out: Graph = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_detective.types.timestamp
 
         out["created_time"] = capo_detective.types.timestamp.deserialize_json(

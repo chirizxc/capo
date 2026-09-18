@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: RuntimeValidationConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RuntimeValidationConfig:
     out: RuntimeValidationConfig = {}  # type: ignore[typeddict-item]
-    if "IntendedInstanceType" in data:
+    if data.get("IntendedInstanceType") is not None:
         out["intended_instance_type"] = data["IntendedInstanceType"]
     return out

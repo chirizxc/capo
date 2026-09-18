@@ -39,15 +39,18 @@ class TooManyTargetGroupsException(ServiceError):
 
     code: str | None = "TooManyTargetGroupsException"
 
-    def __init__(self, data: TooManyTargetGroupsException_):
+    def __init__(self, data: TooManyTargetGroupsException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="TooManyTargetGroupsException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "TooManyTargetGroupsException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "TooManyTargetGroupsException":
+        return cls(deserialize_query(el), message)

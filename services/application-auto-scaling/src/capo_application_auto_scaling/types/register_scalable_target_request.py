@@ -91,7 +91,7 @@ def serialize_aws_json_1_1(value: RegisterScalableTargetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RegisterScalableTargetRequest:
     out: RegisterScalableTargetRequest = {}  # type: ignore[typeddict-item]
-    if "ServiceNamespace" in data:
+    if data.get("ServiceNamespace") is not None:
         import capo_application_auto_scaling.types.service_namespace
 
         out["service_namespace"] = (
@@ -103,11 +103,11 @@ def deserialize_aws_json_1_1(data: dict) -> RegisterScalableTargetRequest:
         raise DeserializationError(
             "RegisterScalableTargetRequest.service_namespace required"
         )
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     else:
         raise DeserializationError("RegisterScalableTargetRequest.resource_id required")
-    if "ScalableDimension" in data:
+    if data.get("ScalableDimension") is not None:
         import capo_application_auto_scaling.types.scalable_dimension
 
         out["scalable_dimension"] = (
@@ -119,13 +119,13 @@ def deserialize_aws_json_1_1(data: dict) -> RegisterScalableTargetRequest:
         raise DeserializationError(
             "RegisterScalableTargetRequest.scalable_dimension required"
         )
-    if "MinCapacity" in data:
+    if data.get("MinCapacity") is not None:
         out["min_capacity"] = data["MinCapacity"]
-    if "MaxCapacity" in data:
+    if data.get("MaxCapacity") is not None:
         out["max_capacity"] = data["MaxCapacity"]
-    if "RoleARN" in data:
+    if data.get("RoleARN") is not None:
         out["role_arn"] = data["RoleARN"]
-    if "SuspendedState" in data:
+    if data.get("SuspendedState") is not None:
         import capo_application_auto_scaling.types.suspended_state
 
         out["suspended_state"] = (
@@ -133,7 +133,7 @@ def deserialize_aws_json_1_1(data: dict) -> RegisterScalableTargetRequest:
                 data["SuspendedState"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_application_auto_scaling.types.tag_map
 
         out["tags"] = (

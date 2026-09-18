@@ -206,13 +206,13 @@ def serialize_json(value: CreateKxClusterRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateKxClusterRequest:
     out: CreateKxClusterRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "clusterName" in data:
+    if data.get("clusterName") is not None:
         out["cluster_name"] = data["clusterName"]
     else:
         raise DeserializationError("CreateKxClusterRequest.cluster_name required")
-    if "clusterType" in data:
+    if data.get("clusterType") is not None:
         import capo_finspace.types.kx_cluster_type
 
         out["cluster_type"] = capo_finspace.types.kx_cluster_type.deserialize_json(
@@ -220,7 +220,7 @@ def deserialize_json(data: dict) -> CreateKxClusterRequest:
         )
     else:
         raise DeserializationError("CreateKxClusterRequest.cluster_type required")
-    if "tickerplantLogConfiguration" in data:
+    if data.get("tickerplantLogConfiguration") is not None:
         import capo_finspace.types.tickerplant_log_configuration
 
         out["tickerplant_log_configuration"] = (
@@ -228,7 +228,7 @@ def deserialize_json(data: dict) -> CreateKxClusterRequest:
                 data["tickerplantLogConfiguration"]
             )
         )
-    if "databases" in data:
+    if data.get("databases") is not None:
         import capo_finspace.types.kx_database_configurations
 
         out["databases"] = (
@@ -236,7 +236,7 @@ def deserialize_json(data: dict) -> CreateKxClusterRequest:
                 data["databases"]
             )
         )
-    if "cacheStorageConfigurations" in data:
+    if data.get("cacheStorageConfigurations") is not None:
         import capo_finspace.types.kx_cache_storage_configurations
 
         out["cache_storage_configurations"] = (
@@ -244,7 +244,7 @@ def deserialize_json(data: dict) -> CreateKxClusterRequest:
                 data["cacheStorageConfigurations"]
             )
         )
-    if "autoScalingConfiguration" in data:
+    if data.get("autoScalingConfiguration") is not None:
         import capo_finspace.types.auto_scaling_configuration
 
         out["auto_scaling_configuration"] = (
@@ -252,9 +252,9 @@ def deserialize_json(data: dict) -> CreateKxClusterRequest:
                 data["autoScalingConfiguration"]
             )
         )
-    if "clusterDescription" in data:
+    if data.get("clusterDescription") is not None:
         out["cluster_description"] = data["clusterDescription"]
-    if "capacityConfiguration" in data:
+    if data.get("capacityConfiguration") is not None:
         import capo_finspace.types.capacity_configuration
 
         out["capacity_configuration"] = (
@@ -262,11 +262,11 @@ def deserialize_json(data: dict) -> CreateKxClusterRequest:
                 data["capacityConfiguration"]
             )
         )
-    if "releaseLabel" in data:
+    if data.get("releaseLabel") is not None:
         out["release_label"] = data["releaseLabel"]
     else:
         raise DeserializationError("CreateKxClusterRequest.release_label required")
-    if "vpcConfiguration" in data:
+    if data.get("vpcConfiguration") is not None:
         import capo_finspace.types.vpc_configuration
 
         out["vpc_configuration"] = (
@@ -276,9 +276,9 @@ def deserialize_json(data: dict) -> CreateKxClusterRequest:
         )
     else:
         raise DeserializationError("CreateKxClusterRequest.vpc_configuration required")
-    if "initializationScript" in data:
+    if data.get("initializationScript") is not None:
         out["initialization_script"] = data["initializationScript"]
-    if "commandLineArguments" in data:
+    if data.get("commandLineArguments") is not None:
         import capo_finspace.types.kx_command_line_arguments
 
         out["command_line_arguments"] = (
@@ -286,15 +286,15 @@ def deserialize_json(data: dict) -> CreateKxClusterRequest:
                 data["commandLineArguments"]
             )
         )
-    if "code" in data:
+    if data.get("code") is not None:
         import capo_finspace.types.code_configuration
 
         out["code"] = capo_finspace.types.code_configuration.deserialize_json(
             data["code"]
         )
-    if "executionRole" in data:
+    if data.get("executionRole") is not None:
         out["execution_role"] = data["executionRole"]
-    if "savedownStorageConfiguration" in data:
+    if data.get("savedownStorageConfiguration") is not None:
         import capo_finspace.types.kx_savedown_storage_configuration
 
         out["savedown_storage_configuration"] = (
@@ -302,19 +302,19 @@ def deserialize_json(data: dict) -> CreateKxClusterRequest:
                 data["savedownStorageConfiguration"]
             )
         )
-    if "azMode" in data:
+    if data.get("azMode") is not None:
         import capo_finspace.types.kx_az_mode
 
         out["az_mode"] = capo_finspace.types.kx_az_mode.deserialize_json(data["azMode"])
     else:
         raise DeserializationError("CreateKxClusterRequest.az_mode required")
-    if "availabilityZoneId" in data:
+    if data.get("availabilityZoneId") is not None:
         out["availability_zone_id"] = data["availabilityZoneId"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_finspace.types.tag_map
 
         out["tags"] = capo_finspace.types.tag_map.deserialize_json(data["tags"])
-    if "scalingGroupConfiguration" in data:
+    if data.get("scalingGroupConfiguration") is not None:
         import capo_finspace.types.kx_scaling_group_configuration
 
         out["scaling_group_configuration"] = (

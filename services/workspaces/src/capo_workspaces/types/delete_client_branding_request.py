@@ -34,11 +34,11 @@ def serialize_aws_json_1_1(value: DeleteClientBrandingRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteClientBrandingRequest:
     out: DeleteClientBrandingRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     else:
         raise DeserializationError("DeleteClientBrandingRequest.resource_id required")
-    if "Platforms" in data:
+    if data.get("Platforms") is not None:
         import capo_workspaces.types.client_device_type_list
 
         out["platforms"] = (

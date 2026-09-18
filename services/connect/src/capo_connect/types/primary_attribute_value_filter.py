@@ -30,13 +30,13 @@ def serialize_json(value: PrimaryAttributeValueFilter) -> dict:
 
 def deserialize_json(data: dict) -> PrimaryAttributeValueFilter:
     out: PrimaryAttributeValueFilter = {}  # type: ignore[typeddict-item]
-    if "AttributeName" in data:
+    if data.get("AttributeName") is not None:
         out["attribute_name"] = data["AttributeName"]
     else:
         raise DeserializationError(
             "PrimaryAttributeValueFilter.attribute_name required"
         )
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_connect.types.value_list
 
         out["values"] = capo_connect.types.value_list.deserialize_json(data["Values"])

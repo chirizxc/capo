@@ -113,11 +113,11 @@ def serialize_aws_json_1_1(value: Accelerator) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Accelerator:
     out: Accelerator = {}  # type: ignore[typeddict-item]
-    if "AcceleratorArn" in data:
+    if data.get("AcceleratorArn") is not None:
         out["accelerator_arn"] = data["AcceleratorArn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "IpAddressType" in data:
+    if data.get("IpAddressType") is not None:
         import capo_global_accelerator.types.ip_address_type
 
         out["ip_address_type"] = (
@@ -125,17 +125,17 @@ def deserialize_aws_json_1_1(data: dict) -> Accelerator:
                 data["IpAddressType"]
             )
         )
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "IpSets" in data:
+    if data.get("IpSets") is not None:
         import capo_global_accelerator.types.ip_sets
 
         out["ip_sets"] = capo_global_accelerator.types.ip_sets.deserialize_aws_json_1_1(
             data["IpSets"]
         )
-    if "DnsName" in data:
+    if data.get("DnsName") is not None:
         out["dns_name"] = data["DnsName"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_global_accelerator.types.accelerator_status
 
         out["status"] = (
@@ -143,7 +143,7 @@ def deserialize_aws_json_1_1(data: dict) -> Accelerator:
                 data["Status"]
             )
         )
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_global_accelerator.types.timestamp
 
         out["created_time"] = (
@@ -151,7 +151,7 @@ def deserialize_aws_json_1_1(data: dict) -> Accelerator:
                 data["CreatedTime"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_global_accelerator.types.timestamp
 
         out["last_modified_time"] = (
@@ -159,9 +159,9 @@ def deserialize_aws_json_1_1(data: dict) -> Accelerator:
                 data["LastModifiedTime"]
             )
         )
-    if "DualStackDnsName" in data:
+    if data.get("DualStackDnsName") is not None:
         out["dual_stack_dns_name"] = data["DualStackDnsName"]
-    if "Events" in data:
+    if data.get("Events") is not None:
         import capo_global_accelerator.types.accelerator_events
 
         out["events"] = (

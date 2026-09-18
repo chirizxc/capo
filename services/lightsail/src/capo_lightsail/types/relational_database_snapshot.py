@@ -114,19 +114,19 @@ def serialize_aws_json_1_1(value: RelationalDatabaseSnapshot) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RelationalDatabaseSnapshot:
     out: RelationalDatabaseSnapshot = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "supportCode" in data:
+    if data.get("supportCode") is not None:
         out["support_code"] = data["supportCode"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_lightsail.types.iso_date
 
         out["created_at"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
             data["createdAt"]
         )
-    if "location" in data:
+    if data.get("location") is not None:
         import capo_lightsail.types.resource_location
 
         out["location"] = (
@@ -134,7 +134,7 @@ def deserialize_aws_json_1_1(data: dict) -> RelationalDatabaseSnapshot:
                 data["location"]
             )
         )
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_lightsail.types.resource_type
 
         out["resource_type"] = (
@@ -142,29 +142,29 @@ def deserialize_aws_json_1_1(data: dict) -> RelationalDatabaseSnapshot:
                 data["resourceType"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_lightsail.types.tag_list
 
         out["tags"] = capo_lightsail.types.tag_list.deserialize_aws_json_1_1(
             data["tags"]
         )
-    if "engine" in data:
+    if data.get("engine") is not None:
         out["engine"] = data["engine"]
-    if "engineVersion" in data:
+    if data.get("engineVersion") is not None:
         out["engine_version"] = data["engineVersion"]
-    if "sizeInGb" in data:
+    if data.get("sizeInGb") is not None:
         out["size_in_gb"] = data["sizeInGb"]
-    if "state" in data:
+    if data.get("state") is not None:
         out["state"] = data["state"]
-    if "fromRelationalDatabaseName" in data:
+    if data.get("fromRelationalDatabaseName") is not None:
         out["from_relational_database_name"] = data["fromRelationalDatabaseName"]
-    if "fromRelationalDatabaseArn" in data:
+    if data.get("fromRelationalDatabaseArn") is not None:
         out["from_relational_database_arn"] = data["fromRelationalDatabaseArn"]
-    if "fromRelationalDatabaseBundleId" in data:
+    if data.get("fromRelationalDatabaseBundleId") is not None:
         out["from_relational_database_bundle_id"] = data[
             "fromRelationalDatabaseBundleId"
         ]
-    if "fromRelationalDatabaseBlueprintId" in data:
+    if data.get("fromRelationalDatabaseBlueprintId") is not None:
         out["from_relational_database_blueprint_id"] = data[
             "fromRelationalDatabaseBlueprintId"
         ]

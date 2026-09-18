@@ -35,18 +35,18 @@ def serialize_json(value: SendCustomVerificationEmailRequest) -> dict:
 
 def deserialize_json(data: dict) -> SendCustomVerificationEmailRequest:
     out: SendCustomVerificationEmailRequest = {}  # type: ignore[typeddict-item]
-    if "EmailAddress" in data:
+    if data.get("EmailAddress") is not None:
         out["email_address"] = data["EmailAddress"]
     else:
         raise DeserializationError(
             "SendCustomVerificationEmailRequest.email_address required"
         )
-    if "TemplateName" in data:
+    if data.get("TemplateName") is not None:
         out["template_name"] = data["TemplateName"]
     else:
         raise DeserializationError(
             "SendCustomVerificationEmailRequest.template_name required"
         )
-    if "ConfigurationSetName" in data:
+    if data.get("ConfigurationSetName") is not None:
         out["configuration_set_name"] = data["ConfigurationSetName"]
     return out

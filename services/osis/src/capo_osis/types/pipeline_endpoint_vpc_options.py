@@ -38,13 +38,13 @@ def serialize_json(value: PipelineEndpointVpcOptions) -> dict:
 
 def deserialize_json(data: dict) -> PipelineEndpointVpcOptions:
     out: PipelineEndpointVpcOptions = {}  # type: ignore[typeddict-item]
-    if "SubnetIds" in data:
+    if data.get("SubnetIds") is not None:
         import capo_osis.types.subnet_ids
 
         out["subnet_ids"] = capo_osis.types.subnet_ids.deserialize_json(
             data["SubnetIds"]
         )
-    if "SecurityGroupIds" in data:
+    if data.get("SecurityGroupIds") is not None:
         import capo_osis.types.security_group_ids
 
         out["security_group_ids"] = capo_osis.types.security_group_ids.deserialize_json(

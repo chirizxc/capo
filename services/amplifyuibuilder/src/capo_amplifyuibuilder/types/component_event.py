@@ -39,9 +39,9 @@ def serialize_json(value: ComponentEvent) -> dict:
 
 def deserialize_json(data: dict) -> ComponentEvent:
     out: ComponentEvent = {}  # type: ignore[typeddict-item]
-    if "action" in data:
+    if data.get("action") is not None:
         out["action"] = data["action"]
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_amplifyuibuilder.types.action_parameters
 
         out["parameters"] = (
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> ComponentEvent:
                 data["parameters"]
             )
         )
-    if "bindingEvent" in data:
+    if data.get("bindingEvent") is not None:
         out["binding_event"] = data["bindingEvent"]
     return out

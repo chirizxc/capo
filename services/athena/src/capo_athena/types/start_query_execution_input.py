@@ -101,13 +101,13 @@ def serialize_aws_json_1_1(value: StartQueryExecutionInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartQueryExecutionInput:
     out: StartQueryExecutionInput = {}  # type: ignore[typeddict-item]
-    if "QueryString" in data:
+    if data.get("QueryString") is not None:
         out["query_string"] = data["QueryString"]
     else:
         raise DeserializationError("StartQueryExecutionInput.query_string required")
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "QueryExecutionContext" in data:
+    if data.get("QueryExecutionContext") is not None:
         import capo_athena.types.query_execution_context
 
         out["query_execution_context"] = (
@@ -115,7 +115,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartQueryExecutionInput:
                 data["QueryExecutionContext"]
             )
         )
-    if "ResultConfiguration" in data:
+    if data.get("ResultConfiguration") is not None:
         import capo_athena.types.result_configuration
 
         out["result_configuration"] = (
@@ -123,9 +123,9 @@ def deserialize_aws_json_1_1(data: dict) -> StartQueryExecutionInput:
                 data["ResultConfiguration"]
             )
         )
-    if "WorkGroup" in data:
+    if data.get("WorkGroup") is not None:
         out["work_group"] = data["WorkGroup"]
-    if "ExecutionParameters" in data:
+    if data.get("ExecutionParameters") is not None:
         import capo_athena.types.execution_parameters
 
         out["execution_parameters"] = (
@@ -133,7 +133,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartQueryExecutionInput:
                 data["ExecutionParameters"]
             )
         )
-    if "ResultReuseConfiguration" in data:
+    if data.get("ResultReuseConfiguration") is not None:
         import capo_athena.types.result_reuse_configuration
 
         out["result_reuse_configuration"] = (
@@ -141,7 +141,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartQueryExecutionInput:
                 data["ResultReuseConfiguration"]
             )
         )
-    if "EngineConfiguration" in data:
+    if data.get("EngineConfiguration") is not None:
         import capo_athena.types.engine_configuration
 
         out["engine_configuration"] = (

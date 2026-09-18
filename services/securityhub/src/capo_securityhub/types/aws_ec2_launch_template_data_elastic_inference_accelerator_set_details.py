@@ -34,8 +34,8 @@ def deserialize_json(
     data: dict,
 ) -> AwsEc2LaunchTemplateDataElasticInferenceAcceleratorSetDetails:
     out: AwsEc2LaunchTemplateDataElasticInferenceAcceleratorSetDetails = {}  # type: ignore[typeddict-item]
-    if "Count" in data:
+    if data.get("Count") is not None:
         out["count"] = data["Count"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     return out

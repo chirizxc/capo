@@ -79,19 +79,19 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> NotifyProvisionProductEngineWorkflowResultInput:
     out: NotifyProvisionProductEngineWorkflowResultInput = {}  # type: ignore[typeddict-item]
-    if "WorkflowToken" in data:
+    if data.get("WorkflowToken") is not None:
         out["workflow_token"] = data["WorkflowToken"]
     else:
         raise DeserializationError(
             "NotifyProvisionProductEngineWorkflowResultInput.workflow_token required"
         )
-    if "RecordId" in data:
+    if data.get("RecordId") is not None:
         out["record_id"] = data["RecordId"]
     else:
         raise DeserializationError(
             "NotifyProvisionProductEngineWorkflowResultInput.record_id required"
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_service_catalog.types.engine_workflow_status
 
         out["status"] = (
@@ -103,9 +103,9 @@ def deserialize_aws_json_1_1(
         raise DeserializationError(
             "NotifyProvisionProductEngineWorkflowResultInput.status required"
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "ResourceIdentifier" in data:
+    if data.get("ResourceIdentifier") is not None:
         import capo_service_catalog.types.engine_workflow_resource_identifier
 
         out["resource_identifier"] = (
@@ -113,7 +113,7 @@ def deserialize_aws_json_1_1(
                 data["ResourceIdentifier"]
             )
         )
-    if "Outputs" in data:
+    if data.get("Outputs") is not None:
         import capo_service_catalog.types.record_outputs
 
         out["outputs"] = (
@@ -121,7 +121,7 @@ def deserialize_aws_json_1_1(
                 data["Outputs"]
             )
         )
-    if "IdempotencyToken" in data:
+    if data.get("IdempotencyToken") is not None:
         out["idempotency_token"] = data["IdempotencyToken"]
     else:
         raise DeserializationError(

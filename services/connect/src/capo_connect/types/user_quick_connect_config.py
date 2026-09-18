@@ -28,11 +28,11 @@ def serialize_json(value: UserQuickConnectConfig) -> dict:
 
 def deserialize_json(data: dict) -> UserQuickConnectConfig:
     out: UserQuickConnectConfig = {}  # type: ignore[typeddict-item]
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
     else:
         raise DeserializationError("UserQuickConnectConfig.user_id required")
-    if "ContactFlowId" in data:
+    if data.get("ContactFlowId") is not None:
         out["contact_flow_id"] = data["ContactFlowId"]
     else:
         raise DeserializationError("UserQuickConnectConfig.contact_flow_id required")

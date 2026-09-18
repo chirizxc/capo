@@ -120,13 +120,45 @@ def serialize_json(value: Ac4Settings) -> dict:
             )
         )
     if "lo_ro_center_mix_level" in value:
-        out["loRoCenterMixLevel"] = value["lo_ro_center_mix_level"]
+        out["loRoCenterMixLevel"] = (
+            "NaN"
+            if value["lo_ro_center_mix_level"] != value["lo_ro_center_mix_level"]
+            else "Infinity"
+            if value["lo_ro_center_mix_level"] == float("inf")
+            else "-Infinity"
+            if value["lo_ro_center_mix_level"] == float("-inf")
+            else value["lo_ro_center_mix_level"]
+        )
     if "lo_ro_surround_mix_level" in value:
-        out["loRoSurroundMixLevel"] = value["lo_ro_surround_mix_level"]
+        out["loRoSurroundMixLevel"] = (
+            "NaN"
+            if value["lo_ro_surround_mix_level"] != value["lo_ro_surround_mix_level"]
+            else "Infinity"
+            if value["lo_ro_surround_mix_level"] == float("inf")
+            else "-Infinity"
+            if value["lo_ro_surround_mix_level"] == float("-inf")
+            else value["lo_ro_surround_mix_level"]
+        )
     if "lt_rt_center_mix_level" in value:
-        out["ltRtCenterMixLevel"] = value["lt_rt_center_mix_level"]
+        out["ltRtCenterMixLevel"] = (
+            "NaN"
+            if value["lt_rt_center_mix_level"] != value["lt_rt_center_mix_level"]
+            else "Infinity"
+            if value["lt_rt_center_mix_level"] == float("inf")
+            else "-Infinity"
+            if value["lt_rt_center_mix_level"] == float("-inf")
+            else value["lt_rt_center_mix_level"]
+        )
     if "lt_rt_surround_mix_level" in value:
-        out["ltRtSurroundMixLevel"] = value["lt_rt_surround_mix_level"]
+        out["ltRtSurroundMixLevel"] = (
+            "NaN"
+            if value["lt_rt_surround_mix_level"] != value["lt_rt_surround_mix_level"]
+            else "Infinity"
+            if value["lt_rt_surround_mix_level"] == float("inf")
+            else "-Infinity"
+            if value["lt_rt_surround_mix_level"] == float("-inf")
+            else value["lt_rt_surround_mix_level"]
+        )
     if "sample_rate" in value:
         out["sampleRate"] = value["sample_rate"]
     if "stereo_downmix" in value:
@@ -142,9 +174,9 @@ def serialize_json(value: Ac4Settings) -> dict:
 
 def deserialize_json(data: dict) -> Ac4Settings:
     out: Ac4Settings = {}  # type: ignore[typeddict-item]
-    if "bitrate" in data:
+    if data.get("bitrate") is not None:
         out["bitrate"] = data["bitrate"]
-    if "bitstreamMode" in data:
+    if data.get("bitstreamMode") is not None:
         import capo_mediaconvert.types.ac4_bitstream_mode
 
         out["bitstream_mode"] = (
@@ -152,13 +184,13 @@ def deserialize_json(data: dict) -> Ac4Settings:
                 data["bitstreamMode"]
             )
         )
-    if "codingMode" in data:
+    if data.get("codingMode") is not None:
         import capo_mediaconvert.types.ac4_coding_mode
 
         out["coding_mode"] = capo_mediaconvert.types.ac4_coding_mode.deserialize_json(
             data["codingMode"]
         )
-    if "dynamicRangeCompressionFlatPanelTv" in data:
+    if data.get("dynamicRangeCompressionFlatPanelTv") is not None:
         import capo_mediaconvert.types.ac4_dynamic_range_compression_drc_profile
 
         out["dynamic_range_compression_flat_panel_tv"] = (
@@ -166,7 +198,7 @@ def deserialize_json(data: dict) -> Ac4Settings:
                 data["dynamicRangeCompressionFlatPanelTv"]
             )
         )
-    if "dynamicRangeCompressionHomeTheater" in data:
+    if data.get("dynamicRangeCompressionHomeTheater") is not None:
         import capo_mediaconvert.types.ac4_dynamic_range_compression_drc_profile
 
         out["dynamic_range_compression_home_theater"] = (
@@ -174,7 +206,7 @@ def deserialize_json(data: dict) -> Ac4Settings:
                 data["dynamicRangeCompressionHomeTheater"]
             )
         )
-    if "dynamicRangeCompressionPortableHeadphones" in data:
+    if data.get("dynamicRangeCompressionPortableHeadphones") is not None:
         import capo_mediaconvert.types.ac4_dynamic_range_compression_drc_profile
 
         out["dynamic_range_compression_portable_headphones"] = (
@@ -182,7 +214,7 @@ def deserialize_json(data: dict) -> Ac4Settings:
                 data["dynamicRangeCompressionPortableHeadphones"]
             )
         )
-    if "dynamicRangeCompressionPortableSpeakers" in data:
+    if data.get("dynamicRangeCompressionPortableSpeakers") is not None:
         import capo_mediaconvert.types.ac4_dynamic_range_compression_drc_profile
 
         out["dynamic_range_compression_portable_speakers"] = (
@@ -190,17 +222,17 @@ def deserialize_json(data: dict) -> Ac4Settings:
                 data["dynamicRangeCompressionPortableSpeakers"]
             )
         )
-    if "loRoCenterMixLevel" in data:
-        out["lo_ro_center_mix_level"] = data["loRoCenterMixLevel"]
-    if "loRoSurroundMixLevel" in data:
-        out["lo_ro_surround_mix_level"] = data["loRoSurroundMixLevel"]
-    if "ltRtCenterMixLevel" in data:
-        out["lt_rt_center_mix_level"] = data["ltRtCenterMixLevel"]
-    if "ltRtSurroundMixLevel" in data:
-        out["lt_rt_surround_mix_level"] = data["ltRtSurroundMixLevel"]
-    if "sampleRate" in data:
+    if data.get("loRoCenterMixLevel") is not None:
+        out["lo_ro_center_mix_level"] = float(data["loRoCenterMixLevel"])
+    if data.get("loRoSurroundMixLevel") is not None:
+        out["lo_ro_surround_mix_level"] = float(data["loRoSurroundMixLevel"])
+    if data.get("ltRtCenterMixLevel") is not None:
+        out["lt_rt_center_mix_level"] = float(data["ltRtCenterMixLevel"])
+    if data.get("ltRtSurroundMixLevel") is not None:
+        out["lt_rt_surround_mix_level"] = float(data["ltRtSurroundMixLevel"])
+    if data.get("sampleRate") is not None:
         out["sample_rate"] = data["sampleRate"]
-    if "stereoDownmix" in data:
+    if data.get("stereoDownmix") is not None:
         import capo_mediaconvert.types.ac4_stereo_downmix
 
         out["stereo_downmix"] = (

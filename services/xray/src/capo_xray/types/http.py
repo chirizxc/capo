@@ -40,14 +40,14 @@ def serialize_json(value: Http) -> dict:
 
 def deserialize_json(data: dict) -> Http:
     out: Http = {}  # type: ignore[typeddict-item]
-    if "HttpURL" in data:
+    if data.get("HttpURL") is not None:
         out["http_url"] = data["HttpURL"]
-    if "HttpStatus" in data:
+    if data.get("HttpStatus") is not None:
         out["http_status"] = data["HttpStatus"]
-    if "HttpMethod" in data:
+    if data.get("HttpMethod") is not None:
         out["http_method"] = data["HttpMethod"]
-    if "UserAgent" in data:
+    if data.get("UserAgent") is not None:
         out["user_agent"] = data["UserAgent"]
-    if "ClientIp" in data:
+    if data.get("ClientIp") is not None:
         out["client_ip"] = data["ClientIp"]
     return out

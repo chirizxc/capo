@@ -36,13 +36,13 @@ def serialize_json(value: CreateDeliverabilityTestReportResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateDeliverabilityTestReportResponse:
     out: CreateDeliverabilityTestReportResponse = {}  # type: ignore[typeddict-item]
-    if "ReportId" in data:
+    if data.get("ReportId") is not None:
         out["report_id"] = data["ReportId"]
     else:
         raise DeserializationError(
             "CreateDeliverabilityTestReportResponse.report_id required"
         )
-    if "DeliverabilityTestStatus" in data:
+    if data.get("DeliverabilityTestStatus") is not None:
         import capo_pinpoint_email.types.deliverability_test_status
 
         out["deliverability_test_status"] = (

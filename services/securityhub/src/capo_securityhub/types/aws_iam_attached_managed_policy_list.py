@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AwsIamAttachedManagedPolicyList:
 
     out: AwsIamAttachedManagedPolicyList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_iam_attached_managed_policy.deserialize_json(
                 item

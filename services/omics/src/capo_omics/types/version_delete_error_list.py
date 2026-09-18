@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> VersionDeleteErrorList:
 
     out: VersionDeleteErrorList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_omics.types.version_delete_error.deserialize_json(item))
     return out

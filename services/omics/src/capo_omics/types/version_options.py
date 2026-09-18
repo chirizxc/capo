@@ -32,7 +32,7 @@ def serialize_json(value: VersionOptions) -> dict:
 
 
 def deserialize_json(data: dict) -> VersionOptions:
-    if "tsvVersionOptions" in data:
+    if data.get("tsvVersionOptions") is not None:
         import capo_omics.types.tsv_version_options
 
         return {

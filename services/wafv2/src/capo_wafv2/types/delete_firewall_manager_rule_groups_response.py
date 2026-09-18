@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: DeleteFirewallManagerRuleGroupsResponse) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteFirewallManagerRuleGroupsResponse:
     out: DeleteFirewallManagerRuleGroupsResponse = {}  # type: ignore[typeddict-item]
-    if "NextWebACLLockToken" in data:
+    if data.get("NextWebACLLockToken") is not None:
         out["next_web_acl_lock_token"] = data["NextWebACLLockToken"]
     return out

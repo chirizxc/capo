@@ -42,12 +42,12 @@ def serialize_aws_json_1_1(value: CustomStepDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CustomStepDetails:
     out: CustomStepDetails = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Target" in data:
+    if data.get("Target") is not None:
         out["target"] = data["Target"]
-    if "TimeoutSeconds" in data:
+    if data.get("TimeoutSeconds") is not None:
         out["timeout_seconds"] = data["TimeoutSeconds"]
-    if "SourceFileLocation" in data:
+    if data.get("SourceFileLocation") is not None:
         out["source_file_location"] = data["SourceFileLocation"]
     return out

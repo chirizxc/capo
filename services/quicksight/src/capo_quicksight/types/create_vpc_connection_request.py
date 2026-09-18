@@ -73,17 +73,17 @@ def serialize_json(value: CreateVPCConnectionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateVPCConnectionRequest:
     out: CreateVPCConnectionRequest = {}  # type: ignore[typeddict-item]
-    if "VPCConnectionId" in data:
+    if data.get("VPCConnectionId") is not None:
         out["vpc_connection_id"] = data["VPCConnectionId"]
     else:
         raise DeserializationError(
             "CreateVPCConnectionRequest.vpc_connection_id required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateVPCConnectionRequest.name required")
-    if "SubnetIds" in data:
+    if data.get("SubnetIds") is not None:
         import capo_quicksight.types.subnet_id_list
 
         out["subnet_ids"] = capo_quicksight.types.subnet_id_list.deserialize_json(
@@ -91,7 +91,7 @@ def deserialize_json(data: dict) -> CreateVPCConnectionRequest:
         )
     else:
         raise DeserializationError("CreateVPCConnectionRequest.subnet_ids required")
-    if "SecurityGroupIds" in data:
+    if data.get("SecurityGroupIds") is not None:
         import capo_quicksight.types.security_group_id_list
 
         out["security_group_ids"] = (
@@ -103,17 +103,17 @@ def deserialize_json(data: dict) -> CreateVPCConnectionRequest:
         raise DeserializationError(
             "CreateVPCConnectionRequest.security_group_ids required"
         )
-    if "DnsResolvers" in data:
+    if data.get("DnsResolvers") is not None:
         import capo_quicksight.types.dns_resolver_list
 
         out["dns_resolvers"] = capo_quicksight.types.dns_resolver_list.deserialize_json(
             data["DnsResolvers"]
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     else:
         raise DeserializationError("CreateVPCConnectionRequest.role_arn required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_quicksight.types.tag_list
 
         out["tags"] = capo_quicksight.types.tag_list.deserialize_json(data["Tags"])

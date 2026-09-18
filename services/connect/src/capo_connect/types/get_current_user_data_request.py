@@ -41,7 +41,7 @@ def serialize_json(value: GetCurrentUserDataRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetCurrentUserDataRequest:
     out: GetCurrentUserDataRequest = {}  # type: ignore[typeddict-item]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_connect.types.user_data_filters
 
         out["filters"] = capo_connect.types.user_data_filters.deserialize_json(
@@ -49,8 +49,8 @@ def deserialize_json(data: dict) -> GetCurrentUserDataRequest:
         )
     else:
         raise DeserializationError("GetCurrentUserDataRequest.filters required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

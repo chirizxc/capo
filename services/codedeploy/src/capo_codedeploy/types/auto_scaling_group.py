@@ -38,10 +38,10 @@ def serialize_aws_json_1_1(value: AutoScalingGroup) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AutoScalingGroup:
     out: AutoScalingGroup = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "hook" in data:
+    if data.get("hook") is not None:
         out["hook"] = data["hook"]
-    if "terminationHook" in data:
+    if data.get("terminationHook") is not None:
         out["termination_hook"] = data["terminationHook"]
     return out

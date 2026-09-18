@@ -19,7 +19,7 @@ def serialize_json(value: AddFlowOutputs420Exception_) -> dict:
 
 def deserialize_json(data: dict) -> AddFlowOutputs420Exception_:
     out: AddFlowOutputs420Exception_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -29,15 +29,18 @@ class AddFlowOutputs420Exception(ServiceError):
 
     code: str | None = "AddFlowOutputs420Exception"
 
-    def __init__(self, data: AddFlowOutputs420Exception_):
+    def __init__(self, data: AddFlowOutputs420Exception_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="AddFlowOutputs420Exception",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "AddFlowOutputs420Exception":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "AddFlowOutputs420Exception":
+        return cls(deserialize_json(data), message)

@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> ListOfDominantLanguages:
 
     out: ListOfDominantLanguages = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_comprehend.types.dominant_language.deserialize_aws_json_1_1(item)
         )

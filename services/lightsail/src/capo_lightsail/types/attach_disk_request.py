@@ -36,18 +36,18 @@ def serialize_aws_json_1_1(value: AttachDiskRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AttachDiskRequest:
     out: AttachDiskRequest = {}  # type: ignore[typeddict-item]
-    if "diskName" in data:
+    if data.get("diskName") is not None:
         out["disk_name"] = data["diskName"]
     else:
         raise DeserializationError("AttachDiskRequest.disk_name required")
-    if "instanceName" in data:
+    if data.get("instanceName") is not None:
         out["instance_name"] = data["instanceName"]
     else:
         raise DeserializationError("AttachDiskRequest.instance_name required")
-    if "diskPath" in data:
+    if data.get("diskPath") is not None:
         out["disk_path"] = data["diskPath"]
     else:
         raise DeserializationError("AttachDiskRequest.disk_path required")
-    if "autoMounting" in data:
+    if data.get("autoMounting") is not None:
         out["auto_mounting"] = data["autoMounting"]
     return out

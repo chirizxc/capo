@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: DescribeConformancePacksResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeConformancePacksResponse:
     out: DescribeConformancePacksResponse = {}  # type: ignore[typeddict-item]
-    if "ConformancePackDetails" in data:
+    if data.get("ConformancePackDetails") is not None:
         import capo_config_service.types.conformance_pack_detail_list
 
         out["conformance_pack_details"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeConformancePacksResponse:
                 data["ConformancePackDetails"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

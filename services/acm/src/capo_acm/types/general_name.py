@@ -84,7 +84,7 @@ def serialize_aws_json_1_1(value: GeneralName) -> dict:
 
 
 def deserialize_aws_json_1_1(data: dict) -> GeneralName:
-    if "DirectoryName" in data:
+    if data.get("DirectoryName") is not None:
         import capo_acm.types.distinguished_name
 
         return {
@@ -92,11 +92,11 @@ def deserialize_aws_json_1_1(data: dict) -> GeneralName:
                 data["DirectoryName"]
             )
         }
-    elif "DnsName" in data:
+    elif data.get("DnsName") is not None:
         return {"DnsName": data["DnsName"]}
-    elif "IpAddress" in data:
+    elif data.get("IpAddress") is not None:
         return {"IpAddress": data["IpAddress"]}
-    elif "OtherName" in data:
+    elif data.get("OtherName") is not None:
         import capo_acm.types.other_name
 
         return {
@@ -104,11 +104,11 @@ def deserialize_aws_json_1_1(data: dict) -> GeneralName:
                 data["OtherName"]
             )
         }
-    elif "RegisteredId" in data:
+    elif data.get("RegisteredId") is not None:
         return {"RegisteredId": data["RegisteredId"]}
-    elif "Rfc822Name" in data:
+    elif data.get("Rfc822Name") is not None:
         return {"Rfc822Name": data["Rfc822Name"]}
-    elif "UniformResourceIdentifier" in data:
+    elif data.get("UniformResourceIdentifier") is not None:
         return {"UniformResourceIdentifier": data["UniformResourceIdentifier"]}
     else:
         raise DeserializationError("GeneralName: no recognized variant key")

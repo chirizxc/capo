@@ -29,10 +29,10 @@ def serialize_aws_json_1_1(value: UpdateHITReviewStatusRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateHITReviewStatusRequest:
     out: UpdateHITReviewStatusRequest = {}  # type: ignore[typeddict-item]
-    if "HITId" in data:
+    if data.get("HITId") is not None:
         out["hit_id"] = data["HITId"]
     else:
         raise DeserializationError("UpdateHITReviewStatusRequest.hit_id required")
-    if "Revert" in data:
+    if data.get("Revert") is not None:
         out["revert"] = data["Revert"]
     return out

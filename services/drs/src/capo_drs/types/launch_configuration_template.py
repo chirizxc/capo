@@ -80,32 +80,32 @@ def serialize_json(value: LaunchConfigurationTemplate) -> dict:
 
 def deserialize_json(data: dict) -> LaunchConfigurationTemplate:
     out: LaunchConfigurationTemplate = {}  # type: ignore[typeddict-item]
-    if "launchConfigurationTemplateID" in data:
+    if data.get("launchConfigurationTemplateID") is not None:
         out["launch_configuration_template_id"] = data["launchConfigurationTemplateID"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_drs.types.tags_map
 
         out["tags"] = capo_drs.types.tags_map.deserialize_json(data["tags"])
-    if "launchDisposition" in data:
+    if data.get("launchDisposition") is not None:
         out["launch_disposition"] = data["launchDisposition"]
-    if "targetInstanceTypeRightSizingMethod" in data:
+    if data.get("targetInstanceTypeRightSizingMethod") is not None:
         out["target_instance_type_right_sizing_method"] = data[
             "targetInstanceTypeRightSizingMethod"
         ]
-    if "copyPrivateIp" in data:
+    if data.get("copyPrivateIp") is not None:
         out["copy_private_ip"] = data["copyPrivateIp"]
-    if "copyTags" in data:
+    if data.get("copyTags") is not None:
         out["copy_tags"] = data["copyTags"]
-    if "licensing" in data:
+    if data.get("licensing") is not None:
         import capo_drs.types.licensing
 
         out["licensing"] = capo_drs.types.licensing.deserialize_json(data["licensing"])
-    if "exportBucketArn" in data:
+    if data.get("exportBucketArn") is not None:
         out["export_bucket_arn"] = data["exportBucketArn"]
-    if "postLaunchEnabled" in data:
+    if data.get("postLaunchEnabled") is not None:
         out["post_launch_enabled"] = data["postLaunchEnabled"]
-    if "launchIntoSourceInstance" in data:
+    if data.get("launchIntoSourceInstance") is not None:
         out["launch_into_source_instance"] = data["launchIntoSourceInstance"]
     return out

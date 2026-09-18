@@ -46,7 +46,7 @@ def serialize_aws_json_1_1(value: GetMappingRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetMappingRequest:
     out: GetMappingRequest = {}  # type: ignore[typeddict-item]
-    if "Source" in data:
+    if data.get("Source") is not None:
         import capo_glue.types.catalog_entry
 
         out["source"] = capo_glue.types.catalog_entry.deserialize_aws_json_1_1(
@@ -54,13 +54,13 @@ def deserialize_aws_json_1_1(data: dict) -> GetMappingRequest:
         )
     else:
         raise DeserializationError("GetMappingRequest.source required")
-    if "Sinks" in data:
+    if data.get("Sinks") is not None:
         import capo_glue.types.catalog_entries
 
         out["sinks"] = capo_glue.types.catalog_entries.deserialize_aws_json_1_1(
             data["Sinks"]
         )
-    if "Location" in data:
+    if data.get("Location") is not None:
         import capo_glue.types.location
 
         out["location"] = capo_glue.types.location.deserialize_aws_json_1_1(

@@ -86,7 +86,7 @@ def serialize_json(value: ListServiceLevelObjectivesInput) -> dict:
 
 def deserialize_json(data: dict) -> ListServiceLevelObjectivesInput:
     out: ListServiceLevelObjectivesInput = {}  # type: ignore[typeddict-item]
-    if "KeyAttributes" in data:
+    if data.get("KeyAttributes") is not None:
         import capo_application_signals.types.attributes
 
         out["key_attributes"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> ListServiceLevelObjectivesInput:
                 data["KeyAttributes"]
             )
         )
-    if "DependencyConfig" in data:
+    if data.get("DependencyConfig") is not None:
         import capo_application_signals.types.dependency_config
 
         out["dependency_config"] = (
@@ -102,7 +102,7 @@ def deserialize_json(data: dict) -> ListServiceLevelObjectivesInput:
                 data["DependencyConfig"]
             )
         )
-    if "MetricSourceTypes" in data:
+    if data.get("MetricSourceTypes") is not None:
         import capo_application_signals.types.metric_source_types
 
         out["metric_source_types"] = (
@@ -110,7 +110,7 @@ def deserialize_json(data: dict) -> ListServiceLevelObjectivesInput:
                 data["MetricSourceTypes"]
             )
         )
-    if "MetricSource" in data:
+    if data.get("MetricSource") is not None:
         import capo_application_signals.types.metric_source
 
         out["metric_source"] = (

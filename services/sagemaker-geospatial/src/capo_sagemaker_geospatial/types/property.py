@@ -112,7 +112,7 @@ def serialize_json(value: Property) -> dict:
 
 
 def deserialize_json(data: dict) -> Property:
-    if "EoCloudCover" in data:
+    if data.get("EoCloudCover") is not None:
         import capo_sagemaker_geospatial.types.eo_cloud_cover_input
 
         return {
@@ -120,7 +120,7 @@ def deserialize_json(data: dict) -> Property:
                 data["EoCloudCover"]
             )
         }
-    elif "ViewOffNadir" in data:
+    elif data.get("ViewOffNadir") is not None:
         import capo_sagemaker_geospatial.types.view_off_nadir_input
 
         return {
@@ -128,7 +128,7 @@ def deserialize_json(data: dict) -> Property:
                 data["ViewOffNadir"]
             )
         }
-    elif "ViewSunAzimuth" in data:
+    elif data.get("ViewSunAzimuth") is not None:
         import capo_sagemaker_geospatial.types.view_sun_azimuth_input
 
         return {
@@ -136,7 +136,7 @@ def deserialize_json(data: dict) -> Property:
                 data["ViewSunAzimuth"]
             )
         }
-    elif "ViewSunElevation" in data:
+    elif data.get("ViewSunElevation") is not None:
         import capo_sagemaker_geospatial.types.view_sun_elevation_input
 
         return {
@@ -144,7 +144,7 @@ def deserialize_json(data: dict) -> Property:
                 data["ViewSunElevation"]
             )
         }
-    elif "Platform" in data:
+    elif data.get("Platform") is not None:
         import capo_sagemaker_geospatial.types.platform_input
 
         return {
@@ -152,7 +152,7 @@ def deserialize_json(data: dict) -> Property:
                 data["Platform"]
             )
         }
-    elif "LandsatCloudCoverLand" in data:
+    elif data.get("LandsatCloudCoverLand") is not None:
         import capo_sagemaker_geospatial.types.landsat_cloud_cover_land_input
 
         return {

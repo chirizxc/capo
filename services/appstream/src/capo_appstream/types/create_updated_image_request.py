@@ -51,20 +51,20 @@ def serialize_aws_json_1_1(value: CreateUpdatedImageRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateUpdatedImageRequest:
     out: CreateUpdatedImageRequest = {}  # type: ignore[typeddict-item]
-    if "existingImageName" in data:
+    if data.get("existingImageName") is not None:
         out["existing_image_name"] = data["existingImageName"]
-    if "newImageName" in data:
+    if data.get("newImageName") is not None:
         out["new_image_name"] = data["newImageName"]
-    if "newImageDescription" in data:
+    if data.get("newImageDescription") is not None:
         out["new_image_description"] = data["newImageDescription"]
-    if "newImageDisplayName" in data:
+    if data.get("newImageDisplayName") is not None:
         out["new_image_display_name"] = data["newImageDisplayName"]
-    if "newImageTags" in data:
+    if data.get("newImageTags") is not None:
         import capo_appstream.types.tags
 
         out["new_image_tags"] = capo_appstream.types.tags.deserialize_aws_json_1_1(
             data["newImageTags"]
         )
-    if "dryRun" in data:
+    if data.get("dryRun") is not None:
         out["dry_run"] = data["dryRun"]
     return out

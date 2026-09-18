@@ -79,13 +79,13 @@ def serialize_json(value: MonitoringConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> MonitoringConfiguration:
     out: MonitoringConfiguration = {}  # type: ignore[typeddict-item]
-    if "managedLogs" in data:
+    if data.get("managedLogs") is not None:
         import capo_emr_containers.types.managed_logs
 
         out["managed_logs"] = capo_emr_containers.types.managed_logs.deserialize_json(
             data["managedLogs"]
         )
-    if "persistentAppUI" in data:
+    if data.get("persistentAppUI") is not None:
         import capo_emr_containers.types.persistent_app_ui
 
         out["persistent_app_ui"] = (
@@ -93,7 +93,7 @@ def deserialize_json(data: dict) -> MonitoringConfiguration:
                 data["persistentAppUI"]
             )
         )
-    if "cloudWatchMonitoringConfiguration" in data:
+    if data.get("cloudWatchMonitoringConfiguration") is not None:
         import capo_emr_containers.types.cloud_watch_monitoring_configuration
 
         out["cloud_watch_monitoring_configuration"] = (
@@ -101,7 +101,7 @@ def deserialize_json(data: dict) -> MonitoringConfiguration:
                 data["cloudWatchMonitoringConfiguration"]
             )
         )
-    if "s3MonitoringConfiguration" in data:
+    if data.get("s3MonitoringConfiguration") is not None:
         import capo_emr_containers.types.s3_monitoring_configuration
 
         out["s3_monitoring_configuration"] = (
@@ -109,7 +109,7 @@ def deserialize_json(data: dict) -> MonitoringConfiguration:
                 data["s3MonitoringConfiguration"]
             )
         )
-    if "containerLogRotationConfiguration" in data:
+    if data.get("containerLogRotationConfiguration") is not None:
         import capo_emr_containers.types.container_log_rotation_configuration
 
         out["container_log_rotation_configuration"] = (

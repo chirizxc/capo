@@ -83,7 +83,7 @@ def serialize_json(value: SendOutboundEmailRequest) -> dict:
 
 def deserialize_json(data: dict) -> SendOutboundEmailRequest:
     out: SendOutboundEmailRequest = {}  # type: ignore[typeddict-item]
-    if "FromEmailAddress" in data:
+    if data.get("FromEmailAddress") is not None:
         import capo_connect.types.email_address_info
 
         out["from_email_address"] = (
@@ -95,7 +95,7 @@ def deserialize_json(data: dict) -> SendOutboundEmailRequest:
         raise DeserializationError(
             "SendOutboundEmailRequest.from_email_address required"
         )
-    if "DestinationEmailAddress" in data:
+    if data.get("DestinationEmailAddress") is not None:
         import capo_connect.types.email_address_info
 
         out["destination_email_address"] = (
@@ -107,7 +107,7 @@ def deserialize_json(data: dict) -> SendOutboundEmailRequest:
         raise DeserializationError(
             "SendOutboundEmailRequest.destination_email_address required"
         )
-    if "AdditionalRecipients" in data:
+    if data.get("AdditionalRecipients") is not None:
         import capo_connect.types.outbound_additional_recipients
 
         out["additional_recipients"] = (
@@ -115,7 +115,7 @@ def deserialize_json(data: dict) -> SendOutboundEmailRequest:
                 data["AdditionalRecipients"]
             )
         )
-    if "EmailMessage" in data:
+    if data.get("EmailMessage") is not None:
         import capo_connect.types.outbound_email_content
 
         out["email_message"] = (
@@ -125,7 +125,7 @@ def deserialize_json(data: dict) -> SendOutboundEmailRequest:
         )
     else:
         raise DeserializationError("SendOutboundEmailRequest.email_message required")
-    if "TrafficType" in data:
+    if data.get("TrafficType") is not None:
         import capo_connect.types.traffic_type
 
         out["traffic_type"] = capo_connect.types.traffic_type.deserialize_json(
@@ -133,12 +133,12 @@ def deserialize_json(data: dict) -> SendOutboundEmailRequest:
         )
     else:
         raise DeserializationError("SendOutboundEmailRequest.traffic_type required")
-    if "SourceCampaign" in data:
+    if data.get("SourceCampaign") is not None:
         import capo_connect.types.source_campaign
 
         out["source_campaign"] = capo_connect.types.source_campaign.deserialize_json(
             data["SourceCampaign"]
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

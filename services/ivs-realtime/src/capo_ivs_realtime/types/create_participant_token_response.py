@@ -31,7 +31,7 @@ def serialize_json(value: CreateParticipantTokenResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateParticipantTokenResponse:
     out: CreateParticipantTokenResponse = {}  # type: ignore[typeddict-item]
-    if "participantToken" in data:
+    if data.get("participantToken") is not None:
         import capo_ivs_realtime.types.participant_token
 
         out["participant_token"] = (

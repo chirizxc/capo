@@ -32,12 +32,12 @@ def serialize_json(value: GetMediaResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetMediaResponse:
     out: GetMediaResponse = {}  # type: ignore[typeddict-item]
-    if "mediaBytes" in data:
+    if data.get("mediaBytes") is not None:
         import capo_qbusiness.types.blob
 
         out["media_bytes"] = capo_qbusiness.types.blob.deserialize_json(
             data["mediaBytes"]
         )
-    if "mediaMimeType" in data:
+    if data.get("mediaMimeType") is not None:
         out["media_mime_type"] = data["mediaMimeType"]
     return out

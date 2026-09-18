@@ -69,11 +69,11 @@ def serialize_aws_json_1_1(value: CreateDatasetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateDatasetRequest:
     out: CreateDatasetRequest = {}  # type: ignore[typeddict-item]
-    if "DatasetName" in data:
+    if data.get("DatasetName") is not None:
         out["dataset_name"] = data["DatasetName"]
     else:
         raise DeserializationError("CreateDatasetRequest.dataset_name required")
-    if "Domain" in data:
+    if data.get("Domain") is not None:
         import capo_forecast.types.domain
 
         out["domain"] = capo_forecast.types.domain.deserialize_aws_json_1_1(
@@ -81,7 +81,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDatasetRequest:
         )
     else:
         raise DeserializationError("CreateDatasetRequest.domain required")
-    if "DatasetType" in data:
+    if data.get("DatasetType") is not None:
         import capo_forecast.types.dataset_type
 
         out["dataset_type"] = capo_forecast.types.dataset_type.deserialize_aws_json_1_1(
@@ -89,9 +89,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDatasetRequest:
         )
     else:
         raise DeserializationError("CreateDatasetRequest.dataset_type required")
-    if "DataFrequency" in data:
+    if data.get("DataFrequency") is not None:
         out["data_frequency"] = data["DataFrequency"]
-    if "Schema" in data:
+    if data.get("Schema") is not None:
         import capo_forecast.types.schema
 
         out["schema"] = capo_forecast.types.schema.deserialize_aws_json_1_1(
@@ -99,7 +99,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDatasetRequest:
         )
     else:
         raise DeserializationError("CreateDatasetRequest.schema required")
-    if "EncryptionConfig" in data:
+    if data.get("EncryptionConfig") is not None:
         import capo_forecast.types.encryption_config
 
         out["encryption_config"] = (
@@ -107,7 +107,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDatasetRequest:
                 data["EncryptionConfig"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_forecast.types.tags
 
         out["tags"] = capo_forecast.types.tags.deserialize_aws_json_1_1(data["Tags"])

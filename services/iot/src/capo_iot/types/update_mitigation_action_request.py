@@ -37,9 +37,9 @@ def serialize_json(value: UpdateMitigationActionRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateMitigationActionRequest:
     out: UpdateMitigationActionRequest = {}  # type: ignore[typeddict-item]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "actionParams" in data:
+    if data.get("actionParams") is not None:
         import capo_iot.types.mitigation_action_params
 
         out["action_params"] = capo_iot.types.mitigation_action_params.deserialize_json(

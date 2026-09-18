@@ -37,11 +37,11 @@ def serialize_json(value: Tmpfs) -> dict:
 
 def deserialize_json(data: dict) -> Tmpfs:
     out: Tmpfs = {}  # type: ignore[typeddict-item]
-    if "containerPath" in data:
+    if data.get("containerPath") is not None:
         out["container_path"] = data["containerPath"]
-    if "size" in data:
+    if data.get("size") is not None:
         out["size"] = data["size"]
-    if "mountOptions" in data:
+    if data.get("mountOptions") is not None:
         import capo_batch.types.string_list
 
         out["mount_options"] = capo_batch.types.string_list.deserialize_json(

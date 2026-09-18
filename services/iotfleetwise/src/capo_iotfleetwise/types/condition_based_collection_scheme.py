@@ -47,13 +47,13 @@ def serialize_aws_json_1_0(value: ConditionBasedCollectionScheme) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ConditionBasedCollectionScheme:
     out: ConditionBasedCollectionScheme = {}  # type: ignore[typeddict-item]
-    if "expression" in data:
+    if data.get("expression") is not None:
         out["expression"] = data["expression"]
     else:
         raise DeserializationError("ConditionBasedCollectionScheme.expression required")
-    if "minimumTriggerIntervalMs" in data:
+    if data.get("minimumTriggerIntervalMs") is not None:
         out["minimum_trigger_interval_ms"] = data["minimumTriggerIntervalMs"]
-    if "triggerMode" in data:
+    if data.get("triggerMode") is not None:
         import capo_iotfleetwise.types.trigger_mode
 
         out["trigger_mode"] = (
@@ -61,6 +61,6 @@ def deserialize_aws_json_1_0(data: dict) -> ConditionBasedCollectionScheme:
                 data["triggerMode"]
             )
         )
-    if "conditionLanguageVersion" in data:
+    if data.get("conditionLanguageVersion") is not None:
         out["condition_language_version"] = data["conditionLanguageVersion"]
     return out

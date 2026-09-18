@@ -38,9 +38,9 @@ def serialize_json(value: ListApplicationVersionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListApplicationVersionsResponse:
     out: ListApplicationVersionsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "versions" in data:
+    if data.get("versions") is not None:
         import capo_serverlessapplicationrepository.types.__list_of_version_summary
 
         out["versions"] = (

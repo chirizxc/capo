@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetExportRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetExportRequest:
     out: GetExportRequest = {}  # type: ignore[typeddict-item]
-    if "ExportArn" in data:
+    if data.get("ExportArn") is not None:
         out["export_arn"] = data["ExportArn"]
     else:
         raise DeserializationError("GetExportRequest.export_arn required")

@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: GitHubLocation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GitHubLocation:
     out: GitHubLocation = {}  # type: ignore[typeddict-item]
-    if "repository" in data:
+    if data.get("repository") is not None:
         out["repository"] = data["repository"]
-    if "commitId" in data:
+    if data.get("commitId") is not None:
         out["commit_id"] = data["commitId"]
     return out

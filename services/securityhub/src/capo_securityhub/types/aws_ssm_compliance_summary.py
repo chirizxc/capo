@@ -106,42 +106,42 @@ def serialize_json(value: AwsSsmComplianceSummary) -> dict:
 
 def deserialize_json(data: dict) -> AwsSsmComplianceSummary:
     out: AwsSsmComplianceSummary = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "CompliantCriticalCount" in data:
+    if data.get("CompliantCriticalCount") is not None:
         out["compliant_critical_count"] = data["CompliantCriticalCount"]
-    if "CompliantHighCount" in data:
+    if data.get("CompliantHighCount") is not None:
         out["compliant_high_count"] = data["CompliantHighCount"]
-    if "CompliantMediumCount" in data:
+    if data.get("CompliantMediumCount") is not None:
         out["compliant_medium_count"] = data["CompliantMediumCount"]
-    if "ExecutionType" in data:
+    if data.get("ExecutionType") is not None:
         out["execution_type"] = data["ExecutionType"]
-    if "NonCompliantCriticalCount" in data:
+    if data.get("NonCompliantCriticalCount") is not None:
         out["non_compliant_critical_count"] = data["NonCompliantCriticalCount"]
-    if "CompliantInformationalCount" in data:
+    if data.get("CompliantInformationalCount") is not None:
         out["compliant_informational_count"] = data["CompliantInformationalCount"]
-    if "NonCompliantInformationalCount" in data:
+    if data.get("NonCompliantInformationalCount") is not None:
         out["non_compliant_informational_count"] = data[
             "NonCompliantInformationalCount"
         ]
-    if "CompliantUnspecifiedCount" in data:
+    if data.get("CompliantUnspecifiedCount") is not None:
         out["compliant_unspecified_count"] = data["CompliantUnspecifiedCount"]
-    if "NonCompliantLowCount" in data:
+    if data.get("NonCompliantLowCount") is not None:
         out["non_compliant_low_count"] = data["NonCompliantLowCount"]
-    if "NonCompliantHighCount" in data:
+    if data.get("NonCompliantHighCount") is not None:
         out["non_compliant_high_count"] = data["NonCompliantHighCount"]
-    if "CompliantLowCount" in data:
+    if data.get("CompliantLowCount") is not None:
         out["compliant_low_count"] = data["CompliantLowCount"]
-    if "ComplianceType" in data:
+    if data.get("ComplianceType") is not None:
         out["compliance_type"] = data["ComplianceType"]
-    if "PatchBaselineId" in data:
+    if data.get("PatchBaselineId") is not None:
         out["patch_baseline_id"] = data["PatchBaselineId"]
-    if "OverallSeverity" in data:
+    if data.get("OverallSeverity") is not None:
         out["overall_severity"] = data["OverallSeverity"]
-    if "NonCompliantMediumCount" in data:
+    if data.get("NonCompliantMediumCount") is not None:
         out["non_compliant_medium_count"] = data["NonCompliantMediumCount"]
-    if "NonCompliantUnspecifiedCount" in data:
+    if data.get("NonCompliantUnspecifiedCount") is not None:
         out["non_compliant_unspecified_count"] = data["NonCompliantUnspecifiedCount"]
-    if "PatchGroup" in data:
+    if data.get("PatchGroup") is not None:
         out["patch_group"] = data["PatchGroup"]
     return out

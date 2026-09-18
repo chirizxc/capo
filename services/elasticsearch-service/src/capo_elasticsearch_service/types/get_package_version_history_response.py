@@ -39,9 +39,9 @@ def serialize_json(value: GetPackageVersionHistoryResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetPackageVersionHistoryResponse:
     out: GetPackageVersionHistoryResponse = {}  # type: ignore[typeddict-item]
-    if "PackageID" in data:
+    if data.get("PackageID") is not None:
         out["package_id"] = data["PackageID"]
-    if "PackageVersionHistoryList" in data:
+    if data.get("PackageVersionHistoryList") is not None:
         import capo_elasticsearch_service.types.package_version_history_list
 
         out["package_version_history_list"] = (
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> GetPackageVersionHistoryResponse:
                 data["PackageVersionHistoryList"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

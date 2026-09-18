@@ -41,7 +41,7 @@ def serialize_aws_json_1_0(value: ListWorkspaceInstancesRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListWorkspaceInstancesRequest:
     out: ListWorkspaceInstancesRequest = {}  # type: ignore[typeddict-item]
-    if "ProvisionStates" in data:
+    if data.get("ProvisionStates") is not None:
         import capo_workspaces_instances.types.provision_states
 
         out["provision_states"] = (
@@ -49,8 +49,8 @@ def deserialize_aws_json_1_0(data: dict) -> ListWorkspaceInstancesRequest:
                 data["ProvisionStates"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

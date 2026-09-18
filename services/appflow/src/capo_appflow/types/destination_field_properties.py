@@ -47,27 +47,27 @@ def serialize_json(value: DestinationFieldProperties) -> dict:
 
 def deserialize_json(data: dict) -> DestinationFieldProperties:
     out: DestinationFieldProperties = {}  # type: ignore[typeddict-item]
-    if "isCreatable" in data:
+    if data.get("isCreatable") is not None:
         out["is_creatable"] = data["isCreatable"]
     else:
         out["is_creatable"] = False
-    if "isNullable" in data:
+    if data.get("isNullable") is not None:
         out["is_nullable"] = data["isNullable"]
     else:
         out["is_nullable"] = False
-    if "isUpsertable" in data:
+    if data.get("isUpsertable") is not None:
         out["is_upsertable"] = data["isUpsertable"]
     else:
         out["is_upsertable"] = False
-    if "isUpdatable" in data:
+    if data.get("isUpdatable") is not None:
         out["is_updatable"] = data["isUpdatable"]
     else:
         out["is_updatable"] = False
-    if "isDefaultedOnCreate" in data:
+    if data.get("isDefaultedOnCreate") is not None:
         out["is_defaulted_on_create"] = data["isDefaultedOnCreate"]
     else:
         out["is_defaulted_on_create"] = False
-    if "supportedWriteOperations" in data:
+    if data.get("supportedWriteOperations") is not None:
         import capo_appflow.types.supported_write_operation_list
 
         out["supported_write_operations"] = (

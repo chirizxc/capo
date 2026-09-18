@@ -27,8 +27,8 @@ def serialize_json(value: TaskContainerDependency) -> dict:
 
 def deserialize_json(data: dict) -> TaskContainerDependency:
     out: TaskContainerDependency = {}  # type: ignore[typeddict-item]
-    if "containerName" in data:
+    if data.get("containerName") is not None:
         out["container_name"] = data["containerName"]
-    if "condition" in data:
+    if data.get("condition") is not None:
         out["condition"] = data["condition"]
     return out

@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> EC2InstanceErrors:
 
     out: EC2InstanceErrors = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_workspaces_instances.types.ec2_instance_error.deserialize_aws_json_1_0(
                 item

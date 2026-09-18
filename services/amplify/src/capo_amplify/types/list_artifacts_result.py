@@ -31,7 +31,7 @@ def serialize_json(value: ListArtifactsResult) -> dict:
 
 def deserialize_json(data: dict) -> ListArtifactsResult:
     out: ListArtifactsResult = {}  # type: ignore[typeddict-item]
-    if "artifacts" in data:
+    if data.get("artifacts") is not None:
         import capo_amplify.types.artifacts
 
         out["artifacts"] = capo_amplify.types.artifacts.deserialize_json(
@@ -39,6 +39,6 @@ def deserialize_json(data: dict) -> ListArtifactsResult:
         )
     else:
         raise DeserializationError("ListArtifactsResult.artifacts required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

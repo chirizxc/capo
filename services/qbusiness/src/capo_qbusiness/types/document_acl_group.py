@@ -30,9 +30,9 @@ def serialize_json(value: DocumentAclGroup) -> dict:
 
 def deserialize_json(data: dict) -> DocumentAclGroup:
     out: DocumentAclGroup = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_qbusiness.types.membership_type
 
         out["type"] = capo_qbusiness.types.membership_type.deserialize_json(

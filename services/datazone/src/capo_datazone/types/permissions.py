@@ -28,7 +28,7 @@ def serialize_json(value: Permissions) -> dict:
 
 
 def deserialize_json(data: dict) -> Permissions:
-    if "s3" in data:
+    if data.get("s3") is not None:
         import capo_datazone.types.s3_permissions
 
         return {"s3": capo_datazone.types.s3_permissions.deserialize_json(data["s3"])}

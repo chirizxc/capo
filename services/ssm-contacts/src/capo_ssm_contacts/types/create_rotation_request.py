@@ -75,11 +75,11 @@ def serialize_aws_json_1_1(value: CreateRotationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateRotationRequest:
     out: CreateRotationRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateRotationRequest.name required")
-    if "ContactIds" in data:
+    if data.get("ContactIds") is not None:
         import capo_ssm_contacts.types.rotation_contacts_arn_list
 
         out["contact_ids"] = (
@@ -89,17 +89,17 @@ def deserialize_aws_json_1_1(data: dict) -> CreateRotationRequest:
         )
     else:
         raise DeserializationError("CreateRotationRequest.contact_ids required")
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_ssm_contacts.types.date_time
 
         out["start_time"] = capo_ssm_contacts.types.date_time.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "TimeZoneId" in data:
+    if data.get("TimeZoneId") is not None:
         out["time_zone_id"] = data["TimeZoneId"]
     else:
         raise DeserializationError("CreateRotationRequest.time_zone_id required")
-    if "Recurrence" in data:
+    if data.get("Recurrence") is not None:
         import capo_ssm_contacts.types.recurrence_settings
 
         out["recurrence"] = (
@@ -109,12 +109,12 @@ def deserialize_aws_json_1_1(data: dict) -> CreateRotationRequest:
         )
     else:
         raise DeserializationError("CreateRotationRequest.recurrence required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_ssm_contacts.types.tags_list
 
         out["tags"] = capo_ssm_contacts.types.tags_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "IdempotencyToken" in data:
+    if data.get("IdempotencyToken") is not None:
         out["idempotency_token"] = data["IdempotencyToken"]
     return out

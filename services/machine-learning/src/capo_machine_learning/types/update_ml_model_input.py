@@ -30,18 +30,26 @@ def serialize_aws_json_1_1(value: UpdateMLModelInput) -> dict:
     if "ml_model_name" in value:
         out["MLModelName"] = value["ml_model_name"]
     if "score_threshold" in value:
-        out["ScoreThreshold"] = value["score_threshold"]
+        out["ScoreThreshold"] = (
+            "NaN"
+            if value["score_threshold"] != value["score_threshold"]
+            else "Infinity"
+            if value["score_threshold"] == float("inf")
+            else "-Infinity"
+            if value["score_threshold"] == float("-inf")
+            else value["score_threshold"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateMLModelInput:
     out: UpdateMLModelInput = {}  # type: ignore[typeddict-item]
-    if "MLModelId" in data:
+    if data.get("MLModelId") is not None:
         out["ml_model_id"] = data["MLModelId"]
     else:
         raise DeserializationError("UpdateMLModelInput.ml_model_id required")
-    if "MLModelName" in data:
+    if data.get("MLModelName") is not None:
         out["ml_model_name"] = data["MLModelName"]
-    if "ScoreThreshold" in data:
-        out["score_threshold"] = data["ScoreThreshold"]
+    if data.get("ScoreThreshold") is not None:
+        out["score_threshold"] = float(data["ScoreThreshold"])
     return out

@@ -34,11 +34,11 @@ def serialize_json(value: LambdaConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> LambdaConfiguration:
     out: LambdaConfiguration = {}  # type: ignore[typeddict-item]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     else:
         raise DeserializationError("LambdaConfiguration.resource_arn required")
-    if "InvocationType" in data:
+    if data.get("InvocationType") is not None:
         import capo_chime_sdk_messaging.types.invocation_type
 
         out["invocation_type"] = (

@@ -28,8 +28,8 @@ def serialize_json(value: MediaInsightsConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> MediaInsightsConfiguration:
     out: MediaInsightsConfiguration = {}  # type: ignore[typeddict-item]
-    if "Disabled" in data:
+    if data.get("Disabled") is not None:
         out["disabled"] = data["Disabled"]
-    if "ConfigurationArn" in data:
+    if data.get("ConfigurationArn") is not None:
         out["configuration_arn"] = data["ConfigurationArn"]
     return out

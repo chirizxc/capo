@@ -101,9 +101,9 @@ def serialize_json(value: OutputDestination) -> dict:
 
 def deserialize_json(data: dict) -> OutputDestination:
     out: OutputDestination = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "mediaPackageSettings" in data:
+    if data.get("mediaPackageSettings") is not None:
         import capo_medialive.types.__list_of_media_package_output_destination_settings
 
         out["media_package_settings"] = (
@@ -111,7 +111,7 @@ def deserialize_json(data: dict) -> OutputDestination:
                 data["mediaPackageSettings"]
             )
         )
-    if "multiplexSettings" in data:
+    if data.get("multiplexSettings") is not None:
         import capo_medialive.types.multiplex_program_channel_destination_settings
 
         out["multiplex_settings"] = (
@@ -119,7 +119,7 @@ def deserialize_json(data: dict) -> OutputDestination:
                 data["multiplexSettings"]
             )
         )
-    if "settings" in data:
+    if data.get("settings") is not None:
         import capo_medialive.types.__list_of_output_destination_settings
 
         out["settings"] = (
@@ -127,7 +127,7 @@ def deserialize_json(data: dict) -> OutputDestination:
                 data["settings"]
             )
         )
-    if "srtSettings" in data:
+    if data.get("srtSettings") is not None:
         import capo_medialive.types.__list_of_srt_output_destination_settings
 
         out["srt_settings"] = (
@@ -135,7 +135,7 @@ def deserialize_json(data: dict) -> OutputDestination:
                 data["srtSettings"]
             )
         )
-    if "logicalInterfaceNames" in data:
+    if data.get("logicalInterfaceNames") is not None:
         import capo_medialive.types.__list_of__string
 
         out["logical_interface_names"] = (
@@ -143,7 +143,7 @@ def deserialize_json(data: dict) -> OutputDestination:
                 data["logicalInterfaceNames"]
             )
         )
-    if "mediaConnectRouterSettings" in data:
+    if data.get("mediaConnectRouterSettings") is not None:
         import capo_medialive.types.__list_of_media_connect_router_output_destination_settings
 
         out["media_connect_router_settings"] = (

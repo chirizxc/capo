@@ -56,7 +56,7 @@ def serialize_json(value: DataAccessorAuthenticationDetail) -> dict:
 
 def deserialize_json(data: dict) -> DataAccessorAuthenticationDetail:
     out: DataAccessorAuthenticationDetail = {}  # type: ignore[typeddict-item]
-    if "authenticationType" in data:
+    if data.get("authenticationType") is not None:
         import capo_qbusiness.types.data_accessor_authentication_type
 
         out["authentication_type"] = (
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> DataAccessorAuthenticationDetail:
         raise DeserializationError(
             "DataAccessorAuthenticationDetail.authentication_type required"
         )
-    if "authenticationConfiguration" in data:
+    if data.get("authenticationConfiguration") is not None:
         import capo_qbusiness.types.data_accessor_authentication_configuration
 
         out["authentication_configuration"] = (
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> DataAccessorAuthenticationDetail:
                 data["authenticationConfiguration"]
             )
         )
-    if "externalIds" in data:
+    if data.get("externalIds") is not None:
         import capo_qbusiness.types.data_accessor_external_ids
 
         out["external_ids"] = (

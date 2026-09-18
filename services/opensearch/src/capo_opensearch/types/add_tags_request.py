@@ -30,11 +30,11 @@ def serialize_json(value: AddTagsRequest) -> dict:
 
 def deserialize_json(data: dict) -> AddTagsRequest:
     out: AddTagsRequest = {}  # type: ignore[typeddict-item]
-    if "ARN" in data:
+    if data.get("ARN") is not None:
         out["arn"] = data["ARN"]
     else:
         raise DeserializationError("AddTagsRequest.arn required")
-    if "TagList" in data:
+    if data.get("TagList") is not None:
         import capo_opensearch.types.tag_list
 
         out["tag_list"] = capo_opensearch.types.tag_list.deserialize_json(

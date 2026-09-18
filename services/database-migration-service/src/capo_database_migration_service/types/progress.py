@@ -30,7 +30,15 @@ class Progress(TypedDict, closed=True):
 def serialize_aws_json_1_1(value: Progress) -> dict:
     out: dict = {}
     if "progress_percent" in value:
-        out["ProgressPercent"] = value["progress_percent"]
+        out["ProgressPercent"] = (
+            "NaN"
+            if value["progress_percent"] != value["progress_percent"]
+            else "Infinity"
+            if value["progress_percent"] == float("inf")
+            else "-Infinity"
+            if value["progress_percent"] == float("-inf")
+            else value["progress_percent"]
+        )
     out["TotalObjects"] = value.get("total_objects", 0)
     if "progress_step" in value:
         out["ProgressStep"] = value["progress_step"]
@@ -47,15 +55,15 @@ def serialize_aws_json_1_1(value: Progress) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Progress:
     out: Progress = {}  # type: ignore[typeddict-item]
-    if "ProgressPercent" in data:
-        out["progress_percent"] = data["ProgressPercent"]
-    if "TotalObjects" in data:
+    if data.get("ProgressPercent") is not None:
+        out["progress_percent"] = float(data["ProgressPercent"])
+    if data.get("TotalObjects") is not None:
         out["total_objects"] = data["TotalObjects"]
     else:
         out["total_objects"] = 0
-    if "ProgressStep" in data:
+    if data.get("ProgressStep") is not None:
         out["progress_step"] = data["ProgressStep"]
-    if "ProcessedObject" in data:
+    if data.get("ProcessedObject") is not None:
         import capo_database_migration_service.types.processed_object
 
         out["processed_object"] = (

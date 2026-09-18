@@ -82,7 +82,7 @@ def serialize_json(value: RedshiftPropertiesOutput) -> dict:
 
 def deserialize_json(data: dict) -> RedshiftPropertiesOutput:
     out: RedshiftPropertiesOutput = {}  # type: ignore[typeddict-item]
-    if "storage" in data:
+    if data.get("storage") is not None:
         import capo_datazone.types.redshift_storage_properties
 
         out["storage"] = (
@@ -90,21 +90,21 @@ def deserialize_json(data: dict) -> RedshiftPropertiesOutput:
                 data["storage"]
             )
         )
-    if "credentials" in data:
+    if data.get("credentials") is not None:
         import capo_datazone.types.redshift_credentials
 
         out["credentials"] = capo_datazone.types.redshift_credentials.deserialize_json(
             data["credentials"]
         )
-    if "isProvisionedSecret" in data:
+    if data.get("isProvisionedSecret") is not None:
         out["is_provisioned_secret"] = data["isProvisionedSecret"]
-    if "jdbcIamUrl" in data:
+    if data.get("jdbcIamUrl") is not None:
         out["jdbc_iam_url"] = data["jdbcIamUrl"]
-    if "jdbcUrl" in data:
+    if data.get("jdbcUrl") is not None:
         out["jdbc_url"] = data["jdbcUrl"]
-    if "redshiftTempDir" in data:
+    if data.get("redshiftTempDir") is not None:
         out["redshift_temp_dir"] = data["redshiftTempDir"]
-    if "lineageSync" in data:
+    if data.get("lineageSync") is not None:
         import capo_datazone.types.redshift_lineage_sync_configuration_output
 
         out["lineage_sync"] = (
@@ -112,12 +112,12 @@ def deserialize_json(data: dict) -> RedshiftPropertiesOutput:
                 data["lineageSync"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.connection_status
 
         out["status"] = capo_datazone.types.connection_status.deserialize_json(
             data["status"]
         )
-    if "databaseName" in data:
+    if data.get("databaseName") is not None:
         out["database_name"] = data["databaseName"]
     return out

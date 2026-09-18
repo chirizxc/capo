@@ -25,7 +25,7 @@ def serialize_json(value: GetIntrospectionSchemaResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetIntrospectionSchemaResponse:
     out: GetIntrospectionSchemaResponse = {}  # type: ignore[typeddict-item]
-    if "schema" in data:
+    if data.get("schema") is not None:
         import capo_appsync.types.blob
 
         out["schema"] = capo_appsync.types.blob.deserialize_json(data["schema"])

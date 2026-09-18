@@ -33,7 +33,7 @@ def serialize_json(value: UpdateMediaInsightsPipelineStatusRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateMediaInsightsPipelineStatusRequest:
     out: UpdateMediaInsightsPipelineStatusRequest = {}  # type: ignore[typeddict-item]
-    if "UpdateStatus" in data:
+    if data.get("UpdateStatus") is not None:
         import capo_chime_sdk_media_pipelines.types.media_pipeline_status_update
 
         out["update_status"] = (

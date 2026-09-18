@@ -56,7 +56,7 @@ def serialize_json(value: NotificationAction) -> dict:
 
 def deserialize_json(data: dict) -> NotificationAction:
     out: NotificationAction = {}  # type: ignore[typeddict-item]
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_iot_events.types.notification_target_actions
 
         out["action"] = (
@@ -66,7 +66,7 @@ def deserialize_json(data: dict) -> NotificationAction:
         )
     else:
         raise DeserializationError("NotificationAction.action required")
-    if "smsConfigurations" in data:
+    if data.get("smsConfigurations") is not None:
         import capo_iot_events.types.sms_configurations
 
         out["sms_configurations"] = (
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> NotificationAction:
                 data["smsConfigurations"]
             )
         )
-    if "emailConfigurations" in data:
+    if data.get("emailConfigurations") is not None:
         import capo_iot_events.types.email_configurations
 
         out["email_configurations"] = (

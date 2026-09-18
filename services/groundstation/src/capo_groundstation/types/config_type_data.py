@@ -140,7 +140,7 @@ def serialize_json(value: ConfigTypeData) -> dict:
 
 
 def deserialize_json(data: dict) -> ConfigTypeData:
-    if "antennaDownlinkConfig" in data:
+    if data.get("antennaDownlinkConfig") is not None:
         import capo_groundstation.types.antenna_downlink_config
 
         return {
@@ -148,7 +148,7 @@ def deserialize_json(data: dict) -> ConfigTypeData:
                 data["antennaDownlinkConfig"]
             )
         }
-    elif "trackingConfig" in data:
+    elif data.get("trackingConfig") is not None:
         import capo_groundstation.types.tracking_config
 
         return {
@@ -156,7 +156,7 @@ def deserialize_json(data: dict) -> ConfigTypeData:
                 data["trackingConfig"]
             )
         }
-    elif "dataflowEndpointConfig" in data:
+    elif data.get("dataflowEndpointConfig") is not None:
         import capo_groundstation.types.dataflow_endpoint_config
 
         return {
@@ -164,7 +164,7 @@ def deserialize_json(data: dict) -> ConfigTypeData:
                 data["dataflowEndpointConfig"]
             )
         }
-    elif "antennaDownlinkDemodDecodeConfig" in data:
+    elif data.get("antennaDownlinkDemodDecodeConfig") is not None:
         import capo_groundstation.types.antenna_downlink_demod_decode_config
 
         return {
@@ -172,7 +172,7 @@ def deserialize_json(data: dict) -> ConfigTypeData:
                 data["antennaDownlinkDemodDecodeConfig"]
             )
         }
-    elif "antennaUplinkConfig" in data:
+    elif data.get("antennaUplinkConfig") is not None:
         import capo_groundstation.types.antenna_uplink_config
 
         return {
@@ -180,7 +180,7 @@ def deserialize_json(data: dict) -> ConfigTypeData:
                 data["antennaUplinkConfig"]
             )
         }
-    elif "uplinkEchoConfig" in data:
+    elif data.get("uplinkEchoConfig") is not None:
         import capo_groundstation.types.uplink_echo_config
 
         return {
@@ -188,7 +188,7 @@ def deserialize_json(data: dict) -> ConfigTypeData:
                 data["uplinkEchoConfig"]
             )
         }
-    elif "s3RecordingConfig" in data:
+    elif data.get("s3RecordingConfig") is not None:
         import capo_groundstation.types.s3_recording_config
 
         return {
@@ -196,7 +196,7 @@ def deserialize_json(data: dict) -> ConfigTypeData:
                 data["s3RecordingConfig"]
             )
         }
-    elif "telemetrySinkConfig" in data:
+    elif data.get("telemetrySinkConfig") is not None:
         import capo_groundstation.types.telemetry_sink_config
 
         return {

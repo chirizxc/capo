@@ -18,6 +18,6 @@ def serialize_json(value: SendMessageJsonDelta) -> dict:
 
 def deserialize_json(data: dict) -> SendMessageJsonDelta:
     out: SendMessageJsonDelta = {}  # type: ignore[typeddict-item]
-    if "partialJson" in data:
+    if data.get("partialJson") is not None:
         out["partial_json"] = data["partialJson"]
     return out

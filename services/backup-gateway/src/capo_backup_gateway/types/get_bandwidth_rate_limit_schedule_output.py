@@ -36,9 +36,9 @@ def serialize_aws_json_1_0(value: GetBandwidthRateLimitScheduleOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetBandwidthRateLimitScheduleOutput:
     out: GetBandwidthRateLimitScheduleOutput = {}  # type: ignore[typeddict-item]
-    if "GatewayArn" in data:
+    if data.get("GatewayArn") is not None:
         out["gateway_arn"] = data["GatewayArn"]
-    if "BandwidthRateLimitIntervals" in data:
+    if data.get("BandwidthRateLimitIntervals") is not None:
         import capo_backup_gateway.types.bandwidth_rate_limit_intervals
 
         out["bandwidth_rate_limit_intervals"] = (

@@ -26,7 +26,7 @@ def serialize_json(value: ModelLifecycle) -> dict:
 
 def deserialize_json(data: dict) -> ModelLifecycle:
     out: ModelLifecycle = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_nova_act.types.model_status
 
         out["status"] = capo_nova_act.types.model_status.deserialize_json(

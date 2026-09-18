@@ -36,14 +36,14 @@ def serialize_json(value: ListExtensibleSourceServersRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListExtensibleSourceServersRequest:
     out: ListExtensibleSourceServersRequest = {}  # type: ignore[typeddict-item]
-    if "stagingAccountID" in data:
+    if data.get("stagingAccountID") is not None:
         out["staging_account_id"] = data["stagingAccountID"]
     else:
         raise DeserializationError(
             "ListExtensibleSourceServersRequest.staging_account_id required"
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

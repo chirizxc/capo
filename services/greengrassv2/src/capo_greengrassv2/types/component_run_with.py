@@ -40,9 +40,9 @@ def serialize_json(value: ComponentRunWith) -> dict:
 
 def deserialize_json(data: dict) -> ComponentRunWith:
     out: ComponentRunWith = {}  # type: ignore[typeddict-item]
-    if "posixUser" in data:
+    if data.get("posixUser") is not None:
         out["posix_user"] = data["posixUser"]
-    if "systemResourceLimits" in data:
+    if data.get("systemResourceLimits") is not None:
         import capo_greengrassv2.types.system_resource_limits
 
         out["system_resource_limits"] = (
@@ -50,6 +50,6 @@ def deserialize_json(data: dict) -> ComponentRunWith:
                 data["systemResourceLimits"]
             )
         )
-    if "windowsUser" in data:
+    if data.get("windowsUser") is not None:
         out["windows_user"] = data["windowsUser"]
     return out

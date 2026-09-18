@@ -37,15 +37,18 @@ class CopyToRegionDisabledFault(ServiceError):
 
     code: str | None = "CopyToRegionDisabledFault"
 
-    def __init__(self, data: CopyToRegionDisabledFault_):
+    def __init__(self, data: CopyToRegionDisabledFault_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="CopyToRegionDisabledFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "CopyToRegionDisabledFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "CopyToRegionDisabledFault":
+        return cls(deserialize_query(el), message)

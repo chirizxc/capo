@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: IcebergPartitionSpec) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IcebergPartitionSpec:
     out: IcebergPartitionSpec = {}  # type: ignore[typeddict-item]
-    if "Fields" in data:
+    if data.get("Fields") is not None:
         import capo_glue.types.iceberg_partition_spec_field_list
 
         out["fields"] = (
@@ -44,7 +44,7 @@ def deserialize_aws_json_1_1(data: dict) -> IcebergPartitionSpec:
         )
     else:
         raise DeserializationError("IcebergPartitionSpec.fields required")
-    if "SpecId" in data:
+    if data.get("SpecId") is not None:
         out["spec_id"] = data["SpecId"]
     else:
         out["spec_id"] = 0

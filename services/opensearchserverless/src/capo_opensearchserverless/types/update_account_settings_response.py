@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: UpdateAccountSettingsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateAccountSettingsResponse:
     out: UpdateAccountSettingsResponse = {}  # type: ignore[typeddict-item]
-    if "accountSettingsDetail" in data:
+    if data.get("accountSettingsDetail") is not None:
         import capo_opensearchserverless.types.account_settings_detail
 
         out["account_settings_detail"] = (

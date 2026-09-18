@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> InstanceProfiles:
 
     out: InstanceProfiles = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_device_farm.types.instance_profile.deserialize_aws_json_1_1(item)
         )

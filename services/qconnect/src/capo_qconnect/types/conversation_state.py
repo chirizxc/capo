@@ -31,10 +31,10 @@ def serialize_json(value: ConversationState) -> dict:
 
 def deserialize_json(data: dict) -> ConversationState:
     out: ConversationState = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("ConversationState.status required")
-    if "reason" in data:
+    if data.get("reason") is not None:
         out["reason"] = data["reason"]
     return out

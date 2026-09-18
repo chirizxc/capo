@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> AnalysisTemplateSummaryList:
 
     out: AnalysisTemplateSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cleanrooms.types.analysis_template_summary.deserialize_json(item)
         )

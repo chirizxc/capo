@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.workspacesthinclient#ThinClient``."""
 
+import uuid
 import warnings
 from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -254,10 +255,11 @@ class WorkSpacesThinClientClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces_thin_client.types.create_environment_request.CreateEnvironmentRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces_thin_client.types.create_environment_request.CreateEnvironmentRequest = {
+            "desktop_arn": desktop_arn
+        }
         if name is not None:
             input_["name"] = name
-        input_["desktop_arn"] = desktop_arn
         if desktop_endpoint is not None:
             input_["desktop_endpoint"] = desktop_endpoint
         if software_set_update_schedule is not None:
@@ -270,8 +272,9 @@ class WorkSpacesThinClientClient:
             input_["desired_software_set_id"] = desired_software_set_id
         if kms_key_arn is not None:
             input_["kms_key_arn"] = kms_key_arn
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
         if device_creation_tags is not None:
@@ -282,6 +285,7 @@ class WorkSpacesThinClientClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_device(
@@ -326,16 +330,19 @@ class WorkSpacesThinClientClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces_thin_client.types.delete_device_request.DeleteDeviceRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_workspaces_thin_client.types.delete_device_request.DeleteDeviceRequest = {
+            "id": id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_environment(
@@ -378,16 +385,19 @@ class WorkSpacesThinClientClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces_thin_client.types.delete_environment_request.DeleteEnvironmentRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_workspaces_thin_client.types.delete_environment_request.DeleteEnvironmentRequest = {
+            "id": id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def deregister_device(
@@ -434,18 +444,21 @@ class WorkSpacesThinClientClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces_thin_client.types.deregister_device_request.DeregisterDeviceRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_workspaces_thin_client.types.deregister_device_request.DeregisterDeviceRequest = {
+            "id": id
+        }
         if target_device_status is not None:
             input_["target_device_status"] = target_device_status
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_device(
@@ -483,14 +496,16 @@ class WorkSpacesThinClientClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces_thin_client.types.get_device_request.GetDeviceRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_workspaces_thin_client.types.get_device_request.GetDeviceRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_environment(
@@ -528,14 +543,16 @@ class WorkSpacesThinClientClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces_thin_client.types.get_environment_request.GetEnvironmentRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_workspaces_thin_client.types.get_environment_request.GetEnvironmentRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_software_set(
@@ -573,14 +590,16 @@ class WorkSpacesThinClientClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces_thin_client.types.get_software_set_request.GetSoftwareSetRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_workspaces_thin_client.types.get_software_set_request.GetSoftwareSetRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_devices(
@@ -623,7 +642,7 @@ class WorkSpacesThinClientClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces_thin_client.types.list_devices_request.ListDevicesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces_thin_client.types.list_devices_request.ListDevicesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -634,6 +653,7 @@ class WorkSpacesThinClientClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_devices(
@@ -701,7 +721,7 @@ class WorkSpacesThinClientClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces_thin_client.types.list_environments_request.ListEnvironmentsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces_thin_client.types.list_environments_request.ListEnvironmentsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -712,6 +732,7 @@ class WorkSpacesThinClientClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_environments(
@@ -779,7 +800,7 @@ class WorkSpacesThinClientClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces_thin_client.types.list_software_sets_request.ListSoftwareSetsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces_thin_client.types.list_software_sets_request.ListSoftwareSetsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -790,6 +811,7 @@ class WorkSpacesThinClientClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_software_sets(
@@ -852,14 +874,16 @@ class WorkSpacesThinClientClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces_thin_client.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_workspaces_thin_client.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -900,15 +924,17 @@ class WorkSpacesThinClientClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces_thin_client.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_workspaces_thin_client.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -949,15 +975,17 @@ class WorkSpacesThinClientClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces_thin_client.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_workspaces_thin_client.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_device(
@@ -1009,8 +1037,9 @@ class WorkSpacesThinClientClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces_thin_client.types.update_device_request.UpdateDeviceRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_workspaces_thin_client.types.update_device_request.UpdateDeviceRequest = {
+            "id": id
+        }
         if name is not None:
             input_["name"] = name
         if desired_software_set_id is not None:
@@ -1023,6 +1052,7 @@ class WorkSpacesThinClientClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_environment(
@@ -1091,8 +1121,9 @@ class WorkSpacesThinClientClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces_thin_client.types.update_environment_request.UpdateEnvironmentRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_workspaces_thin_client.types.update_environment_request.UpdateEnvironmentRequest = {
+            "id": id
+        }
         if name is not None:
             input_["name"] = name
         if desktop_arn is not None:
@@ -1115,6 +1146,7 @@ class WorkSpacesThinClientClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_software_set(
@@ -1154,15 +1186,17 @@ class WorkSpacesThinClientClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces_thin_client.types.update_software_set_request.UpdateSoftwareSetRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["validation_status"] = validation_status
+        input_: capo_workspaces_thin_client.types.update_software_set_request.UpdateSoftwareSetRequest = {
+            "id": id,
+            "validation_status": validation_status,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

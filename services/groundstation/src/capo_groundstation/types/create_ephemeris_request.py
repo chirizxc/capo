@@ -73,13 +73,13 @@ def serialize_json(value: CreateEphemerisRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateEphemerisRequest:
     out: CreateEphemerisRequest = {}  # type: ignore[typeddict-item]
-    if "satelliteId" in data:
+    if data.get("satelliteId") is not None:
         out["satellite_id"] = data["satelliteId"]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
-    if "priority" in data:
+    if data.get("priority") is not None:
         out["priority"] = data["priority"]
-    if "expirationTime" in data:
+    if data.get("expirationTime") is not None:
         import capo_groundstation.types._prelude.timestamp
 
         out["expiration_time"] = (
@@ -87,19 +87,19 @@ def deserialize_json(data: dict) -> CreateEphemerisRequest:
                 data["expirationTime"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateEphemerisRequest.name required")
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
-    if "ephemeris" in data:
+    if data.get("ephemeris") is not None:
         import capo_groundstation.types.ephemeris_data
 
         out["ephemeris"] = capo_groundstation.types.ephemeris_data.deserialize_json(
             data["ephemeris"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_groundstation.types.tags_map
 
         out["tags"] = capo_groundstation.types.tags_map.deserialize_json(data["tags"])

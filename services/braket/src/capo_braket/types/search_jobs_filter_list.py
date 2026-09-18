@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SearchJobsFilterList:
 
     out: SearchJobsFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_braket.types.search_jobs_filter.deserialize_json(item))
     return out

@@ -56,19 +56,19 @@ def serialize_aws_json_1_1(value: CustomizedLoadMetricSpecification) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CustomizedLoadMetricSpecification:
     out: CustomizedLoadMetricSpecification = {}  # type: ignore[typeddict-item]
-    if "MetricName" in data:
+    if data.get("MetricName") is not None:
         out["metric_name"] = data["MetricName"]
     else:
         raise DeserializationError(
             "CustomizedLoadMetricSpecification.metric_name required"
         )
-    if "Namespace" in data:
+    if data.get("Namespace") is not None:
         out["namespace"] = data["Namespace"]
     else:
         raise DeserializationError(
             "CustomizedLoadMetricSpecification.namespace required"
         )
-    if "Dimensions" in data:
+    if data.get("Dimensions") is not None:
         import capo_auto_scaling_plans.types.metric_dimensions
 
         out["dimensions"] = (
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_1(data: dict) -> CustomizedLoadMetricSpecification:
                 data["Dimensions"]
             )
         )
-    if "Statistic" in data:
+    if data.get("Statistic") is not None:
         import capo_auto_scaling_plans.types.metric_statistic
 
         out["statistic"] = (
@@ -88,6 +88,6 @@ def deserialize_aws_json_1_1(data: dict) -> CustomizedLoadMetricSpecification:
         raise DeserializationError(
             "CustomizedLoadMetricSpecification.statistic required"
         )
-    if "Unit" in data:
+    if data.get("Unit") is not None:
         out["unit"] = data["Unit"]
     return out

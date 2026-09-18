@@ -34,9 +34,9 @@ def serialize_json(value: AccountHealth) -> dict:
 
 def deserialize_json(data: dict) -> AccountHealth:
     out: AccountHealth = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "Insight" in data:
+    if data.get("Insight") is not None:
         import capo_devops_guru.types.account_insight_health
 
         out["insight"] = capo_devops_guru.types.account_insight_health.deserialize_json(

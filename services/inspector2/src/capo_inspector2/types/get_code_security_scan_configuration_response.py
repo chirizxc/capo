@@ -88,11 +88,11 @@ def serialize_json(value: GetCodeSecurityScanConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetCodeSecurityScanConfigurationResponse:
     out: GetCodeSecurityScanConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "scanConfigurationArn" in data:
+    if data.get("scanConfigurationArn") is not None:
         out["scan_configuration_arn"] = data["scanConfigurationArn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_inspector2.types.code_security_scan_configuration
 
         out["configuration"] = (
@@ -100,25 +100,25 @@ def deserialize_json(data: dict) -> GetCodeSecurityScanConfigurationResponse:
                 data["configuration"]
             )
         )
-    if "level" in data:
+    if data.get("level") is not None:
         import capo_inspector2.types.configuration_level
 
         out["level"] = capo_inspector2.types.configuration_level.deserialize_json(
             data["level"]
         )
-    if "scopeSettings" in data:
+    if data.get("scopeSettings") is not None:
         import capo_inspector2.types.scope_settings
 
         out["scope_settings"] = capo_inspector2.types.scope_settings.deserialize_json(
             data["scopeSettings"]
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_inspector2.types._prelude.timestamp
 
         out["created_at"] = capo_inspector2.types._prelude.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_inspector2.types._prelude.timestamp
 
         out["last_updated_at"] = (
@@ -126,7 +126,7 @@ def deserialize_json(data: dict) -> GetCodeSecurityScanConfigurationResponse:
                 data["lastUpdatedAt"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_inspector2.types.tag_map
 
         out["tags"] = capo_inspector2.types.tag_map.deserialize_json(data["tags"])

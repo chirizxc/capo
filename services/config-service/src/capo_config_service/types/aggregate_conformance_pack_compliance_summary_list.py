@@ -33,6 +33,8 @@ def deserialize_aws_json_1_1(
 
     out: AggregateConformancePackComplianceSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_config_service.types.aggregate_conformance_pack_compliance_summary.deserialize_aws_json_1_1(
                 item

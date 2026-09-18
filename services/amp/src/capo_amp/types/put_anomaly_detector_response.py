@@ -43,17 +43,17 @@ def serialize_json(value: PutAnomalyDetectorResponse) -> dict:
 
 def deserialize_json(data: dict) -> PutAnomalyDetectorResponse:
     out: PutAnomalyDetectorResponse = {}  # type: ignore[typeddict-item]
-    if "anomalyDetectorId" in data:
+    if data.get("anomalyDetectorId") is not None:
         out["anomaly_detector_id"] = data["anomalyDetectorId"]
     else:
         raise DeserializationError(
             "PutAnomalyDetectorResponse.anomaly_detector_id required"
         )
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("PutAnomalyDetectorResponse.arn required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_amp.types.anomaly_detector_status
 
         out["status"] = capo_amp.types.anomaly_detector_status.deserialize_json(
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> PutAnomalyDetectorResponse:
         )
     else:
         raise DeserializationError("PutAnomalyDetectorResponse.status required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_amp.types.tag_map
 
         out["tags"] = capo_amp.types.tag_map.deserialize_json(data["tags"])

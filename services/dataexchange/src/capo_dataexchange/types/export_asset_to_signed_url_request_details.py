@@ -30,19 +30,19 @@ def serialize_json(value: ExportAssetToSignedUrlRequestDetails) -> dict:
 
 def deserialize_json(data: dict) -> ExportAssetToSignedUrlRequestDetails:
     out: ExportAssetToSignedUrlRequestDetails = {}  # type: ignore[typeddict-item]
-    if "AssetId" in data:
+    if data.get("AssetId") is not None:
         out["asset_id"] = data["AssetId"]
     else:
         raise DeserializationError(
             "ExportAssetToSignedUrlRequestDetails.asset_id required"
         )
-    if "DataSetId" in data:
+    if data.get("DataSetId") is not None:
         out["data_set_id"] = data["DataSetId"]
     else:
         raise DeserializationError(
             "ExportAssetToSignedUrlRequestDetails.data_set_id required"
         )
-    if "RevisionId" in data:
+    if data.get("RevisionId") is not None:
         out["revision_id"] = data["RevisionId"]
     else:
         raise DeserializationError(

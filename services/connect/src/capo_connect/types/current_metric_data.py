@@ -26,18 +26,26 @@ def serialize_json(value: CurrentMetricData) -> dict:
             value["metric"]
         )
     if "value" in value:
-        out["Value"] = value["value"]
+        out["Value"] = (
+            "NaN"
+            if value["value"] != value["value"]
+            else "Infinity"
+            if value["value"] == float("inf")
+            else "-Infinity"
+            if value["value"] == float("-inf")
+            else value["value"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> CurrentMetricData:
     out: CurrentMetricData = {}  # type: ignore[typeddict-item]
-    if "Metric" in data:
+    if data.get("Metric") is not None:
         import capo_connect.types.current_metric
 
         out["metric"] = capo_connect.types.current_metric.deserialize_json(
             data["Metric"]
         )
-    if "Value" in data:
-        out["value"] = data["Value"]
+    if data.get("Value") is not None:
+        out["value"] = float(data["Value"])
     return out

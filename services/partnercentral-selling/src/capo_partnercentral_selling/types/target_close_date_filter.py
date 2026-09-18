@@ -27,8 +27,8 @@ def serialize_aws_json_1_0(value: TargetCloseDateFilter) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TargetCloseDateFilter:
     out: TargetCloseDateFilter = {}  # type: ignore[typeddict-item]
-    if "AfterTargetCloseDate" in data:
+    if data.get("AfterTargetCloseDate") is not None:
         out["after_target_close_date"] = data["AfterTargetCloseDate"]
-    if "BeforeTargetCloseDate" in data:
+    if data.get("BeforeTargetCloseDate") is not None:
         out["before_target_close_date"] = data["BeforeTargetCloseDate"]
     return out

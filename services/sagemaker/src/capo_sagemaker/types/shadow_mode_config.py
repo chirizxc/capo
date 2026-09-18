@@ -38,9 +38,9 @@ def serialize_aws_json_1_1(value: ShadowModeConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ShadowModeConfig:
     out: ShadowModeConfig = {}  # type: ignore[typeddict-item]
-    if "SourceModelVariantName" in data:
+    if data.get("SourceModelVariantName") is not None:
         out["source_model_variant_name"] = data["SourceModelVariantName"]
-    if "ShadowModelVariants" in data:
+    if data.get("ShadowModelVariants") is not None:
         import capo_sagemaker.types.shadow_model_variant_config_list
 
         out["shadow_model_variants"] = (

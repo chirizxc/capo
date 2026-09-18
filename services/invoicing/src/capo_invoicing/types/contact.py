@@ -28,8 +28,8 @@ def serialize_aws_json_1_0(value: Contact) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Contact:
     out: Contact = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Email" in data:
+    if data.get("Email") is not None:
         out["email"] = data["Email"]
     return out

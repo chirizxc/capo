@@ -22,8 +22,8 @@ def serialize_json(value: GeneralFlagsV2) -> dict:
 
 def deserialize_json(data: dict) -> GeneralFlagsV2:
     out: GeneralFlagsV2 = {}  # type: ignore[typeddict-item]
-    if "AutoEnrollment" in data:
+    if data.get("AutoEnrollment") is not None:
         out["auto_enrollment"] = data["AutoEnrollment"]
-    if "MachineType" in data:
+    if data.get("MachineType") is not None:
         out["machine_type"] = data["MachineType"]
     return out

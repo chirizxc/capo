@@ -41,15 +41,15 @@ def serialize_json(value: ServerException_) -> dict:
 
 def deserialize_json(data: dict) -> ServerException_:
     out: ServerException_ = {}  # type: ignore[typeddict-item]
-    if "clusterName" in data:
+    if data.get("clusterName") is not None:
         out["cluster_name"] = data["clusterName"]
-    if "nodegroupName" in data:
+    if data.get("nodegroupName") is not None:
         out["nodegroup_name"] = data["nodegroupName"]
-    if "addonName" in data:
+    if data.get("addonName") is not None:
         out["addon_name"] = data["addonName"]
-    if "subscriptionId" in data:
+    if data.get("subscriptionId") is not None:
         out["subscription_id"] = data["subscriptionId"]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -59,15 +59,16 @@ class ServerException(ServiceError):
 
     code: str | None = "ServerException"
 
-    def __init__(self, data: ServerException_):
+    def __init__(self, data: ServerException_, message: str | None = None):
         super().__init__(
             "server",
             is_throttling_error=False,
             is_retryable=False,
             code="ServerException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ServerException":
-        return cls(deserialize_json(data))
+    def from_json(cls, data: dict, message: str | None = None) -> "ServerException":
+        return cls(deserialize_json(data), message)

@@ -26,7 +26,7 @@ def serialize_json(value: ParticipatingResourceID) -> dict:
 
 
 def deserialize_json(data: dict) -> ParticipatingResourceID:
-    if "sourceNetworkID" in data:
+    if data.get("sourceNetworkID") is not None:
         return {"sourceNetworkID": data["sourceNetworkID"]}
     else:
         raise DeserializationError("ParticipatingResourceID: no recognized variant key")

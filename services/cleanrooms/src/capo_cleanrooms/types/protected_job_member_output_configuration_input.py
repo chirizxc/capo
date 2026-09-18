@@ -24,7 +24,7 @@ def serialize_json(value: ProtectedJobMemberOutputConfigurationInput) -> dict:
 
 def deserialize_json(data: dict) -> ProtectedJobMemberOutputConfigurationInput:
     out: ProtectedJobMemberOutputConfigurationInput = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
     else:
         raise DeserializationError(

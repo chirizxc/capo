@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> LayerCustomActionOperationList:
 
     out: LayerCustomActionOperationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.layer_custom_action_operation.deserialize_json(item)
         )

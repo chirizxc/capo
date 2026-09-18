@@ -68,11 +68,11 @@ def serialize_aws_json_1_1(value: AIBenchmarkJobSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AIBenchmarkJobSummary:
     out: AIBenchmarkJobSummary = {}  # type: ignore[typeddict-item]
-    if "AIBenchmarkJobName" in data:
+    if data.get("AIBenchmarkJobName") is not None:
         out["ai_benchmark_job_name"] = data["AIBenchmarkJobName"]
-    if "AIBenchmarkJobArn" in data:
+    if data.get("AIBenchmarkJobArn") is not None:
         out["ai_benchmark_job_arn"] = data["AIBenchmarkJobArn"]
-    if "AIBenchmarkJobStatus" in data:
+    if data.get("AIBenchmarkJobStatus") is not None:
         import capo_sagemaker.types.ai_benchmark_job_status
 
         out["ai_benchmark_job_status"] = (
@@ -80,18 +80,18 @@ def deserialize_aws_json_1_1(data: dict) -> AIBenchmarkJobSummary:
                 data["AIBenchmarkJobStatus"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["end_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["EndTime"]
         )
-    if "AIWorkloadConfigName" in data:
+    if data.get("AIWorkloadConfigName") is not None:
         out["ai_workload_config_name"] = data["AIWorkloadConfigName"]
     return out

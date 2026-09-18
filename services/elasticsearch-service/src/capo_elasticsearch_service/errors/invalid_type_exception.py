@@ -25,7 +25,7 @@ def serialize_json(value: InvalidTypeException_) -> dict:
 
 def deserialize_json(data: dict) -> InvalidTypeException_:
     out: InvalidTypeException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,18 @@ class InvalidTypeException(ServiceError):
 
     code: str | None = "InvalidTypeException"
 
-    def __init__(self, data: InvalidTypeException_):
+    def __init__(self, data: InvalidTypeException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidTypeException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "InvalidTypeException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidTypeException":
+        return cls(deserialize_json(data), message)

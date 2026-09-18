@@ -76,7 +76,7 @@ def serialize_json(value: GetResourceShareAssociationsRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetResourceShareAssociationsRequest:
     out: GetResourceShareAssociationsRequest = {}  # type: ignore[typeddict-item]
-    if "associationType" in data:
+    if data.get("associationType") is not None:
         import capo_ram.types.resource_share_association_type
 
         out["association_type"] = (
@@ -88,7 +88,7 @@ def deserialize_json(data: dict) -> GetResourceShareAssociationsRequest:
         raise DeserializationError(
             "GetResourceShareAssociationsRequest.association_type required"
         )
-    if "resourceShareArns" in data:
+    if data.get("resourceShareArns") is not None:
         import capo_ram.types.resource_share_arn_list
 
         out["resource_share_arns"] = (
@@ -96,11 +96,11 @@ def deserialize_json(data: dict) -> GetResourceShareAssociationsRequest:
                 data["resourceShareArns"]
             )
         )
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
-    if "principal" in data:
+    if data.get("principal") is not None:
         out["principal"] = data["principal"]
-    if "associationStatus" in data:
+    if data.get("associationStatus") is not None:
         import capo_ram.types.resource_share_association_status
 
         out["association_status"] = (
@@ -108,8 +108,8 @@ def deserialize_json(data: dict) -> GetResourceShareAssociationsRequest:
                 data["associationStatus"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

@@ -35,13 +35,21 @@ def serialize_json(value: QuoteCapacity) -> dict:
     if "unit" in value:
         out["Unit"] = value["unit"]
     if "quantity" in value:
-        out["Quantity"] = value["quantity"]
+        out["Quantity"] = (
+            "NaN"
+            if value["quantity"] != value["quantity"]
+            else "Infinity"
+            if value["quantity"] == float("inf")
+            else "-Infinity"
+            if value["quantity"] == float("-inf")
+            else value["quantity"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> QuoteCapacity:
     out: QuoteCapacity = {}  # type: ignore[typeddict-item]
-    if "QuoteCapacityType" in data:
+    if data.get("QuoteCapacityType") is not None:
         import capo_outposts.types.quote_capacity_type
 
         out["quote_capacity_type"] = (
@@ -49,8 +57,8 @@ def deserialize_json(data: dict) -> QuoteCapacity:
                 data["QuoteCapacityType"]
             )
         )
-    if "Unit" in data:
+    if data.get("Unit") is not None:
         out["unit"] = data["Unit"]
-    if "Quantity" in data:
-        out["quantity"] = data["Quantity"]
+    if data.get("Quantity") is not None:
+        out["quantity"] = float(data["Quantity"])
     return out

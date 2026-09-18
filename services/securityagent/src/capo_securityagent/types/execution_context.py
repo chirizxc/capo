@@ -31,9 +31,9 @@ def serialize_json(value: ExecutionContext) -> dict:
     if "context" in value:
         out["context"] = value["context"]
     if "timestamp" in value:
-        import capo_securityagent.types._prelude.timestamp
+        import capo_securityagent._protocol.serialize
 
-        out["timestamp"] = capo_securityagent.types._prelude.timestamp.serialize_json(
+        out["timestamp"] = capo_securityagent._protocol.serialize.fmt_date_time(
             value["timestamp"]
         )
     return out
@@ -41,18 +41,18 @@ def serialize_json(value: ExecutionContext) -> dict:
 
 def deserialize_json(data: dict) -> ExecutionContext:
     out: ExecutionContext = {}  # type: ignore[typeddict-item]
-    if "contextType" in data:
+    if data.get("contextType") is not None:
         import capo_securityagent.types.context_type
 
         out["context_type"] = capo_securityagent.types.context_type.deserialize_json(
             data["contextType"]
         )
-    if "context" in data:
+    if data.get("context") is not None:
         out["context"] = data["context"]
-    if "timestamp" in data:
-        import capo_securityagent.types._prelude.timestamp
+    if data.get("timestamp") is not None:
+        import datetime
 
-        out["timestamp"] = capo_securityagent.types._prelude.timestamp.deserialize_json(
-            data["timestamp"]
+        out["timestamp"] = datetime.datetime.fromisoformat(
+            data["timestamp"].replace("Z", "+00:00")
         )
     return out

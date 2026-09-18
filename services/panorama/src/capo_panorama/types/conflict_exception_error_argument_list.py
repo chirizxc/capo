@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ConflictExceptionErrorArgumentList:
 
     out: ConflictExceptionErrorArgumentList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_panorama.types.conflict_exception_error_argument.deserialize_json(item)
         )

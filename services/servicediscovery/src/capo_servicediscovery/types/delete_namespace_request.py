@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteNamespaceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteNamespaceRequest:
     out: DeleteNamespaceRequest = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("DeleteNamespaceRequest.id required")

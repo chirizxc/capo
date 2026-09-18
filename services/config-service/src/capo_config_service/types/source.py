@@ -61,7 +61,7 @@ def serialize_aws_json_1_1(value: Source) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Source:
     out: Source = {}  # type: ignore[typeddict-item]
-    if "Owner" in data:
+    if data.get("Owner") is not None:
         import capo_config_service.types.owner
 
         out["owner"] = capo_config_service.types.owner.deserialize_aws_json_1_1(
@@ -69,9 +69,9 @@ def deserialize_aws_json_1_1(data: dict) -> Source:
         )
     else:
         raise DeserializationError("Source.owner required")
-    if "SourceIdentifier" in data:
+    if data.get("SourceIdentifier") is not None:
         out["source_identifier"] = data["SourceIdentifier"]
-    if "SourceDetails" in data:
+    if data.get("SourceDetails") is not None:
         import capo_config_service.types.source_details
 
         out["source_details"] = (
@@ -79,7 +79,7 @@ def deserialize_aws_json_1_1(data: dict) -> Source:
                 data["SourceDetails"]
             )
         )
-    if "CustomPolicyDetails" in data:
+    if data.get("CustomPolicyDetails") is not None:
         import capo_config_service.types.custom_policy_details
 
         out["custom_policy_details"] = (

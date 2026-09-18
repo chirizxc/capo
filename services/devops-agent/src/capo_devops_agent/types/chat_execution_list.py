@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ChatExecutionList:
 
     out: ChatExecutionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_devops_agent.types.chat_execution.deserialize_json(item))
     return out

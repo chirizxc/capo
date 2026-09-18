@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AwsRdsDbSubnetGroupSubnets:
 
     out: AwsRdsDbSubnetGroupSubnets = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_rds_db_subnet_group_subnet.deserialize_json(item)
         )

@@ -85,19 +85,19 @@ def serialize_json(value: CreateApplicationResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateApplicationResponse:
     out: CreateApplicationResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "dataSources" in data:
+    if data.get("dataSources") is not None:
         import capo_opensearch.types.data_sources
 
         out["data_sources"] = capo_opensearch.types.data_sources.deserialize_json(
             data["dataSources"]
         )
-    if "iamIdentityCenterOptions" in data:
+    if data.get("iamIdentityCenterOptions") is not None:
         import capo_opensearch.types.iam_identity_center_options
 
         out["iam_identity_center_options"] = (
@@ -105,24 +105,24 @@ def deserialize_json(data: dict) -> CreateApplicationResponse:
                 data["iamIdentityCenterOptions"]
             )
         )
-    if "appConfigs" in data:
+    if data.get("appConfigs") is not None:
         import capo_opensearch.types.app_configs
 
         out["app_configs"] = capo_opensearch.types.app_configs.deserialize_json(
             data["appConfigs"]
         )
-    if "tagList" in data:
+    if data.get("tagList") is not None:
         import capo_opensearch.types.tag_list
 
         out["tag_list"] = capo_opensearch.types.tag_list.deserialize_json(
             data["tagList"]
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_opensearch.types.timestamp
 
         out["created_at"] = capo_opensearch.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
     return out

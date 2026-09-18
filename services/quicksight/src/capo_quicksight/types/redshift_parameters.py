@@ -64,19 +64,19 @@ def serialize_json(value: RedshiftParameters) -> dict:
 
 def deserialize_json(data: dict) -> RedshiftParameters:
     out: RedshiftParameters = {}  # type: ignore[typeddict-item]
-    if "Host" in data:
+    if data.get("Host") is not None:
         out["host"] = data["Host"]
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
     else:
         out["port"] = 0
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
     else:
         raise DeserializationError("RedshiftParameters.database required")
-    if "ClusterId" in data:
+    if data.get("ClusterId") is not None:
         out["cluster_id"] = data["ClusterId"]
-    if "IAMParameters" in data:
+    if data.get("IAMParameters") is not None:
         import capo_quicksight.types.redshift_iam_parameters
 
         out["iam_parameters"] = (
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> RedshiftParameters:
                 data["IAMParameters"]
             )
         )
-    if "IdentityCenterConfiguration" in data:
+    if data.get("IdentityCenterConfiguration") is not None:
         import capo_quicksight.types.identity_center_configuration
 
         out["identity_center_configuration"] = (

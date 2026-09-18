@@ -36,7 +36,7 @@ def serialize_json(value: ListChatResponseConfigurationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListChatResponseConfigurationsResponse:
     out: ListChatResponseConfigurationsResponse = {}  # type: ignore[typeddict-item]
-    if "chatResponseConfigurations" in data:
+    if data.get("chatResponseConfigurations") is not None:
         import capo_qbusiness.types.chat_response_configurations
 
         out["chat_response_configurations"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListChatResponseConfigurationsResponse:
                 data["chatResponseConfigurations"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

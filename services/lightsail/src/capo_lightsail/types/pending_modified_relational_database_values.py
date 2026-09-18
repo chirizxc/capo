@@ -32,10 +32,10 @@ def serialize_aws_json_1_1(value: PendingModifiedRelationalDatabaseValues) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> PendingModifiedRelationalDatabaseValues:
     out: PendingModifiedRelationalDatabaseValues = {}  # type: ignore[typeddict-item]
-    if "masterUserPassword" in data:
+    if data.get("masterUserPassword") is not None:
         out["master_user_password"] = data["masterUserPassword"]
-    if "engineVersion" in data:
+    if data.get("engineVersion") is not None:
         out["engine_version"] = data["engineVersion"]
-    if "backupRetentionEnabled" in data:
+    if data.get("backupRetentionEnabled") is not None:
         out["backup_retention_enabled"] = data["backupRetentionEnabled"]
     return out

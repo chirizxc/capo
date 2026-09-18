@@ -14,4 +14,4 @@ def serialize_json(value: ThreatIntelSetIds) -> list:
 
 
 def deserialize_json(data: list) -> ThreatIntelSetIds:
-    return list(data)
+    return [item for item in data if item is not None]

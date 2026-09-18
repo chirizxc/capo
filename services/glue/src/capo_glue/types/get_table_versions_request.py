@@ -52,21 +52,21 @@ def serialize_aws_json_1_1(value: GetTableVersionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetTableVersionsRequest:
     out: GetTableVersionsRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
     else:
         raise DeserializationError("GetTableVersionsRequest.database_name required")
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
     else:
         raise DeserializationError("GetTableVersionsRequest.table_name required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "AuditContext" in data:
+    if data.get("AuditContext") is not None:
         import capo_glue.types.audit_context
 
         out["audit_context"] = capo_glue.types.audit_context.deserialize_aws_json_1_1(

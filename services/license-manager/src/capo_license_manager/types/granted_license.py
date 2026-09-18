@@ -140,15 +140,15 @@ def serialize_aws_json_1_1(value: GrantedLicense) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GrantedLicense:
     out: GrantedLicense = {}  # type: ignore[typeddict-item]
-    if "LicenseArn" in data:
+    if data.get("LicenseArn") is not None:
         out["license_arn"] = data["LicenseArn"]
-    if "LicenseName" in data:
+    if data.get("LicenseName") is not None:
         out["license_name"] = data["LicenseName"]
-    if "ProductName" in data:
+    if data.get("ProductName") is not None:
         out["product_name"] = data["ProductName"]
-    if "ProductSKU" in data:
+    if data.get("ProductSKU") is not None:
         out["product_sku"] = data["ProductSKU"]
-    if "Issuer" in data:
+    if data.get("Issuer") is not None:
         import capo_license_manager.types.issuer_details
 
         out["issuer"] = (
@@ -156,9 +156,9 @@ def deserialize_aws_json_1_1(data: dict) -> GrantedLicense:
                 data["Issuer"]
             )
         )
-    if "HomeRegion" in data:
+    if data.get("HomeRegion") is not None:
         out["home_region"] = data["HomeRegion"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_license_manager.types.license_status
 
         out["status"] = (
@@ -166,7 +166,7 @@ def deserialize_aws_json_1_1(data: dict) -> GrantedLicense:
                 data["Status"]
             )
         )
-    if "Validity" in data:
+    if data.get("Validity") is not None:
         import capo_license_manager.types.datetime_range
 
         out["validity"] = (
@@ -174,9 +174,9 @@ def deserialize_aws_json_1_1(data: dict) -> GrantedLicense:
                 data["Validity"]
             )
         )
-    if "Beneficiary" in data:
+    if data.get("Beneficiary") is not None:
         out["beneficiary"] = data["Beneficiary"]
-    if "Entitlements" in data:
+    if data.get("Entitlements") is not None:
         import capo_license_manager.types.entitlement_list
 
         out["entitlements"] = (
@@ -184,7 +184,7 @@ def deserialize_aws_json_1_1(data: dict) -> GrantedLicense:
                 data["Entitlements"]
             )
         )
-    if "ConsumptionConfiguration" in data:
+    if data.get("ConsumptionConfiguration") is not None:
         import capo_license_manager.types.consumption_configuration
 
         out["consumption_configuration"] = (
@@ -192,7 +192,7 @@ def deserialize_aws_json_1_1(data: dict) -> GrantedLicense:
                 data["ConsumptionConfiguration"]
             )
         )
-    if "LicenseMetadata" in data:
+    if data.get("LicenseMetadata") is not None:
         import capo_license_manager.types.metadata_list
 
         out["license_metadata"] = (
@@ -200,11 +200,11 @@ def deserialize_aws_json_1_1(data: dict) -> GrantedLicense:
                 data["LicenseMetadata"]
             )
         )
-    if "CreateTime" in data:
+    if data.get("CreateTime") is not None:
         out["create_time"] = data["CreateTime"]
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
-    if "ReceivedMetadata" in data:
+    if data.get("ReceivedMetadata") is not None:
         import capo_license_manager.types.received_metadata
 
         out["received_metadata"] = (

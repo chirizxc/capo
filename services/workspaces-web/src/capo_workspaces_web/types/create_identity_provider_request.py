@@ -60,23 +60,23 @@ def serialize_json(value: CreateIdentityProviderRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateIdentityProviderRequest:
     out: CreateIdentityProviderRequest = {}  # type: ignore[typeddict-item]
-    if "portalArn" in data:
+    if data.get("portalArn") is not None:
         out["portal_arn"] = data["portalArn"]
     else:
         raise DeserializationError("CreateIdentityProviderRequest.portal_arn required")
-    if "identityProviderName" in data:
+    if data.get("identityProviderName") is not None:
         out["identity_provider_name"] = data["identityProviderName"]
     else:
         raise DeserializationError(
             "CreateIdentityProviderRequest.identity_provider_name required"
         )
-    if "identityProviderType" in data:
+    if data.get("identityProviderType") is not None:
         out["identity_provider_type"] = data["identityProviderType"]
     else:
         raise DeserializationError(
             "CreateIdentityProviderRequest.identity_provider_type required"
         )
-    if "identityProviderDetails" in data:
+    if data.get("identityProviderDetails") is not None:
         import capo_workspaces_web.types.identity_provider_details
 
         out["identity_provider_details"] = (
@@ -88,9 +88,9 @@ def deserialize_json(data: dict) -> CreateIdentityProviderRequest:
         raise DeserializationError(
             "CreateIdentityProviderRequest.identity_provider_details required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_workspaces_web.types.tag_list
 
         out["tags"] = capo_workspaces_web.types.tag_list.deserialize_json(data["tags"])

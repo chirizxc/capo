@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetMedicalScribeJobResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetMedicalScribeJobResponse:
     out: GetMedicalScribeJobResponse = {}  # type: ignore[typeddict-item]
-    if "MedicalScribeJob" in data:
+    if data.get("MedicalScribeJob") is not None:
         import capo_transcribe.types.medical_scribe_job
 
         out["medical_scribe_job"] = (

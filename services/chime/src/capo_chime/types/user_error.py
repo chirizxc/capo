@@ -37,14 +37,14 @@ def serialize_json(value: UserError) -> dict:
 
 def deserialize_json(data: dict) -> UserError:
     out: UserError = {}  # type: ignore[typeddict-item]
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         import capo_chime.types.error_code
 
         out["error_code"] = capo_chime.types.error_code.deserialize_json(
             data["ErrorCode"]
         )
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
     return out

@@ -33,11 +33,11 @@ def serialize_aws_json_1_1(value: ListResourcesForWebACLRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListResourcesForWebACLRequest:
     out: ListResourcesForWebACLRequest = {}  # type: ignore[typeddict-item]
-    if "WebACLArn" in data:
+    if data.get("WebACLArn") is not None:
         out["web_acl_arn"] = data["WebACLArn"]
     else:
         raise DeserializationError("ListResourcesForWebACLRequest.web_acl_arn required")
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_wafv2.types.resource_type
 
         out["resource_type"] = capo_wafv2.types.resource_type.deserialize_aws_json_1_1(

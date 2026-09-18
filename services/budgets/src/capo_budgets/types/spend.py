@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: Spend) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Spend:
     out: Spend = {}  # type: ignore[typeddict-item]
-    if "Amount" in data:
+    if data.get("Amount") is not None:
         out["amount"] = data["Amount"]
     else:
         raise DeserializationError("Spend.amount required")
-    if "Unit" in data:
+    if data.get("Unit") is not None:
         out["unit"] = data["Unit"]
     else:
         raise DeserializationError("Spend.unit required")

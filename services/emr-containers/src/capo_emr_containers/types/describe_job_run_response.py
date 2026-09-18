@@ -27,7 +27,7 @@ def serialize_json(value: DescribeJobRunResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeJobRunResponse:
     out: DescribeJobRunResponse = {}  # type: ignore[typeddict-item]
-    if "jobRun" in data:
+    if data.get("jobRun") is not None:
         import capo_emr_containers.types.job_run
 
         out["job_run"] = capo_emr_containers.types.job_run.deserialize_json(

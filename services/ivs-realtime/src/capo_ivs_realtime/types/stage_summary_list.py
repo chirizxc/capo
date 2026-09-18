@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> StageSummaryList:
 
     out: StageSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_ivs_realtime.types.stage_summary.deserialize_json(item))
     return out

@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> UpdateCostAllocationTagsStatusErrors
 
     out: UpdateCostAllocationTagsStatusErrors = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cost_explorer.types.update_cost_allocation_tags_status_error.deserialize_aws_json_1_1(
                 item

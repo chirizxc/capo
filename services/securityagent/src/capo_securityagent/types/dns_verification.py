@@ -37,11 +37,11 @@ def serialize_json(value: DnsVerification) -> dict:
 
 def deserialize_json(data: dict) -> DnsVerification:
     out: DnsVerification = {}  # type: ignore[typeddict-item]
-    if "token" in data:
+    if data.get("token") is not None:
         out["token"] = data["token"]
-    if "dnsRecordName" in data:
+    if data.get("dnsRecordName") is not None:
         out["dns_record_name"] = data["dnsRecordName"]
-    if "dnsRecordType" in data:
+    if data.get("dnsRecordType") is not None:
         import capo_securityagent.types.dns_record_type
 
         out["dns_record_type"] = (

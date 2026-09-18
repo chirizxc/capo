@@ -56,11 +56,11 @@ def serialize_aws_json_1_1(value: CreateEndpointAccessRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateEndpointAccessRequest:
     out: CreateEndpointAccessRequest = {}  # type: ignore[typeddict-item]
-    if "endpointName" in data:
+    if data.get("endpointName") is not None:
         out["endpoint_name"] = data["endpointName"]
     else:
         raise DeserializationError("CreateEndpointAccessRequest.endpoint_name required")
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_redshift_serverless.types.subnet_id_list
 
         out["subnet_ids"] = (
@@ -70,13 +70,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreateEndpointAccessRequest:
         )
     else:
         raise DeserializationError("CreateEndpointAccessRequest.subnet_ids required")
-    if "workgroupName" in data:
+    if data.get("workgroupName") is not None:
         out["workgroup_name"] = data["workgroupName"]
     else:
         raise DeserializationError(
             "CreateEndpointAccessRequest.workgroup_name required"
         )
-    if "vpcSecurityGroupIds" in data:
+    if data.get("vpcSecurityGroupIds") is not None:
         import capo_redshift_serverless.types.vpc_security_group_id_list
 
         out["vpc_security_group_ids"] = (
@@ -84,6 +84,6 @@ def deserialize_aws_json_1_1(data: dict) -> CreateEndpointAccessRequest:
                 data["vpcSecurityGroupIds"]
             )
         )
-    if "ownerAccount" in data:
+    if data.get("ownerAccount") is not None:
         out["owner_account"] = data["ownerAccount"]
     return out

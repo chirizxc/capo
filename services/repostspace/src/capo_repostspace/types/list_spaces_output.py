@@ -30,7 +30,7 @@ def serialize_json(value: ListSpacesOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListSpacesOutput:
     out: ListSpacesOutput = {}  # type: ignore[typeddict-item]
-    if "spaces" in data:
+    if data.get("spaces") is not None:
         import capo_repostspace.types.spaces_list
 
         out["spaces"] = capo_repostspace.types.spaces_list.deserialize_json(
@@ -38,6 +38,6 @@ def deserialize_json(data: dict) -> ListSpacesOutput:
         )
     else:
         raise DeserializationError("ListSpacesOutput.spaces required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

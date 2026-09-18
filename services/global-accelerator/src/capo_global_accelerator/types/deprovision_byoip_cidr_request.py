@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeprovisionByoipCidrRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeprovisionByoipCidrRequest:
     out: DeprovisionByoipCidrRequest = {}  # type: ignore[typeddict-item]
-    if "Cidr" in data:
+    if data.get("Cidr") is not None:
         out["cidr"] = data["Cidr"]
     else:
         raise DeserializationError("DeprovisionByoipCidrRequest.cidr required")

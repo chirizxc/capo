@@ -110,15 +110,15 @@ def serialize_aws_json_1_1(value: Webhook) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Webhook:
     out: Webhook = {}  # type: ignore[typeddict-item]
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
-    if "payloadUrl" in data:
+    if data.get("payloadUrl") is not None:
         out["payload_url"] = data["payloadUrl"]
-    if "secret" in data:
+    if data.get("secret") is not None:
         out["secret"] = data["secret"]
-    if "branchFilter" in data:
+    if data.get("branchFilter") is not None:
         out["branch_filter"] = data["branchFilter"]
-    if "filterGroups" in data:
+    if data.get("filterGroups") is not None:
         import capo_codebuild.types.filter_groups
 
         out["filter_groups"] = (
@@ -126,7 +126,7 @@ def deserialize_aws_json_1_1(data: dict) -> Webhook:
                 data["filterGroups"]
             )
         )
-    if "buildType" in data:
+    if data.get("buildType") is not None:
         import capo_codebuild.types.webhook_build_type
 
         out["build_type"] = (
@@ -134,9 +134,9 @@ def deserialize_aws_json_1_1(data: dict) -> Webhook:
                 data["buildType"]
             )
         )
-    if "manualCreation" in data:
+    if data.get("manualCreation") is not None:
         out["manual_creation"] = data["manualCreation"]
-    if "lastModifiedSecret" in data:
+    if data.get("lastModifiedSecret") is not None:
         import capo_codebuild.types.timestamp
 
         out["last_modified_secret"] = (
@@ -144,7 +144,7 @@ def deserialize_aws_json_1_1(data: dict) -> Webhook:
                 data["lastModifiedSecret"]
             )
         )
-    if "scopeConfiguration" in data:
+    if data.get("scopeConfiguration") is not None:
         import capo_codebuild.types.scope_configuration
 
         out["scope_configuration"] = (
@@ -152,15 +152,15 @@ def deserialize_aws_json_1_1(data: dict) -> Webhook:
                 data["scopeConfiguration"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_codebuild.types.webhook_status
 
         out["status"] = capo_codebuild.types.webhook_status.deserialize_aws_json_1_1(
             data["status"]
         )
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
-    if "pullRequestBuildPolicy" in data:
+    if data.get("pullRequestBuildPolicy") is not None:
         import capo_codebuild.types.pull_request_build_policy
 
         out["pull_request_build_policy"] = (

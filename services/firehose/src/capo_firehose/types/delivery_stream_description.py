@@ -124,19 +124,19 @@ def serialize_aws_json_1_1(value: DeliveryStreamDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeliveryStreamDescription:
     out: DeliveryStreamDescription = {}  # type: ignore[typeddict-item]
-    if "DeliveryStreamName" in data:
+    if data.get("DeliveryStreamName") is not None:
         out["delivery_stream_name"] = data["DeliveryStreamName"]
     else:
         raise DeserializationError(
             "DeliveryStreamDescription.delivery_stream_name required"
         )
-    if "DeliveryStreamARN" in data:
+    if data.get("DeliveryStreamARN") is not None:
         out["delivery_stream_arn"] = data["DeliveryStreamARN"]
     else:
         raise DeserializationError(
             "DeliveryStreamDescription.delivery_stream_arn required"
         )
-    if "DeliveryStreamStatus" in data:
+    if data.get("DeliveryStreamStatus") is not None:
         import capo_firehose.types.delivery_stream_status
 
         out["delivery_stream_status"] = (
@@ -148,7 +148,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeliveryStreamDescription:
         raise DeserializationError(
             "DeliveryStreamDescription.delivery_stream_status required"
         )
-    if "FailureDescription" in data:
+    if data.get("FailureDescription") is not None:
         import capo_firehose.types.failure_description
 
         out["failure_description"] = (
@@ -156,7 +156,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeliveryStreamDescription:
                 data["FailureDescription"]
             )
         )
-    if "DeliveryStreamEncryptionConfiguration" in data:
+    if data.get("DeliveryStreamEncryptionConfiguration") is not None:
         import capo_firehose.types.delivery_stream_encryption_configuration
 
         out["delivery_stream_encryption_configuration"] = (
@@ -164,7 +164,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeliveryStreamDescription:
                 data["DeliveryStreamEncryptionConfiguration"]
             )
         )
-    if "DeliveryStreamType" in data:
+    if data.get("DeliveryStreamType") is not None:
         import capo_firehose.types.delivery_stream_type
 
         out["delivery_stream_type"] = (
@@ -176,11 +176,11 @@ def deserialize_aws_json_1_1(data: dict) -> DeliveryStreamDescription:
         raise DeserializationError(
             "DeliveryStreamDescription.delivery_stream_type required"
         )
-    if "VersionId" in data:
+    if data.get("VersionId") is not None:
         out["version_id"] = data["VersionId"]
     else:
         raise DeserializationError("DeliveryStreamDescription.version_id required")
-    if "CreateTimestamp" in data:
+    if data.get("CreateTimestamp") is not None:
         import capo_firehose.types.timestamp
 
         out["create_timestamp"] = (
@@ -188,7 +188,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeliveryStreamDescription:
                 data["CreateTimestamp"]
             )
         )
-    if "LastUpdateTimestamp" in data:
+    if data.get("LastUpdateTimestamp") is not None:
         import capo_firehose.types.timestamp
 
         out["last_update_timestamp"] = (
@@ -196,13 +196,13 @@ def deserialize_aws_json_1_1(data: dict) -> DeliveryStreamDescription:
                 data["LastUpdateTimestamp"]
             )
         )
-    if "Source" in data:
+    if data.get("Source") is not None:
         import capo_firehose.types.source_description
 
         out["source"] = capo_firehose.types.source_description.deserialize_aws_json_1_1(
             data["Source"]
         )
-    if "Destinations" in data:
+    if data.get("Destinations") is not None:
         import capo_firehose.types.destination_description_list
 
         out["destinations"] = (
@@ -212,7 +212,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeliveryStreamDescription:
         )
     else:
         raise DeserializationError("DeliveryStreamDescription.destinations required")
-    if "HasMoreDestinations" in data:
+    if data.get("HasMoreDestinations") is not None:
         out["has_more_destinations"] = data["HasMoreDestinations"]
     else:
         raise DeserializationError(

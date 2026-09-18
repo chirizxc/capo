@@ -55,15 +55,15 @@ def serialize_json(value: ConnectPeerAssociation) -> dict:
 
 def deserialize_json(data: dict) -> ConnectPeerAssociation:
     out: ConnectPeerAssociation = {}  # type: ignore[typeddict-item]
-    if "ConnectPeerId" in data:
+    if data.get("ConnectPeerId") is not None:
         out["connect_peer_id"] = data["ConnectPeerId"]
-    if "GlobalNetworkId" in data:
+    if data.get("GlobalNetworkId") is not None:
         out["global_network_id"] = data["GlobalNetworkId"]
-    if "DeviceId" in data:
+    if data.get("DeviceId") is not None:
         out["device_id"] = data["DeviceId"]
-    if "LinkId" in data:
+    if data.get("LinkId") is not None:
         out["link_id"] = data["LinkId"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_networkmanager.types.connect_peer_association_state
 
         out["state"] = (

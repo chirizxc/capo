@@ -30,8 +30,8 @@ def serialize_json(value: StartConnectionResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartConnectionResponse:
     out: StartConnectionResponse = {}  # type: ignore[typeddict-item]
-    if "ConnectionId" in data:
+    if data.get("ConnectionId") is not None:
         out["connection_id"] = data["ConnectionId"]
-    if "UnderlayIpAddress" in data:
+    if data.get("UnderlayIpAddress") is not None:
         out["underlay_ip_address"] = data["UnderlayIpAddress"]
     return out

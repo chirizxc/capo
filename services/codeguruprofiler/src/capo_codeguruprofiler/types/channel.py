@@ -39,13 +39,13 @@ def serialize_json(value: Channel) -> dict:
 
 def deserialize_json(data: dict) -> Channel:
     out: Channel = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "uri" in data:
+    if data.get("uri") is not None:
         out["uri"] = data["uri"]
     else:
         raise DeserializationError("Channel.uri required")
-    if "eventPublishers" in data:
+    if data.get("eventPublishers") is not None:
         import capo_codeguruprofiler.types.event_publishers
 
         out["event_publishers"] = (

@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: AutoMLConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AutoMLConfig:
     out: AutoMLConfig = {}  # type: ignore[typeddict-item]
-    if "metricName" in data:
+    if data.get("metricName") is not None:
         out["metric_name"] = data["metricName"]
-    if "recipeList" in data:
+    if data.get("recipeList") is not None:
         import capo_personalize.types.arn_list
 
         out["recipe_list"] = capo_personalize.types.arn_list.deserialize_aws_json_1_1(

@@ -47,7 +47,7 @@ def serialize_json(value: SearchResourcesOutput) -> dict:
 
 def deserialize_json(data: dict) -> SearchResourcesOutput:
     out: SearchResourcesOutput = {}  # type: ignore[typeddict-item]
-    if "ResourceIdentifiers" in data:
+    if data.get("ResourceIdentifiers") is not None:
         import capo_resource_groups.types.resource_identifier_list
 
         out["resource_identifiers"] = (
@@ -55,9 +55,9 @@ def deserialize_json(data: dict) -> SearchResourcesOutput:
                 data["ResourceIdentifiers"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "QueryErrors" in data:
+    if data.get("QueryErrors") is not None:
         import capo_resource_groups.types.query_error_list
 
         out["query_errors"] = (

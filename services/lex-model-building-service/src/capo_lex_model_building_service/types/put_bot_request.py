@@ -88,7 +88,16 @@ def serialize_json(value: PutBotRequest) -> dict:
     if "enable_model_improvements" in value:
         out["enableModelImprovements"] = value["enable_model_improvements"]
     if "nlu_intent_confidence_threshold" in value:
-        out["nluIntentConfidenceThreshold"] = value["nlu_intent_confidence_threshold"]
+        out["nluIntentConfidenceThreshold"] = (
+            "NaN"
+            if value["nlu_intent_confidence_threshold"]
+            != value["nlu_intent_confidence_threshold"]
+            else "Infinity"
+            if value["nlu_intent_confidence_threshold"] == float("inf")
+            else "-Infinity"
+            if value["nlu_intent_confidence_threshold"] == float("-inf")
+            else value["nlu_intent_confidence_threshold"]
+        )
     if "clarification_prompt" in value:
         import capo_lex_model_building_service.types.prompt
 
@@ -140,9 +149,9 @@ def serialize_json(value: PutBotRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutBotRequest:
     out: PutBotRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "intents" in data:
+    if data.get("intents") is not None:
         import capo_lex_model_building_service.types.intent_list
 
         out["intents"] = (
@@ -150,11 +159,13 @@ def deserialize_json(data: dict) -> PutBotRequest:
                 data["intents"]
             )
         )
-    if "enableModelImprovements" in data:
+    if data.get("enableModelImprovements") is not None:
         out["enable_model_improvements"] = data["enableModelImprovements"]
-    if "nluIntentConfidenceThreshold" in data:
-        out["nlu_intent_confidence_threshold"] = data["nluIntentConfidenceThreshold"]
-    if "clarificationPrompt" in data:
+    if data.get("nluIntentConfidenceThreshold") is not None:
+        out["nlu_intent_confidence_threshold"] = float(
+            data["nluIntentConfidenceThreshold"]
+        )
+    if data.get("clarificationPrompt") is not None:
         import capo_lex_model_building_service.types.prompt
 
         out["clarification_prompt"] = (
@@ -162,7 +173,7 @@ def deserialize_json(data: dict) -> PutBotRequest:
                 data["clarificationPrompt"]
             )
         )
-    if "abortStatement" in data:
+    if data.get("abortStatement") is not None:
         import capo_lex_model_building_service.types.statement
 
         out["abort_statement"] = (
@@ -170,13 +181,13 @@ def deserialize_json(data: dict) -> PutBotRequest:
                 data["abortStatement"]
             )
         )
-    if "idleSessionTTLInSeconds" in data:
+    if data.get("idleSessionTTLInSeconds") is not None:
         out["idle_session_ttl_in_seconds"] = data["idleSessionTTLInSeconds"]
-    if "voiceId" in data:
+    if data.get("voiceId") is not None:
         out["voice_id"] = data["voiceId"]
-    if "checksum" in data:
+    if data.get("checksum") is not None:
         out["checksum"] = data["checksum"]
-    if "processBehavior" in data:
+    if data.get("processBehavior") is not None:
         import capo_lex_model_building_service.types.process_behavior
 
         out["process_behavior"] = (
@@ -184,7 +195,7 @@ def deserialize_json(data: dict) -> PutBotRequest:
                 data["processBehavior"]
             )
         )
-    if "locale" in data:
+    if data.get("locale") is not None:
         import capo_lex_model_building_service.types.locale
 
         out["locale"] = capo_lex_model_building_service.types.locale.deserialize_json(
@@ -192,15 +203,15 @@ def deserialize_json(data: dict) -> PutBotRequest:
         )
     else:
         raise DeserializationError("PutBotRequest.locale required")
-    if "childDirected" in data:
+    if data.get("childDirected") is not None:
         out["child_directed"] = data["childDirected"]
     else:
         raise DeserializationError("PutBotRequest.child_directed required")
-    if "detectSentiment" in data:
+    if data.get("detectSentiment") is not None:
         out["detect_sentiment"] = data["detectSentiment"]
-    if "createVersion" in data:
+    if data.get("createVersion") is not None:
         out["create_version"] = data["createVersion"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_lex_model_building_service.types.tag_list
 
         out["tags"] = capo_lex_model_building_service.types.tag_list.deserialize_json(

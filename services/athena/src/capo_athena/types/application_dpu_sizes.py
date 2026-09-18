@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: ApplicationDPUSizes) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ApplicationDPUSizes:
     out: ApplicationDPUSizes = {}  # type: ignore[typeddict-item]
-    if "ApplicationRuntimeId" in data:
+    if data.get("ApplicationRuntimeId") is not None:
         out["application_runtime_id"] = data["ApplicationRuntimeId"]
-    if "SupportedDPUSizes" in data:
+    if data.get("SupportedDPUSizes") is not None:
         import capo_athena.types.supported_dpu_size_list
 
         out["supported_dpu_sizes"] = (

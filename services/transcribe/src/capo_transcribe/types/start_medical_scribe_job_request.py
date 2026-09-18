@@ -54,6 +54,7 @@ class StartMedicalScribeJobRequest(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: StartMedicalScribeJobRequest) -> dict:
     out: dict = {}
+    out["MedicalScribeJobName"] = value["medical_scribe_job_name"]
     import capo_transcribe.types.media
 
     out["Media"] = capo_transcribe.types.media.serialize_aws_json_1_1(value["media"])
@@ -103,7 +104,13 @@ def serialize_aws_json_1_1(value: StartMedicalScribeJobRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartMedicalScribeJobRequest:
     out: StartMedicalScribeJobRequest = {}  # type: ignore[typeddict-item]
-    if "Media" in data:
+    if data.get("MedicalScribeJobName") is not None:
+        out["medical_scribe_job_name"] = data["MedicalScribeJobName"]
+    else:
+        raise DeserializationError(
+            "StartMedicalScribeJobRequest.medical_scribe_job_name required"
+        )
+    if data.get("Media") is not None:
         import capo_transcribe.types.media
 
         out["media"] = capo_transcribe.types.media.deserialize_aws_json_1_1(
@@ -111,15 +118,15 @@ def deserialize_aws_json_1_1(data: dict) -> StartMedicalScribeJobRequest:
         )
     else:
         raise DeserializationError("StartMedicalScribeJobRequest.media required")
-    if "OutputBucketName" in data:
+    if data.get("OutputBucketName") is not None:
         out["output_bucket_name"] = data["OutputBucketName"]
     else:
         raise DeserializationError(
             "StartMedicalScribeJobRequest.output_bucket_name required"
         )
-    if "OutputEncryptionKMSKeyId" in data:
+    if data.get("OutputEncryptionKMSKeyId") is not None:
         out["output_encryption_kms_key_id"] = data["OutputEncryptionKMSKeyId"]
-    if "KMSEncryptionContext" in data:
+    if data.get("KMSEncryptionContext") is not None:
         import capo_transcribe.types.kms_encryption_context_map
 
         out["kms_encryption_context"] = (
@@ -127,13 +134,13 @@ def deserialize_aws_json_1_1(data: dict) -> StartMedicalScribeJobRequest:
                 data["KMSEncryptionContext"]
             )
         )
-    if "DataAccessRoleArn" in data:
+    if data.get("DataAccessRoleArn") is not None:
         out["data_access_role_arn"] = data["DataAccessRoleArn"]
     else:
         raise DeserializationError(
             "StartMedicalScribeJobRequest.data_access_role_arn required"
         )
-    if "Settings" in data:
+    if data.get("Settings") is not None:
         import capo_transcribe.types.medical_scribe_settings
 
         out["settings"] = (
@@ -143,7 +150,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartMedicalScribeJobRequest:
         )
     else:
         raise DeserializationError("StartMedicalScribeJobRequest.settings required")
-    if "ChannelDefinitions" in data:
+    if data.get("ChannelDefinitions") is not None:
         import capo_transcribe.types.medical_scribe_channel_definitions
 
         out["channel_definitions"] = (
@@ -151,13 +158,13 @@ def deserialize_aws_json_1_1(data: dict) -> StartMedicalScribeJobRequest:
                 data["ChannelDefinitions"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_transcribe.types.tag_list
 
         out["tags"] = capo_transcribe.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "MedicalScribeContext" in data:
+    if data.get("MedicalScribeContext") is not None:
         import capo_transcribe.types.medical_scribe_context
 
         out["medical_scribe_context"] = (

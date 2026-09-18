@@ -94,15 +94,15 @@ def serialize_json(value: IdMappingTable) -> dict:
 
 def deserialize_json(data: dict) -> IdMappingTable:
     out: IdMappingTable = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("IdMappingTable.id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("IdMappingTable.arn required")
-    if "inputReferenceConfig" in data:
+    if data.get("inputReferenceConfig") is not None:
         import capo_cleanrooms.types.id_mapping_table_input_reference_config
 
         out["input_reference_config"] = (
@@ -112,29 +112,29 @@ def deserialize_json(data: dict) -> IdMappingTable:
         )
     else:
         raise DeserializationError("IdMappingTable.input_reference_config required")
-    if "membershipId" in data:
+    if data.get("membershipId") is not None:
         out["membership_id"] = data["membershipId"]
     else:
         raise DeserializationError("IdMappingTable.membership_id required")
-    if "membershipArn" in data:
+    if data.get("membershipArn") is not None:
         out["membership_arn"] = data["membershipArn"]
     else:
         raise DeserializationError("IdMappingTable.membership_arn required")
-    if "collaborationId" in data:
+    if data.get("collaborationId") is not None:
         out["collaboration_id"] = data["collaborationId"]
     else:
         raise DeserializationError("IdMappingTable.collaboration_id required")
-    if "collaborationArn" in data:
+    if data.get("collaborationArn") is not None:
         out["collaboration_arn"] = data["collaborationArn"]
     else:
         raise DeserializationError("IdMappingTable.collaboration_arn required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("IdMappingTable.name required")
-    if "createTime" in data:
+    if data.get("createTime") is not None:
         import capo_cleanrooms.types._prelude.timestamp
 
         out["create_time"] = capo_cleanrooms.types._prelude.timestamp.deserialize_json(
@@ -142,7 +142,7 @@ def deserialize_json(data: dict) -> IdMappingTable:
         )
     else:
         raise DeserializationError("IdMappingTable.create_time required")
-    if "updateTime" in data:
+    if data.get("updateTime") is not None:
         import capo_cleanrooms.types._prelude.timestamp
 
         out["update_time"] = capo_cleanrooms.types._prelude.timestamp.deserialize_json(
@@ -150,7 +150,7 @@ def deserialize_json(data: dict) -> IdMappingTable:
         )
     else:
         raise DeserializationError("IdMappingTable.update_time required")
-    if "inputReferenceProperties" in data:
+    if data.get("inputReferenceProperties") is not None:
         import capo_cleanrooms.types.id_mapping_table_input_reference_properties
 
         out["input_reference_properties"] = (
@@ -160,6 +160,6 @@ def deserialize_json(data: dict) -> IdMappingTable:
         )
     else:
         raise DeserializationError("IdMappingTable.input_reference_properties required")
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
     return out

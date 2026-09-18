@@ -66,11 +66,11 @@ def serialize_aws_json_1_1(value: UpdateWebAppRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateWebAppRequest:
     out: UpdateWebAppRequest = {}  # type: ignore[typeddict-item]
-    if "WebAppId" in data:
+    if data.get("WebAppId") is not None:
         out["web_app_id"] = data["WebAppId"]
     else:
         raise DeserializationError("UpdateWebAppRequest.web_app_id required")
-    if "IdentityProviderDetails" in data:
+    if data.get("IdentityProviderDetails") is not None:
         import capo_transfer.types.update_web_app_identity_provider_details
 
         out["identity_provider_details"] = (
@@ -78,9 +78,9 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateWebAppRequest:
                 data["IdentityProviderDetails"]
             )
         )
-    if "AccessEndpoint" in data:
+    if data.get("AccessEndpoint") is not None:
         out["access_endpoint"] = data["AccessEndpoint"]
-    if "WebAppUnits" in data:
+    if data.get("WebAppUnits") is not None:
         import capo_transfer.types.web_app_units
 
         out["web_app_units"] = (
@@ -88,7 +88,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateWebAppRequest:
                 data["WebAppUnits"]
             )
         )
-    if "EndpointDetails" in data:
+    if data.get("EndpointDetails") is not None:
         import capo_transfer.types.update_web_app_endpoint_details
 
         out["endpoint_details"] = (

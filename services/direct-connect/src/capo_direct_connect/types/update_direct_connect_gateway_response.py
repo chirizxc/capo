@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: UpdateDirectConnectGatewayResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateDirectConnectGatewayResponse:
     out: UpdateDirectConnectGatewayResponse = {}  # type: ignore[typeddict-item]
-    if "directConnectGateway" in data:
+    if data.get("directConnectGateway") is not None:
         import capo_direct_connect.types.direct_connect_gateway
 
         out["direct_connect_gateway"] = (

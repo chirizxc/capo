@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListUsageLimitsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListUsageLimitsResponse:
     out: ListUsageLimitsResponse = {}  # type: ignore[typeddict-item]
-    if "usageLimits" in data:
+    if data.get("usageLimits") is not None:
         import capo_redshift_serverless.types.usage_limits
 
         out["usage_limits"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListUsageLimitsResponse:
                 data["usageLimits"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> WafExcludedRuleList:
 
     out: WafExcludedRuleList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityhub.types.waf_excluded_rule.deserialize_json(item))
     return out

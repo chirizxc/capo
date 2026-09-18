@@ -42,19 +42,19 @@ def serialize_json(value: AddProfilePermissionRequest) -> dict:
 
 def deserialize_json(data: dict) -> AddProfilePermissionRequest:
     out: AddProfilePermissionRequest = {}  # type: ignore[typeddict-item]
-    if "profileVersion" in data:
+    if data.get("profileVersion") is not None:
         out["profile_version"] = data["profileVersion"]
-    if "action" in data:
+    if data.get("action") is not None:
         out["action"] = data["action"]
     else:
         raise DeserializationError("AddProfilePermissionRequest.action required")
-    if "principal" in data:
+    if data.get("principal") is not None:
         out["principal"] = data["principal"]
     else:
         raise DeserializationError("AddProfilePermissionRequest.principal required")
-    if "revisionId" in data:
+    if data.get("revisionId") is not None:
         out["revision_id"] = data["revisionId"]
-    if "statementId" in data:
+    if data.get("statementId") is not None:
         out["statement_id"] = data["statementId"]
     else:
         raise DeserializationError("AddProfilePermissionRequest.statement_id required")

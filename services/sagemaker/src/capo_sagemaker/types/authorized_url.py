@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: AuthorizedUrl) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AuthorizedUrl:
     out: AuthorizedUrl = {}  # type: ignore[typeddict-item]
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
-    if "LocalPath" in data:
+    if data.get("LocalPath") is not None:
         out["local_path"] = data["LocalPath"]
     return out

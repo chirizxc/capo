@@ -77,7 +77,7 @@ def serialize_json(value: DescribeCustomPluginResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeCustomPluginResponse:
     out: DescribeCustomPluginResponse = {}  # type: ignore[typeddict-item]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_kafkaconnect.types.__timestamp_iso8601
 
         out["creation_time"] = (
@@ -85,13 +85,13 @@ def deserialize_json(data: dict) -> DescribeCustomPluginResponse:
                 data["creationTime"]
             )
         )
-    if "customPluginArn" in data:
+    if data.get("customPluginArn") is not None:
         out["custom_plugin_arn"] = data["customPluginArn"]
-    if "customPluginState" in data:
+    if data.get("customPluginState") is not None:
         out["custom_plugin_state"] = data["customPluginState"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "latestRevision" in data:
+    if data.get("latestRevision") is not None:
         import capo_kafkaconnect.types.custom_plugin_revision_summary
 
         out["latest_revision"] = (
@@ -99,9 +99,9 @@ def deserialize_json(data: dict) -> DescribeCustomPluginResponse:
                 data["latestRevision"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "stateDescription" in data:
+    if data.get("stateDescription") is not None:
         import capo_kafkaconnect.types.state_description
 
         out["state_description"] = (

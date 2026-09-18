@@ -34,13 +34,13 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DescribeAccountAssignmentCreationStatusRequest:
     out: DescribeAccountAssignmentCreationStatusRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceArn" in data:
+    if data.get("InstanceArn") is not None:
         out["instance_arn"] = data["InstanceArn"]
     else:
         raise DeserializationError(
             "DescribeAccountAssignmentCreationStatusRequest.instance_arn required"
         )
-    if "AccountAssignmentCreationRequestId" in data:
+    if data.get("AccountAssignmentCreationRequestId") is not None:
         out["account_assignment_creation_request_id"] = data[
             "AccountAssignmentCreationRequestId"
         ]

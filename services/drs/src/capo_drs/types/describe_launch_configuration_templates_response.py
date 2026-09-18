@@ -34,12 +34,12 @@ def serialize_json(value: DescribeLaunchConfigurationTemplatesResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeLaunchConfigurationTemplatesResponse:
     out: DescribeLaunchConfigurationTemplatesResponse = {}  # type: ignore[typeddict-item]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_drs.types.launch_configuration_templates
 
         out["items"] = capo_drs.types.launch_configuration_templates.deserialize_json(
             data["items"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

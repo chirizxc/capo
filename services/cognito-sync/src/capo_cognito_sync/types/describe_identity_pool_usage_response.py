@@ -31,7 +31,7 @@ def serialize_json(value: DescribeIdentityPoolUsageResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeIdentityPoolUsageResponse:
     out: DescribeIdentityPoolUsageResponse = {}  # type: ignore[typeddict-item]
-    if "IdentityPoolUsage" in data:
+    if data.get("IdentityPoolUsage") is not None:
         import capo_cognito_sync.types.identity_pool_usage
 
         out["identity_pool_usage"] = (

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AssociateClientDeviceWithCoreDeviceErrorList
 
     out: AssociateClientDeviceWithCoreDeviceErrorList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_greengrassv2.types.associate_client_device_with_core_device_error_entry.deserialize_json(
                 item

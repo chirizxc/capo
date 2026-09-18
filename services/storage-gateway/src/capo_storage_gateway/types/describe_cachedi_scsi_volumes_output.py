@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DescribeCachediSCSIVolumesOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeCachediSCSIVolumesOutput:
     out: DescribeCachediSCSIVolumesOutput = {}  # type: ignore[typeddict-item]
-    if "CachediSCSIVolumes" in data:
+    if data.get("CachediSCSIVolumes") is not None:
         import capo_storage_gateway.types.cachedi_scsi_volumes
 
         out["cachedi_scsi_volumes"] = (

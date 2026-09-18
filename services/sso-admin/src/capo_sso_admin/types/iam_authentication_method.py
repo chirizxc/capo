@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: IamAuthenticationMethod) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IamAuthenticationMethod:
     out: IamAuthenticationMethod = {}  # type: ignore[typeddict-item]
-    if "ActorPolicy" in data:
+    if data.get("ActorPolicy") is not None:
         out["actor_policy"] = data["ActorPolicy"]
     else:
         raise DeserializationError("IamAuthenticationMethod.actor_policy required")

@@ -122,15 +122,15 @@ def serialize_json(value: VPCConnection) -> dict:
 
 def deserialize_json(data: dict) -> VPCConnection:
     out: VPCConnection = {}  # type: ignore[typeddict-item]
-    if "VPCConnectionId" in data:
+    if data.get("VPCConnectionId") is not None:
         out["vpc_connection_id"] = data["VPCConnectionId"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "VPCId" in data:
+    if data.get("VPCId") is not None:
         out["vpc_id"] = data["VPCId"]
-    if "SecurityGroupIds" in data:
+    if data.get("SecurityGroupIds") is not None:
         import capo_quicksight.types.security_group_id_list
 
         out["security_group_ids"] = (
@@ -138,13 +138,13 @@ def deserialize_json(data: dict) -> VPCConnection:
                 data["SecurityGroupIds"]
             )
         )
-    if "DnsResolvers" in data:
+    if data.get("DnsResolvers") is not None:
         import capo_quicksight.types.string_list
 
         out["dns_resolvers"] = capo_quicksight.types.string_list.deserialize_json(
             data["DnsResolvers"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_quicksight.types.vpc_connection_resource_status
 
         out["status"] = (
@@ -152,7 +152,7 @@ def deserialize_json(data: dict) -> VPCConnection:
                 data["Status"]
             )
         )
-    if "AvailabilityStatus" in data:
+    if data.get("AvailabilityStatus") is not None:
         import capo_quicksight.types.vpc_connection_availability_status
 
         out["availability_status"] = (
@@ -160,7 +160,7 @@ def deserialize_json(data: dict) -> VPCConnection:
                 data["AvailabilityStatus"]
             )
         )
-    if "NetworkInterfaces" in data:
+    if data.get("NetworkInterfaces") is not None:
         import capo_quicksight.types.network_interface_list
 
         out["network_interfaces"] = (
@@ -168,15 +168,15 @@ def deserialize_json(data: dict) -> VPCConnection:
                 data["NetworkInterfaces"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_quicksight.types.timestamp
 
         out["created_time"] = capo_quicksight.types.timestamp.deserialize_json(
             data["CreatedTime"]
         )
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_quicksight.types.timestamp
 
         out["last_updated_time"] = capo_quicksight.types.timestamp.deserialize_json(

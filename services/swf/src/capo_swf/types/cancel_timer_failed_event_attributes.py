@@ -38,11 +38,11 @@ def serialize_aws_json_1_0(value: CancelTimerFailedEventAttributes) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CancelTimerFailedEventAttributes:
     out: CancelTimerFailedEventAttributes = {}  # type: ignore[typeddict-item]
-    if "timerId" in data:
+    if data.get("timerId") is not None:
         out["timer_id"] = data["timerId"]
     else:
         raise DeserializationError("CancelTimerFailedEventAttributes.timer_id required")
-    if "cause" in data:
+    if data.get("cause") is not None:
         import capo_swf.types.cancel_timer_failed_cause
 
         out["cause"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_0(data: dict) -> CancelTimerFailedEventAttributes:
         )
     else:
         raise DeserializationError("CancelTimerFailedEventAttributes.cause required")
-    if "decisionTaskCompletedEventId" in data:
+    if data.get("decisionTaskCompletedEventId") is not None:
         out["decision_task_completed_event_id"] = data["decisionTaskCompletedEventId"]
     else:
         out["decision_task_completed_event_id"] = 0

@@ -37,13 +37,13 @@ def serialize_json(value: OcsfBooleanFilter) -> dict:
 
 def deserialize_json(data: dict) -> OcsfBooleanFilter:
     out: OcsfBooleanFilter = {}  # type: ignore[typeddict-item]
-    if "FieldName" in data:
+    if data.get("FieldName") is not None:
         import capo_securityhub.types.ocsf_boolean_field
 
         out["field_name"] = capo_securityhub.types.ocsf_boolean_field.deserialize_json(
             data["FieldName"]
         )
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_securityhub.types.boolean_filter
 
         out["filter"] = capo_securityhub.types.boolean_filter.deserialize_json(

@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: StartExtensionPackAssociationResponse) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> StartExtensionPackAssociationResponse:
     out: StartExtensionPackAssociationResponse = {}  # type: ignore[typeddict-item]
-    if "RequestIdentifier" in data:
+    if data.get("RequestIdentifier") is not None:
         out["request_identifier"] = data["RequestIdentifier"]
     return out

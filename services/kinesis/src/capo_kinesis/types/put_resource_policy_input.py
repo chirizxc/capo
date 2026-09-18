@@ -33,13 +33,13 @@ def serialize_aws_json_1_1(value: PutResourcePolicyInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutResourcePolicyInput:
     out: PutResourcePolicyInput = {}  # type: ignore[typeddict-item]
-    if "ResourceARN" in data:
+    if data.get("ResourceARN") is not None:
         out["resource_arn"] = data["ResourceARN"]
     else:
         raise DeserializationError("PutResourcePolicyInput.resource_arn required")
-    if "StreamId" in data:
+    if data.get("StreamId") is not None:
         out["stream_id"] = data["StreamId"]
-    if "Policy" in data:
+    if data.get("Policy") is not None:
         out["policy"] = data["Policy"]
     else:
         raise DeserializationError("PutResourcePolicyInput.policy required")

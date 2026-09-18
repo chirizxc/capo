@@ -49,7 +49,7 @@ def serialize_json(value: GetEffectiveHoursOfOperationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetEffectiveHoursOfOperationsResponse:
     out: GetEffectiveHoursOfOperationsResponse = {}  # type: ignore[typeddict-item]
-    if "EffectiveHoursOfOperationList" in data:
+    if data.get("EffectiveHoursOfOperationList") is not None:
         import capo_connect.types.effective_hours_of_operation_list
 
         out["effective_hours_of_operation_list"] = (
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> GetEffectiveHoursOfOperationsResponse:
                 data["EffectiveHoursOfOperationList"]
             )
         )
-    if "EffectiveOverrideHoursList" in data:
+    if data.get("EffectiveOverrideHoursList") is not None:
         import capo_connect.types.effective_override_hours_list
 
         out["effective_override_hours_list"] = (
@@ -65,6 +65,6 @@ def deserialize_json(data: dict) -> GetEffectiveHoursOfOperationsResponse:
                 data["EffectiveOverrideHoursList"]
             )
         )
-    if "TimeZone" in data:
+    if data.get("TimeZone") is not None:
         out["time_zone"] = data["TimeZone"]
     return out

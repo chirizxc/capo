@@ -27,7 +27,7 @@ def serialize_json(value: LoggerDefinitionVersion) -> dict:
 
 def deserialize_json(data: dict) -> LoggerDefinitionVersion:
     out: LoggerDefinitionVersion = {}  # type: ignore[typeddict-item]
-    if "Loggers" in data:
+    if data.get("Loggers") is not None:
         import capo_greengrass.types.__list_of_logger
 
         out["loggers"] = capo_greengrass.types.__list_of_logger.deserialize_json(

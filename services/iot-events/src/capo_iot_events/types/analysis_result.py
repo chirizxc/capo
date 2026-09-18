@@ -52,17 +52,17 @@ def serialize_json(value: AnalysisResult) -> dict:
 
 def deserialize_json(data: dict) -> AnalysisResult:
     out: AnalysisResult = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "level" in data:
+    if data.get("level") is not None:
         import capo_iot_events.types.analysis_result_level
 
         out["level"] = capo_iot_events.types.analysis_result_level.deserialize_json(
             data["level"]
         )
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "locations" in data:
+    if data.get("locations") is not None:
         import capo_iot_events.types.analysis_result_locations
 
         out["locations"] = (

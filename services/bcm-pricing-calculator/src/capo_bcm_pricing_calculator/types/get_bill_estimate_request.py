@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: GetBillEstimateRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetBillEstimateRequest:
     out: GetBillEstimateRequest = {}  # type: ignore[typeddict-item]
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         out["identifier"] = data["identifier"]
     else:
         raise DeserializationError("GetBillEstimateRequest.identifier required")

@@ -30,13 +30,13 @@ def serialize_aws_json_1_0(value: DeleteEventDestinationRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteEventDestinationRequest:
     out: DeleteEventDestinationRequest = {}  # type: ignore[typeddict-item]
-    if "ConfigurationSetName" in data:
+    if data.get("ConfigurationSetName") is not None:
         out["configuration_set_name"] = data["ConfigurationSetName"]
     else:
         raise DeserializationError(
             "DeleteEventDestinationRequest.configuration_set_name required"
         )
-    if "EventDestinationName" in data:
+    if data.get("EventDestinationName") is not None:
         out["event_destination_name"] = data["EventDestinationName"]
     else:
         raise DeserializationError(

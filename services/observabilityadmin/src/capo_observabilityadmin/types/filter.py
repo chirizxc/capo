@@ -51,7 +51,7 @@ def serialize_json(value: Filter) -> dict:
 
 def deserialize_json(data: dict) -> Filter:
     out: Filter = {}  # type: ignore[typeddict-item]
-    if "Behavior" in data:
+    if data.get("Behavior") is not None:
         import capo_observabilityadmin.types.filter_behavior
 
         out["behavior"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> Filter:
                 data["Behavior"]
             )
         )
-    if "Requirement" in data:
+    if data.get("Requirement") is not None:
         import capo_observabilityadmin.types.filter_requirement
 
         out["requirement"] = (
@@ -67,7 +67,7 @@ def deserialize_json(data: dict) -> Filter:
                 data["Requirement"]
             )
         )
-    if "Conditions" in data:
+    if data.get("Conditions") is not None:
         import capo_observabilityadmin.types.conditions
 
         out["conditions"] = capo_observabilityadmin.types.conditions.deserialize_json(

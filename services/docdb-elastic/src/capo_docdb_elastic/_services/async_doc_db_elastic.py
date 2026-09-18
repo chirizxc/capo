@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.docdbelastic#ChimeraDbLionfishServiceLambda``."""
 
+import uuid
 import warnings
 from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -217,10 +218,11 @@ class AsyncDocDBElasticClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_docdb_elastic.types.apply_pending_maintenance_action_input.ApplyPendingMaintenanceActionInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["apply_action"] = apply_action
-        input_["opt_in_type"] = opt_in_type
+        input_: capo_docdb_elastic.types.apply_pending_maintenance_action_input.ApplyPendingMaintenanceActionInput = {
+            "resource_arn": resource_arn,
+            "apply_action": apply_action,
+            "opt_in_type": opt_in_type,
+        }
         if apply_on is not None:
             input_["apply_on"] = apply_on
 
@@ -229,6 +231,7 @@ class AsyncDocDBElasticClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def copy_cluster_snapshot(
@@ -283,9 +286,10 @@ class AsyncDocDBElasticClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_docdb_elastic.types.copy_cluster_snapshot_input.CopyClusterSnapshotInput = {}  # type: ignore[typeddict-item]
-        input_["snapshot_arn"] = snapshot_arn
-        input_["target_snapshot_name"] = target_snapshot_name
+        input_: capo_docdb_elastic.types.copy_cluster_snapshot_input.CopyClusterSnapshotInput = {
+            "snapshot_arn": snapshot_arn,
+            "target_snapshot_name": target_snapshot_name,
+        }
         if kms_key_id is not None:
             input_["kms_key_id"] = kms_key_id
         if copy_tags is not None:
@@ -298,6 +302,7 @@ class AsyncDocDBElasticClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_cluster(
@@ -367,21 +372,23 @@ class AsyncDocDBElasticClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_docdb_elastic.types.create_cluster_input.CreateClusterInput = {}  # type: ignore[typeddict-item]
-        input_["cluster_name"] = cluster_name
-        input_["auth_type"] = auth_type
-        input_["admin_user_name"] = admin_user_name
-        input_["admin_user_password"] = admin_user_password
-        input_["shard_capacity"] = shard_capacity
-        input_["shard_count"] = shard_count
+        input_: capo_docdb_elastic.types.create_cluster_input.CreateClusterInput = {
+            "cluster_name": cluster_name,
+            "auth_type": auth_type,
+            "admin_user_name": admin_user_name,
+            "admin_user_password": admin_user_password,
+            "shard_capacity": shard_capacity,
+            "shard_count": shard_count,
+        }
         if vpc_security_group_ids is not None:
             input_["vpc_security_group_ids"] = vpc_security_group_ids
         if subnet_ids is not None:
             input_["subnet_ids"] = subnet_ids
         if kms_key_id is not None:
             input_["kms_key_id"] = kms_key_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if preferred_maintenance_window is not None:
             input_["preferred_maintenance_window"] = preferred_maintenance_window
         if tags is not None:
@@ -398,6 +405,7 @@ class AsyncDocDBElasticClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_cluster_snapshot(
@@ -442,9 +450,10 @@ class AsyncDocDBElasticClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_docdb_elastic.types.create_cluster_snapshot_input.CreateClusterSnapshotInput = {}  # type: ignore[typeddict-item]
-        input_["cluster_arn"] = cluster_arn
-        input_["snapshot_name"] = snapshot_name
+        input_: capo_docdb_elastic.types.create_cluster_snapshot_input.CreateClusterSnapshotInput = {
+            "cluster_arn": cluster_arn,
+            "snapshot_name": snapshot_name,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -453,6 +462,7 @@ class AsyncDocDBElasticClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_cluster(
@@ -492,14 +502,16 @@ class AsyncDocDBElasticClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_docdb_elastic.types.delete_cluster_input.DeleteClusterInput = {}  # type: ignore[typeddict-item]
-        input_["cluster_arn"] = cluster_arn
+        input_: capo_docdb_elastic.types.delete_cluster_input.DeleteClusterInput = {
+            "cluster_arn": cluster_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_cluster_snapshot(
@@ -539,14 +551,16 @@ class AsyncDocDBElasticClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_docdb_elastic.types.delete_cluster_snapshot_input.DeleteClusterSnapshotInput = {}  # type: ignore[typeddict-item]
-        input_["snapshot_arn"] = snapshot_arn
+        input_: capo_docdb_elastic.types.delete_cluster_snapshot_input.DeleteClusterSnapshotInput = {
+            "snapshot_arn": snapshot_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_cluster(
@@ -585,14 +599,16 @@ class AsyncDocDBElasticClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_docdb_elastic.types.get_cluster_input.GetClusterInput = {}  # type: ignore[typeddict-item]
-        input_["cluster_arn"] = cluster_arn
+        input_: capo_docdb_elastic.types.get_cluster_input.GetClusterInput = {
+            "cluster_arn": cluster_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_cluster_snapshot(
@@ -633,14 +649,16 @@ class AsyncDocDBElasticClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_docdb_elastic.types.get_cluster_snapshot_input.GetClusterSnapshotInput = {}  # type: ignore[typeddict-item]
-        input_["snapshot_arn"] = snapshot_arn
+        input_: capo_docdb_elastic.types.get_cluster_snapshot_input.GetClusterSnapshotInput = {
+            "snapshot_arn": snapshot_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_pending_maintenance_action(
@@ -680,14 +698,16 @@ class AsyncDocDBElasticClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_docdb_elastic.types.get_pending_maintenance_action_input.GetPendingMaintenanceActionInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_docdb_elastic.types.get_pending_maintenance_action_input.GetPendingMaintenanceActionInput = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_clusters(
@@ -729,7 +749,7 @@ class AsyncDocDBElasticClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_docdb_elastic.types.list_clusters_input.ListClustersInput = {}  # type: ignore[typeddict-item]
+        input_: capo_docdb_elastic.types.list_clusters_input.ListClustersInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -740,6 +760,7 @@ class AsyncDocDBElasticClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_clusters(
@@ -808,7 +829,7 @@ class AsyncDocDBElasticClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_docdb_elastic.types.list_cluster_snapshots_input.ListClusterSnapshotsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_docdb_elastic.types.list_cluster_snapshots_input.ListClusterSnapshotsInput = {}
         if cluster_arn is not None:
             input_["cluster_arn"] = cluster_arn
         if next_token is not None:
@@ -823,6 +844,7 @@ class AsyncDocDBElasticClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_cluster_snapshots(
@@ -891,7 +913,7 @@ class AsyncDocDBElasticClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_docdb_elastic.types.list_pending_maintenance_actions_input.ListPendingMaintenanceActionsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_docdb_elastic.types.list_pending_maintenance_actions_input.ListPendingMaintenanceActionsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -902,6 +924,7 @@ class AsyncDocDBElasticClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_pending_maintenance_actions(
@@ -962,14 +985,16 @@ class AsyncDocDBElasticClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_docdb_elastic.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_docdb_elastic.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def restore_cluster_from_snapshot(
@@ -1026,9 +1051,10 @@ class AsyncDocDBElasticClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_docdb_elastic.types.restore_cluster_from_snapshot_input.RestoreClusterFromSnapshotInput = {}  # type: ignore[typeddict-item]
-        input_["cluster_name"] = cluster_name
-        input_["snapshot_arn"] = snapshot_arn
+        input_: capo_docdb_elastic.types.restore_cluster_from_snapshot_input.RestoreClusterFromSnapshotInput = {
+            "cluster_name": cluster_name,
+            "snapshot_arn": snapshot_arn,
+        }
         if vpc_security_group_ids is not None:
             input_["vpc_security_group_ids"] = vpc_security_group_ids
         if subnet_ids is not None:
@@ -1047,6 +1073,7 @@ class AsyncDocDBElasticClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_cluster(
@@ -1091,14 +1118,16 @@ class AsyncDocDBElasticClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_docdb_elastic.types.start_cluster_input.StartClusterInput = {}  # type: ignore[typeddict-item]
-        input_["cluster_arn"] = cluster_arn
+        input_: capo_docdb_elastic.types.start_cluster_input.StartClusterInput = {
+            "cluster_arn": cluster_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_cluster(
@@ -1143,14 +1172,16 @@ class AsyncDocDBElasticClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_docdb_elastic.types.stop_cluster_input.StopClusterInput = {}  # type: ignore[typeddict-item]
-        input_["cluster_arn"] = cluster_arn
+        input_: capo_docdb_elastic.types.stop_cluster_input.StopClusterInput = {
+            "cluster_arn": cluster_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -1190,15 +1221,17 @@ class AsyncDocDBElasticClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_docdb_elastic.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_docdb_elastic.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -1238,15 +1271,17 @@ class AsyncDocDBElasticClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_docdb_elastic.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_docdb_elastic.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_cluster(
@@ -1312,8 +1347,9 @@ class AsyncDocDBElasticClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_docdb_elastic.types.update_cluster_input.UpdateClusterInput = {}  # type: ignore[typeddict-item]
-        input_["cluster_arn"] = cluster_arn
+        input_: capo_docdb_elastic.types.update_cluster_input.UpdateClusterInput = {
+            "cluster_arn": cluster_arn
+        }
         if auth_type is not None:
             input_["auth_type"] = auth_type
         if shard_capacity is not None:
@@ -1326,8 +1362,9 @@ class AsyncDocDBElasticClient:
             input_["subnet_ids"] = subnet_ids
         if admin_user_password is not None:
             input_["admin_user_password"] = admin_user_password
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if preferred_maintenance_window is not None:
             input_["preferred_maintenance_window"] = preferred_maintenance_window
         if backup_retention_period is not None:
@@ -1342,6 +1379,7 @@ class AsyncDocDBElasticClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

@@ -25,17 +25,17 @@ def serialize_json(value: TooManyRequestsException_) -> dict:
 
 def deserialize_json(data: dict) -> TooManyRequestsException_:
     out: TooManyRequestsException_ = {}  # type: ignore[typeddict-item]
-    if "detailedMessage" in data:
+    if data.get("detailedMessage") is not None:
         out["detailed_message"] = data["detailedMessage"]
     else:
         raise DeserializationError(
             "TooManyRequestsException_.detailed_message required"
         )
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
     else:
         raise DeserializationError("TooManyRequestsException_.request_id required")
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
     else:
         raise DeserializationError("TooManyRequestsException_.code required")
@@ -47,15 +47,18 @@ class TooManyRequestsException(ServiceError):
 
     code: str | None = "TooManyRequestsException"
 
-    def __init__(self, data: TooManyRequestsException_):
+    def __init__(self, data: TooManyRequestsException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=True,
             code="TooManyRequestsException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "TooManyRequestsException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "TooManyRequestsException":
+        return cls(deserialize_json(data), message)

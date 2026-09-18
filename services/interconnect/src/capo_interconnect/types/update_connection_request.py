@@ -42,14 +42,14 @@ def serialize_aws_json_1_0(value: UpdateConnectionRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateConnectionRequest:
     out: UpdateConnectionRequest = {}  # type: ignore[typeddict-item]
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         out["identifier"] = data["identifier"]
     else:
         raise DeserializationError("UpdateConnectionRequest.identifier required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "bandwidth" in data:
+    if data.get("bandwidth") is not None:
         out["bandwidth"] = data["bandwidth"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

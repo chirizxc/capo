@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> LandingZoneSummaries:
 
     out: LandingZoneSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_controltower.types.landing_zone_summary.deserialize_json(item))
     return out

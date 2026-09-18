@@ -132,15 +132,15 @@ def serialize_aws_json_1_1(value: SlackConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SlackConfiguration:
     out: SlackConfiguration = {}  # type: ignore[typeddict-item]
-    if "TeamId" in data:
+    if data.get("TeamId") is not None:
         out["team_id"] = data["TeamId"]
     else:
         raise DeserializationError("SlackConfiguration.team_id required")
-    if "SecretArn" in data:
+    if data.get("SecretArn") is not None:
         out["secret_arn"] = data["SecretArn"]
     else:
         raise DeserializationError("SlackConfiguration.secret_arn required")
-    if "VpcConfiguration" in data:
+    if data.get("VpcConfiguration") is not None:
         import capo_kendra.types.data_source_vpc_configuration
 
         out["vpc_configuration"] = (
@@ -148,7 +148,7 @@ def deserialize_aws_json_1_1(data: dict) -> SlackConfiguration:
                 data["VpcConfiguration"]
             )
         )
-    if "SlackEntityList" in data:
+    if data.get("SlackEntityList") is not None:
         import capo_kendra.types.slack_entity_list
 
         out["slack_entity_list"] = (
@@ -158,25 +158,25 @@ def deserialize_aws_json_1_1(data: dict) -> SlackConfiguration:
         )
     else:
         raise DeserializationError("SlackConfiguration.slack_entity_list required")
-    if "UseChangeLog" in data:
+    if data.get("UseChangeLog") is not None:
         out["use_change_log"] = data["UseChangeLog"]
     else:
         out["use_change_log"] = False
-    if "CrawlBotMessage" in data:
+    if data.get("CrawlBotMessage") is not None:
         out["crawl_bot_message"] = data["CrawlBotMessage"]
     else:
         out["crawl_bot_message"] = False
-    if "ExcludeArchived" in data:
+    if data.get("ExcludeArchived") is not None:
         out["exclude_archived"] = data["ExcludeArchived"]
     else:
         out["exclude_archived"] = False
-    if "SinceCrawlDate" in data:
+    if data.get("SinceCrawlDate") is not None:
         out["since_crawl_date"] = data["SinceCrawlDate"]
     else:
         raise DeserializationError("SlackConfiguration.since_crawl_date required")
-    if "LookBackPeriod" in data:
+    if data.get("LookBackPeriod") is not None:
         out["look_back_period"] = data["LookBackPeriod"]
-    if "PrivateChannelFilter" in data:
+    if data.get("PrivateChannelFilter") is not None:
         import capo_kendra.types.private_channel_filter
 
         out["private_channel_filter"] = (
@@ -184,7 +184,7 @@ def deserialize_aws_json_1_1(data: dict) -> SlackConfiguration:
                 data["PrivateChannelFilter"]
             )
         )
-    if "PublicChannelFilter" in data:
+    if data.get("PublicChannelFilter") is not None:
         import capo_kendra.types.public_channel_filter
 
         out["public_channel_filter"] = (
@@ -192,7 +192,7 @@ def deserialize_aws_json_1_1(data: dict) -> SlackConfiguration:
                 data["PublicChannelFilter"]
             )
         )
-    if "InclusionPatterns" in data:
+    if data.get("InclusionPatterns") is not None:
         import capo_kendra.types.data_source_inclusions_exclusions_strings
 
         out["inclusion_patterns"] = (
@@ -200,7 +200,7 @@ def deserialize_aws_json_1_1(data: dict) -> SlackConfiguration:
                 data["InclusionPatterns"]
             )
         )
-    if "ExclusionPatterns" in data:
+    if data.get("ExclusionPatterns") is not None:
         import capo_kendra.types.data_source_inclusions_exclusions_strings
 
         out["exclusion_patterns"] = (
@@ -208,7 +208,7 @@ def deserialize_aws_json_1_1(data: dict) -> SlackConfiguration:
                 data["ExclusionPatterns"]
             )
         )
-    if "FieldMappings" in data:
+    if data.get("FieldMappings") is not None:
         import capo_kendra.types.data_source_to_index_field_mapping_list
 
         out["field_mappings"] = (

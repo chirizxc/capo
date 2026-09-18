@@ -30,11 +30,11 @@ def serialize_json(value: ForbiddenException_) -> dict:
 
 def deserialize_json(data: dict) -> ForbiddenException_:
     out: ForbiddenException_ = {}  # type: ignore[typeddict-item]
-    if "Code" in data:
+    if data.get("Code") is not None:
         import capo_chime.types.error_code
 
         out["code"] = capo_chime.types.error_code.deserialize_json(data["Code"])
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -44,15 +44,16 @@ class ForbiddenException(ServiceError):
 
     code: str | None = "ForbiddenException"
 
-    def __init__(self, data: ForbiddenException_):
+    def __init__(self, data: ForbiddenException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ForbiddenException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ForbiddenException":
-        return cls(deserialize_json(data))
+    def from_json(cls, data: dict, message: str | None = None) -> "ForbiddenException":
+        return cls(deserialize_json(data), message)

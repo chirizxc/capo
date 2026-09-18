@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ProjectContinuousIntegrationScanConfiguratio
 
     out: ProjectContinuousIntegrationScanConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_inspector2.types.project_continuous_integration_scan_configuration.deserialize_json(
                 item

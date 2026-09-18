@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: ListRateBasedRulesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListRateBasedRulesResponse:
     out: ListRateBasedRulesResponse = {}  # type: ignore[typeddict-item]
-    if "NextMarker" in data:
+    if data.get("NextMarker") is not None:
         out["next_marker"] = data["NextMarker"]
-    if "Rules" in data:
+    if data.get("Rules") is not None:
         import capo_waf_regional.types.rule_summaries
 
         out["rules"] = capo_waf_regional.types.rule_summaries.deserialize_aws_json_1_1(

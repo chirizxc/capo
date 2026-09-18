@@ -32,15 +32,15 @@ def serialize_aws_json_1_1(value: GetDomainSuggestionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDomainSuggestionsRequest:
     out: GetDomainSuggestionsRequest = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
     else:
         raise DeserializationError("GetDomainSuggestionsRequest.domain_name required")
-    if "SuggestionCount" in data:
+    if data.get("SuggestionCount") is not None:
         out["suggestion_count"] = data["SuggestionCount"]
     else:
         out["suggestion_count"] = 0
-    if "OnlyAvailable" in data:
+    if data.get("OnlyAvailable") is not None:
         out["only_available"] = data["OnlyAvailable"]
     else:
         raise DeserializationError(

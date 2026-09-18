@@ -32,10 +32,10 @@ def serialize_json(value: UpdateMeshInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateMeshInput:
     out: UpdateMeshInput = {}  # type: ignore[typeddict-item]
-    if "spec" in data:
+    if data.get("spec") is not None:
         import capo_app_mesh.types.mesh_spec
 
         out["spec"] = capo_app_mesh.types.mesh_spec.deserialize_json(data["spec"])
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

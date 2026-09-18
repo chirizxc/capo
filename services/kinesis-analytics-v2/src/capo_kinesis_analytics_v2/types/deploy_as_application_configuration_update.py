@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DeployAsApplicationConfigurationUpdate) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> DeployAsApplicationConfigurationUpdate:
     out: DeployAsApplicationConfigurationUpdate = {}  # type: ignore[typeddict-item]
-    if "S3ContentLocationUpdate" in data:
+    if data.get("S3ContentLocationUpdate") is not None:
         import capo_kinesis_analytics_v2.types.s3_content_base_location_update
 
         out["s3_content_location_update"] = (

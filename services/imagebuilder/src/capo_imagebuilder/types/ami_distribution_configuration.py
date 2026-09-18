@@ -63,11 +63,11 @@ def serialize_json(value: AmiDistributionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AmiDistributionConfiguration:
     out: AmiDistributionConfiguration = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "targetAccountIds" in data:
+    if data.get("targetAccountIds") is not None:
         import capo_imagebuilder.types.account_list
 
         out["target_account_ids"] = (
@@ -75,15 +75,15 @@ def deserialize_json(data: dict) -> AmiDistributionConfiguration:
                 data["targetAccountIds"]
             )
         )
-    if "amiTags" in data:
+    if data.get("amiTags") is not None:
         import capo_imagebuilder.types.tag_map
 
         out["ami_tags"] = capo_imagebuilder.types.tag_map.deserialize_json(
             data["amiTags"]
         )
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
-    if "launchPermission" in data:
+    if data.get("launchPermission") is not None:
         import capo_imagebuilder.types.launch_permission_configuration
 
         out["launch_permission"] = (

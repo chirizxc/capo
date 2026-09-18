@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: UpdateRuleMetadataRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateRuleMetadataRequest:
     out: UpdateRuleMetadataRequest = {}  # type: ignore[typeddict-item]
-    if "rule" in data:
+    if data.get("rule") is not None:
         import capo_frauddetector.types.rule
 
         out["rule"] = capo_frauddetector.types.rule.deserialize_aws_json_1_1(
@@ -38,7 +38,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateRuleMetadataRequest:
         )
     else:
         raise DeserializationError("UpdateRuleMetadataRequest.rule required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     else:
         raise DeserializationError("UpdateRuleMetadataRequest.description required")

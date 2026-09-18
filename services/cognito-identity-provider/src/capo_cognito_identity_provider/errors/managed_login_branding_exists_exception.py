@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: ManagedLoginBrandingExistsException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ManagedLoginBrandingExistsException_:
     out: ManagedLoginBrandingExistsException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -36,15 +36,20 @@ class ManagedLoginBrandingExistsException(ServiceError):
 
     code: str | None = "ManagedLoginBrandingExistsException"
 
-    def __init__(self, data: ManagedLoginBrandingExistsException_):
+    def __init__(
+        self, data: ManagedLoginBrandingExistsException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ManagedLoginBrandingExistsException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "ManagedLoginBrandingExistsException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "ManagedLoginBrandingExistsException":
+        return cls(deserialize_aws_json_1_1(data), message)

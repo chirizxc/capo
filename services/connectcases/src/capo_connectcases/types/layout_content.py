@@ -30,7 +30,7 @@ def serialize_json(value: LayoutContent) -> dict:
 
 
 def deserialize_json(data: dict) -> LayoutContent:
-    if "basic" in data:
+    if data.get("basic") is not None:
         import capo_connectcases.types.basic_layout
 
         return {

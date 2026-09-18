@@ -21,6 +21,7 @@ class UntagResourceInput(TypedDict, closed=True):
 # --- awsJson1_0 ser/de ---
 def serialize_aws_json_1_0(value: UntagResourceInput) -> dict:
     out: dict = {}
+    out["resourceArn"] = value["resource_arn"]
     import capo_proton.types.tag_key_list
 
     out["tagKeys"] = capo_proton.types.tag_key_list.serialize_aws_json_1_0(
@@ -31,7 +32,11 @@ def serialize_aws_json_1_0(value: UntagResourceInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UntagResourceInput:
     out: UntagResourceInput = {}  # type: ignore[typeddict-item]
-    if "tagKeys" in data:
+    if data.get("resourceArn") is not None:
+        out["resource_arn"] = data["resourceArn"]
+    else:
+        raise DeserializationError("UntagResourceInput.resource_arn required")
+    if data.get("tagKeys") is not None:
         import capo_proton.types.tag_key_list
 
         out["tag_keys"] = capo_proton.types.tag_key_list.deserialize_aws_json_1_0(

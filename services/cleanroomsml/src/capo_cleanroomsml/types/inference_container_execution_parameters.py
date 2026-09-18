@@ -18,6 +18,6 @@ def serialize_json(value: InferenceContainerExecutionParameters) -> dict:
 
 def deserialize_json(data: dict) -> InferenceContainerExecutionParameters:
     out: InferenceContainerExecutionParameters = {}  # type: ignore[typeddict-item]
-    if "maxPayloadInMB" in data:
+    if data.get("maxPayloadInMB") is not None:
         out["max_payload_in_mb"] = data["maxPayloadInMB"]
     return out

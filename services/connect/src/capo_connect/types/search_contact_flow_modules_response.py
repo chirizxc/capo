@@ -43,7 +43,7 @@ def serialize_json(value: SearchContactFlowModulesResponse) -> dict:
 
 def deserialize_json(data: dict) -> SearchContactFlowModulesResponse:
     out: SearchContactFlowModulesResponse = {}  # type: ignore[typeddict-item]
-    if "ContactFlowModules" in data:
+    if data.get("ContactFlowModules") is not None:
         import capo_connect.types.contact_flow_module_search_summary_list
 
         out["contact_flow_modules"] = (
@@ -51,8 +51,8 @@ def deserialize_json(data: dict) -> SearchContactFlowModulesResponse:
                 data["ContactFlowModules"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "ApproximateTotalCount" in data:
+    if data.get("ApproximateTotalCount") is not None:
         out["approximate_total_count"] = data["ApproximateTotalCount"]
     return out

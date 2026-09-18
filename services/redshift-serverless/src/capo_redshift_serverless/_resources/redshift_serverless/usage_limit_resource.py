@@ -88,10 +88,11 @@ class UsageLimitResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.create_usage_limit_request.CreateUsageLimitRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["usage_type"] = usage_type
-        input_["amount"] = amount
+        input_: capo_redshift_serverless.types.create_usage_limit_request.CreateUsageLimitRequest = {
+            "resource_arn": resource_arn,
+            "usage_type": usage_type,
+            "amount": amount,
+        }
         if period is not None:
             input_["period"] = period
         if breach_action is not None:
@@ -102,6 +103,7 @@ class UsageLimitResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_usage_limit(
@@ -138,14 +140,16 @@ class UsageLimitResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.delete_usage_limit_request.DeleteUsageLimitRequest = {}  # type: ignore[typeddict-item]
-        input_["usage_limit_id"] = usage_limit_id
+        input_: capo_redshift_serverless.types.delete_usage_limit_request.DeleteUsageLimitRequest = {
+            "usage_limit_id": usage_limit_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_usage_limit(
@@ -184,14 +188,16 @@ class UsageLimitResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.get_usage_limit_request.GetUsageLimitRequest = {}  # type: ignore[typeddict-item]
-        input_["usage_limit_id"] = usage_limit_id
+        input_: capo_redshift_serverless.types.get_usage_limit_request.GetUsageLimitRequest = {
+            "usage_limit_id": usage_limit_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_usage_limits(
@@ -239,7 +245,7 @@ class UsageLimitResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.list_usage_limits_request.ListUsageLimitsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift_serverless.types.list_usage_limits_request.ListUsageLimitsRequest = {}
         if resource_arn is not None:
             input_["resource_arn"] = resource_arn
         if usage_type is not None:
@@ -254,6 +260,7 @@ class UsageLimitResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_usage_limit(
@@ -296,8 +303,9 @@ class UsageLimitResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.update_usage_limit_request.UpdateUsageLimitRequest = {}  # type: ignore[typeddict-item]
-        input_["usage_limit_id"] = usage_limit_id
+        input_: capo_redshift_serverless.types.update_usage_limit_request.UpdateUsageLimitRequest = {
+            "usage_limit_id": usage_limit_id
+        }
         if amount is not None:
             input_["amount"] = amount
         if breach_action is not None:
@@ -308,6 +316,7 @@ class UsageLimitResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -363,10 +372,11 @@ class AsyncUsageLimitResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.create_usage_limit_request.CreateUsageLimitRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["usage_type"] = usage_type
-        input_["amount"] = amount
+        input_: capo_redshift_serverless.types.create_usage_limit_request.CreateUsageLimitRequest = {
+            "resource_arn": resource_arn,
+            "usage_type": usage_type,
+            "amount": amount,
+        }
         if period is not None:
             input_["period"] = period
         if breach_action is not None:
@@ -377,6 +387,7 @@ class AsyncUsageLimitResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_usage_limit(
@@ -414,14 +425,16 @@ class AsyncUsageLimitResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.delete_usage_limit_request.DeleteUsageLimitRequest = {}  # type: ignore[typeddict-item]
-        input_["usage_limit_id"] = usage_limit_id
+        input_: capo_redshift_serverless.types.delete_usage_limit_request.DeleteUsageLimitRequest = {
+            "usage_limit_id": usage_limit_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_usage_limit(
@@ -461,14 +474,16 @@ class AsyncUsageLimitResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.get_usage_limit_request.GetUsageLimitRequest = {}  # type: ignore[typeddict-item]
-        input_["usage_limit_id"] = usage_limit_id
+        input_: capo_redshift_serverless.types.get_usage_limit_request.GetUsageLimitRequest = {
+            "usage_limit_id": usage_limit_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_usage_limits(
@@ -517,7 +532,7 @@ class AsyncUsageLimitResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.list_usage_limits_request.ListUsageLimitsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift_serverless.types.list_usage_limits_request.ListUsageLimitsRequest = {}
         if resource_arn is not None:
             input_["resource_arn"] = resource_arn
         if usage_type is not None:
@@ -532,6 +547,7 @@ class AsyncUsageLimitResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_usage_limit(
@@ -575,8 +591,9 @@ class AsyncUsageLimitResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.update_usage_limit_request.UpdateUsageLimitRequest = {}  # type: ignore[typeddict-item]
-        input_["usage_limit_id"] = usage_limit_id
+        input_: capo_redshift_serverless.types.update_usage_limit_request.UpdateUsageLimitRequest = {
+            "usage_limit_id": usage_limit_id
+        }
         if amount is not None:
             input_["amount"] = amount
         if breach_action is not None:
@@ -587,4 +604,5 @@ class AsyncUsageLimitResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

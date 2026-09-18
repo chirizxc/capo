@@ -45,7 +45,7 @@ def serialize_json(value: GetTaxRegistrationDocumentRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetTaxRegistrationDocumentRequest:
     out: GetTaxRegistrationDocumentRequest = {}  # type: ignore[typeddict-item]
-    if "destinationS3Location" in data:
+    if data.get("destinationS3Location") is not None:
         import capo_taxsettings.types.destination_s3_location
 
         out["destination_s3_location"] = (
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> GetTaxRegistrationDocumentRequest:
                 data["destinationS3Location"]
             )
         )
-    if "taxDocumentMetadata" in data:
+    if data.get("taxDocumentMetadata") is not None:
         import capo_taxsettings.types.tax_document_metadata
 
         out["tax_document_metadata"] = (

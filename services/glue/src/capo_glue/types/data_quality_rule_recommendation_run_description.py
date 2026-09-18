@@ -50,21 +50,21 @@ def serialize_aws_json_1_1(value: DataQualityRuleRecommendationRunDescription) -
 
 def deserialize_aws_json_1_1(data: dict) -> DataQualityRuleRecommendationRunDescription:
     out: DataQualityRuleRecommendationRunDescription = {}  # type: ignore[typeddict-item]
-    if "RunId" in data:
+    if data.get("RunId") is not None:
         out["run_id"] = data["RunId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_glue.types.task_status_type
 
         out["status"] = capo_glue.types.task_status_type.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "StartedOn" in data:
+    if data.get("StartedOn") is not None:
         import capo_glue.types.timestamp
 
         out["started_on"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["StartedOn"]
         )
-    if "DataSource" in data:
+    if data.get("DataSource") is not None:
         import capo_glue.types.data_source
 
         out["data_source"] = capo_glue.types.data_source.deserialize_aws_json_1_1(

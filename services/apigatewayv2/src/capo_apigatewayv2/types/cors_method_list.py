@@ -16,4 +16,4 @@ def serialize_json(value: CorsMethodList) -> list:
 
 
 def deserialize_json(data: list) -> CorsMethodList:
-    return list(data)
+    return [item for item in data if item is not None]

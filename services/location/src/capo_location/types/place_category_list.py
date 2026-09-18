@@ -14,4 +14,4 @@ def serialize_json(value: PlaceCategoryList) -> list:
 
 
 def deserialize_json(data: list) -> PlaceCategoryList:
-    return list(data)
+    return [item for item in data if item is not None]

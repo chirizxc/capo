@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> CustomDataIdentifiersDetectionsList:
 
     out: CustomDataIdentifiersDetectionsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.custom_data_identifiers_detections.deserialize_json(
                 item

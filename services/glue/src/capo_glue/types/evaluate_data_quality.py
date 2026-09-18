@@ -69,11 +69,11 @@ def serialize_aws_json_1_1(value: EvaluateDataQuality) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EvaluateDataQuality:
     out: EvaluateDataQuality = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("EvaluateDataQuality.name required")
-    if "Inputs" in data:
+    if data.get("Inputs") is not None:
         import capo_glue.types.one_input
 
         out["inputs"] = capo_glue.types.one_input.deserialize_aws_json_1_1(
@@ -81,17 +81,17 @@ def deserialize_aws_json_1_1(data: dict) -> EvaluateDataQuality:
         )
     else:
         raise DeserializationError("EvaluateDataQuality.inputs required")
-    if "Ruleset" in data:
+    if data.get("Ruleset") is not None:
         out["ruleset"] = data["Ruleset"]
     else:
         raise DeserializationError("EvaluateDataQuality.ruleset required")
-    if "Output" in data:
+    if data.get("Output") is not None:
         import capo_glue.types.dq_transform_output
 
         out["output"] = capo_glue.types.dq_transform_output.deserialize_aws_json_1_1(
             data["Output"]
         )
-    if "PublishingOptions" in data:
+    if data.get("PublishingOptions") is not None:
         import capo_glue.types.dq_results_publishing_options
 
         out["publishing_options"] = (
@@ -99,7 +99,7 @@ def deserialize_aws_json_1_1(data: dict) -> EvaluateDataQuality:
                 data["PublishingOptions"]
             )
         )
-    if "StopJobOnFailureOptions" in data:
+    if data.get("StopJobOnFailureOptions") is not None:
         import capo_glue.types.dq_stop_job_on_failure_options
 
         out["stop_job_on_failure_options"] = (

@@ -85,15 +85,15 @@ def serialize_json(value: GetEnvironmentBlueprintOutput) -> dict:
             value["glossary_terms"]
         )
     if "created_at" in value:
-        import capo_datazone.types._prelude.timestamp
+        import capo_datazone._protocol.serialize
 
-        out["createdAt"] = capo_datazone.types._prelude.timestamp.serialize_json(
+        out["createdAt"] = capo_datazone._protocol.serialize.fmt_date_time(
             value["created_at"]
         )
     if "updated_at" in value:
-        import capo_datazone.types._prelude.timestamp
+        import capo_datazone._protocol.serialize
 
-        out["updatedAt"] = capo_datazone.types._prelude.timestamp.serialize_json(
+        out["updatedAt"] = capo_datazone._protocol.serialize.fmt_date_time(
             value["updated_at"]
         )
     return out
@@ -101,21 +101,21 @@ def serialize_json(value: GetEnvironmentBlueprintOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetEnvironmentBlueprintOutput:
     out: GetEnvironmentBlueprintOutput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("GetEnvironmentBlueprintOutput.id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("GetEnvironmentBlueprintOutput.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "provider" in data:
+    if data.get("provider") is not None:
         out["provider"] = data["provider"]
     else:
         raise DeserializationError("GetEnvironmentBlueprintOutput.provider required")
-    if "provisioningProperties" in data:
+    if data.get("provisioningProperties") is not None:
         import capo_datazone.types.provisioning_properties
 
         out["provisioning_properties"] = (
@@ -127,7 +127,7 @@ def deserialize_json(data: dict) -> GetEnvironmentBlueprintOutput:
         raise DeserializationError(
             "GetEnvironmentBlueprintOutput.provisioning_properties required"
         )
-    if "deploymentProperties" in data:
+    if data.get("deploymentProperties") is not None:
         import capo_datazone.types.deployment_properties
 
         out["deployment_properties"] = (
@@ -135,7 +135,7 @@ def deserialize_json(data: dict) -> GetEnvironmentBlueprintOutput:
                 data["deploymentProperties"]
             )
         )
-    if "userParameters" in data:
+    if data.get("userParameters") is not None:
         import capo_datazone.types.custom_parameter_list
 
         out["user_parameters"] = (
@@ -143,22 +143,22 @@ def deserialize_json(data: dict) -> GetEnvironmentBlueprintOutput:
                 data["userParameters"]
             )
         )
-    if "glossaryTerms" in data:
+    if data.get("glossaryTerms") is not None:
         import capo_datazone.types.glossary_terms
 
         out["glossary_terms"] = capo_datazone.types.glossary_terms.deserialize_json(
             data["glossaryTerms"]
         )
-    if "createdAt" in data:
-        import capo_datazone.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = capo_datazone.types._prelude.timestamp.deserialize_json(
-            data["createdAt"]
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
-    if "updatedAt" in data:
-        import capo_datazone.types._prelude.timestamp
+    if data.get("updatedAt") is not None:
+        import datetime
 
-        out["updated_at"] = capo_datazone.types._prelude.timestamp.deserialize_json(
-            data["updatedAt"]
+        out["updated_at"] = datetime.datetime.fromisoformat(
+            data["updatedAt"].replace("Z", "+00:00")
         )
     return out

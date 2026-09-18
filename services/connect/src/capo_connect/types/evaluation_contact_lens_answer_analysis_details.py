@@ -31,7 +31,7 @@ def serialize_json(value: EvaluationContactLensAnswerAnalysisDetails) -> dict:
 
 def deserialize_json(data: dict) -> EvaluationContactLensAnswerAnalysisDetails:
     out: EvaluationContactLensAnswerAnalysisDetails = {}  # type: ignore[typeddict-item]
-    if "MatchedRuleCategories" in data:
+    if data.get("MatchedRuleCategories") is not None:
         import capo_connect.types.evaluation_automation_rule_category_list
 
         out["matched_rule_categories"] = (

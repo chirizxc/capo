@@ -46,20 +46,20 @@ def serialize_aws_json_1_0(value: WrappedKey) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> WrappedKey:
     out: WrappedKey = {}  # type: ignore[typeddict-item]
-    if "WrappingKeyArn" in data:
+    if data.get("WrappingKeyArn") is not None:
         out["wrapping_key_arn"] = data["WrappingKeyArn"]
     else:
         raise DeserializationError("WrappedKey.wrapping_key_arn required")
-    if "WrappedKeyMaterialFormat" in data:
+    if data.get("WrappedKeyMaterialFormat") is not None:
         out["wrapped_key_material_format"] = data["WrappedKeyMaterialFormat"]
     else:
         raise DeserializationError("WrappedKey.wrapped_key_material_format required")
-    if "KeyMaterial" in data:
+    if data.get("KeyMaterial") is not None:
         out["key_material"] = data["KeyMaterial"]
     else:
         raise DeserializationError("WrappedKey.key_material required")
-    if "KeyCheckValue" in data:
+    if data.get("KeyCheckValue") is not None:
         out["key_check_value"] = data["KeyCheckValue"]
-    if "KeyCheckValueAlgorithm" in data:
+    if data.get("KeyCheckValueAlgorithm") is not None:
         out["key_check_value_algorithm"] = data["KeyCheckValueAlgorithm"]
     return out

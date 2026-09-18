@@ -110,25 +110,25 @@ def serialize_json(value: DescribeAssetResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeAssetResponse:
     out: DescribeAssetResponse = {}  # type: ignore[typeddict-item]
-    if "assetId" in data:
+    if data.get("assetId") is not None:
         out["asset_id"] = data["assetId"]
     else:
         raise DeserializationError("DescribeAssetResponse.asset_id required")
-    if "assetExternalId" in data:
+    if data.get("assetExternalId") is not None:
         out["asset_external_id"] = data["assetExternalId"]
-    if "assetArn" in data:
+    if data.get("assetArn") is not None:
         out["asset_arn"] = data["assetArn"]
     else:
         raise DeserializationError("DescribeAssetResponse.asset_arn required")
-    if "assetName" in data:
+    if data.get("assetName") is not None:
         out["asset_name"] = data["assetName"]
     else:
         raise DeserializationError("DescribeAssetResponse.asset_name required")
-    if "assetModelId" in data:
+    if data.get("assetModelId") is not None:
         out["asset_model_id"] = data["assetModelId"]
     else:
         raise DeserializationError("DescribeAssetResponse.asset_model_id required")
-    if "assetProperties" in data:
+    if data.get("assetProperties") is not None:
         import capo_iotsitewise.types.asset_properties
 
         out["asset_properties"] = (
@@ -138,7 +138,7 @@ def deserialize_json(data: dict) -> DescribeAssetResponse:
         )
     else:
         raise DeserializationError("DescribeAssetResponse.asset_properties required")
-    if "assetHierarchies" in data:
+    if data.get("assetHierarchies") is not None:
         import capo_iotsitewise.types.asset_hierarchies
 
         out["asset_hierarchies"] = (
@@ -148,7 +148,7 @@ def deserialize_json(data: dict) -> DescribeAssetResponse:
         )
     else:
         raise DeserializationError("DescribeAssetResponse.asset_hierarchies required")
-    if "assetCompositeModels" in data:
+    if data.get("assetCompositeModels") is not None:
         import capo_iotsitewise.types.asset_composite_models
 
         out["asset_composite_models"] = (
@@ -156,7 +156,7 @@ def deserialize_json(data: dict) -> DescribeAssetResponse:
                 data["assetCompositeModels"]
             )
         )
-    if "assetCreationDate" in data:
+    if data.get("assetCreationDate") is not None:
         import capo_iotsitewise.types.timestamp
 
         out["asset_creation_date"] = capo_iotsitewise.types.timestamp.deserialize_json(
@@ -164,7 +164,7 @@ def deserialize_json(data: dict) -> DescribeAssetResponse:
         )
     else:
         raise DeserializationError("DescribeAssetResponse.asset_creation_date required")
-    if "assetLastUpdateDate" in data:
+    if data.get("assetLastUpdateDate") is not None:
         import capo_iotsitewise.types.timestamp
 
         out["asset_last_update_date"] = (
@@ -176,7 +176,7 @@ def deserialize_json(data: dict) -> DescribeAssetResponse:
         raise DeserializationError(
             "DescribeAssetResponse.asset_last_update_date required"
         )
-    if "assetStatus" in data:
+    if data.get("assetStatus") is not None:
         import capo_iotsitewise.types.asset_status
 
         out["asset_status"] = capo_iotsitewise.types.asset_status.deserialize_json(
@@ -184,9 +184,9 @@ def deserialize_json(data: dict) -> DescribeAssetResponse:
         )
     else:
         raise DeserializationError("DescribeAssetResponse.asset_status required")
-    if "assetDescription" in data:
+    if data.get("assetDescription") is not None:
         out["asset_description"] = data["assetDescription"]
-    if "assetCompositeModelSummaries" in data:
+    if data.get("assetCompositeModelSummaries") is not None:
         import capo_iotsitewise.types.asset_composite_model_summaries
 
         out["asset_composite_model_summaries"] = (

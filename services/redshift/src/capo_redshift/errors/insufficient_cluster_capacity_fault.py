@@ -37,15 +37,20 @@ class InsufficientClusterCapacityFault(ServiceError):
 
     code: str | None = "InsufficientClusterCapacityFault"
 
-    def __init__(self, data: InsufficientClusterCapacityFault_):
+    def __init__(
+        self, data: InsufficientClusterCapacityFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InsufficientClusterCapacityFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "InsufficientClusterCapacityFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "InsufficientClusterCapacityFault":
+        return cls(deserialize_query(el), message)

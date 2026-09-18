@@ -81,11 +81,11 @@ def serialize_aws_json_1_1(value: PutExternalModelRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutExternalModelRequest:
     out: PutExternalModelRequest = {}  # type: ignore[typeddict-item]
-    if "modelEndpoint" in data:
+    if data.get("modelEndpoint") is not None:
         out["model_endpoint"] = data["modelEndpoint"]
     else:
         raise DeserializationError("PutExternalModelRequest.model_endpoint required")
-    if "modelSource" in data:
+    if data.get("modelSource") is not None:
         import capo_frauddetector.types.model_source
 
         out["model_source"] = (
@@ -95,13 +95,13 @@ def deserialize_aws_json_1_1(data: dict) -> PutExternalModelRequest:
         )
     else:
         raise DeserializationError("PutExternalModelRequest.model_source required")
-    if "invokeModelEndpointRoleArn" in data:
+    if data.get("invokeModelEndpointRoleArn") is not None:
         out["invoke_model_endpoint_role_arn"] = data["invokeModelEndpointRoleArn"]
     else:
         raise DeserializationError(
             "PutExternalModelRequest.invoke_model_endpoint_role_arn required"
         )
-    if "inputConfiguration" in data:
+    if data.get("inputConfiguration") is not None:
         import capo_frauddetector.types.model_input_configuration
 
         out["input_configuration"] = (
@@ -113,7 +113,7 @@ def deserialize_aws_json_1_1(data: dict) -> PutExternalModelRequest:
         raise DeserializationError(
             "PutExternalModelRequest.input_configuration required"
         )
-    if "outputConfiguration" in data:
+    if data.get("outputConfiguration") is not None:
         import capo_frauddetector.types.model_output_configuration
 
         out["output_configuration"] = (
@@ -125,7 +125,7 @@ def deserialize_aws_json_1_1(data: dict) -> PutExternalModelRequest:
         raise DeserializationError(
             "PutExternalModelRequest.output_configuration required"
         )
-    if "modelEndpointStatus" in data:
+    if data.get("modelEndpointStatus") is not None:
         import capo_frauddetector.types.model_endpoint_status
 
         out["model_endpoint_status"] = (
@@ -137,7 +137,7 @@ def deserialize_aws_json_1_1(data: dict) -> PutExternalModelRequest:
         raise DeserializationError(
             "PutExternalModelRequest.model_endpoint_status required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_frauddetector.types.tag_list
 
         out["tags"] = capo_frauddetector.types.tag_list.deserialize_aws_json_1_1(

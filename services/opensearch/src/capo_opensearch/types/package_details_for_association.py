@@ -50,11 +50,11 @@ def serialize_json(value: PackageDetailsForAssociation) -> dict:
 
 def deserialize_json(data: dict) -> PackageDetailsForAssociation:
     out: PackageDetailsForAssociation = {}  # type: ignore[typeddict-item]
-    if "PackageID" in data:
+    if data.get("PackageID") is not None:
         out["package_id"] = data["PackageID"]
     else:
         raise DeserializationError("PackageDetailsForAssociation.package_id required")
-    if "PrerequisitePackageIDList" in data:
+    if data.get("PrerequisitePackageIDList") is not None:
         import capo_opensearch.types.package_id_list
 
         out["prerequisite_package_id_list"] = (
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> PackageDetailsForAssociation:
                 data["PrerequisitePackageIDList"]
             )
         )
-    if "AssociationConfiguration" in data:
+    if data.get("AssociationConfiguration") is not None:
         import capo_opensearch.types.package_association_configuration
 
         out["association_configuration"] = (

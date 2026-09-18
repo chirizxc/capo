@@ -32,13 +32,13 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DeleteServiceLinkedConfigurationRecorderResponse:
     out: DeleteServiceLinkedConfigurationRecorderResponse = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError(
             "DeleteServiceLinkedConfigurationRecorderResponse.arn required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError(

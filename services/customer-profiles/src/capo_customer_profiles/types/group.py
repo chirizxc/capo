@@ -55,7 +55,7 @@ def serialize_json(value: Group) -> dict:
 
 def deserialize_json(data: dict) -> Group:
     out: Group = {}  # type: ignore[typeddict-item]
-    if "Dimensions" in data:
+    if data.get("Dimensions") is not None:
         import capo_customer_profiles.types.dimension_list
 
         out["dimensions"] = (
@@ -63,7 +63,7 @@ def deserialize_json(data: dict) -> Group:
                 data["Dimensions"]
             )
         )
-    if "SourceSegments" in data:
+    if data.get("SourceSegments") is not None:
         import capo_customer_profiles.types.source_segment_list
 
         out["source_segments"] = (
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> Group:
                 data["SourceSegments"]
             )
         )
-    if "SourceType" in data:
+    if data.get("SourceType") is not None:
         import capo_customer_profiles.types.include_options
 
         out["source_type"] = (
@@ -81,7 +81,7 @@ def deserialize_json(data: dict) -> Group:
         )
     else:
         out["source_type"] = "ALL"
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_customer_profiles.types.include_options
 
         out["type"] = capo_customer_profiles.types.include_options.deserialize_json(

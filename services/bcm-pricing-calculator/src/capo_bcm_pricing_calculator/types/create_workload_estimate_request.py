@@ -34,6 +34,8 @@ class CreateWorkloadEstimateRequest(TypedDict, closed=True):
 def serialize_aws_json_1_0(value: CreateWorkloadEstimateRequest) -> dict:
     out: dict = {}
     out["name"] = value["name"]
+    if "client_token" in value:
+        out["clientToken"] = value["client_token"]
     if "rate_type" in value:
         import capo_bcm_pricing_calculator.types.workload_estimate_rate_type
 
@@ -53,11 +55,13 @@ def serialize_aws_json_1_0(value: CreateWorkloadEstimateRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateWorkloadEstimateRequest:
     out: CreateWorkloadEstimateRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateWorkloadEstimateRequest.name required")
-    if "rateType" in data:
+    if data.get("clientToken") is not None:
+        out["client_token"] = data["clientToken"]
+    if data.get("rateType") is not None:
         import capo_bcm_pricing_calculator.types.workload_estimate_rate_type
 
         out["rate_type"] = (
@@ -65,7 +69,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateWorkloadEstimateRequest:
                 data["rateType"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_bcm_pricing_calculator.types.tags
 
         out["tags"] = capo_bcm_pricing_calculator.types.tags.deserialize_aws_json_1_0(

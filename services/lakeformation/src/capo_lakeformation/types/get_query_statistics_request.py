@@ -24,7 +24,7 @@ def serialize_json(value: GetQueryStatisticsRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetQueryStatisticsRequest:
     out: GetQueryStatisticsRequest = {}  # type: ignore[typeddict-item]
-    if "QueryId" in data:
+    if data.get("QueryId") is not None:
         out["query_id"] = data["QueryId"]
     else:
         raise DeserializationError("GetQueryStatisticsRequest.query_id required")

@@ -36,12 +36,12 @@ def serialize_json(value: KubernetesPermissionCheckedDetails) -> dict:
 
 def deserialize_json(data: dict) -> KubernetesPermissionCheckedDetails:
     out: KubernetesPermissionCheckedDetails = {}  # type: ignore[typeddict-item]
-    if "verb" in data:
+    if data.get("verb") is not None:
         out["verb"] = data["verb"]
-    if "resource" in data:
+    if data.get("resource") is not None:
         out["resource"] = data["resource"]
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         out["namespace"] = data["namespace"]
-    if "allowed" in data:
+    if data.get("allowed") is not None:
         out["allowed"] = data["allowed"]
     return out

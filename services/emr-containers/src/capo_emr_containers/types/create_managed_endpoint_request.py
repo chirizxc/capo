@@ -68,29 +68,29 @@ def serialize_json(value: CreateManagedEndpointRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateManagedEndpointRequest:
     out: CreateManagedEndpointRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateManagedEndpointRequest.name required")
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("CreateManagedEndpointRequest.type required")
-    if "releaseLabel" in data:
+    if data.get("releaseLabel") is not None:
         out["release_label"] = data["releaseLabel"]
     else:
         raise DeserializationError(
             "CreateManagedEndpointRequest.release_label required"
         )
-    if "executionRoleArn" in data:
+    if data.get("executionRoleArn") is not None:
         out["execution_role_arn"] = data["executionRoleArn"]
     else:
         raise DeserializationError(
             "CreateManagedEndpointRequest.execution_role_arn required"
         )
-    if "certificateArn" in data:
+    if data.get("certificateArn") is not None:
         out["certificate_arn"] = data["certificateArn"]
-    if "configurationOverrides" in data:
+    if data.get("configurationOverrides") is not None:
         import capo_emr_containers.types.configuration_overrides
 
         out["configuration_overrides"] = (
@@ -98,11 +98,11 @@ def deserialize_json(data: dict) -> CreateManagedEndpointRequest:
                 data["configurationOverrides"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError("CreateManagedEndpointRequest.client_token required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_emr_containers.types.tag_map
 
         out["tags"] = capo_emr_containers.types.tag_map.deserialize_json(data["tags"])

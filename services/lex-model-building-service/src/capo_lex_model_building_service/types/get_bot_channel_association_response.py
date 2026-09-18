@@ -95,15 +95,15 @@ def serialize_json(value: GetBotChannelAssociationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetBotChannelAssociationResponse:
     out: GetBotChannelAssociationResponse = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "botAlias" in data:
+    if data.get("botAlias") is not None:
         out["bot_alias"] = data["botAlias"]
-    if "botName" in data:
+    if data.get("botName") is not None:
         out["bot_name"] = data["botName"]
-    if "createdDate" in data:
+    if data.get("createdDate") is not None:
         import capo_lex_model_building_service.types.timestamp
 
         out["created_date"] = (
@@ -111,7 +111,7 @@ def deserialize_json(data: dict) -> GetBotChannelAssociationResponse:
                 data["createdDate"]
             )
         )
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_lex_model_building_service.types.channel_type
 
         out["type"] = (
@@ -119,7 +119,7 @@ def deserialize_json(data: dict) -> GetBotChannelAssociationResponse:
                 data["type"]
             )
         )
-    if "botConfiguration" in data:
+    if data.get("botConfiguration") is not None:
         import capo_lex_model_building_service.types.channel_configuration_map
 
         out["bot_configuration"] = (
@@ -127,7 +127,7 @@ def deserialize_json(data: dict) -> GetBotChannelAssociationResponse:
                 data["botConfiguration"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_lex_model_building_service.types.channel_status
 
         out["status"] = (
@@ -135,6 +135,6 @@ def deserialize_json(data: dict) -> GetBotChannelAssociationResponse:
                 data["status"]
             )
         )
-    if "failureReason" in data:
+    if data.get("failureReason") is not None:
         out["failure_reason"] = data["failureReason"]
     return out

@@ -56,27 +56,27 @@ def serialize_aws_json_1_0(value: RespondDecisionTaskCompletedInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RespondDecisionTaskCompletedInput:
     out: RespondDecisionTaskCompletedInput = {}  # type: ignore[typeddict-item]
-    if "taskToken" in data:
+    if data.get("taskToken") is not None:
         out["task_token"] = data["taskToken"]
     else:
         raise DeserializationError(
             "RespondDecisionTaskCompletedInput.task_token required"
         )
-    if "decisions" in data:
+    if data.get("decisions") is not None:
         import capo_swf.types.decision_list
 
         out["decisions"] = capo_swf.types.decision_list.deserialize_aws_json_1_0(
             data["decisions"]
         )
-    if "executionContext" in data:
+    if data.get("executionContext") is not None:
         out["execution_context"] = data["executionContext"]
-    if "taskList" in data:
+    if data.get("taskList") is not None:
         import capo_swf.types.task_list
 
         out["task_list"] = capo_swf.types.task_list.deserialize_aws_json_1_0(
             data["taskList"]
         )
-    if "taskListScheduleToStartTimeout" in data:
+    if data.get("taskListScheduleToStartTimeout") is not None:
         out["task_list_schedule_to_start_timeout"] = data[
             "taskListScheduleToStartTimeout"
         ]

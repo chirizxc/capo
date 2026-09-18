@@ -37,15 +37,20 @@ class IntegrationConflictStateFault(ServiceError):
 
     code: str | None = "IntegrationConflictStateFault"
 
-    def __init__(self, data: IntegrationConflictStateFault_):
+    def __init__(
+        self, data: IntegrationConflictStateFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="IntegrationConflictStateFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "IntegrationConflictStateFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "IntegrationConflictStateFault":
+        return cls(deserialize_query(el), message)

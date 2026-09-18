@@ -49,9 +49,9 @@ def deserialize_json(
     data: dict,
 ) -> AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersTmpfsDetails:
     out: AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersTmpfsDetails = {}  # type: ignore[typeddict-item]
-    if "ContainerPath" in data:
+    if data.get("ContainerPath") is not None:
         out["container_path"] = data["ContainerPath"]
-    if "MountOptions" in data:
+    if data.get("MountOptions") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["mount_options"] = (
@@ -59,6 +59,6 @@ def deserialize_json(
                 data["MountOptions"]
             )
         )
-    if "Size" in data:
+    if data.get("Size") is not None:
         out["size"] = data["Size"]
     return out

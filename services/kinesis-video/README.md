@@ -13,9 +13,9 @@ from capo_kinesis_video import AsyncKinesisVideoClient
 
 
 async def main():
-    async with AsyncKinesisVideoClient() as s3:
+    async with AsyncKinesisVideoClient() as kinesis_video:
         # Example: call the create_signaling_channel operation
-        response = await s3.create_signaling_channel()
+        response = await kinesis_video.create_signaling_channel()
         print(response["channel_arn"])
 ```
 
@@ -28,9 +28,9 @@ from capo_kinesis_video import AsyncKinesisVideoClient
 
 
 async def main():
-    async with AsyncKinesisVideoClient() as s3:
+    async with AsyncKinesisVideoClient() as kinesis_video:
         # Example: paginate over describe_mapped_resource_configuration
-        async for item in s3.iter_describe_mapped_resource_configuration():
+        async for item in kinesis_video.iter_describe_mapped_resource_configuration():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_kinesis_video.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncKinesisVideoClient() as s3:
+    async with AsyncKinesisVideoClient() as kinesis_video:
         try:
-            await s3.create_signaling_channel()
+            await kinesis_video.create_signaling_channel()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_kinesis_video import AsyncKinesisVideoClient
 
 
 async def main():
-    async with AsyncKinesisVideoClient() as s3:
+    async with AsyncKinesisVideoClient() as kinesis_video:
         # Default: 3 attempts for every operation
-        response = await s3.create_signaling_channel()
+        response = await kinesis_video.create_signaling_channel()
 
         # Override per operation
-        response = await s3.create_signaling_channel(config_overrides={"retry_max_attempts": 5})
+        response = await kinesis_video.create_signaling_channel(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_signaling_channel(config_overrides={"retry_max_attempts": 1})
+        response = await kinesis_video.create_signaling_channel(config_overrides={"retry_max_attempts": 1})
 ```

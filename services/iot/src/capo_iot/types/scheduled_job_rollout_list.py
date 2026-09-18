@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ScheduledJobRolloutList:
 
     out: ScheduledJobRolloutList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot.types.scheduled_job_rollout.deserialize_json(item))
     return out

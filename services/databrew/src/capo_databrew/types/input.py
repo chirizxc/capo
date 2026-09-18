@@ -60,13 +60,13 @@ def serialize_json(value: Input) -> dict:
 
 def deserialize_json(data: dict) -> Input:
     out: Input = {}  # type: ignore[typeddict-item]
-    if "S3InputDefinition" in data:
+    if data.get("S3InputDefinition") is not None:
         import capo_databrew.types.s3_location
 
         out["s3_input_definition"] = capo_databrew.types.s3_location.deserialize_json(
             data["S3InputDefinition"]
         )
-    if "DataCatalogInputDefinition" in data:
+    if data.get("DataCatalogInputDefinition") is not None:
         import capo_databrew.types.data_catalog_input_definition
 
         out["data_catalog_input_definition"] = (
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> Input:
                 data["DataCatalogInputDefinition"]
             )
         )
-    if "DatabaseInputDefinition" in data:
+    if data.get("DatabaseInputDefinition") is not None:
         import capo_databrew.types.database_input_definition
 
         out["database_input_definition"] = (
@@ -82,7 +82,7 @@ def deserialize_json(data: dict) -> Input:
                 data["DatabaseInputDefinition"]
             )
         )
-    if "Metadata" in data:
+    if data.get("Metadata") is not None:
         import capo_databrew.types.metadata
 
         out["metadata"] = capo_databrew.types.metadata.deserialize_json(

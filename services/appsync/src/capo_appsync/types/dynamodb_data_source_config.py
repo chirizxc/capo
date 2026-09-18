@@ -45,19 +45,19 @@ def serialize_json(value: DynamodbDataSourceConfig) -> dict:
 
 def deserialize_json(data: dict) -> DynamodbDataSourceConfig:
     out: DynamodbDataSourceConfig = {}  # type: ignore[typeddict-item]
-    if "tableName" in data:
+    if data.get("tableName") is not None:
         out["table_name"] = data["tableName"]
     else:
         raise DeserializationError("DynamodbDataSourceConfig.table_name required")
-    if "awsRegion" in data:
+    if data.get("awsRegion") is not None:
         out["aws_region"] = data["awsRegion"]
     else:
         raise DeserializationError("DynamodbDataSourceConfig.aws_region required")
-    if "useCallerCredentials" in data:
+    if data.get("useCallerCredentials") is not None:
         out["use_caller_credentials"] = data["useCallerCredentials"]
     else:
         out["use_caller_credentials"] = False
-    if "deltaSyncConfig" in data:
+    if data.get("deltaSyncConfig") is not None:
         import capo_appsync.types.delta_sync_config
 
         out["delta_sync_config"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> DynamodbDataSourceConfig:
                 data["deltaSyncConfig"]
             )
         )
-    if "versioned" in data:
+    if data.get("versioned") is not None:
         out["versioned"] = data["versioned"]
     else:
         out["versioned"] = False

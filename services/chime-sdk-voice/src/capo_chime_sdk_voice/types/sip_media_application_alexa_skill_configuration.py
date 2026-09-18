@@ -40,7 +40,7 @@ def serialize_json(value: SipMediaApplicationAlexaSkillConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SipMediaApplicationAlexaSkillConfiguration:
     out: SipMediaApplicationAlexaSkillConfiguration = {}  # type: ignore[typeddict-item]
-    if "AlexaSkillStatus" in data:
+    if data.get("AlexaSkillStatus") is not None:
         import capo_chime_sdk_voice.types.alexa_skill_status
 
         out["alexa_skill_status"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> SipMediaApplicationAlexaSkillConfiguration:
         raise DeserializationError(
             "SipMediaApplicationAlexaSkillConfiguration.alexa_skill_status required"
         )
-    if "AlexaSkillIds" in data:
+    if data.get("AlexaSkillIds") is not None:
         import capo_chime_sdk_voice.types.alexa_skill_id_list
 
         out["alexa_skill_ids"] = (

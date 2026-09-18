@@ -35,7 +35,7 @@ def serialize_json(value: ConnectionRecordingPreferences) -> dict:
 
 def deserialize_json(data: dict) -> ConnectionRecordingPreferences:
     out: ConnectionRecordingPreferences = {}  # type: ignore[typeddict-item]
-    if "RecordingDestinations" in data:
+    if data.get("RecordingDestinations") is not None:
         import capo_ssm_guiconnect.types.recording_destinations
 
         out["recording_destinations"] = (
@@ -47,7 +47,7 @@ def deserialize_json(data: dict) -> ConnectionRecordingPreferences:
         raise DeserializationError(
             "ConnectionRecordingPreferences.recording_destinations required"
         )
-    if "KMSKeyArn" in data:
+    if data.get("KMSKeyArn") is not None:
         out["kms_key_arn"] = data["KMSKeyArn"]
     else:
         raise DeserializationError(

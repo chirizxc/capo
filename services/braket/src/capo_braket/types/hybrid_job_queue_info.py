@@ -31,14 +31,14 @@ def serialize_json(value: HybridJobQueueInfo) -> dict:
 
 def deserialize_json(data: dict) -> HybridJobQueueInfo:
     out: HybridJobQueueInfo = {}  # type: ignore[typeddict-item]
-    if "queue" in data:
+    if data.get("queue") is not None:
         out["queue"] = data["queue"]
     else:
         raise DeserializationError("HybridJobQueueInfo.queue required")
-    if "position" in data:
+    if data.get("position") is not None:
         out["position"] = data["position"]
     else:
         raise DeserializationError("HybridJobQueueInfo.position required")
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out

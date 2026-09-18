@@ -39,7 +39,7 @@ def serialize_json(value: GrpcGatewayRouteAction) -> dict:
 
 def deserialize_json(data: dict) -> GrpcGatewayRouteAction:
     out: GrpcGatewayRouteAction = {}  # type: ignore[typeddict-item]
-    if "target" in data:
+    if data.get("target") is not None:
         import capo_app_mesh.types.gateway_route_target
 
         out["target"] = capo_app_mesh.types.gateway_route_target.deserialize_json(
@@ -47,7 +47,7 @@ def deserialize_json(data: dict) -> GrpcGatewayRouteAction:
         )
     else:
         raise DeserializationError("GrpcGatewayRouteAction.target required")
-    if "rewrite" in data:
+    if data.get("rewrite") is not None:
         import capo_app_mesh.types.grpc_gateway_route_rewrite
 
         out["rewrite"] = (

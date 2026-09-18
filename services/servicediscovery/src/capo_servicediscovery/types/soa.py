@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: SOA) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SOA:
     out: SOA = {}  # type: ignore[typeddict-item]
-    if "TTL" in data:
+    if data.get("TTL") is not None:
         out["ttl"] = data["TTL"]
     else:
         raise DeserializationError("SOA.ttl required")

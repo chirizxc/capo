@@ -23,6 +23,6 @@ def serialize_json(value: SpecialRouterSettings) -> dict:
 
 def deserialize_json(data: dict) -> SpecialRouterSettings:
     out: SpecialRouterSettings = {}  # type: ignore[typeddict-item]
-    if "routerArn" in data:
+    if data.get("routerArn") is not None:
         out["router_arn"] = data["routerArn"]
     return out

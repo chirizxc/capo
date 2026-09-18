@@ -34,11 +34,11 @@ def serialize_json(value: EksContainerResourceRequirements) -> dict:
 
 def deserialize_json(data: dict) -> EksContainerResourceRequirements:
     out: EksContainerResourceRequirements = {}  # type: ignore[typeddict-item]
-    if "limits" in data:
+    if data.get("limits") is not None:
         import capo_batch.types.eks_limits
 
         out["limits"] = capo_batch.types.eks_limits.deserialize_json(data["limits"])
-    if "requests" in data:
+    if data.get("requests") is not None:
         import capo_batch.types.eks_requests
 
         out["requests"] = capo_batch.types.eks_requests.deserialize_json(

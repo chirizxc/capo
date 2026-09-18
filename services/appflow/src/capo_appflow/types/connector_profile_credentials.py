@@ -263,7 +263,7 @@ def serialize_json(value: ConnectorProfileCredentials) -> dict:
 
 def deserialize_json(data: dict) -> ConnectorProfileCredentials:
     out: ConnectorProfileCredentials = {}  # type: ignore[typeddict-item]
-    if "Amplitude" in data:
+    if data.get("Amplitude") is not None:
         import capo_appflow.types.amplitude_connector_profile_credentials
 
         out["amplitude"] = (
@@ -271,7 +271,7 @@ def deserialize_json(data: dict) -> ConnectorProfileCredentials:
                 data["Amplitude"]
             )
         )
-    if "Datadog" in data:
+    if data.get("Datadog") is not None:
         import capo_appflow.types.datadog_connector_profile_credentials
 
         out["datadog"] = (
@@ -279,7 +279,7 @@ def deserialize_json(data: dict) -> ConnectorProfileCredentials:
                 data["Datadog"]
             )
         )
-    if "Dynatrace" in data:
+    if data.get("Dynatrace") is not None:
         import capo_appflow.types.dynatrace_connector_profile_credentials
 
         out["dynatrace"] = (
@@ -287,7 +287,7 @@ def deserialize_json(data: dict) -> ConnectorProfileCredentials:
                 data["Dynatrace"]
             )
         )
-    if "GoogleAnalytics" in data:
+    if data.get("GoogleAnalytics") is not None:
         import capo_appflow.types.google_analytics_connector_profile_credentials
 
         out["google_analytics"] = (
@@ -295,7 +295,7 @@ def deserialize_json(data: dict) -> ConnectorProfileCredentials:
                 data["GoogleAnalytics"]
             )
         )
-    if "Honeycode" in data:
+    if data.get("Honeycode") is not None:
         import capo_appflow.types.honeycode_connector_profile_credentials
 
         out["honeycode"] = (
@@ -303,7 +303,7 @@ def deserialize_json(data: dict) -> ConnectorProfileCredentials:
                 data["Honeycode"]
             )
         )
-    if "InforNexus" in data:
+    if data.get("InforNexus") is not None:
         import capo_appflow.types.infor_nexus_connector_profile_credentials
 
         out["infor_nexus"] = (
@@ -311,7 +311,7 @@ def deserialize_json(data: dict) -> ConnectorProfileCredentials:
                 data["InforNexus"]
             )
         )
-    if "Marketo" in data:
+    if data.get("Marketo") is not None:
         import capo_appflow.types.marketo_connector_profile_credentials
 
         out["marketo"] = (
@@ -319,7 +319,7 @@ def deserialize_json(data: dict) -> ConnectorProfileCredentials:
                 data["Marketo"]
             )
         )
-    if "Redshift" in data:
+    if data.get("Redshift") is not None:
         import capo_appflow.types.redshift_connector_profile_credentials
 
         out["redshift"] = (
@@ -327,7 +327,7 @@ def deserialize_json(data: dict) -> ConnectorProfileCredentials:
                 data["Redshift"]
             )
         )
-    if "Salesforce" in data:
+    if data.get("Salesforce") is not None:
         import capo_appflow.types.salesforce_connector_profile_credentials
 
         out["salesforce"] = (
@@ -335,7 +335,7 @@ def deserialize_json(data: dict) -> ConnectorProfileCredentials:
                 data["Salesforce"]
             )
         )
-    if "ServiceNow" in data:
+    if data.get("ServiceNow") is not None:
         import capo_appflow.types.service_now_connector_profile_credentials
 
         out["service_now"] = (
@@ -343,7 +343,7 @@ def deserialize_json(data: dict) -> ConnectorProfileCredentials:
                 data["ServiceNow"]
             )
         )
-    if "Singular" in data:
+    if data.get("Singular") is not None:
         import capo_appflow.types.singular_connector_profile_credentials
 
         out["singular"] = (
@@ -351,7 +351,7 @@ def deserialize_json(data: dict) -> ConnectorProfileCredentials:
                 data["Singular"]
             )
         )
-    if "Slack" in data:
+    if data.get("Slack") is not None:
         import capo_appflow.types.slack_connector_profile_credentials
 
         out["slack"] = (
@@ -359,7 +359,7 @@ def deserialize_json(data: dict) -> ConnectorProfileCredentials:
                 data["Slack"]
             )
         )
-    if "Snowflake" in data:
+    if data.get("Snowflake") is not None:
         import capo_appflow.types.snowflake_connector_profile_credentials
 
         out["snowflake"] = (
@@ -367,7 +367,7 @@ def deserialize_json(data: dict) -> ConnectorProfileCredentials:
                 data["Snowflake"]
             )
         )
-    if "Trendmicro" in data:
+    if data.get("Trendmicro") is not None:
         import capo_appflow.types.trendmicro_connector_profile_credentials
 
         out["trendmicro"] = (
@@ -375,7 +375,7 @@ def deserialize_json(data: dict) -> ConnectorProfileCredentials:
                 data["Trendmicro"]
             )
         )
-    if "Veeva" in data:
+    if data.get("Veeva") is not None:
         import capo_appflow.types.veeva_connector_profile_credentials
 
         out["veeva"] = (
@@ -383,7 +383,7 @@ def deserialize_json(data: dict) -> ConnectorProfileCredentials:
                 data["Veeva"]
             )
         )
-    if "Zendesk" in data:
+    if data.get("Zendesk") is not None:
         import capo_appflow.types.zendesk_connector_profile_credentials
 
         out["zendesk"] = (
@@ -391,7 +391,7 @@ def deserialize_json(data: dict) -> ConnectorProfileCredentials:
                 data["Zendesk"]
             )
         )
-    if "SAPOData" in data:
+    if data.get("SAPOData") is not None:
         import capo_appflow.types.sapo_data_connector_profile_credentials
 
         out["sapo_data"] = (
@@ -399,7 +399,7 @@ def deserialize_json(data: dict) -> ConnectorProfileCredentials:
                 data["SAPOData"]
             )
         )
-    if "CustomConnector" in data:
+    if data.get("CustomConnector") is not None:
         import capo_appflow.types.custom_connector_profile_credentials
 
         out["custom_connector"] = (
@@ -407,7 +407,7 @@ def deserialize_json(data: dict) -> ConnectorProfileCredentials:
                 data["CustomConnector"]
             )
         )
-    if "Pardot" in data:
+    if data.get("Pardot") is not None:
         import capo_appflow.types.pardot_connector_profile_credentials
 
         out["pardot"] = (

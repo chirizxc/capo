@@ -44,13 +44,13 @@ def serialize_json(value: GenerateAs2805KekValidationInput) -> dict:
 
 def deserialize_json(data: dict) -> GenerateAs2805KekValidationInput:
     out: GenerateAs2805KekValidationInput = {}  # type: ignore[typeddict-item]
-    if "KeyIdentifier" in data:
+    if data.get("KeyIdentifier") is not None:
         out["key_identifier"] = data["KeyIdentifier"]
     else:
         raise DeserializationError(
             "GenerateAs2805KekValidationInput.key_identifier required"
         )
-    if "KekValidationType" in data:
+    if data.get("KekValidationType") is not None:
         import capo_payment_cryptography_data.types.as2805_kek_validation_type
 
         out["kek_validation_type"] = (
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> GenerateAs2805KekValidationInput:
         raise DeserializationError(
             "GenerateAs2805KekValidationInput.kek_validation_type required"
         )
-    if "RandomKeySendVariantMask" in data:
+    if data.get("RandomKeySendVariantMask") is not None:
         import capo_payment_cryptography_data.types.random_key_send_variant_mask
 
         out["random_key_send_variant_mask"] = (

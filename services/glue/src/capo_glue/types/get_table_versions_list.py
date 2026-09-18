@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> GetTableVersionsList:
 
     out: GetTableVersionsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_glue.types.table_version.deserialize_aws_json_1_1(item))
     return out

@@ -63,7 +63,7 @@ def serialize_json(value: PromptSpecification) -> dict:
 
 def deserialize_json(data: dict) -> PromptSpecification:
     out: PromptSpecification = {}  # type: ignore[typeddict-item]
-    if "messageGroups" in data:
+    if data.get("messageGroups") is not None:
         import capo_lex_models_v2.types.message_groups_list
 
         out["message_groups"] = (
@@ -73,13 +73,13 @@ def deserialize_json(data: dict) -> PromptSpecification:
         )
     else:
         raise DeserializationError("PromptSpecification.message_groups required")
-    if "maxRetries" in data:
+    if data.get("maxRetries") is not None:
         out["max_retries"] = data["maxRetries"]
     else:
         raise DeserializationError("PromptSpecification.max_retries required")
-    if "allowInterrupt" in data:
+    if data.get("allowInterrupt") is not None:
         out["allow_interrupt"] = data["allowInterrupt"]
-    if "messageSelectionStrategy" in data:
+    if data.get("messageSelectionStrategy") is not None:
         import capo_lex_models_v2.types.message_selection_strategy
 
         out["message_selection_strategy"] = (
@@ -87,7 +87,7 @@ def deserialize_json(data: dict) -> PromptSpecification:
                 data["messageSelectionStrategy"]
             )
         )
-    if "promptAttemptsSpecification" in data:
+    if data.get("promptAttemptsSpecification") is not None:
         import capo_lex_models_v2.types.prompt_attempts_specification_map
 
         out["prompt_attempts_specification"] = (

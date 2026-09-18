@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DescribeDatasetImportJobResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeDatasetImportJobResponse:
     out: DescribeDatasetImportJobResponse = {}  # type: ignore[typeddict-item]
-    if "datasetImportJob" in data:
+    if data.get("datasetImportJob") is not None:
         import capo_personalize.types.dataset_import_job
 
         out["dataset_import_job"] = (

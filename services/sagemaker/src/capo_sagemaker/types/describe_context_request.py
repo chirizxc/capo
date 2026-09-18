@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: DescribeContextRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeContextRequest:
     out: DescribeContextRequest = {}  # type: ignore[typeddict-item]
-    if "ContextName" in data:
+    if data.get("ContextName") is not None:
         out["context_name"] = data["ContextName"]
     return out

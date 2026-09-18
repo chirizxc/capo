@@ -43,11 +43,11 @@ def serialize_aws_json_1_1(value: AIBenchmarkEndpoint) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AIBenchmarkEndpoint:
     out: AIBenchmarkEndpoint = {}  # type: ignore[typeddict-item]
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
-    if "TargetContainerHostname" in data:
+    if data.get("TargetContainerHostname") is not None:
         out["target_container_hostname"] = data["TargetContainerHostname"]
-    if "InferenceComponents" in data:
+    if data.get("InferenceComponents") is not None:
         import capo_sagemaker.types.ai_benchmark_inference_component_list
 
         out["inference_components"] = (

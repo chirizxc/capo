@@ -81,19 +81,19 @@ def serialize_json(value: VirtualCluster) -> dict:
 
 def deserialize_json(data: dict) -> VirtualCluster:
     out: VirtualCluster = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_emr_containers.types.virtual_cluster_state
 
         out["state"] = capo_emr_containers.types.virtual_cluster_state.deserialize_json(
             data["state"]
         )
-    if "containerProvider" in data:
+    if data.get("containerProvider") is not None:
         import capo_emr_containers.types.container_provider
 
         out["container_provider"] = (
@@ -101,16 +101,16 @@ def deserialize_json(data: dict) -> VirtualCluster:
                 data["containerProvider"]
             )
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_emr_containers.types.date
 
         out["created_at"] = capo_emr_containers.types.date.deserialize_json(
             data["createdAt"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_emr_containers.types.tag_map
 
         out["tags"] = capo_emr_containers.types.tag_map.deserialize_json(data["tags"])
-    if "securityConfigurationId" in data:
+    if data.get("securityConfigurationId") is not None:
         out["security_configuration_id"] = data["securityConfigurationId"]
     return out

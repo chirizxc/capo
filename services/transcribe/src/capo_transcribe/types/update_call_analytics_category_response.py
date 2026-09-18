@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: UpdateCallAnalyticsCategoryResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateCallAnalyticsCategoryResponse:
     out: UpdateCallAnalyticsCategoryResponse = {}  # type: ignore[typeddict-item]
-    if "CategoryProperties" in data:
+    if data.get("CategoryProperties") is not None:
         import capo_transcribe.types.category_properties
 
         out["category_properties"] = (

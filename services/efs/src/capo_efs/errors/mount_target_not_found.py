@@ -27,11 +27,11 @@ def serialize_json(value: MountTargetNotFound_) -> dict:
 
 def deserialize_json(data: dict) -> MountTargetNotFound_:
     out: MountTargetNotFound_ = {}  # type: ignore[typeddict-item]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
     else:
         raise DeserializationError("MountTargetNotFound_.error_code required")
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -41,15 +41,16 @@ class MountTargetNotFound(ServiceError):
 
     code: str | None = "MountTargetNotFound"
 
-    def __init__(self, data: MountTargetNotFound_):
+    def __init__(self, data: MountTargetNotFound_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="MountTargetNotFound",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "MountTargetNotFound":
-        return cls(deserialize_json(data))
+    def from_json(cls, data: dict, message: str | None = None) -> "MountTargetNotFound":
+        return cls(deserialize_json(data), message)

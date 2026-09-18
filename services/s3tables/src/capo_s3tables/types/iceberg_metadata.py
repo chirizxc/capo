@@ -67,19 +67,19 @@ def serialize_json(value: IcebergMetadata) -> dict:
 
 def deserialize_json(data: dict) -> IcebergMetadata:
     out: IcebergMetadata = {}  # type: ignore[typeddict-item]
-    if "schema" in data:
+    if data.get("schema") is not None:
         import capo_s3tables.types.iceberg_schema
 
         out["schema"] = capo_s3tables.types.iceberg_schema.deserialize_json(
             data["schema"]
         )
-    if "schemaV2" in data:
+    if data.get("schemaV2") is not None:
         import capo_s3tables.types.iceberg_schema_v2
 
         out["schema_v2"] = capo_s3tables.types.iceberg_schema_v2.deserialize_json(
             data["schemaV2"]
         )
-    if "partitionSpec" in data:
+    if data.get("partitionSpec") is not None:
         import capo_s3tables.types.iceberg_partition_spec
 
         out["partition_spec"] = (
@@ -87,13 +87,13 @@ def deserialize_json(data: dict) -> IcebergMetadata:
                 data["partitionSpec"]
             )
         )
-    if "writeOrder" in data:
+    if data.get("writeOrder") is not None:
         import capo_s3tables.types.iceberg_sort_order
 
         out["write_order"] = capo_s3tables.types.iceberg_sort_order.deserialize_json(
             data["writeOrder"]
         )
-    if "properties" in data:
+    if data.get("properties") is not None:
         import capo_s3tables.types.table_properties
 
         out["properties"] = capo_s3tables.types.table_properties.deserialize_json(

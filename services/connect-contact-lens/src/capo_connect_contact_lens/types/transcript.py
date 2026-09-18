@@ -83,19 +83,19 @@ def serialize_json(value: Transcript) -> dict:
 
 def deserialize_json(data: dict) -> Transcript:
     out: Transcript = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "ParticipantId" in data:
+    if data.get("ParticipantId") is not None:
         out["participant_id"] = data["ParticipantId"]
-    if "ParticipantRole" in data:
+    if data.get("ParticipantRole") is not None:
         out["participant_role"] = data["ParticipantRole"]
-    if "Content" in data:
+    if data.get("Content") is not None:
         out["content"] = data["Content"]
-    if "BeginOffsetMillis" in data:
+    if data.get("BeginOffsetMillis") is not None:
         out["begin_offset_millis"] = data["BeginOffsetMillis"]
-    if "EndOffsetMillis" in data:
+    if data.get("EndOffsetMillis") is not None:
         out["end_offset_millis"] = data["EndOffsetMillis"]
-    if "Sentiment" in data:
+    if data.get("Sentiment") is not None:
         import capo_connect_contact_lens.types.sentiment_value
 
         out["sentiment"] = (
@@ -103,7 +103,7 @@ def deserialize_json(data: dict) -> Transcript:
                 data["Sentiment"]
             )
         )
-    if "IssuesDetected" in data:
+    if data.get("IssuesDetected") is not None:
         import capo_connect_contact_lens.types.issues_detected
 
         out["issues_detected"] = (

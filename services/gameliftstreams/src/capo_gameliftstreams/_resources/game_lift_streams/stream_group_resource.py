@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_gameliftstreams._auth._signers
@@ -101,23 +102,26 @@ class StreamGroupResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_gameliftstreams.types.create_stream_group_input.CreateStreamGroupInput = {}  # type: ignore[typeddict-item]
-        input_["description"] = description
-        input_["stream_class"] = stream_class
+        input_: capo_gameliftstreams.types.create_stream_group_input.CreateStreamGroupInput = {
+            "description": description,
+            "stream_class": stream_class,
+        }
         if default_application_identifier is not None:
             input_["default_application_identifier"] = default_application_identifier
         if location_configurations is not None:
             input_["location_configurations"] = location_configurations
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -155,14 +159,16 @@ class StreamGroupResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_gameliftstreams.types.get_stream_group_input.GetStreamGroupInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_gameliftstreams.types.get_stream_group_input.GetStreamGroupInput = {
+            "identifier": identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -216,8 +222,9 @@ class StreamGroupResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_gameliftstreams.types.update_stream_group_input.UpdateStreamGroupInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_gameliftstreams.types.update_stream_group_input.UpdateStreamGroupInput = {
+            "identifier": identifier
+        }
         if location_configurations is not None:
             input_["location_configurations"] = location_configurations
         if description is not None:
@@ -230,6 +237,7 @@ class StreamGroupResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -266,14 +274,16 @@ class StreamGroupResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_gameliftstreams.types.delete_stream_group_input.DeleteStreamGroupInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_gameliftstreams.types.delete_stream_group_input.DeleteStreamGroupInput = {
+            "identifier": identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -314,7 +324,7 @@ class StreamGroupResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_gameliftstreams.types.list_stream_groups_input.ListStreamGroupsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gameliftstreams.types.list_stream_groups_input.ListStreamGroupsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -325,6 +335,7 @@ class StreamGroupResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -388,23 +399,26 @@ class AsyncStreamGroupResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_gameliftstreams.types.create_stream_group_input.CreateStreamGroupInput = {}  # type: ignore[typeddict-item]
-        input_["description"] = description
-        input_["stream_class"] = stream_class
+        input_: capo_gameliftstreams.types.create_stream_group_input.CreateStreamGroupInput = {
+            "description": description,
+            "stream_class": stream_class,
+        }
         if default_application_identifier is not None:
             input_["default_application_identifier"] = default_application_identifier
         if location_configurations is not None:
             input_["location_configurations"] = location_configurations
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -443,14 +457,16 @@ class AsyncStreamGroupResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_gameliftstreams.types.get_stream_group_input.GetStreamGroupInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_gameliftstreams.types.get_stream_group_input.GetStreamGroupInput = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -505,8 +521,9 @@ class AsyncStreamGroupResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_gameliftstreams.types.update_stream_group_input.UpdateStreamGroupInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_gameliftstreams.types.update_stream_group_input.UpdateStreamGroupInput = {
+            "identifier": identifier
+        }
         if location_configurations is not None:
             input_["location_configurations"] = location_configurations
         if description is not None:
@@ -519,6 +536,7 @@ class AsyncStreamGroupResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -556,14 +574,16 @@ class AsyncStreamGroupResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_gameliftstreams.types.delete_stream_group_input.DeleteStreamGroupInput = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_gameliftstreams.types.delete_stream_group_input.DeleteStreamGroupInput = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -605,7 +625,7 @@ class AsyncStreamGroupResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_gameliftstreams.types.list_stream_groups_input.ListStreamGroupsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_gameliftstreams.types.list_stream_groups_input.ListStreamGroupsInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -616,4 +636,5 @@ class AsyncStreamGroupResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

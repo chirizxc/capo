@@ -32,7 +32,7 @@ def serialize_json(value: ListFeedsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListFeedsResponse:
     out: ListFeedsResponse = {}  # type: ignore[typeddict-item]
-    if "feeds" in data:
+    if data.get("feeds") is not None:
         import capo_elementalinference.types.feed_summary_list
 
         out["feeds"] = capo_elementalinference.types.feed_summary_list.deserialize_json(
@@ -40,6 +40,6 @@ def deserialize_json(data: dict) -> ListFeedsResponse:
         )
     else:
         raise DeserializationError("ListFeedsResponse.feeds required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

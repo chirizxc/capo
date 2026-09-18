@@ -31,9 +31,9 @@ def serialize_aws_json_1_1(value: ListLocalDisksOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListLocalDisksOutput:
     out: ListLocalDisksOutput = {}  # type: ignore[typeddict-item]
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
-    if "Disks" in data:
+    if data.get("Disks") is not None:
         import capo_storage_gateway.types.disks
 
         out["disks"] = capo_storage_gateway.types.disks.deserialize_aws_json_1_1(

@@ -27,7 +27,7 @@ def serialize_json(value: ReverseReplicationResponse) -> dict:
 
 def deserialize_json(data: dict) -> ReverseReplicationResponse:
     out: ReverseReplicationResponse = {}  # type: ignore[typeddict-item]
-    if "reversedDirectionSourceServerArn" in data:
+    if data.get("reversedDirectionSourceServerArn") is not None:
         out["reversed_direction_source_server_arn"] = data[
             "reversedDirectionSourceServerArn"
         ]

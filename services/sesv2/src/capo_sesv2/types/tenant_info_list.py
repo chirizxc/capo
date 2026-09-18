@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> TenantInfoList:
 
     out: TenantInfoList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_sesv2.types.tenant_info.deserialize_json(item))
     return out

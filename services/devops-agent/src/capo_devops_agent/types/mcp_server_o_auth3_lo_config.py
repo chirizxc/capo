@@ -65,13 +65,13 @@ def serialize_json(value: MCPServerOAuth3LOConfig) -> dict:
 
 def deserialize_json(data: dict) -> MCPServerOAuth3LOConfig:
     out: MCPServerOAuth3LOConfig = {}  # type: ignore[typeddict-item]
-    if "clientName" in data:
+    if data.get("clientName") is not None:
         out["client_name"] = data["clientName"]
-    if "clientId" in data:
+    if data.get("clientId") is not None:
         out["client_id"] = data["clientId"]
     else:
         raise DeserializationError("MCPServerOAuth3LOConfig.client_id required")
-    if "exchangeParameters" in data:
+    if data.get("exchangeParameters") is not None:
         import capo_devops_agent.types.exchange_parameters
 
         out["exchange_parameters"] = (
@@ -79,27 +79,27 @@ def deserialize_json(data: dict) -> MCPServerOAuth3LOConfig:
                 data["exchangeParameters"]
             )
         )
-    if "returnToEndpoint" in data:
+    if data.get("returnToEndpoint") is not None:
         out["return_to_endpoint"] = data["returnToEndpoint"]
     else:
         raise DeserializationError(
             "MCPServerOAuth3LOConfig.return_to_endpoint required"
         )
-    if "authorizationUrl" in data:
+    if data.get("authorizationUrl") is not None:
         out["authorization_url"] = data["authorizationUrl"]
     else:
         raise DeserializationError("MCPServerOAuth3LOConfig.authorization_url required")
-    if "exchangeUrl" in data:
+    if data.get("exchangeUrl") is not None:
         out["exchange_url"] = data["exchangeUrl"]
     else:
         raise DeserializationError("MCPServerOAuth3LOConfig.exchange_url required")
-    if "clientSecret" in data:
+    if data.get("clientSecret") is not None:
         out["client_secret"] = data["clientSecret"]
-    if "supportCodeChallenge" in data:
+    if data.get("supportCodeChallenge") is not None:
         out["support_code_challenge"] = data["supportCodeChallenge"]
     else:
         out["support_code_challenge"] = False
-    if "scopes" in data:
+    if data.get("scopes") is not None:
         import capo_devops_agent.types.scopes
 
         out["scopes"] = capo_devops_agent.types.scopes.deserialize_json(data["scopes"])

@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ResolverEndpoints:
 
     out: ResolverEndpoints = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_route53resolver.types.resolver_endpoint.deserialize_aws_json_1_1(item)
         )

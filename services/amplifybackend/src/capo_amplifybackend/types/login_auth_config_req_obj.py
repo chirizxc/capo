@@ -39,12 +39,12 @@ def serialize_json(value: LoginAuthConfigReqObj) -> dict:
 
 def deserialize_json(data: dict) -> LoginAuthConfigReqObj:
     out: LoginAuthConfigReqObj = {}  # type: ignore[typeddict-item]
-    if "aws_cognito_identity_pool_id" in data:
+    if data.get("aws_cognito_identity_pool_id") is not None:
         out["aws_cognito_identity_pool_id"] = data["aws_cognito_identity_pool_id"]
-    if "aws_cognito_region" in data:
+    if data.get("aws_cognito_region") is not None:
         out["aws_cognito_region"] = data["aws_cognito_region"]
-    if "aws_user_pools_id" in data:
+    if data.get("aws_user_pools_id") is not None:
         out["aws_user_pools_id"] = data["aws_user_pools_id"]
-    if "aws_user_pools_web_client_id" in data:
+    if data.get("aws_user_pools_web_client_id") is not None:
         out["aws_user_pools_web_client_id"] = data["aws_user_pools_web_client_id"]
     return out

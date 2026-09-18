@@ -41,7 +41,7 @@ def serialize_aws_json_1_1(value: DeleteTagsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteTagsRequest:
     out: DeleteTagsRequest = {}  # type: ignore[typeddict-item]
-    if "configurationIds" in data:
+    if data.get("configurationIds") is not None:
         import capo_application_discovery_service.types.configuration_id_list
 
         out["configuration_ids"] = (
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeleteTagsRequest:
         )
     else:
         raise DeserializationError("DeleteTagsRequest.configuration_ids required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_application_discovery_service.types.tag_set
 
         out["tags"] = (

@@ -40,7 +40,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DescribeConfigurationAggregatorSourcesStatusResponse:
     out: DescribeConfigurationAggregatorSourcesStatusResponse = {}  # type: ignore[typeddict-item]
-    if "AggregatedSourceStatusList" in data:
+    if data.get("AggregatedSourceStatusList") is not None:
         import capo_config_service.types.aggregated_source_status_list
 
         out["aggregated_source_status_list"] = (
@@ -48,6 +48,6 @@ def deserialize_aws_json_1_1(
                 data["AggregatedSourceStatusList"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

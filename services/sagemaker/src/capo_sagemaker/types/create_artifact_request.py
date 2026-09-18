@@ -73,17 +73,17 @@ def serialize_aws_json_1_1(value: CreateArtifactRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateArtifactRequest:
     out: CreateArtifactRequest = {}  # type: ignore[typeddict-item]
-    if "ArtifactName" in data:
+    if data.get("ArtifactName") is not None:
         out["artifact_name"] = data["ArtifactName"]
-    if "Source" in data:
+    if data.get("Source") is not None:
         import capo_sagemaker.types.artifact_source
 
         out["source"] = capo_sagemaker.types.artifact_source.deserialize_aws_json_1_1(
             data["Source"]
         )
-    if "ArtifactType" in data:
+    if data.get("ArtifactType") is not None:
         out["artifact_type"] = data["ArtifactType"]
-    if "Properties" in data:
+    if data.get("Properties") is not None:
         import capo_sagemaker.types.artifact_properties
 
         out["properties"] = (
@@ -91,7 +91,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateArtifactRequest:
                 data["Properties"]
             )
         )
-    if "MetadataProperties" in data:
+    if data.get("MetadataProperties") is not None:
         import capo_sagemaker.types.metadata_properties
 
         out["metadata_properties"] = (
@@ -99,7 +99,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateArtifactRequest:
                 data["MetadataProperties"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(

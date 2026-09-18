@@ -46,17 +46,17 @@ def serialize_json(value: TopicVisual) -> dict:
 
 def deserialize_json(data: dict) -> TopicVisual:
     out: TopicVisual = {}  # type: ignore[typeddict-item]
-    if "VisualId" in data:
+    if data.get("VisualId") is not None:
         out["visual_id"] = data["VisualId"]
-    if "Role" in data:
+    if data.get("Role") is not None:
         import capo_quicksight.types.visual_role
 
         out["role"] = capo_quicksight.types.visual_role.deserialize_json(data["Role"])
-    if "Ir" in data:
+    if data.get("Ir") is not None:
         import capo_quicksight.types.topic_ir
 
         out["ir"] = capo_quicksight.types.topic_ir.deserialize_json(data["Ir"])
-    if "SupportingVisuals" in data:
+    if data.get("SupportingVisuals") is not None:
         import capo_quicksight.types.topic_visuals
 
         out["supporting_visuals"] = (

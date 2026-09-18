@@ -32,7 +32,7 @@ def serialize_json(value: EBSOptionsStatus) -> dict:
 
 def deserialize_json(data: dict) -> EBSOptionsStatus:
     out: EBSOptionsStatus = {}  # type: ignore[typeddict-item]
-    if "Options" in data:
+    if data.get("Options") is not None:
         import capo_opensearch.types.ebs_options
 
         out["options"] = capo_opensearch.types.ebs_options.deserialize_json(
@@ -40,7 +40,7 @@ def deserialize_json(data: dict) -> EBSOptionsStatus:
         )
     else:
         raise DeserializationError("EBSOptionsStatus.options required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_opensearch.types.option_status
 
         out["status"] = capo_opensearch.types.option_status.deserialize_json(

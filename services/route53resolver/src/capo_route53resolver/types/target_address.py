@@ -49,18 +49,18 @@ def serialize_aws_json_1_1(value: TargetAddress) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TargetAddress:
     out: TargetAddress = {}  # type: ignore[typeddict-item]
-    if "Ip" in data:
+    if data.get("Ip") is not None:
         out["ip"] = data["Ip"]
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
-    if "Ipv6" in data:
+    if data.get("Ipv6") is not None:
         out["ipv6"] = data["Ipv6"]
-    if "Protocol" in data:
+    if data.get("Protocol") is not None:
         import capo_route53resolver.types.protocol
 
         out["protocol"] = capo_route53resolver.types.protocol.deserialize_aws_json_1_1(
             data["Protocol"]
         )
-    if "ServerNameIndication" in data:
+    if data.get("ServerNameIndication") is not None:
         out["server_name_indication"] = data["ServerNameIndication"]
     return out

@@ -46,13 +46,13 @@ def serialize_json(value: CustomConnectorSourceProperties) -> dict:
 
 def deserialize_json(data: dict) -> CustomConnectorSourceProperties:
     out: CustomConnectorSourceProperties = {}  # type: ignore[typeddict-item]
-    if "entityName" in data:
+    if data.get("entityName") is not None:
         out["entity_name"] = data["entityName"]
     else:
         raise DeserializationError(
             "CustomConnectorSourceProperties.entity_name required"
         )
-    if "customProperties" in data:
+    if data.get("customProperties") is not None:
         import capo_appflow.types.custom_properties
 
         out["custom_properties"] = (
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> CustomConnectorSourceProperties:
                 data["customProperties"]
             )
         )
-    if "dataTransferApi" in data:
+    if data.get("dataTransferApi") is not None:
         import capo_appflow.types.data_transfer_api
 
         out["data_transfer_api"] = (

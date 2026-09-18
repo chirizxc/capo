@@ -27,8 +27,8 @@ def serialize_json(value: AwsEc2NetworkInterfaceSecurityGroup) -> dict:
 
 def deserialize_json(data: dict) -> AwsEc2NetworkInterfaceSecurityGroup:
     out: AwsEc2NetworkInterfaceSecurityGroup = {}  # type: ignore[typeddict-item]
-    if "GroupName" in data:
+    if data.get("GroupName") is not None:
         out["group_name"] = data["GroupName"]
-    if "GroupId" in data:
+    if data.get("GroupId") is not None:
         out["group_id"] = data["GroupId"]
     return out

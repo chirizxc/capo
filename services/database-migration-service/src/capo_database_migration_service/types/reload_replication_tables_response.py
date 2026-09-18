@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: ReloadReplicationTablesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReloadReplicationTablesResponse:
     out: ReloadReplicationTablesResponse = {}  # type: ignore[typeddict-item]
-    if "ReplicationConfigArn" in data:
+    if data.get("ReplicationConfigArn") is not None:
         out["replication_config_arn"] = data["ReplicationConfigArn"]
     return out

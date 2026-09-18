@@ -44,7 +44,7 @@ def serialize_json(value: CreateIdentitySourceRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateIdentitySourceRequest:
     out: CreateIdentitySourceRequest = {}  # type: ignore[typeddict-item]
-    if "IdentitySourceParameters" in data:
+    if data.get("IdentitySourceParameters") is not None:
         import capo_mpa.types.identity_source_parameters
 
         out["identity_source_parameters"] = (
@@ -56,9 +56,9 @@ def deserialize_json(data: dict) -> CreateIdentitySourceRequest:
         raise DeserializationError(
             "CreateIdentitySourceRequest.identity_source_parameters required"
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_mpa.types.tags
 
         out["tags"] = capo_mpa.types.tags.deserialize_json(data["Tags"])

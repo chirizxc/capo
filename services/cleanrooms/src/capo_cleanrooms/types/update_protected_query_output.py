@@ -28,7 +28,7 @@ def serialize_json(value: UpdateProtectedQueryOutput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateProtectedQueryOutput:
     out: UpdateProtectedQueryOutput = {}  # type: ignore[typeddict-item]
-    if "protectedQuery" in data:
+    if data.get("protectedQuery") is not None:
         import capo_cleanrooms.types.protected_query
 
         out["protected_query"] = capo_cleanrooms.types.protected_query.deserialize_json(

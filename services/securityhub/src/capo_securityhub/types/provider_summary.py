@@ -42,7 +42,7 @@ def serialize_json(value: ProviderSummary) -> dict:
 
 def deserialize_json(data: dict) -> ProviderSummary:
     out: ProviderSummary = {}  # type: ignore[typeddict-item]
-    if "ProviderName" in data:
+    if data.get("ProviderName") is not None:
         import capo_securityhub.types.connector_provider_name
 
         out["provider_name"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> ProviderSummary:
                 data["ProviderName"]
             )
         )
-    if "ConnectorStatus" in data:
+    if data.get("ConnectorStatus") is not None:
         import capo_securityhub.types.connector_status
 
         out["connector_status"] = (

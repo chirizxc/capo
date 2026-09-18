@@ -42,18 +42,18 @@ def serialize_json(value: AppVersionSummary) -> dict:
 
 def deserialize_json(data: dict) -> AppVersionSummary:
     out: AppVersionSummary = {}  # type: ignore[typeddict-item]
-    if "appVersion" in data:
+    if data.get("appVersion") is not None:
         out["app_version"] = data["appVersion"]
     else:
         raise DeserializationError("AppVersionSummary.app_version required")
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         out["identifier"] = data["identifier"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_resiliencehub.types.time_stamp
 
         out["creation_time"] = capo_resiliencehub.types.time_stamp.deserialize_json(
             data["creationTime"]
         )
-    if "versionName" in data:
+    if data.get("versionName") is not None:
         out["version_name"] = data["versionName"]
     return out

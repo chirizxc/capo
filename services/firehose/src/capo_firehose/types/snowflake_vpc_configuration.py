@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: SnowflakeVpcConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SnowflakeVpcConfiguration:
     out: SnowflakeVpcConfiguration = {}  # type: ignore[typeddict-item]
-    if "PrivateLinkVpceId" in data:
+    if data.get("PrivateLinkVpceId") is not None:
         out["private_link_vpce_id"] = data["PrivateLinkVpceId"]
     else:
         raise DeserializationError(

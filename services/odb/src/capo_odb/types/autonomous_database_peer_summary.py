@@ -36,12 +36,12 @@ def serialize_aws_json_1_0(value: AutonomousDatabasePeerSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AutonomousDatabasePeerSummary:
     out: AutonomousDatabasePeerSummary = {}  # type: ignore[typeddict-item]
-    if "autonomousDatabaseId" in data:
+    if data.get("autonomousDatabaseId") is not None:
         out["autonomous_database_id"] = data["autonomousDatabaseId"]
-    if "autonomousDatabaseArn" in data:
+    if data.get("autonomousDatabaseArn") is not None:
         out["autonomous_database_arn"] = data["autonomousDatabaseArn"]
-    if "ocid" in data:
+    if data.get("ocid") is not None:
         out["ocid"] = data["ocid"]
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
     return out

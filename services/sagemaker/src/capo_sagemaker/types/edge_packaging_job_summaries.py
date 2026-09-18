@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> EdgePackagingJobSummaries:
 
     out: EdgePackagingJobSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.edge_packaging_job_summary.deserialize_aws_json_1_1(
                 item

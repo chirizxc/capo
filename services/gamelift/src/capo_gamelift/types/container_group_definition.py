@@ -102,7 +102,15 @@ def serialize_aws_json_1_1(value: ContainerGroupDefinition) -> dict:
     if "total_memory_limit_mebibytes" in value:
         out["TotalMemoryLimitMebibytes"] = value["total_memory_limit_mebibytes"]
     if "total_vcpu_limit" in value:
-        out["TotalVcpuLimit"] = value["total_vcpu_limit"]
+        out["TotalVcpuLimit"] = (
+            "NaN"
+            if value["total_vcpu_limit"] != value["total_vcpu_limit"]
+            else "Infinity"
+            if value["total_vcpu_limit"] == float("inf")
+            else "-Infinity"
+            if value["total_vcpu_limit"] == float("-inf")
+            else value["total_vcpu_limit"]
+        )
     if "game_server_container_definition" in value:
         import capo_gamelift.types.game_server_container_definition
 
@@ -138,15 +146,15 @@ def serialize_aws_json_1_1(value: ContainerGroupDefinition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ContainerGroupDefinition:
     out: ContainerGroupDefinition = {}  # type: ignore[typeddict-item]
-    if "ContainerGroupDefinitionArn" in data:
+    if data.get("ContainerGroupDefinitionArn") is not None:
         out["container_group_definition_arn"] = data["ContainerGroupDefinitionArn"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_gamelift.types.timestamp
 
         out["creation_time"] = capo_gamelift.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "OperatingSystem" in data:
+    if data.get("OperatingSystem") is not None:
         import capo_gamelift.types.container_operating_system
 
         out["operating_system"] = (
@@ -154,9 +162,9 @@ def deserialize_aws_json_1_1(data: dict) -> ContainerGroupDefinition:
                 data["OperatingSystem"]
             )
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ContainerGroupType" in data:
+    if data.get("ContainerGroupType") is not None:
         import capo_gamelift.types.container_group_type
 
         out["container_group_type"] = (
@@ -164,11 +172,11 @@ def deserialize_aws_json_1_1(data: dict) -> ContainerGroupDefinition:
                 data["ContainerGroupType"]
             )
         )
-    if "TotalMemoryLimitMebibytes" in data:
+    if data.get("TotalMemoryLimitMebibytes") is not None:
         out["total_memory_limit_mebibytes"] = data["TotalMemoryLimitMebibytes"]
-    if "TotalVcpuLimit" in data:
-        out["total_vcpu_limit"] = data["TotalVcpuLimit"]
-    if "GameServerContainerDefinition" in data:
+    if data.get("TotalVcpuLimit") is not None:
+        out["total_vcpu_limit"] = float(data["TotalVcpuLimit"])
+    if data.get("GameServerContainerDefinition") is not None:
         import capo_gamelift.types.game_server_container_definition
 
         out["game_server_container_definition"] = (
@@ -176,7 +184,7 @@ def deserialize_aws_json_1_1(data: dict) -> ContainerGroupDefinition:
                 data["GameServerContainerDefinition"]
             )
         )
-    if "SupportContainerDefinitions" in data:
+    if data.get("SupportContainerDefinitions") is not None:
         import capo_gamelift.types.support_container_definition_list
 
         out["support_container_definitions"] = (
@@ -184,11 +192,11 @@ def deserialize_aws_json_1_1(data: dict) -> ContainerGroupDefinition:
                 data["SupportContainerDefinitions"]
             )
         )
-    if "VersionNumber" in data:
+    if data.get("VersionNumber") is not None:
         out["version_number"] = data["VersionNumber"]
-    if "VersionDescription" in data:
+    if data.get("VersionDescription") is not None:
         out["version_description"] = data["VersionDescription"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_gamelift.types.container_group_definition_status
 
         out["status"] = (
@@ -196,6 +204,6 @@ def deserialize_aws_json_1_1(data: dict) -> ContainerGroupDefinition:
                 data["Status"]
             )
         )
-    if "StatusReason" in data:
+    if data.get("StatusReason") is not None:
         out["status_reason"] = data["StatusReason"]
     return out

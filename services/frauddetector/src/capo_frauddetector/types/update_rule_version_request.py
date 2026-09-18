@@ -62,7 +62,7 @@ def serialize_aws_json_1_1(value: UpdateRuleVersionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateRuleVersionRequest:
     out: UpdateRuleVersionRequest = {}  # type: ignore[typeddict-item]
-    if "rule" in data:
+    if data.get("rule") is not None:
         import capo_frauddetector.types.rule
 
         out["rule"] = capo_frauddetector.types.rule.deserialize_aws_json_1_1(
@@ -70,13 +70,13 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateRuleVersionRequest:
         )
     else:
         raise DeserializationError("UpdateRuleVersionRequest.rule required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "expression" in data:
+    if data.get("expression") is not None:
         out["expression"] = data["expression"]
     else:
         raise DeserializationError("UpdateRuleVersionRequest.expression required")
-    if "language" in data:
+    if data.get("language") is not None:
         import capo_frauddetector.types.language
 
         out["language"] = capo_frauddetector.types.language.deserialize_aws_json_1_1(
@@ -84,7 +84,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateRuleVersionRequest:
         )
     else:
         raise DeserializationError("UpdateRuleVersionRequest.language required")
-    if "outcomes" in data:
+    if data.get("outcomes") is not None:
         import capo_frauddetector.types.non_empty_list_of_strings
 
         out["outcomes"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateRuleVersionRequest:
         )
     else:
         raise DeserializationError("UpdateRuleVersionRequest.outcomes required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_frauddetector.types.tag_list
 
         out["tags"] = capo_frauddetector.types.tag_list.deserialize_aws_json_1_1(

@@ -93,11 +93,12 @@ class RequesterGateway:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rtbfabric.types.create_requester_gateway_request.CreateRequesterGatewayRequest = {}  # type: ignore[typeddict-item]
-        input_["vpc_id"] = vpc_id
-        input_["subnet_ids"] = subnet_ids
-        input_["security_group_ids"] = security_group_ids
-        input_["client_token"] = client_token
+        input_: capo_rtbfabric.types.create_requester_gateway_request.CreateRequesterGatewayRequest = {
+            "vpc_id": vpc_id,
+            "subnet_ids": subnet_ids,
+            "security_group_ids": security_group_ids,
+            "client_token": client_token,
+        }
         if description is not None:
             input_["description"] = description
         if tags is not None:
@@ -108,6 +109,7 @@ class RequesterGateway:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -151,14 +153,16 @@ class RequesterGateway:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rtbfabric.types.get_requester_gateway_request.GetRequesterGatewayRequest = {}  # type: ignore[typeddict-item]
-        input_["gateway_id"] = gateway_id
+        input_: capo_rtbfabric.types.get_requester_gateway_request.GetRequesterGatewayRequest = {
+            "gateway_id": gateway_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -203,14 +207,16 @@ class RequesterGateway:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rtbfabric.types.delete_requester_gateway_request.DeleteRequesterGatewayRequest = {}  # type: ignore[typeddict-item]
-        input_["gateway_id"] = gateway_id
+        input_: capo_rtbfabric.types.delete_requester_gateway_request.DeleteRequesterGatewayRequest = {
+            "gateway_id": gateway_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_requester_gateway(
@@ -259,9 +265,10 @@ class RequesterGateway:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rtbfabric.types.update_requester_gateway_request.UpdateRequesterGatewayRequest = {}  # type: ignore[typeddict-item]
-        input_["client_token"] = client_token
-        input_["gateway_id"] = gateway_id
+        input_: capo_rtbfabric.types.update_requester_gateway_request.UpdateRequesterGatewayRequest = {
+            "client_token": client_token,
+            "gateway_id": gateway_id,
+        }
         if description is not None:
             input_["description"] = description
 
@@ -270,6 +277,7 @@ class RequesterGateway:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -330,11 +338,12 @@ class AsyncRequesterGateway:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rtbfabric.types.create_requester_gateway_request.CreateRequesterGatewayRequest = {}  # type: ignore[typeddict-item]
-        input_["vpc_id"] = vpc_id
-        input_["subnet_ids"] = subnet_ids
-        input_["security_group_ids"] = security_group_ids
-        input_["client_token"] = client_token
+        input_: capo_rtbfabric.types.create_requester_gateway_request.CreateRequesterGatewayRequest = {
+            "vpc_id": vpc_id,
+            "subnet_ids": subnet_ids,
+            "security_group_ids": security_group_ids,
+            "client_token": client_token,
+        }
         if description is not None:
             input_["description"] = description
         if tags is not None:
@@ -345,6 +354,7 @@ class AsyncRequesterGateway:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -389,14 +399,16 @@ class AsyncRequesterGateway:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rtbfabric.types.get_requester_gateway_request.GetRequesterGatewayRequest = {}  # type: ignore[typeddict-item]
-        input_["gateway_id"] = gateway_id
+        input_: capo_rtbfabric.types.get_requester_gateway_request.GetRequesterGatewayRequest = {
+            "gateway_id": gateway_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -442,14 +454,16 @@ class AsyncRequesterGateway:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rtbfabric.types.delete_requester_gateway_request.DeleteRequesterGatewayRequest = {}  # type: ignore[typeddict-item]
-        input_["gateway_id"] = gateway_id
+        input_: capo_rtbfabric.types.delete_requester_gateway_request.DeleteRequesterGatewayRequest = {
+            "gateway_id": gateway_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_requester_gateway(
@@ -499,9 +513,10 @@ class AsyncRequesterGateway:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_rtbfabric.types.update_requester_gateway_request.UpdateRequesterGatewayRequest = {}  # type: ignore[typeddict-item]
-        input_["client_token"] = client_token
-        input_["gateway_id"] = gateway_id
+        input_: capo_rtbfabric.types.update_requester_gateway_request.UpdateRequesterGatewayRequest = {
+            "client_token": client_token,
+            "gateway_id": gateway_id,
+        }
         if description is not None:
             input_["description"] = description
 
@@ -510,4 +525,5 @@ class AsyncRequesterGateway:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

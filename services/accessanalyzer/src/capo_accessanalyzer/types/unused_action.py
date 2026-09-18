@@ -32,11 +32,11 @@ def serialize_json(value: UnusedAction) -> dict:
 
 def deserialize_json(data: dict) -> UnusedAction:
     out: UnusedAction = {}  # type: ignore[typeddict-item]
-    if "action" in data:
+    if data.get("action") is not None:
         out["action"] = data["action"]
     else:
         raise DeserializationError("UnusedAction.action required")
-    if "lastAccessed" in data:
+    if data.get("lastAccessed") is not None:
         import capo_accessanalyzer.types.timestamp
 
         out["last_accessed"] = capo_accessanalyzer.types.timestamp.deserialize_json(

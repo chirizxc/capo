@@ -50,17 +50,17 @@ def serialize_json(value: CreateConnectorRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateConnectorRequest:
     out: CreateConnectorRequest = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
     else:
         raise DeserializationError("CreateConnectorRequest.directory_id required")
-    if "CertificateAuthorityArn" in data:
+    if data.get("CertificateAuthorityArn") is not None:
         out["certificate_authority_arn"] = data["CertificateAuthorityArn"]
     else:
         raise DeserializationError(
             "CreateConnectorRequest.certificate_authority_arn required"
         )
-    if "VpcInformation" in data:
+    if data.get("VpcInformation") is not None:
         import capo_pca_connector_ad.types.vpc_information
 
         out["vpc_information"] = (
@@ -70,9 +70,9 @@ def deserialize_json(data: dict) -> CreateConnectorRequest:
         )
     else:
         raise DeserializationError("CreateConnectorRequest.vpc_information required")
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_pca_connector_ad.types.tags
 
         out["tags"] = capo_pca_connector_ad.types.tags.deserialize_json(data["Tags"])

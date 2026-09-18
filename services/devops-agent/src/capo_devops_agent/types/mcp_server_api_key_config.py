@@ -30,15 +30,15 @@ def serialize_json(value: MCPServerAPIKeyConfig) -> dict:
 
 def deserialize_json(data: dict) -> MCPServerAPIKeyConfig:
     out: MCPServerAPIKeyConfig = {}  # type: ignore[typeddict-item]
-    if "apiKeyName" in data:
+    if data.get("apiKeyName") is not None:
         out["api_key_name"] = data["apiKeyName"]
     else:
         raise DeserializationError("MCPServerAPIKeyConfig.api_key_name required")
-    if "apiKeyValue" in data:
+    if data.get("apiKeyValue") is not None:
         out["api_key_value"] = data["apiKeyValue"]
     else:
         raise DeserializationError("MCPServerAPIKeyConfig.api_key_value required")
-    if "apiKeyHeader" in data:
+    if data.get("apiKeyHeader") is not None:
         out["api_key_header"] = data["apiKeyHeader"]
     else:
         raise DeserializationError("MCPServerAPIKeyConfig.api_key_header required")

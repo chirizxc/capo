@@ -132,37 +132,37 @@ def serialize_json(value: DataSource) -> dict:
 
 def deserialize_json(data: dict) -> DataSource:
     out: DataSource = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "DataSourceId" in data:
+    if data.get("DataSourceId") is not None:
         out["data_source_id"] = data["DataSourceId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_quicksight.types.data_source_type
 
         out["type"] = capo_quicksight.types.data_source_type.deserialize_json(
             data["Type"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_quicksight.types.resource_status
 
         out["status"] = capo_quicksight.types.resource_status.deserialize_json(
             data["Status"]
         )
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_quicksight.types.timestamp
 
         out["created_time"] = capo_quicksight.types.timestamp.deserialize_json(
             data["CreatedTime"]
         )
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_quicksight.types.timestamp
 
         out["last_updated_time"] = capo_quicksight.types.timestamp.deserialize_json(
             data["LastUpdatedTime"]
         )
-    if "DataSourceParameters" in data:
+    if data.get("DataSourceParameters") is not None:
         import capo_quicksight.types.data_source_parameters
 
         out["data_source_parameters"] = (
@@ -170,7 +170,7 @@ def deserialize_json(data: dict) -> DataSource:
                 data["DataSourceParameters"]
             )
         )
-    if "AlternateDataSourceParameters" in data:
+    if data.get("AlternateDataSourceParameters") is not None:
         import capo_quicksight.types.data_source_parameters_list
 
         out["alternate_data_source_parameters"] = (
@@ -178,7 +178,7 @@ def deserialize_json(data: dict) -> DataSource:
                 data["AlternateDataSourceParameters"]
             )
         )
-    if "VpcConnectionProperties" in data:
+    if data.get("VpcConnectionProperties") is not None:
         import capo_quicksight.types.vpc_connection_properties
 
         out["vpc_connection_properties"] = (
@@ -186,13 +186,13 @@ def deserialize_json(data: dict) -> DataSource:
                 data["VpcConnectionProperties"]
             )
         )
-    if "SslProperties" in data:
+    if data.get("SslProperties") is not None:
         import capo_quicksight.types.ssl_properties
 
         out["ssl_properties"] = capo_quicksight.types.ssl_properties.deserialize_json(
             data["SslProperties"]
         )
-    if "ErrorInfo" in data:
+    if data.get("ErrorInfo") is not None:
         import capo_quicksight.types.data_source_error_info
 
         out["error_info"] = (
@@ -200,6 +200,6 @@ def deserialize_json(data: dict) -> DataSource:
                 data["ErrorInfo"]
             )
         )
-    if "SecretArn" in data:
+    if data.get("SecretArn") is not None:
         out["secret_arn"] = data["SecretArn"]
     return out

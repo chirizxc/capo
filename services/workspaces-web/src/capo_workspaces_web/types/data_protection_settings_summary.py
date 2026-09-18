@@ -47,17 +47,17 @@ def serialize_json(value: DataProtectionSettingsSummary) -> dict:
 
 def deserialize_json(data: dict) -> DataProtectionSettingsSummary:
     out: DataProtectionSettingsSummary = {}  # type: ignore[typeddict-item]
-    if "dataProtectionSettingsArn" in data:
+    if data.get("dataProtectionSettingsArn") is not None:
         out["data_protection_settings_arn"] = data["dataProtectionSettingsArn"]
     else:
         raise DeserializationError(
             "DataProtectionSettingsSummary.data_protection_settings_arn required"
         )
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "creationDate" in data:
+    if data.get("creationDate") is not None:
         import capo_workspaces_web.types.timestamp
 
         out["creation_date"] = capo_workspaces_web.types.timestamp.deserialize_json(

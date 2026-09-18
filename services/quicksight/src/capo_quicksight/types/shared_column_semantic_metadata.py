@@ -41,13 +41,13 @@ def serialize_json(value: SharedColumnSemanticMetadata) -> dict:
 
 def deserialize_json(data: dict) -> SharedColumnSemanticMetadata:
     out: SharedColumnSemanticMetadata = {}  # type: ignore[typeddict-item]
-    if "ColumnNames" in data:
+    if data.get("ColumnNames") is not None:
         import capo_quicksight.types.column_name_list
 
         out["column_names"] = capo_quicksight.types.column_name_list.deserialize_json(
             data["ColumnNames"]
         )
-    if "ColumnProperties" in data:
+    if data.get("ColumnProperties") is not None:
         import capo_quicksight.types.column_semantic_property_list
 
         out["column_properties"] = (

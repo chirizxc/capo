@@ -82,15 +82,15 @@ def serialize_json(value: ProfileDetail) -> dict:
             )
         )
     if "created_at" in value:
-        import capo_rolesanywhere.types._prelude.timestamp
+        import capo_rolesanywhere._protocol.serialize
 
-        out["createdAt"] = capo_rolesanywhere.types._prelude.timestamp.serialize_json(
+        out["createdAt"] = capo_rolesanywhere._protocol.serialize.fmt_date_time(
             value["created_at"]
         )
     if "updated_at" in value:
-        import capo_rolesanywhere.types._prelude.timestamp
+        import capo_rolesanywhere._protocol.serialize
 
-        out["updatedAt"] = capo_rolesanywhere.types._prelude.timestamp.serialize_json(
+        out["updatedAt"] = capo_rolesanywhere._protocol.serialize.fmt_date_time(
             value["updated_at"]
         )
     if "duration_seconds" in value:
@@ -110,27 +110,27 @@ def serialize_json(value: ProfileDetail) -> dict:
 
 def deserialize_json(data: dict) -> ProfileDetail:
     out: ProfileDetail = {}  # type: ignore[typeddict-item]
-    if "profileId" in data:
+    if data.get("profileId") is not None:
         out["profile_id"] = data["profileId"]
-    if "profileArn" in data:
+    if data.get("profileArn") is not None:
         out["profile_arn"] = data["profileArn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "requireInstanceProperties" in data:
+    if data.get("requireInstanceProperties") is not None:
         out["require_instance_properties"] = data["requireInstanceProperties"]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
-    if "sessionPolicy" in data:
+    if data.get("sessionPolicy") is not None:
         out["session_policy"] = data["sessionPolicy"]
-    if "roleArns" in data:
+    if data.get("roleArns") is not None:
         import capo_rolesanywhere.types.role_arn_list
 
         out["role_arns"] = capo_rolesanywhere.types.role_arn_list.deserialize_json(
             data["roleArns"]
         )
-    if "managedPolicyArns" in data:
+    if data.get("managedPolicyArns") is not None:
         import capo_rolesanywhere.types.managed_policy_list
 
         out["managed_policy_arns"] = (
@@ -138,27 +138,23 @@ def deserialize_json(data: dict) -> ProfileDetail:
                 data["managedPolicyArns"]
             )
         )
-    if "createdAt" in data:
-        import capo_rolesanywhere.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = (
-            capo_rolesanywhere.types._prelude.timestamp.deserialize_json(
-                data["createdAt"]
-            )
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
-    if "updatedAt" in data:
-        import capo_rolesanywhere.types._prelude.timestamp
+    if data.get("updatedAt") is not None:
+        import datetime
 
-        out["updated_at"] = (
-            capo_rolesanywhere.types._prelude.timestamp.deserialize_json(
-                data["updatedAt"]
-            )
+        out["updated_at"] = datetime.datetime.fromisoformat(
+            data["updatedAt"].replace("Z", "+00:00")
         )
-    if "durationSeconds" in data:
+    if data.get("durationSeconds") is not None:
         out["duration_seconds"] = data["durationSeconds"]
-    if "acceptRoleSessionName" in data:
+    if data.get("acceptRoleSessionName") is not None:
         out["accept_role_session_name"] = data["acceptRoleSessionName"]
-    if "attributeMappings" in data:
+    if data.get("attributeMappings") is not None:
         import capo_rolesanywhere.types.attribute_mappings
 
         out["attribute_mappings"] = (

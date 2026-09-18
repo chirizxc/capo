@@ -38,7 +38,7 @@ def serialize_json(value: SearchPlaceIndexForPositionResponse) -> dict:
 
 def deserialize_json(data: dict) -> SearchPlaceIndexForPositionResponse:
     out: SearchPlaceIndexForPositionResponse = {}  # type: ignore[typeddict-item]
-    if "Summary" in data:
+    if data.get("Summary") is not None:
         import capo_location.types.search_place_index_for_position_summary
 
         out["summary"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> SearchPlaceIndexForPositionResponse:
         raise DeserializationError(
             "SearchPlaceIndexForPositionResponse.summary required"
         )
-    if "Results" in data:
+    if data.get("Results") is not None:
         import capo_location.types.search_for_position_result_list
 
         out["results"] = (

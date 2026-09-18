@@ -60,9 +60,9 @@ def serialize_aws_json_1_1(value: UsageReportSubscription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UsageReportSubscription:
     out: UsageReportSubscription = {}  # type: ignore[typeddict-item]
-    if "S3BucketName" in data:
+    if data.get("S3BucketName") is not None:
         out["s3_bucket_name"] = data["S3BucketName"]
-    if "Schedule" in data:
+    if data.get("Schedule") is not None:
         import capo_appstream.types.usage_report_schedule
 
         out["schedule"] = (
@@ -70,7 +70,7 @@ def deserialize_aws_json_1_1(data: dict) -> UsageReportSubscription:
                 data["Schedule"]
             )
         )
-    if "LastGeneratedReportDate" in data:
+    if data.get("LastGeneratedReportDate") is not None:
         import capo_appstream.types.timestamp
 
         out["last_generated_report_date"] = (
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_1(data: dict) -> UsageReportSubscription:
                 data["LastGeneratedReportDate"]
             )
         )
-    if "SubscriptionErrors" in data:
+    if data.get("SubscriptionErrors") is not None:
         import capo_appstream.types.last_report_generation_execution_errors
 
         out["subscription_errors"] = (

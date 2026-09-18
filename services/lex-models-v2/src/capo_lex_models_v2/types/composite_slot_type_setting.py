@@ -29,7 +29,7 @@ def serialize_json(value: CompositeSlotTypeSetting) -> dict:
 
 def deserialize_json(data: dict) -> CompositeSlotTypeSetting:
     out: CompositeSlotTypeSetting = {}  # type: ignore[typeddict-item]
-    if "subSlots" in data:
+    if data.get("subSlots") is not None:
         import capo_lex_models_v2.types.sub_slot_type_list
 
         out["sub_slots"] = capo_lex_models_v2.types.sub_slot_type_list.deserialize_json(

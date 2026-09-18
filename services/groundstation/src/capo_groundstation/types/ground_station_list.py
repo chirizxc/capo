@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> GroundStationList:
 
     out: GroundStationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_groundstation.types.ground_station_data.deserialize_json(item))
     return out

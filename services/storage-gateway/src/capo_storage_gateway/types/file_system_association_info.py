@@ -97,23 +97,23 @@ def serialize_aws_json_1_1(value: FileSystemAssociationInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FileSystemAssociationInfo:
     out: FileSystemAssociationInfo = {}  # type: ignore[typeddict-item]
-    if "FileSystemAssociationARN" in data:
+    if data.get("FileSystemAssociationARN") is not None:
         out["file_system_association_arn"] = data["FileSystemAssociationARN"]
-    if "LocationARN" in data:
+    if data.get("LocationARN") is not None:
         out["location_arn"] = data["LocationARN"]
-    if "FileSystemAssociationStatus" in data:
+    if data.get("FileSystemAssociationStatus") is not None:
         out["file_system_association_status"] = data["FileSystemAssociationStatus"]
-    if "AuditDestinationARN" in data:
+    if data.get("AuditDestinationARN") is not None:
         out["audit_destination_arn"] = data["AuditDestinationARN"]
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_storage_gateway.types.tags
 
         out["tags"] = capo_storage_gateway.types.tags.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "CacheAttributes" in data:
+    if data.get("CacheAttributes") is not None:
         import capo_storage_gateway.types.cache_attributes
 
         out["cache_attributes"] = (
@@ -121,7 +121,7 @@ def deserialize_aws_json_1_1(data: dict) -> FileSystemAssociationInfo:
                 data["CacheAttributes"]
             )
         )
-    if "EndpointNetworkConfiguration" in data:
+    if data.get("EndpointNetworkConfiguration") is not None:
         import capo_storage_gateway.types.endpoint_network_configuration
 
         out["endpoint_network_configuration"] = (
@@ -129,7 +129,7 @@ def deserialize_aws_json_1_1(data: dict) -> FileSystemAssociationInfo:
                 data["EndpointNetworkConfiguration"]
             )
         )
-    if "FileSystemAssociationStatusDetails" in data:
+    if data.get("FileSystemAssociationStatusDetails") is not None:
         import capo_storage_gateway.types.file_system_association_status_details
 
         out["file_system_association_status_details"] = (

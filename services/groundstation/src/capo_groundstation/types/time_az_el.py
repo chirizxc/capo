@@ -17,24 +17,48 @@ class TimeAzEl(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: TimeAzEl) -> dict:
     out: dict = {}
-    out["dt"] = value["dt"]
-    out["az"] = value["az"]
-    out["el"] = value["el"]
+    out["dt"] = (
+        "NaN"
+        if value["dt"] != value["dt"]
+        else "Infinity"
+        if value["dt"] == float("inf")
+        else "-Infinity"
+        if value["dt"] == float("-inf")
+        else value["dt"]
+    )
+    out["az"] = (
+        "NaN"
+        if value["az"] != value["az"]
+        else "Infinity"
+        if value["az"] == float("inf")
+        else "-Infinity"
+        if value["az"] == float("-inf")
+        else value["az"]
+    )
+    out["el"] = (
+        "NaN"
+        if value["el"] != value["el"]
+        else "Infinity"
+        if value["el"] == float("inf")
+        else "-Infinity"
+        if value["el"] == float("-inf")
+        else value["el"]
+    )
     return out
 
 
 def deserialize_json(data: dict) -> TimeAzEl:
     out: TimeAzEl = {}  # type: ignore[typeddict-item]
-    if "dt" in data:
-        out["dt"] = data["dt"]
+    if data.get("dt") is not None:
+        out["dt"] = float(data["dt"])
     else:
         raise DeserializationError("TimeAzEl.dt required")
-    if "az" in data:
-        out["az"] = data["az"]
+    if data.get("az") is not None:
+        out["az"] = float(data["az"])
     else:
         raise DeserializationError("TimeAzEl.az required")
-    if "el" in data:
-        out["el"] = data["el"]
+    if data.get("el") is not None:
+        out["el"] = float(data["el"])
     else:
         raise DeserializationError("TimeAzEl.el required")
     return out

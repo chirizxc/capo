@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: DescribeGroupRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeGroupRequest:
     out: DescribeGroupRequest = {}  # type: ignore[typeddict-item]
-    if "IdentityStoreId" in data:
+    if data.get("IdentityStoreId") is not None:
         out["identity_store_id"] = data["IdentityStoreId"]
     else:
         raise DeserializationError("DescribeGroupRequest.identity_store_id required")
-    if "GroupId" in data:
+    if data.get("GroupId") is not None:
         out["group_id"] = data["GroupId"]
     else:
         raise DeserializationError("DescribeGroupRequest.group_id required")

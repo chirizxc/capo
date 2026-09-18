@@ -128,9 +128,9 @@ def serialize_aws_json_1_0(value: EngagementInvitationSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> EngagementInvitationSummary:
     out: EngagementInvitationSummary = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "PayloadType" in data:
+    if data.get("PayloadType") is not None:
         import capo_partnercentral_selling.types.engagement_invitation_payload_type
 
         out["payload_type"] = (
@@ -138,15 +138,15 @@ def deserialize_aws_json_1_0(data: dict) -> EngagementInvitationSummary:
                 data["PayloadType"]
             )
         )
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("EngagementInvitationSummary.id required")
-    if "EngagementId" in data:
+    if data.get("EngagementId") is not None:
         out["engagement_id"] = data["EngagementId"]
-    if "EngagementTitle" in data:
+    if data.get("EngagementTitle") is not None:
         out["engagement_title"] = data["EngagementTitle"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_partnercentral_selling.types.invitation_status
 
         out["status"] = (
@@ -154,7 +154,7 @@ def deserialize_aws_json_1_0(data: dict) -> EngagementInvitationSummary:
                 data["Status"]
             )
         )
-    if "InvitationDate" in data:
+    if data.get("InvitationDate") is not None:
         import capo_partnercentral_selling.types.date_time
 
         out["invitation_date"] = (
@@ -162,7 +162,7 @@ def deserialize_aws_json_1_0(data: dict) -> EngagementInvitationSummary:
                 data["InvitationDate"]
             )
         )
-    if "ExpirationDate" in data:
+    if data.get("ExpirationDate") is not None:
         import capo_partnercentral_selling.types.date_time
 
         out["expiration_date"] = (
@@ -170,11 +170,11 @@ def deserialize_aws_json_1_0(data: dict) -> EngagementInvitationSummary:
                 data["ExpirationDate"]
             )
         )
-    if "SenderAwsAccountId" in data:
+    if data.get("SenderAwsAccountId") is not None:
         out["sender_aws_account_id"] = data["SenderAwsAccountId"]
-    if "SenderCompanyName" in data:
+    if data.get("SenderCompanyName") is not None:
         out["sender_company_name"] = data["SenderCompanyName"]
-    if "Receiver" in data:
+    if data.get("Receiver") is not None:
         import capo_partnercentral_selling.types.receiver
 
         out["receiver"] = (
@@ -182,11 +182,11 @@ def deserialize_aws_json_1_0(data: dict) -> EngagementInvitationSummary:
                 data["Receiver"]
             )
         )
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("EngagementInvitationSummary.catalog required")
-    if "ParticipantType" in data:
+    if data.get("ParticipantType") is not None:
         import capo_partnercentral_selling.types.participant_type
 
         out["participant_type"] = (

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> IdMappingJobOutputSourceConfig:
 
     out: IdMappingJobOutputSourceConfig = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_entityresolution.types.id_mapping_job_output_source.deserialize_json(
                 item

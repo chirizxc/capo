@@ -56,7 +56,7 @@ def serialize_json(value: SankeyDiagramSortConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SankeyDiagramSortConfiguration:
     out: SankeyDiagramSortConfiguration = {}  # type: ignore[typeddict-item]
-    if "WeightSort" in data:
+    if data.get("WeightSort") is not None:
         import capo_quicksight.types.field_sort_options_list
 
         out["weight_sort"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> SankeyDiagramSortConfiguration:
                 data["WeightSort"]
             )
         )
-    if "SourceItemsLimit" in data:
+    if data.get("SourceItemsLimit") is not None:
         import capo_quicksight.types.items_limit_configuration
 
         out["source_items_limit"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> SankeyDiagramSortConfiguration:
                 data["SourceItemsLimit"]
             )
         )
-    if "DestinationItemsLimit" in data:
+    if data.get("DestinationItemsLimit") is not None:
         import capo_quicksight.types.items_limit_configuration
 
         out["destination_items_limit"] = (

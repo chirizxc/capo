@@ -32,11 +32,11 @@ def serialize_json(value: BotLocaleHistoryEvent) -> dict:
 
 def deserialize_json(data: dict) -> BotLocaleHistoryEvent:
     out: BotLocaleHistoryEvent = {}  # type: ignore[typeddict-item]
-    if "event" in data:
+    if data.get("event") is not None:
         out["event"] = data["event"]
     else:
         raise DeserializationError("BotLocaleHistoryEvent.event required")
-    if "eventDate" in data:
+    if data.get("eventDate") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["event_date"] = capo_lex_models_v2.types.timestamp.deserialize_json(

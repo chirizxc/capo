@@ -85,29 +85,29 @@ def serialize_aws_json_1_1(value: DescribeAgentResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeAgentResponse:
     out: DescribeAgentResponse = {}  # type: ignore[typeddict-item]
-    if "AgentArn" in data:
+    if data.get("AgentArn") is not None:
         out["agent_arn"] = data["AgentArn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_datasync.types.agent_status
 
         out["status"] = capo_datasync.types.agent_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "LastConnectionTime" in data:
+    if data.get("LastConnectionTime") is not None:
         import capo_datasync.types.time
 
         out["last_connection_time"] = capo_datasync.types.time.deserialize_aws_json_1_1(
             data["LastConnectionTime"]
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_datasync.types.time
 
         out["creation_time"] = capo_datasync.types.time.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "EndpointType" in data:
+    if data.get("EndpointType") is not None:
         import capo_datasync.types.endpoint_type
 
         out["endpoint_type"] = (
@@ -115,7 +115,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAgentResponse:
                 data["EndpointType"]
             )
         )
-    if "PrivateLinkConfig" in data:
+    if data.get("PrivateLinkConfig") is not None:
         import capo_datasync.types.private_link_config
 
         out["private_link_config"] = (
@@ -123,7 +123,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAgentResponse:
                 data["PrivateLinkConfig"]
             )
         )
-    if "Platform" in data:
+    if data.get("Platform") is not None:
         import capo_datasync.types.platform
 
         out["platform"] = capo_datasync.types.platform.deserialize_aws_json_1_1(

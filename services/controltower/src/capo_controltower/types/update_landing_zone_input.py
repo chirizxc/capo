@@ -45,11 +45,11 @@ def serialize_json(value: UpdateLandingZoneInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateLandingZoneInput:
     out: UpdateLandingZoneInput = {}  # type: ignore[typeddict-item]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     else:
         raise DeserializationError("UpdateLandingZoneInput.version required")
-    if "remediationTypes" in data:
+    if data.get("remediationTypes") is not None:
         import capo_controltower.types.remediation_types
 
         out["remediation_types"] = (
@@ -57,12 +57,12 @@ def deserialize_json(data: dict) -> UpdateLandingZoneInput:
                 data["remediationTypes"]
             )
         )
-    if "landingZoneIdentifier" in data:
+    if data.get("landingZoneIdentifier") is not None:
         out["landing_zone_identifier"] = data["landingZoneIdentifier"]
     else:
         raise DeserializationError(
             "UpdateLandingZoneInput.landing_zone_identifier required"
         )
-    if "manifest" in data:
+    if data.get("manifest") is not None:
         out["manifest"] = data["manifest"]
     return out

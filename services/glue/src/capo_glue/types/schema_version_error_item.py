@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: SchemaVersionErrorItem) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SchemaVersionErrorItem:
     out: SchemaVersionErrorItem = {}  # type: ignore[typeddict-item]
-    if "VersionNumber" in data:
+    if data.get("VersionNumber") is not None:
         out["version_number"] = data["VersionNumber"]
-    if "ErrorDetails" in data:
+    if data.get("ErrorDetails") is not None:
         import capo_glue.types.error_details
 
         out["error_details"] = capo_glue.types.error_details.deserialize_aws_json_1_1(

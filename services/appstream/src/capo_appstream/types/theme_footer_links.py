@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> ThemeFooterLinks:
 
     out: ThemeFooterLinks = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_appstream.types.theme_footer_link.deserialize_aws_json_1_1(item)
         )

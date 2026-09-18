@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetAutoSnapshotsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetAutoSnapshotsRequest:
     out: GetAutoSnapshotsRequest = {}  # type: ignore[typeddict-item]
-    if "resourceName" in data:
+    if data.get("resourceName") is not None:
         out["resource_name"] = data["resourceName"]
     else:
         raise DeserializationError("GetAutoSnapshotsRequest.resource_name required")

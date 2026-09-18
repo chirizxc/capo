@@ -42,9 +42,25 @@ def serialize_json(value: SubscriptionPricingDetails) -> dict:
             value["payment_term"]
         )
     if "upfront_price" in value:
-        out["UpfrontPrice"] = value["upfront_price"]
+        out["UpfrontPrice"] = (
+            "NaN"
+            if value["upfront_price"] != value["upfront_price"]
+            else "Infinity"
+            if value["upfront_price"] == float("inf")
+            else "-Infinity"
+            if value["upfront_price"] == float("-inf")
+            else value["upfront_price"]
+        )
     if "monthly_recurring_price" in value:
-        out["MonthlyRecurringPrice"] = value["monthly_recurring_price"]
+        out["MonthlyRecurringPrice"] = (
+            "NaN"
+            if value["monthly_recurring_price"] != value["monthly_recurring_price"]
+            else "Infinity"
+            if value["monthly_recurring_price"] == float("inf")
+            else "-Infinity"
+            if value["monthly_recurring_price"] == float("-inf")
+            else value["monthly_recurring_price"]
+        )
     if "currency" in value:
         import capo_outposts.types.currency_code
 
@@ -56,23 +72,23 @@ def serialize_json(value: SubscriptionPricingDetails) -> dict:
 
 def deserialize_json(data: dict) -> SubscriptionPricingDetails:
     out: SubscriptionPricingDetails = {}  # type: ignore[typeddict-item]
-    if "PaymentOption" in data:
+    if data.get("PaymentOption") is not None:
         import capo_outposts.types.payment_option
 
         out["payment_option"] = capo_outposts.types.payment_option.deserialize_json(
             data["PaymentOption"]
         )
-    if "PaymentTerm" in data:
+    if data.get("PaymentTerm") is not None:
         import capo_outposts.types.payment_term
 
         out["payment_term"] = capo_outposts.types.payment_term.deserialize_json(
             data["PaymentTerm"]
         )
-    if "UpfrontPrice" in data:
-        out["upfront_price"] = data["UpfrontPrice"]
-    if "MonthlyRecurringPrice" in data:
-        out["monthly_recurring_price"] = data["MonthlyRecurringPrice"]
-    if "Currency" in data:
+    if data.get("UpfrontPrice") is not None:
+        out["upfront_price"] = float(data["UpfrontPrice"])
+    if data.get("MonthlyRecurringPrice") is not None:
+        out["monthly_recurring_price"] = float(data["MonthlyRecurringPrice"])
+    if data.get("Currency") is not None:
         import capo_outposts.types.currency_code
 
         out["currency"] = capo_outposts.types.currency_code.deserialize_json(

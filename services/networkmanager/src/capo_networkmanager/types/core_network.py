@@ -108,27 +108,27 @@ def serialize_json(value: CoreNetwork) -> dict:
 
 def deserialize_json(data: dict) -> CoreNetwork:
     out: CoreNetwork = {}  # type: ignore[typeddict-item]
-    if "GlobalNetworkId" in data:
+    if data.get("GlobalNetworkId") is not None:
         out["global_network_id"] = data["GlobalNetworkId"]
-    if "CoreNetworkId" in data:
+    if data.get("CoreNetworkId") is not None:
         out["core_network_id"] = data["CoreNetworkId"]
-    if "CoreNetworkArn" in data:
+    if data.get("CoreNetworkArn") is not None:
         out["core_network_arn"] = data["CoreNetworkArn"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_networkmanager.types.date_time
 
         out["created_at"] = capo_networkmanager.types.date_time.deserialize_json(
             data["CreatedAt"]
         )
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_networkmanager.types.core_network_state
 
         out["state"] = capo_networkmanager.types.core_network_state.deserialize_json(
             data["State"]
         )
-    if "Segments" in data:
+    if data.get("Segments") is not None:
         import capo_networkmanager.types.core_network_segment_list
 
         out["segments"] = (
@@ -136,7 +136,7 @@ def deserialize_json(data: dict) -> CoreNetwork:
                 data["Segments"]
             )
         )
-    if "NetworkFunctionGroups" in data:
+    if data.get("NetworkFunctionGroups") is not None:
         import capo_networkmanager.types.core_network_network_function_group_list
 
         out["network_function_groups"] = (
@@ -144,7 +144,7 @@ def deserialize_json(data: dict) -> CoreNetwork:
                 data["NetworkFunctionGroups"]
             )
         )
-    if "Edges" in data:
+    if data.get("Edges") is not None:
         import capo_networkmanager.types.core_network_edge_list
 
         out["edges"] = (
@@ -152,7 +152,7 @@ def deserialize_json(data: dict) -> CoreNetwork:
                 data["Edges"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_networkmanager.types.tag_list
 
         out["tags"] = capo_networkmanager.types.tag_list.deserialize_json(data["Tags"])

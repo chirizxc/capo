@@ -88,7 +88,7 @@ def serialize_aws_json_1_1(value: OAuth2PropertiesInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OAuth2PropertiesInput:
     out: OAuth2PropertiesInput = {}  # type: ignore[typeddict-item]
-    if "OAuth2GrantType" in data:
+    if data.get("OAuth2GrantType") is not None:
         import capo_glue.types.o_auth2_grant_type
 
         out["o_auth2_grant_type"] = (
@@ -96,7 +96,7 @@ def deserialize_aws_json_1_1(data: dict) -> OAuth2PropertiesInput:
                 data["OAuth2GrantType"]
             )
         )
-    if "OAuth2ClientApplication" in data:
+    if data.get("OAuth2ClientApplication") is not None:
         import capo_glue.types.o_auth2_client_application
 
         out["o_auth2_client_application"] = (
@@ -104,9 +104,9 @@ def deserialize_aws_json_1_1(data: dict) -> OAuth2PropertiesInput:
                 data["OAuth2ClientApplication"]
             )
         )
-    if "TokenUrl" in data:
+    if data.get("TokenUrl") is not None:
         out["token_url"] = data["TokenUrl"]
-    if "TokenUrlParametersMap" in data:
+    if data.get("TokenUrlParametersMap") is not None:
         import capo_glue.types.token_url_parameters_map
 
         out["token_url_parameters_map"] = (
@@ -114,7 +114,7 @@ def deserialize_aws_json_1_1(data: dict) -> OAuth2PropertiesInput:
                 data["TokenUrlParametersMap"]
             )
         )
-    if "AuthorizationCodeProperties" in data:
+    if data.get("AuthorizationCodeProperties") is not None:
         import capo_glue.types.authorization_code_properties
 
         out["authorization_code_properties"] = (
@@ -122,7 +122,7 @@ def deserialize_aws_json_1_1(data: dict) -> OAuth2PropertiesInput:
                 data["AuthorizationCodeProperties"]
             )
         )
-    if "OAuth2Credentials" in data:
+    if data.get("OAuth2Credentials") is not None:
         import capo_glue.types.o_auth2_credentials
 
         out["o_auth2_credentials"] = (

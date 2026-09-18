@@ -57,29 +57,29 @@ def serialize_json(value: CreateAppInstanceBotRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateAppInstanceBotRequest:
     out: CreateAppInstanceBotRequest = {}  # type: ignore[typeddict-item]
-    if "AppInstanceArn" in data:
+    if data.get("AppInstanceArn") is not None:
         out["app_instance_arn"] = data["AppInstanceArn"]
     else:
         raise DeserializationError(
             "CreateAppInstanceBotRequest.app_instance_arn required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Metadata" in data:
+    if data.get("Metadata") is not None:
         out["metadata"] = data["Metadata"]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
     else:
         raise DeserializationError(
             "CreateAppInstanceBotRequest.client_request_token required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_chime_sdk_identity.types.tag_list
 
         out["tags"] = capo_chime_sdk_identity.types.tag_list.deserialize_json(
             data["Tags"]
         )
-    if "Configuration" in data:
+    if data.get("Configuration") is not None:
         import capo_chime_sdk_identity.types.configuration
 
         out["configuration"] = (

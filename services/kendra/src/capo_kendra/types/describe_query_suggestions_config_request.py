@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DescribeQuerySuggestionsConfigRequest) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeQuerySuggestionsConfigRequest:
     out: DescribeQuerySuggestionsConfigRequest = {}  # type: ignore[typeddict-item]
-    if "IndexId" in data:
+    if data.get("IndexId") is not None:
         out["index_id"] = data["IndexId"]
     else:
         raise DeserializationError(

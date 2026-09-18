@@ -108,9 +108,9 @@ def serialize_aws_json_1_1(value: InferenceExperimentSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InferenceExperimentSummary:
     out: InferenceExperimentSummary = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_sagemaker.types.inference_experiment_type
 
         out["type"] = (
@@ -118,7 +118,7 @@ def deserialize_aws_json_1_1(data: dict) -> InferenceExperimentSummary:
                 data["Type"]
             )
         )
-    if "Schedule" in data:
+    if data.get("Schedule") is not None:
         import capo_sagemaker.types.inference_experiment_schedule
 
         out["schedule"] = (
@@ -126,7 +126,7 @@ def deserialize_aws_json_1_1(data: dict) -> InferenceExperimentSummary:
                 data["Schedule"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.inference_experiment_status
 
         out["status"] = (
@@ -134,17 +134,17 @@ def deserialize_aws_json_1_1(data: dict) -> InferenceExperimentSummary:
                 data["Status"]
             )
         )
-    if "StatusReason" in data:
+    if data.get("StatusReason") is not None:
         out["status_reason"] = data["StatusReason"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "CompletionTime" in data:
+    if data.get("CompletionTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["completion_time"] = (
@@ -152,7 +152,7 @@ def deserialize_aws_json_1_1(data: dict) -> InferenceExperimentSummary:
                 data["CompletionTime"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (
@@ -160,6 +160,6 @@ def deserialize_aws_json_1_1(data: dict) -> InferenceExperimentSummary:
                 data["LastModifiedTime"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     return out

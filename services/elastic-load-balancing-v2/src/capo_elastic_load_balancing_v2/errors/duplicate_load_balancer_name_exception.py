@@ -41,15 +41,20 @@ class DuplicateLoadBalancerNameException(ServiceError):
 
     code: str | None = "DuplicateLoadBalancerNameException"
 
-    def __init__(self, data: DuplicateLoadBalancerNameException_):
+    def __init__(
+        self, data: DuplicateLoadBalancerNameException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="DuplicateLoadBalancerNameException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "DuplicateLoadBalancerNameException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "DuplicateLoadBalancerNameException":
+        return cls(deserialize_query(el), message)

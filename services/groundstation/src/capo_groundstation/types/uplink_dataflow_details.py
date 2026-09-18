@@ -34,7 +34,7 @@ def serialize_json(value: UplinkDataflowDetails) -> dict:
 
 
 def deserialize_json(data: dict) -> UplinkDataflowDetails:
-    if "agentConnectionDetails" in data:
+    if data.get("agentConnectionDetails") is not None:
         import capo_groundstation.types.uplink_connection_details
 
         return {

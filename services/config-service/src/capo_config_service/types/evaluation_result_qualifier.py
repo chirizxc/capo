@@ -52,13 +52,13 @@ def serialize_aws_json_1_1(value: EvaluationResultQualifier) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EvaluationResultQualifier:
     out: EvaluationResultQualifier = {}  # type: ignore[typeddict-item]
-    if "ConfigRuleName" in data:
+    if data.get("ConfigRuleName") is not None:
         out["config_rule_name"] = data["ConfigRuleName"]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
-    if "EvaluationMode" in data:
+    if data.get("EvaluationMode") is not None:
         import capo_config_service.types.evaluation_mode
 
         out["evaluation_mode"] = (

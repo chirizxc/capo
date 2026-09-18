@@ -45,14 +45,14 @@ def serialize_aws_json_1_1(value: ListTagsForStreamInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListTagsForStreamInput:
     out: ListTagsForStreamInput = {}  # type: ignore[typeddict-item]
-    if "StreamName" in data:
+    if data.get("StreamName") is not None:
         out["stream_name"] = data["StreamName"]
-    if "ExclusiveStartTagKey" in data:
+    if data.get("ExclusiveStartTagKey") is not None:
         out["exclusive_start_tag_key"] = data["ExclusiveStartTagKey"]
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
-    if "StreamARN" in data:
+    if data.get("StreamARN") is not None:
         out["stream_arn"] = data["StreamARN"]
-    if "StreamId" in data:
+    if data.get("StreamId") is not None:
         out["stream_id"] = data["StreamId"]
     return out

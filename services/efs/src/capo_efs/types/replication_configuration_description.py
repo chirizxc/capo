@@ -58,31 +58,31 @@ def serialize_json(value: ReplicationConfigurationDescription) -> dict:
 
 def deserialize_json(data: dict) -> ReplicationConfigurationDescription:
     out: ReplicationConfigurationDescription = {}  # type: ignore[typeddict-item]
-    if "SourceFileSystemId" in data:
+    if data.get("SourceFileSystemId") is not None:
         out["source_file_system_id"] = data["SourceFileSystemId"]
     else:
         raise DeserializationError(
             "ReplicationConfigurationDescription.source_file_system_id required"
         )
-    if "SourceFileSystemRegion" in data:
+    if data.get("SourceFileSystemRegion") is not None:
         out["source_file_system_region"] = data["SourceFileSystemRegion"]
     else:
         raise DeserializationError(
             "ReplicationConfigurationDescription.source_file_system_region required"
         )
-    if "SourceFileSystemArn" in data:
+    if data.get("SourceFileSystemArn") is not None:
         out["source_file_system_arn"] = data["SourceFileSystemArn"]
     else:
         raise DeserializationError(
             "ReplicationConfigurationDescription.source_file_system_arn required"
         )
-    if "OriginalSourceFileSystemArn" in data:
+    if data.get("OriginalSourceFileSystemArn") is not None:
         out["original_source_file_system_arn"] = data["OriginalSourceFileSystemArn"]
     else:
         raise DeserializationError(
             "ReplicationConfigurationDescription.original_source_file_system_arn required"
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_efs.types.timestamp
 
         out["creation_time"] = capo_efs.types.timestamp.deserialize_json(
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> ReplicationConfigurationDescription:
         raise DeserializationError(
             "ReplicationConfigurationDescription.creation_time required"
         )
-    if "Destinations" in data:
+    if data.get("Destinations") is not None:
         import capo_efs.types.destinations
 
         out["destinations"] = capo_efs.types.destinations.deserialize_json(
@@ -102,6 +102,6 @@ def deserialize_json(data: dict) -> ReplicationConfigurationDescription:
         raise DeserializationError(
             "ReplicationConfigurationDescription.destinations required"
         )
-    if "SourceFileSystemOwnerId" in data:
+    if data.get("SourceFileSystemOwnerId") is not None:
         out["source_file_system_owner_id"] = data["SourceFileSystemOwnerId"]
     return out

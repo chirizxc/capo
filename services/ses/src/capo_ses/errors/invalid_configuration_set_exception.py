@@ -37,15 +37,20 @@ class InvalidConfigurationSetException(ServiceError):
 
     code: str | None = "InvalidConfigurationSetException"
 
-    def __init__(self, data: InvalidConfigurationSetException_):
+    def __init__(
+        self, data: InvalidConfigurationSetException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidConfigurationSetException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "InvalidConfigurationSetException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "InvalidConfigurationSetException":
+        return cls(deserialize_query(el), message)

@@ -42,13 +42,13 @@ def serialize_json(value: SubCheckResult) -> dict:
 
 def deserialize_json(data: dict) -> SubCheckResult:
     out: SubCheckResult = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "References" in data:
+    if data.get("References") is not None:
         import capo_ssm_sap.types.sub_check_references_list
 
         out["references"] = (

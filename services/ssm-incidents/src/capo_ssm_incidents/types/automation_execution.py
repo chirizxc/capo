@@ -26,7 +26,7 @@ def serialize_json(value: AutomationExecution) -> dict:
 
 
 def deserialize_json(data: dict) -> AutomationExecution:
-    if "ssmExecutionArn" in data:
+    if data.get("ssmExecutionArn") is not None:
         return {"ssmExecutionArn": data["ssmExecutionArn"]}
     else:
         raise DeserializationError("AutomationExecution: no recognized variant key")

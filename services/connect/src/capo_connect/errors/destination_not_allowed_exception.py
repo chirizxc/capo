@@ -25,7 +25,7 @@ def serialize_json(value: DestinationNotAllowedException_) -> dict:
 
 def deserialize_json(data: dict) -> DestinationNotAllowedException_:
     out: DestinationNotAllowedException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -35,15 +35,20 @@ class DestinationNotAllowedException(ServiceError):
 
     code: str | None = "DestinationNotAllowedException"
 
-    def __init__(self, data: DestinationNotAllowedException_):
+    def __init__(
+        self, data: DestinationNotAllowedException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="DestinationNotAllowedException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "DestinationNotAllowedException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "DestinationNotAllowedException":
+        return cls(deserialize_json(data), message)

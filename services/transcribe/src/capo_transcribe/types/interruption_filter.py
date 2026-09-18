@@ -69,9 +69,9 @@ def serialize_aws_json_1_1(value: InterruptionFilter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InterruptionFilter:
     out: InterruptionFilter = {}  # type: ignore[typeddict-item]
-    if "Threshold" in data:
+    if data.get("Threshold") is not None:
         out["threshold"] = data["Threshold"]
-    if "ParticipantRole" in data:
+    if data.get("ParticipantRole") is not None:
         import capo_transcribe.types.participant_role
 
         out["participant_role"] = (
@@ -79,7 +79,7 @@ def deserialize_aws_json_1_1(data: dict) -> InterruptionFilter:
                 data["ParticipantRole"]
             )
         )
-    if "AbsoluteTimeRange" in data:
+    if data.get("AbsoluteTimeRange") is not None:
         import capo_transcribe.types.absolute_time_range
 
         out["absolute_time_range"] = (
@@ -87,7 +87,7 @@ def deserialize_aws_json_1_1(data: dict) -> InterruptionFilter:
                 data["AbsoluteTimeRange"]
             )
         )
-    if "RelativeTimeRange" in data:
+    if data.get("RelativeTimeRange") is not None:
         import capo_transcribe.types.relative_time_range
 
         out["relative_time_range"] = (
@@ -95,6 +95,6 @@ def deserialize_aws_json_1_1(data: dict) -> InterruptionFilter:
                 data["RelativeTimeRange"]
             )
         )
-    if "Negate" in data:
+    if data.get("Negate") is not None:
         out["negate"] = data["Negate"]
     return out

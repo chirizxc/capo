@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListExportsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListExportsResponse:
     out: ListExportsResponse = {}  # type: ignore[typeddict-item]
-    if "Exports" in data:
+    if data.get("Exports") is not None:
         import capo_bcm_data_exports.types.export_reference_list
 
         out["exports"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListExportsResponse:
                 data["Exports"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

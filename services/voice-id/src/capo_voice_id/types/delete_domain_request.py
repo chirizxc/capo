@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: DeleteDomainRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteDomainRequest:
     out: DeleteDomainRequest = {}  # type: ignore[typeddict-item]
-    if "DomainId" in data:
+    if data.get("DomainId") is not None:
         out["domain_id"] = data["DomainId"]
     else:
         raise DeserializationError("DeleteDomainRequest.domain_id required")

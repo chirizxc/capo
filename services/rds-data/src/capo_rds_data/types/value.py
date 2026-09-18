@@ -83,9 +83,29 @@ def serialize_json(value: Value) -> dict:
     elif "intValue" in value:
         return {"intValue": value["intValue"]}
     elif "doubleValue" in value:
-        return {"doubleValue": value["doubleValue"]}
+        return {
+            "doubleValue": (
+                "NaN"
+                if value["doubleValue"] != value["doubleValue"]
+                else "Infinity"
+                if value["doubleValue"] == float("inf")
+                else "-Infinity"
+                if value["doubleValue"] == float("-inf")
+                else value["doubleValue"]
+            )
+        }
     elif "realValue" in value:
-        return {"realValue": value["realValue"]}
+        return {
+            "realValue": (
+                "NaN"
+                if value["realValue"] != value["realValue"]
+                else "Infinity"
+                if value["realValue"] == float("inf")
+                else "-Infinity"
+                if value["realValue"] == float("-inf")
+                else value["realValue"]
+            )
+        }
     elif "stringValue" in value:
         return {"stringValue": value["stringValue"]}
     elif "blobValue" in value:
@@ -115,27 +135,27 @@ def serialize_json(value: Value) -> dict:
 
 
 def deserialize_json(data: dict) -> Value:
-    if "isNull" in data:
+    if data.get("isNull") is not None:
         return {"isNull": data["isNull"]}
-    elif "bitValue" in data:
+    elif data.get("bitValue") is not None:
         return {"bitValue": data["bitValue"]}
-    elif "bigIntValue" in data:
+    elif data.get("bigIntValue") is not None:
         return {"bigIntValue": data["bigIntValue"]}
-    elif "intValue" in data:
+    elif data.get("intValue") is not None:
         return {"intValue": data["intValue"]}
-    elif "doubleValue" in data:
-        return {"doubleValue": data["doubleValue"]}
-    elif "realValue" in data:
-        return {"realValue": data["realValue"]}
-    elif "stringValue" in data:
+    elif data.get("doubleValue") is not None:
+        return {"doubleValue": float(data["doubleValue"])}
+    elif data.get("realValue") is not None:
+        return {"realValue": float(data["realValue"])}
+    elif data.get("stringValue") is not None:
         return {"stringValue": data["stringValue"]}
-    elif "blobValue" in data:
+    elif data.get("blobValue") is not None:
         import capo_rds_data.types.blob
 
         return {
             "blobValue": capo_rds_data.types.blob.deserialize_json(data["blobValue"])
         }
-    elif "arrayValues" in data:
+    elif data.get("arrayValues") is not None:
         import capo_rds_data.types.array_value_list
 
         return {
@@ -143,7 +163,7 @@ def deserialize_json(data: dict) -> Value:
                 data["arrayValues"]
             )
         }
-    elif "structValue" in data:
+    elif data.get("structValue") is not None:
         import capo_rds_data.types.struct_value
 
         return {

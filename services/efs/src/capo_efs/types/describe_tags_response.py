@@ -35,14 +35,14 @@ def serialize_json(value: DescribeTagsResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeTagsResponse:
     out: DescribeTagsResponse = {}  # type: ignore[typeddict-item]
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_efs.types.tags
 
         out["tags"] = capo_efs.types.tags.deserialize_json(data["Tags"])
     else:
         raise DeserializationError("DescribeTagsResponse.tags required")
-    if "NextMarker" in data:
+    if data.get("NextMarker") is not None:
         out["next_marker"] = data["NextMarker"]
     return out

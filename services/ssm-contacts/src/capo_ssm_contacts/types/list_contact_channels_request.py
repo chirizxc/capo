@@ -34,12 +34,12 @@ def serialize_aws_json_1_1(value: ListContactChannelsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListContactChannelsRequest:
     out: ListContactChannelsRequest = {}  # type: ignore[typeddict-item]
-    if "ContactId" in data:
+    if data.get("ContactId") is not None:
         out["contact_id"] = data["ContactId"]
     else:
         raise DeserializationError("ListContactChannelsRequest.contact_id required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

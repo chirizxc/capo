@@ -66,21 +66,21 @@ def serialize_json(value: Insights) -> dict:
 
 def deserialize_json(data: dict) -> Insights:
     out: Insights = {}  # type: ignore[typeddict-item]
-    if "activeAssessmentsCount" in data:
+    if data.get("activeAssessmentsCount") is not None:
         out["active_assessments_count"] = data["activeAssessmentsCount"]
-    if "noncompliantEvidenceCount" in data:
+    if data.get("noncompliantEvidenceCount") is not None:
         out["noncompliant_evidence_count"] = data["noncompliantEvidenceCount"]
-    if "compliantEvidenceCount" in data:
+    if data.get("compliantEvidenceCount") is not None:
         out["compliant_evidence_count"] = data["compliantEvidenceCount"]
-    if "inconclusiveEvidenceCount" in data:
+    if data.get("inconclusiveEvidenceCount") is not None:
         out["inconclusive_evidence_count"] = data["inconclusiveEvidenceCount"]
-    if "assessmentControlsCountByNoncompliantEvidence" in data:
+    if data.get("assessmentControlsCountByNoncompliantEvidence") is not None:
         out["assessment_controls_count_by_noncompliant_evidence"] = data[
             "assessmentControlsCountByNoncompliantEvidence"
         ]
-    if "totalAssessmentControlsCount" in data:
+    if data.get("totalAssessmentControlsCount") is not None:
         out["total_assessment_controls_count"] = data["totalAssessmentControlsCount"]
-    if "lastUpdated" in data:
+    if data.get("lastUpdated") is not None:
         import capo_auditmanager.types.timestamp
 
         out["last_updated"] = capo_auditmanager.types.timestamp.deserialize_json(

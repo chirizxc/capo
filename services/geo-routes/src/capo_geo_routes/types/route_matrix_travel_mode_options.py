@@ -53,13 +53,13 @@ def serialize_json(value: RouteMatrixTravelModeOptions) -> dict:
 
 def deserialize_json(data: dict) -> RouteMatrixTravelModeOptions:
     out: RouteMatrixTravelModeOptions = {}  # type: ignore[typeddict-item]
-    if "Car" in data:
+    if data.get("Car") is not None:
         import capo_geo_routes.types.route_matrix_car_options
 
         out["car"] = capo_geo_routes.types.route_matrix_car_options.deserialize_json(
             data["Car"]
         )
-    if "Scooter" in data:
+    if data.get("Scooter") is not None:
         import capo_geo_routes.types.route_matrix_scooter_options
 
         out["scooter"] = (
@@ -67,7 +67,7 @@ def deserialize_json(data: dict) -> RouteMatrixTravelModeOptions:
                 data["Scooter"]
             )
         )
-    if "Truck" in data:
+    if data.get("Truck") is not None:
         import capo_geo_routes.types.route_matrix_truck_options
 
         out["truck"] = (

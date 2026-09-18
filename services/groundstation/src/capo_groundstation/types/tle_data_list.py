@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> TLEDataList:
 
     out: TLEDataList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_groundstation.types.tle_data.deserialize_json(item))
     return out

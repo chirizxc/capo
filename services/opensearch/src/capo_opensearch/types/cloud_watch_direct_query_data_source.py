@@ -24,7 +24,7 @@ def serialize_json(value: CloudWatchDirectQueryDataSource) -> dict:
 
 def deserialize_json(data: dict) -> CloudWatchDirectQueryDataSource:
     out: CloudWatchDirectQueryDataSource = {}  # type: ignore[typeddict-item]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     else:
         raise DeserializationError("CloudWatchDirectQueryDataSource.role_arn required")

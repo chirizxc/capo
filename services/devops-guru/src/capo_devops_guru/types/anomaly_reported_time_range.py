@@ -36,7 +36,7 @@ def serialize_json(value: AnomalyReportedTimeRange) -> dict:
 
 def deserialize_json(data: dict) -> AnomalyReportedTimeRange:
     out: AnomalyReportedTimeRange = {}  # type: ignore[typeddict-item]
-    if "OpenTime" in data:
+    if data.get("OpenTime") is not None:
         import capo_devops_guru.types.timestamp
 
         out["open_time"] = capo_devops_guru.types.timestamp.deserialize_json(
@@ -44,7 +44,7 @@ def deserialize_json(data: dict) -> AnomalyReportedTimeRange:
         )
     else:
         raise DeserializationError("AnomalyReportedTimeRange.open_time required")
-    if "CloseTime" in data:
+    if data.get("CloseTime") is not None:
         import capo_devops_guru.types.timestamp
 
         out["close_time"] = capo_devops_guru.types.timestamp.deserialize_json(

@@ -81,17 +81,17 @@ def serialize_json(value: DataAccessor) -> dict:
 
 def deserialize_json(data: dict) -> DataAccessor:
     out: DataAccessor = {}  # type: ignore[typeddict-item]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "dataAccessorId" in data:
+    if data.get("dataAccessorId") is not None:
         out["data_accessor_id"] = data["dataAccessorId"]
-    if "dataAccessorArn" in data:
+    if data.get("dataAccessorArn") is not None:
         out["data_accessor_arn"] = data["dataAccessorArn"]
-    if "idcApplicationArn" in data:
+    if data.get("idcApplicationArn") is not None:
         out["idc_application_arn"] = data["idcApplicationArn"]
-    if "principal" in data:
+    if data.get("principal") is not None:
         out["principal"] = data["principal"]
-    if "authenticationDetail" in data:
+    if data.get("authenticationDetail") is not None:
         import capo_qbusiness.types.data_accessor_authentication_detail
 
         out["authentication_detail"] = (
@@ -99,13 +99,13 @@ def deserialize_json(data: dict) -> DataAccessor:
                 data["authenticationDetail"]
             )
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_qbusiness.types.timestamp
 
         out["created_at"] = capo_qbusiness.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_qbusiness.types.timestamp
 
         out["updated_at"] = capo_qbusiness.types.timestamp.deserialize_json(

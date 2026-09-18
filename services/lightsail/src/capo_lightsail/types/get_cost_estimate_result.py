@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetCostEstimateResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetCostEstimateResult:
     out: GetCostEstimateResult = {}  # type: ignore[typeddict-item]
-    if "resourcesBudgetEstimate" in data:
+    if data.get("resourcesBudgetEstimate") is not None:
         import capo_lightsail.types.resources_budget_estimate
 
         out["resources_budget_estimate"] = (

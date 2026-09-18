@@ -59,7 +59,7 @@ def serialize_aws_json_1_1(value: ReportContext) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReportContext:
     out: ReportContext = {}  # type: ignore[typeddict-item]
-    if "licenseConfigurationArns" in data:
+    if data.get("licenseConfigurationArns") is not None:
         import capo_license_manager.types.arn_list
 
         out["license_configuration_arns"] = (
@@ -69,7 +69,7 @@ def deserialize_aws_json_1_1(data: dict) -> ReportContext:
         )
     else:
         out["license_configuration_arns"] = []
-    if "licenseAssetGroupArns" in data:
+    if data.get("licenseAssetGroupArns") is not None:
         import capo_license_manager.types.arn_list
 
         out["license_asset_group_arns"] = (
@@ -77,7 +77,7 @@ def deserialize_aws_json_1_1(data: dict) -> ReportContext:
                 data["licenseAssetGroupArns"]
             )
         )
-    if "reportStartDate" in data:
+    if data.get("reportStartDate") is not None:
         import capo_license_manager.types.date_time
 
         out["report_start_date"] = (
@@ -85,7 +85,7 @@ def deserialize_aws_json_1_1(data: dict) -> ReportContext:
                 data["reportStartDate"]
             )
         )
-    if "reportEndDate" in data:
+    if data.get("reportEndDate") is not None:
         import capo_license_manager.types.date_time
 
         out["report_end_date"] = (

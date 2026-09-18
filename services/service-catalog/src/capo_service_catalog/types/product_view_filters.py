@@ -33,6 +33,9 @@ def deserialize_aws_json_1_1(data: dict) -> ProductViewFilters:
     out: ProductViewFilters = {}
     for key, value in data.items():
         import capo_service_catalog.types.product_view_filter_by
+
+        if value is None:
+            continue
         import capo_service_catalog.types.product_view_filter_values
 
         out[

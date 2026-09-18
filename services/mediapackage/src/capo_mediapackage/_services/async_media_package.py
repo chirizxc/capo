@@ -221,10 +221,11 @@ class AsyncMediaPackageClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediapackage.types.configure_logs_request.ConfigureLogsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediapackage.types.configure_logs_request.ConfigureLogsRequest = {
+            "id": id
+        }
         if egress_access_logs is not None:
             input_["egress_access_logs"] = egress_access_logs
-        input_["id"] = id
         if ingress_access_logs is not None:
             input_["ingress_access_logs"] = ingress_access_logs
 
@@ -233,6 +234,7 @@ class AsyncMediaPackageClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_channel(
@@ -275,7 +277,7 @@ class AsyncMediaPackageClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediapackage.types.create_channel_request.CreateChannelRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediapackage.types.create_channel_request.CreateChannelRequest = {}
         if description is not None:
             input_["description"] = description
         if id is not None:
@@ -288,6 +290,7 @@ class AsyncMediaPackageClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_harvest_job(
@@ -338,7 +341,7 @@ class AsyncMediaPackageClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediapackage.types.create_harvest_job_request.CreateHarvestJobRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediapackage.types.create_harvest_job_request.CreateHarvestJobRequest = {}
         if end_time is not None:
             input_["end_time"] = end_time
         if id is not None:
@@ -355,6 +358,7 @@ class AsyncMediaPackageClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_origin_endpoint(
@@ -426,7 +430,7 @@ class AsyncMediaPackageClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediapackage.types.create_origin_endpoint_request.CreateOriginEndpointRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediapackage.types.create_origin_endpoint_request.CreateOriginEndpointRequest = {}
         if authorization is not None:
             input_["authorization"] = authorization
         if channel_id is not None:
@@ -461,6 +465,7 @@ class AsyncMediaPackageClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_channel(
@@ -500,14 +505,16 @@ class AsyncMediaPackageClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediapackage.types.delete_channel_request.DeleteChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_mediapackage.types.delete_channel_request.DeleteChannelRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_origin_endpoint(
@@ -547,14 +554,16 @@ class AsyncMediaPackageClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediapackage.types.delete_origin_endpoint_request.DeleteOriginEndpointRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_mediapackage.types.delete_origin_endpoint_request.DeleteOriginEndpointRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_channel(
@@ -594,14 +603,16 @@ class AsyncMediaPackageClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediapackage.types.describe_channel_request.DescribeChannelRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_mediapackage.types.describe_channel_request.DescribeChannelRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_harvest_job(
@@ -641,14 +652,16 @@ class AsyncMediaPackageClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediapackage.types.describe_harvest_job_request.DescribeHarvestJobRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_mediapackage.types.describe_harvest_job_request.DescribeHarvestJobRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_origin_endpoint(
@@ -688,14 +701,16 @@ class AsyncMediaPackageClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediapackage.types.describe_origin_endpoint_request.DescribeOriginEndpointRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_mediapackage.types.describe_origin_endpoint_request.DescribeOriginEndpointRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_channels(
@@ -737,7 +752,7 @@ class AsyncMediaPackageClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediapackage.types.list_channels_request.ListChannelsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediapackage.types.list_channels_request.ListChannelsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -748,6 +763,7 @@ class AsyncMediaPackageClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_channels(
@@ -816,7 +832,7 @@ class AsyncMediaPackageClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediapackage.types.list_harvest_jobs_request.ListHarvestJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediapackage.types.list_harvest_jobs_request.ListHarvestJobsRequest = {}
         if include_channel_id is not None:
             input_["include_channel_id"] = include_channel_id
         if include_status is not None:
@@ -831,6 +847,7 @@ class AsyncMediaPackageClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_harvest_jobs(
@@ -901,7 +918,7 @@ class AsyncMediaPackageClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediapackage.types.list_origin_endpoints_request.ListOriginEndpointsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediapackage.types.list_origin_endpoints_request.ListOriginEndpointsRequest = {}
         if channel_id is not None:
             input_["channel_id"] = channel_id
         if max_results is not None:
@@ -914,6 +931,7 @@ class AsyncMediaPackageClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_origin_endpoints(
@@ -961,14 +979,16 @@ class AsyncMediaPackageClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediapackage.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_mediapackage.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def rotate_channel_credentials(
@@ -1008,14 +1028,16 @@ class AsyncMediaPackageClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediapackage.types.rotate_channel_credentials_request.RotateChannelCredentialsRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_mediapackage.types.rotate_channel_credentials_request.RotateChannelCredentialsRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def rotate_ingest_endpoint_credentials(
@@ -1057,15 +1079,17 @@ class AsyncMediaPackageClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediapackage.types.rotate_ingest_endpoint_credentials_request.RotateIngestEndpointCredentialsRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["ingest_endpoint_id"] = ingest_endpoint_id
+        input_: capo_mediapackage.types.rotate_ingest_endpoint_credentials_request.RotateIngestEndpointCredentialsRequest = {
+            "id": id,
+            "ingest_endpoint_id": ingest_endpoint_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -1091,8 +1115,9 @@ class AsyncMediaPackageClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediapackage.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_mediapackage.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -1101,6 +1126,7 @@ class AsyncMediaPackageClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -1135,8 +1161,9 @@ class AsyncMediaPackageClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediapackage.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_mediapackage.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if tag_keys is not None:
             input_["tag_keys"] = tag_keys
 
@@ -1145,6 +1172,7 @@ class AsyncMediaPackageClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_channel(
@@ -1186,16 +1214,18 @@ class AsyncMediaPackageClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediapackage.types.update_channel_request.UpdateChannelRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediapackage.types.update_channel_request.UpdateChannelRequest = {
+            "id": id
+        }
         if description is not None:
             input_["description"] = description
-        input_["id"] = id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_origin_endpoint(
@@ -1264,7 +1294,9 @@ class AsyncMediaPackageClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_mediapackage.types.update_origin_endpoint_request.UpdateOriginEndpointRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mediapackage.types.update_origin_endpoint_request.UpdateOriginEndpointRequest = {
+            "id": id
+        }
         if authorization is not None:
             input_["authorization"] = authorization
         if cmaf_package is not None:
@@ -1275,7 +1307,6 @@ class AsyncMediaPackageClient:
             input_["description"] = description
         if hls_package is not None:
             input_["hls_package"] = hls_package
-        input_["id"] = id
         if manifest_name is not None:
             input_["manifest_name"] = manifest_name
         if mss_package is not None:
@@ -1294,6 +1325,7 @@ class AsyncMediaPackageClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

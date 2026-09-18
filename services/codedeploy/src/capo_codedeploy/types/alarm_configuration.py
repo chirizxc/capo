@@ -34,15 +34,15 @@ def serialize_aws_json_1_1(value: AlarmConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AlarmConfiguration:
     out: AlarmConfiguration = {}  # type: ignore[typeddict-item]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
     else:
         out["enabled"] = False
-    if "ignorePollAlarmFailure" in data:
+    if data.get("ignorePollAlarmFailure") is not None:
         out["ignore_poll_alarm_failure"] = data["ignorePollAlarmFailure"]
     else:
         out["ignore_poll_alarm_failure"] = False
-    if "alarms" in data:
+    if data.get("alarms") is not None:
         import capo_codedeploy.types.alarm_list
 
         out["alarms"] = capo_codedeploy.types.alarm_list.deserialize_aws_json_1_1(

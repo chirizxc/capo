@@ -19,7 +19,7 @@ def serialize_json(value: DeleteLandingZoneInput) -> dict:
 
 def deserialize_json(data: dict) -> DeleteLandingZoneInput:
     out: DeleteLandingZoneInput = {}  # type: ignore[typeddict-item]
-    if "landingZoneIdentifier" in data:
+    if data.get("landingZoneIdentifier") is not None:
         out["landing_zone_identifier"] = data["landingZoneIdentifier"]
     else:
         raise DeserializationError(

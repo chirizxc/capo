@@ -48,19 +48,19 @@ def serialize_json(value: CreateClusterV2Request) -> dict:
 
 def deserialize_json(data: dict) -> CreateClusterV2Request:
     out: CreateClusterV2Request = {}  # type: ignore[typeddict-item]
-    if "clusterName" in data:
+    if data.get("clusterName") is not None:
         out["cluster_name"] = data["clusterName"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_kafka.types.__map_of__string
 
         out["tags"] = capo_kafka.types.__map_of__string.deserialize_json(data["tags"])
-    if "provisioned" in data:
+    if data.get("provisioned") is not None:
         import capo_kafka.types.provisioned_request
 
         out["provisioned"] = capo_kafka.types.provisioned_request.deserialize_json(
             data["provisioned"]
         )
-    if "serverless" in data:
+    if data.get("serverless") is not None:
         import capo_kafka.types.serverless_request
 
         out["serverless"] = capo_kafka.types.serverless_request.deserialize_json(

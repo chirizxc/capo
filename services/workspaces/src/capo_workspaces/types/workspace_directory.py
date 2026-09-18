@@ -305,21 +305,21 @@ def serialize_aws_json_1_1(value: WorkspaceDirectory) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WorkspaceDirectory:
     out: WorkspaceDirectory = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
-    if "Alias" in data:
+    if data.get("Alias") is not None:
         out["alias"] = data["Alias"]
-    if "DirectoryName" in data:
+    if data.get("DirectoryName") is not None:
         out["directory_name"] = data["DirectoryName"]
-    if "RegistrationCode" in data:
+    if data.get("RegistrationCode") is not None:
         out["registration_code"] = data["RegistrationCode"]
-    if "SubnetIds" in data:
+    if data.get("SubnetIds") is not None:
         import capo_workspaces.types.subnet_ids
 
         out["subnet_ids"] = capo_workspaces.types.subnet_ids.deserialize_aws_json_1_1(
             data["SubnetIds"]
         )
-    if "DnsIpAddresses" in data:
+    if data.get("DnsIpAddresses") is not None:
         import capo_workspaces.types.dns_ip_addresses
 
         out["dns_ip_addresses"] = (
@@ -327,7 +327,7 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspaceDirectory:
                 data["DnsIpAddresses"]
             )
         )
-    if "DnsIpv6Addresses" in data:
+    if data.get("DnsIpv6Addresses") is not None:
         import capo_workspaces.types.dns_ipv6_addresses
 
         out["dns_ipv6_addresses"] = (
@@ -335,11 +335,11 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspaceDirectory:
                 data["DnsIpv6Addresses"]
             )
         )
-    if "CustomerUserName" in data:
+    if data.get("CustomerUserName") is not None:
         out["customer_user_name"] = data["CustomerUserName"]
-    if "IamRoleId" in data:
+    if data.get("IamRoleId") is not None:
         out["iam_role_id"] = data["IamRoleId"]
-    if "DirectoryType" in data:
+    if data.get("DirectoryType") is not None:
         import capo_workspaces.types.workspace_directory_type
 
         out["directory_type"] = (
@@ -347,9 +347,9 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspaceDirectory:
                 data["DirectoryType"]
             )
         )
-    if "WorkspaceSecurityGroupId" in data:
+    if data.get("WorkspaceSecurityGroupId") is not None:
         out["workspace_security_group_id"] = data["WorkspaceSecurityGroupId"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_workspaces.types.workspace_directory_state
 
         out["state"] = (
@@ -357,7 +357,7 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspaceDirectory:
                 data["State"]
             )
         )
-    if "WorkspaceCreationProperties" in data:
+    if data.get("WorkspaceCreationProperties") is not None:
         import capo_workspaces.types.default_workspace_creation_properties
 
         out["workspace_creation_properties"] = (
@@ -365,7 +365,7 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspaceDirectory:
                 data["WorkspaceCreationProperties"]
             )
         )
-    if "ipGroupIds" in data:
+    if data.get("ipGroupIds") is not None:
         import capo_workspaces.types.ip_group_id_list
 
         out["ip_group_ids"] = (
@@ -373,7 +373,7 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspaceDirectory:
                 data["ipGroupIds"]
             )
         )
-    if "WorkspaceAccessProperties" in data:
+    if data.get("WorkspaceAccessProperties") is not None:
         import capo_workspaces.types.workspace_access_properties
 
         out["workspace_access_properties"] = (
@@ -381,13 +381,13 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspaceDirectory:
                 data["WorkspaceAccessProperties"]
             )
         )
-    if "Tenancy" in data:
+    if data.get("Tenancy") is not None:
         import capo_workspaces.types.tenancy
 
         out["tenancy"] = capo_workspaces.types.tenancy.deserialize_aws_json_1_1(
             data["Tenancy"]
         )
-    if "SelfservicePermissions" in data:
+    if data.get("SelfservicePermissions") is not None:
         import capo_workspaces.types.selfservice_permissions
 
         out["selfservice_permissions"] = (
@@ -395,7 +395,7 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspaceDirectory:
                 data["SelfservicePermissions"]
             )
         )
-    if "SamlProperties" in data:
+    if data.get("SamlProperties") is not None:
         import capo_workspaces.types.saml_properties
 
         out["saml_properties"] = (
@@ -403,7 +403,7 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspaceDirectory:
                 data["SamlProperties"]
             )
         )
-    if "CertificateBasedAuthProperties" in data:
+    if data.get("CertificateBasedAuthProperties") is not None:
         import capo_workspaces.types.certificate_based_auth_properties
 
         out["certificate_based_auth_properties"] = (
@@ -411,7 +411,7 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspaceDirectory:
                 data["CertificateBasedAuthProperties"]
             )
         )
-    if "EndpointEncryptionMode" in data:
+    if data.get("EndpointEncryptionMode") is not None:
         import capo_workspaces.types.endpoint_encryption_mode
 
         out["endpoint_encryption_mode"] = (
@@ -419,7 +419,7 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspaceDirectory:
                 data["EndpointEncryptionMode"]
             )
         )
-    if "MicrosoftEntraConfig" in data:
+    if data.get("MicrosoftEntraConfig") is not None:
         import capo_workspaces.types.microsoft_entra_config
 
         out["microsoft_entra_config"] = (
@@ -427,11 +427,11 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspaceDirectory:
                 data["MicrosoftEntraConfig"]
             )
         )
-    if "WorkspaceDirectoryName" in data:
+    if data.get("WorkspaceDirectoryName") is not None:
         out["workspace_directory_name"] = data["WorkspaceDirectoryName"]
-    if "WorkspaceDirectoryDescription" in data:
+    if data.get("WorkspaceDirectoryDescription") is not None:
         out["workspace_directory_description"] = data["WorkspaceDirectoryDescription"]
-    if "UserIdentityType" in data:
+    if data.get("UserIdentityType") is not None:
         import capo_workspaces.types.user_identity_type
 
         out["user_identity_type"] = (
@@ -439,7 +439,7 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspaceDirectory:
                 data["UserIdentityType"]
             )
         )
-    if "WorkspaceType" in data:
+    if data.get("WorkspaceType") is not None:
         import capo_workspaces.types.workspace_type
 
         out["workspace_type"] = (
@@ -447,13 +447,13 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspaceDirectory:
                 data["WorkspaceType"]
             )
         )
-    if "IDCConfig" in data:
+    if data.get("IDCConfig") is not None:
         import capo_workspaces.types.idc_config
 
         out["idc_config"] = capo_workspaces.types.idc_config.deserialize_aws_json_1_1(
             data["IDCConfig"]
         )
-    if "ActiveDirectoryConfig" in data:
+    if data.get("ActiveDirectoryConfig") is not None:
         import capo_workspaces.types.active_directory_config
 
         out["active_directory_config"] = (
@@ -461,7 +461,7 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspaceDirectory:
                 data["ActiveDirectoryConfig"]
             )
         )
-    if "StreamingProperties" in data:
+    if data.get("StreamingProperties") is not None:
         import capo_workspaces.types.streaming_properties
 
         out["streaming_properties"] = (
@@ -469,6 +469,6 @@ def deserialize_aws_json_1_1(data: dict) -> WorkspaceDirectory:
                 data["StreamingProperties"]
             )
         )
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
     return out

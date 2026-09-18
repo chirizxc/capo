@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: RepositoryNotEmptyException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RepositoryNotEmptyException_:
     out: RepositoryNotEmptyException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,18 @@ class RepositoryNotEmptyException(ServiceError):
 
     code: str | None = "RepositoryNotEmptyException"
 
-    def __init__(self, data: RepositoryNotEmptyException_):
+    def __init__(self, data: RepositoryNotEmptyException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="RepositoryNotEmptyException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "RepositoryNotEmptyException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "RepositoryNotEmptyException":
+        return cls(deserialize_aws_json_1_1(data), message)

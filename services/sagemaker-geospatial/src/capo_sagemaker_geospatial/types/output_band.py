@@ -27,11 +27,11 @@ def serialize_json(value: OutputBand) -> dict:
 
 def deserialize_json(data: dict) -> OutputBand:
     out: OutputBand = {}  # type: ignore[typeddict-item]
-    if "BandName" in data:
+    if data.get("BandName") is not None:
         out["band_name"] = data["BandName"]
     else:
         raise DeserializationError("OutputBand.band_name required")
-    if "OutputDataType" in data:
+    if data.get("OutputDataType") is not None:
         out["output_data_type"] = data["OutputDataType"]
     else:
         raise DeserializationError("OutputBand.output_data_type required")

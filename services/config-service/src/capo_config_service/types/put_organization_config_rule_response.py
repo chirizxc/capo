@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: PutOrganizationConfigRuleResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutOrganizationConfigRuleResponse:
     out: PutOrganizationConfigRuleResponse = {}  # type: ignore[typeddict-item]
-    if "OrganizationConfigRuleArn" in data:
+    if data.get("OrganizationConfigRuleArn") is not None:
         out["organization_config_rule_arn"] = data["OrganizationConfigRuleArn"]
     return out

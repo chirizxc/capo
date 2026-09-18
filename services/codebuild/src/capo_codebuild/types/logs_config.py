@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: LogsConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LogsConfig:
     out: LogsConfig = {}  # type: ignore[typeddict-item]
-    if "cloudWatchLogs" in data:
+    if data.get("cloudWatchLogs") is not None:
         import capo_codebuild.types.cloud_watch_logs_config
 
         out["cloud_watch_logs"] = (
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(data: dict) -> LogsConfig:
                 data["cloudWatchLogs"]
             )
         )
-    if "s3Logs" in data:
+    if data.get("s3Logs") is not None:
         import capo_codebuild.types.s3_logs_config
 
         out["s3_logs"] = capo_codebuild.types.s3_logs_config.deserialize_aws_json_1_1(

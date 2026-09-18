@@ -23,6 +23,6 @@ def serialize_json(value: ChannelEngineVersionRequest) -> dict:
 
 def deserialize_json(data: dict) -> ChannelEngineVersionRequest:
     out: ChannelEngineVersionRequest = {}  # type: ignore[typeddict-item]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     return out

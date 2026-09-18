@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> UserMatchList:
 
     out: UserMatchList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_rekognition.types.user_match.deserialize_aws_json_1_1(item))
     return out

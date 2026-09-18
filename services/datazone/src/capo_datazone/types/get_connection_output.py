@@ -111,7 +111,7 @@ def serialize_json(value: GetConnectionOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetConnectionOutput:
     out: GetConnectionOutput = {}  # type: ignore[typeddict-item]
-    if "connectionCredentials" in data:
+    if data.get("connectionCredentials") is not None:
         import capo_datazone.types.connection_credentials
 
         out["connection_credentials"] = (
@@ -119,35 +119,35 @@ def deserialize_json(data: dict) -> GetConnectionOutput:
                 data["connectionCredentials"]
             )
         )
-    if "configurations" in data:
+    if data.get("configurations") is not None:
         import capo_datazone.types.configurations
 
         out["configurations"] = capo_datazone.types.configurations.deserialize_json(
             data["configurations"]
         )
-    if "connectionId" in data:
+    if data.get("connectionId") is not None:
         out["connection_id"] = data["connectionId"]
     else:
         raise DeserializationError("GetConnectionOutput.connection_id required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
     else:
         raise DeserializationError("GetConnectionOutput.domain_id required")
-    if "domainUnitId" in data:
+    if data.get("domainUnitId") is not None:
         out["domain_unit_id"] = data["domainUnitId"]
     else:
         raise DeserializationError("GetConnectionOutput.domain_unit_id required")
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
-    if "environmentUserRole" in data:
+    if data.get("environmentUserRole") is not None:
         out["environment_user_role"] = data["environmentUserRole"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("GetConnectionOutput.name required")
-    if "physicalEndpoints" in data:
+    if data.get("physicalEndpoints") is not None:
         import capo_datazone.types.physical_endpoints
 
         out["physical_endpoints"] = (
@@ -157,9 +157,9 @@ def deserialize_json(data: dict) -> GetConnectionOutput:
         )
     else:
         raise DeserializationError("GetConnectionOutput.physical_endpoints required")
-    if "projectId" in data:
+    if data.get("projectId") is not None:
         out["project_id"] = data["projectId"]
-    if "props" in data:
+    if data.get("props") is not None:
         import capo_datazone.types.connection_properties_output
 
         out["props"] = (
@@ -167,13 +167,13 @@ def deserialize_json(data: dict) -> GetConnectionOutput:
                 data["props"]
             )
         )
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_datazone.types.connection_type
 
         out["type"] = capo_datazone.types.connection_type.deserialize_json(data["type"])
     else:
         raise DeserializationError("GetConnectionOutput.type required")
-    if "scope" in data:
+    if data.get("scope") is not None:
         import capo_datazone.types.connection_scope
 
         out["scope"] = capo_datazone.types.connection_scope.deserialize_json(

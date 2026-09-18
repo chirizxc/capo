@@ -34,13 +34,13 @@ def serialize_aws_json_1_1(value: StartRemediationExecutionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartRemediationExecutionRequest:
     out: StartRemediationExecutionRequest = {}  # type: ignore[typeddict-item]
-    if "ConfigRuleName" in data:
+    if data.get("ConfigRuleName") is not None:
         out["config_rule_name"] = data["ConfigRuleName"]
     else:
         raise DeserializationError(
             "StartRemediationExecutionRequest.config_rule_name required"
         )
-    if "ResourceKeys" in data:
+    if data.get("ResourceKeys") is not None:
         import capo_config_service.types.resource_keys
 
         out["resource_keys"] = (

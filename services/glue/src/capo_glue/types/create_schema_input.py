@@ -69,17 +69,17 @@ def serialize_aws_json_1_1(value: CreateSchemaInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateSchemaInput:
     out: CreateSchemaInput = {}  # type: ignore[typeddict-item]
-    if "RegistryId" in data:
+    if data.get("RegistryId") is not None:
         import capo_glue.types.registry_id
 
         out["registry_id"] = capo_glue.types.registry_id.deserialize_aws_json_1_1(
             data["RegistryId"]
         )
-    if "SchemaName" in data:
+    if data.get("SchemaName") is not None:
         out["schema_name"] = data["SchemaName"]
     else:
         raise DeserializationError("CreateSchemaInput.schema_name required")
-    if "DataFormat" in data:
+    if data.get("DataFormat") is not None:
         import capo_glue.types.data_format
 
         out["data_format"] = capo_glue.types.data_format.deserialize_aws_json_1_1(
@@ -87,18 +87,18 @@ def deserialize_aws_json_1_1(data: dict) -> CreateSchemaInput:
         )
     else:
         raise DeserializationError("CreateSchemaInput.data_format required")
-    if "Compatibility" in data:
+    if data.get("Compatibility") is not None:
         import capo_glue.types.compatibility
 
         out["compatibility"] = capo_glue.types.compatibility.deserialize_aws_json_1_1(
             data["Compatibility"]
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_glue.types.tags_map
 
         out["tags"] = capo_glue.types.tags_map.deserialize_aws_json_1_1(data["Tags"])
-    if "SchemaDefinition" in data:
+    if data.get("SchemaDefinition") is not None:
         out["schema_definition"] = data["SchemaDefinition"]
     return out

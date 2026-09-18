@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> TargetTrackingScalingConfigurations:
 
     out: TargetTrackingScalingConfigurations = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codebuild.types.target_tracking_scaling_configuration.deserialize_aws_json_1_1(
                 item

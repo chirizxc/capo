@@ -24,7 +24,7 @@ def serialize_json(value: DeleteSlackUserIdentityException_) -> dict:
 
 def deserialize_json(data: dict) -> DeleteSlackUserIdentityException_:
     out: DeleteSlackUserIdentityException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,20 @@ class DeleteSlackUserIdentityException(ServiceError):
 
     code: str | None = "DeleteSlackUserIdentityException"
 
-    def __init__(self, data: DeleteSlackUserIdentityException_):
+    def __init__(
+        self, data: DeleteSlackUserIdentityException_, message: str | None = None
+    ):
         super().__init__(
             "server",
             is_throttling_error=False,
             is_retryable=False,
             code="DeleteSlackUserIdentityException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "DeleteSlackUserIdentityException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "DeleteSlackUserIdentityException":
+        return cls(deserialize_json(data), message)

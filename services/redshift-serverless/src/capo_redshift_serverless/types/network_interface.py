@@ -34,14 +34,14 @@ def serialize_aws_json_1_1(value: NetworkInterface) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NetworkInterface:
     out: NetworkInterface = {}  # type: ignore[typeddict-item]
-    if "networkInterfaceId" in data:
+    if data.get("networkInterfaceId") is not None:
         out["network_interface_id"] = data["networkInterfaceId"]
-    if "subnetId" in data:
+    if data.get("subnetId") is not None:
         out["subnet_id"] = data["subnetId"]
-    if "privateIpAddress" in data:
+    if data.get("privateIpAddress") is not None:
         out["private_ip_address"] = data["privateIpAddress"]
-    if "availabilityZone" in data:
+    if data.get("availabilityZone") is not None:
         out["availability_zone"] = data["availabilityZone"]
-    if "ipv6Address" in data:
+    if data.get("ipv6Address") is not None:
         out["ipv6_address"] = data["ipv6Address"]
     return out

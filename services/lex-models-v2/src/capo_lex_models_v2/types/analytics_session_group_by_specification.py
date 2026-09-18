@@ -28,7 +28,7 @@ def serialize_json(value: AnalyticsSessionGroupBySpecification) -> dict:
 
 def deserialize_json(data: dict) -> AnalyticsSessionGroupBySpecification:
     out: AnalyticsSessionGroupBySpecification = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         import capo_lex_models_v2.types.analytics_session_field
 
         out["name"] = capo_lex_models_v2.types.analytics_session_field.deserialize_json(

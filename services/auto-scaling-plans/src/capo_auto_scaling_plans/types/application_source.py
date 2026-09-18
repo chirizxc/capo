@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: ApplicationSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ApplicationSource:
     out: ApplicationSource = {}  # type: ignore[typeddict-item]
-    if "CloudFormationStackARN" in data:
+    if data.get("CloudFormationStackARN") is not None:
         out["cloud_formation_stack_arn"] = data["CloudFormationStackARN"]
-    if "TagFilters" in data:
+    if data.get("TagFilters") is not None:
         import capo_auto_scaling_plans.types.tag_filters
 
         out["tag_filters"] = (

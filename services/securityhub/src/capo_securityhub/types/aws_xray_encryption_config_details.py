@@ -31,10 +31,10 @@ def serialize_json(value: AwsXrayEncryptionConfigDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsXrayEncryptionConfigDetails:
     out: AwsXrayEncryptionConfigDetails = {}  # type: ignore[typeddict-item]
-    if "KeyId" in data:
+    if data.get("KeyId") is not None:
         out["key_id"] = data["KeyId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     return out

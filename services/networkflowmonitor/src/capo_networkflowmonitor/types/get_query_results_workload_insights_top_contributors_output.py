@@ -37,7 +37,7 @@ def deserialize_json(
     data: dict,
 ) -> GetQueryResultsWorkloadInsightsTopContributorsOutput:
     out: GetQueryResultsWorkloadInsightsTopContributorsOutput = {}  # type: ignore[typeddict-item]
-    if "topContributors" in data:
+    if data.get("topContributors") is not None:
         import capo_networkflowmonitor.types.workload_insights_top_contributors_row_list
 
         out["top_contributors"] = (
@@ -45,6 +45,6 @@ def deserialize_json(
                 data["topContributors"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

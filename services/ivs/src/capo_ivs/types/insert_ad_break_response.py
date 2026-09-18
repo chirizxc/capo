@@ -23,6 +23,6 @@ def serialize_json(value: InsertAdBreakResponse) -> dict:
 
 def deserialize_json(data: dict) -> InsertAdBreakResponse:
     out: InsertAdBreakResponse = {}  # type: ignore[typeddict-item]
-    if "adBreakId" in data:
+    if data.get("adBreakId") is not None:
         out["ad_break_id"] = data["adBreakId"]
     return out

@@ -30,8 +30,8 @@ def serialize_json(value: InstanceMetadataOptions) -> dict:
 
 def deserialize_json(data: dict) -> InstanceMetadataOptions:
     out: InstanceMetadataOptions = {}  # type: ignore[typeddict-item]
-    if "httpTokens" in data:
+    if data.get("httpTokens") is not None:
         out["http_tokens"] = data["httpTokens"]
-    if "httpPutResponseHopLimit" in data:
+    if data.get("httpPutResponseHopLimit") is not None:
         out["http_put_response_hop_limit"] = data["httpPutResponseHopLimit"]
     return out

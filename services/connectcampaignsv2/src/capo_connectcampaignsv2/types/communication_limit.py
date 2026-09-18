@@ -29,17 +29,17 @@ def serialize_json(value: CommunicationLimit) -> dict:
 
 def deserialize_json(data: dict) -> CommunicationLimit:
     out: CommunicationLimit = {}  # type: ignore[typeddict-item]
-    if "maxCountPerRecipient" in data:
+    if data.get("maxCountPerRecipient") is not None:
         out["max_count_per_recipient"] = data["maxCountPerRecipient"]
     else:
         raise DeserializationError(
             "CommunicationLimit.max_count_per_recipient required"
         )
-    if "frequency" in data:
+    if data.get("frequency") is not None:
         out["frequency"] = data["frequency"]
     else:
         raise DeserializationError("CommunicationLimit.frequency required")
-    if "unit" in data:
+    if data.get("unit") is not None:
         out["unit"] = data["unit"]
     else:
         raise DeserializationError("CommunicationLimit.unit required")

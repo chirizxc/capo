@@ -39,10 +39,10 @@ def serialize_json(value: DvbNitSettings) -> dict:
 
 def deserialize_json(data: dict) -> DvbNitSettings:
     out: DvbNitSettings = {}  # type: ignore[typeddict-item]
-    if "networkId" in data:
+    if data.get("networkId") is not None:
         out["network_id"] = data["networkId"]
-    if "networkName" in data:
+    if data.get("networkName") is not None:
         out["network_name"] = data["networkName"]
-    if "repInterval" in data:
+    if data.get("repInterval") is not None:
         out["rep_interval"] = data["repInterval"]
     return out

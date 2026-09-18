@@ -44,12 +44,12 @@ def serialize_json(value: AudioCodecOptions) -> dict:
 
 def deserialize_json(data: dict) -> AudioCodecOptions:
     out: AudioCodecOptions = {}  # type: ignore[typeddict-item]
-    if "Profile" in data:
+    if data.get("Profile") is not None:
         out["profile"] = data["Profile"]
-    if "BitDepth" in data:
+    if data.get("BitDepth") is not None:
         out["bit_depth"] = data["BitDepth"]
-    if "BitOrder" in data:
+    if data.get("BitOrder") is not None:
         out["bit_order"] = data["BitOrder"]
-    if "Signed" in data:
+    if data.get("Signed") is not None:
         out["signed"] = data["Signed"]
     return out

@@ -60,25 +60,25 @@ def serialize_json(value: GroupingStatusesItem) -> dict:
 
 def deserialize_json(data: dict) -> GroupingStatusesItem:
     out: GroupingStatusesItem = {}  # type: ignore[typeddict-item]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_resource_groups.types.grouping_type
 
         out["action"] = capo_resource_groups.types.grouping_type.deserialize_json(
             data["Action"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_resource_groups.types.grouping_status
 
         out["status"] = capo_resource_groups.types.grouping_status.deserialize_json(
             data["Status"]
         )
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_resource_groups.types.timestamp
 
         out["updated_at"] = capo_resource_groups.types.timestamp.deserialize_json(

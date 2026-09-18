@@ -35,7 +35,7 @@ def serialize_json(value: ListLicenseServerEndpointsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListLicenseServerEndpointsResponse:
     out: ListLicenseServerEndpointsResponse = {}  # type: ignore[typeddict-item]
-    if "LicenseServerEndpoints" in data:
+    if data.get("LicenseServerEndpoints") is not None:
         import capo_license_manager_user_subscriptions.types.license_server_endpoint_list
 
         out["license_server_endpoints"] = (
@@ -43,6 +43,6 @@ def deserialize_json(data: dict) -> ListLicenseServerEndpointsResponse:
                 data["LicenseServerEndpoints"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

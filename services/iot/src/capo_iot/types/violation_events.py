@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ViolationEvents:
 
     out: ViolationEvents = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot.types.violation_event.deserialize_json(item))
     return out

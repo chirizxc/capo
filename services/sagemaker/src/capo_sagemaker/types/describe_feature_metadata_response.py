@@ -86,13 +86,13 @@ def serialize_aws_json_1_1(value: DescribeFeatureMetadataResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeFeatureMetadataResponse:
     out: DescribeFeatureMetadataResponse = {}  # type: ignore[typeddict-item]
-    if "FeatureGroupArn" in data:
+    if data.get("FeatureGroupArn") is not None:
         out["feature_group_arn"] = data["FeatureGroupArn"]
-    if "FeatureGroupName" in data:
+    if data.get("FeatureGroupName") is not None:
         out["feature_group_name"] = data["FeatureGroupName"]
-    if "FeatureName" in data:
+    if data.get("FeatureName") is not None:
         out["feature_name"] = data["FeatureName"]
-    if "FeatureType" in data:
+    if data.get("FeatureType") is not None:
         import capo_sagemaker.types.feature_type
 
         out["feature_type"] = (
@@ -100,7 +100,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeFeatureMetadataResponse:
                 data["FeatureType"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.creation_time
 
         out["creation_time"] = (
@@ -108,7 +108,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeFeatureMetadataResponse:
                 data["CreationTime"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.last_modified_time
 
         out["last_modified_time"] = (
@@ -116,9 +116,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeFeatureMetadataResponse:
                 data["LastModifiedTime"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_sagemaker.types.feature_parameters
 
         out["parameters"] = (

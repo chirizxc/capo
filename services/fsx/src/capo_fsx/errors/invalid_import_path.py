@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: InvalidImportPath_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidImportPath_:
     out: InvalidImportPath_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class InvalidImportPath(ServiceError):
 
     code: str | None = "InvalidImportPath"
 
-    def __init__(self, data: InvalidImportPath_):
+    def __init__(self, data: InvalidImportPath_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidImportPath",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidImportPath":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidImportPath":
+        return cls(deserialize_aws_json_1_1(data), message)

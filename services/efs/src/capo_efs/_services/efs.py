@@ -252,11 +252,12 @@ class EFSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_efs.types.create_access_point_request.CreateAccessPointRequest = {}  # type: ignore[typeddict-item]
-        input_["client_token"] = client_token
+        input_: capo_efs.types.create_access_point_request.CreateAccessPointRequest = {
+            "client_token": client_token,
+            "file_system_id": file_system_id,
+        }
         if tags is not None:
             input_["tags"] = tags
-        input_["file_system_id"] = file_system_id
         if posix_user is not None:
             input_["posix_user"] = posix_user
         if root_directory is not None:
@@ -267,6 +268,7 @@ class EFSClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_file_system(
@@ -330,8 +332,9 @@ class EFSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_efs.types.create_file_system_request.CreateFileSystemRequest = {}  # type: ignore[typeddict-item]
-        input_["creation_token"] = creation_token
+        input_: capo_efs.types.create_file_system_request.CreateFileSystemRequest = {
+            "creation_token": creation_token
+        }
         if performance_mode is not None:
             input_["performance_mode"] = performance_mode
         if encrypted is not None:
@@ -354,6 +357,7 @@ class EFSClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_mount_target(
@@ -419,9 +423,10 @@ class EFSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_efs.types.create_mount_target_request.CreateMountTargetRequest = {}  # type: ignore[typeddict-item]
-        input_["file_system_id"] = file_system_id
-        input_["subnet_id"] = subnet_id
+        input_: capo_efs.types.create_mount_target_request.CreateMountTargetRequest = {
+            "file_system_id": file_system_id,
+            "subnet_id": subnet_id,
+        }
         if ip_address is not None:
             input_["ip_address"] = ip_address
         if ipv6_address is not None:
@@ -436,6 +441,7 @@ class EFSClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_replication_configuration(
@@ -481,15 +487,17 @@ class EFSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_efs.types.create_replication_configuration_request.CreateReplicationConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["source_file_system_id"] = source_file_system_id
-        input_["destinations"] = destinations
+        input_: capo_efs.types.create_replication_configuration_request.CreateReplicationConfigurationRequest = {
+            "source_file_system_id": source_file_system_id,
+            "destinations": destinations,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_tags(
@@ -531,15 +539,17 @@ class EFSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_efs.types.create_tags_request.CreateTagsRequest = {}  # type: ignore[typeddict-item]
-        input_["file_system_id"] = file_system_id
-        input_["tags"] = tags
+        input_: capo_efs.types.create_tags_request.CreateTagsRequest = {
+            "file_system_id": file_system_id,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_access_point(
@@ -573,14 +583,16 @@ class EFSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_efs.types.delete_access_point_request.DeleteAccessPointRequest = {}  # type: ignore[typeddict-item]
-        input_["access_point_id"] = access_point_id
+        input_: capo_efs.types.delete_access_point_request.DeleteAccessPointRequest = {
+            "access_point_id": access_point_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_file_system(
@@ -621,14 +633,16 @@ class EFSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_efs.types.delete_file_system_request.DeleteFileSystemRequest = {}  # type: ignore[typeddict-item]
-        input_["file_system_id"] = file_system_id
+        input_: capo_efs.types.delete_file_system_request.DeleteFileSystemRequest = {
+            "file_system_id": file_system_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_file_system_policy(
@@ -663,14 +677,16 @@ class EFSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_efs.types.delete_file_system_policy_request.DeleteFileSystemPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["file_system_id"] = file_system_id
+        input_: capo_efs.types.delete_file_system_policy_request.DeleteFileSystemPolicyRequest = {
+            "file_system_id": file_system_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_mount_target(
@@ -711,14 +727,16 @@ class EFSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_efs.types.delete_mount_target_request.DeleteMountTargetRequest = {}  # type: ignore[typeddict-item]
-        input_["mount_target_id"] = mount_target_id
+        input_: capo_efs.types.delete_mount_target_request.DeleteMountTargetRequest = {
+            "mount_target_id": mount_target_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_replication_configuration(
@@ -755,8 +773,9 @@ class EFSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_efs.types.delete_replication_configuration_request.DeleteReplicationConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["source_file_system_id"] = source_file_system_id
+        input_: capo_efs.types.delete_replication_configuration_request.DeleteReplicationConfigurationRequest = {
+            "source_file_system_id": source_file_system_id
+        }
         if deletion_mode is not None:
             input_["deletion_mode"] = deletion_mode
 
@@ -765,6 +784,7 @@ class EFSClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_tags(
@@ -806,15 +826,17 @@ class EFSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_efs.types.delete_tags_request.DeleteTagsRequest = {}  # type: ignore[typeddict-item]
-        input_["file_system_id"] = file_system_id
-        input_["tag_keys"] = tag_keys
+        input_: capo_efs.types.delete_tags_request.DeleteTagsRequest = {
+            "file_system_id": file_system_id,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_access_points(
@@ -859,7 +881,7 @@ class EFSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_efs.types.describe_access_points_request.DescribeAccessPointsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_efs.types.describe_access_points_request.DescribeAccessPointsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -874,6 +896,7 @@ class EFSClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_access_points(
@@ -936,7 +959,7 @@ class EFSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_efs.types.describe_account_preferences_request.DescribeAccountPreferencesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_efs.types.describe_account_preferences_request.DescribeAccountPreferencesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -947,6 +970,7 @@ class EFSClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_backup_policy(
@@ -984,14 +1008,16 @@ class EFSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_efs.types.describe_backup_policy_request.DescribeBackupPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["file_system_id"] = file_system_id
+        input_: capo_efs.types.describe_backup_policy_request.DescribeBackupPolicyRequest = {
+            "file_system_id": file_system_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_file_system_policy(
@@ -1028,14 +1054,16 @@ class EFSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_efs.types.describe_file_system_policy_request.DescribeFileSystemPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["file_system_id"] = file_system_id
+        input_: capo_efs.types.describe_file_system_policy_request.DescribeFileSystemPolicyRequest = {
+            "file_system_id": file_system_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_file_systems(
@@ -1077,7 +1105,7 @@ class EFSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_efs.types.describe_file_systems_request.DescribeFileSystemsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_efs.types.describe_file_systems_request.DescribeFileSystemsRequest = {}
         if max_items is not None:
             input_["max_items"] = max_items
         if marker is not None:
@@ -1092,6 +1120,7 @@ class EFSClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_file_systems(
@@ -1158,14 +1187,16 @@ class EFSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_efs.types.describe_lifecycle_configuration_request.DescribeLifecycleConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["file_system_id"] = file_system_id
+        input_: capo_efs.types.describe_lifecycle_configuration_request.DescribeLifecycleConfigurationRequest = {
+            "file_system_id": file_system_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_mount_targets(
@@ -1221,7 +1252,7 @@ class EFSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_efs.types.describe_mount_targets_request.DescribeMountTargetsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_efs.types.describe_mount_targets_request.DescribeMountTargetsRequest = {}
         if max_items is not None:
             input_["max_items"] = max_items
         if marker is not None:
@@ -1238,6 +1269,7 @@ class EFSClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_mount_targets(
@@ -1311,14 +1343,16 @@ class EFSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_efs.types.describe_mount_target_security_groups_request.DescribeMountTargetSecurityGroupsRequest = {}  # type: ignore[typeddict-item]
-        input_["mount_target_id"] = mount_target_id
+        input_: capo_efs.types.describe_mount_target_security_groups_request.DescribeMountTargetSecurityGroupsRequest = {
+            "mount_target_id": mount_target_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_replication_configurations(
@@ -1360,7 +1394,7 @@ class EFSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_efs.types.describe_replication_configurations_request.DescribeReplicationConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_efs.types.describe_replication_configurations_request.DescribeReplicationConfigurationsRequest = {}
         if file_system_id is not None:
             input_["file_system_id"] = file_system_id
         if next_token is not None:
@@ -1373,6 +1407,7 @@ class EFSClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_replication_configurations(
@@ -1441,18 +1476,20 @@ class EFSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_efs.types.describe_tags_request.DescribeTagsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_efs.types.describe_tags_request.DescribeTagsRequest = {
+            "file_system_id": file_system_id
+        }
         if max_items is not None:
             input_["max_items"] = max_items
         if marker is not None:
             input_["marker"] = marker
-        input_["file_system_id"] = file_system_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_tags(
@@ -1516,8 +1553,9 @@ class EFSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_efs.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_id"] = resource_id
+        input_: capo_efs.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_id": resource_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1528,7 +1566,29 @@ class EFSClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_tags_for_resource(
+        self,
+        resource_id: "capo_efs.types.resource_id.ResourceId",
+        *,
+        config_overrides: Optional[EFSClientConfig] = None,
+        max_results: Optional["capo_efs.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_efs.types.token.Token"] = None,
+    ) -> "Iterator[capo_efs.types.list_tags_for_resource_response.ListTagsForResourceResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_tags_for_resource(
+                resource_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def modify_mount_target_security_groups(
         self,
@@ -1574,8 +1634,9 @@ class EFSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_efs.types.modify_mount_target_security_groups_request.ModifyMountTargetSecurityGroupsRequest = {}  # type: ignore[typeddict-item]
-        input_["mount_target_id"] = mount_target_id
+        input_: capo_efs.types.modify_mount_target_security_groups_request.ModifyMountTargetSecurityGroupsRequest = {
+            "mount_target_id": mount_target_id
+        }
         if security_groups is not None:
             input_["security_groups"] = security_groups
 
@@ -1584,6 +1645,7 @@ class EFSClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_account_preferences(
@@ -1620,14 +1682,16 @@ class EFSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_efs.types.put_account_preferences_request.PutAccountPreferencesRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_id_type"] = resource_id_type
+        input_: capo_efs.types.put_account_preferences_request.PutAccountPreferencesRequest = {
+            "resource_id_type": resource_id_type
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_backup_policy(
@@ -1667,15 +1731,17 @@ class EFSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_efs.types.put_backup_policy_request.PutBackupPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["file_system_id"] = file_system_id
-        input_["backup_policy"] = backup_policy
+        input_: capo_efs.types.put_backup_policy_request.PutBackupPolicyRequest = {
+            "file_system_id": file_system_id,
+            "backup_policy": backup_policy,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_file_system_policy(
@@ -1719,9 +1785,10 @@ class EFSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_efs.types.put_file_system_policy_request.PutFileSystemPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["file_system_id"] = file_system_id
-        input_["policy"] = policy
+        input_: capo_efs.types.put_file_system_policy_request.PutFileSystemPolicyRequest = {
+            "file_system_id": file_system_id,
+            "policy": policy,
+        }
         if bypass_policy_lockout_safety_check is not None:
             input_["bypass_policy_lockout_safety_check"] = (
                 bypass_policy_lockout_safety_check
@@ -1732,6 +1799,7 @@ class EFSClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_lifecycle_configuration(
@@ -1776,15 +1844,17 @@ class EFSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_efs.types.put_lifecycle_configuration_request.PutLifecycleConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["file_system_id"] = file_system_id
-        input_["lifecycle_policies"] = lifecycle_policies
+        input_: capo_efs.types.put_lifecycle_configuration_request.PutLifecycleConfigurationRequest = {
+            "file_system_id": file_system_id,
+            "lifecycle_policies": lifecycle_policies,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -1821,15 +1891,17 @@ class EFSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_efs.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_id"] = resource_id
-        input_["tags"] = tags
+        input_: capo_efs.types.tag_resource_request.TagResourceRequest = {
+            "resource_id": resource_id,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -1866,15 +1938,17 @@ class EFSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_efs.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_id"] = resource_id
-        input_["tag_keys"] = tag_keys
+        input_: capo_efs.types.untag_resource_request.UntagResourceRequest = {
+            "resource_id": resource_id,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_file_system(
@@ -1922,8 +1996,9 @@ class EFSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_efs.types.update_file_system_request.UpdateFileSystemRequest = {}  # type: ignore[typeddict-item]
-        input_["file_system_id"] = file_system_id
+        input_: capo_efs.types.update_file_system_request.UpdateFileSystemRequest = {
+            "file_system_id": file_system_id
+        }
         if throughput_mode is not None:
             input_["throughput_mode"] = throughput_mode
         if provisioned_throughput_in_mibps is not None:
@@ -1934,6 +2009,7 @@ class EFSClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_file_system_protection(
@@ -1978,8 +2054,9 @@ class EFSClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_efs.types.update_file_system_protection_request.UpdateFileSystemProtectionRequest = {}  # type: ignore[typeddict-item]
-        input_["file_system_id"] = file_system_id
+        input_: capo_efs.types.update_file_system_protection_request.UpdateFileSystemProtectionRequest = {
+            "file_system_id": file_system_id
+        }
         if replication_overwrite_protection is not None:
             input_["replication_overwrite_protection"] = (
                 replication_overwrite_protection
@@ -1990,6 +2067,7 @@ class EFSClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

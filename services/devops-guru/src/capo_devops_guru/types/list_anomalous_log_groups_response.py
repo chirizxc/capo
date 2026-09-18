@@ -41,11 +41,11 @@ def serialize_json(value: ListAnomalousLogGroupsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListAnomalousLogGroupsResponse:
     out: ListAnomalousLogGroupsResponse = {}  # type: ignore[typeddict-item]
-    if "InsightId" in data:
+    if data.get("InsightId") is not None:
         out["insight_id"] = data["InsightId"]
     else:
         raise DeserializationError("ListAnomalousLogGroupsResponse.insight_id required")
-    if "AnomalousLogGroups" in data:
+    if data.get("AnomalousLogGroups") is not None:
         import capo_devops_guru.types.anomalous_log_groups
 
         out["anomalous_log_groups"] = (
@@ -57,6 +57,6 @@ def deserialize_json(data: dict) -> ListAnomalousLogGroupsResponse:
         raise DeserializationError(
             "ListAnomalousLogGroupsResponse.anomalous_log_groups required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -67,11 +67,11 @@ def serialize_json(value: ExecuteQueryInput) -> dict:
 
 def deserialize_json(data: dict) -> ExecuteQueryInput:
     out: ExecuteQueryInput = {}  # type: ignore[typeddict-item]
-    if "query" in data:
+    if data.get("query") is not None:
         out["query_string"] = data["query"]
     else:
         raise DeserializationError("ExecuteQueryInput.query_string required")
-    if "language" in data:
+    if data.get("language") is not None:
         import capo_neptune_graph.types.query_language
 
         out["language"] = capo_neptune_graph.types.query_language.deserialize_json(
@@ -79,7 +79,7 @@ def deserialize_json(data: dict) -> ExecuteQueryInput:
         )
     else:
         raise DeserializationError("ExecuteQueryInput.language required")
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_neptune_graph.types.document_valued_map
 
         out["parameters"] = (
@@ -87,18 +87,18 @@ def deserialize_json(data: dict) -> ExecuteQueryInput:
                 data["parameters"]
             )
         )
-    if "planCache" in data:
+    if data.get("planCache") is not None:
         import capo_neptune_graph.types.plan_cache_type
 
         out["plan_cache"] = capo_neptune_graph.types.plan_cache_type.deserialize_json(
             data["planCache"]
         )
-    if "explain" in data:
+    if data.get("explain") is not None:
         import capo_neptune_graph.types.explain_mode
 
         out["explain_mode"] = capo_neptune_graph.types.explain_mode.deserialize_json(
             data["explain"]
         )
-    if "queryTimeoutMilliseconds" in data:
+    if data.get("queryTimeoutMilliseconds") is not None:
         out["query_timeout_milliseconds"] = data["queryTimeoutMilliseconds"]
     return out

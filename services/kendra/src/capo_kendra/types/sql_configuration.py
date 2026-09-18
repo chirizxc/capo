@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: SqlConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SqlConfiguration:
     out: SqlConfiguration = {}  # type: ignore[typeddict-item]
-    if "QueryIdentifiersEnclosingOption" in data:
+    if data.get("QueryIdentifiersEnclosingOption") is not None:
         import capo_kendra.types.query_identifiers_enclosing_option
 
         out["query_identifiers_enclosing_option"] = (

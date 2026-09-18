@@ -39,12 +39,12 @@ def serialize_json(value: TraversedComponent) -> dict:
 
 def deserialize_json(data: dict) -> TraversedComponent:
     out: TraversedComponent = {}  # type: ignore[typeddict-item]
-    if "componentId" in data:
+    if data.get("componentId") is not None:
         out["component_id"] = data["componentId"]
-    if "componentType" in data:
+    if data.get("componentType") is not None:
         out["component_type"] = data["componentType"]
-    if "componentArn" in data:
+    if data.get("componentArn") is not None:
         out["component_arn"] = data["componentArn"]
-    if "serviceName" in data:
+    if data.get("serviceName") is not None:
         out["service_name"] = data["serviceName"]
     return out

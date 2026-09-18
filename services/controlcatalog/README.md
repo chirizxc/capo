@@ -13,9 +13,9 @@ from capo_controlcatalog import AsyncControlCatalogClient
 
 
 async def main():
-    async with AsyncControlCatalogClient() as s3:
+    async with AsyncControlCatalogClient() as control_catalog:
         # Example: call the list_control_mappings operation
-        response = await s3.list_control_mappings()
+        response = await control_catalog.list_control_mappings()
         print(response["control_mappings"])
 ```
 
@@ -28,9 +28,9 @@ from capo_controlcatalog import AsyncControlCatalogClient
 
 
 async def main():
-    async with AsyncControlCatalogClient() as s3:
+    async with AsyncControlCatalogClient() as control_catalog:
         # Example: paginate over list_control_mappings
-        async for item in s3.iter_list_control_mappings():
+        async for item in control_catalog.iter_list_control_mappings():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_controlcatalog.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncControlCatalogClient() as s3:
+    async with AsyncControlCatalogClient() as control_catalog:
         try:
-            await s3.list_control_mappings()
+            await control_catalog.list_control_mappings()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_controlcatalog import AsyncControlCatalogClient
 
 
 async def main():
-    async with AsyncControlCatalogClient() as s3:
+    async with AsyncControlCatalogClient() as control_catalog:
         # Default: 3 attempts for every operation
-        response = await s3.list_control_mappings()
+        response = await control_catalog.list_control_mappings()
 
         # Override per operation
-        response = await s3.list_control_mappings(config_overrides={"retry_max_attempts": 5})
+        response = await control_catalog.list_control_mappings(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.list_control_mappings(config_overrides={"retry_max_attempts": 1})
+        response = await control_catalog.list_control_mappings(config_overrides={"retry_max_attempts": 1})
 ```

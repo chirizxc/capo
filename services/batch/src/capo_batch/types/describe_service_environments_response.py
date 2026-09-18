@@ -36,7 +36,7 @@ def serialize_json(value: DescribeServiceEnvironmentsResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeServiceEnvironmentsResponse:
     out: DescribeServiceEnvironmentsResponse = {}  # type: ignore[typeddict-item]
-    if "serviceEnvironments" in data:
+    if data.get("serviceEnvironments") is not None:
         import capo_batch.types.service_environment_detail_list
 
         out["service_environments"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> DescribeServiceEnvironmentsResponse:
                 data["serviceEnvironments"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

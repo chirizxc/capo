@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DecimalParameterList:
 
     out: DecimalParameterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.decimal_parameter.deserialize_json(item))
     return out

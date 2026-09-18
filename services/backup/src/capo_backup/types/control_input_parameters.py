@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ControlInputParameters:
 
     out: ControlInputParameters = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_backup.types.control_input_parameter.deserialize_json(item))
     return out

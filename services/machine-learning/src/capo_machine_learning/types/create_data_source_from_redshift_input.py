@@ -49,15 +49,15 @@ def serialize_aws_json_1_1(value: CreateDataSourceFromRedshiftInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateDataSourceFromRedshiftInput:
     out: CreateDataSourceFromRedshiftInput = {}  # type: ignore[typeddict-item]
-    if "DataSourceId" in data:
+    if data.get("DataSourceId") is not None:
         out["data_source_id"] = data["DataSourceId"]
     else:
         raise DeserializationError(
             "CreateDataSourceFromRedshiftInput.data_source_id required"
         )
-    if "DataSourceName" in data:
+    if data.get("DataSourceName") is not None:
         out["data_source_name"] = data["DataSourceName"]
-    if "DataSpec" in data:
+    if data.get("DataSpec") is not None:
         import capo_machine_learning.types.redshift_data_spec
 
         out["data_spec"] = (
@@ -69,13 +69,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDataSourceFromRedshiftInput:
         raise DeserializationError(
             "CreateDataSourceFromRedshiftInput.data_spec required"
         )
-    if "RoleARN" in data:
+    if data.get("RoleARN") is not None:
         out["role_arn"] = data["RoleARN"]
     else:
         raise DeserializationError(
             "CreateDataSourceFromRedshiftInput.role_arn required"
         )
-    if "ComputeStatistics" in data:
+    if data.get("ComputeStatistics") is not None:
         out["compute_statistics"] = data["ComputeStatistics"]
     else:
         out["compute_statistics"] = False

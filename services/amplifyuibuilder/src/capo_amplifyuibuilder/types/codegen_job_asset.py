@@ -18,6 +18,6 @@ def serialize_json(value: CodegenJobAsset) -> dict:
 
 def deserialize_json(data: dict) -> CodegenJobAsset:
     out: CodegenJobAsset = {}  # type: ignore[typeddict-item]
-    if "downloadUrl" in data:
+    if data.get("downloadUrl") is not None:
         out["download_url"] = data["downloadUrl"]
     return out

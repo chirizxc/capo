@@ -36,7 +36,7 @@ def serialize_json(value: PricingUnit) -> dict:
 
 def deserialize_json(data: dict) -> PricingUnit:
     out: PricingUnit = {}  # type: ignore[typeddict-item]
-    if "pricingUnitType" in data:
+    if data.get("pricingUnitType") is not None:
         import capo_marketplace_discovery.types.pricing_unit_type
 
         out["pricing_unit_type"] = (
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> PricingUnit:
         )
     else:
         raise DeserializationError("PricingUnit.pricing_unit_type required")
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     else:
         raise DeserializationError("PricingUnit.display_name required")

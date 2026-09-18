@@ -54,21 +54,21 @@ def serialize_aws_json_1_1(value: CopySnapshotRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CopySnapshotRequest:
     out: CopySnapshotRequest = {}  # type: ignore[typeddict-item]
-    if "sourceSnapshotName" in data:
+    if data.get("sourceSnapshotName") is not None:
         out["source_snapshot_name"] = data["sourceSnapshotName"]
-    if "sourceResourceName" in data:
+    if data.get("sourceResourceName") is not None:
         out["source_resource_name"] = data["sourceResourceName"]
-    if "restoreDate" in data:
+    if data.get("restoreDate") is not None:
         out["restore_date"] = data["restoreDate"]
-    if "useLatestRestorableAutoSnapshot" in data:
+    if data.get("useLatestRestorableAutoSnapshot") is not None:
         out["use_latest_restorable_auto_snapshot"] = data[
             "useLatestRestorableAutoSnapshot"
         ]
-    if "targetSnapshotName" in data:
+    if data.get("targetSnapshotName") is not None:
         out["target_snapshot_name"] = data["targetSnapshotName"]
     else:
         raise DeserializationError("CopySnapshotRequest.target_snapshot_name required")
-    if "sourceRegion" in data:
+    if data.get("sourceRegion") is not None:
         import capo_lightsail.types.region_name
 
         out["source_region"] = (

@@ -90,21 +90,21 @@ def serialize_json(value: CancelSubscriptionOutput) -> dict:
 
 def deserialize_json(data: dict) -> CancelSubscriptionOutput:
     out: CancelSubscriptionOutput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("CancelSubscriptionOutput.id required")
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
     else:
         raise DeserializationError("CancelSubscriptionOutput.created_by required")
-    if "updatedBy" in data:
+    if data.get("updatedBy") is not None:
         out["updated_by"] = data["updatedBy"]
-    if "domainId" in data:
+    if data.get("domainId") is not None:
         out["domain_id"] = data["domainId"]
     else:
         raise DeserializationError("CancelSubscriptionOutput.domain_id required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.subscription_status
 
         out["status"] = capo_datazone.types.subscription_status.deserialize_json(
@@ -112,7 +112,7 @@ def deserialize_json(data: dict) -> CancelSubscriptionOutput:
         )
     else:
         raise DeserializationError("CancelSubscriptionOutput.status required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_datazone.types.created_at
 
         out["created_at"] = capo_datazone.types.created_at.deserialize_json(
@@ -120,7 +120,7 @@ def deserialize_json(data: dict) -> CancelSubscriptionOutput:
         )
     else:
         raise DeserializationError("CancelSubscriptionOutput.created_at required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_datazone.types.updated_at
 
         out["updated_at"] = capo_datazone.types.updated_at.deserialize_json(
@@ -128,7 +128,7 @@ def deserialize_json(data: dict) -> CancelSubscriptionOutput:
         )
     else:
         raise DeserializationError("CancelSubscriptionOutput.updated_at required")
-    if "subscribedPrincipal" in data:
+    if data.get("subscribedPrincipal") is not None:
         import capo_datazone.types.subscribed_principal
 
         out["subscribed_principal"] = (
@@ -140,7 +140,7 @@ def deserialize_json(data: dict) -> CancelSubscriptionOutput:
         raise DeserializationError(
             "CancelSubscriptionOutput.subscribed_principal required"
         )
-    if "subscribedListing" in data:
+    if data.get("subscribedListing") is not None:
         import capo_datazone.types.subscribed_listing
 
         out["subscribed_listing"] = (
@@ -152,8 +152,8 @@ def deserialize_json(data: dict) -> CancelSubscriptionOutput:
         raise DeserializationError(
             "CancelSubscriptionOutput.subscribed_listing required"
         )
-    if "subscriptionRequestId" in data:
+    if data.get("subscriptionRequestId") is not None:
         out["subscription_request_id"] = data["subscriptionRequestId"]
-    if "retainPermissions" in data:
+    if data.get("retainPermissions") is not None:
         out["retain_permissions"] = data["retainPermissions"]
     return out

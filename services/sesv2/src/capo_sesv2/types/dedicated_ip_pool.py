@@ -32,11 +32,11 @@ def serialize_json(value: DedicatedIpPool) -> dict:
 
 def deserialize_json(data: dict) -> DedicatedIpPool:
     out: DedicatedIpPool = {}  # type: ignore[typeddict-item]
-    if "PoolName" in data:
+    if data.get("PoolName") is not None:
         out["pool_name"] = data["PoolName"]
     else:
         raise DeserializationError("DedicatedIpPool.pool_name required")
-    if "ScalingMode" in data:
+    if data.get("ScalingMode") is not None:
         import capo_sesv2.types.scaling_mode
 
         out["scaling_mode"] = capo_sesv2.types.scaling_mode.deserialize_json(

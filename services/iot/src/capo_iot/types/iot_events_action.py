@@ -38,15 +38,15 @@ def serialize_json(value: IotEventsAction) -> dict:
 
 def deserialize_json(data: dict) -> IotEventsAction:
     out: IotEventsAction = {}  # type: ignore[typeddict-item]
-    if "inputName" in data:
+    if data.get("inputName") is not None:
         out["input_name"] = data["inputName"]
     else:
         raise DeserializationError("IotEventsAction.input_name required")
-    if "messageId" in data:
+    if data.get("messageId") is not None:
         out["message_id"] = data["messageId"]
-    if "batchMode" in data:
+    if data.get("batchMode") is not None:
         out["batch_mode"] = data["batchMode"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("IotEventsAction.role_arn required")

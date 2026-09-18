@@ -32,11 +32,11 @@ def serialize_aws_json_1_0(value: PreviewResultSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PreviewResultSummary:
     out: PreviewResultSummary = {}  # type: ignore[typeddict-item]
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
     else:
         raise DeserializationError("PreviewResultSummary.key required")
-    if "total" in data:
+    if data.get("total") is not None:
         import capo_compute_optimizer_automation.types.rule_preview_total
 
         out["total"] = (

@@ -42,13 +42,13 @@ def serialize_aws_json_1_1(value: DescribeHybridADUpdateRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeHybridADUpdateRequest:
     out: DescribeHybridADUpdateRequest = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
     else:
         raise DeserializationError(
             "DescribeHybridADUpdateRequest.directory_id required"
         )
-    if "UpdateType" in data:
+    if data.get("UpdateType") is not None:
         import capo_directory_service.types.hybrid_update_type
 
         out["update_type"] = (
@@ -56,6 +56,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeHybridADUpdateRequest:
                 data["UpdateType"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

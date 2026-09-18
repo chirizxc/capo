@@ -47,18 +47,18 @@ def serialize_json(value: SourceApiAssociationSummary) -> dict:
 
 def deserialize_json(data: dict) -> SourceApiAssociationSummary:
     out: SourceApiAssociationSummary = {}  # type: ignore[typeddict-item]
-    if "associationId" in data:
+    if data.get("associationId") is not None:
         out["association_id"] = data["associationId"]
-    if "associationArn" in data:
+    if data.get("associationArn") is not None:
         out["association_arn"] = data["associationArn"]
-    if "sourceApiId" in data:
+    if data.get("sourceApiId") is not None:
         out["source_api_id"] = data["sourceApiId"]
-    if "sourceApiArn" in data:
+    if data.get("sourceApiArn") is not None:
         out["source_api_arn"] = data["sourceApiArn"]
-    if "mergedApiId" in data:
+    if data.get("mergedApiId") is not None:
         out["merged_api_id"] = data["mergedApiId"]
-    if "mergedApiArn" in data:
+    if data.get("mergedApiArn") is not None:
         out["merged_api_arn"] = data["mergedApiArn"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

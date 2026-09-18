@@ -92,9 +92,9 @@ def serialize_json(value: CreatePrefetchScheduleResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreatePrefetchScheduleResponse:
     out: CreatePrefetchScheduleResponse = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Consumption" in data:
+    if data.get("Consumption") is not None:
         import capo_mediatailor.types.prefetch_consumption
 
         out["consumption"] = (
@@ -102,17 +102,17 @@ def deserialize_json(data: dict) -> CreatePrefetchScheduleResponse:
                 data["Consumption"]
             )
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "PlaybackConfigurationName" in data:
+    if data.get("PlaybackConfigurationName") is not None:
         out["playback_configuration_name"] = data["PlaybackConfigurationName"]
-    if "Retrieval" in data:
+    if data.get("Retrieval") is not None:
         import capo_mediatailor.types.prefetch_retrieval
 
         out["retrieval"] = capo_mediatailor.types.prefetch_retrieval.deserialize_json(
             data["Retrieval"]
         )
-    if "RecurringPrefetchConfiguration" in data:
+    if data.get("RecurringPrefetchConfiguration") is not None:
         import capo_mediatailor.types.recurring_prefetch_configuration
 
         out["recurring_prefetch_configuration"] = (
@@ -120,7 +120,7 @@ def deserialize_json(data: dict) -> CreatePrefetchScheduleResponse:
                 data["RecurringPrefetchConfiguration"]
             )
         )
-    if "ScheduleType" in data:
+    if data.get("ScheduleType") is not None:
         import capo_mediatailor.types.prefetch_schedule_type
 
         out["schedule_type"] = (
@@ -128,9 +128,9 @@ def deserialize_json(data: dict) -> CreatePrefetchScheduleResponse:
                 data["ScheduleType"]
             )
         )
-    if "StreamId" in data:
+    if data.get("StreamId") is not None:
         out["stream_id"] = data["StreamId"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mediatailor.types.__map_of__string
 
         out["tags"] = capo_mediatailor.types.__map_of__string.deserialize_json(

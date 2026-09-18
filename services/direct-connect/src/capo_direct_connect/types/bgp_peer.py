@@ -96,17 +96,17 @@ def serialize_aws_json_1_1(value: BGPPeer) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BGPPeer:
     out: BGPPeer = {}  # type: ignore[typeddict-item]
-    if "bgpPeerId" in data:
+    if data.get("bgpPeerId") is not None:
         out["bgp_peer_id"] = data["bgpPeerId"]
-    if "asn" in data:
+    if data.get("asn") is not None:
         out["asn"] = data["asn"]
     else:
         out["asn"] = 0
-    if "asnLong" in data:
+    if data.get("asnLong") is not None:
         out["asn_long"] = data["asnLong"]
-    if "authKey" in data:
+    if data.get("authKey") is not None:
         out["auth_key"] = data["authKey"]
-    if "addressFamily" in data:
+    if data.get("addressFamily") is not None:
         import capo_direct_connect.types.address_family
 
         out["address_family"] = (
@@ -114,11 +114,11 @@ def deserialize_aws_json_1_1(data: dict) -> BGPPeer:
                 data["addressFamily"]
             )
         )
-    if "amazonAddress" in data:
+    if data.get("amazonAddress") is not None:
         out["amazon_address"] = data["amazonAddress"]
-    if "customerAddress" in data:
+    if data.get("customerAddress") is not None:
         out["customer_address"] = data["customerAddress"]
-    if "bgpPeerState" in data:
+    if data.get("bgpPeerState") is not None:
         import capo_direct_connect.types.bgp_peer_state
 
         out["bgp_peer_state"] = (
@@ -126,7 +126,7 @@ def deserialize_aws_json_1_1(data: dict) -> BGPPeer:
                 data["bgpPeerState"]
             )
         )
-    if "bgpStatus" in data:
+    if data.get("bgpStatus") is not None:
         import capo_direct_connect.types.bgp_status
 
         out["bgp_status"] = (
@@ -134,8 +134,8 @@ def deserialize_aws_json_1_1(data: dict) -> BGPPeer:
                 data["bgpStatus"]
             )
         )
-    if "awsDeviceV2" in data:
+    if data.get("awsDeviceV2") is not None:
         out["aws_device_v2"] = data["awsDeviceV2"]
-    if "awsLogicalDeviceId" in data:
+    if data.get("awsLogicalDeviceId") is not None:
         out["aws_logical_device_id"] = data["awsLogicalDeviceId"]
     return out

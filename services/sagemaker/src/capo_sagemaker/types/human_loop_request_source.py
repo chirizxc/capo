@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: HumanLoopRequestSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HumanLoopRequestSource:
     out: HumanLoopRequestSource = {}  # type: ignore[typeddict-item]
-    if "AwsManagedHumanLoopRequestSource" in data:
+    if data.get("AwsManagedHumanLoopRequestSource") is not None:
         import capo_sagemaker.types.aws_managed_human_loop_request_source
 
         out["aws_managed_human_loop_request_source"] = (

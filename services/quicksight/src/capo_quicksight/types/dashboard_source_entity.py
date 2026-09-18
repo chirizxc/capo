@@ -31,7 +31,7 @@ def serialize_json(value: DashboardSourceEntity) -> dict:
 
 def deserialize_json(data: dict) -> DashboardSourceEntity:
     out: DashboardSourceEntity = {}  # type: ignore[typeddict-item]
-    if "SourceTemplate" in data:
+    if data.get("SourceTemplate") is not None:
         import capo_quicksight.types.dashboard_source_template
 
         out["source_template"] = (

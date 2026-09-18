@@ -82,7 +82,7 @@ def serialize_json(value: SourceCodeType) -> dict:
 
 def deserialize_json(data: dict) -> SourceCodeType:
     out: SourceCodeType = {}  # type: ignore[typeddict-item]
-    if "CommitDiff" in data:
+    if data.get("CommitDiff") is not None:
         import capo_codeguru_reviewer.types.commit_diff_source_code_type
 
         out["commit_diff"] = (
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> SourceCodeType:
                 data["CommitDiff"]
             )
         )
-    if "RepositoryHead" in data:
+    if data.get("RepositoryHead") is not None:
         import capo_codeguru_reviewer.types.repository_head_source_code_type
 
         out["repository_head"] = (
@@ -98,7 +98,7 @@ def deserialize_json(data: dict) -> SourceCodeType:
                 data["RepositoryHead"]
             )
         )
-    if "BranchDiff" in data:
+    if data.get("BranchDiff") is not None:
         import capo_codeguru_reviewer.types.branch_diff_source_code_type
 
         out["branch_diff"] = (
@@ -106,7 +106,7 @@ def deserialize_json(data: dict) -> SourceCodeType:
                 data["BranchDiff"]
             )
         )
-    if "S3BucketRepository" in data:
+    if data.get("S3BucketRepository") is not None:
         import capo_codeguru_reviewer.types.s3_bucket_repository
 
         out["s3_bucket_repository"] = (
@@ -114,7 +114,7 @@ def deserialize_json(data: dict) -> SourceCodeType:
                 data["S3BucketRepository"]
             )
         )
-    if "RequestMetadata" in data:
+    if data.get("RequestMetadata") is not None:
         import capo_codeguru_reviewer.types.request_metadata
 
         out["request_metadata"] = (

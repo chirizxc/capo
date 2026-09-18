@@ -16,4 +16,4 @@ def serialize_json(value: ExternalUserIdList) -> list:
 
 
 def deserialize_json(data: list) -> ExternalUserIdList:
-    return list(data)
+    return [item for item in data if item is not None]

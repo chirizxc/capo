@@ -33,6 +33,8 @@ def deserialize_json(
 
     out: AwsEc2LaunchTemplateDataElasticGpuSpecificationSetList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_ec2_launch_template_data_elastic_gpu_specification_set_details.deserialize_json(
                 item

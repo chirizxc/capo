@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> PropertyNameSuggestionList:
 
     out: PropertyNameSuggestionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.property_name_suggestion.deserialize_aws_json_1_1(item)
         )

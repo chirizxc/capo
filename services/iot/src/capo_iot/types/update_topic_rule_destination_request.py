@@ -32,11 +32,11 @@ def serialize_json(value: UpdateTopicRuleDestinationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateTopicRuleDestinationRequest:
     out: UpdateTopicRuleDestinationRequest = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("UpdateTopicRuleDestinationRequest.arn required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iot.types.topic_rule_destination_status
 
         out["status"] = capo_iot.types.topic_rule_destination_status.deserialize_json(

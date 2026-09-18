@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: PredefinedMetricSpecification) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PredefinedMetricSpecification:
     out: PredefinedMetricSpecification = {}  # type: ignore[typeddict-item]
-    if "PredefinedMetricType" in data:
+    if data.get("PredefinedMetricType") is not None:
         out["predefined_metric_type"] = data["PredefinedMetricType"]
     return out

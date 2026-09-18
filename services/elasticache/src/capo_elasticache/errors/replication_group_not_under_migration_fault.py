@@ -39,15 +39,20 @@ class ReplicationGroupNotUnderMigrationFault(ServiceError):
 
     code: str | None = "ReplicationGroupNotUnderMigrationFault"
 
-    def __init__(self, data: ReplicationGroupNotUnderMigrationFault_):
+    def __init__(
+        self, data: ReplicationGroupNotUnderMigrationFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ReplicationGroupNotUnderMigrationFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "ReplicationGroupNotUnderMigrationFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "ReplicationGroupNotUnderMigrationFault":
+        return cls(deserialize_query(el), message)

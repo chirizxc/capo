@@ -146,7 +146,7 @@ def serialize_json(value: Computation) -> dict:
 
 def deserialize_json(data: dict) -> Computation:
     out: Computation = {}  # type: ignore[typeddict-item]
-    if "TopBottomRanked" in data:
+    if data.get("TopBottomRanked") is not None:
         import capo_quicksight.types.top_bottom_ranked_computation
 
         out["top_bottom_ranked"] = (
@@ -154,7 +154,7 @@ def deserialize_json(data: dict) -> Computation:
                 data["TopBottomRanked"]
             )
         )
-    if "TopBottomMovers" in data:
+    if data.get("TopBottomMovers") is not None:
         import capo_quicksight.types.top_bottom_movers_computation
 
         out["top_bottom_movers"] = (
@@ -162,7 +162,7 @@ def deserialize_json(data: dict) -> Computation:
                 data["TopBottomMovers"]
             )
         )
-    if "TotalAggregation" in data:
+    if data.get("TotalAggregation") is not None:
         import capo_quicksight.types.total_aggregation_computation
 
         out["total_aggregation"] = (
@@ -170,7 +170,7 @@ def deserialize_json(data: dict) -> Computation:
                 data["TotalAggregation"]
             )
         )
-    if "MaximumMinimum" in data:
+    if data.get("MaximumMinimum") is not None:
         import capo_quicksight.types.maximum_minimum_computation
 
         out["maximum_minimum"] = (
@@ -178,7 +178,7 @@ def deserialize_json(data: dict) -> Computation:
                 data["MaximumMinimum"]
             )
         )
-    if "MetricComparison" in data:
+    if data.get("MetricComparison") is not None:
         import capo_quicksight.types.metric_comparison_computation
 
         out["metric_comparison"] = (
@@ -186,7 +186,7 @@ def deserialize_json(data: dict) -> Computation:
                 data["MetricComparison"]
             )
         )
-    if "PeriodOverPeriod" in data:
+    if data.get("PeriodOverPeriod") is not None:
         import capo_quicksight.types.period_over_period_computation
 
         out["period_over_period"] = (
@@ -194,7 +194,7 @@ def deserialize_json(data: dict) -> Computation:
                 data["PeriodOverPeriod"]
             )
         )
-    if "PeriodToDate" in data:
+    if data.get("PeriodToDate") is not None:
         import capo_quicksight.types.period_to_date_computation
 
         out["period_to_date"] = (
@@ -202,7 +202,7 @@ def deserialize_json(data: dict) -> Computation:
                 data["PeriodToDate"]
             )
         )
-    if "GrowthRate" in data:
+    if data.get("GrowthRate") is not None:
         import capo_quicksight.types.growth_rate_computation
 
         out["growth_rate"] = (
@@ -210,7 +210,7 @@ def deserialize_json(data: dict) -> Computation:
                 data["GrowthRate"]
             )
         )
-    if "UniqueValues" in data:
+    if data.get("UniqueValues") is not None:
         import capo_quicksight.types.unique_values_computation
 
         out["unique_values"] = (
@@ -218,7 +218,7 @@ def deserialize_json(data: dict) -> Computation:
                 data["UniqueValues"]
             )
         )
-    if "Forecast" in data:
+    if data.get("Forecast") is not None:
         import capo_quicksight.types.forecast_computation
 
         out["forecast"] = capo_quicksight.types.forecast_computation.deserialize_json(

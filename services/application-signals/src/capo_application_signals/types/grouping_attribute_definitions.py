@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> GroupingAttributeDefinitions:
 
     out: GroupingAttributeDefinitions = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_application_signals.types.grouping_attribute_definition.deserialize_json(
                 item

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> FlowExecutionList:
 
     out: FlowExecutionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_appflow.types.execution_record.deserialize_json(item))
     return out

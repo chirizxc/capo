@@ -52,17 +52,17 @@ def serialize_aws_json_1_1(value: HTTPRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HTTPRequest:
     out: HTTPRequest = {}  # type: ignore[typeddict-item]
-    if "ClientIP" in data:
+    if data.get("ClientIP") is not None:
         out["client_ip"] = data["ClientIP"]
-    if "Country" in data:
+    if data.get("Country") is not None:
         out["country"] = data["Country"]
-    if "URI" in data:
+    if data.get("URI") is not None:
         out["uri"] = data["URI"]
-    if "Method" in data:
+    if data.get("Method") is not None:
         out["method"] = data["Method"]
-    if "HTTPVersion" in data:
+    if data.get("HTTPVersion") is not None:
         out["http_version"] = data["HTTPVersion"]
-    if "Headers" in data:
+    if data.get("Headers") is not None:
         import capo_waf_regional.types.http_headers
 
         out["headers"] = capo_waf_regional.types.http_headers.deserialize_aws_json_1_1(

@@ -77,19 +77,19 @@ def serialize_aws_json_1_1(value: ECSTarget) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ECSTarget:
     out: ECSTarget = {}  # type: ignore[typeddict-item]
-    if "deploymentId" in data:
+    if data.get("deploymentId") is not None:
         out["deployment_id"] = data["deploymentId"]
-    if "targetId" in data:
+    if data.get("targetId") is not None:
         out["target_id"] = data["targetId"]
-    if "targetArn" in data:
+    if data.get("targetArn") is not None:
         out["target_arn"] = data["targetArn"]
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_codedeploy.types.time
 
         out["last_updated_at"] = capo_codedeploy.types.time.deserialize_aws_json_1_1(
             data["lastUpdatedAt"]
         )
-    if "lifecycleEvents" in data:
+    if data.get("lifecycleEvents") is not None:
         import capo_codedeploy.types.lifecycle_event_list
 
         out["lifecycle_events"] = (
@@ -97,13 +97,13 @@ def deserialize_aws_json_1_1(data: dict) -> ECSTarget:
                 data["lifecycleEvents"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_codedeploy.types.target_status
 
         out["status"] = capo_codedeploy.types.target_status.deserialize_aws_json_1_1(
             data["status"]
         )
-    if "taskSetsInfo" in data:
+    if data.get("taskSetsInfo") is not None:
         import capo_codedeploy.types.ecs_task_set_list
 
         out["task_sets_info"] = (

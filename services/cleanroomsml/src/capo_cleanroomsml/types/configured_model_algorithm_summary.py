@@ -32,14 +32,14 @@ class ConfiguredModelAlgorithmSummary(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: ConfiguredModelAlgorithmSummary) -> dict:
     out: dict = {}
-    import capo_cleanroomsml.types._prelude.timestamp
+    import capo_cleanroomsml._protocol.serialize
 
-    out["createTime"] = capo_cleanroomsml.types._prelude.timestamp.serialize_json(
+    out["createTime"] = capo_cleanroomsml._protocol.serialize.fmt_date_time(
         value["create_time"]
     )
-    import capo_cleanroomsml.types._prelude.timestamp
+    import capo_cleanroomsml._protocol.serialize
 
-    out["updateTime"] = capo_cleanroomsml.types._prelude.timestamp.serialize_json(
+    out["updateTime"] = capo_cleanroomsml._protocol.serialize.fmt_date_time(
         value["update_time"]
     )
     out["configuredModelAlgorithmArn"] = value["configured_model_algorithm_arn"]
@@ -51,40 +51,36 @@ def serialize_json(value: ConfiguredModelAlgorithmSummary) -> dict:
 
 def deserialize_json(data: dict) -> ConfiguredModelAlgorithmSummary:
     out: ConfiguredModelAlgorithmSummary = {}  # type: ignore[typeddict-item]
-    if "createTime" in data:
-        import capo_cleanroomsml.types._prelude.timestamp
+    if data.get("createTime") is not None:
+        import datetime
 
-        out["create_time"] = (
-            capo_cleanroomsml.types._prelude.timestamp.deserialize_json(
-                data["createTime"]
-            )
+        out["create_time"] = datetime.datetime.fromisoformat(
+            data["createTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError(
             "ConfiguredModelAlgorithmSummary.create_time required"
         )
-    if "updateTime" in data:
-        import capo_cleanroomsml.types._prelude.timestamp
+    if data.get("updateTime") is not None:
+        import datetime
 
-        out["update_time"] = (
-            capo_cleanroomsml.types._prelude.timestamp.deserialize_json(
-                data["updateTime"]
-            )
+        out["update_time"] = datetime.datetime.fromisoformat(
+            data["updateTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError(
             "ConfiguredModelAlgorithmSummary.update_time required"
         )
-    if "configuredModelAlgorithmArn" in data:
+    if data.get("configuredModelAlgorithmArn") is not None:
         out["configured_model_algorithm_arn"] = data["configuredModelAlgorithmArn"]
     else:
         raise DeserializationError(
             "ConfiguredModelAlgorithmSummary.configured_model_algorithm_arn required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ConfiguredModelAlgorithmSummary.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

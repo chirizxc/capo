@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfCaptionSelector:
 
     out: __listOfCaptionSelector = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_medialive.types.caption_selector.deserialize_json(item))
     return out

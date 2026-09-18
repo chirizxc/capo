@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfAudioFeedInput:
 
     out: __listOfAudioFeedInput = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_medialive.types.audio_feed_input.deserialize_json(item))
     return out

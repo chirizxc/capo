@@ -61,19 +61,19 @@ def serialize_json(value: LibraryTemplateButtonList) -> dict:
 
 def deserialize_json(data: dict) -> LibraryTemplateButtonList:
     out: LibraryTemplateButtonList = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "text" in data:
+    if data.get("text") is not None:
         out["text"] = data["text"]
-    if "phoneNumber" in data:
+    if data.get("phoneNumber") is not None:
         out["phone_number"] = data["phoneNumber"]
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
-    if "otpType" in data:
+    if data.get("otpType") is not None:
         out["otp_type"] = data["otpType"]
-    if "zeroTapTermsAccepted" in data:
+    if data.get("zeroTapTermsAccepted") is not None:
         out["zero_tap_terms_accepted"] = data["zeroTapTermsAccepted"]
-    if "supportedApps" in data:
+    if data.get("supportedApps") is not None:
         import capo_socialmessaging.types.supported_apps
 
         out["supported_apps"] = (

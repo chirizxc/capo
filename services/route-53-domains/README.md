@@ -13,9 +13,9 @@ from capo_route_53_domains import AsyncRoute53DomainsClient
 
 
 async def main():
-    async with AsyncRoute53DomainsClient() as s3:
+    async with AsyncRoute53DomainsClient() as route53_domains:
         # Example: call the accept_domain_transfer_from_another_aws_account operation
-        response = await s3.accept_domain_transfer_from_another_aws_account()
+        response = await route53_domains.accept_domain_transfer_from_another_aws_account()
         print(response["operation_id"])
 ```
 
@@ -28,9 +28,9 @@ from capo_route_53_domains import AsyncRoute53DomainsClient
 
 
 async def main():
-    async with AsyncRoute53DomainsClient() as s3:
+    async with AsyncRoute53DomainsClient() as route53_domains:
         # Example: paginate over list_domains
-        async for item in s3.iter_list_domains():
+        async for item in route53_domains.iter_list_domains():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_route_53_domains.error import DomainLimitExceeded
 
 
 async def main():
-    async with AsyncRoute53DomainsClient() as s3:
+    async with AsyncRoute53DomainsClient() as route53_domains:
         try:
-            await s3.accept_domain_transfer_from_another_aws_account()
+            await route53_domains.accept_domain_transfer_from_another_aws_account()
         except DomainLimitExceeded as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_route_53_domains import AsyncRoute53DomainsClient
 
 
 async def main():
-    async with AsyncRoute53DomainsClient() as s3:
+    async with AsyncRoute53DomainsClient() as route53_domains:
         # Default: 3 attempts for every operation
-        response = await s3.accept_domain_transfer_from_another_aws_account()
+        response = await route53_domains.accept_domain_transfer_from_another_aws_account()
 
         # Override per operation
-        response = await s3.accept_domain_transfer_from_another_aws_account(config_overrides={"retry_max_attempts": 5})
+        response = await route53_domains.accept_domain_transfer_from_another_aws_account(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.accept_domain_transfer_from_another_aws_account(config_overrides={"retry_max_attempts": 1})
+        response = await route53_domains.accept_domain_transfer_from_another_aws_account(config_overrides={"retry_max_attempts": 1})
 ```

@@ -27,7 +27,7 @@ def serialize_json(value: GetFindingResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetFindingResponse:
     out: GetFindingResponse = {}  # type: ignore[typeddict-item]
-    if "finding" in data:
+    if data.get("finding") is not None:
         import capo_accessanalyzer.types.finding
 
         out["finding"] = capo_accessanalyzer.types.finding.deserialize_json(

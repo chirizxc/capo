@@ -26,7 +26,7 @@ def serialize_json(value: UdpContainerSettings) -> dict:
 
 def deserialize_json(data: dict) -> UdpContainerSettings:
     out: UdpContainerSettings = {}  # type: ignore[typeddict-item]
-    if "m2tsSettings" in data:
+    if data.get("m2tsSettings") is not None:
         import capo_medialive.types.m2ts_settings
 
         out["m2ts_settings"] = capo_medialive.types.m2ts_settings.deserialize_json(

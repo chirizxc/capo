@@ -32,12 +32,12 @@ def serialize_json(value: ListTemplatesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListTemplatesResponse:
     out: ListTemplatesResponse = {}  # type: ignore[typeddict-item]
-    if "Templates" in data:
+    if data.get("Templates") is not None:
         import capo_pca_connector_ad.types.template_list
 
         out["templates"] = capo_pca_connector_ad.types.template_list.deserialize_json(
             data["Templates"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

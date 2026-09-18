@@ -25,6 +25,6 @@ def serialize_json(value: OfferBuyerAccountsFilter) -> dict:
 
 def deserialize_json(data: dict) -> OfferBuyerAccountsFilter:
     out: OfferBuyerAccountsFilter = {}  # type: ignore[typeddict-item]
-    if "WildCardValue" in data:
+    if data.get("WildCardValue") is not None:
         out["wild_card_value"] = data["WildCardValue"]
     return out

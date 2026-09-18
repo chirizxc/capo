@@ -46,7 +46,7 @@ def serialize_json(value: BatchStartViewerSessionRevocationResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchStartViewerSessionRevocationResponse:
     out: BatchStartViewerSessionRevocationResponse = {}  # type: ignore[typeddict-item]
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_ivs.types.batch_start_viewer_session_revocation_errors
 
         out["errors"] = (

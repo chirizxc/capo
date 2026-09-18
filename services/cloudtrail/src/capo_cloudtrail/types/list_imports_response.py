@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: ListImportsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListImportsResponse:
     out: ListImportsResponse = {}  # type: ignore[typeddict-item]
-    if "Imports" in data:
+    if data.get("Imports") is not None:
         import capo_cloudtrail.types.imports_list
 
         out["imports"] = capo_cloudtrail.types.imports_list.deserialize_aws_json_1_1(
             data["Imports"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

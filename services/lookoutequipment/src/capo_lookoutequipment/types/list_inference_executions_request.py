@@ -70,17 +70,17 @@ def serialize_aws_json_1_0(value: ListInferenceExecutionsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListInferenceExecutionsRequest:
     out: ListInferenceExecutionsRequest = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "InferenceSchedulerName" in data:
+    if data.get("InferenceSchedulerName") is not None:
         out["inference_scheduler_name"] = data["InferenceSchedulerName"]
     else:
         raise DeserializationError(
             "ListInferenceExecutionsRequest.inference_scheduler_name required"
         )
-    if "DataStartTimeAfter" in data:
+    if data.get("DataStartTimeAfter") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["data_start_time_after"] = (
@@ -88,7 +88,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListInferenceExecutionsRequest:
                 data["DataStartTimeAfter"]
             )
         )
-    if "DataEndTimeBefore" in data:
+    if data.get("DataEndTimeBefore") is not None:
         import capo_lookoutequipment.types.timestamp
 
         out["data_end_time_before"] = (
@@ -96,7 +96,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListInferenceExecutionsRequest:
                 data["DataEndTimeBefore"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_lookoutequipment.types.inference_execution_status
 
         out["status"] = (

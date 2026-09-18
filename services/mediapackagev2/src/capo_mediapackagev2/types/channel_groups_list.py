@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ChannelGroupsList:
 
     out: ChannelGroupsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mediapackagev2.types.channel_group_list_configuration.deserialize_json(
                 item

@@ -38,7 +38,7 @@ def serialize_json(value: CreateKxChangesetRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateKxChangesetRequest:
     out: CreateKxChangesetRequest = {}  # type: ignore[typeddict-item]
-    if "changeRequests" in data:
+    if data.get("changeRequests") is not None:
         import capo_finspace.types.change_requests
 
         out["change_requests"] = capo_finspace.types.change_requests.deserialize_json(
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> CreateKxChangesetRequest:
         )
     else:
         raise DeserializationError("CreateKxChangesetRequest.change_requests required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError("CreateKxChangesetRequest.client_token required")

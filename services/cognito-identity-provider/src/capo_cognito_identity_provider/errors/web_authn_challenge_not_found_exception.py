@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: WebAuthnChallengeNotFoundException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WebAuthnChallengeNotFoundException_:
     out: WebAuthnChallengeNotFoundException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -36,15 +36,20 @@ class WebAuthnChallengeNotFoundException(ServiceError):
 
     code: str | None = "WebAuthnChallengeNotFoundException"
 
-    def __init__(self, data: WebAuthnChallengeNotFoundException_):
+    def __init__(
+        self, data: WebAuthnChallengeNotFoundException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="WebAuthnChallengeNotFoundException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "WebAuthnChallengeNotFoundException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "WebAuthnChallengeNotFoundException":
+        return cls(deserialize_aws_json_1_1(data), message)

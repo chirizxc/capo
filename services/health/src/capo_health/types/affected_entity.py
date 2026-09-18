@@ -79,23 +79,23 @@ def serialize_aws_json_1_1(value: AffectedEntity) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AffectedEntity:
     out: AffectedEntity = {}  # type: ignore[typeddict-item]
-    if "entityArn" in data:
+    if data.get("entityArn") is not None:
         out["entity_arn"] = data["entityArn"]
-    if "eventArn" in data:
+    if data.get("eventArn") is not None:
         out["event_arn"] = data["eventArn"]
-    if "entityValue" in data:
+    if data.get("entityValue") is not None:
         out["entity_value"] = data["entityValue"]
-    if "entityUrl" in data:
+    if data.get("entityUrl") is not None:
         out["entity_url"] = data["entityUrl"]
-    if "awsAccountId" in data:
+    if data.get("awsAccountId") is not None:
         out["aws_account_id"] = data["awsAccountId"]
-    if "lastUpdatedTime" in data:
+    if data.get("lastUpdatedTime") is not None:
         import capo_health.types.timestamp
 
         out["last_updated_time"] = capo_health.types.timestamp.deserialize_aws_json_1_1(
             data["lastUpdatedTime"]
         )
-    if "statusCode" in data:
+    if data.get("statusCode") is not None:
         import capo_health.types.entity_status_code
 
         out["status_code"] = (
@@ -103,11 +103,11 @@ def deserialize_aws_json_1_1(data: dict) -> AffectedEntity:
                 data["statusCode"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_health.types.tag_set
 
         out["tags"] = capo_health.types.tag_set.deserialize_aws_json_1_1(data["tags"])
-    if "entityMetadata" in data:
+    if data.get("entityMetadata") is not None:
         import capo_health.types.entity_metadata
 
         out["entity_metadata"] = (

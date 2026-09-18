@@ -79,21 +79,21 @@ def serialize_aws_json_1_1(value: MailboxExportJob) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MailboxExportJob:
     out: MailboxExportJob = {}  # type: ignore[typeddict-item]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
-    if "EntityId" in data:
+    if data.get("EntityId") is not None:
         out["entity_id"] = data["EntityId"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "S3BucketName" in data:
+    if data.get("S3BucketName") is not None:
         out["s3_bucket_name"] = data["S3BucketName"]
-    if "S3Path" in data:
+    if data.get("S3Path") is not None:
         out["s3_path"] = data["S3Path"]
-    if "EstimatedProgress" in data:
+    if data.get("EstimatedProgress") is not None:
         out["estimated_progress"] = data["EstimatedProgress"]
     else:
         out["estimated_progress"] = 0
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_workmail.types.mailbox_export_job_state
 
         out["state"] = (
@@ -101,13 +101,13 @@ def deserialize_aws_json_1_1(data: dict) -> MailboxExportJob:
                 data["State"]
             )
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_workmail.types.timestamp
 
         out["start_time"] = capo_workmail.types.timestamp.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_workmail.types.timestamp
 
         out["end_time"] = capo_workmail.types.timestamp.deserialize_aws_json_1_1(

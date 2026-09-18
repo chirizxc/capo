@@ -42,11 +42,11 @@ def serialize_json(value: CompleteRolloutRequest) -> dict:
 
 def deserialize_json(data: dict) -> CompleteRolloutRequest:
     out: CompleteRolloutRequest = {}  # type: ignore[typeddict-item]
-    if "TrajectoryId" in data:
+    if data.get("TrajectoryId") is not None:
         out["trajectory_id"] = data["TrajectoryId"]
     else:
         raise DeserializationError("CompleteRolloutRequest.trajectory_id required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemakerjobruntime.types.completion_status
 
         out["status"] = (
@@ -54,6 +54,6 @@ def deserialize_json(data: dict) -> CompleteRolloutRequest:
                 data["Status"]
             )
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

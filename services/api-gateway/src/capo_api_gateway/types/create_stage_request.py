@@ -91,21 +91,21 @@ def serialize_json(value: CreateStageRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateStageRequest:
     out: CreateStageRequest = {}  # type: ignore[typeddict-item]
-    if "stageName" in data:
+    if data.get("stageName") is not None:
         out["stage_name"] = data["stageName"]
     else:
         raise DeserializationError("CreateStageRequest.stage_name required")
-    if "deploymentId" in data:
+    if data.get("deploymentId") is not None:
         out["deployment_id"] = data["deploymentId"]
     else:
         raise DeserializationError("CreateStageRequest.deployment_id required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "cacheClusterEnabled" in data:
+    if data.get("cacheClusterEnabled") is not None:
         out["cache_cluster_enabled"] = data["cacheClusterEnabled"]
     else:
         out["cache_cluster_enabled"] = False
-    if "cacheClusterSize" in data:
+    if data.get("cacheClusterSize") is not None:
         import capo_api_gateway.types.cache_cluster_size
 
         out["cache_cluster_size"] = (
@@ -113,7 +113,7 @@ def deserialize_json(data: dict) -> CreateStageRequest:
                 data["cacheClusterSize"]
             )
         )
-    if "variables" in data:
+    if data.get("variables") is not None:
         import capo_api_gateway.types.map_of_string_to_string
 
         out["variables"] = (
@@ -121,9 +121,9 @@ def deserialize_json(data: dict) -> CreateStageRequest:
                 data["variables"]
             )
         )
-    if "documentationVersion" in data:
+    if data.get("documentationVersion") is not None:
         out["documentation_version"] = data["documentationVersion"]
-    if "canarySettings" in data:
+    if data.get("canarySettings") is not None:
         import capo_api_gateway.types.canary_settings
 
         out["canary_settings"] = (
@@ -131,11 +131,11 @@ def deserialize_json(data: dict) -> CreateStageRequest:
                 data["canarySettings"]
             )
         )
-    if "tracingEnabled" in data:
+    if data.get("tracingEnabled") is not None:
         out["tracing_enabled"] = data["tracingEnabled"]
     else:
         out["tracing_enabled"] = False
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_api_gateway.types.map_of_string_to_string
 
         out["tags"] = capo_api_gateway.types.map_of_string_to_string.deserialize_json(

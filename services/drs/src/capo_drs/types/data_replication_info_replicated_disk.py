@@ -41,24 +41,24 @@ def serialize_json(value: DataReplicationInfoReplicatedDisk) -> dict:
 
 def deserialize_json(data: dict) -> DataReplicationInfoReplicatedDisk:
     out: DataReplicationInfoReplicatedDisk = {}  # type: ignore[typeddict-item]
-    if "deviceName" in data:
+    if data.get("deviceName") is not None:
         out["device_name"] = data["deviceName"]
-    if "totalStorageBytes" in data:
+    if data.get("totalStorageBytes") is not None:
         out["total_storage_bytes"] = data["totalStorageBytes"]
     else:
         out["total_storage_bytes"] = 0
-    if "replicatedStorageBytes" in data:
+    if data.get("replicatedStorageBytes") is not None:
         out["replicated_storage_bytes"] = data["replicatedStorageBytes"]
     else:
         out["replicated_storage_bytes"] = 0
-    if "rescannedStorageBytes" in data:
+    if data.get("rescannedStorageBytes") is not None:
         out["rescanned_storage_bytes"] = data["rescannedStorageBytes"]
     else:
         out["rescanned_storage_bytes"] = 0
-    if "backloggedStorageBytes" in data:
+    if data.get("backloggedStorageBytes") is not None:
         out["backlogged_storage_bytes"] = data["backloggedStorageBytes"]
     else:
         out["backlogged_storage_bytes"] = 0
-    if "volumeStatus" in data:
+    if data.get("volumeStatus") is not None:
         out["volume_status"] = data["volumeStatus"]
     return out

@@ -48,11 +48,11 @@ def serialize_json(value: AnalyzerNameUnion) -> dict:
 
 
 def deserialize_json(data: dict) -> AnalyzerNameUnion:
-    if "binaryAnalyzerName" in data:
+    if data.get("binaryAnalyzerName") is not None:
         return {"binaryAnalyzerName": data["binaryAnalyzerName"]}
-    elif "runTimeAnalyzerName" in data:
+    elif data.get("runTimeAnalyzerName") is not None:
         return {"runTimeAnalyzerName": data["runTimeAnalyzerName"]}
-    elif "sourceCodeAnalyzerName" in data:
+    elif data.get("sourceCodeAnalyzerName") is not None:
         return {"sourceCodeAnalyzerName": data["sourceCodeAnalyzerName"]}
     else:
         raise DeserializationError("AnalyzerNameUnion: no recognized variant key")

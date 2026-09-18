@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: ResultReuseConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResultReuseConfiguration:
     out: ResultReuseConfiguration = {}  # type: ignore[typeddict-item]
-    if "ResultReuseByAgeConfiguration" in data:
+    if data.get("ResultReuseByAgeConfiguration") is not None:
         import capo_athena.types.result_reuse_by_age_configuration
 
         out["result_reuse_by_age_configuration"] = (

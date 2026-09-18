@@ -40,7 +40,7 @@ def serialize_json(value: GetFindingsStatisticsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetFindingsStatisticsResponse:
     out: GetFindingsStatisticsResponse = {}  # type: ignore[typeddict-item]
-    if "findingsStatistics" in data:
+    if data.get("findingsStatistics") is not None:
         import capo_accessanalyzer.types.findings_statistics_list
 
         out["findings_statistics"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> GetFindingsStatisticsResponse:
                 data["findingsStatistics"]
             )
         )
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_accessanalyzer.types.timestamp
 
         out["last_updated_at"] = capo_accessanalyzer.types.timestamp.deserialize_json(

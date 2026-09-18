@@ -37,10 +37,10 @@ def serialize_aws_json_1_0(value: RuleSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RuleSummary:
     out: RuleSummary = {}  # type: ignore[typeddict-item]
-    if "SID" in data:
+    if data.get("SID") is not None:
         out["sid"] = data["SID"]
-    if "Msg" in data:
+    if data.get("Msg") is not None:
         out["msg"] = data["Msg"]
-    if "Metadata" in data:
+    if data.get("Metadata") is not None:
         out["metadata"] = data["Metadata"]
     return out

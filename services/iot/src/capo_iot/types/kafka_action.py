@@ -51,19 +51,19 @@ def serialize_json(value: KafkaAction) -> dict:
 
 def deserialize_json(data: dict) -> KafkaAction:
     out: KafkaAction = {}  # type: ignore[typeddict-item]
-    if "destinationArn" in data:
+    if data.get("destinationArn") is not None:
         out["destination_arn"] = data["destinationArn"]
     else:
         raise DeserializationError("KafkaAction.destination_arn required")
-    if "topic" in data:
+    if data.get("topic") is not None:
         out["topic"] = data["topic"]
     else:
         raise DeserializationError("KafkaAction.topic required")
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
-    if "partition" in data:
+    if data.get("partition") is not None:
         out["partition"] = data["partition"]
-    if "clientProperties" in data:
+    if data.get("clientProperties") is not None:
         import capo_iot.types.client_properties
 
         out["client_properties"] = capo_iot.types.client_properties.deserialize_json(
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> KafkaAction:
         )
     else:
         raise DeserializationError("KafkaAction.client_properties required")
-    if "headers" in data:
+    if data.get("headers") is not None:
         import capo_iot.types.kafka_headers
 
         out["headers"] = capo_iot.types.kafka_headers.deserialize_json(data["headers"])

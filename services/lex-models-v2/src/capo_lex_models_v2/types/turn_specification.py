@@ -44,7 +44,7 @@ def serialize_json(value: TurnSpecification) -> dict:
 
 def deserialize_json(data: dict) -> TurnSpecification:
     out: TurnSpecification = {}  # type: ignore[typeddict-item]
-    if "agentTurn" in data:
+    if data.get("agentTurn") is not None:
         import capo_lex_models_v2.types.agent_turn_specification
 
         out["agent_turn"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> TurnSpecification:
                 data["agentTurn"]
             )
         )
-    if "userTurn" in data:
+    if data.get("userTurn") is not None:
         import capo_lex_models_v2.types.user_turn_specification
 
         out["user_turn"] = (

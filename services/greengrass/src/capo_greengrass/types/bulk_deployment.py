@@ -31,10 +31,10 @@ def serialize_json(value: BulkDeployment) -> dict:
 
 def deserialize_json(data: dict) -> BulkDeployment:
     out: BulkDeployment = {}  # type: ignore[typeddict-item]
-    if "BulkDeploymentArn" in data:
+    if data.get("BulkDeploymentArn") is not None:
         out["bulk_deployment_arn"] = data["BulkDeploymentArn"]
-    if "BulkDeploymentId" in data:
+    if data.get("BulkDeploymentId") is not None:
         out["bulk_deployment_id"] = data["BulkDeploymentId"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         out["created_at"] = data["CreatedAt"]
     return out

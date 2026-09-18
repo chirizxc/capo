@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: DeleteReplicationTaskAssessmentRunMessage) -> 
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteReplicationTaskAssessmentRunMessage:
     out: DeleteReplicationTaskAssessmentRunMessage = {}  # type: ignore[typeddict-item]
-    if "ReplicationTaskAssessmentRunArn" in data:
+    if data.get("ReplicationTaskAssessmentRunArn") is not None:
         out["replication_task_assessment_run_arn"] = data[
             "ReplicationTaskAssessmentRunArn"
         ]

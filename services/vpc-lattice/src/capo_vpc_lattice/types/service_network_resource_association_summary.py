@@ -125,48 +125,48 @@ def serialize_json(value: ServiceNetworkResourceAssociationSummary) -> dict:
 
 def deserialize_json(data: dict) -> ServiceNetworkResourceAssociationSummary:
     out: ServiceNetworkResourceAssociationSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_vpc_lattice.types.timestamp
 
         out["created_at"] = capo_vpc_lattice.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "resourceConfigurationId" in data:
+    if data.get("resourceConfigurationId") is not None:
         out["resource_configuration_id"] = data["resourceConfigurationId"]
-    if "resourceConfigurationArn" in data:
+    if data.get("resourceConfigurationArn") is not None:
         out["resource_configuration_arn"] = data["resourceConfigurationArn"]
-    if "resourceConfigurationName" in data:
+    if data.get("resourceConfigurationName") is not None:
         out["resource_configuration_name"] = data["resourceConfigurationName"]
-    if "serviceNetworkId" in data:
+    if data.get("serviceNetworkId") is not None:
         out["service_network_id"] = data["serviceNetworkId"]
-    if "serviceNetworkArn" in data:
+    if data.get("serviceNetworkArn") is not None:
         out["service_network_arn"] = data["serviceNetworkArn"]
-    if "serviceNetworkName" in data:
+    if data.get("serviceNetworkName") is not None:
         out["service_network_name"] = data["serviceNetworkName"]
-    if "dnsEntry" in data:
+    if data.get("dnsEntry") is not None:
         import capo_vpc_lattice.types.dns_entry
 
         out["dns_entry"] = capo_vpc_lattice.types.dns_entry.deserialize_json(
             data["dnsEntry"]
         )
-    if "privateDnsEntry" in data:
+    if data.get("privateDnsEntry") is not None:
         import capo_vpc_lattice.types.dns_entry
 
         out["private_dns_entry"] = capo_vpc_lattice.types.dns_entry.deserialize_json(
             data["privateDnsEntry"]
         )
-    if "isManagedAssociation" in data:
+    if data.get("isManagedAssociation") is not None:
         out["is_managed_association"] = data["isManagedAssociation"]
-    if "failureCode" in data:
+    if data.get("failureCode") is not None:
         out["failure_code"] = data["failureCode"]
-    if "privateDnsEnabled" in data:
+    if data.get("privateDnsEnabled") is not None:
         out["private_dns_enabled"] = data["privateDnsEnabled"]
     return out

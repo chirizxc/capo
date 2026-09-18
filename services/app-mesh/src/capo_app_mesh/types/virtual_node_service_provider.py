@@ -24,7 +24,7 @@ def serialize_json(value: VirtualNodeServiceProvider) -> dict:
 
 def deserialize_json(data: dict) -> VirtualNodeServiceProvider:
     out: VirtualNodeServiceProvider = {}  # type: ignore[typeddict-item]
-    if "virtualNodeName" in data:
+    if data.get("virtualNodeName") is not None:
         out["virtual_node_name"] = data["virtualNodeName"]
     else:
         raise DeserializationError(

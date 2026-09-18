@@ -102,9 +102,9 @@ def serialize_json(value: SendConnectorEventRequest) -> dict:
 
 def deserialize_json(data: dict) -> SendConnectorEventRequest:
     out: SendConnectorEventRequest = {}  # type: ignore[typeddict-item]
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
-    if "Operation" in data:
+    if data.get("Operation") is not None:
         import capo_iot_managed_integrations.types.connector_event_operation
 
         out["operation"] = (
@@ -114,25 +114,25 @@ def deserialize_json(data: dict) -> SendConnectorEventRequest:
         )
     else:
         raise DeserializationError("SendConnectorEventRequest.operation required")
-    if "OperationVersion" in data:
+    if data.get("OperationVersion") is not None:
         out["operation_version"] = data["OperationVersion"]
-    if "StatusCode" in data:
+    if data.get("StatusCode") is not None:
         out["status_code"] = data["StatusCode"]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "DeviceDiscoveryId" in data:
+    if data.get("DeviceDiscoveryId") is not None:
         out["device_discovery_id"] = data["DeviceDiscoveryId"]
-    if "ConnectorDeviceId" in data:
+    if data.get("ConnectorDeviceId") is not None:
         out["connector_device_id"] = data["ConnectorDeviceId"]
-    if "TraceId" in data:
+    if data.get("TraceId") is not None:
         out["trace_id"] = data["TraceId"]
-    if "Devices" in data:
+    if data.get("Devices") is not None:
         import capo_iot_managed_integrations.types.devices
 
         out["devices"] = capo_iot_managed_integrations.types.devices.deserialize_json(
             data["Devices"]
         )
-    if "MatterEndpoint" in data:
+    if data.get("MatterEndpoint") is not None:
         import capo_iot_managed_integrations.types.matter_endpoint
 
         out["matter_endpoint"] = (

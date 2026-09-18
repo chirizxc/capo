@@ -42,7 +42,7 @@ def serialize_aws_json_1_0(value: RuleIsInAddressList) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RuleIsInAddressList:
     out: RuleIsInAddressList = {}  # type: ignore[typeddict-item]
-    if "Attribute" in data:
+    if data.get("Attribute") is not None:
         import capo_mailmanager.types.rule_address_list_email_attribute
 
         out["attribute"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_0(data: dict) -> RuleIsInAddressList:
         )
     else:
         raise DeserializationError("RuleIsInAddressList.attribute required")
-    if "AddressLists" in data:
+    if data.get("AddressLists") is not None:
         import capo_mailmanager.types.rule_address_list_arn_list
 
         out["address_lists"] = (

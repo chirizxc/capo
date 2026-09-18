@@ -27,13 +27,13 @@ def serialize_json(value: AddonPodIdentityAssociations) -> dict:
 
 def deserialize_json(data: dict) -> AddonPodIdentityAssociations:
     out: AddonPodIdentityAssociations = {}  # type: ignore[typeddict-item]
-    if "serviceAccount" in data:
+    if data.get("serviceAccount") is not None:
         out["service_account"] = data["serviceAccount"]
     else:
         raise DeserializationError(
             "AddonPodIdentityAssociations.service_account required"
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("AddonPodIdentityAssociations.role_arn required")

@@ -36,12 +36,12 @@ def serialize_json(value: PublishSchemaRequest) -> dict:
 
 def deserialize_json(data: dict) -> PublishSchemaRequest:
     out: PublishSchemaRequest = {}  # type: ignore[typeddict-item]
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
     else:
         raise DeserializationError("PublishSchemaRequest.version required")
-    if "MinorVersion" in data:
+    if data.get("MinorVersion") is not None:
         out["minor_version"] = data["MinorVersion"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     return out

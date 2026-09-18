@@ -88,7 +88,7 @@ def serialize_json(value: PrefetchRetrieval) -> dict:
 
 def deserialize_json(data: dict) -> PrefetchRetrieval:
     out: PrefetchRetrieval = {}  # type: ignore[typeddict-item]
-    if "DynamicVariables" in data:
+    if data.get("DynamicVariables") is not None:
         import capo_mediatailor.types.__map_of__string
 
         out["dynamic_variables"] = (
@@ -96,7 +96,7 @@ def deserialize_json(data: dict) -> PrefetchRetrieval:
                 data["DynamicVariables"]
             )
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_mediatailor.types.__timestamp_unix
 
         out["end_time"] = capo_mediatailor.types.__timestamp_unix.deserialize_json(
@@ -104,13 +104,13 @@ def deserialize_json(data: dict) -> PrefetchRetrieval:
         )
     else:
         raise DeserializationError("PrefetchRetrieval.end_time required")
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_mediatailor.types.__timestamp_unix
 
         out["start_time"] = capo_mediatailor.types.__timestamp_unix.deserialize_json(
             data["StartTime"]
         )
-    if "TrafficShapingType" in data:
+    if data.get("TrafficShapingType") is not None:
         import capo_mediatailor.types.traffic_shaping_type
 
         out["traffic_shaping_type"] = (
@@ -118,7 +118,7 @@ def deserialize_json(data: dict) -> PrefetchRetrieval:
                 data["TrafficShapingType"]
             )
         )
-    if "TrafficShapingRetrievalWindow" in data:
+    if data.get("TrafficShapingRetrievalWindow") is not None:
         import capo_mediatailor.types.traffic_shaping_retrieval_window
 
         out["traffic_shaping_retrieval_window"] = (
@@ -126,7 +126,7 @@ def deserialize_json(data: dict) -> PrefetchRetrieval:
                 data["TrafficShapingRetrievalWindow"]
             )
         )
-    if "TrafficShapingTpsConfiguration" in data:
+    if data.get("TrafficShapingTpsConfiguration") is not None:
         import capo_mediatailor.types.traffic_shaping_tps_configuration
 
         out["traffic_shaping_tps_configuration"] = (

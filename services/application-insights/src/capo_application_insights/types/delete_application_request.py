@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: DeleteApplicationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteApplicationRequest:
     out: DeleteApplicationRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceGroupName" in data:
+    if data.get("ResourceGroupName") is not None:
         out["resource_group_name"] = data["ResourceGroupName"]
     else:
         raise DeserializationError(

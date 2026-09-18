@@ -36,7 +36,7 @@ def serialize_json(value: GetSamplingStatisticSummariesResult) -> dict:
 
 def deserialize_json(data: dict) -> GetSamplingStatisticSummariesResult:
     out: GetSamplingStatisticSummariesResult = {}  # type: ignore[typeddict-item]
-    if "SamplingStatisticSummaries" in data:
+    if data.get("SamplingStatisticSummaries") is not None:
         import capo_xray.types.sampling_statistic_summary_list
 
         out["sampling_statistic_summaries"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> GetSamplingStatisticSummariesResult:
                 data["SamplingStatisticSummaries"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -51,9 +51,9 @@ def serialize_json(value: UpdateSensitivityInspectionTemplateRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSensitivityInspectionTemplateRequest:
     out: UpdateSensitivityInspectionTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "excludes" in data:
+    if data.get("excludes") is not None:
         import capo_macie2.types.sensitivity_inspection_template_excludes
 
         out["excludes"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> UpdateSensitivityInspectionTemplateRequest:
                 data["excludes"]
             )
         )
-    if "includes" in data:
+    if data.get("includes") is not None:
         import capo_macie2.types.sensitivity_inspection_template_includes
 
         out["includes"] = (

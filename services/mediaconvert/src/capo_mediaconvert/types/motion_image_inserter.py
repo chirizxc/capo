@@ -82,7 +82,7 @@ def serialize_json(value: MotionImageInserter) -> dict:
 
 def deserialize_json(data: dict) -> MotionImageInserter:
     out: MotionImageInserter = {}  # type: ignore[typeddict-item]
-    if "framerate" in data:
+    if data.get("framerate") is not None:
         import capo_mediaconvert.types.motion_image_insertion_framerate
 
         out["framerate"] = (
@@ -90,9 +90,9 @@ def deserialize_json(data: dict) -> MotionImageInserter:
                 data["framerate"]
             )
         )
-    if "input" in data:
+    if data.get("input") is not None:
         out["input"] = data["input"]
-    if "insertionMode" in data:
+    if data.get("insertionMode") is not None:
         import capo_mediaconvert.types.motion_image_insertion_mode
 
         out["insertion_mode"] = (
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> MotionImageInserter:
                 data["insertionMode"]
             )
         )
-    if "offset" in data:
+    if data.get("offset") is not None:
         import capo_mediaconvert.types.motion_image_insertion_offset
 
         out["offset"] = (
@@ -108,7 +108,7 @@ def deserialize_json(data: dict) -> MotionImageInserter:
                 data["offset"]
             )
         )
-    if "playback" in data:
+    if data.get("playback") is not None:
         import capo_mediaconvert.types.motion_image_playback
 
         out["playback"] = (
@@ -116,6 +116,6 @@ def deserialize_json(data: dict) -> MotionImageInserter:
                 data["playback"]
             )
         )
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         out["start_time"] = data["startTime"]
     return out

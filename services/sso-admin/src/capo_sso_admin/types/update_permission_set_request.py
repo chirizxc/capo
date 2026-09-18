@@ -45,20 +45,20 @@ def serialize_aws_json_1_1(value: UpdatePermissionSetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdatePermissionSetRequest:
     out: UpdatePermissionSetRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceArn" in data:
+    if data.get("InstanceArn") is not None:
         out["instance_arn"] = data["InstanceArn"]
     else:
         raise DeserializationError("UpdatePermissionSetRequest.instance_arn required")
-    if "PermissionSetArn" in data:
+    if data.get("PermissionSetArn") is not None:
         out["permission_set_arn"] = data["PermissionSetArn"]
     else:
         raise DeserializationError(
             "UpdatePermissionSetRequest.permission_set_arn required"
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "SessionDuration" in data:
+    if data.get("SessionDuration") is not None:
         out["session_duration"] = data["SessionDuration"]
-    if "RelayState" in data:
+    if data.get("RelayState") is not None:
         out["relay_state"] = data["RelayState"]
     return out

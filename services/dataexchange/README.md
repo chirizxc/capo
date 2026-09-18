@@ -13,9 +13,9 @@ from capo_dataexchange import AsyncDataExchangeClient
 
 
 async def main():
-    async with AsyncDataExchangeClient() as s3:
+    async with AsyncDataExchangeClient() as data_exchange:
         # Example: call the accept_data_grant operation
-        response = await s3.accept_data_grant()
+        response = await data_exchange.accept_data_grant()
         print(response["name"])
 ```
 
@@ -28,9 +28,9 @@ from capo_dataexchange import AsyncDataExchangeClient
 
 
 async def main():
-    async with AsyncDataExchangeClient() as s3:
+    async with AsyncDataExchangeClient() as data_exchange:
         # Example: paginate over list_data_grants
-        async for item in s3.iter_list_data_grants():
+        async for item in data_exchange.iter_list_data_grants():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_dataexchange.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncDataExchangeClient() as s3:
+    async with AsyncDataExchangeClient() as data_exchange:
         try:
-            await s3.accept_data_grant()
+            await data_exchange.accept_data_grant()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_dataexchange import AsyncDataExchangeClient
 
 
 async def main():
-    async with AsyncDataExchangeClient() as s3:
+    async with AsyncDataExchangeClient() as data_exchange:
         # Default: 3 attempts for every operation
-        response = await s3.accept_data_grant()
+        response = await data_exchange.accept_data_grant()
 
         # Override per operation
-        response = await s3.accept_data_grant(config_overrides={"retry_max_attempts": 5})
+        response = await data_exchange.accept_data_grant(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.accept_data_grant(config_overrides={"retry_max_attempts": 1})
+        response = await data_exchange.accept_data_grant(config_overrides={"retry_max_attempts": 1})
 ```

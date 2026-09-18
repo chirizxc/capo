@@ -66,15 +66,15 @@ def serialize_aws_json_1_1(value: DatabaseSnapshotInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DatabaseSnapshotInfo:
     out: DatabaseSnapshotInfo = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("DatabaseSnapshotInfo.id required")
-    if "Table" in data:
+    if data.get("Table") is not None:
         out["table"] = data["Table"]
     else:
         raise DeserializationError("DatabaseSnapshotInfo.table required")
-    if "RequestTimestamp" in data:
+    if data.get("RequestTimestamp") is not None:
         import capo_firehose.types.timestamp
 
         out["request_timestamp"] = (
@@ -84,7 +84,7 @@ def deserialize_aws_json_1_1(data: dict) -> DatabaseSnapshotInfo:
         )
     else:
         raise DeserializationError("DatabaseSnapshotInfo.request_timestamp required")
-    if "RequestedBy" in data:
+    if data.get("RequestedBy") is not None:
         import capo_firehose.types.snapshot_requested_by
 
         out["requested_by"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_1(data: dict) -> DatabaseSnapshotInfo:
         )
     else:
         raise DeserializationError("DatabaseSnapshotInfo.requested_by required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_firehose.types.snapshot_status
 
         out["status"] = capo_firehose.types.snapshot_status.deserialize_aws_json_1_1(
@@ -102,7 +102,7 @@ def deserialize_aws_json_1_1(data: dict) -> DatabaseSnapshotInfo:
         )
     else:
         raise DeserializationError("DatabaseSnapshotInfo.status required")
-    if "FailureDescription" in data:
+    if data.get("FailureDescription") is not None:
         import capo_firehose.types.failure_description
 
         out["failure_description"] = (

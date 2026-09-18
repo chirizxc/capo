@@ -37,7 +37,7 @@ def serialize_json(value: BatchGetJobEntityRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetJobEntityRequest:
     out: BatchGetJobEntityRequest = {}  # type: ignore[typeddict-item]
-    if "identifiers" in data:
+    if data.get("identifiers") is not None:
         import capo_deadline.types.job_entity_identifiers
 
         out["identifiers"] = (

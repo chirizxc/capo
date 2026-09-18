@@ -115,15 +115,15 @@ def serialize_aws_json_1_1(value: PipelineDeclaration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PipelineDeclaration:
     out: PipelineDeclaration = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("PipelineDeclaration.name required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("PipelineDeclaration.role_arn required")
-    if "artifactStore" in data:
+    if data.get("artifactStore") is not None:
         import capo_codepipeline.types.artifact_store
 
         out["artifact_store"] = (
@@ -131,7 +131,7 @@ def deserialize_aws_json_1_1(data: dict) -> PipelineDeclaration:
                 data["artifactStore"]
             )
         )
-    if "artifactStores" in data:
+    if data.get("artifactStores") is not None:
         import capo_codepipeline.types.artifact_store_map
 
         out["artifact_stores"] = (
@@ -139,7 +139,7 @@ def deserialize_aws_json_1_1(data: dict) -> PipelineDeclaration:
                 data["artifactStores"]
             )
         )
-    if "stages" in data:
+    if data.get("stages") is not None:
         import capo_codepipeline.types.pipeline_stage_declaration_list
 
         out["stages"] = (
@@ -149,9 +149,9 @@ def deserialize_aws_json_1_1(data: dict) -> PipelineDeclaration:
         )
     else:
         raise DeserializationError("PipelineDeclaration.stages required")
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
-    if "executionMode" in data:
+    if data.get("executionMode") is not None:
         import capo_codepipeline.types.execution_mode
 
         out["execution_mode"] = (
@@ -159,7 +159,7 @@ def deserialize_aws_json_1_1(data: dict) -> PipelineDeclaration:
                 data["executionMode"]
             )
         )
-    if "pipelineType" in data:
+    if data.get("pipelineType") is not None:
         import capo_codepipeline.types.pipeline_type
 
         out["pipeline_type"] = (
@@ -167,7 +167,7 @@ def deserialize_aws_json_1_1(data: dict) -> PipelineDeclaration:
                 data["pipelineType"]
             )
         )
-    if "variables" in data:
+    if data.get("variables") is not None:
         import capo_codepipeline.types.pipeline_variable_declaration_list
 
         out["variables"] = (
@@ -175,7 +175,7 @@ def deserialize_aws_json_1_1(data: dict) -> PipelineDeclaration:
                 data["variables"]
             )
         )
-    if "triggers" in data:
+    if data.get("triggers") is not None:
         import capo_codepipeline.types.pipeline_trigger_declaration_list
 
         out["triggers"] = (

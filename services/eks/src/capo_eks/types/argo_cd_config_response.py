@@ -64,9 +64,9 @@ def serialize_json(value: ArgoCdConfigResponse) -> dict:
 
 def deserialize_json(data: dict) -> ArgoCdConfigResponse:
     out: ArgoCdConfigResponse = {}  # type: ignore[typeddict-item]
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         out["namespace"] = data["namespace"]
-    if "awsIdc" in data:
+    if data.get("awsIdc") is not None:
         import capo_eks.types.argo_cd_aws_idc_config_response
 
         out["aws_idc"] = (
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> ArgoCdConfigResponse:
                 data["awsIdc"]
             )
         )
-    if "rbacRoleMappings" in data:
+    if data.get("rbacRoleMappings") is not None:
         import capo_eks.types.argo_cd_role_mapping_list
 
         out["rbac_role_mappings"] = (
@@ -82,7 +82,7 @@ def deserialize_json(data: dict) -> ArgoCdConfigResponse:
                 data["rbacRoleMappings"]
             )
         )
-    if "networkAccess" in data:
+    if data.get("networkAccess") is not None:
         import capo_eks.types.argo_cd_network_access_config_response
 
         out["network_access"] = (
@@ -90,6 +90,6 @@ def deserialize_json(data: dict) -> ArgoCdConfigResponse:
                 data["networkAccess"]
             )
         )
-    if "serverUrl" in data:
+    if data.get("serverUrl") is not None:
         out["server_url"] = data["serverUrl"]
     return out

@@ -102,9 +102,9 @@ def serialize_aws_json_1_1(value: LongTermPricingListEntry) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LongTermPricingListEntry:
     out: LongTermPricingListEntry = {}  # type: ignore[typeddict-item]
-    if "LongTermPricingId" in data:
+    if data.get("LongTermPricingId") is not None:
         out["long_term_pricing_id"] = data["LongTermPricingId"]
-    if "LongTermPricingEndDate" in data:
+    if data.get("LongTermPricingEndDate") is not None:
         import capo_snowball.types.timestamp
 
         out["long_term_pricing_end_date"] = (
@@ -112,7 +112,7 @@ def deserialize_aws_json_1_1(data: dict) -> LongTermPricingListEntry:
                 data["LongTermPricingEndDate"]
             )
         )
-    if "LongTermPricingStartDate" in data:
+    if data.get("LongTermPricingStartDate") is not None:
         import capo_snowball.types.timestamp
 
         out["long_term_pricing_start_date"] = (
@@ -120,7 +120,7 @@ def deserialize_aws_json_1_1(data: dict) -> LongTermPricingListEntry:
                 data["LongTermPricingStartDate"]
             )
         )
-    if "LongTermPricingType" in data:
+    if data.get("LongTermPricingType") is not None:
         import capo_snowball.types.long_term_pricing_type
 
         out["long_term_pricing_type"] = (
@@ -128,15 +128,15 @@ def deserialize_aws_json_1_1(data: dict) -> LongTermPricingListEntry:
                 data["LongTermPricingType"]
             )
         )
-    if "CurrentActiveJob" in data:
+    if data.get("CurrentActiveJob") is not None:
         out["current_active_job"] = data["CurrentActiveJob"]
-    if "ReplacementJob" in data:
+    if data.get("ReplacementJob") is not None:
         out["replacement_job"] = data["ReplacementJob"]
-    if "IsLongTermPricingAutoRenew" in data:
+    if data.get("IsLongTermPricingAutoRenew") is not None:
         out["is_long_term_pricing_auto_renew"] = data["IsLongTermPricingAutoRenew"]
-    if "LongTermPricingStatus" in data:
+    if data.get("LongTermPricingStatus") is not None:
         out["long_term_pricing_status"] = data["LongTermPricingStatus"]
-    if "SnowballType" in data:
+    if data.get("SnowballType") is not None:
         import capo_snowball.types.snowball_type
 
         out["snowball_type"] = (
@@ -144,7 +144,7 @@ def deserialize_aws_json_1_1(data: dict) -> LongTermPricingListEntry:
                 data["SnowballType"]
             )
         )
-    if "JobIds" in data:
+    if data.get("JobIds") is not None:
         import capo_snowball.types.long_term_pricing_associated_job_id_list
 
         out["job_ids"] = (

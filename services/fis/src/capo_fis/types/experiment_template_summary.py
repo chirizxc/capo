@@ -60,25 +60,25 @@ def serialize_json(value: ExperimentTemplateSummary) -> dict:
 
 def deserialize_json(data: dict) -> ExperimentTemplateSummary:
     out: ExperimentTemplateSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_fis.types.creation_time
 
         out["creation_time"] = capo_fis.types.creation_time.deserialize_json(
             data["creationTime"]
         )
-    if "lastUpdateTime" in data:
+    if data.get("lastUpdateTime") is not None:
         import capo_fis.types.last_update_time
 
         out["last_update_time"] = capo_fis.types.last_update_time.deserialize_json(
             data["lastUpdateTime"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_fis.types.tag_map
 
         out["tags"] = capo_fis.types.tag_map.deserialize_json(data["tags"])

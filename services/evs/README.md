@@ -13,9 +13,9 @@ from capo_evs import AsyncevsClient
 
 
 async def main():
-    async with AsyncevsClient() as s3:
+    async with AsyncevsClient() as evs:
         # Example: call the get_versions operation
-        response = await s3.get_versions()
+        response = await evs.get_versions()
         print(response["vcf_versions"])
 ```
 
@@ -29,9 +29,9 @@ from capo_evs.error import InternalServerException
 
 
 async def main():
-    async with AsyncevsClient() as s3:
+    async with AsyncevsClient() as evs:
         try:
-            await s3.get_versions()
+            await evs.get_versions()
         except InternalServerException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_evs import AsyncevsClient
 
 
 async def main():
-    async with AsyncevsClient() as s3:
+    async with AsyncevsClient() as evs:
         # Default: 3 attempts for every operation
-        response = await s3.get_versions()
+        response = await evs.get_versions()
 
         # Override per operation
-        response = await s3.get_versions(config_overrides={"retry_max_attempts": 5})
+        response = await evs.get_versions(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.get_versions(config_overrides={"retry_max_attempts": 1})
+        response = await evs.get_versions(config_overrides={"retry_max_attempts": 1})
 ```

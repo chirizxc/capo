@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ManualEvidenceList:
 
     out: ManualEvidenceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_auditmanager.types.manual_evidence.deserialize_json(item))
     return out

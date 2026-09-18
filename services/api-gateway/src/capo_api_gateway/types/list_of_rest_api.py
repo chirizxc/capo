@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ListOfRestApi:
 
     out: ListOfRestApi = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_api_gateway.types.rest_api.deserialize_json(item))
     return out

@@ -31,7 +31,7 @@ def serialize_json(value: OptInFeature) -> dict:
 
 def deserialize_json(data: dict) -> OptInFeature:
     out: OptInFeature = {}  # type: ignore[typeddict-item]
-    if "featureName" in data:
+    if data.get("featureName") is not None:
         import capo_security_ir.types.opt_in_feature_name
 
         out["feature_name"] = (
@@ -41,7 +41,7 @@ def deserialize_json(data: dict) -> OptInFeature:
         )
     else:
         raise DeserializationError("OptInFeature.feature_name required")
-    if "isEnabled" in data:
+    if data.get("isEnabled") is not None:
         out["is_enabled"] = data["isEnabled"]
     else:
         raise DeserializationError("OptInFeature.is_enabled required")

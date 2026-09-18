@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> OutputColumnList:
 
     out: OutputColumnList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.output_column.deserialize_json(item))
     return out

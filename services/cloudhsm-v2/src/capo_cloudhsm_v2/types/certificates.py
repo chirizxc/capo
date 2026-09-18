@@ -41,16 +41,16 @@ def serialize_aws_json_1_1(value: Certificates) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Certificates:
     out: Certificates = {}  # type: ignore[typeddict-item]
-    if "ClusterCsr" in data:
+    if data.get("ClusterCsr") is not None:
         out["cluster_csr"] = data["ClusterCsr"]
-    if "HsmCertificate" in data:
+    if data.get("HsmCertificate") is not None:
         out["hsm_certificate"] = data["HsmCertificate"]
-    if "AwsHardwareCertificate" in data:
+    if data.get("AwsHardwareCertificate") is not None:
         out["aws_hardware_certificate"] = data["AwsHardwareCertificate"]
-    if "ManufacturerHardwareCertificate" in data:
+    if data.get("ManufacturerHardwareCertificate") is not None:
         out["manufacturer_hardware_certificate"] = data[
             "ManufacturerHardwareCertificate"
         ]
-    if "ClusterCertificate" in data:
+    if data.get("ClusterCertificate") is not None:
         out["cluster_certificate"] = data["ClusterCertificate"]
     return out

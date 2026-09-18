@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: EfsFileLocation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EfsFileLocation:
     out: EfsFileLocation = {}  # type: ignore[typeddict-item]
-    if "FileSystemId" in data:
+    if data.get("FileSystemId") is not None:
         out["file_system_id"] = data["FileSystemId"]
-    if "Path" in data:
+    if data.get("Path") is not None:
         out["path"] = data["Path"]
     return out

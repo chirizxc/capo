@@ -33,7 +33,7 @@ def serialize_json(value: ListConnectionsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListConnectionsOutput:
     out: ListConnectionsOutput = {}  # type: ignore[typeddict-item]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_datazone.types.connection_summaries
 
         out["items"] = capo_datazone.types.connection_summaries.deserialize_json(
@@ -41,6 +41,6 @@ def deserialize_json(data: dict) -> ListConnectionsOutput:
         )
     else:
         raise DeserializationError("ListConnectionsOutput.items required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -28,7 +28,7 @@ def serialize_json(value: GetGuestUserHistoryCountResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetGuestUserHistoryCountResponse:
     out: GetGuestUserHistoryCountResponse = {}  # type: ignore[typeddict-item]
-    if "history" in data:
+    if data.get("history") is not None:
         import capo_wickr.types.guest_user_history_count_list
 
         out["history"] = (

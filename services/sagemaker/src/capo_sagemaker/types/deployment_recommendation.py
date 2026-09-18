@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: DeploymentRecommendation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeploymentRecommendation:
     out: DeploymentRecommendation = {}  # type: ignore[typeddict-item]
-    if "RecommendationStatus" in data:
+    if data.get("RecommendationStatus") is not None:
         import capo_sagemaker.types.recommendation_status
 
         out["recommendation_status"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentRecommendation:
                 data["RecommendationStatus"]
             )
         )
-    if "RealTimeInferenceRecommendations" in data:
+    if data.get("RealTimeInferenceRecommendations") is not None:
         import capo_sagemaker.types.real_time_inference_recommendations
 
         out["real_time_inference_recommendations"] = (

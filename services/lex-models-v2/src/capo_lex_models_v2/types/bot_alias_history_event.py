@@ -40,15 +40,15 @@ def serialize_json(value: BotAliasHistoryEvent) -> dict:
 
 def deserialize_json(data: dict) -> BotAliasHistoryEvent:
     out: BotAliasHistoryEvent = {}  # type: ignore[typeddict-item]
-    if "botVersion" in data:
+    if data.get("botVersion") is not None:
         out["bot_version"] = data["botVersion"]
-    if "startDate" in data:
+    if data.get("startDate") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["start_date"] = capo_lex_models_v2.types.timestamp.deserialize_json(
             data["startDate"]
         )
-    if "endDate" in data:
+    if data.get("endDate") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["end_date"] = capo_lex_models_v2.types.timestamp.deserialize_json(

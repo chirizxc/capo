@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> BatchCreateBillingAdjustmentErrorLis
 
     out: BatchCreateBillingAdjustmentErrorList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_marketplace_agreement.types.batch_create_billing_adjustment_error.deserialize_aws_json_1_0(
                 item

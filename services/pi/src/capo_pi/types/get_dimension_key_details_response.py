@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetDimensionKeyDetailsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDimensionKeyDetailsResponse:
     out: GetDimensionKeyDetailsResponse = {}  # type: ignore[typeddict-item]
-    if "Dimensions" in data:
+    if data.get("Dimensions") is not None:
         import capo_pi.types.dimension_key_detail_list
 
         out["dimensions"] = (

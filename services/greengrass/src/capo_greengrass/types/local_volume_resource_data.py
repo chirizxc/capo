@@ -40,9 +40,9 @@ def serialize_json(value: LocalVolumeResourceData) -> dict:
 
 def deserialize_json(data: dict) -> LocalVolumeResourceData:
     out: LocalVolumeResourceData = {}  # type: ignore[typeddict-item]
-    if "DestinationPath" in data:
+    if data.get("DestinationPath") is not None:
         out["destination_path"] = data["DestinationPath"]
-    if "GroupOwnerSetting" in data:
+    if data.get("GroupOwnerSetting") is not None:
         import capo_greengrass.types.group_owner_setting
 
         out["group_owner_setting"] = (
@@ -50,6 +50,6 @@ def deserialize_json(data: dict) -> LocalVolumeResourceData:
                 data["GroupOwnerSetting"]
             )
         )
-    if "SourcePath" in data:
+    if data.get("SourcePath") is not None:
         out["source_path"] = data["SourcePath"]
     return out

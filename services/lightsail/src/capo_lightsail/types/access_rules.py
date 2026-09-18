@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: AccessRules) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AccessRules:
     out: AccessRules = {}  # type: ignore[typeddict-item]
-    if "getObject" in data:
+    if data.get("getObject") is not None:
         import capo_lightsail.types.access_type
 
         out["get_object"] = capo_lightsail.types.access_type.deserialize_aws_json_1_1(
             data["getObject"]
         )
-    if "allowPublicOverrides" in data:
+    if data.get("allowPublicOverrides") is not None:
         out["allow_public_overrides"] = data["allowPublicOverrides"]
     return out

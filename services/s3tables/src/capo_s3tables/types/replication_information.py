@@ -24,7 +24,7 @@ def serialize_json(value: ReplicationInformation) -> dict:
 
 def deserialize_json(data: dict) -> ReplicationInformation:
     out: ReplicationInformation = {}  # type: ignore[typeddict-item]
-    if "sourceTableARN" in data:
+    if data.get("sourceTableARN") is not None:
         out["source_table_arn"] = data["sourceTableARN"]
     else:
         raise DeserializationError("ReplicationInformation.source_table_arn required")

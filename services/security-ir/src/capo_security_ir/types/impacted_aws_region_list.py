@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ImpactedAwsRegionList:
 
     out: ImpactedAwsRegionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_security_ir.types.impacted_aws_region.deserialize_json(item))
     return out

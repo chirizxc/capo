@@ -22,11 +22,11 @@ def serialize_json(value: AwsEcsMetadataDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEcsMetadataDetails:
     out: AwsEcsMetadataDetails = {}  # type: ignore[typeddict-item]
-    if "detailsGroup" in data:
+    if data.get("detailsGroup") is not None:
         out["details_group"] = data["detailsGroup"]
     else:
         raise DeserializationError("AwsEcsMetadataDetails.details_group required")
-    if "taskDefinitionArn" in data:
+    if data.get("taskDefinitionArn") is not None:
         out["task_definition_arn"] = data["taskDefinitionArn"]
     else:
         raise DeserializationError("AwsEcsMetadataDetails.task_definition_arn required")

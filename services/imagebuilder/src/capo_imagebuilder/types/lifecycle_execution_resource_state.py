@@ -36,7 +36,7 @@ def serialize_json(value: LifecycleExecutionResourceState) -> dict:
 
 def deserialize_json(data: dict) -> LifecycleExecutionResourceState:
     out: LifecycleExecutionResourceState = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_imagebuilder.types.lifecycle_execution_resource_status
 
         out["status"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> LifecycleExecutionResourceState:
                 data["status"]
             )
         )
-    if "reason" in data:
+    if data.get("reason") is not None:
         out["reason"] = data["reason"]
     return out

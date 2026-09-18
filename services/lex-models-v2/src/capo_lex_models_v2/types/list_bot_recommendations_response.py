@@ -53,13 +53,13 @@ def serialize_json(value: ListBotRecommendationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListBotRecommendationsResponse:
     out: ListBotRecommendationsResponse = {}  # type: ignore[typeddict-item]
-    if "botId" in data:
+    if data.get("botId") is not None:
         out["bot_id"] = data["botId"]
-    if "botVersion" in data:
+    if data.get("botVersion") is not None:
         out["bot_version"] = data["botVersion"]
-    if "localeId" in data:
+    if data.get("localeId") is not None:
         out["locale_id"] = data["localeId"]
-    if "botRecommendationSummaries" in data:
+    if data.get("botRecommendationSummaries") is not None:
         import capo_lex_models_v2.types.bot_recommendation_summary_list
 
         out["bot_recommendation_summaries"] = (
@@ -67,6 +67,6 @@ def deserialize_json(data: dict) -> ListBotRecommendationsResponse:
                 data["botRecommendationSummaries"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

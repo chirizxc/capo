@@ -32,7 +32,7 @@ def serialize_aws_json_1_0(value: ArchiveStringToEvaluate) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> ArchiveStringToEvaluate:
-    if "Attribute" in data:
+    if data.get("Attribute") is not None:
         import capo_mailmanager.types.archive_string_email_attribute
 
         return {

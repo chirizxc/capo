@@ -27,11 +27,11 @@ def serialize_aws_json_1_1(value: AttachStaticIpRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AttachStaticIpRequest:
     out: AttachStaticIpRequest = {}  # type: ignore[typeddict-item]
-    if "staticIpName" in data:
+    if data.get("staticIpName") is not None:
         out["static_ip_name"] = data["staticIpName"]
     else:
         raise DeserializationError("AttachStaticIpRequest.static_ip_name required")
-    if "instanceName" in data:
+    if data.get("instanceName") is not None:
         out["instance_name"] = data["instanceName"]
     else:
         raise DeserializationError("AttachStaticIpRequest.instance_name required")

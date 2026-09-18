@@ -51,29 +51,29 @@ def serialize_json(value: GetApplicationVersionResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetApplicationVersionResponse:
     out: GetApplicationVersionResponse = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("GetApplicationVersionResponse.name required")
-    if "applicationVersion" in data:
+    if data.get("applicationVersion") is not None:
         out["application_version"] = data["applicationVersion"]
     else:
         raise DeserializationError(
             "GetApplicationVersionResponse.application_version required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "definitionContent" in data:
+    if data.get("definitionContent") is not None:
         out["definition_content"] = data["definitionContent"]
     else:
         raise DeserializationError(
             "GetApplicationVersionResponse.definition_content required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("GetApplicationVersionResponse.status required")
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_m2.types.timestamp
 
         out["creation_time"] = capo_m2.types.timestamp.deserialize_json(
@@ -83,6 +83,6 @@ def deserialize_json(data: dict) -> GetApplicationVersionResponse:
         raise DeserializationError(
             "GetApplicationVersionResponse.creation_time required"
         )
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
     return out

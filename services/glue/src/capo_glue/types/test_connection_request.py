@@ -41,11 +41,11 @@ def serialize_aws_json_1_1(value: TestConnectionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TestConnectionRequest:
     out: TestConnectionRequest = {}  # type: ignore[typeddict-item]
-    if "ConnectionName" in data:
+    if data.get("ConnectionName") is not None:
         out["connection_name"] = data["ConnectionName"]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "TestConnectionInput" in data:
+    if data.get("TestConnectionInput") is not None:
         import capo_glue.types.test_connection_input
 
         out["test_connection_input"] = (

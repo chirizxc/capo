@@ -27,7 +27,7 @@ def serialize_json(value: DashboardAttributes) -> dict:
 
 def deserialize_json(data: dict) -> DashboardAttributes:
     out: DashboardAttributes = {}  # type: ignore[typeddict-item]
-    if "EngagementMetrics" in data:
+    if data.get("EngagementMetrics") is not None:
         import capo_sesv2.types.feature_status
 
         out["engagement_metrics"] = capo_sesv2.types.feature_status.deserialize_json(

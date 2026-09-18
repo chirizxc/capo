@@ -28,13 +28,13 @@ def serialize_aws_json_1_1(value: StartExportLabelsTaskRunRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartExportLabelsTaskRunRequest:
     out: StartExportLabelsTaskRunRequest = {}  # type: ignore[typeddict-item]
-    if "TransformId" in data:
+    if data.get("TransformId") is not None:
         out["transform_id"] = data["TransformId"]
     else:
         raise DeserializationError(
             "StartExportLabelsTaskRunRequest.transform_id required"
         )
-    if "OutputS3Path" in data:
+    if data.get("OutputS3Path") is not None:
         out["output_s3_path"] = data["OutputS3Path"]
     else:
         raise DeserializationError(

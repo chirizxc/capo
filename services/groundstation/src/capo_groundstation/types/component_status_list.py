@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ComponentStatusList:
 
     out: ComponentStatusList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_groundstation.types.component_status_data.deserialize_json(item)
         )

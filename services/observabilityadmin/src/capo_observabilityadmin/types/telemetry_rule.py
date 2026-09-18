@@ -93,7 +93,7 @@ def serialize_json(value: TelemetryRule) -> dict:
 
 def deserialize_json(data: dict) -> TelemetryRule:
     out: TelemetryRule = {}  # type: ignore[typeddict-item]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_observabilityadmin.types.resource_type
 
         out["resource_type"] = (
@@ -101,7 +101,7 @@ def deserialize_json(data: dict) -> TelemetryRule:
                 data["ResourceType"]
             )
         )
-    if "TelemetryType" in data:
+    if data.get("TelemetryType") is not None:
         import capo_observabilityadmin.types.telemetry_type
 
         out["telemetry_type"] = (
@@ -111,7 +111,7 @@ def deserialize_json(data: dict) -> TelemetryRule:
         )
     else:
         raise DeserializationError("TelemetryRule.telemetry_type required")
-    if "TelemetrySourceTypes" in data:
+    if data.get("TelemetrySourceTypes") is not None:
         import capo_observabilityadmin.types.telemetry_source_types
 
         out["telemetry_source_types"] = (
@@ -119,7 +119,7 @@ def deserialize_json(data: dict) -> TelemetryRule:
                 data["TelemetrySourceTypes"]
             )
         )
-    if "DestinationConfiguration" in data:
+    if data.get("DestinationConfiguration") is not None:
         import capo_observabilityadmin.types.telemetry_destination_configuration
 
         out["destination_configuration"] = (
@@ -127,18 +127,18 @@ def deserialize_json(data: dict) -> TelemetryRule:
                 data["DestinationConfiguration"]
             )
         )
-    if "Scope" in data:
+    if data.get("Scope") is not None:
         out["scope"] = data["Scope"]
-    if "SelectionCriteria" in data:
+    if data.get("SelectionCriteria") is not None:
         out["selection_criteria"] = data["SelectionCriteria"]
-    if "AllowFieldUpdates" in data:
+    if data.get("AllowFieldUpdates") is not None:
         out["allow_field_updates"] = data["AllowFieldUpdates"]
-    if "Regions" in data:
+    if data.get("Regions") is not None:
         import capo_observabilityadmin.types.regions
 
         out["regions"] = capo_observabilityadmin.types.regions.deserialize_json(
             data["Regions"]
         )
-    if "AllRegions" in data:
+    if data.get("AllRegions") is not None:
         out["all_regions"] = data["AllRegions"]
     return out

@@ -24,6 +24,8 @@ def serialize_json(input_to_serialize: MapOfActivity) -> dict:
 def deserialize_json(data: dict) -> MapOfActivity:
     out: MapOfActivity = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_pinpoint.types.activity
 
         out[key] = capo_pinpoint.types.activity.deserialize_json(value)

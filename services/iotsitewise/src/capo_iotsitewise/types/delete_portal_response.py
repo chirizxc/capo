@@ -28,7 +28,7 @@ def serialize_json(value: DeletePortalResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeletePortalResponse:
     out: DeletePortalResponse = {}  # type: ignore[typeddict-item]
-    if "portalStatus" in data:
+    if data.get("portalStatus") is not None:
         import capo_iotsitewise.types.portal_status
 
         out["portal_status"] = capo_iotsitewise.types.portal_status.deserialize_json(

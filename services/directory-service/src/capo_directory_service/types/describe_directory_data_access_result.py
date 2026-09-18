@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DescribeDirectoryDataAccessResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeDirectoryDataAccessResult:
     out: DescribeDirectoryDataAccessResult = {}  # type: ignore[typeddict-item]
-    if "DataAccessStatus" in data:
+    if data.get("DataAccessStatus") is not None:
         import capo_directory_service.types.data_access_status
 
         out["data_access_status"] = (

@@ -49,19 +49,19 @@ def serialize_json(value: DeploymentEventDataSummary) -> dict:
 
 def deserialize_json(data: dict) -> DeploymentEventDataSummary:
     out: DeploymentEventDataSummary = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_launch_wizard.types.event_status
 
         out["status"] = capo_launch_wizard.types.event_status.deserialize_json(
             data["status"]
         )
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "timestamp" in data:
+    if data.get("timestamp") is not None:
         import capo_launch_wizard.types._prelude.timestamp
 
         out["timestamp"] = capo_launch_wizard.types._prelude.timestamp.deserialize_json(

@@ -64,33 +64,33 @@ def serialize_json(value: CreateNodeFromTemplateJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateNodeFromTemplateJobRequest:
     out: CreateNodeFromTemplateJobRequest = {}  # type: ignore[typeddict-item]
-    if "TemplateType" in data:
+    if data.get("TemplateType") is not None:
         out["template_type"] = data["TemplateType"]
     else:
         raise DeserializationError(
             "CreateNodeFromTemplateJobRequest.template_type required"
         )
-    if "OutputPackageName" in data:
+    if data.get("OutputPackageName") is not None:
         out["output_package_name"] = data["OutputPackageName"]
     else:
         raise DeserializationError(
             "CreateNodeFromTemplateJobRequest.output_package_name required"
         )
-    if "OutputPackageVersion" in data:
+    if data.get("OutputPackageVersion") is not None:
         out["output_package_version"] = data["OutputPackageVersion"]
     else:
         raise DeserializationError(
             "CreateNodeFromTemplateJobRequest.output_package_version required"
         )
-    if "NodeName" in data:
+    if data.get("NodeName") is not None:
         out["node_name"] = data["NodeName"]
     else:
         raise DeserializationError(
             "CreateNodeFromTemplateJobRequest.node_name required"
         )
-    if "NodeDescription" in data:
+    if data.get("NodeDescription") is not None:
         out["node_description"] = data["NodeDescription"]
-    if "TemplateParameters" in data:
+    if data.get("TemplateParameters") is not None:
         import capo_panorama.types.template_parameters_map
 
         out["template_parameters"] = (
@@ -102,7 +102,7 @@ def deserialize_json(data: dict) -> CreateNodeFromTemplateJobRequest:
         raise DeserializationError(
             "CreateNodeFromTemplateJobRequest.template_parameters required"
         )
-    if "JobTags" in data:
+    if data.get("JobTags") is not None:
         import capo_panorama.types.job_tags_list
 
         out["job_tags"] = capo_panorama.types.job_tags_list.deserialize_json(

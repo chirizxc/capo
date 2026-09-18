@@ -31,6 +31,8 @@ def serialize_json(
 def deserialize_json(data: dict) -> S3ExpressDirectoryAccessPointConfigurationsMap:
     out: S3ExpressDirectoryAccessPointConfigurationsMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_accessanalyzer.types.s3_express_directory_access_point_configuration
 
         out[key] = (

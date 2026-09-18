@@ -38,8 +38,8 @@ def serialize_json(value: UpdateContactFlowModuleContentRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateContactFlowModuleContentRequest:
     out: UpdateContactFlowModuleContentRequest = {}  # type: ignore[typeddict-item]
-    if "Content" in data:
+    if data.get("Content") is not None:
         out["content"] = data["Content"]
-    if "Settings" in data:
+    if data.get("Settings") is not None:
         out["settings"] = data["Settings"]
     return out

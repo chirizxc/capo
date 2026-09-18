@@ -43,23 +43,23 @@ def serialize_aws_json_1_1(value: CreateCustomEntityTypeRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateCustomEntityTypeRequest:
     out: CreateCustomEntityTypeRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateCustomEntityTypeRequest.name required")
-    if "RegexString" in data:
+    if data.get("RegexString") is not None:
         out["regex_string"] = data["RegexString"]
     else:
         raise DeserializationError(
             "CreateCustomEntityTypeRequest.regex_string required"
         )
-    if "ContextWords" in data:
+    if data.get("ContextWords") is not None:
         import capo_glue.types.context_words
 
         out["context_words"] = capo_glue.types.context_words.deserialize_aws_json_1_1(
             data["ContextWords"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_glue.types.tags_map
 
         out["tags"] = capo_glue.types.tags_map.deserialize_aws_json_1_1(data["Tags"])

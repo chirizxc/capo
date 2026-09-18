@@ -28,11 +28,11 @@ def serialize_aws_json_1_0(value: ActivityType) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ActivityType:
     out: ActivityType = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ActivityType.name required")
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     else:
         raise DeserializationError("ActivityType.version required")

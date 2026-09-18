@@ -37,9 +37,9 @@ def serialize_aws_json_1_0(value: RejectedRecordsException_) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RejectedRecordsException_:
     out: RejectedRecordsException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "RejectedRecords" in data:
+    if data.get("RejectedRecords") is not None:
         import capo_timestream_write.types.rejected_records
 
         out["rejected_records"] = (
@@ -55,15 +55,18 @@ class RejectedRecordsException(ServiceError):
 
     code: str | None = "RejectedRecordsException"
 
-    def __init__(self, data: RejectedRecordsException_):
+    def __init__(self, data: RejectedRecordsException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="RejectedRecordsException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_0(cls, data: dict) -> "RejectedRecordsException":
-        return cls(deserialize_aws_json_1_0(data))
+    def from_aws_json_1_0(
+        cls, data: dict, message: str | None = None
+    ) -> "RejectedRecordsException":
+        return cls(deserialize_aws_json_1_0(data), message)

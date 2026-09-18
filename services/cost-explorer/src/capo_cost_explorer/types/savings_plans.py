@@ -67,7 +67,15 @@ def serialize_aws_json_1_1(value: SavingsPlans) -> dict:
             )
         )
     if "savings_plans_commitment" in value:
-        out["SavingsPlansCommitment"] = value["savings_plans_commitment"]
+        out["SavingsPlansCommitment"] = (
+            "NaN"
+            if value["savings_plans_commitment"] != value["savings_plans_commitment"]
+            else "Infinity"
+            if value["savings_plans_commitment"] == float("inf")
+            else "-Infinity"
+            if value["savings_plans_commitment"] == float("-inf")
+            else value["savings_plans_commitment"]
+        )
     if "offering_id" in value:
         out["OfferingId"] = value["offering_id"]
     return out
@@ -75,7 +83,7 @@ def serialize_aws_json_1_1(value: SavingsPlans) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SavingsPlans:
     out: SavingsPlans = {}  # type: ignore[typeddict-item]
-    if "PaymentOption" in data:
+    if data.get("PaymentOption") is not None:
         import capo_cost_explorer.types.payment_option
 
         out["payment_option"] = (
@@ -83,7 +91,7 @@ def deserialize_aws_json_1_1(data: dict) -> SavingsPlans:
                 data["PaymentOption"]
             )
         )
-    if "SavingsPlansType" in data:
+    if data.get("SavingsPlansType") is not None:
         import capo_cost_explorer.types.supported_savings_plans_type
 
         out["savings_plans_type"] = (
@@ -91,11 +99,11 @@ def deserialize_aws_json_1_1(data: dict) -> SavingsPlans:
                 data["SavingsPlansType"]
             )
         )
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
-    if "InstanceFamily" in data:
+    if data.get("InstanceFamily") is not None:
         out["instance_family"] = data["InstanceFamily"]
-    if "TermInYears" in data:
+    if data.get("TermInYears") is not None:
         import capo_cost_explorer.types.term_in_years
 
         out["term_in_years"] = (
@@ -103,8 +111,8 @@ def deserialize_aws_json_1_1(data: dict) -> SavingsPlans:
                 data["TermInYears"]
             )
         )
-    if "SavingsPlansCommitment" in data:
-        out["savings_plans_commitment"] = data["SavingsPlansCommitment"]
-    if "OfferingId" in data:
+    if data.get("SavingsPlansCommitment") is not None:
+        out["savings_plans_commitment"] = float(data["SavingsPlansCommitment"])
+    if data.get("OfferingId") is not None:
         out["offering_id"] = data["OfferingId"]
     return out

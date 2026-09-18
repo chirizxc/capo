@@ -36,9 +36,9 @@ def serialize_json(value: CreateS3BucketResource) -> dict:
 
 def deserialize_json(data: dict) -> CreateS3BucketResource:
     out: CreateS3BucketResource = {}  # type: ignore[typeddict-item]
-    if "bucketName" in data:
+    if data.get("bucketName") is not None:
         out["bucket_name"] = data["bucketName"]
-    if "objectPrefixes" in data:
+    if data.get("objectPrefixes") is not None:
         import capo_guardduty.types.malware_protection_plan_object_prefixes_list
 
         out["object_prefixes"] = (

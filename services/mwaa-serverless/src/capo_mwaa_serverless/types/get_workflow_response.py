@@ -173,17 +173,17 @@ def serialize_aws_json_1_0(value: GetWorkflowResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetWorkflowResponse:
     out: GetWorkflowResponse = {}  # type: ignore[typeddict-item]
-    if "WorkflowArn" in data:
+    if data.get("WorkflowArn") is not None:
         out["workflow_arn"] = data["WorkflowArn"]
     else:
         raise DeserializationError("GetWorkflowResponse.workflow_arn required")
-    if "WorkflowVersion" in data:
+    if data.get("WorkflowVersion") is not None:
         out["workflow_version"] = data["WorkflowVersion"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_mwaa_serverless.types.timestamp_value
 
         out["created_at"] = (
@@ -191,7 +191,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetWorkflowResponse:
                 data["CreatedAt"]
             )
         )
-    if "ModifiedAt" in data:
+    if data.get("ModifiedAt") is not None:
         import capo_mwaa_serverless.types.timestamp_value
 
         out["modified_at"] = (
@@ -199,7 +199,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetWorkflowResponse:
                 data["ModifiedAt"]
             )
         )
-    if "EncryptionConfiguration" in data:
+    if data.get("EncryptionConfiguration") is not None:
         import capo_mwaa_serverless.types.encryption_configuration
 
         out["encryption_configuration"] = (
@@ -207,7 +207,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetWorkflowResponse:
                 data["EncryptionConfiguration"]
             )
         )
-    if "LoggingConfiguration" in data:
+    if data.get("LoggingConfiguration") is not None:
         import capo_mwaa_serverless.types.logging_configuration
 
         out["logging_configuration"] = (
@@ -215,7 +215,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetWorkflowResponse:
                 data["LoggingConfiguration"]
             )
         )
-    if "EngineVersion" in data:
+    if data.get("EngineVersion") is not None:
         import capo_mwaa_serverless.types.engine_version
 
         out["engine_version"] = (
@@ -223,7 +223,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetWorkflowResponse:
                 data["EngineVersion"]
             )
         )
-    if "WorkflowStatus" in data:
+    if data.get("WorkflowStatus") is not None:
         import capo_mwaa_serverless.types.workflow_status
 
         out["workflow_status"] = (
@@ -231,7 +231,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetWorkflowResponse:
                 data["WorkflowStatus"]
             )
         )
-    if "DefinitionS3Location" in data:
+    if data.get("DefinitionS3Location") is not None:
         import capo_mwaa_serverless.types.definition_s3_location
 
         out["definition_s3_location"] = (
@@ -239,7 +239,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetWorkflowResponse:
                 data["DefinitionS3Location"]
             )
         )
-    if "ScheduleConfiguration" in data:
+    if data.get("ScheduleConfiguration") is not None:
         import capo_mwaa_serverless.types.schedule_configuration
 
         out["schedule_configuration"] = (
@@ -247,9 +247,9 @@ def deserialize_aws_json_1_0(data: dict) -> GetWorkflowResponse:
                 data["ScheduleConfiguration"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "NetworkConfiguration" in data:
+    if data.get("NetworkConfiguration") is not None:
         import capo_mwaa_serverless.types.network_configuration
 
         out["network_configuration"] = (
@@ -257,8 +257,8 @@ def deserialize_aws_json_1_0(data: dict) -> GetWorkflowResponse:
                 data["NetworkConfiguration"]
             )
         )
-    if "TriggerMode" in data:
+    if data.get("TriggerMode") is not None:
         out["trigger_mode"] = data["TriggerMode"]
-    if "WorkflowDefinition" in data:
+    if data.get("WorkflowDefinition") is not None:
         out["workflow_definition"] = data["WorkflowDefinition"]
     return out

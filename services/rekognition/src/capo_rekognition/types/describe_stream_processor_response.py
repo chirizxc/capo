@@ -158,11 +158,11 @@ def serialize_aws_json_1_1(value: DescribeStreamProcessorResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeStreamProcessorResponse:
     out: DescribeStreamProcessorResponse = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "StreamProcessorArn" in data:
+    if data.get("StreamProcessorArn") is not None:
         out["stream_processor_arn"] = data["StreamProcessorArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_rekognition.types.stream_processor_status
 
         out["status"] = (
@@ -170,9 +170,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeStreamProcessorResponse:
                 data["Status"]
             )
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "CreationTimestamp" in data:
+    if data.get("CreationTimestamp") is not None:
         import capo_rekognition.types.date_time
 
         out["creation_timestamp"] = (
@@ -180,7 +180,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeStreamProcessorResponse:
                 data["CreationTimestamp"]
             )
         )
-    if "LastUpdateTimestamp" in data:
+    if data.get("LastUpdateTimestamp") is not None:
         import capo_rekognition.types.date_time
 
         out["last_update_timestamp"] = (
@@ -188,7 +188,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeStreamProcessorResponse:
                 data["LastUpdateTimestamp"]
             )
         )
-    if "Input" in data:
+    if data.get("Input") is not None:
         import capo_rekognition.types.stream_processor_input
 
         out["input"] = (
@@ -196,7 +196,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeStreamProcessorResponse:
                 data["Input"]
             )
         )
-    if "Output" in data:
+    if data.get("Output") is not None:
         import capo_rekognition.types.stream_processor_output
 
         out["output"] = (
@@ -204,9 +204,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeStreamProcessorResponse:
                 data["Output"]
             )
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "Settings" in data:
+    if data.get("Settings") is not None:
         import capo_rekognition.types.stream_processor_settings
 
         out["settings"] = (
@@ -214,7 +214,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeStreamProcessorResponse:
                 data["Settings"]
             )
         )
-    if "NotificationChannel" in data:
+    if data.get("NotificationChannel") is not None:
         import capo_rekognition.types.stream_processor_notification_channel
 
         out["notification_channel"] = (
@@ -222,9 +222,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeStreamProcessorResponse:
                 data["NotificationChannel"]
             )
         )
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "RegionsOfInterest" in data:
+    if data.get("RegionsOfInterest") is not None:
         import capo_rekognition.types.regions_of_interest
 
         out["regions_of_interest"] = (
@@ -232,7 +232,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeStreamProcessorResponse:
                 data["RegionsOfInterest"]
             )
         )
-    if "DataSharingPreference" in data:
+    if data.get("DataSharingPreference") is not None:
         import capo_rekognition.types.stream_processor_data_sharing_preference
 
         out["data_sharing_preference"] = (

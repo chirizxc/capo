@@ -34,7 +34,7 @@ def serialize_json(value: UpdateUserPhoneConfigRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateUserPhoneConfigRequest:
     out: UpdateUserPhoneConfigRequest = {}  # type: ignore[typeddict-item]
-    if "PhoneConfig" in data:
+    if data.get("PhoneConfig") is not None:
         import capo_connect.types.user_phone_config
 
         out["phone_config"] = capo_connect.types.user_phone_config.deserialize_json(

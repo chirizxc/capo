@@ -27,6 +27,8 @@ def deserialize_aws_json_1_0(data: list) -> ComputeNodeGroupConfigurationList:
 
     out: ComputeNodeGroupConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_pcs.types.compute_node_group_configuration.deserialize_aws_json_1_0(
                 item

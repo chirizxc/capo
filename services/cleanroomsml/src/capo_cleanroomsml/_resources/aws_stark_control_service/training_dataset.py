@@ -87,10 +87,11 @@ class TrainingDataset:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.create_training_dataset_request.CreateTrainingDatasetRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["role_arn"] = role_arn
-        input_["training_data"] = training_data
+        input_: capo_cleanroomsml.types.create_training_dataset_request.CreateTrainingDatasetRequest = {
+            "name": name,
+            "role_arn": role_arn,
+            "training_data": training_data,
+        }
         if tags is not None:
             input_["tags"] = tags
         if description is not None:
@@ -101,6 +102,7 @@ class TrainingDataset:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -136,14 +138,16 @@ class TrainingDataset:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.get_training_dataset_request.GetTrainingDatasetRequest = {}  # type: ignore[typeddict-item]
-        input_["training_dataset_arn"] = training_dataset_arn
+        input_: capo_cleanroomsml.types.get_training_dataset_request.GetTrainingDatasetRequest = {
+            "training_dataset_arn": training_dataset_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -178,14 +182,16 @@ class TrainingDataset:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.delete_training_dataset_request.DeleteTrainingDatasetRequest = {}  # type: ignore[typeddict-item]
-        input_["training_dataset_arn"] = training_dataset_arn
+        input_: capo_cleanroomsml.types.delete_training_dataset_request.DeleteTrainingDatasetRequest = {
+            "training_dataset_arn": training_dataset_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -222,7 +228,7 @@ class TrainingDataset:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.list_training_datasets_request.ListTrainingDatasetsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cleanroomsml.types.list_training_datasets_request.ListTrainingDatasetsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -233,6 +239,7 @@ class TrainingDataset:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -284,10 +291,11 @@ class AsyncTrainingDataset:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.create_training_dataset_request.CreateTrainingDatasetRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["role_arn"] = role_arn
-        input_["training_data"] = training_data
+        input_: capo_cleanroomsml.types.create_training_dataset_request.CreateTrainingDatasetRequest = {
+            "name": name,
+            "role_arn": role_arn,
+            "training_data": training_data,
+        }
         if tags is not None:
             input_["tags"] = tags
         if description is not None:
@@ -298,6 +306,7 @@ class AsyncTrainingDataset:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -334,14 +343,16 @@ class AsyncTrainingDataset:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.get_training_dataset_request.GetTrainingDatasetRequest = {}  # type: ignore[typeddict-item]
-        input_["training_dataset_arn"] = training_dataset_arn
+        input_: capo_cleanroomsml.types.get_training_dataset_request.GetTrainingDatasetRequest = {
+            "training_dataset_arn": training_dataset_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -377,14 +388,16 @@ class AsyncTrainingDataset:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.delete_training_dataset_request.DeleteTrainingDatasetRequest = {}  # type: ignore[typeddict-item]
-        input_["training_dataset_arn"] = training_dataset_arn
+        input_: capo_cleanroomsml.types.delete_training_dataset_request.DeleteTrainingDatasetRequest = {
+            "training_dataset_arn": training_dataset_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -422,7 +435,7 @@ class AsyncTrainingDataset:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.list_training_datasets_request.ListTrainingDatasetsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cleanroomsml.types.list_training_datasets_request.ListTrainingDatasetsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -433,4 +446,5 @@ class AsyncTrainingDataset:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

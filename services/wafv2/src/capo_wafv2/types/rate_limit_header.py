@@ -34,11 +34,11 @@ def serialize_aws_json_1_1(value: RateLimitHeader) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RateLimitHeader:
     out: RateLimitHeader = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("RateLimitHeader.name required")
-    if "TextTransformations" in data:
+    if data.get("TextTransformations") is not None:
         import capo_wafv2.types.text_transformations
 
         out["text_transformations"] = (

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: VerifyTrustRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> VerifyTrustRequest:
     out: VerifyTrustRequest = {}  # type: ignore[typeddict-item]
-    if "TrustId" in data:
+    if data.get("TrustId") is not None:
         out["trust_id"] = data["TrustId"]
     else:
         raise DeserializationError("VerifyTrustRequest.trust_id required")

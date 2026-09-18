@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: PollForTaskOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PollForTaskOutput:
     out: PollForTaskOutput = {}  # type: ignore[typeddict-item]
-    if "taskObject" in data:
+    if data.get("taskObject") is not None:
         import capo_data_pipeline.types.task_object
 
         out["task_object"] = (

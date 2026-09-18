@@ -25,6 +25,6 @@ def serialize_aws_json_1_0(value: GetIndexResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetIndexResponse:
     out: GetIndexResponse = {}  # type: ignore[typeddict-item]
-    if "indexSchema" in data:
+    if data.get("indexSchema") is not None:
         out["index_schema"] = data["indexSchema"]
     return out

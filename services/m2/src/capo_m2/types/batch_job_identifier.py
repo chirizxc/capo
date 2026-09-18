@@ -82,7 +82,7 @@ def serialize_json(value: BatchJobIdentifier) -> dict:
 
 
 def deserialize_json(data: dict) -> BatchJobIdentifier:
-    if "fileBatchJobIdentifier" in data:
+    if data.get("fileBatchJobIdentifier") is not None:
         import capo_m2.types.file_batch_job_identifier
 
         return {
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> BatchJobIdentifier:
                 data["fileBatchJobIdentifier"]
             )
         }
-    elif "scriptBatchJobIdentifier" in data:
+    elif data.get("scriptBatchJobIdentifier") is not None:
         import capo_m2.types.script_batch_job_identifier
 
         return {
@@ -98,7 +98,7 @@ def deserialize_json(data: dict) -> BatchJobIdentifier:
                 data["scriptBatchJobIdentifier"]
             )
         }
-    elif "s3BatchJobIdentifier" in data:
+    elif data.get("s3BatchJobIdentifier") is not None:
         import capo_m2.types.s3_batch_job_identifier
 
         return {
@@ -106,7 +106,7 @@ def deserialize_json(data: dict) -> BatchJobIdentifier:
                 data["s3BatchJobIdentifier"]
             )
         }
-    elif "restartBatchJobIdentifier" in data:
+    elif data.get("restartBatchJobIdentifier") is not None:
         import capo_m2.types.restart_batch_job_identifier
 
         return {

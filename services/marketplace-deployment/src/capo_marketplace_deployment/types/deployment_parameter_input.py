@@ -28,11 +28,11 @@ def serialize_json(value: DeploymentParameterInput) -> dict:
 
 def deserialize_json(data: dict) -> DeploymentParameterInput:
     out: DeploymentParameterInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("DeploymentParameterInput.name required")
-    if "secretString" in data:
+    if data.get("secretString") is not None:
         out["secret_string"] = data["secretString"]
     else:
         raise DeserializationError("DeploymentParameterInput.secret_string required")

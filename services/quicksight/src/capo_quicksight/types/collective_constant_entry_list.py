@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> CollectiveConstantEntryList:
 
     out: CollectiveConstantEntryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.collective_constant_entry.deserialize_json(item)
         )

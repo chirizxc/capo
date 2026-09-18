@@ -43,9 +43,9 @@ def serialize_json(value: TimecodeBurnin) -> dict:
 
 def deserialize_json(data: dict) -> TimecodeBurnin:
     out: TimecodeBurnin = {}  # type: ignore[typeddict-item]
-    if "fontSize" in data:
+    if data.get("fontSize") is not None:
         out["font_size"] = data["fontSize"]
-    if "position" in data:
+    if data.get("position") is not None:
         import capo_mediaconvert.types.timecode_burnin_position
 
         out["position"] = (
@@ -53,6 +53,6 @@ def deserialize_json(data: dict) -> TimecodeBurnin:
                 data["position"]
             )
         )
-    if "prefix" in data:
+    if data.get("prefix") is not None:
         out["prefix"] = data["prefix"]
     return out

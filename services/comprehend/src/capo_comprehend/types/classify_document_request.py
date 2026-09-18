@@ -55,13 +55,13 @@ def serialize_aws_json_1_1(value: ClassifyDocumentRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClassifyDocumentRequest:
     out: ClassifyDocumentRequest = {}  # type: ignore[typeddict-item]
-    if "Text" in data:
+    if data.get("Text") is not None:
         out["text"] = data["Text"]
-    if "EndpointArn" in data:
+    if data.get("EndpointArn") is not None:
         out["endpoint_arn"] = data["EndpointArn"]
     else:
         raise DeserializationError("ClassifyDocumentRequest.endpoint_arn required")
-    if "Bytes" in data:
+    if data.get("Bytes") is not None:
         import capo_comprehend.types.semi_structured_document_blob
 
         out["bytes"] = (
@@ -69,7 +69,7 @@ def deserialize_aws_json_1_1(data: dict) -> ClassifyDocumentRequest:
                 data["Bytes"]
             )
         )
-    if "DocumentReaderConfig" in data:
+    if data.get("DocumentReaderConfig") is not None:
         import capo_comprehend.types.document_reader_config
 
         out["document_reader_config"] = (

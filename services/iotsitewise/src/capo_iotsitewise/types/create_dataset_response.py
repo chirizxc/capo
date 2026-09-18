@@ -36,15 +36,15 @@ def serialize_json(value: CreateDatasetResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateDatasetResponse:
     out: CreateDatasetResponse = {}  # type: ignore[typeddict-item]
-    if "datasetId" in data:
+    if data.get("datasetId") is not None:
         out["dataset_id"] = data["datasetId"]
     else:
         raise DeserializationError("CreateDatasetResponse.dataset_id required")
-    if "datasetArn" in data:
+    if data.get("datasetArn") is not None:
         out["dataset_arn"] = data["datasetArn"]
     else:
         raise DeserializationError("CreateDatasetResponse.dataset_arn required")
-    if "datasetStatus" in data:
+    if data.get("datasetStatus") is not None:
         import capo_iotsitewise.types.dataset_status
 
         out["dataset_status"] = capo_iotsitewise.types.dataset_status.deserialize_json(

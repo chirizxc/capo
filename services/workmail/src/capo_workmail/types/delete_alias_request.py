@@ -32,15 +32,15 @@ def serialize_aws_json_1_1(value: DeleteAliasRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteAliasRequest:
     out: DeleteAliasRequest = {}  # type: ignore[typeddict-item]
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
     else:
         raise DeserializationError("DeleteAliasRequest.organization_id required")
-    if "EntityId" in data:
+    if data.get("EntityId") is not None:
         out["entity_id"] = data["EntityId"]
     else:
         raise DeserializationError("DeleteAliasRequest.entity_id required")
-    if "Alias" in data:
+    if data.get("Alias") is not None:
         out["alias"] = data["Alias"]
     else:
         raise DeserializationError("DeleteAliasRequest.alias required")

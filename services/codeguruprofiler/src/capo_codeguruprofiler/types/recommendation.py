@@ -31,7 +31,15 @@ class Recommendation(TypedDict, closed=True):
 def serialize_json(value: Recommendation) -> dict:
     out: dict = {}
     out["allMatchesCount"] = value["all_matches_count"]
-    out["allMatchesSum"] = value["all_matches_sum"]
+    out["allMatchesSum"] = (
+        "NaN"
+        if value["all_matches_sum"] != value["all_matches_sum"]
+        else "Infinity"
+        if value["all_matches_sum"] == float("inf")
+        else "-Infinity"
+        if value["all_matches_sum"] == float("-inf")
+        else value["all_matches_sum"]
+    )
     import capo_codeguruprofiler.types.pattern
 
     out["pattern"] = capo_codeguruprofiler.types.pattern.serialize_json(
@@ -57,15 +65,15 @@ def serialize_json(value: Recommendation) -> dict:
 
 def deserialize_json(data: dict) -> Recommendation:
     out: Recommendation = {}  # type: ignore[typeddict-item]
-    if "allMatchesCount" in data:
+    if data.get("allMatchesCount") is not None:
         out["all_matches_count"] = data["allMatchesCount"]
     else:
         raise DeserializationError("Recommendation.all_matches_count required")
-    if "allMatchesSum" in data:
-        out["all_matches_sum"] = data["allMatchesSum"]
+    if data.get("allMatchesSum") is not None:
+        out["all_matches_sum"] = float(data["allMatchesSum"])
     else:
         raise DeserializationError("Recommendation.all_matches_sum required")
-    if "pattern" in data:
+    if data.get("pattern") is not None:
         import capo_codeguruprofiler.types.pattern
 
         out["pattern"] = capo_codeguruprofiler.types.pattern.deserialize_json(
@@ -73,7 +81,7 @@ def deserialize_json(data: dict) -> Recommendation:
         )
     else:
         raise DeserializationError("Recommendation.pattern required")
-    if "topMatches" in data:
+    if data.get("topMatches") is not None:
         import capo_codeguruprofiler.types.matches
 
         out["top_matches"] = capo_codeguruprofiler.types.matches.deserialize_json(
@@ -81,7 +89,7 @@ def deserialize_json(data: dict) -> Recommendation:
         )
     else:
         raise DeserializationError("Recommendation.top_matches required")
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_codeguruprofiler.types.timestamp
 
         out["start_time"] = capo_codeguruprofiler.types.timestamp.deserialize_json(
@@ -89,7 +97,7 @@ def deserialize_json(data: dict) -> Recommendation:
         )
     else:
         raise DeserializationError("Recommendation.start_time required")
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_codeguruprofiler.types.timestamp
 
         out["end_time"] = capo_codeguruprofiler.types.timestamp.deserialize_json(

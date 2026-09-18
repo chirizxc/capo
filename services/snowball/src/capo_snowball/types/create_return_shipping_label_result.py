@@ -29,7 +29,7 @@ def serialize_aws_json_1_1(value: CreateReturnShippingLabelResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateReturnShippingLabelResult:
     out: CreateReturnShippingLabelResult = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_snowball.types.shipping_label_status
 
         out["status"] = (

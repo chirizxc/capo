@@ -11,6 +11,7 @@ from typing_extensions import Never
 
 import capo_iot_data_plane._auth._signers
 import capo_iot_data_plane._auth._sigv4
+import capo_iot_data_plane._protocol.eventstream
 import capo_iot_data_plane.errors.forbidden_exception
 import capo_iot_data_plane.errors.gateway_timeout_exception
 import capo_iot_data_plane.errors.internal_failure_exception
@@ -38,35 +39,35 @@ def handle_error(response: zapros.Response) -> Never:
     match code:
         case "ForbiddenException":
             raise capo_iot_data_plane.errors.forbidden_exception.ForbiddenException.from_json(
-                data
+                data, message
             )
         case "GatewayTimeoutException":
             raise capo_iot_data_plane.errors.gateway_timeout_exception.GatewayTimeoutException.from_json(
-                data
+                data, message
             )
         case "InternalFailureException":
             raise capo_iot_data_plane.errors.internal_failure_exception.InternalFailureException.from_json(
-                data
+                data, message
             )
         case "InvalidRequestException":
             raise capo_iot_data_plane.errors.invalid_request_exception.InvalidRequestException.from_json(
-                data
+                data, message
             )
         case "RequestEntityTooLargeException":
             raise capo_iot_data_plane.errors.request_entity_too_large_exception.RequestEntityTooLargeException.from_json(
-                data
+                data, message
             )
         case "ResourceNotFoundException":
             raise capo_iot_data_plane.errors.resource_not_found_exception.ResourceNotFoundException.from_json(
-                data
+                data, message
             )
         case "ThrottlingException":
             raise capo_iot_data_plane.errors.throttling_exception.ThrottlingException.from_json(
-                data
+                data, message
             )
         case "UnauthorizedException":
             raise capo_iot_data_plane.errors.unauthorized_exception.UnauthorizedException.from_json(
-                data
+                data, message
             )
         case _:
             raise UnknownServiceError(code=code, message=message, response=response)
@@ -95,19 +96,26 @@ def get_signer(
     auth_schemes: list[dict[str, Any]] | None = None,
 ) -> capo_iot_data_plane._auth._signers.Signer | None:
     name_to_schema = {s["name"]: s for s in (auth_schemes or [])}  # noqa: F841
-    if options.credentials_provider is not None:
-        sigv4_config = (
-            name_to_schema.get("sigv4")
-            or name_to_schema.get("sigv4a")
-            or name_to_schema.get("sigv4-s3express")
-            or capo_iot_data_plane._auth._sigv4.build_sigv4_auth_scheme(
-                "iotdata", options.region
-            )
+    if (
+        options.credentials_provider is not None
+        and name_to_schema
+        and not name_to_schema.keys() & {"sigv4", "sigv4-s3express"}
+    ):
+        raise RuntimeError(
+            "Endpoint requires an unsupported auth scheme: " + ", ".join(name_to_schema)
         )
-        if sigv4_config is not None:
-            return capo_iot_data_plane._auth._signers.SigV4Signer(
-                options.credentials_provider, auth_scheme=sigv4_config
+    if options.credentials_provider is not None:
+        endpoint_scheme = name_to_schema.get("sigv4") or name_to_schema.get(
+            "sigv4-s3express"
+        )
+        if endpoint_scheme is not None or not name_to_schema:
+            sigv4_config = capo_iot_data_plane._auth._sigv4.build_sigv4_auth_scheme(
+                "iotdata", options.region, endpoint_scheme
             )
+            if sigv4_config is not None:
+                return capo_iot_data_plane._auth._signers.SigV4Signer(
+                    options.credentials_provider, auth_scheme=sigv4_config
+                )
     raise RuntimeError("Auth was not resolved")
 
 
@@ -123,36 +131,41 @@ def build_request(
             Endpoint=options.endpoint,
         )
     )  # noqa: F841
+    import capo_iot_data_plane.types.payload_format_indicator
+
     url = endpoint.url.rstrip("/") + "/connections/{clientId}/messages"
-    url = url.replace("{clientId}", quote(str(input_["client_id"]), safe=""))
-    params: dict[str, str] = {}
+    url = url.replace("{clientId}", quote(input_["client_id"], safe=""))
+    params: list[tuple[str, str]] = []
     if "topic" in input_:
-        params["topic"] = str(input_["topic"])
+        params.append(("topic", input_["topic"]))
     if "content_type" in input_:
-        params["contentType"] = str(input_["content_type"])
+        params.append(("contentType", input_["content_type"]))
     if "response_topic" in input_:
-        params["responseTopic"] = str(input_["response_topic"])
-    params["confirmation"] = str(input_.get("confirmation", False))
-    params["timeout"] = str(input_.get("timeout", 0))
+        params.append(("responseTopic", input_["response_topic"]))
+    params.append(
+        ("confirmation", "true" if input_.get("confirmation", False) else "false")
+    )
+    params.append(("timeout", str(input_.get("timeout", 0))))
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     if "user_properties" in input_:
-        headers["x-amz-mqtt5-user-properties"] = str(input_["user_properties"])
+        headers["x-amz-mqtt5-user-properties"] = input_["user_properties"]
     if "payload_format_indicator" in input_:
-        headers["x-amz-mqtt5-payload-format-indicator"] = str(
-            input_["payload_format_indicator"]
+        headers["x-amz-mqtt5-payload-format-indicator"] = (
+            capo_iot_data_plane.types.payload_format_indicator.serialize_json(
+                input_["payload_format_indicator"]
+            )
         )
     if "correlation_data" in input_:
-        headers["x-amz-mqtt5-correlation-data"] = str(input_["correlation_data"])
+        headers["x-amz-mqtt5-correlation-data"] = input_["correlation_data"]
     if "payload" in input_:
-        body: bytes | None = json.dumps(
-            capo_iot_data_plane.types.payload.serialize_json(input_["payload"])
-        ).encode()
-        headers["content-type"] = "application/json"
+        body: bytes | None = input_["payload"]
+        headers["content-type"] = "application/octet-stream"
     else:
         body = b""
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))
     normalized_url = zapros.URL(url)
-    normalized_url.search_params.update(params)
+    for k, v in params:
+        normalized_url.search_params.append(k, v)
     return zapros.Request(
         normalized_url, "POST", headers=headers, body=body, context={"signer": signer}
     )
@@ -167,7 +180,7 @@ def send_direct_message(
 ]:
     response = options.client.handler.handle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             response.read()
             handle_error(response)
         return handle_response(response), response
@@ -185,7 +198,7 @@ async def async_send_direct_message(
 ]:
     response = await options.client.handler.ahandle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             await response.aread()
             handle_error(response)
         return await async_handle_response(response), response

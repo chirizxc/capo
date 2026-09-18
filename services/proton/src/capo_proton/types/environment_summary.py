@@ -126,13 +126,13 @@ def serialize_aws_json_1_0(value: EnvironmentSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> EnvironmentSummary:
     out: EnvironmentSummary = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("EnvironmentSummary.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_proton.types._prelude.timestamp
 
         out["created_at"] = (
@@ -142,7 +142,7 @@ def deserialize_aws_json_1_0(data: dict) -> EnvironmentSummary:
         )
     else:
         raise DeserializationError("EnvironmentSummary.created_at required")
-    if "lastDeploymentAttemptedAt" in data:
+    if data.get("lastDeploymentAttemptedAt") is not None:
         import capo_proton.types._prelude.timestamp
 
         out["last_deployment_attempted_at"] = (
@@ -154,7 +154,7 @@ def deserialize_aws_json_1_0(data: dict) -> EnvironmentSummary:
         raise DeserializationError(
             "EnvironmentSummary.last_deployment_attempted_at required"
         )
-    if "lastDeploymentSucceededAt" in data:
+    if data.get("lastDeploymentSucceededAt") is not None:
         import capo_proton.types._prelude.timestamp
 
         out["last_deployment_succeeded_at"] = (
@@ -166,42 +166,42 @@ def deserialize_aws_json_1_0(data: dict) -> EnvironmentSummary:
         raise DeserializationError(
             "EnvironmentSummary.last_deployment_succeeded_at required"
         )
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("EnvironmentSummary.arn required")
-    if "templateName" in data:
+    if data.get("templateName") is not None:
         out["template_name"] = data["templateName"]
     else:
         raise DeserializationError("EnvironmentSummary.template_name required")
-    if "templateMajorVersion" in data:
+    if data.get("templateMajorVersion") is not None:
         out["template_major_version"] = data["templateMajorVersion"]
     else:
         raise DeserializationError("EnvironmentSummary.template_major_version required")
-    if "templateMinorVersion" in data:
+    if data.get("templateMinorVersion") is not None:
         out["template_minor_version"] = data["templateMinorVersion"]
     else:
         raise DeserializationError("EnvironmentSummary.template_minor_version required")
-    if "deploymentStatus" in data:
+    if data.get("deploymentStatus") is not None:
         out["deployment_status"] = data["deploymentStatus"]
     else:
         raise DeserializationError("EnvironmentSummary.deployment_status required")
-    if "deploymentStatusMessage" in data:
+    if data.get("deploymentStatusMessage") is not None:
         out["deployment_status_message"] = data["deploymentStatusMessage"]
-    if "protonServiceRoleArn" in data:
+    if data.get("protonServiceRoleArn") is not None:
         out["proton_service_role_arn"] = data["protonServiceRoleArn"]
-    if "environmentAccountConnectionId" in data:
+    if data.get("environmentAccountConnectionId") is not None:
         out["environment_account_connection_id"] = data[
             "environmentAccountConnectionId"
         ]
-    if "environmentAccountId" in data:
+    if data.get("environmentAccountId") is not None:
         out["environment_account_id"] = data["environmentAccountId"]
-    if "provisioning" in data:
+    if data.get("provisioning") is not None:
         out["provisioning"] = data["provisioning"]
-    if "componentRoleArn" in data:
+    if data.get("componentRoleArn") is not None:
         out["component_role_arn"] = data["componentRoleArn"]
-    if "lastAttemptedDeploymentId" in data:
+    if data.get("lastAttemptedDeploymentId") is not None:
         out["last_attempted_deployment_id"] = data["lastAttemptedDeploymentId"]
-    if "lastSucceededDeploymentId" in data:
+    if data.get("lastSucceededDeploymentId") is not None:
         out["last_succeeded_deployment_id"] = data["lastSucceededDeploymentId"]
     return out

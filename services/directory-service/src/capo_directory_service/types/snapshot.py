@@ -64,11 +64,11 @@ def serialize_aws_json_1_1(value: Snapshot) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Snapshot:
     out: Snapshot = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
-    if "SnapshotId" in data:
+    if data.get("SnapshotId") is not None:
         out["snapshot_id"] = data["SnapshotId"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_directory_service.types.snapshot_type
 
         out["type"] = (
@@ -76,9 +76,9 @@ def deserialize_aws_json_1_1(data: dict) -> Snapshot:
                 data["Type"]
             )
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_directory_service.types.snapshot_status
 
         out["status"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_1(data: dict) -> Snapshot:
                 data["Status"]
             )
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_directory_service.types.start_time
 
         out["start_time"] = (

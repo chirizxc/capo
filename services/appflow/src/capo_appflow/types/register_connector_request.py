@@ -59,11 +59,11 @@ def serialize_json(value: RegisterConnectorRequest) -> dict:
 
 def deserialize_json(data: dict) -> RegisterConnectorRequest:
     out: RegisterConnectorRequest = {}  # type: ignore[typeddict-item]
-    if "connectorLabel" in data:
+    if data.get("connectorLabel") is not None:
         out["connector_label"] = data["connectorLabel"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "connectorProvisioningType" in data:
+    if data.get("connectorProvisioningType") is not None:
         import capo_appflow.types.connector_provisioning_type
 
         out["connector_provisioning_type"] = (
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> RegisterConnectorRequest:
                 data["connectorProvisioningType"]
             )
         )
-    if "connectorProvisioningConfig" in data:
+    if data.get("connectorProvisioningConfig") is not None:
         import capo_appflow.types.connector_provisioning_config
 
         out["connector_provisioning_config"] = (
@@ -79,6 +79,6 @@ def deserialize_json(data: dict) -> RegisterConnectorRequest:
                 data["connectorProvisioningConfig"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

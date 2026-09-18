@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: KernelSpec) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> KernelSpec:
     out: KernelSpec = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
     return out

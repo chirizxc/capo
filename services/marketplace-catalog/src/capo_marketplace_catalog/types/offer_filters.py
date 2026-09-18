@@ -157,7 +157,7 @@ def serialize_json(value: OfferFilters) -> dict:
 
 def deserialize_json(data: dict) -> OfferFilters:
     out: OfferFilters = {}  # type: ignore[typeddict-item]
-    if "EntityId" in data:
+    if data.get("EntityId") is not None:
         import capo_marketplace_catalog.types.offer_entity_id_filter
 
         out["entity_id"] = (
@@ -165,13 +165,13 @@ def deserialize_json(data: dict) -> OfferFilters:
                 data["EntityId"]
             )
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         import capo_marketplace_catalog.types.offer_name_filter
 
         out["name"] = capo_marketplace_catalog.types.offer_name_filter.deserialize_json(
             data["Name"]
         )
-    if "ProductId" in data:
+    if data.get("ProductId") is not None:
         import capo_marketplace_catalog.types.offer_product_id_filter
 
         out["product_id"] = (
@@ -179,7 +179,7 @@ def deserialize_json(data: dict) -> OfferFilters:
                 data["ProductId"]
             )
         )
-    if "ResaleAuthorizationId" in data:
+    if data.get("ResaleAuthorizationId") is not None:
         import capo_marketplace_catalog.types.offer_resale_authorization_id_filter
 
         out["resale_authorization_id"] = (
@@ -187,7 +187,7 @@ def deserialize_json(data: dict) -> OfferFilters:
                 data["ResaleAuthorizationId"]
             )
         )
-    if "ReleaseDate" in data:
+    if data.get("ReleaseDate") is not None:
         import capo_marketplace_catalog.types.offer_release_date_filter
 
         out["release_date"] = (
@@ -195,7 +195,7 @@ def deserialize_json(data: dict) -> OfferFilters:
                 data["ReleaseDate"]
             )
         )
-    if "AvailabilityEndDate" in data:
+    if data.get("AvailabilityEndDate") is not None:
         import capo_marketplace_catalog.types.offer_availability_end_date_filter
 
         out["availability_end_date"] = (
@@ -203,7 +203,7 @@ def deserialize_json(data: dict) -> OfferFilters:
                 data["AvailabilityEndDate"]
             )
         )
-    if "BuyerAccounts" in data:
+    if data.get("BuyerAccounts") is not None:
         import capo_marketplace_catalog.types.offer_buyer_accounts_filter
 
         out["buyer_accounts"] = (
@@ -211,7 +211,7 @@ def deserialize_json(data: dict) -> OfferFilters:
                 data["BuyerAccounts"]
             )
         )
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_marketplace_catalog.types.offer_state_filter
 
         out["state"] = (
@@ -219,7 +219,7 @@ def deserialize_json(data: dict) -> OfferFilters:
                 data["State"]
             )
         )
-    if "Targeting" in data:
+    if data.get("Targeting") is not None:
         import capo_marketplace_catalog.types.offer_targeting_filter
 
         out["targeting"] = (
@@ -227,7 +227,7 @@ def deserialize_json(data: dict) -> OfferFilters:
                 data["Targeting"]
             )
         )
-    if "LastModifiedDate" in data:
+    if data.get("LastModifiedDate") is not None:
         import capo_marketplace_catalog.types.offer_last_modified_date_filter
 
         out["last_modified_date"] = (
@@ -235,7 +235,7 @@ def deserialize_json(data: dict) -> OfferFilters:
                 data["LastModifiedDate"]
             )
         )
-    if "OfferSetId" in data:
+    if data.get("OfferSetId") is not None:
         import capo_marketplace_catalog.types.offer_set_id_filter
 
         out["offer_set_id"] = (

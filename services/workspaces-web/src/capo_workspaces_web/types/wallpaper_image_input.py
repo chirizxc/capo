@@ -39,7 +39,7 @@ def serialize_json(value: WallpaperImageInput) -> dict:
 
 
 def deserialize_json(data: dict) -> WallpaperImageInput:
-    if "blob" in data:
+    if data.get("blob") is not None:
         import capo_workspaces_web.types.wallpaper_image
 
         return {
@@ -47,7 +47,7 @@ def deserialize_json(data: dict) -> WallpaperImageInput:
                 data["blob"]
             )
         }
-    elif "s3Uri" in data:
+    elif data.get("s3Uri") is not None:
         return {"s3Uri": data["s3Uri"]}
     else:
         raise DeserializationError("WallpaperImageInput: no recognized variant key")

@@ -65,7 +65,7 @@ def serialize_json(value: ContactFlowAttributeFilter) -> dict:
 
 def deserialize_json(data: dict) -> ContactFlowAttributeFilter:
     out: ContactFlowAttributeFilter = {}  # type: ignore[typeddict-item]
-    if "OrConditions" in data:
+    if data.get("OrConditions") is not None:
         import capo_connect.types.contact_flow_attribute_or_condition_list
 
         out["or_conditions"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> ContactFlowAttributeFilter:
                 data["OrConditions"]
             )
         )
-    if "AndCondition" in data:
+    if data.get("AndCondition") is not None:
         import capo_connect.types.contact_flow_attribute_and_condition
 
         out["and_condition"] = (
@@ -81,13 +81,13 @@ def deserialize_json(data: dict) -> ContactFlowAttributeFilter:
                 data["AndCondition"]
             )
         )
-    if "TagCondition" in data:
+    if data.get("TagCondition") is not None:
         import capo_connect.types.tag_condition
 
         out["tag_condition"] = capo_connect.types.tag_condition.deserialize_json(
             data["TagCondition"]
         )
-    if "ContactFlowTypeCondition" in data:
+    if data.get("ContactFlowTypeCondition") is not None:
         import capo_connect.types.contact_flow_type_condition
 
         out["contact_flow_type_condition"] = (

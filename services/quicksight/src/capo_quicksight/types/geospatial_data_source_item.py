@@ -31,7 +31,7 @@ def serialize_json(value: GeospatialDataSourceItem) -> dict:
 
 def deserialize_json(data: dict) -> GeospatialDataSourceItem:
     out: GeospatialDataSourceItem = {}  # type: ignore[typeddict-item]
-    if "StaticFileDataSource" in data:
+    if data.get("StaticFileDataSource") is not None:
         import capo_quicksight.types.geospatial_static_file_source
 
         out["static_file_data_source"] = (

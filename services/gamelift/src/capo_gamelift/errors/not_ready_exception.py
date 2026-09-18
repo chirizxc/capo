@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: NotReadyException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NotReadyException_:
     out: NotReadyException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class NotReadyException(ServiceError):
 
     code: str | None = "NotReadyException"
 
-    def __init__(self, data: NotReadyException_):
+    def __init__(self, data: NotReadyException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="NotReadyException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "NotReadyException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "NotReadyException":
+        return cls(deserialize_aws_json_1_1(data), message)

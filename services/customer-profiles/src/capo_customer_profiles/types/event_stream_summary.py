@@ -68,19 +68,19 @@ def serialize_json(value: EventStreamSummary) -> dict:
 
 def deserialize_json(data: dict) -> EventStreamSummary:
     out: EventStreamSummary = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
     else:
         raise DeserializationError("EventStreamSummary.domain_name required")
-    if "EventStreamName" in data:
+    if data.get("EventStreamName") is not None:
         out["event_stream_name"] = data["EventStreamName"]
     else:
         raise DeserializationError("EventStreamSummary.event_stream_name required")
-    if "EventStreamArn" in data:
+    if data.get("EventStreamArn") is not None:
         out["event_stream_arn"] = data["EventStreamArn"]
     else:
         raise DeserializationError("EventStreamSummary.event_stream_arn required")
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_customer_profiles.types.event_stream_state
 
         out["state"] = capo_customer_profiles.types.event_stream_state.deserialize_json(
@@ -88,13 +88,13 @@ def deserialize_json(data: dict) -> EventStreamSummary:
         )
     else:
         raise DeserializationError("EventStreamSummary.state required")
-    if "StoppedSince" in data:
+    if data.get("StoppedSince") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["stopped_since"] = capo_customer_profiles.types.timestamp.deserialize_json(
             data["StoppedSince"]
         )
-    if "DestinationSummary" in data:
+    if data.get("DestinationSummary") is not None:
         import capo_customer_profiles.types.destination_summary
 
         out["destination_summary"] = (
@@ -102,7 +102,7 @@ def deserialize_json(data: dict) -> EventStreamSummary:
                 data["DestinationSummary"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_customer_profiles.types.tag_map
 
         out["tags"] = capo_customer_profiles.types.tag_map.deserialize_json(

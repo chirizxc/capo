@@ -49,19 +49,19 @@ def serialize_aws_json_1_1(value: ListClustersInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListClustersInput:
     out: ListClustersInput = {}  # type: ignore[typeddict-item]
-    if "CreatedAfter" in data:
+    if data.get("CreatedAfter") is not None:
         import capo_emr.types.date
 
         out["created_after"] = capo_emr.types.date.deserialize_aws_json_1_1(
             data["CreatedAfter"]
         )
-    if "CreatedBefore" in data:
+    if data.get("CreatedBefore") is not None:
         import capo_emr.types.date
 
         out["created_before"] = capo_emr.types.date.deserialize_aws_json_1_1(
             data["CreatedBefore"]
         )
-    if "ClusterStates" in data:
+    if data.get("ClusterStates") is not None:
         import capo_emr.types.cluster_state_list
 
         out["cluster_states"] = (
@@ -69,6 +69,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListClustersInput:
                 data["ClusterStates"]
             )
         )
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
     return out

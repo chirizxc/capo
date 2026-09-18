@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DescribeSeverityLevelsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeSeverityLevelsResponse:
     out: DescribeSeverityLevelsResponse = {}  # type: ignore[typeddict-item]
-    if "severityLevels" in data:
+    if data.get("severityLevels") is not None:
         import capo_support.types.severity_levels_list
 
         out["severity_levels"] = (

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> QuantumTaskSummaryList:
 
     out: QuantumTaskSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_braket.types.quantum_task_summary.deserialize_json(item))
     return out

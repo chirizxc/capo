@@ -55,7 +55,7 @@ def serialize_json(value: UpdateContactEvaluationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateContactEvaluationRequest:
     out: UpdateContactEvaluationRequest = {}  # type: ignore[typeddict-item]
-    if "Answers" in data:
+    if data.get("Answers") is not None:
         import capo_connect.types.evaluation_answers_input_map
 
         out["answers"] = (
@@ -63,13 +63,13 @@ def deserialize_json(data: dict) -> UpdateContactEvaluationRequest:
                 data["Answers"]
             )
         )
-    if "Notes" in data:
+    if data.get("Notes") is not None:
         import capo_connect.types.evaluation_notes_map
 
         out["notes"] = capo_connect.types.evaluation_notes_map.deserialize_json(
             data["Notes"]
         )
-    if "UpdatedBy" in data:
+    if data.get("UpdatedBy") is not None:
         import capo_connect.types.evaluator_user_union
 
         out["updated_by"] = capo_connect.types.evaluator_user_union.deserialize_json(

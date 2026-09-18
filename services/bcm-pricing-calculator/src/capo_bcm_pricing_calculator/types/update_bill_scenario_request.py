@@ -65,13 +65,13 @@ def serialize_aws_json_1_0(value: UpdateBillScenarioRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateBillScenarioRequest:
     out: UpdateBillScenarioRequest = {}  # type: ignore[typeddict-item]
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         out["identifier"] = data["identifier"]
     else:
         raise DeserializationError("UpdateBillScenarioRequest.identifier required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "expiresAt" in data:
+    if data.get("expiresAt") is not None:
         import capo_bcm_pricing_calculator.types._prelude.timestamp
 
         out["expires_at"] = (
@@ -79,7 +79,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateBillScenarioRequest:
                 data["expiresAt"]
             )
         )
-    if "groupSharingPreference" in data:
+    if data.get("groupSharingPreference") is not None:
         import capo_bcm_pricing_calculator.types.group_sharing_preference_enum
 
         out["group_sharing_preference"] = (
@@ -87,7 +87,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateBillScenarioRequest:
                 data["groupSharingPreference"]
             )
         )
-    if "costCategoryGroupSharingPreferenceArn" in data:
+    if data.get("costCategoryGroupSharingPreferenceArn") is not None:
         out["cost_category_group_sharing_preference_arn"] = data[
             "costCategoryGroupSharingPreferenceArn"
         ]

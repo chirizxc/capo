@@ -36,13 +36,13 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> UpdateApplicationLayerAutomaticResponseRequest:
     out: UpdateApplicationLayerAutomaticResponseRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     else:
         raise DeserializationError(
             "UpdateApplicationLayerAutomaticResponseRequest.resource_arn required"
         )
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_shield.types.response_action
 
         out["action"] = capo_shield.types.response_action.deserialize_aws_json_1_1(

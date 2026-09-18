@@ -103,19 +103,19 @@ def serialize_json(value: DomainAssociation) -> dict:
 
 def deserialize_json(data: dict) -> DomainAssociation:
     out: DomainAssociation = {}  # type: ignore[typeddict-item]
-    if "domainAssociationArn" in data:
+    if data.get("domainAssociationArn") is not None:
         out["domain_association_arn"] = data["domainAssociationArn"]
     else:
         raise DeserializationError("DomainAssociation.domain_association_arn required")
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
     else:
         raise DeserializationError("DomainAssociation.domain_name required")
-    if "enableAutoSubDomain" in data:
+    if data.get("enableAutoSubDomain") is not None:
         out["enable_auto_sub_domain"] = data["enableAutoSubDomain"]
     else:
         raise DeserializationError("DomainAssociation.enable_auto_sub_domain required")
-    if "autoSubDomainCreationPatterns" in data:
+    if data.get("autoSubDomainCreationPatterns") is not None:
         import capo_amplify.types.auto_sub_domain_creation_patterns
 
         out["auto_sub_domain_creation_patterns"] = (
@@ -123,9 +123,9 @@ def deserialize_json(data: dict) -> DomainAssociation:
                 data["autoSubDomainCreationPatterns"]
             )
         )
-    if "autoSubDomainIAMRole" in data:
+    if data.get("autoSubDomainIAMRole") is not None:
         out["auto_sub_domain_iam_role"] = data["autoSubDomainIAMRole"]
-    if "domainStatus" in data:
+    if data.get("domainStatus") is not None:
         import capo_amplify.types.domain_status
 
         out["domain_status"] = capo_amplify.types.domain_status.deserialize_json(
@@ -133,21 +133,21 @@ def deserialize_json(data: dict) -> DomainAssociation:
         )
     else:
         raise DeserializationError("DomainAssociation.domain_status required")
-    if "updateStatus" in data:
+    if data.get("updateStatus") is not None:
         import capo_amplify.types.update_status
 
         out["update_status"] = capo_amplify.types.update_status.deserialize_json(
             data["updateStatus"]
         )
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
     else:
         raise DeserializationError("DomainAssociation.status_reason required")
-    if "certificateVerificationDNSRecord" in data:
+    if data.get("certificateVerificationDNSRecord") is not None:
         out["certificate_verification_dns_record"] = data[
             "certificateVerificationDNSRecord"
         ]
-    if "subDomains" in data:
+    if data.get("subDomains") is not None:
         import capo_amplify.types.sub_domains
 
         out["sub_domains"] = capo_amplify.types.sub_domains.deserialize_json(
@@ -155,7 +155,7 @@ def deserialize_json(data: dict) -> DomainAssociation:
         )
     else:
         raise DeserializationError("DomainAssociation.sub_domains required")
-    if "certificate" in data:
+    if data.get("certificate") is not None:
         import capo_amplify.types.certificate
 
         out["certificate"] = capo_amplify.types.certificate.deserialize_json(

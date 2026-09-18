@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> MemberUsers:
 
     out: MemberUsers = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_kendra.types.member_user.deserialize_aws_json_1_1(item))
     return out

@@ -42,13 +42,13 @@ def serialize_aws_json_1_0(value: UpdateArchiveRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateArchiveRequest:
     out: UpdateArchiveRequest = {}  # type: ignore[typeddict-item]
-    if "ArchiveId" in data:
+    if data.get("ArchiveId") is not None:
         out["archive_id"] = data["ArchiveId"]
     else:
         raise DeserializationError("UpdateArchiveRequest.archive_id required")
-    if "ArchiveName" in data:
+    if data.get("ArchiveName") is not None:
         out["archive_name"] = data["ArchiveName"]
-    if "Retention" in data:
+    if data.get("Retention") is not None:
         import capo_mailmanager.types.archive_retention
 
         out["retention"] = (

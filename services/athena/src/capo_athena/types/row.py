@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: Row) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Row:
     out: Row = {}  # type: ignore[typeddict-item]
-    if "Data" in data:
+    if data.get("Data") is not None:
         import capo_athena.types.datum_list
 
         out["data"] = capo_athena.types.datum_list.deserialize_aws_json_1_1(

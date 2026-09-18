@@ -35,8 +35,8 @@ def deserialize_json(
     data: dict,
 ) -> AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationAuthorizationConfigDetails:
     out: AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationAuthorizationConfigDetails = {}  # type: ignore[typeddict-item]
-    if "AccessPointId" in data:
+    if data.get("AccessPointId") is not None:
         out["access_point_id"] = data["AccessPointId"]
-    if "Iam" in data:
+    if data.get("Iam") is not None:
         out["iam"] = data["Iam"]
     return out

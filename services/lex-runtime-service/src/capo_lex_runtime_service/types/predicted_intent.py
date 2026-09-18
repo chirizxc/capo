@@ -45,9 +45,9 @@ def serialize_json(value: PredictedIntent) -> dict:
 
 def deserialize_json(data: dict) -> PredictedIntent:
     out: PredictedIntent = {}  # type: ignore[typeddict-item]
-    if "intentName" in data:
+    if data.get("intentName") is not None:
         out["intent_name"] = data["intentName"]
-    if "nluIntentConfidence" in data:
+    if data.get("nluIntentConfidence") is not None:
         import capo_lex_runtime_service.types.intent_confidence
 
         out["nlu_intent_confidence"] = (
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> PredictedIntent:
                 data["nluIntentConfidence"]
             )
         )
-    if "slots" in data:
+    if data.get("slots") is not None:
         import capo_lex_runtime_service.types.string_map
 
         out["slots"] = capo_lex_runtime_service.types.string_map.deserialize_json(

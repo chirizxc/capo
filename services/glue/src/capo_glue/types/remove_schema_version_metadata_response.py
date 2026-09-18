@@ -66,22 +66,22 @@ def serialize_aws_json_1_1(value: RemoveSchemaVersionMetadataResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RemoveSchemaVersionMetadataResponse:
     out: RemoveSchemaVersionMetadataResponse = {}  # type: ignore[typeddict-item]
-    if "SchemaArn" in data:
+    if data.get("SchemaArn") is not None:
         out["schema_arn"] = data["SchemaArn"]
-    if "SchemaName" in data:
+    if data.get("SchemaName") is not None:
         out["schema_name"] = data["SchemaName"]
-    if "RegistryName" in data:
+    if data.get("RegistryName") is not None:
         out["registry_name"] = data["RegistryName"]
-    if "LatestVersion" in data:
+    if data.get("LatestVersion") is not None:
         out["latest_version"] = data["LatestVersion"]
     else:
         out["latest_version"] = False
-    if "VersionNumber" in data:
+    if data.get("VersionNumber") is not None:
         out["version_number"] = data["VersionNumber"]
-    if "SchemaVersionId" in data:
+    if data.get("SchemaVersionId") is not None:
         out["schema_version_id"] = data["SchemaVersionId"]
-    if "MetadataKey" in data:
+    if data.get("MetadataKey") is not None:
         out["metadata_key"] = data["MetadataKey"]
-    if "MetadataValue" in data:
+    if data.get("MetadataValue") is not None:
         out["metadata_value"] = data["MetadataValue"]
     return out

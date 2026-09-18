@@ -111,11 +111,11 @@ def serialize_aws_json_1_1(value: TrainingSpecification) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TrainingSpecification:
     out: TrainingSpecification = {}  # type: ignore[typeddict-item]
-    if "TrainingImage" in data:
+    if data.get("TrainingImage") is not None:
         out["training_image"] = data["TrainingImage"]
-    if "TrainingImageDigest" in data:
+    if data.get("TrainingImageDigest") is not None:
         out["training_image_digest"] = data["TrainingImageDigest"]
-    if "SupportedHyperParameters" in data:
+    if data.get("SupportedHyperParameters") is not None:
         import capo_sagemaker.types.hyper_parameter_specifications
 
         out["supported_hyper_parameters"] = (
@@ -123,7 +123,7 @@ def deserialize_aws_json_1_1(data: dict) -> TrainingSpecification:
                 data["SupportedHyperParameters"]
             )
         )
-    if "SupportedTrainingInstanceTypes" in data:
+    if data.get("SupportedTrainingInstanceTypes") is not None:
         import capo_sagemaker.types.training_instance_types
 
         out["supported_training_instance_types"] = (
@@ -131,9 +131,9 @@ def deserialize_aws_json_1_1(data: dict) -> TrainingSpecification:
                 data["SupportedTrainingInstanceTypes"]
             )
         )
-    if "SupportsDistributedTraining" in data:
+    if data.get("SupportsDistributedTraining") is not None:
         out["supports_distributed_training"] = data["SupportsDistributedTraining"]
-    if "MetricDefinitions" in data:
+    if data.get("MetricDefinitions") is not None:
         import capo_sagemaker.types.metric_definition_list
 
         out["metric_definitions"] = (
@@ -141,7 +141,7 @@ def deserialize_aws_json_1_1(data: dict) -> TrainingSpecification:
                 data["MetricDefinitions"]
             )
         )
-    if "TrainingChannels" in data:
+    if data.get("TrainingChannels") is not None:
         import capo_sagemaker.types.channel_specifications
 
         out["training_channels"] = (
@@ -149,7 +149,7 @@ def deserialize_aws_json_1_1(data: dict) -> TrainingSpecification:
                 data["TrainingChannels"]
             )
         )
-    if "SupportedTuningJobObjectiveMetrics" in data:
+    if data.get("SupportedTuningJobObjectiveMetrics") is not None:
         import capo_sagemaker.types.hyper_parameter_tuning_job_objectives
 
         out["supported_tuning_job_objective_metrics"] = (
@@ -157,7 +157,7 @@ def deserialize_aws_json_1_1(data: dict) -> TrainingSpecification:
                 data["SupportedTuningJobObjectiveMetrics"]
             )
         )
-    if "AdditionalS3DataSource" in data:
+    if data.get("AdditionalS3DataSource") is not None:
         import capo_sagemaker.types.additional_s3_data_source
 
         out["additional_s3_data_source"] = (

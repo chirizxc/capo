@@ -30,7 +30,7 @@ def serialize_aws_json_1_0(value: PreloadDataConfig) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PreloadDataConfig:
     out: PreloadDataConfig = {}  # type: ignore[typeddict-item]
-    if "PreloadDataType" in data:
+    if data.get("PreloadDataType") is not None:
         import capo_healthlake.types.preload_data_type
 
         out["preload_data_type"] = (

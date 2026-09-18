@@ -42,7 +42,7 @@ def serialize_json(value: DescribeCACertificateResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeCACertificateResponse:
     out: DescribeCACertificateResponse = {}  # type: ignore[typeddict-item]
-    if "certificateDescription" in data:
+    if data.get("certificateDescription") is not None:
         import capo_iot.types.ca_certificate_description
 
         out["certificate_description"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> DescribeCACertificateResponse:
                 data["certificateDescription"]
             )
         )
-    if "registrationConfig" in data:
+    if data.get("registrationConfig") is not None:
         import capo_iot.types.registration_config
 
         out["registration_config"] = (

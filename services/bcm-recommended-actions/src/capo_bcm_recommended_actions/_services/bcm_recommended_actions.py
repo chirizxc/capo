@@ -167,7 +167,7 @@ class BCMRecommendedActionsClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_bcm_recommended_actions.types.list_recommended_actions_request.ListRecommendedActionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_bcm_recommended_actions.types.list_recommended_actions_request.ListRecommendedActionsRequest = {}
         if filter is not None:
             input_["filter"] = filter
         if max_results is not None:
@@ -180,6 +180,7 @@ class BCMRecommendedActionsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_recommended_actions(

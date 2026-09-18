@@ -56,11 +56,11 @@ def serialize_json(value: SearchAllRelatedItemsRequest) -> dict:
 
 def deserialize_json(data: dict) -> SearchAllRelatedItemsRequest:
     out: SearchAllRelatedItemsRequest = {}  # type: ignore[typeddict-item]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_connectcases.types.related_item_filter_list
 
         out["filters"] = (
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> SearchAllRelatedItemsRequest:
                 data["filters"]
             )
         )
-    if "sorts" in data:
+    if data.get("sorts") is not None:
         import capo_connectcases.types.search_all_related_items_sort_list
 
         out["sorts"] = (

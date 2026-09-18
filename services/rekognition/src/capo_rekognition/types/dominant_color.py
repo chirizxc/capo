@@ -43,24 +43,32 @@ def serialize_aws_json_1_1(value: DominantColor) -> dict:
     if "simplified_color" in value:
         out["SimplifiedColor"] = value["simplified_color"]
     if "pixel_percent" in value:
-        out["PixelPercent"] = value["pixel_percent"]
+        out["PixelPercent"] = (
+            "NaN"
+            if value["pixel_percent"] != value["pixel_percent"]
+            else "Infinity"
+            if value["pixel_percent"] == float("inf")
+            else "-Infinity"
+            if value["pixel_percent"] == float("-inf")
+            else value["pixel_percent"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> DominantColor:
     out: DominantColor = {}  # type: ignore[typeddict-item]
-    if "Red" in data:
+    if data.get("Red") is not None:
         out["red"] = data["Red"]
-    if "Blue" in data:
+    if data.get("Blue") is not None:
         out["blue"] = data["Blue"]
-    if "Green" in data:
+    if data.get("Green") is not None:
         out["green"] = data["Green"]
-    if "HexCode" in data:
+    if data.get("HexCode") is not None:
         out["hex_code"] = data["HexCode"]
-    if "CSSColor" in data:
+    if data.get("CSSColor") is not None:
         out["css_color"] = data["CSSColor"]
-    if "SimplifiedColor" in data:
+    if data.get("SimplifiedColor") is not None:
         out["simplified_color"] = data["SimplifiedColor"]
-    if "PixelPercent" in data:
-        out["pixel_percent"] = data["PixelPercent"]
+    if data.get("PixelPercent") is not None:
+        out["pixel_percent"] = float(data["PixelPercent"])
     return out

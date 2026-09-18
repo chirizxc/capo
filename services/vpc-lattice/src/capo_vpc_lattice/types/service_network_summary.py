@@ -64,29 +64,29 @@ def serialize_json(value: ServiceNetworkSummary) -> dict:
 
 def deserialize_json(data: dict) -> ServiceNetworkSummary:
     out: ServiceNetworkSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_vpc_lattice.types.timestamp
 
         out["created_at"] = capo_vpc_lattice.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_vpc_lattice.types.timestamp
 
         out["last_updated_at"] = capo_vpc_lattice.types.timestamp.deserialize_json(
             data["lastUpdatedAt"]
         )
-    if "numberOfAssociatedVPCs" in data:
+    if data.get("numberOfAssociatedVPCs") is not None:
         out["number_of_associated_vp_cs"] = data["numberOfAssociatedVPCs"]
-    if "numberOfAssociatedServices" in data:
+    if data.get("numberOfAssociatedServices") is not None:
         out["number_of_associated_services"] = data["numberOfAssociatedServices"]
-    if "numberOfAssociatedResourceConfigurations" in data:
+    if data.get("numberOfAssociatedResourceConfigurations") is not None:
         out["number_of_associated_resource_configurations"] = data[
             "numberOfAssociatedResourceConfigurations"
         ]

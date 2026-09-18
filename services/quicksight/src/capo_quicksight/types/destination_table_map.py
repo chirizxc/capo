@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: DestinationTableMap) -> dict:
 def deserialize_json(data: dict) -> DestinationTableMap:
     out: DestinationTableMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_quicksight.types.destination_table
 
         out[key] = capo_quicksight.types.destination_table.deserialize_json(value)

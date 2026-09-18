@@ -28,6 +28,6 @@ def serialize_json(value: PutConfigurationSetArchivingOptionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutConfigurationSetArchivingOptionsRequest:
     out: PutConfigurationSetArchivingOptionsRequest = {}  # type: ignore[typeddict-item]
-    if "ArchiveArn" in data:
+    if data.get("ArchiveArn") is not None:
         out["archive_arn"] = data["ArchiveArn"]
     return out

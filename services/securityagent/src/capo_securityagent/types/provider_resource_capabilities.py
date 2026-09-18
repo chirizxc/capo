@@ -32,7 +32,7 @@ def serialize_json(value: ProviderResourceCapabilities) -> dict:
 
 
 def deserialize_json(data: dict) -> ProviderResourceCapabilities:
-    if "github" in data:
+    if data.get("github") is not None:
         import capo_securityagent.types.git_hub_resource_capabilities
 
         return {

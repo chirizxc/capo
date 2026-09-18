@@ -49,9 +49,9 @@ def serialize_aws_json_1_1(value: WAFInvalidParameterException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WAFInvalidParameterException_:
     out: WAFInvalidParameterException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "Field" in data:
+    if data.get("Field") is not None:
         import capo_wafv2.types.parameter_exception_field
 
         out["field"] = (
@@ -59,9 +59,9 @@ def deserialize_aws_json_1_1(data: dict) -> WAFInvalidParameterException_:
                 data["Field"]
             )
         )
-    if "Parameter" in data:
+    if data.get("Parameter") is not None:
         out["parameter"] = data["Parameter"]
-    if "Reason" in data:
+    if data.get("Reason") is not None:
         out["reason"] = data["Reason"]
     return out
 
@@ -71,15 +71,18 @@ class WAFInvalidParameterException(ServiceError):
 
     code: str | None = "WAFInvalidParameterException"
 
-    def __init__(self, data: WAFInvalidParameterException_):
+    def __init__(self, data: WAFInvalidParameterException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="WAFInvalidParameterException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "WAFInvalidParameterException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "WAFInvalidParameterException":
+        return cls(deserialize_aws_json_1_1(data), message)

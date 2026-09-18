@@ -29,6 +29,8 @@ def serialize_json(input_to_serialize: SuccessfulPackageVersionInfoMap) -> dict:
 def deserialize_json(data: dict) -> SuccessfulPackageVersionInfoMap:
     out: SuccessfulPackageVersionInfoMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_codeartifact.types.successful_package_version_info
 
         out[key] = (

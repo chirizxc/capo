@@ -31,7 +31,7 @@ def serialize_json(value: ExperimentReportConfigurationDataSources) -> dict:
 
 def deserialize_json(data: dict) -> ExperimentReportConfigurationDataSources:
     out: ExperimentReportConfigurationDataSources = {}  # type: ignore[typeddict-item]
-    if "cloudWatchDashboards" in data:
+    if data.get("cloudWatchDashboards") is not None:
         import capo_fis.types.experiment_report_configuration_cloud_watch_dashboard_list
 
         out["cloud_watch_dashboards"] = (

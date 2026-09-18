@@ -44,31 +44,31 @@ def serialize_aws_json_1_1(value: GitHubDocumentCrawlProperties) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GitHubDocumentCrawlProperties:
     out: GitHubDocumentCrawlProperties = {}  # type: ignore[typeddict-item]
-    if "CrawlRepositoryDocuments" in data:
+    if data.get("CrawlRepositoryDocuments") is not None:
         out["crawl_repository_documents"] = data["CrawlRepositoryDocuments"]
     else:
         out["crawl_repository_documents"] = False
-    if "CrawlIssue" in data:
+    if data.get("CrawlIssue") is not None:
         out["crawl_issue"] = data["CrawlIssue"]
     else:
         out["crawl_issue"] = False
-    if "CrawlIssueComment" in data:
+    if data.get("CrawlIssueComment") is not None:
         out["crawl_issue_comment"] = data["CrawlIssueComment"]
     else:
         out["crawl_issue_comment"] = False
-    if "CrawlIssueCommentAttachment" in data:
+    if data.get("CrawlIssueCommentAttachment") is not None:
         out["crawl_issue_comment_attachment"] = data["CrawlIssueCommentAttachment"]
     else:
         out["crawl_issue_comment_attachment"] = False
-    if "CrawlPullRequest" in data:
+    if data.get("CrawlPullRequest") is not None:
         out["crawl_pull_request"] = data["CrawlPullRequest"]
     else:
         out["crawl_pull_request"] = False
-    if "CrawlPullRequestComment" in data:
+    if data.get("CrawlPullRequestComment") is not None:
         out["crawl_pull_request_comment"] = data["CrawlPullRequestComment"]
     else:
         out["crawl_pull_request_comment"] = False
-    if "CrawlPullRequestCommentAttachment" in data:
+    if data.get("CrawlPullRequestCommentAttachment") is not None:
         out["crawl_pull_request_comment_attachment"] = data[
             "CrawlPullRequestCommentAttachment"
         ]

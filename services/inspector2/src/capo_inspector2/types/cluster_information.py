@@ -36,11 +36,11 @@ def serialize_json(value: ClusterInformation) -> dict:
 
 def deserialize_json(data: dict) -> ClusterInformation:
     out: ClusterInformation = {}  # type: ignore[typeddict-item]
-    if "clusterArn" in data:
+    if data.get("clusterArn") is not None:
         out["cluster_arn"] = data["clusterArn"]
     else:
         raise DeserializationError("ClusterInformation.cluster_arn required")
-    if "clusterDetails" in data:
+    if data.get("clusterDetails") is not None:
         import capo_inspector2.types.cluster_details_list
 
         out["cluster_details"] = (

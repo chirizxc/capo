@@ -25,7 +25,7 @@ def serialize_json(value: RegenerateSecurityTokenResponse) -> dict:
 
 def deserialize_json(data: dict) -> RegenerateSecurityTokenResponse:
     out: RegenerateSecurityTokenResponse = {}  # type: ignore[typeddict-item]
-    if "Bot" in data:
+    if data.get("Bot") is not None:
         import capo_chime.types.bot
 
         out["bot"] = capo_chime.types.bot.deserialize_json(data["Bot"])

@@ -40,31 +40,31 @@ def serialize_aws_json_1_1(value: GetEventPredictionMetadataRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetEventPredictionMetadataRequest:
     out: GetEventPredictionMetadataRequest = {}  # type: ignore[typeddict-item]
-    if "eventId" in data:
+    if data.get("eventId") is not None:
         out["event_id"] = data["eventId"]
     else:
         raise DeserializationError(
             "GetEventPredictionMetadataRequest.event_id required"
         )
-    if "eventTypeName" in data:
+    if data.get("eventTypeName") is not None:
         out["event_type_name"] = data["eventTypeName"]
     else:
         raise DeserializationError(
             "GetEventPredictionMetadataRequest.event_type_name required"
         )
-    if "detectorId" in data:
+    if data.get("detectorId") is not None:
         out["detector_id"] = data["detectorId"]
     else:
         raise DeserializationError(
             "GetEventPredictionMetadataRequest.detector_id required"
         )
-    if "detectorVersionId" in data:
+    if data.get("detectorVersionId") is not None:
         out["detector_version_id"] = data["detectorVersionId"]
     else:
         raise DeserializationError(
             "GetEventPredictionMetadataRequest.detector_version_id required"
         )
-    if "predictionTimestamp" in data:
+    if data.get("predictionTimestamp") is not None:
         out["prediction_timestamp"] = data["predictionTimestamp"]
     else:
         raise DeserializationError(

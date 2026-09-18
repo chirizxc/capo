@@ -67,15 +67,15 @@ def serialize_aws_json_1_1(value: AgentPreview) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AgentPreview:
     out: AgentPreview = {}  # type: ignore[typeddict-item]
-    if "hostname" in data:
+    if data.get("hostname") is not None:
         out["hostname"] = data["hostname"]
-    if "agentId" in data:
+    if data.get("agentId") is not None:
         out["agent_id"] = data["agentId"]
     else:
         raise DeserializationError("AgentPreview.agent_id required")
-    if "autoScalingGroup" in data:
+    if data.get("autoScalingGroup") is not None:
         out["auto_scaling_group"] = data["autoScalingGroup"]
-    if "agentHealth" in data:
+    if data.get("agentHealth") is not None:
         import capo_inspector.types.agent_health
 
         out["agent_health"] = (
@@ -83,12 +83,12 @@ def deserialize_aws_json_1_1(data: dict) -> AgentPreview:
                 data["agentHealth"]
             )
         )
-    if "agentVersion" in data:
+    if data.get("agentVersion") is not None:
         out["agent_version"] = data["agentVersion"]
-    if "operatingSystem" in data:
+    if data.get("operatingSystem") is not None:
         out["operating_system"] = data["operatingSystem"]
-    if "kernelVersion" in data:
+    if data.get("kernelVersion") is not None:
         out["kernel_version"] = data["kernelVersion"]
-    if "ipv4Address" in data:
+    if data.get("ipv4Address") is not None:
         out["ipv4_address"] = data["ipv4Address"]
     return out

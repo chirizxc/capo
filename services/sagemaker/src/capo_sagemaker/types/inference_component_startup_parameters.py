@@ -36,11 +36,11 @@ def serialize_aws_json_1_1(value: InferenceComponentStartupParameters) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InferenceComponentStartupParameters:
     out: InferenceComponentStartupParameters = {}  # type: ignore[typeddict-item]
-    if "ModelDataDownloadTimeoutInSeconds" in data:
+    if data.get("ModelDataDownloadTimeoutInSeconds") is not None:
         out["model_data_download_timeout_in_seconds"] = data[
             "ModelDataDownloadTimeoutInSeconds"
         ]
-    if "ContainerStartupHealthCheckTimeoutInSeconds" in data:
+    if data.get("ContainerStartupHealthCheckTimeoutInSeconds") is not None:
         out["container_startup_health_check_timeout_in_seconds"] = data[
             "ContainerStartupHealthCheckTimeoutInSeconds"
         ]

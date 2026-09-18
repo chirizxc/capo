@@ -41,7 +41,7 @@ def serialize_json(value: StartRecoveryRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartRecoveryRequest:
     out: StartRecoveryRequest = {}  # type: ignore[typeddict-item]
-    if "sourceServers" in data:
+    if data.get("sourceServers") is not None:
         import capo_drs.types.start_recovery_request_source_servers
 
         out["source_servers"] = (
@@ -51,9 +51,9 @@ def deserialize_json(data: dict) -> StartRecoveryRequest:
         )
     else:
         raise DeserializationError("StartRecoveryRequest.source_servers required")
-    if "isDrill" in data:
+    if data.get("isDrill") is not None:
         out["is_drill"] = data["isDrill"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_drs.types.tags_map
 
         out["tags"] = capo_drs.types.tags_map.deserialize_json(data["tags"])

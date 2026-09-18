@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: DescribeMetadataModelCreationsResponse) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeMetadataModelCreationsResponse:
     out: DescribeMetadataModelCreationsResponse = {}  # type: ignore[typeddict-item]
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
-    if "Requests" in data:
+    if data.get("Requests") is not None:
         import capo_database_migration_service.types.schema_conversion_request_list
 
         out["requests"] = (

@@ -31,12 +31,12 @@ def serialize_aws_json_1_1(value: BatchGetVariableError) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetVariableError:
     out: BatchGetVariableError = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
     else:
         out["code"] = 0
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out

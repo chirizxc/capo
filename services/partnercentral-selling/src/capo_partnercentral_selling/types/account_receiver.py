@@ -29,9 +29,9 @@ def serialize_aws_json_1_0(value: AccountReceiver) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AccountReceiver:
     out: AccountReceiver = {}  # type: ignore[typeddict-item]
-    if "Alias" in data:
+    if data.get("Alias") is not None:
         out["alias"] = data["Alias"]
-    if "AwsAccountId" in data:
+    if data.get("AwsAccountId") is not None:
         out["aws_account_id"] = data["AwsAccountId"]
     else:
         raise DeserializationError("AccountReceiver.aws_account_id required")

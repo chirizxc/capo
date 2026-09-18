@@ -37,27 +37,27 @@ def serialize_aws_json_1_1(value: ReplicationTaskAssessmentRunResultStatistic) -
 
 def deserialize_aws_json_1_1(data: dict) -> ReplicationTaskAssessmentRunResultStatistic:
     out: ReplicationTaskAssessmentRunResultStatistic = {}  # type: ignore[typeddict-item]
-    if "Passed" in data:
+    if data.get("Passed") is not None:
         out["passed"] = data["Passed"]
     else:
         out["passed"] = 0
-    if "Failed" in data:
+    if data.get("Failed") is not None:
         out["failed"] = data["Failed"]
     else:
         out["failed"] = 0
-    if "Error" in data:
+    if data.get("Error") is not None:
         out["error"] = data["Error"]
     else:
         out["error"] = 0
-    if "Warning" in data:
+    if data.get("Warning") is not None:
         out["warning"] = data["Warning"]
     else:
         out["warning"] = 0
-    if "Cancelled" in data:
+    if data.get("Cancelled") is not None:
         out["cancelled"] = data["Cancelled"]
     else:
         out["cancelled"] = 0
-    if "Skipped" in data:
+    if data.get("Skipped") is not None:
         out["skipped"] = data["Skipped"]
     else:
         out["skipped"] = 0

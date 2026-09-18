@@ -39,15 +39,15 @@ def serialize_json(value: SummarizationDimensionOverview) -> dict:
 
 def deserialize_json(data: dict) -> SummarizationDimensionOverview:
     out: SummarizationDimensionOverview = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("SummarizationDimensionOverview.name required")
-    if "count" in data:
+    if data.get("count") is not None:
         out["count"] = data["count"]
     else:
         raise DeserializationError("SummarizationDimensionOverview.count required")
-    if "sampleValues" in data:
+    if data.get("sampleValues") is not None:
         import capo_notifications.types.sample_aggregation_dimension_values
 
         out["sample_values"] = (

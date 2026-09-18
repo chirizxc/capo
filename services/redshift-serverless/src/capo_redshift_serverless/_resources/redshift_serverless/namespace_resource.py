@@ -118,8 +118,9 @@ class NamespaceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.create_namespace_request.CreateNamespaceRequest = {}  # type: ignore[typeddict-item]
-        input_["namespace_name"] = namespace_name
+        input_: capo_redshift_serverless.types.create_namespace_request.CreateNamespaceRequest = {
+            "namespace_name": namespace_name
+        }
         if admin_username is not None:
             input_["admin_username"] = admin_username
         if admin_user_password is not None:
@@ -150,6 +151,7 @@ class NamespaceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -185,14 +187,16 @@ class NamespaceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.get_namespace_request.GetNamespaceRequest = {}  # type: ignore[typeddict-item]
-        input_["namespace_name"] = namespace_name
+        input_: capo_redshift_serverless.types.get_namespace_request.GetNamespaceRequest = {
+            "namespace_name": namespace_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -255,8 +259,9 @@ class NamespaceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.update_namespace_request.UpdateNamespaceRequest = {}  # type: ignore[typeddict-item]
-        input_["namespace_name"] = namespace_name
+        input_: capo_redshift_serverless.types.update_namespace_request.UpdateNamespaceRequest = {
+            "namespace_name": namespace_name
+        }
         if admin_user_password is not None:
             input_["admin_user_password"] = admin_user_password
         if admin_username is not None:
@@ -281,6 +286,7 @@ class NamespaceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -321,8 +327,9 @@ class NamespaceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.delete_namespace_request.DeleteNamespaceRequest = {}  # type: ignore[typeddict-item]
-        input_["namespace_name"] = namespace_name
+        input_: capo_redshift_serverless.types.delete_namespace_request.DeleteNamespaceRequest = {
+            "namespace_name": namespace_name
+        }
         if final_snapshot_name is not None:
             input_["final_snapshot_name"] = final_snapshot_name
         if final_snapshot_retention_period is not None:
@@ -333,6 +340,7 @@ class NamespaceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -371,7 +379,7 @@ class NamespaceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.list_namespaces_request.ListNamespacesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift_serverless.types.list_namespaces_request.ListNamespacesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -382,6 +390,7 @@ class NamespaceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_lakehouse_configuration(
@@ -435,8 +444,9 @@ class NamespaceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.update_lakehouse_configuration_request.UpdateLakehouseConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["namespace_name"] = namespace_name
+        input_: capo_redshift_serverless.types.update_lakehouse_configuration_request.UpdateLakehouseConfigurationRequest = {
+            "namespace_name": namespace_name
+        }
         if lakehouse_registration is not None:
             input_["lakehouse_registration"] = lakehouse_registration
         if catalog_name is not None:
@@ -453,6 +463,7 @@ class NamespaceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -529,8 +540,9 @@ class AsyncNamespaceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.create_namespace_request.CreateNamespaceRequest = {}  # type: ignore[typeddict-item]
-        input_["namespace_name"] = namespace_name
+        input_: capo_redshift_serverless.types.create_namespace_request.CreateNamespaceRequest = {
+            "namespace_name": namespace_name
+        }
         if admin_username is not None:
             input_["admin_username"] = admin_username
         if admin_user_password is not None:
@@ -561,6 +573,7 @@ class AsyncNamespaceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -597,14 +610,16 @@ class AsyncNamespaceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.get_namespace_request.GetNamespaceRequest = {}  # type: ignore[typeddict-item]
-        input_["namespace_name"] = namespace_name
+        input_: capo_redshift_serverless.types.get_namespace_request.GetNamespaceRequest = {
+            "namespace_name": namespace_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -668,8 +683,9 @@ class AsyncNamespaceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.update_namespace_request.UpdateNamespaceRequest = {}  # type: ignore[typeddict-item]
-        input_["namespace_name"] = namespace_name
+        input_: capo_redshift_serverless.types.update_namespace_request.UpdateNamespaceRequest = {
+            "namespace_name": namespace_name
+        }
         if admin_user_password is not None:
             input_["admin_user_password"] = admin_user_password
         if admin_username is not None:
@@ -694,6 +710,7 @@ class AsyncNamespaceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -735,8 +752,9 @@ class AsyncNamespaceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.delete_namespace_request.DeleteNamespaceRequest = {}  # type: ignore[typeddict-item]
-        input_["namespace_name"] = namespace_name
+        input_: capo_redshift_serverless.types.delete_namespace_request.DeleteNamespaceRequest = {
+            "namespace_name": namespace_name
+        }
         if final_snapshot_name is not None:
             input_["final_snapshot_name"] = final_snapshot_name
         if final_snapshot_retention_period is not None:
@@ -747,6 +765,7 @@ class AsyncNamespaceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -786,7 +805,7 @@ class AsyncNamespaceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.list_namespaces_request.ListNamespacesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift_serverless.types.list_namespaces_request.ListNamespacesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -797,6 +816,7 @@ class AsyncNamespaceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_lakehouse_configuration(
@@ -851,8 +871,9 @@ class AsyncNamespaceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_redshift_serverless.types.update_lakehouse_configuration_request.UpdateLakehouseConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["namespace_name"] = namespace_name
+        input_: capo_redshift_serverless.types.update_lakehouse_configuration_request.UpdateLakehouseConfigurationRequest = {
+            "namespace_name": namespace_name
+        }
         if lakehouse_registration is not None:
             input_["lakehouse_registration"] = lakehouse_registration
         if catalog_name is not None:
@@ -869,4 +890,5 @@ class AsyncNamespaceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

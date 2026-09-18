@@ -31,11 +31,11 @@ def serialize_json(value: IotEventsAction) -> dict:
 
 def deserialize_json(data: dict) -> IotEventsAction:
     out: IotEventsAction = {}  # type: ignore[typeddict-item]
-    if "inputName" in data:
+    if data.get("inputName") is not None:
         out["input_name"] = data["inputName"]
     else:
         raise DeserializationError("IotEventsAction.input_name required")
-    if "payload" in data:
+    if data.get("payload") is not None:
         import capo_iot_events.types.payload
 
         out["payload"] = capo_iot_events.types.payload.deserialize_json(data["payload"])

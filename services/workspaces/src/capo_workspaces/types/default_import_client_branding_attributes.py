@@ -52,19 +52,19 @@ def serialize_aws_json_1_1(value: DefaultImportClientBrandingAttributes) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> DefaultImportClientBrandingAttributes:
     out: DefaultImportClientBrandingAttributes = {}  # type: ignore[typeddict-item]
-    if "Logo" in data:
+    if data.get("Logo") is not None:
         import capo_workspaces.types.default_logo
 
         out["logo"] = capo_workspaces.types.default_logo.deserialize_aws_json_1_1(
             data["Logo"]
         )
-    if "SupportEmail" in data:
+    if data.get("SupportEmail") is not None:
         out["support_email"] = data["SupportEmail"]
-    if "SupportLink" in data:
+    if data.get("SupportLink") is not None:
         out["support_link"] = data["SupportLink"]
-    if "ForgotPasswordLink" in data:
+    if data.get("ForgotPasswordLink") is not None:
         out["forgot_password_link"] = data["ForgotPasswordLink"]
-    if "LoginMessage" in data:
+    if data.get("LoginMessage") is not None:
         import capo_workspaces.types.login_message
 
         out["login_message"] = (

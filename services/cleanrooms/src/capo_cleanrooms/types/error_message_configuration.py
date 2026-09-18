@@ -26,7 +26,7 @@ def serialize_json(value: ErrorMessageConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ErrorMessageConfiguration:
     out: ErrorMessageConfiguration = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_cleanrooms.types.error_message_type
 
         out["type"] = capo_cleanrooms.types.error_message_type.deserialize_json(

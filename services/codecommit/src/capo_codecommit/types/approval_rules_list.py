@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> ApprovalRulesList:
 
     out: ApprovalRulesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_codecommit.types.approval_rule.deserialize_aws_json_1_1(item))
     return out

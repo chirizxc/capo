@@ -25,7 +25,7 @@ def serialize_json(value: SearchException_) -> dict:
 
 def deserialize_json(data: dict) -> SearchException_:
     out: SearchException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,16 @@ class SearchException(ServiceError):
 
     code: str | None = "SearchException"
 
-    def __init__(self, data: SearchException_):
+    def __init__(self, data: SearchException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="SearchException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "SearchException":
-        return cls(deserialize_json(data))
+    def from_json(cls, data: dict, message: str | None = None) -> "SearchException":
+        return cls(deserialize_json(data), message)

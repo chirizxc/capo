@@ -27,8 +27,8 @@ def serialize_json(value: AwsCertificateManagerCertificateExtendedKeyUsage) -> d
 
 def deserialize_json(data: dict) -> AwsCertificateManagerCertificateExtendedKeyUsage:
     out: AwsCertificateManagerCertificateExtendedKeyUsage = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "OId" in data:
+    if data.get("OId") is not None:
         out["o_id"] = data["OId"]
     return out

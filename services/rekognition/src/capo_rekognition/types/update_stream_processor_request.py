@@ -76,11 +76,11 @@ def serialize_aws_json_1_1(value: UpdateStreamProcessorRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateStreamProcessorRequest:
     out: UpdateStreamProcessorRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("UpdateStreamProcessorRequest.name required")
-    if "SettingsForUpdate" in data:
+    if data.get("SettingsForUpdate") is not None:
         import capo_rekognition.types.stream_processor_settings_for_update
 
         out["settings_for_update"] = (
@@ -88,7 +88,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateStreamProcessorRequest:
                 data["SettingsForUpdate"]
             )
         )
-    if "RegionsOfInterestForUpdate" in data:
+    if data.get("RegionsOfInterestForUpdate") is not None:
         import capo_rekognition.types.regions_of_interest
 
         out["regions_of_interest_for_update"] = (
@@ -96,7 +96,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateStreamProcessorRequest:
                 data["RegionsOfInterestForUpdate"]
             )
         )
-    if "DataSharingPreferenceForUpdate" in data:
+    if data.get("DataSharingPreferenceForUpdate") is not None:
         import capo_rekognition.types.stream_processor_data_sharing_preference
 
         out["data_sharing_preference_for_update"] = (
@@ -104,7 +104,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateStreamProcessorRequest:
                 data["DataSharingPreferenceForUpdate"]
             )
         )
-    if "ParametersToDelete" in data:
+    if data.get("ParametersToDelete") is not None:
         import capo_rekognition.types.stream_processor_parameters_to_delete
 
         out["parameters_to_delete"] = (

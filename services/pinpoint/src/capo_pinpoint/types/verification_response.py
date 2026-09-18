@@ -23,6 +23,6 @@ def serialize_json(value: VerificationResponse) -> dict:
 
 def deserialize_json(data: dict) -> VerificationResponse:
     out: VerificationResponse = {}  # type: ignore[typeddict-item]
-    if "Valid" in data:
+    if data.get("Valid") is not None:
         out["valid"] = data["Valid"]
     return out

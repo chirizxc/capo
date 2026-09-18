@@ -48,13 +48,13 @@ def serialize_json(value: CreatePermissionGroupRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreatePermissionGroupRequest:
     out: CreatePermissionGroupRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreatePermissionGroupRequest.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "applicationPermissions" in data:
+    if data.get("applicationPermissions") is not None:
         import capo_finspace_data.types.application_permission_list
 
         out["application_permissions"] = (
@@ -66,6 +66,6 @@ def deserialize_json(data: dict) -> CreatePermissionGroupRequest:
         raise DeserializationError(
             "CreatePermissionGroupRequest.application_permissions required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

@@ -28,11 +28,11 @@ def serialize_json(value: ContractIdentifier) -> dict:
 
 def deserialize_json(data: dict) -> ContractIdentifier:
     out: ContractIdentifier = {}  # type: ignore[typeddict-item]
-    if "network" in data:
+    if data.get("network") is not None:
         out["network"] = data["network"]
     else:
         raise DeserializationError("ContractIdentifier.network required")
-    if "contractAddress" in data:
+    if data.get("contractAddress") is not None:
         out["contract_address"] = data["contractAddress"]
     else:
         raise DeserializationError("ContractIdentifier.contract_address required")

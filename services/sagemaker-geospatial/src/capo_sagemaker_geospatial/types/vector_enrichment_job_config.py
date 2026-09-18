@@ -50,7 +50,7 @@ def serialize_json(value: VectorEnrichmentJobConfig) -> dict:
 
 
 def deserialize_json(data: dict) -> VectorEnrichmentJobConfig:
-    if "ReverseGeocodingConfig" in data:
+    if data.get("ReverseGeocodingConfig") is not None:
         import capo_sagemaker_geospatial.types.reverse_geocoding_config
 
         return {
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> VectorEnrichmentJobConfig:
                 data["ReverseGeocodingConfig"]
             )
         }
-    elif "MapMatchingConfig" in data:
+    elif data.get("MapMatchingConfig") is not None:
         import capo_sagemaker_geospatial.types.map_matching_config
 
         return {

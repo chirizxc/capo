@@ -23,6 +23,6 @@ def serialize_json(value: NamedEntityRef) -> dict:
 
 def deserialize_json(data: dict) -> NamedEntityRef:
     out: NamedEntityRef = {}  # type: ignore[typeddict-item]
-    if "NamedEntityName" in data:
+    if data.get("NamedEntityName") is not None:
         out["named_entity_name"] = data["NamedEntityName"]
     return out

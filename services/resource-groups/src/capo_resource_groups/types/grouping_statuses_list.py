@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> GroupingStatusesList:
 
     out: GroupingStatusesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_resource_groups.types.grouping_statuses_item.deserialize_json(item)
         )

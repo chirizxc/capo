@@ -45,15 +45,15 @@ def serialize_json(value: RegisteredMCPServerDetails) -> dict:
 
 def deserialize_json(data: dict) -> RegisteredMCPServerDetails:
     out: RegisteredMCPServerDetails = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("RegisteredMCPServerDetails.name required")
-    if "endpoint" in data:
+    if data.get("endpoint") is not None:
         out["endpoint"] = data["endpoint"]
     else:
         raise DeserializationError("RegisteredMCPServerDetails.endpoint required")
-    if "authorizationMethod" in data:
+    if data.get("authorizationMethod") is not None:
         import capo_devops_agent.types.mcp_server_authorization_method
 
         out["authorization_method"] = (
@@ -65,8 +65,8 @@ def deserialize_json(data: dict) -> RegisteredMCPServerDetails:
         raise DeserializationError(
             "RegisteredMCPServerDetails.authorization_method required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "apiKeyHeader" in data:
+    if data.get("apiKeyHeader") is not None:
         out["api_key_header"] = data["apiKeyHeader"]
     return out

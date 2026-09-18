@@ -47,22 +47,22 @@ def serialize_aws_json_1_1(value: NamedQuery) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NamedQuery:
     out: NamedQuery = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("NamedQuery.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
     else:
         raise DeserializationError("NamedQuery.database required")
-    if "QueryString" in data:
+    if data.get("QueryString") is not None:
         out["query_string"] = data["QueryString"]
     else:
         raise DeserializationError("NamedQuery.query_string required")
-    if "NamedQueryId" in data:
+    if data.get("NamedQueryId") is not None:
         out["named_query_id"] = data["NamedQueryId"]
-    if "WorkGroup" in data:
+    if data.get("WorkGroup") is not None:
         out["work_group"] = data["WorkGroup"]
     return out

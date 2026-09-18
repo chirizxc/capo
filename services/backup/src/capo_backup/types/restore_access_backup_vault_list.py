@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> RestoreAccessBackupVaultList:
 
     out: RestoreAccessBackupVaultList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_backup.types.restore_access_backup_vault_list_member.deserialize_json(
                 item

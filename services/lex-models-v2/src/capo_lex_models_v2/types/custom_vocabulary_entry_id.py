@@ -24,7 +24,7 @@ def serialize_json(value: CustomVocabularyEntryId) -> dict:
 
 def deserialize_json(data: dict) -> CustomVocabularyEntryId:
     out: CustomVocabularyEntryId = {}  # type: ignore[typeddict-item]
-    if "itemId" in data:
+    if data.get("itemId") is not None:
         out["item_id"] = data["itemId"]
     else:
         raise DeserializationError("CustomVocabularyEntryId.item_id required")

@@ -48,7 +48,7 @@ def serialize_aws_json_1_0(value: EngagementCustomer) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> EngagementCustomer:
     out: EngagementCustomer = {}  # type: ignore[typeddict-item]
-    if "Industry" in data:
+    if data.get("Industry") is not None:
         import capo_partnercentral_selling.types.industry
 
         out["industry"] = (
@@ -58,15 +58,15 @@ def deserialize_aws_json_1_0(data: dict) -> EngagementCustomer:
         )
     else:
         raise DeserializationError("EngagementCustomer.industry required")
-    if "CompanyName" in data:
+    if data.get("CompanyName") is not None:
         out["company_name"] = data["CompanyName"]
     else:
         raise DeserializationError("EngagementCustomer.company_name required")
-    if "WebsiteUrl" in data:
+    if data.get("WebsiteUrl") is not None:
         out["website_url"] = data["WebsiteUrl"]
     else:
         raise DeserializationError("EngagementCustomer.website_url required")
-    if "CountryCode" in data:
+    if data.get("CountryCode") is not None:
         import capo_partnercentral_selling.types.country_code
 
         out["country_code"] = (

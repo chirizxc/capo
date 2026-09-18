@@ -26,7 +26,7 @@ def serialize_json(value: SamlProviderConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SamlProviderConfiguration:
     out: SamlProviderConfiguration = {}  # type: ignore[typeddict-item]
-    if "authenticationUrl" in data:
+    if data.get("authenticationUrl") is not None:
         out["authentication_url"] = data["authenticationUrl"]
     else:
         raise DeserializationError(

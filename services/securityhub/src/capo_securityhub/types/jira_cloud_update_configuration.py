@@ -23,6 +23,6 @@ def serialize_json(value: JiraCloudUpdateConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> JiraCloudUpdateConfiguration:
     out: JiraCloudUpdateConfiguration = {}  # type: ignore[typeddict-item]
-    if "ProjectKey" in data:
+    if data.get("ProjectKey") is not None:
         out["project_key"] = data["ProjectKey"]
     return out

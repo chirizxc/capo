@@ -28,8 +28,11 @@ def serialize_json(input_to_serialize: ResponseConfigurations) -> dict:
 def deserialize_json(data: dict) -> ResponseConfigurations:
     out: ResponseConfigurations = {}
     for key, value in data.items():
-        import capo_qbusiness.types.response_configuration
         import capo_qbusiness.types.response_configuration_type
+
+        if value is None:
+            continue
+        import capo_qbusiness.types.response_configuration
 
         out[capo_qbusiness.types.response_configuration_type.deserialize_json(key)] = (
             capo_qbusiness.types.response_configuration.deserialize_json(value)

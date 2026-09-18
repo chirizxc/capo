@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ChimeWebhookConfigurationList:
 
     out: ChimeWebhookConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_chatbot.types.chime_webhook_configuration.deserialize_json(item)
         )

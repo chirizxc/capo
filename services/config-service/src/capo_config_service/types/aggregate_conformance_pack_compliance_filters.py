@@ -48,9 +48,9 @@ def serialize_aws_json_1_1(value: AggregateConformancePackComplianceFilters) -> 
 
 def deserialize_aws_json_1_1(data: dict) -> AggregateConformancePackComplianceFilters:
     out: AggregateConformancePackComplianceFilters = {}  # type: ignore[typeddict-item]
-    if "ConformancePackName" in data:
+    if data.get("ConformancePackName") is not None:
         out["conformance_pack_name"] = data["ConformancePackName"]
-    if "ComplianceType" in data:
+    if data.get("ComplianceType") is not None:
         import capo_config_service.types.conformance_pack_compliance_type
 
         out["compliance_type"] = (
@@ -58,8 +58,8 @@ def deserialize_aws_json_1_1(data: dict) -> AggregateConformancePackComplianceFi
                 data["ComplianceType"]
             )
         )
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "AwsRegion" in data:
+    if data.get("AwsRegion") is not None:
         out["aws_region"] = data["AwsRegion"]
     return out

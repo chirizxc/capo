@@ -23,6 +23,6 @@ def serialize_json(value: BusinessCallingSettings) -> dict:
 
 def deserialize_json(data: dict) -> BusinessCallingSettings:
     out: BusinessCallingSettings = {}  # type: ignore[typeddict-item]
-    if "CdrBucket" in data:
+    if data.get("CdrBucket") is not None:
         out["cdr_bucket"] = data["CdrBucket"]
     return out

@@ -31,10 +31,10 @@ def serialize_aws_json_1_1(value: TableMember) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TableMember:
     out: TableMember = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "schema" in data:
+    if data.get("schema") is not None:
         out["schema"] = data["schema"]
     return out

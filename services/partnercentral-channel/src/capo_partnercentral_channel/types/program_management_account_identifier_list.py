@@ -16,4 +16,4 @@ def serialize_aws_json_1_0(value: ProgramManagementAccountIdentifierList) -> lis
 
 
 def deserialize_aws_json_1_0(data: list) -> ProgramManagementAccountIdentifierList:
-    return list(data)
+    return [item for item in data if item is not None]

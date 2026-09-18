@@ -52,13 +52,13 @@ def serialize_aws_json_1_1(value: GameServerInstance) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GameServerInstance:
     out: GameServerInstance = {}  # type: ignore[typeddict-item]
-    if "GameServerGroupName" in data:
+    if data.get("GameServerGroupName") is not None:
         out["game_server_group_name"] = data["GameServerGroupName"]
-    if "GameServerGroupArn" in data:
+    if data.get("GameServerGroupArn") is not None:
         out["game_server_group_arn"] = data["GameServerGroupArn"]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
-    if "InstanceStatus" in data:
+    if data.get("InstanceStatus") is not None:
         import capo_gamelift.types.game_server_instance_status
 
         out["instance_status"] = (

@@ -42,7 +42,7 @@ def serialize_aws_json_1_1(value: DeploymentStyle) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeploymentStyle:
     out: DeploymentStyle = {}  # type: ignore[typeddict-item]
-    if "deploymentType" in data:
+    if data.get("deploymentType") is not None:
         import capo_codedeploy.types.deployment_type
 
         out["deployment_type"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeploymentStyle:
                 data["deploymentType"]
             )
         )
-    if "deploymentOption" in data:
+    if data.get("deploymentOption") is not None:
         import capo_codedeploy.types.deployment_option
 
         out["deployment_option"] = (

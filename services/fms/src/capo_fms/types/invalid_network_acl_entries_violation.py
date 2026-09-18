@@ -47,15 +47,15 @@ def serialize_aws_json_1_1(value: InvalidNetworkAclEntriesViolation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidNetworkAclEntriesViolation:
     out: InvalidNetworkAclEntriesViolation = {}  # type: ignore[typeddict-item]
-    if "Vpc" in data:
+    if data.get("Vpc") is not None:
         out["vpc"] = data["Vpc"]
-    if "Subnet" in data:
+    if data.get("Subnet") is not None:
         out["subnet"] = data["Subnet"]
-    if "SubnetAvailabilityZone" in data:
+    if data.get("SubnetAvailabilityZone") is not None:
         out["subnet_availability_zone"] = data["SubnetAvailabilityZone"]
-    if "CurrentAssociatedNetworkAcl" in data:
+    if data.get("CurrentAssociatedNetworkAcl") is not None:
         out["current_associated_network_acl"] = data["CurrentAssociatedNetworkAcl"]
-    if "EntryViolations" in data:
+    if data.get("EntryViolations") is not None:
         import capo_fms.types.entry_violations
 
         out["entry_violations"] = (

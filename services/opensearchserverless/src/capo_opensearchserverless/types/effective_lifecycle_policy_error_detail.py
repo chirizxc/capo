@@ -38,12 +38,12 @@ def serialize_aws_json_1_0(value: EffectiveLifecyclePolicyErrorDetail) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> EffectiveLifecyclePolicyErrorDetail:
     out: EffectiveLifecyclePolicyErrorDetail = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "resource" in data:
+    if data.get("resource") is not None:
         out["resource"] = data["resource"]
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         out["error_code"] = data["errorCode"]
     return out

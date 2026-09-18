@@ -52,7 +52,7 @@ def serialize_json(value: GrpcRoute) -> dict:
 
 def deserialize_json(data: dict) -> GrpcRoute:
     out: GrpcRoute = {}  # type: ignore[typeddict-item]
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_app_mesh.types.grpc_route_action
 
         out["action"] = capo_app_mesh.types.grpc_route_action.deserialize_json(
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> GrpcRoute:
         )
     else:
         raise DeserializationError("GrpcRoute.action required")
-    if "match" in data:
+    if data.get("match") is not None:
         import capo_app_mesh.types.grpc_route_match
 
         out["match"] = capo_app_mesh.types.grpc_route_match.deserialize_json(
@@ -68,13 +68,13 @@ def deserialize_json(data: dict) -> GrpcRoute:
         )
     else:
         raise DeserializationError("GrpcRoute.match required")
-    if "retryPolicy" in data:
+    if data.get("retryPolicy") is not None:
         import capo_app_mesh.types.grpc_retry_policy
 
         out["retry_policy"] = capo_app_mesh.types.grpc_retry_policy.deserialize_json(
             data["retryPolicy"]
         )
-    if "timeout" in data:
+    if data.get("timeout") is not None:
         import capo_app_mesh.types.grpc_timeout
 
         out["timeout"] = capo_app_mesh.types.grpc_timeout.deserialize_json(

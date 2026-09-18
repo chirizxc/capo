@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: RebootWorkspacesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RebootWorkspacesRequest:
     out: RebootWorkspacesRequest = {}  # type: ignore[typeddict-item]
-    if "RebootWorkspaceRequests" in data:
+    if data.get("RebootWorkspaceRequests") is not None:
         import capo_workspaces.types.reboot_workspace_requests
 
         out["reboot_workspace_requests"] = (

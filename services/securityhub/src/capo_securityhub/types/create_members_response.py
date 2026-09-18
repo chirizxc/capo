@@ -27,7 +27,7 @@ def serialize_json(value: CreateMembersResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateMembersResponse:
     out: CreateMembersResponse = {}  # type: ignore[typeddict-item]
-    if "UnprocessedAccounts" in data:
+    if data.get("UnprocessedAccounts") is not None:
         import capo_securityhub.types.result_list
 
         out["unprocessed_accounts"] = (

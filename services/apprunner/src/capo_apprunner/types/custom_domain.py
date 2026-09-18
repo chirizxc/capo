@@ -51,15 +51,15 @@ def serialize_aws_json_1_0(value: CustomDomain) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CustomDomain:
     out: CustomDomain = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
     else:
         raise DeserializationError("CustomDomain.domain_name required")
-    if "EnableWWWSubdomain" in data:
+    if data.get("EnableWWWSubdomain") is not None:
         out["enable_www_subdomain"] = data["EnableWWWSubdomain"]
     else:
         raise DeserializationError("CustomDomain.enable_www_subdomain required")
-    if "CertificateValidationRecords" in data:
+    if data.get("CertificateValidationRecords") is not None:
         import capo_apprunner.types.certificate_validation_record_list
 
         out["certificate_validation_records"] = (
@@ -67,7 +67,7 @@ def deserialize_aws_json_1_0(data: dict) -> CustomDomain:
                 data["CertificateValidationRecords"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_apprunner.types.custom_domain_association_status
 
         out["status"] = (

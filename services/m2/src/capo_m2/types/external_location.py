@@ -26,7 +26,7 @@ def serialize_json(value: ExternalLocation) -> dict:
 
 
 def deserialize_json(data: dict) -> ExternalLocation:
-    if "s3Location" in data:
+    if data.get("s3Location") is not None:
         return {"s3Location": data["s3Location"]}
     else:
         raise DeserializationError("ExternalLocation: no recognized variant key")

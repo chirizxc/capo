@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: GetDatabaseResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDatabaseResponse:
     out: GetDatabaseResponse = {}  # type: ignore[typeddict-item]
-    if "Database" in data:
+    if data.get("Database") is not None:
         import capo_glue.types.database
 
         out["database"] = capo_glue.types.database.deserialize_aws_json_1_1(

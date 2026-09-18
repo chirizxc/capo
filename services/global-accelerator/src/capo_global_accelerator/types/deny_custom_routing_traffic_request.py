@@ -60,19 +60,19 @@ def serialize_aws_json_1_1(value: DenyCustomRoutingTrafficRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DenyCustomRoutingTrafficRequest:
     out: DenyCustomRoutingTrafficRequest = {}  # type: ignore[typeddict-item]
-    if "EndpointGroupArn" in data:
+    if data.get("EndpointGroupArn") is not None:
         out["endpoint_group_arn"] = data["EndpointGroupArn"]
     else:
         raise DeserializationError(
             "DenyCustomRoutingTrafficRequest.endpoint_group_arn required"
         )
-    if "EndpointId" in data:
+    if data.get("EndpointId") is not None:
         out["endpoint_id"] = data["EndpointId"]
     else:
         raise DeserializationError(
             "DenyCustomRoutingTrafficRequest.endpoint_id required"
         )
-    if "DestinationAddresses" in data:
+    if data.get("DestinationAddresses") is not None:
         import capo_global_accelerator.types.destination_addresses
 
         out["destination_addresses"] = (
@@ -80,7 +80,7 @@ def deserialize_aws_json_1_1(data: dict) -> DenyCustomRoutingTrafficRequest:
                 data["DestinationAddresses"]
             )
         )
-    if "DestinationPorts" in data:
+    if data.get("DestinationPorts") is not None:
         import capo_global_accelerator.types.destination_ports
 
         out["destination_ports"] = (
@@ -88,6 +88,6 @@ def deserialize_aws_json_1_1(data: dict) -> DenyCustomRoutingTrafficRequest:
                 data["DestinationPorts"]
             )
         )
-    if "DenyAllTrafficToEndpoint" in data:
+    if data.get("DenyAllTrafficToEndpoint") is not None:
         out["deny_all_traffic_to_endpoint"] = data["DenyAllTrafficToEndpoint"]
     return out

@@ -32,8 +32,8 @@ def serialize_aws_json_1_1(value: UpdateClusterSchedulerConfigResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateClusterSchedulerConfigResponse:
     out: UpdateClusterSchedulerConfigResponse = {}  # type: ignore[typeddict-item]
-    if "ClusterSchedulerConfigArn" in data:
+    if data.get("ClusterSchedulerConfigArn") is not None:
         out["cluster_scheduler_config_arn"] = data["ClusterSchedulerConfigArn"]
-    if "ClusterSchedulerConfigVersion" in data:
+    if data.get("ClusterSchedulerConfigVersion") is not None:
         out["cluster_scheduler_config_version"] = data["ClusterSchedulerConfigVersion"]
     return out

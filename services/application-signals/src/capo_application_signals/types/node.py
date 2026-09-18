@@ -42,7 +42,15 @@ def serialize_json(value: Node) -> dict:
     if "type" in value:
         out["Type"] = value["type"]
     if "duration" in value:
-        out["Duration"] = value["duration"]
+        out["Duration"] = (
+            "NaN"
+            if value["duration"] != value["duration"]
+            else "Infinity"
+            if value["duration"] == float("inf")
+            else "-Infinity"
+            if value["duration"] == float("-inf")
+            else value["duration"]
+        )
     if "status" in value:
         out["Status"] = value["status"]
     return out
@@ -50,7 +58,7 @@ def serialize_json(value: Node) -> dict:
 
 def deserialize_json(data: dict) -> Node:
     out: Node = {}  # type: ignore[typeddict-item]
-    if "KeyAttributes" in data:
+    if data.get("KeyAttributes") is not None:
         import capo_application_signals.types.attributes
 
         out["key_attributes"] = (
@@ -60,20 +68,20 @@ def deserialize_json(data: dict) -> Node:
         )
     else:
         raise DeserializationError("Node.key_attributes required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("Node.name required")
-    if "NodeId" in data:
+    if data.get("NodeId") is not None:
         out["node_id"] = data["NodeId"]
     else:
         raise DeserializationError("Node.node_id required")
-    if "Operation" in data:
+    if data.get("Operation") is not None:
         out["operation"] = data["Operation"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "Duration" in data:
-        out["duration"] = data["Duration"]
-    if "Status" in data:
+    if data.get("Duration") is not None:
+        out["duration"] = float(data["Duration"])
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     return out

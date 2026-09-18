@@ -54,23 +54,23 @@ def serialize_json(value: TableWithColumnsResource) -> dict:
 
 def deserialize_json(data: dict) -> TableWithColumnsResource:
     out: TableWithColumnsResource = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
     else:
         raise DeserializationError("TableWithColumnsResource.database_name required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("TableWithColumnsResource.name required")
-    if "ColumnNames" in data:
+    if data.get("ColumnNames") is not None:
         import capo_lakeformation.types.column_names
 
         out["column_names"] = capo_lakeformation.types.column_names.deserialize_json(
             data["ColumnNames"]
         )
-    if "ColumnWildcard" in data:
+    if data.get("ColumnWildcard") is not None:
         import capo_lakeformation.types.column_wildcard
 
         out["column_wildcard"] = (

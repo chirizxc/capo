@@ -56,17 +56,17 @@ def serialize_json(value: CreateListenerRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateListenerRequest:
     out: CreateListenerRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateListenerRequest.name required")
-    if "protocol" in data:
+    if data.get("protocol") is not None:
         out["protocol"] = data["protocol"]
     else:
         raise DeserializationError("CreateListenerRequest.protocol required")
-    if "port" in data:
+    if data.get("port") is not None:
         out["port"] = data["port"]
-    if "defaultAction" in data:
+    if data.get("defaultAction") is not None:
         import capo_vpc_lattice.types.rule_action
 
         out["default_action"] = capo_vpc_lattice.types.rule_action.deserialize_json(
@@ -74,9 +74,9 @@ def deserialize_json(data: dict) -> CreateListenerRequest:
         )
     else:
         raise DeserializationError("CreateListenerRequest.default_action required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_vpc_lattice.types.tag_map
 
         out["tags"] = capo_vpc_lattice.types.tag_map.deserialize_json(data["tags"])

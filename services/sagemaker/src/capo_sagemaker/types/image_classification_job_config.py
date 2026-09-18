@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: ImageClassificationJobConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ImageClassificationJobConfig:
     out: ImageClassificationJobConfig = {}  # type: ignore[typeddict-item]
-    if "CompletionCriteria" in data:
+    if data.get("CompletionCriteria") is not None:
         import capo_sagemaker.types.auto_ml_job_completion_criteria
 
         out["completion_criteria"] = (

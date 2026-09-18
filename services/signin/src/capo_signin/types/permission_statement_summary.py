@@ -33,11 +33,11 @@ def serialize_json(value: PermissionStatementSummary) -> dict:
 
 def deserialize_json(data: dict) -> PermissionStatementSummary:
     out: PermissionStatementSummary = {}  # type: ignore[typeddict-item]
-    if "sid" in data:
+    if data.get("sid") is not None:
         out["sid"] = data["sid"]
     else:
         raise DeserializationError("PermissionStatementSummary.sid required")
-    if "condition" in data:
+    if data.get("condition") is not None:
         import capo_signin.types.condition_block
 
         out["condition"] = capo_signin.types.condition_block.deserialize_json(

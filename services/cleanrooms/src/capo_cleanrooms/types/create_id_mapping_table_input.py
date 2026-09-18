@@ -58,13 +58,13 @@ def serialize_json(value: CreateIdMappingTableInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateIdMappingTableInput:
     out: CreateIdMappingTableInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateIdMappingTableInput.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "inputReferenceConfig" in data:
+    if data.get("inputReferenceConfig") is not None:
         import capo_cleanrooms.types.id_mapping_table_input_reference_config
 
         out["input_reference_config"] = (
@@ -76,10 +76,10 @@ def deserialize_json(data: dict) -> CreateIdMappingTableInput:
         raise DeserializationError(
             "CreateIdMappingTableInput.input_reference_config required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_cleanrooms.types.tag_map
 
         out["tags"] = capo_cleanrooms.types.tag_map.deserialize_json(data["tags"])
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
     return out

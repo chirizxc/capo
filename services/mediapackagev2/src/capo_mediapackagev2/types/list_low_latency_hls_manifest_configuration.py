@@ -34,14 +34,14 @@ def serialize_json(value: ListLowLatencyHlsManifestConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ListLowLatencyHlsManifestConfiguration:
     out: ListLowLatencyHlsManifestConfiguration = {}  # type: ignore[typeddict-item]
-    if "ManifestName" in data:
+    if data.get("ManifestName") is not None:
         out["manifest_name"] = data["ManifestName"]
     else:
         raise DeserializationError(
             "ListLowLatencyHlsManifestConfiguration.manifest_name required"
         )
-    if "ChildManifestName" in data:
+    if data.get("ChildManifestName") is not None:
         out["child_manifest_name"] = data["ChildManifestName"]
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
     return out

@@ -26,6 +26,6 @@ def serialize_json(value: CancelDomainConfigChangeRequest) -> dict:
 
 def deserialize_json(data: dict) -> CancelDomainConfigChangeRequest:
     out: CancelDomainConfigChangeRequest = {}  # type: ignore[typeddict-item]
-    if "DryRun" in data:
+    if data.get("DryRun") is not None:
         out["dry_run"] = data["DryRun"]
     return out

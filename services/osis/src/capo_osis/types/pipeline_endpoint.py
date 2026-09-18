@@ -61,19 +61,19 @@ def serialize_json(value: PipelineEndpoint) -> dict:
 
 def deserialize_json(data: dict) -> PipelineEndpoint:
     out: PipelineEndpoint = {}  # type: ignore[typeddict-item]
-    if "PipelineArn" in data:
+    if data.get("PipelineArn") is not None:
         out["pipeline_arn"] = data["PipelineArn"]
-    if "EndpointId" in data:
+    if data.get("EndpointId") is not None:
         out["endpoint_id"] = data["EndpointId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_osis.types.pipeline_endpoint_status
 
         out["status"] = capo_osis.types.pipeline_endpoint_status.deserialize_json(
             data["Status"]
         )
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
-    if "VpcOptions" in data:
+    if data.get("VpcOptions") is not None:
         import capo_osis.types.pipeline_endpoint_vpc_options
 
         out["vpc_options"] = (
@@ -81,6 +81,6 @@ def deserialize_json(data: dict) -> PipelineEndpoint:
                 data["VpcOptions"]
             )
         )
-    if "IngestEndpointUrl" in data:
+    if data.get("IngestEndpointUrl") is not None:
         out["ingest_endpoint_url"] = data["IngestEndpointUrl"]
     return out

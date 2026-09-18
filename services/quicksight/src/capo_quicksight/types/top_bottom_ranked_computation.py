@@ -64,27 +64,27 @@ def serialize_json(value: TopBottomRankedComputation) -> dict:
 
 def deserialize_json(data: dict) -> TopBottomRankedComputation:
     out: TopBottomRankedComputation = {}  # type: ignore[typeddict-item]
-    if "ComputationId" in data:
+    if data.get("ComputationId") is not None:
         out["computation_id"] = data["ComputationId"]
     else:
         raise DeserializationError("TopBottomRankedComputation.computation_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Category" in data:
+    if data.get("Category") is not None:
         import capo_quicksight.types.dimension_field
 
         out["category"] = capo_quicksight.types.dimension_field.deserialize_json(
             data["Category"]
         )
-    if "Value" in data:
+    if data.get("Value") is not None:
         import capo_quicksight.types.measure_field
 
         out["value"] = capo_quicksight.types.measure_field.deserialize_json(
             data["Value"]
         )
-    if "ResultSize" in data:
+    if data.get("ResultSize") is not None:
         out["result_size"] = data["ResultSize"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_quicksight.types.top_bottom_computation_type
 
         out["type"] = (

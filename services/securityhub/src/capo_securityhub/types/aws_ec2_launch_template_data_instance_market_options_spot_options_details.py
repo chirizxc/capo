@@ -50,14 +50,14 @@ def deserialize_json(
     data: dict,
 ) -> AwsEc2LaunchTemplateDataInstanceMarketOptionsSpotOptionsDetails:
     out: AwsEc2LaunchTemplateDataInstanceMarketOptionsSpotOptionsDetails = {}  # type: ignore[typeddict-item]
-    if "BlockDurationMinutes" in data:
+    if data.get("BlockDurationMinutes") is not None:
         out["block_duration_minutes"] = data["BlockDurationMinutes"]
-    if "InstanceInterruptionBehavior" in data:
+    if data.get("InstanceInterruptionBehavior") is not None:
         out["instance_interruption_behavior"] = data["InstanceInterruptionBehavior"]
-    if "MaxPrice" in data:
+    if data.get("MaxPrice") is not None:
         out["max_price"] = data["MaxPrice"]
-    if "SpotInstanceType" in data:
+    if data.get("SpotInstanceType") is not None:
         out["spot_instance_type"] = data["SpotInstanceType"]
-    if "ValidUntil" in data:
+    if data.get("ValidUntil") is not None:
         out["valid_until"] = data["ValidUntil"]
     return out

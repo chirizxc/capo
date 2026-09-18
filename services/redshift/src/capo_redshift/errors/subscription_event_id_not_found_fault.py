@@ -37,15 +37,20 @@ class SubscriptionEventIdNotFoundFault(ServiceError):
 
     code: str | None = "SubscriptionEventIdNotFoundFault"
 
-    def __init__(self, data: SubscriptionEventIdNotFoundFault_):
+    def __init__(
+        self, data: SubscriptionEventIdNotFoundFault_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="SubscriptionEventIdNotFoundFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "SubscriptionEventIdNotFoundFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "SubscriptionEventIdNotFoundFault":
+        return cls(deserialize_query(el), message)

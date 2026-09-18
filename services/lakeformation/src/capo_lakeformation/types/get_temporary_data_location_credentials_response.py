@@ -56,7 +56,7 @@ def serialize_json(value: GetTemporaryDataLocationCredentialsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetTemporaryDataLocationCredentialsResponse:
     out: GetTemporaryDataLocationCredentialsResponse = {}  # type: ignore[typeddict-item]
-    if "Credentials" in data:
+    if data.get("Credentials") is not None:
         import capo_lakeformation.types.temporary_credentials
 
         out["credentials"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> GetTemporaryDataLocationCredentialsResponse:
                 data["Credentials"]
             )
         )
-    if "AccessibleDataLocations" in data:
+    if data.get("AccessibleDataLocations") is not None:
         import capo_lakeformation.types.path_string_list
 
         out["accessible_data_locations"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> GetTemporaryDataLocationCredentialsResponse:
                 data["AccessibleDataLocations"]
             )
         )
-    if "CredentialsScope" in data:
+    if data.get("CredentialsScope") is not None:
         import capo_lakeformation.types.credentials_scope
 
         out["credentials_scope"] = (

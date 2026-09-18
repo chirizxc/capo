@@ -35,7 +35,7 @@ def serialize_json(value: BatchDetachPolicy) -> dict:
 
 def deserialize_json(data: dict) -> BatchDetachPolicy:
     out: BatchDetachPolicy = {}  # type: ignore[typeddict-item]
-    if "PolicyReference" in data:
+    if data.get("PolicyReference") is not None:
         import capo_clouddirectory.types.object_reference
 
         out["policy_reference"] = (
@@ -45,7 +45,7 @@ def deserialize_json(data: dict) -> BatchDetachPolicy:
         )
     else:
         raise DeserializationError("BatchDetachPolicy.policy_reference required")
-    if "ObjectReference" in data:
+    if data.get("ObjectReference") is not None:
         import capo_clouddirectory.types.object_reference
 
         out["object_reference"] = (

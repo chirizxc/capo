@@ -32,11 +32,11 @@ def serialize_json(value: DestinationTable) -> dict:
 
 def deserialize_json(data: dict) -> DestinationTable:
     out: DestinationTable = {}  # type: ignore[typeddict-item]
-    if "Alias" in data:
+    if data.get("Alias") is not None:
         out["alias"] = data["Alias"]
     else:
         raise DeserializationError("DestinationTable.alias required")
-    if "Source" in data:
+    if data.get("Source") is not None:
         import capo_quicksight.types.destination_table_source
 
         out["source"] = capo_quicksight.types.destination_table_source.deserialize_json(

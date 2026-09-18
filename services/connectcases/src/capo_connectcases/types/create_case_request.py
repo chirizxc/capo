@@ -54,11 +54,11 @@ def serialize_json(value: CreateCaseRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateCaseRequest:
     out: CreateCaseRequest = {}  # type: ignore[typeddict-item]
-    if "templateId" in data:
+    if data.get("templateId") is not None:
         out["template_id"] = data["templateId"]
     else:
         raise DeserializationError("CreateCaseRequest.template_id required")
-    if "fields" in data:
+    if data.get("fields") is not None:
         import capo_connectcases.types.field_value_list
 
         out["fields"] = capo_connectcases.types.field_value_list.deserialize_json(
@@ -66,15 +66,15 @@ def deserialize_json(data: dict) -> CreateCaseRequest:
         )
     else:
         raise DeserializationError("CreateCaseRequest.fields required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "performedBy" in data:
+    if data.get("performedBy") is not None:
         import capo_connectcases.types.user_union
 
         out["performed_by"] = capo_connectcases.types.user_union.deserialize_json(
             data["performedBy"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_connectcases.types.mutable_tags
 
         out["tags"] = capo_connectcases.types.mutable_tags.deserialize_json(

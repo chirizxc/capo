@@ -28,9 +28,16 @@ def serialize_aws_json_1_0(value: ResourcePoolSummary) -> dict:
     if "pool_storage_size_in_t_bs" in value:
         out["poolStorageSizeInTBs"] = value["pool_storage_size_in_t_bs"]
     if "available_storage_capacity_in_t_bs" in value:
-        out["availableStorageCapacityInTBs"] = value[
-            "available_storage_capacity_in_t_bs"
-        ]
+        out["availableStorageCapacityInTBs"] = (
+            "NaN"
+            if value["available_storage_capacity_in_t_bs"]
+            != value["available_storage_capacity_in_t_bs"]
+            else "Infinity"
+            if value["available_storage_capacity_in_t_bs"] == float("inf")
+            else "-Infinity"
+            if value["available_storage_capacity_in_t_bs"] == float("-inf")
+            else value["available_storage_capacity_in_t_bs"]
+        )
     if "total_compute_capacity" in value:
         out["totalComputeCapacity"] = value["total_compute_capacity"]
     if "available_compute_capacity" in value:
@@ -40,18 +47,18 @@ def serialize_aws_json_1_0(value: ResourcePoolSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ResourcePoolSummary:
     out: ResourcePoolSummary = {}  # type: ignore[typeddict-item]
-    if "isDisabled" in data:
+    if data.get("isDisabled") is not None:
         out["is_disabled"] = data["isDisabled"]
-    if "poolSize" in data:
+    if data.get("poolSize") is not None:
         out["pool_size"] = data["poolSize"]
-    if "poolStorageSizeInTBs" in data:
+    if data.get("poolStorageSizeInTBs") is not None:
         out["pool_storage_size_in_t_bs"] = data["poolStorageSizeInTBs"]
-    if "availableStorageCapacityInTBs" in data:
-        out["available_storage_capacity_in_t_bs"] = data[
-            "availableStorageCapacityInTBs"
-        ]
-    if "totalComputeCapacity" in data:
+    if data.get("availableStorageCapacityInTBs") is not None:
+        out["available_storage_capacity_in_t_bs"] = float(
+            data["availableStorageCapacityInTBs"]
+        )
+    if data.get("totalComputeCapacity") is not None:
         out["total_compute_capacity"] = data["totalComputeCapacity"]
-    if "availableComputeCapacity" in data:
+    if data.get("availableComputeCapacity") is not None:
         out["available_compute_capacity"] = data["availableComputeCapacity"]
     return out

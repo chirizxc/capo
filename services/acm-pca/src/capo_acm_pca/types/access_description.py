@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: AccessDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AccessDescription:
     out: AccessDescription = {}  # type: ignore[typeddict-item]
-    if "AccessMethod" in data:
+    if data.get("AccessMethod") is not None:
         import capo_acm_pca.types.access_method
 
         out["access_method"] = (
@@ -46,7 +46,7 @@ def deserialize_aws_json_1_1(data: dict) -> AccessDescription:
         )
     else:
         raise DeserializationError("AccessDescription.access_method required")
-    if "AccessLocation" in data:
+    if data.get("AccessLocation") is not None:
         import capo_acm_pca.types.general_name
 
         out["access_location"] = (

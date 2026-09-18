@@ -59,15 +59,15 @@ def serialize_aws_json_1_0(value: CreateWorkspaceInstanceRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateWorkspaceInstanceRequest:
     out: CreateWorkspaceInstanceRequest = {}  # type: ignore[typeddict-item]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_workspaces_instances.types.tag_list
 
         out["tags"] = capo_workspaces_instances.types.tag_list.deserialize_aws_json_1_0(
             data["Tags"]
         )
-    if "ManagedInstance" in data:
+    if data.get("ManagedInstance") is not None:
         import capo_workspaces_instances.types.managed_instance_request
 
         out["managed_instance"] = (
@@ -79,7 +79,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateWorkspaceInstanceRequest:
         raise DeserializationError(
             "CreateWorkspaceInstanceRequest.managed_instance required"
         )
-    if "BillingConfiguration" in data:
+    if data.get("BillingConfiguration") is not None:
         import capo_workspaces_instances.types.billing_configuration
 
         out["billing_configuration"] = (

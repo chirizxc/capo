@@ -39,15 +39,20 @@ class DuplicateTargetGroupNameException(ServiceError):
 
     code: str | None = "DuplicateTargetGroupNameException"
 
-    def __init__(self, data: DuplicateTargetGroupNameException_):
+    def __init__(
+        self, data: DuplicateTargetGroupNameException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="DuplicateTargetGroupNameException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "DuplicateTargetGroupNameException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "DuplicateTargetGroupNameException":
+        return cls(deserialize_query(el), message)

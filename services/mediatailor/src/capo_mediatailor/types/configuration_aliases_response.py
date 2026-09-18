@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: ConfigurationAliasesResponse) -> dict:
 def deserialize_json(data: dict) -> ConfigurationAliasesResponse:
     out: ConfigurationAliasesResponse = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_mediatailor.types.__map_of__string
 
         out[key] = capo_mediatailor.types.__map_of__string.deserialize_json(value)

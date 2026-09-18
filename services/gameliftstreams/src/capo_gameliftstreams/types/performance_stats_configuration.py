@@ -18,6 +18,6 @@ def serialize_json(value: PerformanceStatsConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> PerformanceStatsConfiguration:
     out: PerformanceStatsConfiguration = {}  # type: ignore[typeddict-item]
-    if "SharedWithClient" in data:
+    if data.get("SharedWithClient") is not None:
         out["shared_with_client"] = data["SharedWithClient"]
     return out

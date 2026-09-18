@@ -42,11 +42,11 @@ def serialize_json(value: HeaderMatchType) -> dict:
 
 
 def deserialize_json(data: dict) -> HeaderMatchType:
-    if "exact" in data:
+    if data.get("exact") is not None:
         return {"exact": data["exact"]}
-    elif "prefix" in data:
+    elif data.get("prefix") is not None:
         return {"prefix": data["prefix"]}
-    elif "contains" in data:
+    elif data.get("contains") is not None:
         return {"contains": data["contains"]}
     else:
         raise DeserializationError("HeaderMatchType: no recognized variant key")

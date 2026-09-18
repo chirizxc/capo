@@ -37,7 +37,7 @@ def serialize_json(value: SegmentGroup) -> dict:
 
 def deserialize_json(data: dict) -> SegmentGroup:
     out: SegmentGroup = {}  # type: ignore[typeddict-item]
-    if "Groups" in data:
+    if data.get("Groups") is not None:
         import capo_customer_profiles.types.segment_group_list
 
         out["groups"] = (
@@ -45,7 +45,7 @@ def deserialize_json(data: dict) -> SegmentGroup:
                 data["Groups"]
             )
         )
-    if "Include" in data:
+    if data.get("Include") is not None:
         import capo_customer_profiles.types.include_options
 
         out["include"] = capo_customer_profiles.types.include_options.deserialize_json(

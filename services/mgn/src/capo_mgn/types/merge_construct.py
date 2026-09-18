@@ -28,8 +28,8 @@ def serialize_json(value: MergeConstruct) -> dict:
 
 def deserialize_json(data: dict) -> MergeConstruct:
     out: MergeConstruct = {}  # type: ignore[typeddict-item]
-    if "segmentID" in data:
+    if data.get("segmentID") is not None:
         out["segment_id"] = data["segmentID"]
-    if "constructID" in data:
+    if data.get("constructID") is not None:
         out["construct_id"] = data["constructID"]
     return out

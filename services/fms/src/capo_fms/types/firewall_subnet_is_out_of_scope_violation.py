@@ -44,14 +44,14 @@ def serialize_aws_json_1_1(value: FirewallSubnetIsOutOfScopeViolation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FirewallSubnetIsOutOfScopeViolation:
     out: FirewallSubnetIsOutOfScopeViolation = {}  # type: ignore[typeddict-item]
-    if "FirewallSubnetId" in data:
+    if data.get("FirewallSubnetId") is not None:
         out["firewall_subnet_id"] = data["FirewallSubnetId"]
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
-    if "SubnetAvailabilityZone" in data:
+    if data.get("SubnetAvailabilityZone") is not None:
         out["subnet_availability_zone"] = data["SubnetAvailabilityZone"]
-    if "SubnetAvailabilityZoneId" in data:
+    if data.get("SubnetAvailabilityZoneId") is not None:
         out["subnet_availability_zone_id"] = data["SubnetAvailabilityZoneId"]
-    if "VpcEndpointId" in data:
+    if data.get("VpcEndpointId") is not None:
         out["vpc_endpoint_id"] = data["VpcEndpointId"]
     return out

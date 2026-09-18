@@ -85,7 +85,7 @@ def serialize_aws_json_1_0(value: ExportIdleRecommendationsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ExportIdleRecommendationsRequest:
     out: ExportIdleRecommendationsRequest = {}  # type: ignore[typeddict-item]
-    if "accountIds" in data:
+    if data.get("accountIds") is not None:
         import capo_compute_optimizer.types.account_ids
 
         out["account_ids"] = (
@@ -93,7 +93,7 @@ def deserialize_aws_json_1_0(data: dict) -> ExportIdleRecommendationsRequest:
                 data["accountIds"]
             )
         )
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_compute_optimizer.types.idle_recommendation_filters
 
         out["filters"] = (
@@ -101,7 +101,7 @@ def deserialize_aws_json_1_0(data: dict) -> ExportIdleRecommendationsRequest:
                 data["filters"]
             )
         )
-    if "fieldsToExport" in data:
+    if data.get("fieldsToExport") is not None:
         import capo_compute_optimizer.types.exportable_idle_fields
 
         out["fields_to_export"] = (
@@ -109,7 +109,7 @@ def deserialize_aws_json_1_0(data: dict) -> ExportIdleRecommendationsRequest:
                 data["fieldsToExport"]
             )
         )
-    if "s3DestinationConfig" in data:
+    if data.get("s3DestinationConfig") is not None:
         import capo_compute_optimizer.types.s3_destination_config
 
         out["s3_destination_config"] = (
@@ -121,7 +121,7 @@ def deserialize_aws_json_1_0(data: dict) -> ExportIdleRecommendationsRequest:
         raise DeserializationError(
             "ExportIdleRecommendationsRequest.s3_destination_config required"
         )
-    if "fileFormat" in data:
+    if data.get("fileFormat") is not None:
         import capo_compute_optimizer.types.file_format
 
         out["file_format"] = (
@@ -129,7 +129,7 @@ def deserialize_aws_json_1_0(data: dict) -> ExportIdleRecommendationsRequest:
                 data["fileFormat"]
             )
         )
-    if "includeMemberAccounts" in data:
+    if data.get("includeMemberAccounts") is not None:
         out["include_member_accounts"] = data["includeMemberAccounts"]
     else:
         out["include_member_accounts"] = False

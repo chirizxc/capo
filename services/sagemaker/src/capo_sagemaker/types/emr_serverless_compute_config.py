@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: EmrServerlessComputeConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EmrServerlessComputeConfig:
     out: EmrServerlessComputeConfig = {}  # type: ignore[typeddict-item]
-    if "ExecutionRoleARN" in data:
+    if data.get("ExecutionRoleARN") is not None:
         out["execution_role_arn"] = data["ExecutionRoleARN"]
     return out

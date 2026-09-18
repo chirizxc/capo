@@ -131,17 +131,17 @@ def serialize_aws_json_1_1(value: JobFlowDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> JobFlowDetail:
     out: JobFlowDetail = {}  # type: ignore[typeddict-item]
-    if "JobFlowId" in data:
+    if data.get("JobFlowId") is not None:
         out["job_flow_id"] = data["JobFlowId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "LogUri" in data:
+    if data.get("LogUri") is not None:
         out["log_uri"] = data["LogUri"]
-    if "LogEncryptionKmsKeyId" in data:
+    if data.get("LogEncryptionKmsKeyId") is not None:
         out["log_encryption_kms_key_id"] = data["LogEncryptionKmsKeyId"]
-    if "AmiVersion" in data:
+    if data.get("AmiVersion") is not None:
         out["ami_version"] = data["AmiVersion"]
-    if "ExecutionStatusDetail" in data:
+    if data.get("ExecutionStatusDetail") is not None:
         import capo_emr.types.job_flow_execution_status_detail
 
         out["execution_status_detail"] = (
@@ -149,7 +149,7 @@ def deserialize_aws_json_1_1(data: dict) -> JobFlowDetail:
                 data["ExecutionStatusDetail"]
             )
         )
-    if "Instances" in data:
+    if data.get("Instances") is not None:
         import capo_emr.types.job_flow_instances_detail
 
         out["instances"] = (
@@ -157,13 +157,13 @@ def deserialize_aws_json_1_1(data: dict) -> JobFlowDetail:
                 data["Instances"]
             )
         )
-    if "Steps" in data:
+    if data.get("Steps") is not None:
         import capo_emr.types.step_detail_list
 
         out["steps"] = capo_emr.types.step_detail_list.deserialize_aws_json_1_1(
             data["Steps"]
         )
-    if "BootstrapActions" in data:
+    if data.get("BootstrapActions") is not None:
         import capo_emr.types.bootstrap_action_detail_list
 
         out["bootstrap_actions"] = (
@@ -171,7 +171,7 @@ def deserialize_aws_json_1_1(data: dict) -> JobFlowDetail:
                 data["BootstrapActions"]
             )
         )
-    if "SupportedProducts" in data:
+    if data.get("SupportedProducts") is not None:
         import capo_emr.types.supported_products_list
 
         out["supported_products"] = (
@@ -179,15 +179,15 @@ def deserialize_aws_json_1_1(data: dict) -> JobFlowDetail:
                 data["SupportedProducts"]
             )
         )
-    if "VisibleToAllUsers" in data:
+    if data.get("VisibleToAllUsers") is not None:
         out["visible_to_all_users"] = data["VisibleToAllUsers"]
-    if "JobFlowRole" in data:
+    if data.get("JobFlowRole") is not None:
         out["job_flow_role"] = data["JobFlowRole"]
-    if "ServiceRole" in data:
+    if data.get("ServiceRole") is not None:
         out["service_role"] = data["ServiceRole"]
-    if "AutoScalingRole" in data:
+    if data.get("AutoScalingRole") is not None:
         out["auto_scaling_role"] = data["AutoScalingRole"]
-    if "ScaleDownBehavior" in data:
+    if data.get("ScaleDownBehavior") is not None:
         import capo_emr.types.scale_down_behavior
 
         out["scale_down_behavior"] = (

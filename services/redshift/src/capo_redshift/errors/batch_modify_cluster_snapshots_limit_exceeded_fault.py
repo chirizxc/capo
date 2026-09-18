@@ -39,15 +39,22 @@ class BatchModifyClusterSnapshotsLimitExceededFault(ServiceError):
 
     code: str | None = "BatchModifyClusterSnapshotsLimitExceededFault"
 
-    def __init__(self, data: BatchModifyClusterSnapshotsLimitExceededFault_):
+    def __init__(
+        self,
+        data: BatchModifyClusterSnapshotsLimitExceededFault_,
+        message: str | None = None,
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="BatchModifyClusterSnapshotsLimitExceededFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "BatchModifyClusterSnapshotsLimitExceededFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "BatchModifyClusterSnapshotsLimitExceededFault":
+        return cls(deserialize_query(el), message)

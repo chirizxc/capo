@@ -30,13 +30,13 @@ def serialize_json(value: Validator) -> dict:
 
 def deserialize_json(data: dict) -> Validator:
     out: Validator = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_appconfig.types.validator_type
 
         out["type"] = capo_appconfig.types.validator_type.deserialize_json(data["Type"])
     else:
         raise DeserializationError("Validator.type required")
-    if "Content" in data:
+    if data.get("Content") is not None:
         out["content"] = data["Content"]
     else:
         raise DeserializationError("Validator.content required")

@@ -123,7 +123,7 @@ def serialize_json(value: UpdateFirewallRuleInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateFirewallRuleInput:
     out: UpdateFirewallRuleInput = {}  # type: ignore[typeddict-item]
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_route53globalresolver.types.firewall_rule_action
 
         out["action"] = (
@@ -131,7 +131,7 @@ def deserialize_json(data: dict) -> UpdateFirewallRuleInput:
                 data["action"]
             )
         )
-    if "blockOverrideDnsType" in data:
+    if data.get("blockOverrideDnsType") is not None:
         import capo_route53globalresolver.types.block_override_dns_query_type
 
         out["block_override_dns_type"] = (
@@ -139,11 +139,11 @@ def deserialize_json(data: dict) -> UpdateFirewallRuleInput:
                 data["blockOverrideDnsType"]
             )
         )
-    if "blockOverrideDomain" in data:
+    if data.get("blockOverrideDomain") is not None:
         out["block_override_domain"] = data["blockOverrideDomain"]
-    if "blockOverrideTtl" in data:
+    if data.get("blockOverrideTtl") is not None:
         out["block_override_ttl"] = data["blockOverrideTtl"]
-    if "blockResponse" in data:
+    if data.get("blockResponse") is not None:
         import capo_route53globalresolver.types.firewall_block_response
 
         out["block_response"] = (
@@ -151,11 +151,11 @@ def deserialize_json(data: dict) -> UpdateFirewallRuleInput:
                 data["blockResponse"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError("UpdateFirewallRuleInput.client_token required")
-    if "confidenceThreshold" in data:
+    if data.get("confidenceThreshold") is not None:
         import capo_route53globalresolver.types.confidence_threshold
 
         out["confidence_threshold"] = (
@@ -163,9 +163,9 @@ def deserialize_json(data: dict) -> UpdateFirewallRuleInput:
                 data["confidenceThreshold"]
             )
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "dnsAdvancedProtection" in data:
+    if data.get("dnsAdvancedProtection") is not None:
         import capo_route53globalresolver.types.dns_advanced_protection
 
         out["dns_advanced_protection"] = (
@@ -173,8 +173,8 @@ def deserialize_json(data: dict) -> UpdateFirewallRuleInput:
                 data["dnsAdvancedProtection"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "priority" in data:
+    if data.get("priority") is not None:
         out["priority"] = data["priority"]
     return out

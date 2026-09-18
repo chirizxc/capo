@@ -39,7 +39,7 @@ def serialize_json(value: BatchDeleteFirewallRuleOutput) -> dict:
 
 def deserialize_json(data: dict) -> BatchDeleteFirewallRuleOutput:
     out: BatchDeleteFirewallRuleOutput = {}  # type: ignore[typeddict-item]
-    if "failures" in data:
+    if data.get("failures") is not None:
         import capo_route53globalresolver.types.batch_delete_firewall_rule_output_items
 
         out["failures"] = (
@@ -49,7 +49,7 @@ def deserialize_json(data: dict) -> BatchDeleteFirewallRuleOutput:
         )
     else:
         raise DeserializationError("BatchDeleteFirewallRuleOutput.failures required")
-    if "successes" in data:
+    if data.get("successes") is not None:
         import capo_route53globalresolver.types.batch_delete_firewall_rule_output_items
 
         out["successes"] = (

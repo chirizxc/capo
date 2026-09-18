@@ -78,19 +78,19 @@ def serialize_json(value: Filter) -> dict:
 
 def deserialize_json(data: dict) -> Filter:
     out: Filter = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("Filter.arn required")
-    if "ownerId" in data:
+    if data.get("ownerId") is not None:
         out["owner_id"] = data["ownerId"]
     else:
         raise DeserializationError("Filter.owner_id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("Filter.name required")
-    if "criteria" in data:
+    if data.get("criteria") is not None:
         import capo_inspector2.types.filter_criteria
 
         out["criteria"] = capo_inspector2.types.filter_criteria.deserialize_json(
@@ -98,11 +98,11 @@ def deserialize_json(data: dict) -> Filter:
         )
     else:
         raise DeserializationError("Filter.criteria required")
-    if "action" in data:
+    if data.get("action") is not None:
         out["action"] = data["action"]
     else:
         raise DeserializationError("Filter.action required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_inspector2.types.date_time_timestamp
 
         out["created_at"] = capo_inspector2.types.date_time_timestamp.deserialize_json(
@@ -110,7 +110,7 @@ def deserialize_json(data: dict) -> Filter:
         )
     else:
         raise DeserializationError("Filter.created_at required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_inspector2.types.date_time_timestamp
 
         out["updated_at"] = capo_inspector2.types.date_time_timestamp.deserialize_json(
@@ -118,11 +118,11 @@ def deserialize_json(data: dict) -> Filter:
         )
     else:
         raise DeserializationError("Filter.updated_at required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "reason" in data:
+    if data.get("reason") is not None:
         out["reason"] = data["reason"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_inspector2.types.tag_map
 
         out["tags"] = capo_inspector2.types.tag_map.deserialize_json(data["tags"])

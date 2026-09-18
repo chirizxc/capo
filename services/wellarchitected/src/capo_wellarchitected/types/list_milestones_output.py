@@ -38,9 +38,9 @@ def serialize_json(value: ListMilestonesOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListMilestonesOutput:
     out: ListMilestonesOutput = {}  # type: ignore[typeddict-item]
-    if "WorkloadId" in data:
+    if data.get("WorkloadId") is not None:
         out["workload_id"] = data["WorkloadId"]
-    if "MilestoneSummaries" in data:
+    if data.get("MilestoneSummaries") is not None:
         import capo_wellarchitected.types.milestone_summaries
 
         out["milestone_summaries"] = (
@@ -48,6 +48,6 @@ def deserialize_json(data: dict) -> ListMilestonesOutput:
                 data["MilestoneSummaries"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

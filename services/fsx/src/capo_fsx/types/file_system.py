@@ -210,17 +210,17 @@ def serialize_aws_json_1_1(value: FileSystem) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FileSystem:
     out: FileSystem = {}  # type: ignore[typeddict-item]
-    if "OwnerId" in data:
+    if data.get("OwnerId") is not None:
         out["owner_id"] = data["OwnerId"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_fsx.types.creation_time
 
         out["creation_time"] = capo_fsx.types.creation_time.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "FileSystemId" in data:
+    if data.get("FileSystemId") is not None:
         out["file_system_id"] = data["FileSystemId"]
-    if "FileSystemType" in data:
+    if data.get("FileSystemType") is not None:
         import capo_fsx.types.file_system_type
 
         out["file_system_type"] = (
@@ -228,7 +228,7 @@ def deserialize_aws_json_1_1(data: dict) -> FileSystem:
                 data["FileSystemType"]
             )
         )
-    if "Lifecycle" in data:
+    if data.get("Lifecycle") is not None:
         import capo_fsx.types.file_system_lifecycle
 
         out["lifecycle"] = (
@@ -236,7 +236,7 @@ def deserialize_aws_json_1_1(data: dict) -> FileSystem:
                 data["Lifecycle"]
             )
         )
-    if "FailureDetails" in data:
+    if data.get("FailureDetails") is not None:
         import capo_fsx.types.file_system_failure_details
 
         out["failure_details"] = (
@@ -244,23 +244,23 @@ def deserialize_aws_json_1_1(data: dict) -> FileSystem:
                 data["FailureDetails"]
             )
         )
-    if "StorageCapacity" in data:
+    if data.get("StorageCapacity") is not None:
         out["storage_capacity"] = data["StorageCapacity"]
-    if "StorageType" in data:
+    if data.get("StorageType") is not None:
         import capo_fsx.types.storage_type
 
         out["storage_type"] = capo_fsx.types.storage_type.deserialize_aws_json_1_1(
             data["StorageType"]
         )
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
-    if "SubnetIds" in data:
+    if data.get("SubnetIds") is not None:
         import capo_fsx.types.subnet_ids
 
         out["subnet_ids"] = capo_fsx.types.subnet_ids.deserialize_aws_json_1_1(
             data["SubnetIds"]
         )
-    if "NetworkInterfaceIds" in data:
+    if data.get("NetworkInterfaceIds") is not None:
         import capo_fsx.types.network_interface_ids
 
         out["network_interface_ids"] = (
@@ -268,17 +268,17 @@ def deserialize_aws_json_1_1(data: dict) -> FileSystem:
                 data["NetworkInterfaceIds"]
             )
         )
-    if "DNSName" in data:
+    if data.get("DNSName") is not None:
         out["dns_name"] = data["DNSName"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "ResourceARN" in data:
+    if data.get("ResourceARN") is not None:
         out["resource_arn"] = data["ResourceARN"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_fsx.types.tags
 
         out["tags"] = capo_fsx.types.tags.deserialize_aws_json_1_1(data["Tags"])
-    if "WindowsConfiguration" in data:
+    if data.get("WindowsConfiguration") is not None:
         import capo_fsx.types.windows_file_system_configuration
 
         out["windows_configuration"] = (
@@ -286,7 +286,7 @@ def deserialize_aws_json_1_1(data: dict) -> FileSystem:
                 data["WindowsConfiguration"]
             )
         )
-    if "LustreConfiguration" in data:
+    if data.get("LustreConfiguration") is not None:
         import capo_fsx.types.lustre_file_system_configuration
 
         out["lustre_configuration"] = (
@@ -294,7 +294,7 @@ def deserialize_aws_json_1_1(data: dict) -> FileSystem:
                 data["LustreConfiguration"]
             )
         )
-    if "AdministrativeActions" in data:
+    if data.get("AdministrativeActions") is not None:
         import capo_fsx.types.administrative_actions
 
         out["administrative_actions"] = (
@@ -302,7 +302,7 @@ def deserialize_aws_json_1_1(data: dict) -> FileSystem:
                 data["AdministrativeActions"]
             )
         )
-    if "OntapConfiguration" in data:
+    if data.get("OntapConfiguration") is not None:
         import capo_fsx.types.ontap_file_system_configuration
 
         out["ontap_configuration"] = (
@@ -310,9 +310,9 @@ def deserialize_aws_json_1_1(data: dict) -> FileSystem:
                 data["OntapConfiguration"]
             )
         )
-    if "FileSystemTypeVersion" in data:
+    if data.get("FileSystemTypeVersion") is not None:
         out["file_system_type_version"] = data["FileSystemTypeVersion"]
-    if "OpenZFSConfiguration" in data:
+    if data.get("OpenZFSConfiguration") is not None:
         import capo_fsx.types.open_zfs_file_system_configuration
 
         out["open_zfs_configuration"] = (
@@ -320,7 +320,7 @@ def deserialize_aws_json_1_1(data: dict) -> FileSystem:
                 data["OpenZFSConfiguration"]
             )
         )
-    if "NetworkType" in data:
+    if data.get("NetworkType") is not None:
         import capo_fsx.types.network_type
 
         out["network_type"] = capo_fsx.types.network_type.deserialize_aws_json_1_1(

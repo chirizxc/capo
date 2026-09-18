@@ -33,10 +33,10 @@ def serialize_aws_json_1_0(value: ListConnectionsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListConnectionsRequest:
     out: ListConnectionsRequest = {}  # type: ignore[typeddict-item]
-    if "ConnectionName" in data:
+    if data.get("ConnectionName") is not None:
         out["connection_name"] = data["ConnectionName"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -118,7 +118,7 @@ def serialize_json(value: ElasticsearchClusterConfig) -> dict:
 
 def deserialize_json(data: dict) -> ElasticsearchClusterConfig:
     out: ElasticsearchClusterConfig = {}  # type: ignore[typeddict-item]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         import capo_elasticsearch_service.types.es_partition_instance_type
 
         out["instance_type"] = (
@@ -126,13 +126,13 @@ def deserialize_json(data: dict) -> ElasticsearchClusterConfig:
                 data["InstanceType"]
             )
         )
-    if "InstanceCount" in data:
+    if data.get("InstanceCount") is not None:
         out["instance_count"] = data["InstanceCount"]
-    if "DedicatedMasterEnabled" in data:
+    if data.get("DedicatedMasterEnabled") is not None:
         out["dedicated_master_enabled"] = data["DedicatedMasterEnabled"]
-    if "ZoneAwarenessEnabled" in data:
+    if data.get("ZoneAwarenessEnabled") is not None:
         out["zone_awareness_enabled"] = data["ZoneAwarenessEnabled"]
-    if "ZoneAwarenessConfig" in data:
+    if data.get("ZoneAwarenessConfig") is not None:
         import capo_elasticsearch_service.types.zone_awareness_config
 
         out["zone_awareness_config"] = (
@@ -140,7 +140,7 @@ def deserialize_json(data: dict) -> ElasticsearchClusterConfig:
                 data["ZoneAwarenessConfig"]
             )
         )
-    if "DedicatedMasterType" in data:
+    if data.get("DedicatedMasterType") is not None:
         import capo_elasticsearch_service.types.es_partition_instance_type
 
         out["dedicated_master_type"] = (
@@ -148,11 +148,11 @@ def deserialize_json(data: dict) -> ElasticsearchClusterConfig:
                 data["DedicatedMasterType"]
             )
         )
-    if "DedicatedMasterCount" in data:
+    if data.get("DedicatedMasterCount") is not None:
         out["dedicated_master_count"] = data["DedicatedMasterCount"]
-    if "WarmEnabled" in data:
+    if data.get("WarmEnabled") is not None:
         out["warm_enabled"] = data["WarmEnabled"]
-    if "WarmType" in data:
+    if data.get("WarmType") is not None:
         import capo_elasticsearch_service.types.es_warm_partition_instance_type
 
         out["warm_type"] = (
@@ -160,9 +160,9 @@ def deserialize_json(data: dict) -> ElasticsearchClusterConfig:
                 data["WarmType"]
             )
         )
-    if "WarmCount" in data:
+    if data.get("WarmCount") is not None:
         out["warm_count"] = data["WarmCount"]
-    if "ColdStorageOptions" in data:
+    if data.get("ColdStorageOptions") is not None:
         import capo_elasticsearch_service.types.cold_storage_options
 
         out["cold_storage_options"] = (

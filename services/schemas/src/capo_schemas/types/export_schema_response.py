@@ -34,14 +34,14 @@ def serialize_json(value: ExportSchemaResponse) -> dict:
 
 def deserialize_json(data: dict) -> ExportSchemaResponse:
     out: ExportSchemaResponse = {}  # type: ignore[typeddict-item]
-    if "Content" in data:
+    if data.get("Content") is not None:
         out["content"] = data["Content"]
-    if "SchemaArn" in data:
+    if data.get("SchemaArn") is not None:
         out["schema_arn"] = data["SchemaArn"]
-    if "SchemaName" in data:
+    if data.get("SchemaName") is not None:
         out["schema_name"] = data["SchemaName"]
-    if "SchemaVersion" in data:
+    if data.get("SchemaVersion") is not None:
         out["schema_version"] = data["SchemaVersion"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     return out

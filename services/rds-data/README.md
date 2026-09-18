@@ -13,9 +13,9 @@ from capo_rds_data import AsyncRDSDataClient
 
 
 async def main():
-    async with AsyncRDSDataClient() as s3:
+    async with AsyncRDSDataClient() as rds_data:
         # Example: call the batch_execute_statement operation
-        response = await s3.batch_execute_statement()
+        response = await rds_data.batch_execute_statement()
         print(response["update_results"])
 ```
 
@@ -29,9 +29,9 @@ from capo_rds_data.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncRDSDataClient() as s3:
+    async with AsyncRDSDataClient() as rds_data:
         try:
-            await s3.batch_execute_statement()
+            await rds_data.batch_execute_statement()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_rds_data import AsyncRDSDataClient
 
 
 async def main():
-    async with AsyncRDSDataClient() as s3:
+    async with AsyncRDSDataClient() as rds_data:
         # Default: 3 attempts for every operation
-        response = await s3.batch_execute_statement()
+        response = await rds_data.batch_execute_statement()
 
         # Override per operation
-        response = await s3.batch_execute_statement(config_overrides={"retry_max_attempts": 5})
+        response = await rds_data.batch_execute_statement(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.batch_execute_statement(config_overrides={"retry_max_attempts": 1})
+        response = await rds_data.batch_execute_statement(config_overrides={"retry_max_attempts": 1})
 ```

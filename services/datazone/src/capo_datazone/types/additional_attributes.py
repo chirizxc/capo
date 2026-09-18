@@ -27,7 +27,7 @@ def serialize_json(value: AdditionalAttributes) -> dict:
 
 def deserialize_json(data: dict) -> AdditionalAttributes:
     out: AdditionalAttributes = {}  # type: ignore[typeddict-item]
-    if "formNames" in data:
+    if data.get("formNames") is not None:
         import capo_datazone.types.form_name_list
 
         out["form_names"] = capo_datazone.types.form_name_list.deserialize_json(

@@ -31,9 +31,9 @@ def serialize_json(value: EnvironmentConfig) -> dict:
 
 def deserialize_json(data: dict) -> EnvironmentConfig:
     out: EnvironmentConfig = {}  # type: ignore[typeddict-item]
-    if "imageVersion" in data:
+    if data.get("imageVersion") is not None:
         out["image_version"] = data["imageVersion"]
-    if "packageConfig" in data:
+    if data.get("packageConfig") is not None:
         import capo_datazone.types.package_config
 
         out["package_config"] = capo_datazone.types.package_config.deserialize_json(

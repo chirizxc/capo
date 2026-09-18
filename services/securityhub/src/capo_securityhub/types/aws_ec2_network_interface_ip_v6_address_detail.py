@@ -23,6 +23,6 @@ def serialize_json(value: AwsEc2NetworkInterfaceIpV6AddressDetail) -> dict:
 
 def deserialize_json(data: dict) -> AwsEc2NetworkInterfaceIpV6AddressDetail:
     out: AwsEc2NetworkInterfaceIpV6AddressDetail = {}  # type: ignore[typeddict-item]
-    if "IpV6Address" in data:
+    if data.get("IpV6Address") is not None:
         out["ip_v6_address"] = data["IpV6Address"]
     return out

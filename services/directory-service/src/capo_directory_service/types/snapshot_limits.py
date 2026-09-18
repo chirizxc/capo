@@ -35,11 +35,11 @@ def serialize_aws_json_1_1(value: SnapshotLimits) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SnapshotLimits:
     out: SnapshotLimits = {}  # type: ignore[typeddict-item]
-    if "ManualSnapshotsLimit" in data:
+    if data.get("ManualSnapshotsLimit") is not None:
         out["manual_snapshots_limit"] = data["ManualSnapshotsLimit"]
-    if "ManualSnapshotsCurrentCount" in data:
+    if data.get("ManualSnapshotsCurrentCount") is not None:
         out["manual_snapshots_current_count"] = data["ManualSnapshotsCurrentCount"]
-    if "ManualSnapshotsLimitReached" in data:
+    if data.get("ManualSnapshotsLimitReached") is not None:
         out["manual_snapshots_limit_reached"] = data["ManualSnapshotsLimitReached"]
     else:
         out["manual_snapshots_limit_reached"] = False

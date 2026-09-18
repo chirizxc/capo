@@ -13,9 +13,9 @@ from capo_billingconductor import AsyncbillingconductorClient
 
 
 async def main():
-    async with AsyncbillingconductorClient() as s3:
+    async with AsyncbillingconductorClient() as billingconductor:
         # Example: call the get_billing_group_cost_report operation
-        response = await s3.get_billing_group_cost_report()
+        response = await billingconductor.get_billing_group_cost_report()
         print(response["billing_group_cost_report_results"])
 ```
 
@@ -28,9 +28,9 @@ from capo_billingconductor import AsyncbillingconductorClient
 
 
 async def main():
-    async with AsyncbillingconductorClient() as s3:
+    async with AsyncbillingconductorClient() as billingconductor:
         # Example: paginate over get_billing_group_cost_report
-        async for item in s3.iter_get_billing_group_cost_report():
+        async for item in billingconductor.iter_get_billing_group_cost_report():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_billingconductor.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncbillingconductorClient() as s3:
+    async with AsyncbillingconductorClient() as billingconductor:
         try:
-            await s3.get_billing_group_cost_report()
+            await billingconductor.get_billing_group_cost_report()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_billingconductor import AsyncbillingconductorClient
 
 
 async def main():
-    async with AsyncbillingconductorClient() as s3:
+    async with AsyncbillingconductorClient() as billingconductor:
         # Default: 3 attempts for every operation
-        response = await s3.get_billing_group_cost_report()
+        response = await billingconductor.get_billing_group_cost_report()
 
         # Override per operation
-        response = await s3.get_billing_group_cost_report(config_overrides={"retry_max_attempts": 5})
+        response = await billingconductor.get_billing_group_cost_report(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.get_billing_group_cost_report(config_overrides={"retry_max_attempts": 1})
+        response = await billingconductor.get_billing_group_cost_report(config_overrides={"retry_max_attempts": 1})
 ```

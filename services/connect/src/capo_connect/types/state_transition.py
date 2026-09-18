@@ -44,19 +44,19 @@ def serialize_json(value: StateTransition) -> dict:
 
 def deserialize_json(data: dict) -> StateTransition:
     out: StateTransition = {}  # type: ignore[typeddict-item]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_connect.types.participant_state
 
         out["state"] = capo_connect.types.participant_state.deserialize_json(
             data["State"]
         )
-    if "StateStartTimestamp" in data:
+    if data.get("StateStartTimestamp") is not None:
         import capo_connect.types.timestamp
 
         out["state_start_timestamp"] = capo_connect.types.timestamp.deserialize_json(
             data["StateStartTimestamp"]
         )
-    if "StateEndTimestamp" in data:
+    if data.get("StateEndTimestamp") is not None:
         import capo_connect.types.timestamp
 
         out["state_end_timestamp"] = capo_connect.types.timestamp.deserialize_json(

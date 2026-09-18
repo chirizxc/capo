@@ -30,13 +30,13 @@ def serialize_json(value: ConditionalFormattingGradientColor) -> dict:
 
 def deserialize_json(data: dict) -> ConditionalFormattingGradientColor:
     out: ConditionalFormattingGradientColor = {}  # type: ignore[typeddict-item]
-    if "Expression" in data:
+    if data.get("Expression") is not None:
         out["expression"] = data["Expression"]
     else:
         raise DeserializationError(
             "ConditionalFormattingGradientColor.expression required"
         )
-    if "Color" in data:
+    if data.get("Color") is not None:
         import capo_quicksight.types.gradient_color
 
         out["color"] = capo_quicksight.types.gradient_color.deserialize_json(

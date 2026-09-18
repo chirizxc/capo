@@ -68,7 +68,7 @@ def serialize_json(value: SankeyDiagramChartConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SankeyDiagramChartConfiguration:
     out: SankeyDiagramChartConfiguration = {}  # type: ignore[typeddict-item]
-    if "FieldWells" in data:
+    if data.get("FieldWells") is not None:
         import capo_quicksight.types.sankey_diagram_field_wells
 
         out["field_wells"] = (
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> SankeyDiagramChartConfiguration:
                 data["FieldWells"]
             )
         )
-    if "SortConfiguration" in data:
+    if data.get("SortConfiguration") is not None:
         import capo_quicksight.types.sankey_diagram_sort_configuration
 
         out["sort_configuration"] = (
@@ -84,13 +84,13 @@ def deserialize_json(data: dict) -> SankeyDiagramChartConfiguration:
                 data["SortConfiguration"]
             )
         )
-    if "DataLabels" in data:
+    if data.get("DataLabels") is not None:
         import capo_quicksight.types.data_label_options
 
         out["data_labels"] = capo_quicksight.types.data_label_options.deserialize_json(
             data["DataLabels"]
         )
-    if "Interactions" in data:
+    if data.get("Interactions") is not None:
         import capo_quicksight.types.visual_interaction_options
 
         out["interactions"] = (

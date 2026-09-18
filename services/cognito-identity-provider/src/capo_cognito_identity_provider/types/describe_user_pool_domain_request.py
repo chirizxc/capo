@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DescribeUserPoolDomainRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeUserPoolDomainRequest:
     out: DescribeUserPoolDomainRequest = {}  # type: ignore[typeddict-item]
-    if "Domain" in data:
+    if data.get("Domain") is not None:
         out["domain"] = data["Domain"]
     else:
         raise DeserializationError("DescribeUserPoolDomainRequest.domain required")

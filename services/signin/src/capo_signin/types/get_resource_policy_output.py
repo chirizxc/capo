@@ -32,7 +32,7 @@ def serialize_json(value: GetResourcePolicyOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetResourcePolicyOutput:
     out: GetResourcePolicyOutput = {}  # type: ignore[typeddict-item]
-    if "signinResourceBasedPolicy" in data:
+    if data.get("signinResourceBasedPolicy") is not None:
         import capo_signin.types.signin_resource_based_policy
 
         out["signin_resource_based_policy"] = (

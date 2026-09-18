@@ -270,8 +270,9 @@ class KinesisVideoClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis_video.types.create_signaling_channel_input.CreateSignalingChannelInput = {}  # type: ignore[typeddict-item]
-        input_["channel_name"] = channel_name
+        input_: capo_kinesis_video.types.create_signaling_channel_input.CreateSignalingChannelInput = {
+            "channel_name": channel_name
+        }
         if channel_type is not None:
             input_["channel_type"] = channel_type
         if single_master_configuration is not None:
@@ -284,6 +285,7 @@ class KinesisVideoClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_stream(
@@ -339,10 +341,11 @@ class KinesisVideoClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis_video.types.create_stream_input.CreateStreamInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis_video.types.create_stream_input.CreateStreamInput = {
+            "stream_name": stream_name
+        }
         if device_name is not None:
             input_["device_name"] = device_name
-        input_["stream_name"] = stream_name
         if media_type is not None:
             input_["media_type"] = media_type
         if kms_key_id is not None:
@@ -359,6 +362,7 @@ class KinesisVideoClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_edge_configuration(
@@ -400,7 +404,7 @@ class KinesisVideoClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis_video.types.delete_edge_configuration_input.DeleteEdgeConfigurationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis_video.types.delete_edge_configuration_input.DeleteEdgeConfigurationInput = {}
         if stream_name is not None:
             input_["stream_name"] = stream_name
         if stream_arn is not None:
@@ -411,6 +415,7 @@ class KinesisVideoClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_signaling_channel(
@@ -451,8 +456,9 @@ class KinesisVideoClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis_video.types.delete_signaling_channel_input.DeleteSignalingChannelInput = {}  # type: ignore[typeddict-item]
-        input_["channel_arn"] = channel_arn
+        input_: capo_kinesis_video.types.delete_signaling_channel_input.DeleteSignalingChannelInput = {
+            "channel_arn": channel_arn
+        }
         if current_version is not None:
             input_["current_version"] = current_version
 
@@ -461,6 +467,7 @@ class KinesisVideoClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_stream(
@@ -501,8 +508,9 @@ class KinesisVideoClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis_video.types.delete_stream_input.DeleteStreamInput = {}  # type: ignore[typeddict-item]
-        input_["stream_arn"] = stream_arn
+        input_: capo_kinesis_video.types.delete_stream_input.DeleteStreamInput = {
+            "stream_arn": stream_arn
+        }
         if current_version is not None:
             input_["current_version"] = current_version
 
@@ -511,6 +519,7 @@ class KinesisVideoClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_edge_configuration(
@@ -552,7 +561,7 @@ class KinesisVideoClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis_video.types.describe_edge_configuration_input.DescribeEdgeConfigurationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis_video.types.describe_edge_configuration_input.DescribeEdgeConfigurationInput = {}
         if stream_name is not None:
             input_["stream_name"] = stream_name
         if stream_arn is not None:
@@ -563,6 +572,7 @@ class KinesisVideoClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_image_generation_configuration(
@@ -603,7 +613,7 @@ class KinesisVideoClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis_video.types.describe_image_generation_configuration_input.DescribeImageGenerationConfigurationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis_video.types.describe_image_generation_configuration_input.DescribeImageGenerationConfigurationInput = {}
         if stream_name is not None:
             input_["stream_name"] = stream_name
         if stream_arn is not None:
@@ -614,6 +624,7 @@ class KinesisVideoClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_mapped_resource_configuration(
@@ -660,7 +671,7 @@ class KinesisVideoClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis_video.types.describe_mapped_resource_configuration_input.DescribeMappedResourceConfigurationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis_video.types.describe_mapped_resource_configuration_input.DescribeMappedResourceConfigurationInput = {}
         if stream_name is not None:
             input_["stream_name"] = stream_name
         if stream_arn is not None:
@@ -675,6 +686,7 @@ class KinesisVideoClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_mapped_resource_configuration(
@@ -746,7 +758,7 @@ class KinesisVideoClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis_video.types.describe_media_storage_configuration_input.DescribeMediaStorageConfigurationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis_video.types.describe_media_storage_configuration_input.DescribeMediaStorageConfigurationInput = {}
         if channel_name is not None:
             input_["channel_name"] = channel_name
         if channel_arn is not None:
@@ -757,6 +769,7 @@ class KinesisVideoClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_notification_configuration(
@@ -797,7 +810,7 @@ class KinesisVideoClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis_video.types.describe_notification_configuration_input.DescribeNotificationConfigurationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis_video.types.describe_notification_configuration_input.DescribeNotificationConfigurationInput = {}
         if stream_name is not None:
             input_["stream_name"] = stream_name
         if stream_arn is not None:
@@ -808,6 +821,7 @@ class KinesisVideoClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_signaling_channel(
@@ -850,7 +864,7 @@ class KinesisVideoClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis_video.types.describe_signaling_channel_input.DescribeSignalingChannelInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis_video.types.describe_signaling_channel_input.DescribeSignalingChannelInput = {}
         if channel_name is not None:
             input_["channel_name"] = channel_name
         if channel_arn is not None:
@@ -861,6 +875,7 @@ class KinesisVideoClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_stream(
@@ -901,7 +916,7 @@ class KinesisVideoClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis_video.types.describe_stream_input.DescribeStreamInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis_video.types.describe_stream_input.DescribeStreamInput = {}
         if stream_name is not None:
             input_["stream_name"] = stream_name
         if stream_arn is not None:
@@ -912,6 +927,7 @@ class KinesisVideoClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_stream_storage_configuration(
@@ -952,7 +968,7 @@ class KinesisVideoClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis_video.types.describe_stream_storage_configuration_input.DescribeStreamStorageConfigurationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis_video.types.describe_stream_storage_configuration_input.DescribeStreamStorageConfigurationInput = {}
         if stream_name is not None:
             input_["stream_name"] = stream_name
         if stream_arn is not None:
@@ -963,6 +979,7 @@ class KinesisVideoClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_data_endpoint(
@@ -1005,18 +1022,20 @@ class KinesisVideoClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis_video.types.get_data_endpoint_input.GetDataEndpointInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis_video.types.get_data_endpoint_input.GetDataEndpointInput = {
+            "api_name": api_name
+        }
         if stream_name is not None:
             input_["stream_name"] = stream_name
         if stream_arn is not None:
             input_["stream_arn"] = stream_arn
-        input_["api_name"] = api_name
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_signaling_channel_endpoint(
@@ -1058,8 +1077,9 @@ class KinesisVideoClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis_video.types.get_signaling_channel_endpoint_input.GetSignalingChannelEndpointInput = {}  # type: ignore[typeddict-item]
-        input_["channel_arn"] = channel_arn
+        input_: capo_kinesis_video.types.get_signaling_channel_endpoint_input.GetSignalingChannelEndpointInput = {
+            "channel_arn": channel_arn
+        }
         if single_master_channel_endpoint_configuration is not None:
             input_["single_master_channel_endpoint_configuration"] = (
                 single_master_channel_endpoint_configuration
@@ -1070,6 +1090,7 @@ class KinesisVideoClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_edge_agent_configurations(
@@ -1111,8 +1132,9 @@ class KinesisVideoClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis_video.types.list_edge_agent_configurations_input.ListEdgeAgentConfigurationsInput = {}  # type: ignore[typeddict-item]
-        input_["hub_device_arn"] = hub_device_arn
+        input_: capo_kinesis_video.types.list_edge_agent_configurations_input.ListEdgeAgentConfigurationsInput = {
+            "hub_device_arn": hub_device_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1123,6 +1145,7 @@ class KinesisVideoClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_edge_agent_configurations(
@@ -1191,7 +1214,7 @@ class KinesisVideoClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis_video.types.list_signaling_channels_input.ListSignalingChannelsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis_video.types.list_signaling_channels_input.ListSignalingChannelsInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1204,6 +1227,7 @@ class KinesisVideoClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_signaling_channels(
@@ -1273,7 +1297,7 @@ class KinesisVideoClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis_video.types.list_streams_input.ListStreamsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis_video.types.list_streams_input.ListStreamsInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1286,6 +1310,7 @@ class KinesisVideoClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_streams(
@@ -1351,16 +1376,18 @@ class KinesisVideoClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis_video.types.list_tags_for_resource_input.ListTagsForResourceInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis_video.types.list_tags_for_resource_input.ListTagsForResourceInput = {
+            "resource_arn": resource_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["resource_arn"] = resource_arn
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_tags_for_stream(
@@ -1404,7 +1431,7 @@ class KinesisVideoClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis_video.types.list_tags_for_stream_input.ListTagsForStreamInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis_video.types.list_tags_for_stream_input.ListTagsForStreamInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if stream_arn is not None:
@@ -1417,6 +1444,7 @@ class KinesisVideoClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_edge_configuration_update(
@@ -1461,18 +1489,20 @@ class KinesisVideoClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis_video.types.start_edge_configuration_update_input.StartEdgeConfigurationUpdateInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis_video.types.start_edge_configuration_update_input.StartEdgeConfigurationUpdateInput = {
+            "edge_config": edge_config
+        }
         if stream_name is not None:
             input_["stream_name"] = stream_name
         if stream_arn is not None:
             input_["stream_arn"] = stream_arn
-        input_["edge_config"] = edge_config
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -1512,15 +1542,17 @@ class KinesisVideoClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis_video.types.tag_resource_input.TagResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_kinesis_video.types.tag_resource_input.TagResourceInput = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_stream(
@@ -1565,18 +1597,20 @@ class KinesisVideoClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis_video.types.tag_stream_input.TagStreamInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis_video.types.tag_stream_input.TagStreamInput = {
+            "tags": tags
+        }
         if stream_arn is not None:
             input_["stream_arn"] = stream_arn
         if stream_name is not None:
             input_["stream_name"] = stream_name
-        input_["tags"] = tags
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -1615,15 +1649,17 @@ class KinesisVideoClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis_video.types.untag_resource_input.UntagResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_key_list"] = tag_key_list
+        input_: capo_kinesis_video.types.untag_resource_input.UntagResourceInput = {
+            "resource_arn": resource_arn,
+            "tag_key_list": tag_key_list,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_stream(
@@ -1667,18 +1703,20 @@ class KinesisVideoClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis_video.types.untag_stream_input.UntagStreamInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis_video.types.untag_stream_input.UntagStreamInput = {
+            "tag_key_list": tag_key_list
+        }
         if stream_arn is not None:
             input_["stream_arn"] = stream_arn
         if stream_name is not None:
             input_["stream_name"] = stream_name
-        input_["tag_key_list"] = tag_key_list
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_data_retention(
@@ -1727,20 +1765,22 @@ class KinesisVideoClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis_video.types.update_data_retention_input.UpdateDataRetentionInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis_video.types.update_data_retention_input.UpdateDataRetentionInput = {
+            "current_version": current_version,
+            "operation": operation,
+            "data_retention_change_in_hours": data_retention_change_in_hours,
+        }
         if stream_name is not None:
             input_["stream_name"] = stream_name
         if stream_arn is not None:
             input_["stream_arn"] = stream_arn
-        input_["current_version"] = current_version
-        input_["operation"] = operation
-        input_["data_retention_change_in_hours"] = data_retention_change_in_hours
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_image_generation_configuration(
@@ -1787,7 +1827,7 @@ class KinesisVideoClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis_video.types.update_image_generation_configuration_input.UpdateImageGenerationConfigurationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis_video.types.update_image_generation_configuration_input.UpdateImageGenerationConfigurationInput = {}
         if stream_name is not None:
             input_["stream_name"] = stream_name
         if stream_arn is not None:
@@ -1800,6 +1840,7 @@ class KinesisVideoClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_media_storage_configuration(
@@ -1840,15 +1881,17 @@ class KinesisVideoClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis_video.types.update_media_storage_configuration_input.UpdateMediaStorageConfigurationInput = {}  # type: ignore[typeddict-item]
-        input_["channel_arn"] = channel_arn
-        input_["media_storage_configuration"] = media_storage_configuration
+        input_: capo_kinesis_video.types.update_media_storage_configuration_input.UpdateMediaStorageConfigurationInput = {
+            "channel_arn": channel_arn,
+            "media_storage_configuration": media_storage_configuration,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_notification_configuration(
@@ -1895,7 +1938,7 @@ class KinesisVideoClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis_video.types.update_notification_configuration_input.UpdateNotificationConfigurationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis_video.types.update_notification_configuration_input.UpdateNotificationConfigurationInput = {}
         if stream_name is not None:
             input_["stream_name"] = stream_name
         if stream_arn is not None:
@@ -1908,6 +1951,7 @@ class KinesisVideoClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_signaling_channel(
@@ -1952,9 +1996,10 @@ class KinesisVideoClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis_video.types.update_signaling_channel_input.UpdateSignalingChannelInput = {}  # type: ignore[typeddict-item]
-        input_["channel_arn"] = channel_arn
-        input_["current_version"] = current_version
+        input_: capo_kinesis_video.types.update_signaling_channel_input.UpdateSignalingChannelInput = {
+            "channel_arn": channel_arn,
+            "current_version": current_version,
+        }
         if single_master_configuration is not None:
             input_["single_master_configuration"] = single_master_configuration
 
@@ -1963,6 +2008,7 @@ class KinesisVideoClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_stream(
@@ -2011,12 +2057,13 @@ class KinesisVideoClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis_video.types.update_stream_input.UpdateStreamInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis_video.types.update_stream_input.UpdateStreamInput = {
+            "current_version": current_version
+        }
         if stream_name is not None:
             input_["stream_name"] = stream_name
         if stream_arn is not None:
             input_["stream_arn"] = stream_arn
-        input_["current_version"] = current_version
         if device_name is not None:
             input_["device_name"] = device_name
         if media_type is not None:
@@ -2027,6 +2074,7 @@ class KinesisVideoClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_stream_storage_configuration(
@@ -2073,19 +2121,21 @@ class KinesisVideoClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis_video.types.update_stream_storage_configuration_input.UpdateStreamStorageConfigurationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis_video.types.update_stream_storage_configuration_input.UpdateStreamStorageConfigurationInput = {
+            "current_version": current_version,
+            "stream_storage_configuration": stream_storage_configuration,
+        }
         if stream_name is not None:
             input_["stream_name"] = stream_name
         if stream_arn is not None:
             input_["stream_arn"] = stream_arn
-        input_["current_version"] = current_version
-        input_["stream_storage_configuration"] = stream_storage_configuration
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

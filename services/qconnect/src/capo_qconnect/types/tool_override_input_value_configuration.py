@@ -36,7 +36,7 @@ def serialize_json(value: ToolOverrideInputValueConfiguration) -> dict:
 
 
 def deserialize_json(data: dict) -> ToolOverrideInputValueConfiguration:
-    if "constant" in data:
+    if data.get("constant") is not None:
         import capo_qconnect.types.tool_override_constant_input_value
 
         return {

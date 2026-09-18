@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: DiskMap) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DiskMap:
     out: DiskMap = {}  # type: ignore[typeddict-item]
-    if "originalDiskPath" in data:
+    if data.get("originalDiskPath") is not None:
         out["original_disk_path"] = data["originalDiskPath"]
-    if "newDiskName" in data:
+    if data.get("newDiskName") is not None:
         out["new_disk_name"] = data["newDiskName"]
     return out

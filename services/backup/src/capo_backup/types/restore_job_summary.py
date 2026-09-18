@@ -61,29 +61,29 @@ def serialize_json(value: RestoreJobSummary) -> dict:
 
 def deserialize_json(data: dict) -> RestoreJobSummary:
     out: RestoreJobSummary = {}  # type: ignore[typeddict-item]
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_backup.types.restore_job_state
 
         out["state"] = capo_backup.types.restore_job_state.deserialize_json(
             data["State"]
         )
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
-    if "Count" in data:
+    if data.get("Count") is not None:
         out["count"] = data["Count"]
     else:
         out["count"] = 0
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_backup.types.timestamp
 
         out["start_time"] = capo_backup.types.timestamp.deserialize_json(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_backup.types.timestamp
 
         out["end_time"] = capo_backup.types.timestamp.deserialize_json(data["EndTime"])

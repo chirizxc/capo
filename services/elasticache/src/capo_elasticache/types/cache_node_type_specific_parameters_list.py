@@ -20,6 +20,9 @@ def serialize_query(
 ) -> None:
     import capo_elasticache.types.cache_node_type_specific_parameter
 
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         capo_elasticache.types.cache_node_type_specific_parameter.serialize_query(
             item, pairs, f"{prefix}.CacheNodeTypeSpecificParameter.{n}"
@@ -46,6 +49,9 @@ def serialize_query_flat(
 ) -> None:
     import capo_elasticache.types.cache_node_type_specific_parameter
 
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         capo_elasticache.types.cache_node_type_specific_parameter.serialize_query(
             item, pairs, f"{prefix}.{n}"

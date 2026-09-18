@@ -92,7 +92,7 @@ def serialize_aws_json_1_1(value: AutoMLProblemTypeConfig) -> dict:
 
 
 def deserialize_aws_json_1_1(data: dict) -> AutoMLProblemTypeConfig:
-    if "ImageClassificationJobConfig" in data:
+    if data.get("ImageClassificationJobConfig") is not None:
         import capo_sagemaker.types.image_classification_job_config
 
         return {
@@ -100,7 +100,7 @@ def deserialize_aws_json_1_1(data: dict) -> AutoMLProblemTypeConfig:
                 data["ImageClassificationJobConfig"]
             )
         }
-    elif "TextClassificationJobConfig" in data:
+    elif data.get("TextClassificationJobConfig") is not None:
         import capo_sagemaker.types.text_classification_job_config
 
         return {
@@ -108,7 +108,7 @@ def deserialize_aws_json_1_1(data: dict) -> AutoMLProblemTypeConfig:
                 data["TextClassificationJobConfig"]
             )
         }
-    elif "TimeSeriesForecastingJobConfig" in data:
+    elif data.get("TimeSeriesForecastingJobConfig") is not None:
         import capo_sagemaker.types.time_series_forecasting_job_config
 
         return {
@@ -116,7 +116,7 @@ def deserialize_aws_json_1_1(data: dict) -> AutoMLProblemTypeConfig:
                 data["TimeSeriesForecastingJobConfig"]
             )
         }
-    elif "TabularJobConfig" in data:
+    elif data.get("TabularJobConfig") is not None:
         import capo_sagemaker.types.tabular_job_config
 
         return {
@@ -124,7 +124,7 @@ def deserialize_aws_json_1_1(data: dict) -> AutoMLProblemTypeConfig:
                 data["TabularJobConfig"]
             )
         }
-    elif "TextGenerationJobConfig" in data:
+    elif data.get("TextGenerationJobConfig") is not None:
         import capo_sagemaker.types.text_generation_job_config
 
         return {

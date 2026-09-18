@@ -55,22 +55,22 @@ def serialize_aws_json_1_0(value: ReceiverAddress) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ReceiverAddress:
     out: ReceiverAddress = {}  # type: ignore[typeddict-item]
-    if "AddressLine1" in data:
+    if data.get("AddressLine1") is not None:
         out["address_line1"] = data["AddressLine1"]
-    if "AddressLine2" in data:
+    if data.get("AddressLine2") is not None:
         out["address_line2"] = data["AddressLine2"]
-    if "AddressLine3" in data:
+    if data.get("AddressLine3") is not None:
         out["address_line3"] = data["AddressLine3"]
-    if "DistrictOrCounty" in data:
+    if data.get("DistrictOrCounty") is not None:
         out["district_or_county"] = data["DistrictOrCounty"]
-    if "City" in data:
+    if data.get("City") is not None:
         out["city"] = data["City"]
-    if "StateOrRegion" in data:
+    if data.get("StateOrRegion") is not None:
         out["state_or_region"] = data["StateOrRegion"]
-    if "CountryCode" in data:
+    if data.get("CountryCode") is not None:
         out["country_code"] = data["CountryCode"]
-    if "CompanyName" in data:
+    if data.get("CompanyName") is not None:
         out["company_name"] = data["CompanyName"]
-    if "PostalCode" in data:
+    if data.get("PostalCode") is not None:
         out["postal_code"] = data["PostalCode"]
     return out

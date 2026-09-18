@@ -43,7 +43,7 @@ def serialize_json(value: GeospatialMapState) -> dict:
 
 def deserialize_json(data: dict) -> GeospatialMapState:
     out: GeospatialMapState = {}  # type: ignore[typeddict-item]
-    if "Bounds" in data:
+    if data.get("Bounds") is not None:
         import capo_quicksight.types.geospatial_coordinate_bounds
 
         out["bounds"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> GeospatialMapState:
                 data["Bounds"]
             )
         )
-    if "MapNavigation" in data:
+    if data.get("MapNavigation") is not None:
         import capo_quicksight.types.geospatial_map_navigation
 
         out["map_navigation"] = (

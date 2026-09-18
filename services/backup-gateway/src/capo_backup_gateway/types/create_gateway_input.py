@@ -41,19 +41,19 @@ def serialize_aws_json_1_0(value: CreateGatewayInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateGatewayInput:
     out: CreateGatewayInput = {}  # type: ignore[typeddict-item]
-    if "ActivationKey" in data:
+    if data.get("ActivationKey") is not None:
         out["activation_key"] = data["ActivationKey"]
     else:
         raise DeserializationError("CreateGatewayInput.activation_key required")
-    if "GatewayDisplayName" in data:
+    if data.get("GatewayDisplayName") is not None:
         out["gateway_display_name"] = data["GatewayDisplayName"]
     else:
         raise DeserializationError("CreateGatewayInput.gateway_display_name required")
-    if "GatewayType" in data:
+    if data.get("GatewayType") is not None:
         out["gateway_type"] = data["GatewayType"]
     else:
         raise DeserializationError("CreateGatewayInput.gateway_type required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_backup_gateway.types.tags
 
         out["tags"] = capo_backup_gateway.types.tags.deserialize_aws_json_1_0(

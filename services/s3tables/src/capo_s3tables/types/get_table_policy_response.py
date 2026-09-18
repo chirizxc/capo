@@ -24,7 +24,7 @@ def serialize_json(value: GetTablePolicyResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetTablePolicyResponse:
     out: GetTablePolicyResponse = {}  # type: ignore[typeddict-item]
-    if "resourcePolicy" in data:
+    if data.get("resourcePolicy") is not None:
         out["resource_policy"] = data["resourcePolicy"]
     else:
         raise DeserializationError("GetTablePolicyResponse.resource_policy required")

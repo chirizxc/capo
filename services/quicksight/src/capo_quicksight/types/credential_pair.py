@@ -41,15 +41,15 @@ def serialize_json(value: CredentialPair) -> dict:
 
 def deserialize_json(data: dict) -> CredentialPair:
     out: CredentialPair = {}  # type: ignore[typeddict-item]
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
     else:
         raise DeserializationError("CredentialPair.username required")
-    if "Password" in data:
+    if data.get("Password") is not None:
         out["password"] = data["Password"]
     else:
         raise DeserializationError("CredentialPair.password required")
-    if "AlternateDataSourceParameters" in data:
+    if data.get("AlternateDataSourceParameters") is not None:
         import capo_quicksight.types.data_source_parameters_list
 
         out["alternate_data_source_parameters"] = (

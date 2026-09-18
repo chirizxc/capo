@@ -24,10 +24,25 @@ class MLSyntheticDataParameters(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: MLSyntheticDataParameters) -> dict:
     out: dict = {}
-    out["epsilon"] = value["epsilon"]
-    out["maxMembershipInferenceAttackScore"] = value[
-        "max_membership_inference_attack_score"
-    ]
+    out["epsilon"] = (
+        "NaN"
+        if value["epsilon"] != value["epsilon"]
+        else "Infinity"
+        if value["epsilon"] == float("inf")
+        else "-Infinity"
+        if value["epsilon"] == float("-inf")
+        else value["epsilon"]
+    )
+    out["maxMembershipInferenceAttackScore"] = (
+        "NaN"
+        if value["max_membership_inference_attack_score"]
+        != value["max_membership_inference_attack_score"]
+        else "Infinity"
+        if value["max_membership_inference_attack_score"] == float("inf")
+        else "-Infinity"
+        if value["max_membership_inference_attack_score"] == float("-inf")
+        else value["max_membership_inference_attack_score"]
+    )
     if "column_classification" in value:
         import capo_cleanroomsml.types.column_classification_details
 
@@ -41,19 +56,19 @@ def serialize_json(value: MLSyntheticDataParameters) -> dict:
 
 def deserialize_json(data: dict) -> MLSyntheticDataParameters:
     out: MLSyntheticDataParameters = {}  # type: ignore[typeddict-item]
-    if "epsilon" in data:
-        out["epsilon"] = data["epsilon"]
+    if data.get("epsilon") is not None:
+        out["epsilon"] = float(data["epsilon"])
     else:
         raise DeserializationError("MLSyntheticDataParameters.epsilon required")
-    if "maxMembershipInferenceAttackScore" in data:
-        out["max_membership_inference_attack_score"] = data[
-            "maxMembershipInferenceAttackScore"
-        ]
+    if data.get("maxMembershipInferenceAttackScore") is not None:
+        out["max_membership_inference_attack_score"] = float(
+            data["maxMembershipInferenceAttackScore"]
+        )
     else:
         raise DeserializationError(
             "MLSyntheticDataParameters.max_membership_inference_attack_score required"
         )
-    if "columnClassification" in data:
+    if data.get("columnClassification") is not None:
         import capo_cleanroomsml.types.column_classification_details
 
         out["column_classification"] = (

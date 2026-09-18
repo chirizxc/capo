@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Nodes:
 
     out: Nodes = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_application_signals.types.node.deserialize_json(item))
     return out

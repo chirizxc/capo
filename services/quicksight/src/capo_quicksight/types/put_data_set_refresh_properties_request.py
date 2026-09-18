@@ -38,7 +38,7 @@ def serialize_json(value: PutDataSetRefreshPropertiesRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutDataSetRefreshPropertiesRequest:
     out: PutDataSetRefreshPropertiesRequest = {}  # type: ignore[typeddict-item]
-    if "DataSetRefreshProperties" in data:
+    if data.get("DataSetRefreshProperties") is not None:
         import capo_quicksight.types.data_set_refresh_properties
 
         out["data_set_refresh_properties"] = (

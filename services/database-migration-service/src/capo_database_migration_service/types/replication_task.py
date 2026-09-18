@@ -152,15 +152,15 @@ def serialize_aws_json_1_1(value: ReplicationTask) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReplicationTask:
     out: ReplicationTask = {}  # type: ignore[typeddict-item]
-    if "ReplicationTaskIdentifier" in data:
+    if data.get("ReplicationTaskIdentifier") is not None:
         out["replication_task_identifier"] = data["ReplicationTaskIdentifier"]
-    if "SourceEndpointArn" in data:
+    if data.get("SourceEndpointArn") is not None:
         out["source_endpoint_arn"] = data["SourceEndpointArn"]
-    if "TargetEndpointArn" in data:
+    if data.get("TargetEndpointArn") is not None:
         out["target_endpoint_arn"] = data["TargetEndpointArn"]
-    if "ReplicationInstanceArn" in data:
+    if data.get("ReplicationInstanceArn") is not None:
         out["replication_instance_arn"] = data["ReplicationInstanceArn"]
-    if "MigrationType" in data:
+    if data.get("MigrationType") is not None:
         import capo_database_migration_service.types.migration_type_value
 
         out["migration_type"] = (
@@ -168,17 +168,17 @@ def deserialize_aws_json_1_1(data: dict) -> ReplicationTask:
                 data["MigrationType"]
             )
         )
-    if "TableMappings" in data:
+    if data.get("TableMappings") is not None:
         out["table_mappings"] = data["TableMappings"]
-    if "ReplicationTaskSettings" in data:
+    if data.get("ReplicationTaskSettings") is not None:
         out["replication_task_settings"] = data["ReplicationTaskSettings"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "LastFailureMessage" in data:
+    if data.get("LastFailureMessage") is not None:
         out["last_failure_message"] = data["LastFailureMessage"]
-    if "StopReason" in data:
+    if data.get("StopReason") is not None:
         out["stop_reason"] = data["StopReason"]
-    if "ReplicationTaskCreationDate" in data:
+    if data.get("ReplicationTaskCreationDate") is not None:
         import capo_database_migration_service.types.t_stamp
 
         out["replication_task_creation_date"] = (
@@ -186,7 +186,7 @@ def deserialize_aws_json_1_1(data: dict) -> ReplicationTask:
                 data["ReplicationTaskCreationDate"]
             )
         )
-    if "ReplicationTaskStartDate" in data:
+    if data.get("ReplicationTaskStartDate") is not None:
         import capo_database_migration_service.types.t_stamp
 
         out["replication_task_start_date"] = (
@@ -194,15 +194,15 @@ def deserialize_aws_json_1_1(data: dict) -> ReplicationTask:
                 data["ReplicationTaskStartDate"]
             )
         )
-    if "CdcStartPosition" in data:
+    if data.get("CdcStartPosition") is not None:
         out["cdc_start_position"] = data["CdcStartPosition"]
-    if "CdcStopPosition" in data:
+    if data.get("CdcStopPosition") is not None:
         out["cdc_stop_position"] = data["CdcStopPosition"]
-    if "RecoveryCheckpoint" in data:
+    if data.get("RecoveryCheckpoint") is not None:
         out["recovery_checkpoint"] = data["RecoveryCheckpoint"]
-    if "ReplicationTaskArn" in data:
+    if data.get("ReplicationTaskArn") is not None:
         out["replication_task_arn"] = data["ReplicationTaskArn"]
-    if "ReplicationTaskStats" in data:
+    if data.get("ReplicationTaskStats") is not None:
         import capo_database_migration_service.types.replication_task_stats
 
         out["replication_task_stats"] = (
@@ -210,8 +210,8 @@ def deserialize_aws_json_1_1(data: dict) -> ReplicationTask:
                 data["ReplicationTaskStats"]
             )
         )
-    if "TaskData" in data:
+    if data.get("TaskData") is not None:
         out["task_data"] = data["TaskData"]
-    if "TargetReplicationInstanceArn" in data:
+    if data.get("TargetReplicationInstanceArn") is not None:
         out["target_replication_instance_arn"] = data["TargetReplicationInstanceArn"]
     return out

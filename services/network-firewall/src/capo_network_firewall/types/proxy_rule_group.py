@@ -81,11 +81,11 @@ def serialize_aws_json_1_0(value: ProxyRuleGroup) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ProxyRuleGroup:
     out: ProxyRuleGroup = {}  # type: ignore[typeddict-item]
-    if "ProxyRuleGroupName" in data:
+    if data.get("ProxyRuleGroupName") is not None:
         out["proxy_rule_group_name"] = data["ProxyRuleGroupName"]
-    if "ProxyRuleGroupArn" in data:
+    if data.get("ProxyRuleGroupArn") is not None:
         out["proxy_rule_group_arn"] = data["ProxyRuleGroupArn"]
-    if "CreateTime" in data:
+    if data.get("CreateTime") is not None:
         import capo_network_firewall.types.create_time
 
         out["create_time"] = (
@@ -93,7 +93,7 @@ def deserialize_aws_json_1_0(data: dict) -> ProxyRuleGroup:
                 data["CreateTime"]
             )
         )
-    if "DeleteTime" in data:
+    if data.get("DeleteTime") is not None:
         import capo_network_firewall.types.delete_time
 
         out["delete_time"] = (
@@ -101,7 +101,7 @@ def deserialize_aws_json_1_0(data: dict) -> ProxyRuleGroup:
                 data["DeleteTime"]
             )
         )
-    if "Rules" in data:
+    if data.get("Rules") is not None:
         import capo_network_firewall.types.proxy_rules_by_request_phase
 
         out["rules"] = (
@@ -109,9 +109,9 @@ def deserialize_aws_json_1_0(data: dict) -> ProxyRuleGroup:
                 data["Rules"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_network_firewall.types.tag_list
 
         out["tags"] = capo_network_firewall.types.tag_list.deserialize_aws_json_1_0(

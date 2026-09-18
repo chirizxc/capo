@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ReplacePermissionAssociationsWorkList:
 
     out: ReplacePermissionAssociationsWorkList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_ram.types.replace_permission_associations_work.deserialize_json(item)
         )

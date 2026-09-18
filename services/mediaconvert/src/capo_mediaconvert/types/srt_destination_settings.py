@@ -31,7 +31,7 @@ def serialize_json(value: SrtDestinationSettings) -> dict:
 
 def deserialize_json(data: dict) -> SrtDestinationSettings:
     out: SrtDestinationSettings = {}  # type: ignore[typeddict-item]
-    if "stylePassthrough" in data:
+    if data.get("stylePassthrough") is not None:
         import capo_mediaconvert.types.srt_style_passthrough
 
         out["style_passthrough"] = (

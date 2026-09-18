@@ -36,9 +36,9 @@ def serialize_json(value: ListOriginEndpointsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListOriginEndpointsResponse:
     out: ListOriginEndpointsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "originEndpoints" in data:
+    if data.get("originEndpoints") is not None:
         import capo_mediapackage.types.__list_of_origin_endpoint
 
         out["origin_endpoints"] = (

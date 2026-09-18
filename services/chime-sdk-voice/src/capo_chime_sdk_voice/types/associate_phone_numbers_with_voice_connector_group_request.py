@@ -44,7 +44,7 @@ def serialize_json(value: AssociatePhoneNumbersWithVoiceConnectorGroupRequest) -
 
 def deserialize_json(data: dict) -> AssociatePhoneNumbersWithVoiceConnectorGroupRequest:
     out: AssociatePhoneNumbersWithVoiceConnectorGroupRequest = {}  # type: ignore[typeddict-item]
-    if "E164PhoneNumbers" in data:
+    if data.get("E164PhoneNumbers") is not None:
         import capo_chime_sdk_voice.types.e164_phone_number_list
 
         out["e164_phone_numbers"] = (
@@ -56,6 +56,6 @@ def deserialize_json(data: dict) -> AssociatePhoneNumbersWithVoiceConnectorGroup
         raise DeserializationError(
             "AssociatePhoneNumbersWithVoiceConnectorGroupRequest.e164_phone_numbers required"
         )
-    if "ForceAssociate" in data:
+    if data.get("ForceAssociate") is not None:
         out["force_associate"] = data["ForceAssociate"]
     return out

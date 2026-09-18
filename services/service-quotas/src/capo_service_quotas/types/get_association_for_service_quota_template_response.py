@@ -35,7 +35,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> GetAssociationForServiceQuotaTemplateResponse:
     out: GetAssociationForServiceQuotaTemplateResponse = {}  # type: ignore[typeddict-item]
-    if "ServiceQuotaTemplateAssociationStatus" in data:
+    if data.get("ServiceQuotaTemplateAssociationStatus") is not None:
         import capo_service_quotas.types.service_quota_template_association_status
 
         out["service_quota_template_association_status"] = (

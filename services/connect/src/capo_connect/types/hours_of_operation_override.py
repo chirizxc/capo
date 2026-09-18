@@ -97,17 +97,17 @@ def serialize_json(value: HoursOfOperationOverride) -> dict:
 
 def deserialize_json(data: dict) -> HoursOfOperationOverride:
     out: HoursOfOperationOverride = {}  # type: ignore[typeddict-item]
-    if "HoursOfOperationOverrideId" in data:
+    if data.get("HoursOfOperationOverrideId") is not None:
         out["hours_of_operation_override_id"] = data["HoursOfOperationOverrideId"]
-    if "HoursOfOperationId" in data:
+    if data.get("HoursOfOperationId") is not None:
         out["hours_of_operation_id"] = data["HoursOfOperationId"]
-    if "HoursOfOperationArn" in data:
+    if data.get("HoursOfOperationArn") is not None:
         out["hours_of_operation_arn"] = data["HoursOfOperationArn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Config" in data:
+    if data.get("Config") is not None:
         import capo_connect.types.hours_of_operation_override_config_list
 
         out["config"] = (
@@ -115,11 +115,11 @@ def deserialize_json(data: dict) -> HoursOfOperationOverride:
                 data["Config"]
             )
         )
-    if "EffectiveFrom" in data:
+    if data.get("EffectiveFrom") is not None:
         out["effective_from"] = data["EffectiveFrom"]
-    if "EffectiveTill" in data:
+    if data.get("EffectiveTill") is not None:
         out["effective_till"] = data["EffectiveTill"]
-    if "RecurrenceConfig" in data:
+    if data.get("RecurrenceConfig") is not None:
         import capo_connect.types.recurrence_config
 
         out["recurrence_config"] = (
@@ -127,7 +127,7 @@ def deserialize_json(data: dict) -> HoursOfOperationOverride:
                 data["RecurrenceConfig"]
             )
         )
-    if "OverrideType" in data:
+    if data.get("OverrideType") is not None:
         import capo_connect.types.override_type
 
         out["override_type"] = capo_connect.types.override_type.deserialize_json(

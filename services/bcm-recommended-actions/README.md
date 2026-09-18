@@ -13,9 +13,9 @@ from capo_bcm_recommended_actions import AsyncBCMRecommendedActionsClient
 
 
 async def main():
-    async with AsyncBCMRecommendedActionsClient() as s3:
+    async with AsyncBCMRecommendedActionsClient() as bcm_recommended_actions:
         # Example: call the list_recommended_actions operation
-        response = await s3.list_recommended_actions()
+        response = await bcm_recommended_actions.list_recommended_actions()
         print(response["recommended_actions"])
 ```
 
@@ -28,9 +28,9 @@ from capo_bcm_recommended_actions import AsyncBCMRecommendedActionsClient
 
 
 async def main():
-    async with AsyncBCMRecommendedActionsClient() as s3:
+    async with AsyncBCMRecommendedActionsClient() as bcm_recommended_actions:
         # Example: paginate over list_recommended_actions
-        async for item in s3.iter_list_recommended_actions():
+        async for item in bcm_recommended_actions.iter_list_recommended_actions():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_bcm_recommended_actions.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncBCMRecommendedActionsClient() as s3:
+    async with AsyncBCMRecommendedActionsClient() as bcm_recommended_actions:
         try:
-            await s3.list_recommended_actions()
+            await bcm_recommended_actions.list_recommended_actions()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_bcm_recommended_actions import AsyncBCMRecommendedActionsClient
 
 
 async def main():
-    async with AsyncBCMRecommendedActionsClient() as s3:
+    async with AsyncBCMRecommendedActionsClient() as bcm_recommended_actions:
         # Default: 3 attempts for every operation
-        response = await s3.list_recommended_actions()
+        response = await bcm_recommended_actions.list_recommended_actions()
 
         # Override per operation
-        response = await s3.list_recommended_actions(config_overrides={"retry_max_attempts": 5})
+        response = await bcm_recommended_actions.list_recommended_actions(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.list_recommended_actions(config_overrides={"retry_max_attempts": 1})
+        response = await bcm_recommended_actions.list_recommended_actions(config_overrides={"retry_max_attempts": 1})
 ```

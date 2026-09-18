@@ -58,11 +58,11 @@ def serialize_aws_json_1_0(value: PollForDecisionTaskInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PollForDecisionTaskInput:
     out: PollForDecisionTaskInput = {}  # type: ignore[typeddict-item]
-    if "domain" in data:
+    if data.get("domain") is not None:
         out["domain"] = data["domain"]
     else:
         raise DeserializationError("PollForDecisionTaskInput.domain required")
-    if "taskList" in data:
+    if data.get("taskList") is not None:
         import capo_swf.types.task_list
 
         out["task_list"] = capo_swf.types.task_list.deserialize_aws_json_1_0(
@@ -70,19 +70,19 @@ def deserialize_aws_json_1_0(data: dict) -> PollForDecisionTaskInput:
         )
     else:
         raise DeserializationError("PollForDecisionTaskInput.task_list required")
-    if "identity" in data:
+    if data.get("identity") is not None:
         out["identity"] = data["identity"]
-    if "nextPageToken" in data:
+    if data.get("nextPageToken") is not None:
         out["next_page_token"] = data["nextPageToken"]
-    if "maximumPageSize" in data:
+    if data.get("maximumPageSize") is not None:
         out["maximum_page_size"] = data["maximumPageSize"]
     else:
         out["maximum_page_size"] = 0
-    if "reverseOrder" in data:
+    if data.get("reverseOrder") is not None:
         out["reverse_order"] = data["reverseOrder"]
     else:
         out["reverse_order"] = False
-    if "startAtPreviousStartedEvent" in data:
+    if data.get("startAtPreviousStartedEvent") is not None:
         out["start_at_previous_started_event"] = data["startAtPreviousStartedEvent"]
     else:
         out["start_at_previous_started_event"] = False

@@ -23,6 +23,6 @@ def serialize_json(value: GetSamplingRulesRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetSamplingRulesRequest:
     out: GetSamplingRulesRequest = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

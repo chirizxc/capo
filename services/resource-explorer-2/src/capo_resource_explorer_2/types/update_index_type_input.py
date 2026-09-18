@@ -27,11 +27,11 @@ def serialize_json(value: UpdateIndexTypeInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateIndexTypeInput:
     out: UpdateIndexTypeInput = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("UpdateIndexTypeInput.arn required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     else:
         raise DeserializationError("UpdateIndexTypeInput.type required")

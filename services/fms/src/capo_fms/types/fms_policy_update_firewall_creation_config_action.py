@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: FMSPolicyUpdateFirewallCreationConfigAction) -
 
 def deserialize_aws_json_1_1(data: dict) -> FMSPolicyUpdateFirewallCreationConfigAction:
     out: FMSPolicyUpdateFirewallCreationConfigAction = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "FirewallCreationConfig" in data:
+    if data.get("FirewallCreationConfig") is not None:
         out["firewall_creation_config"] = data["FirewallCreationConfig"]
     return out

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: StartWebAuthnRegistrationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartWebAuthnRegistrationRequest:
     out: StartWebAuthnRegistrationRequest = {}  # type: ignore[typeddict-item]
-    if "AccessToken" in data:
+    if data.get("AccessToken") is not None:
         out["access_token"] = data["AccessToken"]
     else:
         raise DeserializationError(

@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetLoadBalancerTlsCertificatesResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetLoadBalancerTlsCertificatesResult:
     out: GetLoadBalancerTlsCertificatesResult = {}  # type: ignore[typeddict-item]
-    if "tlsCertificates" in data:
+    if data.get("tlsCertificates") is not None:
         import capo_lightsail.types.load_balancer_tls_certificate_list
 
         out["tls_certificates"] = (

@@ -99,17 +99,17 @@ def serialize_aws_json_1_0(value: Domain) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Domain:
     out: Domain = {}  # type: ignore[typeddict-item]
-    if "DomainId" in data:
+    if data.get("DomainId") is not None:
         out["domain_id"] = data["DomainId"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DomainStatus" in data:
+    if data.get("DomainStatus") is not None:
         out["domain_status"] = data["DomainStatus"]
-    if "ServerSideEncryptionConfiguration" in data:
+    if data.get("ServerSideEncryptionConfiguration") is not None:
         import capo_voice_id.types.server_side_encryption_configuration
 
         out["server_side_encryption_configuration"] = (
@@ -117,19 +117,19 @@ def deserialize_aws_json_1_0(data: dict) -> Domain:
                 data["ServerSideEncryptionConfiguration"]
             )
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_voice_id.types.timestamp
 
         out["created_at"] = capo_voice_id.types.timestamp.deserialize_aws_json_1_0(
             data["CreatedAt"]
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_voice_id.types.timestamp
 
         out["updated_at"] = capo_voice_id.types.timestamp.deserialize_aws_json_1_0(
             data["UpdatedAt"]
         )
-    if "ServerSideEncryptionUpdateDetails" in data:
+    if data.get("ServerSideEncryptionUpdateDetails") is not None:
         import capo_voice_id.types.server_side_encryption_update_details
 
         out["server_side_encryption_update_details"] = (
@@ -137,7 +137,7 @@ def deserialize_aws_json_1_0(data: dict) -> Domain:
                 data["ServerSideEncryptionUpdateDetails"]
             )
         )
-    if "WatchlistDetails" in data:
+    if data.get("WatchlistDetails") is not None:
         import capo_voice_id.types.watchlist_details
 
         out["watchlist_details"] = (

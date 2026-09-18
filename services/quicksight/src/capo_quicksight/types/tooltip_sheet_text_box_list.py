@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> TooltipSheetTextBoxList:
 
     out: TooltipSheetTextBoxList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.sheet_text_box.deserialize_json(item))
     return out

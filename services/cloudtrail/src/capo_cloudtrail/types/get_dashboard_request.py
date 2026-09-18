@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetDashboardRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDashboardRequest:
     out: GetDashboardRequest = {}  # type: ignore[typeddict-item]
-    if "DashboardId" in data:
+    if data.get("DashboardId") is not None:
         out["dashboard_id"] = data["DashboardId"]
     else:
         raise DeserializationError("GetDashboardRequest.dashboard_id required")

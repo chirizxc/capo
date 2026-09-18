@@ -24,7 +24,7 @@ def serialize_json(value: DeleteAddonResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteAddonResponse:
     out: DeleteAddonResponse = {}  # type: ignore[typeddict-item]
-    if "addon" in data:
+    if data.get("addon") is not None:
         import capo_eks.types.addon
 
         out["addon"] = capo_eks.types.addon.deserialize_json(data["addon"])

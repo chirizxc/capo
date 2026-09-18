@@ -29,11 +29,11 @@ def serialize_json(value: GetBucketsAggregationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetBucketsAggregationResponse:
     out: GetBucketsAggregationResponse = {}  # type: ignore[typeddict-item]
-    if "totalCount" in data:
+    if data.get("totalCount") is not None:
         out["total_count"] = data["totalCount"]
     else:
         out["total_count"] = 0
-    if "buckets" in data:
+    if data.get("buckets") is not None:
         import capo_iot.types.buckets
 
         out["buckets"] = capo_iot.types.buckets.deserialize_json(data["buckets"])

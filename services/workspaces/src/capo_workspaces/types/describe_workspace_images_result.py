@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: DescribeWorkspaceImagesResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeWorkspaceImagesResult:
     out: DescribeWorkspaceImagesResult = {}  # type: ignore[typeddict-item]
-    if "Images" in data:
+    if data.get("Images") is not None:
         import capo_workspaces.types.workspace_image_list
 
         out["images"] = (
@@ -42,6 +42,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeWorkspaceImagesResult:
                 data["Images"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

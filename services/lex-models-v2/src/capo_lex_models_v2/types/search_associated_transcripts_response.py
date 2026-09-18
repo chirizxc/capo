@@ -60,17 +60,17 @@ def serialize_json(value: SearchAssociatedTranscriptsResponse) -> dict:
 
 def deserialize_json(data: dict) -> SearchAssociatedTranscriptsResponse:
     out: SearchAssociatedTranscriptsResponse = {}  # type: ignore[typeddict-item]
-    if "botId" in data:
+    if data.get("botId") is not None:
         out["bot_id"] = data["botId"]
-    if "botVersion" in data:
+    if data.get("botVersion") is not None:
         out["bot_version"] = data["botVersion"]
-    if "localeId" in data:
+    if data.get("localeId") is not None:
         out["locale_id"] = data["localeId"]
-    if "botRecommendationId" in data:
+    if data.get("botRecommendationId") is not None:
         out["bot_recommendation_id"] = data["botRecommendationId"]
-    if "nextIndex" in data:
+    if data.get("nextIndex") is not None:
         out["next_index"] = data["nextIndex"]
-    if "associatedTranscripts" in data:
+    if data.get("associatedTranscripts") is not None:
         import capo_lex_models_v2.types.associated_transcript_list
 
         out["associated_transcripts"] = (
@@ -78,6 +78,6 @@ def deserialize_json(data: dict) -> SearchAssociatedTranscriptsResponse:
                 data["associatedTranscripts"]
             )
         )
-    if "totalResults" in data:
+    if data.get("totalResults") is not None:
         out["total_results"] = data["totalResults"]
     return out

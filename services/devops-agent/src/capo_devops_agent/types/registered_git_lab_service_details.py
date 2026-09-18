@@ -35,11 +35,11 @@ def serialize_json(value: RegisteredGitLabServiceDetails) -> dict:
 
 def deserialize_json(data: dict) -> RegisteredGitLabServiceDetails:
     out: RegisteredGitLabServiceDetails = {}  # type: ignore[typeddict-item]
-    if "targetUrl" in data:
+    if data.get("targetUrl") is not None:
         out["target_url"] = data["targetUrl"]
     else:
         raise DeserializationError("RegisteredGitLabServiceDetails.target_url required")
-    if "tokenType" in data:
+    if data.get("tokenType") is not None:
         import capo_devops_agent.types.git_lab_token_type
 
         out["token_type"] = capo_devops_agent.types.git_lab_token_type.deserialize_json(
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> RegisteredGitLabServiceDetails:
         )
     else:
         raise DeserializationError("RegisteredGitLabServiceDetails.token_type required")
-    if "groupId" in data:
+    if data.get("groupId") is not None:
         out["group_id"] = data["groupId"]
     return out

@@ -60,7 +60,7 @@ def serialize_aws_json_1_1(value: WindowSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WindowSummary:
     out: WindowSummary = {}  # type: ignore[typeddict-item]
-    if "TestWindowStart" in data:
+    if data.get("TestWindowStart") is not None:
         import capo_forecast.types.timestamp
 
         out["test_window_start"] = (
@@ -68,15 +68,15 @@ def deserialize_aws_json_1_1(data: dict) -> WindowSummary:
                 data["TestWindowStart"]
             )
         )
-    if "TestWindowEnd" in data:
+    if data.get("TestWindowEnd") is not None:
         import capo_forecast.types.timestamp
 
         out["test_window_end"] = capo_forecast.types.timestamp.deserialize_aws_json_1_1(
             data["TestWindowEnd"]
         )
-    if "ItemCount" in data:
+    if data.get("ItemCount") is not None:
         out["item_count"] = data["ItemCount"]
-    if "EvaluationType" in data:
+    if data.get("EvaluationType") is not None:
         import capo_forecast.types.evaluation_type
 
         out["evaluation_type"] = (
@@ -84,7 +84,7 @@ def deserialize_aws_json_1_1(data: dict) -> WindowSummary:
                 data["EvaluationType"]
             )
         )
-    if "Metrics" in data:
+    if data.get("Metrics") is not None:
         import capo_forecast.types.metrics
 
         out["metrics"] = capo_forecast.types.metrics.deserialize_aws_json_1_1(

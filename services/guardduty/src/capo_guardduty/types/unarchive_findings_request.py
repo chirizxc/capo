@@ -30,7 +30,7 @@ def serialize_json(value: UnarchiveFindingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> UnarchiveFindingsRequest:
     out: UnarchiveFindingsRequest = {}  # type: ignore[typeddict-item]
-    if "findingIds" in data:
+    if data.get("findingIds") is not None:
         import capo_guardduty.types.finding_ids
 
         out["finding_ids"] = capo_guardduty.types.finding_ids.deserialize_json(

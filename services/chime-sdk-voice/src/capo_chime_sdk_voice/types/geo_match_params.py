@@ -28,11 +28,11 @@ def serialize_json(value: GeoMatchParams) -> dict:
 
 def deserialize_json(data: dict) -> GeoMatchParams:
     out: GeoMatchParams = {}  # type: ignore[typeddict-item]
-    if "Country" in data:
+    if data.get("Country") is not None:
         out["country"] = data["Country"]
     else:
         raise DeserializationError("GeoMatchParams.country required")
-    if "AreaCode" in data:
+    if data.get("AreaCode") is not None:
         out["area_code"] = data["AreaCode"]
     else:
         raise DeserializationError("GeoMatchParams.area_code required")

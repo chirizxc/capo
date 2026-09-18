@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListSNOMEDCTInferenceJobsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListSNOMEDCTInferenceJobsResponse:
     out: ListSNOMEDCTInferenceJobsResponse = {}  # type: ignore[typeddict-item]
-    if "ComprehendMedicalAsyncJobPropertiesList" in data:
+    if data.get("ComprehendMedicalAsyncJobPropertiesList") is not None:
         import capo_comprehendmedical.types.comprehend_medical_async_job_properties_list
 
         out["comprehend_medical_async_job_properties_list"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListSNOMEDCTInferenceJobsResponse:
                 data["ComprehendMedicalAsyncJobPropertiesList"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

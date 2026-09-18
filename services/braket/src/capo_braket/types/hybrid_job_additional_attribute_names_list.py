@@ -16,4 +16,4 @@ def serialize_json(value: HybridJobAdditionalAttributeNamesList) -> list:
 
 
 def deserialize_json(data: list) -> HybridJobAdditionalAttributeNamesList:
-    return list(data)
+    return [item for item in data if item is not None]

@@ -28,11 +28,11 @@ def serialize_json(value: ListingRevisionInput) -> dict:
 
 def deserialize_json(data: dict) -> ListingRevisionInput:
     out: ListingRevisionInput = {}  # type: ignore[typeddict-item]
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         out["identifier"] = data["identifier"]
     else:
         raise DeserializationError("ListingRevisionInput.identifier required")
-    if "revision" in data:
+    if data.get("revision") is not None:
         out["revision"] = data["revision"]
     else:
         raise DeserializationError("ListingRevisionInput.revision required")

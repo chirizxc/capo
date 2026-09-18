@@ -111,33 +111,33 @@ def serialize_json(value: AwsRdsDbPendingModifiedValues) -> dict:
 
 def deserialize_json(data: dict) -> AwsRdsDbPendingModifiedValues:
     out: AwsRdsDbPendingModifiedValues = {}  # type: ignore[typeddict-item]
-    if "DbInstanceClass" in data:
+    if data.get("DbInstanceClass") is not None:
         out["db_instance_class"] = data["DbInstanceClass"]
-    if "AllocatedStorage" in data:
+    if data.get("AllocatedStorage") is not None:
         out["allocated_storage"] = data["AllocatedStorage"]
-    if "MasterUserPassword" in data:
+    if data.get("MasterUserPassword") is not None:
         out["master_user_password"] = data["MasterUserPassword"]
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
-    if "BackupRetentionPeriod" in data:
+    if data.get("BackupRetentionPeriod") is not None:
         out["backup_retention_period"] = data["BackupRetentionPeriod"]
-    if "MultiAZ" in data:
+    if data.get("MultiAZ") is not None:
         out["multi_az"] = data["MultiAZ"]
-    if "EngineVersion" in data:
+    if data.get("EngineVersion") is not None:
         out["engine_version"] = data["EngineVersion"]
-    if "LicenseModel" in data:
+    if data.get("LicenseModel") is not None:
         out["license_model"] = data["LicenseModel"]
-    if "Iops" in data:
+    if data.get("Iops") is not None:
         out["iops"] = data["Iops"]
-    if "DbInstanceIdentifier" in data:
+    if data.get("DbInstanceIdentifier") is not None:
         out["db_instance_identifier"] = data["DbInstanceIdentifier"]
-    if "StorageType" in data:
+    if data.get("StorageType") is not None:
         out["storage_type"] = data["StorageType"]
-    if "CaCertificateIdentifier" in data:
+    if data.get("CaCertificateIdentifier") is not None:
         out["ca_certificate_identifier"] = data["CaCertificateIdentifier"]
-    if "DbSubnetGroupName" in data:
+    if data.get("DbSubnetGroupName") is not None:
         out["db_subnet_group_name"] = data["DbSubnetGroupName"]
-    if "PendingCloudWatchLogsExports" in data:
+    if data.get("PendingCloudWatchLogsExports") is not None:
         import capo_securityhub.types.aws_rds_pending_cloud_watch_logs_exports
 
         out["pending_cloud_watch_logs_exports"] = (
@@ -145,7 +145,7 @@ def deserialize_json(data: dict) -> AwsRdsDbPendingModifiedValues:
                 data["PendingCloudWatchLogsExports"]
             )
         )
-    if "ProcessorFeatures" in data:
+    if data.get("ProcessorFeatures") is not None:
         import capo_securityhub.types.aws_rds_db_processor_features
 
         out["processor_features"] = (

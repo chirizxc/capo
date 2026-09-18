@@ -73,13 +73,13 @@ def serialize_aws_json_1_1(value: ResolverQueryLogConfigAssociation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResolverQueryLogConfigAssociation:
     out: ResolverQueryLogConfigAssociation = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "ResolverQueryLogConfigId" in data:
+    if data.get("ResolverQueryLogConfigId") is not None:
         out["resolver_query_log_config_id"] = data["ResolverQueryLogConfigId"]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_route53resolver.types.resolver_query_log_config_association_status
 
         out["status"] = (
@@ -87,7 +87,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResolverQueryLogConfigAssociation:
                 data["Status"]
             )
         )
-    if "Error" in data:
+    if data.get("Error") is not None:
         import capo_route53resolver.types.resolver_query_log_config_association_error
 
         out["error"] = (
@@ -95,8 +95,8 @@ def deserialize_aws_json_1_1(data: dict) -> ResolverQueryLogConfigAssociation:
                 data["Error"]
             )
         )
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         out["creation_time"] = data["CreationTime"]
     return out

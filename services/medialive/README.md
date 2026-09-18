@@ -13,9 +13,9 @@ from capo_medialive import AsyncMediaLiveClient
 
 
 async def main():
-    async with AsyncMediaLiveClient() as s3:
+    async with AsyncMediaLiveClient() as media_live:
         # Example: call the accept_input_device_transfer operation
-        response = await s3.accept_input_device_transfer()
+        response = await media_live.accept_input_device_transfer()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_medialive import AsyncMediaLiveClient
 
 
 async def main():
-    async with AsyncMediaLiveClient() as s3:
+    async with AsyncMediaLiveClient() as media_live:
         # Example: paginate over describe_schedule
-        async for item in s3.iter_describe_schedule():
+        async for item in media_live.iter_describe_schedule():
             print(item)
 ```
 
@@ -43,9 +43,9 @@ from capo_medialive import AsyncMediaLiveClient
 
 
 async def main():
-    async with AsyncMediaLiveClient() as s3:
+    async with AsyncMediaLiveClient() as media_live:
         # Example: call describe_input_device_thumbnail and read the streaming response
-        async with s3.describe_input_device_thumbnail() as response:
+        async with media_live.describe_input_device_thumbnail() as response:
             async for chunk in response["body"]:
                 print(chunk)
 ```
@@ -60,9 +60,9 @@ from capo_medialive.error import BadGatewayException
 
 
 async def main():
-    async with AsyncMediaLiveClient() as s3:
+    async with AsyncMediaLiveClient() as media_live:
         try:
-            await s3.accept_input_device_transfer()
+            await media_live.accept_input_device_transfer()
         except BadGatewayException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -79,13 +79,13 @@ from capo_medialive import AsyncMediaLiveClient
 
 
 async def main():
-    async with AsyncMediaLiveClient() as s3:
+    async with AsyncMediaLiveClient() as media_live:
         # Default: 3 attempts for every operation
-        response = await s3.accept_input_device_transfer()
+        response = await media_live.accept_input_device_transfer()
 
         # Override per operation
-        response = await s3.accept_input_device_transfer(config_overrides={"retry_max_attempts": 5})
+        response = await media_live.accept_input_device_transfer(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.accept_input_device_transfer(config_overrides={"retry_max_attempts": 1})
+        response = await media_live.accept_input_device_transfer(config_overrides={"retry_max_attempts": 1})
 ```

@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: TunedHPOParams) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TunedHPOParams:
     out: TunedHPOParams = {}  # type: ignore[typeddict-item]
-    if "algorithmHyperParameters" in data:
+    if data.get("algorithmHyperParameters") is not None:
         import capo_personalize.types.hyper_parameters
 
         out["algorithm_hyper_parameters"] = (

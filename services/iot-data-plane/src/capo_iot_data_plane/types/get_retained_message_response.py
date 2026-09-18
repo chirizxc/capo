@@ -53,23 +53,23 @@ def serialize_json(value: GetRetainedMessageResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetRetainedMessageResponse:
     out: GetRetainedMessageResponse = {}  # type: ignore[typeddict-item]
-    if "topic" in data:
+    if data.get("topic") is not None:
         out["topic"] = data["topic"]
-    if "payload" in data:
+    if data.get("payload") is not None:
         import capo_iot_data_plane.types.payload
 
         out["payload"] = capo_iot_data_plane.types.payload.deserialize_json(
             data["payload"]
         )
-    if "qos" in data:
+    if data.get("qos") is not None:
         out["qos"] = data["qos"]
     else:
         out["qos"] = 0
-    if "lastModifiedTime" in data:
+    if data.get("lastModifiedTime") is not None:
         out["last_modified_time"] = data["lastModifiedTime"]
     else:
         out["last_modified_time"] = 0
-    if "userProperties" in data:
+    if data.get("userProperties") is not None:
         import capo_iot_data_plane.types.user_properties_blob
 
         out["user_properties"] = (

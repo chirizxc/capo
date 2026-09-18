@@ -60,7 +60,7 @@ def serialize_json(value: TableReference) -> dict:
 
 
 def deserialize_json(data: dict) -> TableReference:
-    if "glue" in data:
+    if data.get("glue") is not None:
         import capo_cleanrooms.types.glue_table_reference
 
         return {
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> TableReference:
                 data["glue"]
             )
         }
-    elif "snowflake" in data:
+    elif data.get("snowflake") is not None:
         import capo_cleanrooms.types.snowflake_table_reference
 
         return {
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> TableReference:
                 data["snowflake"]
             )
         }
-    elif "athena" in data:
+    elif data.get("athena") is not None:
         import capo_cleanrooms.types.athena_table_reference
 
         return {

@@ -73,13 +73,13 @@ def serialize_aws_json_1_0(value: QueryResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> QueryResponse:
     out: QueryResponse = {}  # type: ignore[typeddict-item]
-    if "QueryId" in data:
+    if data.get("QueryId") is not None:
         out["query_id"] = data["QueryId"]
     else:
         raise DeserializationError("QueryResponse.query_id required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Rows" in data:
+    if data.get("Rows") is not None:
         import capo_timestream_query.types.row_list
 
         out["rows"] = capo_timestream_query.types.row_list.deserialize_aws_json_1_0(
@@ -87,7 +87,7 @@ def deserialize_aws_json_1_0(data: dict) -> QueryResponse:
         )
     else:
         raise DeserializationError("QueryResponse.rows required")
-    if "ColumnInfo" in data:
+    if data.get("ColumnInfo") is not None:
         import capo_timestream_query.types.column_info_list
 
         out["column_info"] = (
@@ -97,7 +97,7 @@ def deserialize_aws_json_1_0(data: dict) -> QueryResponse:
         )
     else:
         raise DeserializationError("QueryResponse.column_info required")
-    if "QueryStatus" in data:
+    if data.get("QueryStatus") is not None:
         import capo_timestream_query.types.query_status
 
         out["query_status"] = (
@@ -105,7 +105,7 @@ def deserialize_aws_json_1_0(data: dict) -> QueryResponse:
                 data["QueryStatus"]
             )
         )
-    if "QueryInsightsResponse" in data:
+    if data.get("QueryInsightsResponse") is not None:
         import capo_timestream_query.types.query_insights_response
 
         out["query_insights_response"] = (

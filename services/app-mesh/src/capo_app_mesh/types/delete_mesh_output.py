@@ -26,7 +26,7 @@ def serialize_json(value: DeleteMeshOutput) -> dict:
 
 def deserialize_json(data: dict) -> DeleteMeshOutput:
     out: DeleteMeshOutput = {}  # type: ignore[typeddict-item]
-    if "mesh" in data:
+    if data.get("mesh") is not None:
         import capo_app_mesh.types.mesh_data
 
         out["mesh"] = capo_app_mesh.types.mesh_data.deserialize_json(data["mesh"])

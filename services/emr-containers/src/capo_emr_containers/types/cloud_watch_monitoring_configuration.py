@@ -29,12 +29,12 @@ def serialize_json(value: CloudWatchMonitoringConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> CloudWatchMonitoringConfiguration:
     out: CloudWatchMonitoringConfiguration = {}  # type: ignore[typeddict-item]
-    if "logGroupName" in data:
+    if data.get("logGroupName") is not None:
         out["log_group_name"] = data["logGroupName"]
     else:
         raise DeserializationError(
             "CloudWatchMonitoringConfiguration.log_group_name required"
         )
-    if "logStreamNamePrefix" in data:
+    if data.get("logStreamNamePrefix") is not None:
         out["log_stream_name_prefix"] = data["logStreamNamePrefix"]
     return out

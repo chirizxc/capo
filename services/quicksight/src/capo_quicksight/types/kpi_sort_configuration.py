@@ -31,7 +31,7 @@ def serialize_json(value: KPISortConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> KPISortConfiguration:
     out: KPISortConfiguration = {}  # type: ignore[typeddict-item]
-    if "TrendGroupSort" in data:
+    if data.get("TrendGroupSort") is not None:
         import capo_quicksight.types.field_sort_options_list
 
         out["trend_group_sort"] = (

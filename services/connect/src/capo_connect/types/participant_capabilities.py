@@ -38,13 +38,13 @@ def serialize_json(value: ParticipantCapabilities) -> dict:
 
 def deserialize_json(data: dict) -> ParticipantCapabilities:
     out: ParticipantCapabilities = {}  # type: ignore[typeddict-item]
-    if "Video" in data:
+    if data.get("Video") is not None:
         import capo_connect.types.video_capability
 
         out["video"] = capo_connect.types.video_capability.deserialize_json(
             data["Video"]
         )
-    if "ScreenShare" in data:
+    if data.get("ScreenShare") is not None:
         import capo_connect.types.screen_share_capability
 
         out["screen_share"] = (

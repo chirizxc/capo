@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> AwsProductOptimizationsList:
 
     out: AwsProductOptimizationsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_partnercentral_selling.types.aws_product_optimization.deserialize_aws_json_1_0(
                 item

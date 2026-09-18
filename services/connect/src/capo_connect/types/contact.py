@@ -413,17 +413,17 @@ def serialize_json(value: Contact) -> dict:
 
 def deserialize_json(data: dict) -> Contact:
     out: Contact = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "InitialContactId" in data:
+    if data.get("InitialContactId") is not None:
         out["initial_contact_id"] = data["InitialContactId"]
-    if "PreviousContactId" in data:
+    if data.get("PreviousContactId") is not None:
         out["previous_contact_id"] = data["PreviousContactId"]
-    if "ContactAssociationId" in data:
+    if data.get("ContactAssociationId") is not None:
         out["contact_association_id"] = data["ContactAssociationId"]
-    if "InitiationMethod" in data:
+    if data.get("InitiationMethod") is not None:
         import capo_connect.types.contact_initiation_method
 
         out["initiation_method"] = (
@@ -431,103 +431,103 @@ def deserialize_json(data: dict) -> Contact:
                 data["InitiationMethod"]
             )
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Channel" in data:
+    if data.get("Channel") is not None:
         import capo_connect.types.channel
 
         out["channel"] = capo_connect.types.channel.deserialize_json(data["Channel"])
-    if "QueueInfo" in data:
+    if data.get("QueueInfo") is not None:
         import capo_connect.types.queue_info
 
         out["queue_info"] = capo_connect.types.queue_info.deserialize_json(
             data["QueueInfo"]
         )
-    if "AgentInfo" in data:
+    if data.get("AgentInfo") is not None:
         import capo_connect.types.agent_info
 
         out["agent_info"] = capo_connect.types.agent_info.deserialize_json(
             data["AgentInfo"]
         )
-    if "InitiationTimestamp" in data:
+    if data.get("InitiationTimestamp") is not None:
         import capo_connect.types.timestamp
 
         out["initiation_timestamp"] = capo_connect.types.timestamp.deserialize_json(
             data["InitiationTimestamp"]
         )
-    if "DisconnectTimestamp" in data:
+    if data.get("DisconnectTimestamp") is not None:
         import capo_connect.types.timestamp
 
         out["disconnect_timestamp"] = capo_connect.types.timestamp.deserialize_json(
             data["DisconnectTimestamp"]
         )
-    if "LastUpdateTimestamp" in data:
+    if data.get("LastUpdateTimestamp") is not None:
         import capo_connect.types.timestamp
 
         out["last_update_timestamp"] = capo_connect.types.timestamp.deserialize_json(
             data["LastUpdateTimestamp"]
         )
-    if "LastPausedTimestamp" in data:
+    if data.get("LastPausedTimestamp") is not None:
         import capo_connect.types.timestamp
 
         out["last_paused_timestamp"] = capo_connect.types.timestamp.deserialize_json(
             data["LastPausedTimestamp"]
         )
-    if "LastResumedTimestamp" in data:
+    if data.get("LastResumedTimestamp") is not None:
         import capo_connect.types.timestamp
 
         out["last_resumed_timestamp"] = capo_connect.types.timestamp.deserialize_json(
             data["LastResumedTimestamp"]
         )
-    if "RingStartTimestamp" in data:
+    if data.get("RingStartTimestamp") is not None:
         import capo_connect.types.timestamp
 
         out["ring_start_timestamp"] = capo_connect.types.timestamp.deserialize_json(
             data["RingStartTimestamp"]
         )
-    if "TotalPauseCount" in data:
+    if data.get("TotalPauseCount") is not None:
         out["total_pause_count"] = data["TotalPauseCount"]
-    if "TotalPauseDurationInSeconds" in data:
+    if data.get("TotalPauseDurationInSeconds") is not None:
         out["total_pause_duration_in_seconds"] = data["TotalPauseDurationInSeconds"]
-    if "ScheduledTimestamp" in data:
+    if data.get("ScheduledTimestamp") is not None:
         import capo_connect.types.timestamp
 
         out["scheduled_timestamp"] = capo_connect.types.timestamp.deserialize_json(
             data["ScheduledTimestamp"]
         )
-    if "RelatedContactId" in data:
+    if data.get("RelatedContactId") is not None:
         out["related_contact_id"] = data["RelatedContactId"]
-    if "WisdomInfo" in data:
+    if data.get("WisdomInfo") is not None:
         import capo_connect.types.wisdom_info
 
         out["wisdom_info"] = capo_connect.types.wisdom_info.deserialize_json(
             data["WisdomInfo"]
         )
-    if "CustomerId" in data:
+    if data.get("CustomerId") is not None:
         out["customer_id"] = data["CustomerId"]
-    if "CustomerEndpoint" in data:
+    if data.get("CustomerEndpoint") is not None:
         import capo_connect.types.endpoint_info
 
         out["customer_endpoint"] = capo_connect.types.endpoint_info.deserialize_json(
             data["CustomerEndpoint"]
         )
-    if "SystemEndpoint" in data:
+    if data.get("SystemEndpoint") is not None:
         import capo_connect.types.endpoint_info
 
         out["system_endpoint"] = capo_connect.types.endpoint_info.deserialize_json(
             data["SystemEndpoint"]
         )
-    if "QueueTimeAdjustmentSeconds" in data:
+    if data.get("QueueTimeAdjustmentSeconds") is not None:
         out["queue_time_adjustment_seconds"] = data["QueueTimeAdjustmentSeconds"]
-    if "QueuePriority" in data:
+    if data.get("QueuePriority") is not None:
         out["queue_priority"] = data["QueuePriority"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.contact_tag_map
 
         out["tags"] = capo_connect.types.contact_tag_map.deserialize_json(data["Tags"])
-    if "ConnectedToSystemTimestamp" in data:
+    if data.get("ConnectedToSystemTimestamp") is not None:
         import capo_connect.types.timestamp
 
         out["connected_to_system_timestamp"] = (
@@ -535,21 +535,21 @@ def deserialize_json(data: dict) -> Contact:
                 data["ConnectedToSystemTimestamp"]
             )
         )
-    if "RoutingCriteria" in data:
+    if data.get("RoutingCriteria") is not None:
         import capo_connect.types.routing_criteria
 
         out["routing_criteria"] = capo_connect.types.routing_criteria.deserialize_json(
             data["RoutingCriteria"]
         )
-    if "Customer" in data:
+    if data.get("Customer") is not None:
         import capo_connect.types.customer
 
         out["customer"] = capo_connect.types.customer.deserialize_json(data["Customer"])
-    if "Campaign" in data:
+    if data.get("Campaign") is not None:
         import capo_connect.types.campaign
 
         out["campaign"] = capo_connect.types.campaign.deserialize_json(data["Campaign"])
-    if "AnsweringMachineDetectionStatus" in data:
+    if data.get("AnsweringMachineDetectionStatus") is not None:
         import capo_connect.types.answering_machine_detection_status
 
         out["answering_machine_detection_status"] = (
@@ -557,7 +557,7 @@ def deserialize_json(data: dict) -> Contact:
                 data["AnsweringMachineDetectionStatus"]
             )
         )
-    if "CustomerVoiceActivity" in data:
+    if data.get("CustomerVoiceActivity") is not None:
         import capo_connect.types.customer_voice_activity
 
         out["customer_voice_activity"] = (
@@ -565,19 +565,19 @@ def deserialize_json(data: dict) -> Contact:
                 data["CustomerVoiceActivity"]
             )
         )
-    if "QualityMetrics" in data:
+    if data.get("QualityMetrics") is not None:
         import capo_connect.types.quality_metrics
 
         out["quality_metrics"] = capo_connect.types.quality_metrics.deserialize_json(
             data["QualityMetrics"]
         )
-    if "ChatMetrics" in data:
+    if data.get("ChatMetrics") is not None:
         import capo_connect.types.chat_metrics
 
         out["chat_metrics"] = capo_connect.types.chat_metrics.deserialize_json(
             data["ChatMetrics"]
         )
-    if "DisconnectDetails" in data:
+    if data.get("DisconnectDetails") is not None:
         import capo_connect.types.disconnect_details
 
         out["disconnect_details"] = (
@@ -585,7 +585,7 @@ def deserialize_json(data: dict) -> Contact:
                 data["DisconnectDetails"]
             )
         )
-    if "AdditionalEmailRecipients" in data:
+    if data.get("AdditionalEmailRecipients") is not None:
         import capo_connect.types.additional_email_recipients
 
         out["additional_email_recipients"] = (
@@ -593,7 +593,7 @@ def deserialize_json(data: dict) -> Contact:
                 data["AdditionalEmailRecipients"]
             )
         )
-    if "SegmentAttributes" in data:
+    if data.get("SegmentAttributes") is not None:
         import capo_connect.types.segment_attributes
 
         out["segment_attributes"] = (
@@ -601,15 +601,15 @@ def deserialize_json(data: dict) -> Contact:
                 data["SegmentAttributes"]
             )
         )
-    if "Recordings" in data:
+    if data.get("Recordings") is not None:
         import capo_connect.types.recordings
 
         out["recordings"] = capo_connect.types.recordings.deserialize_json(
             data["Recordings"]
         )
-    if "DisconnectReason" in data:
+    if data.get("DisconnectReason") is not None:
         out["disconnect_reason"] = data["DisconnectReason"]
-    if "ContactEvaluations" in data:
+    if data.get("ContactEvaluations") is not None:
         import capo_connect.types.contact_evaluations
 
         out["contact_evaluations"] = (
@@ -617,7 +617,7 @@ def deserialize_json(data: dict) -> Contact:
                 data["ContactEvaluations"]
             )
         )
-    if "TaskTemplateInfo" in data:
+    if data.get("TaskTemplateInfo") is not None:
         import capo_connect.types.task_template_info_v2
 
         out["task_template_info"] = (
@@ -625,13 +625,13 @@ def deserialize_json(data: dict) -> Contact:
                 data["TaskTemplateInfo"]
             )
         )
-    if "ContactDetails" in data:
+    if data.get("ContactDetails") is not None:
         import capo_connect.types.contact_details
 
         out["contact_details"] = capo_connect.types.contact_details.deserialize_json(
             data["ContactDetails"]
         )
-    if "OutboundStrategy" in data:
+    if data.get("OutboundStrategy") is not None:
         import capo_connect.types.outbound_strategy
 
         out["outbound_strategy"] = (
@@ -639,19 +639,19 @@ def deserialize_json(data: dict) -> Contact:
                 data["OutboundStrategy"]
             )
         )
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_connect.types.attributes
 
         out["attributes"] = capo_connect.types.attributes.deserialize_json(
             data["Attributes"]
         )
-    if "NextContacts" in data:
+    if data.get("NextContacts") is not None:
         import capo_connect.types.next_contacts
 
         out["next_contacts"] = capo_connect.types.next_contacts.deserialize_json(
             data["NextContacts"]
         )
-    if "GlobalResiliencyMetadata" in data:
+    if data.get("GlobalResiliencyMetadata") is not None:
         import capo_connect.types.global_resiliency_metadata
 
         out["global_resiliency_metadata"] = (

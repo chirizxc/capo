@@ -24,7 +24,7 @@ def serialize_json(value: TlsValidationContextFileTrust) -> dict:
 
 def deserialize_json(data: dict) -> TlsValidationContextFileTrust:
     out: TlsValidationContextFileTrust = {}  # type: ignore[typeddict-item]
-    if "certificateChain" in data:
+    if data.get("certificateChain") is not None:
         out["certificate_chain"] = data["certificateChain"]
     else:
         raise DeserializationError(

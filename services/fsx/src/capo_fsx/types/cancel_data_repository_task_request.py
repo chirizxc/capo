@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: CancelDataRepositoryTaskRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CancelDataRepositoryTaskRequest:
     out: CancelDataRepositoryTaskRequest = {}  # type: ignore[typeddict-item]
-    if "TaskId" in data:
+    if data.get("TaskId") is not None:
         out["task_id"] = data["TaskId"]
     return out

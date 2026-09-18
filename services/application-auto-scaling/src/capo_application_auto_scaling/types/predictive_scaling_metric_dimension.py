@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: PredictiveScalingMetricDimension) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PredictiveScalingMetricDimension:
     out: PredictiveScalingMetricDimension = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("PredictiveScalingMetricDimension.name required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         raise DeserializationError("PredictiveScalingMetricDimension.value required")

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> DeleteCustomVocabularyItemsList:
 
     out: DeleteCustomVocabularyItemsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lex_models_v2.types.custom_vocabulary_entry_id.deserialize_json(item)
         )

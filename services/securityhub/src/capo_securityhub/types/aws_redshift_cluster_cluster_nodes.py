@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsRedshiftClusterClusterNodes:
 
     out: AwsRedshiftClusterClusterNodes = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_redshift_cluster_cluster_node.deserialize_json(
                 item

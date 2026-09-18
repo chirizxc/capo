@@ -47,7 +47,7 @@ def serialize_json(value: GetPropertygraphStreamOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetPropertygraphStreamOutput:
     out: GetPropertygraphStreamOutput = {}  # type: ignore[typeddict-item]
-    if "lastEventId" in data:
+    if data.get("lastEventId") is not None:
         import capo_neptunedata.types.string_valued_map
 
         out["last_event_id"] = (
@@ -59,17 +59,17 @@ def deserialize_json(data: dict) -> GetPropertygraphStreamOutput:
         raise DeserializationError(
             "GetPropertygraphStreamOutput.last_event_id required"
         )
-    if "lastTrxTimestamp" in data:
+    if data.get("lastTrxTimestamp") is not None:
         out["last_trx_timestamp_in_millis"] = data["lastTrxTimestamp"]
     else:
         raise DeserializationError(
             "GetPropertygraphStreamOutput.last_trx_timestamp_in_millis required"
         )
-    if "format" in data:
+    if data.get("format") is not None:
         out["format"] = data["format"]
     else:
         raise DeserializationError("GetPropertygraphStreamOutput.format required")
-    if "records" in data:
+    if data.get("records") is not None:
         import capo_neptunedata.types.propertygraph_records_list
 
         out["records"] = (
@@ -79,7 +79,7 @@ def deserialize_json(data: dict) -> GetPropertygraphStreamOutput:
         )
     else:
         raise DeserializationError("GetPropertygraphStreamOutput.records required")
-    if "totalRecords" in data:
+    if data.get("totalRecords") is not None:
         out["total_records"] = data["totalRecords"]
     else:
         raise DeserializationError(

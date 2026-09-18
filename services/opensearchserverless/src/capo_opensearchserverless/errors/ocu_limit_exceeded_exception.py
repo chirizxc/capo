@@ -19,7 +19,7 @@ def serialize_aws_json_1_0(value: OcuLimitExceededException_) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> OcuLimitExceededException_:
     out: OcuLimitExceededException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("OcuLimitExceededException_.message required")
@@ -31,15 +31,18 @@ class OcuLimitExceededException(ServiceError):
 
     code: str | None = "OcuLimitExceededException"
 
-    def __init__(self, data: OcuLimitExceededException_):
+    def __init__(self, data: OcuLimitExceededException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="OcuLimitExceededException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_0(cls, data: dict) -> "OcuLimitExceededException":
-        return cls(deserialize_aws_json_1_0(data))
+    def from_aws_json_1_0(
+        cls, data: dict, message: str | None = None
+    ) -> "OcuLimitExceededException":
+        return cls(deserialize_aws_json_1_0(data), message)

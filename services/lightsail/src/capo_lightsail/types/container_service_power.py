@@ -31,11 +31,35 @@ def serialize_aws_json_1_1(value: ContainerServicePower) -> dict:
     if "power_id" in value:
         out["powerId"] = value["power_id"]
     if "price" in value:
-        out["price"] = value["price"]
+        out["price"] = (
+            "NaN"
+            if value["price"] != value["price"]
+            else "Infinity"
+            if value["price"] == float("inf")
+            else "-Infinity"
+            if value["price"] == float("-inf")
+            else value["price"]
+        )
     if "cpu_count" in value:
-        out["cpuCount"] = value["cpu_count"]
+        out["cpuCount"] = (
+            "NaN"
+            if value["cpu_count"] != value["cpu_count"]
+            else "Infinity"
+            if value["cpu_count"] == float("inf")
+            else "-Infinity"
+            if value["cpu_count"] == float("-inf")
+            else value["cpu_count"]
+        )
     if "ram_size_in_gb" in value:
-        out["ramSizeInGb"] = value["ram_size_in_gb"]
+        out["ramSizeInGb"] = (
+            "NaN"
+            if value["ram_size_in_gb"] != value["ram_size_in_gb"]
+            else "Infinity"
+            if value["ram_size_in_gb"] == float("inf")
+            else "-Infinity"
+            if value["ram_size_in_gb"] == float("-inf")
+            else value["ram_size_in_gb"]
+        )
     if "name" in value:
         out["name"] = value["name"]
     if "is_active" in value:
@@ -45,16 +69,16 @@ def serialize_aws_json_1_1(value: ContainerServicePower) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ContainerServicePower:
     out: ContainerServicePower = {}  # type: ignore[typeddict-item]
-    if "powerId" in data:
+    if data.get("powerId") is not None:
         out["power_id"] = data["powerId"]
-    if "price" in data:
-        out["price"] = data["price"]
-    if "cpuCount" in data:
-        out["cpu_count"] = data["cpuCount"]
-    if "ramSizeInGb" in data:
-        out["ram_size_in_gb"] = data["ramSizeInGb"]
-    if "name" in data:
+    if data.get("price") is not None:
+        out["price"] = float(data["price"])
+    if data.get("cpuCount") is not None:
+        out["cpu_count"] = float(data["cpuCount"])
+    if data.get("ramSizeInGb") is not None:
+        out["ram_size_in_gb"] = float(data["ramSizeInGb"])
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "isActive" in data:
+    if data.get("isActive") is not None:
         out["is_active"] = data["isActive"]
     return out

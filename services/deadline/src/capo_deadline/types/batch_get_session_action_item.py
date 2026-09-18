@@ -94,7 +94,15 @@ def serialize_json(value: BatchGetSessionActionItem) -> dict:
             value["worker_updated_at"]
         )
     if "progress_percent" in value:
-        out["progressPercent"] = value["progress_percent"]
+        out["progressPercent"] = (
+            "NaN"
+            if value["progress_percent"] != value["progress_percent"]
+            else "Infinity"
+            if value["progress_percent"] == float("inf")
+            else "-Infinity"
+            if value["progress_percent"] == float("-inf")
+            else value["progress_percent"]
+        )
     if "manifests" in value:
         import capo_deadline.types.task_run_manifest_properties_list_response
 
@@ -124,25 +132,25 @@ def serialize_json(value: BatchGetSessionActionItem) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetSessionActionItem:
     out: BatchGetSessionActionItem = {}  # type: ignore[typeddict-item]
-    if "farmId" in data:
+    if data.get("farmId") is not None:
         out["farm_id"] = data["farmId"]
     else:
         raise DeserializationError("BatchGetSessionActionItem.farm_id required")
-    if "queueId" in data:
+    if data.get("queueId") is not None:
         out["queue_id"] = data["queueId"]
     else:
         raise DeserializationError("BatchGetSessionActionItem.queue_id required")
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
     else:
         raise DeserializationError("BatchGetSessionActionItem.job_id required")
-    if "sessionActionId" in data:
+    if data.get("sessionActionId") is not None:
         out["session_action_id"] = data["sessionActionId"]
     else:
         raise DeserializationError(
             "BatchGetSessionActionItem.session_action_id required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_deadline.types.session_action_status
 
         out["status"] = capo_deadline.types.session_action_status.deserialize_json(
@@ -150,25 +158,25 @@ def deserialize_json(data: dict) -> BatchGetSessionActionItem:
         )
     else:
         raise DeserializationError("BatchGetSessionActionItem.status required")
-    if "startedAt" in data:
+    if data.get("startedAt") is not None:
         import capo_deadline.types.started_at
 
         out["started_at"] = capo_deadline.types.started_at.deserialize_json(
             data["startedAt"]
         )
-    if "endedAt" in data:
+    if data.get("endedAt") is not None:
         import capo_deadline.types.ended_at
 
         out["ended_at"] = capo_deadline.types.ended_at.deserialize_json(data["endedAt"])
-    if "workerUpdatedAt" in data:
+    if data.get("workerUpdatedAt") is not None:
         import capo_deadline.types.timestamp
 
         out["worker_updated_at"] = capo_deadline.types.timestamp.deserialize_json(
             data["workerUpdatedAt"]
         )
-    if "progressPercent" in data:
-        out["progress_percent"] = data["progressPercent"]
-    if "manifests" in data:
+    if data.get("progressPercent") is not None:
+        out["progress_percent"] = float(data["progressPercent"])
+    if data.get("manifests") is not None:
         import capo_deadline.types.task_run_manifest_properties_list_response
 
         out["manifests"] = (
@@ -176,21 +184,21 @@ def deserialize_json(data: dict) -> BatchGetSessionActionItem:
                 data["manifests"]
             )
         )
-    if "sessionId" in data:
+    if data.get("sessionId") is not None:
         out["session_id"] = data["sessionId"]
     else:
         raise DeserializationError("BatchGetSessionActionItem.session_id required")
-    if "processExitCode" in data:
+    if data.get("processExitCode") is not None:
         out["process_exit_code"] = data["processExitCode"]
-    if "progressMessage" in data:
+    if data.get("progressMessage") is not None:
         out["progress_message"] = data["progressMessage"]
-    if "acquiredLimits" in data:
+    if data.get("acquiredLimits") is not None:
         import capo_deadline.types.acquired_limits
 
         out["acquired_limits"] = capo_deadline.types.acquired_limits.deserialize_json(
             data["acquiredLimits"]
         )
-    if "definition" in data:
+    if data.get("definition") is not None:
         import capo_deadline.types.session_action_definition
 
         out["definition"] = (

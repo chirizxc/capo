@@ -54,7 +54,7 @@ def serialize_aws_json_1_1(value: ComplianceSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ComplianceSummary:
     out: ComplianceSummary = {}  # type: ignore[typeddict-item]
-    if "CompliantResourceCount" in data:
+    if data.get("CompliantResourceCount") is not None:
         import capo_config_service.types.compliance_contributor_count
 
         out["compliant_resource_count"] = (
@@ -62,7 +62,7 @@ def deserialize_aws_json_1_1(data: dict) -> ComplianceSummary:
                 data["CompliantResourceCount"]
             )
         )
-    if "NonCompliantResourceCount" in data:
+    if data.get("NonCompliantResourceCount") is not None:
         import capo_config_service.types.compliance_contributor_count
 
         out["non_compliant_resource_count"] = (
@@ -70,7 +70,7 @@ def deserialize_aws_json_1_1(data: dict) -> ComplianceSummary:
                 data["NonCompliantResourceCount"]
             )
         )
-    if "ComplianceSummaryTimestamp" in data:
+    if data.get("ComplianceSummaryTimestamp") is not None:
         import capo_config_service.types.date
 
         out["compliance_summary_timestamp"] = (

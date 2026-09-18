@@ -45,11 +45,11 @@ def serialize_json(value: TransitGatewayRegistration) -> dict:
 
 def deserialize_json(data: dict) -> TransitGatewayRegistration:
     out: TransitGatewayRegistration = {}  # type: ignore[typeddict-item]
-    if "GlobalNetworkId" in data:
+    if data.get("GlobalNetworkId") is not None:
         out["global_network_id"] = data["GlobalNetworkId"]
-    if "TransitGatewayArn" in data:
+    if data.get("TransitGatewayArn") is not None:
         out["transit_gateway_arn"] = data["TransitGatewayArn"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_networkmanager.types.transit_gateway_registration_state_reason
 
         out["state"] = (

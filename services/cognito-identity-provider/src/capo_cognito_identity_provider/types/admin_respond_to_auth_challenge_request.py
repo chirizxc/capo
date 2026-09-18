@@ -101,19 +101,19 @@ def serialize_aws_json_1_1(value: AdminRespondToAuthChallengeRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AdminRespondToAuthChallengeRequest:
     out: AdminRespondToAuthChallengeRequest = {}  # type: ignore[typeddict-item]
-    if "UserPoolId" in data:
+    if data.get("UserPoolId") is not None:
         out["user_pool_id"] = data["UserPoolId"]
     else:
         raise DeserializationError(
             "AdminRespondToAuthChallengeRequest.user_pool_id required"
         )
-    if "ClientId" in data:
+    if data.get("ClientId") is not None:
         out["client_id"] = data["ClientId"]
     else:
         raise DeserializationError(
             "AdminRespondToAuthChallengeRequest.client_id required"
         )
-    if "ChallengeName" in data:
+    if data.get("ChallengeName") is not None:
         import capo_cognito_identity_provider.types.challenge_name_type
 
         out["challenge_name"] = (
@@ -125,7 +125,7 @@ def deserialize_aws_json_1_1(data: dict) -> AdminRespondToAuthChallengeRequest:
         raise DeserializationError(
             "AdminRespondToAuthChallengeRequest.challenge_name required"
         )
-    if "ChallengeResponses" in data:
+    if data.get("ChallengeResponses") is not None:
         import capo_cognito_identity_provider.types.challenge_responses_type
 
         out["challenge_responses"] = (
@@ -133,9 +133,9 @@ def deserialize_aws_json_1_1(data: dict) -> AdminRespondToAuthChallengeRequest:
                 data["ChallengeResponses"]
             )
         )
-    if "Session" in data:
+    if data.get("Session") is not None:
         out["session"] = data["Session"]
-    if "AnalyticsMetadata" in data:
+    if data.get("AnalyticsMetadata") is not None:
         import capo_cognito_identity_provider.types.analytics_metadata_type
 
         out["analytics_metadata"] = (
@@ -143,7 +143,7 @@ def deserialize_aws_json_1_1(data: dict) -> AdminRespondToAuthChallengeRequest:
                 data["AnalyticsMetadata"]
             )
         )
-    if "ContextData" in data:
+    if data.get("ContextData") is not None:
         import capo_cognito_identity_provider.types.context_data_type
 
         out["context_data"] = (
@@ -151,7 +151,7 @@ def deserialize_aws_json_1_1(data: dict) -> AdminRespondToAuthChallengeRequest:
                 data["ContextData"]
             )
         )
-    if "ClientMetadata" in data:
+    if data.get("ClientMetadata") is not None:
         import capo_cognito_identity_provider.types.client_metadata_type
 
         out["client_metadata"] = (

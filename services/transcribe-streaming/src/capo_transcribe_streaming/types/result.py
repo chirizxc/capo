@@ -43,8 +43,24 @@ def serialize_json(value: Result) -> dict:
     out: dict = {}
     if "result_id" in value:
         out["ResultId"] = value["result_id"]
-    out["StartTime"] = value.get("start_time", 0)
-    out["EndTime"] = value.get("end_time", 0)
+    out["StartTime"] = (
+        "NaN"
+        if value.get("start_time", 0) != value.get("start_time", 0)
+        else "Infinity"
+        if value.get("start_time", 0) == float("inf")
+        else "-Infinity"
+        if value.get("start_time", 0) == float("-inf")
+        else value.get("start_time", 0)
+    )
+    out["EndTime"] = (
+        "NaN"
+        if value.get("end_time", 0) != value.get("end_time", 0)
+        else "Infinity"
+        if value.get("end_time", 0) == float("inf")
+        else "-Infinity"
+        if value.get("end_time", 0) == float("-inf")
+        else value.get("end_time", 0)
+    )
     out["IsPartial"] = value.get("is_partial", False)
     if "alternatives" in value:
         import capo_transcribe_streaming.types.alternative_list
@@ -77,21 +93,21 @@ def serialize_json(value: Result) -> dict:
 
 def deserialize_json(data: dict) -> Result:
     out: Result = {}  # type: ignore[typeddict-item]
-    if "ResultId" in data:
+    if data.get("ResultId") is not None:
         out["result_id"] = data["ResultId"]
-    if "StartTime" in data:
-        out["start_time"] = data["StartTime"]
+    if data.get("StartTime") is not None:
+        out["start_time"] = float(data["StartTime"])
     else:
         out["start_time"] = 0
-    if "EndTime" in data:
-        out["end_time"] = data["EndTime"]
+    if data.get("EndTime") is not None:
+        out["end_time"] = float(data["EndTime"])
     else:
         out["end_time"] = 0
-    if "IsPartial" in data:
+    if data.get("IsPartial") is not None:
         out["is_partial"] = data["IsPartial"]
     else:
         out["is_partial"] = False
-    if "Alternatives" in data:
+    if data.get("Alternatives") is not None:
         import capo_transcribe_streaming.types.alternative_list
 
         out["alternatives"] = (
@@ -99,9 +115,9 @@ def deserialize_json(data: dict) -> Result:
                 data["Alternatives"]
             )
         )
-    if "ChannelId" in data:
+    if data.get("ChannelId") is not None:
         out["channel_id"] = data["ChannelId"]
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         import capo_transcribe_streaming.types.language_code
 
         out["language_code"] = (
@@ -109,7 +125,7 @@ def deserialize_json(data: dict) -> Result:
                 data["LanguageCode"]
             )
         )
-    if "LanguageIdentification" in data:
+    if data.get("LanguageIdentification") is not None:
         import capo_transcribe_streaming.types.language_identification
 
         out["language_identification"] = (

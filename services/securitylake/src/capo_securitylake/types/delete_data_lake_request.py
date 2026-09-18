@@ -28,7 +28,7 @@ def serialize_json(value: DeleteDataLakeRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteDataLakeRequest:
     out: DeleteDataLakeRequest = {}  # type: ignore[typeddict-item]
-    if "regions" in data:
+    if data.get("regions") is not None:
         import capo_securitylake.types.region_list
 
         out["regions"] = capo_securitylake.types.region_list.deserialize_json(

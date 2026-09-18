@@ -77,17 +77,17 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DescribeApplicableIndividualAssessmentsMessage:
     out: DescribeApplicableIndividualAssessmentsMessage = {}  # type: ignore[typeddict-item]
-    if "ReplicationTaskArn" in data:
+    if data.get("ReplicationTaskArn") is not None:
         out["replication_task_arn"] = data["ReplicationTaskArn"]
-    if "ReplicationInstanceArn" in data:
+    if data.get("ReplicationInstanceArn") is not None:
         out["replication_instance_arn"] = data["ReplicationInstanceArn"]
-    if "ReplicationConfigArn" in data:
+    if data.get("ReplicationConfigArn") is not None:
         out["replication_config_arn"] = data["ReplicationConfigArn"]
-    if "SourceEngineName" in data:
+    if data.get("SourceEngineName") is not None:
         out["source_engine_name"] = data["SourceEngineName"]
-    if "TargetEngineName" in data:
+    if data.get("TargetEngineName") is not None:
         out["target_engine_name"] = data["TargetEngineName"]
-    if "MigrationType" in data:
+    if data.get("MigrationType") is not None:
         import capo_database_migration_service.types.migration_type_value
 
         out["migration_type"] = (
@@ -95,8 +95,8 @@ def deserialize_aws_json_1_1(
                 data["MigrationType"]
             )
         )
-    if "MaxRecords" in data:
+    if data.get("MaxRecords") is not None:
         out["max_records"] = data["MaxRecords"]
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
     return out

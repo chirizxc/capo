@@ -71,7 +71,7 @@ def serialize_json(value: Schedule) -> dict:
 
 
 def deserialize_json(data: dict) -> Schedule:
-    if "oneTime" in data:
+    if data.get("oneTime") is not None:
         import capo_inspector2.types.one_time_schedule
 
         return {
@@ -79,7 +79,7 @@ def deserialize_json(data: dict) -> Schedule:
                 data["oneTime"]
             )
         }
-    elif "daily" in data:
+    elif data.get("daily") is not None:
         import capo_inspector2.types.daily_schedule
 
         return {
@@ -87,7 +87,7 @@ def deserialize_json(data: dict) -> Schedule:
                 data["daily"]
             )
         }
-    elif "weekly" in data:
+    elif data.get("weekly") is not None:
         import capo_inspector2.types.weekly_schedule
 
         return {
@@ -95,7 +95,7 @@ def deserialize_json(data: dict) -> Schedule:
                 data["weekly"]
             )
         }
-    elif "monthly" in data:
+    elif data.get("monthly") is not None:
         import capo_inspector2.types.monthly_schedule
 
         return {

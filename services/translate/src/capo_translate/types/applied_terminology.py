@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: AppliedTerminology) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AppliedTerminology:
     out: AppliedTerminology = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Terms" in data:
+    if data.get("Terms") is not None:
         import capo_translate.types.term_list
 
         out["terms"] = capo_translate.types.term_list.deserialize_aws_json_1_1(

@@ -38,11 +38,11 @@ def serialize_json(value: BackendAPIAuthType) -> dict:
 
 def deserialize_json(data: dict) -> BackendAPIAuthType:
     out: BackendAPIAuthType = {}  # type: ignore[typeddict-item]
-    if "mode" in data:
+    if data.get("mode") is not None:
         import capo_amplifybackend.types.mode
 
         out["mode"] = capo_amplifybackend.types.mode.deserialize_json(data["mode"])
-    if "settings" in data:
+    if data.get("settings") is not None:
         import capo_amplifybackend.types.backend_api_app_sync_auth_settings
 
         out["settings"] = (

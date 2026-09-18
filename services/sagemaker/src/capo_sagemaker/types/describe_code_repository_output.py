@@ -61,11 +61,11 @@ def serialize_aws_json_1_1(value: DescribeCodeRepositoryOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeCodeRepositoryOutput:
     out: DescribeCodeRepositoryOutput = {}  # type: ignore[typeddict-item]
-    if "CodeRepositoryName" in data:
+    if data.get("CodeRepositoryName") is not None:
         out["code_repository_name"] = data["CodeRepositoryName"]
-    if "CodeRepositoryArn" in data:
+    if data.get("CodeRepositoryArn") is not None:
         out["code_repository_arn"] = data["CodeRepositoryArn"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.creation_time
 
         out["creation_time"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeCodeRepositoryOutput:
                 data["CreationTime"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.last_modified_time
 
         out["last_modified_time"] = (
@@ -81,7 +81,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeCodeRepositoryOutput:
                 data["LastModifiedTime"]
             )
         )
-    if "GitConfig" in data:
+    if data.get("GitConfig") is not None:
         import capo_sagemaker.types.git_config
 
         out["git_config"] = capo_sagemaker.types.git_config.deserialize_aws_json_1_1(

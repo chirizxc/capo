@@ -38,7 +38,7 @@ def serialize_json(value: ListAssociatedRoute53HealthChecksResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListAssociatedRoute53HealthChecksResponse:
     out: ListAssociatedRoute53HealthChecksResponse = {}  # type: ignore[typeddict-item]
-    if "HealthCheckIds" in data:
+    if data.get("HealthCheckIds") is not None:
         import capo_route53_recovery_control_config.types.__list_of__string_max36_pattern_s
 
         out["health_check_ids"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> ListAssociatedRoute53HealthChecksResponse:
                 data["HealthCheckIds"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

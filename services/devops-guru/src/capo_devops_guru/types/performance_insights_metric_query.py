@@ -51,9 +51,9 @@ def serialize_json(value: PerformanceInsightsMetricQuery) -> dict:
 
 def deserialize_json(data: dict) -> PerformanceInsightsMetricQuery:
     out: PerformanceInsightsMetricQuery = {}  # type: ignore[typeddict-item]
-    if "Metric" in data:
+    if data.get("Metric") is not None:
         out["metric"] = data["Metric"]
-    if "GroupBy" in data:
+    if data.get("GroupBy") is not None:
         import capo_devops_guru.types.performance_insights_metric_dimension_group
 
         out["group_by"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> PerformanceInsightsMetricQuery:
                 data["GroupBy"]
             )
         )
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_devops_guru.types.performance_insights_metric_filter_map
 
         out["filter"] = (

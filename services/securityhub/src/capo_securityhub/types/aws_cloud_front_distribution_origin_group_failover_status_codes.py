@@ -40,7 +40,7 @@ def deserialize_json(
     data: dict,
 ) -> AwsCloudFrontDistributionOriginGroupFailoverStatusCodes:
     out: AwsCloudFrontDistributionOriginGroupFailoverStatusCodes = {}  # type: ignore[typeddict-item]
-    if "Items" in data:
+    if data.get("Items") is not None:
         import capo_securityhub.types.aws_cloud_front_distribution_origin_group_failover_status_codes_item_list
 
         out["items"] = (
@@ -48,6 +48,6 @@ def deserialize_json(
                 data["Items"]
             )
         )
-    if "Quantity" in data:
+    if data.get("Quantity") is not None:
         out["quantity"] = data["Quantity"]
     return out

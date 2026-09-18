@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: GetCommentsForPullRequestOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetCommentsForPullRequestOutput:
     out: GetCommentsForPullRequestOutput = {}  # type: ignore[typeddict-item]
-    if "commentsForPullRequestData" in data:
+    if data.get("commentsForPullRequestData") is not None:
         import capo_codecommit.types.comments_for_pull_request_data
 
         out["comments_for_pull_request_data"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetCommentsForPullRequestOutput:
                 data["commentsForPullRequestData"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

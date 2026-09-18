@@ -27,7 +27,7 @@ def serialize_json(value: DescribeRoutingProfileResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeRoutingProfileResponse:
     out: DescribeRoutingProfileResponse = {}  # type: ignore[typeddict-item]
-    if "RoutingProfile" in data:
+    if data.get("RoutingProfile") is not None:
         import capo_connect.types.routing_profile
 
         out["routing_profile"] = capo_connect.types.routing_profile.deserialize_json(

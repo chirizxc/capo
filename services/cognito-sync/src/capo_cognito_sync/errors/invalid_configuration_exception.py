@@ -24,7 +24,7 @@ def serialize_json(value: InvalidConfigurationException_) -> dict:
 
 def deserialize_json(data: dict) -> InvalidConfigurationException_:
     out: InvalidConfigurationException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("InvalidConfigurationException_.message required")
@@ -36,15 +36,20 @@ class InvalidConfigurationException(ServiceError):
 
     code: str | None = "InvalidConfigurationException"
 
-    def __init__(self, data: InvalidConfigurationException_):
+    def __init__(
+        self, data: InvalidConfigurationException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidConfigurationException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "InvalidConfigurationException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidConfigurationException":
+        return cls(deserialize_json(data), message)

@@ -23,6 +23,6 @@ def serialize_json(value: ProbeInputFile) -> dict:
 
 def deserialize_json(data: dict) -> ProbeInputFile:
     out: ProbeInputFile = {}  # type: ignore[typeddict-item]
-    if "fileUrl" in data:
+    if data.get("fileUrl") is not None:
         out["file_url"] = data["fileUrl"]
     return out

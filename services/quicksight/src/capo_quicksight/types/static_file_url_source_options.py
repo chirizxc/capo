@@ -24,7 +24,7 @@ def serialize_json(value: StaticFileUrlSourceOptions) -> dict:
 
 def deserialize_json(data: dict) -> StaticFileUrlSourceOptions:
     out: StaticFileUrlSourceOptions = {}  # type: ignore[typeddict-item]
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
     else:
         raise DeserializationError("StaticFileUrlSourceOptions.url required")

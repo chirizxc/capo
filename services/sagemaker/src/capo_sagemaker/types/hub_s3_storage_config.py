@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: HubS3StorageConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HubS3StorageConfig:
     out: HubS3StorageConfig = {}  # type: ignore[typeddict-item]
-    if "S3OutputPath" in data:
+    if data.get("S3OutputPath") is not None:
         out["s3_output_path"] = data["S3OutputPath"]
     return out

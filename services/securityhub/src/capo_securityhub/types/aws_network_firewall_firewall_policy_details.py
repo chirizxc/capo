@@ -54,7 +54,7 @@ def serialize_json(value: AwsNetworkFirewallFirewallPolicyDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsNetworkFirewallFirewallPolicyDetails:
     out: AwsNetworkFirewallFirewallPolicyDetails = {}  # type: ignore[typeddict-item]
-    if "FirewallPolicy" in data:
+    if data.get("FirewallPolicy") is not None:
         import capo_securityhub.types.firewall_policy_details
 
         out["firewall_policy"] = (
@@ -62,12 +62,12 @@ def deserialize_json(data: dict) -> AwsNetworkFirewallFirewallPolicyDetails:
                 data["FirewallPolicy"]
             )
         )
-    if "FirewallPolicyArn" in data:
+    if data.get("FirewallPolicyArn") is not None:
         out["firewall_policy_arn"] = data["FirewallPolicyArn"]
-    if "FirewallPolicyId" in data:
+    if data.get("FirewallPolicyId") is not None:
         out["firewall_policy_id"] = data["FirewallPolicyId"]
-    if "FirewallPolicyName" in data:
+    if data.get("FirewallPolicyName") is not None:
         out["firewall_policy_name"] = data["FirewallPolicyName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

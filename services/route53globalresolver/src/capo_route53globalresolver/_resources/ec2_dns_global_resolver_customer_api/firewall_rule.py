@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_route53globalresolver._auth._signers
@@ -147,8 +148,11 @@ class FirewallRule:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.create_firewall_rule_input.CreateFirewallRuleInput = {}  # type: ignore[typeddict-item]
-        input_["action"] = action
+        input_: capo_route53globalresolver.types.create_firewall_rule_input.CreateFirewallRuleInput = {
+            "action": action,
+            "name": name,
+            "dns_view_id": dns_view_id,
+        }
         if block_override_dns_type is not None:
             input_["block_override_dns_type"] = block_override_dns_type
         if block_override_domain is not None:
@@ -157,8 +161,9 @@ class FirewallRule:
             input_["block_override_ttl"] = block_override_ttl
         if block_response is not None:
             input_["block_response"] = block_response
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if confidence_threshold is not None:
             input_["confidence_threshold"] = confidence_threshold
         if description is not None:
@@ -167,10 +172,8 @@ class FirewallRule:
             input_["dns_advanced_protection"] = dns_advanced_protection
         if firewall_domain_list_id is not None:
             input_["firewall_domain_list_id"] = firewall_domain_list_id
-        input_["name"] = name
         if priority is not None:
             input_["priority"] = priority
-        input_["dns_view_id"] = dns_view_id
         if q_type is not None:
             input_["q_type"] = q_type
 
@@ -179,6 +182,7 @@ class FirewallRule:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -216,14 +220,16 @@ class FirewallRule:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.get_firewall_rule_input.GetFirewallRuleInput = {}  # type: ignore[typeddict-item]
-        input_["firewall_rule_id"] = firewall_rule_id
+        input_: capo_route53globalresolver.types.get_firewall_rule_input.GetFirewallRuleInput = {
+            "firewall_rule_id": firewall_rule_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -305,7 +311,10 @@ class FirewallRule:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.update_firewall_rule_input.UpdateFirewallRuleInput = {}  # type: ignore[typeddict-item]
+        input_: capo_route53globalresolver.types.update_firewall_rule_input.UpdateFirewallRuleInput = {
+            "client_token": client_token,
+            "firewall_rule_id": firewall_rule_id,
+        }
         if action is not None:
             input_["action"] = action
         if block_override_dns_type is not None:
@@ -316,14 +325,12 @@ class FirewallRule:
             input_["block_override_ttl"] = block_override_ttl
         if block_response is not None:
             input_["block_response"] = block_response
-        input_["client_token"] = client_token
         if confidence_threshold is not None:
             input_["confidence_threshold"] = confidence_threshold
         if description is not None:
             input_["description"] = description
         if dns_advanced_protection is not None:
             input_["dns_advanced_protection"] = dns_advanced_protection
-        input_["firewall_rule_id"] = firewall_rule_id
         if name is not None:
             input_["name"] = name
         if priority is not None:
@@ -334,6 +341,7 @@ class FirewallRule:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -372,14 +380,16 @@ class FirewallRule:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.delete_firewall_rule_input.DeleteFirewallRuleInput = {}  # type: ignore[typeddict-item]
-        input_["firewall_rule_id"] = firewall_rule_id
+        input_: capo_route53globalresolver.types.delete_firewall_rule_input.DeleteFirewallRuleInput = {
+            "firewall_rule_id": firewall_rule_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -423,12 +433,13 @@ class FirewallRule:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.list_firewall_rules_input.ListFirewallRulesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_route53globalresolver.types.list_firewall_rules_input.ListFirewallRulesInput = {
+            "dns_view_id": dns_view_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["dns_view_id"] = dns_view_id
         if filters is not None:
             input_["filters"] = filters
 
@@ -437,6 +448,7 @@ class FirewallRule:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_create_firewall_rule(
@@ -473,14 +485,16 @@ class FirewallRule:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.batch_create_firewall_rule_input.BatchCreateFirewallRuleInput = {}  # type: ignore[typeddict-item]
-        input_["firewall_rules"] = firewall_rules
+        input_: capo_route53globalresolver.types.batch_create_firewall_rule_input.BatchCreateFirewallRuleInput = {
+            "firewall_rules": firewall_rules
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_delete_firewall_rule(
@@ -517,14 +531,16 @@ class FirewallRule:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.batch_delete_firewall_rule_input.BatchDeleteFirewallRuleInput = {}  # type: ignore[typeddict-item]
-        input_["firewall_rules"] = firewall_rules
+        input_: capo_route53globalresolver.types.batch_delete_firewall_rule_input.BatchDeleteFirewallRuleInput = {
+            "firewall_rules": firewall_rules
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_update_firewall_rule(
@@ -561,14 +577,16 @@ class FirewallRule:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.batch_update_firewall_rule_input.BatchUpdateFirewallRuleInput = {}  # type: ignore[typeddict-item]
-        input_["firewall_rules"] = firewall_rules
+        input_: capo_route53globalresolver.types.batch_update_firewall_rule_input.BatchUpdateFirewallRuleInput = {
+            "firewall_rules": firewall_rules
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -662,8 +680,11 @@ class AsyncFirewallRule:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.create_firewall_rule_input.CreateFirewallRuleInput = {}  # type: ignore[typeddict-item]
-        input_["action"] = action
+        input_: capo_route53globalresolver.types.create_firewall_rule_input.CreateFirewallRuleInput = {
+            "action": action,
+            "name": name,
+            "dns_view_id": dns_view_id,
+        }
         if block_override_dns_type is not None:
             input_["block_override_dns_type"] = block_override_dns_type
         if block_override_domain is not None:
@@ -672,8 +693,9 @@ class AsyncFirewallRule:
             input_["block_override_ttl"] = block_override_ttl
         if block_response is not None:
             input_["block_response"] = block_response
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if confidence_threshold is not None:
             input_["confidence_threshold"] = confidence_threshold
         if description is not None:
@@ -682,10 +704,8 @@ class AsyncFirewallRule:
             input_["dns_advanced_protection"] = dns_advanced_protection
         if firewall_domain_list_id is not None:
             input_["firewall_domain_list_id"] = firewall_domain_list_id
-        input_["name"] = name
         if priority is not None:
             input_["priority"] = priority
-        input_["dns_view_id"] = dns_view_id
         if q_type is not None:
             input_["q_type"] = q_type
 
@@ -694,6 +714,7 @@ class AsyncFirewallRule:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -732,14 +753,16 @@ class AsyncFirewallRule:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.get_firewall_rule_input.GetFirewallRuleInput = {}  # type: ignore[typeddict-item]
-        input_["firewall_rule_id"] = firewall_rule_id
+        input_: capo_route53globalresolver.types.get_firewall_rule_input.GetFirewallRuleInput = {
+            "firewall_rule_id": firewall_rule_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -822,7 +845,10 @@ class AsyncFirewallRule:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.update_firewall_rule_input.UpdateFirewallRuleInput = {}  # type: ignore[typeddict-item]
+        input_: capo_route53globalresolver.types.update_firewall_rule_input.UpdateFirewallRuleInput = {
+            "client_token": client_token,
+            "firewall_rule_id": firewall_rule_id,
+        }
         if action is not None:
             input_["action"] = action
         if block_override_dns_type is not None:
@@ -833,14 +859,12 @@ class AsyncFirewallRule:
             input_["block_override_ttl"] = block_override_ttl
         if block_response is not None:
             input_["block_response"] = block_response
-        input_["client_token"] = client_token
         if confidence_threshold is not None:
             input_["confidence_threshold"] = confidence_threshold
         if description is not None:
             input_["description"] = description
         if dns_advanced_protection is not None:
             input_["dns_advanced_protection"] = dns_advanced_protection
-        input_["firewall_rule_id"] = firewall_rule_id
         if name is not None:
             input_["name"] = name
         if priority is not None:
@@ -851,6 +875,7 @@ class AsyncFirewallRule:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -890,14 +915,16 @@ class AsyncFirewallRule:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.delete_firewall_rule_input.DeleteFirewallRuleInput = {}  # type: ignore[typeddict-item]
-        input_["firewall_rule_id"] = firewall_rule_id
+        input_: capo_route53globalresolver.types.delete_firewall_rule_input.DeleteFirewallRuleInput = {
+            "firewall_rule_id": firewall_rule_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -942,12 +969,13 @@ class AsyncFirewallRule:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.list_firewall_rules_input.ListFirewallRulesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_route53globalresolver.types.list_firewall_rules_input.ListFirewallRulesInput = {
+            "dns_view_id": dns_view_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["dns_view_id"] = dns_view_id
         if filters is not None:
             input_["filters"] = filters
 
@@ -956,6 +984,7 @@ class AsyncFirewallRule:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_create_firewall_rule(
@@ -993,14 +1022,16 @@ class AsyncFirewallRule:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.batch_create_firewall_rule_input.BatchCreateFirewallRuleInput = {}  # type: ignore[typeddict-item]
-        input_["firewall_rules"] = firewall_rules
+        input_: capo_route53globalresolver.types.batch_create_firewall_rule_input.BatchCreateFirewallRuleInput = {
+            "firewall_rules": firewall_rules
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_delete_firewall_rule(
@@ -1038,14 +1069,16 @@ class AsyncFirewallRule:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.batch_delete_firewall_rule_input.BatchDeleteFirewallRuleInput = {}  # type: ignore[typeddict-item]
-        input_["firewall_rules"] = firewall_rules
+        input_: capo_route53globalresolver.types.batch_delete_firewall_rule_input.BatchDeleteFirewallRuleInput = {
+            "firewall_rules": firewall_rules
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_update_firewall_rule(
@@ -1083,12 +1116,14 @@ class AsyncFirewallRule:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_route53globalresolver.types.batch_update_firewall_rule_input.BatchUpdateFirewallRuleInput = {}  # type: ignore[typeddict-item]
-        input_["firewall_rules"] = firewall_rules
+        input_: capo_route53globalresolver.types.batch_update_firewall_rule_input.BatchUpdateFirewallRuleInput = {
+            "firewall_rules": firewall_rules
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

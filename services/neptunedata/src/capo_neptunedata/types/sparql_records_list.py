@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> SparqlRecordsList:
 
     out: SparqlRecordsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_neptunedata.types.sparql_record.deserialize_json(item))
     return out

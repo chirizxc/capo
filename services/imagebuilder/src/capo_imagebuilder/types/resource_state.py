@@ -27,7 +27,7 @@ def serialize_json(value: ResourceState) -> dict:
 
 def deserialize_json(data: dict) -> ResourceState:
     out: ResourceState = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_imagebuilder.types.resource_status
 
         out["status"] = capo_imagebuilder.types.resource_status.deserialize_json(

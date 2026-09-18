@@ -49,7 +49,7 @@ def serialize_aws_json_1_1(value: DetectEntitiesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DetectEntitiesResponse:
     out: DetectEntitiesResponse = {}  # type: ignore[typeddict-item]
-    if "Entities" in data:
+    if data.get("Entities") is not None:
         import capo_comprehendmedical.types.entity_list
 
         out["entities"] = (
@@ -59,7 +59,7 @@ def deserialize_aws_json_1_1(data: dict) -> DetectEntitiesResponse:
         )
     else:
         raise DeserializationError("DetectEntitiesResponse.entities required")
-    if "UnmappedAttributes" in data:
+    if data.get("UnmappedAttributes") is not None:
         import capo_comprehendmedical.types.unmapped_attribute_list
 
         out["unmapped_attributes"] = (
@@ -67,9 +67,9 @@ def deserialize_aws_json_1_1(data: dict) -> DetectEntitiesResponse:
                 data["UnmappedAttributes"]
             )
         )
-    if "PaginationToken" in data:
+    if data.get("PaginationToken") is not None:
         out["pagination_token"] = data["PaginationToken"]
-    if "ModelVersion" in data:
+    if data.get("ModelVersion") is not None:
         out["model_version"] = data["ModelVersion"]
     else:
         raise DeserializationError("DetectEntitiesResponse.model_version required")

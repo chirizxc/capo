@@ -35,11 +35,11 @@ def serialize_json(value: RealTimeAlertConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> RealTimeAlertConfiguration:
     out: RealTimeAlertConfiguration = {}  # type: ignore[typeddict-item]
-    if "Disabled" in data:
+    if data.get("Disabled") is not None:
         out["disabled"] = data["Disabled"]
     else:
         out["disabled"] = False
-    if "Rules" in data:
+    if data.get("Rules") is not None:
         import capo_chime_sdk_media_pipelines.types.real_time_alert_rule_list
 
         out["rules"] = (

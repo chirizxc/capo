@@ -71,7 +71,7 @@ def serialize_aws_json_1_1(value: DatasetDefinition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DatasetDefinition:
     out: DatasetDefinition = {}  # type: ignore[typeddict-item]
-    if "AthenaDatasetDefinition" in data:
+    if data.get("AthenaDatasetDefinition") is not None:
         import capo_sagemaker.types.athena_dataset_definition
 
         out["athena_dataset_definition"] = (
@@ -79,7 +79,7 @@ def deserialize_aws_json_1_1(data: dict) -> DatasetDefinition:
                 data["AthenaDatasetDefinition"]
             )
         )
-    if "RedshiftDatasetDefinition" in data:
+    if data.get("RedshiftDatasetDefinition") is not None:
         import capo_sagemaker.types.redshift_dataset_definition
 
         out["redshift_dataset_definition"] = (
@@ -87,9 +87,9 @@ def deserialize_aws_json_1_1(data: dict) -> DatasetDefinition:
                 data["RedshiftDatasetDefinition"]
             )
         )
-    if "LocalPath" in data:
+    if data.get("LocalPath") is not None:
         out["local_path"] = data["LocalPath"]
-    if "DataDistributionType" in data:
+    if data.get("DataDistributionType") is not None:
         import capo_sagemaker.types.data_distribution_type
 
         out["data_distribution_type"] = (
@@ -97,7 +97,7 @@ def deserialize_aws_json_1_1(data: dict) -> DatasetDefinition:
                 data["DataDistributionType"]
             )
         )
-    if "InputMode" in data:
+    if data.get("InputMode") is not None:
         import capo_sagemaker.types.input_mode
 
         out["input_mode"] = capo_sagemaker.types.input_mode.deserialize_aws_json_1_1(

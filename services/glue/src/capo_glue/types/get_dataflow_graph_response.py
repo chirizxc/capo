@@ -36,13 +36,13 @@ def serialize_aws_json_1_1(value: GetDataflowGraphResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDataflowGraphResponse:
     out: GetDataflowGraphResponse = {}  # type: ignore[typeddict-item]
-    if "DagNodes" in data:
+    if data.get("DagNodes") is not None:
         import capo_glue.types.dag_nodes
 
         out["dag_nodes"] = capo_glue.types.dag_nodes.deserialize_aws_json_1_1(
             data["DagNodes"]
         )
-    if "DagEdges" in data:
+    if data.get("DagEdges") is not None:
         import capo_glue.types.dag_edges
 
         out["dag_edges"] = capo_glue.types.dag_edges.deserialize_aws_json_1_1(

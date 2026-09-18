@@ -83,9 +83,9 @@ def serialize_aws_json_1_1(value: SchemaAttributeType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SchemaAttributeType:
     out: SchemaAttributeType = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "AttributeDataType" in data:
+    if data.get("AttributeDataType") is not None:
         import capo_cognito_identity_provider.types.attribute_data_type
 
         out["attribute_data_type"] = (
@@ -93,13 +93,13 @@ def deserialize_aws_json_1_1(data: dict) -> SchemaAttributeType:
                 data["AttributeDataType"]
             )
         )
-    if "DeveloperOnlyAttribute" in data:
+    if data.get("DeveloperOnlyAttribute") is not None:
         out["developer_only_attribute"] = data["DeveloperOnlyAttribute"]
-    if "Mutable" in data:
+    if data.get("Mutable") is not None:
         out["mutable"] = data["Mutable"]
-    if "Required" in data:
+    if data.get("Required") is not None:
         out["required"] = data["Required"]
-    if "NumberAttributeConstraints" in data:
+    if data.get("NumberAttributeConstraints") is not None:
         import capo_cognito_identity_provider.types.number_attribute_constraints_type
 
         out["number_attribute_constraints"] = (
@@ -107,7 +107,7 @@ def deserialize_aws_json_1_1(data: dict) -> SchemaAttributeType:
                 data["NumberAttributeConstraints"]
             )
         )
-    if "StringAttributeConstraints" in data:
+    if data.get("StringAttributeConstraints") is not None:
         import capo_cognito_identity_provider.types.string_attribute_constraints_type
 
         out["string_attribute_constraints"] = (

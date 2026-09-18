@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AnalyticsDataSetsResults:
 
     out: AnalyticsDataSetsResults = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.analytics_data_sets_result.deserialize_json(item))
     return out

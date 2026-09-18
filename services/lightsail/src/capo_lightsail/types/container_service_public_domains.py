@@ -29,6 +29,8 @@ def serialize_aws_json_1_1(input_to_serialize: ContainerServicePublicDomains) ->
 def deserialize_aws_json_1_1(data: dict) -> ContainerServicePublicDomains:
     out: ContainerServicePublicDomains = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_lightsail.types.container_service_public_domains_list
 
         out[key] = (

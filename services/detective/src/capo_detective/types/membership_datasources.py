@@ -41,11 +41,11 @@ def serialize_json(value: MembershipDatasources) -> dict:
 
 def deserialize_json(data: dict) -> MembershipDatasources:
     out: MembershipDatasources = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "GraphArn" in data:
+    if data.get("GraphArn") is not None:
         out["graph_arn"] = data["GraphArn"]
-    if "DatasourcePackageIngestHistory" in data:
+    if data.get("DatasourcePackageIngestHistory") is not None:
         import capo_detective.types.datasource_package_ingest_history
 
         out["datasource_package_ingest_history"] = (

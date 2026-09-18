@@ -115,23 +115,23 @@ def serialize_json(value: DescribeSecurityProfileResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeSecurityProfileResponse:
     out: DescribeSecurityProfileResponse = {}  # type: ignore[typeddict-item]
-    if "securityProfileName" in data:
+    if data.get("securityProfileName") is not None:
         out["security_profile_name"] = data["securityProfileName"]
-    if "securityProfileArn" in data:
+    if data.get("securityProfileArn") is not None:
         out["security_profile_arn"] = data["securityProfileArn"]
-    if "securityProfileDescription" in data:
+    if data.get("securityProfileDescription") is not None:
         out["security_profile_description"] = data["securityProfileDescription"]
-    if "behaviors" in data:
+    if data.get("behaviors") is not None:
         import capo_iot.types.behaviors
 
         out["behaviors"] = capo_iot.types.behaviors.deserialize_json(data["behaviors"])
-    if "alertTargets" in data:
+    if data.get("alertTargets") is not None:
         import capo_iot.types.alert_targets
 
         out["alert_targets"] = capo_iot.types.alert_targets.deserialize_json(
             data["alertTargets"]
         )
-    if "additionalMetricsToRetain" in data:
+    if data.get("additionalMetricsToRetain") is not None:
         import capo_iot.types.additional_metrics_to_retain_list
 
         out["additional_metrics_to_retain"] = (
@@ -139,7 +139,7 @@ def deserialize_json(data: dict) -> DescribeSecurityProfileResponse:
                 data["additionalMetricsToRetain"]
             )
         )
-    if "additionalMetricsToRetainV2" in data:
+    if data.get("additionalMetricsToRetainV2") is not None:
         import capo_iot.types.additional_metrics_to_retain_v2_list
 
         out["additional_metrics_to_retain_v2"] = (
@@ -147,23 +147,23 @@ def deserialize_json(data: dict) -> DescribeSecurityProfileResponse:
                 data["additionalMetricsToRetainV2"]
             )
         )
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     else:
         out["version"] = 0
-    if "creationDate" in data:
+    if data.get("creationDate") is not None:
         import capo_iot.types.timestamp
 
         out["creation_date"] = capo_iot.types.timestamp.deserialize_json(
             data["creationDate"]
         )
-    if "lastModifiedDate" in data:
+    if data.get("lastModifiedDate") is not None:
         import capo_iot.types.timestamp
 
         out["last_modified_date"] = capo_iot.types.timestamp.deserialize_json(
             data["lastModifiedDate"]
         )
-    if "metricsExportConfig" in data:
+    if data.get("metricsExportConfig") is not None:
         import capo_iot.types.metrics_export_config
 
         out["metrics_export_config"] = (

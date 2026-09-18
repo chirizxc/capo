@@ -34,15 +34,15 @@ def serialize_json(value: ApiKey) -> dict:
 
 def deserialize_json(data: dict) -> ApiKey:
     out: ApiKey = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "expires" in data:
+    if data.get("expires") is not None:
         out["expires"] = data["expires"]
     else:
         out["expires"] = 0
-    if "deletes" in data:
+    if data.get("deletes") is not None:
         out["deletes"] = data["deletes"]
     else:
         out["deletes"] = 0

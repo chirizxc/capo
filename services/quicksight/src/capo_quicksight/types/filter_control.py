@@ -112,7 +112,7 @@ def serialize_json(value: FilterControl) -> dict:
 
 def deserialize_json(data: dict) -> FilterControl:
     out: FilterControl = {}  # type: ignore[typeddict-item]
-    if "DateTimePicker" in data:
+    if data.get("DateTimePicker") is not None:
         import capo_quicksight.types.filter_date_time_picker_control
 
         out["date_time_picker"] = (
@@ -120,13 +120,13 @@ def deserialize_json(data: dict) -> FilterControl:
                 data["DateTimePicker"]
             )
         )
-    if "List" in data:
+    if data.get("List") is not None:
         import capo_quicksight.types.filter_list_control
 
         out["list"] = capo_quicksight.types.filter_list_control.deserialize_json(
             data["List"]
         )
-    if "Dropdown" in data:
+    if data.get("Dropdown") is not None:
         import capo_quicksight.types.filter_drop_down_control
 
         out["dropdown"] = (
@@ -134,7 +134,7 @@ def deserialize_json(data: dict) -> FilterControl:
                 data["Dropdown"]
             )
         )
-    if "TextField" in data:
+    if data.get("TextField") is not None:
         import capo_quicksight.types.filter_text_field_control
 
         out["text_field"] = (
@@ -142,7 +142,7 @@ def deserialize_json(data: dict) -> FilterControl:
                 data["TextField"]
             )
         )
-    if "TextArea" in data:
+    if data.get("TextArea") is not None:
         import capo_quicksight.types.filter_text_area_control
 
         out["text_area"] = (
@@ -150,13 +150,13 @@ def deserialize_json(data: dict) -> FilterControl:
                 data["TextArea"]
             )
         )
-    if "Slider" in data:
+    if data.get("Slider") is not None:
         import capo_quicksight.types.filter_slider_control
 
         out["slider"] = capo_quicksight.types.filter_slider_control.deserialize_json(
             data["Slider"]
         )
-    if "RelativeDateTime" in data:
+    if data.get("RelativeDateTime") is not None:
         import capo_quicksight.types.filter_relative_date_time_control
 
         out["relative_date_time"] = (
@@ -164,7 +164,7 @@ def deserialize_json(data: dict) -> FilterControl:
                 data["RelativeDateTime"]
             )
         )
-    if "CrossSheet" in data:
+    if data.get("CrossSheet") is not None:
         import capo_quicksight.types.filter_cross_sheet_control
 
         out["cross_sheet"] = (

@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> __listOfUserSummary:
 
     out: __listOfUserSummary = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mq.types.user_summary.deserialize_json(item))
     return out

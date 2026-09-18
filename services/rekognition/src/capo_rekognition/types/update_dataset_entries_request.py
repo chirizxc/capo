@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: UpdateDatasetEntriesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateDatasetEntriesRequest:
     out: UpdateDatasetEntriesRequest = {}  # type: ignore[typeddict-item]
-    if "DatasetArn" in data:
+    if data.get("DatasetArn") is not None:
         out["dataset_arn"] = data["DatasetArn"]
     else:
         raise DeserializationError("UpdateDatasetEntriesRequest.dataset_arn required")
-    if "Changes" in data:
+    if data.get("Changes") is not None:
         import capo_rekognition.types.dataset_changes
 
         out["changes"] = (

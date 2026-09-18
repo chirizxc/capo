@@ -80,7 +80,7 @@ def serialize_json(value: CreateDevEnvironmentRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDevEnvironmentRequest:
     out: CreateDevEnvironmentRequest = {}  # type: ignore[typeddict-item]
-    if "repositories" in data:
+    if data.get("repositories") is not None:
         import capo_codecatalyst.types.repositories_input
 
         out["repositories"] = (
@@ -88,25 +88,25 @@ def deserialize_json(data: dict) -> CreateDevEnvironmentRequest:
                 data["repositories"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "alias" in data:
+    if data.get("alias") is not None:
         out["alias"] = data["alias"]
-    if "ides" in data:
+    if data.get("ides") is not None:
         import capo_codecatalyst.types.ide_configuration_list
 
         out["ides"] = capo_codecatalyst.types.ide_configuration_list.deserialize_json(
             data["ides"]
         )
-    if "instanceType" in data:
+    if data.get("instanceType") is not None:
         out["instance_type"] = data["instanceType"]
     else:
         raise DeserializationError("CreateDevEnvironmentRequest.instance_type required")
-    if "inactivityTimeoutMinutes" in data:
+    if data.get("inactivityTimeoutMinutes") is not None:
         out["inactivity_timeout_minutes"] = data["inactivityTimeoutMinutes"]
     else:
         out["inactivity_timeout_minutes"] = 0
-    if "persistentStorage" in data:
+    if data.get("persistentStorage") is not None:
         import capo_codecatalyst.types.persistent_storage_configuration
 
         out["persistent_storage"] = (
@@ -118,6 +118,6 @@ def deserialize_json(data: dict) -> CreateDevEnvironmentRequest:
         raise DeserializationError(
             "CreateDevEnvironmentRequest.persistent_storage required"
         )
-    if "vpcConnectionName" in data:
+    if data.get("vpcConnectionName") is not None:
         out["vpc_connection_name"] = data["vpcConnectionName"]
     return out

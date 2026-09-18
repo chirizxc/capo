@@ -105,37 +105,37 @@ def serialize_aws_json_1_1(value: Insight) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Insight:
     out: Insight = {}  # type: ignore[typeddict-item]
-    if "InsightId" in data:
+    if data.get("InsightId") is not None:
         out["insight_id"] = data["InsightId"]
     else:
         raise DeserializationError("Insight.insight_id required")
-    if "InsightType" in data:
+    if data.get("InsightType") is not None:
         out["insight_type"] = data["InsightType"]
-    if "Context" in data:
+    if data.get("Context") is not None:
         import capo_pi.types.context_type
 
         out["context"] = capo_pi.types.context_type.deserialize_aws_json_1_1(
             data["Context"]
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_pi.types.iso_timestamp
 
         out["start_time"] = capo_pi.types.iso_timestamp.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_pi.types.iso_timestamp
 
         out["end_time"] = capo_pi.types.iso_timestamp.deserialize_aws_json_1_1(
             data["EndTime"]
         )
-    if "Severity" in data:
+    if data.get("Severity") is not None:
         import capo_pi.types.severity
 
         out["severity"] = capo_pi.types.severity.deserialize_aws_json_1_1(
             data["Severity"]
         )
-    if "SupportingInsights" in data:
+    if data.get("SupportingInsights") is not None:
         import capo_pi.types.insight_list
 
         out["supporting_insights"] = (
@@ -143,9 +143,9 @@ def deserialize_aws_json_1_1(data: dict) -> Insight:
                 data["SupportingInsights"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Recommendations" in data:
+    if data.get("Recommendations") is not None:
         import capo_pi.types.recommendation_list
 
         out["recommendations"] = (
@@ -153,13 +153,13 @@ def deserialize_aws_json_1_1(data: dict) -> Insight:
                 data["Recommendations"]
             )
         )
-    if "InsightData" in data:
+    if data.get("InsightData") is not None:
         import capo_pi.types.data_list
 
         out["insight_data"] = capo_pi.types.data_list.deserialize_aws_json_1_1(
             data["InsightData"]
         )
-    if "BaselineData" in data:
+    if data.get("BaselineData") is not None:
         import capo_pi.types.data_list
 
         out["baseline_data"] = capo_pi.types.data_list.deserialize_aws_json_1_1(

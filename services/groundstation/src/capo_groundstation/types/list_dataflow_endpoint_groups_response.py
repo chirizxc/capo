@@ -36,9 +36,9 @@ def serialize_json(value: ListDataflowEndpointGroupsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListDataflowEndpointGroupsResponse:
     out: ListDataflowEndpointGroupsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "dataflowEndpointGroupList" in data:
+    if data.get("dataflowEndpointGroupList") is not None:
         import capo_groundstation.types.dataflow_endpoint_group_list
 
         out["dataflow_endpoint_group_list"] = (

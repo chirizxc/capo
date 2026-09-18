@@ -29,7 +29,7 @@ def serialize_aws_json_1_1(value: EC2Specification) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EC2Specification:
     out: EC2Specification = {}  # type: ignore[typeddict-item]
-    if "OfferingClass" in data:
+    if data.get("OfferingClass") is not None:
         import capo_cost_explorer.types.offering_class
 
         out["offering_class"] = (

@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: PlacementSpecification) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PlacementSpecification:
     out: PlacementSpecification = {}  # type: ignore[typeddict-item]
-    if "UltraServerId" in data:
+    if data.get("UltraServerId") is not None:
         out["ultra_server_id"] = data["UltraServerId"]
-    if "InstanceCount" in data:
+    if data.get("InstanceCount") is not None:
         out["instance_count"] = data["InstanceCount"]
     return out

@@ -34,7 +34,7 @@ def serialize_json(value: ExportSpecification) -> dict:
 
 
 def deserialize_json(data: dict) -> ExportSpecification:
-    if "s3ExportSpecification" in data:
+    if data.get("s3ExportSpecification") is not None:
         import capo_backupsearch.types.s3_export_specification
 
         return {

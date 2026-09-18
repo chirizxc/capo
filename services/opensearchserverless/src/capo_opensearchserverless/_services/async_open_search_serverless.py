@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.opensearchserverless#OpenSearchServerless``."""
 
+import uuid
 import warnings
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
@@ -241,7 +242,7 @@ class AsyncOpenSearchServerlessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.batch_get_collection_request.BatchGetCollectionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_opensearchserverless.types.batch_get_collection_request.BatchGetCollectionRequest = {}
         if ids is not None:
             input_["ids"] = ids
         if names is not None:
@@ -252,6 +253,7 @@ class AsyncOpenSearchServerlessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_collection_group(
@@ -293,7 +295,7 @@ class AsyncOpenSearchServerlessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.batch_get_collection_group_request.BatchGetCollectionGroupRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_opensearchserverless.types.batch_get_collection_group_request.BatchGetCollectionGroupRequest = {}
         if ids is not None:
             input_["ids"] = ids
         if names is not None:
@@ -304,6 +306,7 @@ class AsyncOpenSearchServerlessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_effective_lifecycle_policy(
@@ -339,14 +342,16 @@ class AsyncOpenSearchServerlessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.batch_get_effective_lifecycle_policy_request.BatchGetEffectiveLifecyclePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_identifiers"] = resource_identifiers
+        input_: capo_opensearchserverless.types.batch_get_effective_lifecycle_policy_request.BatchGetEffectiveLifecyclePolicyRequest = {
+            "resource_identifiers": resource_identifiers
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_lifecycle_policy(
@@ -382,14 +387,16 @@ class AsyncOpenSearchServerlessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.batch_get_lifecycle_policy_request.BatchGetLifecyclePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["identifiers"] = identifiers
+        input_: capo_opensearchserverless.types.batch_get_lifecycle_policy_request.BatchGetLifecyclePolicyRequest = {
+            "identifiers": identifiers
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_get_vpc_endpoint(
@@ -425,14 +432,16 @@ class AsyncOpenSearchServerlessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.batch_get_vpc_endpoint_request.BatchGetVpcEndpointRequest = {}  # type: ignore[typeddict-item]
-        input_["ids"] = ids
+        input_: capo_opensearchserverless.types.batch_get_vpc_endpoint_request.BatchGetVpcEndpointRequest = {
+            "ids": ids
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_lifecycle_policy(
@@ -482,20 +491,23 @@ class AsyncOpenSearchServerlessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.create_lifecycle_policy_request.CreateLifecyclePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["type"] = type
-        input_["name"] = name
+        input_: capo_opensearchserverless.types.create_lifecycle_policy_request.CreateLifecyclePolicyRequest = {
+            "type": type,
+            "name": name,
+            "policy": policy,
+        }
         if description is not None:
             input_["description"] = description
-        input_["policy"] = policy
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_security_policy(
@@ -545,20 +557,23 @@ class AsyncOpenSearchServerlessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.create_security_policy_request.CreateSecurityPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["type"] = type
-        input_["name"] = name
+        input_: capo_opensearchserverless.types.create_security_policy_request.CreateSecurityPolicyRequest = {
+            "type": type,
+            "name": name,
+            "policy": policy,
+        }
         if description is not None:
             input_["description"] = description
-        input_["policy"] = policy
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_account_settings(
@@ -590,13 +605,14 @@ class AsyncOpenSearchServerlessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.get_account_settings_request.GetAccountSettingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_opensearchserverless.types.get_account_settings_request.GetAccountSettingsRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_policies_stats(
@@ -627,13 +643,14 @@ class AsyncOpenSearchServerlessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.get_policies_stats_request.GetPoliciesStatsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_opensearchserverless.types.get_policies_stats_request.GetPoliciesStatsRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_tags_for_resource(
@@ -670,14 +687,16 @@ class AsyncOpenSearchServerlessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_opensearchserverless.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -718,15 +737,17 @@ class AsyncOpenSearchServerlessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_opensearchserverless.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -768,15 +789,17 @@ class AsyncOpenSearchServerlessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_opensearchserverless.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_account_settings(
@@ -812,7 +835,7 @@ class AsyncOpenSearchServerlessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.update_account_settings_request.UpdateAccountSettingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_opensearchserverless.types.update_account_settings_request.UpdateAccountSettingsRequest = {}
         if capacity_limits is not None:
             input_["capacity_limits"] = capacity_limits
 
@@ -821,6 +844,7 @@ class AsyncOpenSearchServerlessClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_vpc_endpoint(
@@ -877,8 +901,9 @@ class AsyncOpenSearchServerlessClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_opensearchserverless.types.update_vpc_endpoint_request.UpdateVpcEndpointRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_opensearchserverless.types.update_vpc_endpoint_request.UpdateVpcEndpointRequest = {
+            "id": id
+        }
         if add_subnet_ids is not None:
             input_["add_subnet_ids"] = add_subnet_ids
         if remove_subnet_ids is not None:
@@ -887,14 +912,16 @@ class AsyncOpenSearchServerlessClient:
             input_["add_security_group_ids"] = add_security_group_ids
         if remove_security_group_ids is not None:
             input_["remove_security_group_ids"] = remove_security_group_ids
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

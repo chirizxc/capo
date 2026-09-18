@@ -36,13 +36,13 @@ def serialize_json(value: ResetNotificationSettingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ResetNotificationSettingsRequest:
     out: ResetNotificationSettingsRequest = {}  # type: ignore[typeddict-item]
-    if "trustAnchorId" in data:
+    if data.get("trustAnchorId") is not None:
         out["trust_anchor_id"] = data["trustAnchorId"]
     else:
         raise DeserializationError(
             "ResetNotificationSettingsRequest.trust_anchor_id required"
         )
-    if "notificationSettingKeys" in data:
+    if data.get("notificationSettingKeys") is not None:
         import capo_rolesanywhere.types.notification_setting_keys
 
         out["notification_setting_keys"] = (

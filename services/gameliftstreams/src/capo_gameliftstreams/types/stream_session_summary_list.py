@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> StreamSessionSummaryList:
 
     out: StreamSessionSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_gameliftstreams.types.stream_session_summary.deserialize_json(item)
         )

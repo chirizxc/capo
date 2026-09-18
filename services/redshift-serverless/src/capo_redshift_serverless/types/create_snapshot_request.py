@@ -39,17 +39,17 @@ def serialize_aws_json_1_1(value: CreateSnapshotRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateSnapshotRequest:
     out: CreateSnapshotRequest = {}  # type: ignore[typeddict-item]
-    if "namespaceName" in data:
+    if data.get("namespaceName") is not None:
         out["namespace_name"] = data["namespaceName"]
     else:
         raise DeserializationError("CreateSnapshotRequest.namespace_name required")
-    if "snapshotName" in data:
+    if data.get("snapshotName") is not None:
         out["snapshot_name"] = data["snapshotName"]
     else:
         raise DeserializationError("CreateSnapshotRequest.snapshot_name required")
-    if "retentionPeriod" in data:
+    if data.get("retentionPeriod") is not None:
         out["retention_period"] = data["retentionPeriod"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_redshift_serverless.types.tag_list
 
         out["tags"] = capo_redshift_serverless.types.tag_list.deserialize_aws_json_1_1(

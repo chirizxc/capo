@@ -23,6 +23,6 @@ def serialize_aws_json_1_0(value: CreateVolumeResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateVolumeResponse:
     out: CreateVolumeResponse = {}  # type: ignore[typeddict-item]
-    if "VolumeId" in data:
+    if data.get("VolumeId") is not None:
         out["volume_id"] = data["VolumeId"]
     return out

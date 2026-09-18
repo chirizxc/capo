@@ -22,8 +22,8 @@ def serialize_json(value: InputSwitchConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> InputSwitchConfiguration:
     out: InputSwitchConfiguration = {}  # type: ignore[typeddict-item]
-    if "MQCSInputSwitching" in data:
+    if data.get("MQCSInputSwitching") is not None:
         out["mqcs_input_switching"] = data["MQCSInputSwitching"]
-    if "PreferredInput" in data:
+    if data.get("PreferredInput") is not None:
         out["preferred_input"] = data["PreferredInput"]
     return out

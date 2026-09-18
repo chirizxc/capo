@@ -74,11 +74,11 @@ def serialize_json(value: CreateFleetMetricRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateFleetMetricRequest:
     out: CreateFleetMetricRequest = {}  # type: ignore[typeddict-item]
-    if "queryString" in data:
+    if data.get("queryString") is not None:
         out["query_string"] = data["queryString"]
     else:
         raise DeserializationError("CreateFleetMetricRequest.query_string required")
-    if "aggregationType" in data:
+    if data.get("aggregationType") is not None:
         import capo_iot.types.aggregation_type
 
         out["aggregation_type"] = capo_iot.types.aggregation_type.deserialize_json(
@@ -86,27 +86,27 @@ def deserialize_json(data: dict) -> CreateFleetMetricRequest:
         )
     else:
         raise DeserializationError("CreateFleetMetricRequest.aggregation_type required")
-    if "period" in data:
+    if data.get("period") is not None:
         out["period"] = data["period"]
     else:
         raise DeserializationError("CreateFleetMetricRequest.period required")
-    if "aggregationField" in data:
+    if data.get("aggregationField") is not None:
         out["aggregation_field"] = data["aggregationField"]
     else:
         raise DeserializationError(
             "CreateFleetMetricRequest.aggregation_field required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "queryVersion" in data:
+    if data.get("queryVersion") is not None:
         out["query_version"] = data["queryVersion"]
-    if "indexName" in data:
+    if data.get("indexName") is not None:
         out["index_name"] = data["indexName"]
-    if "unit" in data:
+    if data.get("unit") is not None:
         import capo_iot.types.fleet_metric_unit
 
         out["unit"] = capo_iot.types.fleet_metric_unit.deserialize_json(data["unit"])
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_iot.types.tag_list
 
         out["tags"] = capo_iot.types.tag_list.deserialize_json(data["tags"])

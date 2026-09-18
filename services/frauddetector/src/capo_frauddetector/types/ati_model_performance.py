@@ -17,12 +17,20 @@ class ATIModelPerformance(TypedDict, closed=True):
 def serialize_aws_json_1_1(value: ATIModelPerformance) -> dict:
     out: dict = {}
     if "asi" in value:
-        out["asi"] = value["asi"]
+        out["asi"] = (
+            "NaN"
+            if value["asi"] != value["asi"]
+            else "Infinity"
+            if value["asi"] == float("inf")
+            else "-Infinity"
+            if value["asi"] == float("-inf")
+            else value["asi"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> ATIModelPerformance:
     out: ATIModelPerformance = {}  # type: ignore[typeddict-item]
-    if "asi" in data:
-        out["asi"] = data["asi"]
+    if data.get("asi") is not None:
+        out["asi"] = float(data["asi"])
     return out

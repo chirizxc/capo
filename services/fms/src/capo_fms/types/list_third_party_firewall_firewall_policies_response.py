@@ -40,7 +40,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> ListThirdPartyFirewallFirewallPoliciesResponse:
     out: ListThirdPartyFirewallFirewallPoliciesResponse = {}  # type: ignore[typeddict-item]
-    if "ThirdPartyFirewallFirewallPolicies" in data:
+    if data.get("ThirdPartyFirewallFirewallPolicies") is not None:
         import capo_fms.types.third_party_firewall_firewall_policies
 
         out["third_party_firewall_firewall_policies"] = (
@@ -48,6 +48,6 @@ def deserialize_aws_json_1_1(
                 data["ThirdPartyFirewallFirewallPolicies"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

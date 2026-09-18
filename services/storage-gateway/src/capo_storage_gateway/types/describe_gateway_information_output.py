@@ -182,17 +182,17 @@ def serialize_aws_json_1_1(value: DescribeGatewayInformationOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeGatewayInformationOutput:
     out: DescribeGatewayInformationOutput = {}  # type: ignore[typeddict-item]
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
-    if "GatewayId" in data:
+    if data.get("GatewayId") is not None:
         out["gateway_id"] = data["GatewayId"]
-    if "GatewayName" in data:
+    if data.get("GatewayName") is not None:
         out["gateway_name"] = data["GatewayName"]
-    if "GatewayTimezone" in data:
+    if data.get("GatewayTimezone") is not None:
         out["gateway_timezone"] = data["GatewayTimezone"]
-    if "GatewayState" in data:
+    if data.get("GatewayState") is not None:
         out["gateway_state"] = data["GatewayState"]
-    if "GatewayNetworkInterfaces" in data:
+    if data.get("GatewayNetworkInterfaces") is not None:
         import capo_storage_gateway.types.gateway_network_interfaces
 
         out["gateway_network_interfaces"] = (
@@ -200,27 +200,27 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeGatewayInformationOutput:
                 data["GatewayNetworkInterfaces"]
             )
         )
-    if "GatewayType" in data:
+    if data.get("GatewayType") is not None:
         out["gateway_type"] = data["GatewayType"]
-    if "NextUpdateAvailabilityDate" in data:
+    if data.get("NextUpdateAvailabilityDate") is not None:
         out["next_update_availability_date"] = data["NextUpdateAvailabilityDate"]
-    if "LastSoftwareUpdate" in data:
+    if data.get("LastSoftwareUpdate") is not None:
         out["last_software_update"] = data["LastSoftwareUpdate"]
-    if "Ec2InstanceId" in data:
+    if data.get("Ec2InstanceId") is not None:
         out["ec2_instance_id"] = data["Ec2InstanceId"]
-    if "Ec2InstanceRegion" in data:
+    if data.get("Ec2InstanceRegion") is not None:
         out["ec2_instance_region"] = data["Ec2InstanceRegion"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_storage_gateway.types.tags
 
         out["tags"] = capo_storage_gateway.types.tags.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "VPCEndpoint" in data:
+    if data.get("VPCEndpoint") is not None:
         out["vpc_endpoint"] = data["VPCEndpoint"]
-    if "CloudWatchLogGroupARN" in data:
+    if data.get("CloudWatchLogGroupARN") is not None:
         out["cloud_watch_log_group_arn"] = data["CloudWatchLogGroupARN"]
-    if "HostEnvironment" in data:
+    if data.get("HostEnvironment") is not None:
         import capo_storage_gateway.types.host_environment
 
         out["host_environment"] = (
@@ -228,13 +228,13 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeGatewayInformationOutput:
                 data["HostEnvironment"]
             )
         )
-    if "EndpointType" in data:
+    if data.get("EndpointType") is not None:
         out["endpoint_type"] = data["EndpointType"]
-    if "SoftwareUpdatesEndDate" in data:
+    if data.get("SoftwareUpdatesEndDate") is not None:
         out["software_updates_end_date"] = data["SoftwareUpdatesEndDate"]
-    if "DeprecationDate" in data:
+    if data.get("DeprecationDate") is not None:
         out["deprecation_date"] = data["DeprecationDate"]
-    if "GatewayCapacity" in data:
+    if data.get("GatewayCapacity") is not None:
         import capo_storage_gateway.types.gateway_capacity
 
         out["gateway_capacity"] = (
@@ -242,7 +242,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeGatewayInformationOutput:
                 data["GatewayCapacity"]
             )
         )
-    if "SupportedGatewayCapacities" in data:
+    if data.get("SupportedGatewayCapacities") is not None:
         import capo_storage_gateway.types.supported_gateway_capacities
 
         out["supported_gateway_capacities"] = (
@@ -250,8 +250,8 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeGatewayInformationOutput:
                 data["SupportedGatewayCapacities"]
             )
         )
-    if "HostEnvironmentId" in data:
+    if data.get("HostEnvironmentId") is not None:
         out["host_environment_id"] = data["HostEnvironmentId"]
-    if "SoftwareVersion" in data:
+    if data.get("SoftwareVersion") is not None:
         out["software_version"] = data["SoftwareVersion"]
     return out

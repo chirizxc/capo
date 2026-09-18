@@ -25,7 +25,7 @@ def serialize_json(value: CreateResolverResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateResolverResponse:
     out: CreateResolverResponse = {}  # type: ignore[typeddict-item]
-    if "resolver" in data:
+    if data.get("resolver") is not None:
         import capo_appsync.types.resolver
 
         out["resolver"] = capo_appsync.types.resolver.deserialize_json(data["resolver"])

@@ -66,27 +66,27 @@ def serialize_json(value: ActionReviewEvent) -> dict:
 
 def deserialize_json(data: dict) -> ActionReviewEvent:
     out: ActionReviewEvent = {}  # type: ignore[typeddict-item]
-    if "conversationId" in data:
+    if data.get("conversationId") is not None:
         out["conversation_id"] = data["conversationId"]
-    if "userMessageId" in data:
+    if data.get("userMessageId") is not None:
         out["user_message_id"] = data["userMessageId"]
-    if "systemMessageId" in data:
+    if data.get("systemMessageId") is not None:
         out["system_message_id"] = data["systemMessageId"]
-    if "pluginId" in data:
+    if data.get("pluginId") is not None:
         out["plugin_id"] = data["pluginId"]
-    if "pluginType" in data:
+    if data.get("pluginType") is not None:
         import capo_qbusiness.types.plugin_type
 
         out["plugin_type"] = capo_qbusiness.types.plugin_type.deserialize_json(
             data["pluginType"]
         )
-    if "payload" in data:
+    if data.get("payload") is not None:
         import capo_qbusiness.types.action_review_payload
 
         out["payload"] = capo_qbusiness.types.action_review_payload.deserialize_json(
             data["payload"]
         )
-    if "payloadFieldNameSeparator" in data:
+    if data.get("payloadFieldNameSeparator") is not None:
         out["payload_field_name_separator"] = data["payloadFieldNameSeparator"]
     return out
 

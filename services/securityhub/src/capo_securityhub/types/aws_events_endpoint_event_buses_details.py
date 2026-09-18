@@ -23,6 +23,6 @@ def serialize_json(value: AwsEventsEndpointEventBusesDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEventsEndpointEventBusesDetails:
     out: AwsEventsEndpointEventBusesDetails = {}  # type: ignore[typeddict-item]
-    if "EventBusArn" in data:
+    if data.get("EventBusArn") is not None:
         out["event_bus_arn"] = data["EventBusArn"]
     return out

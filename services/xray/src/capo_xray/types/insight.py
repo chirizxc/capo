@@ -113,41 +113,41 @@ def serialize_json(value: Insight) -> dict:
 
 def deserialize_json(data: dict) -> Insight:
     out: Insight = {}  # type: ignore[typeddict-item]
-    if "InsightId" in data:
+    if data.get("InsightId") is not None:
         out["insight_id"] = data["InsightId"]
-    if "GroupARN" in data:
+    if data.get("GroupARN") is not None:
         out["group_arn"] = data["GroupARN"]
-    if "GroupName" in data:
+    if data.get("GroupName") is not None:
         out["group_name"] = data["GroupName"]
-    if "RootCauseServiceId" in data:
+    if data.get("RootCauseServiceId") is not None:
         import capo_xray.types.service_id
 
         out["root_cause_service_id"] = capo_xray.types.service_id.deserialize_json(
             data["RootCauseServiceId"]
         )
-    if "Categories" in data:
+    if data.get("Categories") is not None:
         import capo_xray.types.insight_category_list
 
         out["categories"] = capo_xray.types.insight_category_list.deserialize_json(
             data["Categories"]
         )
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_xray.types.insight_state
 
         out["state"] = capo_xray.types.insight_state.deserialize_json(data["State"])
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_xray.types.timestamp
 
         out["start_time"] = capo_xray.types.timestamp.deserialize_json(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_xray.types.timestamp
 
         out["end_time"] = capo_xray.types.timestamp.deserialize_json(data["EndTime"])
-    if "Summary" in data:
+    if data.get("Summary") is not None:
         out["summary"] = data["Summary"]
-    if "ClientRequestImpactStatistics" in data:
+    if data.get("ClientRequestImpactStatistics") is not None:
         import capo_xray.types.request_impact_statistics
 
         out["client_request_impact_statistics"] = (
@@ -155,7 +155,7 @@ def deserialize_json(data: dict) -> Insight:
                 data["ClientRequestImpactStatistics"]
             )
         )
-    if "RootCauseServiceRequestImpactStatistics" in data:
+    if data.get("RootCauseServiceRequestImpactStatistics") is not None:
         import capo_xray.types.request_impact_statistics
 
         out["root_cause_service_request_impact_statistics"] = (
@@ -163,7 +163,7 @@ def deserialize_json(data: dict) -> Insight:
                 data["RootCauseServiceRequestImpactStatistics"]
             )
         )
-    if "TopAnomalousServices" in data:
+    if data.get("TopAnomalousServices") is not None:
         import capo_xray.types.anomalous_service_list
 
         out["top_anomalous_services"] = (

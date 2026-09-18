@@ -36,7 +36,7 @@ def serialize_json(value: DescribeTopicPartitionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeTopicPartitionsResponse:
     out: DescribeTopicPartitionsResponse = {}  # type: ignore[typeddict-item]
-    if "partitions" in data:
+    if data.get("partitions") is not None:
         import capo_kafka.types.__list_of_topic_partition_info
 
         out["partitions"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> DescribeTopicPartitionsResponse:
                 data["partitions"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

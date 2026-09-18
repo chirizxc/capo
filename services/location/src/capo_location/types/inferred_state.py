@@ -36,28 +36,36 @@ def serialize_json(value: InferredState) -> dict:
             value["accuracy"]
         )
     if "deviation_distance" in value:
-        out["DeviationDistance"] = value["deviation_distance"]
+        out["DeviationDistance"] = (
+            "NaN"
+            if value["deviation_distance"] != value["deviation_distance"]
+            else "Infinity"
+            if value["deviation_distance"] == float("inf")
+            else "-Infinity"
+            if value["deviation_distance"] == float("-inf")
+            else value["deviation_distance"]
+        )
     out["ProxyDetected"] = value["proxy_detected"]
     return out
 
 
 def deserialize_json(data: dict) -> InferredState:
     out: InferredState = {}  # type: ignore[typeddict-item]
-    if "Position" in data:
+    if data.get("Position") is not None:
         import capo_location.types.position
 
         out["position"] = capo_location.types.position.deserialize_json(
             data["Position"]
         )
-    if "Accuracy" in data:
+    if data.get("Accuracy") is not None:
         import capo_location.types.positional_accuracy
 
         out["accuracy"] = capo_location.types.positional_accuracy.deserialize_json(
             data["Accuracy"]
         )
-    if "DeviationDistance" in data:
-        out["deviation_distance"] = data["DeviationDistance"]
-    if "ProxyDetected" in data:
+    if data.get("DeviationDistance") is not None:
+        out["deviation_distance"] = float(data["DeviationDistance"])
+    if data.get("ProxyDetected") is not None:
         out["proxy_detected"] = data["ProxyDetected"]
     else:
         raise DeserializationError("InferredState.proxy_detected required")

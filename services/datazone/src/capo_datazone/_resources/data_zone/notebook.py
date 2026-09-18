@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_datazone._auth._signers
@@ -101,24 +102,27 @@ class Notebook:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.create_notebook_input.CreateNotebookInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["owning_project_identifier"] = owning_project_identifier
-        input_["name"] = name
+        input_: capo_datazone.types.create_notebook_input.CreateNotebookInput = {
+            "domain_identifier": domain_identifier,
+            "owning_project_identifier": owning_project_identifier,
+            "name": name,
+        }
         if description is not None:
             input_["description"] = description
         if metadata is not None:
             input_["metadata"] = metadata
         if parameters is not None:
             input_["parameters"] = parameters
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -159,15 +163,17 @@ class Notebook:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.get_notebook_input.GetNotebookInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.get_notebook_input.GetNotebookInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -227,9 +233,10 @@ class Notebook:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.update_notebook_input.UpdateNotebookInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.update_notebook_input.UpdateNotebookInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
         if description is not None:
             input_["description"] = description
         if status is not None:
@@ -244,14 +251,16 @@ class Notebook:
             input_["parameters"] = parameters
         if environment_configuration is not None:
             input_["environment_configuration"] = environment_configuration
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -292,15 +301,17 @@ class Notebook:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.delete_notebook_input.DeleteNotebookInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.delete_notebook_input.DeleteNotebookInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -352,9 +363,10 @@ class Notebook:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.list_notebooks_input.ListNotebooksInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["owning_project_identifier"] = owning_project_identifier
+        input_: capo_datazone.types.list_notebooks_input.ListNotebooksInput = {
+            "domain_identifier": domain_identifier,
+            "owning_project_identifier": owning_project_identifier,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if sort_order is not None:
@@ -371,6 +383,7 @@ class Notebook:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -429,24 +442,27 @@ class AsyncNotebook:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.create_notebook_input.CreateNotebookInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["owning_project_identifier"] = owning_project_identifier
-        input_["name"] = name
+        input_: capo_datazone.types.create_notebook_input.CreateNotebookInput = {
+            "domain_identifier": domain_identifier,
+            "owning_project_identifier": owning_project_identifier,
+            "name": name,
+        }
         if description is not None:
             input_["description"] = description
         if metadata is not None:
             input_["metadata"] = metadata
         if parameters is not None:
             input_["parameters"] = parameters
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -488,15 +504,17 @@ class AsyncNotebook:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.get_notebook_input.GetNotebookInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.get_notebook_input.GetNotebookInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -557,9 +575,10 @@ class AsyncNotebook:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.update_notebook_input.UpdateNotebookInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.update_notebook_input.UpdateNotebookInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
         if description is not None:
             input_["description"] = description
         if status is not None:
@@ -574,14 +593,16 @@ class AsyncNotebook:
             input_["parameters"] = parameters
         if environment_configuration is not None:
             input_["environment_configuration"] = environment_configuration
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -623,15 +644,17 @@ class AsyncNotebook:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.delete_notebook_input.DeleteNotebookInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.delete_notebook_input.DeleteNotebookInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -684,9 +707,10 @@ class AsyncNotebook:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.list_notebooks_input.ListNotebooksInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["owning_project_identifier"] = owning_project_identifier
+        input_: capo_datazone.types.list_notebooks_input.ListNotebooksInput = {
+            "domain_identifier": domain_identifier,
+            "owning_project_identifier": owning_project_identifier,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if sort_order is not None:
@@ -703,4 +727,5 @@ class AsyncNotebook:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

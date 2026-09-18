@@ -39,7 +39,7 @@ def serialize_json(value: ListDataTableAttributesRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListDataTableAttributesRequest:
     out: ListDataTableAttributesRequest = {}  # type: ignore[typeddict-item]
-    if "AttributeIds" in data:
+    if data.get("AttributeIds") is not None:
         import capo_connect.types.attribute_ids
 
         out["attribute_ids"] = capo_connect.types.attribute_ids.deserialize_json(

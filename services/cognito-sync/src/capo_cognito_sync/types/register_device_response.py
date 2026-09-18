@@ -23,6 +23,6 @@ def serialize_json(value: RegisterDeviceResponse) -> dict:
 
 def deserialize_json(data: dict) -> RegisterDeviceResponse:
     out: RegisterDeviceResponse = {}  # type: ignore[typeddict-item]
-    if "DeviceId" in data:
+    if data.get("DeviceId") is not None:
         out["device_id"] = data["DeviceId"]
     return out

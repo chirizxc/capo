@@ -40,11 +40,11 @@ def serialize_json(value: VariableValue) -> dict:
 
 def deserialize_json(data: dict) -> VariableValue:
     out: VariableValue = {}  # type: ignore[typeddict-item]
-    if "propertyId" in data:
+    if data.get("propertyId") is not None:
         out["property_id"] = data["propertyId"]
-    if "hierarchyId" in data:
+    if data.get("hierarchyId") is not None:
         out["hierarchy_id"] = data["hierarchyId"]
-    if "propertyPath" in data:
+    if data.get("propertyPath") is not None:
         import capo_iotsitewise.types.asset_model_property_path
 
         out["property_path"] = (

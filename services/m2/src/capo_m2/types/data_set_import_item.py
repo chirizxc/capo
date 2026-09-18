@@ -34,13 +34,13 @@ def serialize_json(value: DataSetImportItem) -> dict:
 
 def deserialize_json(data: dict) -> DataSetImportItem:
     out: DataSetImportItem = {}  # type: ignore[typeddict-item]
-    if "dataSet" in data:
+    if data.get("dataSet") is not None:
         import capo_m2.types.data_set
 
         out["data_set"] = capo_m2.types.data_set.deserialize_json(data["dataSet"])
     else:
         raise DeserializationError("DataSetImportItem.data_set required")
-    if "externalLocation" in data:
+    if data.get("externalLocation") is not None:
         import capo_m2.types.external_location
 
         out["external_location"] = capo_m2.types.external_location.deserialize_json(

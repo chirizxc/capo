@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeprecateSystemTemplateRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeprecateSystemTemplateRequest:
     out: DeprecateSystemTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("DeprecateSystemTemplateRequest.id required")

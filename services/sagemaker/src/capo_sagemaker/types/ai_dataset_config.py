@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: AIDatasetConfig) -> dict:
 
 
 def deserialize_aws_json_1_1(data: dict) -> AIDatasetConfig:
-    if "InputDataConfig" in data:
+    if data.get("InputDataConfig") is not None:
         import capo_sagemaker.types.ai_workload_input_data_config_list
 
         return {

@@ -32,7 +32,7 @@ def serialize_json(value: ListAccessTokensResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListAccessTokensResponse:
     out: ListAccessTokensResponse = {}  # type: ignore[typeddict-item]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_codecatalyst.types.access_token_summaries
 
         out["items"] = capo_codecatalyst.types.access_token_summaries.deserialize_json(
@@ -40,6 +40,6 @@ def deserialize_json(data: dict) -> ListAccessTokensResponse:
         )
     else:
         raise DeserializationError("ListAccessTokensResponse.items required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

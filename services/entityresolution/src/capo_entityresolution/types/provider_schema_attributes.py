@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ProviderSchemaAttributes:
 
     out: ProviderSchemaAttributes = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_entityresolution.types.provider_schema_attribute.deserialize_json(item)
         )

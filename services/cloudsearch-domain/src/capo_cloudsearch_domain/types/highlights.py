@@ -22,5 +22,7 @@ def serialize_json(input_to_serialize: Highlights) -> dict:
 def deserialize_json(data: dict) -> Highlights:
     out: Highlights = {}
     for key, value in data.items():
+        if value is None:
+            continue
         out[key] = value
     return out

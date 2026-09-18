@@ -42,7 +42,7 @@ def serialize_aws_json_1_1(value: Condition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Condition:
     out: Condition = {}  # type: ignore[typeddict-item]
-    if "ActionCondition" in data:
+    if data.get("ActionCondition") is not None:
         import capo_wafv2.types.action_condition
 
         out["action_condition"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> Condition:
                 data["ActionCondition"]
             )
         )
-    if "LabelNameCondition" in data:
+    if data.get("LabelNameCondition") is not None:
         import capo_wafv2.types.label_name_condition
 
         out["label_name_condition"] = (

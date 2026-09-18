@@ -33,11 +33,11 @@ def serialize_aws_json_1_0(value: CreateConnectionOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateConnectionOutput:
     out: CreateConnectionOutput = {}  # type: ignore[typeddict-item]
-    if "ConnectionArn" in data:
+    if data.get("ConnectionArn") is not None:
         out["connection_arn"] = data["ConnectionArn"]
     else:
         raise DeserializationError("CreateConnectionOutput.connection_arn required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_codeconnections.types.tag_list
 
         out["tags"] = capo_codeconnections.types.tag_list.deserialize_aws_json_1_0(

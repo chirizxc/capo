@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> BackupPlanTemplatesList:
 
     out: BackupPlanTemplatesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_backup.types.backup_plan_templates_list_member.deserialize_json(item)
         )

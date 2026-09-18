@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: GetLicenseConversionTaskRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetLicenseConversionTaskRequest:
     out: GetLicenseConversionTaskRequest = {}  # type: ignore[typeddict-item]
-    if "LicenseConversionTaskId" in data:
+    if data.get("LicenseConversionTaskId") is not None:
         out["license_conversion_task_id"] = data["LicenseConversionTaskId"]
     else:
         raise DeserializationError(

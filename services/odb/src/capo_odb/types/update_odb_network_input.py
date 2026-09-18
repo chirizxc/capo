@@ -4,6 +4,8 @@ from typing import TYPE_CHECKING
 
 from typing_extensions import NotRequired, TypedDict
 
+from capo_odb.errors import DeserializationError
+
 if TYPE_CHECKING:
     import capo_odb.types.access
     import capo_odb.types.policy_document
@@ -50,6 +52,7 @@ class UpdateOdbNetworkInput(TypedDict, closed=True):
 # --- awsJson1_0 ser/de ---
 def serialize_aws_json_1_0(value: UpdateOdbNetworkInput) -> dict:
     out: dict = {}
+    out["odbNetworkId"] = value["odb_network_id"]
     if "display_name" in value:
         out["displayName"] = value["display_name"]
     if "peered_cidrs_to_be_added" in value:
@@ -117,9 +120,13 @@ def serialize_aws_json_1_0(value: UpdateOdbNetworkInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateOdbNetworkInput:
     out: UpdateOdbNetworkInput = {}  # type: ignore[typeddict-item]
-    if "displayName" in data:
+    if data.get("odbNetworkId") is not None:
+        out["odb_network_id"] = data["odbNetworkId"]
+    else:
+        raise DeserializationError("UpdateOdbNetworkInput.odb_network_id required")
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "peeredCidrsToBeAdded" in data:
+    if data.get("peeredCidrsToBeAdded") is not None:
         import capo_odb.types.string_list
 
         out["peered_cidrs_to_be_added"] = (
@@ -127,7 +134,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateOdbNetworkInput:
                 data["peeredCidrsToBeAdded"]
             )
         )
-    if "peeredCidrsToBeRemoved" in data:
+    if data.get("peeredCidrsToBeRemoved") is not None:
         import capo_odb.types.string_list
 
         out["peered_cidrs_to_be_removed"] = (
@@ -135,37 +142,37 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateOdbNetworkInput:
                 data["peeredCidrsToBeRemoved"]
             )
         )
-    if "s3Access" in data:
+    if data.get("s3Access") is not None:
         import capo_odb.types.access
 
         out["s3_access"] = capo_odb.types.access.deserialize_aws_json_1_0(
             data["s3Access"]
         )
-    if "zeroEtlAccess" in data:
+    if data.get("zeroEtlAccess") is not None:
         import capo_odb.types.access
 
         out["zero_etl_access"] = capo_odb.types.access.deserialize_aws_json_1_0(
             data["zeroEtlAccess"]
         )
-    if "stsAccess" in data:
+    if data.get("stsAccess") is not None:
         import capo_odb.types.access
 
         out["sts_access"] = capo_odb.types.access.deserialize_aws_json_1_0(
             data["stsAccess"]
         )
-    if "kmsAccess" in data:
+    if data.get("kmsAccess") is not None:
         import capo_odb.types.access
 
         out["kms_access"] = capo_odb.types.access.deserialize_aws_json_1_0(
             data["kmsAccess"]
         )
-    if "s3PolicyDocument" in data:
+    if data.get("s3PolicyDocument") is not None:
         out["s3_policy_document"] = data["s3PolicyDocument"]
-    if "stsPolicyDocument" in data:
+    if data.get("stsPolicyDocument") is not None:
         out["sts_policy_document"] = data["stsPolicyDocument"]
-    if "kmsPolicyDocument" in data:
+    if data.get("kmsPolicyDocument") is not None:
         out["kms_policy_document"] = data["kmsPolicyDocument"]
-    if "crossRegionS3RestoreSourcesToEnable" in data:
+    if data.get("crossRegionS3RestoreSourcesToEnable") is not None:
         import capo_odb.types.string_list
 
         out["cross_region_s3_restore_sources_to_enable"] = (
@@ -173,7 +180,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateOdbNetworkInput:
                 data["crossRegionS3RestoreSourcesToEnable"]
             )
         )
-    if "crossRegionS3RestoreSourcesToDisable" in data:
+    if data.get("crossRegionS3RestoreSourcesToDisable") is not None:
         import capo_odb.types.string_list
 
         out["cross_region_s3_restore_sources_to_disable"] = (

@@ -24,7 +24,7 @@ def serialize_json(value: ConfluenceParameters) -> dict:
 
 def deserialize_json(data: dict) -> ConfluenceParameters:
     out: ConfluenceParameters = {}  # type: ignore[typeddict-item]
-    if "ConfluenceUrl" in data:
+    if data.get("ConfluenceUrl") is not None:
         out["confluence_url"] = data["ConfluenceUrl"]
     else:
         raise DeserializationError("ConfluenceParameters.confluence_url required")

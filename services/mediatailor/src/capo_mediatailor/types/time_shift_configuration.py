@@ -24,7 +24,7 @@ def serialize_json(value: TimeShiftConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> TimeShiftConfiguration:
     out: TimeShiftConfiguration = {}  # type: ignore[typeddict-item]
-    if "MaxTimeDelaySeconds" in data:
+    if data.get("MaxTimeDelaySeconds") is not None:
         out["max_time_delay_seconds"] = data["MaxTimeDelaySeconds"]
     else:
         raise DeserializationError(

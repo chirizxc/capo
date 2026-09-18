@@ -19,7 +19,7 @@ def serialize_json(value: ClusterForImageFilterCriteria) -> dict:
 
 def deserialize_json(data: dict) -> ClusterForImageFilterCriteria:
     out: ClusterForImageFilterCriteria = {}  # type: ignore[typeddict-item]
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         out["resource_id"] = data["resourceId"]
     else:
         raise DeserializationError("ClusterForImageFilterCriteria.resource_id required")

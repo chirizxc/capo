@@ -32,9 +32,9 @@ def serialize_aws_json_1_0(value: ListEnvironmentConnectorsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListEnvironmentConnectorsResponse:
     out: ListEnvironmentConnectorsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "connectors" in data:
+    if data.get("connectors") is not None:
         import capo_evs.types.connector_list
 
         out["connectors"] = capo_evs.types.connector_list.deserialize_aws_json_1_0(

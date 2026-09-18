@@ -33,9 +33,9 @@ def serialize_json(value: AddBridgeOutputsResponse) -> dict:
 
 def deserialize_json(data: dict) -> AddBridgeOutputsResponse:
     out: AddBridgeOutputsResponse = {}  # type: ignore[typeddict-item]
-    if "bridgeArn" in data:
+    if data.get("bridgeArn") is not None:
         out["bridge_arn"] = data["bridgeArn"]
-    if "outputs" in data:
+    if data.get("outputs") is not None:
         import capo_mediaconnect.types.__list_of_bridge_output
 
         out["outputs"] = (

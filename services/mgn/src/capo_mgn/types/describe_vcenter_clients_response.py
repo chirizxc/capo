@@ -30,12 +30,12 @@ def serialize_json(value: DescribeVcenterClientsResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeVcenterClientsResponse:
     out: DescribeVcenterClientsResponse = {}  # type: ignore[typeddict-item]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_mgn.types.vcenter_client_list
 
         out["items"] = capo_mgn.types.vcenter_client_list.deserialize_json(
             data["items"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

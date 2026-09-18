@@ -13,9 +13,9 @@ from capo_comprehend import AsyncComprehendClient
 
 
 async def main():
-    async with AsyncComprehendClient() as s3:
+    async with AsyncComprehendClient() as comprehend:
         # Example: call the batch_detect_dominant_language operation
-        response = await s3.batch_detect_dominant_language()
+        response = await comprehend.batch_detect_dominant_language()
         print(response["result_list"])
 ```
 
@@ -28,9 +28,9 @@ from capo_comprehend import AsyncComprehendClient
 
 
 async def main():
-    async with AsyncComprehendClient() as s3:
-        # Example: paginate over list_endpoints
-        async for item in s3.iter_list_endpoints():
+    async with AsyncComprehendClient() as comprehend:
+        # Example: paginate over list_datasets
+        async for item in comprehend.iter_list_datasets():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_comprehend.error import BatchSizeLimitExceededException
 
 
 async def main():
-    async with AsyncComprehendClient() as s3:
+    async with AsyncComprehendClient() as comprehend:
         try:
-            await s3.batch_detect_dominant_language()
+            await comprehend.batch_detect_dominant_language()
         except BatchSizeLimitExceededException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_comprehend import AsyncComprehendClient
 
 
 async def main():
-    async with AsyncComprehendClient() as s3:
+    async with AsyncComprehendClient() as comprehend:
         # Default: 3 attempts for every operation
-        response = await s3.batch_detect_dominant_language()
+        response = await comprehend.batch_detect_dominant_language()
 
         # Override per operation
-        response = await s3.batch_detect_dominant_language(config_overrides={"retry_max_attempts": 5})
+        response = await comprehend.batch_detect_dominant_language(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.batch_detect_dominant_language(config_overrides={"retry_max_attempts": 1})
+        response = await comprehend.batch_detect_dominant_language(config_overrides={"retry_max_attempts": 1})
 ```

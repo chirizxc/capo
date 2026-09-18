@@ -36,7 +36,7 @@ def serialize_json(value: ChannelMessageStatusStructure) -> dict:
 
 def deserialize_json(data: dict) -> ChannelMessageStatusStructure:
     out: ChannelMessageStatusStructure = {}  # type: ignore[typeddict-item]
-    if "Value" in data:
+    if data.get("Value") is not None:
         import capo_chime_sdk_messaging.types.channel_message_status
 
         out["value"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ChannelMessageStatusStructure:
                 data["Value"]
             )
         )
-    if "Detail" in data:
+    if data.get("Detail") is not None:
         out["detail"] = data["Detail"]
     return out

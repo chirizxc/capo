@@ -138,9 +138,9 @@ def serialize_json(value: Action) -> dict:
 
 def deserialize_json(data: dict) -> Action:
     out: Action = {}  # type: ignore[typeddict-item]
-    if "actionType" in data:
+    if data.get("actionType") is not None:
         out["action_type"] = data["actionType"]
-    if "awsApiCallAction" in data:
+    if data.get("awsApiCallAction") is not None:
         import capo_guardduty.types.aws_api_call_action
 
         out["aws_api_call_action"] = (
@@ -148,7 +148,7 @@ def deserialize_json(data: dict) -> Action:
                 data["awsApiCallAction"]
             )
         )
-    if "dnsRequestAction" in data:
+    if data.get("dnsRequestAction") is not None:
         import capo_guardduty.types.dns_request_action
 
         out["dns_request_action"] = (
@@ -156,7 +156,7 @@ def deserialize_json(data: dict) -> Action:
                 data["dnsRequestAction"]
             )
         )
-    if "networkConnectionAction" in data:
+    if data.get("networkConnectionAction") is not None:
         import capo_guardduty.types.network_connection_action
 
         out["network_connection_action"] = (
@@ -164,7 +164,7 @@ def deserialize_json(data: dict) -> Action:
                 data["networkConnectionAction"]
             )
         )
-    if "portProbeAction" in data:
+    if data.get("portProbeAction") is not None:
         import capo_guardduty.types.port_probe_action
 
         out["port_probe_action"] = (
@@ -172,7 +172,7 @@ def deserialize_json(data: dict) -> Action:
                 data["portProbeAction"]
             )
         )
-    if "kubernetesApiCallAction" in data:
+    if data.get("kubernetesApiCallAction") is not None:
         import capo_guardduty.types.kubernetes_api_call_action
 
         out["kubernetes_api_call_action"] = (
@@ -180,7 +180,7 @@ def deserialize_json(data: dict) -> Action:
                 data["kubernetesApiCallAction"]
             )
         )
-    if "kubernetesPermissionCheckedDetails" in data:
+    if data.get("kubernetesPermissionCheckedDetails") is not None:
         import capo_guardduty.types.kubernetes_permission_checked_details
 
         out["kubernetes_permission_checked_details"] = (
@@ -188,7 +188,7 @@ def deserialize_json(data: dict) -> Action:
                 data["kubernetesPermissionCheckedDetails"]
             )
         )
-    if "kubernetesRoleBindingDetails" in data:
+    if data.get("kubernetesRoleBindingDetails") is not None:
         import capo_guardduty.types.kubernetes_role_binding_details
 
         out["kubernetes_role_binding_details"] = (
@@ -196,7 +196,7 @@ def deserialize_json(data: dict) -> Action:
                 data["kubernetesRoleBindingDetails"]
             )
         )
-    if "kubernetesRoleDetails" in data:
+    if data.get("kubernetesRoleDetails") is not None:
         import capo_guardduty.types.kubernetes_role_details
 
         out["kubernetes_role_details"] = (
@@ -204,7 +204,7 @@ def deserialize_json(data: dict) -> Action:
                 data["kubernetesRoleDetails"]
             )
         )
-    if "rdsLoginAttemptAction" in data:
+    if data.get("rdsLoginAttemptAction") is not None:
         import capo_guardduty.types.rds_login_attempt_action
 
         out["rds_login_attempt_action"] = (

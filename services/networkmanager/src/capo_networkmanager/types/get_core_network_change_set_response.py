@@ -36,7 +36,7 @@ def serialize_json(value: GetCoreNetworkChangeSetResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetCoreNetworkChangeSetResponse:
     out: GetCoreNetworkChangeSetResponse = {}  # type: ignore[typeddict-item]
-    if "CoreNetworkChanges" in data:
+    if data.get("CoreNetworkChanges") is not None:
         import capo_networkmanager.types.core_network_change_list
 
         out["core_network_changes"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> GetCoreNetworkChangeSetResponse:
                 data["CoreNetworkChanges"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

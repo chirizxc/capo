@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> PodIdentityAssociationSummaries:
 
     out: PodIdentityAssociationSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_eks.types.pod_identity_association_summary.deserialize_json(item)
         )

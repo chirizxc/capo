@@ -36,12 +36,12 @@ def serialize_aws_json_1_0(value: CanInterface) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CanInterface:
     out: CanInterface = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CanInterface.name required")
-    if "protocolName" in data:
+    if data.get("protocolName") is not None:
         out["protocol_name"] = data["protocolName"]
-    if "protocolVersion" in data:
+    if data.get("protocolVersion") is not None:
         out["protocol_version"] = data["protocolVersion"]
     return out

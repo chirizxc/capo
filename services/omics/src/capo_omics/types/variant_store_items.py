@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> VariantStoreItems:
 
     out: VariantStoreItems = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_omics.types.variant_store_item.deserialize_json(item))
     return out

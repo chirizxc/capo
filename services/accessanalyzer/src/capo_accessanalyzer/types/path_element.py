@@ -52,11 +52,11 @@ def serialize_json(value: PathElement) -> dict:
 
 
 def deserialize_json(data: dict) -> PathElement:
-    if "index" in data:
+    if data.get("index") is not None:
         return {"index": data["index"]}
-    elif "key" in data:
+    elif data.get("key") is not None:
         return {"key": data["key"]}
-    elif "substring" in data:
+    elif data.get("substring") is not None:
         import capo_accessanalyzer.types.substring
 
         return {
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> PathElement:
                 data["substring"]
             )
         }
-    elif "value" in data:
+    elif data.get("value") is not None:
         return {"value": data["value"]}
     else:
         raise DeserializationError("PathElement: no recognized variant key")

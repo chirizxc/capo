@@ -36,13 +36,13 @@ def serialize_json(value: ScannedResourceDetails) -> dict:
 
 def deserialize_json(data: dict) -> ScannedResourceDetails:
     out: ScannedResourceDetails = {}  # type: ignore[typeddict-item]
-    if "ebsVolume" in data:
+    if data.get("ebsVolume") is not None:
         import capo_guardduty.types.volume_detail
 
         out["ebs_volume"] = capo_guardduty.types.volume_detail.deserialize_json(
             data["ebsVolume"]
         )
-    if "ebsSnapshot" in data:
+    if data.get("ebsSnapshot") is not None:
         import capo_guardduty.types.ebs_snapshot
 
         out["ebs_snapshot"] = capo_guardduty.types.ebs_snapshot.deserialize_json(

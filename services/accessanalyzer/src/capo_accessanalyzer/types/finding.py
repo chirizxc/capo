@@ -115,31 +115,31 @@ def serialize_json(value: Finding) -> dict:
 
 def deserialize_json(data: dict) -> Finding:
     out: Finding = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("Finding.id required")
-    if "principal" in data:
+    if data.get("principal") is not None:
         import capo_accessanalyzer.types.principal_map
 
         out["principal"] = capo_accessanalyzer.types.principal_map.deserialize_json(
             data["principal"]
         )
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_accessanalyzer.types.action_list
 
         out["action"] = capo_accessanalyzer.types.action_list.deserialize_json(
             data["action"]
         )
-    if "resource" in data:
+    if data.get("resource") is not None:
         out["resource"] = data["resource"]
-    if "isPublic" in data:
+    if data.get("isPublic") is not None:
         out["is_public"] = data["isPublic"]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         out["resource_type"] = data["resourceType"]
     else:
         raise DeserializationError("Finding.resource_type required")
-    if "condition" in data:
+    if data.get("condition") is not None:
         import capo_accessanalyzer.types.condition_key_map
 
         out["condition"] = capo_accessanalyzer.types.condition_key_map.deserialize_json(
@@ -147,7 +147,7 @@ def deserialize_json(data: dict) -> Finding:
         )
     else:
         raise DeserializationError("Finding.condition required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_accessanalyzer.types.timestamp
 
         out["created_at"] = capo_accessanalyzer.types.timestamp.deserialize_json(
@@ -155,7 +155,7 @@ def deserialize_json(data: dict) -> Finding:
         )
     else:
         raise DeserializationError("Finding.created_at required")
-    if "analyzedAt" in data:
+    if data.get("analyzedAt") is not None:
         import capo_accessanalyzer.types.timestamp
 
         out["analyzed_at"] = capo_accessanalyzer.types.timestamp.deserialize_json(
@@ -163,7 +163,7 @@ def deserialize_json(data: dict) -> Finding:
         )
     else:
         raise DeserializationError("Finding.analyzed_at required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_accessanalyzer.types.timestamp
 
         out["updated_at"] = capo_accessanalyzer.types.timestamp.deserialize_json(
@@ -171,23 +171,23 @@ def deserialize_json(data: dict) -> Finding:
         )
     else:
         raise DeserializationError("Finding.updated_at required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("Finding.status required")
-    if "resourceOwnerAccount" in data:
+    if data.get("resourceOwnerAccount") is not None:
         out["resource_owner_account"] = data["resourceOwnerAccount"]
     else:
         raise DeserializationError("Finding.resource_owner_account required")
-    if "error" in data:
+    if data.get("error") is not None:
         out["error"] = data["error"]
-    if "sources" in data:
+    if data.get("sources") is not None:
         import capo_accessanalyzer.types.finding_source_list
 
         out["sources"] = capo_accessanalyzer.types.finding_source_list.deserialize_json(
             data["sources"]
         )
-    if "resourceControlPolicyRestriction" in data:
+    if data.get("resourceControlPolicyRestriction") is not None:
         out["resource_control_policy_restriction"] = data[
             "resourceControlPolicyRestriction"
         ]

@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: HyperParameterTuningJobConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HyperParameterTuningJobConfig:
     out: HyperParameterTuningJobConfig = {}  # type: ignore[typeddict-item]
-    if "ParameterRanges" in data:
+    if data.get("ParameterRanges") is not None:
         import capo_forecast.types.parameter_ranges
 
         out["parameter_ranges"] = (

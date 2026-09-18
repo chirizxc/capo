@@ -41,11 +41,11 @@ def serialize_aws_json_1_0(value: IamRegistrationResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> IamRegistrationResponse:
     out: IamRegistrationResponse = {}  # type: ignore[typeddict-item]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("IamRegistrationResponse.role_arn required")
-    if "registrationStatus" in data:
+    if data.get("registrationStatus") is not None:
         import capo_iotfleetwise.types.registration_status
 
         out["registration_status"] = (
@@ -57,6 +57,6 @@ def deserialize_aws_json_1_0(data: dict) -> IamRegistrationResponse:
         raise DeserializationError(
             "IamRegistrationResponse.registration_status required"
         )
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     return out

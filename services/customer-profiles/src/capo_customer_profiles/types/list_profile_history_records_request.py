@@ -52,20 +52,20 @@ def serialize_json(value: ListProfileHistoryRecordsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListProfileHistoryRecordsRequest:
     out: ListProfileHistoryRecordsRequest = {}  # type: ignore[typeddict-item]
-    if "ProfileId" in data:
+    if data.get("ProfileId") is not None:
         out["profile_id"] = data["ProfileId"]
     else:
         raise DeserializationError(
             "ListProfileHistoryRecordsRequest.profile_id required"
         )
-    if "ObjectTypeName" in data:
+    if data.get("ObjectTypeName") is not None:
         out["object_type_name"] = data["ObjectTypeName"]
-    if "ActionType" in data:
+    if data.get("ActionType") is not None:
         import capo_customer_profiles.types.action_type
 
         out["action_type"] = capo_customer_profiles.types.action_type.deserialize_json(
             data["ActionType"]
         )
-    if "PerformedBy" in data:
+    if data.get("PerformedBy") is not None:
         out["performed_by"] = data["PerformedBy"]
     return out

@@ -24,7 +24,7 @@ def serialize_json(value: SiemensIE) -> dict:
 
 def deserialize_json(data: dict) -> SiemensIE:
     out: SiemensIE = {}  # type: ignore[typeddict-item]
-    if "iotCoreThingName" in data:
+    if data.get("iotCoreThingName") is not None:
         out["iot_core_thing_name"] = data["iotCoreThingName"]
     else:
         raise DeserializationError("SiemensIE.iot_core_thing_name required")

@@ -44,18 +44,18 @@ def serialize_aws_json_1_1(value: AdminListUserAuthEventsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AdminListUserAuthEventsRequest:
     out: AdminListUserAuthEventsRequest = {}  # type: ignore[typeddict-item]
-    if "UserPoolId" in data:
+    if data.get("UserPoolId") is not None:
         out["user_pool_id"] = data["UserPoolId"]
     else:
         raise DeserializationError(
             "AdminListUserAuthEventsRequest.user_pool_id required"
         )
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
     else:
         raise DeserializationError("AdminListUserAuthEventsRequest.username required")
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

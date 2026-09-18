@@ -28,8 +28,8 @@ def serialize_json(value: EksPersistentVolumeClaim) -> dict:
 
 def deserialize_json(data: dict) -> EksPersistentVolumeClaim:
     out: EksPersistentVolumeClaim = {}  # type: ignore[typeddict-item]
-    if "claimName" in data:
+    if data.get("claimName") is not None:
         out["claim_name"] = data["claimName"]
-    if "readOnly" in data:
+    if data.get("readOnly") is not None:
         out["read_only"] = data["readOnly"]
     return out

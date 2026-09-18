@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> MetricQueryTimestamps:
 
     out: MetricQueryTimestamps = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot_wireless.types.metric_query_timestamp.deserialize_json(item)
         )

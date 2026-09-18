@@ -28,7 +28,7 @@ def serialize_json(value: UploaderConfig) -> dict:
 
 def deserialize_json(data: dict) -> UploaderConfig:
     out: UploaderConfig = {}  # type: ignore[typeddict-item]
-    if "ScheduleConfig" in data:
+    if data.get("ScheduleConfig") is not None:
         import capo_kinesis_video.types.schedule_config
 
         out["schedule_config"] = (

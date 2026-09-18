@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: WAFReferencedItemException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WAFReferencedItemException_:
     out: WAFReferencedItemException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,18 @@ class WAFReferencedItemException(ServiceError):
 
     code: str | None = "WAFReferencedItemException"
 
-    def __init__(self, data: WAFReferencedItemException_):
+    def __init__(self, data: WAFReferencedItemException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="WAFReferencedItemException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "WAFReferencedItemException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "WAFReferencedItemException":
+        return cls(deserialize_aws_json_1_1(data), message)

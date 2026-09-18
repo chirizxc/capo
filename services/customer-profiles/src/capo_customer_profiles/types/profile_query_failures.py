@@ -35,14 +35,14 @@ def serialize_json(value: ProfileQueryFailures) -> dict:
 
 def deserialize_json(data: dict) -> ProfileQueryFailures:
     out: ProfileQueryFailures = {}  # type: ignore[typeddict-item]
-    if "ProfileId" in data:
+    if data.get("ProfileId") is not None:
         out["profile_id"] = data["ProfileId"]
     else:
         raise DeserializationError("ProfileQueryFailures.profile_id required")
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     else:
         raise DeserializationError("ProfileQueryFailures.message required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     return out

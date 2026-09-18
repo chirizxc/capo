@@ -64,11 +64,11 @@ def serialize_aws_json_1_1(value: UpdateMlflowTrackingServerRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateMlflowTrackingServerRequest:
     out: UpdateMlflowTrackingServerRequest = {}  # type: ignore[typeddict-item]
-    if "TrackingServerName" in data:
+    if data.get("TrackingServerName") is not None:
         out["tracking_server_name"] = data["TrackingServerName"]
-    if "ArtifactStoreUri" in data:
+    if data.get("ArtifactStoreUri") is not None:
         out["artifact_store_uri"] = data["ArtifactStoreUri"]
-    if "TrackingServerSize" in data:
+    if data.get("TrackingServerSize") is not None:
         import capo_sagemaker.types.tracking_server_size
 
         out["tracking_server_size"] = (
@@ -76,12 +76,12 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateMlflowTrackingServerRequest:
                 data["TrackingServerSize"]
             )
         )
-    if "AutomaticModelRegistration" in data:
+    if data.get("AutomaticModelRegistration") is not None:
         out["automatic_model_registration"] = data["AutomaticModelRegistration"]
-    if "WeeklyMaintenanceWindowStart" in data:
+    if data.get("WeeklyMaintenanceWindowStart") is not None:
         out["weekly_maintenance_window_start"] = data["WeeklyMaintenanceWindowStart"]
-    if "S3BucketOwnerAccountId" in data:
+    if data.get("S3BucketOwnerAccountId") is not None:
         out["s3_bucket_owner_account_id"] = data["S3BucketOwnerAccountId"]
-    if "S3BucketOwnerVerification" in data:
+    if data.get("S3BucketOwnerVerification") is not None:
         out["s3_bucket_owner_verification"] = data["S3BucketOwnerVerification"]
     return out

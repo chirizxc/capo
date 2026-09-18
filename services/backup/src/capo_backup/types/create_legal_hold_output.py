@@ -67,27 +67,27 @@ def serialize_json(value: CreateLegalHoldOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateLegalHoldOutput:
     out: CreateLegalHoldOutput = {}  # type: ignore[typeddict-item]
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_backup.types.legal_hold_status
 
         out["status"] = capo_backup.types.legal_hold_status.deserialize_json(
             data["Status"]
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "LegalHoldId" in data:
+    if data.get("LegalHoldId") is not None:
         out["legal_hold_id"] = data["LegalHoldId"]
-    if "LegalHoldArn" in data:
+    if data.get("LegalHoldArn") is not None:
         out["legal_hold_arn"] = data["LegalHoldArn"]
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         import capo_backup.types.timestamp
 
         out["creation_date"] = capo_backup.types.timestamp.deserialize_json(
             data["CreationDate"]
         )
-    if "RecoveryPointSelection" in data:
+    if data.get("RecoveryPointSelection") is not None:
         import capo_backup.types.recovery_point_selection
 
         out["recovery_point_selection"] = (

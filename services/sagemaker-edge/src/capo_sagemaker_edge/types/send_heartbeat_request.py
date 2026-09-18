@@ -64,25 +64,25 @@ def serialize_json(value: SendHeartbeatRequest) -> dict:
 
 def deserialize_json(data: dict) -> SendHeartbeatRequest:
     out: SendHeartbeatRequest = {}  # type: ignore[typeddict-item]
-    if "AgentMetrics" in data:
+    if data.get("AgentMetrics") is not None:
         import capo_sagemaker_edge.types.edge_metrics
 
         out["agent_metrics"] = capo_sagemaker_edge.types.edge_metrics.deserialize_json(
             data["AgentMetrics"]
         )
-    if "Models" in data:
+    if data.get("Models") is not None:
         import capo_sagemaker_edge.types.models
 
         out["models"] = capo_sagemaker_edge.types.models.deserialize_json(
             data["Models"]
         )
-    if "AgentVersion" in data:
+    if data.get("AgentVersion") is not None:
         out["agent_version"] = data["AgentVersion"]
-    if "DeviceName" in data:
+    if data.get("DeviceName") is not None:
         out["device_name"] = data["DeviceName"]
-    if "DeviceFleetName" in data:
+    if data.get("DeviceFleetName") is not None:
         out["device_fleet_name"] = data["DeviceFleetName"]
-    if "DeploymentResult" in data:
+    if data.get("DeploymentResult") is not None:
         import capo_sagemaker_edge.types.deployment_result
 
         out["deployment_result"] = (

@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> ProgramManagementAccountStatusList:
 
     out: ProgramManagementAccountStatusList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_partnercentral_channel.types.program_management_account_status.deserialize_aws_json_1_0(
                 item

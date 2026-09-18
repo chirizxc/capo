@@ -31,8 +31,8 @@ def serialize_json(value: ApplicationDependencySummary) -> dict:
 
 def deserialize_json(data: dict) -> ApplicationDependencySummary:
     out: ApplicationDependencySummary = {}  # type: ignore[typeddict-item]
-    if "applicationId" in data:
+    if data.get("applicationId") is not None:
         out["application_id"] = data["applicationId"]
-    if "semanticVersion" in data:
+    if data.get("semanticVersion") is not None:
         out["semantic_version"] = data["semanticVersion"]
     return out

@@ -31,10 +31,10 @@ def serialize_json(value: ResourceTag) -> dict:
 
 def deserialize_json(data: dict) -> ResourceTag:
     out: ResourceTag = {}  # type: ignore[typeddict-item]
-    if "ResourceTagKey" in data:
+    if data.get("ResourceTagKey") is not None:
         out["resource_tag_key"] = data["ResourceTagKey"]
     else:
         raise DeserializationError("ResourceTag.resource_tag_key required")
-    if "ResourceTagValue" in data:
+    if data.get("ResourceTagValue") is not None:
         out["resource_tag_value"] = data["ResourceTagValue"]
     return out

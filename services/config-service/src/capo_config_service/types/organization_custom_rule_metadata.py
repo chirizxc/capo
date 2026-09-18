@@ -96,15 +96,15 @@ def serialize_aws_json_1_1(value: OrganizationCustomRuleMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OrganizationCustomRuleMetadata:
     out: OrganizationCustomRuleMetadata = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "LambdaFunctionArn" in data:
+    if data.get("LambdaFunctionArn") is not None:
         out["lambda_function_arn"] = data["LambdaFunctionArn"]
     else:
         raise DeserializationError(
             "OrganizationCustomRuleMetadata.lambda_function_arn required"
         )
-    if "OrganizationConfigRuleTriggerTypes" in data:
+    if data.get("OrganizationConfigRuleTriggerTypes") is not None:
         import capo_config_service.types.organization_config_rule_trigger_types
 
         out["organization_config_rule_trigger_types"] = (
@@ -116,9 +116,9 @@ def deserialize_aws_json_1_1(data: dict) -> OrganizationCustomRuleMetadata:
         raise DeserializationError(
             "OrganizationCustomRuleMetadata.organization_config_rule_trigger_types required"
         )
-    if "InputParameters" in data:
+    if data.get("InputParameters") is not None:
         out["input_parameters"] = data["InputParameters"]
-    if "MaximumExecutionFrequency" in data:
+    if data.get("MaximumExecutionFrequency") is not None:
         import capo_config_service.types.maximum_execution_frequency
 
         out["maximum_execution_frequency"] = (
@@ -126,7 +126,7 @@ def deserialize_aws_json_1_1(data: dict) -> OrganizationCustomRuleMetadata:
                 data["MaximumExecutionFrequency"]
             )
         )
-    if "ResourceTypesScope" in data:
+    if data.get("ResourceTypesScope") is not None:
         import capo_config_service.types.resource_types_scope
 
         out["resource_types_scope"] = (
@@ -134,10 +134,10 @@ def deserialize_aws_json_1_1(data: dict) -> OrganizationCustomRuleMetadata:
                 data["ResourceTypesScope"]
             )
         )
-    if "ResourceIdScope" in data:
+    if data.get("ResourceIdScope") is not None:
         out["resource_id_scope"] = data["ResourceIdScope"]
-    if "TagKeyScope" in data:
+    if data.get("TagKeyScope") is not None:
         out["tag_key_scope"] = data["TagKeyScope"]
-    if "TagValueScope" in data:
+    if data.get("TagValueScope") is not None:
         out["tag_value_scope"] = data["TagValueScope"]
     return out

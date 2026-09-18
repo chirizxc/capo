@@ -58,13 +58,13 @@ def serialize_json(value: WorkloadShare) -> dict:
 
 def deserialize_json(data: dict) -> WorkloadShare:
     out: WorkloadShare = {}  # type: ignore[typeddict-item]
-    if "ShareId" in data:
+    if data.get("ShareId") is not None:
         out["share_id"] = data["ShareId"]
-    if "SharedBy" in data:
+    if data.get("SharedBy") is not None:
         out["shared_by"] = data["SharedBy"]
-    if "SharedWith" in data:
+    if data.get("SharedWith") is not None:
         out["shared_with"] = data["SharedWith"]
-    if "PermissionType" in data:
+    if data.get("PermissionType") is not None:
         import capo_wellarchitected.types.permission_type
 
         out["permission_type"] = (
@@ -72,14 +72,14 @@ def deserialize_json(data: dict) -> WorkloadShare:
                 data["PermissionType"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_wellarchitected.types.share_status
 
         out["status"] = capo_wellarchitected.types.share_status.deserialize_json(
             data["Status"]
         )
-    if "WorkloadName" in data:
+    if data.get("WorkloadName") is not None:
         out["workload_name"] = data["WorkloadName"]
-    if "WorkloadId" in data:
+    if data.get("WorkloadId") is not None:
         out["workload_id"] = data["WorkloadId"]
     return out

@@ -177,18 +177,20 @@ class AsyncSignerDataClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_signer_data.types.get_revocation_status_request.GetRevocationStatusRequest = {}  # type: ignore[typeddict-item]
-        input_["signature_timestamp"] = signature_timestamp
-        input_["platform_id"] = platform_id
-        input_["profile_version_arn"] = profile_version_arn
-        input_["job_arn"] = job_arn
-        input_["certificate_hashes"] = certificate_hashes
+        input_: capo_signer_data.types.get_revocation_status_request.GetRevocationStatusRequest = {
+            "signature_timestamp": signature_timestamp,
+            "platform_id": platform_id,
+            "profile_version_arn": profile_version_arn,
+            "job_arn": job_arn,
+            "certificate_hashes": certificate_hashes,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

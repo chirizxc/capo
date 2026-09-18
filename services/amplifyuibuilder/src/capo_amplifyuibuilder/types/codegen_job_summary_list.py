@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> CodegenJobSummaryList:
 
     out: CodegenJobSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_amplifyuibuilder.types.codegen_job_summary.deserialize_json(item)
         )

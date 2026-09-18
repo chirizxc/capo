@@ -30,7 +30,7 @@ def serialize_aws_json_1_0(value: IngestionInputConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> IngestionInputConfiguration:
     out: IngestionInputConfiguration = {}  # type: ignore[typeddict-item]
-    if "S3InputConfiguration" in data:
+    if data.get("S3InputConfiguration") is not None:
         import capo_lookoutequipment.types.ingestion_s3_input_configuration
 
         out["s3_input_configuration"] = (

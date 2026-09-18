@@ -32,11 +32,11 @@ def serialize_json(value: SubmissionMutation) -> dict:
 
 def deserialize_json(data: dict) -> SubmissionMutation:
     out: SubmissionMutation = {}  # type: ignore[typeddict-item]
-    if "submissionId" in data:
+    if data.get("submissionId") is not None:
         out["submission_id"] = data["submissionId"]
     else:
         raise DeserializationError("SubmissionMutation.submission_id required")
-    if "mutationType" in data:
+    if data.get("mutationType") is not None:
         import capo_qapps.types.submission_mutation_kind
 
         out["mutation_type"] = (

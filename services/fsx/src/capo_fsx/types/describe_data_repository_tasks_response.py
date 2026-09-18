@@ -35,7 +35,7 @@ def serialize_aws_json_1_1(value: DescribeDataRepositoryTasksResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeDataRepositoryTasksResponse:
     out: DescribeDataRepositoryTasksResponse = {}  # type: ignore[typeddict-item]
-    if "DataRepositoryTasks" in data:
+    if data.get("DataRepositoryTasks") is not None:
         import capo_fsx.types.data_repository_tasks
 
         out["data_repository_tasks"] = (
@@ -43,6 +43,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeDataRepositoryTasksResponse:
                 data["DataRepositoryTasks"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -33,9 +33,9 @@ def serialize_aws_json_1_1(value: RestoreFromRecoveryPointResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RestoreFromRecoveryPointResponse:
     out: RestoreFromRecoveryPointResponse = {}  # type: ignore[typeddict-item]
-    if "recoveryPointId" in data:
+    if data.get("recoveryPointId") is not None:
         out["recovery_point_id"] = data["recoveryPointId"]
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         import capo_redshift_serverless.types.namespace
 
         out["namespace"] = (

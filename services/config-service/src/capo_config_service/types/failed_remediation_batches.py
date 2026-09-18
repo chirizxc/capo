@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> FailedRemediationBatches:
 
     out: FailedRemediationBatches = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_config_service.types.failed_remediation_batch.deserialize_aws_json_1_1(
                 item

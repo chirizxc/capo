@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: CustomPosixUserConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CustomPosixUserConfig:
     out: CustomPosixUserConfig = {}  # type: ignore[typeddict-item]
-    if "Uid" in data:
+    if data.get("Uid") is not None:
         out["uid"] = data["Uid"]
-    if "Gid" in data:
+    if data.get("Gid") is not None:
         out["gid"] = data["Gid"]
     return out

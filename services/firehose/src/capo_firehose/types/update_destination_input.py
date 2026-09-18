@@ -164,13 +164,13 @@ def serialize_aws_json_1_1(value: UpdateDestinationInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateDestinationInput:
     out: UpdateDestinationInput = {}  # type: ignore[typeddict-item]
-    if "DeliveryStreamName" in data:
+    if data.get("DeliveryStreamName") is not None:
         out["delivery_stream_name"] = data["DeliveryStreamName"]
     else:
         raise DeserializationError(
             "UpdateDestinationInput.delivery_stream_name required"
         )
-    if "CurrentDeliveryStreamVersionId" in data:
+    if data.get("CurrentDeliveryStreamVersionId") is not None:
         out["current_delivery_stream_version_id"] = data[
             "CurrentDeliveryStreamVersionId"
         ]
@@ -178,11 +178,11 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateDestinationInput:
         raise DeserializationError(
             "UpdateDestinationInput.current_delivery_stream_version_id required"
         )
-    if "DestinationId" in data:
+    if data.get("DestinationId") is not None:
         out["destination_id"] = data["DestinationId"]
     else:
         raise DeserializationError("UpdateDestinationInput.destination_id required")
-    if "S3DestinationUpdate" in data:
+    if data.get("S3DestinationUpdate") is not None:
         import capo_firehose.types.s3_destination_update
 
         out["s3_destination_update"] = (
@@ -190,7 +190,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateDestinationInput:
                 data["S3DestinationUpdate"]
             )
         )
-    if "ExtendedS3DestinationUpdate" in data:
+    if data.get("ExtendedS3DestinationUpdate") is not None:
         import capo_firehose.types.extended_s3_destination_update
 
         out["extended_s3_destination_update"] = (
@@ -198,7 +198,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateDestinationInput:
                 data["ExtendedS3DestinationUpdate"]
             )
         )
-    if "RedshiftDestinationUpdate" in data:
+    if data.get("RedshiftDestinationUpdate") is not None:
         import capo_firehose.types.redshift_destination_update
 
         out["redshift_destination_update"] = (
@@ -206,7 +206,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateDestinationInput:
                 data["RedshiftDestinationUpdate"]
             )
         )
-    if "ElasticsearchDestinationUpdate" in data:
+    if data.get("ElasticsearchDestinationUpdate") is not None:
         import capo_firehose.types.elasticsearch_destination_update
 
         out["elasticsearch_destination_update"] = (
@@ -214,7 +214,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateDestinationInput:
                 data["ElasticsearchDestinationUpdate"]
             )
         )
-    if "AmazonopensearchserviceDestinationUpdate" in data:
+    if data.get("AmazonopensearchserviceDestinationUpdate") is not None:
         import capo_firehose.types.amazonopensearchservice_destination_update
 
         out["amazonopensearchservice_destination_update"] = (
@@ -222,7 +222,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateDestinationInput:
                 data["AmazonopensearchserviceDestinationUpdate"]
             )
         )
-    if "SplunkDestinationUpdate" in data:
+    if data.get("SplunkDestinationUpdate") is not None:
         import capo_firehose.types.splunk_destination_update
 
         out["splunk_destination_update"] = (
@@ -230,7 +230,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateDestinationInput:
                 data["SplunkDestinationUpdate"]
             )
         )
-    if "HttpEndpointDestinationUpdate" in data:
+    if data.get("HttpEndpointDestinationUpdate") is not None:
         import capo_firehose.types.http_endpoint_destination_update
 
         out["http_endpoint_destination_update"] = (
@@ -238,7 +238,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateDestinationInput:
                 data["HttpEndpointDestinationUpdate"]
             )
         )
-    if "AmazonOpenSearchServerlessDestinationUpdate" in data:
+    if data.get("AmazonOpenSearchServerlessDestinationUpdate") is not None:
         import capo_firehose.types.amazon_open_search_serverless_destination_update
 
         out["amazon_open_search_serverless_destination_update"] = (
@@ -246,7 +246,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateDestinationInput:
                 data["AmazonOpenSearchServerlessDestinationUpdate"]
             )
         )
-    if "SnowflakeDestinationUpdate" in data:
+    if data.get("SnowflakeDestinationUpdate") is not None:
         import capo_firehose.types.snowflake_destination_update
 
         out["snowflake_destination_update"] = (
@@ -254,7 +254,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateDestinationInput:
                 data["SnowflakeDestinationUpdate"]
             )
         )
-    if "IcebergDestinationUpdate" in data:
+    if data.get("IcebergDestinationUpdate") is not None:
         import capo_firehose.types.iceberg_destination_update
 
         out["iceberg_destination_update"] = (

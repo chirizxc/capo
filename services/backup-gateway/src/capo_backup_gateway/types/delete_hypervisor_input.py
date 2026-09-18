@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: DeleteHypervisorInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteHypervisorInput:
     out: DeleteHypervisorInput = {}  # type: ignore[typeddict-item]
-    if "HypervisorArn" in data:
+    if data.get("HypervisorArn") is not None:
         out["hypervisor_arn"] = data["HypervisorArn"]
     else:
         raise DeserializationError("DeleteHypervisorInput.hypervisor_arn required")

@@ -45,7 +45,7 @@ def serialize_aws_json_1_1(value: DescribeAffectedEntitiesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeAffectedEntitiesRequest:
     out: DescribeAffectedEntitiesRequest = {}  # type: ignore[typeddict-item]
-    if "filter" in data:
+    if data.get("filter") is not None:
         import capo_health.types.entity_filter
 
         out["filter"] = capo_health.types.entity_filter.deserialize_aws_json_1_1(
@@ -53,10 +53,10 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAffectedEntitiesRequest:
         )
     else:
         raise DeserializationError("DescribeAffectedEntitiesRequest.filter required")
-    if "locale" in data:
+    if data.get("locale") is not None:
         out["locale"] = data["locale"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

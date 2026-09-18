@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: PaginationConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PaginationConfiguration:
     out: PaginationConfiguration = {}  # type: ignore[typeddict-item]
-    if "CursorConfiguration" in data:
+    if data.get("CursorConfiguration") is not None:
         import capo_glue.types.cursor_configuration
 
         out["cursor_configuration"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> PaginationConfiguration:
                 data["CursorConfiguration"]
             )
         )
-    if "OffsetConfiguration" in data:
+    if data.get("OffsetConfiguration") is not None:
         import capo_glue.types.offset_configuration
 
         out["offset_configuration"] = (

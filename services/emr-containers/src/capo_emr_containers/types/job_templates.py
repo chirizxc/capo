@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> JobTemplates:
 
     out: JobTemplates = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_emr_containers.types.job_template.deserialize_json(item))
     return out

@@ -50,7 +50,7 @@ def serialize_aws_json_1_1(value: DescribeWorkspaceImagesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeWorkspaceImagesRequest:
     out: DescribeWorkspaceImagesRequest = {}  # type: ignore[typeddict-item]
-    if "ImageIds" in data:
+    if data.get("ImageIds") is not None:
         import capo_workspaces.types.workspace_image_id_list
 
         out["image_ids"] = (
@@ -58,14 +58,14 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeWorkspaceImagesRequest:
                 data["ImageIds"]
             )
         )
-    if "ImageType" in data:
+    if data.get("ImageType") is not None:
         import capo_workspaces.types.image_type
 
         out["image_type"] = capo_workspaces.types.image_type.deserialize_aws_json_1_1(
             data["ImageType"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

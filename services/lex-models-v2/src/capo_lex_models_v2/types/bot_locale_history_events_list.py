@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> BotLocaleHistoryEventsList:
 
     out: BotLocaleHistoryEventsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lex_models_v2.types.bot_locale_history_event.deserialize_json(item)
         )

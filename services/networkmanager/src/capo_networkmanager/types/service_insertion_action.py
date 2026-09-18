@@ -56,7 +56,7 @@ def serialize_json(value: ServiceInsertionAction) -> dict:
 
 def deserialize_json(data: dict) -> ServiceInsertionAction:
     out: ServiceInsertionAction = {}  # type: ignore[typeddict-item]
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_networkmanager.types.segment_action_service_insertion
 
         out["action"] = (
@@ -64,19 +64,19 @@ def deserialize_json(data: dict) -> ServiceInsertionAction:
                 data["Action"]
             )
         )
-    if "Mode" in data:
+    if data.get("Mode") is not None:
         import capo_networkmanager.types.send_via_mode
 
         out["mode"] = capo_networkmanager.types.send_via_mode.deserialize_json(
             data["Mode"]
         )
-    if "WhenSentTo" in data:
+    if data.get("WhenSentTo") is not None:
         import capo_networkmanager.types.when_sent_to
 
         out["when_sent_to"] = capo_networkmanager.types.when_sent_to.deserialize_json(
             data["WhenSentTo"]
         )
-    if "Via" in data:
+    if data.get("Via") is not None:
         import capo_networkmanager.types.via
 
         out["via"] = capo_networkmanager.types.via.deserialize_json(data["Via"])

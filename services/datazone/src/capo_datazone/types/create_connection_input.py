@@ -87,39 +87,39 @@ def serialize_json(value: CreateConnectionInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateConnectionInput:
     out: CreateConnectionInput = {}  # type: ignore[typeddict-item]
-    if "awsLocation" in data:
+    if data.get("awsLocation") is not None:
         import capo_datazone.types.aws_location
 
         out["aws_location"] = capo_datazone.types.aws_location.deserialize_json(
             data["awsLocation"]
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "configurations" in data:
+    if data.get("configurations") is not None:
         import capo_datazone.types.configurations
 
         out["configurations"] = capo_datazone.types.configurations.deserialize_json(
             data["configurations"]
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "environmentIdentifier" in data:
+    if data.get("environmentIdentifier") is not None:
         out["environment_identifier"] = data["environmentIdentifier"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateConnectionInput.name required")
-    if "props" in data:
+    if data.get("props") is not None:
         import capo_datazone.types.connection_properties_input
 
         out["props"] = capo_datazone.types.connection_properties_input.deserialize_json(
             data["props"]
         )
-    if "enableTrustedIdentityPropagation" in data:
+    if data.get("enableTrustedIdentityPropagation") is not None:
         out["enable_trusted_identity_propagation"] = data[
             "enableTrustedIdentityPropagation"
         ]
-    if "scope" in data:
+    if data.get("scope") is not None:
         import capo_datazone.types.connection_scope
 
         out["scope"] = capo_datazone.types.connection_scope.deserialize_json(

@@ -38,9 +38,9 @@ def serialize_aws_json_1_1(value: InvalidGatewayRequestException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidGatewayRequestException_:
     out: InvalidGatewayRequestException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "error" in data:
+    if data.get("error") is not None:
         import capo_storage_gateway.types.storage_gateway_error
 
         out["error"] = (
@@ -56,15 +56,20 @@ class InvalidGatewayRequestException(ServiceError):
 
     code: str | None = "InvalidGatewayRequestException"
 
-    def __init__(self, data: InvalidGatewayRequestException_):
+    def __init__(
+        self, data: InvalidGatewayRequestException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidGatewayRequestException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidGatewayRequestException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidGatewayRequestException":
+        return cls(deserialize_aws_json_1_1(data), message)

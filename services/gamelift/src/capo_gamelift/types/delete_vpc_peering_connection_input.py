@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: DeleteVpcPeeringConnectionInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteVpcPeeringConnectionInput:
     out: DeleteVpcPeeringConnectionInput = {}  # type: ignore[typeddict-item]
-    if "FleetId" in data:
+    if data.get("FleetId") is not None:
         out["fleet_id"] = data["FleetId"]
-    if "VpcPeeringConnectionId" in data:
+    if data.get("VpcPeeringConnectionId") is not None:
         out["vpc_peering_connection_id"] = data["VpcPeeringConnectionId"]
     return out

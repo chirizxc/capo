@@ -59,17 +59,17 @@ def serialize_json(value: AssetInfo) -> dict:
 
 def deserialize_json(data: dict) -> AssetInfo:
     out: AssetInfo = {}  # type: ignore[typeddict-item]
-    if "AssetId" in data:
+    if data.get("AssetId") is not None:
         out["asset_id"] = data["AssetId"]
-    if "RackId" in data:
+    if data.get("RackId") is not None:
         out["rack_id"] = data["RackId"]
-    if "AssetType" in data:
+    if data.get("AssetType") is not None:
         import capo_outposts.types.asset_type
 
         out["asset_type"] = capo_outposts.types.asset_type.deserialize_json(
             data["AssetType"]
         )
-    if "ComputeAttributes" in data:
+    if data.get("ComputeAttributes") is not None:
         import capo_outposts.types.compute_attributes
 
         out["compute_attributes"] = (
@@ -77,7 +77,7 @@ def deserialize_json(data: dict) -> AssetInfo:
                 data["ComputeAttributes"]
             )
         )
-    if "AssetLocation" in data:
+    if data.get("AssetLocation") is not None:
         import capo_outposts.types.asset_location
 
         out["asset_location"] = capo_outposts.types.asset_location.deserialize_json(

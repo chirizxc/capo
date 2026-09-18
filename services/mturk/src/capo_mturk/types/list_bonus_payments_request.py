@@ -36,12 +36,12 @@ def serialize_aws_json_1_1(value: ListBonusPaymentsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListBonusPaymentsRequest:
     out: ListBonusPaymentsRequest = {}  # type: ignore[typeddict-item]
-    if "HITId" in data:
+    if data.get("HITId") is not None:
         out["hit_id"] = data["HITId"]
-    if "AssignmentId" in data:
+    if data.get("AssignmentId") is not None:
         out["assignment_id"] = data["AssignmentId"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

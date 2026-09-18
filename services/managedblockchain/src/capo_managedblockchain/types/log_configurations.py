@@ -31,7 +31,7 @@ def serialize_json(value: LogConfigurations) -> dict:
 
 def deserialize_json(data: dict) -> LogConfigurations:
     out: LogConfigurations = {}  # type: ignore[typeddict-item]
-    if "Cloudwatch" in data:
+    if data.get("Cloudwatch") is not None:
         import capo_managedblockchain.types.log_configuration
 
         out["cloudwatch"] = (

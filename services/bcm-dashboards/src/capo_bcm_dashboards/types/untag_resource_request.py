@@ -36,11 +36,11 @@ def serialize_aws_json_1_0(value: UntagResourceRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UntagResourceRequest:
     out: UntagResourceRequest = {}  # type: ignore[typeddict-item]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     else:
         raise DeserializationError("UntagResourceRequest.resource_arn required")
-    if "resourceTagKeys" in data:
+    if data.get("resourceTagKeys") is not None:
         import capo_bcm_dashboards.types.resource_tag_key_list
 
         out["resource_tag_keys"] = (

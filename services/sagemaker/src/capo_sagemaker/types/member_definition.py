@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: MemberDefinition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MemberDefinition:
     out: MemberDefinition = {}  # type: ignore[typeddict-item]
-    if "CognitoMemberDefinition" in data:
+    if data.get("CognitoMemberDefinition") is not None:
         import capo_sagemaker.types.cognito_member_definition
 
         out["cognito_member_definition"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> MemberDefinition:
                 data["CognitoMemberDefinition"]
             )
         )
-    if "OidcMemberDefinition" in data:
+    if data.get("OidcMemberDefinition") is not None:
         import capo_sagemaker.types.oidc_member_definition
 
         out["oidc_member_definition"] = (

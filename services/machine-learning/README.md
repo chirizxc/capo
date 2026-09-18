@@ -13,9 +13,9 @@ from capo_machine_learning import AsyncMachineLearningClient
 
 
 async def main():
-    async with AsyncMachineLearningClient() as s3:
+    async with AsyncMachineLearningClient() as machine_learning:
         # Example: call the add_tags operation
-        response = await s3.add_tags()
+        response = await machine_learning.add_tags()
         print(response["resource_id"])
 ```
 
@@ -28,9 +28,9 @@ from capo_machine_learning import AsyncMachineLearningClient
 
 
 async def main():
-    async with AsyncMachineLearningClient() as s3:
+    async with AsyncMachineLearningClient() as machine_learning:
         # Example: paginate over describe_batch_predictions
-        async for item in s3.iter_describe_batch_predictions():
+        async for item in machine_learning.iter_describe_batch_predictions():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_machine_learning.error import InternalServerException
 
 
 async def main():
-    async with AsyncMachineLearningClient() as s3:
+    async with AsyncMachineLearningClient() as machine_learning:
         try:
-            await s3.add_tags()
+            await machine_learning.add_tags()
         except InternalServerException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_machine_learning import AsyncMachineLearningClient
 
 
 async def main():
-    async with AsyncMachineLearningClient() as s3:
+    async with AsyncMachineLearningClient() as machine_learning:
         # Default: 3 attempts for every operation
-        response = await s3.add_tags()
+        response = await machine_learning.add_tags()
 
         # Override per operation
-        response = await s3.add_tags(config_overrides={"retry_max_attempts": 5})
+        response = await machine_learning.add_tags(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.add_tags(config_overrides={"retry_max_attempts": 1})
+        response = await machine_learning.add_tags(config_overrides={"retry_max_attempts": 1})
 ```

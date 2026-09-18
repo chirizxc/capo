@@ -49,19 +49,19 @@ def serialize_json(value: CreateMembershipRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateMembershipRequest:
     out: CreateMembershipRequest = {}  # type: ignore[typeddict-item]
-    if "applicationId" in data:
+    if data.get("applicationId") is not None:
         out["application_id"] = data["applicationId"]
     else:
         raise DeserializationError("CreateMembershipRequest.application_id required")
-    if "agentSpaceId" in data:
+    if data.get("agentSpaceId") is not None:
         out["agent_space_id"] = data["agentSpaceId"]
     else:
         raise DeserializationError("CreateMembershipRequest.agent_space_id required")
-    if "membershipId" in data:
+    if data.get("membershipId") is not None:
         out["membership_id"] = data["membershipId"]
     else:
         raise DeserializationError("CreateMembershipRequest.membership_id required")
-    if "memberType" in data:
+    if data.get("memberType") is not None:
         import capo_securityagent.types.membership_type
 
         out["member_type"] = capo_securityagent.types.membership_type.deserialize_json(
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> CreateMembershipRequest:
         )
     else:
         raise DeserializationError("CreateMembershipRequest.member_type required")
-    if "config" in data:
+    if data.get("config") is not None:
         import capo_securityagent.types.membership_config
 
         out["config"] = capo_securityagent.types.membership_config.deserialize_json(

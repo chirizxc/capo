@@ -36,11 +36,11 @@ def serialize_json(value: Connector) -> dict:
 
 def deserialize_json(data: dict) -> Connector:
     out: Connector = {}  # type: ignore[typeddict-item]
-    if "ConnectorArn" in data:
+    if data.get("ConnectorArn") is not None:
         out["connector_arn"] = data["ConnectorArn"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_greengrass.types.__map_of__string
 
         out["parameters"] = capo_greengrass.types.__map_of__string.deserialize_json(

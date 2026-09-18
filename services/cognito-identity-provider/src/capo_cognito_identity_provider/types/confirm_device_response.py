@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: ConfirmDeviceResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConfirmDeviceResponse:
     out: ConfirmDeviceResponse = {}  # type: ignore[typeddict-item]
-    if "UserConfirmationNecessary" in data:
+    if data.get("UserConfirmationNecessary") is not None:
         out["user_confirmation_necessary"] = data["UserConfirmationNecessary"]
     else:
         out["user_confirmation_necessary"] = False

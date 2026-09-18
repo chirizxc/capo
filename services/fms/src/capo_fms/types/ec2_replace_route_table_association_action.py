@@ -40,9 +40,9 @@ def serialize_aws_json_1_1(value: EC2ReplaceRouteTableAssociationAction) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> EC2ReplaceRouteTableAssociationAction:
     out: EC2ReplaceRouteTableAssociationAction = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "AssociationId" in data:
+    if data.get("AssociationId") is not None:
         import capo_fms.types.action_target
 
         out["association_id"] = capo_fms.types.action_target.deserialize_aws_json_1_1(
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> EC2ReplaceRouteTableAssociationActio
         raise DeserializationError(
             "EC2ReplaceRouteTableAssociationAction.association_id required"
         )
-    if "RouteTableId" in data:
+    if data.get("RouteTableId") is not None:
         import capo_fms.types.action_target
 
         out["route_table_id"] = capo_fms.types.action_target.deserialize_aws_json_1_1(

@@ -120,7 +120,7 @@ def serialize_json(value: StartOutboundChatContactRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartOutboundChatContactRequest:
     out: StartOutboundChatContactRequest = {}  # type: ignore[typeddict-item]
-    if "SourceEndpoint" in data:
+    if data.get("SourceEndpoint") is not None:
         import capo_connect.types.endpoint
 
         out["source_endpoint"] = capo_connect.types.endpoint.deserialize_json(
@@ -130,7 +130,7 @@ def deserialize_json(data: dict) -> StartOutboundChatContactRequest:
         raise DeserializationError(
             "StartOutboundChatContactRequest.source_endpoint required"
         )
-    if "DestinationEndpoint" in data:
+    if data.get("DestinationEndpoint") is not None:
         import capo_connect.types.endpoint
 
         out["destination_endpoint"] = capo_connect.types.endpoint.deserialize_json(
@@ -140,13 +140,13 @@ def deserialize_json(data: dict) -> StartOutboundChatContactRequest:
         raise DeserializationError(
             "StartOutboundChatContactRequest.destination_endpoint required"
         )
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
     else:
         raise DeserializationError(
             "StartOutboundChatContactRequest.instance_id required"
         )
-    if "SegmentAttributes" in data:
+    if data.get("SegmentAttributes") is not None:
         import capo_connect.types.segment_attributes
 
         out["segment_attributes"] = (
@@ -158,21 +158,21 @@ def deserialize_json(data: dict) -> StartOutboundChatContactRequest:
         raise DeserializationError(
             "StartOutboundChatContactRequest.segment_attributes required"
         )
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_connect.types.attributes
 
         out["attributes"] = capo_connect.types.attributes.deserialize_json(
             data["Attributes"]
         )
-    if "ContactFlowId" in data:
+    if data.get("ContactFlowId") is not None:
         out["contact_flow_id"] = data["ContactFlowId"]
     else:
         raise DeserializationError(
             "StartOutboundChatContactRequest.contact_flow_id required"
         )
-    if "ChatDurationInMinutes" in data:
+    if data.get("ChatDurationInMinutes") is not None:
         out["chat_duration_in_minutes"] = data["ChatDurationInMinutes"]
-    if "ParticipantDetails" in data:
+    if data.get("ParticipantDetails") is not None:
         import capo_connect.types.participant_details
 
         out["participant_details"] = (
@@ -180,7 +180,7 @@ def deserialize_json(data: dict) -> StartOutboundChatContactRequest:
                 data["ParticipantDetails"]
             )
         )
-    if "InitialSystemMessage" in data:
+    if data.get("InitialSystemMessage") is not None:
         import capo_connect.types.chat_message
 
         out["initial_system_message"] = (
@@ -188,7 +188,7 @@ def deserialize_json(data: dict) -> StartOutboundChatContactRequest:
                 data["InitialSystemMessage"]
             )
         )
-    if "InitialTemplatedSystemMessage" in data:
+    if data.get("InitialTemplatedSystemMessage") is not None:
         import capo_connect.types.templated_message_config
 
         out["initial_templated_system_message"] = (
@@ -196,9 +196,9 @@ def deserialize_json(data: dict) -> StartOutboundChatContactRequest:
                 data["InitialTemplatedSystemMessage"]
             )
         )
-    if "RelatedContactId" in data:
+    if data.get("RelatedContactId") is not None:
         out["related_contact_id"] = data["RelatedContactId"]
-    if "SupportedMessagingContentTypes" in data:
+    if data.get("SupportedMessagingContentTypes") is not None:
         import capo_connect.types.supported_messaging_content_types
 
         out["supported_messaging_content_types"] = (
@@ -206,6 +206,6 @@ def deserialize_json(data: dict) -> StartOutboundChatContactRequest:
                 data["SupportedMessagingContentTypes"]
             )
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

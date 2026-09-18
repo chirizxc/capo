@@ -53,17 +53,17 @@ def serialize_aws_json_1_1(value: ModifyIntegrationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModifyIntegrationRequest:
     out: ModifyIntegrationRequest = {}  # type: ignore[typeddict-item]
-    if "IntegrationIdentifier" in data:
+    if data.get("IntegrationIdentifier") is not None:
         out["integration_identifier"] = data["IntegrationIdentifier"]
     else:
         raise DeserializationError(
             "ModifyIntegrationRequest.integration_identifier required"
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DataFilter" in data:
+    if data.get("DataFilter") is not None:
         out["data_filter"] = data["DataFilter"]
-    if "IntegrationConfig" in data:
+    if data.get("IntegrationConfig") is not None:
         import capo_glue.types.integration_config
 
         out["integration_config"] = (
@@ -71,6 +71,6 @@ def deserialize_aws_json_1_1(data: dict) -> ModifyIntegrationRequest:
                 data["IntegrationConfig"]
             )
         )
-    if "IntegrationName" in data:
+    if data.get("IntegrationName") is not None:
         out["integration_name"] = data["IntegrationName"]
     return out

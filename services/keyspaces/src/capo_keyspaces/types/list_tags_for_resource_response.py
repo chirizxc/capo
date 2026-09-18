@@ -32,9 +32,9 @@ def serialize_aws_json_1_0(value: ListTagsForResourceResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListTagsForResourceResponse:
     out: ListTagsForResourceResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_keyspaces.types.tag_list
 
         out["tags"] = capo_keyspaces.types.tag_list.deserialize_aws_json_1_0(

@@ -260,14 +260,16 @@ class AsyncShieldClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_shield.types.associate_drt_log_bucket_request.AssociateDRTLogBucketRequest = {}  # type: ignore[typeddict-item]
-        input_["log_bucket"] = log_bucket
+        input_: capo_shield.types.associate_drt_log_bucket_request.AssociateDRTLogBucketRequest = {
+            "log_bucket": log_bucket
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_drt_role(
@@ -307,14 +309,16 @@ class AsyncShieldClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_shield.types.associate_drt_role_request.AssociateDRTRoleRequest = {}  # type: ignore[typeddict-item]
-        input_["role_arn"] = role_arn
+        input_: capo_shield.types.associate_drt_role_request.AssociateDRTRoleRequest = {
+            "role_arn": role_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_health_check(
@@ -358,15 +362,17 @@ class AsyncShieldClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_shield.types.associate_health_check_request.AssociateHealthCheckRequest = {}  # type: ignore[typeddict-item]
-        input_["protection_id"] = protection_id
-        input_["health_check_arn"] = health_check_arn
+        input_: capo_shield.types.associate_health_check_request.AssociateHealthCheckRequest = {
+            "protection_id": protection_id,
+            "health_check_arn": health_check_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_proactive_engagement_details(
@@ -405,14 +411,16 @@ class AsyncShieldClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_shield.types.associate_proactive_engagement_details_request.AssociateProactiveEngagementDetailsRequest = {}  # type: ignore[typeddict-item]
-        input_["emergency_contact_list"] = emergency_contact_list
+        input_: capo_shield.types.associate_proactive_engagement_details_request.AssociateProactiveEngagementDetailsRequest = {
+            "emergency_contact_list": emergency_contact_list
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_protection(
@@ -458,9 +466,10 @@ class AsyncShieldClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_shield.types.create_protection_request.CreateProtectionRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["resource_arn"] = resource_arn
+        input_: capo_shield.types.create_protection_request.CreateProtectionRequest = {
+            "name": name,
+            "resource_arn": resource_arn,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -469,6 +478,7 @@ class AsyncShieldClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_protection_group(
@@ -522,10 +532,11 @@ class AsyncShieldClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_shield.types.create_protection_group_request.CreateProtectionGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["protection_group_id"] = protection_group_id
-        input_["aggregation"] = aggregation
-        input_["pattern"] = pattern
+        input_: capo_shield.types.create_protection_group_request.CreateProtectionGroupRequest = {
+            "protection_group_id": protection_group_id,
+            "aggregation": aggregation,
+            "pattern": pattern,
+        }
         if resource_type is not None:
             input_["resource_type"] = resource_type
         if members is not None:
@@ -538,6 +549,7 @@ class AsyncShieldClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_subscription(
@@ -567,13 +579,14 @@ class AsyncShieldClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_shield.types.create_subscription_request.CreateSubscriptionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_shield.types.create_subscription_request.CreateSubscriptionRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_protection(
@@ -610,14 +623,16 @@ class AsyncShieldClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_shield.types.delete_protection_request.DeleteProtectionRequest = {}  # type: ignore[typeddict-item]
-        input_["protection_id"] = protection_id
+        input_: capo_shield.types.delete_protection_request.DeleteProtectionRequest = {
+            "protection_id": protection_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_protection_group(
@@ -654,14 +669,16 @@ class AsyncShieldClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_shield.types.delete_protection_group_request.DeleteProtectionGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["protection_group_id"] = protection_group_id
+        input_: capo_shield.types.delete_protection_group_request.DeleteProtectionGroupRequest = {
+            "protection_group_id": protection_group_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_subscription(
@@ -692,13 +709,14 @@ class AsyncShieldClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_shield.types.delete_subscription_request.DeleteSubscriptionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_shield.types.delete_subscription_request.DeleteSubscriptionRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_attack(
@@ -734,14 +752,16 @@ class AsyncShieldClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_shield.types.describe_attack_request.DescribeAttackRequest = {}  # type: ignore[typeddict-item]
-        input_["attack_id"] = attack_id
+        input_: capo_shield.types.describe_attack_request.DescribeAttackRequest = {
+            "attack_id": attack_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_attack_statistics(
@@ -770,13 +790,14 @@ class AsyncShieldClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_shield.types.describe_attack_statistics_request.DescribeAttackStatisticsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_shield.types.describe_attack_statistics_request.DescribeAttackStatisticsRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_drt_access(
@@ -806,13 +827,14 @@ class AsyncShieldClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_shield.types.describe_drt_access_request.DescribeDRTAccessRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_shield.types.describe_drt_access_request.DescribeDRTAccessRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_emergency_contact_settings(
@@ -842,13 +864,14 @@ class AsyncShieldClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_shield.types.describe_emergency_contact_settings_request.DescribeEmergencyContactSettingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_shield.types.describe_emergency_contact_settings_request.DescribeEmergencyContactSettingsRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_protection(
@@ -887,7 +910,7 @@ class AsyncShieldClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_shield.types.describe_protection_request.DescribeProtectionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_shield.types.describe_protection_request.DescribeProtectionRequest = {}
         if protection_id is not None:
             input_["protection_id"] = protection_id
         if resource_arn is not None:
@@ -898,6 +921,7 @@ class AsyncShieldClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_protection_group(
@@ -933,14 +957,16 @@ class AsyncShieldClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_shield.types.describe_protection_group_request.DescribeProtectionGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["protection_group_id"] = protection_group_id
+        input_: capo_shield.types.describe_protection_group_request.DescribeProtectionGroupRequest = {
+            "protection_group_id": protection_group_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_subscription(
@@ -972,13 +998,14 @@ class AsyncShieldClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_shield.types.describe_subscription_request.DescribeSubscriptionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_shield.types.describe_subscription_request.DescribeSubscriptionRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disable_application_layer_automatic_response(
@@ -1017,14 +1044,16 @@ class AsyncShieldClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_shield.types.disable_application_layer_automatic_response_request.DisableApplicationLayerAutomaticResponseRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_shield.types.disable_application_layer_automatic_response_request.DisableApplicationLayerAutomaticResponseRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disable_proactive_engagement(
@@ -1057,13 +1086,14 @@ class AsyncShieldClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_shield.types.disable_proactive_engagement_request.DisableProactiveEngagementRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_shield.types.disable_proactive_engagement_request.DisableProactiveEngagementRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_drt_log_bucket(
@@ -1103,14 +1133,16 @@ class AsyncShieldClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_shield.types.disassociate_drt_log_bucket_request.DisassociateDRTLogBucketRequest = {}  # type: ignore[typeddict-item]
-        input_["log_bucket"] = log_bucket
+        input_: capo_shield.types.disassociate_drt_log_bucket_request.DisassociateDRTLogBucketRequest = {
+            "log_bucket": log_bucket
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_drt_role(
@@ -1142,13 +1174,14 @@ class AsyncShieldClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_shield.types.disassociate_drt_role_request.DisassociateDRTRoleRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_shield.types.disassociate_drt_role_request.DisassociateDRTRoleRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_health_check(
@@ -1189,15 +1222,17 @@ class AsyncShieldClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_shield.types.disassociate_health_check_request.DisassociateHealthCheckRequest = {}  # type: ignore[typeddict-item]
-        input_["protection_id"] = protection_id
-        input_["health_check_arn"] = health_check_arn
+        input_: capo_shield.types.disassociate_health_check_request.DisassociateHealthCheckRequest = {
+            "protection_id": protection_id,
+            "health_check_arn": health_check_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def enable_application_layer_automatic_response(
@@ -1239,15 +1274,17 @@ class AsyncShieldClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_shield.types.enable_application_layer_automatic_response_request.EnableApplicationLayerAutomaticResponseRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["action"] = action
+        input_: capo_shield.types.enable_application_layer_automatic_response_request.EnableApplicationLayerAutomaticResponseRequest = {
+            "resource_arn": resource_arn,
+            "action": action,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def enable_proactive_engagement(
@@ -1280,13 +1317,14 @@ class AsyncShieldClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_shield.types.enable_proactive_engagement_request.EnableProactiveEngagementRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_shield.types.enable_proactive_engagement_request.EnableProactiveEngagementRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_subscription_state(
@@ -1317,13 +1355,14 @@ class AsyncShieldClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_shield.types.get_subscription_state_request.GetSubscriptionStateRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_shield.types.get_subscription_state_request.GetSubscriptionStateRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_attacks(
@@ -1370,7 +1409,7 @@ class AsyncShieldClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_shield.types.list_attacks_request.ListAttacksRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_shield.types.list_attacks_request.ListAttacksRequest = {}
         if resource_arns is not None:
             input_["resource_arns"] = resource_arns
         if start_time is not None:
@@ -1387,6 +1426,7 @@ class AsyncShieldClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_attacks(
@@ -1460,7 +1500,7 @@ class AsyncShieldClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_shield.types.list_protection_groups_request.ListProtectionGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_shield.types.list_protection_groups_request.ListProtectionGroupsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1473,7 +1513,31 @@ class AsyncShieldClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_protection_groups(
+        self,
+        *,
+        config_overrides: Optional[AsyncShieldClientConfig] = None,
+        next_token: Optional["capo_shield.types.token.Token"] = None,
+        max_results: Optional["capo_shield.types.max_results.MaxResults"] = None,
+        inclusion_filters: Optional[
+            "capo_shield.types.inclusion_protection_group_filters.InclusionProtectionGroupFilters"
+        ] = None,
+    ) -> "AsyncIterator[capo_shield.types.list_protection_groups_response.ListProtectionGroupsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_protection_groups(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                inclusion_filters=inclusion_filters,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_protections(
         self,
@@ -1515,7 +1579,7 @@ class AsyncShieldClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_shield.types.list_protections_request.ListProtectionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_shield.types.list_protections_request.ListProtectionsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1528,6 +1592,7 @@ class AsyncShieldClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_protections(
@@ -1593,8 +1658,9 @@ class AsyncShieldClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_shield.types.list_resources_in_protection_group_request.ListResourcesInProtectionGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["protection_group_id"] = protection_group_id
+        input_: capo_shield.types.list_resources_in_protection_group_request.ListResourcesInProtectionGroupRequest = {
+            "protection_group_id": protection_group_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1605,7 +1671,29 @@ class AsyncShieldClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_resources_in_protection_group(
+        self,
+        protection_group_id: "capo_shield.types.protection_group_id.ProtectionGroupId",
+        *,
+        config_overrides: Optional[AsyncShieldClientConfig] = None,
+        next_token: Optional["capo_shield.types.token.Token"] = None,
+        max_results: Optional["capo_shield.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_shield.types.list_resources_in_protection_group_response.ListResourcesInProtectionGroupResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_resources_in_protection_group(
+                protection_group_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_tags_for_resource(
         self,
@@ -1643,14 +1731,16 @@ class AsyncShieldClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_shield.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_shield.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -1690,15 +1780,17 @@ class AsyncShieldClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_shield.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_shield.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -1738,15 +1830,17 @@ class AsyncShieldClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_shield.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_shield.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_application_layer_automatic_response(
@@ -1787,15 +1881,17 @@ class AsyncShieldClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_shield.types.update_application_layer_automatic_response_request.UpdateApplicationLayerAutomaticResponseRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["action"] = action
+        input_: capo_shield.types.update_application_layer_automatic_response_request.UpdateApplicationLayerAutomaticResponseRequest = {
+            "resource_arn": resource_arn,
+            "action": action,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_emergency_contact_settings(
@@ -1835,7 +1931,7 @@ class AsyncShieldClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_shield.types.update_emergency_contact_settings_request.UpdateEmergencyContactSettingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_shield.types.update_emergency_contact_settings_request.UpdateEmergencyContactSettingsRequest = {}
         if emergency_contact_list is not None:
             input_["emergency_contact_list"] = emergency_contact_list
 
@@ -1844,6 +1940,7 @@ class AsyncShieldClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_protection_group(
@@ -1893,10 +1990,11 @@ class AsyncShieldClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_shield.types.update_protection_group_request.UpdateProtectionGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["protection_group_id"] = protection_group_id
-        input_["aggregation"] = aggregation
-        input_["pattern"] = pattern
+        input_: capo_shield.types.update_protection_group_request.UpdateProtectionGroupRequest = {
+            "protection_group_id": protection_group_id,
+            "aggregation": aggregation,
+            "pattern": pattern,
+        }
         if resource_type is not None:
             input_["resource_type"] = resource_type
         if members is not None:
@@ -1907,6 +2005,7 @@ class AsyncShieldClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_subscription(
@@ -1945,7 +2044,7 @@ class AsyncShieldClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_shield.types.update_subscription_request.UpdateSubscriptionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_shield.types.update_subscription_request.UpdateSubscriptionRequest = {}
         if auto_renew is not None:
             input_["auto_renew"] = auto_renew
 
@@ -1954,6 +2053,7 @@ class AsyncShieldClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

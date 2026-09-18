@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> CreatedArtifactList:
 
     out: CreatedArtifactList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_migration_hub.types.created_artifact.deserialize_aws_json_1_1(item)
         )

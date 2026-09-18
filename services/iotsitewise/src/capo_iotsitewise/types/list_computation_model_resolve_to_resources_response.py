@@ -35,7 +35,7 @@ def serialize_json(value: ListComputationModelResolveToResourcesResponse) -> dic
 
 def deserialize_json(data: dict) -> ListComputationModelResolveToResourcesResponse:
     out: ListComputationModelResolveToResourcesResponse = {}  # type: ignore[typeddict-item]
-    if "computationModelResolveToResourceSummaries" in data:
+    if data.get("computationModelResolveToResourceSummaries") is not None:
         import capo_iotsitewise.types.computation_model_resolve_to_resource_summaries
 
         out["computation_model_resolve_to_resource_summaries"] = (
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> ListComputationModelResolveToResourcesRespon
         raise DeserializationError(
             "ListComputationModelResolveToResourcesResponse.computation_model_resolve_to_resource_summaries required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

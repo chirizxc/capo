@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> KxAttachedClusters:
 
     out: KxAttachedClusters = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_finspace.types.kx_attached_cluster.deserialize_json(item))
     return out

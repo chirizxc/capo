@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: DeleteThemeForStackRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteThemeForStackRequest:
     out: DeleteThemeForStackRequest = {}  # type: ignore[typeddict-item]
-    if "StackName" in data:
+    if data.get("StackName") is not None:
         out["stack_name"] = data["StackName"]
     return out

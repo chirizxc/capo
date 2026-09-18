@@ -25,15 +25,15 @@ def serialize_json(value: GetBotsCountResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetBotsCountResponse:
     out: GetBotsCountResponse = {}  # type: ignore[typeddict-item]
-    if "pending" in data:
+    if data.get("pending") is not None:
         out["pending"] = data["pending"]
     else:
         raise DeserializationError("GetBotsCountResponse.pending required")
-    if "active" in data:
+    if data.get("active") is not None:
         out["active"] = data["active"]
     else:
         raise DeserializationError("GetBotsCountResponse.active required")
-    if "total" in data:
+    if data.get("total") is not None:
         out["total"] = data["total"]
     else:
         raise DeserializationError("GetBotsCountResponse.total required")

@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: TagResourcesOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TagResourcesOutput:
     out: TagResourcesOutput = {}  # type: ignore[typeddict-item]
-    if "FailedResourcesMap" in data:
+    if data.get("FailedResourcesMap") is not None:
         import capo_resource_groups_tagging_api.types.failed_resources_map
 
         out["failed_resources_map"] = (

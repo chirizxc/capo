@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ListCasesItems:
 
     out: ListCasesItems = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_security_ir.types.list_cases_item.deserialize_json(item))
     return out

@@ -90,21 +90,21 @@ def serialize_json(value: AssetListing) -> dict:
 
 def deserialize_json(data: dict) -> AssetListing:
     out: AssetListing = {}  # type: ignore[typeddict-item]
-    if "assetId" in data:
+    if data.get("assetId") is not None:
         out["asset_id"] = data["assetId"]
-    if "assetRevision" in data:
+    if data.get("assetRevision") is not None:
         out["asset_revision"] = data["assetRevision"]
-    if "assetType" in data:
+    if data.get("assetType") is not None:
         out["asset_type"] = data["assetType"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_datazone.types.created_at
 
         out["created_at"] = capo_datazone.types.created_at.deserialize_json(
             data["createdAt"]
         )
-    if "forms" in data:
+    if data.get("forms") is not None:
         out["forms"] = data["forms"]
-    if "latestTimeSeriesDataPointForms" in data:
+    if data.get("latestTimeSeriesDataPointForms") is not None:
         import capo_datazone.types.time_series_data_point_summary_form_output_list
 
         out["latest_time_series_data_point_forms"] = (
@@ -112,7 +112,7 @@ def deserialize_json(data: dict) -> AssetListing:
                 data["latestTimeSeriesDataPointForms"]
             )
         )
-    if "glossaryTerms" in data:
+    if data.get("glossaryTerms") is not None:
         import capo_datazone.types.detailed_glossary_terms
 
         out["glossary_terms"] = (
@@ -120,7 +120,7 @@ def deserialize_json(data: dict) -> AssetListing:
                 data["glossaryTerms"]
             )
         )
-    if "governedGlossaryTerms" in data:
+    if data.get("governedGlossaryTerms") is not None:
         import capo_datazone.types.detailed_glossary_terms
 
         out["governed_glossary_terms"] = (
@@ -128,6 +128,6 @@ def deserialize_json(data: dict) -> AssetListing:
                 data["governedGlossaryTerms"]
             )
         )
-    if "owningProjectId" in data:
+    if data.get("owningProjectId") is not None:
         out["owning_project_id"] = data["owningProjectId"]
     return out

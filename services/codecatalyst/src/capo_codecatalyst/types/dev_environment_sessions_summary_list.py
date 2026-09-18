@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> DevEnvironmentSessionsSummaryList:
 
     out: DevEnvironmentSessionsSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codecatalyst.types.dev_environment_session_summary.deserialize_json(
                 item

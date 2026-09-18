@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> RegionsOfInterest:
 
     out: RegionsOfInterest = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_rekognition.types.region_of_interest.deserialize_aws_json_1_1(item)
         )

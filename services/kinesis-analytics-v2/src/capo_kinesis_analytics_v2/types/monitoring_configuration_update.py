@@ -55,7 +55,7 @@ def serialize_aws_json_1_1(value: MonitoringConfigurationUpdate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MonitoringConfigurationUpdate:
     out: MonitoringConfigurationUpdate = {}  # type: ignore[typeddict-item]
-    if "ConfigurationTypeUpdate" in data:
+    if data.get("ConfigurationTypeUpdate") is not None:
         import capo_kinesis_analytics_v2.types.configuration_type
 
         out["configuration_type_update"] = (
@@ -63,7 +63,7 @@ def deserialize_aws_json_1_1(data: dict) -> MonitoringConfigurationUpdate:
                 data["ConfigurationTypeUpdate"]
             )
         )
-    if "MetricsLevelUpdate" in data:
+    if data.get("MetricsLevelUpdate") is not None:
         import capo_kinesis_analytics_v2.types.metrics_level
 
         out["metrics_level_update"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_1(data: dict) -> MonitoringConfigurationUpdate:
                 data["MetricsLevelUpdate"]
             )
         )
-    if "LogLevelUpdate" in data:
+    if data.get("LogLevelUpdate") is not None:
         import capo_kinesis_analytics_v2.types.log_level
 
         out["log_level_update"] = (

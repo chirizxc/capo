@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_datazone._auth._signers
@@ -80,17 +81,20 @@ class DataSourceRun:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.start_data_source_run_input.StartDataSourceRunInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["data_source_identifier"] = data_source_identifier
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_datazone.types.start_data_source_run_input.StartDataSourceRunInput = {
+            "domain_identifier": domain_identifier,
+            "data_source_identifier": data_source_identifier,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -133,15 +137,17 @@ class DataSourceRun:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.get_data_source_run_input.GetDataSourceRunInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.get_data_source_run_input.GetDataSourceRunInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -194,9 +200,10 @@ class DataSourceRun:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.list_data_source_runs_input.ListDataSourceRunsInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["data_source_identifier"] = data_source_identifier
+        input_: capo_datazone.types.list_data_source_runs_input.ListDataSourceRunsInput = {
+            "domain_identifier": domain_identifier,
+            "data_source_identifier": data_source_identifier,
+        }
         if status is not None:
             input_["status"] = status
         if next_token is not None:
@@ -209,6 +216,7 @@ class DataSourceRun:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -259,17 +267,20 @@ class AsyncDataSourceRun:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.start_data_source_run_input.StartDataSourceRunInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["data_source_identifier"] = data_source_identifier
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_datazone.types.start_data_source_run_input.StartDataSourceRunInput = {
+            "domain_identifier": domain_identifier,
+            "data_source_identifier": data_source_identifier,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -313,15 +324,17 @@ class AsyncDataSourceRun:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.get_data_source_run_input.GetDataSourceRunInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.get_data_source_run_input.GetDataSourceRunInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -375,9 +388,10 @@ class AsyncDataSourceRun:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.list_data_source_runs_input.ListDataSourceRunsInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["data_source_identifier"] = data_source_identifier
+        input_: capo_datazone.types.list_data_source_runs_input.ListDataSourceRunsInput = {
+            "domain_identifier": domain_identifier,
+            "data_source_identifier": data_source_identifier,
+        }
         if status is not None:
             input_["status"] = status
         if next_token is not None:
@@ -390,4 +404,5 @@ class AsyncDataSourceRun:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

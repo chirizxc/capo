@@ -47,17 +47,17 @@ def serialize_json(value: CreateFieldRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateFieldRequest:
     out: CreateFieldRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateFieldRequest.name required")
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("CreateFieldRequest.type required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_connectcases.types.field_attributes
 
         out["attributes"] = capo_connectcases.types.field_attributes.deserialize_json(

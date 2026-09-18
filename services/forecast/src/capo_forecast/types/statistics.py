@@ -54,9 +54,25 @@ def serialize_aws_json_1_1(value: Statistics) -> dict:
     if "max" in value:
         out["Max"] = value["max"]
     if "avg" in value:
-        out["Avg"] = value["avg"]
+        out["Avg"] = (
+            "NaN"
+            if value["avg"] != value["avg"]
+            else "Infinity"
+            if value["avg"] == float("inf")
+            else "-Infinity"
+            if value["avg"] == float("-inf")
+            else value["avg"]
+        )
     if "stddev" in value:
-        out["Stddev"] = value["stddev"]
+        out["Stddev"] = (
+            "NaN"
+            if value["stddev"] != value["stddev"]
+            else "Infinity"
+            if value["stddev"] == float("inf")
+            else "-Infinity"
+            if value["stddev"] == float("-inf")
+            else value["stddev"]
+        )
     if "count_long" in value:
         out["CountLong"] = value["count_long"]
     if "count_distinct_long" in value:
@@ -70,28 +86,28 @@ def serialize_aws_json_1_1(value: Statistics) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Statistics:
     out: Statistics = {}  # type: ignore[typeddict-item]
-    if "Count" in data:
+    if data.get("Count") is not None:
         out["count"] = data["Count"]
-    if "CountDistinct" in data:
+    if data.get("CountDistinct") is not None:
         out["count_distinct"] = data["CountDistinct"]
-    if "CountNull" in data:
+    if data.get("CountNull") is not None:
         out["count_null"] = data["CountNull"]
-    if "CountNan" in data:
+    if data.get("CountNan") is not None:
         out["count_nan"] = data["CountNan"]
-    if "Min" in data:
+    if data.get("Min") is not None:
         out["min"] = data["Min"]
-    if "Max" in data:
+    if data.get("Max") is not None:
         out["max"] = data["Max"]
-    if "Avg" in data:
-        out["avg"] = data["Avg"]
-    if "Stddev" in data:
-        out["stddev"] = data["Stddev"]
-    if "CountLong" in data:
+    if data.get("Avg") is not None:
+        out["avg"] = float(data["Avg"])
+    if data.get("Stddev") is not None:
+        out["stddev"] = float(data["Stddev"])
+    if data.get("CountLong") is not None:
         out["count_long"] = data["CountLong"]
-    if "CountDistinctLong" in data:
+    if data.get("CountDistinctLong") is not None:
         out["count_distinct_long"] = data["CountDistinctLong"]
-    if "CountNullLong" in data:
+    if data.get("CountNullLong") is not None:
         out["count_null_long"] = data["CountNullLong"]
-    if "CountNanLong" in data:
+    if data.get("CountNanLong") is not None:
         out["count_nan_long"] = data["CountNanLong"]
     return out

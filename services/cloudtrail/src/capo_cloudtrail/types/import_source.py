@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: ImportSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ImportSource:
     out: ImportSource = {}  # type: ignore[typeddict-item]
-    if "S3" in data:
+    if data.get("S3") is not None:
         import capo_cloudtrail.types.s3_import_source
 
         out["s3"] = capo_cloudtrail.types.s3_import_source.deserialize_aws_json_1_1(

@@ -24,7 +24,7 @@ def serialize_json(value: GetCaseAttachmentDownloadUrlResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetCaseAttachmentDownloadUrlResponse:
     out: GetCaseAttachmentDownloadUrlResponse = {}  # type: ignore[typeddict-item]
-    if "attachmentPresignedUrl" in data:
+    if data.get("attachmentPresignedUrl") is not None:
         out["attachment_presigned_url"] = data["attachmentPresignedUrl"]
     else:
         raise DeserializationError(

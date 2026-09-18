@@ -95,39 +95,39 @@ def serialize_json(value: GetWirelessDeviceResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetWirelessDeviceResponse:
     out: GetWirelessDeviceResponse = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_iot_wireless.types.wireless_device_type
 
         out["type"] = capo_iot_wireless.types.wireless_device_type.deserialize_json(
             data["Type"]
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DestinationName" in data:
+    if data.get("DestinationName") is not None:
         out["destination_name"] = data["DestinationName"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "ThingName" in data:
+    if data.get("ThingName") is not None:
         out["thing_name"] = data["ThingName"]
-    if "ThingArn" in data:
+    if data.get("ThingArn") is not None:
         out["thing_arn"] = data["ThingArn"]
-    if "LoRaWAN" in data:
+    if data.get("LoRaWAN") is not None:
         import capo_iot_wireless.types.lo_ra_wan_device
 
         out["lo_ra_wan"] = capo_iot_wireless.types.lo_ra_wan_device.deserialize_json(
             data["LoRaWAN"]
         )
-    if "Sidewalk" in data:
+    if data.get("Sidewalk") is not None:
         import capo_iot_wireless.types.sidewalk_device
 
         out["sidewalk"] = capo_iot_wireless.types.sidewalk_device.deserialize_json(
             data["Sidewalk"]
         )
-    if "Positioning" in data:
+    if data.get("Positioning") is not None:
         import capo_iot_wireless.types.positioning_config_status
 
         out["positioning"] = (

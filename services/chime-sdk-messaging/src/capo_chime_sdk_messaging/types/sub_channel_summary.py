@@ -32,8 +32,8 @@ def serialize_json(value: SubChannelSummary) -> dict:
 
 def deserialize_json(data: dict) -> SubChannelSummary:
     out: SubChannelSummary = {}  # type: ignore[typeddict-item]
-    if "SubChannelId" in data:
+    if data.get("SubChannelId") is not None:
         out["sub_channel_id"] = data["SubChannelId"]
-    if "MembershipCount" in data:
+    if data.get("MembershipCount") is not None:
         out["membership_count"] = data["MembershipCount"]
     return out

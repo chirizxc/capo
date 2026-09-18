@@ -103,45 +103,45 @@ def serialize_aws_json_1_0(value: Host) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Host:
     out: Host = {}  # type: ignore[typeddict-item]
-    if "hostName" in data:
+    if data.get("hostName") is not None:
         out["host_name"] = data["hostName"]
-    if "ipAddress" in data:
+    if data.get("ipAddress") is not None:
         out["ip_address"] = data["ipAddress"]
-    if "keyName" in data:
+    if data.get("keyName") is not None:
         out["key_name"] = data["keyName"]
-    if "instanceType" in data:
+    if data.get("instanceType") is not None:
         import capo_evs.types.instance_type
 
         out["instance_type"] = capo_evs.types.instance_type.deserialize_aws_json_1_0(
             data["instanceType"]
         )
-    if "placementGroupId" in data:
+    if data.get("placementGroupId") is not None:
         out["placement_group_id"] = data["placementGroupId"]
-    if "dedicatedHostId" in data:
+    if data.get("dedicatedHostId") is not None:
         out["dedicated_host_id"] = data["dedicatedHostId"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_evs.types._prelude.timestamp
 
         out["created_at"] = capo_evs.types._prelude.timestamp.deserialize_aws_json_1_0(
             data["createdAt"]
         )
-    if "modifiedAt" in data:
+    if data.get("modifiedAt") is not None:
         import capo_evs.types._prelude.timestamp
 
         out["modified_at"] = capo_evs.types._prelude.timestamp.deserialize_aws_json_1_0(
             data["modifiedAt"]
         )
-    if "hostState" in data:
+    if data.get("hostState") is not None:
         import capo_evs.types.host_state
 
         out["host_state"] = capo_evs.types.host_state.deserialize_aws_json_1_0(
             data["hostState"]
         )
-    if "stateDetails" in data:
+    if data.get("stateDetails") is not None:
         out["state_details"] = data["stateDetails"]
-    if "ec2InstanceId" in data:
+    if data.get("ec2InstanceId") is not None:
         out["ec2_instance_id"] = data["ec2InstanceId"]
-    if "networkInterfaces" in data:
+    if data.get("networkInterfaces") is not None:
         import capo_evs.types.network_interface_list
 
         out["network_interfaces"] = (

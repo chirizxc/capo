@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: ManagedQueryResultsEncryptionConfiguration) ->
 
 def deserialize_aws_json_1_1(data: dict) -> ManagedQueryResultsEncryptionConfiguration:
     out: ManagedQueryResultsEncryptionConfiguration = {}  # type: ignore[typeddict-item]
-    if "KmsKey" in data:
+    if data.get("KmsKey") is not None:
         out["kms_key"] = data["KmsKey"]
     else:
         raise DeserializationError(

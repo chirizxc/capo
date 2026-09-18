@@ -74,17 +74,17 @@ def serialize_json(value: Dimensions) -> dict:
 
 def deserialize_json(data: dict) -> Dimensions:
     out: Dimensions = {}  # type: ignore[typeddict-item]
-    if "Queue" in data:
+    if data.get("Queue") is not None:
         import capo_connect.types.queue_reference
 
         out["queue"] = capo_connect.types.queue_reference.deserialize_json(
             data["Queue"]
         )
-    if "Channel" in data:
+    if data.get("Channel") is not None:
         import capo_connect.types.channel
 
         out["channel"] = capo_connect.types.channel.deserialize_json(data["Channel"])
-    if "RoutingProfile" in data:
+    if data.get("RoutingProfile") is not None:
         import capo_connect.types.routing_profile_reference
 
         out["routing_profile"] = (
@@ -92,9 +92,9 @@ def deserialize_json(data: dict) -> Dimensions:
                 data["RoutingProfile"]
             )
         )
-    if "RoutingStepExpression" in data:
+    if data.get("RoutingStepExpression") is not None:
         out["routing_step_expression"] = data["RoutingStepExpression"]
-    if "AgentStatus" in data:
+    if data.get("AgentStatus") is not None:
         import capo_connect.types.agent_status_identifier
 
         out["agent_status"] = (
@@ -102,8 +102,8 @@ def deserialize_json(data: dict) -> Dimensions:
                 data["AgentStatus"]
             )
         )
-    if "Subtype" in data:
+    if data.get("Subtype") is not None:
         out["subtype"] = data["Subtype"]
-    if "ValidationTestType" in data:
+    if data.get("ValidationTestType") is not None:
         out["validation_test_type"] = data["ValidationTestType"]
     return out

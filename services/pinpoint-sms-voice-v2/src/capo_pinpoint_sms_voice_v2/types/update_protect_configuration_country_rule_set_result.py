@@ -48,25 +48,25 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> UpdateProtectConfigurationCountryRuleSetResult:
     out: UpdateProtectConfigurationCountryRuleSetResult = {}  # type: ignore[typeddict-item]
-    if "ProtectConfigurationArn" in data:
+    if data.get("ProtectConfigurationArn") is not None:
         out["protect_configuration_arn"] = data["ProtectConfigurationArn"]
     else:
         raise DeserializationError(
             "UpdateProtectConfigurationCountryRuleSetResult.protect_configuration_arn required"
         )
-    if "ProtectConfigurationId" in data:
+    if data.get("ProtectConfigurationId") is not None:
         out["protect_configuration_id"] = data["ProtectConfigurationId"]
     else:
         raise DeserializationError(
             "UpdateProtectConfigurationCountryRuleSetResult.protect_configuration_id required"
         )
-    if "NumberCapability" in data:
+    if data.get("NumberCapability") is not None:
         out["number_capability"] = data["NumberCapability"]
     else:
         raise DeserializationError(
             "UpdateProtectConfigurationCountryRuleSetResult.number_capability required"
         )
-    if "CountryRuleSet" in data:
+    if data.get("CountryRuleSet") is not None:
         import capo_pinpoint_sms_voice_v2.types.protect_configuration_country_rule_set
 
         out["country_rule_set"] = (

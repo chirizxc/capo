@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: NotificationConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NotificationConfiguration:
     out: NotificationConfiguration = {}  # type: ignore[typeddict-item]
-    if "TopicArn" in data:
+    if data.get("TopicArn") is not None:
         out["topic_arn"] = data["TopicArn"]
-    if "TopicStatus" in data:
+    if data.get("TopicStatus") is not None:
         out["topic_status"] = data["TopicStatus"]
     return out

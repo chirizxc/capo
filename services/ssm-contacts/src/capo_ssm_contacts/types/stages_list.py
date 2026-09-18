@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> StagesList:
 
     out: StagesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_ssm_contacts.types.stage.deserialize_aws_json_1_1(item))
     return out

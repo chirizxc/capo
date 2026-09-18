@@ -37,11 +37,11 @@ def serialize_json(value: SecurityKey) -> dict:
 
 def deserialize_json(data: dict) -> SecurityKey:
     out: SecurityKey = {}  # type: ignore[typeddict-item]
-    if "AssociationId" in data:
+    if data.get("AssociationId") is not None:
         out["association_id"] = data["AssociationId"]
-    if "Key" in data:
+    if data.get("Key") is not None:
         out["key"] = data["Key"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_connect.types.timestamp
 
         out["creation_time"] = capo_connect.types.timestamp.deserialize_json(

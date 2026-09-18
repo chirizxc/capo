@@ -74,13 +74,13 @@ def serialize_aws_json_1_1(value: ResendConfirmationCodeRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResendConfirmationCodeRequest:
     out: ResendConfirmationCodeRequest = {}  # type: ignore[typeddict-item]
-    if "ClientId" in data:
+    if data.get("ClientId") is not None:
         out["client_id"] = data["ClientId"]
     else:
         raise DeserializationError("ResendConfirmationCodeRequest.client_id required")
-    if "SecretHash" in data:
+    if data.get("SecretHash") is not None:
         out["secret_hash"] = data["SecretHash"]
-    if "UserContextData" in data:
+    if data.get("UserContextData") is not None:
         import capo_cognito_identity_provider.types.user_context_data_type
 
         out["user_context_data"] = (
@@ -88,11 +88,11 @@ def deserialize_aws_json_1_1(data: dict) -> ResendConfirmationCodeRequest:
                 data["UserContextData"]
             )
         )
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
     else:
         raise DeserializationError("ResendConfirmationCodeRequest.username required")
-    if "AnalyticsMetadata" in data:
+    if data.get("AnalyticsMetadata") is not None:
         import capo_cognito_identity_provider.types.analytics_metadata_type
 
         out["analytics_metadata"] = (
@@ -100,7 +100,7 @@ def deserialize_aws_json_1_1(data: dict) -> ResendConfirmationCodeRequest:
                 data["AnalyticsMetadata"]
             )
         )
-    if "ClientMetadata" in data:
+    if data.get("ClientMetadata") is not None:
         import capo_cognito_identity_provider.types.client_metadata_type
 
         out["client_metadata"] = (

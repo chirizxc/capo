@@ -34,11 +34,11 @@ def serialize_json(value: PropertyFilter) -> dict:
 
 def deserialize_json(data: dict) -> PropertyFilter:
     out: PropertyFilter = {}  # type: ignore[typeddict-item]
-    if "propertyName" in data:
+    if data.get("propertyName") is not None:
         out["property_name"] = data["propertyName"]
-    if "operator" in data:
+    if data.get("operator") is not None:
         out["operator"] = data["operator"]
-    if "value" in data:
+    if data.get("value") is not None:
         import capo_iottwinmaker.types.data_value
 
         out["value"] = capo_iottwinmaker.types.data_value.deserialize_json(

@@ -74,31 +74,31 @@ def serialize_json(value: AWSResources) -> dict:
 
 def deserialize_json(data: dict) -> AWSResources:
     out: AWSResources = {}  # type: ignore[typeddict-item]
-    if "vpcs" in data:
+    if data.get("vpcs") is not None:
         import capo_securityagent.types.vpc_configs
 
         out["vpcs"] = capo_securityagent.types.vpc_configs.deserialize_json(
             data["vpcs"]
         )
-    if "logGroups" in data:
+    if data.get("logGroups") is not None:
         import capo_securityagent.types.log_group_arns
 
         out["log_groups"] = capo_securityagent.types.log_group_arns.deserialize_json(
             data["logGroups"]
         )
-    if "s3Buckets" in data:
+    if data.get("s3Buckets") is not None:
         import capo_securityagent.types.s3_bucket_arns
 
         out["s3_buckets"] = capo_securityagent.types.s3_bucket_arns.deserialize_json(
             data["s3Buckets"]
         )
-    if "secretArns" in data:
+    if data.get("secretArns") is not None:
         import capo_securityagent.types.secret_arns
 
         out["secret_arns"] = capo_securityagent.types.secret_arns.deserialize_json(
             data["secretArns"]
         )
-    if "lambdaFunctionArns" in data:
+    if data.get("lambdaFunctionArns") is not None:
         import capo_securityagent.types.lambda_function_arns
 
         out["lambda_function_arns"] = (
@@ -106,7 +106,7 @@ def deserialize_json(data: dict) -> AWSResources:
                 data["lambdaFunctionArns"]
             )
         )
-    if "iamRoles" in data:
+    if data.get("iamRoles") is not None:
         import capo_securityagent.types.iam_roles
 
         out["iam_roles"] = capo_securityagent.types.iam_roles.deserialize_json(

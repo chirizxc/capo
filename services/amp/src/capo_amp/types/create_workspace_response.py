@@ -46,24 +46,24 @@ def serialize_json(value: CreateWorkspaceResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateWorkspaceResponse:
     out: CreateWorkspaceResponse = {}  # type: ignore[typeddict-item]
-    if "workspaceId" in data:
+    if data.get("workspaceId") is not None:
         out["workspace_id"] = data["workspaceId"]
     else:
         raise DeserializationError("CreateWorkspaceResponse.workspace_id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("CreateWorkspaceResponse.arn required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_amp.types.workspace_status
 
         out["status"] = capo_amp.types.workspace_status.deserialize_json(data["status"])
     else:
         raise DeserializationError("CreateWorkspaceResponse.status required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_amp.types.tag_map
 
         out["tags"] = capo_amp.types.tag_map.deserialize_json(data["tags"])
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
     return out

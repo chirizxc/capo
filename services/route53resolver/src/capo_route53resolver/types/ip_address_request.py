@@ -34,12 +34,12 @@ def serialize_aws_json_1_1(value: IpAddressRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IpAddressRequest:
     out: IpAddressRequest = {}  # type: ignore[typeddict-item]
-    if "SubnetId" in data:
+    if data.get("SubnetId") is not None:
         out["subnet_id"] = data["SubnetId"]
     else:
         raise DeserializationError("IpAddressRequest.subnet_id required")
-    if "Ip" in data:
+    if data.get("Ip") is not None:
         out["ip"] = data["Ip"]
-    if "Ipv6" in data:
+    if data.get("Ipv6") is not None:
         out["ipv6"] = data["Ipv6"]
     return out

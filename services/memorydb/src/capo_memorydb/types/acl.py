@@ -70,19 +70,19 @@ def serialize_aws_json_1_1(value: ACL) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ACL:
     out: ACL = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "UserNames" in data:
+    if data.get("UserNames") is not None:
         import capo_memorydb.types.user_name_list
 
         out["user_names"] = capo_memorydb.types.user_name_list.deserialize_aws_json_1_1(
             data["UserNames"]
         )
-    if "MinimumEngineVersion" in data:
+    if data.get("MinimumEngineVersion") is not None:
         out["minimum_engine_version"] = data["MinimumEngineVersion"]
-    if "PendingChanges" in data:
+    if data.get("PendingChanges") is not None:
         import capo_memorydb.types.acl_pending_changes
 
         out["pending_changes"] = (
@@ -90,7 +90,7 @@ def deserialize_aws_json_1_1(data: dict) -> ACL:
                 data["PendingChanges"]
             )
         )
-    if "Clusters" in data:
+    if data.get("Clusters") is not None:
         import capo_memorydb.types.acl_cluster_name_list
 
         out["clusters"] = (
@@ -98,6 +98,6 @@ def deserialize_aws_json_1_1(data: dict) -> ACL:
                 data["Clusters"]
             )
         )
-    if "ARN" in data:
+    if data.get("ARN") is not None:
         out["arn"] = data["ARN"]
     return out

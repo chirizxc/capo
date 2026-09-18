@@ -31,10 +31,10 @@ def serialize_aws_json_1_0(value: PutSellingSystemSettingsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PutSellingSystemSettingsResponse:
     out: PutSellingSystemSettingsResponse = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("PutSellingSystemSettingsResponse.catalog required")
-    if "ResourceSnapshotJobRoleArn" in data:
+    if data.get("ResourceSnapshotJobRoleArn") is not None:
         out["resource_snapshot_job_role_arn"] = data["ResourceSnapshotJobRoleArn"]
     return out

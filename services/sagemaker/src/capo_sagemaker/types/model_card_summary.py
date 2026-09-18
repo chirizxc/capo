@@ -58,11 +58,11 @@ def serialize_aws_json_1_1(value: ModelCardSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModelCardSummary:
     out: ModelCardSummary = {}  # type: ignore[typeddict-item]
-    if "ModelCardName" in data:
+    if data.get("ModelCardName") is not None:
         out["model_card_name"] = data["ModelCardName"]
-    if "ModelCardArn" in data:
+    if data.get("ModelCardArn") is not None:
         out["model_card_arn"] = data["ModelCardArn"]
-    if "ModelCardStatus" in data:
+    if data.get("ModelCardStatus") is not None:
         import capo_sagemaker.types.model_card_status
 
         out["model_card_status"] = (
@@ -70,13 +70,13 @@ def deserialize_aws_json_1_1(data: dict) -> ModelCardSummary:
                 data["ModelCardStatus"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (

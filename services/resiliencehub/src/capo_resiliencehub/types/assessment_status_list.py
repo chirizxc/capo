@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AssessmentStatusList:
 
     out: AssessmentStatusList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_resiliencehub.types.assessment_status.deserialize_json(item))
     return out

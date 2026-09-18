@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> ChildShardList:
 
     out: ChildShardList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_kinesis.types.child_shard.deserialize_aws_json_1_1(item))
     return out

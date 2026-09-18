@@ -46,15 +46,15 @@ def serialize_aws_json_1_1(value: InstanceEntry) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InstanceEntry:
     out: InstanceEntry = {}  # type: ignore[typeddict-item]
-    if "sourceName" in data:
+    if data.get("sourceName") is not None:
         out["source_name"] = data["sourceName"]
     else:
         raise DeserializationError("InstanceEntry.source_name required")
-    if "instanceType" in data:
+    if data.get("instanceType") is not None:
         out["instance_type"] = data["instanceType"]
     else:
         raise DeserializationError("InstanceEntry.instance_type required")
-    if "portInfoSource" in data:
+    if data.get("portInfoSource") is not None:
         import capo_lightsail.types.port_info_source_type
 
         out["port_info_source"] = (
@@ -64,9 +64,9 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceEntry:
         )
     else:
         raise DeserializationError("InstanceEntry.port_info_source required")
-    if "userData" in data:
+    if data.get("userData") is not None:
         out["user_data"] = data["userData"]
-    if "availabilityZone" in data:
+    if data.get("availabilityZone") is not None:
         out["availability_zone"] = data["availabilityZone"]
     else:
         raise DeserializationError("InstanceEntry.availability_zone required")

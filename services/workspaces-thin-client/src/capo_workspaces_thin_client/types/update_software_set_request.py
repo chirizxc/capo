@@ -33,7 +33,7 @@ def serialize_json(value: UpdateSoftwareSetRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSoftwareSetRequest:
     out: UpdateSoftwareSetRequest = {}  # type: ignore[typeddict-item]
-    if "validationStatus" in data:
+    if data.get("validationStatus") is not None:
         import capo_workspaces_thin_client.types.software_set_validation_status
 
         out["validation_status"] = (

@@ -45,7 +45,7 @@ def serialize_json(value: RouteAvoidanceArea) -> dict:
 
 def deserialize_json(data: dict) -> RouteAvoidanceArea:
     out: RouteAvoidanceArea = {}  # type: ignore[typeddict-item]
-    if "Except" in data:
+    if data.get("Except") is not None:
         import capo_geo_routes.types.route_avoidance_area_geometry_list
 
         out["except"] = (
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> RouteAvoidanceArea:
                 data["Except"]
             )
         )
-    if "Geometry" in data:
+    if data.get("Geometry") is not None:
         import capo_geo_routes.types.route_avoidance_area_geometry
 
         out["geometry"] = (

@@ -45,13 +45,13 @@ def serialize_json(value: HeaderFooterSectionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> HeaderFooterSectionConfiguration:
     out: HeaderFooterSectionConfiguration = {}  # type: ignore[typeddict-item]
-    if "SectionId" in data:
+    if data.get("SectionId") is not None:
         out["section_id"] = data["SectionId"]
     else:
         raise DeserializationError(
             "HeaderFooterSectionConfiguration.section_id required"
         )
-    if "Layout" in data:
+    if data.get("Layout") is not None:
         import capo_quicksight.types.section_layout_configuration
 
         out["layout"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> HeaderFooterSectionConfiguration:
         )
     else:
         raise DeserializationError("HeaderFooterSectionConfiguration.layout required")
-    if "Style" in data:
+    if data.get("Style") is not None:
         import capo_quicksight.types.section_style
 
         out["style"] = capo_quicksight.types.section_style.deserialize_json(

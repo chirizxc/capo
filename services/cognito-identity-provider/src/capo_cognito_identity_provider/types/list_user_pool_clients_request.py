@@ -40,12 +40,12 @@ def serialize_aws_json_1_1(value: ListUserPoolClientsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListUserPoolClientsRequest:
     out: ListUserPoolClientsRequest = {}  # type: ignore[typeddict-item]
-    if "UserPoolId" in data:
+    if data.get("UserPoolId") is not None:
         out["user_pool_id"] = data["UserPoolId"]
     else:
         raise DeserializationError("ListUserPoolClientsRequest.user_pool_id required")
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

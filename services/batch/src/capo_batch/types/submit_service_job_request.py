@@ -104,11 +104,11 @@ def serialize_json(value: SubmitServiceJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> SubmitServiceJobRequest:
     out: SubmitServiceJobRequest = {}  # type: ignore[typeddict-item]
-    if "jobName" in data:
+    if data.get("jobName") is not None:
         out["job_name"] = data["jobName"]
-    if "jobQueue" in data:
+    if data.get("jobQueue") is not None:
         out["job_queue"] = data["jobQueue"]
-    if "retryStrategy" in data:
+    if data.get("retryStrategy") is not None:
         import capo_batch.types.service_job_retry_strategy
 
         out["retry_strategy"] = (
@@ -116,21 +116,21 @@ def deserialize_json(data: dict) -> SubmitServiceJobRequest:
                 data["retryStrategy"]
             )
         )
-    if "schedulingPriority" in data:
+    if data.get("schedulingPriority") is not None:
         out["scheduling_priority"] = data["schedulingPriority"]
-    if "serviceRequestPayload" in data:
+    if data.get("serviceRequestPayload") is not None:
         out["service_request_payload"] = data["serviceRequestPayload"]
-    if "serviceJobType" in data:
+    if data.get("serviceJobType") is not None:
         import capo_batch.types.service_job_type
 
         out["service_job_type"] = capo_batch.types.service_job_type.deserialize_json(
             data["serviceJobType"]
         )
-    if "shareIdentifier" in data:
+    if data.get("shareIdentifier") is not None:
         out["share_identifier"] = data["shareIdentifier"]
-    if "quotaShareName" in data:
+    if data.get("quotaShareName") is not None:
         out["quota_share_name"] = data["quotaShareName"]
-    if "preemptionConfiguration" in data:
+    if data.get("preemptionConfiguration") is not None:
         import capo_batch.types.service_job_preemption_configuration
 
         out["preemption_configuration"] = (
@@ -138,16 +138,16 @@ def deserialize_json(data: dict) -> SubmitServiceJobRequest:
                 data["preemptionConfiguration"]
             )
         )
-    if "timeoutConfig" in data:
+    if data.get("timeoutConfig") is not None:
         import capo_batch.types.service_job_timeout
 
         out["timeout_config"] = capo_batch.types.service_job_timeout.deserialize_json(
             data["timeoutConfig"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_batch.types.tagris_tags_map
 
         out["tags"] = capo_batch.types.tagris_tags_map.deserialize_json(data["tags"])
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

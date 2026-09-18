@@ -69,19 +69,19 @@ def serialize_json(value: HierarchyPath) -> dict:
 
 def deserialize_json(data: dict) -> HierarchyPath:
     out: HierarchyPath = {}  # type: ignore[typeddict-item]
-    if "LevelOne" in data:
+    if data.get("LevelOne") is not None:
         import capo_connect.types.hierarchy_group_summary
 
         out["level_one"] = capo_connect.types.hierarchy_group_summary.deserialize_json(
             data["LevelOne"]
         )
-    if "LevelTwo" in data:
+    if data.get("LevelTwo") is not None:
         import capo_connect.types.hierarchy_group_summary
 
         out["level_two"] = capo_connect.types.hierarchy_group_summary.deserialize_json(
             data["LevelTwo"]
         )
-    if "LevelThree" in data:
+    if data.get("LevelThree") is not None:
         import capo_connect.types.hierarchy_group_summary
 
         out["level_three"] = (
@@ -89,13 +89,13 @@ def deserialize_json(data: dict) -> HierarchyPath:
                 data["LevelThree"]
             )
         )
-    if "LevelFour" in data:
+    if data.get("LevelFour") is not None:
         import capo_connect.types.hierarchy_group_summary
 
         out["level_four"] = capo_connect.types.hierarchy_group_summary.deserialize_json(
             data["LevelFour"]
         )
-    if "LevelFive" in data:
+    if data.get("LevelFive") is not None:
         import capo_connect.types.hierarchy_group_summary
 
         out["level_five"] = capo_connect.types.hierarchy_group_summary.deserialize_json(

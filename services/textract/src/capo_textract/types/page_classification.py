@@ -35,7 +35,7 @@ def serialize_aws_json_1_1(value: PageClassification) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PageClassification:
     out: PageClassification = {}  # type: ignore[typeddict-item]
-    if "PageType" in data:
+    if data.get("PageType") is not None:
         import capo_textract.types.prediction_list
 
         out["page_type"] = capo_textract.types.prediction_list.deserialize_aws_json_1_1(
@@ -43,7 +43,7 @@ def deserialize_aws_json_1_1(data: dict) -> PageClassification:
         )
     else:
         raise DeserializationError("PageClassification.page_type required")
-    if "PageNumber" in data:
+    if data.get("PageNumber") is not None:
         import capo_textract.types.prediction_list
 
         out["page_number"] = (

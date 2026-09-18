@@ -41,18 +41,18 @@ def serialize_aws_json_1_0(value: PutKeywordRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PutKeywordRequest:
     out: PutKeywordRequest = {}  # type: ignore[typeddict-item]
-    if "OriginationIdentity" in data:
+    if data.get("OriginationIdentity") is not None:
         out["origination_identity"] = data["OriginationIdentity"]
     else:
         raise DeserializationError("PutKeywordRequest.origination_identity required")
-    if "Keyword" in data:
+    if data.get("Keyword") is not None:
         out["keyword"] = data["Keyword"]
     else:
         raise DeserializationError("PutKeywordRequest.keyword required")
-    if "KeywordMessage" in data:
+    if data.get("KeywordMessage") is not None:
         out["keyword_message"] = data["KeywordMessage"]
     else:
         raise DeserializationError("PutKeywordRequest.keyword_message required")
-    if "KeywordAction" in data:
+    if data.get("KeywordAction") is not None:
         out["keyword_action"] = data["KeywordAction"]
     return out

@@ -44,19 +44,19 @@ def serialize_json(value: CreateApplicationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateApplicationRequest:
     out: CreateApplicationRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateApplicationRequest.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_service_catalog_appregistry.types.tags
 
         out["tags"] = capo_service_catalog_appregistry.types.tags.deserialize_json(
             data["tags"]
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError("CreateApplicationRequest.client_token required")

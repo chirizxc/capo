@@ -64,17 +64,17 @@ def serialize_aws_json_1_1(value: BatchGetPartitionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetPartitionRequest:
     out: BatchGetPartitionRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
     else:
         raise DeserializationError("BatchGetPartitionRequest.database_name required")
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
     else:
         raise DeserializationError("BatchGetPartitionRequest.table_name required")
-    if "PartitionsToGet" in data:
+    if data.get("PartitionsToGet") is not None:
         import capo_glue.types.batch_get_partition_value_list
 
         out["partitions_to_get"] = (
@@ -86,13 +86,13 @@ def deserialize_aws_json_1_1(data: dict) -> BatchGetPartitionRequest:
         raise DeserializationError(
             "BatchGetPartitionRequest.partitions_to_get required"
         )
-    if "AuditContext" in data:
+    if data.get("AuditContext") is not None:
         import capo_glue.types.audit_context
 
         out["audit_context"] = capo_glue.types.audit_context.deserialize_aws_json_1_1(
             data["AuditContext"]
         )
-    if "QuerySessionContext" in data:
+    if data.get("QuerySessionContext") is not None:
         import capo_glue.types.query_session_context
 
         out["query_session_context"] = (

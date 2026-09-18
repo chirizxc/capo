@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Playlists:
 
     out: Playlists = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_elastic_transcoder.types.playlist.deserialize_json(item))
     return out

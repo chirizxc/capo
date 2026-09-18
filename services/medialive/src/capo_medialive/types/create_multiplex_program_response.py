@@ -29,7 +29,7 @@ def serialize_json(value: CreateMultiplexProgramResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateMultiplexProgramResponse:
     out: CreateMultiplexProgramResponse = {}  # type: ignore[typeddict-item]
-    if "multiplexProgram" in data:
+    if data.get("multiplexProgram") is not None:
         import capo_medialive.types.multiplex_program
 
         out["multiplex_program"] = (

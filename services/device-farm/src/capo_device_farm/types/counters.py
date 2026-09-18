@@ -47,18 +47,18 @@ def serialize_aws_json_1_1(value: Counters) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Counters:
     out: Counters = {}  # type: ignore[typeddict-item]
-    if "total" in data:
+    if data.get("total") is not None:
         out["total"] = data["total"]
-    if "passed" in data:
+    if data.get("passed") is not None:
         out["passed"] = data["passed"]
-    if "failed" in data:
+    if data.get("failed") is not None:
         out["failed"] = data["failed"]
-    if "warned" in data:
+    if data.get("warned") is not None:
         out["warned"] = data["warned"]
-    if "errored" in data:
+    if data.get("errored") is not None:
         out["errored"] = data["errored"]
-    if "stopped" in data:
+    if data.get("stopped") is not None:
         out["stopped"] = data["stopped"]
-    if "skipped" in data:
+    if data.get("skipped") is not None:
         out["skipped"] = data["skipped"]
     return out

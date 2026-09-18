@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: EmrServerlessSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EmrServerlessSettings:
     out: EmrServerlessSettings = {}  # type: ignore[typeddict-item]
-    if "ExecutionRoleArn" in data:
+    if data.get("ExecutionRoleArn") is not None:
         out["execution_role_arn"] = data["ExecutionRoleArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.feature_status
 
         out["status"] = capo_sagemaker.types.feature_status.deserialize_aws_json_1_1(

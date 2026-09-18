@@ -35,7 +35,7 @@ def serialize_aws_json_1_0(value: ListEfficiencyMetricsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListEfficiencyMetricsResponse:
     out: ListEfficiencyMetricsResponse = {}  # type: ignore[typeddict-item]
-    if "efficiencyMetricsByGroup" in data:
+    if data.get("efficiencyMetricsByGroup") is not None:
         import capo_cost_optimization_hub.types.efficiency_metrics_by_group_list
 
         out["efficiency_metrics_by_group"] = (
@@ -43,6 +43,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListEfficiencyMetricsResponse:
                 data["efficiencyMetricsByGroup"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

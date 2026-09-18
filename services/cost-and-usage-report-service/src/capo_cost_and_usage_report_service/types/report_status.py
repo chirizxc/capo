@@ -38,9 +38,9 @@ def serialize_aws_json_1_1(value: ReportStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReportStatus:
     out: ReportStatus = {}  # type: ignore[typeddict-item]
-    if "lastDelivery" in data:
+    if data.get("lastDelivery") is not None:
         out["last_delivery"] = data["lastDelivery"]
-    if "lastStatus" in data:
+    if data.get("lastStatus") is not None:
         import capo_cost_and_usage_report_service.types.last_status
 
         out["last_status"] = (

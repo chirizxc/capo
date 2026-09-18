@@ -29,11 +29,11 @@ def serialize_json(value: S3PresignedUrl) -> dict:
 
 def deserialize_json(data: dict) -> S3PresignedUrl:
     out: S3PresignedUrl = {}  # type: ignore[typeddict-item]
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
     else:
         raise DeserializationError("S3PresignedUrl.url required")
-    if "headers" in data:
+    if data.get("headers") is not None:
         import capo_socialmessaging.types.headers
 
         out["headers"] = capo_socialmessaging.types.headers.deserialize_json(

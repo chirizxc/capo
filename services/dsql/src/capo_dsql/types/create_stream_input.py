@@ -55,7 +55,7 @@ def serialize_json(value: CreateStreamInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateStreamInput:
     out: CreateStreamInput = {}  # type: ignore[typeddict-item]
-    if "targetDefinition" in data:
+    if data.get("targetDefinition") is not None:
         import capo_dsql.types.target_definition
 
         out["target_definition"] = capo_dsql.types.target_definition.deserialize_json(
@@ -63,7 +63,7 @@ def deserialize_json(data: dict) -> CreateStreamInput:
         )
     else:
         raise DeserializationError("CreateStreamInput.target_definition required")
-    if "ordering" in data:
+    if data.get("ordering") is not None:
         import capo_dsql.types.stream_ordering
 
         out["ordering"] = capo_dsql.types.stream_ordering.deserialize_json(
@@ -71,16 +71,16 @@ def deserialize_json(data: dict) -> CreateStreamInput:
         )
     else:
         raise DeserializationError("CreateStreamInput.ordering required")
-    if "format" in data:
+    if data.get("format") is not None:
         import capo_dsql.types.stream_format
 
         out["format"] = capo_dsql.types.stream_format.deserialize_json(data["format"])
     else:
         raise DeserializationError("CreateStreamInput.format required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_dsql.types.tag_map
 
         out["tags"] = capo_dsql.types.tag_map.deserialize_json(data["tags"])
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AwsEc2VolumeAttachmentList:
 
     out: AwsEc2VolumeAttachmentList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_ec2_volume_attachment.deserialize_json(item)
         )

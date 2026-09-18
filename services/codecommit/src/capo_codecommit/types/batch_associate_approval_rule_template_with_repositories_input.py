@@ -40,13 +40,13 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> BatchAssociateApprovalRuleTemplateWithRepositoriesInput:
     out: BatchAssociateApprovalRuleTemplateWithRepositoriesInput = {}  # type: ignore[typeddict-item]
-    if "approvalRuleTemplateName" in data:
+    if data.get("approvalRuleTemplateName") is not None:
         out["approval_rule_template_name"] = data["approvalRuleTemplateName"]
     else:
         raise DeserializationError(
             "BatchAssociateApprovalRuleTemplateWithRepositoriesInput.approval_rule_template_name required"
         )
-    if "repositoryNames" in data:
+    if data.get("repositoryNames") is not None:
         import capo_codecommit.types.repository_name_list
 
         out["repository_names"] = (

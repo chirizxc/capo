@@ -65,7 +65,7 @@ def serialize_json(value: CreateDataLakeDatasetRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDataLakeDatasetRequest:
     out: CreateDataLakeDatasetRequest = {}  # type: ignore[typeddict-item]
-    if "schema" in data:
+    if data.get("schema") is not None:
         import capo_supplychain.types.data_lake_dataset_schema
 
         out["schema"] = (
@@ -73,9 +73,9 @@ def deserialize_json(data: dict) -> CreateDataLakeDatasetRequest:
                 data["schema"]
             )
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "partitionSpec" in data:
+    if data.get("partitionSpec") is not None:
         import capo_supplychain.types.data_lake_dataset_partition_spec
 
         out["partition_spec"] = (
@@ -83,7 +83,7 @@ def deserialize_json(data: dict) -> CreateDataLakeDatasetRequest:
                 data["partitionSpec"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_supplychain.types.tag_map
 
         out["tags"] = capo_supplychain.types.tag_map.deserialize_json(data["tags"])

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> FacetTypeList:
 
     out: FacetTypeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_marketplace_discovery.types.search_facet_type.deserialize_json(item)
         )

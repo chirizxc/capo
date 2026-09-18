@@ -239,37 +239,37 @@ def serialize_json(value: App) -> dict:
 
 def deserialize_json(data: dict) -> App:
     out: App = {}  # type: ignore[typeddict-item]
-    if "appId" in data:
+    if data.get("appId") is not None:
         out["app_id"] = data["appId"]
     else:
         raise DeserializationError("App.app_id required")
-    if "appArn" in data:
+    if data.get("appArn") is not None:
         out["app_arn"] = data["appArn"]
     else:
         raise DeserializationError("App.app_arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("App.name required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_amplify.types.tag_map
 
         out["tags"] = capo_amplify.types.tag_map.deserialize_json(data["tags"])
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     else:
         raise DeserializationError("App.description required")
-    if "repository" in data:
+    if data.get("repository") is not None:
         out["repository"] = data["repository"]
     else:
         raise DeserializationError("App.repository required")
-    if "platform" in data:
+    if data.get("platform") is not None:
         import capo_amplify.types.platform
 
         out["platform"] = capo_amplify.types.platform.deserialize_json(data["platform"])
     else:
         raise DeserializationError("App.platform required")
-    if "createTime" in data:
+    if data.get("createTime") is not None:
         import capo_amplify.types.create_time
 
         out["create_time"] = capo_amplify.types.create_time.deserialize_json(
@@ -277,7 +277,7 @@ def deserialize_json(data: dict) -> App:
         )
     else:
         raise DeserializationError("App.create_time required")
-    if "updateTime" in data:
+    if data.get("updateTime") is not None:
         import capo_amplify.types.update_time
 
         out["update_time"] = capo_amplify.types.update_time.deserialize_json(
@@ -285,11 +285,11 @@ def deserialize_json(data: dict) -> App:
         )
     else:
         raise DeserializationError("App.update_time required")
-    if "computeRoleArn" in data:
+    if data.get("computeRoleArn") is not None:
         out["compute_role_arn"] = data["computeRoleArn"]
-    if "iamServiceRoleArn" in data:
+    if data.get("iamServiceRoleArn") is not None:
         out["iam_service_role_arn"] = data["iamServiceRoleArn"]
-    if "environmentVariables" in data:
+    if data.get("environmentVariables") is not None:
         import capo_amplify.types.environment_variables
 
         out["environment_variables"] = (
@@ -299,29 +299,29 @@ def deserialize_json(data: dict) -> App:
         )
     else:
         raise DeserializationError("App.environment_variables required")
-    if "defaultDomain" in data:
+    if data.get("defaultDomain") is not None:
         out["default_domain"] = data["defaultDomain"]
     else:
         raise DeserializationError("App.default_domain required")
-    if "enableBranchAutoBuild" in data:
+    if data.get("enableBranchAutoBuild") is not None:
         out["enable_branch_auto_build"] = data["enableBranchAutoBuild"]
     else:
         raise DeserializationError("App.enable_branch_auto_build required")
-    if "enableBranchAutoDeletion" in data:
+    if data.get("enableBranchAutoDeletion") is not None:
         out["enable_branch_auto_deletion"] = data["enableBranchAutoDeletion"]
-    if "enableBasicAuth" in data:
+    if data.get("enableBasicAuth") is not None:
         out["enable_basic_auth"] = data["enableBasicAuth"]
     else:
         raise DeserializationError("App.enable_basic_auth required")
-    if "basicAuthCredentials" in data:
+    if data.get("basicAuthCredentials") is not None:
         out["basic_auth_credentials"] = data["basicAuthCredentials"]
-    if "customRules" in data:
+    if data.get("customRules") is not None:
         import capo_amplify.types.custom_rules
 
         out["custom_rules"] = capo_amplify.types.custom_rules.deserialize_json(
             data["customRules"]
         )
-    if "productionBranch" in data:
+    if data.get("productionBranch") is not None:
         import capo_amplify.types.production_branch
 
         out["production_branch"] = (
@@ -329,13 +329,13 @@ def deserialize_json(data: dict) -> App:
                 data["productionBranch"]
             )
         )
-    if "buildSpec" in data:
+    if data.get("buildSpec") is not None:
         out["build_spec"] = data["buildSpec"]
-    if "customHeaders" in data:
+    if data.get("customHeaders") is not None:
         out["custom_headers"] = data["customHeaders"]
-    if "enableAutoBranchCreation" in data:
+    if data.get("enableAutoBranchCreation") is not None:
         out["enable_auto_branch_creation"] = data["enableAutoBranchCreation"]
-    if "autoBranchCreationPatterns" in data:
+    if data.get("autoBranchCreationPatterns") is not None:
         import capo_amplify.types.auto_branch_creation_patterns
 
         out["auto_branch_creation_patterns"] = (
@@ -343,7 +343,7 @@ def deserialize_json(data: dict) -> App:
                 data["autoBranchCreationPatterns"]
             )
         )
-    if "autoBranchCreationConfig" in data:
+    if data.get("autoBranchCreationConfig") is not None:
         import capo_amplify.types.auto_branch_creation_config
 
         out["auto_branch_creation_config"] = (
@@ -351,7 +351,7 @@ def deserialize_json(data: dict) -> App:
                 data["autoBranchCreationConfig"]
             )
         )
-    if "repositoryCloneMethod" in data:
+    if data.get("repositoryCloneMethod") is not None:
         import capo_amplify.types.repository_clone_method
 
         out["repository_clone_method"] = (
@@ -359,13 +359,13 @@ def deserialize_json(data: dict) -> App:
                 data["repositoryCloneMethod"]
             )
         )
-    if "cacheConfig" in data:
+    if data.get("cacheConfig") is not None:
         import capo_amplify.types.cache_config
 
         out["cache_config"] = capo_amplify.types.cache_config.deserialize_json(
             data["cacheConfig"]
         )
-    if "webhookCreateTime" in data:
+    if data.get("webhookCreateTime") is not None:
         import capo_amplify.types.webhook_create_time
 
         out["webhook_create_time"] = (
@@ -373,7 +373,7 @@ def deserialize_json(data: dict) -> App:
                 data["webhookCreateTime"]
             )
         )
-    if "wafConfiguration" in data:
+    if data.get("wafConfiguration") is not None:
         import capo_amplify.types.waf_configuration
 
         out["waf_configuration"] = (
@@ -381,7 +381,7 @@ def deserialize_json(data: dict) -> App:
                 data["wafConfiguration"]
             )
         )
-    if "jobConfig" in data:
+    if data.get("jobConfig") is not None:
         import capo_amplify.types.job_config
 
         out["job_config"] = capo_amplify.types.job_config.deserialize_json(

@@ -98,13 +98,13 @@ def serialize_json(value: CreateQueueRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateQueueRequest:
     out: CreateQueueRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateQueueRequest.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "OutboundCallerConfig" in data:
+    if data.get("OutboundCallerConfig") is not None:
         import capo_connect.types.outbound_caller_config
 
         out["outbound_caller_config"] = (
@@ -112,7 +112,7 @@ def deserialize_json(data: dict) -> CreateQueueRequest:
                 data["OutboundCallerConfig"]
             )
         )
-    if "OutboundEmailConfig" in data:
+    if data.get("OutboundEmailConfig") is not None:
         import capo_connect.types.outbound_email_config
 
         out["outbound_email_config"] = (
@@ -120,13 +120,13 @@ def deserialize_json(data: dict) -> CreateQueueRequest:
                 data["OutboundEmailConfig"]
             )
         )
-    if "HoursOfOperationId" in data:
+    if data.get("HoursOfOperationId") is not None:
         out["hours_of_operation_id"] = data["HoursOfOperationId"]
     else:
         raise DeserializationError("CreateQueueRequest.hours_of_operation_id required")
-    if "MaxContacts" in data:
+    if data.get("MaxContacts") is not None:
         out["max_contacts"] = data["MaxContacts"]
-    if "QuickConnectIds" in data:
+    if data.get("QuickConnectIds") is not None:
         import capo_connect.types.quick_connects_list
 
         out["quick_connect_ids"] = (
@@ -134,7 +134,7 @@ def deserialize_json(data: dict) -> CreateQueueRequest:
                 data["QuickConnectIds"]
             )
         )
-    if "EmailAddressesConfig" in data:
+    if data.get("EmailAddressesConfig") is not None:
         import capo_connect.types.email_address_config_list
 
         out["email_addresses_config"] = (
@@ -142,7 +142,7 @@ def deserialize_json(data: dict) -> CreateQueueRequest:
                 data["EmailAddressesConfig"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])

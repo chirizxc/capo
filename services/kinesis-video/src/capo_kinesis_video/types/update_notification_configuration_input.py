@@ -41,11 +41,11 @@ def serialize_json(value: UpdateNotificationConfigurationInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateNotificationConfigurationInput:
     out: UpdateNotificationConfigurationInput = {}  # type: ignore[typeddict-item]
-    if "StreamName" in data:
+    if data.get("StreamName") is not None:
         out["stream_name"] = data["StreamName"]
-    if "StreamARN" in data:
+    if data.get("StreamARN") is not None:
         out["stream_arn"] = data["StreamARN"]
-    if "NotificationConfiguration" in data:
+    if data.get("NotificationConfiguration") is not None:
         import capo_kinesis_video.types.notification_configuration
 
         out["notification_configuration"] = (

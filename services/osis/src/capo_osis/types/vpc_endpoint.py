@@ -36,11 +36,11 @@ def serialize_json(value: VpcEndpoint) -> dict:
 
 def deserialize_json(data: dict) -> VpcEndpoint:
     out: VpcEndpoint = {}  # type: ignore[typeddict-item]
-    if "VpcEndpointId" in data:
+    if data.get("VpcEndpointId") is not None:
         out["vpc_endpoint_id"] = data["VpcEndpointId"]
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
-    if "VpcOptions" in data:
+    if data.get("VpcOptions") is not None:
         import capo_osis.types.vpc_options
 
         out["vpc_options"] = capo_osis.types.vpc_options.deserialize_json(

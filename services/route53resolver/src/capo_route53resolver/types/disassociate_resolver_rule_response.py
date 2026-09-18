@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DisassociateResolverRuleResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DisassociateResolverRuleResponse:
     out: DisassociateResolverRuleResponse = {}  # type: ignore[typeddict-item]
-    if "ResolverRuleAssociation" in data:
+    if data.get("ResolverRuleAssociation") is not None:
         import capo_route53resolver.types.resolver_rule_association
 
         out["resolver_rule_association"] = (

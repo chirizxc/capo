@@ -141,15 +141,15 @@ def serialize_aws_json_1_1(value: PullRequestEvent) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PullRequestEvent:
     out: PullRequestEvent = {}  # type: ignore[typeddict-item]
-    if "pullRequestId" in data:
+    if data.get("pullRequestId") is not None:
         out["pull_request_id"] = data["pullRequestId"]
-    if "eventDate" in data:
+    if data.get("eventDate") is not None:
         import capo_codecommit.types.event_date
 
         out["event_date"] = capo_codecommit.types.event_date.deserialize_aws_json_1_1(
             data["eventDate"]
         )
-    if "pullRequestEventType" in data:
+    if data.get("pullRequestEventType") is not None:
         import capo_codecommit.types.pull_request_event_type
 
         out["pull_request_event_type"] = (
@@ -157,9 +157,9 @@ def deserialize_aws_json_1_1(data: dict) -> PullRequestEvent:
                 data["pullRequestEventType"]
             )
         )
-    if "actorArn" in data:
+    if data.get("actorArn") is not None:
         out["actor_arn"] = data["actorArn"]
-    if "pullRequestCreatedEventMetadata" in data:
+    if data.get("pullRequestCreatedEventMetadata") is not None:
         import capo_codecommit.types.pull_request_created_event_metadata
 
         out["pull_request_created_event_metadata"] = (
@@ -167,7 +167,7 @@ def deserialize_aws_json_1_1(data: dict) -> PullRequestEvent:
                 data["pullRequestCreatedEventMetadata"]
             )
         )
-    if "pullRequestStatusChangedEventMetadata" in data:
+    if data.get("pullRequestStatusChangedEventMetadata") is not None:
         import capo_codecommit.types.pull_request_status_changed_event_metadata
 
         out["pull_request_status_changed_event_metadata"] = (
@@ -175,7 +175,7 @@ def deserialize_aws_json_1_1(data: dict) -> PullRequestEvent:
                 data["pullRequestStatusChangedEventMetadata"]
             )
         )
-    if "pullRequestSourceReferenceUpdatedEventMetadata" in data:
+    if data.get("pullRequestSourceReferenceUpdatedEventMetadata") is not None:
         import capo_codecommit.types.pull_request_source_reference_updated_event_metadata
 
         out["pull_request_source_reference_updated_event_metadata"] = (
@@ -183,7 +183,7 @@ def deserialize_aws_json_1_1(data: dict) -> PullRequestEvent:
                 data["pullRequestSourceReferenceUpdatedEventMetadata"]
             )
         )
-    if "pullRequestMergedStateChangedEventMetadata" in data:
+    if data.get("pullRequestMergedStateChangedEventMetadata") is not None:
         import capo_codecommit.types.pull_request_merged_state_changed_event_metadata
 
         out["pull_request_merged_state_changed_event_metadata"] = (
@@ -191,7 +191,7 @@ def deserialize_aws_json_1_1(data: dict) -> PullRequestEvent:
                 data["pullRequestMergedStateChangedEventMetadata"]
             )
         )
-    if "approvalRuleEventMetadata" in data:
+    if data.get("approvalRuleEventMetadata") is not None:
         import capo_codecommit.types.approval_rule_event_metadata
 
         out["approval_rule_event_metadata"] = (
@@ -199,7 +199,7 @@ def deserialize_aws_json_1_1(data: dict) -> PullRequestEvent:
                 data["approvalRuleEventMetadata"]
             )
         )
-    if "approvalStateChangedEventMetadata" in data:
+    if data.get("approvalStateChangedEventMetadata") is not None:
         import capo_codecommit.types.approval_state_changed_event_metadata
 
         out["approval_state_changed_event_metadata"] = (
@@ -207,7 +207,7 @@ def deserialize_aws_json_1_1(data: dict) -> PullRequestEvent:
                 data["approvalStateChangedEventMetadata"]
             )
         )
-    if "approvalRuleOverriddenEventMetadata" in data:
+    if data.get("approvalRuleOverriddenEventMetadata") is not None:
         import capo_codecommit.types.approval_rule_overridden_event_metadata
 
         out["approval_rule_overridden_event_metadata"] = (

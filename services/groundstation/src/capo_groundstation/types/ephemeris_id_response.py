@@ -23,6 +23,6 @@ def serialize_json(value: EphemerisIdResponse) -> dict:
 
 def deserialize_json(data: dict) -> EphemerisIdResponse:
     out: EphemerisIdResponse = {}  # type: ignore[typeddict-item]
-    if "ephemerisId" in data:
+    if data.get("ephemerisId") is not None:
         out["ephemeris_id"] = data["ephemerisId"]
     return out

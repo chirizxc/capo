@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ParsedQuerySecondaryAddressComponentList:
 
     out: ParsedQuerySecondaryAddressComponentList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_geo_places.types.parsed_query_secondary_address_component.deserialize_json(
                 item

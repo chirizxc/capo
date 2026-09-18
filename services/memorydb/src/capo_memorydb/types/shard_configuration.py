@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: ShardConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ShardConfiguration:
     out: ShardConfiguration = {}  # type: ignore[typeddict-item]
-    if "Slots" in data:
+    if data.get("Slots") is not None:
         out["slots"] = data["Slots"]
-    if "ReplicaCount" in data:
+    if data.get("ReplicaCount") is not None:
         out["replica_count"] = data["ReplicaCount"]
     return out

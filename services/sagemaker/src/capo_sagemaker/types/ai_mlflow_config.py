@@ -39,10 +39,10 @@ def serialize_aws_json_1_1(value: AIMlflowConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AIMlflowConfig:
     out: AIMlflowConfig = {}  # type: ignore[typeddict-item]
-    if "MlflowResourceArn" in data:
+    if data.get("MlflowResourceArn") is not None:
         out["mlflow_resource_arn"] = data["MlflowResourceArn"]
-    if "MlflowExperimentName" in data:
+    if data.get("MlflowExperimentName") is not None:
         out["mlflow_experiment_name"] = data["MlflowExperimentName"]
-    if "MlflowRunName" in data:
+    if data.get("MlflowRunName") is not None:
         out["mlflow_run_name"] = data["MlflowRunName"]
     return out

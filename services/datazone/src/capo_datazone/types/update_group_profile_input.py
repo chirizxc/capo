@@ -34,7 +34,7 @@ def serialize_json(value: UpdateGroupProfileInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateGroupProfileInput:
     out: UpdateGroupProfileInput = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.group_profile_status
 
         out["status"] = capo_datazone.types.group_profile_status.deserialize_json(

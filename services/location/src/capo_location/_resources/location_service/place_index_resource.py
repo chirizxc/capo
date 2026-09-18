@@ -109,9 +109,10 @@ class PlaceIndexResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.create_place_index_request.CreatePlaceIndexRequest = {}  # type: ignore[typeddict-item]
-        input_["index_name"] = index_name
-        input_["data_source"] = data_source
+        input_: capo_location.types.create_place_index_request.CreatePlaceIndexRequest = {
+            "index_name": index_name,
+            "data_source": data_source,
+        }
         if pricing_plan is not None:
             input_["pricing_plan"] = pricing_plan
         if description is not None:
@@ -126,6 +127,7 @@ class PlaceIndexResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -163,14 +165,16 @@ class PlaceIndexResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.describe_place_index_request.DescribePlaceIndexRequest = {}  # type: ignore[typeddict-item]
-        input_["index_name"] = index_name
+        input_: capo_location.types.describe_place_index_request.DescribePlaceIndexRequest = {
+            "index_name": index_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -218,8 +222,9 @@ class PlaceIndexResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.update_place_index_request.UpdatePlaceIndexRequest = {}  # type: ignore[typeddict-item]
-        input_["index_name"] = index_name
+        input_: capo_location.types.update_place_index_request.UpdatePlaceIndexRequest = {
+            "index_name": index_name
+        }
         if pricing_plan is not None:
             input_["pricing_plan"] = pricing_plan
         if description is not None:
@@ -232,6 +237,7 @@ class PlaceIndexResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -269,14 +275,16 @@ class PlaceIndexResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.delete_place_index_request.DeletePlaceIndexRequest = {}  # type: ignore[typeddict-item]
-        input_["index_name"] = index_name
+        input_: capo_location.types.delete_place_index_request.DeletePlaceIndexRequest = {
+            "index_name": index_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -315,7 +323,7 @@ class PlaceIndexResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.list_place_indexes_request.ListPlaceIndexesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_location.types.list_place_indexes_request.ListPlaceIndexesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -326,6 +334,7 @@ class PlaceIndexResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_place(
@@ -369,9 +378,10 @@ class PlaceIndexResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.get_place_request.GetPlaceRequest = {}  # type: ignore[typeddict-item]
-        input_["index_name"] = index_name
-        input_["place_id"] = place_id
+        input_: capo_location.types.get_place_request.GetPlaceRequest = {
+            "index_name": index_name,
+            "place_id": place_id,
+        }
         if language is not None:
             input_["language"] = language
         if key is not None:
@@ -382,6 +392,7 @@ class PlaceIndexResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def search_place_index_for_position(
@@ -429,9 +440,10 @@ class PlaceIndexResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.search_place_index_for_position_request.SearchPlaceIndexForPositionRequest = {}  # type: ignore[typeddict-item]
-        input_["index_name"] = index_name
-        input_["position"] = position
+        input_: capo_location.types.search_place_index_for_position_request.SearchPlaceIndexForPositionRequest = {
+            "index_name": index_name,
+            "position": position,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if language is not None:
@@ -444,6 +456,7 @@ class PlaceIndexResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def search_place_index_for_suggestions(
@@ -501,9 +514,10 @@ class PlaceIndexResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.search_place_index_for_suggestions_request.SearchPlaceIndexForSuggestionsRequest = {}  # type: ignore[typeddict-item]
-        input_["index_name"] = index_name
-        input_["text"] = text
+        input_: capo_location.types.search_place_index_for_suggestions_request.SearchPlaceIndexForSuggestionsRequest = {
+            "index_name": index_name,
+            "text": text,
+        }
         if bias_position is not None:
             input_["bias_position"] = bias_position
         if filter_b_box is not None:
@@ -524,6 +538,7 @@ class PlaceIndexResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def search_place_index_for_text(
@@ -583,9 +598,10 @@ class PlaceIndexResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.search_place_index_for_text_request.SearchPlaceIndexForTextRequest = {}  # type: ignore[typeddict-item]
-        input_["index_name"] = index_name
-        input_["text"] = text
+        input_: capo_location.types.search_place_index_for_text_request.SearchPlaceIndexForTextRequest = {
+            "index_name": index_name,
+            "text": text,
+        }
         if bias_position is not None:
             input_["bias_position"] = bias_position
         if filter_b_box is not None:
@@ -606,6 +622,7 @@ class PlaceIndexResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -664,9 +681,10 @@ class AsyncPlaceIndexResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.create_place_index_request.CreatePlaceIndexRequest = {}  # type: ignore[typeddict-item]
-        input_["index_name"] = index_name
-        input_["data_source"] = data_source
+        input_: capo_location.types.create_place_index_request.CreatePlaceIndexRequest = {
+            "index_name": index_name,
+            "data_source": data_source,
+        }
         if pricing_plan is not None:
             input_["pricing_plan"] = pricing_plan
         if description is not None:
@@ -681,6 +699,7 @@ class AsyncPlaceIndexResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -719,14 +738,16 @@ class AsyncPlaceIndexResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.describe_place_index_request.DescribePlaceIndexRequest = {}  # type: ignore[typeddict-item]
-        input_["index_name"] = index_name
+        input_: capo_location.types.describe_place_index_request.DescribePlaceIndexRequest = {
+            "index_name": index_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -775,8 +796,9 @@ class AsyncPlaceIndexResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.update_place_index_request.UpdatePlaceIndexRequest = {}  # type: ignore[typeddict-item]
-        input_["index_name"] = index_name
+        input_: capo_location.types.update_place_index_request.UpdatePlaceIndexRequest = {
+            "index_name": index_name
+        }
         if pricing_plan is not None:
             input_["pricing_plan"] = pricing_plan
         if description is not None:
@@ -789,6 +811,7 @@ class AsyncPlaceIndexResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -827,14 +850,16 @@ class AsyncPlaceIndexResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.delete_place_index_request.DeletePlaceIndexRequest = {}  # type: ignore[typeddict-item]
-        input_["index_name"] = index_name
+        input_: capo_location.types.delete_place_index_request.DeletePlaceIndexRequest = {
+            "index_name": index_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -874,7 +899,7 @@ class AsyncPlaceIndexResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.list_place_indexes_request.ListPlaceIndexesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_location.types.list_place_indexes_request.ListPlaceIndexesRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -885,6 +910,7 @@ class AsyncPlaceIndexResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_place(
@@ -929,9 +955,10 @@ class AsyncPlaceIndexResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.get_place_request.GetPlaceRequest = {}  # type: ignore[typeddict-item]
-        input_["index_name"] = index_name
-        input_["place_id"] = place_id
+        input_: capo_location.types.get_place_request.GetPlaceRequest = {
+            "index_name": index_name,
+            "place_id": place_id,
+        }
         if language is not None:
             input_["language"] = language
         if key is not None:
@@ -942,6 +969,7 @@ class AsyncPlaceIndexResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def search_place_index_for_position(
@@ -990,9 +1018,10 @@ class AsyncPlaceIndexResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.search_place_index_for_position_request.SearchPlaceIndexForPositionRequest = {}  # type: ignore[typeddict-item]
-        input_["index_name"] = index_name
-        input_["position"] = position
+        input_: capo_location.types.search_place_index_for_position_request.SearchPlaceIndexForPositionRequest = {
+            "index_name": index_name,
+            "position": position,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if language is not None:
@@ -1005,6 +1034,7 @@ class AsyncPlaceIndexResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def search_place_index_for_suggestions(
@@ -1063,9 +1093,10 @@ class AsyncPlaceIndexResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.search_place_index_for_suggestions_request.SearchPlaceIndexForSuggestionsRequest = {}  # type: ignore[typeddict-item]
-        input_["index_name"] = index_name
-        input_["text"] = text
+        input_: capo_location.types.search_place_index_for_suggestions_request.SearchPlaceIndexForSuggestionsRequest = {
+            "index_name": index_name,
+            "text": text,
+        }
         if bias_position is not None:
             input_["bias_position"] = bias_position
         if filter_b_box is not None:
@@ -1086,6 +1117,7 @@ class AsyncPlaceIndexResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def search_place_index_for_text(
@@ -1146,9 +1178,10 @@ class AsyncPlaceIndexResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.search_place_index_for_text_request.SearchPlaceIndexForTextRequest = {}  # type: ignore[typeddict-item]
-        input_["index_name"] = index_name
-        input_["text"] = text
+        input_: capo_location.types.search_place_index_for_text_request.SearchPlaceIndexForTextRequest = {
+            "index_name": index_name,
+            "text": text,
+        }
         if bias_position is not None:
             input_["bias_position"] = bias_position
         if filter_b_box is not None:
@@ -1169,4 +1202,5 @@ class AsyncPlaceIndexResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

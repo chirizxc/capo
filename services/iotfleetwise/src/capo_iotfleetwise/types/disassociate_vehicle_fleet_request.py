@@ -21,13 +21,20 @@ class DisassociateVehicleFleetRequest(TypedDict, closed=True):
 # --- awsJson1_0 ser/de ---
 def serialize_aws_json_1_0(value: DisassociateVehicleFleetRequest) -> dict:
     out: dict = {}
+    out["vehicleName"] = value["vehicle_name"]
     out["fleetId"] = value["fleet_id"]
     return out
 
 
 def deserialize_aws_json_1_0(data: dict) -> DisassociateVehicleFleetRequest:
     out: DisassociateVehicleFleetRequest = {}  # type: ignore[typeddict-item]
-    if "fleetId" in data:
+    if data.get("vehicleName") is not None:
+        out["vehicle_name"] = data["vehicleName"]
+    else:
+        raise DeserializationError(
+            "DisassociateVehicleFleetRequest.vehicle_name required"
+        )
+    if data.get("fleetId") is not None:
         out["fleet_id"] = data["fleetId"]
     else:
         raise DeserializationError("DisassociateVehicleFleetRequest.fleet_id required")

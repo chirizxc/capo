@@ -25,19 +25,19 @@ def serialize_json(value: StatisticsNotAvailableException_) -> dict:
 
 def deserialize_json(data: dict) -> StatisticsNotAvailableException_:
     out: StatisticsNotAvailableException_ = {}  # type: ignore[typeddict-item]
-    if "detailedMessage" in data:
+    if data.get("detailedMessage") is not None:
         out["detailed_message"] = data["detailedMessage"]
     else:
         raise DeserializationError(
             "StatisticsNotAvailableException_.detailed_message required"
         )
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
     else:
         raise DeserializationError(
             "StatisticsNotAvailableException_.request_id required"
         )
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
     else:
         raise DeserializationError("StatisticsNotAvailableException_.code required")
@@ -49,15 +49,20 @@ class StatisticsNotAvailableException(ServiceError):
 
     code: str | None = "StatisticsNotAvailableException"
 
-    def __init__(self, data: StatisticsNotAvailableException_):
+    def __init__(
+        self, data: StatisticsNotAvailableException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="StatisticsNotAvailableException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "StatisticsNotAvailableException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "StatisticsNotAvailableException":
+        return cls(deserialize_json(data), message)

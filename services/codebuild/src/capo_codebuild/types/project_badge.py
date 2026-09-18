@@ -27,10 +27,10 @@ def serialize_aws_json_1_1(value: ProjectBadge) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProjectBadge:
     out: ProjectBadge = {}  # type: ignore[typeddict-item]
-    if "badgeEnabled" in data:
+    if data.get("badgeEnabled") is not None:
         out["badge_enabled"] = data["badgeEnabled"]
     else:
         out["badge_enabled"] = False
-    if "badgeRequestUrl" in data:
+    if data.get("badgeRequestUrl") is not None:
         out["badge_request_url"] = data["badgeRequestUrl"]
     return out

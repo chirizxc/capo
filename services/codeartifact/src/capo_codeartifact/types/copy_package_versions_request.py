@@ -75,13 +75,13 @@ def serialize_json(value: CopyPackageVersionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> CopyPackageVersionsRequest:
     out: CopyPackageVersionsRequest = {}  # type: ignore[typeddict-item]
-    if "versions" in data:
+    if data.get("versions") is not None:
         import capo_codeartifact.types.package_version_list
 
         out["versions"] = capo_codeartifact.types.package_version_list.deserialize_json(
             data["versions"]
         )
-    if "versionRevisions" in data:
+    if data.get("versionRevisions") is not None:
         import capo_codeartifact.types.package_version_revision_map
 
         out["version_revisions"] = (
@@ -89,8 +89,8 @@ def deserialize_json(data: dict) -> CopyPackageVersionsRequest:
                 data["versionRevisions"]
             )
         )
-    if "allowOverwrite" in data:
+    if data.get("allowOverwrite") is not None:
         out["allow_overwrite"] = data["allowOverwrite"]
-    if "includeFromUpstream" in data:
+    if data.get("includeFromUpstream") is not None:
         out["include_from_upstream"] = data["includeFromUpstream"]
     return out

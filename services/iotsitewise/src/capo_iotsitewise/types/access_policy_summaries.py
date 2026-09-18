@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AccessPolicySummaries:
 
     out: AccessPolicySummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iotsitewise.types.access_policy_summary.deserialize_json(item))
     return out

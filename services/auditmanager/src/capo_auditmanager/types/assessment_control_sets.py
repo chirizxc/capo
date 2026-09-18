@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> AssessmentControlSets:
 
     out: AssessmentControlSets = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_auditmanager.types.assessment_control_set.deserialize_json(item)
         )

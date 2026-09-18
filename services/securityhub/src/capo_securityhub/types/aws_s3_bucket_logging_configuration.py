@@ -31,8 +31,8 @@ def serialize_json(value: AwsS3BucketLoggingConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AwsS3BucketLoggingConfiguration:
     out: AwsS3BucketLoggingConfiguration = {}  # type: ignore[typeddict-item]
-    if "DestinationBucketName" in data:
+    if data.get("DestinationBucketName") is not None:
         out["destination_bucket_name"] = data["DestinationBucketName"]
-    if "LogFilePrefix" in data:
+    if data.get("LogFilePrefix") is not None:
         out["log_file_prefix"] = data["LogFilePrefix"]
     return out

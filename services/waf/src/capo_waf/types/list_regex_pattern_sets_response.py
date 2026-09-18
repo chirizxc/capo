@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: ListRegexPatternSetsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListRegexPatternSetsResponse:
     out: ListRegexPatternSetsResponse = {}  # type: ignore[typeddict-item]
-    if "NextMarker" in data:
+    if data.get("NextMarker") is not None:
         out["next_marker"] = data["NextMarker"]
-    if "RegexPatternSets" in data:
+    if data.get("RegexPatternSets") is not None:
         import capo_waf.types.regex_pattern_set_summaries
 
         out["regex_pattern_sets"] = (

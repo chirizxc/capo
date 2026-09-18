@@ -34,13 +34,13 @@ def serialize_aws_json_1_1(value: ContextKeySelector) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ContextKeySelector:
     out: ContextKeySelector = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_cloudtrail.types.type
 
         out["type"] = capo_cloudtrail.types.type.deserialize_aws_json_1_1(data["Type"])
     else:
         raise DeserializationError("ContextKeySelector.type required")
-    if "Equals" in data:
+    if data.get("Equals") is not None:
         import capo_cloudtrail.types.operator_target_list
 
         out["equals"] = (

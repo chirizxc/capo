@@ -36,9 +36,9 @@ def serialize_aws_json_1_0(value: ListLabelGroupsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListLabelGroupsResponse:
     out: ListLabelGroupsResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "LabelGroupSummaries" in data:
+    if data.get("LabelGroupSummaries") is not None:
         import capo_lookoutequipment.types.label_group_summaries
 
         out["label_group_summaries"] = (

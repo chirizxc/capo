@@ -25,6 +25,6 @@ def serialize_json(value: NoiseReducerFilterSettings) -> dict:
 
 def deserialize_json(data: dict) -> NoiseReducerFilterSettings:
     out: NoiseReducerFilterSettings = {}  # type: ignore[typeddict-item]
-    if "strength" in data:
+    if data.get("strength") is not None:
         out["strength"] = data["strength"]
     return out

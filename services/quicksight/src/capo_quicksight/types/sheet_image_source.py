@@ -31,7 +31,7 @@ def serialize_json(value: SheetImageSource) -> dict:
 
 def deserialize_json(data: dict) -> SheetImageSource:
     out: SheetImageSource = {}  # type: ignore[typeddict-item]
-    if "SheetImageStaticFileSource" in data:
+    if data.get("SheetImageStaticFileSource") is not None:
         import capo_quicksight.types.sheet_image_static_file_source
 
         out["sheet_image_static_file_source"] = (

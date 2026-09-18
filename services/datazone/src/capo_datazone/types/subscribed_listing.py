@@ -53,21 +53,21 @@ def serialize_json(value: SubscribedListing) -> dict:
 
 def deserialize_json(data: dict) -> SubscribedListing:
     out: SubscribedListing = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("SubscribedListing.id required")
-    if "revision" in data:
+    if data.get("revision") is not None:
         out["revision"] = data["revision"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("SubscribedListing.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     else:
         raise DeserializationError("SubscribedListing.description required")
-    if "item" in data:
+    if data.get("item") is not None:
         import capo_datazone.types.subscribed_listing_item
 
         out["item"] = capo_datazone.types.subscribed_listing_item.deserialize_json(
@@ -75,10 +75,10 @@ def deserialize_json(data: dict) -> SubscribedListing:
         )
     else:
         raise DeserializationError("SubscribedListing.item required")
-    if "ownerProjectId" in data:
+    if data.get("ownerProjectId") is not None:
         out["owner_project_id"] = data["ownerProjectId"]
     else:
         raise DeserializationError("SubscribedListing.owner_project_id required")
-    if "ownerProjectName" in data:
+    if data.get("ownerProjectName") is not None:
         out["owner_project_name"] = data["ownerProjectName"]
     return out

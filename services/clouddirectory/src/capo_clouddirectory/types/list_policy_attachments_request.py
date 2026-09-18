@@ -46,7 +46,7 @@ def serialize_json(value: ListPolicyAttachmentsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListPolicyAttachmentsRequest:
     out: ListPolicyAttachmentsRequest = {}  # type: ignore[typeddict-item]
-    if "PolicyReference" in data:
+    if data.get("PolicyReference") is not None:
         import capo_clouddirectory.types.object_reference
 
         out["policy_reference"] = (
@@ -58,8 +58,8 @@ def deserialize_json(data: dict) -> ListPolicyAttachmentsRequest:
         raise DeserializationError(
             "ListPolicyAttachmentsRequest.policy_reference required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

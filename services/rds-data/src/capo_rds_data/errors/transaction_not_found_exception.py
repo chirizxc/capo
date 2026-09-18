@@ -24,7 +24,7 @@ def serialize_json(value: TransactionNotFoundException_) -> dict:
 
 def deserialize_json(data: dict) -> TransactionNotFoundException_:
     out: TransactionNotFoundException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,18 @@ class TransactionNotFoundException(ServiceError):
 
     code: str | None = "TransactionNotFoundException"
 
-    def __init__(self, data: TransactionNotFoundException_):
+    def __init__(self, data: TransactionNotFoundException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="TransactionNotFoundException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "TransactionNotFoundException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "TransactionNotFoundException":
+        return cls(deserialize_json(data), message)

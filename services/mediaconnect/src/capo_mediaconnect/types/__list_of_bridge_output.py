@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfBridgeOutput:
 
     out: __listOfBridgeOutput = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mediaconnect.types.bridge_output.deserialize_json(item))
     return out

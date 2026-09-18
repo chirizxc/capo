@@ -44,7 +44,7 @@ def serialize_json(value: AdsInteractionLog) -> dict:
 
 def deserialize_json(data: dict) -> AdsInteractionLog:
     out: AdsInteractionLog = {}  # type: ignore[typeddict-item]
-    if "PublishOptInEventTypes" in data:
+    if data.get("PublishOptInEventTypes") is not None:
         import capo_mediatailor.types.__ads_interaction_publish_opt_in_event_types_list
 
         out["publish_opt_in_event_types"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> AdsInteractionLog:
                 data["PublishOptInEventTypes"]
             )
         )
-    if "ExcludeEventTypes" in data:
+    if data.get("ExcludeEventTypes") is not None:
         import capo_mediatailor.types.__ads_interaction_exclude_event_types_list
 
         out["exclude_event_types"] = (

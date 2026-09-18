@@ -51,17 +51,17 @@ def serialize_json(value: AssessmentFramework) -> dict:
 
 def deserialize_json(data: dict) -> AssessmentFramework:
     out: AssessmentFramework = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         import capo_auditmanager.types.framework_metadata
 
         out["metadata"] = capo_auditmanager.types.framework_metadata.deserialize_json(
             data["metadata"]
         )
-    if "controlSets" in data:
+    if data.get("controlSets") is not None:
         import capo_auditmanager.types.assessment_control_sets
 
         out["control_sets"] = (

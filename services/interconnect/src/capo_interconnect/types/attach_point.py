@@ -33,9 +33,9 @@ def serialize_aws_json_1_0(value: AttachPoint) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> AttachPoint:
-    if "directConnectGateway" in data:
+    if data.get("directConnectGateway") is not None:
         return {"directConnectGateway": data["directConnectGateway"]}
-    elif "arn" in data:
+    elif data.get("arn") is not None:
         return {"arn": data["arn"]}
     else:
         raise DeserializationError("AttachPoint: no recognized variant key")

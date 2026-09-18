@@ -55,13 +55,13 @@ def serialize_json(value: DataSourceConfigurations) -> dict:
 
 def deserialize_json(data: dict) -> DataSourceConfigurations:
     out: DataSourceConfigurations = {}  # type: ignore[typeddict-item]
-    if "s3Logs" in data:
+    if data.get("s3Logs") is not None:
         import capo_guardduty.types.s3_logs_configuration
 
         out["s3_logs"] = capo_guardduty.types.s3_logs_configuration.deserialize_json(
             data["s3Logs"]
         )
-    if "kubernetes" in data:
+    if data.get("kubernetes") is not None:
         import capo_guardduty.types.kubernetes_configuration
 
         out["kubernetes"] = (
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> DataSourceConfigurations:
                 data["kubernetes"]
             )
         )
-    if "malwareProtection" in data:
+    if data.get("malwareProtection") is not None:
         import capo_guardduty.types.malware_protection_configuration
 
         out["malware_protection"] = (

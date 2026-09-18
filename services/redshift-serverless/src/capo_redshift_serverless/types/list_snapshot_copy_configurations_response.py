@@ -37,9 +37,9 @@ def serialize_aws_json_1_1(value: ListSnapshotCopyConfigurationsResponse) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> ListSnapshotCopyConfigurationsResponse:
     out: ListSnapshotCopyConfigurationsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "snapshotCopyConfigurations" in data:
+    if data.get("snapshotCopyConfigurations") is not None:
         import capo_redshift_serverless.types.snapshot_copy_configurations
 
         out["snapshot_copy_configurations"] = (

@@ -45,19 +45,19 @@ def serialize_json(value: GatewayPlatform) -> dict:
 
 def deserialize_json(data: dict) -> GatewayPlatform:
     out: GatewayPlatform = {}  # type: ignore[typeddict-item]
-    if "greengrass" in data:
+    if data.get("greengrass") is not None:
         import capo_iotsitewise.types.greengrass
 
         out["greengrass"] = capo_iotsitewise.types.greengrass.deserialize_json(
             data["greengrass"]
         )
-    if "greengrassV2" in data:
+    if data.get("greengrassV2") is not None:
         import capo_iotsitewise.types.greengrass_v2
 
         out["greengrass_v2"] = capo_iotsitewise.types.greengrass_v2.deserialize_json(
             data["greengrassV2"]
         )
-    if "siemensIE" in data:
+    if data.get("siemensIE") is not None:
         import capo_iotsitewise.types.siemens_ie
 
         out["siemens_ie"] = capo_iotsitewise.types.siemens_ie.deserialize_json(

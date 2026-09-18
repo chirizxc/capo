@@ -34,13 +34,13 @@ def serialize_json(value: SalesforceConnectorProfileProperties) -> dict:
 
 def deserialize_json(data: dict) -> SalesforceConnectorProfileProperties:
     out: SalesforceConnectorProfileProperties = {}  # type: ignore[typeddict-item]
-    if "instanceUrl" in data:
+    if data.get("instanceUrl") is not None:
         out["instance_url"] = data["instanceUrl"]
-    if "isSandboxEnvironment" in data:
+    if data.get("isSandboxEnvironment") is not None:
         out["is_sandbox_environment"] = data["isSandboxEnvironment"]
     else:
         out["is_sandbox_environment"] = False
-    if "usePrivateLinkForMetadataAndAuthorization" in data:
+    if data.get("usePrivateLinkForMetadataAndAuthorization") is not None:
         out["use_private_link_for_metadata_and_authorization"] = data[
             "usePrivateLinkForMetadataAndAuthorization"
         ]

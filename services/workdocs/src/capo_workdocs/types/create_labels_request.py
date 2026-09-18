@@ -34,7 +34,7 @@ def serialize_json(value: CreateLabelsRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateLabelsRequest:
     out: CreateLabelsRequest = {}  # type: ignore[typeddict-item]
-    if "Labels" in data:
+    if data.get("Labels") is not None:
         import capo_workdocs.types.shared_labels
 
         out["labels"] = capo_workdocs.types.shared_labels.deserialize_json(

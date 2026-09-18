@@ -27,7 +27,7 @@ def serialize_json(value: StructValue) -> dict:
 
 def deserialize_json(data: dict) -> StructValue:
     out: StructValue = {}  # type: ignore[typeddict-item]
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_rds_data.types.array_value_list
 
         out["attributes"] = capo_rds_data.types.array_value_list.deserialize_json(

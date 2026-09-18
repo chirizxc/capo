@@ -48,7 +48,7 @@ def deserialize_json(
     data: dict,
 ) -> KinesisVideoStreamRecordingSourceRuntimeConfiguration:
     out: KinesisVideoStreamRecordingSourceRuntimeConfiguration = {}  # type: ignore[typeddict-item]
-    if "Streams" in data:
+    if data.get("Streams") is not None:
         import capo_chime_sdk_media_pipelines.types.recording_stream_list
 
         out["streams"] = (
@@ -60,7 +60,7 @@ def deserialize_json(
         raise DeserializationError(
             "KinesisVideoStreamRecordingSourceRuntimeConfiguration.streams required"
         )
-    if "FragmentSelector" in data:
+    if data.get("FragmentSelector") is not None:
         import capo_chime_sdk_media_pipelines.types.fragment_selector
 
         out["fragment_selector"] = (

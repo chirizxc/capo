@@ -65,9 +65,9 @@ def serialize_json(value: CommandParameterValueComparisonOperand) -> dict:
 
 def deserialize_json(data: dict) -> CommandParameterValueComparisonOperand:
     out: CommandParameterValueComparisonOperand = {}  # type: ignore[typeddict-item]
-    if "number" in data:
+    if data.get("number") is not None:
         out["number"] = data["number"]
-    if "numbers" in data:
+    if data.get("numbers") is not None:
         import capo_iot.types.command_parameter_value_string_list
 
         out["numbers"] = (
@@ -75,9 +75,9 @@ def deserialize_json(data: dict) -> CommandParameterValueComparisonOperand:
                 data["numbers"]
             )
         )
-    if "string" in data:
+    if data.get("string") is not None:
         out["string"] = data["string"]
-    if "strings" in data:
+    if data.get("strings") is not None:
         import capo_iot.types.command_parameter_value_string_list
 
         out["strings"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> CommandParameterValueComparisonOperand:
                 data["strings"]
             )
         )
-    if "numberRange" in data:
+    if data.get("numberRange") is not None:
         import capo_iot.types.command_parameter_value_number_range
 
         out["number_range"] = (

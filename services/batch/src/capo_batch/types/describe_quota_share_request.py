@@ -23,6 +23,6 @@ def serialize_json(value: DescribeQuotaShareRequest) -> dict:
 
 def deserialize_json(data: dict) -> DescribeQuotaShareRequest:
     out: DescribeQuotaShareRequest = {}  # type: ignore[typeddict-item]
-    if "quotaShareArn" in data:
+    if data.get("quotaShareArn") is not None:
         out["quota_share_arn"] = data["quotaShareArn"]
     return out

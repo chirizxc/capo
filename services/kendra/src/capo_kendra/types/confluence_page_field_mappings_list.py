@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> ConfluencePageFieldMappingsList:
 
     out: ConfluencePageFieldMappingsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_kendra.types.confluence_page_to_index_field_mapping.deserialize_aws_json_1_1(
                 item

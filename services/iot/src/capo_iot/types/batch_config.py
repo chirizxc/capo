@@ -39,13 +39,13 @@ def serialize_json(value: BatchConfig) -> dict:
 
 def deserialize_json(data: dict) -> BatchConfig:
     out: BatchConfig = {}  # type: ignore[typeddict-item]
-    if "maxBatchOpenMs" in data:
+    if data.get("maxBatchOpenMs") is not None:
         out["max_batch_open_ms"] = data["maxBatchOpenMs"]
-    if "maxBatchSize" in data:
+    if data.get("maxBatchSize") is not None:
         out["max_batch_size"] = data["maxBatchSize"]
-    if "maxBatchSizeBytes" in data:
+    if data.get("maxBatchSizeBytes") is not None:
         out["max_batch_size_bytes"] = data["maxBatchSizeBytes"]
-    if "batchAcrossTopics" in data:
+    if data.get("batchAcrossTopics") is not None:
         out["batch_across_topics"] = data["batchAcrossTopics"]
     else:
         out["batch_across_topics"] = False

@@ -24,9 +24,9 @@ class RecoveryLifeCycle(TypedDict, closed=True):
 def serialize_json(value: RecoveryLifeCycle) -> dict:
     out: dict = {}
     if "api_call_date_time" in value:
-        import capo_drs.types._prelude.timestamp
+        import capo_drs._protocol.serialize
 
-        out["apiCallDateTime"] = capo_drs.types._prelude.timestamp.serialize_json(
+        out["apiCallDateTime"] = capo_drs._protocol.serialize.fmt_date_time(
             value["api_call_date_time"]
         )
     if "job_id" in value:
@@ -38,14 +38,14 @@ def serialize_json(value: RecoveryLifeCycle) -> dict:
 
 def deserialize_json(data: dict) -> RecoveryLifeCycle:
     out: RecoveryLifeCycle = {}  # type: ignore[typeddict-item]
-    if "apiCallDateTime" in data:
-        import capo_drs.types._prelude.timestamp
+    if data.get("apiCallDateTime") is not None:
+        import datetime
 
-        out["api_call_date_time"] = capo_drs.types._prelude.timestamp.deserialize_json(
-            data["apiCallDateTime"]
+        out["api_call_date_time"] = datetime.datetime.fromisoformat(
+            data["apiCallDateTime"].replace("Z", "+00:00")
         )
-    if "jobID" in data:
+    if data.get("jobID") is not None:
         out["job_id"] = data["jobID"]
-    if "lastRecoveryResult" in data:
+    if data.get("lastRecoveryResult") is not None:
         out["last_recovery_result"] = data["lastRecoveryResult"]
     return out

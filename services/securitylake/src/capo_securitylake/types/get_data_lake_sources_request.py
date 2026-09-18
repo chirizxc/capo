@@ -36,16 +36,16 @@ def serialize_json(value: GetDataLakeSourcesRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetDataLakeSourcesRequest:
     out: GetDataLakeSourcesRequest = {}  # type: ignore[typeddict-item]
-    if "accounts" in data:
+    if data.get("accounts") is not None:
         import capo_securitylake.types.account_list
 
         out["accounts"] = capo_securitylake.types.account_list.deserialize_json(
             data["accounts"]
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     else:
         out["max_results"] = 50
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

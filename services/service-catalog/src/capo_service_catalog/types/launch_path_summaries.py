@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> LaunchPathSummaries:
 
     out: LaunchPathSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_service_catalog.types.launch_path_summary.deserialize_aws_json_1_1(
                 item

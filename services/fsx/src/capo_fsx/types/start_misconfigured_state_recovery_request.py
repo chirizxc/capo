@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: StartMisconfiguredStateRecoveryRequest) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> StartMisconfiguredStateRecoveryRequest:
     out: StartMisconfiguredStateRecoveryRequest = {}  # type: ignore[typeddict-item]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "FileSystemId" in data:
+    if data.get("FileSystemId") is not None:
         out["file_system_id"] = data["FileSystemId"]
     return out

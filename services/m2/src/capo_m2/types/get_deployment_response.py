@@ -48,27 +48,27 @@ def serialize_json(value: GetDeploymentResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetDeploymentResponse:
     out: GetDeploymentResponse = {}  # type: ignore[typeddict-item]
-    if "deploymentId" in data:
+    if data.get("deploymentId") is not None:
         out["deployment_id"] = data["deploymentId"]
     else:
         raise DeserializationError("GetDeploymentResponse.deployment_id required")
-    if "applicationId" in data:
+    if data.get("applicationId") is not None:
         out["application_id"] = data["applicationId"]
     else:
         raise DeserializationError("GetDeploymentResponse.application_id required")
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
     else:
         raise DeserializationError("GetDeploymentResponse.environment_id required")
-    if "applicationVersion" in data:
+    if data.get("applicationVersion") is not None:
         out["application_version"] = data["applicationVersion"]
     else:
         raise DeserializationError("GetDeploymentResponse.application_version required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("GetDeploymentResponse.status required")
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_m2.types.timestamp
 
         out["creation_time"] = capo_m2.types.timestamp.deserialize_json(
@@ -76,6 +76,6 @@ def deserialize_json(data: dict) -> GetDeploymentResponse:
         )
     else:
         raise DeserializationError("GetDeploymentResponse.creation_time required")
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
     return out

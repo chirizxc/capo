@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: CreateEndpointOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateEndpointOutput:
     out: CreateEndpointOutput = {}  # type: ignore[typeddict-item]
-    if "EndpointArn" in data:
+    if data.get("EndpointArn") is not None:
         out["endpoint_arn"] = data["EndpointArn"]
     return out

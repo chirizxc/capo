@@ -30,12 +30,12 @@ def serialize_json(value: GetTraceGraphResult) -> dict:
 
 def deserialize_json(data: dict) -> GetTraceGraphResult:
     out: GetTraceGraphResult = {}  # type: ignore[typeddict-item]
-    if "Services" in data:
+    if data.get("Services") is not None:
         import capo_xray.types.service_list
 
         out["services"] = capo_xray.types.service_list.deserialize_json(
             data["Services"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

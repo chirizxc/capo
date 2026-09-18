@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_qconnect._auth._signers
@@ -145,11 +146,13 @@ class KnowledgeBase:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_qconnect.types.create_knowledge_base_request.CreateKnowledgeBaseRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["name"] = name
-        input_["knowledge_base_type"] = knowledge_base_type
+        input_: capo_qconnect.types.create_knowledge_base_request.CreateKnowledgeBaseRequest = {
+            "name": name,
+            "knowledge_base_type": knowledge_base_type,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if source_configuration is not None:
             input_["source_configuration"] = source_configuration
         if rendering_configuration is not None:
@@ -170,6 +173,7 @@ class KnowledgeBase:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -206,14 +210,16 @@ class KnowledgeBase:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_qconnect.types.get_knowledge_base_request.GetKnowledgeBaseRequest = {}  # type: ignore[typeddict-item]
-        input_["knowledge_base_id"] = knowledge_base_id
+        input_: capo_qconnect.types.get_knowledge_base_request.GetKnowledgeBaseRequest = {
+            "knowledge_base_id": knowledge_base_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -253,14 +259,16 @@ class KnowledgeBase:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_qconnect.types.delete_knowledge_base_request.DeleteKnowledgeBaseRequest = {}  # type: ignore[typeddict-item]
-        input_["knowledge_base_id"] = knowledge_base_id
+        input_: capo_qconnect.types.delete_knowledge_base_request.DeleteKnowledgeBaseRequest = {
+            "knowledge_base_id": knowledge_base_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -299,7 +307,7 @@ class KnowledgeBase:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_qconnect.types.list_knowledge_bases_request.ListKnowledgeBasesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_qconnect.types.list_knowledge_bases_request.ListKnowledgeBasesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -310,6 +318,7 @@ class KnowledgeBase:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_import_job(
@@ -349,15 +358,17 @@ class KnowledgeBase:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_qconnect.types.delete_import_job_request.DeleteImportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["knowledge_base_id"] = knowledge_base_id
-        input_["import_job_id"] = import_job_id
+        input_: capo_qconnect.types.delete_import_job_request.DeleteImportJobRequest = {
+            "knowledge_base_id": knowledge_base_id,
+            "import_job_id": import_job_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_import_job(
@@ -395,15 +406,17 @@ class KnowledgeBase:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_qconnect.types.get_import_job_request.GetImportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["import_job_id"] = import_job_id
-        input_["knowledge_base_id"] = knowledge_base_id
+        input_: capo_qconnect.types.get_import_job_request.GetImportJobRequest = {
+            "import_job_id": import_job_id,
+            "knowledge_base_id": knowledge_base_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_import_jobs(
@@ -444,18 +457,20 @@ class KnowledgeBase:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_qconnect.types.list_import_jobs_request.ListImportJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_qconnect.types.list_import_jobs_request.ListImportJobsRequest = {
+            "knowledge_base_id": knowledge_base_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["knowledge_base_id"] = knowledge_base_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def remove_knowledge_base_template_uri(
@@ -491,14 +506,16 @@ class KnowledgeBase:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_qconnect.types.remove_knowledge_base_template_uri_request.RemoveKnowledgeBaseTemplateUriRequest = {}  # type: ignore[typeddict-item]
-        input_["knowledge_base_id"] = knowledge_base_id
+        input_: capo_qconnect.types.remove_knowledge_base_template_uri_request.RemoveKnowledgeBaseTemplateUriRequest = {
+            "knowledge_base_id": knowledge_base_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def search_content(
@@ -541,19 +558,21 @@ class KnowledgeBase:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_qconnect.types.search_content_request.SearchContentRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_qconnect.types.search_content_request.SearchContentRequest = {
+            "knowledge_base_id": knowledge_base_id,
+            "search_expression": search_expression,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["knowledge_base_id"] = knowledge_base_id
-        input_["search_expression"] = search_expression
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def search_message_templates(
@@ -597,9 +616,10 @@ class KnowledgeBase:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_qconnect.types.search_message_templates_request.SearchMessageTemplatesRequest = {}  # type: ignore[typeddict-item]
-        input_["knowledge_base_id"] = knowledge_base_id
-        input_["search_expression"] = search_expression
+        input_: capo_qconnect.types.search_message_templates_request.SearchMessageTemplatesRequest = {
+            "knowledge_base_id": knowledge_base_id,
+            "search_expression": search_expression,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -610,6 +630,7 @@ class KnowledgeBase:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def search_quick_responses(
@@ -659,9 +680,10 @@ class KnowledgeBase:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_qconnect.types.search_quick_responses_request.SearchQuickResponsesRequest = {}  # type: ignore[typeddict-item]
-        input_["knowledge_base_id"] = knowledge_base_id
-        input_["search_expression"] = search_expression
+        input_: capo_qconnect.types.search_quick_responses_request.SearchQuickResponsesRequest = {
+            "knowledge_base_id": knowledge_base_id,
+            "search_expression": search_expression,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -674,6 +696,7 @@ class KnowledgeBase:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_content_upload(
@@ -716,9 +739,10 @@ class KnowledgeBase:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_qconnect.types.start_content_upload_request.StartContentUploadRequest = {}  # type: ignore[typeddict-item]
-        input_["knowledge_base_id"] = knowledge_base_id
-        input_["content_type"] = content_type
+        input_: capo_qconnect.types.start_content_upload_request.StartContentUploadRequest = {
+            "knowledge_base_id": knowledge_base_id,
+            "content_type": content_type,
+        }
         if presigned_url_time_to_live is not None:
             input_["presigned_url_time_to_live"] = presigned_url_time_to_live
 
@@ -727,6 +751,7 @@ class KnowledgeBase:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_import_job(
@@ -781,12 +806,14 @@ class KnowledgeBase:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_qconnect.types.start_import_job_request.StartImportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["knowledge_base_id"] = knowledge_base_id
-        input_["import_job_type"] = import_job_type
-        input_["upload_id"] = upload_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_qconnect.types.start_import_job_request.StartImportJobRequest = {
+            "knowledge_base_id": knowledge_base_id,
+            "import_job_type": import_job_type,
+            "upload_id": upload_id,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if metadata is not None:
             input_["metadata"] = metadata
         if external_source_configuration is not None:
@@ -797,6 +824,7 @@ class KnowledgeBase:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_knowledge_base_template_uri(
@@ -834,15 +862,17 @@ class KnowledgeBase:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_qconnect.types.update_knowledge_base_template_uri_request.UpdateKnowledgeBaseTemplateUriRequest = {}  # type: ignore[typeddict-item]
-        input_["knowledge_base_id"] = knowledge_base_id
-        input_["template_uri"] = template_uri
+        input_: capo_qconnect.types.update_knowledge_base_template_uri_request.UpdateKnowledgeBaseTemplateUriRequest = {
+            "knowledge_base_id": knowledge_base_id,
+            "template_uri": template_uri,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -914,11 +944,13 @@ class AsyncKnowledgeBase:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_qconnect.types.create_knowledge_base_request.CreateKnowledgeBaseRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["name"] = name
-        input_["knowledge_base_type"] = knowledge_base_type
+        input_: capo_qconnect.types.create_knowledge_base_request.CreateKnowledgeBaseRequest = {
+            "name": name,
+            "knowledge_base_type": knowledge_base_type,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if source_configuration is not None:
             input_["source_configuration"] = source_configuration
         if rendering_configuration is not None:
@@ -939,6 +971,7 @@ class AsyncKnowledgeBase:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -976,14 +1009,16 @@ class AsyncKnowledgeBase:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_qconnect.types.get_knowledge_base_request.GetKnowledgeBaseRequest = {}  # type: ignore[typeddict-item]
-        input_["knowledge_base_id"] = knowledge_base_id
+        input_: capo_qconnect.types.get_knowledge_base_request.GetKnowledgeBaseRequest = {
+            "knowledge_base_id": knowledge_base_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -1024,14 +1059,16 @@ class AsyncKnowledgeBase:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_qconnect.types.delete_knowledge_base_request.DeleteKnowledgeBaseRequest = {}  # type: ignore[typeddict-item]
-        input_["knowledge_base_id"] = knowledge_base_id
+        input_: capo_qconnect.types.delete_knowledge_base_request.DeleteKnowledgeBaseRequest = {
+            "knowledge_base_id": knowledge_base_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -1071,7 +1108,7 @@ class AsyncKnowledgeBase:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_qconnect.types.list_knowledge_bases_request.ListKnowledgeBasesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_qconnect.types.list_knowledge_bases_request.ListKnowledgeBasesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1082,6 +1119,7 @@ class AsyncKnowledgeBase:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_import_job(
@@ -1122,15 +1160,17 @@ class AsyncKnowledgeBase:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_qconnect.types.delete_import_job_request.DeleteImportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["knowledge_base_id"] = knowledge_base_id
-        input_["import_job_id"] = import_job_id
+        input_: capo_qconnect.types.delete_import_job_request.DeleteImportJobRequest = {
+            "knowledge_base_id": knowledge_base_id,
+            "import_job_id": import_job_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_import_job(
@@ -1169,15 +1209,17 @@ class AsyncKnowledgeBase:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_qconnect.types.get_import_job_request.GetImportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["import_job_id"] = import_job_id
-        input_["knowledge_base_id"] = knowledge_base_id
+        input_: capo_qconnect.types.get_import_job_request.GetImportJobRequest = {
+            "import_job_id": import_job_id,
+            "knowledge_base_id": knowledge_base_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_import_jobs(
@@ -1219,18 +1261,20 @@ class AsyncKnowledgeBase:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_qconnect.types.list_import_jobs_request.ListImportJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_qconnect.types.list_import_jobs_request.ListImportJobsRequest = {
+            "knowledge_base_id": knowledge_base_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["knowledge_base_id"] = knowledge_base_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def remove_knowledge_base_template_uri(
@@ -1267,14 +1311,16 @@ class AsyncKnowledgeBase:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_qconnect.types.remove_knowledge_base_template_uri_request.RemoveKnowledgeBaseTemplateUriRequest = {}  # type: ignore[typeddict-item]
-        input_["knowledge_base_id"] = knowledge_base_id
+        input_: capo_qconnect.types.remove_knowledge_base_template_uri_request.RemoveKnowledgeBaseTemplateUriRequest = {
+            "knowledge_base_id": knowledge_base_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def search_content(
@@ -1318,19 +1364,21 @@ class AsyncKnowledgeBase:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_qconnect.types.search_content_request.SearchContentRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_qconnect.types.search_content_request.SearchContentRequest = {
+            "knowledge_base_id": knowledge_base_id,
+            "search_expression": search_expression,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["knowledge_base_id"] = knowledge_base_id
-        input_["search_expression"] = search_expression
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def search_message_templates(
@@ -1375,9 +1423,10 @@ class AsyncKnowledgeBase:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_qconnect.types.search_message_templates_request.SearchMessageTemplatesRequest = {}  # type: ignore[typeddict-item]
-        input_["knowledge_base_id"] = knowledge_base_id
-        input_["search_expression"] = search_expression
+        input_: capo_qconnect.types.search_message_templates_request.SearchMessageTemplatesRequest = {
+            "knowledge_base_id": knowledge_base_id,
+            "search_expression": search_expression,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1388,6 +1437,7 @@ class AsyncKnowledgeBase:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def search_quick_responses(
@@ -1438,9 +1488,10 @@ class AsyncKnowledgeBase:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_qconnect.types.search_quick_responses_request.SearchQuickResponsesRequest = {}  # type: ignore[typeddict-item]
-        input_["knowledge_base_id"] = knowledge_base_id
-        input_["search_expression"] = search_expression
+        input_: capo_qconnect.types.search_quick_responses_request.SearchQuickResponsesRequest = {
+            "knowledge_base_id": knowledge_base_id,
+            "search_expression": search_expression,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1453,6 +1504,7 @@ class AsyncKnowledgeBase:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_content_upload(
@@ -1496,9 +1548,10 @@ class AsyncKnowledgeBase:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_qconnect.types.start_content_upload_request.StartContentUploadRequest = {}  # type: ignore[typeddict-item]
-        input_["knowledge_base_id"] = knowledge_base_id
-        input_["content_type"] = content_type
+        input_: capo_qconnect.types.start_content_upload_request.StartContentUploadRequest = {
+            "knowledge_base_id": knowledge_base_id,
+            "content_type": content_type,
+        }
         if presigned_url_time_to_live is not None:
             input_["presigned_url_time_to_live"] = presigned_url_time_to_live
 
@@ -1507,6 +1560,7 @@ class AsyncKnowledgeBase:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_import_job(
@@ -1562,12 +1616,14 @@ class AsyncKnowledgeBase:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_qconnect.types.start_import_job_request.StartImportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["knowledge_base_id"] = knowledge_base_id
-        input_["import_job_type"] = import_job_type
-        input_["upload_id"] = upload_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_qconnect.types.start_import_job_request.StartImportJobRequest = {
+            "knowledge_base_id": knowledge_base_id,
+            "import_job_type": import_job_type,
+            "upload_id": upload_id,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if metadata is not None:
             input_["metadata"] = metadata
         if external_source_configuration is not None:
@@ -1578,6 +1634,7 @@ class AsyncKnowledgeBase:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_knowledge_base_template_uri(
@@ -1616,13 +1673,15 @@ class AsyncKnowledgeBase:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_qconnect.types.update_knowledge_base_template_uri_request.UpdateKnowledgeBaseTemplateUriRequest = {}  # type: ignore[typeddict-item]
-        input_["knowledge_base_id"] = knowledge_base_id
-        input_["template_uri"] = template_uri
+        input_: capo_qconnect.types.update_knowledge_base_template_uri_request.UpdateKnowledgeBaseTemplateUriRequest = {
+            "knowledge_base_id": knowledge_base_id,
+            "template_uri": template_uri,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

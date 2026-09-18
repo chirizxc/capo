@@ -28,11 +28,11 @@ def serialize_json(value: CreateFieldResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateFieldResponse:
     out: CreateFieldResponse = {}  # type: ignore[typeddict-item]
-    if "fieldId" in data:
+    if data.get("fieldId") is not None:
         out["field_id"] = data["fieldId"]
     else:
         raise DeserializationError("CreateFieldResponse.field_id required")
-    if "fieldArn" in data:
+    if data.get("fieldArn") is not None:
         out["field_arn"] = data["fieldArn"]
     else:
         raise DeserializationError("CreateFieldResponse.field_arn required")

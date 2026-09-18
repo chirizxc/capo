@@ -13,9 +13,9 @@ from capo_directory_service_data import AsyncDirectoryServiceDataClient
 
 
 async def main():
-    async with AsyncDirectoryServiceDataClient() as s3:
+    async with AsyncDirectoryServiceDataClient() as directory_service_data:
         # Example: call the add_group_member operation
-        response = await s3.add_group_member()
+        response = await directory_service_data.add_group_member()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_directory_service_data import AsyncDirectoryServiceDataClient
 
 
 async def main():
-    async with AsyncDirectoryServiceDataClient() as s3:
+    async with AsyncDirectoryServiceDataClient() as directory_service_data:
         # Example: paginate over list_group_members
-        async for item in s3.iter_list_group_members():
+        async for item in directory_service_data.iter_list_group_members():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_directory_service_data.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncDirectoryServiceDataClient() as s3:
+    async with AsyncDirectoryServiceDataClient() as directory_service_data:
         try:
-            await s3.add_group_member()
+            await directory_service_data.add_group_member()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_directory_service_data import AsyncDirectoryServiceDataClient
 
 
 async def main():
-    async with AsyncDirectoryServiceDataClient() as s3:
+    async with AsyncDirectoryServiceDataClient() as directory_service_data:
         # Default: 3 attempts for every operation
-        response = await s3.add_group_member()
+        response = await directory_service_data.add_group_member()
 
         # Override per operation
-        response = await s3.add_group_member(config_overrides={"retry_max_attempts": 5})
+        response = await directory_service_data.add_group_member(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.add_group_member(config_overrides={"retry_max_attempts": 1})
+        response = await directory_service_data.add_group_member(config_overrides={"retry_max_attempts": 1})
 ```

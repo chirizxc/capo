@@ -26,7 +26,7 @@ def serialize_aws_json_1_1(value: DirectPutSourceConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DirectPutSourceConfiguration:
     out: DirectPutSourceConfiguration = {}  # type: ignore[typeddict-item]
-    if "ThroughputHintInMBs" in data:
+    if data.get("ThroughputHintInMBs") is not None:
         out["throughput_hint_in_m_bs"] = data["ThroughputHintInMBs"]
     else:
         raise DeserializationError(

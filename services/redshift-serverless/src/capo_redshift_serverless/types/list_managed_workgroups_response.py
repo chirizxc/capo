@@ -38,9 +38,9 @@ def serialize_aws_json_1_1(value: ListManagedWorkgroupsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListManagedWorkgroupsResponse:
     out: ListManagedWorkgroupsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "managedWorkgroups" in data:
+    if data.get("managedWorkgroups") is not None:
         import capo_redshift_serverless.types.managed_workgroups
 
         out["managed_workgroups"] = (

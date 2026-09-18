@@ -20,7 +20,7 @@ def deserialize_json(
     data: dict,
 ) -> RouterNetworkInterfaceServiceQuotaExceededException_:
     out: RouterNetworkInterfaceServiceQuotaExceededException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError(
@@ -34,17 +34,22 @@ class RouterNetworkInterfaceServiceQuotaExceededException(ServiceError):
 
     code: str | None = "RouterNetworkInterfaceServiceQuotaExceededException"
 
-    def __init__(self, data: RouterNetworkInterfaceServiceQuotaExceededException_):
+    def __init__(
+        self,
+        data: RouterNetworkInterfaceServiceQuotaExceededException_,
+        message: str | None = None,
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="RouterNetworkInterfaceServiceQuotaExceededException",
+            message=message,
         )
         self.data = data
 
     @classmethod
     def from_json(
-        cls, data: dict
+        cls, data: dict, message: str | None = None
     ) -> "RouterNetworkInterfaceServiceQuotaExceededException":
-        return cls(deserialize_json(data))
+        return cls(deserialize_json(data), message)

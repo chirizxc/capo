@@ -28,11 +28,11 @@ def serialize_json(value: CancelJobRunResponse) -> dict:
 
 def deserialize_json(data: dict) -> CancelJobRunResponse:
     out: CancelJobRunResponse = {}  # type: ignore[typeddict-item]
-    if "applicationId" in data:
+    if data.get("applicationId") is not None:
         out["application_id"] = data["applicationId"]
     else:
         raise DeserializationError("CancelJobRunResponse.application_id required")
-    if "jobRunId" in data:
+    if data.get("jobRunId") is not None:
         out["job_run_id"] = data["jobRunId"]
     else:
         raise DeserializationError("CancelJobRunResponse.job_run_id required")

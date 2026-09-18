@@ -46,7 +46,7 @@ def serialize_aws_json_1_0(value: DecisionTaskScheduledEventAttributes) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DecisionTaskScheduledEventAttributes:
     out: DecisionTaskScheduledEventAttributes = {}  # type: ignore[typeddict-item]
-    if "taskList" in data:
+    if data.get("taskList") is not None:
         import capo_swf.types.task_list
 
         out["task_list"] = capo_swf.types.task_list.deserialize_aws_json_1_0(
@@ -56,10 +56,10 @@ def deserialize_aws_json_1_0(data: dict) -> DecisionTaskScheduledEventAttributes
         raise DeserializationError(
             "DecisionTaskScheduledEventAttributes.task_list required"
         )
-    if "taskPriority" in data:
+    if data.get("taskPriority") is not None:
         out["task_priority"] = data["taskPriority"]
-    if "startToCloseTimeout" in data:
+    if data.get("startToCloseTimeout") is not None:
         out["start_to_close_timeout"] = data["startToCloseTimeout"]
-    if "scheduleToStartTimeout" in data:
+    if data.get("scheduleToStartTimeout") is not None:
         out["schedule_to_start_timeout"] = data["scheduleToStartTimeout"]
     return out

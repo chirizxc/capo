@@ -38,7 +38,7 @@ def serialize_json(value: RdsDbSnapshotConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> RdsDbSnapshotConfiguration:
     out: RdsDbSnapshotConfiguration = {}  # type: ignore[typeddict-item]
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_accessanalyzer.types.rds_db_snapshot_attributes_map
 
         out["attributes"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> RdsDbSnapshotConfiguration:
                 data["attributes"]
             )
         )
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
     return out

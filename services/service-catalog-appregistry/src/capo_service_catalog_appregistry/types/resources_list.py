@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ResourcesList:
 
     out: ResourcesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_service_catalog_appregistry.types.resources_list_item.deserialize_json(
                 item

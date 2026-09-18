@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: ResponsePartitionKey) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResponsePartitionKey:
     out: ResponsePartitionKey = {}  # type: ignore[typeddict-item]
-    if "Dimensions" in data:
+    if data.get("Dimensions") is not None:
         import capo_pi.types.dimension_map
 
         out["dimensions"] = capo_pi.types.dimension_map.deserialize_aws_json_1_1(

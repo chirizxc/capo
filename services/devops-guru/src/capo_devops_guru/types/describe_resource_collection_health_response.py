@@ -52,7 +52,7 @@ def serialize_json(value: DescribeResourceCollectionHealthResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeResourceCollectionHealthResponse:
     out: DescribeResourceCollectionHealthResponse = {}  # type: ignore[typeddict-item]
-    if "CloudFormation" in data:
+    if data.get("CloudFormation") is not None:
         import capo_devops_guru.types.cloud_formation_healths
 
         out["cloud_formation"] = (
@@ -60,15 +60,15 @@ def deserialize_json(data: dict) -> DescribeResourceCollectionHealthResponse:
                 data["CloudFormation"]
             )
         )
-    if "Service" in data:
+    if data.get("Service") is not None:
         import capo_devops_guru.types.service_healths
 
         out["service"] = capo_devops_guru.types.service_healths.deserialize_json(
             data["Service"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_devops_guru.types.tag_healths
 
         out["tags"] = capo_devops_guru.types.tag_healths.deserialize_json(data["Tags"])

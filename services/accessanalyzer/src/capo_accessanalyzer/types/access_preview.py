@@ -61,15 +61,15 @@ def serialize_json(value: AccessPreview) -> dict:
 
 def deserialize_json(data: dict) -> AccessPreview:
     out: AccessPreview = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("AccessPreview.id required")
-    if "analyzerArn" in data:
+    if data.get("analyzerArn") is not None:
         out["analyzer_arn"] = data["analyzerArn"]
     else:
         raise DeserializationError("AccessPreview.analyzer_arn required")
-    if "configurations" in data:
+    if data.get("configurations") is not None:
         import capo_accessanalyzer.types.configurations_map
 
         out["configurations"] = (
@@ -79,7 +79,7 @@ def deserialize_json(data: dict) -> AccessPreview:
         )
     else:
         raise DeserializationError("AccessPreview.configurations required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_accessanalyzer.types.timestamp
 
         out["created_at"] = capo_accessanalyzer.types.timestamp.deserialize_json(
@@ -87,11 +87,11 @@ def deserialize_json(data: dict) -> AccessPreview:
         )
     else:
         raise DeserializationError("AccessPreview.created_at required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("AccessPreview.status required")
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         import capo_accessanalyzer.types.access_preview_status_reason
 
         out["status_reason"] = (

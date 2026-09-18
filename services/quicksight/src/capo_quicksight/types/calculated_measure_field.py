@@ -28,11 +28,11 @@ def serialize_json(value: CalculatedMeasureField) -> dict:
 
 def deserialize_json(data: dict) -> CalculatedMeasureField:
     out: CalculatedMeasureField = {}  # type: ignore[typeddict-item]
-    if "FieldId" in data:
+    if data.get("FieldId") is not None:
         out["field_id"] = data["FieldId"]
     else:
         raise DeserializationError("CalculatedMeasureField.field_id required")
-    if "Expression" in data:
+    if data.get("Expression") is not None:
         out["expression"] = data["Expression"]
     else:
         raise DeserializationError("CalculatedMeasureField.expression required")

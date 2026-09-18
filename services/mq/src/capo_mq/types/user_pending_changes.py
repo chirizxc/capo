@@ -39,13 +39,13 @@ def serialize_json(value: UserPendingChanges) -> dict:
 
 def deserialize_json(data: dict) -> UserPendingChanges:
     out: UserPendingChanges = {}  # type: ignore[typeddict-item]
-    if "consoleAccess" in data:
+    if data.get("consoleAccess") is not None:
         out["console_access"] = data["consoleAccess"]
-    if "groups" in data:
+    if data.get("groups") is not None:
         import capo_mq.types.__list_of__string
 
         out["groups"] = capo_mq.types.__list_of__string.deserialize_json(data["groups"])
-    if "pendingChange" in data:
+    if data.get("pendingChange") is not None:
         import capo_mq.types.change_type
 
         out["pending_change"] = capo_mq.types.change_type.deserialize_json(

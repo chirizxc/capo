@@ -183,7 +183,7 @@ def serialize_aws_json_1_1(value: SearchRecord) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SearchRecord:
     out: SearchRecord = {}  # type: ignore[typeddict-item]
-    if "TrainingJob" in data:
+    if data.get("TrainingJob") is not None:
         import capo_sagemaker.types.training_job
 
         out["training_job"] = (
@@ -191,19 +191,19 @@ def deserialize_aws_json_1_1(data: dict) -> SearchRecord:
                 data["TrainingJob"]
             )
         )
-    if "Experiment" in data:
+    if data.get("Experiment") is not None:
         import capo_sagemaker.types.experiment
 
         out["experiment"] = capo_sagemaker.types.experiment.deserialize_aws_json_1_1(
             data["Experiment"]
         )
-    if "Trial" in data:
+    if data.get("Trial") is not None:
         import capo_sagemaker.types.trial
 
         out["trial"] = capo_sagemaker.types.trial.deserialize_aws_json_1_1(
             data["Trial"]
         )
-    if "TrialComponent" in data:
+    if data.get("TrialComponent") is not None:
         import capo_sagemaker.types.trial_component
 
         out["trial_component"] = (
@@ -211,13 +211,13 @@ def deserialize_aws_json_1_1(data: dict) -> SearchRecord:
                 data["TrialComponent"]
             )
         )
-    if "Endpoint" in data:
+    if data.get("Endpoint") is not None:
         import capo_sagemaker.types.endpoint
 
         out["endpoint"] = capo_sagemaker.types.endpoint.deserialize_aws_json_1_1(
             data["Endpoint"]
         )
-    if "ModelPackage" in data:
+    if data.get("ModelPackage") is not None:
         import capo_sagemaker.types.model_package
 
         out["model_package"] = (
@@ -225,7 +225,7 @@ def deserialize_aws_json_1_1(data: dict) -> SearchRecord:
                 data["ModelPackage"]
             )
         )
-    if "ModelPackageGroup" in data:
+    if data.get("ModelPackageGroup") is not None:
         import capo_sagemaker.types.model_package_group
 
         out["model_package_group"] = (
@@ -233,13 +233,13 @@ def deserialize_aws_json_1_1(data: dict) -> SearchRecord:
                 data["ModelPackageGroup"]
             )
         )
-    if "Pipeline" in data:
+    if data.get("Pipeline") is not None:
         import capo_sagemaker.types.pipeline
 
         out["pipeline"] = capo_sagemaker.types.pipeline.deserialize_aws_json_1_1(
             data["Pipeline"]
         )
-    if "PipelineExecution" in data:
+    if data.get("PipelineExecution") is not None:
         import capo_sagemaker.types.pipeline_execution
 
         out["pipeline_execution"] = (
@@ -247,7 +247,7 @@ def deserialize_aws_json_1_1(data: dict) -> SearchRecord:
                 data["PipelineExecution"]
             )
         )
-    if "PipelineVersion" in data:
+    if data.get("PipelineVersion") is not None:
         import capo_sagemaker.types.pipeline_version
 
         out["pipeline_version"] = (
@@ -255,7 +255,7 @@ def deserialize_aws_json_1_1(data: dict) -> SearchRecord:
                 data["PipelineVersion"]
             )
         )
-    if "FeatureGroup" in data:
+    if data.get("FeatureGroup") is not None:
         import capo_sagemaker.types.feature_group
 
         out["feature_group"] = (
@@ -263,7 +263,7 @@ def deserialize_aws_json_1_1(data: dict) -> SearchRecord:
                 data["FeatureGroup"]
             )
         )
-    if "FeatureMetadata" in data:
+    if data.get("FeatureMetadata") is not None:
         import capo_sagemaker.types.feature_metadata
 
         out["feature_metadata"] = (
@@ -271,13 +271,13 @@ def deserialize_aws_json_1_1(data: dict) -> SearchRecord:
                 data["FeatureMetadata"]
             )
         )
-    if "Project" in data:
+    if data.get("Project") is not None:
         import capo_sagemaker.types.project
 
         out["project"] = capo_sagemaker.types.project.deserialize_aws_json_1_1(
             data["Project"]
         )
-    if "HyperParameterTuningJob" in data:
+    if data.get("HyperParameterTuningJob") is not None:
         import capo_sagemaker.types.hyper_parameter_tuning_job_search_entity
 
         out["hyper_parameter_tuning_job"] = (
@@ -285,13 +285,13 @@ def deserialize_aws_json_1_1(data: dict) -> SearchRecord:
                 data["HyperParameterTuningJob"]
             )
         )
-    if "ModelCard" in data:
+    if data.get("ModelCard") is not None:
         import capo_sagemaker.types.model_card
 
         out["model_card"] = capo_sagemaker.types.model_card.deserialize_aws_json_1_1(
             data["ModelCard"]
         )
-    if "Model" in data:
+    if data.get("Model") is not None:
         import capo_sagemaker.types.model_dashboard_model
 
         out["model"] = (
@@ -299,7 +299,7 @@ def deserialize_aws_json_1_1(data: dict) -> SearchRecord:
                 data["Model"]
             )
         )
-    if "Job" in data:
+    if data.get("Job") is not None:
         import capo_sagemaker.types.job
 
         out["job"] = capo_sagemaker.types.job.deserialize_aws_json_1_1(data["Job"])

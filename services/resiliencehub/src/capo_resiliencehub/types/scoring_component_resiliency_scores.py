@@ -31,6 +31,9 @@ def deserialize_json(data: dict) -> ScoringComponentResiliencyScores:
     out: ScoringComponentResiliencyScores = {}
     for key, value in data.items():
         import capo_resiliencehub.types.resiliency_score_type
+
+        if value is None:
+            continue
         import capo_resiliencehub.types.scoring_component_resiliency_score
 
         out[capo_resiliencehub.types.resiliency_score_type.deserialize_json(key)] = (

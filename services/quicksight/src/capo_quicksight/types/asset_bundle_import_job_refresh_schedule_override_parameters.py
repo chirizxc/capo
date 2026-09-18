@@ -41,19 +41,19 @@ def deserialize_json(
     data: dict,
 ) -> AssetBundleImportJobRefreshScheduleOverrideParameters:
     out: AssetBundleImportJobRefreshScheduleOverrideParameters = {}  # type: ignore[typeddict-item]
-    if "DataSetId" in data:
+    if data.get("DataSetId") is not None:
         out["data_set_id"] = data["DataSetId"]
     else:
         raise DeserializationError(
             "AssetBundleImportJobRefreshScheduleOverrideParameters.data_set_id required"
         )
-    if "ScheduleId" in data:
+    if data.get("ScheduleId") is not None:
         out["schedule_id"] = data["ScheduleId"]
     else:
         raise DeserializationError(
             "AssetBundleImportJobRefreshScheduleOverrideParameters.schedule_id required"
         )
-    if "StartAfterDateTime" in data:
+    if data.get("StartAfterDateTime") is not None:
         import capo_quicksight.types.timestamp
 
         out["start_after_date_time"] = capo_quicksight.types.timestamp.deserialize_json(

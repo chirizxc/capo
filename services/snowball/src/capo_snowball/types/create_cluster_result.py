@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: CreateClusterResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateClusterResult:
     out: CreateClusterResult = {}  # type: ignore[typeddict-item]
-    if "ClusterId" in data:
+    if data.get("ClusterId") is not None:
         out["cluster_id"] = data["ClusterId"]
-    if "JobListEntries" in data:
+    if data.get("JobListEntries") is not None:
         import capo_snowball.types.job_list_entry_list
 
         out["job_list_entries"] = (

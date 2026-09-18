@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: SnapshotNotFound_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SnapshotNotFound_:
     out: SnapshotNotFound_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class SnapshotNotFound(ServiceError):
 
     code: str | None = "SnapshotNotFound"
 
-    def __init__(self, data: SnapshotNotFound_):
+    def __init__(self, data: SnapshotNotFound_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="SnapshotNotFound",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "SnapshotNotFound":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "SnapshotNotFound":
+        return cls(deserialize_aws_json_1_1(data), message)

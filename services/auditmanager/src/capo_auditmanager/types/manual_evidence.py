@@ -37,10 +37,10 @@ def serialize_json(value: ManualEvidence) -> dict:
 
 def deserialize_json(data: dict) -> ManualEvidence:
     out: ManualEvidence = {}  # type: ignore[typeddict-item]
-    if "s3ResourcePath" in data:
+    if data.get("s3ResourcePath") is not None:
         out["s3_resource_path"] = data["s3ResourcePath"]
-    if "textResponse" in data:
+    if data.get("textResponse") is not None:
         out["text_response"] = data["textResponse"]
-    if "evidenceFileName" in data:
+    if data.get("evidenceFileName") is not None:
         out["evidence_file_name"] = data["evidenceFileName"]
     return out

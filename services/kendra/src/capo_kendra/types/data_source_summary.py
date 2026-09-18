@@ -68,34 +68,34 @@ def serialize_aws_json_1_1(value: DataSourceSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataSourceSummary:
     out: DataSourceSummary = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_kendra.types.data_source_type
 
         out["type"] = capo_kendra.types.data_source_type.deserialize_aws_json_1_1(
             data["Type"]
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_kendra.types.timestamp
 
         out["created_at"] = capo_kendra.types.timestamp.deserialize_aws_json_1_1(
             data["CreatedAt"]
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_kendra.types.timestamp
 
         out["updated_at"] = capo_kendra.types.timestamp.deserialize_aws_json_1_1(
             data["UpdatedAt"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_kendra.types.data_source_status
 
         out["status"] = capo_kendra.types.data_source_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         out["language_code"] = data["LanguageCode"]
     return out

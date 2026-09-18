@@ -54,15 +54,15 @@ def serialize_json(value: EdgeDeployment) -> dict:
 
 def deserialize_json(data: dict) -> EdgeDeployment:
     out: EdgeDeployment = {}  # type: ignore[typeddict-item]
-    if "DeploymentName" in data:
+    if data.get("DeploymentName") is not None:
         out["deployment_name"] = data["DeploymentName"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_sagemaker_edge.types.deployment_type
 
         out["type"] = capo_sagemaker_edge.types.deployment_type.deserialize_json(
             data["Type"]
         )
-    if "FailureHandlingPolicy" in data:
+    if data.get("FailureHandlingPolicy") is not None:
         import capo_sagemaker_edge.types.failure_handling_policy
 
         out["failure_handling_policy"] = (
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> EdgeDeployment:
                 data["FailureHandlingPolicy"]
             )
         )
-    if "Definitions" in data:
+    if data.get("Definitions") is not None:
         import capo_sagemaker_edge.types.definitions
 
         out["definitions"] = capo_sagemaker_edge.types.definitions.deserialize_json(

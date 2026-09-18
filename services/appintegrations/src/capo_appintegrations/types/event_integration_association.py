@@ -62,19 +62,19 @@ def serialize_json(value: EventIntegrationAssociation) -> dict:
 
 def deserialize_json(data: dict) -> EventIntegrationAssociation:
     out: EventIntegrationAssociation = {}  # type: ignore[typeddict-item]
-    if "EventIntegrationAssociationArn" in data:
+    if data.get("EventIntegrationAssociationArn") is not None:
         out["event_integration_association_arn"] = data[
             "EventIntegrationAssociationArn"
         ]
-    if "EventIntegrationAssociationId" in data:
+    if data.get("EventIntegrationAssociationId") is not None:
         out["event_integration_association_id"] = data["EventIntegrationAssociationId"]
-    if "EventIntegrationName" in data:
+    if data.get("EventIntegrationName") is not None:
         out["event_integration_name"] = data["EventIntegrationName"]
-    if "ClientId" in data:
+    if data.get("ClientId") is not None:
         out["client_id"] = data["ClientId"]
-    if "EventBridgeRuleName" in data:
+    if data.get("EventBridgeRuleName") is not None:
         out["event_bridge_rule_name"] = data["EventBridgeRuleName"]
-    if "ClientAssociationMetadata" in data:
+    if data.get("ClientAssociationMetadata") is not None:
         import capo_appintegrations.types.client_association_metadata
 
         out["client_association_metadata"] = (

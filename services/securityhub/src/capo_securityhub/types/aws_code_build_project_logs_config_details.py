@@ -44,7 +44,7 @@ def serialize_json(value: AwsCodeBuildProjectLogsConfigDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsCodeBuildProjectLogsConfigDetails:
     out: AwsCodeBuildProjectLogsConfigDetails = {}  # type: ignore[typeddict-item]
-    if "CloudWatchLogs" in data:
+    if data.get("CloudWatchLogs") is not None:
         import capo_securityhub.types.aws_code_build_project_logs_config_cloud_watch_logs_details
 
         out["cloud_watch_logs"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> AwsCodeBuildProjectLogsConfigDetails:
                 data["CloudWatchLogs"]
             )
         )
-    if "S3Logs" in data:
+    if data.get("S3Logs") is not None:
         import capo_securityhub.types.aws_code_build_project_logs_config_s3_logs_details
 
         out["s3_logs"] = (

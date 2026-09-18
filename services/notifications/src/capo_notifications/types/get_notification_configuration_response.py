@@ -58,27 +58,27 @@ def serialize_json(value: GetNotificationConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetNotificationConfigurationResponse:
     out: GetNotificationConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("GetNotificationConfigurationResponse.arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("GetNotificationConfigurationResponse.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     else:
         raise DeserializationError(
             "GetNotificationConfigurationResponse.description required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError(
             "GetNotificationConfigurationResponse.status required"
         )
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_notifications.types.creation_time
 
         out["creation_time"] = capo_notifications.types.creation_time.deserialize_json(
@@ -88,8 +88,8 @@ def deserialize_json(data: dict) -> GetNotificationConfigurationResponse:
         raise DeserializationError(
             "GetNotificationConfigurationResponse.creation_time required"
         )
-    if "aggregationDuration" in data:
+    if data.get("aggregationDuration") is not None:
         out["aggregation_duration"] = data["aggregationDuration"]
-    if "subtype" in data:
+    if data.get("subtype") is not None:
         out["subtype"] = data["subtype"]
     return out

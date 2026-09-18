@@ -21,18 +21,26 @@ class SamplingRateBoost(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: SamplingRateBoost) -> dict:
     out: dict = {}
-    out["MaxRate"] = value.get("max_rate", 0)
+    out["MaxRate"] = (
+        "NaN"
+        if value.get("max_rate", 0) != value.get("max_rate", 0)
+        else "Infinity"
+        if value.get("max_rate", 0) == float("inf")
+        else "-Infinity"
+        if value.get("max_rate", 0) == float("-inf")
+        else value.get("max_rate", 0)
+    )
     out["CooldownWindowMinutes"] = value.get("cooldown_window_minutes", 0)
     return out
 
 
 def deserialize_json(data: dict) -> SamplingRateBoost:
     out: SamplingRateBoost = {}  # type: ignore[typeddict-item]
-    if "MaxRate" in data:
-        out["max_rate"] = data["MaxRate"]
+    if data.get("MaxRate") is not None:
+        out["max_rate"] = float(data["MaxRate"])
     else:
         out["max_rate"] = 0
-    if "CooldownWindowMinutes" in data:
+    if data.get("CooldownWindowMinutes") is not None:
         out["cooldown_window_minutes"] = data["CooldownWindowMinutes"]
     else:
         out["cooldown_window_minutes"] = 0

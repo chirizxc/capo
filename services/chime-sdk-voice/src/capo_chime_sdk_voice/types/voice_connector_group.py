@@ -76,11 +76,11 @@ def serialize_json(value: VoiceConnectorGroup) -> dict:
 
 def deserialize_json(data: dict) -> VoiceConnectorGroup:
     out: VoiceConnectorGroup = {}  # type: ignore[typeddict-item]
-    if "VoiceConnectorGroupId" in data:
+    if data.get("VoiceConnectorGroupId") is not None:
         out["voice_connector_group_id"] = data["VoiceConnectorGroupId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "VoiceConnectorItems" in data:
+    if data.get("VoiceConnectorItems") is not None:
         import capo_chime_sdk_voice.types.voice_connector_item_list
 
         out["voice_connector_items"] = (
@@ -88,7 +88,7 @@ def deserialize_json(data: dict) -> VoiceConnectorGroup:
                 data["VoiceConnectorItems"]
             )
         )
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_chime_sdk_voice.types.iso8601_timestamp
 
         out["created_timestamp"] = (
@@ -96,7 +96,7 @@ def deserialize_json(data: dict) -> VoiceConnectorGroup:
                 data["CreatedTimestamp"]
             )
         )
-    if "UpdatedTimestamp" in data:
+    if data.get("UpdatedTimestamp") is not None:
         import capo_chime_sdk_voice.types.iso8601_timestamp
 
         out["updated_timestamp"] = (
@@ -104,6 +104,6 @@ def deserialize_json(data: dict) -> VoiceConnectorGroup:
                 data["UpdatedTimestamp"]
             )
         )
-    if "VoiceConnectorGroupArn" in data:
+    if data.get("VoiceConnectorGroupArn") is not None:
         out["voice_connector_group_arn"] = data["VoiceConnectorGroupArn"]
     return out

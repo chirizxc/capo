@@ -36,13 +36,13 @@ def serialize_json(value: AddDraftAppVersionResourceMappingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> AddDraftAppVersionResourceMappingsRequest:
     out: AddDraftAppVersionResourceMappingsRequest = {}  # type: ignore[typeddict-item]
-    if "appArn" in data:
+    if data.get("appArn") is not None:
         out["app_arn"] = data["appArn"]
     else:
         raise DeserializationError(
             "AddDraftAppVersionResourceMappingsRequest.app_arn required"
         )
-    if "resourceMappings" in data:
+    if data.get("resourceMappings") is not None:
         import capo_resiliencehub.types.resource_mapping_list
 
         out["resource_mappings"] = (

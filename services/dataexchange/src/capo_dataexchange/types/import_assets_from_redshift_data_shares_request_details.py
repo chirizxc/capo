@@ -37,7 +37,7 @@ def serialize_json(value: ImportAssetsFromRedshiftDataSharesRequestDetails) -> d
 
 def deserialize_json(data: dict) -> ImportAssetsFromRedshiftDataSharesRequestDetails:
     out: ImportAssetsFromRedshiftDataSharesRequestDetails = {}  # type: ignore[typeddict-item]
-    if "AssetSources" in data:
+    if data.get("AssetSources") is not None:
         import capo_dataexchange.types.list_of_redshift_data_share_asset_source_entry
 
         out["asset_sources"] = (
@@ -49,13 +49,13 @@ def deserialize_json(data: dict) -> ImportAssetsFromRedshiftDataSharesRequestDet
         raise DeserializationError(
             "ImportAssetsFromRedshiftDataSharesRequestDetails.asset_sources required"
         )
-    if "DataSetId" in data:
+    if data.get("DataSetId") is not None:
         out["data_set_id"] = data["DataSetId"]
     else:
         raise DeserializationError(
             "ImportAssetsFromRedshiftDataSharesRequestDetails.data_set_id required"
         )
-    if "RevisionId" in data:
+    if data.get("RevisionId") is not None:
         out["revision_id"] = data["RevisionId"]
     else:
         raise DeserializationError(

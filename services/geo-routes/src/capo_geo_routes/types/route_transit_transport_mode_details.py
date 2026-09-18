@@ -69,7 +69,7 @@ def serialize_json(value: RouteTransitTransportModeDetails) -> dict:
 
 def deserialize_json(data: dict) -> RouteTransitTransportModeDetails:
     out: RouteTransitTransportModeDetails = {}  # type: ignore[typeddict-item]
-    if "Accessibility" in data:
+    if data.get("Accessibility") is not None:
         import capo_geo_routes.types.route_accessibility_availability_details
 
         out["accessibility"] = (
@@ -77,13 +77,13 @@ def deserialize_json(data: dict) -> RouteTransitTransportModeDetails:
                 data["Accessibility"]
             )
         )
-    if "Color" in data:
+    if data.get("Color") is not None:
         out["color"] = data["Color"]
-    if "Headsign" in data:
+    if data.get("Headsign") is not None:
         out["headsign"] = data["Headsign"]
-    if "LongRouteName" in data:
+    if data.get("LongRouteName") is not None:
         out["long_route_name"] = data["LongRouteName"]
-    if "Mode" in data:
+    if data.get("Mode") is not None:
         import capo_geo_routes.types.route_transit_mode
 
         out["mode"] = capo_geo_routes.types.route_transit_mode.deserialize_json(
@@ -91,10 +91,10 @@ def deserialize_json(data: dict) -> RouteTransitTransportModeDetails:
         )
     else:
         raise DeserializationError("RouteTransitTransportModeDetails.mode required")
-    if "RouteName" in data:
+    if data.get("RouteName") is not None:
         out["route_name"] = data["RouteName"]
-    if "ShortRouteName" in data:
+    if data.get("ShortRouteName") is not None:
         out["short_route_name"] = data["ShortRouteName"]
-    if "TextColor" in data:
+    if data.get("TextColor") is not None:
         out["text_color"] = data["TextColor"]
     return out

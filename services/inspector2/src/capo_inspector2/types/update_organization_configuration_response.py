@@ -28,7 +28,7 @@ def serialize_json(value: UpdateOrganizationConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateOrganizationConfigurationResponse:
     out: UpdateOrganizationConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "autoEnable" in data:
+    if data.get("autoEnable") is not None:
         import capo_inspector2.types.auto_enable
 
         out["auto_enable"] = capo_inspector2.types.auto_enable.deserialize_json(

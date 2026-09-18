@@ -24,7 +24,7 @@ def serialize_json(value: S3DestinationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> S3DestinationConfiguration:
     out: S3DestinationConfiguration = {}  # type: ignore[typeddict-item]
-    if "location" in data:
+    if data.get("location") is not None:
         out["location"] = data["location"]
     else:
         raise DeserializationError("S3DestinationConfiguration.location required")

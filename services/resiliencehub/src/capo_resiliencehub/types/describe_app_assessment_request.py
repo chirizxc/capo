@@ -24,7 +24,7 @@ def serialize_json(value: DescribeAppAssessmentRequest) -> dict:
 
 def deserialize_json(data: dict) -> DescribeAppAssessmentRequest:
     out: DescribeAppAssessmentRequest = {}  # type: ignore[typeddict-item]
-    if "assessmentArn" in data:
+    if data.get("assessmentArn") is not None:
         out["assessment_arn"] = data["assessmentArn"]
     else:
         raise DeserializationError(

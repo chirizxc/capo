@@ -36,12 +36,12 @@ def serialize_json(value: IntentDisambiguationSettings) -> dict:
 
 def deserialize_json(data: dict) -> IntentDisambiguationSettings:
     out: IntentDisambiguationSettings = {}  # type: ignore[typeddict-item]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
     else:
         out["enabled"] = False
-    if "maxDisambiguationIntents" in data:
+    if data.get("maxDisambiguationIntents") is not None:
         out["max_disambiguation_intents"] = data["maxDisambiguationIntents"]
-    if "customDisambiguationMessage" in data:
+    if data.get("customDisambiguationMessage") is not None:
         out["custom_disambiguation_message"] = data["customDisambiguationMessage"]
     return out

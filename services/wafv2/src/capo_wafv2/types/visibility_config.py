@@ -31,15 +31,15 @@ def serialize_aws_json_1_1(value: VisibilityConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> VisibilityConfig:
     out: VisibilityConfig = {}  # type: ignore[typeddict-item]
-    if "SampledRequestsEnabled" in data:
+    if data.get("SampledRequestsEnabled") is not None:
         out["sampled_requests_enabled"] = data["SampledRequestsEnabled"]
     else:
         out["sampled_requests_enabled"] = False
-    if "CloudWatchMetricsEnabled" in data:
+    if data.get("CloudWatchMetricsEnabled") is not None:
         out["cloud_watch_metrics_enabled"] = data["CloudWatchMetricsEnabled"]
     else:
         out["cloud_watch_metrics_enabled"] = False
-    if "MetricName" in data:
+    if data.get("MetricName") is not None:
         out["metric_name"] = data["MetricName"]
     else:
         raise DeserializationError("VisibilityConfig.metric_name required")

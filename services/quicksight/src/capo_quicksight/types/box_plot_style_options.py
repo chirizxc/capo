@@ -29,7 +29,7 @@ def serialize_json(value: BoxPlotStyleOptions) -> dict:
 
 def deserialize_json(data: dict) -> BoxPlotStyleOptions:
     out: BoxPlotStyleOptions = {}  # type: ignore[typeddict-item]
-    if "FillStyle" in data:
+    if data.get("FillStyle") is not None:
         import capo_quicksight.types.box_plot_fill_style
 
         out["fill_style"] = capo_quicksight.types.box_plot_fill_style.deserialize_json(

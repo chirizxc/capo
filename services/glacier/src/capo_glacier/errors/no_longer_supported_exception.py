@@ -33,11 +33,11 @@ def serialize_json(value: NoLongerSupportedException_) -> dict:
 
 def deserialize_json(data: dict) -> NoLongerSupportedException_:
     out: NoLongerSupportedException_ = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -47,15 +47,18 @@ class NoLongerSupportedException(ServiceError):
 
     code: str | None = "NoLongerSupportedException"
 
-    def __init__(self, data: NoLongerSupportedException_):
+    def __init__(self, data: NoLongerSupportedException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="NoLongerSupportedException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "NoLongerSupportedException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "NoLongerSupportedException":
+        return cls(deserialize_json(data), message)

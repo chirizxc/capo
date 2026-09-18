@@ -38,13 +38,13 @@ def serialize_json(value: AssetSummary) -> dict:
 
 def deserialize_json(data: dict) -> AssetSummary:
     out: AssetSummary = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("AssetSummary.name required")
-    if "size" in data:
+    if data.get("size") is not None:
         out["size"] = data["size"]
-    if "hashes" in data:
+    if data.get("hashes") is not None:
         import capo_codeartifact.types.asset_hashes
 
         out["hashes"] = capo_codeartifact.types.asset_hashes.deserialize_json(

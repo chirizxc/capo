@@ -62,13 +62,13 @@ def serialize_json(value: DeleteAppVersionResourceRequest) -> dict:
 
 def deserialize_json(data: dict) -> DeleteAppVersionResourceRequest:
     out: DeleteAppVersionResourceRequest = {}  # type: ignore[typeddict-item]
-    if "appArn" in data:
+    if data.get("appArn") is not None:
         out["app_arn"] = data["appArn"]
     else:
         raise DeserializationError("DeleteAppVersionResourceRequest.app_arn required")
-    if "resourceName" in data:
+    if data.get("resourceName") is not None:
         out["resource_name"] = data["resourceName"]
-    if "logicalResourceId" in data:
+    if data.get("logicalResourceId") is not None:
         import capo_resiliencehub.types.logical_resource_id
 
         out["logical_resource_id"] = (
@@ -76,12 +76,12 @@ def deserialize_json(data: dict) -> DeleteAppVersionResourceRequest:
                 data["logicalResourceId"]
             )
         )
-    if "physicalResourceId" in data:
+    if data.get("physicalResourceId") is not None:
         out["physical_resource_id"] = data["physicalResourceId"]
-    if "awsRegion" in data:
+    if data.get("awsRegion") is not None:
         out["aws_region"] = data["awsRegion"]
-    if "awsAccountId" in data:
+    if data.get("awsAccountId") is not None:
         out["aws_account_id"] = data["awsAccountId"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

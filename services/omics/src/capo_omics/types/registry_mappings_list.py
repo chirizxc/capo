@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> RegistryMappingsList:
 
     out: RegistryMappingsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_omics.types.registry_mapping.deserialize_json(item))
     return out

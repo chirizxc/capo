@@ -32,7 +32,7 @@ def serialize_json(value: QueryConstraint) -> dict:
 
 
 def deserialize_json(data: dict) -> QueryConstraint:
-    if "requireOverlap" in data:
+    if data.get("requireOverlap") is not None:
         import capo_cleanrooms.types.query_constraint_require_overlap
 
         return {

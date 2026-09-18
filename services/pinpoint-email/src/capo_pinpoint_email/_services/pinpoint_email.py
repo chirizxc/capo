@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.pinpointemail#AmazonPinpointEmailService``."""
 
 import warnings
+from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +17,7 @@ from capo_pinpoint_email._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_pinpoint_email._auth._zapros_handler import AuthMiddleware
+from capo_pinpoint_email._pagination import resolve_path as _resolve_path
 from capo_pinpoint_email._services._aws_config import aws_config
 from capo_pinpoint_email._services._pipeline import (
     Interceptor,
@@ -294,8 +296,9 @@ class PinpointEmailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_email.types.create_configuration_set_request.CreateConfigurationSetRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_set_name"] = configuration_set_name
+        input_: capo_pinpoint_email.types.create_configuration_set_request.CreateConfigurationSetRequest = {
+            "configuration_set_name": configuration_set_name
+        }
         if tracking_options is not None:
             input_["tracking_options"] = tracking_options
         if delivery_options is not None:
@@ -312,6 +315,7 @@ class PinpointEmailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_configuration_set_event_destination(
@@ -353,16 +357,18 @@ class PinpointEmailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_email.types.create_configuration_set_event_destination_request.CreateConfigurationSetEventDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_set_name"] = configuration_set_name
-        input_["event_destination_name"] = event_destination_name
-        input_["event_destination"] = event_destination
+        input_: capo_pinpoint_email.types.create_configuration_set_event_destination_request.CreateConfigurationSetEventDestinationRequest = {
+            "configuration_set_name": configuration_set_name,
+            "event_destination_name": event_destination_name,
+            "event_destination": event_destination,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_dedicated_ip_pool(
@@ -402,8 +408,9 @@ class PinpointEmailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_email.types.create_dedicated_ip_pool_request.CreateDedicatedIpPoolRequest = {}  # type: ignore[typeddict-item]
-        input_["pool_name"] = pool_name
+        input_: capo_pinpoint_email.types.create_dedicated_ip_pool_request.CreateDedicatedIpPoolRequest = {
+            "pool_name": pool_name
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -412,6 +419,7 @@ class PinpointEmailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_deliverability_test_report(
@@ -461,11 +469,12 @@ class PinpointEmailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_email.types.create_deliverability_test_report_request.CreateDeliverabilityTestReportRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pinpoint_email.types.create_deliverability_test_report_request.CreateDeliverabilityTestReportRequest = {
+            "from_email_address": from_email_address,
+            "content": content,
+        }
         if report_name is not None:
             input_["report_name"] = report_name
-        input_["from_email_address"] = from_email_address
-        input_["content"] = content
         if tags is not None:
             input_["tags"] = tags
 
@@ -474,6 +483,7 @@ class PinpointEmailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_email_identity(
@@ -512,8 +522,9 @@ class PinpointEmailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_email.types.create_email_identity_request.CreateEmailIdentityRequest = {}  # type: ignore[typeddict-item]
-        input_["email_identity"] = email_identity
+        input_: capo_pinpoint_email.types.create_email_identity_request.CreateEmailIdentityRequest = {
+            "email_identity": email_identity
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -522,6 +533,7 @@ class PinpointEmailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_configuration_set(
@@ -558,14 +570,16 @@ class PinpointEmailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_email.types.delete_configuration_set_request.DeleteConfigurationSetRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_set_name"] = configuration_set_name
+        input_: capo_pinpoint_email.types.delete_configuration_set_request.DeleteConfigurationSetRequest = {
+            "configuration_set_name": configuration_set_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_configuration_set_event_destination(
@@ -603,15 +617,17 @@ class PinpointEmailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_email.types.delete_configuration_set_event_destination_request.DeleteConfigurationSetEventDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_set_name"] = configuration_set_name
-        input_["event_destination_name"] = event_destination_name
+        input_: capo_pinpoint_email.types.delete_configuration_set_event_destination_request.DeleteConfigurationSetEventDestinationRequest = {
+            "configuration_set_name": configuration_set_name,
+            "event_destination_name": event_destination_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_dedicated_ip_pool(
@@ -648,14 +664,16 @@ class PinpointEmailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_email.types.delete_dedicated_ip_pool_request.DeleteDedicatedIpPoolRequest = {}  # type: ignore[typeddict-item]
-        input_["pool_name"] = pool_name
+        input_: capo_pinpoint_email.types.delete_dedicated_ip_pool_request.DeleteDedicatedIpPoolRequest = {
+            "pool_name": pool_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_email_identity(
@@ -692,14 +710,16 @@ class PinpointEmailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_email.types.delete_email_identity_request.DeleteEmailIdentityRequest = {}  # type: ignore[typeddict-item]
-        input_["email_identity"] = email_identity
+        input_: capo_pinpoint_email.types.delete_email_identity_request.DeleteEmailIdentityRequest = {
+            "email_identity": email_identity
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_account(
@@ -728,13 +748,14 @@ class PinpointEmailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_email.types.get_account_request.GetAccountRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pinpoint_email.types.get_account_request.GetAccountRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_blacklist_reports(
@@ -770,14 +791,16 @@ class PinpointEmailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_email.types.get_blacklist_reports_request.GetBlacklistReportsRequest = {}  # type: ignore[typeddict-item]
-        input_["blacklist_item_names"] = blacklist_item_names
+        input_: capo_pinpoint_email.types.get_blacklist_reports_request.GetBlacklistReportsRequest = {
+            "blacklist_item_names": blacklist_item_names
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_configuration_set(
@@ -813,14 +836,16 @@ class PinpointEmailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_email.types.get_configuration_set_request.GetConfigurationSetRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_set_name"] = configuration_set_name
+        input_: capo_pinpoint_email.types.get_configuration_set_request.GetConfigurationSetRequest = {
+            "configuration_set_name": configuration_set_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_configuration_set_event_destinations(
@@ -856,14 +881,16 @@ class PinpointEmailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_email.types.get_configuration_set_event_destinations_request.GetConfigurationSetEventDestinationsRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_set_name"] = configuration_set_name
+        input_: capo_pinpoint_email.types.get_configuration_set_event_destinations_request.GetConfigurationSetEventDestinationsRequest = {
+            "configuration_set_name": configuration_set_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_dedicated_ip(
@@ -899,14 +926,16 @@ class PinpointEmailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_email.types.get_dedicated_ip_request.GetDedicatedIpRequest = {}  # type: ignore[typeddict-item]
-        input_["ip"] = ip
+        input_: capo_pinpoint_email.types.get_dedicated_ip_request.GetDedicatedIpRequest = {
+            "ip": ip
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_dedicated_ips(
@@ -946,7 +975,7 @@ class PinpointEmailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_email.types.get_dedicated_ips_request.GetDedicatedIpsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pinpoint_email.types.get_dedicated_ips_request.GetDedicatedIpsRequest = {}
         if pool_name is not None:
             input_["pool_name"] = pool_name
         if next_token is not None:
@@ -959,7 +988,29 @@ class PinpointEmailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_dedicated_ips(
+        self,
+        *,
+        config_overrides: Optional[PinpointEmailClientConfig] = None,
+        pool_name: Optional["capo_pinpoint_email.types.pool_name.PoolName"] = None,
+        next_token: Optional["capo_pinpoint_email.types.next_token.NextToken"] = None,
+        page_size: Optional["capo_pinpoint_email.types.max_items.MaxItems"] = None,
+    ) -> "Iterator[capo_pinpoint_email.types.get_dedicated_ips_response.GetDedicatedIpsResponse]":
+        _token = next_token
+        while True:
+            _response = self.get_dedicated_ips(
+                config_overrides=config_overrides,
+                pool_name=pool_name,
+                next_token=_token,
+                page_size=page_size,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_deliverability_dashboard_options(
         self, *, config_overrides: Optional[PinpointEmailClientConfig] = None
@@ -988,13 +1039,14 @@ class PinpointEmailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_email.types.get_deliverability_dashboard_options_request.GetDeliverabilityDashboardOptionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pinpoint_email.types.get_deliverability_dashboard_options_request.GetDeliverabilityDashboardOptionsRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_deliverability_test_report(
@@ -1030,14 +1082,16 @@ class PinpointEmailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_email.types.get_deliverability_test_report_request.GetDeliverabilityTestReportRequest = {}  # type: ignore[typeddict-item]
-        input_["report_id"] = report_id
+        input_: capo_pinpoint_email.types.get_deliverability_test_report_request.GetDeliverabilityTestReportRequest = {
+            "report_id": report_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_domain_deliverability_campaign(
@@ -1073,14 +1127,16 @@ class PinpointEmailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_email.types.get_domain_deliverability_campaign_request.GetDomainDeliverabilityCampaignRequest = {}  # type: ignore[typeddict-item]
-        input_["campaign_id"] = campaign_id
+        input_: capo_pinpoint_email.types.get_domain_deliverability_campaign_request.GetDomainDeliverabilityCampaignRequest = {
+            "campaign_id": campaign_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_domain_statistics_report(
@@ -1120,16 +1176,18 @@ class PinpointEmailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_email.types.get_domain_statistics_report_request.GetDomainStatisticsReportRequest = {}  # type: ignore[typeddict-item]
-        input_["domain"] = domain
-        input_["start_date"] = start_date
-        input_["end_date"] = end_date
+        input_: capo_pinpoint_email.types.get_domain_statistics_report_request.GetDomainStatisticsReportRequest = {
+            "domain": domain,
+            "start_date": start_date,
+            "end_date": end_date,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_email_identity(
@@ -1167,14 +1225,16 @@ class PinpointEmailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_email.types.get_email_identity_request.GetEmailIdentityRequest = {}  # type: ignore[typeddict-item]
-        input_["email_identity"] = email_identity
+        input_: capo_pinpoint_email.types.get_email_identity_request.GetEmailIdentityRequest = {
+            "email_identity": email_identity
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_configuration_sets(
@@ -1211,7 +1271,7 @@ class PinpointEmailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_email.types.list_configuration_sets_request.ListConfigurationSetsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pinpoint_email.types.list_configuration_sets_request.ListConfigurationSetsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if page_size is not None:
@@ -1222,7 +1282,27 @@ class PinpointEmailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_configuration_sets(
+        self,
+        *,
+        config_overrides: Optional[PinpointEmailClientConfig] = None,
+        next_token: Optional["capo_pinpoint_email.types.next_token.NextToken"] = None,
+        page_size: Optional["capo_pinpoint_email.types.max_items.MaxItems"] = None,
+    ) -> "Iterator[capo_pinpoint_email.types.list_configuration_sets_response.ListConfigurationSetsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_configuration_sets(
+                config_overrides=config_overrides,
+                next_token=_token,
+                page_size=page_size,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_dedicated_ip_pools(
         self,
@@ -1258,7 +1338,7 @@ class PinpointEmailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_email.types.list_dedicated_ip_pools_request.ListDedicatedIpPoolsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pinpoint_email.types.list_dedicated_ip_pools_request.ListDedicatedIpPoolsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if page_size is not None:
@@ -1269,7 +1349,27 @@ class PinpointEmailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_dedicated_ip_pools(
+        self,
+        *,
+        config_overrides: Optional[PinpointEmailClientConfig] = None,
+        next_token: Optional["capo_pinpoint_email.types.next_token.NextToken"] = None,
+        page_size: Optional["capo_pinpoint_email.types.max_items.MaxItems"] = None,
+    ) -> "Iterator[capo_pinpoint_email.types.list_dedicated_ip_pools_response.ListDedicatedIpPoolsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_dedicated_ip_pools(
+                config_overrides=config_overrides,
+                next_token=_token,
+                page_size=page_size,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_deliverability_test_reports(
         self,
@@ -1306,7 +1406,7 @@ class PinpointEmailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_email.types.list_deliverability_test_reports_request.ListDeliverabilityTestReportsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pinpoint_email.types.list_deliverability_test_reports_request.ListDeliverabilityTestReportsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if page_size is not None:
@@ -1317,7 +1417,27 @@ class PinpointEmailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_deliverability_test_reports(
+        self,
+        *,
+        config_overrides: Optional[PinpointEmailClientConfig] = None,
+        next_token: Optional["capo_pinpoint_email.types.next_token.NextToken"] = None,
+        page_size: Optional["capo_pinpoint_email.types.max_items.MaxItems"] = None,
+    ) -> "Iterator[capo_pinpoint_email.types.list_deliverability_test_reports_response.ListDeliverabilityTestReportsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_deliverability_test_reports(
+                config_overrides=config_overrides,
+                next_token=_token,
+                page_size=page_size,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_domain_deliverability_campaigns(
         self,
@@ -1360,10 +1480,11 @@ class PinpointEmailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_email.types.list_domain_deliverability_campaigns_request.ListDomainDeliverabilityCampaignsRequest = {}  # type: ignore[typeddict-item]
-        input_["start_date"] = start_date
-        input_["end_date"] = end_date
-        input_["subscribed_domain"] = subscribed_domain
+        input_: capo_pinpoint_email.types.list_domain_deliverability_campaigns_request.ListDomainDeliverabilityCampaignsRequest = {
+            "start_date": start_date,
+            "end_date": end_date,
+            "subscribed_domain": subscribed_domain,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if page_size is not None:
@@ -1374,7 +1495,33 @@ class PinpointEmailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_domain_deliverability_campaigns(
+        self,
+        start_date: "capo_pinpoint_email.types.timestamp.Timestamp",
+        end_date: "capo_pinpoint_email.types.timestamp.Timestamp",
+        subscribed_domain: "capo_pinpoint_email.types.domain.Domain",
+        *,
+        config_overrides: Optional[PinpointEmailClientConfig] = None,
+        next_token: Optional["capo_pinpoint_email.types.next_token.NextToken"] = None,
+        page_size: Optional["capo_pinpoint_email.types.max_items.MaxItems"] = None,
+    ) -> "Iterator[capo_pinpoint_email.types.list_domain_deliverability_campaigns_response.ListDomainDeliverabilityCampaignsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_domain_deliverability_campaigns(
+                start_date,
+                end_date,
+                subscribed_domain,
+                config_overrides=config_overrides,
+                next_token=_token,
+                page_size=page_size,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_email_identities(
         self,
@@ -1410,7 +1557,7 @@ class PinpointEmailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_email.types.list_email_identities_request.ListEmailIdentitiesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pinpoint_email.types.list_email_identities_request.ListEmailIdentitiesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if page_size is not None:
@@ -1421,7 +1568,27 @@ class PinpointEmailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_email_identities(
+        self,
+        *,
+        config_overrides: Optional[PinpointEmailClientConfig] = None,
+        next_token: Optional["capo_pinpoint_email.types.next_token.NextToken"] = None,
+        page_size: Optional["capo_pinpoint_email.types.max_items.MaxItems"] = None,
+    ) -> "Iterator[capo_pinpoint_email.types.list_email_identities_response.ListEmailIdentitiesResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_email_identities(
+                config_overrides=config_overrides,
+                next_token=_token,
+                page_size=page_size,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_tags_for_resource(
         self,
@@ -1456,14 +1623,16 @@ class PinpointEmailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_email.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_pinpoint_email.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_account_dedicated_ip_warmup_attributes(
@@ -1500,7 +1669,7 @@ class PinpointEmailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_email.types.put_account_dedicated_ip_warmup_attributes_request.PutAccountDedicatedIpWarmupAttributesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pinpoint_email.types.put_account_dedicated_ip_warmup_attributes_request.PutAccountDedicatedIpWarmupAttributesRequest = {}
         if auto_warmup_enabled is not None:
             input_["auto_warmup_enabled"] = auto_warmup_enabled
 
@@ -1509,6 +1678,7 @@ class PinpointEmailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_account_sending_attributes(
@@ -1543,7 +1713,7 @@ class PinpointEmailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_email.types.put_account_sending_attributes_request.PutAccountSendingAttributesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pinpoint_email.types.put_account_sending_attributes_request.PutAccountSendingAttributesRequest = {}
         if sending_enabled is not None:
             input_["sending_enabled"] = sending_enabled
 
@@ -1552,6 +1722,7 @@ class PinpointEmailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_configuration_set_delivery_options(
@@ -1593,8 +1764,9 @@ class PinpointEmailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_email.types.put_configuration_set_delivery_options_request.PutConfigurationSetDeliveryOptionsRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_set_name"] = configuration_set_name
+        input_: capo_pinpoint_email.types.put_configuration_set_delivery_options_request.PutConfigurationSetDeliveryOptionsRequest = {
+            "configuration_set_name": configuration_set_name
+        }
         if tls_policy is not None:
             input_["tls_policy"] = tls_policy
         if sending_pool_name is not None:
@@ -1605,6 +1777,7 @@ class PinpointEmailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_configuration_set_reputation_options(
@@ -1644,8 +1817,9 @@ class PinpointEmailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_email.types.put_configuration_set_reputation_options_request.PutConfigurationSetReputationOptionsRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_set_name"] = configuration_set_name
+        input_: capo_pinpoint_email.types.put_configuration_set_reputation_options_request.PutConfigurationSetReputationOptionsRequest = {
+            "configuration_set_name": configuration_set_name
+        }
         if reputation_metrics_enabled is not None:
             input_["reputation_metrics_enabled"] = reputation_metrics_enabled
 
@@ -1654,6 +1828,7 @@ class PinpointEmailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_configuration_set_sending_options(
@@ -1691,8 +1866,9 @@ class PinpointEmailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_email.types.put_configuration_set_sending_options_request.PutConfigurationSetSendingOptionsRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_set_name"] = configuration_set_name
+        input_: capo_pinpoint_email.types.put_configuration_set_sending_options_request.PutConfigurationSetSendingOptionsRequest = {
+            "configuration_set_name": configuration_set_name
+        }
         if sending_enabled is not None:
             input_["sending_enabled"] = sending_enabled
 
@@ -1701,6 +1877,7 @@ class PinpointEmailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_configuration_set_tracking_options(
@@ -1740,8 +1917,9 @@ class PinpointEmailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_email.types.put_configuration_set_tracking_options_request.PutConfigurationSetTrackingOptionsRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_set_name"] = configuration_set_name
+        input_: capo_pinpoint_email.types.put_configuration_set_tracking_options_request.PutConfigurationSetTrackingOptionsRequest = {
+            "configuration_set_name": configuration_set_name
+        }
         if custom_redirect_domain is not None:
             input_["custom_redirect_domain"] = custom_redirect_domain
 
@@ -1750,6 +1928,7 @@ class PinpointEmailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_dedicated_ip_in_pool(
@@ -1787,15 +1966,17 @@ class PinpointEmailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_email.types.put_dedicated_ip_in_pool_request.PutDedicatedIpInPoolRequest = {}  # type: ignore[typeddict-item]
-        input_["ip"] = ip
-        input_["destination_pool_name"] = destination_pool_name
+        input_: capo_pinpoint_email.types.put_dedicated_ip_in_pool_request.PutDedicatedIpInPoolRequest = {
+            "ip": ip,
+            "destination_pool_name": destination_pool_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_dedicated_ip_warmup_attributes(
@@ -1833,15 +2014,17 @@ class PinpointEmailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_email.types.put_dedicated_ip_warmup_attributes_request.PutDedicatedIpWarmupAttributesRequest = {}  # type: ignore[typeddict-item]
-        input_["ip"] = ip
-        input_["warmup_percentage"] = warmup_percentage
+        input_: capo_pinpoint_email.types.put_dedicated_ip_warmup_attributes_request.PutDedicatedIpWarmupAttributesRequest = {
+            "ip": ip,
+            "warmup_percentage": warmup_percentage,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_deliverability_dashboard_option(
@@ -1883,8 +2066,9 @@ class PinpointEmailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_email.types.put_deliverability_dashboard_option_request.PutDeliverabilityDashboardOptionRequest = {}  # type: ignore[typeddict-item]
-        input_["dashboard_enabled"] = dashboard_enabled
+        input_: capo_pinpoint_email.types.put_deliverability_dashboard_option_request.PutDeliverabilityDashboardOptionRequest = {
+            "dashboard_enabled": dashboard_enabled
+        }
         if subscribed_domains is not None:
             input_["subscribed_domains"] = subscribed_domains
 
@@ -1893,6 +2077,7 @@ class PinpointEmailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_email_identity_dkim_attributes(
@@ -1930,8 +2115,9 @@ class PinpointEmailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_email.types.put_email_identity_dkim_attributes_request.PutEmailIdentityDkimAttributesRequest = {}  # type: ignore[typeddict-item]
-        input_["email_identity"] = email_identity
+        input_: capo_pinpoint_email.types.put_email_identity_dkim_attributes_request.PutEmailIdentityDkimAttributesRequest = {
+            "email_identity": email_identity
+        }
         if signing_enabled is not None:
             input_["signing_enabled"] = signing_enabled
 
@@ -1940,6 +2126,7 @@ class PinpointEmailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_email_identity_feedback_attributes(
@@ -1979,8 +2166,9 @@ class PinpointEmailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_email.types.put_email_identity_feedback_attributes_request.PutEmailIdentityFeedbackAttributesRequest = {}  # type: ignore[typeddict-item]
-        input_["email_identity"] = email_identity
+        input_: capo_pinpoint_email.types.put_email_identity_feedback_attributes_request.PutEmailIdentityFeedbackAttributesRequest = {
+            "email_identity": email_identity
+        }
         if email_forwarding_enabled is not None:
             input_["email_forwarding_enabled"] = email_forwarding_enabled
 
@@ -1989,6 +2177,7 @@ class PinpointEmailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_email_identity_mail_from_attributes(
@@ -2032,8 +2221,9 @@ class PinpointEmailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_email.types.put_email_identity_mail_from_attributes_request.PutEmailIdentityMailFromAttributesRequest = {}  # type: ignore[typeddict-item]
-        input_["email_identity"] = email_identity
+        input_: capo_pinpoint_email.types.put_email_identity_mail_from_attributes_request.PutEmailIdentityMailFromAttributesRequest = {
+            "email_identity": email_identity
+        }
         if mail_from_domain is not None:
             input_["mail_from_domain"] = mail_from_domain
         if behavior_on_mx_failure is not None:
@@ -2044,6 +2234,7 @@ class PinpointEmailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def send_email(
@@ -2106,17 +2297,18 @@ class PinpointEmailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_email.types.send_email_request.SendEmailRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pinpoint_email.types.send_email_request.SendEmailRequest = {
+            "destination": destination,
+            "content": content,
+        }
         if from_email_address is not None:
             input_["from_email_address"] = from_email_address
-        input_["destination"] = destination
         if reply_to_addresses is not None:
             input_["reply_to_addresses"] = reply_to_addresses
         if feedback_forwarding_email_address is not None:
             input_["feedback_forwarding_email_address"] = (
                 feedback_forwarding_email_address
             )
-        input_["content"] = content
         if email_tags is not None:
             input_["email_tags"] = email_tags
         if configuration_set_name is not None:
@@ -2127,6 +2319,7 @@ class PinpointEmailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -2165,15 +2358,17 @@ class PinpointEmailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_email.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_pinpoint_email.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -2212,15 +2407,17 @@ class PinpointEmailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_email.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_pinpoint_email.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_configuration_set_event_destination(
@@ -2260,16 +2457,18 @@ class PinpointEmailClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_pinpoint_email.types.update_configuration_set_event_destination_request.UpdateConfigurationSetEventDestinationRequest = {}  # type: ignore[typeddict-item]
-        input_["configuration_set_name"] = configuration_set_name
-        input_["event_destination_name"] = event_destination_name
-        input_["event_destination"] = event_destination
+        input_: capo_pinpoint_email.types.update_configuration_set_event_destination_request.UpdateConfigurationSetEventDestinationRequest = {
+            "configuration_set_name": configuration_set_name,
+            "event_destination_name": event_destination_name,
+            "event_destination": event_destination,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

@@ -69,29 +69,29 @@ def serialize_aws_json_1_0(value: UpdateServiceTemplateVersionInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateServiceTemplateVersionInput:
     out: UpdateServiceTemplateVersionInput = {}  # type: ignore[typeddict-item]
-    if "templateName" in data:
+    if data.get("templateName") is not None:
         out["template_name"] = data["templateName"]
     else:
         raise DeserializationError(
             "UpdateServiceTemplateVersionInput.template_name required"
         )
-    if "majorVersion" in data:
+    if data.get("majorVersion") is not None:
         out["major_version"] = data["majorVersion"]
     else:
         raise DeserializationError(
             "UpdateServiceTemplateVersionInput.major_version required"
         )
-    if "minorVersion" in data:
+    if data.get("minorVersion") is not None:
         out["minor_version"] = data["minorVersion"]
     else:
         raise DeserializationError(
             "UpdateServiceTemplateVersionInput.minor_version required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "compatibleEnvironmentTemplates" in data:
+    if data.get("compatibleEnvironmentTemplates") is not None:
         import capo_proton.types.compatible_environment_template_input_list
 
         out["compatible_environment_templates"] = (
@@ -99,7 +99,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateServiceTemplateVersionInput:
                 data["compatibleEnvironmentTemplates"]
             )
         )
-    if "supportedComponentSources" in data:
+    if data.get("supportedComponentSources") is not None:
         import capo_proton.types.service_template_supported_component_source_input_list
 
         out["supported_component_sources"] = (

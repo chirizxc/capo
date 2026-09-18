@@ -4,6 +4,8 @@ from typing import TYPE_CHECKING
 
 from typing_extensions import NotRequired, TypedDict
 
+from capo_evs.errors import DeserializationError
+
 if TYPE_CHECKING:
     import capo_evs.types.client_token
     import capo_evs.types.environment_id
@@ -21,11 +23,16 @@ def serialize_aws_json_1_0(value: DeleteEnvironmentRequest) -> dict:
     out: dict = {}
     if "client_token" in value:
         out["clientToken"] = value["client_token"]
+    out["environmentId"] = value["environment_id"]
     return out
 
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteEnvironmentRequest:
     out: DeleteEnvironmentRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
+    if data.get("environmentId") is not None:
+        out["environment_id"] = data["environmentId"]
+    else:
+        raise DeserializationError("DeleteEnvironmentRequest.environment_id required")
     return out

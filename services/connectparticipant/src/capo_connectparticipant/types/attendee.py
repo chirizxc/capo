@@ -28,8 +28,8 @@ def serialize_json(value: Attendee) -> dict:
 
 def deserialize_json(data: dict) -> Attendee:
     out: Attendee = {}  # type: ignore[typeddict-item]
-    if "AttendeeId" in data:
+    if data.get("AttendeeId") is not None:
         out["attendee_id"] = data["AttendeeId"]
-    if "JoinToken" in data:
+    if data.get("JoinToken") is not None:
         out["join_token"] = data["JoinToken"]
     return out

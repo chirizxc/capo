@@ -37,7 +37,7 @@ def serialize_aws_json_1_1(value: UntagResourceInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UntagResourceInput:
     out: UntagResourceInput = {}  # type: ignore[typeddict-item]
-    if "TagKeys" in data:
+    if data.get("TagKeys") is not None:
         import capo_kinesis.types.tag_key_list
 
         out["tag_keys"] = capo_kinesis.types.tag_key_list.deserialize_aws_json_1_1(
@@ -45,10 +45,10 @@ def deserialize_aws_json_1_1(data: dict) -> UntagResourceInput:
         )
     else:
         raise DeserializationError("UntagResourceInput.tag_keys required")
-    if "ResourceARN" in data:
+    if data.get("ResourceARN") is not None:
         out["resource_arn"] = data["ResourceARN"]
     else:
         raise DeserializationError("UntagResourceInput.resource_arn required")
-    if "StreamId" in data:
+    if data.get("StreamId") is not None:
         out["stream_id"] = data["StreamId"]
     return out

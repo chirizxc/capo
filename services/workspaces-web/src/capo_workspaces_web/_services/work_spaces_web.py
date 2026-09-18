@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.workspacesweb#AWSErmineControlPlaneService``."""
 
+import uuid
 import warnings
 from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -229,15 +230,17 @@ class WorkSpacesWebClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.expire_session_request.ExpireSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_id"] = portal_id
-        input_["session_id"] = session_id
+        input_: capo_workspaces_web.types.expire_session_request.ExpireSessionRequest = {
+            "portal_id": portal_id,
+            "session_id": session_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_session(
@@ -277,15 +280,17 @@ class WorkSpacesWebClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.get_session_request.GetSessionRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_id"] = portal_id
-        input_["session_id"] = session_id
+        input_: capo_workspaces_web.types.get_session_request.GetSessionRequest = {
+            "portal_id": portal_id,
+            "session_id": session_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_sessions(
@@ -343,8 +348,9 @@ class WorkSpacesWebClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.list_sessions_request.ListSessionsRequest = {}  # type: ignore[typeddict-item]
-        input_["portal_id"] = portal_id
+        input_: capo_workspaces_web.types.list_sessions_request.ListSessionsRequest = {
+            "portal_id": portal_id
+        }
         if username is not None:
             input_["username"] = username
         if session_id is not None:
@@ -363,6 +369,7 @@ class WorkSpacesWebClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_sessions(
@@ -439,14 +446,16 @@ class WorkSpacesWebClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_workspaces_web.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -491,17 +500,20 @@ class WorkSpacesWebClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_workspaces_web.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -541,15 +553,17 @@ class WorkSpacesWebClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_workspaces_web.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

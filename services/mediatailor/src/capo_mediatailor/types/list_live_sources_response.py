@@ -34,12 +34,12 @@ def serialize_json(value: ListLiveSourcesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListLiveSourcesResponse:
     out: ListLiveSourcesResponse = {}  # type: ignore[typeddict-item]
-    if "Items" in data:
+    if data.get("Items") is not None:
         import capo_mediatailor.types.__list_of_live_source
 
         out["items"] = capo_mediatailor.types.__list_of_live_source.deserialize_json(
             data["Items"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

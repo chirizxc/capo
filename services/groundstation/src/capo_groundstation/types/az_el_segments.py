@@ -36,7 +36,7 @@ def serialize_json(value: AzElSegments) -> dict:
 
 def deserialize_json(data: dict) -> AzElSegments:
     out: AzElSegments = {}  # type: ignore[typeddict-item]
-    if "angleUnit" in data:
+    if data.get("angleUnit") is not None:
         import capo_groundstation.types.angle_units
 
         out["angle_unit"] = capo_groundstation.types.angle_units.deserialize_json(
@@ -44,7 +44,7 @@ def deserialize_json(data: dict) -> AzElSegments:
         )
     else:
         raise DeserializationError("AzElSegments.angle_unit required")
-    if "azElSegmentList" in data:
+    if data.get("azElSegmentList") is not None:
         import capo_groundstation.types.az_el_segment_list
 
         out["az_el_segment_list"] = (

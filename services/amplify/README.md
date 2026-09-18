@@ -13,9 +13,9 @@ from capo_amplify import AsyncAmplifyClient
 
 
 async def main():
-    async with AsyncAmplifyClient() as s3:
+    async with AsyncAmplifyClient() as amplify:
         # Example: call the create_app operation
-        response = await s3.create_app()
+        response = await amplify.create_app()
         print(response["app"])
 ```
 
@@ -28,9 +28,9 @@ from capo_amplify import AsyncAmplifyClient
 
 
 async def main():
-    async with AsyncAmplifyClient() as s3:
+    async with AsyncAmplifyClient() as amplify:
         # Example: paginate over list_apps
-        async for item in s3.iter_list_apps():
+        async for item in amplify.iter_list_apps():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_amplify.error import BadRequestException
 
 
 async def main():
-    async with AsyncAmplifyClient() as s3:
+    async with AsyncAmplifyClient() as amplify:
         try:
-            await s3.create_app()
+            await amplify.create_app()
         except BadRequestException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_amplify import AsyncAmplifyClient
 
 
 async def main():
-    async with AsyncAmplifyClient() as s3:
+    async with AsyncAmplifyClient() as amplify:
         # Default: 3 attempts for every operation
-        response = await s3.create_app()
+        response = await amplify.create_app()
 
         # Override per operation
-        response = await s3.create_app(config_overrides={"retry_max_attempts": 5})
+        response = await amplify.create_app(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_app(config_overrides={"retry_max_attempts": 1})
+        response = await amplify.create_app(config_overrides={"retry_max_attempts": 1})
 ```

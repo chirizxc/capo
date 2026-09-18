@@ -323,7 +323,7 @@ def serialize_json(value: AwsEc2LaunchTemplateDataDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataDetails:
     out: AwsEc2LaunchTemplateDataDetails = {}  # type: ignore[typeddict-item]
-    if "BlockDeviceMappingSet" in data:
+    if data.get("BlockDeviceMappingSet") is not None:
         import capo_securityhub.types.aws_ec2_launch_template_data_block_device_mapping_set_list
 
         out["block_device_mapping_set"] = (
@@ -331,7 +331,7 @@ def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataDetails:
                 data["BlockDeviceMappingSet"]
             )
         )
-    if "CapacityReservationSpecification" in data:
+    if data.get("CapacityReservationSpecification") is not None:
         import capo_securityhub.types.aws_ec2_launch_template_data_capacity_reservation_specification_details
 
         out["capacity_reservation_specification"] = (
@@ -339,7 +339,7 @@ def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataDetails:
                 data["CapacityReservationSpecification"]
             )
         )
-    if "CpuOptions" in data:
+    if data.get("CpuOptions") is not None:
         import capo_securityhub.types.aws_ec2_launch_template_data_cpu_options_details
 
         out["cpu_options"] = (
@@ -347,7 +347,7 @@ def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataDetails:
                 data["CpuOptions"]
             )
         )
-    if "CreditSpecification" in data:
+    if data.get("CreditSpecification") is not None:
         import capo_securityhub.types.aws_ec2_launch_template_data_credit_specification_details
 
         out["credit_specification"] = (
@@ -355,13 +355,13 @@ def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataDetails:
                 data["CreditSpecification"]
             )
         )
-    if "DisableApiStop" in data:
+    if data.get("DisableApiStop") is not None:
         out["disable_api_stop"] = data["DisableApiStop"]
-    if "DisableApiTermination" in data:
+    if data.get("DisableApiTermination") is not None:
         out["disable_api_termination"] = data["DisableApiTermination"]
-    if "EbsOptimized" in data:
+    if data.get("EbsOptimized") is not None:
         out["ebs_optimized"] = data["EbsOptimized"]
-    if "ElasticGpuSpecificationSet" in data:
+    if data.get("ElasticGpuSpecificationSet") is not None:
         import capo_securityhub.types.aws_ec2_launch_template_data_elastic_gpu_specification_set_list
 
         out["elastic_gpu_specification_set"] = (
@@ -369,7 +369,7 @@ def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataDetails:
                 data["ElasticGpuSpecificationSet"]
             )
         )
-    if "ElasticInferenceAcceleratorSet" in data:
+    if data.get("ElasticInferenceAcceleratorSet") is not None:
         import capo_securityhub.types.aws_ec2_launch_template_data_elastic_inference_accelerator_set_list
 
         out["elastic_inference_accelerator_set"] = (
@@ -377,7 +377,7 @@ def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataDetails:
                 data["ElasticInferenceAcceleratorSet"]
             )
         )
-    if "EnclaveOptions" in data:
+    if data.get("EnclaveOptions") is not None:
         import capo_securityhub.types.aws_ec2_launch_template_data_enclave_options_details
 
         out["enclave_options"] = (
@@ -385,7 +385,7 @@ def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataDetails:
                 data["EnclaveOptions"]
             )
         )
-    if "HibernationOptions" in data:
+    if data.get("HibernationOptions") is not None:
         import capo_securityhub.types.aws_ec2_launch_template_data_hibernation_options_details
 
         out["hibernation_options"] = (
@@ -393,7 +393,7 @@ def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataDetails:
                 data["HibernationOptions"]
             )
         )
-    if "IamInstanceProfile" in data:
+    if data.get("IamInstanceProfile") is not None:
         import capo_securityhub.types.aws_ec2_launch_template_data_iam_instance_profile_details
 
         out["iam_instance_profile"] = (
@@ -401,13 +401,13 @@ def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataDetails:
                 data["IamInstanceProfile"]
             )
         )
-    if "ImageId" in data:
+    if data.get("ImageId") is not None:
         out["image_id"] = data["ImageId"]
-    if "InstanceInitiatedShutdownBehavior" in data:
+    if data.get("InstanceInitiatedShutdownBehavior") is not None:
         out["instance_initiated_shutdown_behavior"] = data[
             "InstanceInitiatedShutdownBehavior"
         ]
-    if "InstanceMarketOptions" in data:
+    if data.get("InstanceMarketOptions") is not None:
         import capo_securityhub.types.aws_ec2_launch_template_data_instance_market_options_details
 
         out["instance_market_options"] = (
@@ -415,7 +415,7 @@ def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataDetails:
                 data["InstanceMarketOptions"]
             )
         )
-    if "InstanceRequirements" in data:
+    if data.get("InstanceRequirements") is not None:
         import capo_securityhub.types.aws_ec2_launch_template_data_instance_requirements_details
 
         out["instance_requirements"] = (
@@ -423,13 +423,13 @@ def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataDetails:
                 data["InstanceRequirements"]
             )
         )
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         out["instance_type"] = data["InstanceType"]
-    if "KernelId" in data:
+    if data.get("KernelId") is not None:
         out["kernel_id"] = data["KernelId"]
-    if "KeyName" in data:
+    if data.get("KeyName") is not None:
         out["key_name"] = data["KeyName"]
-    if "LicenseSet" in data:
+    if data.get("LicenseSet") is not None:
         import capo_securityhub.types.aws_ec2_launch_template_data_license_set_list
 
         out["license_set"] = (
@@ -437,7 +437,7 @@ def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataDetails:
                 data["LicenseSet"]
             )
         )
-    if "MaintenanceOptions" in data:
+    if data.get("MaintenanceOptions") is not None:
         import capo_securityhub.types.aws_ec2_launch_template_data_maintenance_options_details
 
         out["maintenance_options"] = (
@@ -445,7 +445,7 @@ def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataDetails:
                 data["MaintenanceOptions"]
             )
         )
-    if "MetadataOptions" in data:
+    if data.get("MetadataOptions") is not None:
         import capo_securityhub.types.aws_ec2_launch_template_data_metadata_options_details
 
         out["metadata_options"] = (
@@ -453,7 +453,7 @@ def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataDetails:
                 data["MetadataOptions"]
             )
         )
-    if "Monitoring" in data:
+    if data.get("Monitoring") is not None:
         import capo_securityhub.types.aws_ec2_launch_template_data_monitoring_details
 
         out["monitoring"] = (
@@ -461,7 +461,7 @@ def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataDetails:
                 data["Monitoring"]
             )
         )
-    if "NetworkInterfaceSet" in data:
+    if data.get("NetworkInterfaceSet") is not None:
         import capo_securityhub.types.aws_ec2_launch_template_data_network_interface_set_list
 
         out["network_interface_set"] = (
@@ -469,7 +469,7 @@ def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataDetails:
                 data["NetworkInterfaceSet"]
             )
         )
-    if "Placement" in data:
+    if data.get("Placement") is not None:
         import capo_securityhub.types.aws_ec2_launch_template_data_placement_details
 
         out["placement"] = (
@@ -477,7 +477,7 @@ def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataDetails:
                 data["Placement"]
             )
         )
-    if "PrivateDnsNameOptions" in data:
+    if data.get("PrivateDnsNameOptions") is not None:
         import capo_securityhub.types.aws_ec2_launch_template_data_private_dns_name_options_details
 
         out["private_dns_name_options"] = (
@@ -485,9 +485,9 @@ def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataDetails:
                 data["PrivateDnsNameOptions"]
             )
         )
-    if "RamDiskId" in data:
+    if data.get("RamDiskId") is not None:
         out["ram_disk_id"] = data["RamDiskId"]
-    if "SecurityGroupIdSet" in data:
+    if data.get("SecurityGroupIdSet") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["security_group_id_set"] = (
@@ -495,7 +495,7 @@ def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataDetails:
                 data["SecurityGroupIdSet"]
             )
         )
-    if "SecurityGroupSet" in data:
+    if data.get("SecurityGroupSet") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["security_group_set"] = (
@@ -503,6 +503,6 @@ def deserialize_json(data: dict) -> AwsEc2LaunchTemplateDataDetails:
                 data["SecurityGroupSet"]
             )
         )
-    if "UserData" in data:
+    if data.get("UserData") is not None:
         out["user_data"] = data["UserData"]
     return out

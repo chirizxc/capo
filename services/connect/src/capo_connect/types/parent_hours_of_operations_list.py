@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ParentHoursOfOperationsList:
 
     out: ParentHoursOfOperationsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.hours_of_operations_identifier.deserialize_json(item)
         )

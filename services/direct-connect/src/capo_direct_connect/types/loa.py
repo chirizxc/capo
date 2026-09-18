@@ -42,7 +42,7 @@ def serialize_aws_json_1_1(value: Loa) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Loa:
     out: Loa = {}  # type: ignore[typeddict-item]
-    if "loaContent" in data:
+    if data.get("loaContent") is not None:
         import capo_direct_connect.types.loa_content
 
         out["loa_content"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> Loa:
                 data["loaContent"]
             )
         )
-    if "loaContentType" in data:
+    if data.get("loaContentType") is not None:
         import capo_direct_connect.types.loa_content_type
 
         out["loa_content_type"] = (

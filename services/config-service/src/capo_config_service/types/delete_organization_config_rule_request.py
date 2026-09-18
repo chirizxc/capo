@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteOrganizationConfigRuleRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteOrganizationConfigRuleRequest:
     out: DeleteOrganizationConfigRuleRequest = {}  # type: ignore[typeddict-item]
-    if "OrganizationConfigRuleName" in data:
+    if data.get("OrganizationConfigRuleName") is not None:
         out["organization_config_rule_name"] = data["OrganizationConfigRuleName"]
     else:
         raise DeserializationError(

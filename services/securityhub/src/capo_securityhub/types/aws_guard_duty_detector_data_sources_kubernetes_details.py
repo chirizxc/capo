@@ -31,7 +31,7 @@ def serialize_json(value: AwsGuardDutyDetectorDataSourcesKubernetesDetails) -> d
 
 def deserialize_json(data: dict) -> AwsGuardDutyDetectorDataSourcesKubernetesDetails:
     out: AwsGuardDutyDetectorDataSourcesKubernetesDetails = {}  # type: ignore[typeddict-item]
-    if "AuditLogs" in data:
+    if data.get("AuditLogs") is not None:
         import capo_securityhub.types.aws_guard_duty_detector_data_sources_kubernetes_audit_logs_details
 
         out["audit_logs"] = (

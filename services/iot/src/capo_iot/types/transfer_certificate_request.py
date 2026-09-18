@@ -29,6 +29,6 @@ def serialize_json(value: TransferCertificateRequest) -> dict:
 
 def deserialize_json(data: dict) -> TransferCertificateRequest:
     out: TransferCertificateRequest = {}  # type: ignore[typeddict-item]
-    if "transferMessage" in data:
+    if data.get("transferMessage") is not None:
         out["transfer_message"] = data["transferMessage"]
     return out

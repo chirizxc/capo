@@ -34,14 +34,14 @@ def serialize_aws_json_1_0(value: ListAddressListImportJobsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListAddressListImportJobsRequest:
     out: ListAddressListImportJobsRequest = {}  # type: ignore[typeddict-item]
-    if "AddressListId" in data:
+    if data.get("AddressListId") is not None:
         out["address_list_id"] = data["AddressListId"]
     else:
         raise DeserializationError(
             "ListAddressListImportJobsRequest.address_list_id required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "PageSize" in data:
+    if data.get("PageSize") is not None:
         out["page_size"] = data["PageSize"]
     return out

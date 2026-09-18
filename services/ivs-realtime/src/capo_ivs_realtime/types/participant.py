@@ -165,19 +165,19 @@ def serialize_json(value: Participant) -> dict:
 
 def deserialize_json(data: dict) -> Participant:
     out: Participant = {}  # type: ignore[typeddict-item]
-    if "participantId" in data:
+    if data.get("participantId") is not None:
         out["participant_id"] = data["participantId"]
-    if "userId" in data:
+    if data.get("userId") is not None:
         out["user_id"] = data["userId"]
-    if "state" in data:
+    if data.get("state") is not None:
         out["state"] = data["state"]
-    if "firstJoinTime" in data:
+    if data.get("firstJoinTime") is not None:
         import capo_ivs_realtime.types.time
 
         out["first_join_time"] = capo_ivs_realtime.types.time.deserialize_json(
             data["firstJoinTime"]
         )
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_ivs_realtime.types.participant_attributes
 
         out["attributes"] = (
@@ -185,46 +185,46 @@ def deserialize_json(data: dict) -> Participant:
                 data["attributes"]
             )
         )
-    if "published" in data:
+    if data.get("published") is not None:
         out["published"] = data["published"]
     else:
         out["published"] = False
-    if "ispName" in data:
+    if data.get("ispName") is not None:
         out["isp_name"] = data["ispName"]
-    if "osName" in data:
+    if data.get("osName") is not None:
         out["os_name"] = data["osName"]
-    if "osVersion" in data:
+    if data.get("osVersion") is not None:
         out["os_version"] = data["osVersion"]
-    if "browserName" in data:
+    if data.get("browserName") is not None:
         out["browser_name"] = data["browserName"]
-    if "browserVersion" in data:
+    if data.get("browserVersion") is not None:
         out["browser_version"] = data["browserVersion"]
-    if "sdkVersion" in data:
+    if data.get("sdkVersion") is not None:
         out["sdk_version"] = data["sdkVersion"]
-    if "recordingS3BucketName" in data:
+    if data.get("recordingS3BucketName") is not None:
         out["recording_s3_bucket_name"] = data["recordingS3BucketName"]
-    if "recordingS3Prefix" in data:
+    if data.get("recordingS3Prefix") is not None:
         out["recording_s3_prefix"] = data["recordingS3Prefix"]
-    if "recordingState" in data:
+    if data.get("recordingState") is not None:
         out["recording_state"] = data["recordingState"]
-    if "protocol" in data:
+    if data.get("protocol") is not None:
         import capo_ivs_realtime.types.participant_protocol
 
         out["protocol"] = capo_ivs_realtime.types.participant_protocol.deserialize_json(
             data["protocol"]
         )
-    if "replicationType" in data:
+    if data.get("replicationType") is not None:
         out["replication_type"] = data["replicationType"]
-    if "replicationState" in data:
+    if data.get("replicationState") is not None:
         out["replication_state"] = data["replicationState"]
-    if "sourceStageArn" in data:
+    if data.get("sourceStageArn") is not None:
         out["source_stage_arn"] = data["sourceStageArn"]
-    if "sourceSessionId" in data:
+    if data.get("sourceSessionId") is not None:
         out["source_session_id"] = data["sourceSessionId"]
-    if "redundantIngest" in data:
+    if data.get("redundantIngest") is not None:
         out["redundant_ingest"] = data["redundantIngest"]
     else:
         out["redundant_ingest"] = False
-    if "ingestConfigurationArn" in data:
+    if data.get("ingestConfigurationArn") is not None:
         out["ingest_configuration_arn"] = data["ingestConfigurationArn"]
     return out

@@ -28,8 +28,8 @@ def serialize_json(value: Stream) -> dict:
 
 def deserialize_json(data: dict) -> Stream:
     out: Stream = {}  # type: ignore[typeddict-item]
-    if "streamId" in data:
+    if data.get("streamId") is not None:
         out["stream_id"] = data["streamId"]
-    if "fileId" in data:
+    if data.get("fileId") is not None:
         out["file_id"] = data["fileId"]
     return out

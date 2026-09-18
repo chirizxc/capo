@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> SubscriptionGrants:
 
     out: SubscriptionGrants = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_datazone.types.subscription_grant_summary.deserialize_json(item)
         )

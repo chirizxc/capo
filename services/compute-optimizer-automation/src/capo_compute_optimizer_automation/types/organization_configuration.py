@@ -44,7 +44,7 @@ def serialize_aws_json_1_0(value: OrganizationConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> OrganizationConfiguration:
     out: OrganizationConfiguration = {}  # type: ignore[typeddict-item]
-    if "ruleApplyOrder" in data:
+    if data.get("ruleApplyOrder") is not None:
         import capo_compute_optimizer_automation.types.rule_apply_order
 
         out["rule_apply_order"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_0(data: dict) -> OrganizationConfiguration:
                 data["ruleApplyOrder"]
             )
         )
-    if "accountIds" in data:
+    if data.get("accountIds") is not None:
         import capo_compute_optimizer_automation.types.organization_configuration_account_ids
 
         out["account_ids"] = (

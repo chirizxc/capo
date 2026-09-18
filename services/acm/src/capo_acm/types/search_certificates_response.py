@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: SearchCertificatesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SearchCertificatesResponse:
     out: SearchCertificatesResponse = {}  # type: ignore[typeddict-item]
-    if "Results" in data:
+    if data.get("Results") is not None:
         import capo_acm.types.certificate_search_result_list
 
         out["results"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> SearchCertificatesResponse:
                 data["Results"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

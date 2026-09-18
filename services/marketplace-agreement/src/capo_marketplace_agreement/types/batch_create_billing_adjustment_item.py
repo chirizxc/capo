@@ -28,13 +28,13 @@ def serialize_aws_json_1_0(value: BatchCreateBillingAdjustmentItem) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> BatchCreateBillingAdjustmentItem:
     out: BatchCreateBillingAdjustmentItem = {}  # type: ignore[typeddict-item]
-    if "billingAdjustmentRequestId" in data:
+    if data.get("billingAdjustmentRequestId") is not None:
         out["billing_adjustment_request_id"] = data["billingAdjustmentRequestId"]
     else:
         raise DeserializationError(
             "BatchCreateBillingAdjustmentItem.billing_adjustment_request_id required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError(

@@ -71,15 +71,15 @@ def serialize_json(value: GetMonitorOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetMonitorOutput:
     out: GetMonitorOutput = {}  # type: ignore[typeddict-item]
-    if "monitorArn" in data:
+    if data.get("monitorArn") is not None:
         out["monitor_arn"] = data["monitorArn"]
     else:
         raise DeserializationError("GetMonitorOutput.monitor_arn required")
-    if "monitorName" in data:
+    if data.get("monitorName") is not None:
         out["monitor_name"] = data["monitorName"]
     else:
         raise DeserializationError("GetMonitorOutput.monitor_name required")
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_networkmonitor.types.monitor_state
 
         out["state"] = capo_networkmonitor.types.monitor_state.deserialize_json(
@@ -87,21 +87,21 @@ def deserialize_json(data: dict) -> GetMonitorOutput:
         )
     else:
         raise DeserializationError("GetMonitorOutput.state required")
-    if "aggregationPeriod" in data:
+    if data.get("aggregationPeriod") is not None:
         out["aggregation_period"] = data["aggregationPeriod"]
     else:
         raise DeserializationError("GetMonitorOutput.aggregation_period required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_networkmonitor.types.tag_map
 
         out["tags"] = capo_networkmonitor.types.tag_map.deserialize_json(data["tags"])
-    if "probes" in data:
+    if data.get("probes") is not None:
         import capo_networkmonitor.types.probe_list
 
         out["probes"] = capo_networkmonitor.types.probe_list.deserialize_json(
             data["probes"]
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_networkmonitor.types.iso8601_timestamp
 
         out["created_at"] = (
@@ -111,7 +111,7 @@ def deserialize_json(data: dict) -> GetMonitorOutput:
         )
     else:
         raise DeserializationError("GetMonitorOutput.created_at required")
-    if "modifiedAt" in data:
+    if data.get("modifiedAt") is not None:
         import capo_networkmonitor.types.iso8601_timestamp
 
         out["modified_at"] = (

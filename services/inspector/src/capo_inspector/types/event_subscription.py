@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: EventSubscription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EventSubscription:
     out: EventSubscription = {}  # type: ignore[typeddict-item]
-    if "event" in data:
+    if data.get("event") is not None:
         import capo_inspector.types.inspector_event
 
         out["event"] = capo_inspector.types.inspector_event.deserialize_aws_json_1_1(
@@ -44,7 +44,7 @@ def deserialize_aws_json_1_1(data: dict) -> EventSubscription:
         )
     else:
         raise DeserializationError("EventSubscription.event required")
-    if "subscribedAt" in data:
+    if data.get("subscribedAt") is not None:
         import capo_inspector.types.timestamp
 
         out["subscribed_at"] = capo_inspector.types.timestamp.deserialize_aws_json_1_1(

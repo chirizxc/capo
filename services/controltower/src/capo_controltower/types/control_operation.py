@@ -57,15 +57,15 @@ def serialize_json(value: ControlOperation) -> dict:
             )
         )
     if "start_time" in value:
-        import capo_controltower.types.timestamp
+        import capo_controltower._protocol.serialize
 
-        out["startTime"] = capo_controltower.types.timestamp.serialize_json(
+        out["startTime"] = capo_controltower._protocol.serialize.fmt_date_time(
             value["start_time"]
         )
     if "end_time" in value:
-        import capo_controltower.types.timestamp
+        import capo_controltower._protocol.serialize
 
-        out["endTime"] = capo_controltower.types.timestamp.serialize_json(
+        out["endTime"] = capo_controltower._protocol.serialize.fmt_date_time(
             value["end_time"]
         )
     if "status" in value:
@@ -89,7 +89,7 @@ def serialize_json(value: ControlOperation) -> dict:
 
 def deserialize_json(data: dict) -> ControlOperation:
     out: ControlOperation = {}  # type: ignore[typeddict-item]
-    if "operationType" in data:
+    if data.get("operationType") is not None:
         import capo_controltower.types.control_operation_type
 
         out["operation_type"] = (
@@ -97,19 +97,19 @@ def deserialize_json(data: dict) -> ControlOperation:
                 data["operationType"]
             )
         )
-    if "startTime" in data:
-        import capo_controltower.types.timestamp
+    if data.get("startTime") is not None:
+        import datetime
 
-        out["start_time"] = capo_controltower.types.timestamp.deserialize_json(
-            data["startTime"]
+        out["start_time"] = datetime.datetime.fromisoformat(
+            data["startTime"].replace("Z", "+00:00")
         )
-    if "endTime" in data:
-        import capo_controltower.types.timestamp
+    if data.get("endTime") is not None:
+        import datetime
 
-        out["end_time"] = capo_controltower.types.timestamp.deserialize_json(
-            data["endTime"]
+        out["end_time"] = datetime.datetime.fromisoformat(
+            data["endTime"].replace("Z", "+00:00")
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_controltower.types.control_operation_status
 
         out["status"] = (
@@ -117,14 +117,14 @@ def deserialize_json(data: dict) -> ControlOperation:
                 data["status"]
             )
         )
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
-    if "operationIdentifier" in data:
+    if data.get("operationIdentifier") is not None:
         out["operation_identifier"] = data["operationIdentifier"]
-    if "controlIdentifier" in data:
+    if data.get("controlIdentifier") is not None:
         out["control_identifier"] = data["controlIdentifier"]
-    if "targetIdentifier" in data:
+    if data.get("targetIdentifier") is not None:
         out["target_identifier"] = data["targetIdentifier"]
-    if "enabledControlIdentifier" in data:
+    if data.get("enabledControlIdentifier") is not None:
         out["enabled_control_identifier"] = data["enabledControlIdentifier"]
     return out

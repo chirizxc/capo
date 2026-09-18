@@ -40,19 +40,19 @@ def serialize_aws_json_1_1(value: UpdateDetectorVersionStatusRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateDetectorVersionStatusRequest:
     out: UpdateDetectorVersionStatusRequest = {}  # type: ignore[typeddict-item]
-    if "detectorId" in data:
+    if data.get("detectorId") is not None:
         out["detector_id"] = data["detectorId"]
     else:
         raise DeserializationError(
             "UpdateDetectorVersionStatusRequest.detector_id required"
         )
-    if "detectorVersionId" in data:
+    if data.get("detectorVersionId") is not None:
         out["detector_version_id"] = data["detectorVersionId"]
     else:
         raise DeserializationError(
             "UpdateDetectorVersionStatusRequest.detector_version_id required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_frauddetector.types.detector_version_status
 
         out["status"] = (

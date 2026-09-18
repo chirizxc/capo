@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: ListSessionsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListSessionsOutput:
     out: ListSessionsOutput = {}  # type: ignore[typeddict-item]
-    if "Sessions" in data:
+    if data.get("Sessions") is not None:
         import capo_emr.types.session_list
 
         out["sessions"] = capo_emr.types.session_list.deserialize_aws_json_1_1(
             data["Sessions"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

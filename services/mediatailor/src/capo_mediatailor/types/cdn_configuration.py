@@ -27,8 +27,8 @@ def serialize_json(value: CdnConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> CdnConfiguration:
     out: CdnConfiguration = {}  # type: ignore[typeddict-item]
-    if "AdSegmentUrlPrefix" in data:
+    if data.get("AdSegmentUrlPrefix") is not None:
         out["ad_segment_url_prefix"] = data["AdSegmentUrlPrefix"]
-    if "ContentSegmentUrlPrefix" in data:
+    if data.get("ContentSegmentUrlPrefix") is not None:
         out["content_segment_url_prefix"] = data["ContentSegmentUrlPrefix"]
     return out

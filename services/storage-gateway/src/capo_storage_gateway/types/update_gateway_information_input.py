@@ -54,17 +54,17 @@ def serialize_aws_json_1_1(value: UpdateGatewayInformationInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateGatewayInformationInput:
     out: UpdateGatewayInformationInput = {}  # type: ignore[typeddict-item]
-    if "GatewayARN" in data:
+    if data.get("GatewayARN") is not None:
         out["gateway_arn"] = data["GatewayARN"]
     else:
         raise DeserializationError("UpdateGatewayInformationInput.gateway_arn required")
-    if "GatewayName" in data:
+    if data.get("GatewayName") is not None:
         out["gateway_name"] = data["GatewayName"]
-    if "GatewayTimezone" in data:
+    if data.get("GatewayTimezone") is not None:
         out["gateway_timezone"] = data["GatewayTimezone"]
-    if "CloudWatchLogGroupARN" in data:
+    if data.get("CloudWatchLogGroupARN") is not None:
         out["cloud_watch_log_group_arn"] = data["CloudWatchLogGroupARN"]
-    if "GatewayCapacity" in data:
+    if data.get("GatewayCapacity") is not None:
         import capo_storage_gateway.types.gateway_capacity
 
         out["gateway_capacity"] = (

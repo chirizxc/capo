@@ -24,8 +24,8 @@ def serialize_json(value: PurchaseOfferingRequest) -> dict:
 
 def deserialize_json(data: dict) -> PurchaseOfferingRequest:
     out: PurchaseOfferingRequest = {}  # type: ignore[typeddict-item]
-    if "reservationName" in data:
+    if data.get("reservationName") is not None:
         out["reservation_name"] = data["reservationName"]
-    if "start" in data:
+    if data.get("start") is not None:
         out["start"] = data["start"]
     return out

@@ -30,11 +30,11 @@ def serialize_json(value: TagResourceRequest) -> dict:
 
 def deserialize_json(data: dict) -> TagResourceRequest:
     out: TagResourceRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceARN" in data:
+    if data.get("ResourceARN") is not None:
         out["resource_arn"] = data["ResourceARN"]
     else:
         raise DeserializationError("TagResourceRequest.resource_arn required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_chime_sdk_voice.types.tag_list
 
         out["tags"] = capo_chime_sdk_voice.types.tag_list.deserialize_json(data["Tags"])

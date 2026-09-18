@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: EntityAlreadyRegisteredException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EntityAlreadyRegisteredException_:
     out: EntityAlreadyRegisteredException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,20 @@ class EntityAlreadyRegisteredException(ServiceError):
 
     code: str | None = "EntityAlreadyRegisteredException"
 
-    def __init__(self, data: EntityAlreadyRegisteredException_):
+    def __init__(
+        self, data: EntityAlreadyRegisteredException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="EntityAlreadyRegisteredException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "EntityAlreadyRegisteredException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "EntityAlreadyRegisteredException":
+        return cls(deserialize_aws_json_1_1(data), message)

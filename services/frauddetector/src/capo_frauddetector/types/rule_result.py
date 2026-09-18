@@ -34,9 +34,9 @@ def serialize_aws_json_1_1(value: RuleResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RuleResult:
     out: RuleResult = {}  # type: ignore[typeddict-item]
-    if "ruleId" in data:
+    if data.get("ruleId") is not None:
         out["rule_id"] = data["ruleId"]
-    if "outcomes" in data:
+    if data.get("outcomes") is not None:
         import capo_frauddetector.types.list_of_strings
 
         out["outcomes"] = (

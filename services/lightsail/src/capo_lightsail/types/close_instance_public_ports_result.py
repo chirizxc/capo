@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: CloseInstancePublicPortsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CloseInstancePublicPortsResult:
     out: CloseInstancePublicPortsResult = {}  # type: ignore[typeddict-item]
-    if "operation" in data:
+    if data.get("operation") is not None:
         import capo_lightsail.types.operation
 
         out["operation"] = capo_lightsail.types.operation.deserialize_aws_json_1_1(

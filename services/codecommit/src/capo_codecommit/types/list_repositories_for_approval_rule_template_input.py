@@ -38,14 +38,14 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> ListRepositoriesForApprovalRuleTemplateInput:
     out: ListRepositoriesForApprovalRuleTemplateInput = {}  # type: ignore[typeddict-item]
-    if "approvalRuleTemplateName" in data:
+    if data.get("approvalRuleTemplateName") is not None:
         out["approval_rule_template_name"] = data["approvalRuleTemplateName"]
     else:
         raise DeserializationError(
             "ListRepositoriesForApprovalRuleTemplateInput.approval_rule_template_name required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

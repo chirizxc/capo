@@ -78,7 +78,7 @@ def serialize_json(value: DialogAction) -> dict:
 
 def deserialize_json(data: dict) -> DialogAction:
     out: DialogAction = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_lex_runtime_service.types.dialog_action_type
 
         out["type"] = (
@@ -88,17 +88,17 @@ def deserialize_json(data: dict) -> DialogAction:
         )
     else:
         raise DeserializationError("DialogAction.type required")
-    if "intentName" in data:
+    if data.get("intentName") is not None:
         out["intent_name"] = data["intentName"]
-    if "slots" in data:
+    if data.get("slots") is not None:
         import capo_lex_runtime_service.types.string_map
 
         out["slots"] = capo_lex_runtime_service.types.string_map.deserialize_json(
             data["slots"]
         )
-    if "slotToElicit" in data:
+    if data.get("slotToElicit") is not None:
         out["slot_to_elicit"] = data["slotToElicit"]
-    if "fulfillmentState" in data:
+    if data.get("fulfillmentState") is not None:
         import capo_lex_runtime_service.types.fulfillment_state
 
         out["fulfillment_state"] = (
@@ -106,9 +106,9 @@ def deserialize_json(data: dict) -> DialogAction:
                 data["fulfillmentState"]
             )
         )
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "messageFormat" in data:
+    if data.get("messageFormat") is not None:
         import capo_lex_runtime_service.types.message_format_type
 
         out["message_format"] = (

@@ -78,9 +78,9 @@ def serialize_json(value: GetSequenceStoreResponse) -> dict:
         out["sseConfig"] = capo_omics.types.sse_config.serialize_json(
             value["sse_config"]
         )
-    import capo_omics.types._prelude.timestamp
+    import capo_omics._protocol.serialize
 
-    out["creationTime"] = capo_omics.types._prelude.timestamp.serialize_json(
+    out["creationTime"] = capo_omics._protocol.serialize.fmt_date_time(
         value["creation_time"]
     )
     if "fallback_location" in value:
@@ -106,9 +106,9 @@ def serialize_json(value: GetSequenceStoreResponse) -> dict:
             )
         )
     if "update_time" in value:
-        import capo_omics.types._prelude.timestamp
+        import capo_omics._protocol.serialize
 
-        out["updateTime"] = capo_omics.types._prelude.timestamp.serialize_json(
+        out["updateTime"] = capo_omics._protocol.serialize.fmt_date_time(
             value["update_time"]
         )
     return out
@@ -116,47 +116,47 @@ def serialize_json(value: GetSequenceStoreResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetSequenceStoreResponse:
     out: GetSequenceStoreResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("GetSequenceStoreResponse.id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("GetSequenceStoreResponse.arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "sseConfig" in data:
+    if data.get("sseConfig") is not None:
         import capo_omics.types.sse_config
 
         out["sse_config"] = capo_omics.types.sse_config.deserialize_json(
             data["sseConfig"]
         )
-    if "creationTime" in data:
-        import capo_omics.types._prelude.timestamp
+    if data.get("creationTime") is not None:
+        import datetime
 
-        out["creation_time"] = capo_omics.types._prelude.timestamp.deserialize_json(
-            data["creationTime"]
+        out["creation_time"] = datetime.datetime.fromisoformat(
+            data["creationTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("GetSequenceStoreResponse.creation_time required")
-    if "fallbackLocation" in data:
+    if data.get("fallbackLocation") is not None:
         out["fallback_location"] = data["fallbackLocation"]
-    if "s3Access" in data:
+    if data.get("s3Access") is not None:
         import capo_omics.types.sequence_store_s3_access
 
         out["s3_access"] = capo_omics.types.sequence_store_s3_access.deserialize_json(
             data["s3Access"]
         )
-    if "eTagAlgorithmFamily" in data:
+    if data.get("eTagAlgorithmFamily") is not None:
         out["e_tag_algorithm_family"] = data["eTagAlgorithmFamily"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
-    if "propagatedSetLevelTags" in data:
+    if data.get("propagatedSetLevelTags") is not None:
         import capo_omics.types.propagated_set_level_tags
 
         out["propagated_set_level_tags"] = (
@@ -164,10 +164,10 @@ def deserialize_json(data: dict) -> GetSequenceStoreResponse:
                 data["propagatedSetLevelTags"]
             )
         )
-    if "updateTime" in data:
-        import capo_omics.types._prelude.timestamp
+    if data.get("updateTime") is not None:
+        import datetime
 
-        out["update_time"] = capo_omics.types._prelude.timestamp.deserialize_json(
-            data["updateTime"]
+        out["update_time"] = datetime.datetime.fromisoformat(
+            data["updateTime"].replace("Z", "+00:00")
         )
     return out

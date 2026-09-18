@@ -19,7 +19,7 @@ def serialize_json(value: GroupDetails) -> dict:
 
 def deserialize_json(data: dict) -> GroupDetails:
     out: GroupDetails = {}  # type: ignore[typeddict-item]
-    if "groupId" in data:
+    if data.get("groupId") is not None:
         out["group_id"] = data["groupId"]
     else:
         raise DeserializationError("GroupDetails.group_id required")

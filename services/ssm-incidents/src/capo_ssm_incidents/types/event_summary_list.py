@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> EventSummaryList:
 
     out: EventSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_ssm_incidents.types.event_summary.deserialize_json(item))
     return out

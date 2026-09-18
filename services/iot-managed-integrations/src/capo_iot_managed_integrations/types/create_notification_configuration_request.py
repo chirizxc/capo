@@ -50,7 +50,7 @@ def serialize_json(value: CreateNotificationConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateNotificationConfigurationRequest:
     out: CreateNotificationConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "EventType" in data:
+    if data.get("EventType") is not None:
         import capo_iot_managed_integrations.types.event_type
 
         out["event_type"] = (
@@ -62,15 +62,15 @@ def deserialize_json(data: dict) -> CreateNotificationConfigurationRequest:
         raise DeserializationError(
             "CreateNotificationConfigurationRequest.event_type required"
         )
-    if "DestinationName" in data:
+    if data.get("DestinationName") is not None:
         out["destination_name"] = data["DestinationName"]
     else:
         raise DeserializationError(
             "CreateNotificationConfigurationRequest.destination_name required"
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_iot_managed_integrations.types.tags_map
 
         out["tags"] = capo_iot_managed_integrations.types.tags_map.deserialize_json(

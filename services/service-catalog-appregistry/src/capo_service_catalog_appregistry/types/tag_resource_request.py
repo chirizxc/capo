@@ -31,7 +31,7 @@ def serialize_json(value: TagResourceRequest) -> dict:
 
 def deserialize_json(data: dict) -> TagResourceRequest:
     out: TagResourceRequest = {}  # type: ignore[typeddict-item]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_service_catalog_appregistry.types.tags
 
         out["tags"] = capo_service_catalog_appregistry.types.tags.deserialize_json(

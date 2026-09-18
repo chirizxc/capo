@@ -36,9 +36,9 @@ def serialize_aws_json_1_0(value: ListModelsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListModelsResponse:
     out: ListModelsResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "ModelSummaries" in data:
+    if data.get("ModelSummaries") is not None:
         import capo_lookoutequipment.types.model_summaries
 
         out["model_summaries"] = (

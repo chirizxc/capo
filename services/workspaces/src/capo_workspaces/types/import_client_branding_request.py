@@ -98,11 +98,11 @@ def serialize_aws_json_1_1(value: ImportClientBrandingRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ImportClientBrandingRequest:
     out: ImportClientBrandingRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     else:
         raise DeserializationError("ImportClientBrandingRequest.resource_id required")
-    if "DeviceTypeWindows" in data:
+    if data.get("DeviceTypeWindows") is not None:
         import capo_workspaces.types.default_import_client_branding_attributes
 
         out["device_type_windows"] = (
@@ -110,7 +110,7 @@ def deserialize_aws_json_1_1(data: dict) -> ImportClientBrandingRequest:
                 data["DeviceTypeWindows"]
             )
         )
-    if "DeviceTypeOsx" in data:
+    if data.get("DeviceTypeOsx") is not None:
         import capo_workspaces.types.default_import_client_branding_attributes
 
         out["device_type_osx"] = (
@@ -118,7 +118,7 @@ def deserialize_aws_json_1_1(data: dict) -> ImportClientBrandingRequest:
                 data["DeviceTypeOsx"]
             )
         )
-    if "DeviceTypeAndroid" in data:
+    if data.get("DeviceTypeAndroid") is not None:
         import capo_workspaces.types.default_import_client_branding_attributes
 
         out["device_type_android"] = (
@@ -126,7 +126,7 @@ def deserialize_aws_json_1_1(data: dict) -> ImportClientBrandingRequest:
                 data["DeviceTypeAndroid"]
             )
         )
-    if "DeviceTypeIos" in data:
+    if data.get("DeviceTypeIos") is not None:
         import capo_workspaces.types.ios_import_client_branding_attributes
 
         out["device_type_ios"] = (
@@ -134,7 +134,7 @@ def deserialize_aws_json_1_1(data: dict) -> ImportClientBrandingRequest:
                 data["DeviceTypeIos"]
             )
         )
-    if "DeviceTypeLinux" in data:
+    if data.get("DeviceTypeLinux") is not None:
         import capo_workspaces.types.default_import_client_branding_attributes
 
         out["device_type_linux"] = (
@@ -142,7 +142,7 @@ def deserialize_aws_json_1_1(data: dict) -> ImportClientBrandingRequest:
                 data["DeviceTypeLinux"]
             )
         )
-    if "DeviceTypeWeb" in data:
+    if data.get("DeviceTypeWeb") is not None:
         import capo_workspaces.types.default_import_client_branding_attributes
 
         out["device_type_web"] = (

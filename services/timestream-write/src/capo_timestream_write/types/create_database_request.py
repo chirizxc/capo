@@ -42,13 +42,13 @@ def serialize_aws_json_1_0(value: CreateDatabaseRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateDatabaseRequest:
     out: CreateDatabaseRequest = {}  # type: ignore[typeddict-item]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
     else:
         raise DeserializationError("CreateDatabaseRequest.database_name required")
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_timestream_write.types.tag_list
 
         out["tags"] = capo_timestream_write.types.tag_list.deserialize_aws_json_1_0(

@@ -45,11 +45,11 @@ def serialize_json(value: CreateAccessorOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateAccessorOutput:
     out: CreateAccessorOutput = {}  # type: ignore[typeddict-item]
-    if "AccessorId" in data:
+    if data.get("AccessorId") is not None:
         out["accessor_id"] = data["AccessorId"]
-    if "BillingToken" in data:
+    if data.get("BillingToken") is not None:
         out["billing_token"] = data["BillingToken"]
-    if "NetworkType" in data:
+    if data.get("NetworkType") is not None:
         import capo_managedblockchain.types.accessor_network_type
 
         out["network_type"] = (

@@ -30,8 +30,8 @@ def serialize_json(value: DeletionProtectionSettings) -> dict:
 
 def deserialize_json(data: dict) -> DeletionProtectionSettings:
     out: DeletionProtectionSettings = {}  # type: ignore[typeddict-item]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "ProtectionPeriodInMinutes" in data:
+    if data.get("ProtectionPeriodInMinutes") is not None:
         out["protection_period_in_minutes"] = data["ProtectionPeriodInMinutes"]
     return out

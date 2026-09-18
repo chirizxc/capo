@@ -69,9 +69,9 @@ def serialize_json(value: ListEventsFilters) -> dict:
 
 def deserialize_json(data: dict) -> ListEventsFilters:
     out: ListEventsFilters = {}  # type: ignore[typeddict-item]
-    if "InsightId" in data:
+    if data.get("InsightId") is not None:
         out["insight_id"] = data["InsightId"]
-    if "EventTimeRange" in data:
+    if data.get("EventTimeRange") is not None:
         import capo_devops_guru.types.event_time_range
 
         out["event_time_range"] = (
@@ -79,21 +79,21 @@ def deserialize_json(data: dict) -> ListEventsFilters:
                 data["EventTimeRange"]
             )
         )
-    if "EventClass" in data:
+    if data.get("EventClass") is not None:
         import capo_devops_guru.types.event_class
 
         out["event_class"] = capo_devops_guru.types.event_class.deserialize_json(
             data["EventClass"]
         )
-    if "EventSource" in data:
+    if data.get("EventSource") is not None:
         out["event_source"] = data["EventSource"]
-    if "DataSource" in data:
+    if data.get("DataSource") is not None:
         import capo_devops_guru.types.event_data_source
 
         out["data_source"] = capo_devops_guru.types.event_data_source.deserialize_json(
             data["DataSource"]
         )
-    if "ResourceCollection" in data:
+    if data.get("ResourceCollection") is not None:
         import capo_devops_guru.types.resource_collection
 
         out["resource_collection"] = (

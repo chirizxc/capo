@@ -47,13 +47,13 @@ def serialize_json(value: DataSet) -> dict:
 
 def deserialize_json(data: dict) -> DataSet:
     out: DataSet = {}  # type: ignore[typeddict-item]
-    if "storageType" in data:
+    if data.get("storageType") is not None:
         out["storage_type"] = data["storageType"]
-    if "datasetName" in data:
+    if data.get("datasetName") is not None:
         out["dataset_name"] = data["datasetName"]
     else:
         raise DeserializationError("DataSet.dataset_name required")
-    if "datasetOrg" in data:
+    if data.get("datasetOrg") is not None:
         import capo_m2.types.dataset_org_attributes
 
         out["dataset_org"] = capo_m2.types.dataset_org_attributes.deserialize_json(
@@ -61,9 +61,9 @@ def deserialize_json(data: dict) -> DataSet:
         )
     else:
         raise DeserializationError("DataSet.dataset_org required")
-    if "relativePath" in data:
+    if data.get("relativePath") is not None:
         out["relative_path"] = data["relativePath"]
-    if "recordLength" in data:
+    if data.get("recordLength") is not None:
         import capo_m2.types.record_length
 
         out["record_length"] = capo_m2.types.record_length.deserialize_json(

@@ -40,7 +40,7 @@ def serialize_json(value: BatchGetProfileResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetProfileResponse:
     out: BatchGetProfileResponse = {}  # type: ignore[typeddict-item]
-    if "Errors" in data:
+    if data.get("Errors") is not None:
         import capo_customer_profiles.types.batch_get_profile_error_list
 
         out["errors"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> BatchGetProfileResponse:
                 data["Errors"]
             )
         )
-    if "Profiles" in data:
+    if data.get("Profiles") is not None:
         import capo_customer_profiles.types.profile_list
 
         out["profiles"] = capo_customer_profiles.types.profile_list.deserialize_json(

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> DNSViews:
 
     out: DNSViews = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_route53globalresolver.types.dns_view_summary.deserialize_json(item)
         )

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DescribeConversionConfigurationMessage) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeConversionConfigurationMessage:
     out: DescribeConversionConfigurationMessage = {}  # type: ignore[typeddict-item]
-    if "MigrationProjectIdentifier" in data:
+    if data.get("MigrationProjectIdentifier") is not None:
         out["migration_project_identifier"] = data["MigrationProjectIdentifier"]
     else:
         raise DeserializationError(

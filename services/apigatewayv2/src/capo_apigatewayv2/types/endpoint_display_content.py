@@ -38,11 +38,11 @@ def serialize_json(value: EndpointDisplayContent) -> dict:
 
 def deserialize_json(data: dict) -> EndpointDisplayContent:
     out: EndpointDisplayContent = {}  # type: ignore[typeddict-item]
-    if "none" in data:
+    if data.get("none") is not None:
         import capo_apigatewayv2.types.none
 
         out["none"] = capo_apigatewayv2.types.none.deserialize_json(data["none"])
-    if "overrides" in data:
+    if data.get("overrides") is not None:
         import capo_apigatewayv2.types.display_content_overrides
 
         out["overrides"] = (

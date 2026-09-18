@@ -38,13 +38,13 @@ def serialize_aws_json_1_1(value: UnmappedAttribute) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UnmappedAttribute:
     out: UnmappedAttribute = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_comprehendmedical.types.entity_type
 
         out["type"] = capo_comprehendmedical.types.entity_type.deserialize_aws_json_1_1(
             data["Type"]
         )
-    if "Attribute" in data:
+    if data.get("Attribute") is not None:
         import capo_comprehendmedical.types.attribute
 
         out["attribute"] = (

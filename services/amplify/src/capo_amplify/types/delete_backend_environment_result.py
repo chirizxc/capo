@@ -28,7 +28,7 @@ def serialize_json(value: DeleteBackendEnvironmentResult) -> dict:
 
 def deserialize_json(data: dict) -> DeleteBackendEnvironmentResult:
     out: DeleteBackendEnvironmentResult = {}  # type: ignore[typeddict-item]
-    if "backendEnvironment" in data:
+    if data.get("backendEnvironment") is not None:
         import capo_amplify.types.backend_environment
 
         out["backend_environment"] = (

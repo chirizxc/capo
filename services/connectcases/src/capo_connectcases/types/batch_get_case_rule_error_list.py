@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> BatchGetCaseRuleErrorList:
 
     out: BatchGetCaseRuleErrorList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connectcases.types.case_rule_error.deserialize_json(item))
     return out

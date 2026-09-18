@@ -27,7 +27,7 @@ def serialize_json(value: GetCustomActionResult) -> dict:
 
 def deserialize_json(data: dict) -> GetCustomActionResult:
     out: GetCustomActionResult = {}  # type: ignore[typeddict-item]
-    if "CustomAction" in data:
+    if data.get("CustomAction") is not None:
         import capo_chatbot.types.custom_action
 
         out["custom_action"] = capo_chatbot.types.custom_action.deserialize_json(

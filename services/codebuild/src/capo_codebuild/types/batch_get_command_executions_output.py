@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: BatchGetCommandExecutionsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetCommandExecutionsOutput:
     out: BatchGetCommandExecutionsOutput = {}  # type: ignore[typeddict-item]
-    if "commandExecutions" in data:
+    if data.get("commandExecutions") is not None:
         import capo_codebuild.types.command_executions
 
         out["command_executions"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchGetCommandExecutionsOutput:
                 data["commandExecutions"]
             )
         )
-    if "commandExecutionsNotFound" in data:
+    if data.get("commandExecutionsNotFound") is not None:
         import capo_codebuild.types.command_execution_ids
 
         out["command_executions_not_found"] = (

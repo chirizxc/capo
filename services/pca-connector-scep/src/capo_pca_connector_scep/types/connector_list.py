@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ConnectorList:
 
     out: ConnectorList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_pca_connector_scep.types.connector_summary.deserialize_json(item)
         )

@@ -40,7 +40,7 @@ def serialize_json(value: TrainedModelExportsConfigurationPolicy) -> dict:
 
 def deserialize_json(data: dict) -> TrainedModelExportsConfigurationPolicy:
     out: TrainedModelExportsConfigurationPolicy = {}  # type: ignore[typeddict-item]
-    if "maxSize" in data:
+    if data.get("maxSize") is not None:
         import capo_cleanroomsml.types.trained_model_exports_max_size
 
         out["max_size"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> TrainedModelExportsConfigurationPolicy:
         raise DeserializationError(
             "TrainedModelExportsConfigurationPolicy.max_size required"
         )
-    if "filesToExport" in data:
+    if data.get("filesToExport") is not None:
         import capo_cleanroomsml.types.trained_model_export_file_type_list
 
         out["files_to_export"] = (

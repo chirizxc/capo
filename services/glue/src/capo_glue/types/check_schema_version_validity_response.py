@@ -27,10 +27,10 @@ def serialize_aws_json_1_1(value: CheckSchemaVersionValidityResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CheckSchemaVersionValidityResponse:
     out: CheckSchemaVersionValidityResponse = {}  # type: ignore[typeddict-item]
-    if "Valid" in data:
+    if data.get("Valid") is not None:
         out["valid"] = data["Valid"]
     else:
         out["valid"] = False
-    if "Error" in data:
+    if data.get("Error") is not None:
         out["error"] = data["Error"]
     return out

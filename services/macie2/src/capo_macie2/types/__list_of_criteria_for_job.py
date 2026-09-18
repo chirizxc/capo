@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfCriteriaForJob:
 
     out: __listOfCriteriaForJob = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_macie2.types.criteria_for_job.deserialize_json(item))
     return out

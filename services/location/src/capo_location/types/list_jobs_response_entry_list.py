@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ListJobsResponseEntryList:
 
     out: ListJobsResponseEntryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_location.types.list_jobs_response_entry.deserialize_json(item))
     return out

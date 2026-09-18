@@ -36,7 +36,7 @@ def serialize_json(value: ListAssessmentFrameworkShareRequestsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListAssessmentFrameworkShareRequestsResponse:
     out: ListAssessmentFrameworkShareRequestsResponse = {}  # type: ignore[typeddict-item]
-    if "assessmentFrameworkShareRequests" in data:
+    if data.get("assessmentFrameworkShareRequests") is not None:
         import capo_auditmanager.types.assessment_framework_share_request_list
 
         out["assessment_framework_share_requests"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListAssessmentFrameworkShareRequestsResponse
                 data["assessmentFrameworkShareRequests"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

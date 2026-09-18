@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> SqlRecords:
 
     out: SqlRecords = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_rds_data.types.field_list.deserialize_json(item))
     return out

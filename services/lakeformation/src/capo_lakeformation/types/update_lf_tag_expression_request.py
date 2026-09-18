@@ -46,15 +46,15 @@ def serialize_json(value: UpdateLFTagExpressionRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateLFTagExpressionRequest:
     out: UpdateLFTagExpressionRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("UpdateLFTagExpressionRequest.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "Expression" in data:
+    if data.get("Expression") is not None:
         import capo_lakeformation.types.expression
 
         out["expression"] = capo_lakeformation.types.expression.deserialize_json(

@@ -29,10 +29,10 @@ def serialize_aws_json_1_1(value: GetWorkflowRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetWorkflowRequest:
     out: GetWorkflowRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("GetWorkflowRequest.name required")
-    if "IncludeGraph" in data:
+    if data.get("IncludeGraph") is not None:
         out["include_graph"] = data["IncludeGraph"]
     return out

@@ -32,12 +32,12 @@ def serialize_json(value: ListAccessEntriesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListAccessEntriesResponse:
     out: ListAccessEntriesResponse = {}  # type: ignore[typeddict-item]
-    if "accessEntries" in data:
+    if data.get("accessEntries") is not None:
         import capo_eks.types.string_list
 
         out["access_entries"] = capo_eks.types.string_list.deserialize_json(
             data["accessEntries"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

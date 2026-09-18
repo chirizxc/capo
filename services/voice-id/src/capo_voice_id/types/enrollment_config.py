@@ -38,9 +38,9 @@ def serialize_aws_json_1_0(value: EnrollmentConfig) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> EnrollmentConfig:
     out: EnrollmentConfig = {}  # type: ignore[typeddict-item]
-    if "ExistingEnrollmentAction" in data:
+    if data.get("ExistingEnrollmentAction") is not None:
         out["existing_enrollment_action"] = data["ExistingEnrollmentAction"]
-    if "FraudDetectionConfig" in data:
+    if data.get("FraudDetectionConfig") is not None:
         import capo_voice_id.types.enrollment_job_fraud_detection_config
 
         out["fraud_detection_config"] = (

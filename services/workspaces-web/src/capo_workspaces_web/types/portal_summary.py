@@ -118,48 +118,48 @@ def serialize_json(value: PortalSummary) -> dict:
 
 def deserialize_json(data: dict) -> PortalSummary:
     out: PortalSummary = {}  # type: ignore[typeddict-item]
-    if "portalArn" in data:
+    if data.get("portalArn") is not None:
         out["portal_arn"] = data["portalArn"]
     else:
         raise DeserializationError("PortalSummary.portal_arn required")
-    if "rendererType" in data:
+    if data.get("rendererType") is not None:
         out["renderer_type"] = data["rendererType"]
-    if "browserType" in data:
+    if data.get("browserType") is not None:
         out["browser_type"] = data["browserType"]
-    if "portalStatus" in data:
+    if data.get("portalStatus") is not None:
         out["portal_status"] = data["portalStatus"]
-    if "portalEndpoint" in data:
+    if data.get("portalEndpoint") is not None:
         out["portal_endpoint"] = data["portalEndpoint"]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "creationDate" in data:
+    if data.get("creationDate") is not None:
         import capo_workspaces_web.types.timestamp
 
         out["creation_date"] = capo_workspaces_web.types.timestamp.deserialize_json(
             data["creationDate"]
         )
-    if "browserSettingsArn" in data:
+    if data.get("browserSettingsArn") is not None:
         out["browser_settings_arn"] = data["browserSettingsArn"]
-    if "dataProtectionSettingsArn" in data:
+    if data.get("dataProtectionSettingsArn") is not None:
         out["data_protection_settings_arn"] = data["dataProtectionSettingsArn"]
-    if "userSettingsArn" in data:
+    if data.get("userSettingsArn") is not None:
         out["user_settings_arn"] = data["userSettingsArn"]
-    if "networkSettingsArn" in data:
+    if data.get("networkSettingsArn") is not None:
         out["network_settings_arn"] = data["networkSettingsArn"]
-    if "sessionLoggerArn" in data:
+    if data.get("sessionLoggerArn") is not None:
         out["session_logger_arn"] = data["sessionLoggerArn"]
-    if "trustStoreArn" in data:
+    if data.get("trustStoreArn") is not None:
         out["trust_store_arn"] = data["trustStoreArn"]
-    if "userAccessLoggingSettingsArn" in data:
+    if data.get("userAccessLoggingSettingsArn") is not None:
         out["user_access_logging_settings_arn"] = data["userAccessLoggingSettingsArn"]
-    if "authenticationType" in data:
+    if data.get("authenticationType") is not None:
         out["authentication_type"] = data["authenticationType"]
-    if "ipAccessSettingsArn" in data:
+    if data.get("ipAccessSettingsArn") is not None:
         out["ip_access_settings_arn"] = data["ipAccessSettingsArn"]
-    if "instanceType" in data:
+    if data.get("instanceType") is not None:
         out["instance_type"] = data["instanceType"]
-    if "maxConcurrentSessions" in data:
+    if data.get("maxConcurrentSessions") is not None:
         out["max_concurrent_sessions"] = data["maxConcurrentSessions"]
-    if "portalCustomDomain" in data:
+    if data.get("portalCustomDomain") is not None:
         out["portal_custom_domain"] = data["portalCustomDomain"]
     return out

@@ -44,15 +44,15 @@ def serialize_aws_json_1_0(value: ArcRoutingControlConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ArcRoutingControlConfiguration:
     out: ArcRoutingControlConfiguration = {}  # type: ignore[typeddict-item]
-    if "timeoutMinutes" in data:
+    if data.get("timeoutMinutes") is not None:
         out["timeout_minutes"] = data["timeoutMinutes"]
     else:
         out["timeout_minutes"] = 60
-    if "crossAccountRole" in data:
+    if data.get("crossAccountRole") is not None:
         out["cross_account_role"] = data["crossAccountRole"]
-    if "externalId" in data:
+    if data.get("externalId") is not None:
         out["external_id"] = data["externalId"]
-    if "regionAndRoutingControls" in data:
+    if data.get("regionAndRoutingControls") is not None:
         import capo_arc_region_switch.types.region_and_routing_controls
 
         out["region_and_routing_controls"] = (

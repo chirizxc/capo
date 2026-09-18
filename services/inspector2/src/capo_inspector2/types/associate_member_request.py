@@ -24,7 +24,7 @@ def serialize_json(value: AssociateMemberRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociateMemberRequest:
     out: AssociateMemberRequest = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
     else:
         raise DeserializationError("AssociateMemberRequest.account_id required")

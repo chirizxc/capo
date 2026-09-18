@@ -24,7 +24,7 @@ def serialize_json(value: UpdateGitLabSelfManagedIntegrationDetail) -> dict:
 
 def deserialize_json(data: dict) -> UpdateGitLabSelfManagedIntegrationDetail:
     out: UpdateGitLabSelfManagedIntegrationDetail = {}  # type: ignore[typeddict-item]
-    if "authCode" in data:
+    if data.get("authCode") is not None:
         out["auth_code"] = data["authCode"]
     else:
         raise DeserializationError(

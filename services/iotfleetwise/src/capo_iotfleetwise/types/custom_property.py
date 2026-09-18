@@ -66,11 +66,11 @@ def serialize_aws_json_1_0(value: CustomProperty) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CustomProperty:
     out: CustomProperty = {}  # type: ignore[typeddict-item]
-    if "fullyQualifiedName" in data:
+    if data.get("fullyQualifiedName") is not None:
         out["fully_qualified_name"] = data["fullyQualifiedName"]
     else:
         raise DeserializationError("CustomProperty.fully_qualified_name required")
-    if "dataType" in data:
+    if data.get("dataType") is not None:
         import capo_iotfleetwise.types.node_data_type
 
         out["data_type"] = (
@@ -80,7 +80,7 @@ def deserialize_aws_json_1_0(data: dict) -> CustomProperty:
         )
     else:
         raise DeserializationError("CustomProperty.data_type required")
-    if "dataEncoding" in data:
+    if data.get("dataEncoding") is not None:
         import capo_iotfleetwise.types.node_data_encoding
 
         out["data_encoding"] = (
@@ -88,12 +88,12 @@ def deserialize_aws_json_1_0(data: dict) -> CustomProperty:
                 data["dataEncoding"]
             )
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "deprecationMessage" in data:
+    if data.get("deprecationMessage") is not None:
         out["deprecation_message"] = data["deprecationMessage"]
-    if "comment" in data:
+    if data.get("comment") is not None:
         out["comment"] = data["comment"]
-    if "structFullyQualifiedName" in data:
+    if data.get("structFullyQualifiedName") is not None:
         out["struct_fully_qualified_name"] = data["structFullyQualifiedName"]
     return out

@@ -79,7 +79,7 @@ def serialize_aws_json_1_1(value: AutoMLJobConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AutoMLJobConfig:
     out: AutoMLJobConfig = {}  # type: ignore[typeddict-item]
-    if "CompletionCriteria" in data:
+    if data.get("CompletionCriteria") is not None:
         import capo_sagemaker.types.auto_ml_job_completion_criteria
 
         out["completion_criteria"] = (
@@ -87,7 +87,7 @@ def deserialize_aws_json_1_1(data: dict) -> AutoMLJobConfig:
                 data["CompletionCriteria"]
             )
         )
-    if "SecurityConfig" in data:
+    if data.get("SecurityConfig") is not None:
         import capo_sagemaker.types.auto_ml_security_config
 
         out["security_config"] = (
@@ -95,7 +95,7 @@ def deserialize_aws_json_1_1(data: dict) -> AutoMLJobConfig:
                 data["SecurityConfig"]
             )
         )
-    if "CandidateGenerationConfig" in data:
+    if data.get("CandidateGenerationConfig") is not None:
         import capo_sagemaker.types.auto_ml_candidate_generation_config
 
         out["candidate_generation_config"] = (
@@ -103,7 +103,7 @@ def deserialize_aws_json_1_1(data: dict) -> AutoMLJobConfig:
                 data["CandidateGenerationConfig"]
             )
         )
-    if "DataSplitConfig" in data:
+    if data.get("DataSplitConfig") is not None:
         import capo_sagemaker.types.auto_ml_data_split_config
 
         out["data_split_config"] = (
@@ -111,7 +111,7 @@ def deserialize_aws_json_1_1(data: dict) -> AutoMLJobConfig:
                 data["DataSplitConfig"]
             )
         )
-    if "Mode" in data:
+    if data.get("Mode") is not None:
         import capo_sagemaker.types.auto_ml_mode
 
         out["mode"] = capo_sagemaker.types.auto_ml_mode.deserialize_aws_json_1_1(

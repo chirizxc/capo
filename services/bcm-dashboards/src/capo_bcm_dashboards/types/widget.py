@@ -55,27 +55,27 @@ def serialize_aws_json_1_0(value: Widget) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Widget:
     out: Widget = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
     else:
         raise DeserializationError("Widget.title required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "width" in data:
+    if data.get("width") is not None:
         out["width"] = data["width"]
     else:
         out["width"] = 4
-    if "height" in data:
+    if data.get("height") is not None:
         out["height"] = data["height"]
     else:
         out["height"] = 7
-    if "horizontalOffset" in data:
+    if data.get("horizontalOffset") is not None:
         out["horizontal_offset"] = data["horizontalOffset"]
     else:
         out["horizontal_offset"] = 0
-    if "configs" in data:
+    if data.get("configs") is not None:
         import capo_bcm_dashboards.types.widget_config_list
 
         out["configs"] = (

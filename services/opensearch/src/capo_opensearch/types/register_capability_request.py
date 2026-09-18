@@ -37,11 +37,11 @@ def serialize_json(value: RegisterCapabilityRequest) -> dict:
 
 def deserialize_json(data: dict) -> RegisterCapabilityRequest:
     out: RegisterCapabilityRequest = {}  # type: ignore[typeddict-item]
-    if "capabilityName" in data:
+    if data.get("capabilityName") is not None:
         out["capability_name"] = data["capabilityName"]
     else:
         raise DeserializationError("RegisterCapabilityRequest.capability_name required")
-    if "capabilityConfig" in data:
+    if data.get("capabilityConfig") is not None:
         import capo_opensearch.types.capability_base_request_config
 
         out["capability_config"] = (

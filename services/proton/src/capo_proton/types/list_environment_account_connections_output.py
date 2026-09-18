@@ -35,7 +35,7 @@ def serialize_aws_json_1_0(value: ListEnvironmentAccountConnectionsOutput) -> di
 
 def deserialize_aws_json_1_0(data: dict) -> ListEnvironmentAccountConnectionsOutput:
     out: ListEnvironmentAccountConnectionsOutput = {}  # type: ignore[typeddict-item]
-    if "environmentAccountConnections" in data:
+    if data.get("environmentAccountConnections") is not None:
         import capo_proton.types.environment_account_connection_summary_list
 
         out["environment_account_connections"] = (
@@ -47,6 +47,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListEnvironmentAccountConnectionsOut
         raise DeserializationError(
             "ListEnvironmentAccountConnectionsOutput.environment_account_connections required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: SuggestableConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SuggestableConfig:
     out: SuggestableConfig = {}  # type: ignore[typeddict-item]
-    if "AttributeName" in data:
+    if data.get("AttributeName") is not None:
         out["attribute_name"] = data["AttributeName"]
-    if "Suggestable" in data:
+    if data.get("Suggestable") is not None:
         out["suggestable"] = data["Suggestable"]
     return out

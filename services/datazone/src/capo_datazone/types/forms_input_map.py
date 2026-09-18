@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: FormsInputMap) -> dict:
 def deserialize_json(data: dict) -> FormsInputMap:
     out: FormsInputMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_datazone.types.form_entry_input
 
         out[key] = capo_datazone.types.form_entry_input.deserialize_json(value)

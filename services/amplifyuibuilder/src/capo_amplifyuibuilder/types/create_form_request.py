@@ -34,7 +34,7 @@ def serialize_json(value: CreateFormRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateFormRequest:
     out: CreateFormRequest = {}  # type: ignore[typeddict-item]
-    if "formToCreate" in data:
+    if data.get("formToCreate") is not None:
         import capo_amplifyuibuilder.types.create_form_data
 
         out["form_to_create"] = (

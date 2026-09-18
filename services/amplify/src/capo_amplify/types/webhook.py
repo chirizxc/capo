@@ -61,29 +61,29 @@ def serialize_json(value: Webhook) -> dict:
 
 def deserialize_json(data: dict) -> Webhook:
     out: Webhook = {}  # type: ignore[typeddict-item]
-    if "webhookArn" in data:
+    if data.get("webhookArn") is not None:
         out["webhook_arn"] = data["webhookArn"]
     else:
         raise DeserializationError("Webhook.webhook_arn required")
-    if "webhookId" in data:
+    if data.get("webhookId") is not None:
         out["webhook_id"] = data["webhookId"]
     else:
         raise DeserializationError("Webhook.webhook_id required")
-    if "webhookUrl" in data:
+    if data.get("webhookUrl") is not None:
         out["webhook_url"] = data["webhookUrl"]
     else:
         raise DeserializationError("Webhook.webhook_url required")
-    if "appId" in data:
+    if data.get("appId") is not None:
         out["app_id"] = data["appId"]
-    if "branchName" in data:
+    if data.get("branchName") is not None:
         out["branch_name"] = data["branchName"]
     else:
         raise DeserializationError("Webhook.branch_name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     else:
         raise DeserializationError("Webhook.description required")
-    if "createTime" in data:
+    if data.get("createTime") is not None:
         import capo_amplify.types.create_time
 
         out["create_time"] = capo_amplify.types.create_time.deserialize_json(
@@ -91,7 +91,7 @@ def deserialize_json(data: dict) -> Webhook:
         )
     else:
         raise DeserializationError("Webhook.create_time required")
-    if "updateTime" in data:
+    if data.get("updateTime") is not None:
         import capo_amplify.types.update_time
 
         out["update_time"] = capo_amplify.types.update_time.deserialize_json(

@@ -58,17 +58,17 @@ def serialize_aws_json_1_0(value: QueryRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> QueryRequest:
     out: QueryRequest = {}  # type: ignore[typeddict-item]
-    if "QueryString" in data:
+    if data.get("QueryString") is not None:
         out["query_string"] = data["QueryString"]
     else:
         raise DeserializationError("QueryRequest.query_string required")
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxRows" in data:
+    if data.get("MaxRows") is not None:
         out["max_rows"] = data["MaxRows"]
-    if "QueryInsights" in data:
+    if data.get("QueryInsights") is not None:
         import capo_timestream_query.types.query_insights
 
         out["query_insights"] = (

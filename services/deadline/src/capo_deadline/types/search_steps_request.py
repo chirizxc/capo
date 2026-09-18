@@ -67,7 +67,7 @@ def serialize_json(value: SearchStepsRequest) -> dict:
 
 def deserialize_json(data: dict) -> SearchStepsRequest:
     out: SearchStepsRequest = {}  # type: ignore[typeddict-item]
-    if "filterExpressions" in data:
+    if data.get("filterExpressions") is not None:
         import capo_deadline.types.search_grouped_filter_expressions
 
         out["filter_expressions"] = (
@@ -75,7 +75,7 @@ def deserialize_json(data: dict) -> SearchStepsRequest:
                 data["filterExpressions"]
             )
         )
-    if "sortExpressions" in data:
+    if data.get("sortExpressions") is not None:
         import capo_deadline.types.search_sort_expressions
 
         out["sort_expressions"] = (
@@ -83,15 +83,15 @@ def deserialize_json(data: dict) -> SearchStepsRequest:
                 data["sortExpressions"]
             )
         )
-    if "itemOffset" in data:
+    if data.get("itemOffset") is not None:
         out["item_offset"] = data["itemOffset"]
     else:
         raise DeserializationError("SearchStepsRequest.item_offset required")
-    if "pageSize" in data:
+    if data.get("pageSize") is not None:
         out["page_size"] = data["pageSize"]
     else:
         out["page_size"] = 100
-    if "queueIds" in data:
+    if data.get("queueIds") is not None:
         import capo_deadline.types.queue_ids
 
         out["queue_ids"] = capo_deadline.types.queue_ids.deserialize_json(
@@ -99,6 +99,6 @@ def deserialize_json(data: dict) -> SearchStepsRequest:
         )
     else:
         raise DeserializationError("SearchStepsRequest.queue_ids required")
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
     return out

@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.synthetics#Synthetics``."""
 
 import warnings
+from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +17,7 @@ from capo_synthetics._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_synthetics._auth._zapros_handler import AuthMiddleware
+from capo_synthetics._pagination import resolve_path as _resolve_path
 from capo_synthetics._services._aws_config import aaws_config
 from capo_synthetics._services._pipeline import (
     AsyncInterceptor,
@@ -235,15 +237,17 @@ class AsyncsyntheticsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_synthetics.types.associate_resource_request.AssociateResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["group_identifier"] = group_identifier
-        input_["resource_arn"] = resource_arn
+        input_: capo_synthetics.types.associate_resource_request.AssociateResourceRequest = {
+            "group_identifier": group_identifier,
+            "resource_arn": resource_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_canary(
@@ -324,12 +328,14 @@ class AsyncsyntheticsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_synthetics.types.create_canary_request.CreateCanaryRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["code"] = code
-        input_["artifact_s3_location"] = artifact_s3_location
-        input_["execution_role_arn"] = execution_role_arn
-        input_["schedule"] = schedule
+        input_: capo_synthetics.types.create_canary_request.CreateCanaryRequest = {
+            "name": name,
+            "code": code,
+            "artifact_s3_location": artifact_s3_location,
+            "execution_role_arn": execution_role_arn,
+            "schedule": schedule,
+            "runtime_version": runtime_version,
+        }
         if run_config is not None:
             input_["run_config"] = run_config
         if success_retention_period_in_days is not None:
@@ -340,7 +346,6 @@ class AsyncsyntheticsClient:
             input_["failure_retention_period_in_days"] = (
                 failure_retention_period_in_days
             )
-        input_["runtime_version"] = runtime_version
         if vpc_config is not None:
             input_["vpc_config"] = vpc_config
         if resources_to_replicate_tags is not None:
@@ -359,6 +364,7 @@ class AsyncsyntheticsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_group(
@@ -398,8 +404,9 @@ class AsyncsyntheticsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_synthetics.types.create_group_request.CreateGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_synthetics.types.create_group_request.CreateGroupRequest = {
+            "name": name
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -408,6 +415,7 @@ class AsyncsyntheticsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_canary(
@@ -447,8 +455,9 @@ class AsyncsyntheticsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_synthetics.types.delete_canary_request.DeleteCanaryRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_synthetics.types.delete_canary_request.DeleteCanaryRequest = {
+            "name": name
+        }
         if delete_lambda is not None:
             input_["delete_lambda"] = delete_lambda
 
@@ -457,6 +466,7 @@ class AsyncsyntheticsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_group(
@@ -494,14 +504,16 @@ class AsyncsyntheticsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_synthetics.types.delete_group_request.DeleteGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["group_identifier"] = group_identifier
+        input_: capo_synthetics.types.delete_group_request.DeleteGroupRequest = {
+            "group_identifier": group_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_canaries(
@@ -545,7 +557,7 @@ class AsyncsyntheticsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_synthetics.types.describe_canaries_request.DescribeCanariesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_synthetics.types.describe_canaries_request.DescribeCanariesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -558,7 +570,33 @@ class AsyncsyntheticsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_canaries(
+        self,
+        *,
+        config_overrides: Optional[AsyncsyntheticsClientConfig] = None,
+        next_token: Optional["capo_synthetics.types.token.Token"] = None,
+        max_results: Optional[
+            "capo_synthetics.types.max_canary_results.MaxCanaryResults"
+        ] = None,
+        names: Optional[
+            "capo_synthetics.types.describe_canaries_name_filter.DescribeCanariesNameFilter"
+        ] = None,
+    ) -> "AsyncIterator[capo_synthetics.types.describe_canaries_response.DescribeCanariesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.describe_canaries(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                names=names,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def describe_canaries_last_run(
         self,
@@ -601,7 +639,7 @@ class AsyncsyntheticsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_synthetics.types.describe_canaries_last_run_request.DescribeCanariesLastRunRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_synthetics.types.describe_canaries_last_run_request.DescribeCanariesLastRunRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -616,7 +654,33 @@ class AsyncsyntheticsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_canaries_last_run(
+        self,
+        *,
+        config_overrides: Optional[AsyncsyntheticsClientConfig] = None,
+        next_token: Optional["capo_synthetics.types.token.Token"] = None,
+        max_results: Optional["capo_synthetics.types.max_size100.MaxSize100"] = None,
+        names: Optional[
+            "capo_synthetics.types.describe_canaries_last_run_name_filter.DescribeCanariesLastRunNameFilter"
+        ] = None,
+        browser_type: Optional["capo_synthetics.types.browser_type.BrowserType"] = None,
+    ) -> "AsyncIterator[capo_synthetics.types.describe_canaries_last_run_response.DescribeCanariesLastRunResponse]":
+        _token = next_token
+        while True:
+            _response = await self.describe_canaries_last_run(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                names=names,
+                browser_type=browser_type,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def describe_runtime_versions(
         self,
@@ -653,7 +717,7 @@ class AsyncsyntheticsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_synthetics.types.describe_runtime_versions_request.DescribeRuntimeVersionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_synthetics.types.describe_runtime_versions_request.DescribeRuntimeVersionsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -664,7 +728,27 @@ class AsyncsyntheticsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_describe_runtime_versions(
+        self,
+        *,
+        config_overrides: Optional[AsyncsyntheticsClientConfig] = None,
+        next_token: Optional["capo_synthetics.types.token.Token"] = None,
+        max_results: Optional["capo_synthetics.types.max_size100.MaxSize100"] = None,
+    ) -> "AsyncIterator[capo_synthetics.types.describe_runtime_versions_response.DescribeRuntimeVersionsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.describe_runtime_versions(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def disassociate_resource(
         self,
@@ -703,15 +787,17 @@ class AsyncsyntheticsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_synthetics.types.disassociate_resource_request.DisassociateResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["group_identifier"] = group_identifier
-        input_["resource_arn"] = resource_arn
+        input_: capo_synthetics.types.disassociate_resource_request.DisassociateResourceRequest = {
+            "group_identifier": group_identifier,
+            "resource_arn": resource_arn,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_canary(
@@ -749,8 +835,9 @@ class AsyncsyntheticsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_synthetics.types.get_canary_request.GetCanaryRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_synthetics.types.get_canary_request.GetCanaryRequest = {
+            "name": name
+        }
         if dry_run_id is not None:
             input_["dry_run_id"] = dry_run_id
 
@@ -759,6 +846,7 @@ class AsyncsyntheticsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_canary_runs(
@@ -803,8 +891,9 @@ class AsyncsyntheticsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_synthetics.types.get_canary_runs_request.GetCanaryRunsRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_synthetics.types.get_canary_runs_request.GetCanaryRunsRequest = {
+            "name": name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -819,7 +908,33 @@ class AsyncsyntheticsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_get_canary_runs(
+        self,
+        name: "capo_synthetics.types.canary_name.CanaryName",
+        *,
+        config_overrides: Optional[AsyncsyntheticsClientConfig] = None,
+        next_token: Optional["capo_synthetics.types.token.Token"] = None,
+        max_results: Optional["capo_synthetics.types.max_size100.MaxSize100"] = None,
+        dry_run_id: Optional["capo_synthetics.types.uuid.UUID"] = None,
+        run_type: Optional["capo_synthetics.types.run_type.RunType"] = None,
+    ) -> "AsyncIterator[capo_synthetics.types.get_canary_runs_response.GetCanaryRunsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.get_canary_runs(
+                name,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                dry_run_id=dry_run_id,
+                run_type=run_type,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def get_group(
         self,
@@ -856,14 +971,16 @@ class AsyncsyntheticsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_synthetics.types.get_group_request.GetGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["group_identifier"] = group_identifier
+        input_: capo_synthetics.types.get_group_request.GetGroupRequest = {
+            "group_identifier": group_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_associated_groups(
@@ -908,19 +1025,46 @@ class AsyncsyntheticsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_synthetics.types.list_associated_groups_request.ListAssociatedGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_synthetics.types.list_associated_groups_request.ListAssociatedGroupsRequest = {
+            "resource_arn": resource_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["resource_arn"] = resource_arn
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_associated_groups(
+        self,
+        resource_arn: "capo_synthetics.types.canary_arn.CanaryArn",
+        *,
+        config_overrides: Optional[AsyncsyntheticsClientConfig] = None,
+        next_token: Optional[
+            "capo_synthetics.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional[
+            "capo_synthetics.types.max_group_results.MaxGroupResults"
+        ] = None,
+    ) -> "AsyncIterator[capo_synthetics.types.list_associated_groups_response.ListAssociatedGroupsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_associated_groups(
+                resource_arn,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_group_resources(
         self,
@@ -967,19 +1111,46 @@ class AsyncsyntheticsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_synthetics.types.list_group_resources_request.ListGroupResourcesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_synthetics.types.list_group_resources_request.ListGroupResourcesRequest = {
+            "group_identifier": group_identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["group_identifier"] = group_identifier
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_group_resources(
+        self,
+        group_identifier: "capo_synthetics.types.group_identifier.GroupIdentifier",
+        *,
+        config_overrides: Optional[AsyncsyntheticsClientConfig] = None,
+        next_token: Optional[
+            "capo_synthetics.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional[
+            "capo_synthetics.types.max_group_results.MaxGroupResults"
+        ] = None,
+    ) -> "AsyncIterator[capo_synthetics.types.list_group_resources_response.ListGroupResourcesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_group_resources(
+                group_identifier,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_groups(
         self,
@@ -1020,7 +1191,7 @@ class AsyncsyntheticsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_synthetics.types.list_groups_request.ListGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_synthetics.types.list_groups_request.ListGroupsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1031,7 +1202,31 @@ class AsyncsyntheticsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_groups(
+        self,
+        *,
+        config_overrides: Optional[AsyncsyntheticsClientConfig] = None,
+        next_token: Optional[
+            "capo_synthetics.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional[
+            "capo_synthetics.types.max_group_results.MaxGroupResults"
+        ] = None,
+    ) -> "AsyncIterator[capo_synthetics.types.list_groups_response.ListGroupsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_groups(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_tags_for_resource(
         self,
@@ -1069,14 +1264,16 @@ class AsyncsyntheticsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_synthetics.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_synthetics.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_canary(
@@ -1114,14 +1311,16 @@ class AsyncsyntheticsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_synthetics.types.start_canary_request.StartCanaryRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_synthetics.types.start_canary_request.StartCanaryRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_canary_dry_run(
@@ -1203,8 +1402,9 @@ class AsyncsyntheticsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_synthetics.types.start_canary_dry_run_request.StartCanaryDryRunRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_synthetics.types.start_canary_dry_run_request.StartCanaryDryRunRequest = {
+            "name": name
+        }
         if code is not None:
             input_["code"] = code
         if runtime_version is not None:
@@ -1241,6 +1441,7 @@ class AsyncsyntheticsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_canary(
@@ -1278,14 +1479,16 @@ class AsyncsyntheticsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_synthetics.types.stop_canary_request.StopCanaryRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_synthetics.types.stop_canary_request.StopCanaryRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -1326,15 +1529,17 @@ class AsyncsyntheticsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_synthetics.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_synthetics.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -1375,15 +1580,17 @@ class AsyncsyntheticsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_synthetics.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_synthetics.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_canary(
@@ -1475,8 +1682,9 @@ class AsyncsyntheticsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_synthetics.types.update_canary_request.UpdateCanaryRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_synthetics.types.update_canary_request.UpdateCanaryRequest = {
+            "name": name
+        }
         if code is not None:
             input_["code"] = code
         if execution_role_arn is not None:
@@ -1517,6 +1725,7 @@ class AsyncsyntheticsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

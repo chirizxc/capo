@@ -38,7 +38,7 @@ def serialize_json(value: UpdateTemplateRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateTemplateRequest:
     out: UpdateTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "Definition" in data:
+    if data.get("Definition") is not None:
         import capo_pca_connector_ad.types.template_definition
 
         out["definition"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> UpdateTemplateRequest:
                 data["Definition"]
             )
         )
-    if "ReenrollAllCertificateHolders" in data:
+    if data.get("ReenrollAllCertificateHolders") is not None:
         out["reenroll_all_certificate_holders"] = data["ReenrollAllCertificateHolders"]
     return out

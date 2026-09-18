@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetDataQualityRuleRecommendationRunRequest) ->
 
 def deserialize_aws_json_1_1(data: dict) -> GetDataQualityRuleRecommendationRunRequest:
     out: GetDataQualityRuleRecommendationRunRequest = {}  # type: ignore[typeddict-item]
-    if "RunId" in data:
+    if data.get("RunId") is not None:
         out["run_id"] = data["RunId"]
     else:
         raise DeserializationError(

@@ -31,17 +31,17 @@ def serialize_aws_json_1_1(value: ResendValidationEmailRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResendValidationEmailRequest:
     out: ResendValidationEmailRequest = {}  # type: ignore[typeddict-item]
-    if "CertificateArn" in data:
+    if data.get("CertificateArn") is not None:
         out["certificate_arn"] = data["CertificateArn"]
     else:
         raise DeserializationError(
             "ResendValidationEmailRequest.certificate_arn required"
         )
-    if "Domain" in data:
+    if data.get("Domain") is not None:
         out["domain"] = data["Domain"]
     else:
         raise DeserializationError("ResendValidationEmailRequest.domain required")
-    if "ValidationDomain" in data:
+    if data.get("ValidationDomain") is not None:
         out["validation_domain"] = data["ValidationDomain"]
     else:
         raise DeserializationError(

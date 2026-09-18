@@ -111,13 +111,13 @@ def serialize_aws_json_1_1(value: StatementData) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StatementData:
     out: StatementData = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("StatementData.id required")
-    if "QueryString" in data:
+    if data.get("QueryString") is not None:
         out["query_string"] = data["QueryString"]
-    if "QueryStrings" in data:
+    if data.get("QueryStrings") is not None:
         import capo_redshift_data.types.statement_string_list
 
         out["query_strings"] = (
@@ -125,13 +125,13 @@ def deserialize_aws_json_1_1(data: dict) -> StatementData:
                 data["QueryStrings"]
             )
         )
-    if "SecretArn" in data:
+    if data.get("SecretArn") is not None:
         out["secret_arn"] = data["SecretArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "StatementName" in data:
+    if data.get("StatementName") is not None:
         out["statement_name"] = data["StatementName"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_redshift_data.types._prelude.timestamp
 
         out["created_at"] = (
@@ -139,7 +139,7 @@ def deserialize_aws_json_1_1(data: dict) -> StatementData:
                 data["CreatedAt"]
             )
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_redshift_data.types._prelude.timestamp
 
         out["updated_at"] = (
@@ -147,7 +147,7 @@ def deserialize_aws_json_1_1(data: dict) -> StatementData:
                 data["UpdatedAt"]
             )
         )
-    if "QueryParameters" in data:
+    if data.get("QueryParameters") is not None:
         import capo_redshift_data.types.sql_parameters_list
 
         out["query_parameters"] = (
@@ -155,10 +155,10 @@ def deserialize_aws_json_1_1(data: dict) -> StatementData:
                 data["QueryParameters"]
             )
         )
-    if "IsBatchStatement" in data:
+    if data.get("IsBatchStatement") is not None:
         out["is_batch_statement"] = data["IsBatchStatement"]
-    if "ResultFormat" in data:
+    if data.get("ResultFormat") is not None:
         out["result_format"] = data["ResultFormat"]
-    if "SessionId" in data:
+    if data.get("SessionId") is not None:
         out["session_id"] = data["SessionId"]
     return out

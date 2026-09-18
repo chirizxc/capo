@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Metadata:
 
     out: Metadata = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_rds_data.types.column_metadata.deserialize_json(item))
     return out

@@ -38,9 +38,9 @@ def serialize_json(value: MultiplexVideoSettings) -> dict:
 
 def deserialize_json(data: dict) -> MultiplexVideoSettings:
     out: MultiplexVideoSettings = {}  # type: ignore[typeddict-item]
-    if "constantBitrate" in data:
+    if data.get("constantBitrate") is not None:
         out["constant_bitrate"] = data["constantBitrate"]
-    if "statmuxSettings" in data:
+    if data.get("statmuxSettings") is not None:
         import capo_medialive.types.multiplex_statmux_video_settings
 
         out["statmux_settings"] = (

@@ -33,11 +33,11 @@ def serialize_json(value: HttpQueryParameter) -> dict:
 
 def deserialize_json(data: dict) -> HttpQueryParameter:
     out: HttpQueryParameter = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("HttpQueryParameter.name required")
-    if "match" in data:
+    if data.get("match") is not None:
         import capo_app_mesh.types.query_parameter_match
 
         out["match"] = capo_app_mesh.types.query_parameter_match.deserialize_json(

@@ -24,7 +24,7 @@ def serialize_json(value: InvalidSecretException_) -> dict:
 
 def deserialize_json(data: dict) -> InvalidSecretException_:
     out: InvalidSecretException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,18 @@ class InvalidSecretException(ServiceError):
 
     code: str | None = "InvalidSecretException"
 
-    def __init__(self, data: InvalidSecretException_):
+    def __init__(self, data: InvalidSecretException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidSecretException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "InvalidSecretException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidSecretException":
+        return cls(deserialize_json(data), message)

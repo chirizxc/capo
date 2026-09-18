@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: DescribeAccessResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeAccessResponse:
     out: DescribeAccessResponse = {}  # type: ignore[typeddict-item]
-    if "ServerId" in data:
+    if data.get("ServerId") is not None:
         out["server_id"] = data["ServerId"]
     else:
         raise DeserializationError("DescribeAccessResponse.server_id required")
-    if "Access" in data:
+    if data.get("Access") is not None:
         import capo_transfer.types.described_access
 
         out["access"] = capo_transfer.types.described_access.deserialize_aws_json_1_1(

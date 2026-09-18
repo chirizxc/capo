@@ -110,15 +110,15 @@ def serialize_aws_json_1_0(value: ListEngagementInvitationsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListEngagementInvitationsRequest:
     out: ListEngagementInvitationsRequest = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("ListEngagementInvitationsRequest.catalog required")
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "Sort" in data:
+    if data.get("Sort") is not None:
         import capo_partnercentral_selling.types.opportunity_engagement_invitation_sort
 
         out["sort"] = (
@@ -126,7 +126,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListEngagementInvitationsRequest:
                 data["Sort"]
             )
         )
-    if "PayloadType" in data:
+    if data.get("PayloadType") is not None:
         import capo_partnercentral_selling.types.engagement_invitations_payload_type
 
         out["payload_type"] = (
@@ -134,7 +134,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListEngagementInvitationsRequest:
                 data["PayloadType"]
             )
         )
-    if "ParticipantType" in data:
+    if data.get("ParticipantType") is not None:
         import capo_partnercentral_selling.types.participant_type
 
         out["participant_type"] = (
@@ -146,7 +146,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListEngagementInvitationsRequest:
         raise DeserializationError(
             "ListEngagementInvitationsRequest.participant_type required"
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_partnercentral_selling.types.invitation_status_list
 
         out["status"] = (
@@ -154,7 +154,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListEngagementInvitationsRequest:
                 data["Status"]
             )
         )
-    if "EngagementIdentifier" in data:
+    if data.get("EngagementIdentifier") is not None:
         import capo_partnercentral_selling.types.engagement_identifiers
 
         out["engagement_identifier"] = (
@@ -162,7 +162,7 @@ def deserialize_aws_json_1_0(data: dict) -> ListEngagementInvitationsRequest:
                 data["EngagementIdentifier"]
             )
         )
-    if "SenderAwsAccountId" in data:
+    if data.get("SenderAwsAccountId") is not None:
         import capo_partnercentral_selling.types.aws_account_id_or_alias_list
 
         out["sender_aws_account_id"] = (

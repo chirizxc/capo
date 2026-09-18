@@ -39,14 +39,14 @@ def serialize_aws_json_1_1(value: UpdateGrokClassifierRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateGrokClassifierRequest:
     out: UpdateGrokClassifierRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("UpdateGrokClassifierRequest.name required")
-    if "Classification" in data:
+    if data.get("Classification") is not None:
         out["classification"] = data["Classification"]
-    if "GrokPattern" in data:
+    if data.get("GrokPattern") is not None:
         out["grok_pattern"] = data["GrokPattern"]
-    if "CustomPatterns" in data:
+    if data.get("CustomPatterns") is not None:
         out["custom_patterns"] = data["CustomPatterns"]
     return out

@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: AuditCheckToActionsMapping) -> dict:
 def deserialize_json(data: dict) -> AuditCheckToActionsMapping:
     out: AuditCheckToActionsMapping = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_iot.types.mitigation_action_name_list
 
         out[key] = capo_iot.types.mitigation_action_name_list.deserialize_json(value)

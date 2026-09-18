@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> ListOfDetectEntitiesResult:
 
     out: ListOfDetectEntitiesResult = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_comprehend.types.batch_detect_entities_item_result.deserialize_aws_json_1_1(
                 item

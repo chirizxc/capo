@@ -167,31 +167,31 @@ def serialize_json(value: Experiment) -> dict:
 
 def deserialize_json(data: dict) -> Experiment:
     out: Experiment = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "experimentTemplateId" in data:
+    if data.get("experimentTemplateId") is not None:
         out["experiment_template_id"] = data["experimentTemplateId"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_fis.types.experiment_state
 
         out["state"] = capo_fis.types.experiment_state.deserialize_json(data["state"])
-    if "targets" in data:
+    if data.get("targets") is not None:
         import capo_fis.types.experiment_target_map
 
         out["targets"] = capo_fis.types.experiment_target_map.deserialize_json(
             data["targets"]
         )
-    if "actions" in data:
+    if data.get("actions") is not None:
         import capo_fis.types.experiment_action_map
 
         out["actions"] = capo_fis.types.experiment_action_map.deserialize_json(
             data["actions"]
         )
-    if "stopConditions" in data:
+    if data.get("stopConditions") is not None:
         import capo_fis.types.experiment_stop_condition_list
 
         out["stop_conditions"] = (
@@ -199,29 +199,29 @@ def deserialize_json(data: dict) -> Experiment:
                 data["stopConditions"]
             )
         )
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_fis.types.creation_time
 
         out["creation_time"] = capo_fis.types.creation_time.deserialize_json(
             data["creationTime"]
         )
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_fis.types.experiment_start_time
 
         out["start_time"] = capo_fis.types.experiment_start_time.deserialize_json(
             data["startTime"]
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_fis.types.experiment_end_time
 
         out["end_time"] = capo_fis.types.experiment_end_time.deserialize_json(
             data["endTime"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_fis.types.tag_map
 
         out["tags"] = capo_fis.types.tag_map.deserialize_json(data["tags"])
-    if "logConfiguration" in data:
+    if data.get("logConfiguration") is not None:
         import capo_fis.types.experiment_log_configuration
 
         out["log_configuration"] = (
@@ -229,17 +229,17 @@ def deserialize_json(data: dict) -> Experiment:
                 data["logConfiguration"]
             )
         )
-    if "experimentOptions" in data:
+    if data.get("experimentOptions") is not None:
         import capo_fis.types.experiment_options
 
         out["experiment_options"] = capo_fis.types.experiment_options.deserialize_json(
             data["experimentOptions"]
         )
-    if "targetAccountConfigurationsCount" in data:
+    if data.get("targetAccountConfigurationsCount") is not None:
         out["target_account_configurations_count"] = data[
             "targetAccountConfigurationsCount"
         ]
-    if "experimentReportConfiguration" in data:
+    if data.get("experimentReportConfiguration") is not None:
         import capo_fis.types.experiment_report_configuration
 
         out["experiment_report_configuration"] = (
@@ -247,7 +247,7 @@ def deserialize_json(data: dict) -> Experiment:
                 data["experimentReportConfiguration"]
             )
         )
-    if "experimentReport" in data:
+    if data.get("experimentReport") is not None:
         import capo_fis.types.experiment_report
 
         out["experiment_report"] = capo_fis.types.experiment_report.deserialize_json(

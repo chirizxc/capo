@@ -28,8 +28,8 @@ def serialize_json(value: SlaFilter) -> dict:
 
 def deserialize_json(data: dict) -> SlaFilter:
     out: SlaFilter = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     return out

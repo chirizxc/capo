@@ -74,19 +74,19 @@ def serialize_aws_json_1_1(value: StaticIp) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StaticIp:
     out: StaticIp = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "supportCode" in data:
+    if data.get("supportCode") is not None:
         out["support_code"] = data["supportCode"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_lightsail.types.iso_date
 
         out["created_at"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
             data["createdAt"]
         )
-    if "location" in data:
+    if data.get("location") is not None:
         import capo_lightsail.types.resource_location
 
         out["location"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_1(data: dict) -> StaticIp:
                 data["location"]
             )
         )
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_lightsail.types.resource_type
 
         out["resource_type"] = (
@@ -102,10 +102,10 @@ def deserialize_aws_json_1_1(data: dict) -> StaticIp:
                 data["resourceType"]
             )
         )
-    if "ipAddress" in data:
+    if data.get("ipAddress") is not None:
         out["ip_address"] = data["ipAddress"]
-    if "attachedTo" in data:
+    if data.get("attachedTo") is not None:
         out["attached_to"] = data["attachedTo"]
-    if "isAttached" in data:
+    if data.get("isAttached") is not None:
         out["is_attached"] = data["isAttached"]
     return out

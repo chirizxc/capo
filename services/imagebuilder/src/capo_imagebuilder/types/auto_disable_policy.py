@@ -26,7 +26,7 @@ def serialize_json(value: AutoDisablePolicy) -> dict:
 
 def deserialize_json(data: dict) -> AutoDisablePolicy:
     out: AutoDisablePolicy = {}  # type: ignore[typeddict-item]
-    if "failureCount" in data:
+    if data.get("failureCount") is not None:
         out["failure_count"] = data["failureCount"]
     else:
         raise DeserializationError("AutoDisablePolicy.failure_count required")

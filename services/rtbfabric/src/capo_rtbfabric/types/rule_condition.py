@@ -51,15 +51,15 @@ def serialize_json(value: RuleCondition) -> dict:
 
 def deserialize_json(data: dict) -> RuleCondition:
     out: RuleCondition = {}  # type: ignore[typeddict-item]
-    if "hostHeader" in data:
+    if data.get("hostHeader") is not None:
         out["host_header"] = data["hostHeader"]
-    if "hostHeaderWildcard" in data:
+    if data.get("hostHeaderWildcard") is not None:
         out["host_header_wildcard"] = data["hostHeaderWildcard"]
-    if "pathPrefix" in data:
+    if data.get("pathPrefix") is not None:
         out["path_prefix"] = data["pathPrefix"]
-    if "pathExact" in data:
+    if data.get("pathExact") is not None:
         out["path_exact"] = data["pathExact"]
-    if "queryStringEquals" in data:
+    if data.get("queryStringEquals") is not None:
         import capo_rtbfabric.types.query_string_key_value_pair
 
         out["query_string_equals"] = (
@@ -67,6 +67,6 @@ def deserialize_json(data: dict) -> RuleCondition:
                 data["queryStringEquals"]
             )
         )
-    if "queryStringExists" in data:
+    if data.get("queryStringExists") is not None:
         out["query_string_exists"] = data["queryStringExists"]
     return out

@@ -90,7 +90,7 @@ def serialize_json(value: BarChartSortConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> BarChartSortConfiguration:
     out: BarChartSortConfiguration = {}  # type: ignore[typeddict-item]
-    if "CategorySort" in data:
+    if data.get("CategorySort") is not None:
         import capo_quicksight.types.field_sort_options_list
 
         out["category_sort"] = (
@@ -98,7 +98,7 @@ def deserialize_json(data: dict) -> BarChartSortConfiguration:
                 data["CategorySort"]
             )
         )
-    if "CategoryItemsLimit" in data:
+    if data.get("CategoryItemsLimit") is not None:
         import capo_quicksight.types.items_limit_configuration
 
         out["category_items_limit"] = (
@@ -106,7 +106,7 @@ def deserialize_json(data: dict) -> BarChartSortConfiguration:
                 data["CategoryItemsLimit"]
             )
         )
-    if "ColorSort" in data:
+    if data.get("ColorSort") is not None:
         import capo_quicksight.types.field_sort_options_list
 
         out["color_sort"] = (
@@ -114,7 +114,7 @@ def deserialize_json(data: dict) -> BarChartSortConfiguration:
                 data["ColorSort"]
             )
         )
-    if "ColorItemsLimit" in data:
+    if data.get("ColorItemsLimit") is not None:
         import capo_quicksight.types.items_limit_configuration
 
         out["color_items_limit"] = (
@@ -122,7 +122,7 @@ def deserialize_json(data: dict) -> BarChartSortConfiguration:
                 data["ColorItemsLimit"]
             )
         )
-    if "SmallMultiplesSort" in data:
+    if data.get("SmallMultiplesSort") is not None:
         import capo_quicksight.types.field_sort_options_list
 
         out["small_multiples_sort"] = (
@@ -130,7 +130,7 @@ def deserialize_json(data: dict) -> BarChartSortConfiguration:
                 data["SmallMultiplesSort"]
             )
         )
-    if "SmallMultiplesLimitConfiguration" in data:
+    if data.get("SmallMultiplesLimitConfiguration") is not None:
         import capo_quicksight.types.items_limit_configuration
 
         out["small_multiples_limit_configuration"] = (

@@ -39,7 +39,7 @@ def serialize_json(value: BooleanOperands) -> dict:
 
 def deserialize_json(data: dict) -> BooleanOperands:
     out: BooleanOperands = {}  # type: ignore[typeddict-item]
-    if "operandOne" in data:
+    if data.get("operandOne") is not None:
         import capo_connectcases.types.operand_one
 
         out["operand_one"] = capo_connectcases.types.operand_one.deserialize_json(
@@ -47,7 +47,7 @@ def deserialize_json(data: dict) -> BooleanOperands:
         )
     else:
         raise DeserializationError("BooleanOperands.operand_one required")
-    if "operandTwo" in data:
+    if data.get("operandTwo") is not None:
         import capo_connectcases.types.operand_two
 
         out["operand_two"] = capo_connectcases.types.operand_two.deserialize_json(
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> BooleanOperands:
         )
     else:
         raise DeserializationError("BooleanOperands.operand_two required")
-    if "result" in data:
+    if data.get("result") is not None:
         out["result"] = data["result"]
     else:
         raise DeserializationError("BooleanOperands.result required")

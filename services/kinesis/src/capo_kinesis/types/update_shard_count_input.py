@@ -49,13 +49,13 @@ def serialize_aws_json_1_1(value: UpdateShardCountInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateShardCountInput:
     out: UpdateShardCountInput = {}  # type: ignore[typeddict-item]
-    if "StreamName" in data:
+    if data.get("StreamName") is not None:
         out["stream_name"] = data["StreamName"]
-    if "TargetShardCount" in data:
+    if data.get("TargetShardCount") is not None:
         out["target_shard_count"] = data["TargetShardCount"]
     else:
         raise DeserializationError("UpdateShardCountInput.target_shard_count required")
-    if "ScalingType" in data:
+    if data.get("ScalingType") is not None:
         import capo_kinesis.types.scaling_type
 
         out["scaling_type"] = capo_kinesis.types.scaling_type.deserialize_aws_json_1_1(
@@ -63,8 +63,8 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateShardCountInput:
         )
     else:
         raise DeserializationError("UpdateShardCountInput.scaling_type required")
-    if "StreamARN" in data:
+    if data.get("StreamARN") is not None:
         out["stream_arn"] = data["StreamARN"]
-    if "StreamId" in data:
+    if data.get("StreamId") is not None:
         out["stream_id"] = data["StreamId"]
     return out

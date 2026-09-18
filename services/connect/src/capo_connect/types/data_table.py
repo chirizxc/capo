@@ -113,25 +113,25 @@ def serialize_json(value: DataTable) -> dict:
 
 def deserialize_json(data: dict) -> DataTable:
     out: DataTable = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("DataTable.name required")
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("DataTable.id required")
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("DataTable.arn required")
-    if "TimeZone" in data:
+    if data.get("TimeZone") is not None:
         out["time_zone"] = data["TimeZone"]
     else:
         raise DeserializationError("DataTable.time_zone required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ValueLockLevel" in data:
+    if data.get("ValueLockLevel") is not None:
         import capo_connect.types.data_table_lock_level
 
         out["value_lock_level"] = (
@@ -139,7 +139,7 @@ def deserialize_json(data: dict) -> DataTable:
                 data["ValueLockLevel"]
             )
         )
-    if "LockVersion" in data:
+    if data.get("LockVersion") is not None:
         import capo_connect.types.data_table_lock_version
 
         out["lock_version"] = (
@@ -147,23 +147,23 @@ def deserialize_json(data: dict) -> DataTable:
                 data["LockVersion"]
             )
         )
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
-    if "VersionDescription" in data:
+    if data.get("VersionDescription") is not None:
         out["version_description"] = data["VersionDescription"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_connect.types.data_table_status
 
         out["status"] = capo_connect.types.data_table_status.deserialize_json(
             data["Status"]
         )
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_connect.types.timestamp
 
         out["created_time"] = capo_connect.types.timestamp.deserialize_json(
             data["CreatedTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_connect.types.timestamp
 
         out["last_modified_time"] = capo_connect.types.timestamp.deserialize_json(
@@ -171,9 +171,9 @@ def deserialize_json(data: dict) -> DataTable:
         )
     else:
         raise DeserializationError("DataTable.last_modified_time required")
-    if "LastModifiedRegion" in data:
+    if data.get("LastModifiedRegion") is not None:
         out["last_modified_region"] = data["LastModifiedRegion"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])

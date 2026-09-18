@@ -50,7 +50,7 @@ def serialize_json(value: UpdateDomainConfigResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDomainConfigResponse:
     out: UpdateDomainConfigResponse = {}  # type: ignore[typeddict-item]
-    if "DomainConfig" in data:
+    if data.get("DomainConfig") is not None:
         import capo_opensearch.types.domain_config
 
         out["domain_config"] = capo_opensearch.types.domain_config.deserialize_json(
@@ -58,13 +58,13 @@ def deserialize_json(data: dict) -> UpdateDomainConfigResponse:
         )
     else:
         raise DeserializationError("UpdateDomainConfigResponse.domain_config required")
-    if "DryRunResults" in data:
+    if data.get("DryRunResults") is not None:
         import capo_opensearch.types.dry_run_results
 
         out["dry_run_results"] = capo_opensearch.types.dry_run_results.deserialize_json(
             data["DryRunResults"]
         )
-    if "DryRunProgressStatus" in data:
+    if data.get("DryRunProgressStatus") is not None:
         import capo_opensearch.types.dry_run_progress_status
 
         out["dry_run_progress_status"] = (

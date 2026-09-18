@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> GlueSchemas:
 
     out: GlueSchemas = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_glue.types.glue_schema.deserialize_aws_json_1_1(item))
     return out

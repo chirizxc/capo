@@ -28,11 +28,11 @@ def serialize_json(value: SlotPriority) -> dict:
 
 def deserialize_json(data: dict) -> SlotPriority:
     out: SlotPriority = {}  # type: ignore[typeddict-item]
-    if "priority" in data:
+    if data.get("priority") is not None:
         out["priority"] = data["priority"]
     else:
         raise DeserializationError("SlotPriority.priority required")
-    if "slotId" in data:
+    if data.get("slotId") is not None:
         out["slot_id"] = data["slotId"]
     else:
         raise DeserializationError("SlotPriority.slot_id required")

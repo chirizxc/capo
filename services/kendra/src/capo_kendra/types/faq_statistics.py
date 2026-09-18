@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: FaqStatistics) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FaqStatistics:
     out: FaqStatistics = {}  # type: ignore[typeddict-item]
-    if "IndexedQuestionAnswersCount" in data:
+    if data.get("IndexedQuestionAnswersCount") is not None:
         out["indexed_question_answers_count"] = data["IndexedQuestionAnswersCount"]
     else:
         out["indexed_question_answers_count"] = 0

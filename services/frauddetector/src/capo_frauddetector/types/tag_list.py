@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> tagList:
 
     out: tagList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_frauddetector.types.tag.deserialize_aws_json_1_1(item))
     return out

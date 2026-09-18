@@ -28,7 +28,7 @@ def serialize_json(value: AudioArtifactsConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AudioArtifactsConfiguration:
     out: AudioArtifactsConfiguration = {}  # type: ignore[typeddict-item]
-    if "MuxType" in data:
+    if data.get("MuxType") is not None:
         import capo_chime_sdk_media_pipelines.types.audio_mux_type
 
         out["mux_type"] = (

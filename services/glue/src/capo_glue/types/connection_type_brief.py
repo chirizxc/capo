@@ -78,7 +78,7 @@ def serialize_aws_json_1_1(value: ConnectionTypeBrief) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConnectionTypeBrief:
     out: ConnectionTypeBrief = {}  # type: ignore[typeddict-item]
-    if "ConnectionType" in data:
+    if data.get("ConnectionType") is not None:
         import capo_glue.types.connection_type
 
         out["connection_type"] = (
@@ -86,27 +86,27 @@ def deserialize_aws_json_1_1(data: dict) -> ConnectionTypeBrief:
                 data["ConnectionType"]
             )
         )
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "Vendor" in data:
+    if data.get("Vendor") is not None:
         out["vendor"] = data["Vendor"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Categories" in data:
+    if data.get("Categories") is not None:
         import capo_glue.types.list_of_string
 
         out["categories"] = capo_glue.types.list_of_string.deserialize_aws_json_1_1(
             data["Categories"]
         )
-    if "Capabilities" in data:
+    if data.get("Capabilities") is not None:
         import capo_glue.types.capabilities
 
         out["capabilities"] = capo_glue.types.capabilities.deserialize_aws_json_1_1(
             data["Capabilities"]
         )
-    if "LogoUrl" in data:
+    if data.get("LogoUrl") is not None:
         out["logo_url"] = data["LogoUrl"]
-    if "ConnectionTypeVariants" in data:
+    if data.get("ConnectionTypeVariants") is not None:
         import capo_glue.types.connection_type_variant_list
 
         out["connection_type_variants"] = (

@@ -27,5 +27,7 @@ def deserialize_json(data: dict) -> ReputationEntityFilter:
     for key, value in data.items():
         import capo_sesv2.types.reputation_entity_filter_key
 
+        if value is None:
+            continue
         out[capo_sesv2.types.reputation_entity_filter_key.deserialize_json(key)] = value
     return out

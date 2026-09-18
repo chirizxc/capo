@@ -67,13 +67,13 @@ def serialize_json(value: AwsWafWebAclRule) -> dict:
 
 def deserialize_json(data: dict) -> AwsWafWebAclRule:
     out: AwsWafWebAclRule = {}  # type: ignore[typeddict-item]
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_securityhub.types.waf_action
 
         out["action"] = capo_securityhub.types.waf_action.deserialize_json(
             data["Action"]
         )
-    if "ExcludedRules" in data:
+    if data.get("ExcludedRules") is not None:
         import capo_securityhub.types.waf_excluded_rule_list
 
         out["excluded_rules"] = (
@@ -81,7 +81,7 @@ def deserialize_json(data: dict) -> AwsWafWebAclRule:
                 data["ExcludedRules"]
             )
         )
-    if "OverrideAction" in data:
+    if data.get("OverrideAction") is not None:
         import capo_securityhub.types.waf_override_action
 
         out["override_action"] = (
@@ -89,10 +89,10 @@ def deserialize_json(data: dict) -> AwsWafWebAclRule:
                 data["OverrideAction"]
             )
         )
-    if "Priority" in data:
+    if data.get("Priority") is not None:
         out["priority"] = data["Priority"]
-    if "RuleId" in data:
+    if data.get("RuleId") is not None:
         out["rule_id"] = data["RuleId"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     return out

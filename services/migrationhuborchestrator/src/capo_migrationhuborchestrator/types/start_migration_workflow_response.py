@@ -52,15 +52,15 @@ def serialize_json(value: StartMigrationWorkflowResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartMigrationWorkflowResponse:
     out: StartMigrationWorkflowResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
-    if "lastStartTime" in data:
+    if data.get("lastStartTime") is not None:
         import capo_migrationhuborchestrator.types._prelude.timestamp
 
         out["last_start_time"] = (

@@ -39,15 +39,15 @@ def serialize_aws_json_1_1(value: CreateSnapshotInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateSnapshotInput:
     out: CreateSnapshotInput = {}  # type: ignore[typeddict-item]
-    if "VolumeARN" in data:
+    if data.get("VolumeARN") is not None:
         out["volume_arn"] = data["VolumeARN"]
     else:
         raise DeserializationError("CreateSnapshotInput.volume_arn required")
-    if "SnapshotDescription" in data:
+    if data.get("SnapshotDescription") is not None:
         out["snapshot_description"] = data["SnapshotDescription"]
     else:
         raise DeserializationError("CreateSnapshotInput.snapshot_description required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_storage_gateway.types.tags
 
         out["tags"] = capo_storage_gateway.types.tags.deserialize_aws_json_1_1(

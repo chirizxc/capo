@@ -26,7 +26,7 @@ def serialize_json(value: TextInputSpecification) -> dict:
 
 def deserialize_json(data: dict) -> TextInputSpecification:
     out: TextInputSpecification = {}  # type: ignore[typeddict-item]
-    if "startTimeoutMs" in data:
+    if data.get("startTimeoutMs") is not None:
         out["start_timeout_ms"] = data["startTimeoutMs"]
     else:
         raise DeserializationError("TextInputSpecification.start_timeout_ms required")

@@ -25,6 +25,6 @@ def serialize_json(value: SidewalkPositioning) -> dict:
 
 def deserialize_json(data: dict) -> SidewalkPositioning:
     out: SidewalkPositioning = {}  # type: ignore[typeddict-item]
-    if "DestinationName" in data:
+    if data.get("DestinationName") is not None:
         out["destination_name"] = data["DestinationName"]
     return out

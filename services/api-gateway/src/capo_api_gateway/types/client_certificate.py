@@ -59,25 +59,25 @@ def serialize_json(value: ClientCertificate) -> dict:
 
 def deserialize_json(data: dict) -> ClientCertificate:
     out: ClientCertificate = {}  # type: ignore[typeddict-item]
-    if "clientCertificateId" in data:
+    if data.get("clientCertificateId") is not None:
         out["client_certificate_id"] = data["clientCertificateId"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "pemEncodedCertificate" in data:
+    if data.get("pemEncodedCertificate") is not None:
         out["pem_encoded_certificate"] = data["pemEncodedCertificate"]
-    if "createdDate" in data:
+    if data.get("createdDate") is not None:
         import capo_api_gateway.types.timestamp
 
         out["created_date"] = capo_api_gateway.types.timestamp.deserialize_json(
             data["createdDate"]
         )
-    if "expirationDate" in data:
+    if data.get("expirationDate") is not None:
         import capo_api_gateway.types.timestamp
 
         out["expiration_date"] = capo_api_gateway.types.timestamp.deserialize_json(
             data["expirationDate"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_api_gateway.types.map_of_string_to_string
 
         out["tags"] = capo_api_gateway.types.map_of_string_to_string.deserialize_json(

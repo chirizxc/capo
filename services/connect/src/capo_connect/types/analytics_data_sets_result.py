@@ -28,8 +28,8 @@ def serialize_json(value: AnalyticsDataSetsResult) -> dict:
 
 def deserialize_json(data: dict) -> AnalyticsDataSetsResult:
     out: AnalyticsDataSetsResult = {}  # type: ignore[typeddict-item]
-    if "DataSetId" in data:
+    if data.get("DataSetId") is not None:
         out["data_set_id"] = data["DataSetId"]
-    if "DataSetName" in data:
+    if data.get("DataSetName") is not None:
         out["data_set_name"] = data["DataSetName"]
     return out

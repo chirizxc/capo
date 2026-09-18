@@ -28,8 +28,11 @@ def serialize_json(input_to_serialize: EmissionsMap) -> dict:
 def deserialize_json(data: dict) -> EmissionsMap:
     out: EmissionsMap = {}
     for key, value in data.items():
-        import capo_sustainability.types.emissions
         import capo_sustainability.types.emissions_type
+
+        if value is None:
+            continue
+        import capo_sustainability.types.emissions
 
         out[capo_sustainability.types.emissions_type.deserialize_json(key)] = (
             capo_sustainability.types.emissions.deserialize_json(value)

@@ -50,22 +50,22 @@ def serialize_aws_json_1_0(value: DatabaseConnectionStringProfile) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DatabaseConnectionStringProfile:
     out: DatabaseConnectionStringProfile = {}  # type: ignore[typeddict-item]
-    if "consumerGroup" in data:
+    if data.get("consumerGroup") is not None:
         out["consumer_group"] = data["consumerGroup"]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "hostFormat" in data:
+    if data.get("hostFormat") is not None:
         out["host_format"] = data["hostFormat"]
-    if "isRegional" in data:
+    if data.get("isRegional") is not None:
         out["is_regional"] = data["isRegional"]
-    if "protocol" in data:
+    if data.get("protocol") is not None:
         out["protocol"] = data["protocol"]
-    if "sessionMode" in data:
+    if data.get("sessionMode") is not None:
         out["session_mode"] = data["sessionMode"]
-    if "syntaxFormat" in data:
+    if data.get("syntaxFormat") is not None:
         out["syntax_format"] = data["syntaxFormat"]
-    if "tlsAuthentication" in data:
+    if data.get("tlsAuthentication") is not None:
         out["tls_authentication"] = data["tlsAuthentication"]
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     return out

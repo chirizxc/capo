@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: DiskIopsConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DiskIopsConfiguration:
     out: DiskIopsConfiguration = {}  # type: ignore[typeddict-item]
-    if "Mode" in data:
+    if data.get("Mode") is not None:
         import capo_fsx.types.disk_iops_configuration_mode
 
         out["mode"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> DiskIopsConfiguration:
                 data["Mode"]
             )
         )
-    if "Iops" in data:
+    if data.get("Iops") is not None:
         out["iops"] = data["Iops"]
     return out

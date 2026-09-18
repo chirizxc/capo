@@ -29,7 +29,7 @@ def serialize_json(value: UpdateGlobalNetworkResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateGlobalNetworkResponse:
     out: UpdateGlobalNetworkResponse = {}  # type: ignore[typeddict-item]
-    if "GlobalNetwork" in data:
+    if data.get("GlobalNetwork") is not None:
         import capo_networkmanager.types.global_network
 
         out["global_network"] = (

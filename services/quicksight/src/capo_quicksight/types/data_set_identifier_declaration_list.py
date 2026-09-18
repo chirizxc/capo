@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> DataSetIdentifierDeclarationList:
 
     out: DataSetIdentifierDeclarationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.data_set_identifier_declaration.deserialize_json(item)
         )

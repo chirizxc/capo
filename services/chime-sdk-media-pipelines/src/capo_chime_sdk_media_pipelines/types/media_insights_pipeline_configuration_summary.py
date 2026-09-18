@@ -45,15 +45,15 @@ def serialize_json(value: MediaInsightsPipelineConfigurationSummary) -> dict:
 
 def deserialize_json(data: dict) -> MediaInsightsPipelineConfigurationSummary:
     out: MediaInsightsPipelineConfigurationSummary = {}  # type: ignore[typeddict-item]
-    if "MediaInsightsPipelineConfigurationName" in data:
+    if data.get("MediaInsightsPipelineConfigurationName") is not None:
         out["media_insights_pipeline_configuration_name"] = data[
             "MediaInsightsPipelineConfigurationName"
         ]
-    if "MediaInsightsPipelineConfigurationId" in data:
+    if data.get("MediaInsightsPipelineConfigurationId") is not None:
         out["media_insights_pipeline_configuration_id"] = data[
             "MediaInsightsPipelineConfigurationId"
         ]
-    if "MediaInsightsPipelineConfigurationArn" in data:
+    if data.get("MediaInsightsPipelineConfigurationArn") is not None:
         out["media_insights_pipeline_configuration_arn"] = data[
             "MediaInsightsPipelineConfigurationArn"
         ]

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AccessTokens:
 
     out: AccessTokens = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_route53globalresolver.types.access_token_item.deserialize_json(item)
         )

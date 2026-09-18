@@ -65,21 +65,21 @@ def serialize_json(value: RDFGraphSummary) -> dict:
 
 def deserialize_json(data: dict) -> RDFGraphSummary:
     out: RDFGraphSummary = {}  # type: ignore[typeddict-item]
-    if "numDistinctSubjects" in data:
+    if data.get("numDistinctSubjects") is not None:
         out["num_distinct_subjects"] = data["numDistinctSubjects"]
-    if "numDistinctPredicates" in data:
+    if data.get("numDistinctPredicates") is not None:
         out["num_distinct_predicates"] = data["numDistinctPredicates"]
-    if "numQuads" in data:
+    if data.get("numQuads") is not None:
         out["num_quads"] = data["numQuads"]
-    if "numClasses" in data:
+    if data.get("numClasses") is not None:
         out["num_classes"] = data["numClasses"]
-    if "classes" in data:
+    if data.get("classes") is not None:
         import capo_neptunedata.types.classes
 
         out["classes"] = capo_neptunedata.types.classes.deserialize_json(
             data["classes"]
         )
-    if "predicates" in data:
+    if data.get("predicates") is not None:
         import capo_neptunedata.types.long_valued_map_list
 
         out["predicates"] = (
@@ -87,7 +87,7 @@ def deserialize_json(data: dict) -> RDFGraphSummary:
                 data["predicates"]
             )
         )
-    if "subjectStructures" in data:
+    if data.get("subjectStructures") is not None:
         import capo_neptunedata.types.subject_structures
 
         out["subject_structures"] = (

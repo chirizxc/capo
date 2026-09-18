@@ -57,21 +57,21 @@ def serialize_json(value: StopPipeResponse) -> dict:
 
 def deserialize_json(data: dict) -> StopPipeResponse:
     out: StopPipeResponse = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "DesiredState" in data:
+    if data.get("DesiredState") is not None:
         out["desired_state"] = data["DesiredState"]
-    if "CurrentState" in data:
+    if data.get("CurrentState") is not None:
         out["current_state"] = data["CurrentState"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_pipes.types.timestamp
 
         out["creation_time"] = capo_pipes.types.timestamp.deserialize_json(
             data["CreationTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_pipes.types.timestamp
 
         out["last_modified_time"] = capo_pipes.types.timestamp.deserialize_json(

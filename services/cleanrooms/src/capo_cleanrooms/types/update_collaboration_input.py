@@ -46,11 +46,11 @@ def serialize_json(value: UpdateCollaborationInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateCollaborationInput:
     out: UpdateCollaborationInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "analyticsEngine" in data:
+    if data.get("analyticsEngine") is not None:
         import capo_cleanrooms.types.analytics_engine
 
         out["analytics_engine"] = (

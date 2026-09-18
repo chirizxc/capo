@@ -35,11 +35,11 @@ def serialize_json(value: MetricDimension) -> dict:
 
 def deserialize_json(data: dict) -> MetricDimension:
     out: MetricDimension = {}  # type: ignore[typeddict-item]
-    if "dimensionName" in data:
+    if data.get("dimensionName") is not None:
         out["dimension_name"] = data["dimensionName"]
     else:
         raise DeserializationError("MetricDimension.dimension_name required")
-    if "operator" in data:
+    if data.get("operator") is not None:
         import capo_iot.types.dimension_value_operator
 
         out["operator"] = capo_iot.types.dimension_value_operator.deserialize_json(

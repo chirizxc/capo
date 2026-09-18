@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_sagemaker_geospatial._auth._signers
@@ -99,15 +100,17 @@ class VectorEnrichmentJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sagemaker_geospatial.types.start_vector_enrichment_job_input.StartVectorEnrichmentJobInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_sagemaker_geospatial.types.start_vector_enrichment_job_input.StartVectorEnrichmentJobInput = {
+            "name": name,
+            "input_config": input_config,
+            "job_config": job_config,
+            "execution_role_arn": execution_role_arn,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if kms_key_id is not None:
             input_["kms_key_id"] = kms_key_id
-        input_["input_config"] = input_config
-        input_["job_config"] = job_config
-        input_["execution_role_arn"] = execution_role_arn
         if tags is not None:
             input_["tags"] = tags
 
@@ -116,6 +119,7 @@ class VectorEnrichmentJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -153,14 +157,16 @@ class VectorEnrichmentJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sagemaker_geospatial.types.get_vector_enrichment_job_input.GetVectorEnrichmentJobInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_sagemaker_geospatial.types.get_vector_enrichment_job_input.GetVectorEnrichmentJobInput = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -199,14 +205,16 @@ class VectorEnrichmentJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sagemaker_geospatial.types.delete_vector_enrichment_job_input.DeleteVectorEnrichmentJobInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_sagemaker_geospatial.types.delete_vector_enrichment_job_input.DeleteVectorEnrichmentJobInput = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -256,7 +264,7 @@ class VectorEnrichmentJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sagemaker_geospatial.types.list_vector_enrichment_job_input.ListVectorEnrichmentJobInput = {}  # type: ignore[typeddict-item]
+        input_: capo_sagemaker_geospatial.types.list_vector_enrichment_job_input.ListVectorEnrichmentJobInput = {}
         if status_equals is not None:
             input_["status_equals"] = status_equals
         if sort_order is not None:
@@ -273,6 +281,7 @@ class VectorEnrichmentJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def export_vector_enrichment_job(
@@ -318,18 +327,21 @@ class VectorEnrichmentJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sagemaker_geospatial.types.export_vector_enrichment_job_input.ExportVectorEnrichmentJobInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["execution_role_arn"] = execution_role_arn
-        input_["output_config"] = output_config
+        input_: capo_sagemaker_geospatial.types.export_vector_enrichment_job_input.ExportVectorEnrichmentJobInput = {
+            "arn": arn,
+            "execution_role_arn": execution_role_arn,
+            "output_config": output_config,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_vector_enrichment_job(
@@ -368,14 +380,16 @@ class VectorEnrichmentJob:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sagemaker_geospatial.types.stop_vector_enrichment_job_input.StopVectorEnrichmentJobInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_sagemaker_geospatial.types.stop_vector_enrichment_job_input.StopVectorEnrichmentJobInput = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -433,15 +447,17 @@ class AsyncVectorEnrichmentJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sagemaker_geospatial.types.start_vector_enrichment_job_input.StartVectorEnrichmentJobInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_sagemaker_geospatial.types.start_vector_enrichment_job_input.StartVectorEnrichmentJobInput = {
+            "name": name,
+            "input_config": input_config,
+            "job_config": job_config,
+            "execution_role_arn": execution_role_arn,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if kms_key_id is not None:
             input_["kms_key_id"] = kms_key_id
-        input_["input_config"] = input_config
-        input_["job_config"] = job_config
-        input_["execution_role_arn"] = execution_role_arn
         if tags is not None:
             input_["tags"] = tags
 
@@ -450,6 +466,7 @@ class AsyncVectorEnrichmentJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -488,14 +505,16 @@ class AsyncVectorEnrichmentJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sagemaker_geospatial.types.get_vector_enrichment_job_input.GetVectorEnrichmentJobInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_sagemaker_geospatial.types.get_vector_enrichment_job_input.GetVectorEnrichmentJobInput = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -535,14 +554,16 @@ class AsyncVectorEnrichmentJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sagemaker_geospatial.types.delete_vector_enrichment_job_input.DeleteVectorEnrichmentJobInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_sagemaker_geospatial.types.delete_vector_enrichment_job_input.DeleteVectorEnrichmentJobInput = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -593,7 +614,7 @@ class AsyncVectorEnrichmentJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sagemaker_geospatial.types.list_vector_enrichment_job_input.ListVectorEnrichmentJobInput = {}  # type: ignore[typeddict-item]
+        input_: capo_sagemaker_geospatial.types.list_vector_enrichment_job_input.ListVectorEnrichmentJobInput = {}
         if status_equals is not None:
             input_["status_equals"] = status_equals
         if sort_order is not None:
@@ -610,6 +631,7 @@ class AsyncVectorEnrichmentJob:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def export_vector_enrichment_job(
@@ -656,18 +678,21 @@ class AsyncVectorEnrichmentJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sagemaker_geospatial.types.export_vector_enrichment_job_input.ExportVectorEnrichmentJobInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["execution_role_arn"] = execution_role_arn
-        input_["output_config"] = output_config
+        input_: capo_sagemaker_geospatial.types.export_vector_enrichment_job_input.ExportVectorEnrichmentJobInput = {
+            "arn": arn,
+            "execution_role_arn": execution_role_arn,
+            "output_config": output_config,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_vector_enrichment_job(
@@ -707,12 +732,14 @@ class AsyncVectorEnrichmentJob:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_sagemaker_geospatial.types.stop_vector_enrichment_job_input.StopVectorEnrichmentJobInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_sagemaker_geospatial.types.stop_vector_enrichment_job_input.StopVectorEnrichmentJobInput = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

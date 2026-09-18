@@ -38,7 +38,7 @@ def serialize_json(value: GetBuiltinIntentsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetBuiltinIntentsResponse:
     out: GetBuiltinIntentsResponse = {}  # type: ignore[typeddict-item]
-    if "intents" in data:
+    if data.get("intents") is not None:
         import capo_lex_model_building_service.types.builtin_intent_metadata_list
 
         out["intents"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> GetBuiltinIntentsResponse:
                 data["intents"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

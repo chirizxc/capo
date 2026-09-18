@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: CreateSnapshotCopyConfigurationResponse) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> CreateSnapshotCopyConfigurationResponse:
     out: CreateSnapshotCopyConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "snapshotCopyConfiguration" in data:
+    if data.get("snapshotCopyConfiguration") is not None:
         import capo_redshift_serverless.types.snapshot_copy_configuration
 
         out["snapshot_copy_configuration"] = (

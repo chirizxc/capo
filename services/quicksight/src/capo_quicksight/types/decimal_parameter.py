@@ -32,11 +32,11 @@ def serialize_json(value: DecimalParameter) -> dict:
 
 def deserialize_json(data: dict) -> DecimalParameter:
     out: DecimalParameter = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("DecimalParameter.name required")
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_quicksight.types.sensitive_double_list
 
         out["values"] = capo_quicksight.types.sensitive_double_list.deserialize_json(

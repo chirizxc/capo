@@ -83,7 +83,7 @@ def serialize_json(value: TestExecutionResultItems) -> dict:
 
 def deserialize_json(data: dict) -> TestExecutionResultItems:
     out: TestExecutionResultItems = {}  # type: ignore[typeddict-item]
-    if "overallTestResults" in data:
+    if data.get("overallTestResults") is not None:
         import capo_lex_models_v2.types.overall_test_results
 
         out["overall_test_results"] = (
@@ -91,7 +91,7 @@ def deserialize_json(data: dict) -> TestExecutionResultItems:
                 data["overallTestResults"]
             )
         )
-    if "conversationLevelTestResults" in data:
+    if data.get("conversationLevelTestResults") is not None:
         import capo_lex_models_v2.types.conversation_level_test_results
 
         out["conversation_level_test_results"] = (
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> TestExecutionResultItems:
                 data["conversationLevelTestResults"]
             )
         )
-    if "intentClassificationTestResults" in data:
+    if data.get("intentClassificationTestResults") is not None:
         import capo_lex_models_v2.types.intent_classification_test_results
 
         out["intent_classification_test_results"] = (
@@ -107,7 +107,7 @@ def deserialize_json(data: dict) -> TestExecutionResultItems:
                 data["intentClassificationTestResults"]
             )
         )
-    if "intentLevelSlotResolutionTestResults" in data:
+    if data.get("intentLevelSlotResolutionTestResults") is not None:
         import capo_lex_models_v2.types.intent_level_slot_resolution_test_results
 
         out["intent_level_slot_resolution_test_results"] = (
@@ -115,7 +115,7 @@ def deserialize_json(data: dict) -> TestExecutionResultItems:
                 data["intentLevelSlotResolutionTestResults"]
             )
         )
-    if "utteranceLevelTestResults" in data:
+    if data.get("utteranceLevelTestResults") is not None:
         import capo_lex_models_v2.types.utterance_level_test_results
 
         out["utterance_level_test_results"] = (

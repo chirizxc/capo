@@ -50,21 +50,21 @@ def serialize_aws_json_1_1(value: Container) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Container:
     out: Container = {}  # type: ignore[typeddict-item]
-    if "image" in data:
+    if data.get("image") is not None:
         out["image"] = data["image"]
-    if "command" in data:
+    if data.get("command") is not None:
         import capo_lightsail.types.string_list
 
         out["command"] = capo_lightsail.types.string_list.deserialize_aws_json_1_1(
             data["command"]
         )
-    if "environment" in data:
+    if data.get("environment") is not None:
         import capo_lightsail.types.environment
 
         out["environment"] = capo_lightsail.types.environment.deserialize_aws_json_1_1(
             data["environment"]
         )
-    if "ports" in data:
+    if data.get("ports") is not None:
         import capo_lightsail.types.port_map
 
         out["ports"] = capo_lightsail.types.port_map.deserialize_aws_json_1_1(

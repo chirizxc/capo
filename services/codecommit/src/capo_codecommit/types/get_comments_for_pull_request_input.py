@@ -48,20 +48,20 @@ def serialize_aws_json_1_1(value: GetCommentsForPullRequestInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetCommentsForPullRequestInput:
     out: GetCommentsForPullRequestInput = {}  # type: ignore[typeddict-item]
-    if "pullRequestId" in data:
+    if data.get("pullRequestId") is not None:
         out["pull_request_id"] = data["pullRequestId"]
     else:
         raise DeserializationError(
             "GetCommentsForPullRequestInput.pull_request_id required"
         )
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
-    if "beforeCommitId" in data:
+    if data.get("beforeCommitId") is not None:
         out["before_commit_id"] = data["beforeCommitId"]
-    if "afterCommitId" in data:
+    if data.get("afterCommitId") is not None:
         out["after_commit_id"] = data["afterCommitId"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

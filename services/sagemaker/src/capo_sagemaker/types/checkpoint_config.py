@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: CheckpointConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CheckpointConfig:
     out: CheckpointConfig = {}  # type: ignore[typeddict-item]
-    if "S3Uri" in data:
+    if data.get("S3Uri") is not None:
         out["s3_uri"] = data["S3Uri"]
-    if "LocalPath" in data:
+    if data.get("LocalPath") is not None:
         out["local_path"] = data["LocalPath"]
     return out

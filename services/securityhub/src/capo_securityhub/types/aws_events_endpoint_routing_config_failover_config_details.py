@@ -44,7 +44,7 @@ def serialize_json(value: AwsEventsEndpointRoutingConfigFailoverConfigDetails) -
 
 def deserialize_json(data: dict) -> AwsEventsEndpointRoutingConfigFailoverConfigDetails:
     out: AwsEventsEndpointRoutingConfigFailoverConfigDetails = {}  # type: ignore[typeddict-item]
-    if "Primary" in data:
+    if data.get("Primary") is not None:
         import capo_securityhub.types.aws_events_endpoint_routing_config_failover_config_primary_details
 
         out["primary"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> AwsEventsEndpointRoutingConfigFailoverConfig
                 data["Primary"]
             )
         )
-    if "Secondary" in data:
+    if data.get("Secondary") is not None:
         import capo_securityhub.types.aws_events_endpoint_routing_config_failover_config_secondary_details
 
         out["secondary"] = (

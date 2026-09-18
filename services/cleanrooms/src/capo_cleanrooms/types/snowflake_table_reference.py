@@ -50,29 +50,29 @@ def serialize_json(value: SnowflakeTableReference) -> dict:
 
 def deserialize_json(data: dict) -> SnowflakeTableReference:
     out: SnowflakeTableReference = {}  # type: ignore[typeddict-item]
-    if "secretArn" in data:
+    if data.get("secretArn") is not None:
         out["secret_arn"] = data["secretArn"]
     else:
         raise DeserializationError("SnowflakeTableReference.secret_arn required")
-    if "accountIdentifier" in data:
+    if data.get("accountIdentifier") is not None:
         out["account_identifier"] = data["accountIdentifier"]
     else:
         raise DeserializationError(
             "SnowflakeTableReference.account_identifier required"
         )
-    if "databaseName" in data:
+    if data.get("databaseName") is not None:
         out["database_name"] = data["databaseName"]
     else:
         raise DeserializationError("SnowflakeTableReference.database_name required")
-    if "tableName" in data:
+    if data.get("tableName") is not None:
         out["table_name"] = data["tableName"]
     else:
         raise DeserializationError("SnowflakeTableReference.table_name required")
-    if "schemaName" in data:
+    if data.get("schemaName") is not None:
         out["schema_name"] = data["schemaName"]
     else:
         raise DeserializationError("SnowflakeTableReference.schema_name required")
-    if "tableSchema" in data:
+    if data.get("tableSchema") is not None:
         import capo_cleanrooms.types.snowflake_table_schema
 
         out["table_schema"] = (

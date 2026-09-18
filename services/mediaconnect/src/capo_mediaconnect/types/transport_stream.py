@@ -59,13 +59,13 @@ def serialize_json(value: TransportStream) -> dict:
 
 def deserialize_json(data: dict) -> TransportStream:
     out: TransportStream = {}  # type: ignore[typeddict-item]
-    if "channels" in data:
+    if data.get("channels") is not None:
         out["channels"] = data["channels"]
-    if "codec" in data:
+    if data.get("codec") is not None:
         out["codec"] = data["codec"]
-    if "frameRate" in data:
+    if data.get("frameRate") is not None:
         out["frame_rate"] = data["frameRate"]
-    if "frameResolution" in data:
+    if data.get("frameResolution") is not None:
         import capo_mediaconnect.types.frame_resolution
 
         out["frame_resolution"] = (
@@ -73,12 +73,12 @@ def deserialize_json(data: dict) -> TransportStream:
                 data["frameResolution"]
             )
         )
-    if "pid" in data:
+    if data.get("pid") is not None:
         out["pid"] = data["pid"]
-    if "sampleRate" in data:
+    if data.get("sampleRate") is not None:
         out["sample_rate"] = data["sampleRate"]
-    if "sampleSize" in data:
+    if data.get("sampleSize") is not None:
         out["sample_size"] = data["sampleSize"]
-    if "streamType" in data:
+    if data.get("streamType") is not None:
         out["stream_type"] = data["streamType"]
     return out

@@ -59,22 +59,22 @@ def serialize_json(value: ResourceMetadata) -> dict:
 
 def deserialize_json(data: dict) -> ResourceMetadata:
     out: ResourceMetadata = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_workdocs.types.resource_type
 
         out["type"] = capo_workdocs.types.resource_type.deserialize_json(data["Type"])
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "OriginalName" in data:
+    if data.get("OriginalName") is not None:
         out["original_name"] = data["OriginalName"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "VersionId" in data:
+    if data.get("VersionId") is not None:
         out["version_id"] = data["VersionId"]
-    if "Owner" in data:
+    if data.get("Owner") is not None:
         import capo_workdocs.types.user_metadata
 
         out["owner"] = capo_workdocs.types.user_metadata.deserialize_json(data["Owner"])
-    if "ParentId" in data:
+    if data.get("ParentId") is not None:
         out["parent_id"] = data["ParentId"]
     return out

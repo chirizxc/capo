@@ -31,12 +31,12 @@ def serialize_json(value: WhatsAppBusinessAccountEventDestination) -> dict:
 
 def deserialize_json(data: dict) -> WhatsAppBusinessAccountEventDestination:
     out: WhatsAppBusinessAccountEventDestination = {}  # type: ignore[typeddict-item]
-    if "eventDestinationArn" in data:
+    if data.get("eventDestinationArn") is not None:
         out["event_destination_arn"] = data["eventDestinationArn"]
     else:
         raise DeserializationError(
             "WhatsAppBusinessAccountEventDestination.event_destination_arn required"
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     return out

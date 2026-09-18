@@ -96,27 +96,27 @@ def serialize_aws_json_1_1(value: ConformancePackDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConformancePackDetail:
     out: ConformancePackDetail = {}  # type: ignore[typeddict-item]
-    if "ConformancePackName" in data:
+    if data.get("ConformancePackName") is not None:
         out["conformance_pack_name"] = data["ConformancePackName"]
     else:
         raise DeserializationError(
             "ConformancePackDetail.conformance_pack_name required"
         )
-    if "ConformancePackArn" in data:
+    if data.get("ConformancePackArn") is not None:
         out["conformance_pack_arn"] = data["ConformancePackArn"]
     else:
         raise DeserializationError(
             "ConformancePackDetail.conformance_pack_arn required"
         )
-    if "ConformancePackId" in data:
+    if data.get("ConformancePackId") is not None:
         out["conformance_pack_id"] = data["ConformancePackId"]
     else:
         raise DeserializationError("ConformancePackDetail.conformance_pack_id required")
-    if "DeliveryS3Bucket" in data:
+    if data.get("DeliveryS3Bucket") is not None:
         out["delivery_s3_bucket"] = data["DeliveryS3Bucket"]
-    if "DeliveryS3KeyPrefix" in data:
+    if data.get("DeliveryS3KeyPrefix") is not None:
         out["delivery_s3_key_prefix"] = data["DeliveryS3KeyPrefix"]
-    if "ConformancePackInputParameters" in data:
+    if data.get("ConformancePackInputParameters") is not None:
         import capo_config_service.types.conformance_pack_input_parameters
 
         out["conformance_pack_input_parameters"] = (
@@ -124,7 +124,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConformancePackDetail:
                 data["ConformancePackInputParameters"]
             )
         )
-    if "LastUpdateRequestedTime" in data:
+    if data.get("LastUpdateRequestedTime") is not None:
         import capo_config_service.types.date
 
         out["last_update_requested_time"] = (
@@ -132,9 +132,9 @@ def deserialize_aws_json_1_1(data: dict) -> ConformancePackDetail:
                 data["LastUpdateRequestedTime"]
             )
         )
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         out["created_by"] = data["CreatedBy"]
-    if "TemplateSSMDocumentDetails" in data:
+    if data.get("TemplateSSMDocumentDetails") is not None:
         import capo_config_service.types.template_ssm_document_details
 
         out["template_ssm_document_details"] = (

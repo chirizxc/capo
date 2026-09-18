@@ -40,13 +40,13 @@ def serialize_aws_json_1_1(value: UpdateLoadBalancerAttributeRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateLoadBalancerAttributeRequest:
     out: UpdateLoadBalancerAttributeRequest = {}  # type: ignore[typeddict-item]
-    if "loadBalancerName" in data:
+    if data.get("loadBalancerName") is not None:
         out["load_balancer_name"] = data["loadBalancerName"]
     else:
         raise DeserializationError(
             "UpdateLoadBalancerAttributeRequest.load_balancer_name required"
         )
-    if "attributeName" in data:
+    if data.get("attributeName") is not None:
         import capo_lightsail.types.load_balancer_attribute_name
 
         out["attribute_name"] = (
@@ -58,7 +58,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateLoadBalancerAttributeRequest:
         raise DeserializationError(
             "UpdateLoadBalancerAttributeRequest.attribute_name required"
         )
-    if "attributeValue" in data:
+    if data.get("attributeValue") is not None:
         out["attribute_value"] = data["attributeValue"]
     else:
         raise DeserializationError(

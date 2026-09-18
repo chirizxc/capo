@@ -63,7 +63,15 @@ def serialize_aws_json_1_1(value: UpdateMLTransformRequest) -> dict:
     if "glue_version" in value:
         out["GlueVersion"] = value["glue_version"]
     if "max_capacity" in value:
-        out["MaxCapacity"] = value["max_capacity"]
+        out["MaxCapacity"] = (
+            "NaN"
+            if value["max_capacity"] != value["max_capacity"]
+            else "Infinity"
+            if value["max_capacity"] == float("inf")
+            else "-Infinity"
+            if value["max_capacity"] == float("-inf")
+            else value["max_capacity"]
+        )
     if "worker_type" in value:
         import capo_glue.types.worker_type
 
@@ -81,15 +89,15 @@ def serialize_aws_json_1_1(value: UpdateMLTransformRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateMLTransformRequest:
     out: UpdateMLTransformRequest = {}  # type: ignore[typeddict-item]
-    if "TransformId" in data:
+    if data.get("TransformId") is not None:
         out["transform_id"] = data["TransformId"]
     else:
         raise DeserializationError("UpdateMLTransformRequest.transform_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_glue.types.transform_parameters
 
         out["parameters"] = (
@@ -97,22 +105,22 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateMLTransformRequest:
                 data["Parameters"]
             )
         )
-    if "Role" in data:
+    if data.get("Role") is not None:
         out["role"] = data["Role"]
-    if "GlueVersion" in data:
+    if data.get("GlueVersion") is not None:
         out["glue_version"] = data["GlueVersion"]
-    if "MaxCapacity" in data:
-        out["max_capacity"] = data["MaxCapacity"]
-    if "WorkerType" in data:
+    if data.get("MaxCapacity") is not None:
+        out["max_capacity"] = float(data["MaxCapacity"])
+    if data.get("WorkerType") is not None:
         import capo_glue.types.worker_type
 
         out["worker_type"] = capo_glue.types.worker_type.deserialize_aws_json_1_1(
             data["WorkerType"]
         )
-    if "NumberOfWorkers" in data:
+    if data.get("NumberOfWorkers") is not None:
         out["number_of_workers"] = data["NumberOfWorkers"]
-    if "Timeout" in data:
+    if data.get("Timeout") is not None:
         out["timeout"] = data["Timeout"]
-    if "MaxRetries" in data:
+    if data.get("MaxRetries") is not None:
         out["max_retries"] = data["MaxRetries"]
     return out

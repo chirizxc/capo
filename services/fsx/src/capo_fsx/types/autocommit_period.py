@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: AutocommitPeriod) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AutocommitPeriod:
     out: AutocommitPeriod = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_fsx.types.autocommit_period_type
 
         out["type"] = capo_fsx.types.autocommit_period_type.deserialize_aws_json_1_1(
             data["Type"]
         )
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     return out

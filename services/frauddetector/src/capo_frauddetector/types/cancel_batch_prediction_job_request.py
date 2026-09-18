@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: CancelBatchPredictionJobRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CancelBatchPredictionJobRequest:
     out: CancelBatchPredictionJobRequest = {}  # type: ignore[typeddict-item]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
     else:
         raise DeserializationError("CancelBatchPredictionJobRequest.job_id required")

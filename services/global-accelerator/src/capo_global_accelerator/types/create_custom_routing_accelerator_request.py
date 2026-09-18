@@ -68,13 +68,13 @@ def serialize_aws_json_1_1(value: CreateCustomRoutingAcceleratorRequest) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> CreateCustomRoutingAcceleratorRequest:
     out: CreateCustomRoutingAcceleratorRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError(
             "CreateCustomRoutingAcceleratorRequest.name required"
         )
-    if "IpAddressType" in data:
+    if data.get("IpAddressType") is not None:
         import capo_global_accelerator.types.ip_address_type
 
         out["ip_address_type"] = (
@@ -82,7 +82,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateCustomRoutingAcceleratorReques
                 data["IpAddressType"]
             )
         )
-    if "IpAddresses" in data:
+    if data.get("IpAddresses") is not None:
         import capo_global_accelerator.types.ip_addresses
 
         out["ip_addresses"] = (
@@ -90,15 +90,15 @@ def deserialize_aws_json_1_1(data: dict) -> CreateCustomRoutingAcceleratorReques
                 data["IpAddresses"]
             )
         )
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "IdempotencyToken" in data:
+    if data.get("IdempotencyToken") is not None:
         out["idempotency_token"] = data["IdempotencyToken"]
     else:
         raise DeserializationError(
             "CreateCustomRoutingAcceleratorRequest.idempotency_token required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_global_accelerator.types.tags
 
         out["tags"] = capo_global_accelerator.types.tags.deserialize_aws_json_1_1(

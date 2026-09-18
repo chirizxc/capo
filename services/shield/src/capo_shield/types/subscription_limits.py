@@ -42,7 +42,7 @@ def serialize_aws_json_1_1(value: SubscriptionLimits) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SubscriptionLimits:
     out: SubscriptionLimits = {}  # type: ignore[typeddict-item]
-    if "ProtectionLimits" in data:
+    if data.get("ProtectionLimits") is not None:
         import capo_shield.types.protection_limits
 
         out["protection_limits"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> SubscriptionLimits:
         )
     else:
         raise DeserializationError("SubscriptionLimits.protection_limits required")
-    if "ProtectionGroupLimits" in data:
+    if data.get("ProtectionGroupLimits") is not None:
         import capo_shield.types.protection_group_limits
 
         out["protection_group_limits"] = (

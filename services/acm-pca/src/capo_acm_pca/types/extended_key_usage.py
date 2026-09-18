@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: ExtendedKeyUsage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExtendedKeyUsage:
     out: ExtendedKeyUsage = {}  # type: ignore[typeddict-item]
-    if "ExtendedKeyUsageType" in data:
+    if data.get("ExtendedKeyUsageType") is not None:
         import capo_acm_pca.types.extended_key_usage_type
 
         out["extended_key_usage_type"] = (
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(data: dict) -> ExtendedKeyUsage:
                 data["ExtendedKeyUsageType"]
             )
         )
-    if "ExtendedKeyUsageObjectIdentifier" in data:
+    if data.get("ExtendedKeyUsageObjectIdentifier") is not None:
         out["extended_key_usage_object_identifier"] = data[
             "ExtendedKeyUsageObjectIdentifier"
         ]

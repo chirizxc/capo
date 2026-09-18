@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: SpaceStorageSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SpaceStorageSettings:
     out: SpaceStorageSettings = {}  # type: ignore[typeddict-item]
-    if "EbsStorageSettings" in data:
+    if data.get("EbsStorageSettings") is not None:
         import capo_sagemaker.types.ebs_storage_settings
 
         out["ebs_storage_settings"] = (

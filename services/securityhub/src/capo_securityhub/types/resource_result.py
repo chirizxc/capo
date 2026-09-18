@@ -99,15 +99,15 @@ def serialize_json(value: ResourceResult) -> dict:
 
 def deserialize_json(data: dict) -> ResourceResult:
     out: ResourceResult = {}  # type: ignore[typeddict-item]
-    if "ResourceGuid" in data:
+    if data.get("ResourceGuid") is not None:
         out["resource_guid"] = data["ResourceGuid"]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
-    if "ResourceCategory" in data:
+    if data.get("ResourceCategory") is not None:
         import capo_securityhub.types.resource_category
 
         out["resource_category"] = (
@@ -115,15 +115,15 @@ def deserialize_json(data: dict) -> ResourceResult:
                 data["ResourceCategory"]
             )
         )
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
-    if "ResourceName" in data:
+    if data.get("ResourceName") is not None:
         out["resource_name"] = data["ResourceName"]
-    if "ResourceCreationTimeDt" in data:
+    if data.get("ResourceCreationTimeDt") is not None:
         out["resource_creation_time_dt"] = data["ResourceCreationTimeDt"]
-    if "ResourceDetailCaptureTimeDt" in data:
+    if data.get("ResourceDetailCaptureTimeDt") is not None:
         out["resource_detail_capture_time_dt"] = data["ResourceDetailCaptureTimeDt"]
-    if "FindingsSummary" in data:
+    if data.get("FindingsSummary") is not None:
         import capo_securityhub.types.resource_findings_summary_list
 
         out["findings_summary"] = (
@@ -131,7 +131,7 @@ def deserialize_json(data: dict) -> ResourceResult:
                 data["FindingsSummary"]
             )
         )
-    if "ResourceTags" in data:
+    if data.get("ResourceTags") is not None:
         import capo_securityhub.types.resource_tag_list
 
         out["resource_tags"] = (
@@ -139,6 +139,6 @@ def deserialize_json(data: dict) -> ResourceResult:
                 data["ResourceTags"]
             )
         )
-    if "ResourceConfig" in data:
+    if data.get("ResourceConfig") is not None:
         out["resource_config"] = data["ResourceConfig"]
     return out

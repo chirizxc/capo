@@ -56,15 +56,15 @@ def serialize_aws_json_1_1(value: Evaluation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Evaluation:
     out: Evaluation = {}  # type: ignore[typeddict-item]
-    if "ComplianceResourceType" in data:
+    if data.get("ComplianceResourceType") is not None:
         out["compliance_resource_type"] = data["ComplianceResourceType"]
     else:
         raise DeserializationError("Evaluation.compliance_resource_type required")
-    if "ComplianceResourceId" in data:
+    if data.get("ComplianceResourceId") is not None:
         out["compliance_resource_id"] = data["ComplianceResourceId"]
     else:
         raise DeserializationError("Evaluation.compliance_resource_id required")
-    if "ComplianceType" in data:
+    if data.get("ComplianceType") is not None:
         import capo_config_service.types.compliance_type
 
         out["compliance_type"] = (
@@ -74,9 +74,9 @@ def deserialize_aws_json_1_1(data: dict) -> Evaluation:
         )
     else:
         raise DeserializationError("Evaluation.compliance_type required")
-    if "Annotation" in data:
+    if data.get("Annotation") is not None:
         out["annotation"] = data["Annotation"]
-    if "OrderingTimestamp" in data:
+    if data.get("OrderingTimestamp") is not None:
         import capo_config_service.types.ordering_timestamp
 
         out["ordering_timestamp"] = (

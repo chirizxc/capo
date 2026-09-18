@@ -22,7 +22,7 @@ def serialize_json(value: AutoEvaluationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AutoEvaluationConfiguration:
     out: AutoEvaluationConfiguration = {}  # type: ignore[typeddict-item]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
     else:
         out["enabled"] = False

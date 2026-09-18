@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> SupportContainerDefinitionInputList:
 
     out: SupportContainerDefinitionInputList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_gamelift.types.support_container_definition_input.deserialize_aws_json_1_1(
                 item

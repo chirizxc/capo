@@ -39,27 +39,27 @@ def serialize_json(value: WaypointOptimizationConnection) -> dict:
 
 def deserialize_json(data: dict) -> WaypointOptimizationConnection:
     out: WaypointOptimizationConnection = {}  # type: ignore[typeddict-item]
-    if "Distance" in data:
+    if data.get("Distance") is not None:
         out["distance"] = data["Distance"]
     else:
         out["distance"] = 0
-    if "From" in data:
+    if data.get("From") is not None:
         out["from"] = data["From"]
     else:
         raise DeserializationError("WaypointOptimizationConnection.from required")
-    if "RestDuration" in data:
+    if data.get("RestDuration") is not None:
         out["rest_duration"] = data["RestDuration"]
     else:
         out["rest_duration"] = 0
-    if "To" in data:
+    if data.get("To") is not None:
         out["to"] = data["To"]
     else:
         raise DeserializationError("WaypointOptimizationConnection.to required")
-    if "TravelDuration" in data:
+    if data.get("TravelDuration") is not None:
         out["travel_duration"] = data["TravelDuration"]
     else:
         out["travel_duration"] = 0
-    if "WaitDuration" in data:
+    if data.get("WaitDuration") is not None:
         out["wait_duration"] = data["WaitDuration"]
     else:
         out["wait_duration"] = 0

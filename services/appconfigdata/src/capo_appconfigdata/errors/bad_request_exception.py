@@ -40,11 +40,11 @@ def serialize_json(value: BadRequestException_) -> dict:
 
 def deserialize_json(data: dict) -> BadRequestException_:
     out: BadRequestException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "Reason" in data:
+    if data.get("Reason") is not None:
         out["reason"] = data["Reason"]
-    if "Details" in data:
+    if data.get("Details") is not None:
         import capo_appconfigdata.types.bad_request_details
 
         out["details"] = capo_appconfigdata.types.bad_request_details.deserialize_json(
@@ -58,15 +58,16 @@ class BadRequestException(ServiceError):
 
     code: str | None = "BadRequestException"
 
-    def __init__(self, data: BadRequestException_):
+    def __init__(self, data: BadRequestException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="BadRequestException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "BadRequestException":
-        return cls(deserialize_json(data))
+    def from_json(cls, data: dict, message: str | None = None) -> "BadRequestException":
+        return cls(deserialize_json(data), message)

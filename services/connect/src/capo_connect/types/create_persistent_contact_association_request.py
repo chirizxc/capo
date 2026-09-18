@@ -42,7 +42,7 @@ def serialize_json(value: CreatePersistentContactAssociationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreatePersistentContactAssociationRequest:
     out: CreatePersistentContactAssociationRequest = {}  # type: ignore[typeddict-item]
-    if "RehydrationType" in data:
+    if data.get("RehydrationType") is not None:
         import capo_connect.types.rehydration_type
 
         out["rehydration_type"] = capo_connect.types.rehydration_type.deserialize_json(
@@ -52,12 +52,12 @@ def deserialize_json(data: dict) -> CreatePersistentContactAssociationRequest:
         raise DeserializationError(
             "CreatePersistentContactAssociationRequest.rehydration_type required"
         )
-    if "SourceContactId" in data:
+    if data.get("SourceContactId") is not None:
         out["source_contact_id"] = data["SourceContactId"]
     else:
         raise DeserializationError(
             "CreatePersistentContactAssociationRequest.source_contact_id required"
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

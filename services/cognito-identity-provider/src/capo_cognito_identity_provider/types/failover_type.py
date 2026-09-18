@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: FailoverType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FailoverType:
     out: FailoverType = {}  # type: ignore[typeddict-item]
-    if "SecondaryRegion" in data:
+    if data.get("SecondaryRegion") is not None:
         out["secondary_region"] = data["SecondaryRegion"]
     else:
         raise DeserializationError("FailoverType.secondary_region required")
-    if "PrimaryRoute53HealthCheckId" in data:
+    if data.get("PrimaryRoute53HealthCheckId") is not None:
         out["primary_route53_health_check_id"] = data["PrimaryRoute53HealthCheckId"]
     else:
         raise DeserializationError(

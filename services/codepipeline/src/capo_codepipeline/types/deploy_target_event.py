@@ -57,23 +57,23 @@ def serialize_aws_json_1_1(value: DeployTargetEvent) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeployTargetEvent:
     out: DeployTargetEvent = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_codepipeline.types.timestamp
 
         out["start_time"] = capo_codepipeline.types.timestamp.deserialize_aws_json_1_1(
             data["startTime"]
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_codepipeline.types.timestamp
 
         out["end_time"] = capo_codepipeline.types.timestamp.deserialize_aws_json_1_1(
             data["endTime"]
         )
-    if "context" in data:
+    if data.get("context") is not None:
         import capo_codepipeline.types.deploy_target_event_context
 
         out["context"] = (

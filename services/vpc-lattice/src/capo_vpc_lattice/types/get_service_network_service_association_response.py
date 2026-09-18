@@ -113,42 +113,42 @@ def serialize_json(value: GetServiceNetworkServiceAssociationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetServiceNetworkServiceAssociationResponse:
     out: GetServiceNetworkServiceAssociationResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_vpc_lattice.types.timestamp
 
         out["created_at"] = capo_vpc_lattice.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "serviceId" in data:
+    if data.get("serviceId") is not None:
         out["service_id"] = data["serviceId"]
-    if "serviceName" in data:
+    if data.get("serviceName") is not None:
         out["service_name"] = data["serviceName"]
-    if "serviceArn" in data:
+    if data.get("serviceArn") is not None:
         out["service_arn"] = data["serviceArn"]
-    if "serviceNetworkId" in data:
+    if data.get("serviceNetworkId") is not None:
         out["service_network_id"] = data["serviceNetworkId"]
-    if "serviceNetworkName" in data:
+    if data.get("serviceNetworkName") is not None:
         out["service_network_name"] = data["serviceNetworkName"]
-    if "serviceNetworkArn" in data:
+    if data.get("serviceNetworkArn") is not None:
         out["service_network_arn"] = data["serviceNetworkArn"]
-    if "dnsEntry" in data:
+    if data.get("dnsEntry") is not None:
         import capo_vpc_lattice.types.dns_entry
 
         out["dns_entry"] = capo_vpc_lattice.types.dns_entry.deserialize_json(
             data["dnsEntry"]
         )
-    if "customDomainName" in data:
+    if data.get("customDomainName") is not None:
         out["custom_domain_name"] = data["customDomainName"]
-    if "failureMessage" in data:
+    if data.get("failureMessage") is not None:
         out["failure_message"] = data["failureMessage"]
-    if "failureCode" in data:
+    if data.get("failureCode") is not None:
         out["failure_code"] = data["failureCode"]
     return out

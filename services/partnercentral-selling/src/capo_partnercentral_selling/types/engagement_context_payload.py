@@ -47,7 +47,7 @@ def serialize_aws_json_1_0(value: EngagementContextPayload) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> EngagementContextPayload:
-    if "CustomerProject" in data:
+    if data.get("CustomerProject") is not None:
         import capo_partnercentral_selling.types.customer_projects_context
 
         return {
@@ -55,7 +55,7 @@ def deserialize_aws_json_1_0(data: dict) -> EngagementContextPayload:
                 data["CustomerProject"]
             )
         }
-    elif "Lead" in data:
+    elif data.get("Lead") is not None:
         import capo_partnercentral_selling.types.lead_context
 
         return {

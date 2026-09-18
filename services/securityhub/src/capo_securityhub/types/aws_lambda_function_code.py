@@ -37,12 +37,12 @@ def serialize_json(value: AwsLambdaFunctionCode) -> dict:
 
 def deserialize_json(data: dict) -> AwsLambdaFunctionCode:
     out: AwsLambdaFunctionCode = {}  # type: ignore[typeddict-item]
-    if "S3Bucket" in data:
+    if data.get("S3Bucket") is not None:
         out["s3_bucket"] = data["S3Bucket"]
-    if "S3Key" in data:
+    if data.get("S3Key") is not None:
         out["s3_key"] = data["S3Key"]
-    if "S3ObjectVersion" in data:
+    if data.get("S3ObjectVersion") is not None:
         out["s3_object_version"] = data["S3ObjectVersion"]
-    if "ZipFile" in data:
+    if data.get("ZipFile") is not None:
         out["zip_file"] = data["ZipFile"]
     return out

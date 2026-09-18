@@ -34,17 +34,17 @@ def serialize_aws_json_1_1(value: AccountScope) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AccountScope:
     out: AccountScope = {}  # type: ignore[typeddict-item]
-    if "Accounts" in data:
+    if data.get("Accounts") is not None:
         import capo_fms.types.account_id_list
 
         out["accounts"] = capo_fms.types.account_id_list.deserialize_aws_json_1_1(
             data["Accounts"]
         )
-    if "AllAccountsEnabled" in data:
+    if data.get("AllAccountsEnabled") is not None:
         out["all_accounts_enabled"] = data["AllAccountsEnabled"]
     else:
         out["all_accounts_enabled"] = False
-    if "ExcludeSpecifiedAccounts" in data:
+    if data.get("ExcludeSpecifiedAccounts") is not None:
         out["exclude_specified_accounts"] = data["ExcludeSpecifiedAccounts"]
     else:
         out["exclude_specified_accounts"] = False

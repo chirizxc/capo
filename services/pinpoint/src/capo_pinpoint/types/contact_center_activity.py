@@ -23,6 +23,6 @@ def serialize_json(value: ContactCenterActivity) -> dict:
 
 def deserialize_json(data: dict) -> ContactCenterActivity:
     out: ContactCenterActivity = {}  # type: ignore[typeddict-item]
-    if "NextActivity" in data:
+    if data.get("NextActivity") is not None:
         out["next_activity"] = data["NextActivity"]
     return out

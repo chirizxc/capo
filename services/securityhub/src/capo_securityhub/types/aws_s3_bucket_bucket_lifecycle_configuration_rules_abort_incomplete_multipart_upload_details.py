@@ -29,6 +29,6 @@ def deserialize_json(
     data: dict,
 ) -> AwsS3BucketBucketLifecycleConfigurationRulesAbortIncompleteMultipartUploadDetails:
     out: AwsS3BucketBucketLifecycleConfigurationRulesAbortIncompleteMultipartUploadDetails = {}  # type: ignore[typeddict-item]
-    if "DaysAfterInitiation" in data:
+    if data.get("DaysAfterInitiation") is not None:
         out["days_after_initiation"] = data["DaysAfterInitiation"]
     return out

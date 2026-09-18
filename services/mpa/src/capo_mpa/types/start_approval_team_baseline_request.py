@@ -34,7 +34,7 @@ def serialize_json(value: StartApprovalTeamBaselineRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartApprovalTeamBaselineRequest:
     out: StartApprovalTeamBaselineRequest = {}  # type: ignore[typeddict-item]
-    if "ApproverIds" in data:
+    if data.get("ApproverIds") is not None:
         import capo_mpa.types.start_approval_team_baseline_approver_ids
 
         out["approver_ids"] = (

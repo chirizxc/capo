@@ -49,11 +49,11 @@ def serialize_json(value: SnapshotFileSheetSelection) -> dict:
 
 def deserialize_json(data: dict) -> SnapshotFileSheetSelection:
     out: SnapshotFileSheetSelection = {}  # type: ignore[typeddict-item]
-    if "SheetId" in data:
+    if data.get("SheetId") is not None:
         out["sheet_id"] = data["SheetId"]
     else:
         raise DeserializationError("SnapshotFileSheetSelection.sheet_id required")
-    if "SelectionScope" in data:
+    if data.get("SelectionScope") is not None:
         import capo_quicksight.types.snapshot_file_sheet_selection_scope
 
         out["selection_scope"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> SnapshotFileSheetSelection:
         raise DeserializationError(
             "SnapshotFileSheetSelection.selection_scope required"
         )
-    if "VisualIds" in data:
+    if data.get("VisualIds") is not None:
         import capo_quicksight.types.snapshot_file_sheet_selection_visual_id_list
 
         out["visual_ids"] = (

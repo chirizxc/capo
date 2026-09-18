@@ -30,7 +30,7 @@ def serialize_json(value: DescribeRuleGroupsNamespaceResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeRuleGroupsNamespaceResponse:
     out: DescribeRuleGroupsNamespaceResponse = {}  # type: ignore[typeddict-item]
-    if "ruleGroupsNamespace" in data:
+    if data.get("ruleGroupsNamespace") is not None:
         import capo_amp.types.rule_groups_namespace_description
 
         out["rule_groups_namespace"] = (

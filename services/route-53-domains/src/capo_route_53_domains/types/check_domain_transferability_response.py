@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: CheckDomainTransferabilityResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CheckDomainTransferabilityResponse:
     out: CheckDomainTransferabilityResponse = {}  # type: ignore[typeddict-item]
-    if "Transferability" in data:
+    if data.get("Transferability") is not None:
         import capo_route_53_domains.types.domain_transferability
 
         out["transferability"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> CheckDomainTransferabilityResponse:
                 data["Transferability"]
             )
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out

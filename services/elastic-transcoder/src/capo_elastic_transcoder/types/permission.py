@@ -37,11 +37,11 @@ def serialize_json(value: Permission) -> dict:
 
 def deserialize_json(data: dict) -> Permission:
     out: Permission = {}  # type: ignore[typeddict-item]
-    if "GranteeType" in data:
+    if data.get("GranteeType") is not None:
         out["grantee_type"] = data["GranteeType"]
-    if "Grantee" in data:
+    if data.get("Grantee") is not None:
         out["grantee"] = data["Grantee"]
-    if "Access" in data:
+    if data.get("Access") is not None:
         import capo_elastic_transcoder.types.access_controls
 
         out["access"] = capo_elastic_transcoder.types.access_controls.deserialize_json(

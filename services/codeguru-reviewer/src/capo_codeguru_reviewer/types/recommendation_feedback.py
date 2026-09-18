@@ -67,19 +67,19 @@ def serialize_json(value: RecommendationFeedback) -> dict:
 
 def deserialize_json(data: dict) -> RecommendationFeedback:
     out: RecommendationFeedback = {}  # type: ignore[typeddict-item]
-    if "CodeReviewArn" in data:
+    if data.get("CodeReviewArn") is not None:
         out["code_review_arn"] = data["CodeReviewArn"]
-    if "RecommendationId" in data:
+    if data.get("RecommendationId") is not None:
         out["recommendation_id"] = data["RecommendationId"]
-    if "Reactions" in data:
+    if data.get("Reactions") is not None:
         import capo_codeguru_reviewer.types.reactions
 
         out["reactions"] = capo_codeguru_reviewer.types.reactions.deserialize_json(
             data["Reactions"]
         )
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
-    if "CreatedTimeStamp" in data:
+    if data.get("CreatedTimeStamp") is not None:
         import capo_codeguru_reviewer.types.time_stamp
 
         out["created_time_stamp"] = (
@@ -87,7 +87,7 @@ def deserialize_json(data: dict) -> RecommendationFeedback:
                 data["CreatedTimeStamp"]
             )
         )
-    if "LastUpdatedTimeStamp" in data:
+    if data.get("LastUpdatedTimeStamp") is not None:
         import capo_codeguru_reviewer.types.time_stamp
 
         out["last_updated_time_stamp"] = (

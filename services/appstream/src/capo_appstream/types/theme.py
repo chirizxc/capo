@@ -79,17 +79,17 @@ def serialize_aws_json_1_1(value: Theme) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Theme:
     out: Theme = {}  # type: ignore[typeddict-item]
-    if "StackName" in data:
+    if data.get("StackName") is not None:
         out["stack_name"] = data["StackName"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_appstream.types.theme_state
 
         out["state"] = capo_appstream.types.theme_state.deserialize_aws_json_1_1(
             data["State"]
         )
-    if "ThemeTitleText" in data:
+    if data.get("ThemeTitleText") is not None:
         out["theme_title_text"] = data["ThemeTitleText"]
-    if "ThemeStyling" in data:
+    if data.get("ThemeStyling") is not None:
         import capo_appstream.types.theme_styling
 
         out["theme_styling"] = (
@@ -97,7 +97,7 @@ def deserialize_aws_json_1_1(data: dict) -> Theme:
                 data["ThemeStyling"]
             )
         )
-    if "ThemeFooterLinks" in data:
+    if data.get("ThemeFooterLinks") is not None:
         import capo_appstream.types.theme_footer_links
 
         out["theme_footer_links"] = (
@@ -105,11 +105,11 @@ def deserialize_aws_json_1_1(data: dict) -> Theme:
                 data["ThemeFooterLinks"]
             )
         )
-    if "ThemeOrganizationLogoURL" in data:
+    if data.get("ThemeOrganizationLogoURL") is not None:
         out["theme_organization_logo_url"] = data["ThemeOrganizationLogoURL"]
-    if "ThemeFaviconURL" in data:
+    if data.get("ThemeFaviconURL") is not None:
         out["theme_favicon_url"] = data["ThemeFaviconURL"]
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_appstream.types.timestamp
 
         out["created_time"] = capo_appstream.types.timestamp.deserialize_aws_json_1_1(

@@ -31,9 +31,9 @@ def serialize_json(value: GetCisScanReportResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetCisScanReportResponse:
     out: GetCisScanReportResponse = {}  # type: ignore[typeddict-item]
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_inspector2.types.cis_report_status
 
         out["status"] = capo_inspector2.types.cis_report_status.deserialize_json(

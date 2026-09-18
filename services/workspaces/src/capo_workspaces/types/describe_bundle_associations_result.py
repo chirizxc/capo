@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DescribeBundleAssociationsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeBundleAssociationsResult:
     out: DescribeBundleAssociationsResult = {}  # type: ignore[typeddict-item]
-    if "Associations" in data:
+    if data.get("Associations") is not None:
         import capo_workspaces.types.bundle_resource_association_list
 
         out["associations"] = (

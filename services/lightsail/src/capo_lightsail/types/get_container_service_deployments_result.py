@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetContainerServiceDeploymentsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetContainerServiceDeploymentsResult:
     out: GetContainerServiceDeploymentsResult = {}  # type: ignore[typeddict-item]
-    if "deployments" in data:
+    if data.get("deployments") is not None:
         import capo_lightsail.types.container_service_deployment_list
 
         out["deployments"] = (

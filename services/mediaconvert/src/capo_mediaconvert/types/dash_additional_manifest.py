@@ -38,9 +38,9 @@ def serialize_json(value: DashAdditionalManifest) -> dict:
 
 def deserialize_json(data: dict) -> DashAdditionalManifest:
     out: DashAdditionalManifest = {}  # type: ignore[typeddict-item]
-    if "manifestNameModifier" in data:
+    if data.get("manifestNameModifier") is not None:
         out["manifest_name_modifier"] = data["manifestNameModifier"]
-    if "selectedOutputs" in data:
+    if data.get("selectedOutputs") is not None:
         import capo_mediaconvert.types.__list_of__string_min1
 
         out["selected_outputs"] = (

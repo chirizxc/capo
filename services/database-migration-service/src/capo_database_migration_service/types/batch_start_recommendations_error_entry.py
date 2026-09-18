@@ -31,10 +31,10 @@ def serialize_aws_json_1_1(value: BatchStartRecommendationsErrorEntry) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchStartRecommendationsErrorEntry:
     out: BatchStartRecommendationsErrorEntry = {}  # type: ignore[typeddict-item]
-    if "DatabaseId" in data:
+    if data.get("DatabaseId") is not None:
         out["database_id"] = data["DatabaseId"]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "Code" in data:
+    if data.get("Code") is not None:
         out["code"] = data["Code"]
     return out

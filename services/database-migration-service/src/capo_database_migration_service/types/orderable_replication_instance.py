@@ -73,29 +73,29 @@ def serialize_aws_json_1_1(value: OrderableReplicationInstance) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OrderableReplicationInstance:
     out: OrderableReplicationInstance = {}  # type: ignore[typeddict-item]
-    if "EngineVersion" in data:
+    if data.get("EngineVersion") is not None:
         out["engine_version"] = data["EngineVersion"]
-    if "ReplicationInstanceClass" in data:
+    if data.get("ReplicationInstanceClass") is not None:
         out["replication_instance_class"] = data["ReplicationInstanceClass"]
-    if "StorageType" in data:
+    if data.get("StorageType") is not None:
         out["storage_type"] = data["StorageType"]
-    if "MinAllocatedStorage" in data:
+    if data.get("MinAllocatedStorage") is not None:
         out["min_allocated_storage"] = data["MinAllocatedStorage"]
     else:
         out["min_allocated_storage"] = 0
-    if "MaxAllocatedStorage" in data:
+    if data.get("MaxAllocatedStorage") is not None:
         out["max_allocated_storage"] = data["MaxAllocatedStorage"]
     else:
         out["max_allocated_storage"] = 0
-    if "DefaultAllocatedStorage" in data:
+    if data.get("DefaultAllocatedStorage") is not None:
         out["default_allocated_storage"] = data["DefaultAllocatedStorage"]
     else:
         out["default_allocated_storage"] = 0
-    if "IncludedAllocatedStorage" in data:
+    if data.get("IncludedAllocatedStorage") is not None:
         out["included_allocated_storage"] = data["IncludedAllocatedStorage"]
     else:
         out["included_allocated_storage"] = 0
-    if "AvailabilityZones" in data:
+    if data.get("AvailabilityZones") is not None:
         import capo_database_migration_service.types.availability_zones_list
 
         out["availability_zones"] = (
@@ -103,7 +103,7 @@ def deserialize_aws_json_1_1(data: dict) -> OrderableReplicationInstance:
                 data["AvailabilityZones"]
             )
         )
-    if "ReleaseStatus" in data:
+    if data.get("ReleaseStatus") is not None:
         import capo_database_migration_service.types.release_status_values
 
         out["release_status"] = (

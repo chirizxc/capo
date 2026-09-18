@@ -97,10 +97,11 @@ class ConfiguredModelAlgorithmAssociation:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.create_configured_model_algorithm_association_request.CreateConfiguredModelAlgorithmAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["configured_model_algorithm_arn"] = configured_model_algorithm_arn
-        input_["name"] = name
+        input_: capo_cleanroomsml.types.create_configured_model_algorithm_association_request.CreateConfiguredModelAlgorithmAssociationRequest = {
+            "membership_identifier": membership_identifier,
+            "configured_model_algorithm_arn": configured_model_algorithm_arn,
+            "name": name,
+        }
         if description is not None:
             input_["description"] = description
         if privacy_configuration is not None:
@@ -113,6 +114,7 @@ class ConfiguredModelAlgorithmAssociation:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -151,17 +153,17 @@ class ConfiguredModelAlgorithmAssociation:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.get_configured_model_algorithm_association_request.GetConfiguredModelAlgorithmAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["configured_model_algorithm_association_arn"] = (
-            configured_model_algorithm_association_arn
-        )
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanroomsml.types.get_configured_model_algorithm_association_request.GetConfiguredModelAlgorithmAssociationRequest = {
+            "configured_model_algorithm_association_arn": configured_model_algorithm_association_arn,
+            "membership_identifier": membership_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -199,17 +201,17 @@ class ConfiguredModelAlgorithmAssociation:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.delete_configured_model_algorithm_association_request.DeleteConfiguredModelAlgorithmAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["configured_model_algorithm_association_arn"] = (
-            configured_model_algorithm_association_arn
-        )
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanroomsml.types.delete_configured_model_algorithm_association_request.DeleteConfiguredModelAlgorithmAssociationRequest = {
+            "configured_model_algorithm_association_arn": configured_model_algorithm_association_arn,
+            "membership_identifier": membership_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -249,18 +251,20 @@ class ConfiguredModelAlgorithmAssociation:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.list_configured_model_algorithm_associations_request.ListConfiguredModelAlgorithmAssociationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cleanroomsml.types.list_configured_model_algorithm_associations_request.ListConfiguredModelAlgorithmAssociationsRequest = {
+            "membership_identifier": membership_identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["membership_identifier"] = membership_identifier
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_collaboration_configured_model_algorithm_association(
@@ -299,17 +303,17 @@ class ConfiguredModelAlgorithmAssociation:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.get_collaboration_configured_model_algorithm_association_request.GetCollaborationConfiguredModelAlgorithmAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["configured_model_algorithm_association_arn"] = (
-            configured_model_algorithm_association_arn
-        )
-        input_["collaboration_identifier"] = collaboration_identifier
+        input_: capo_cleanroomsml.types.get_collaboration_configured_model_algorithm_association_request.GetCollaborationConfiguredModelAlgorithmAssociationRequest = {
+            "configured_model_algorithm_association_arn": configured_model_algorithm_association_arn,
+            "collaboration_identifier": collaboration_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -368,10 +372,11 @@ class AsyncConfiguredModelAlgorithmAssociation:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.create_configured_model_algorithm_association_request.CreateConfiguredModelAlgorithmAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["membership_identifier"] = membership_identifier
-        input_["configured_model_algorithm_arn"] = configured_model_algorithm_arn
-        input_["name"] = name
+        input_: capo_cleanroomsml.types.create_configured_model_algorithm_association_request.CreateConfiguredModelAlgorithmAssociationRequest = {
+            "membership_identifier": membership_identifier,
+            "configured_model_algorithm_arn": configured_model_algorithm_arn,
+            "name": name,
+        }
         if description is not None:
             input_["description"] = description
         if privacy_configuration is not None:
@@ -384,6 +389,7 @@ class AsyncConfiguredModelAlgorithmAssociation:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -423,17 +429,17 @@ class AsyncConfiguredModelAlgorithmAssociation:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.get_configured_model_algorithm_association_request.GetConfiguredModelAlgorithmAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["configured_model_algorithm_association_arn"] = (
-            configured_model_algorithm_association_arn
-        )
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanroomsml.types.get_configured_model_algorithm_association_request.GetConfiguredModelAlgorithmAssociationRequest = {
+            "configured_model_algorithm_association_arn": configured_model_algorithm_association_arn,
+            "membership_identifier": membership_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -472,17 +478,17 @@ class AsyncConfiguredModelAlgorithmAssociation:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.delete_configured_model_algorithm_association_request.DeleteConfiguredModelAlgorithmAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["configured_model_algorithm_association_arn"] = (
-            configured_model_algorithm_association_arn
-        )
-        input_["membership_identifier"] = membership_identifier
+        input_: capo_cleanroomsml.types.delete_configured_model_algorithm_association_request.DeleteConfiguredModelAlgorithmAssociationRequest = {
+            "configured_model_algorithm_association_arn": configured_model_algorithm_association_arn,
+            "membership_identifier": membership_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -523,18 +529,20 @@ class AsyncConfiguredModelAlgorithmAssociation:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.list_configured_model_algorithm_associations_request.ListConfiguredModelAlgorithmAssociationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cleanroomsml.types.list_configured_model_algorithm_associations_request.ListConfiguredModelAlgorithmAssociationsRequest = {
+            "membership_identifier": membership_identifier
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["membership_identifier"] = membership_identifier
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_collaboration_configured_model_algorithm_association(
@@ -574,15 +582,15 @@ class AsyncConfiguredModelAlgorithmAssociation:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.get_collaboration_configured_model_algorithm_association_request.GetCollaborationConfiguredModelAlgorithmAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["configured_model_algorithm_association_arn"] = (
-            configured_model_algorithm_association_arn
-        )
-        input_["collaboration_identifier"] = collaboration_identifier
+        input_: capo_cleanroomsml.types.get_collaboration_configured_model_algorithm_association_request.GetCollaborationConfiguredModelAlgorithmAssociationRequest = {
+            "configured_model_algorithm_association_arn": configured_model_algorithm_association_arn,
+            "collaboration_identifier": collaboration_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

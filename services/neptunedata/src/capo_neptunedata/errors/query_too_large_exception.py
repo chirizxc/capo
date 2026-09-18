@@ -25,15 +25,15 @@ def serialize_json(value: QueryTooLargeException_) -> dict:
 
 def deserialize_json(data: dict) -> QueryTooLargeException_:
     out: QueryTooLargeException_ = {}  # type: ignore[typeddict-item]
-    if "detailedMessage" in data:
+    if data.get("detailedMessage") is not None:
         out["detailed_message"] = data["detailedMessage"]
     else:
         raise DeserializationError("QueryTooLargeException_.detailed_message required")
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
     else:
         raise DeserializationError("QueryTooLargeException_.request_id required")
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
     else:
         raise DeserializationError("QueryTooLargeException_.code required")
@@ -45,15 +45,18 @@ class QueryTooLargeException(ServiceError):
 
     code: str | None = "QueryTooLargeException"
 
-    def __init__(self, data: QueryTooLargeException_):
+    def __init__(self, data: QueryTooLargeException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="QueryTooLargeException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "QueryTooLargeException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "QueryTooLargeException":
+        return cls(deserialize_json(data), message)

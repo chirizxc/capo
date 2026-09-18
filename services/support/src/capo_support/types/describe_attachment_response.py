@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: DescribeAttachmentResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeAttachmentResponse:
     out: DescribeAttachmentResponse = {}  # type: ignore[typeddict-item]
-    if "attachment" in data:
+    if data.get("attachment") is not None:
         import capo_support.types.attachment
 
         out["attachment"] = capo_support.types.attachment.deserialize_aws_json_1_1(

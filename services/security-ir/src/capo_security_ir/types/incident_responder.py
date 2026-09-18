@@ -45,19 +45,19 @@ def serialize_json(value: IncidentResponder) -> dict:
 
 def deserialize_json(data: dict) -> IncidentResponder:
     out: IncidentResponder = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("IncidentResponder.name required")
-    if "jobTitle" in data:
+    if data.get("jobTitle") is not None:
         out["job_title"] = data["jobTitle"]
     else:
         raise DeserializationError("IncidentResponder.job_title required")
-    if "email" in data:
+    if data.get("email") is not None:
         out["email"] = data["email"]
     else:
         raise DeserializationError("IncidentResponder.email required")
-    if "communicationPreferences" in data:
+    if data.get("communicationPreferences") is not None:
         import capo_security_ir.types.communication_preferences
 
         out["communication_preferences"] = (

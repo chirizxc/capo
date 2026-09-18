@@ -44,11 +44,11 @@ def serialize_json(value: SparkSubmitJobDriver) -> dict:
 
 def deserialize_json(data: dict) -> SparkSubmitJobDriver:
     out: SparkSubmitJobDriver = {}  # type: ignore[typeddict-item]
-    if "entryPoint" in data:
+    if data.get("entryPoint") is not None:
         out["entry_point"] = data["entryPoint"]
     else:
         raise DeserializationError("SparkSubmitJobDriver.entry_point required")
-    if "entryPointArguments" in data:
+    if data.get("entryPointArguments") is not None:
         import capo_emr_containers.types.entry_point_arguments
 
         out["entry_point_arguments"] = (
@@ -56,6 +56,6 @@ def deserialize_json(data: dict) -> SparkSubmitJobDriver:
                 data["entryPointArguments"]
             )
         )
-    if "sparkSubmitParameters" in data:
+    if data.get("sparkSubmitParameters") is not None:
         out["spark_submit_parameters"] = data["sparkSubmitParameters"]
     return out

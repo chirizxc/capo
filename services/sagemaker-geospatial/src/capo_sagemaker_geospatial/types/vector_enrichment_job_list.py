@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> VectorEnrichmentJobList:
 
     out: VectorEnrichmentJobList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker_geospatial.types.list_vector_enrichment_job_output_config.deserialize_json(
                 item

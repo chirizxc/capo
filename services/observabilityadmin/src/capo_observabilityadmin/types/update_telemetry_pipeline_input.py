@@ -34,13 +34,13 @@ def serialize_json(value: UpdateTelemetryPipelineInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateTelemetryPipelineInput:
     out: UpdateTelemetryPipelineInput = {}  # type: ignore[typeddict-item]
-    if "PipelineIdentifier" in data:
+    if data.get("PipelineIdentifier") is not None:
         out["pipeline_identifier"] = data["PipelineIdentifier"]
     else:
         raise DeserializationError(
             "UpdateTelemetryPipelineInput.pipeline_identifier required"
         )
-    if "Configuration" in data:
+    if data.get("Configuration") is not None:
         import capo_observabilityadmin.types.telemetry_pipeline_configuration
 
         out["configuration"] = (

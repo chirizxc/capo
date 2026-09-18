@@ -13,9 +13,9 @@ from capo_invoicing import AsyncInvoicingClient
 
 
 async def main():
-    async with AsyncInvoicingClient() as s3:
+    async with AsyncInvoicingClient() as invoicing:
         # Example: call the batch_get_invoice_profile operation
-        response = await s3.batch_get_invoice_profile()
+        response = await invoicing.batch_get_invoice_profile()
         print(response["profiles"])
 ```
 
@@ -28,9 +28,9 @@ from capo_invoicing import AsyncInvoicingClient
 
 
 async def main():
-    async with AsyncInvoicingClient() as s3:
+    async with AsyncInvoicingClient() as invoicing:
         # Example: paginate over list_invoice_summaries
-        async for item in s3.iter_list_invoice_summaries():
+        async for item in invoicing.iter_list_invoice_summaries():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_invoicing.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncInvoicingClient() as s3:
+    async with AsyncInvoicingClient() as invoicing:
         try:
-            await s3.batch_get_invoice_profile()
+            await invoicing.batch_get_invoice_profile()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_invoicing import AsyncInvoicingClient
 
 
 async def main():
-    async with AsyncInvoicingClient() as s3:
+    async with AsyncInvoicingClient() as invoicing:
         # Default: 3 attempts for every operation
-        response = await s3.batch_get_invoice_profile()
+        response = await invoicing.batch_get_invoice_profile()
 
         # Override per operation
-        response = await s3.batch_get_invoice_profile(config_overrides={"retry_max_attempts": 5})
+        response = await invoicing.batch_get_invoice_profile(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.batch_get_invoice_profile(config_overrides={"retry_max_attempts": 1})
+        response = await invoicing.batch_get_invoice_profile(config_overrides={"retry_max_attempts": 1})
 ```

@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: MapOfAttributeDimension) -> dict:
 def deserialize_json(data: dict) -> MapOfAttributeDimension:
     out: MapOfAttributeDimension = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_pinpoint.types.attribute_dimension
 
         out[key] = capo_pinpoint.types.attribute_dimension.deserialize_json(value)

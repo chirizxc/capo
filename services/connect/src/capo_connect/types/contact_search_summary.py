@@ -166,15 +166,15 @@ def serialize_json(value: ContactSearchSummary) -> dict:
 
 def deserialize_json(data: dict) -> ContactSearchSummary:
     out: ContactSearchSummary = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "InitialContactId" in data:
+    if data.get("InitialContactId") is not None:
         out["initial_contact_id"] = data["InitialContactId"]
-    if "PreviousContactId" in data:
+    if data.get("PreviousContactId") is not None:
         out["previous_contact_id"] = data["PreviousContactId"]
-    if "InitiationMethod" in data:
+    if data.get("InitiationMethod") is not None:
         import capo_connect.types.contact_initiation_method
 
         out["initiation_method"] = (
@@ -182,11 +182,11 @@ def deserialize_json(data: dict) -> ContactSearchSummary:
                 data["InitiationMethod"]
             )
         )
-    if "Channel" in data:
+    if data.get("Channel") is not None:
         import capo_connect.types.channel
 
         out["channel"] = capo_connect.types.channel.deserialize_json(data["Channel"])
-    if "QueueInfo" in data:
+    if data.get("QueueInfo") is not None:
         import capo_connect.types.contact_search_summary_queue_info
 
         out["queue_info"] = (
@@ -194,7 +194,7 @@ def deserialize_json(data: dict) -> ContactSearchSummary:
                 data["QueueInfo"]
             )
         )
-    if "AgentInfo" in data:
+    if data.get("AgentInfo") is not None:
         import capo_connect.types.contact_search_summary_agent_info
 
         out["agent_info"] = (
@@ -202,25 +202,25 @@ def deserialize_json(data: dict) -> ContactSearchSummary:
                 data["AgentInfo"]
             )
         )
-    if "InitiationTimestamp" in data:
+    if data.get("InitiationTimestamp") is not None:
         import capo_connect.types.timestamp
 
         out["initiation_timestamp"] = capo_connect.types.timestamp.deserialize_json(
             data["InitiationTimestamp"]
         )
-    if "DisconnectTimestamp" in data:
+    if data.get("DisconnectTimestamp") is not None:
         import capo_connect.types.timestamp
 
         out["disconnect_timestamp"] = capo_connect.types.timestamp.deserialize_json(
             data["DisconnectTimestamp"]
         )
-    if "ScheduledTimestamp" in data:
+    if data.get("ScheduledTimestamp") is not None:
         import capo_connect.types.timestamp
 
         out["scheduled_timestamp"] = capo_connect.types.timestamp.deserialize_json(
             data["ScheduledTimestamp"]
         )
-    if "SegmentAttributes" in data:
+    if data.get("SegmentAttributes") is not None:
         import capo_connect.types.contact_search_summary_segment_attributes
 
         out["segment_attributes"] = (
@@ -228,19 +228,19 @@ def deserialize_json(data: dict) -> ContactSearchSummary:
                 data["SegmentAttributes"]
             )
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "RoutingCriteria" in data:
+    if data.get("RoutingCriteria") is not None:
         import capo_connect.types.routing_criteria
 
         out["routing_criteria"] = capo_connect.types.routing_criteria.deserialize_json(
             data["RoutingCriteria"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.contact_tag_map
 
         out["tags"] = capo_connect.types.contact_tag_map.deserialize_json(data["Tags"])
-    if "GlobalResiliencyMetadata" in data:
+    if data.get("GlobalResiliencyMetadata") is not None:
         import capo_connect.types.global_resiliency_metadata
 
         out["global_resiliency_metadata"] = (
@@ -248,7 +248,7 @@ def deserialize_json(data: dict) -> ContactSearchSummary:
                 data["GlobalResiliencyMetadata"]
             )
         )
-    if "AiAgentInfo" in data:
+    if data.get("AiAgentInfo") is not None:
         import capo_connect.types.contact_search_summary_ai_agent_info_list
 
         out["ai_agent_info"] = (

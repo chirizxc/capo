@@ -23,6 +23,6 @@ def serialize_json(value: SipMediaApplicationEndpoint) -> dict:
 
 def deserialize_json(data: dict) -> SipMediaApplicationEndpoint:
     out: SipMediaApplicationEndpoint = {}  # type: ignore[typeddict-item]
-    if "LambdaArn" in data:
+    if data.get("LambdaArn") is not None:
         out["lambda_arn"] = data["LambdaArn"]
     return out

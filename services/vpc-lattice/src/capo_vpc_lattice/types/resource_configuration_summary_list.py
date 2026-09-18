@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ResourceConfigurationSummaryList:
 
     out: ResourceConfigurationSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_vpc_lattice.types.resource_configuration_summary.deserialize_json(item)
         )

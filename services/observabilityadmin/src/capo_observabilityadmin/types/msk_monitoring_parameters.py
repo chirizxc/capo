@@ -31,7 +31,7 @@ def serialize_json(value: MskMonitoringParameters) -> dict:
 
 def deserialize_json(data: dict) -> MskMonitoringParameters:
     out: MskMonitoringParameters = {}  # type: ignore[typeddict-item]
-    if "EnhancedMonitoring" in data:
+    if data.get("EnhancedMonitoring") is not None:
         import capo_observabilityadmin.types.msk_enhanced_monitoring_level
 
         out["enhanced_monitoring"] = (

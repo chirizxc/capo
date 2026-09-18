@@ -53,7 +53,7 @@ def serialize_aws_json_1_1(value: DescribeAgentsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeAgentsRequest:
     out: DescribeAgentsRequest = {}  # type: ignore[typeddict-item]
-    if "agentIds" in data:
+    if data.get("agentIds") is not None:
         import capo_application_discovery_service.types.agent_ids
 
         out["agent_ids"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAgentsRequest:
                 data["agentIds"]
             )
         )
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_application_discovery_service.types.filters
 
         out["filters"] = (
@@ -69,10 +69,10 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAgentsRequest:
                 data["filters"]
             )
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     else:
         out["max_results"] = 0
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

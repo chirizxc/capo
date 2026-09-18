@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> TypedLinkAttributeRangeList:
 
     out: TypedLinkAttributeRangeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_clouddirectory.types.typed_link_attribute_range.deserialize_json(item)
         )

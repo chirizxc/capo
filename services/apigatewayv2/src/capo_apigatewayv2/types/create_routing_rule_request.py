@@ -56,7 +56,7 @@ def serialize_json(value: CreateRoutingRuleRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateRoutingRuleRequest:
     out: CreateRoutingRuleRequest = {}  # type: ignore[typeddict-item]
-    if "actions" in data:
+    if data.get("actions") is not None:
         import capo_apigatewayv2.types.__list_of_routing_rule_action
 
         out["actions"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> CreateRoutingRuleRequest:
                 data["actions"]
             )
         )
-    if "conditions" in data:
+    if data.get("conditions") is not None:
         import capo_apigatewayv2.types.__list_of_routing_rule_condition
 
         out["conditions"] = (
@@ -72,6 +72,6 @@ def deserialize_json(data: dict) -> CreateRoutingRuleRequest:
                 data["conditions"]
             )
         )
-    if "priority" in data:
+    if data.get("priority") is not None:
         out["priority"] = data["priority"]
     return out

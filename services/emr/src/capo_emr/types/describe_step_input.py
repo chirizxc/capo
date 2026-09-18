@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: DescribeStepInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeStepInput:
     out: DescribeStepInput = {}  # type: ignore[typeddict-item]
-    if "ClusterId" in data:
+    if data.get("ClusterId") is not None:
         out["cluster_id"] = data["ClusterId"]
-    if "StepId" in data:
+    if data.get("StepId") is not None:
         out["step_id"] = data["StepId"]
     return out

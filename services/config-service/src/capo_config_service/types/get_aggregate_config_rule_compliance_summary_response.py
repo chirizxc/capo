@@ -47,9 +47,9 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> GetAggregateConfigRuleComplianceSummaryResponse:
     out: GetAggregateConfigRuleComplianceSummaryResponse = {}  # type: ignore[typeddict-item]
-    if "GroupByKey" in data:
+    if data.get("GroupByKey") is not None:
         out["group_by_key"] = data["GroupByKey"]
-    if "AggregateComplianceCounts" in data:
+    if data.get("AggregateComplianceCounts") is not None:
         import capo_config_service.types.aggregate_compliance_count_list
 
         out["aggregate_compliance_counts"] = (
@@ -57,6 +57,6 @@ def deserialize_aws_json_1_1(
                 data["AggregateComplianceCounts"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

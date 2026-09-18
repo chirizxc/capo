@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: DrainSessionInstanceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DrainSessionInstanceRequest:
     out: DrainSessionInstanceRequest = {}  # type: ignore[typeddict-item]
-    if "SessionId" in data:
+    if data.get("SessionId") is not None:
         out["session_id"] = data["SessionId"]
     return out

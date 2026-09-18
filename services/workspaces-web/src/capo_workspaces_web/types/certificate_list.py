@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> CertificateList:
 
     out: CertificateList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_workspaces_web.types.certificate_authority_body.deserialize_json(item)
         )

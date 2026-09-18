@@ -47,11 +47,11 @@ def serialize_aws_json_1_0(value: UpdateLeadContext) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateLeadContext:
     out: UpdateLeadContext = {}  # type: ignore[typeddict-item]
-    if "QualificationStatus" in data:
+    if data.get("QualificationStatus") is not None:
         out["qualification_status"] = data["QualificationStatus"]
     else:
         out["qualification_status"] = "Unqualified"
-    if "Customer" in data:
+    if data.get("Customer") is not None:
         import capo_partnercentral_selling.types.lead_customer
 
         out["customer"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateLeadContext:
         )
     else:
         raise DeserializationError("UpdateLeadContext.customer required")
-    if "Interaction" in data:
+    if data.get("Interaction") is not None:
         import capo_partnercentral_selling.types.lead_interaction
 
         out["interaction"] = (

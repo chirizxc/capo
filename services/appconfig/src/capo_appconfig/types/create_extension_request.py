@@ -54,13 +54,13 @@ def serialize_json(value: CreateExtensionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateExtensionRequest:
     out: CreateExtensionRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateExtensionRequest.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Actions" in data:
+    if data.get("Actions") is not None:
         import capo_appconfig.types.actions_map
 
         out["actions"] = capo_appconfig.types.actions_map.deserialize_json(
@@ -68,13 +68,13 @@ def deserialize_json(data: dict) -> CreateExtensionRequest:
         )
     else:
         raise DeserializationError("CreateExtensionRequest.actions required")
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_appconfig.types.parameter_map
 
         out["parameters"] = capo_appconfig.types.parameter_map.deserialize_json(
             data["Parameters"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_appconfig.types.tag_map
 
         out["tags"] = capo_appconfig.types.tag_map.deserialize_json(data["Tags"])

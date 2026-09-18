@@ -26,7 +26,7 @@ def serialize_json(value: CreateTrainingDatasetResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateTrainingDatasetResponse:
     out: CreateTrainingDatasetResponse = {}  # type: ignore[typeddict-item]
-    if "trainingDatasetArn" in data:
+    if data.get("trainingDatasetArn") is not None:
         out["training_dataset_arn"] = data["trainingDatasetArn"]
     else:
         raise DeserializationError(

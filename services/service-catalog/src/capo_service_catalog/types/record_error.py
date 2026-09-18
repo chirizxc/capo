@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: RecordError) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RecordError:
     out: RecordError = {}  # type: ignore[typeddict-item]
-    if "Code" in data:
+    if data.get("Code") is not None:
         out["code"] = data["Code"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

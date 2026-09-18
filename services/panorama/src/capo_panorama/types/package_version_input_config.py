@@ -28,7 +28,7 @@ def serialize_json(value: PackageVersionInputConfig) -> dict:
 
 def deserialize_json(data: dict) -> PackageVersionInputConfig:
     out: PackageVersionInputConfig = {}  # type: ignore[typeddict-item]
-    if "S3Location" in data:
+    if data.get("S3Location") is not None:
         import capo_panorama.types.s3_location
 
         out["s3_location"] = capo_panorama.types.s3_location.deserialize_json(

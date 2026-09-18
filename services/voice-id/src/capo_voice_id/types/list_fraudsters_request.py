@@ -41,14 +41,14 @@ def serialize_aws_json_1_0(value: ListFraudstersRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListFraudstersRequest:
     out: ListFraudstersRequest = {}  # type: ignore[typeddict-item]
-    if "DomainId" in data:
+    if data.get("DomainId") is not None:
         out["domain_id"] = data["DomainId"]
     else:
         raise DeserializationError("ListFraudstersRequest.domain_id required")
-    if "WatchlistId" in data:
+    if data.get("WatchlistId") is not None:
         out["watchlist_id"] = data["WatchlistId"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

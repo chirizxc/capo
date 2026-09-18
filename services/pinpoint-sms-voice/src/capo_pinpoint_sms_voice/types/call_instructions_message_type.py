@@ -23,6 +23,6 @@ def serialize_json(value: CallInstructionsMessageType) -> dict:
 
 def deserialize_json(data: dict) -> CallInstructionsMessageType:
     out: CallInstructionsMessageType = {}  # type: ignore[typeddict-item]
-    if "Text" in data:
+    if data.get("Text") is not None:
         out["text"] = data["Text"]
     return out

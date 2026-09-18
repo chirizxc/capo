@@ -42,6 +42,7 @@ class CreateStateTemplateRequest(TypedDict, closed=True):
 # --- awsJson1_0 ser/de ---
 def serialize_aws_json_1_0(value: CreateStateTemplateRequest) -> dict:
     out: dict = {}
+    out["name"] = value["name"]
     if "description" in value:
         out["description"] = value["description"]
     out["signalCatalogArn"] = value["signal_catalog_arn"]
@@ -79,15 +80,19 @@ def serialize_aws_json_1_0(value: CreateStateTemplateRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateStateTemplateRequest:
     out: CreateStateTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("name") is not None:
+        out["name"] = data["name"]
+    else:
+        raise DeserializationError("CreateStateTemplateRequest.name required")
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "signalCatalogArn" in data:
+    if data.get("signalCatalogArn") is not None:
         out["signal_catalog_arn"] = data["signalCatalogArn"]
     else:
         raise DeserializationError(
             "CreateStateTemplateRequest.signal_catalog_arn required"
         )
-    if "stateTemplateProperties" in data:
+    if data.get("stateTemplateProperties") is not None:
         import capo_iotfleetwise.types.state_template_properties
 
         out["state_template_properties"] = (
@@ -99,7 +104,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateStateTemplateRequest:
         raise DeserializationError(
             "CreateStateTemplateRequest.state_template_properties required"
         )
-    if "dataExtraDimensions" in data:
+    if data.get("dataExtraDimensions") is not None:
         import capo_iotfleetwise.types.state_template_data_extra_dimension_node_path_list
 
         out["data_extra_dimensions"] = (
@@ -107,7 +112,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateStateTemplateRequest:
                 data["dataExtraDimensions"]
             )
         )
-    if "metadataExtraDimensions" in data:
+    if data.get("metadataExtraDimensions") is not None:
         import capo_iotfleetwise.types.state_template_metadata_extra_dimension_node_path_list
 
         out["metadata_extra_dimensions"] = (
@@ -115,7 +120,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateStateTemplateRequest:
                 data["metadataExtraDimensions"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_iotfleetwise.types.tag_list
 
         out["tags"] = capo_iotfleetwise.types.tag_list.deserialize_aws_json_1_0(

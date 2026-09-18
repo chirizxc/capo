@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: UpdateCostCategoryDefinitionResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateCostCategoryDefinitionResponse:
     out: UpdateCostCategoryDefinitionResponse = {}  # type: ignore[typeddict-item]
-    if "CostCategoryArn" in data:
+    if data.get("CostCategoryArn") is not None:
         out["cost_category_arn"] = data["CostCategoryArn"]
-    if "EffectiveStart" in data:
+    if data.get("EffectiveStart") is not None:
         out["effective_start"] = data["EffectiveStart"]
     return out

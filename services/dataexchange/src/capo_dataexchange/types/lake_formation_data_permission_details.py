@@ -31,7 +31,7 @@ def serialize_json(value: LakeFormationDataPermissionDetails) -> dict:
 
 def deserialize_json(data: dict) -> LakeFormationDataPermissionDetails:
     out: LakeFormationDataPermissionDetails = {}  # type: ignore[typeddict-item]
-    if "LFTagPolicy" in data:
+    if data.get("LFTagPolicy") is not None:
         import capo_dataexchange.types.lf_tag_policy_details
 
         out["lf_tag_policy"] = (

@@ -25,11 +25,11 @@ def serialize_json(value: TimeRange) -> dict:
 
 def deserialize_json(data: dict) -> TimeRange:
     out: TimeRange = {}  # type: ignore[typeddict-item]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         out["start_time"] = data["startTime"]
     else:
         raise DeserializationError("TimeRange.start_time required")
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         out["end_time"] = data["endTime"]
     else:
         raise DeserializationError("TimeRange.end_time required")

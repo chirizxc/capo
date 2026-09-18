@@ -18,6 +18,6 @@ def serialize_json(value: SparkGlueArgs) -> dict:
 
 def deserialize_json(data: dict) -> SparkGlueArgs:
     out: SparkGlueArgs = {}  # type: ignore[typeddict-item]
-    if "connection" in data:
+    if data.get("connection") is not None:
         out["connection"] = data["connection"]
     return out

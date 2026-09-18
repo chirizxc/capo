@@ -28,10 +28,10 @@ def serialize_aws_json_1_1(value: Issuer) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Issuer:
     out: Issuer = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("Issuer.name required")
-    if "SignKey" in data:
+    if data.get("SignKey") is not None:
         out["sign_key"] = data["SignKey"]
     return out

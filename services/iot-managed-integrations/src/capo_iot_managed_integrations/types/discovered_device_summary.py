@@ -95,11 +95,11 @@ def serialize_json(value: DiscoveredDeviceSummary) -> dict:
 
 def deserialize_json(data: dict) -> DiscoveredDeviceSummary:
     out: DiscoveredDeviceSummary = {}  # type: ignore[typeddict-item]
-    if "ConnectorDeviceId" in data:
+    if data.get("ConnectorDeviceId") is not None:
         out["connector_device_id"] = data["ConnectorDeviceId"]
-    if "ConnectorDeviceName" in data:
+    if data.get("ConnectorDeviceName") is not None:
         out["connector_device_name"] = data["ConnectorDeviceName"]
-    if "DeviceTypes" in data:
+    if data.get("DeviceTypes") is not None:
         import capo_iot_managed_integrations.types.device_type_list
 
         out["device_types"] = (
@@ -107,9 +107,9 @@ def deserialize_json(data: dict) -> DiscoveredDeviceSummary:
                 data["DeviceTypes"]
             )
         )
-    if "ManagedThingId" in data:
+    if data.get("ManagedThingId") is not None:
         out["managed_thing_id"] = data["ManagedThingId"]
-    if "Modification" in data:
+    if data.get("Modification") is not None:
         import capo_iot_managed_integrations.types.discovery_modification
 
         out["modification"] = (
@@ -117,7 +117,7 @@ def deserialize_json(data: dict) -> DiscoveredDeviceSummary:
                 data["Modification"]
             )
         )
-    if "DiscoveredAt" in data:
+    if data.get("DiscoveredAt") is not None:
         import capo_iot_managed_integrations.types.discovered_at
 
         out["discovered_at"] = (
@@ -125,10 +125,10 @@ def deserialize_json(data: dict) -> DiscoveredDeviceSummary:
                 data["DiscoveredAt"]
             )
         )
-    if "Brand" in data:
+    if data.get("Brand") is not None:
         out["brand"] = data["Brand"]
-    if "Model" in data:
+    if data.get("Model") is not None:
         out["model"] = data["Model"]
-    if "AuthenticationMaterial" in data:
+    if data.get("AuthenticationMaterial") is not None:
         out["authentication_material"] = data["AuthenticationMaterial"]
     return out

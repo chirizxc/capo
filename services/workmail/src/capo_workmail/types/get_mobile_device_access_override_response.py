@@ -65,11 +65,11 @@ def serialize_aws_json_1_1(value: GetMobileDeviceAccessOverrideResponse) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> GetMobileDeviceAccessOverrideResponse:
     out: GetMobileDeviceAccessOverrideResponse = {}  # type: ignore[typeddict-item]
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
-    if "DeviceId" in data:
+    if data.get("DeviceId") is not None:
         out["device_id"] = data["DeviceId"]
-    if "Effect" in data:
+    if data.get("Effect") is not None:
         import capo_workmail.types.mobile_device_access_rule_effect
 
         out["effect"] = (
@@ -77,15 +77,15 @@ def deserialize_aws_json_1_1(data: dict) -> GetMobileDeviceAccessOverrideRespons
                 data["Effect"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DateCreated" in data:
+    if data.get("DateCreated") is not None:
         import capo_workmail.types.timestamp
 
         out["date_created"] = capo_workmail.types.timestamp.deserialize_aws_json_1_1(
             data["DateCreated"]
         )
-    if "DateModified" in data:
+    if data.get("DateModified") is not None:
         import capo_workmail.types.timestamp
 
         out["date_modified"] = capo_workmail.types.timestamp.deserialize_aws_json_1_1(

@@ -42,15 +42,15 @@ def serialize_json(value: CreateDeliverabilityTestReportRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDeliverabilityTestReportRequest:
     out: CreateDeliverabilityTestReportRequest = {}  # type: ignore[typeddict-item]
-    if "ReportName" in data:
+    if data.get("ReportName") is not None:
         out["report_name"] = data["ReportName"]
-    if "FromEmailAddress" in data:
+    if data.get("FromEmailAddress") is not None:
         out["from_email_address"] = data["FromEmailAddress"]
     else:
         raise DeserializationError(
             "CreateDeliverabilityTestReportRequest.from_email_address required"
         )
-    if "Content" in data:
+    if data.get("Content") is not None:
         import capo_sesv2.types.email_content
 
         out["content"] = capo_sesv2.types.email_content.deserialize_json(
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> CreateDeliverabilityTestReportRequest:
         raise DeserializationError(
             "CreateDeliverabilityTestReportRequest.content required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sesv2.types.tag_list
 
         out["tags"] = capo_sesv2.types.tag_list.deserialize_json(data["Tags"])

@@ -45,13 +45,13 @@ def serialize_aws_json_1_1(value: InstanceGroupHealthCheckConfiguration) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> InstanceGroupHealthCheckConfiguration:
     out: InstanceGroupHealthCheckConfiguration = {}  # type: ignore[typeddict-item]
-    if "InstanceGroupName" in data:
+    if data.get("InstanceGroupName") is not None:
         out["instance_group_name"] = data["InstanceGroupName"]
     else:
         raise DeserializationError(
             "InstanceGroupHealthCheckConfiguration.instance_group_name required"
         )
-    if "InstanceIds" in data:
+    if data.get("InstanceIds") is not None:
         import capo_sagemaker.types.instance_ids
 
         out["instance_ids"] = (
@@ -59,7 +59,7 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceGroupHealthCheckConfiguratio
                 data["InstanceIds"]
             )
         )
-    if "DeepHealthChecks" in data:
+    if data.get("DeepHealthChecks") is not None:
         import capo_sagemaker.types.deep_health_checks
 
         out["deep_health_checks"] = (

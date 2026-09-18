@@ -38,7 +38,7 @@ def serialize_json(value: CreateComponentRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateComponentRequest:
     out: CreateComponentRequest = {}  # type: ignore[typeddict-item]
-    if "componentToCreate" in data:
+    if data.get("componentToCreate") is not None:
         import capo_amplifyuibuilder.types.create_component_data
 
         out["component_to_create"] = (

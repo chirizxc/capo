@@ -40,18 +40,18 @@ def serialize_aws_json_1_1(value: ListPrincipalsForPortfolioInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListPrincipalsForPortfolioInput:
     out: ListPrincipalsForPortfolioInput = {}  # type: ignore[typeddict-item]
-    if "AcceptLanguage" in data:
+    if data.get("AcceptLanguage") is not None:
         out["accept_language"] = data["AcceptLanguage"]
-    if "PortfolioId" in data:
+    if data.get("PortfolioId") is not None:
         out["portfolio_id"] = data["PortfolioId"]
     else:
         raise DeserializationError(
             "ListPrincipalsForPortfolioInput.portfolio_id required"
         )
-    if "PageSize" in data:
+    if data.get("PageSize") is not None:
         out["page_size"] = data["PageSize"]
     else:
         out["page_size"] = 0
-    if "PageToken" in data:
+    if data.get("PageToken") is not None:
         out["page_token"] = data["PageToken"]
     return out

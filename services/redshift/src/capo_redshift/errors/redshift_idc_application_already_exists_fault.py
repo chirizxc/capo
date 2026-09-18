@@ -39,15 +39,22 @@ class RedshiftIdcApplicationAlreadyExistsFault(ServiceError):
 
     code: str | None = "RedshiftIdcApplicationAlreadyExistsFault"
 
-    def __init__(self, data: RedshiftIdcApplicationAlreadyExistsFault_):
+    def __init__(
+        self,
+        data: RedshiftIdcApplicationAlreadyExistsFault_,
+        message: str | None = None,
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="RedshiftIdcApplicationAlreadyExistsFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "RedshiftIdcApplicationAlreadyExistsFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "RedshiftIdcApplicationAlreadyExistsFault":
+        return cls(deserialize_query(el), message)

@@ -110,7 +110,7 @@ def serialize_json(value: AuthenticationMetadata) -> dict:
 
 
 def deserialize_json(data: dict) -> AuthenticationMetadata:
-    if "AuthorizationCodeGrantMetadata" in data:
+    if data.get("AuthorizationCodeGrantMetadata") is not None:
         import capo_quicksight.types.authorization_code_grant_metadata
 
         return {
@@ -118,7 +118,7 @@ def deserialize_json(data: dict) -> AuthenticationMetadata:
                 data["AuthorizationCodeGrantMetadata"]
             )
         }
-    elif "ClientCredentialsGrantMetadata" in data:
+    elif data.get("ClientCredentialsGrantMetadata") is not None:
         import capo_quicksight.types.client_credentials_grant_metadata
 
         return {
@@ -126,7 +126,7 @@ def deserialize_json(data: dict) -> AuthenticationMetadata:
                 data["ClientCredentialsGrantMetadata"]
             )
         }
-    elif "BasicAuthConnectionMetadata" in data:
+    elif data.get("BasicAuthConnectionMetadata") is not None:
         import capo_quicksight.types.basic_auth_connection_metadata
 
         return {
@@ -134,7 +134,7 @@ def deserialize_json(data: dict) -> AuthenticationMetadata:
                 data["BasicAuthConnectionMetadata"]
             )
         }
-    elif "ApiKeyConnectionMetadata" in data:
+    elif data.get("ApiKeyConnectionMetadata") is not None:
         import capo_quicksight.types.api_key_connection_metadata
 
         return {
@@ -142,7 +142,7 @@ def deserialize_json(data: dict) -> AuthenticationMetadata:
                 data["ApiKeyConnectionMetadata"]
             )
         }
-    elif "NoneConnectionMetadata" in data:
+    elif data.get("NoneConnectionMetadata") is not None:
         import capo_quicksight.types.none_connection_metadata
 
         return {
@@ -150,7 +150,7 @@ def deserialize_json(data: dict) -> AuthenticationMetadata:
                 data["NoneConnectionMetadata"]
             )
         }
-    elif "IamConnectionMetadata" in data:
+    elif data.get("IamConnectionMetadata") is not None:
         import capo_quicksight.types.iam_connection_metadata
 
         return {

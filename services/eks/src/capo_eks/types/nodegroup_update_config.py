@@ -43,11 +43,11 @@ def serialize_json(value: NodegroupUpdateConfig) -> dict:
 
 def deserialize_json(data: dict) -> NodegroupUpdateConfig:
     out: NodegroupUpdateConfig = {}  # type: ignore[typeddict-item]
-    if "maxUnavailable" in data:
+    if data.get("maxUnavailable") is not None:
         out["max_unavailable"] = data["maxUnavailable"]
-    if "maxUnavailablePercentage" in data:
+    if data.get("maxUnavailablePercentage") is not None:
         out["max_unavailable_percentage"] = data["maxUnavailablePercentage"]
-    if "updateStrategy" in data:
+    if data.get("updateStrategy") is not None:
         import capo_eks.types.nodegroup_update_strategies
 
         out["update_strategy"] = (

@@ -36,9 +36,9 @@ def serialize_json(value: ListReplicatorsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListReplicatorsResponse:
     out: ListReplicatorsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "replicators" in data:
+    if data.get("replicators") is not None:
         import capo_kafka.types.__list_of_replicator_summary
 
         out["replicators"] = (

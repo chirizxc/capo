@@ -32,8 +32,8 @@ def serialize_aws_json_1_1(value: CreateEndpointResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateEndpointResponse:
     out: CreateEndpointResponse = {}  # type: ignore[typeddict-item]
-    if "EndpointArn" in data:
+    if data.get("EndpointArn") is not None:
         out["endpoint_arn"] = data["EndpointArn"]
-    if "ModelArn" in data:
+    if data.get("ModelArn") is not None:
         out["model_arn"] = data["ModelArn"]
     return out

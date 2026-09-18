@@ -59,19 +59,19 @@ def serialize_json(value: GeospatialCircleSymbolStyle) -> dict:
 
 def deserialize_json(data: dict) -> GeospatialCircleSymbolStyle:
     out: GeospatialCircleSymbolStyle = {}  # type: ignore[typeddict-item]
-    if "FillColor" in data:
+    if data.get("FillColor") is not None:
         import capo_quicksight.types.geospatial_color
 
         out["fill_color"] = capo_quicksight.types.geospatial_color.deserialize_json(
             data["FillColor"]
         )
-    if "StrokeColor" in data:
+    if data.get("StrokeColor") is not None:
         import capo_quicksight.types.geospatial_color
 
         out["stroke_color"] = capo_quicksight.types.geospatial_color.deserialize_json(
             data["StrokeColor"]
         )
-    if "StrokeWidth" in data:
+    if data.get("StrokeWidth") is not None:
         import capo_quicksight.types.geospatial_line_width
 
         out["stroke_width"] = (
@@ -79,7 +79,7 @@ def deserialize_json(data: dict) -> GeospatialCircleSymbolStyle:
                 data["StrokeWidth"]
             )
         )
-    if "CircleRadius" in data:
+    if data.get("CircleRadius") is not None:
         import capo_quicksight.types.geospatial_circle_radius
 
         out["circle_radius"] = (

@@ -48,21 +48,21 @@ def serialize_json(value: CreateSdiSourceRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateSdiSourceRequest:
     out: CreateSdiSourceRequest = {}  # type: ignore[typeddict-item]
-    if "mode" in data:
+    if data.get("mode") is not None:
         import capo_medialive.types.sdi_source_mode
 
         out["mode"] = capo_medialive.types.sdi_source_mode.deserialize_json(
             data["mode"]
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_medialive.types.tags
 
         out["tags"] = capo_medialive.types.tags.deserialize_json(data["tags"])
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_medialive.types.sdi_source_type
 
         out["type"] = capo_medialive.types.sdi_source_type.deserialize_json(

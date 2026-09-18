@@ -57,7 +57,7 @@ def serialize_json(value: ThemeConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ThemeConfiguration:
     out: ThemeConfiguration = {}  # type: ignore[typeddict-item]
-    if "DataColorPalette" in data:
+    if data.get("DataColorPalette") is not None:
         import capo_quicksight.types.data_color_palette
 
         out["data_color_palette"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> ThemeConfiguration:
                 data["DataColorPalette"]
             )
         )
-    if "UIColorPalette" in data:
+    if data.get("UIColorPalette") is not None:
         import capo_quicksight.types.ui_color_palette
 
         out["ui_color_palette"] = (
@@ -73,11 +73,11 @@ def deserialize_json(data: dict) -> ThemeConfiguration:
                 data["UIColorPalette"]
             )
         )
-    if "Sheet" in data:
+    if data.get("Sheet") is not None:
         import capo_quicksight.types.sheet_style
 
         out["sheet"] = capo_quicksight.types.sheet_style.deserialize_json(data["Sheet"])
-    if "Typography" in data:
+    if data.get("Typography") is not None:
         import capo_quicksight.types.typography
 
         out["typography"] = capo_quicksight.types.typography.deserialize_json(

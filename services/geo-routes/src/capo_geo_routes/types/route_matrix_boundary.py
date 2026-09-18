@@ -36,7 +36,7 @@ def serialize_json(value: RouteMatrixBoundary) -> dict:
 
 def deserialize_json(data: dict) -> RouteMatrixBoundary:
     out: RouteMatrixBoundary = {}  # type: ignore[typeddict-item]
-    if "Geometry" in data:
+    if data.get("Geometry") is not None:
         import capo_geo_routes.types.route_matrix_boundary_geometry
 
         out["geometry"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> RouteMatrixBoundary:
                 data["Geometry"]
             )
         )
-    if "Unbounded" in data:
+    if data.get("Unbounded") is not None:
         out["unbounded"] = data["Unbounded"]
     return out

@@ -41,13 +41,13 @@ def serialize_aws_json_1_1(value: SelectResourceConfigResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SelectResourceConfigResponse:
     out: SelectResourceConfigResponse = {}  # type: ignore[typeddict-item]
-    if "Results" in data:
+    if data.get("Results") is not None:
         import capo_config_service.types.results
 
         out["results"] = capo_config_service.types.results.deserialize_aws_json_1_1(
             data["Results"]
         )
-    if "QueryInfo" in data:
+    if data.get("QueryInfo") is not None:
         import capo_config_service.types.query_info
 
         out["query_info"] = (
@@ -55,6 +55,6 @@ def deserialize_aws_json_1_1(data: dict) -> SelectResourceConfigResponse:
                 data["QueryInfo"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

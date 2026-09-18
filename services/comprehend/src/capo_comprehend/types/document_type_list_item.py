@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: DocumentTypeListItem) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DocumentTypeListItem:
     out: DocumentTypeListItem = {}  # type: ignore[typeddict-item]
-    if "Page" in data:
+    if data.get("Page") is not None:
         out["page"] = data["Page"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_comprehend.types.document_type
 
         out["type"] = capo_comprehend.types.document_type.deserialize_aws_json_1_1(

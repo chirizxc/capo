@@ -69,19 +69,19 @@ def serialize_aws_json_1_1(value: InboundIntegration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InboundIntegration:
     out: InboundIntegration = {}  # type: ignore[typeddict-item]
-    if "SourceArn" in data:
+    if data.get("SourceArn") is not None:
         out["source_arn"] = data["SourceArn"]
     else:
         raise DeserializationError("InboundIntegration.source_arn required")
-    if "TargetArn" in data:
+    if data.get("TargetArn") is not None:
         out["target_arn"] = data["TargetArn"]
     else:
         raise DeserializationError("InboundIntegration.target_arn required")
-    if "IntegrationArn" in data:
+    if data.get("IntegrationArn") is not None:
         out["integration_arn"] = data["IntegrationArn"]
     else:
         raise DeserializationError("InboundIntegration.integration_arn required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_glue.types.integration_status
 
         out["status"] = capo_glue.types.integration_status.deserialize_aws_json_1_1(
@@ -89,7 +89,7 @@ def deserialize_aws_json_1_1(data: dict) -> InboundIntegration:
         )
     else:
         raise DeserializationError("InboundIntegration.status required")
-    if "CreateTime" in data:
+    if data.get("CreateTime") is not None:
         import capo_glue.types.integration_timestamp
 
         out["create_time"] = (
@@ -99,7 +99,7 @@ def deserialize_aws_json_1_1(data: dict) -> InboundIntegration:
         )
     else:
         raise DeserializationError("InboundIntegration.create_time required")
-    if "IntegrationConfig" in data:
+    if data.get("IntegrationConfig") is not None:
         import capo_glue.types.integration_config
 
         out["integration_config"] = (
@@ -107,7 +107,7 @@ def deserialize_aws_json_1_1(data: dict) -> InboundIntegration:
                 data["IntegrationConfig"]
             )
         )
-    if "Errors" in data:
+    if data.get("Errors") is not None:
         import capo_glue.types.integration_error_list
 
         out["errors"] = capo_glue.types.integration_error_list.deserialize_aws_json_1_1(

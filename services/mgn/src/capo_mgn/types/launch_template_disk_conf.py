@@ -33,10 +33,10 @@ def serialize_json(value: LaunchTemplateDiskConf) -> dict:
 
 def deserialize_json(data: dict) -> LaunchTemplateDiskConf:
     out: LaunchTemplateDiskConf = {}  # type: ignore[typeddict-item]
-    if "volumeType" in data:
+    if data.get("volumeType") is not None:
         out["volume_type"] = data["volumeType"]
-    if "iops" in data:
+    if data.get("iops") is not None:
         out["iops"] = data["iops"]
-    if "throughput" in data:
+    if data.get("throughput") is not None:
         out["throughput"] = data["throughput"]
     return out

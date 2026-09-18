@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 from capo_mailmanager._services._pipeline import (
@@ -90,13 +91,15 @@ class RelayResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.create_relay_request.CreateRelayRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["relay_name"] = relay_name
-        input_["server_name"] = server_name
-        input_["server_port"] = server_port
-        input_["authentication"] = authentication
+        input_: capo_mailmanager.types.create_relay_request.CreateRelayRequest = {
+            "relay_name": relay_name,
+            "server_name": server_name,
+            "server_port": server_port,
+            "authentication": authentication,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -105,6 +108,7 @@ class RelayResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -139,14 +143,16 @@ class RelayResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.get_relay_request.GetRelayRequest = {}  # type: ignore[typeddict-item]
-        input_["relay_id"] = relay_id
+        input_: capo_mailmanager.types.get_relay_request.GetRelayRequest = {
+            "relay_id": relay_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -196,8 +202,9 @@ class RelayResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.update_relay_request.UpdateRelayRequest = {}  # type: ignore[typeddict-item]
-        input_["relay_id"] = relay_id
+        input_: capo_mailmanager.types.update_relay_request.UpdateRelayRequest = {
+            "relay_id": relay_id
+        }
         if relay_name is not None:
             input_["relay_name"] = relay_name
         if server_name is not None:
@@ -212,6 +219,7 @@ class RelayResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -247,14 +255,16 @@ class RelayResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.delete_relay_request.DeleteRelayRequest = {}  # type: ignore[typeddict-item]
-        input_["relay_id"] = relay_id
+        input_: capo_mailmanager.types.delete_relay_request.DeleteRelayRequest = {
+            "relay_id": relay_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -292,7 +302,7 @@ class RelayResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.list_relays_request.ListRelaysRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mailmanager.types.list_relays_request.ListRelaysRequest = {}
         if page_size is not None:
             input_["page_size"] = page_size
         if next_token is not None:
@@ -303,6 +313,7 @@ class RelayResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -356,13 +367,15 @@ class AsyncRelayResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.create_relay_request.CreateRelayRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["relay_name"] = relay_name
-        input_["server_name"] = server_name
-        input_["server_port"] = server_port
-        input_["authentication"] = authentication
+        input_: capo_mailmanager.types.create_relay_request.CreateRelayRequest = {
+            "relay_name": relay_name,
+            "server_name": server_name,
+            "server_port": server_port,
+            "authentication": authentication,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -371,6 +384,7 @@ class AsyncRelayResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -406,14 +420,16 @@ class AsyncRelayResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.get_relay_request.GetRelayRequest = {}  # type: ignore[typeddict-item]
-        input_["relay_id"] = relay_id
+        input_: capo_mailmanager.types.get_relay_request.GetRelayRequest = {
+            "relay_id": relay_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -464,8 +480,9 @@ class AsyncRelayResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.update_relay_request.UpdateRelayRequest = {}  # type: ignore[typeddict-item]
-        input_["relay_id"] = relay_id
+        input_: capo_mailmanager.types.update_relay_request.UpdateRelayRequest = {
+            "relay_id": relay_id
+        }
         if relay_name is not None:
             input_["relay_name"] = relay_name
         if server_name is not None:
@@ -480,6 +497,7 @@ class AsyncRelayResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -516,14 +534,16 @@ class AsyncRelayResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.delete_relay_request.DeleteRelayRequest = {}  # type: ignore[typeddict-item]
-        input_["relay_id"] = relay_id
+        input_: capo_mailmanager.types.delete_relay_request.DeleteRelayRequest = {
+            "relay_id": relay_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -562,7 +582,7 @@ class AsyncRelayResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_mailmanager.types.list_relays_request.ListRelaysRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_mailmanager.types.list_relays_request.ListRelaysRequest = {}
         if page_size is not None:
             input_["page_size"] = page_size
         if next_token is not None:
@@ -573,4 +593,5 @@ class AsyncRelayResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

@@ -30,7 +30,7 @@ def serialize_aws_json_1_0(value: GetLoggingOptionsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetLoggingOptionsResponse:
     out: GetLoggingOptionsResponse = {}  # type: ignore[typeddict-item]
-    if "cloudWatchLogDelivery" in data:
+    if data.get("cloudWatchLogDelivery") is not None:
         import capo_iotfleetwise.types.cloud_watch_log_delivery_options
 
         out["cloud_watch_log_delivery"] = (

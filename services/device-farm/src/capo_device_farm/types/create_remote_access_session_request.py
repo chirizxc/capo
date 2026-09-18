@@ -75,25 +75,25 @@ def serialize_aws_json_1_1(value: CreateRemoteAccessSessionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateRemoteAccessSessionRequest:
     out: CreateRemoteAccessSessionRequest = {}  # type: ignore[typeddict-item]
-    if "projectArn" in data:
+    if data.get("projectArn") is not None:
         out["project_arn"] = data["projectArn"]
     else:
         raise DeserializationError(
             "CreateRemoteAccessSessionRequest.project_arn required"
         )
-    if "deviceArn" in data:
+    if data.get("deviceArn") is not None:
         out["device_arn"] = data["deviceArn"]
     else:
         raise DeserializationError(
             "CreateRemoteAccessSessionRequest.device_arn required"
         )
-    if "appArn" in data:
+    if data.get("appArn") is not None:
         out["app_arn"] = data["appArn"]
-    if "instanceArn" in data:
+    if data.get("instanceArn") is not None:
         out["instance_arn"] = data["instanceArn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_device_farm.types.create_remote_access_session_configuration
 
         out["configuration"] = (
@@ -101,7 +101,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateRemoteAccessSessionRequest:
                 data["configuration"]
             )
         )
-    if "interactionMode" in data:
+    if data.get("interactionMode") is not None:
         import capo_device_farm.types.interaction_mode
 
         out["interaction_mode"] = (
@@ -109,6 +109,6 @@ def deserialize_aws_json_1_1(data: dict) -> CreateRemoteAccessSessionRequest:
                 data["interactionMode"]
             )
         )
-    if "skipAppResign" in data:
+    if data.get("skipAppResign") is not None:
         out["skip_app_resign"] = data["skipAppResign"]
     return out

@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> BundleResourceAssociationList:
 
     out: BundleResourceAssociationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_workspaces.types.bundle_resource_association.deserialize_aws_json_1_1(
                 item

@@ -36,7 +36,7 @@ def serialize_json(value: ListMediaPipelineKinesisVideoStreamPoolsResponse) -> d
 
 def deserialize_json(data: dict) -> ListMediaPipelineKinesisVideoStreamPoolsResponse:
     out: ListMediaPipelineKinesisVideoStreamPoolsResponse = {}  # type: ignore[typeddict-item]
-    if "KinesisVideoStreamPools" in data:
+    if data.get("KinesisVideoStreamPools") is not None:
         import capo_chime_sdk_media_pipelines.types.kinesis_video_stream_pool_summary_list
 
         out["kinesis_video_stream_pools"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListMediaPipelineKinesisVideoStreamPoolsResp
                 data["KinesisVideoStreamPools"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

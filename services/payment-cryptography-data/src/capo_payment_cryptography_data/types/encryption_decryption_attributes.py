@@ -79,7 +79,7 @@ def serialize_json(value: EncryptionDecryptionAttributes) -> dict:
 
 
 def deserialize_json(data: dict) -> EncryptionDecryptionAttributes:
-    if "Symmetric" in data:
+    if data.get("Symmetric") is not None:
         import capo_payment_cryptography_data.types.symmetric_encryption_attributes
 
         return {
@@ -87,7 +87,7 @@ def deserialize_json(data: dict) -> EncryptionDecryptionAttributes:
                 data["Symmetric"]
             )
         }
-    elif "Asymmetric" in data:
+    elif data.get("Asymmetric") is not None:
         import capo_payment_cryptography_data.types.asymmetric_encryption_attributes
 
         return {
@@ -95,7 +95,7 @@ def deserialize_json(data: dict) -> EncryptionDecryptionAttributes:
                 data["Asymmetric"]
             )
         }
-    elif "Dukpt" in data:
+    elif data.get("Dukpt") is not None:
         import capo_payment_cryptography_data.types.dukpt_encryption_attributes
 
         return {
@@ -103,7 +103,7 @@ def deserialize_json(data: dict) -> EncryptionDecryptionAttributes:
                 data["Dukpt"]
             )
         }
-    elif "Emv" in data:
+    elif data.get("Emv") is not None:
         import capo_payment_cryptography_data.types.emv_encryption_attributes
 
         return {

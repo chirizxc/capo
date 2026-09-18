@@ -37,7 +37,7 @@ def serialize_aws_json_1_1(value: FileSystemEndpoints) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FileSystemEndpoints:
     out: FileSystemEndpoints = {}  # type: ignore[typeddict-item]
-    if "Intercluster" in data:
+    if data.get("Intercluster") is not None:
         import capo_fsx.types.file_system_endpoint
 
         out["intercluster"] = (
@@ -45,7 +45,7 @@ def deserialize_aws_json_1_1(data: dict) -> FileSystemEndpoints:
                 data["Intercluster"]
             )
         )
-    if "Management" in data:
+    if data.get("Management") is not None:
         import capo_fsx.types.file_system_endpoint
 
         out["management"] = (

@@ -38,7 +38,7 @@ def serialize_json(value: IsolineThresholds) -> dict:
 
 def deserialize_json(data: dict) -> IsolineThresholds:
     out: IsolineThresholds = {}  # type: ignore[typeddict-item]
-    if "Distance" in data:
+    if data.get("Distance") is not None:
         import capo_geo_routes.types.distance_threshold_list
 
         out["distance"] = (
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> IsolineThresholds:
                 data["Distance"]
             )
         )
-    if "Time" in data:
+    if data.get("Time") is not None:
         import capo_geo_routes.types.time_threshold_list
 
         out["time"] = capo_geo_routes.types.time_threshold_list.deserialize_json(

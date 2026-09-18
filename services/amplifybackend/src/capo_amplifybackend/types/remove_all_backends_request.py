@@ -26,6 +26,6 @@ def serialize_json(value: RemoveAllBackendsRequest) -> dict:
 
 def deserialize_json(data: dict) -> RemoveAllBackendsRequest:
     out: RemoveAllBackendsRequest = {}  # type: ignore[typeddict-item]
-    if "cleanAmplifyApp" in data:
+    if data.get("cleanAmplifyApp") is not None:
         out["clean_amplify_app"] = data["cleanAmplifyApp"]
     return out

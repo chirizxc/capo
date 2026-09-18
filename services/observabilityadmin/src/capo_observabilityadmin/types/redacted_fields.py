@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> RedactedFields:
 
     out: RedactedFields = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_observabilityadmin.types.field_to_match.deserialize_json(item))
     return out

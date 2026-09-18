@@ -24,7 +24,7 @@ def serialize_json(value: VariantImportItemSource) -> dict:
 
 def deserialize_json(data: dict) -> VariantImportItemSource:
     out: VariantImportItemSource = {}  # type: ignore[typeddict-item]
-    if "source" in data:
+    if data.get("source") is not None:
         out["source"] = data["source"]
     else:
         raise DeserializationError("VariantImportItemSource.source required")

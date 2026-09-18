@@ -51,15 +51,15 @@ def serialize_aws_json_1_1(value: UpdateWebAppCustomizationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateWebAppCustomizationRequest:
     out: UpdateWebAppCustomizationRequest = {}  # type: ignore[typeddict-item]
-    if "WebAppId" in data:
+    if data.get("WebAppId") is not None:
         out["web_app_id"] = data["WebAppId"]
     else:
         raise DeserializationError(
             "UpdateWebAppCustomizationRequest.web_app_id required"
         )
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
-    if "LogoFile" in data:
+    if data.get("LogoFile") is not None:
         import capo_transfer.types.web_app_logo_file
 
         out["logo_file"] = (
@@ -67,7 +67,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateWebAppCustomizationRequest:
                 data["LogoFile"]
             )
         )
-    if "FaviconFile" in data:
+    if data.get("FaviconFile") is not None:
         import capo_transfer.types.web_app_favicon_file
 
         out["favicon_file"] = (

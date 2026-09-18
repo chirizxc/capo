@@ -45,10 +45,10 @@ def serialize_json(value: ManagedView) -> dict:
     if "trusted_service" in value:
         out["TrustedService"] = value["trusted_service"]
     if "last_updated_at" in value:
-        import capo_resource_explorer_2.types._prelude.timestamp
+        import capo_resource_explorer_2._protocol.serialize
 
         out["LastUpdatedAt"] = (
-            capo_resource_explorer_2.types._prelude.timestamp.serialize_json(
+            capo_resource_explorer_2._protocol.serialize.fmt_date_time(
                 value["last_updated_at"]
             )
         )
@@ -79,25 +79,23 @@ def serialize_json(value: ManagedView) -> dict:
 
 def deserialize_json(data: dict) -> ManagedView:
     out: ManagedView = {}  # type: ignore[typeddict-item]
-    if "ManagedViewArn" in data:
+    if data.get("ManagedViewArn") is not None:
         out["managed_view_arn"] = data["ManagedViewArn"]
-    if "ManagedViewName" in data:
+    if data.get("ManagedViewName") is not None:
         out["managed_view_name"] = data["ManagedViewName"]
-    if "TrustedService" in data:
+    if data.get("TrustedService") is not None:
         out["trusted_service"] = data["TrustedService"]
-    if "LastUpdatedAt" in data:
-        import capo_resource_explorer_2.types._prelude.timestamp
+    if data.get("LastUpdatedAt") is not None:
+        import datetime
 
-        out["last_updated_at"] = (
-            capo_resource_explorer_2.types._prelude.timestamp.deserialize_json(
-                data["LastUpdatedAt"]
-            )
+        out["last_updated_at"] = datetime.datetime.fromisoformat(
+            data["LastUpdatedAt"].replace("Z", "+00:00")
         )
-    if "Owner" in data:
+    if data.get("Owner") is not None:
         out["owner"] = data["Owner"]
-    if "Scope" in data:
+    if data.get("Scope") is not None:
         out["scope"] = data["Scope"]
-    if "IncludedProperties" in data:
+    if data.get("IncludedProperties") is not None:
         import capo_resource_explorer_2.types.included_property_list
 
         out["included_properties"] = (
@@ -105,14 +103,14 @@ def deserialize_json(data: dict) -> ManagedView:
                 data["IncludedProperties"]
             )
         )
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_resource_explorer_2.types.search_filter
 
         out["filters"] = capo_resource_explorer_2.types.search_filter.deserialize_json(
             data["Filters"]
         )
-    if "ResourcePolicy" in data:
+    if data.get("ResourcePolicy") is not None:
         out["resource_policy"] = data["ResourcePolicy"]
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
     return out

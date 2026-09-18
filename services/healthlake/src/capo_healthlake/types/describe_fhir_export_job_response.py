@@ -32,7 +32,7 @@ def serialize_aws_json_1_0(value: DescribeFHIRExportJobResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeFHIRExportJobResponse:
     out: DescribeFHIRExportJobResponse = {}  # type: ignore[typeddict-item]
-    if "ExportJobProperties" in data:
+    if data.get("ExportJobProperties") is not None:
         import capo_healthlake.types.export_job_properties
 
         out["export_job_properties"] = (

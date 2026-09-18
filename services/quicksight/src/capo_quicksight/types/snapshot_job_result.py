@@ -44,7 +44,7 @@ def serialize_json(value: SnapshotJobResult) -> dict:
 
 def deserialize_json(data: dict) -> SnapshotJobResult:
     out: SnapshotJobResult = {}  # type: ignore[typeddict-item]
-    if "AnonymousUsers" in data:
+    if data.get("AnonymousUsers") is not None:
         import capo_quicksight.types.anonymous_user_snapshot_job_result_list
 
         out["anonymous_users"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> SnapshotJobResult:
                 data["AnonymousUsers"]
             )
         )
-    if "RegisteredUsers" in data:
+    if data.get("RegisteredUsers") is not None:
         import capo_quicksight.types.registered_user_snapshot_job_result_list
 
         out["registered_users"] = (

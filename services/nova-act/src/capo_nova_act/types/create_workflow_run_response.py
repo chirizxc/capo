@@ -32,11 +32,11 @@ def serialize_json(value: CreateWorkflowRunResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateWorkflowRunResponse:
     out: CreateWorkflowRunResponse = {}  # type: ignore[typeddict-item]
-    if "workflowRunId" in data:
+    if data.get("workflowRunId") is not None:
         out["workflow_run_id"] = data["workflowRunId"]
     else:
         raise DeserializationError("CreateWorkflowRunResponse.workflow_run_id required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_nova_act.types.workflow_run_status
 
         out["status"] = capo_nova_act.types.workflow_run_status.deserialize_json(

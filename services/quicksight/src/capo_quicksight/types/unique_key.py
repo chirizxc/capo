@@ -32,7 +32,7 @@ def serialize_json(value: UniqueKey) -> dict:
 
 def deserialize_json(data: dict) -> UniqueKey:
     out: UniqueKey = {}  # type: ignore[typeddict-item]
-    if "ColumnNames" in data:
+    if data.get("ColumnNames") is not None:
         import capo_quicksight.types.unique_key_column_name_list
 
         out["column_names"] = (

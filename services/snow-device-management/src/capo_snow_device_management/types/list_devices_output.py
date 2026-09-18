@@ -36,7 +36,7 @@ def serialize_json(value: ListDevicesOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListDevicesOutput:
     out: ListDevicesOutput = {}  # type: ignore[typeddict-item]
-    if "devices" in data:
+    if data.get("devices") is not None:
         import capo_snow_device_management.types.device_summary_list
 
         out["devices"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListDevicesOutput:
                 data["devices"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

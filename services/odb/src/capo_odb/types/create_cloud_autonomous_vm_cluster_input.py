@@ -63,9 +63,16 @@ def serialize_aws_json_1_0(value: CreateCloudAutonomousVmClusterInput) -> dict:
     out["displayName"] = value["display_name"]
     if "client_token" in value:
         out["clientToken"] = value["client_token"]
-    out["autonomousDataStorageSizeInTBs"] = value[
-        "autonomous_data_storage_size_in_t_bs"
-    ]
+    out["autonomousDataStorageSizeInTBs"] = (
+        "NaN"
+        if value["autonomous_data_storage_size_in_t_bs"]
+        != value["autonomous_data_storage_size_in_t_bs"]
+        else "Infinity"
+        if value["autonomous_data_storage_size_in_t_bs"] == float("inf")
+        else "-Infinity"
+        if value["autonomous_data_storage_size_in_t_bs"] == float("-inf")
+        else value["autonomous_data_storage_size_in_t_bs"]
+    )
     out["cpuCoreCountPerNode"] = value["cpu_core_count_per_node"]
     if "db_servers" in value:
         import capo_odb.types.string_list
@@ -110,57 +117,57 @@ def serialize_aws_json_1_0(value: CreateCloudAutonomousVmClusterInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateCloudAutonomousVmClusterInput:
     out: CreateCloudAutonomousVmClusterInput = {}  # type: ignore[typeddict-item]
-    if "cloudExadataInfrastructureId" in data:
+    if data.get("cloudExadataInfrastructureId") is not None:
         out["cloud_exadata_infrastructure_id"] = data["cloudExadataInfrastructureId"]
     else:
         raise DeserializationError(
             "CreateCloudAutonomousVmClusterInput.cloud_exadata_infrastructure_id required"
         )
-    if "odbNetworkId" in data:
+    if data.get("odbNetworkId") is not None:
         out["odb_network_id"] = data["odbNetworkId"]
     else:
         raise DeserializationError(
             "CreateCloudAutonomousVmClusterInput.odb_network_id required"
         )
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     else:
         raise DeserializationError(
             "CreateCloudAutonomousVmClusterInput.display_name required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "autonomousDataStorageSizeInTBs" in data:
-        out["autonomous_data_storage_size_in_t_bs"] = data[
-            "autonomousDataStorageSizeInTBs"
-        ]
+    if data.get("autonomousDataStorageSizeInTBs") is not None:
+        out["autonomous_data_storage_size_in_t_bs"] = float(
+            data["autonomousDataStorageSizeInTBs"]
+        )
     else:
         raise DeserializationError(
             "CreateCloudAutonomousVmClusterInput.autonomous_data_storage_size_in_t_bs required"
         )
-    if "cpuCoreCountPerNode" in data:
+    if data.get("cpuCoreCountPerNode") is not None:
         out["cpu_core_count_per_node"] = data["cpuCoreCountPerNode"]
     else:
         raise DeserializationError(
             "CreateCloudAutonomousVmClusterInput.cpu_core_count_per_node required"
         )
-    if "dbServers" in data:
+    if data.get("dbServers") is not None:
         import capo_odb.types.string_list
 
         out["db_servers"] = capo_odb.types.string_list.deserialize_aws_json_1_0(
             data["dbServers"]
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "isMtlsEnabledVmCluster" in data:
+    if data.get("isMtlsEnabledVmCluster") is not None:
         out["is_mtls_enabled_vm_cluster"] = data["isMtlsEnabledVmCluster"]
-    if "licenseModel" in data:
+    if data.get("licenseModel") is not None:
         import capo_odb.types.license_model
 
         out["license_model"] = capo_odb.types.license_model.deserialize_aws_json_1_0(
             data["licenseModel"]
         )
-    if "maintenanceWindow" in data:
+    if data.get("maintenanceWindow") is not None:
         import capo_odb.types.maintenance_window
 
         out["maintenance_window"] = (
@@ -168,7 +175,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateCloudAutonomousVmClusterInput:
                 data["maintenanceWindow"]
             )
         )
-    if "memoryPerOracleComputeUnitInGBs" in data:
+    if data.get("memoryPerOracleComputeUnitInGBs") is not None:
         out["memory_per_oracle_compute_unit_in_g_bs"] = data[
             "memoryPerOracleComputeUnitInGBs"
         ]
@@ -176,23 +183,23 @@ def deserialize_aws_json_1_0(data: dict) -> CreateCloudAutonomousVmClusterInput:
         raise DeserializationError(
             "CreateCloudAutonomousVmClusterInput.memory_per_oracle_compute_unit_in_g_bs required"
         )
-    if "scanListenerPortNonTls" in data:
+    if data.get("scanListenerPortNonTls") is not None:
         out["scan_listener_port_non_tls"] = data["scanListenerPortNonTls"]
     else:
         out["scan_listener_port_non_tls"] = 1521
-    if "scanListenerPortTls" in data:
+    if data.get("scanListenerPortTls") is not None:
         out["scan_listener_port_tls"] = data["scanListenerPortTls"]
     else:
         out["scan_listener_port_tls"] = 2484
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_odb.types.request_tag_map
 
         out["tags"] = capo_odb.types.request_tag_map.deserialize_aws_json_1_0(
             data["tags"]
         )
-    if "timeZone" in data:
+    if data.get("timeZone") is not None:
         out["time_zone"] = data["timeZone"]
-    if "totalContainerDatabases" in data:
+    if data.get("totalContainerDatabases") is not None:
         out["total_container_databases"] = data["totalContainerDatabases"]
     else:
         raise DeserializationError(

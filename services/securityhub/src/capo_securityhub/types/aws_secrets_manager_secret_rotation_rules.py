@@ -23,6 +23,6 @@ def serialize_json(value: AwsSecretsManagerSecretRotationRules) -> dict:
 
 def deserialize_json(data: dict) -> AwsSecretsManagerSecretRotationRules:
     out: AwsSecretsManagerSecretRotationRules = {}  # type: ignore[typeddict-item]
-    if "AutomaticallyAfterDays" in data:
+    if data.get("AutomaticallyAfterDays") is not None:
         out["automatically_after_days"] = data["AutomaticallyAfterDays"]
     return out

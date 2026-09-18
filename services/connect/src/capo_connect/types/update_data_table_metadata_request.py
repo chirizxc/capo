@@ -49,13 +49,13 @@ def serialize_json(value: UpdateDataTableMetadataRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDataTableMetadataRequest:
     out: UpdateDataTableMetadataRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("UpdateDataTableMetadataRequest.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ValueLockLevel" in data:
+    if data.get("ValueLockLevel") is not None:
         import capo_connect.types.data_table_lock_level
 
         out["value_lock_level"] = (
@@ -67,7 +67,7 @@ def deserialize_json(data: dict) -> UpdateDataTableMetadataRequest:
         raise DeserializationError(
             "UpdateDataTableMetadataRequest.value_lock_level required"
         )
-    if "TimeZone" in data:
+    if data.get("TimeZone") is not None:
         out["time_zone"] = data["TimeZone"]
     else:
         raise DeserializationError("UpdateDataTableMetadataRequest.time_zone required")

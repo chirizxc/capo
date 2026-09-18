@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: PredictOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PredictOutput:
     out: PredictOutput = {}  # type: ignore[typeddict-item]
-    if "Prediction" in data:
+    if data.get("Prediction") is not None:
         import capo_machine_learning.types.prediction
 
         out["prediction"] = (

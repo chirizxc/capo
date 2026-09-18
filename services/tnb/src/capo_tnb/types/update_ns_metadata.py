@@ -28,10 +28,10 @@ def serialize_json(value: UpdateNsMetadata) -> dict:
 
 def deserialize_json(data: dict) -> UpdateNsMetadata:
     out: UpdateNsMetadata = {}  # type: ignore[typeddict-item]
-    if "nsdInfoId" in data:
+    if data.get("nsdInfoId") is not None:
         out["nsd_info_id"] = data["nsdInfoId"]
     else:
         raise DeserializationError("UpdateNsMetadata.nsd_info_id required")
-    if "additionalParamsForNs" in data:
+    if data.get("additionalParamsForNs") is not None:
         out["additional_params_for_ns"] = data["additionalParamsForNs"]
     return out

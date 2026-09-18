@@ -62,7 +62,7 @@ def serialize_aws_json_1_0(value: SourceConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SourceConfiguration:
     out: SourceConfiguration = {}  # type: ignore[typeddict-item]
-    if "CodeRepository" in data:
+    if data.get("CodeRepository") is not None:
         import capo_apprunner.types.code_repository
 
         out["code_repository"] = (
@@ -70,7 +70,7 @@ def deserialize_aws_json_1_0(data: dict) -> SourceConfiguration:
                 data["CodeRepository"]
             )
         )
-    if "ImageRepository" in data:
+    if data.get("ImageRepository") is not None:
         import capo_apprunner.types.image_repository
 
         out["image_repository"] = (
@@ -78,9 +78,9 @@ def deserialize_aws_json_1_0(data: dict) -> SourceConfiguration:
                 data["ImageRepository"]
             )
         )
-    if "AutoDeploymentsEnabled" in data:
+    if data.get("AutoDeploymentsEnabled") is not None:
         out["auto_deployments_enabled"] = data["AutoDeploymentsEnabled"]
-    if "AuthenticationConfiguration" in data:
+    if data.get("AuthenticationConfiguration") is not None:
         import capo_apprunner.types.authentication_configuration
 
         out["authentication_configuration"] = (

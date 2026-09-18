@@ -31,7 +31,7 @@ def serialize_json(value: ResourceTagsSearchCriteria) -> dict:
 
 def deserialize_json(data: dict) -> ResourceTagsSearchCriteria:
     out: ResourceTagsSearchCriteria = {}  # type: ignore[typeddict-item]
-    if "TagSearchCondition" in data:
+    if data.get("TagSearchCondition") is not None:
         import capo_connect.types.tag_search_condition
 
         out["tag_search_condition"] = (

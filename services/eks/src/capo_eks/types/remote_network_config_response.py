@@ -44,7 +44,7 @@ def serialize_json(value: RemoteNetworkConfigResponse) -> dict:
 
 def deserialize_json(data: dict) -> RemoteNetworkConfigResponse:
     out: RemoteNetworkConfigResponse = {}  # type: ignore[typeddict-item]
-    if "remoteNodeNetworks" in data:
+    if data.get("remoteNodeNetworks") is not None:
         import capo_eks.types.remote_node_network_list
 
         out["remote_node_networks"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> RemoteNetworkConfigResponse:
                 data["remoteNodeNetworks"]
             )
         )
-    if "remotePodNetworks" in data:
+    if data.get("remotePodNetworks") is not None:
         import capo_eks.types.remote_pod_network_list
 
         out["remote_pod_networks"] = (

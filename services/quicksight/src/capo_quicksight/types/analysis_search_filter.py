@@ -43,18 +43,18 @@ def serialize_json(value: AnalysisSearchFilter) -> dict:
 
 def deserialize_json(data: dict) -> AnalysisSearchFilter:
     out: AnalysisSearchFilter = {}  # type: ignore[typeddict-item]
-    if "Operator" in data:
+    if data.get("Operator") is not None:
         import capo_quicksight.types.filter_operator
 
         out["operator"] = capo_quicksight.types.filter_operator.deserialize_json(
             data["Operator"]
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         import capo_quicksight.types.analysis_filter_attribute
 
         out["name"] = capo_quicksight.types.analysis_filter_attribute.deserialize_json(
             data["Name"]
         )
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     return out

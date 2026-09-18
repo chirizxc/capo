@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> EnabledBaselineEnablementStatuses:
 
     out: EnabledBaselineEnablementStatuses = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_controltower.types.enablement_status.deserialize_json(item))
     return out

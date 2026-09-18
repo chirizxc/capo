@@ -28,32 +28,28 @@ def serialize_json(value: StartPatientInsightsJobResponse) -> dict:
     out["jobArn"] = value["job_arn"]
     out["jobId"] = value["job_id"]
     if "creation_time" in value:
-        import capo_connecthealth.types._prelude.timestamp
+        import capo_connecthealth._protocol.serialize
 
-        out["creationTime"] = (
-            capo_connecthealth.types._prelude.timestamp.serialize_json(
-                value["creation_time"]
-            )
+        out["creationTime"] = capo_connecthealth._protocol.serialize.fmt_date_time(
+            value["creation_time"]
         )
     return out
 
 
 def deserialize_json(data: dict) -> StartPatientInsightsJobResponse:
     out: StartPatientInsightsJobResponse = {}  # type: ignore[typeddict-item]
-    if "jobArn" in data:
+    if data.get("jobArn") is not None:
         out["job_arn"] = data["jobArn"]
     else:
         raise DeserializationError("StartPatientInsightsJobResponse.job_arn required")
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
     else:
         raise DeserializationError("StartPatientInsightsJobResponse.job_id required")
-    if "creationTime" in data:
-        import capo_connecthealth.types._prelude.timestamp
+    if data.get("creationTime") is not None:
+        import datetime
 
-        out["creation_time"] = (
-            capo_connecthealth.types._prelude.timestamp.deserialize_json(
-                data["creationTime"]
-            )
+        out["creation_time"] = datetime.datetime.fromisoformat(
+            data["creationTime"].replace("Z", "+00:00")
         )
     return out

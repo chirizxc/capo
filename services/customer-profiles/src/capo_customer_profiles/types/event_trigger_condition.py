@@ -42,7 +42,7 @@ def serialize_json(value: EventTriggerCondition) -> dict:
 
 def deserialize_json(data: dict) -> EventTriggerCondition:
     out: EventTriggerCondition = {}  # type: ignore[typeddict-item]
-    if "EventTriggerDimensions" in data:
+    if data.get("EventTriggerDimensions") is not None:
         import capo_customer_profiles.types.event_trigger_dimensions
 
         out["event_trigger_dimensions"] = (
@@ -54,7 +54,7 @@ def deserialize_json(data: dict) -> EventTriggerCondition:
         raise DeserializationError(
             "EventTriggerCondition.event_trigger_dimensions required"
         )
-    if "LogicalOperator" in data:
+    if data.get("LogicalOperator") is not None:
         import capo_customer_profiles.types.event_trigger_logical_operator
 
         out["logical_operator"] = (

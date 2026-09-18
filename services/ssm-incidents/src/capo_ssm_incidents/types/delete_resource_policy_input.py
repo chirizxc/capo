@@ -28,11 +28,11 @@ def serialize_json(value: DeleteResourcePolicyInput) -> dict:
 
 def deserialize_json(data: dict) -> DeleteResourcePolicyInput:
     out: DeleteResourcePolicyInput = {}  # type: ignore[typeddict-item]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     else:
         raise DeserializationError("DeleteResourcePolicyInput.resource_arn required")
-    if "policyId" in data:
+    if data.get("policyId") is not None:
         out["policy_id"] = data["policyId"]
     else:
         raise DeserializationError("DeleteResourcePolicyInput.policy_id required")

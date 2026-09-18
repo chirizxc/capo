@@ -39,7 +39,7 @@ def serialize_aws_json_1_1(value: EvaluationStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EvaluationStatus:
     out: EvaluationStatus = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_config_service.types.resource_evaluation_status
 
         out["status"] = (
@@ -49,6 +49,6 @@ def deserialize_aws_json_1_1(data: dict) -> EvaluationStatus:
         )
     else:
         raise DeserializationError("EvaluationStatus.status required")
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
     return out

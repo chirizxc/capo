@@ -50,9 +50,9 @@ def serialize_json(value: GetWorkflowStepsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetWorkflowStepsResponse:
     out: GetWorkflowStepsResponse = {}  # type: ignore[typeddict-item]
-    if "WorkflowId" in data:
+    if data.get("WorkflowId") is not None:
         out["workflow_id"] = data["WorkflowId"]
-    if "WorkflowType" in data:
+    if data.get("WorkflowType") is not None:
         import capo_customer_profiles.types.workflow_type
 
         out["workflow_type"] = (
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> GetWorkflowStepsResponse:
                 data["WorkflowType"]
             )
         )
-    if "Items" in data:
+    if data.get("Items") is not None:
         import capo_customer_profiles.types.workflow_steps_list
 
         out["items"] = (
@@ -68,6 +68,6 @@ def deserialize_json(data: dict) -> GetWorkflowStepsResponse:
                 data["Items"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

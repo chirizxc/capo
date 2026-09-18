@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ListOfEventVariableSummaries:
 
     out: ListOfEventVariableSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_frauddetector.types.event_variable_summary.deserialize_aws_json_1_1(
                 item

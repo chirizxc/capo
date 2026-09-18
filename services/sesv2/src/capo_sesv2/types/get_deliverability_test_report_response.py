@@ -60,7 +60,7 @@ def serialize_json(value: GetDeliverabilityTestReportResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetDeliverabilityTestReportResponse:
     out: GetDeliverabilityTestReportResponse = {}  # type: ignore[typeddict-item]
-    if "DeliverabilityTestReport" in data:
+    if data.get("DeliverabilityTestReport") is not None:
         import capo_sesv2.types.deliverability_test_report
 
         out["deliverability_test_report"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> GetDeliverabilityTestReportResponse:
         raise DeserializationError(
             "GetDeliverabilityTestReportResponse.deliverability_test_report required"
         )
-    if "OverallPlacement" in data:
+    if data.get("OverallPlacement") is not None:
         import capo_sesv2.types.placement_statistics
 
         out["overall_placement"] = (
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> GetDeliverabilityTestReportResponse:
         raise DeserializationError(
             "GetDeliverabilityTestReportResponse.overall_placement required"
         )
-    if "IspPlacements" in data:
+    if data.get("IspPlacements") is not None:
         import capo_sesv2.types.isp_placements
 
         out["isp_placements"] = capo_sesv2.types.isp_placements.deserialize_json(
@@ -94,9 +94,9 @@ def deserialize_json(data: dict) -> GetDeliverabilityTestReportResponse:
         raise DeserializationError(
             "GetDeliverabilityTestReportResponse.isp_placements required"
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sesv2.types.tag_list
 
         out["tags"] = capo_sesv2.types.tag_list.deserialize_json(data["Tags"])

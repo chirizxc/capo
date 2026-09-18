@@ -31,7 +31,7 @@ def serialize_json(value: SMSMessageTemplateContent) -> dict:
 
 def deserialize_json(data: dict) -> SMSMessageTemplateContent:
     out: SMSMessageTemplateContent = {}  # type: ignore[typeddict-item]
-    if "body" in data:
+    if data.get("body") is not None:
         import capo_qconnect.types.sms_message_template_content_body
 
         out["body"] = (

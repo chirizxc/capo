@@ -167,25 +167,25 @@ def serialize_json(value: CopyJob) -> dict:
 
 def deserialize_json(data: dict) -> CopyJob:
     out: CopyJob = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "CopyJobId" in data:
+    if data.get("CopyJobId") is not None:
         out["copy_job_id"] = data["CopyJobId"]
-    if "SourceBackupVaultArn" in data:
+    if data.get("SourceBackupVaultArn") is not None:
         out["source_backup_vault_arn"] = data["SourceBackupVaultArn"]
-    if "SourceRecoveryPointArn" in data:
+    if data.get("SourceRecoveryPointArn") is not None:
         out["source_recovery_point_arn"] = data["SourceRecoveryPointArn"]
-    if "DestinationBackupVaultArn" in data:
+    if data.get("DestinationBackupVaultArn") is not None:
         out["destination_backup_vault_arn"] = data["DestinationBackupVaultArn"]
-    if "DestinationVaultType" in data:
+    if data.get("DestinationVaultType") is not None:
         out["destination_vault_type"] = data["DestinationVaultType"]
-    if "DestinationVaultLockState" in data:
+    if data.get("DestinationVaultLockState") is not None:
         out["destination_vault_lock_state"] = data["DestinationVaultLockState"]
-    if "DestinationRecoveryPointArn" in data:
+    if data.get("DestinationRecoveryPointArn") is not None:
         out["destination_recovery_point_arn"] = data["DestinationRecoveryPointArn"]
-    if "DestinationEncryptionKeyArn" in data:
+    if data.get("DestinationEncryptionKeyArn") is not None:
         out["destination_encryption_key_arn"] = data["DestinationEncryptionKeyArn"]
-    if "DestinationRecoveryPointLifecycle" in data:
+    if data.get("DestinationRecoveryPointLifecycle") is not None:
         import capo_backup.types.lifecycle
 
         out["destination_recovery_point_lifecycle"] = (
@@ -193,51 +193,51 @@ def deserialize_json(data: dict) -> CopyJob:
                 data["DestinationRecoveryPointLifecycle"]
             )
         )
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         import capo_backup.types.timestamp
 
         out["creation_date"] = capo_backup.types.timestamp.deserialize_json(
             data["CreationDate"]
         )
-    if "CompletionDate" in data:
+    if data.get("CompletionDate") is not None:
         import capo_backup.types.timestamp
 
         out["completion_date"] = capo_backup.types.timestamp.deserialize_json(
             data["CompletionDate"]
         )
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_backup.types.copy_job_state
 
         out["state"] = capo_backup.types.copy_job_state.deserialize_json(data["State"])
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "BackupSizeInBytes" in data:
+    if data.get("BackupSizeInBytes") is not None:
         out["backup_size_in_bytes"] = data["BackupSizeInBytes"]
-    if "IamRoleArn" in data:
+    if data.get("IamRoleArn") is not None:
         out["iam_role_arn"] = data["IamRoleArn"]
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         import capo_backup.types.recovery_point_creator
 
         out["created_by"] = capo_backup.types.recovery_point_creator.deserialize_json(
             data["CreatedBy"]
         )
-    if "CreatedByBackupJobId" in data:
+    if data.get("CreatedByBackupJobId") is not None:
         out["created_by_backup_job_id"] = data["CreatedByBackupJobId"]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
-    if "ParentJobId" in data:
+    if data.get("ParentJobId") is not None:
         out["parent_job_id"] = data["ParentJobId"]
-    if "IsParent" in data:
+    if data.get("IsParent") is not None:
         out["is_parent"] = data["IsParent"]
     else:
         out["is_parent"] = False
-    if "CompositeMemberIdentifier" in data:
+    if data.get("CompositeMemberIdentifier") is not None:
         out["composite_member_identifier"] = data["CompositeMemberIdentifier"]
-    if "NumberOfChildJobs" in data:
+    if data.get("NumberOfChildJobs") is not None:
         out["number_of_child_jobs"] = data["NumberOfChildJobs"]
-    if "ChildJobsInState" in data:
+    if data.get("ChildJobsInState") is not None:
         import capo_backup.types.copy_job_child_jobs_in_state
 
         out["child_jobs_in_state"] = (
@@ -245,8 +245,8 @@ def deserialize_json(data: dict) -> CopyJob:
                 data["ChildJobsInState"]
             )
         )
-    if "ResourceName" in data:
+    if data.get("ResourceName") is not None:
         out["resource_name"] = data["ResourceName"]
-    if "MessageCategory" in data:
+    if data.get("MessageCategory") is not None:
         out["message_category"] = data["MessageCategory"]
     return out

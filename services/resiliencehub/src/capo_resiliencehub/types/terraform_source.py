@@ -24,7 +24,7 @@ def serialize_json(value: TerraformSource) -> dict:
 
 def deserialize_json(data: dict) -> TerraformSource:
     out: TerraformSource = {}  # type: ignore[typeddict-item]
-    if "s3StateFileUrl" in data:
+    if data.get("s3StateFileUrl") is not None:
         out["s3_state_file_url"] = data["s3StateFileUrl"]
     else:
         raise DeserializationError("TerraformSource.s3_state_file_url required")

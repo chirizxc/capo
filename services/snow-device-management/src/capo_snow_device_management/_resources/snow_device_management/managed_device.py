@@ -80,14 +80,16 @@ class ManagedDevice:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_snow_device_management.types.describe_device_input.DescribeDeviceInput = {}  # type: ignore[typeddict-item]
-        input_["managed_device_id"] = managed_device_id
+        input_: capo_snow_device_management.types.describe_device_input.DescribeDeviceInput = {
+            "managed_device_id": managed_device_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -132,7 +134,7 @@ class ManagedDevice:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_snow_device_management.types.list_devices_input.ListDevicesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_snow_device_management.types.list_devices_input.ListDevicesInput = {}
         if job_id is not None:
             input_["job_id"] = job_id
         if max_results is not None:
@@ -145,6 +147,7 @@ class ManagedDevice:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_device_ec2_instances(
@@ -184,15 +187,17 @@ class ManagedDevice:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_snow_device_management.types.describe_device_ec2_input.DescribeDeviceEc2Input = {}  # type: ignore[typeddict-item]
-        input_["managed_device_id"] = managed_device_id
-        input_["instance_ids"] = instance_ids
+        input_: capo_snow_device_management.types.describe_device_ec2_input.DescribeDeviceEc2Input = {
+            "managed_device_id": managed_device_id,
+            "instance_ids": instance_ids,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_device_resources(
@@ -240,8 +245,9 @@ class ManagedDevice:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_snow_device_management.types.list_device_resources_input.ListDeviceResourcesInput = {}  # type: ignore[typeddict-item]
-        input_["managed_device_id"] = managed_device_id
+        input_: capo_snow_device_management.types.list_device_resources_input.ListDeviceResourcesInput = {
+            "managed_device_id": managed_device_id
+        }
         if type is not None:
             input_["type"] = type
         if max_results is not None:
@@ -254,6 +260,7 @@ class ManagedDevice:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -299,14 +306,16 @@ class AsyncManagedDevice:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_snow_device_management.types.describe_device_input.DescribeDeviceInput = {}  # type: ignore[typeddict-item]
-        input_["managed_device_id"] = managed_device_id
+        input_: capo_snow_device_management.types.describe_device_input.DescribeDeviceInput = {
+            "managed_device_id": managed_device_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -352,7 +361,7 @@ class AsyncManagedDevice:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_snow_device_management.types.list_devices_input.ListDevicesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_snow_device_management.types.list_devices_input.ListDevicesInput = {}
         if job_id is not None:
             input_["job_id"] = job_id
         if max_results is not None:
@@ -365,6 +374,7 @@ class AsyncManagedDevice:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_device_ec2_instances(
@@ -405,15 +415,17 @@ class AsyncManagedDevice:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_snow_device_management.types.describe_device_ec2_input.DescribeDeviceEc2Input = {}  # type: ignore[typeddict-item]
-        input_["managed_device_id"] = managed_device_id
-        input_["instance_ids"] = instance_ids
+        input_: capo_snow_device_management.types.describe_device_ec2_input.DescribeDeviceEc2Input = {
+            "managed_device_id": managed_device_id,
+            "instance_ids": instance_ids,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_device_resources(
@@ -462,8 +474,9 @@ class AsyncManagedDevice:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_snow_device_management.types.list_device_resources_input.ListDeviceResourcesInput = {}  # type: ignore[typeddict-item]
-        input_["managed_device_id"] = managed_device_id
+        input_: capo_snow_device_management.types.list_device_resources_input.ListDeviceResourcesInput = {
+            "managed_device_id": managed_device_id
+        }
         if type is not None:
             input_["type"] = type
         if max_results is not None:
@@ -476,4 +489,5 @@ class AsyncManagedDevice:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

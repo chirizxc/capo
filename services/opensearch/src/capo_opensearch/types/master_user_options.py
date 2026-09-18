@@ -33,10 +33,10 @@ def serialize_json(value: MasterUserOptions) -> dict:
 
 def deserialize_json(data: dict) -> MasterUserOptions:
     out: MasterUserOptions = {}  # type: ignore[typeddict-item]
-    if "MasterUserARN" in data:
+    if data.get("MasterUserARN") is not None:
         out["master_user_arn"] = data["MasterUserARN"]
-    if "MasterUserName" in data:
+    if data.get("MasterUserName") is not None:
         out["master_user_name"] = data["MasterUserName"]
-    if "MasterUserPassword" in data:
+    if data.get("MasterUserPassword") is not None:
         out["master_user_password"] = data["MasterUserPassword"]
     return out

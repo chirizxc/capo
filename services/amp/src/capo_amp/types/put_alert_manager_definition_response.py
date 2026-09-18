@@ -30,7 +30,7 @@ def serialize_json(value: PutAlertManagerDefinitionResponse) -> dict:
 
 def deserialize_json(data: dict) -> PutAlertManagerDefinitionResponse:
     out: PutAlertManagerDefinitionResponse = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_amp.types.alert_manager_definition_status
 
         out["status"] = capo_amp.types.alert_manager_definition_status.deserialize_json(

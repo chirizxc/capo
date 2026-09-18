@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: CreateGeoMatchSetResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateGeoMatchSetResponse:
     out: CreateGeoMatchSetResponse = {}  # type: ignore[typeddict-item]
-    if "GeoMatchSet" in data:
+    if data.get("GeoMatchSet") is not None:
         import capo_waf_regional.types.geo_match_set
 
         out["geo_match_set"] = (
@@ -42,6 +42,6 @@ def deserialize_aws_json_1_1(data: dict) -> CreateGeoMatchSetResponse:
                 data["GeoMatchSet"]
             )
         )
-    if "ChangeToken" in data:
+    if data.get("ChangeToken") is not None:
         out["change_token"] = data["ChangeToken"]
     return out

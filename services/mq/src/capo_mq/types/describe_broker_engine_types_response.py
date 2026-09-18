@@ -41,7 +41,7 @@ def serialize_json(value: DescribeBrokerEngineTypesResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeBrokerEngineTypesResponse:
     out: DescribeBrokerEngineTypesResponse = {}  # type: ignore[typeddict-item]
-    if "brokerEngineTypes" in data:
+    if data.get("brokerEngineTypes") is not None:
         import capo_mq.types.__list_of_broker_engine_type
 
         out["broker_engine_types"] = (
@@ -49,8 +49,8 @@ def deserialize_json(data: dict) -> DescribeBrokerEngineTypesResponse:
                 data["brokerEngineTypes"]
             )
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

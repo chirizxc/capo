@@ -36,14 +36,14 @@ def serialize_json(value: InAppMessageBodyConfig) -> dict:
 
 def deserialize_json(data: dict) -> InAppMessageBodyConfig:
     out: InAppMessageBodyConfig = {}  # type: ignore[typeddict-item]
-    if "Alignment" in data:
+    if data.get("Alignment") is not None:
         import capo_pinpoint.types.alignment
 
         out["alignment"] = capo_pinpoint.types.alignment.deserialize_json(
             data["Alignment"]
         )
-    if "Body" in data:
+    if data.get("Body") is not None:
         out["body"] = data["Body"]
-    if "TextColor" in data:
+    if data.get("TextColor") is not None:
         out["text_color"] = data["TextColor"]
     return out

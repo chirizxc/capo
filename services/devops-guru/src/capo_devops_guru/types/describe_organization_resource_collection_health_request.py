@@ -64,7 +64,7 @@ def serialize_json(value: DescribeOrganizationResourceCollectionHealthRequest) -
 
 def deserialize_json(data: dict) -> DescribeOrganizationResourceCollectionHealthRequest:
     out: DescribeOrganizationResourceCollectionHealthRequest = {}  # type: ignore[typeddict-item]
-    if "OrganizationResourceCollectionType" in data:
+    if data.get("OrganizationResourceCollectionType") is not None:
         import capo_devops_guru.types.organization_resource_collection_type
 
         out["organization_resource_collection_type"] = (
@@ -76,13 +76,13 @@ def deserialize_json(data: dict) -> DescribeOrganizationResourceCollectionHealth
         raise DeserializationError(
             "DescribeOrganizationResourceCollectionHealthRequest.organization_resource_collection_type required"
         )
-    if "AccountIds" in data:
+    if data.get("AccountIds") is not None:
         import capo_devops_guru.types.account_id_list
 
         out["account_ids"] = capo_devops_guru.types.account_id_list.deserialize_json(
             data["AccountIds"]
         )
-    if "OrganizationalUnitIds" in data:
+    if data.get("OrganizationalUnitIds") is not None:
         import capo_devops_guru.types.organizational_unit_id_list
 
         out["organizational_unit_ids"] = (
@@ -90,8 +90,8 @@ def deserialize_json(data: dict) -> DescribeOrganizationResourceCollectionHealth
                 data["OrganizationalUnitIds"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

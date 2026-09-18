@@ -68,17 +68,17 @@ def serialize_aws_json_1_0(value: UpdateNotifyConfigurationRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateNotifyConfigurationRequest:
     out: UpdateNotifyConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "NotifyConfigurationId" in data:
+    if data.get("NotifyConfigurationId") is not None:
         out["notify_configuration_id"] = data["NotifyConfigurationId"]
     else:
         raise DeserializationError(
             "UpdateNotifyConfigurationRequest.notify_configuration_id required"
         )
-    if "DefaultTemplateId" in data:
+    if data.get("DefaultTemplateId") is not None:
         out["default_template_id"] = data["DefaultTemplateId"]
-    if "PoolId" in data:
+    if data.get("PoolId") is not None:
         out["pool_id"] = data["PoolId"]
-    if "EnabledCountries" in data:
+    if data.get("EnabledCountries") is not None:
         import capo_pinpoint_sms_voice_v2.types.iso_country_code_list
 
         out["enabled_countries"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateNotifyConfigurationRequest:
                 data["EnabledCountries"]
             )
         )
-    if "EnabledChannels" in data:
+    if data.get("EnabledChannels") is not None:
         import capo_pinpoint_sms_voice_v2.types.notify_enabled_channels_list
 
         out["enabled_channels"] = (
@@ -94,6 +94,6 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateNotifyConfigurationRequest:
                 data["EnabledChannels"]
             )
         )
-    if "DeletionProtectionEnabled" in data:
+    if data.get("DeletionProtectionEnabled") is not None:
         out["deletion_protection_enabled"] = data["DeletionProtectionEnabled"]
     return out

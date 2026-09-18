@@ -29,7 +29,7 @@ def serialize_json(value: BatchPutPropertyValuesRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchPutPropertyValuesRequest:
     out: BatchPutPropertyValuesRequest = {}  # type: ignore[typeddict-item]
-    if "entries" in data:
+    if data.get("entries") is not None:
         import capo_iottwinmaker.types.entries
 
         out["entries"] = capo_iottwinmaker.types.entries.deserialize_json(

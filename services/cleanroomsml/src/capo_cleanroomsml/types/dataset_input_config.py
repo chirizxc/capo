@@ -36,7 +36,7 @@ def serialize_json(value: DatasetInputConfig) -> dict:
 
 def deserialize_json(data: dict) -> DatasetInputConfig:
     out: DatasetInputConfig = {}  # type: ignore[typeddict-item]
-    if "schema" in data:
+    if data.get("schema") is not None:
         import capo_cleanroomsml.types.dataset_schema_list
 
         out["schema"] = capo_cleanroomsml.types.dataset_schema_list.deserialize_json(
@@ -44,7 +44,7 @@ def deserialize_json(data: dict) -> DatasetInputConfig:
         )
     else:
         raise DeserializationError("DatasetInputConfig.schema required")
-    if "dataSource" in data:
+    if data.get("dataSource") is not None:
         import capo_cleanroomsml.types.data_source
 
         out["data_source"] = capo_cleanroomsml.types.data_source.deserialize_json(

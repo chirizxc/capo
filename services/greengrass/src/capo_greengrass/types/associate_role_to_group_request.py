@@ -25,6 +25,6 @@ def serialize_json(value: AssociateRoleToGroupRequest) -> dict:
 
 def deserialize_json(data: dict) -> AssociateRoleToGroupRequest:
     out: AssociateRoleToGroupRequest = {}  # type: ignore[typeddict-item]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     return out

@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> AggregationPartitionByList:
 
     out: AggregationPartitionByList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.aggregation_partition_by.deserialize_json(item)
         )

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> TrainingDatasetList:
 
     out: TrainingDatasetList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cleanroomsml.types.training_dataset_summary.deserialize_json(item)
         )

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> TemplateList:
 
     out: TemplateList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_pca_connector_ad.types.template_summary.deserialize_json(item))
     return out

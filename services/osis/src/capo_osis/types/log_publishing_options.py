@@ -36,9 +36,9 @@ def serialize_json(value: LogPublishingOptions) -> dict:
 
 def deserialize_json(data: dict) -> LogPublishingOptions:
     out: LogPublishingOptions = {}  # type: ignore[typeddict-item]
-    if "IsLoggingEnabled" in data:
+    if data.get("IsLoggingEnabled") is not None:
         out["is_logging_enabled"] = data["IsLoggingEnabled"]
-    if "CloudWatchLogDestination" in data:
+    if data.get("CloudWatchLogDestination") is not None:
         import capo_osis.types.cloud_watch_log_destination
 
         out["cloud_watch_log_destination"] = (

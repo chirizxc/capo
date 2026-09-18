@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: StartSandboxInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartSandboxInput:
     out: StartSandboxInput = {}  # type: ignore[typeddict-item]
-    if "projectName" in data:
+    if data.get("projectName") is not None:
         out["project_name"] = data["projectName"]
-    if "idempotencyToken" in data:
+    if data.get("idempotencyToken") is not None:
         out["idempotency_token"] = data["idempotencyToken"]
     return out

@@ -120,13 +120,13 @@ def serialize_aws_json_1_1(value: DirectConnectGatewayAssociation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DirectConnectGatewayAssociation:
     out: DirectConnectGatewayAssociation = {}  # type: ignore[typeddict-item]
-    if "directConnectGatewayId" in data:
+    if data.get("directConnectGatewayId") is not None:
         out["direct_connect_gateway_id"] = data["directConnectGatewayId"]
-    if "directConnectGatewayOwnerAccount" in data:
+    if data.get("directConnectGatewayOwnerAccount") is not None:
         out["direct_connect_gateway_owner_account"] = data[
             "directConnectGatewayOwnerAccount"
         ]
-    if "associationState" in data:
+    if data.get("associationState") is not None:
         import capo_direct_connect.types.direct_connect_gateway_association_state
 
         out["association_state"] = (
@@ -134,9 +134,9 @@ def deserialize_aws_json_1_1(data: dict) -> DirectConnectGatewayAssociation:
                 data["associationState"]
             )
         )
-    if "stateChangeError" in data:
+    if data.get("stateChangeError") is not None:
         out["state_change_error"] = data["stateChangeError"]
-    if "associatedGateway" in data:
+    if data.get("associatedGateway") is not None:
         import capo_direct_connect.types.associated_gateway
 
         out["associated_gateway"] = (
@@ -144,9 +144,9 @@ def deserialize_aws_json_1_1(data: dict) -> DirectConnectGatewayAssociation:
                 data["associatedGateway"]
             )
         )
-    if "associationId" in data:
+    if data.get("associationId") is not None:
         out["association_id"] = data["associationId"]
-    if "allowedPrefixesToDirectConnectGateway" in data:
+    if data.get("allowedPrefixesToDirectConnectGateway") is not None:
         import capo_direct_connect.types.route_filter_prefix_list
 
         out["allowed_prefixes_to_direct_connect_gateway"] = (
@@ -154,7 +154,7 @@ def deserialize_aws_json_1_1(data: dict) -> DirectConnectGatewayAssociation:
                 data["allowedPrefixesToDirectConnectGateway"]
             )
         )
-    if "associatedCoreNetwork" in data:
+    if data.get("associatedCoreNetwork") is not None:
         import capo_direct_connect.types.associated_core_network
 
         out["associated_core_network"] = (
@@ -162,10 +162,10 @@ def deserialize_aws_json_1_1(data: dict) -> DirectConnectGatewayAssociation:
                 data["associatedCoreNetwork"]
             )
         )
-    if "virtualGatewayId" in data:
+    if data.get("virtualGatewayId") is not None:
         out["virtual_gateway_id"] = data["virtualGatewayId"]
-    if "virtualGatewayRegion" in data:
+    if data.get("virtualGatewayRegion") is not None:
         out["virtual_gateway_region"] = data["virtualGatewayRegion"]
-    if "virtualGatewayOwnerAccount" in data:
+    if data.get("virtualGatewayOwnerAccount") is not None:
         out["virtual_gateway_owner_account"] = data["virtualGatewayOwnerAccount"]
     return out

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsCloudWatchAlarmDimensionsList:
 
     out: AwsCloudWatchAlarmDimensionsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_cloud_watch_alarm_dimensions_details.deserialize_json(
                 item

@@ -49,13 +49,13 @@ def serialize_json(value: CreateDomainInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateDomainInput:
     out: CreateDomainInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateDomainInput.name required")
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
-    if "webAppSetupConfiguration" in data:
+    if data.get("webAppSetupConfiguration") is not None:
         import capo_connecthealth.types.create_web_app_configuration
 
         out["web_app_setup_configuration"] = (
@@ -63,7 +63,7 @@ def deserialize_json(data: dict) -> CreateDomainInput:
                 data["webAppSetupConfiguration"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_connecthealth.types.tag_map
 
         out["tags"] = capo_connecthealth.types.tag_map.deserialize_json(data["tags"])

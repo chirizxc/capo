@@ -89,21 +89,21 @@ def serialize_json(value: StreamSession) -> dict:
 
 def deserialize_json(data: dict) -> StreamSession:
     out: StreamSession = {}  # type: ignore[typeddict-item]
-    if "streamId" in data:
+    if data.get("streamId") is not None:
         out["stream_id"] = data["streamId"]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_ivs.types.time
 
         out["start_time"] = capo_ivs.types.time.deserialize_json(data["startTime"])
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_ivs.types.time
 
         out["end_time"] = capo_ivs.types.time.deserialize_json(data["endTime"])
-    if "channel" in data:
+    if data.get("channel") is not None:
         import capo_ivs.types.channel
 
         out["channel"] = capo_ivs.types.channel.deserialize_json(data["channel"])
-    if "ingestConfiguration" in data:
+    if data.get("ingestConfiguration") is not None:
         import capo_ivs.types.ingest_configuration
 
         out["ingest_configuration"] = (
@@ -111,7 +111,7 @@ def deserialize_json(data: dict) -> StreamSession:
                 data["ingestConfiguration"]
             )
         )
-    if "ingestConfigurations" in data:
+    if data.get("ingestConfigurations") is not None:
         import capo_ivs.types.ingest_configurations
 
         out["ingest_configurations"] = (
@@ -119,7 +119,7 @@ def deserialize_json(data: dict) -> StreamSession:
                 data["ingestConfigurations"]
             )
         )
-    if "recordingConfiguration" in data:
+    if data.get("recordingConfiguration") is not None:
         import capo_ivs.types.recording_configuration
 
         out["recording_configuration"] = (
@@ -127,7 +127,7 @@ def deserialize_json(data: dict) -> StreamSession:
                 data["recordingConfiguration"]
             )
         )
-    if "truncatedEvents" in data:
+    if data.get("truncatedEvents") is not None:
         import capo_ivs.types.stream_events
 
         out["truncated_events"] = capo_ivs.types.stream_events.deserialize_json(

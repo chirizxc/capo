@@ -44,9 +44,9 @@ def serialize_aws_json_1_1(value: AggregateComplianceByConfigRule) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AggregateComplianceByConfigRule:
     out: AggregateComplianceByConfigRule = {}  # type: ignore[typeddict-item]
-    if "ConfigRuleName" in data:
+    if data.get("ConfigRuleName") is not None:
         out["config_rule_name"] = data["ConfigRuleName"]
-    if "Compliance" in data:
+    if data.get("Compliance") is not None:
         import capo_config_service.types.compliance
 
         out["compliance"] = (
@@ -54,8 +54,8 @@ def deserialize_aws_json_1_1(data: dict) -> AggregateComplianceByConfigRule:
                 data["Compliance"]
             )
         )
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "AwsRegion" in data:
+    if data.get("AwsRegion") is not None:
         out["aws_region"] = data["AwsRegion"]
     return out

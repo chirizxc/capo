@@ -46,7 +46,7 @@ def serialize_json(value: EvaluationFormSingleSelectQuestionAutomation) -> dict:
 
 def deserialize_json(data: dict) -> EvaluationFormSingleSelectQuestionAutomation:
     out: EvaluationFormSingleSelectQuestionAutomation = {}  # type: ignore[typeddict-item]
-    if "Options" in data:
+    if data.get("Options") is not None:
         import capo_connect.types.evaluation_form_single_select_question_automation_option_list
 
         out["options"] = (
@@ -56,9 +56,9 @@ def deserialize_json(data: dict) -> EvaluationFormSingleSelectQuestionAutomation
         )
     else:
         out["options"] = []
-    if "DefaultOptionRefId" in data:
+    if data.get("DefaultOptionRefId") is not None:
         out["default_option_ref_id"] = data["DefaultOptionRefId"]
-    if "AnswerSource" in data:
+    if data.get("AnswerSource") is not None:
         import capo_connect.types.evaluation_form_question_automation_answer_source
 
         out["answer_source"] = (

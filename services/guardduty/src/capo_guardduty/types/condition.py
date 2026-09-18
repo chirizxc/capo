@@ -98,45 +98,45 @@ def serialize_json(value: Condition) -> dict:
 
 def deserialize_json(data: dict) -> Condition:
     out: Condition = {}  # type: ignore[typeddict-item]
-    if "eq" in data:
+    if data.get("eq") is not None:
         import capo_guardduty.types.eq
 
         out["eq"] = capo_guardduty.types.eq.deserialize_json(data["eq"])
-    if "neq" in data:
+    if data.get("neq") is not None:
         import capo_guardduty.types.neq
 
         out["neq"] = capo_guardduty.types.neq.deserialize_json(data["neq"])
-    if "gt" in data:
+    if data.get("gt") is not None:
         out["gt"] = data["gt"]
-    if "gte" in data:
+    if data.get("gte") is not None:
         out["gte"] = data["gte"]
-    if "lt" in data:
+    if data.get("lt") is not None:
         out["lt"] = data["lt"]
-    if "lte" in data:
+    if data.get("lte") is not None:
         out["lte"] = data["lte"]
-    if "equals" in data:
+    if data.get("equals") is not None:
         import capo_guardduty.types.equals
 
         out["equals"] = capo_guardduty.types.equals.deserialize_json(data["equals"])
-    if "notEquals" in data:
+    if data.get("notEquals") is not None:
         import capo_guardduty.types.not_equals
 
         out["not_equals"] = capo_guardduty.types.not_equals.deserialize_json(
             data["notEquals"]
         )
-    if "greaterThan" in data:
+    if data.get("greaterThan") is not None:
         out["greater_than"] = data["greaterThan"]
-    if "greaterThanOrEqual" in data:
+    if data.get("greaterThanOrEqual") is not None:
         out["greater_than_or_equal"] = data["greaterThanOrEqual"]
-    if "lessThan" in data:
+    if data.get("lessThan") is not None:
         out["less_than"] = data["lessThan"]
-    if "lessThanOrEqual" in data:
+    if data.get("lessThanOrEqual") is not None:
         out["less_than_or_equal"] = data["lessThanOrEqual"]
-    if "matches" in data:
+    if data.get("matches") is not None:
         import capo_guardduty.types.matches
 
         out["matches"] = capo_guardduty.types.matches.deserialize_json(data["matches"])
-    if "notMatches" in data:
+    if data.get("notMatches") is not None:
         import capo_guardduty.types.not_matches
 
         out["not_matches"] = capo_guardduty.types.not_matches.deserialize_json(

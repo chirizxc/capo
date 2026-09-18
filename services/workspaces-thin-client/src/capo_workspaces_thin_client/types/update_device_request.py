@@ -46,11 +46,11 @@ def serialize_json(value: UpdateDeviceRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDeviceRequest:
     out: UpdateDeviceRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "desiredSoftwareSetId" in data:
+    if data.get("desiredSoftwareSetId") is not None:
         out["desired_software_set_id"] = data["desiredSoftwareSetId"]
-    if "softwareSetUpdateSchedule" in data:
+    if data.get("softwareSetUpdateSchedule") is not None:
         import capo_workspaces_thin_client.types.software_set_update_schedule
 
         out["software_set_update_schedule"] = (

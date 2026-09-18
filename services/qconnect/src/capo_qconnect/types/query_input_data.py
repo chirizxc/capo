@@ -64,7 +64,7 @@ def serialize_json(value: QueryInputData) -> dict:
 
 
 def deserialize_json(data: dict) -> QueryInputData:
-    if "queryTextInputData" in data:
+    if data.get("queryTextInputData") is not None:
         import capo_qconnect.types.query_text_input_data
 
         return {
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> QueryInputData:
                 data["queryTextInputData"]
             )
         }
-    elif "intentInputData" in data:
+    elif data.get("intentInputData") is not None:
         import capo_qconnect.types.intent_input_data
 
         return {
@@ -80,7 +80,7 @@ def deserialize_json(data: dict) -> QueryInputData:
                 data["intentInputData"]
             )
         }
-    elif "caseSummarizationInputData" in data:
+    elif data.get("caseSummarizationInputData") is not None:
         import capo_qconnect.types.case_summarization_input_data
 
         return {

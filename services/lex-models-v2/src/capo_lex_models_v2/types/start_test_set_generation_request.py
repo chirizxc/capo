@@ -64,15 +64,15 @@ def serialize_json(value: StartTestSetGenerationRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartTestSetGenerationRequest:
     out: StartTestSetGenerationRequest = {}  # type: ignore[typeddict-item]
-    if "testSetName" in data:
+    if data.get("testSetName") is not None:
         out["test_set_name"] = data["testSetName"]
     else:
         raise DeserializationError(
             "StartTestSetGenerationRequest.test_set_name required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "storageLocation" in data:
+    if data.get("storageLocation") is not None:
         import capo_lex_models_v2.types.test_set_storage_location
 
         out["storage_location"] = (
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> StartTestSetGenerationRequest:
         raise DeserializationError(
             "StartTestSetGenerationRequest.storage_location required"
         )
-    if "generationDataSource" in data:
+    if data.get("generationDataSource") is not None:
         import capo_lex_models_v2.types.test_set_generation_data_source
 
         out["generation_data_source"] = (
@@ -96,11 +96,11 @@ def deserialize_json(data: dict) -> StartTestSetGenerationRequest:
         raise DeserializationError(
             "StartTestSetGenerationRequest.generation_data_source required"
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("StartTestSetGenerationRequest.role_arn required")
-    if "testSetTags" in data:
+    if data.get("testSetTags") is not None:
         import capo_lex_models_v2.types.tag_map
 
         out["test_set_tags"] = capo_lex_models_v2.types.tag_map.deserialize_json(

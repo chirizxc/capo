@@ -43,7 +43,7 @@ def serialize_json(value: VisualReferenceOutput) -> dict:
 
 def deserialize_json(data: dict) -> VisualReferenceOutput:
     out: VisualReferenceOutput = {}  # type: ignore[typeddict-item]
-    if "BaseScreenshots" in data:
+    if data.get("BaseScreenshots") is not None:
         import capo_synthetics.types.base_screenshots
 
         out["base_screenshots"] = (
@@ -51,9 +51,9 @@ def deserialize_json(data: dict) -> VisualReferenceOutput:
                 data["BaseScreenshots"]
             )
         )
-    if "BaseCanaryRunId" in data:
+    if data.get("BaseCanaryRunId") is not None:
         out["base_canary_run_id"] = data["BaseCanaryRunId"]
-    if "BrowserType" in data:
+    if data.get("BrowserType") is not None:
         import capo_synthetics.types.browser_type
 
         out["browser_type"] = capo_synthetics.types.browser_type.deserialize_json(

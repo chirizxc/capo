@@ -43,13 +43,13 @@ def serialize_json(value: NodeRepairConfigOverrides) -> dict:
 
 def deserialize_json(data: dict) -> NodeRepairConfigOverrides:
     out: NodeRepairConfigOverrides = {}  # type: ignore[typeddict-item]
-    if "nodeMonitoringCondition" in data:
+    if data.get("nodeMonitoringCondition") is not None:
         out["node_monitoring_condition"] = data["nodeMonitoringCondition"]
-    if "nodeUnhealthyReason" in data:
+    if data.get("nodeUnhealthyReason") is not None:
         out["node_unhealthy_reason"] = data["nodeUnhealthyReason"]
-    if "minRepairWaitTimeMins" in data:
+    if data.get("minRepairWaitTimeMins") is not None:
         out["min_repair_wait_time_mins"] = data["minRepairWaitTimeMins"]
-    if "repairAction" in data:
+    if data.get("repairAction") is not None:
         import capo_eks.types.repair_action
 
         out["repair_action"] = capo_eks.types.repair_action.deserialize_json(

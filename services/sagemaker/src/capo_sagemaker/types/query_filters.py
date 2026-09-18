@@ -84,13 +84,13 @@ def serialize_aws_json_1_1(value: QueryFilters) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> QueryFilters:
     out: QueryFilters = {}  # type: ignore[typeddict-item]
-    if "Types" in data:
+    if data.get("Types") is not None:
         import capo_sagemaker.types.query_types
 
         out["types"] = capo_sagemaker.types.query_types.deserialize_aws_json_1_1(
             data["Types"]
         )
-    if "LineageTypes" in data:
+    if data.get("LineageTypes") is not None:
         import capo_sagemaker.types.query_lineage_types
 
         out["lineage_types"] = (
@@ -98,19 +98,19 @@ def deserialize_aws_json_1_1(data: dict) -> QueryFilters:
                 data["LineageTypes"]
             )
         )
-    if "CreatedBefore" in data:
+    if data.get("CreatedBefore") is not None:
         import capo_sagemaker.types.timestamp
 
         out["created_before"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreatedBefore"]
         )
-    if "CreatedAfter" in data:
+    if data.get("CreatedAfter") is not None:
         import capo_sagemaker.types.timestamp
 
         out["created_after"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreatedAfter"]
         )
-    if "ModifiedBefore" in data:
+    if data.get("ModifiedBefore") is not None:
         import capo_sagemaker.types.timestamp
 
         out["modified_before"] = (
@@ -118,13 +118,13 @@ def deserialize_aws_json_1_1(data: dict) -> QueryFilters:
                 data["ModifiedBefore"]
             )
         )
-    if "ModifiedAfter" in data:
+    if data.get("ModifiedAfter") is not None:
         import capo_sagemaker.types.timestamp
 
         out["modified_after"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["ModifiedAfter"]
         )
-    if "Properties" in data:
+    if data.get("Properties") is not None:
         import capo_sagemaker.types.query_properties
 
         out["properties"] = (

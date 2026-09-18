@@ -19,7 +19,7 @@ def serialize_json(value: AgentOrchestrationConfig) -> dict:
 
 def deserialize_json(data: dict) -> AgentOrchestrationConfig:
     out: AgentOrchestrationConfig = {}  # type: ignore[typeddict-item]
-    if "profilingEnabled" in data:
+    if data.get("profilingEnabled") is not None:
         out["profiling_enabled"] = data["profilingEnabled"]
     else:
         raise DeserializationError(

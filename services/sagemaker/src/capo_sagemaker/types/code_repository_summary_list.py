@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> CodeRepositorySummaryList:
 
     out: CodeRepositorySummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.code_repository_summary.deserialize_aws_json_1_1(item)
         )

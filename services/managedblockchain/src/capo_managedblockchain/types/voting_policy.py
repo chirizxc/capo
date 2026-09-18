@@ -31,7 +31,7 @@ def serialize_json(value: VotingPolicy) -> dict:
 
 def deserialize_json(data: dict) -> VotingPolicy:
     out: VotingPolicy = {}  # type: ignore[typeddict-item]
-    if "ApprovalThresholdPolicy" in data:
+    if data.get("ApprovalThresholdPolicy") is not None:
         import capo_managedblockchain.types.approval_threshold_policy
 
         out["approval_threshold_policy"] = (

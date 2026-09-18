@@ -55,22 +55,22 @@ def serialize_json(value: UpdateFilterRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateFilterRequest:
     out: UpdateFilterRequest = {}  # type: ignore[typeddict-item]
-    if "action" in data:
+    if data.get("action") is not None:
         out["action"] = data["action"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "filterCriteria" in data:
+    if data.get("filterCriteria") is not None:
         import capo_inspector2.types.filter_criteria
 
         out["filter_criteria"] = capo_inspector2.types.filter_criteria.deserialize_json(
             data["filterCriteria"]
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "filterArn" in data:
+    if data.get("filterArn") is not None:
         out["filter_arn"] = data["filterArn"]
     else:
         raise DeserializationError("UpdateFilterRequest.filter_arn required")
-    if "reason" in data:
+    if data.get("reason") is not None:
         out["reason"] = data["reason"]
     return out

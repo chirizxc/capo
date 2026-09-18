@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: DeleteOrganizationResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteOrganizationResponse:
     out: DeleteOrganizationResponse = {}  # type: ignore[typeddict-item]
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
-    if "State" in data:
+    if data.get("State") is not None:
         out["state"] = data["State"]
     return out

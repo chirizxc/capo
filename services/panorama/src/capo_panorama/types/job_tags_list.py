@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> JobTagsList:
 
     out: JobTagsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_panorama.types.job_resource_tags.deserialize_json(item))
     return out

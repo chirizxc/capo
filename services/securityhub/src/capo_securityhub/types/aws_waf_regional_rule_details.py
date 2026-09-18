@@ -44,11 +44,11 @@ def serialize_json(value: AwsWafRegionalRuleDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsWafRegionalRuleDetails:
     out: AwsWafRegionalRuleDetails = {}  # type: ignore[typeddict-item]
-    if "MetricName" in data:
+    if data.get("MetricName") is not None:
         out["metric_name"] = data["MetricName"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "PredicateList" in data:
+    if data.get("PredicateList") is not None:
         import capo_securityhub.types.aws_waf_regional_rule_predicate_list
 
         out["predicate_list"] = (
@@ -56,6 +56,6 @@ def deserialize_json(data: dict) -> AwsWafRegionalRuleDetails:
                 data["PredicateList"]
             )
         )
-    if "RuleId" in data:
+    if data.get("RuleId") is not None:
         out["rule_id"] = data["RuleId"]
     return out

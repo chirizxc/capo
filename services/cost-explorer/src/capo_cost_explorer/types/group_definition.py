@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: GroupDefinition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GroupDefinition:
     out: GroupDefinition = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_cost_explorer.types.group_definition_type
 
         out["type"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> GroupDefinition:
                 data["Type"]
             )
         )
-    if "Key" in data:
+    if data.get("Key") is not None:
         out["key"] = data["Key"]
     return out

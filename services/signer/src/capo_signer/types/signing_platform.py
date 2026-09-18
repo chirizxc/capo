@@ -75,19 +75,19 @@ def serialize_json(value: SigningPlatform) -> dict:
 
 def deserialize_json(data: dict) -> SigningPlatform:
     out: SigningPlatform = {}  # type: ignore[typeddict-item]
-    if "platformId" in data:
+    if data.get("platformId") is not None:
         out["platform_id"] = data["platformId"]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "partner" in data:
+    if data.get("partner") is not None:
         out["partner"] = data["partner"]
-    if "target" in data:
+    if data.get("target") is not None:
         out["target"] = data["target"]
-    if "category" in data:
+    if data.get("category") is not None:
         import capo_signer.types.category
 
         out["category"] = capo_signer.types.category.deserialize_json(data["category"])
-    if "signingConfiguration" in data:
+    if data.get("signingConfiguration") is not None:
         import capo_signer.types.signing_configuration
 
         out["signing_configuration"] = (
@@ -95,7 +95,7 @@ def deserialize_json(data: dict) -> SigningPlatform:
                 data["signingConfiguration"]
             )
         )
-    if "signingImageFormat" in data:
+    if data.get("signingImageFormat") is not None:
         import capo_signer.types.signing_image_format
 
         out["signing_image_format"] = (
@@ -103,11 +103,11 @@ def deserialize_json(data: dict) -> SigningPlatform:
                 data["signingImageFormat"]
             )
         )
-    if "maxSizeInMB" in data:
+    if data.get("maxSizeInMB") is not None:
         out["max_size_in_mb"] = data["maxSizeInMB"]
     else:
         out["max_size_in_mb"] = 0
-    if "revocationSupported" in data:
+    if data.get("revocationSupported") is not None:
         out["revocation_supported"] = data["revocationSupported"]
     else:
         out["revocation_supported"] = False

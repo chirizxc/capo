@@ -37,7 +37,7 @@ def serialize_json(value: CopyJobTemplateRequest) -> dict:
 
 def deserialize_json(data: dict) -> CopyJobTemplateRequest:
     out: CopyJobTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "targetS3Location" in data:
+    if data.get("targetS3Location") is not None:
         import capo_deadline.types.s3_location
 
         out["target_s3_location"] = capo_deadline.types.s3_location.deserialize_json(

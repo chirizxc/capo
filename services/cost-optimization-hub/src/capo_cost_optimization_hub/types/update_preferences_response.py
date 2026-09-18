@@ -57,7 +57,7 @@ def serialize_aws_json_1_0(value: UpdatePreferencesResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdatePreferencesResponse:
     out: UpdatePreferencesResponse = {}  # type: ignore[typeddict-item]
-    if "savingsEstimationMode" in data:
+    if data.get("savingsEstimationMode") is not None:
         import capo_cost_optimization_hub.types.savings_estimation_mode
 
         out["savings_estimation_mode"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdatePreferencesResponse:
                 data["savingsEstimationMode"]
             )
         )
-    if "memberAccountDiscountVisibility" in data:
+    if data.get("memberAccountDiscountVisibility") is not None:
         import capo_cost_optimization_hub.types.member_account_discount_visibility
 
         out["member_account_discount_visibility"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdatePreferencesResponse:
                 data["memberAccountDiscountVisibility"]
             )
         )
-    if "preferredCommitment" in data:
+    if data.get("preferredCommitment") is not None:
         import capo_cost_optimization_hub.types.preferred_commitment
 
         out["preferred_commitment"] = (

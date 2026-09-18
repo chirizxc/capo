@@ -69,7 +69,15 @@ def serialize_aws_json_1_1(value: PutAlarmRequest) -> dict:
             value["comparison_operator"]
         )
     )
-    out["threshold"] = value["threshold"]
+    out["threshold"] = (
+        "NaN"
+        if value["threshold"] != value["threshold"]
+        else "Infinity"
+        if value["threshold"] == float("inf")
+        else "-Infinity"
+        if value["threshold"] == float("-inf")
+        else value["threshold"]
+    )
     out["evaluationPeriods"] = value["evaluation_periods"]
     if "datapoints_to_alarm" in value:
         out["datapointsToAlarm"] = value["datapoints_to_alarm"]
@@ -110,11 +118,11 @@ def serialize_aws_json_1_1(value: PutAlarmRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutAlarmRequest:
     out: PutAlarmRequest = {}  # type: ignore[typeddict-item]
-    if "alarmName" in data:
+    if data.get("alarmName") is not None:
         out["alarm_name"] = data["alarmName"]
     else:
         raise DeserializationError("PutAlarmRequest.alarm_name required")
-    if "metricName" in data:
+    if data.get("metricName") is not None:
         import capo_lightsail.types.metric_name
 
         out["metric_name"] = capo_lightsail.types.metric_name.deserialize_aws_json_1_1(
@@ -122,11 +130,11 @@ def deserialize_aws_json_1_1(data: dict) -> PutAlarmRequest:
         )
     else:
         raise DeserializationError("PutAlarmRequest.metric_name required")
-    if "monitoredResourceName" in data:
+    if data.get("monitoredResourceName") is not None:
         out["monitored_resource_name"] = data["monitoredResourceName"]
     else:
         raise DeserializationError("PutAlarmRequest.monitored_resource_name required")
-    if "comparisonOperator" in data:
+    if data.get("comparisonOperator") is not None:
         import capo_lightsail.types.comparison_operator
 
         out["comparison_operator"] = (
@@ -136,17 +144,17 @@ def deserialize_aws_json_1_1(data: dict) -> PutAlarmRequest:
         )
     else:
         raise DeserializationError("PutAlarmRequest.comparison_operator required")
-    if "threshold" in data:
-        out["threshold"] = data["threshold"]
+    if data.get("threshold") is not None:
+        out["threshold"] = float(data["threshold"])
     else:
         raise DeserializationError("PutAlarmRequest.threshold required")
-    if "evaluationPeriods" in data:
+    if data.get("evaluationPeriods") is not None:
         out["evaluation_periods"] = data["evaluationPeriods"]
     else:
         raise DeserializationError("PutAlarmRequest.evaluation_periods required")
-    if "datapointsToAlarm" in data:
+    if data.get("datapointsToAlarm") is not None:
         out["datapoints_to_alarm"] = data["datapointsToAlarm"]
-    if "treatMissingData" in data:
+    if data.get("treatMissingData") is not None:
         import capo_lightsail.types.treat_missing_data
 
         out["treat_missing_data"] = (
@@ -154,7 +162,7 @@ def deserialize_aws_json_1_1(data: dict) -> PutAlarmRequest:
                 data["treatMissingData"]
             )
         )
-    if "contactProtocols" in data:
+    if data.get("contactProtocols") is not None:
         import capo_lightsail.types.contact_protocols_list
 
         out["contact_protocols"] = (
@@ -162,7 +170,7 @@ def deserialize_aws_json_1_1(data: dict) -> PutAlarmRequest:
                 data["contactProtocols"]
             )
         )
-    if "notificationTriggers" in data:
+    if data.get("notificationTriggers") is not None:
         import capo_lightsail.types.notification_trigger_list
 
         out["notification_triggers"] = (
@@ -170,9 +178,9 @@ def deserialize_aws_json_1_1(data: dict) -> PutAlarmRequest:
                 data["notificationTriggers"]
             )
         )
-    if "notificationEnabled" in data:
+    if data.get("notificationEnabled") is not None:
         out["notification_enabled"] = data["notificationEnabled"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_lightsail.types.tag_list
 
         out["tags"] = capo_lightsail.types.tag_list.deserialize_aws_json_1_1(

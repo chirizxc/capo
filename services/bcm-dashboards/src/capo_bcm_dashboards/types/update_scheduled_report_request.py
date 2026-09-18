@@ -95,21 +95,21 @@ def serialize_aws_json_1_0(value: UpdateScheduledReportRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateScheduledReportRequest:
     out: UpdateScheduledReportRequest = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("UpdateScheduledReportRequest.arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "dashboardArn" in data:
+    if data.get("dashboardArn") is not None:
         out["dashboard_arn"] = data["dashboardArn"]
-    if "scheduledReportExecutionRoleArn" in data:
+    if data.get("scheduledReportExecutionRoleArn") is not None:
         out["scheduled_report_execution_role_arn"] = data[
             "scheduledReportExecutionRoleArn"
         ]
-    if "scheduleConfig" in data:
+    if data.get("scheduleConfig") is not None:
         import capo_bcm_dashboards.types.schedule_config
 
         out["schedule_config"] = (
@@ -117,7 +117,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateScheduledReportRequest:
                 data["scheduleConfig"]
             )
         )
-    if "widgetIds" in data:
+    if data.get("widgetIds") is not None:
         import capo_bcm_dashboards.types.widget_id_list
 
         out["widget_ids"] = (
@@ -125,7 +125,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateScheduledReportRequest:
                 data["widgetIds"]
             )
         )
-    if "widgetDateRangeOverride" in data:
+    if data.get("widgetDateRangeOverride") is not None:
         import capo_bcm_dashboards.types.date_time_range
 
         out["widget_date_range_override"] = (
@@ -133,11 +133,11 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateScheduledReportRequest:
                 data["widgetDateRangeOverride"]
             )
         )
-    if "clearWidgetIds" in data:
+    if data.get("clearWidgetIds") is not None:
         out["clear_widget_ids"] = data["clearWidgetIds"]
     else:
         out["clear_widget_ids"] = False
-    if "clearWidgetDateRangeOverride" in data:
+    if data.get("clearWidgetDateRangeOverride") is not None:
         out["clear_widget_date_range_override"] = data["clearWidgetDateRangeOverride"]
     else:
         out["clear_widget_date_range_override"] = False

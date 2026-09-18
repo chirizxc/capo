@@ -22,11 +22,11 @@ def serialize_json(value: AspectRatio) -> dict:
 
 def deserialize_json(data: dict) -> AspectRatio:
     out: AspectRatio = {}  # type: ignore[typeddict-item]
-    if "width" in data:
+    if data.get("width") is not None:
         out["width"] = data["width"]
     else:
         raise DeserializationError("AspectRatio.width required")
-    if "height" in data:
+    if data.get("height") is not None:
         out["height"] = data["height"]
     else:
         raise DeserializationError("AspectRatio.height required")

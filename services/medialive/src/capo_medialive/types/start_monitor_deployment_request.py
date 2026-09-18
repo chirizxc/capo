@@ -25,6 +25,6 @@ def serialize_json(value: StartMonitorDeploymentRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartMonitorDeploymentRequest:
     out: StartMonitorDeploymentRequest = {}  # type: ignore[typeddict-item]
-    if "dryRun" in data:
+    if data.get("dryRun") is not None:
         out["dry_run"] = data["dryRun"]
     return out

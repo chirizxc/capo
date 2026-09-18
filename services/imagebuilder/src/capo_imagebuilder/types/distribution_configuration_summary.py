@@ -58,21 +58,21 @@ def serialize_json(value: DistributionConfigurationSummary) -> dict:
 
 def deserialize_json(data: dict) -> DistributionConfigurationSummary:
     out: DistributionConfigurationSummary = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "dateCreated" in data:
+    if data.get("dateCreated") is not None:
         out["date_created"] = data["dateCreated"]
-    if "dateUpdated" in data:
+    if data.get("dateUpdated") is not None:
         out["date_updated"] = data["dateUpdated"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_imagebuilder.types.tag_map
 
         out["tags"] = capo_imagebuilder.types.tag_map.deserialize_json(data["tags"])
-    if "regions" in data:
+    if data.get("regions") is not None:
         import capo_imagebuilder.types.region_list
 
         out["regions"] = capo_imagebuilder.types.region_list.deserialize_json(

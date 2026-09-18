@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> __listOfTransportStreamProgram:
 
     out: __listOfTransportStreamProgram = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mediaconnect.types.transport_stream_program.deserialize_json(item)
         )

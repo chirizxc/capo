@@ -33,13 +33,13 @@ def serialize_json(value: DataPrepListAggregationFunction) -> dict:
 
 def deserialize_json(data: dict) -> DataPrepListAggregationFunction:
     out: DataPrepListAggregationFunction = {}  # type: ignore[typeddict-item]
-    if "InputColumnName" in data:
+    if data.get("InputColumnName") is not None:
         out["input_column_name"] = data["InputColumnName"]
-    if "Separator" in data:
+    if data.get("Separator") is not None:
         out["separator"] = data["Separator"]
     else:
         raise DeserializationError("DataPrepListAggregationFunction.separator required")
-    if "Distinct" in data:
+    if data.get("Distinct") is not None:
         out["distinct"] = data["Distinct"]
     else:
         out["distinct"] = False

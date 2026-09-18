@@ -31,7 +31,7 @@ def serialize_json(value: PutPackageOriginConfigurationResult) -> dict:
 
 def deserialize_json(data: dict) -> PutPackageOriginConfigurationResult:
     out: PutPackageOriginConfigurationResult = {}  # type: ignore[typeddict-item]
-    if "originConfiguration" in data:
+    if data.get("originConfiguration") is not None:
         import capo_codeartifact.types.package_origin_configuration
 
         out["origin_configuration"] = (

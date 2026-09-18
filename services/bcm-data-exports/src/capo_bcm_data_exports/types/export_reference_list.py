@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ExportReferenceList:
 
     out: ExportReferenceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_bcm_data_exports.types.export_reference.deserialize_aws_json_1_1(item)
         )

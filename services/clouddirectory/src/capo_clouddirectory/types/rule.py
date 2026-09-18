@@ -36,11 +36,11 @@ def serialize_json(value: Rule) -> dict:
 
 def deserialize_json(data: dict) -> Rule:
     out: Rule = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_clouddirectory.types.rule_type
 
         out["type"] = capo_clouddirectory.types.rule_type.deserialize_json(data["Type"])
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_clouddirectory.types.rule_parameter_map
 
         out["parameters"] = (

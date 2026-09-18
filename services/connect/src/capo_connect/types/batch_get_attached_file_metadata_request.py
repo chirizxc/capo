@@ -32,7 +32,7 @@ def serialize_json(value: BatchGetAttachedFileMetadataRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetAttachedFileMetadataRequest:
     out: BatchGetAttachedFileMetadataRequest = {}  # type: ignore[typeddict-item]
-    if "FileIds" in data:
+    if data.get("FileIds") is not None:
         import capo_connect.types.file_id_list
 
         out["file_ids"] = capo_connect.types.file_id_list.deserialize_json(

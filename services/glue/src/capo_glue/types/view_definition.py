@@ -90,19 +90,19 @@ def serialize_aws_json_1_1(value: ViewDefinition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ViewDefinition:
     out: ViewDefinition = {}  # type: ignore[typeddict-item]
-    if "IsProtected" in data:
+    if data.get("IsProtected") is not None:
         out["is_protected"] = data["IsProtected"]
-    if "Definer" in data:
+    if data.get("Definer") is not None:
         out["definer"] = data["Definer"]
-    if "ViewVersionId" in data:
+    if data.get("ViewVersionId") is not None:
         out["view_version_id"] = data["ViewVersionId"]
     else:
         out["view_version_id"] = 0
-    if "ViewVersionToken" in data:
+    if data.get("ViewVersionToken") is not None:
         out["view_version_token"] = data["ViewVersionToken"]
-    if "RefreshSeconds" in data:
+    if data.get("RefreshSeconds") is not None:
         out["refresh_seconds"] = data["RefreshSeconds"]
-    if "LastRefreshType" in data:
+    if data.get("LastRefreshType") is not None:
         import capo_glue.types.last_refresh_type
 
         out["last_refresh_type"] = (
@@ -110,7 +110,7 @@ def deserialize_aws_json_1_1(data: dict) -> ViewDefinition:
                 data["LastRefreshType"]
             )
         )
-    if "SubObjects" in data:
+    if data.get("SubObjects") is not None:
         import capo_glue.types.view_sub_objects_list
 
         out["sub_objects"] = (
@@ -118,7 +118,7 @@ def deserialize_aws_json_1_1(data: dict) -> ViewDefinition:
                 data["SubObjects"]
             )
         )
-    if "SubObjectVersionIds" in data:
+    if data.get("SubObjectVersionIds") is not None:
         import capo_glue.types.view_sub_object_version_ids_list
 
         out["sub_object_version_ids"] = (
@@ -126,7 +126,7 @@ def deserialize_aws_json_1_1(data: dict) -> ViewDefinition:
                 data["SubObjectVersionIds"]
             )
         )
-    if "Representations" in data:
+    if data.get("Representations") is not None:
         import capo_glue.types.view_representation_list
 
         out["representations"] = (

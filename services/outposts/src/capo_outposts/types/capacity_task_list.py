@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> CapacityTaskList:
 
     out: CapacityTaskList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_outposts.types.capacity_task_summary.deserialize_json(item))
     return out

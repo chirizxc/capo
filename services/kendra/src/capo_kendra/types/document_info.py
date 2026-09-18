@@ -37,11 +37,11 @@ def serialize_aws_json_1_1(value: DocumentInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DocumentInfo:
     out: DocumentInfo = {}  # type: ignore[typeddict-item]
-    if "DocumentId" in data:
+    if data.get("DocumentId") is not None:
         out["document_id"] = data["DocumentId"]
     else:
         raise DeserializationError("DocumentInfo.document_id required")
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_kendra.types.document_attribute_list
 
         out["attributes"] = (

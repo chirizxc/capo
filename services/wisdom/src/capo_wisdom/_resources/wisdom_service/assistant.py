@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_wisdom._auth._signers
@@ -103,11 +104,13 @@ class Assistant:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_wisdom.types.create_assistant_request.CreateAssistantRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["name"] = name
-        input_["type"] = type
+        input_: capo_wisdom.types.create_assistant_request.CreateAssistantRequest = {
+            "name": name,
+            "type": type,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if description is not None:
             input_["description"] = description
         if tags is not None:
@@ -122,6 +125,7 @@ class Assistant:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -157,14 +161,16 @@ class Assistant:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_wisdom.types.get_assistant_request.GetAssistantRequest = {}  # type: ignore[typeddict-item]
-        input_["assistant_id"] = assistant_id
+        input_: capo_wisdom.types.get_assistant_request.GetAssistantRequest = {
+            "assistant_id": assistant_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -200,14 +206,16 @@ class Assistant:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_wisdom.types.delete_assistant_request.DeleteAssistantRequest = {}  # type: ignore[typeddict-item]
-        input_["assistant_id"] = assistant_id
+        input_: capo_wisdom.types.delete_assistant_request.DeleteAssistantRequest = {
+            "assistant_id": assistant_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -244,7 +252,7 @@ class Assistant:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_wisdom.types.list_assistants_request.ListAssistantsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_wisdom.types.list_assistants_request.ListAssistantsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -255,6 +263,7 @@ class Assistant:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_recommendations(
@@ -298,9 +307,10 @@ class Assistant:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_wisdom.types.get_recommendations_request.GetRecommendationsRequest = {}  # type: ignore[typeddict-item]
-        input_["assistant_id"] = assistant_id
-        input_["session_id"] = session_id
+        input_: capo_wisdom.types.get_recommendations_request.GetRecommendationsRequest = {
+            "assistant_id": assistant_id,
+            "session_id": session_id,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if wait_time_seconds is not None:
@@ -311,6 +321,7 @@ class Assistant:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def notify_recommendations_received(
@@ -350,16 +361,18 @@ class Assistant:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_wisdom.types.notify_recommendations_received_request.NotifyRecommendationsReceivedRequest = {}  # type: ignore[typeddict-item]
-        input_["assistant_id"] = assistant_id
-        input_["session_id"] = session_id
-        input_["recommendation_ids"] = recommendation_ids
+        input_: capo_wisdom.types.notify_recommendations_received_request.NotifyRecommendationsReceivedRequest = {
+            "assistant_id": assistant_id,
+            "session_id": session_id,
+            "recommendation_ids": recommendation_ids,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def query_assistant(
@@ -402,9 +415,10 @@ class Assistant:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_wisdom.types.query_assistant_request.QueryAssistantRequest = {}  # type: ignore[typeddict-item]
-        input_["assistant_id"] = assistant_id
-        input_["query_text"] = query_text
+        input_: capo_wisdom.types.query_assistant_request.QueryAssistantRequest = {
+            "assistant_id": assistant_id,
+            "query_text": query_text,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -415,6 +429,7 @@ class Assistant:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def search_sessions(
@@ -456,19 +471,21 @@ class Assistant:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_wisdom.types.search_sessions_request.SearchSessionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_wisdom.types.search_sessions_request.SearchSessionsRequest = {
+            "assistant_id": assistant_id,
+            "search_expression": search_expression,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["assistant_id"] = assistant_id
-        input_["search_expression"] = search_expression
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -523,11 +540,13 @@ class AsyncAssistant:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_wisdom.types.create_assistant_request.CreateAssistantRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["name"] = name
-        input_["type"] = type
+        input_: capo_wisdom.types.create_assistant_request.CreateAssistantRequest = {
+            "name": name,
+            "type": type,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if description is not None:
             input_["description"] = description
         if tags is not None:
@@ -542,6 +561,7 @@ class AsyncAssistant:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -578,14 +598,16 @@ class AsyncAssistant:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_wisdom.types.get_assistant_request.GetAssistantRequest = {}  # type: ignore[typeddict-item]
-        input_["assistant_id"] = assistant_id
+        input_: capo_wisdom.types.get_assistant_request.GetAssistantRequest = {
+            "assistant_id": assistant_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -622,14 +644,16 @@ class AsyncAssistant:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_wisdom.types.delete_assistant_request.DeleteAssistantRequest = {}  # type: ignore[typeddict-item]
-        input_["assistant_id"] = assistant_id
+        input_: capo_wisdom.types.delete_assistant_request.DeleteAssistantRequest = {
+            "assistant_id": assistant_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -667,7 +691,7 @@ class AsyncAssistant:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_wisdom.types.list_assistants_request.ListAssistantsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_wisdom.types.list_assistants_request.ListAssistantsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -678,6 +702,7 @@ class AsyncAssistant:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_recommendations(
@@ -722,9 +747,10 @@ class AsyncAssistant:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_wisdom.types.get_recommendations_request.GetRecommendationsRequest = {}  # type: ignore[typeddict-item]
-        input_["assistant_id"] = assistant_id
-        input_["session_id"] = session_id
+        input_: capo_wisdom.types.get_recommendations_request.GetRecommendationsRequest = {
+            "assistant_id": assistant_id,
+            "session_id": session_id,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if wait_time_seconds is not None:
@@ -735,6 +761,7 @@ class AsyncAssistant:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def notify_recommendations_received(
@@ -775,16 +802,18 @@ class AsyncAssistant:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_wisdom.types.notify_recommendations_received_request.NotifyRecommendationsReceivedRequest = {}  # type: ignore[typeddict-item]
-        input_["assistant_id"] = assistant_id
-        input_["session_id"] = session_id
-        input_["recommendation_ids"] = recommendation_ids
+        input_: capo_wisdom.types.notify_recommendations_received_request.NotifyRecommendationsReceivedRequest = {
+            "assistant_id": assistant_id,
+            "session_id": session_id,
+            "recommendation_ids": recommendation_ids,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def query_assistant(
@@ -828,9 +857,10 @@ class AsyncAssistant:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_wisdom.types.query_assistant_request.QueryAssistantRequest = {}  # type: ignore[typeddict-item]
-        input_["assistant_id"] = assistant_id
-        input_["query_text"] = query_text
+        input_: capo_wisdom.types.query_assistant_request.QueryAssistantRequest = {
+            "assistant_id": assistant_id,
+            "query_text": query_text,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -841,6 +871,7 @@ class AsyncAssistant:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def search_sessions(
@@ -883,17 +914,19 @@ class AsyncAssistant:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_wisdom.types.search_sessions_request.SearchSessionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_wisdom.types.search_sessions_request.SearchSessionsRequest = {
+            "assistant_id": assistant_id,
+            "search_expression": search_expression,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["assistant_id"] = assistant_id
-        input_["search_expression"] = search_expression
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

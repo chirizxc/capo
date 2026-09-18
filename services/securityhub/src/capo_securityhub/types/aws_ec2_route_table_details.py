@@ -68,7 +68,7 @@ def serialize_json(value: AwsEc2RouteTableDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEc2RouteTableDetails:
     out: AwsEc2RouteTableDetails = {}  # type: ignore[typeddict-item]
-    if "AssociationSet" in data:
+    if data.get("AssociationSet") is not None:
         import capo_securityhub.types.association_set_list
 
         out["association_set"] = (
@@ -76,9 +76,9 @@ def deserialize_json(data: dict) -> AwsEc2RouteTableDetails:
                 data["AssociationSet"]
             )
         )
-    if "OwnerId" in data:
+    if data.get("OwnerId") is not None:
         out["owner_id"] = data["OwnerId"]
-    if "PropagatingVgwSet" in data:
+    if data.get("PropagatingVgwSet") is not None:
         import capo_securityhub.types.propagating_vgw_set_list
 
         out["propagating_vgw_set"] = (
@@ -86,14 +86,14 @@ def deserialize_json(data: dict) -> AwsEc2RouteTableDetails:
                 data["PropagatingVgwSet"]
             )
         )
-    if "RouteTableId" in data:
+    if data.get("RouteTableId") is not None:
         out["route_table_id"] = data["RouteTableId"]
-    if "RouteSet" in data:
+    if data.get("RouteSet") is not None:
         import capo_securityhub.types.route_set_list
 
         out["route_set"] = capo_securityhub.types.route_set_list.deserialize_json(
             data["RouteSet"]
         )
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
     return out

@@ -53,29 +53,29 @@ def serialize_json(value: AuthenticationConfig) -> dict:
 
 def deserialize_json(data: dict) -> AuthenticationConfig:
     out: AuthenticationConfig = {}  # type: ignore[typeddict-item]
-    if "isBasicAuthSupported" in data:
+    if data.get("isBasicAuthSupported") is not None:
         out["is_basic_auth_supported"] = data["isBasicAuthSupported"]
     else:
         out["is_basic_auth_supported"] = False
-    if "isApiKeyAuthSupported" in data:
+    if data.get("isApiKeyAuthSupported") is not None:
         out["is_api_key_auth_supported"] = data["isApiKeyAuthSupported"]
     else:
         out["is_api_key_auth_supported"] = False
-    if "isOAuth2Supported" in data:
+    if data.get("isOAuth2Supported") is not None:
         out["is_o_auth2_supported"] = data["isOAuth2Supported"]
     else:
         out["is_o_auth2_supported"] = False
-    if "isCustomAuthSupported" in data:
+    if data.get("isCustomAuthSupported") is not None:
         out["is_custom_auth_supported"] = data["isCustomAuthSupported"]
     else:
         out["is_custom_auth_supported"] = False
-    if "oAuth2Defaults" in data:
+    if data.get("oAuth2Defaults") is not None:
         import capo_appflow.types.o_auth2_defaults
 
         out["o_auth2_defaults"] = capo_appflow.types.o_auth2_defaults.deserialize_json(
             data["oAuth2Defaults"]
         )
-    if "customAuthConfigs" in data:
+    if data.get("customAuthConfigs") is not None:
         import capo_appflow.types.custom_auth_config_list
 
         out["custom_auth_configs"] = (

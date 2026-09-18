@@ -37,15 +37,18 @@ class InvalidKMSKeyFault(ServiceError):
 
     code: str | None = "InvalidKMSKeyFault"
 
-    def __init__(self, data: InvalidKMSKeyFault_):
+    def __init__(self, data: InvalidKMSKeyFault_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidKMSKeyFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "InvalidKMSKeyFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "InvalidKMSKeyFault":
+        return cls(deserialize_query(el), message)

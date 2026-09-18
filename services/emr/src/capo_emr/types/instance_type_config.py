@@ -46,9 +46,16 @@ def serialize_aws_json_1_1(value: InstanceTypeConfig) -> dict:
     if "bid_price" in value:
         out["BidPrice"] = value["bid_price"]
     if "bid_price_as_percentage_of_on_demand_price" in value:
-        out["BidPriceAsPercentageOfOnDemandPrice"] = value[
-            "bid_price_as_percentage_of_on_demand_price"
-        ]
+        out["BidPriceAsPercentageOfOnDemandPrice"] = (
+            "NaN"
+            if value["bid_price_as_percentage_of_on_demand_price"]
+            != value["bid_price_as_percentage_of_on_demand_price"]
+            else "Infinity"
+            if value["bid_price_as_percentage_of_on_demand_price"] == float("inf")
+            else "-Infinity"
+            if value["bid_price_as_percentage_of_on_demand_price"] == float("-inf")
+            else value["bid_price_as_percentage_of_on_demand_price"]
+        )
     if "ebs_configuration" in value:
         import capo_emr.types.ebs_configuration
 
@@ -68,23 +75,31 @@ def serialize_aws_json_1_1(value: InstanceTypeConfig) -> dict:
     if "custom_ami_id" in value:
         out["CustomAmiId"] = value["custom_ami_id"]
     if "priority" in value:
-        out["Priority"] = value["priority"]
+        out["Priority"] = (
+            "NaN"
+            if value["priority"] != value["priority"]
+            else "Infinity"
+            if value["priority"] == float("inf")
+            else "-Infinity"
+            if value["priority"] == float("-inf")
+            else value["priority"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> InstanceTypeConfig:
     out: InstanceTypeConfig = {}  # type: ignore[typeddict-item]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         out["instance_type"] = data["InstanceType"]
-    if "WeightedCapacity" in data:
+    if data.get("WeightedCapacity") is not None:
         out["weighted_capacity"] = data["WeightedCapacity"]
-    if "BidPrice" in data:
+    if data.get("BidPrice") is not None:
         out["bid_price"] = data["BidPrice"]
-    if "BidPriceAsPercentageOfOnDemandPrice" in data:
-        out["bid_price_as_percentage_of_on_demand_price"] = data[
-            "BidPriceAsPercentageOfOnDemandPrice"
-        ]
-    if "EbsConfiguration" in data:
+    if data.get("BidPriceAsPercentageOfOnDemandPrice") is not None:
+        out["bid_price_as_percentage_of_on_demand_price"] = float(
+            data["BidPriceAsPercentageOfOnDemandPrice"]
+        )
+    if data.get("EbsConfiguration") is not None:
         import capo_emr.types.ebs_configuration
 
         out["ebs_configuration"] = (
@@ -92,7 +107,7 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceTypeConfig:
                 data["EbsConfiguration"]
             )
         )
-    if "Configurations" in data:
+    if data.get("Configurations") is not None:
         import capo_emr.types.configuration_list
 
         out["configurations"] = (
@@ -100,8 +115,8 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceTypeConfig:
                 data["Configurations"]
             )
         )
-    if "CustomAmiId" in data:
+    if data.get("CustomAmiId") is not None:
         out["custom_ami_id"] = data["CustomAmiId"]
-    if "Priority" in data:
-        out["priority"] = data["Priority"]
+    if data.get("Priority") is not None:
+        out["priority"] = float(data["Priority"])
     return out

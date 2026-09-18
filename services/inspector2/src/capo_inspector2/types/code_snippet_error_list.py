@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> CodeSnippetErrorList:
 
     out: CodeSnippetErrorList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_inspector2.types.code_snippet_error.deserialize_json(item))
     return out

@@ -31,8 +31,8 @@ def serialize_aws_json_1_1(value: ResourceCreationLimitPolicy) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResourceCreationLimitPolicy:
     out: ResourceCreationLimitPolicy = {}  # type: ignore[typeddict-item]
-    if "NewGameSessionsPerCreator" in data:
+    if data.get("NewGameSessionsPerCreator") is not None:
         out["new_game_sessions_per_creator"] = data["NewGameSessionsPerCreator"]
-    if "PolicyPeriodInMinutes" in data:
+    if data.get("PolicyPeriodInMinutes") is not None:
         out["policy_period_in_minutes"] = data["PolicyPeriodInMinutes"]
     return out

@@ -95,8 +95,9 @@ class WebAppResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.create_web_app_request.CreateWebAppRequest = {}  # type: ignore[typeddict-item]
-        input_["identity_provider_details"] = identity_provider_details
+        input_: capo_transfer.types.create_web_app_request.CreateWebAppRequest = {
+            "identity_provider_details": identity_provider_details
+        }
         if access_endpoint is not None:
             input_["access_endpoint"] = access_endpoint
         if web_app_units is not None:
@@ -113,6 +114,7 @@ class WebAppResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -150,14 +152,16 @@ class WebAppResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.describe_web_app_request.DescribeWebAppRequest = {}  # type: ignore[typeddict-item]
-        input_["web_app_id"] = web_app_id
+        input_: capo_transfer.types.describe_web_app_request.DescribeWebAppRequest = {
+            "web_app_id": web_app_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -210,8 +214,9 @@ class WebAppResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.update_web_app_request.UpdateWebAppRequest = {}  # type: ignore[typeddict-item]
-        input_["web_app_id"] = web_app_id
+        input_: capo_transfer.types.update_web_app_request.UpdateWebAppRequest = {
+            "web_app_id": web_app_id
+        }
         if identity_provider_details is not None:
             input_["identity_provider_details"] = identity_provider_details
         if access_endpoint is not None:
@@ -226,6 +231,7 @@ class WebAppResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -261,14 +267,16 @@ class WebAppResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.delete_web_app_request.DeleteWebAppRequest = {}  # type: ignore[typeddict-item]
-        input_["web_app_id"] = web_app_id
+        input_: capo_transfer.types.delete_web_app_request.DeleteWebAppRequest = {
+            "web_app_id": web_app_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -307,7 +315,7 @@ class WebAppResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.list_web_apps_request.ListWebAppsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_transfer.types.list_web_apps_request.ListWebAppsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -318,6 +326,7 @@ class WebAppResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -377,8 +386,9 @@ class AsyncWebAppResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.create_web_app_request.CreateWebAppRequest = {}  # type: ignore[typeddict-item]
-        input_["identity_provider_details"] = identity_provider_details
+        input_: capo_transfer.types.create_web_app_request.CreateWebAppRequest = {
+            "identity_provider_details": identity_provider_details
+        }
         if access_endpoint is not None:
             input_["access_endpoint"] = access_endpoint
         if web_app_units is not None:
@@ -395,6 +405,7 @@ class AsyncWebAppResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -433,14 +444,16 @@ class AsyncWebAppResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.describe_web_app_request.DescribeWebAppRequest = {}  # type: ignore[typeddict-item]
-        input_["web_app_id"] = web_app_id
+        input_: capo_transfer.types.describe_web_app_request.DescribeWebAppRequest = {
+            "web_app_id": web_app_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -494,8 +507,9 @@ class AsyncWebAppResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.update_web_app_request.UpdateWebAppRequest = {}  # type: ignore[typeddict-item]
-        input_["web_app_id"] = web_app_id
+        input_: capo_transfer.types.update_web_app_request.UpdateWebAppRequest = {
+            "web_app_id": web_app_id
+        }
         if identity_provider_details is not None:
             input_["identity_provider_details"] = identity_provider_details
         if access_endpoint is not None:
@@ -510,6 +524,7 @@ class AsyncWebAppResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -546,14 +561,16 @@ class AsyncWebAppResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.delete_web_app_request.DeleteWebAppRequest = {}  # type: ignore[typeddict-item]
-        input_["web_app_id"] = web_app_id
+        input_: capo_transfer.types.delete_web_app_request.DeleteWebAppRequest = {
+            "web_app_id": web_app_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -593,7 +610,7 @@ class AsyncWebAppResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.list_web_apps_request.ListWebAppsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_transfer.types.list_web_apps_request.ListWebAppsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -604,4 +621,5 @@ class AsyncWebAppResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

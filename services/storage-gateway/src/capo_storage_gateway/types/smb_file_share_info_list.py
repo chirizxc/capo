@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> SMBFileShareInfoList:
 
     out: SMBFileShareInfoList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_storage_gateway.types.smb_file_share_info.deserialize_aws_json_1_1(
                 item

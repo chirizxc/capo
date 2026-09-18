@@ -30,8 +30,8 @@ def serialize_json(value: ExperimentReportConfigurationOutputsS3Configuration) -
 
 def deserialize_json(data: dict) -> ExperimentReportConfigurationOutputsS3Configuration:
     out: ExperimentReportConfigurationOutputsS3Configuration = {}  # type: ignore[typeddict-item]
-    if "bucketName" in data:
+    if data.get("bucketName") is not None:
         out["bucket_name"] = data["bucketName"]
-    if "prefix" in data:
+    if data.get("prefix") is not None:
         out["prefix"] = data["prefix"]
     return out

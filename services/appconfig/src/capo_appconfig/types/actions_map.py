@@ -28,8 +28,11 @@ def serialize_json(input_to_serialize: ActionsMap) -> dict:
 def deserialize_json(data: dict) -> ActionsMap:
     out: ActionsMap = {}
     for key, value in data.items():
-        import capo_appconfig.types.action_list
         import capo_appconfig.types.action_point
+
+        if value is None:
+            continue
+        import capo_appconfig.types.action_list
 
         out[capo_appconfig.types.action_point.deserialize_json(key)] = (
             capo_appconfig.types.action_list.deserialize_json(value)

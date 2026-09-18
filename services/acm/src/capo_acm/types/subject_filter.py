@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: SubjectFilter) -> dict:
 
 
 def deserialize_aws_json_1_1(data: dict) -> SubjectFilter:
-    if "CommonName" in data:
+    if data.get("CommonName") is not None:
         import capo_acm.types.common_name_filter
 
         return {

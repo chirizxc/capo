@@ -37,11 +37,11 @@ def serialize_json(value: ActionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ActionConfiguration:
     out: ActionConfiguration = {}  # type: ignore[typeddict-item]
-    if "action" in data:
+    if data.get("action") is not None:
         out["action"] = data["action"]
     else:
         raise DeserializationError("ActionConfiguration.action required")
-    if "filterConfiguration" in data:
+    if data.get("filterConfiguration") is not None:
         import capo_qbusiness.types.action_filter_configuration
 
         out["filter_configuration"] = (

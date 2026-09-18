@@ -87,7 +87,7 @@ def serialize_aws_json_1_1(value: ExportSnapshotRecordSourceInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExportSnapshotRecordSourceInfo:
     out: ExportSnapshotRecordSourceInfo = {}  # type: ignore[typeddict-item]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_lightsail.types.export_snapshot_record_source_type
 
         out["resource_type"] = (
@@ -95,21 +95,21 @@ def deserialize_aws_json_1_1(data: dict) -> ExportSnapshotRecordSourceInfo:
                 data["resourceType"]
             )
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_lightsail.types.iso_date
 
         out["created_at"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
             data["createdAt"]
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "fromResourceName" in data:
+    if data.get("fromResourceName") is not None:
         out["from_resource_name"] = data["fromResourceName"]
-    if "fromResourceArn" in data:
+    if data.get("fromResourceArn") is not None:
         out["from_resource_arn"] = data["fromResourceArn"]
-    if "instanceSnapshotInfo" in data:
+    if data.get("instanceSnapshotInfo") is not None:
         import capo_lightsail.types.instance_snapshot_info
 
         out["instance_snapshot_info"] = (
@@ -117,7 +117,7 @@ def deserialize_aws_json_1_1(data: dict) -> ExportSnapshotRecordSourceInfo:
                 data["instanceSnapshotInfo"]
             )
         )
-    if "diskSnapshotInfo" in data:
+    if data.get("diskSnapshotInfo") is not None:
         import capo_lightsail.types.disk_snapshot_info
 
         out["disk_snapshot_info"] = (

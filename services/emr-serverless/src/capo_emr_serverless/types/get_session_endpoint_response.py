@@ -44,23 +44,23 @@ def serialize_json(value: GetSessionEndpointResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetSessionEndpointResponse:
     out: GetSessionEndpointResponse = {}  # type: ignore[typeddict-item]
-    if "applicationId" in data:
+    if data.get("applicationId") is not None:
         out["application_id"] = data["applicationId"]
     else:
         raise DeserializationError("GetSessionEndpointResponse.application_id required")
-    if "sessionId" in data:
+    if data.get("sessionId") is not None:
         out["session_id"] = data["sessionId"]
     else:
         raise DeserializationError("GetSessionEndpointResponse.session_id required")
-    if "endpoint" in data:
+    if data.get("endpoint") is not None:
         out["endpoint"] = data["endpoint"]
     else:
         raise DeserializationError("GetSessionEndpointResponse.endpoint required")
-    if "authToken" in data:
+    if data.get("authToken") is not None:
         out["auth_token"] = data["authToken"]
     else:
         raise DeserializationError("GetSessionEndpointResponse.auth_token required")
-    if "authTokenExpiresAt" in data:
+    if data.get("authTokenExpiresAt") is not None:
         import capo_emr_serverless.types.date
 
         out["auth_token_expires_at"] = capo_emr_serverless.types.date.deserialize_json(

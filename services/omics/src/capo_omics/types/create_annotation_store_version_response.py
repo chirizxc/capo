@@ -56,39 +56,39 @@ def serialize_json(value: CreateAnnotationStoreVersionResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateAnnotationStoreVersionResponse:
     out: CreateAnnotationStoreVersionResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("CreateAnnotationStoreVersionResponse.id required")
-    if "versionName" in data:
+    if data.get("versionName") is not None:
         out["version_name"] = data["versionName"]
     else:
         raise DeserializationError(
             "CreateAnnotationStoreVersionResponse.version_name required"
         )
-    if "storeId" in data:
+    if data.get("storeId") is not None:
         out["store_id"] = data["storeId"]
     else:
         raise DeserializationError(
             "CreateAnnotationStoreVersionResponse.store_id required"
         )
-    if "versionOptions" in data:
+    if data.get("versionOptions") is not None:
         import capo_omics.types.version_options
 
         out["version_options"] = capo_omics.types.version_options.deserialize_json(
             data["versionOptions"]
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateAnnotationStoreVersionResponse.name required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError(
             "CreateAnnotationStoreVersionResponse.status required"
         )
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_omics.types.creation_time
 
         out["creation_time"] = capo_omics.types.creation_time.deserialize_json(

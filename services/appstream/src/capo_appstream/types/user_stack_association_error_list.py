@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> UserStackAssociationErrorList:
 
     out: UserStackAssociationErrorList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_appstream.types.user_stack_association_error.deserialize_aws_json_1_1(
                 item

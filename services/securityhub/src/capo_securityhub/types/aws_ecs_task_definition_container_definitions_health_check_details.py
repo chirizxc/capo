@@ -52,18 +52,18 @@ def deserialize_json(
     data: dict,
 ) -> AwsEcsTaskDefinitionContainerDefinitionsHealthCheckDetails:
     out: AwsEcsTaskDefinitionContainerDefinitionsHealthCheckDetails = {}  # type: ignore[typeddict-item]
-    if "Command" in data:
+    if data.get("Command") is not None:
         import capo_securityhub.types.non_empty_string_list
 
         out["command"] = capo_securityhub.types.non_empty_string_list.deserialize_json(
             data["Command"]
         )
-    if "Interval" in data:
+    if data.get("Interval") is not None:
         out["interval"] = data["Interval"]
-    if "Retries" in data:
+    if data.get("Retries") is not None:
         out["retries"] = data["Retries"]
-    if "StartPeriod" in data:
+    if data.get("StartPeriod") is not None:
         out["start_period"] = data["StartPeriod"]
-    if "Timeout" in data:
+    if data.get("Timeout") is not None:
         out["timeout"] = data["Timeout"]
     return out

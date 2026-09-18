@@ -37,13 +37,13 @@ def serialize_json(value: CreatePolicyVersionResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreatePolicyVersionResponse:
     out: CreatePolicyVersionResponse = {}  # type: ignore[typeddict-item]
-    if "policyArn" in data:
+    if data.get("policyArn") is not None:
         out["policy_arn"] = data["policyArn"]
-    if "policyDocument" in data:
+    if data.get("policyDocument") is not None:
         out["policy_document"] = data["policyDocument"]
-    if "policyVersionId" in data:
+    if data.get("policyVersionId") is not None:
         out["policy_version_id"] = data["policyVersionId"]
-    if "isDefaultVersion" in data:
+    if data.get("isDefaultVersion") is not None:
         out["is_default_version"] = data["isDefaultVersion"]
     else:
         out["is_default_version"] = False

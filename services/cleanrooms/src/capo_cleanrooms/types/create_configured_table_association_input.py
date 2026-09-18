@@ -51,27 +51,27 @@ def serialize_json(value: CreateConfiguredTableAssociationInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateConfiguredTableAssociationInput:
     out: CreateConfiguredTableAssociationInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError(
             "CreateConfiguredTableAssociationInput.name required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "configuredTableIdentifier" in data:
+    if data.get("configuredTableIdentifier") is not None:
         out["configured_table_identifier"] = data["configuredTableIdentifier"]
     else:
         raise DeserializationError(
             "CreateConfiguredTableAssociationInput.configured_table_identifier required"
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError(
             "CreateConfiguredTableAssociationInput.role_arn required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_cleanrooms.types.tag_map
 
         out["tags"] = capo_cleanrooms.types.tag_map.deserialize_json(data["tags"])

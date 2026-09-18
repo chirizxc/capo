@@ -52,15 +52,15 @@ def serialize_json(value: ComponentStatusData) -> dict:
 
 def deserialize_json(data: dict) -> ComponentStatusData:
     out: ComponentStatusData = {}  # type: ignore[typeddict-item]
-    if "componentType" in data:
+    if data.get("componentType") is not None:
         out["component_type"] = data["componentType"]
     else:
         raise DeserializationError("ComponentStatusData.component_type required")
-    if "capabilityArn" in data:
+    if data.get("capabilityArn") is not None:
         out["capability_arn"] = data["capabilityArn"]
     else:
         raise DeserializationError("ComponentStatusData.capability_arn required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_groundstation.types.agent_status
 
         out["status"] = capo_groundstation.types.agent_status.deserialize_json(
@@ -68,13 +68,13 @@ def deserialize_json(data: dict) -> ComponentStatusData:
         )
     else:
         raise DeserializationError("ComponentStatusData.status required")
-    if "bytesSent" in data:
+    if data.get("bytesSent") is not None:
         out["bytes_sent"] = data["bytesSent"]
-    if "bytesReceived" in data:
+    if data.get("bytesReceived") is not None:
         out["bytes_received"] = data["bytesReceived"]
-    if "packetsDropped" in data:
+    if data.get("packetsDropped") is not None:
         out["packets_dropped"] = data["packetsDropped"]
-    if "dataflowId" in data:
+    if data.get("dataflowId") is not None:
         out["dataflow_id"] = data["dataflowId"]
     else:
         raise DeserializationError("ComponentStatusData.dataflow_id required")

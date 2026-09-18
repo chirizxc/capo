@@ -32,9 +32,9 @@ def serialize_json(value: ChangesetErrorInfo) -> dict:
 
 def deserialize_json(data: dict) -> ChangesetErrorInfo:
     out: ChangesetErrorInfo = {}  # type: ignore[typeddict-item]
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
-    if "errorCategory" in data:
+    if data.get("errorCategory") is not None:
         import capo_finspace_data.types.error_category
 
         out["error_category"] = (

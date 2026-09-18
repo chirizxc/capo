@@ -27,7 +27,7 @@ def serialize_json(value: PutSchemaFromJsonRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutSchemaFromJsonRequest:
     out: PutSchemaFromJsonRequest = {}  # type: ignore[typeddict-item]
-    if "Document" in data:
+    if data.get("Document") is not None:
         out["document"] = data["Document"]
     else:
         raise DeserializationError("PutSchemaFromJsonRequest.document required")

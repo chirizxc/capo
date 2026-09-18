@@ -36,14 +36,14 @@ def serialize_aws_json_1_1(value: AccessKeyLastUsed) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AccessKeyLastUsed:
     out: AccessKeyLastUsed = {}  # type: ignore[typeddict-item]
-    if "lastUsedDate" in data:
+    if data.get("lastUsedDate") is not None:
         import capo_lightsail.types.iso_date
 
         out["last_used_date"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
             data["lastUsedDate"]
         )
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
-    if "serviceName" in data:
+    if data.get("serviceName") is not None:
         out["service_name"] = data["serviceName"]
     return out

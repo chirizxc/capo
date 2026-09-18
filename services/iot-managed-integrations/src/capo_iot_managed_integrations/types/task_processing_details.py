@@ -61,23 +61,23 @@ def serialize_json(value: TaskProcessingDetails) -> dict:
 
 def deserialize_json(data: dict) -> TaskProcessingDetails:
     out: TaskProcessingDetails = {}  # type: ignore[typeddict-item]
-    if "NumberOfCanceledThings" in data:
+    if data.get("NumberOfCanceledThings") is not None:
         out["number_of_canceled_things"] = data["NumberOfCanceledThings"]
-    if "NumberOfFailedThings" in data:
+    if data.get("NumberOfFailedThings") is not None:
         out["number_of_failed_things"] = data["NumberOfFailedThings"]
-    if "NumberOfInProgressThings" in data:
+    if data.get("NumberOfInProgressThings") is not None:
         out["number_of_in_progress_things"] = data["NumberOfInProgressThings"]
-    if "numberOfQueuedThings" in data:
+    if data.get("numberOfQueuedThings") is not None:
         out["number_of_queued_things"] = data["numberOfQueuedThings"]
-    if "numberOfRejectedThings" in data:
+    if data.get("numberOfRejectedThings") is not None:
         out["number_of_rejected_things"] = data["numberOfRejectedThings"]
-    if "numberOfRemovedThings" in data:
+    if data.get("numberOfRemovedThings") is not None:
         out["number_of_removed_things"] = data["numberOfRemovedThings"]
-    if "numberOfSucceededThings" in data:
+    if data.get("numberOfSucceededThings") is not None:
         out["number_of_succeeded_things"] = data["numberOfSucceededThings"]
-    if "numberOfTimedOutThings" in data:
+    if data.get("numberOfTimedOutThings") is not None:
         out["number_of_timed_out_things"] = data["numberOfTimedOutThings"]
-    if "processingTargets" in data:
+    if data.get("processingTargets") is not None:
         import capo_iot_managed_integrations.types.target
 
         out["processing_targets"] = (

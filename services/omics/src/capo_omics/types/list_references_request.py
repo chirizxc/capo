@@ -35,7 +35,7 @@ def serialize_json(value: ListReferencesRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListReferencesRequest:
     out: ListReferencesRequest = {}  # type: ignore[typeddict-item]
-    if "filter" in data:
+    if data.get("filter") is not None:
         import capo_omics.types.reference_filter
 
         out["filter"] = capo_omics.types.reference_filter.deserialize_json(

@@ -42,13 +42,13 @@ def serialize_aws_json_1_1(value: ProtocolsListDataSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProtocolsListDataSummary:
     out: ProtocolsListDataSummary = {}  # type: ignore[typeddict-item]
-    if "ListArn" in data:
+    if data.get("ListArn") is not None:
         out["list_arn"] = data["ListArn"]
-    if "ListId" in data:
+    if data.get("ListId") is not None:
         out["list_id"] = data["ListId"]
-    if "ListName" in data:
+    if data.get("ListName") is not None:
         out["list_name"] = data["ListName"]
-    if "ProtocolsList" in data:
+    if data.get("ProtocolsList") is not None:
         import capo_fms.types.protocols_list
 
         out["protocols_list"] = capo_fms.types.protocols_list.deserialize_aws_json_1_1(

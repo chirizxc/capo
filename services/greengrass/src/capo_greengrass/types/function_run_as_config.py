@@ -27,8 +27,8 @@ def serialize_json(value: FunctionRunAsConfig) -> dict:
 
 def deserialize_json(data: dict) -> FunctionRunAsConfig:
     out: FunctionRunAsConfig = {}  # type: ignore[typeddict-item]
-    if "Gid" in data:
+    if data.get("Gid") is not None:
         out["gid"] = data["Gid"]
-    if "Uid" in data:
+    if data.get("Uid") is not None:
         out["uid"] = data["Uid"]
     return out

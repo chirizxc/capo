@@ -38,9 +38,9 @@ def serialize_aws_json_1_1(value: NetworkAccessConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NetworkAccessConfiguration:
     out: NetworkAccessConfiguration = {}  # type: ignore[typeddict-item]
-    if "EniPrivateIpAddress" in data:
+    if data.get("EniPrivateIpAddress") is not None:
         out["eni_private_ip_address"] = data["EniPrivateIpAddress"]
-    if "EniIpv6Addresses" in data:
+    if data.get("EniIpv6Addresses") is not None:
         import capo_appstream.types.string_list
 
         out["eni_ipv6_addresses"] = (
@@ -48,6 +48,6 @@ def deserialize_aws_json_1_1(data: dict) -> NetworkAccessConfiguration:
                 data["EniIpv6Addresses"]
             )
         )
-    if "EniId" in data:
+    if data.get("EniId") is not None:
         out["eni_id"] = data["EniId"]
     return out

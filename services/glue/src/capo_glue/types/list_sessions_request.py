@@ -42,14 +42,14 @@ def serialize_aws_json_1_1(value: ListSessionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListSessionsRequest:
     out: ListSessionsRequest = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_glue.types.tags_map
 
         out["tags"] = capo_glue.types.tags_map.deserialize_aws_json_1_1(data["Tags"])
-    if "RequestOrigin" in data:
+    if data.get("RequestOrigin") is not None:
         out["request_origin"] = data["RequestOrigin"]
     return out

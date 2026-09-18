@@ -29,7 +29,7 @@ def serialize_json(value: UpdateMonitorSettingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateMonitorSettingsRequest:
     out: UpdateMonitorSettingsRequest = {}  # type: ignore[typeddict-item]
-    if "settings" in data:
+    if data.get("settings") is not None:
         import capo_deadline.types.settings_map
 
         out["settings"] = capo_deadline.types.settings_map.deserialize_json(

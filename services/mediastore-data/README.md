@@ -13,10 +13,25 @@ from capo_mediastore_data import AsyncMediaStoreDataClient
 
 
 async def main():
-    async with AsyncMediaStoreDataClient() as s3:
+    async with AsyncMediaStoreDataClient() as media_store_data:
         # Example: call the delete_object operation
-        response = await s3.delete_object()
+        response = await media_store_data.delete_object()
         print(response)
+```
+
+## Pagination
+
+Some operations in this SDK support pagination. If the operation supports pagination it will have an `iter_` prefixed method that returns an async iterator.
+
+```python
+from capo_mediastore_data import AsyncMediaStoreDataClient
+
+
+async def main():
+    async with AsyncMediaStoreDataClient() as media_store_data:
+        # Example: paginate over list_items
+        async for item in media_store_data.iter_list_items():
+            print(item)
 ```
 
 ## Streaming Request
@@ -28,16 +43,16 @@ from capo_mediastore_data import AsyncMediaStoreDataClient
 
 
 async def main():
-    async with AsyncMediaStoreDataClient() as s3:
+    async with AsyncMediaStoreDataClient() as media_store_data:
         # Example: call put_object with a streaming request body
         async def chunks():
             yield b'Hello, World!'
 
-        response = await s3.put_object(body=chunks())
+        response = await media_store_data.put_object(body=chunks())
         print(response)
 
         # Or pass the whole body as bytes
-        response = await s3.put_object(body=b'Hello, World!')
+        response = await media_store_data.put_object(body=b'Hello, World!')
         print(response)
 ```
 
@@ -50,9 +65,9 @@ from capo_mediastore_data import AsyncMediaStoreDataClient
 
 
 async def main():
-    async with AsyncMediaStoreDataClient() as s3:
+    async with AsyncMediaStoreDataClient() as media_store_data:
         # Example: call get_object and read the streaming response
-        async with s3.get_object() as response:
+        async with media_store_data.get_object() as response:
             async for chunk in response["body"]:
                 print(chunk)
 ```
@@ -67,9 +82,9 @@ from capo_mediastore_data.error import ContainerNotFoundException
 
 
 async def main():
-    async with AsyncMediaStoreDataClient() as s3:
+    async with AsyncMediaStoreDataClient() as media_store_data:
         try:
-            await s3.delete_object()
+            await media_store_data.delete_object()
         except ContainerNotFoundException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -86,13 +101,13 @@ from capo_mediastore_data import AsyncMediaStoreDataClient
 
 
 async def main():
-    async with AsyncMediaStoreDataClient() as s3:
+    async with AsyncMediaStoreDataClient() as media_store_data:
         # Default: 3 attempts for every operation
-        response = await s3.delete_object()
+        response = await media_store_data.delete_object()
 
         # Override per operation
-        response = await s3.delete_object(config_overrides={"retry_max_attempts": 5})
+        response = await media_store_data.delete_object(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.delete_object(config_overrides={"retry_max_attempts": 1})
+        response = await media_store_data.delete_object(config_overrides={"retry_max_attempts": 1})
 ```

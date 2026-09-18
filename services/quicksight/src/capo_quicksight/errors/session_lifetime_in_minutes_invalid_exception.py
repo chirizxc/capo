@@ -28,9 +28,9 @@ def serialize_json(value: SessionLifetimeInMinutesInvalidException_) -> dict:
 
 def deserialize_json(data: dict) -> SessionLifetimeInMinutesInvalidException_:
     out: SessionLifetimeInMinutesInvalidException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out
 
@@ -40,15 +40,22 @@ class SessionLifetimeInMinutesInvalidException(ServiceError):
 
     code: str | None = "SessionLifetimeInMinutesInvalidException"
 
-    def __init__(self, data: SessionLifetimeInMinutesInvalidException_):
+    def __init__(
+        self,
+        data: SessionLifetimeInMinutesInvalidException_,
+        message: str | None = None,
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="SessionLifetimeInMinutesInvalidException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "SessionLifetimeInMinutesInvalidException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "SessionLifetimeInMinutesInvalidException":
+        return cls(deserialize_json(data), message)

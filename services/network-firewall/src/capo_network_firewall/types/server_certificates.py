@@ -27,6 +27,8 @@ def deserialize_aws_json_1_0(data: list) -> ServerCertificates:
 
     out: ServerCertificates = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_network_firewall.types.server_certificate.deserialize_aws_json_1_0(
                 item

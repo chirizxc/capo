@@ -36,9 +36,9 @@ def serialize_json(value: StringFilter) -> dict:
 
 def deserialize_json(data: dict) -> StringFilter:
     out: StringFilter = {}  # type: ignore[typeddict-item]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
-    if "Comparison" in data:
+    if data.get("Comparison") is not None:
         import capo_securityhub.types.string_filter_comparison
 
         out["comparison"] = (

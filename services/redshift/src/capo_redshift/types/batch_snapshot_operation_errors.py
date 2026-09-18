@@ -18,6 +18,9 @@ def serialize_query(
 ) -> None:
     import capo_redshift.types.snapshot_error_message
 
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         capo_redshift.types.snapshot_error_message.serialize_query(
             item, pairs, f"{prefix}.SnapshotErrorMessage.{n}"
@@ -38,6 +41,9 @@ def serialize_query_flat(
 ) -> None:
     import capo_redshift.types.snapshot_error_message
 
+    if not value:
+        pairs.append((prefix, ""))
+        return
     for n, item in enumerate(value, 1):
         capo_redshift.types.snapshot_error_message.serialize_query(
             item, pairs, f"{prefix}.{n}"

@@ -63,15 +63,15 @@ def serialize_json(value: ProfileHistoryRecord) -> dict:
 
 def deserialize_json(data: dict) -> ProfileHistoryRecord:
     out: ProfileHistoryRecord = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("ProfileHistoryRecord.id required")
-    if "ObjectTypeName" in data:
+    if data.get("ObjectTypeName") is not None:
         out["object_type_name"] = data["ObjectTypeName"]
     else:
         raise DeserializationError("ProfileHistoryRecord.object_type_name required")
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["created_at"] = capo_customer_profiles.types.timestamp.deserialize_json(
@@ -79,7 +79,7 @@ def deserialize_json(data: dict) -> ProfileHistoryRecord:
         )
     else:
         raise DeserializationError("ProfileHistoryRecord.created_at required")
-    if "LastUpdatedAt" in data:
+    if data.get("LastUpdatedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["last_updated_at"] = (
@@ -87,7 +87,7 @@ def deserialize_json(data: dict) -> ProfileHistoryRecord:
                 data["LastUpdatedAt"]
             )
         )
-    if "ActionType" in data:
+    if data.get("ActionType") is not None:
         import capo_customer_profiles.types.action_type
 
         out["action_type"] = capo_customer_profiles.types.action_type.deserialize_json(
@@ -95,8 +95,8 @@ def deserialize_json(data: dict) -> ProfileHistoryRecord:
         )
     else:
         raise DeserializationError("ProfileHistoryRecord.action_type required")
-    if "ProfileObjectUniqueKey" in data:
+    if data.get("ProfileObjectUniqueKey") is not None:
         out["profile_object_unique_key"] = data["ProfileObjectUniqueKey"]
-    if "PerformedBy" in data:
+    if data.get("PerformedBy") is not None:
         out["performed_by"] = data["PerformedBy"]
     return out

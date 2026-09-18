@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_datazone._auth._signers
@@ -103,23 +104,26 @@ class Rule:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.create_rule_input.CreateRuleInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["name"] = name
-        input_["target"] = target
-        input_["action"] = action
-        input_["scope"] = scope
-        input_["detail"] = detail
+        input_: capo_datazone.types.create_rule_input.CreateRuleInput = {
+            "domain_identifier": domain_identifier,
+            "name": name,
+            "target": target,
+            "action": action,
+            "scope": scope,
+            "detail": detail,
+        }
         if description is not None:
             input_["description"] = description
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -160,9 +164,10 @@ class Rule:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.get_rule_input.GetRuleInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.get_rule_input.GetRuleInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
         if revision is not None:
             input_["revision"] = revision
 
@@ -171,6 +176,7 @@ class Rule:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -223,9 +229,10 @@ class Rule:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.update_rule_input.UpdateRuleInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.update_rule_input.UpdateRuleInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -242,6 +249,7 @@ class Rule:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -283,15 +291,17 @@ class Rule:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.delete_rule_input.DeleteRuleInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.delete_rule_input.DeleteRuleInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -352,10 +362,11 @@ class Rule:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.list_rules_input.ListRulesInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["target_type"] = target_type
-        input_["target_identifier"] = target_identifier
+        input_: capo_datazone.types.list_rules_input.ListRulesInput = {
+            "domain_identifier": domain_identifier,
+            "target_type": target_type,
+            "target_identifier": target_identifier,
+        }
         if rule_type is not None:
             input_["rule_type"] = rule_type
         if action is not None:
@@ -378,6 +389,7 @@ class Rule:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -438,23 +450,26 @@ class AsyncRule:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.create_rule_input.CreateRuleInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["name"] = name
-        input_["target"] = target
-        input_["action"] = action
-        input_["scope"] = scope
-        input_["detail"] = detail
+        input_: capo_datazone.types.create_rule_input.CreateRuleInput = {
+            "domain_identifier": domain_identifier,
+            "name": name,
+            "target": target,
+            "action": action,
+            "scope": scope,
+            "detail": detail,
+        }
         if description is not None:
             input_["description"] = description
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -498,9 +513,10 @@ class AsyncRule:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.get_rule_input.GetRuleInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.get_rule_input.GetRuleInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
         if revision is not None:
             input_["revision"] = revision
 
@@ -509,6 +525,7 @@ class AsyncRule:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -562,9 +579,10 @@ class AsyncRule:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.update_rule_input.UpdateRuleInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.update_rule_input.UpdateRuleInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -581,6 +599,7 @@ class AsyncRule:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -623,15 +642,17 @@ class AsyncRule:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.delete_rule_input.DeleteRuleInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["identifier"] = identifier
+        input_: capo_datazone.types.delete_rule_input.DeleteRuleInput = {
+            "domain_identifier": domain_identifier,
+            "identifier": identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -695,10 +716,11 @@ class AsyncRule:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_datazone.types.list_rules_input.ListRulesInput = {}  # type: ignore[typeddict-item]
-        input_["domain_identifier"] = domain_identifier
-        input_["target_type"] = target_type
-        input_["target_identifier"] = target_identifier
+        input_: capo_datazone.types.list_rules_input.ListRulesInput = {
+            "domain_identifier": domain_identifier,
+            "target_type": target_type,
+            "target_identifier": target_identifier,
+        }
         if rule_type is not None:
             input_["rule_type"] = rule_type
         if action is not None:
@@ -721,4 +743,5 @@ class AsyncRule:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

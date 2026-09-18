@@ -56,17 +56,17 @@ def serialize_json(value: DataType) -> dict:
 
 def deserialize_json(data: dict) -> DataType:
     out: DataType = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("DataType.type required")
-    if "nestedType" in data:
+    if data.get("nestedType") is not None:
         import capo_iottwinmaker.types.data_type
 
         out["nested_type"] = capo_iottwinmaker.types.data_type.deserialize_json(
             data["nestedType"]
         )
-    if "allowedValues" in data:
+    if data.get("allowedValues") is not None:
         import capo_iottwinmaker.types.data_value_list
 
         out["allowed_values"] = (
@@ -74,9 +74,9 @@ def deserialize_json(data: dict) -> DataType:
                 data["allowedValues"]
             )
         )
-    if "unitOfMeasure" in data:
+    if data.get("unitOfMeasure") is not None:
         out["unit_of_measure"] = data["unitOfMeasure"]
-    if "relationship" in data:
+    if data.get("relationship") is not None:
         import capo_iottwinmaker.types.relationship
 
         out["relationship"] = capo_iottwinmaker.types.relationship.deserialize_json(

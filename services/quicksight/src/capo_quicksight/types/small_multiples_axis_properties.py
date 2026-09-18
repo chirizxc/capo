@@ -42,7 +42,7 @@ def serialize_json(value: SmallMultiplesAxisProperties) -> dict:
 
 def deserialize_json(data: dict) -> SmallMultiplesAxisProperties:
     out: SmallMultiplesAxisProperties = {}  # type: ignore[typeddict-item]
-    if "Scale" in data:
+    if data.get("Scale") is not None:
         import capo_quicksight.types.small_multiples_axis_scale
 
         out["scale"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> SmallMultiplesAxisProperties:
                 data["Scale"]
             )
         )
-    if "Placement" in data:
+    if data.get("Placement") is not None:
         import capo_quicksight.types.small_multiples_axis_placement
 
         out["placement"] = (

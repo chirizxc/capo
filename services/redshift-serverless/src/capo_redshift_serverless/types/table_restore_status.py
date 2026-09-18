@@ -89,13 +89,13 @@ def serialize_aws_json_1_1(value: TableRestoreStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TableRestoreStatus:
     out: TableRestoreStatus = {}  # type: ignore[typeddict-item]
-    if "tableRestoreRequestId" in data:
+    if data.get("tableRestoreRequestId") is not None:
         out["table_restore_request_id"] = data["tableRestoreRequestId"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "requestTime" in data:
+    if data.get("requestTime") is not None:
         import capo_redshift_serverless.types._prelude.timestamp
 
         out["request_time"] = (
@@ -103,28 +103,28 @@ def deserialize_aws_json_1_1(data: dict) -> TableRestoreStatus:
                 data["requestTime"]
             )
         )
-    if "namespaceName" in data:
+    if data.get("namespaceName") is not None:
         out["namespace_name"] = data["namespaceName"]
-    if "workgroupName" in data:
+    if data.get("workgroupName") is not None:
         out["workgroup_name"] = data["workgroupName"]
-    if "snapshotName" in data:
+    if data.get("snapshotName") is not None:
         out["snapshot_name"] = data["snapshotName"]
-    if "progressInMegaBytes" in data:
+    if data.get("progressInMegaBytes") is not None:
         out["progress_in_mega_bytes"] = data["progressInMegaBytes"]
-    if "totalDataInMegaBytes" in data:
+    if data.get("totalDataInMegaBytes") is not None:
         out["total_data_in_mega_bytes"] = data["totalDataInMegaBytes"]
-    if "sourceDatabaseName" in data:
+    if data.get("sourceDatabaseName") is not None:
         out["source_database_name"] = data["sourceDatabaseName"]
-    if "sourceSchemaName" in data:
+    if data.get("sourceSchemaName") is not None:
         out["source_schema_name"] = data["sourceSchemaName"]
-    if "sourceTableName" in data:
+    if data.get("sourceTableName") is not None:
         out["source_table_name"] = data["sourceTableName"]
-    if "targetDatabaseName" in data:
+    if data.get("targetDatabaseName") is not None:
         out["target_database_name"] = data["targetDatabaseName"]
-    if "targetSchemaName" in data:
+    if data.get("targetSchemaName") is not None:
         out["target_schema_name"] = data["targetSchemaName"]
-    if "newTableName" in data:
+    if data.get("newTableName") is not None:
         out["new_table_name"] = data["newTableName"]
-    if "recoveryPointId" in data:
+    if data.get("recoveryPointId") is not None:
         out["recovery_point_id"] = data["recoveryPointId"]
     return out

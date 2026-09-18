@@ -29,11 +29,11 @@ def serialize_aws_json_1_1(value: RDSDatabase) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RDSDatabase:
     out: RDSDatabase = {}  # type: ignore[typeddict-item]
-    if "InstanceIdentifier" in data:
+    if data.get("InstanceIdentifier") is not None:
         out["instance_identifier"] = data["InstanceIdentifier"]
     else:
         raise DeserializationError("RDSDatabase.instance_identifier required")
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
     else:
         raise DeserializationError("RDSDatabase.database_name required")

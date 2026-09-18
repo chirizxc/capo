@@ -32,14 +32,14 @@ def serialize_json(value: GitHubIntegrationInput) -> dict:
 
 def deserialize_json(data: dict) -> GitHubIntegrationInput:
     out: GitHubIntegrationInput = {}  # type: ignore[typeddict-item]
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
     else:
         raise DeserializationError("GitHubIntegrationInput.code required")
-    if "state" in data:
+    if data.get("state") is not None:
         out["state"] = data["state"]
     else:
         raise DeserializationError("GitHubIntegrationInput.state required")
-    if "organizationName" in data:
+    if data.get("organizationName") is not None:
         out["organization_name"] = data["organizationName"]
     return out

@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> PackageVersionSummaryList:
 
     out: PackageVersionSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codeartifact.types.package_version_summary.deserialize_json(item)
         )

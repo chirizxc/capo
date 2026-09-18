@@ -40,18 +40,18 @@ def serialize_aws_json_1_1(value: ListPublicKeysRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListPublicKeysRequest:
     out: ListPublicKeysRequest = {}  # type: ignore[typeddict-item]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_cloudtrail.types.date
 
         out["start_time"] = capo_cloudtrail.types.date.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_cloudtrail.types.date
 
         out["end_time"] = capo_cloudtrail.types.date.deserialize_aws_json_1_1(
             data["EndTime"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

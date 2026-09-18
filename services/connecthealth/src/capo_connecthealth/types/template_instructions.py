@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> TemplateInstructions:
 
     out: TemplateInstructions = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connecthealth.types.template_section_instruction.deserialize_json(item)
         )

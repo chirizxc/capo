@@ -39,13 +39,13 @@ def serialize_json(value: AwsCredentials) -> dict:
 
 def deserialize_json(data: dict) -> AwsCredentials:
     out: AwsCredentials = {}  # type: ignore[typeddict-item]
-    if "accessKeyId" in data:
+    if data.get("accessKeyId") is not None:
         out["access_key_id"] = data["accessKeyId"]
-    if "secretAccessKey" in data:
+    if data.get("secretAccessKey") is not None:
         out["secret_access_key"] = data["secretAccessKey"]
-    if "sessionToken" in data:
+    if data.get("sessionToken") is not None:
         out["session_token"] = data["sessionToken"]
-    if "expiration" in data:
+    if data.get("expiration") is not None:
         out["expiration"] = data["expiration"]
     else:
         out["expiration"] = 0

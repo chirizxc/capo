@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: EventDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EventDescription:
     out: EventDescription = {}  # type: ignore[typeddict-item]
-    if "latestDescription" in data:
+    if data.get("latestDescription") is not None:
         out["latest_description"] = data["latestDescription"]
     return out

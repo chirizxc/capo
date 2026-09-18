@@ -78,7 +78,7 @@ def serialize_json(value: EvaluationFormQuestionTypeProperties) -> dict:
 
 
 def deserialize_json(data: dict) -> EvaluationFormQuestionTypeProperties:
-    if "Numeric" in data:
+    if data.get("Numeric") is not None:
         import capo_connect.types.evaluation_form_numeric_question_properties
 
         return {
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> EvaluationFormQuestionTypeProperties:
                 data["Numeric"]
             )
         }
-    elif "SingleSelect" in data:
+    elif data.get("SingleSelect") is not None:
         import capo_connect.types.evaluation_form_single_select_question_properties
 
         return {
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> EvaluationFormQuestionTypeProperties:
                 data["SingleSelect"]
             )
         }
-    elif "Text" in data:
+    elif data.get("Text") is not None:
         import capo_connect.types.evaluation_form_text_question_properties
 
         return {
@@ -102,7 +102,7 @@ def deserialize_json(data: dict) -> EvaluationFormQuestionTypeProperties:
                 data["Text"]
             )
         }
-    elif "MultiSelect" in data:
+    elif data.get("MultiSelect") is not None:
         import capo_connect.types.evaluation_form_multi_select_question_properties
 
         return {

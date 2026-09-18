@@ -76,23 +76,23 @@ def serialize_json(value: NetworkTelemetry) -> dict:
 
 def deserialize_json(data: dict) -> NetworkTelemetry:
     out: NetworkTelemetry = {}  # type: ignore[typeddict-item]
-    if "RegisteredGatewayArn" in data:
+    if data.get("RegisteredGatewayArn") is not None:
         out["registered_gateway_arn"] = data["RegisteredGatewayArn"]
-    if "CoreNetworkId" in data:
+    if data.get("CoreNetworkId") is not None:
         out["core_network_id"] = data["CoreNetworkId"]
-    if "AwsRegion" in data:
+    if data.get("AwsRegion") is not None:
         out["aws_region"] = data["AwsRegion"]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "Address" in data:
+    if data.get("Address") is not None:
         out["address"] = data["Address"]
-    if "Health" in data:
+    if data.get("Health") is not None:
         import capo_networkmanager.types.connection_health
 
         out["health"] = capo_networkmanager.types.connection_health.deserialize_json(

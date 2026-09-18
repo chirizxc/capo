@@ -28,8 +28,8 @@ def serialize_json(value: NodeDetails) -> dict:
 
 def deserialize_json(data: dict) -> NodeDetails:
     out: NodeDetails = {}  # type: ignore[typeddict-item]
-    if "nodeIndex" in data:
+    if data.get("nodeIndex") is not None:
         out["node_index"] = data["nodeIndex"]
-    if "isMainNode" in data:
+    if data.get("isMainNode") is not None:
         out["is_main_node"] = data["isMainNode"]
     return out

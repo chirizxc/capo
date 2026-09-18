@@ -23,5 +23,7 @@ def deserialize_aws_json_1_0(data: list) -> Aliases:
 
     out: Aliases = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_payment_cryptography.types.alias.deserialize_aws_json_1_0(item))
     return out

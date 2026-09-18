@@ -41,15 +41,15 @@ def serialize_json(value: AuthorizedPrincipal) -> dict:
 
 def deserialize_json(data: dict) -> AuthorizedPrincipal:
     out: AuthorizedPrincipal = {}  # type: ignore[typeddict-item]
-    if "PrincipalType" in data:
+    if data.get("PrincipalType") is not None:
         import capo_opensearch.types.principal_type
 
         out["principal_type"] = capo_opensearch.types.principal_type.deserialize_json(
             data["PrincipalType"]
         )
-    if "Principal" in data:
+    if data.get("Principal") is not None:
         out["principal"] = data["Principal"]
-    if "ServiceOptions" in data:
+    if data.get("ServiceOptions") is not None:
         import capo_opensearch.types.service_options
 
         out["service_options"] = capo_opensearch.types.service_options.deserialize_json(

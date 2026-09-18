@@ -39,7 +39,7 @@ def serialize_json(value: AcceleratorCapabilities) -> dict:
 
 def deserialize_json(data: dict) -> AcceleratorCapabilities:
     out: AcceleratorCapabilities = {}  # type: ignore[typeddict-item]
-    if "selections" in data:
+    if data.get("selections") is not None:
         import capo_deadline.types.accelerator_selections
 
         out["selections"] = capo_deadline.types.accelerator_selections.deserialize_json(
@@ -47,7 +47,7 @@ def deserialize_json(data: dict) -> AcceleratorCapabilities:
         )
     else:
         raise DeserializationError("AcceleratorCapabilities.selections required")
-    if "count" in data:
+    if data.get("count") is not None:
         import capo_deadline.types.accelerator_count_range
 
         out["count"] = capo_deadline.types.accelerator_count_range.deserialize_json(

@@ -40,13 +40,13 @@ def serialize_json(value: AvailConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AvailConfiguration:
     out: AvailConfiguration = {}  # type: ignore[typeddict-item]
-    if "availSettings" in data:
+    if data.get("availSettings") is not None:
         import capo_medialive.types.avail_settings
 
         out["avail_settings"] = capo_medialive.types.avail_settings.deserialize_json(
             data["availSettings"]
         )
-    if "scte35SegmentationScope" in data:
+    if data.get("scte35SegmentationScope") is not None:
         import capo_medialive.types.scte35_segmentation_scope
 
         out["scte35_segmentation_scope"] = (

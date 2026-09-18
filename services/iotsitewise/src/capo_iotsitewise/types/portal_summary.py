@@ -73,35 +73,35 @@ def serialize_json(value: PortalSummary) -> dict:
 
 def deserialize_json(data: dict) -> PortalSummary:
     out: PortalSummary = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("PortalSummary.id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("PortalSummary.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "startUrl" in data:
+    if data.get("startUrl") is not None:
         out["start_url"] = data["startUrl"]
     else:
         raise DeserializationError("PortalSummary.start_url required")
-    if "creationDate" in data:
+    if data.get("creationDate") is not None:
         import capo_iotsitewise.types.timestamp
 
         out["creation_date"] = capo_iotsitewise.types.timestamp.deserialize_json(
             data["creationDate"]
         )
-    if "lastUpdateDate" in data:
+    if data.get("lastUpdateDate") is not None:
         import capo_iotsitewise.types.timestamp
 
         out["last_update_date"] = capo_iotsitewise.types.timestamp.deserialize_json(
             data["lastUpdateDate"]
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iotsitewise.types.portal_status
 
         out["status"] = capo_iotsitewise.types.portal_status.deserialize_json(
@@ -109,7 +109,7 @@ def deserialize_json(data: dict) -> PortalSummary:
         )
     else:
         raise DeserializationError("PortalSummary.status required")
-    if "portalType" in data:
+    if data.get("portalType") is not None:
         import capo_iotsitewise.types.portal_type
 
         out["portal_type"] = capo_iotsitewise.types.portal_type.deserialize_json(

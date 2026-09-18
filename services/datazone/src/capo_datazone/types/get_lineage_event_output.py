@@ -48,7 +48,7 @@ def serialize_json(value: GetLineageEventOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetLineageEventOutput:
     out: GetLineageEventOutput = {}  # type: ignore[typeddict-item]
-    if "event" in data:
+    if data.get("event") is not None:
         import capo_datazone.types.lineage_event
 
         out["event"] = capo_datazone.types.lineage_event.deserialize_json(data["event"])

@@ -30,11 +30,11 @@ def serialize_json(value: DeleteInboundExternalLinkResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteInboundExternalLinkResponse:
     out: DeleteInboundExternalLinkResponse = {}  # type: ignore[typeddict-item]
-    if "linkId" in data:
+    if data.get("linkId") is not None:
         out["link_id"] = data["linkId"]
     else:
         raise DeserializationError("DeleteInboundExternalLinkResponse.link_id required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_rtbfabric.types.link_status
 
         out["status"] = capo_rtbfabric.types.link_status.deserialize_json(

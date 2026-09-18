@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> DelegatedServices:
 
     out: DelegatedServices = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_organizations.types.delegated_service.deserialize_aws_json_1_1(item)
         )

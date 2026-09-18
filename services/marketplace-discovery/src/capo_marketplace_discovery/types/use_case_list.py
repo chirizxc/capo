@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> UseCaseList:
 
     out: UseCaseList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_marketplace_discovery.types.use_case_entry.deserialize_json(item)
         )

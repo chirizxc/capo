@@ -61,7 +61,7 @@ def serialize_json(value: CodeRepositoryAggregation) -> dict:
 
 def deserialize_json(data: dict) -> CodeRepositoryAggregation:
     out: CodeRepositoryAggregation = {}  # type: ignore[typeddict-item]
-    if "projectNames" in data:
+    if data.get("projectNames") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["project_names"] = (
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> CodeRepositoryAggregation:
                 data["projectNames"]
             )
         )
-    if "providerTypes" in data:
+    if data.get("providerTypes") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["provider_types"] = (
@@ -77,11 +77,11 @@ def deserialize_json(data: dict) -> CodeRepositoryAggregation:
                 data["providerTypes"]
             )
         )
-    if "sortOrder" in data:
+    if data.get("sortOrder") is not None:
         out["sort_order"] = data["sortOrder"]
-    if "sortBy" in data:
+    if data.get("sortBy") is not None:
         out["sort_by"] = data["sortBy"]
-    if "resourceIds" in data:
+    if data.get("resourceIds") is not None:
         import capo_inspector2.types.string_filter_list
 
         out["resource_ids"] = capo_inspector2.types.string_filter_list.deserialize_json(

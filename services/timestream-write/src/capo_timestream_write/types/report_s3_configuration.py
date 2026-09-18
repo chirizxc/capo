@@ -51,13 +51,13 @@ def serialize_aws_json_1_0(value: ReportS3Configuration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ReportS3Configuration:
     out: ReportS3Configuration = {}  # type: ignore[typeddict-item]
-    if "BucketName" in data:
+    if data.get("BucketName") is not None:
         out["bucket_name"] = data["BucketName"]
     else:
         raise DeserializationError("ReportS3Configuration.bucket_name required")
-    if "ObjectKeyPrefix" in data:
+    if data.get("ObjectKeyPrefix") is not None:
         out["object_key_prefix"] = data["ObjectKeyPrefix"]
-    if "EncryptionOption" in data:
+    if data.get("EncryptionOption") is not None:
         import capo_timestream_write.types.s3_encryption_option
 
         out["encryption_option"] = (
@@ -65,6 +65,6 @@ def deserialize_aws_json_1_0(data: dict) -> ReportS3Configuration:
                 data["EncryptionOption"]
             )
         )
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
     return out

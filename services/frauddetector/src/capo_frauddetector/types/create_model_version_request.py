@@ -91,11 +91,11 @@ def serialize_aws_json_1_1(value: CreateModelVersionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateModelVersionRequest:
     out: CreateModelVersionRequest = {}  # type: ignore[typeddict-item]
-    if "modelId" in data:
+    if data.get("modelId") is not None:
         out["model_id"] = data["modelId"]
     else:
         raise DeserializationError("CreateModelVersionRequest.model_id required")
-    if "modelType" in data:
+    if data.get("modelType") is not None:
         import capo_frauddetector.types.model_type_enum
 
         out["model_type"] = (
@@ -105,7 +105,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateModelVersionRequest:
         )
     else:
         raise DeserializationError("CreateModelVersionRequest.model_type required")
-    if "trainingDataSource" in data:
+    if data.get("trainingDataSource") is not None:
         import capo_frauddetector.types.training_data_source_enum
 
         out["training_data_source"] = (
@@ -117,7 +117,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateModelVersionRequest:
         raise DeserializationError(
             "CreateModelVersionRequest.training_data_source required"
         )
-    if "trainingDataSchema" in data:
+    if data.get("trainingDataSchema") is not None:
         import capo_frauddetector.types.training_data_schema
 
         out["training_data_schema"] = (
@@ -129,7 +129,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateModelVersionRequest:
         raise DeserializationError(
             "CreateModelVersionRequest.training_data_schema required"
         )
-    if "externalEventsDetail" in data:
+    if data.get("externalEventsDetail") is not None:
         import capo_frauddetector.types.external_events_detail
 
         out["external_events_detail"] = (
@@ -137,7 +137,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateModelVersionRequest:
                 data["externalEventsDetail"]
             )
         )
-    if "ingestedEventsDetail" in data:
+    if data.get("ingestedEventsDetail") is not None:
         import capo_frauddetector.types.ingested_events_detail
 
         out["ingested_events_detail"] = (
@@ -145,7 +145,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateModelVersionRequest:
                 data["ingestedEventsDetail"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_frauddetector.types.tag_list
 
         out["tags"] = capo_frauddetector.types.tag_list.deserialize_aws_json_1_1(

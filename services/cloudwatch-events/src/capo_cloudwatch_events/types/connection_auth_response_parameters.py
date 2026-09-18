@@ -70,7 +70,7 @@ def serialize_aws_json_1_1(value: ConnectionAuthResponseParameters) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConnectionAuthResponseParameters:
     out: ConnectionAuthResponseParameters = {}  # type: ignore[typeddict-item]
-    if "BasicAuthParameters" in data:
+    if data.get("BasicAuthParameters") is not None:
         import capo_cloudwatch_events.types.connection_basic_auth_response_parameters
 
         out["basic_auth_parameters"] = (
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConnectionAuthResponseParameters:
                 data["BasicAuthParameters"]
             )
         )
-    if "OAuthParameters" in data:
+    if data.get("OAuthParameters") is not None:
         import capo_cloudwatch_events.types.connection_o_auth_response_parameters
 
         out["o_auth_parameters"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConnectionAuthResponseParameters:
                 data["OAuthParameters"]
             )
         )
-    if "ApiKeyAuthParameters" in data:
+    if data.get("ApiKeyAuthParameters") is not None:
         import capo_cloudwatch_events.types.connection_api_key_auth_response_parameters
 
         out["api_key_auth_parameters"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConnectionAuthResponseParameters:
                 data["ApiKeyAuthParameters"]
             )
         )
-    if "InvocationHttpParameters" in data:
+    if data.get("InvocationHttpParameters") is not None:
         import capo_cloudwatch_events.types.connection_http_parameters
 
         out["invocation_http_parameters"] = (

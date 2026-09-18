@@ -80,15 +80,15 @@ def serialize_json(value: CapacityTaskSummary) -> dict:
 
 def deserialize_json(data: dict) -> CapacityTaskSummary:
     out: CapacityTaskSummary = {}  # type: ignore[typeddict-item]
-    if "CapacityTaskId" in data:
+    if data.get("CapacityTaskId") is not None:
         out["capacity_task_id"] = data["CapacityTaskId"]
-    if "OutpostId" in data:
+    if data.get("OutpostId") is not None:
         out["outpost_id"] = data["OutpostId"]
-    if "OrderId" in data:
+    if data.get("OrderId") is not None:
         out["order_id"] = data["OrderId"]
-    if "AssetId" in data:
+    if data.get("AssetId") is not None:
         out["asset_id"] = data["AssetId"]
-    if "CapacityTaskStatus" in data:
+    if data.get("CapacityTaskStatus") is not None:
         import capo_outposts.types.capacity_task_status
 
         out["capacity_task_status"] = (
@@ -96,19 +96,19 @@ def deserialize_json(data: dict) -> CapacityTaskSummary:
                 data["CapacityTaskStatus"]
             )
         )
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         import capo_outposts.types.iso8601_timestamp
 
         out["creation_date"] = capo_outposts.types.iso8601_timestamp.deserialize_json(
             data["CreationDate"]
         )
-    if "CompletionDate" in data:
+    if data.get("CompletionDate") is not None:
         import capo_outposts.types.iso8601_timestamp
 
         out["completion_date"] = capo_outposts.types.iso8601_timestamp.deserialize_json(
             data["CompletionDate"]
         )
-    if "LastModifiedDate" in data:
+    if data.get("LastModifiedDate") is not None:
         import capo_outposts.types.iso8601_timestamp
 
         out["last_modified_date"] = (

@@ -4,6 +4,8 @@ from typing import TYPE_CHECKING
 
 from typing_extensions import NotRequired, TypedDict
 
+from capo_iotfleetwise.errors import DeserializationError
+
 if TYPE_CHECKING:
     import capo_iotfleetwise.types.arn
     import capo_iotfleetwise.types.attributes_map
@@ -41,6 +43,7 @@ class UpdateVehicleRequest(TypedDict, closed=True):
 # --- awsJson1_0 ser/de ---
 def serialize_aws_json_1_0(value: UpdateVehicleRequest) -> dict:
     out: dict = {}
+    out["vehicleName"] = value["vehicle_name"]
     if "model_manifest_arn" in value:
         out["modelManifestArn"] = value["model_manifest_arn"]
     if "decoder_manifest_arn" in value:
@@ -90,11 +93,15 @@ def serialize_aws_json_1_0(value: UpdateVehicleRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateVehicleRequest:
     out: UpdateVehicleRequest = {}  # type: ignore[typeddict-item]
-    if "modelManifestArn" in data:
+    if data.get("vehicleName") is not None:
+        out["vehicle_name"] = data["vehicleName"]
+    else:
+        raise DeserializationError("UpdateVehicleRequest.vehicle_name required")
+    if data.get("modelManifestArn") is not None:
         out["model_manifest_arn"] = data["modelManifestArn"]
-    if "decoderManifestArn" in data:
+    if data.get("decoderManifestArn") is not None:
         out["decoder_manifest_arn"] = data["decoderManifestArn"]
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_iotfleetwise.types.attributes_map
 
         out["attributes"] = (
@@ -102,7 +109,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateVehicleRequest:
                 data["attributes"]
             )
         )
-    if "attributeUpdateMode" in data:
+    if data.get("attributeUpdateMode") is not None:
         import capo_iotfleetwise.types.update_mode
 
         out["attribute_update_mode"] = (
@@ -110,7 +117,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateVehicleRequest:
                 data["attributeUpdateMode"]
             )
         )
-    if "stateTemplatesToAdd" in data:
+    if data.get("stateTemplatesToAdd") is not None:
         import capo_iotfleetwise.types.state_template_associations
 
         out["state_templates_to_add"] = (
@@ -118,7 +125,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateVehicleRequest:
                 data["stateTemplatesToAdd"]
             )
         )
-    if "stateTemplatesToRemove" in data:
+    if data.get("stateTemplatesToRemove") is not None:
         import capo_iotfleetwise.types.state_template_association_identifiers
 
         out["state_templates_to_remove"] = (
@@ -126,7 +133,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateVehicleRequest:
                 data["stateTemplatesToRemove"]
             )
         )
-    if "stateTemplatesToUpdate" in data:
+    if data.get("stateTemplatesToUpdate") is not None:
         import capo_iotfleetwise.types.state_template_associations
 
         out["state_templates_to_update"] = (

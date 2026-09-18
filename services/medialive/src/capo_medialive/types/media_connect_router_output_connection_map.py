@@ -27,8 +27,8 @@ def serialize_json(value: MediaConnectRouterOutputConnectionMap) -> dict:
 
 def deserialize_json(data: dict) -> MediaConnectRouterOutputConnectionMap:
     out: MediaConnectRouterOutputConnectionMap = {}  # type: ignore[typeddict-item]
-    if "pipeline0" in data:
+    if data.get("pipeline0") is not None:
         out["pipeline0"] = data["pipeline0"]
-    if "pipeline1" in data:
+    if data.get("pipeline1") is not None:
         out["pipeline1"] = data["pipeline1"]
     return out

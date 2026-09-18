@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ProgramSetValidationFailuresList:
 
     out: ProgramSetValidationFailuresList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_braket.types.program_set_validation_failure.deserialize_json(item)
         )

@@ -90,11 +90,11 @@ def serialize_json(value: UpdateDataSourceRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDataSourceRequest:
     out: UpdateDataSourceRequest = {}  # type: ignore[typeddict-item]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         out["configuration"] = data["configuration"]
-    if "vpcConfiguration" in data:
+    if data.get("vpcConfiguration") is not None:
         import capo_qbusiness.types.data_source_vpc_configuration
 
         out["vpc_configuration"] = (
@@ -102,13 +102,13 @@ def deserialize_json(data: dict) -> UpdateDataSourceRequest:
                 data["vpcConfiguration"]
             )
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "syncSchedule" in data:
+    if data.get("syncSchedule") is not None:
         out["sync_schedule"] = data["syncSchedule"]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "documentEnrichmentConfiguration" in data:
+    if data.get("documentEnrichmentConfiguration") is not None:
         import capo_qbusiness.types.document_enrichment_configuration
 
         out["document_enrichment_configuration"] = (
@@ -116,7 +116,7 @@ def deserialize_json(data: dict) -> UpdateDataSourceRequest:
                 data["documentEnrichmentConfiguration"]
             )
         )
-    if "mediaExtractionConfiguration" in data:
+    if data.get("mediaExtractionConfiguration") is not None:
         import capo_qbusiness.types.media_extraction_configuration
 
         out["media_extraction_configuration"] = (

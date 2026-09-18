@@ -40,12 +40,12 @@ def serialize_aws_json_1_1(value: FederatedTable) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FederatedTable:
     out: FederatedTable = {}  # type: ignore[typeddict-item]
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
-    if "DatabaseIdentifier" in data:
+    if data.get("DatabaseIdentifier") is not None:
         out["database_identifier"] = data["DatabaseIdentifier"]
-    if "ConnectionName" in data:
+    if data.get("ConnectionName") is not None:
         out["connection_name"] = data["ConnectionName"]
-    if "ConnectionType" in data:
+    if data.get("ConnectionType") is not None:
         out["connection_type"] = data["ConnectionType"]
     return out

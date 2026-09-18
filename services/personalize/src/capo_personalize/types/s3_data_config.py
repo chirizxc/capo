@@ -29,10 +29,10 @@ def serialize_aws_json_1_1(value: S3DataConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3DataConfig:
     out: S3DataConfig = {}  # type: ignore[typeddict-item]
-    if "path" in data:
+    if data.get("path") is not None:
         out["path"] = data["path"]
     else:
         raise DeserializationError("S3DataConfig.path required")
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
     return out

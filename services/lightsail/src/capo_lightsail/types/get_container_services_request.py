@@ -18,9 +18,13 @@ class GetContainerServicesRequest(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: GetContainerServicesRequest) -> dict:
     out: dict = {}
+    if "service_name" in value:
+        out["serviceName"] = value["service_name"]
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> GetContainerServicesRequest:
     out: GetContainerServicesRequest = {}  # type: ignore[typeddict-item]
+    if data.get("serviceName") is not None:
+        out["service_name"] = data["serviceName"]
     return out

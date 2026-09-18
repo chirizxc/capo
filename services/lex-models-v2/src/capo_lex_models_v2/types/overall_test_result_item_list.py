@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> OverallTestResultItemList:
 
     out: OverallTestResultItemList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lex_models_v2.types.overall_test_result_item.deserialize_json(item)
         )

@@ -42,7 +42,7 @@ def serialize_json(value: BatchGetAssetPropertyValueHistoryRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetAssetPropertyValueHistoryRequest:
     out: BatchGetAssetPropertyValueHistoryRequest = {}  # type: ignore[typeddict-item]
-    if "entries" in data:
+    if data.get("entries") is not None:
         import capo_iotsitewise.types.batch_get_asset_property_value_history_entries
 
         out["entries"] = (
@@ -54,8 +54,8 @@ def deserialize_json(data: dict) -> BatchGetAssetPropertyValueHistoryRequest:
         raise DeserializationError(
             "BatchGetAssetPropertyValueHistoryRequest.entries required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

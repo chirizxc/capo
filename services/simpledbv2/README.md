@@ -13,9 +13,9 @@ from capo_simpledbv2 import AsyncSimpleDBv2Client
 
 
 async def main():
-    async with AsyncSimpleDBv2Client() as s3:
+    async with AsyncSimpleDBv2Client() as simple_d_bv2:
         # Example: call the get_export operation
-        response = await s3.get_export()
+        response = await simple_d_bv2.get_export()
         print(response["export_arn"])
 ```
 
@@ -28,9 +28,9 @@ from capo_simpledbv2 import AsyncSimpleDBv2Client
 
 
 async def main():
-    async with AsyncSimpleDBv2Client() as s3:
+    async with AsyncSimpleDBv2Client() as simple_d_bv2:
         # Example: paginate over list_exports
-        async for item in s3.iter_list_exports():
+        async for item in simple_d_bv2.iter_list_exports():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_simpledbv2.error import InvalidParameterValueException
 
 
 async def main():
-    async with AsyncSimpleDBv2Client() as s3:
+    async with AsyncSimpleDBv2Client() as simple_d_bv2:
         try:
-            await s3.get_export()
+            await simple_d_bv2.get_export()
         except InvalidParameterValueException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_simpledbv2 import AsyncSimpleDBv2Client
 
 
 async def main():
-    async with AsyncSimpleDBv2Client() as s3:
+    async with AsyncSimpleDBv2Client() as simple_d_bv2:
         # Default: 3 attempts for every operation
-        response = await s3.get_export()
+        response = await simple_d_bv2.get_export()
 
         # Override per operation
-        response = await s3.get_export(config_overrides={"retry_max_attempts": 5})
+        response = await simple_d_bv2.get_export(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.get_export(config_overrides={"retry_max_attempts": 1})
+        response = await simple_d_bv2.get_export(config_overrides={"retry_max_attempts": 1})
 ```

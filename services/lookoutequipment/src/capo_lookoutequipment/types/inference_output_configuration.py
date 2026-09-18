@@ -35,7 +35,7 @@ def serialize_aws_json_1_0(value: InferenceOutputConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> InferenceOutputConfiguration:
     out: InferenceOutputConfiguration = {}  # type: ignore[typeddict-item]
-    if "S3OutputConfiguration" in data:
+    if data.get("S3OutputConfiguration") is not None:
         import capo_lookoutequipment.types.inference_s3_output_configuration
 
         out["s3_output_configuration"] = (
@@ -47,6 +47,6 @@ def deserialize_aws_json_1_0(data: dict) -> InferenceOutputConfiguration:
         raise DeserializationError(
             "InferenceOutputConfiguration.s3_output_configuration required"
         )
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
     return out

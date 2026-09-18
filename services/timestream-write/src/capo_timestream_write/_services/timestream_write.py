@@ -1,6 +1,8 @@
 """Generated from Smithy shape ``com.amazonaws.timestreamwrite#Timestream_20181101``."""
 
+import uuid
 import warnings
+from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +18,7 @@ from capo_timestream_write._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_timestream_write._auth._zapros_handler import AuthMiddleware
+from capo_timestream_write._pagination import resolve_path as _resolve_path
 from capo_timestream_write._services._aws_config import aws_config
 from capo_timestream_write._services._pipeline import (
     Interceptor,
@@ -233,15 +236,17 @@ class TimestreamWriteClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_timestream_write.types.create_batch_load_task_request.CreateBatchLoadTaskRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_timestream_write.types.create_batch_load_task_request.CreateBatchLoadTaskRequest = {
+            "data_source_configuration": data_source_configuration,
+            "report_configuration": report_configuration,
+            "target_database_name": target_database_name,
+            "target_table_name": target_table_name,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if data_model_configuration is not None:
             input_["data_model_configuration"] = data_model_configuration
-        input_["data_source_configuration"] = data_source_configuration
-        input_["report_configuration"] = report_configuration
-        input_["target_database_name"] = target_database_name
-        input_["target_table_name"] = target_table_name
         if record_version is not None:
             input_["record_version"] = record_version
 
@@ -250,6 +255,7 @@ class TimestreamWriteClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_database(
@@ -295,8 +301,9 @@ class TimestreamWriteClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_timestream_write.types.create_database_request.CreateDatabaseRequest = {}  # type: ignore[typeddict-item]
-        input_["database_name"] = database_name
+        input_: capo_timestream_write.types.create_database_request.CreateDatabaseRequest = {
+            "database_name": database_name
+        }
         if kms_key_id is not None:
             input_["kms_key_id"] = kms_key_id
         if tags is not None:
@@ -307,6 +314,7 @@ class TimestreamWriteClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_table(
@@ -361,9 +369,10 @@ class TimestreamWriteClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_timestream_write.types.create_table_request.CreateTableRequest = {}  # type: ignore[typeddict-item]
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
+        input_: capo_timestream_write.types.create_table_request.CreateTableRequest = {
+            "database_name": database_name,
+            "table_name": table_name,
+        }
         if retention_properties is not None:
             input_["retention_properties"] = retention_properties
         if tags is not None:
@@ -378,6 +387,7 @@ class TimestreamWriteClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_database(
@@ -414,14 +424,16 @@ class TimestreamWriteClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_timestream_write.types.delete_database_request.DeleteDatabaseRequest = {}  # type: ignore[typeddict-item]
-        input_["database_name"] = database_name
+        input_: capo_timestream_write.types.delete_database_request.DeleteDatabaseRequest = {
+            "database_name": database_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_table(
@@ -460,15 +472,17 @@ class TimestreamWriteClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_timestream_write.types.delete_table_request.DeleteTableRequest = {}  # type: ignore[typeddict-item]
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
+        input_: capo_timestream_write.types.delete_table_request.DeleteTableRequest = {
+            "database_name": database_name,
+            "table_name": table_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_batch_load_task(
@@ -506,14 +520,16 @@ class TimestreamWriteClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_timestream_write.types.describe_batch_load_task_request.DescribeBatchLoadTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["task_id"] = task_id
+        input_: capo_timestream_write.types.describe_batch_load_task_request.DescribeBatchLoadTaskRequest = {
+            "task_id": task_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_database(
@@ -552,14 +568,16 @@ class TimestreamWriteClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_timestream_write.types.describe_database_request.DescribeDatabaseRequest = {}  # type: ignore[typeddict-item]
-        input_["database_name"] = database_name
+        input_: capo_timestream_write.types.describe_database_request.DescribeDatabaseRequest = {
+            "database_name": database_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_endpoints(
@@ -589,13 +607,14 @@ class TimestreamWriteClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_timestream_write.types.describe_endpoints_request.DescribeEndpointsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_timestream_write.types.describe_endpoints_request.DescribeEndpointsRequest = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_table(
@@ -636,15 +655,17 @@ class TimestreamWriteClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_timestream_write.types.describe_table_request.DescribeTableRequest = {}  # type: ignore[typeddict-item]
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
+        input_: capo_timestream_write.types.describe_table_request.DescribeTableRequest = {
+            "database_name": database_name,
+            "table_name": table_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_batch_load_tasks(
@@ -690,7 +711,7 @@ class TimestreamWriteClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_timestream_write.types.list_batch_load_tasks_request.ListBatchLoadTasksRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_timestream_write.types.list_batch_load_tasks_request.ListBatchLoadTasksRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -703,7 +724,33 @@ class TimestreamWriteClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_batch_load_tasks(
+        self,
+        *,
+        config_overrides: Optional[TimestreamWriteClientConfig] = None,
+        next_token: Optional["capo_timestream_write.types.string.String"] = None,
+        max_results: Optional[
+            "capo_timestream_write.types.page_limit.PageLimit"
+        ] = None,
+        task_status: Optional[
+            "capo_timestream_write.types.batch_load_status.BatchLoadStatus"
+        ] = None,
+    ) -> "Iterator[capo_timestream_write.types.list_batch_load_tasks_response.ListBatchLoadTasksResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_batch_load_tasks(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                task_status=task_status,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_databases(
         self,
@@ -744,7 +791,7 @@ class TimestreamWriteClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_timestream_write.types.list_databases_request.ListDatabasesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_timestream_write.types.list_databases_request.ListDatabasesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -755,7 +802,29 @@ class TimestreamWriteClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_databases(
+        self,
+        *,
+        config_overrides: Optional[TimestreamWriteClientConfig] = None,
+        next_token: Optional["capo_timestream_write.types.string.String"] = None,
+        max_results: Optional[
+            "capo_timestream_write.types.pagination_limit.PaginationLimit"
+        ] = None,
+    ) -> "Iterator[capo_timestream_write.types.list_databases_response.ListDatabasesResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_databases(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_tables(
         self,
@@ -801,7 +870,7 @@ class TimestreamWriteClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_timestream_write.types.list_tables_request.ListTablesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_timestream_write.types.list_tables_request.ListTablesRequest = {}
         if database_name is not None:
             input_["database_name"] = database_name
         if next_token is not None:
@@ -814,7 +883,35 @@ class TimestreamWriteClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_tables(
+        self,
+        *,
+        config_overrides: Optional[TimestreamWriteClientConfig] = None,
+        database_name: Optional[
+            "capo_timestream_write.types.resource_name.ResourceName"
+        ] = None,
+        next_token: Optional["capo_timestream_write.types.string.String"] = None,
+        max_results: Optional[
+            "capo_timestream_write.types.pagination_limit.PaginationLimit"
+        ] = None,
+    ) -> (
+        "Iterator[capo_timestream_write.types.list_tables_response.ListTablesResponse]"
+    ):
+        _token = next_token
+        while True:
+            _response = self.list_tables(
+                config_overrides=config_overrides,
+                database_name=database_name,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_tags_for_resource(
         self,
@@ -850,14 +947,16 @@ class TimestreamWriteClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_timestream_write.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_timestream_write.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def resume_batch_load_task(
@@ -896,14 +995,16 @@ class TimestreamWriteClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_timestream_write.types.resume_batch_load_task_request.ResumeBatchLoadTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["task_id"] = task_id
+        input_: capo_timestream_write.types.resume_batch_load_task_request.ResumeBatchLoadTaskRequest = {
+            "task_id": task_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -943,15 +1044,17 @@ class TimestreamWriteClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_timestream_write.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_timestream_write.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -991,15 +1094,17 @@ class TimestreamWriteClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_timestream_write.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_timestream_write.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_database(
@@ -1041,15 +1146,17 @@ class TimestreamWriteClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_timestream_write.types.update_database_request.UpdateDatabaseRequest = {}  # type: ignore[typeddict-item]
-        input_["database_name"] = database_name
-        input_["kms_key_id"] = kms_key_id
+        input_: capo_timestream_write.types.update_database_request.UpdateDatabaseRequest = {
+            "database_name": database_name,
+            "kms_key_id": kms_key_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_table(
@@ -1100,9 +1207,10 @@ class TimestreamWriteClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_timestream_write.types.update_table_request.UpdateTableRequest = {}  # type: ignore[typeddict-item]
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
+        input_: capo_timestream_write.types.update_table_request.UpdateTableRequest = {
+            "database_name": database_name,
+            "table_name": table_name,
+        }
         if retention_properties is not None:
             input_["retention_properties"] = retention_properties
         if magnetic_store_write_properties is not None:
@@ -1115,6 +1223,7 @@ class TimestreamWriteClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def write_records(
@@ -1160,18 +1269,20 @@ class TimestreamWriteClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_timestream_write.types.write_records_request.WriteRecordsRequest = {}  # type: ignore[typeddict-item]
-        input_["database_name"] = database_name
-        input_["table_name"] = table_name
+        input_: capo_timestream_write.types.write_records_request.WriteRecordsRequest = {
+            "database_name": database_name,
+            "table_name": table_name,
+            "records": records,
+        }
         if common_attributes is not None:
             input_["common_attributes"] = common_attributes
-        input_["records"] = records
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

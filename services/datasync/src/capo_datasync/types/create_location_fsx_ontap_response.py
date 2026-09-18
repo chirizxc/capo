@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: CreateLocationFsxOntapResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateLocationFsxOntapResponse:
     out: CreateLocationFsxOntapResponse = {}  # type: ignore[typeddict-item]
-    if "LocationArn" in data:
+    if data.get("LocationArn") is not None:
         out["location_arn"] = data["LocationArn"]
     return out

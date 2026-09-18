@@ -45,15 +45,15 @@ def serialize_aws_json_1_1(value: UpdateProvisionedProductPropertiesInput) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateProvisionedProductPropertiesInput:
     out: UpdateProvisionedProductPropertiesInput = {}  # type: ignore[typeddict-item]
-    if "AcceptLanguage" in data:
+    if data.get("AcceptLanguage") is not None:
         out["accept_language"] = data["AcceptLanguage"]
-    if "ProvisionedProductId" in data:
+    if data.get("ProvisionedProductId") is not None:
         out["provisioned_product_id"] = data["ProvisionedProductId"]
     else:
         raise DeserializationError(
             "UpdateProvisionedProductPropertiesInput.provisioned_product_id required"
         )
-    if "ProvisionedProductProperties" in data:
+    if data.get("ProvisionedProductProperties") is not None:
         import capo_service_catalog.types.provisioned_product_properties
 
         out["provisioned_product_properties"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateProvisionedProductPropertiesIn
         raise DeserializationError(
             "UpdateProvisionedProductPropertiesInput.provisioned_product_properties required"
         )
-    if "IdempotencyToken" in data:
+    if data.get("IdempotencyToken") is not None:
         out["idempotency_token"] = data["IdempotencyToken"]
     else:
         raise DeserializationError(

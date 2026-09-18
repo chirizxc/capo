@@ -58,31 +58,31 @@ def serialize_json(value: CreateFargateProfileRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateFargateProfileRequest:
     out: CreateFargateProfileRequest = {}  # type: ignore[typeddict-item]
-    if "fargateProfileName" in data:
+    if data.get("fargateProfileName") is not None:
         out["fargate_profile_name"] = data["fargateProfileName"]
     else:
         raise DeserializationError(
             "CreateFargateProfileRequest.fargate_profile_name required"
         )
-    if "podExecutionRoleArn" in data:
+    if data.get("podExecutionRoleArn") is not None:
         out["pod_execution_role_arn"] = data["podExecutionRoleArn"]
     else:
         raise DeserializationError(
             "CreateFargateProfileRequest.pod_execution_role_arn required"
         )
-    if "subnets" in data:
+    if data.get("subnets") is not None:
         import capo_eks.types.string_list
 
         out["subnets"] = capo_eks.types.string_list.deserialize_json(data["subnets"])
-    if "selectors" in data:
+    if data.get("selectors") is not None:
         import capo_eks.types.fargate_profile_selectors
 
         out["selectors"] = capo_eks.types.fargate_profile_selectors.deserialize_json(
             data["selectors"]
         )
-    if "clientRequestToken" in data:
+    if data.get("clientRequestToken") is not None:
         out["client_request_token"] = data["clientRequestToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_eks.types.tag_map
 
         out["tags"] = capo_eks.types.tag_map.deserialize_json(data["tags"])

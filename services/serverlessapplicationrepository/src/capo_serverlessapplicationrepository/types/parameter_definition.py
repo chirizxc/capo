@@ -108,9 +108,9 @@ def serialize_json(value: ParameterDefinition) -> dict:
 
 def deserialize_json(data: dict) -> ParameterDefinition:
     out: ParameterDefinition = {}  # type: ignore[typeddict-item]
-    if "allowedPattern" in data:
+    if data.get("allowedPattern") is not None:
         out["allowed_pattern"] = data["allowedPattern"]
-    if "allowedValues" in data:
+    if data.get("allowedValues") is not None:
         import capo_serverlessapplicationrepository.types.__list_of__string
 
         out["allowed_values"] = (
@@ -118,25 +118,25 @@ def deserialize_json(data: dict) -> ParameterDefinition:
                 data["allowedValues"]
             )
         )
-    if "constraintDescription" in data:
+    if data.get("constraintDescription") is not None:
         out["constraint_description"] = data["constraintDescription"]
-    if "defaultValue" in data:
+    if data.get("defaultValue") is not None:
         out["default_value"] = data["defaultValue"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "maxLength" in data:
+    if data.get("maxLength") is not None:
         out["max_length"] = data["maxLength"]
-    if "maxValue" in data:
+    if data.get("maxValue") is not None:
         out["max_value"] = data["maxValue"]
-    if "minLength" in data:
+    if data.get("minLength") is not None:
         out["min_length"] = data["minLength"]
-    if "minValue" in data:
+    if data.get("minValue") is not None:
         out["min_value"] = data["minValue"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "noEcho" in data:
+    if data.get("noEcho") is not None:
         out["no_echo"] = data["noEcho"]
-    if "referencedByResources" in data:
+    if data.get("referencedByResources") is not None:
         import capo_serverlessapplicationrepository.types.__list_of__string
 
         out["referenced_by_resources"] = (
@@ -144,6 +144,6 @@ def deserialize_json(data: dict) -> ParameterDefinition:
                 data["referencedByResources"]
             )
         )
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     return out

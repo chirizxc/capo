@@ -41,14 +41,14 @@ def serialize_json(value: KxSavedownStorageConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> KxSavedownStorageConfiguration:
     out: KxSavedownStorageConfiguration = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_finspace.types.kx_savedown_storage_type
 
         out["type"] = capo_finspace.types.kx_savedown_storage_type.deserialize_json(
             data["type"]
         )
-    if "size" in data:
+    if data.get("size") is not None:
         out["size"] = data["size"]
-    if "volumeName" in data:
+    if data.get("volumeName") is not None:
         out["volume_name"] = data["volumeName"]
     return out

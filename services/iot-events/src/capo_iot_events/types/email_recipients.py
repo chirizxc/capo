@@ -25,7 +25,7 @@ def serialize_json(value: EmailRecipients) -> dict:
 
 def deserialize_json(data: dict) -> EmailRecipients:
     out: EmailRecipients = {}  # type: ignore[typeddict-item]
-    if "to" in data:
+    if data.get("to") is not None:
         import capo_iot_events.types.recipient_details
 
         out["to"] = capo_iot_events.types.recipient_details.deserialize_json(data["to"])

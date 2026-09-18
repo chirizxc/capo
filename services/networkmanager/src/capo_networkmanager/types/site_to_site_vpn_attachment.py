@@ -34,12 +34,12 @@ def serialize_json(value: SiteToSiteVpnAttachment) -> dict:
 
 def deserialize_json(data: dict) -> SiteToSiteVpnAttachment:
     out: SiteToSiteVpnAttachment = {}  # type: ignore[typeddict-item]
-    if "Attachment" in data:
+    if data.get("Attachment") is not None:
         import capo_networkmanager.types.attachment
 
         out["attachment"] = capo_networkmanager.types.attachment.deserialize_json(
             data["Attachment"]
         )
-    if "VpnConnectionArn" in data:
+    if data.get("VpnConnectionArn") is not None:
         out["vpn_connection_arn"] = data["VpnConnectionArn"]
     return out

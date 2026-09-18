@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ServiceResourceCosts:
 
     out: ServiceResourceCosts = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_devops_guru.types.service_resource_cost.deserialize_json(item))
     return out

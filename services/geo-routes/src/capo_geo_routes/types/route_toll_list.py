@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> RouteTollList:
 
     out: RouteTollList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_geo_routes.types.route_toll.deserialize_json(item))
     return out

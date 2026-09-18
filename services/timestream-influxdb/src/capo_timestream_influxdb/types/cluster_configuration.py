@@ -26,10 +26,10 @@ def serialize_aws_json_1_0(value: ClusterConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ClusterConfiguration:
     out: ClusterConfiguration = {}  # type: ignore[typeddict-item]
-    if "ingestQueryInstances" in data:
+    if data.get("ingestQueryInstances") is not None:
         out["ingest_query_instances"] = data["ingestQueryInstances"]
-    if "queryOnlyInstances" in data:
+    if data.get("queryOnlyInstances") is not None:
         out["query_only_instances"] = data["queryOnlyInstances"]
-    if "dedicatedCompactor" in data:
+    if data.get("dedicatedCompactor") is not None:
         out["dedicated_compactor"] = data["dedicatedCompactor"]
     return out

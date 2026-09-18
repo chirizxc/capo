@@ -45,15 +45,15 @@ def serialize_aws_json_1_1(value: MergeMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MergeMetadata:
     out: MergeMetadata = {}  # type: ignore[typeddict-item]
-    if "isMerged" in data:
+    if data.get("isMerged") is not None:
         out["is_merged"] = data["isMerged"]
     else:
         out["is_merged"] = False
-    if "mergedBy" in data:
+    if data.get("mergedBy") is not None:
         out["merged_by"] = data["mergedBy"]
-    if "mergeCommitId" in data:
+    if data.get("mergeCommitId") is not None:
         out["merge_commit_id"] = data["mergeCommitId"]
-    if "mergeOption" in data:
+    if data.get("mergeOption") is not None:
         import capo_codecommit.types.merge_option_type_enum
 
         out["merge_option"] = (

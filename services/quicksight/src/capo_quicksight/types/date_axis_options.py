@@ -27,7 +27,7 @@ def serialize_json(value: DateAxisOptions) -> dict:
 
 def deserialize_json(data: dict) -> DateAxisOptions:
     out: DateAxisOptions = {}  # type: ignore[typeddict-item]
-    if "MissingDateVisibility" in data:
+    if data.get("MissingDateVisibility") is not None:
         import capo_quicksight.types.visibility
 
         out["missing_date_visibility"] = (

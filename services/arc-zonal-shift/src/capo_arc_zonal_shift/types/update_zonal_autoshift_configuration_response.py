@@ -38,13 +38,13 @@ def serialize_json(value: UpdateZonalAutoshiftConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateZonalAutoshiftConfigurationResponse:
     out: UpdateZonalAutoshiftConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "resourceIdentifier" in data:
+    if data.get("resourceIdentifier") is not None:
         out["resource_identifier"] = data["resourceIdentifier"]
     else:
         raise DeserializationError(
             "UpdateZonalAutoshiftConfigurationResponse.resource_identifier required"
         )
-    if "zonalAutoshiftStatus" in data:
+    if data.get("zonalAutoshiftStatus") is not None:
         import capo_arc_zonal_shift.types.zonal_autoshift_status
 
         out["zonal_autoshift_status"] = (

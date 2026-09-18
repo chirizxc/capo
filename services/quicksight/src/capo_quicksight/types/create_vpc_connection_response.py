@@ -64,11 +64,11 @@ def serialize_json(value: CreateVPCConnectionResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateVPCConnectionResponse:
     out: CreateVPCConnectionResponse = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "VPCConnectionId" in data:
+    if data.get("VPCConnectionId") is not None:
         out["vpc_connection_id"] = data["VPCConnectionId"]
-    if "CreationStatus" in data:
+    if data.get("CreationStatus") is not None:
         import capo_quicksight.types.vpc_connection_resource_status
 
         out["creation_status"] = (
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> CreateVPCConnectionResponse:
                 data["CreationStatus"]
             )
         )
-    if "AvailabilityStatus" in data:
+    if data.get("AvailabilityStatus") is not None:
         import capo_quicksight.types.vpc_connection_availability_status
 
         out["availability_status"] = (
@@ -84,6 +84,6 @@ def deserialize_json(data: dict) -> CreateVPCConnectionResponse:
                 data["AvailabilityStatus"]
             )
         )
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

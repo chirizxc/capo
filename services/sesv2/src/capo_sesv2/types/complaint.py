@@ -32,8 +32,8 @@ def serialize_json(value: Complaint) -> dict:
 
 def deserialize_json(data: dict) -> Complaint:
     out: Complaint = {}  # type: ignore[typeddict-item]
-    if "ComplaintSubType" in data:
+    if data.get("ComplaintSubType") is not None:
         out["complaint_sub_type"] = data["ComplaintSubType"]
-    if "ComplaintFeedbackType" in data:
+    if data.get("ComplaintFeedbackType") is not None:
         out["complaint_feedback_type"] = data["ComplaintFeedbackType"]
     return out

@@ -54,11 +54,11 @@ def serialize_json(value: CreateConnectorV2Request) -> dict:
 
 def deserialize_json(data: dict) -> CreateConnectorV2Request:
     out: CreateConnectorV2Request = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Provider" in data:
+    if data.get("Provider") is not None:
         import capo_securityhub.types.provider_configuration
 
         out["provider"] = (
@@ -66,12 +66,12 @@ def deserialize_json(data: dict) -> CreateConnectorV2Request:
                 data["Provider"]
             )
         )
-    if "KmsKeyArn" in data:
+    if data.get("KmsKeyArn") is not None:
         out["kms_key_arn"] = data["KmsKeyArn"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_securityhub.types.tag_map
 
         out["tags"] = capo_securityhub.types.tag_map.deserialize_json(data["Tags"])
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

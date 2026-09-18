@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> __listOfVodSource:
 
     out: __listOfVodSource = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mediatailor.types.vod_source.deserialize_json(item))
     return out

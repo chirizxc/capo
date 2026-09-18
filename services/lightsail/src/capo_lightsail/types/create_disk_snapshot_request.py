@@ -41,17 +41,17 @@ def serialize_aws_json_1_1(value: CreateDiskSnapshotRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateDiskSnapshotRequest:
     out: CreateDiskSnapshotRequest = {}  # type: ignore[typeddict-item]
-    if "diskName" in data:
+    if data.get("diskName") is not None:
         out["disk_name"] = data["diskName"]
-    if "diskSnapshotName" in data:
+    if data.get("diskSnapshotName") is not None:
         out["disk_snapshot_name"] = data["diskSnapshotName"]
     else:
         raise DeserializationError(
             "CreateDiskSnapshotRequest.disk_snapshot_name required"
         )
-    if "instanceName" in data:
+    if data.get("instanceName") is not None:
         out["instance_name"] = data["instanceName"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_lightsail.types.tag_list
 
         out["tags"] = capo_lightsail.types.tag_list.deserialize_aws_json_1_1(

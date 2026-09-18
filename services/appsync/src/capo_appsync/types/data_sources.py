@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> DataSources:
 
     out: DataSources = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_appsync.types.data_source.deserialize_json(item))
     return out

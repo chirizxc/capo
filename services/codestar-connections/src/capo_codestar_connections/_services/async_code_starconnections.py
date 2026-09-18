@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.codestarconnections#CodeStar_connections_20191201``."""
 
 import warnings
+from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +17,7 @@ from capo_codestar_connections._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_codestar_connections._auth._zapros_handler import AuthMiddleware
+from capo_codestar_connections._pagination import resolve_path as _resolve_path
 from capo_codestar_connections._services._aws_config import aaws_config
 from capo_codestar_connections._services._pipeline import (
     AsyncInterceptor,
@@ -244,10 +246,11 @@ class AsyncCodeStarconnectionsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codestar_connections.types.create_connection_input.CreateConnectionInput = {}  # type: ignore[typeddict-item]
+        input_: capo_codestar_connections.types.create_connection_input.CreateConnectionInput = {
+            "connection_name": connection_name
+        }
         if provider_type is not None:
             input_["provider_type"] = provider_type
-        input_["connection_name"] = connection_name
         if tags is not None:
             input_["tags"] = tags
         if host_arn is not None:
@@ -258,6 +261,7 @@ class AsyncCodeStarconnectionsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_host(
@@ -302,10 +306,11 @@ class AsyncCodeStarconnectionsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codestar_connections.types.create_host_input.CreateHostInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["provider_type"] = provider_type
-        input_["provider_endpoint"] = provider_endpoint
+        input_: capo_codestar_connections.types.create_host_input.CreateHostInput = {
+            "name": name,
+            "provider_type": provider_type,
+            "provider_endpoint": provider_endpoint,
+        }
         if vpc_configuration is not None:
             input_["vpc_configuration"] = vpc_configuration
         if tags is not None:
@@ -316,6 +321,7 @@ class AsyncCodeStarconnectionsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_repository_link(
@@ -366,10 +372,11 @@ class AsyncCodeStarconnectionsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codestar_connections.types.create_repository_link_input.CreateRepositoryLinkInput = {}  # type: ignore[typeddict-item]
-        input_["connection_arn"] = connection_arn
-        input_["owner_id"] = owner_id
-        input_["repository_name"] = repository_name
+        input_: capo_codestar_connections.types.create_repository_link_input.CreateRepositoryLinkInput = {
+            "connection_arn": connection_arn,
+            "owner_id": owner_id,
+            "repository_name": repository_name,
+        }
         if encryption_key_arn is not None:
             input_["encryption_key_arn"] = encryption_key_arn
         if tags is not None:
@@ -380,6 +387,7 @@ class AsyncCodeStarconnectionsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_sync_configuration(
@@ -438,13 +446,14 @@ class AsyncCodeStarconnectionsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codestar_connections.types.create_sync_configuration_input.CreateSyncConfigurationInput = {}  # type: ignore[typeddict-item]
-        input_["branch"] = branch
-        input_["config_file"] = config_file
-        input_["repository_link_id"] = repository_link_id
-        input_["resource_name"] = resource_name
-        input_["role_arn"] = role_arn
-        input_["sync_type"] = sync_type
+        input_: capo_codestar_connections.types.create_sync_configuration_input.CreateSyncConfigurationInput = {
+            "branch": branch,
+            "config_file": config_file,
+            "repository_link_id": repository_link_id,
+            "resource_name": resource_name,
+            "role_arn": role_arn,
+            "sync_type": sync_type,
+        }
         if publish_deployment_status is not None:
             input_["publish_deployment_status"] = publish_deployment_status
         if trigger_resource_update_on is not None:
@@ -455,6 +464,7 @@ class AsyncCodeStarconnectionsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_connection(
@@ -489,14 +499,16 @@ class AsyncCodeStarconnectionsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codestar_connections.types.delete_connection_input.DeleteConnectionInput = {}  # type: ignore[typeddict-item]
-        input_["connection_arn"] = connection_arn
+        input_: capo_codestar_connections.types.delete_connection_input.DeleteConnectionInput = {
+            "connection_arn": connection_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_host(
@@ -532,14 +544,16 @@ class AsyncCodeStarconnectionsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codestar_connections.types.delete_host_input.DeleteHostInput = {}  # type: ignore[typeddict-item]
-        input_["host_arn"] = host_arn
+        input_: capo_codestar_connections.types.delete_host_input.DeleteHostInput = {
+            "host_arn": host_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_repository_link(
@@ -581,14 +595,16 @@ class AsyncCodeStarconnectionsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codestar_connections.types.delete_repository_link_input.DeleteRepositoryLinkInput = {}  # type: ignore[typeddict-item]
-        input_["repository_link_id"] = repository_link_id
+        input_: capo_codestar_connections.types.delete_repository_link_input.DeleteRepositoryLinkInput = {
+            "repository_link_id": repository_link_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_sync_configuration(
@@ -630,15 +646,17 @@ class AsyncCodeStarconnectionsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codestar_connections.types.delete_sync_configuration_input.DeleteSyncConfigurationInput = {}  # type: ignore[typeddict-item]
-        input_["sync_type"] = sync_type
-        input_["resource_name"] = resource_name
+        input_: capo_codestar_connections.types.delete_sync_configuration_input.DeleteSyncConfigurationInput = {
+            "sync_type": sync_type,
+            "resource_name": resource_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_connection(
@@ -674,14 +692,16 @@ class AsyncCodeStarconnectionsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codestar_connections.types.get_connection_input.GetConnectionInput = {}  # type: ignore[typeddict-item]
-        input_["connection_arn"] = connection_arn
+        input_: capo_codestar_connections.types.get_connection_input.GetConnectionInput = {
+            "connection_arn": connection_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_host(
@@ -717,14 +737,16 @@ class AsyncCodeStarconnectionsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codestar_connections.types.get_host_input.GetHostInput = {}  # type: ignore[typeddict-item]
-        input_["host_arn"] = host_arn
+        input_: capo_codestar_connections.types.get_host_input.GetHostInput = {
+            "host_arn": host_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_repository_link(
@@ -764,14 +786,16 @@ class AsyncCodeStarconnectionsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codestar_connections.types.get_repository_link_input.GetRepositoryLinkInput = {}  # type: ignore[typeddict-item]
-        input_["repository_link_id"] = repository_link_id
+        input_: capo_codestar_connections.types.get_repository_link_input.GetRepositoryLinkInput = {
+            "repository_link_id": repository_link_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_repository_sync_status(
@@ -814,16 +838,18 @@ class AsyncCodeStarconnectionsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codestar_connections.types.get_repository_sync_status_input.GetRepositorySyncStatusInput = {}  # type: ignore[typeddict-item]
-        input_["branch"] = branch
-        input_["repository_link_id"] = repository_link_id
-        input_["sync_type"] = sync_type
+        input_: capo_codestar_connections.types.get_repository_sync_status_input.GetRepositorySyncStatusInput = {
+            "branch": branch,
+            "repository_link_id": repository_link_id,
+            "sync_type": sync_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_resource_sync_status(
@@ -864,15 +890,17 @@ class AsyncCodeStarconnectionsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codestar_connections.types.get_resource_sync_status_input.GetResourceSyncStatusInput = {}  # type: ignore[typeddict-item]
-        input_["resource_name"] = resource_name
-        input_["sync_type"] = sync_type
+        input_: capo_codestar_connections.types.get_resource_sync_status_input.GetResourceSyncStatusInput = {
+            "resource_name": resource_name,
+            "sync_type": sync_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_sync_blocker_summary(
@@ -913,15 +941,17 @@ class AsyncCodeStarconnectionsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codestar_connections.types.get_sync_blocker_summary_input.GetSyncBlockerSummaryInput = {}  # type: ignore[typeddict-item]
-        input_["sync_type"] = sync_type
-        input_["resource_name"] = resource_name
+        input_: capo_codestar_connections.types.get_sync_blocker_summary_input.GetSyncBlockerSummaryInput = {
+            "sync_type": sync_type,
+            "resource_name": resource_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_sync_configuration(
@@ -962,15 +992,17 @@ class AsyncCodeStarconnectionsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codestar_connections.types.get_sync_configuration_input.GetSyncConfigurationInput = {}  # type: ignore[typeddict-item]
-        input_["sync_type"] = sync_type
-        input_["resource_name"] = resource_name
+        input_: capo_codestar_connections.types.get_sync_configuration_input.GetSyncConfigurationInput = {
+            "sync_type": sync_type,
+            "resource_name": resource_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_connections(
@@ -1021,7 +1053,7 @@ class AsyncCodeStarconnectionsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codestar_connections.types.list_connections_input.ListConnectionsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_codestar_connections.types.list_connections_input.ListConnectionsInput = {}
         if provider_type_filter is not None:
             input_["provider_type_filter"] = provider_type_filter
         if host_arn_filter is not None:
@@ -1036,7 +1068,39 @@ class AsyncCodeStarconnectionsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_connections(
+        self,
+        *,
+        config_overrides: Optional[AsyncCodeStarconnectionsClientConfig] = None,
+        provider_type_filter: Optional[
+            "capo_codestar_connections.types.provider_type.ProviderType"
+        ] = None,
+        host_arn_filter: Optional[
+            "capo_codestar_connections.types.host_arn.HostArn"
+        ] = None,
+        max_results: Optional[
+            "capo_codestar_connections.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_codestar_connections.types.next_token.NextToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_codestar_connections.types.list_connections_output.ListConnectionsOutput]":
+        _token = next_token
+        while True:
+            _response = await self.list_connections(
+                config_overrides=config_overrides,
+                provider_type_filter=provider_type_filter,
+                host_arn_filter=host_arn_filter,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_hosts(
         self,
@@ -1075,7 +1139,7 @@ class AsyncCodeStarconnectionsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codestar_connections.types.list_hosts_input.ListHostsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_codestar_connections.types.list_hosts_input.ListHostsInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1086,7 +1150,31 @@ class AsyncCodeStarconnectionsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_hosts(
+        self,
+        *,
+        config_overrides: Optional[AsyncCodeStarconnectionsClientConfig] = None,
+        max_results: Optional[
+            "capo_codestar_connections.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_codestar_connections.types.next_token.NextToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_codestar_connections.types.list_hosts_output.ListHostsOutput]":
+        _token = next_token
+        while True:
+            _response = await self.list_hosts(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_repository_links(
         self,
@@ -1131,7 +1219,7 @@ class AsyncCodeStarconnectionsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codestar_connections.types.list_repository_links_input.ListRepositoryLinksInput = {}  # type: ignore[typeddict-item]
+        input_: capo_codestar_connections.types.list_repository_links_input.ListRepositoryLinksInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1142,7 +1230,31 @@ class AsyncCodeStarconnectionsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_repository_links(
+        self,
+        *,
+        config_overrides: Optional[AsyncCodeStarconnectionsClientConfig] = None,
+        max_results: Optional[
+            "capo_codestar_connections.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_codestar_connections.types.sharp_next_token.SharpNextToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_codestar_connections.types.list_repository_links_output.ListRepositoryLinksOutput]":
+        _token = next_token
+        while True:
+            _response = await self.list_repository_links(
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_repository_sync_definitions(
         self,
@@ -1182,15 +1294,17 @@ class AsyncCodeStarconnectionsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codestar_connections.types.list_repository_sync_definitions_input.ListRepositorySyncDefinitionsInput = {}  # type: ignore[typeddict-item]
-        input_["repository_link_id"] = repository_link_id
-        input_["sync_type"] = sync_type
+        input_: capo_codestar_connections.types.list_repository_sync_definitions_input.ListRepositorySyncDefinitionsInput = {
+            "repository_link_id": repository_link_id,
+            "sync_type": sync_type,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_sync_configurations(
@@ -1239,20 +1353,49 @@ class AsyncCodeStarconnectionsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codestar_connections.types.list_sync_configurations_input.ListSyncConfigurationsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_codestar_connections.types.list_sync_configurations_input.ListSyncConfigurationsInput = {
+            "repository_link_id": repository_link_id,
+            "sync_type": sync_type,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["repository_link_id"] = repository_link_id
-        input_["sync_type"] = sync_type
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_sync_configurations(
+        self,
+        repository_link_id: "capo_codestar_connections.types.repository_link_id.RepositoryLinkId",
+        sync_type: "capo_codestar_connections.types.sync_configuration_type.SyncConfigurationType",
+        *,
+        config_overrides: Optional[AsyncCodeStarconnectionsClientConfig] = None,
+        max_results: Optional[
+            "capo_codestar_connections.types.max_results.MaxResults"
+        ] = None,
+        next_token: Optional[
+            "capo_codestar_connections.types.sharp_next_token.SharpNextToken"
+        ] = None,
+    ) -> "AsyncIterator[capo_codestar_connections.types.list_sync_configurations_output.ListSyncConfigurationsOutput]":
+        _token = next_token
+        while True:
+            _response = await self.list_sync_configurations(
+                repository_link_id,
+                sync_type,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_tags_for_resource(
         self,
@@ -1286,14 +1429,16 @@ class AsyncCodeStarconnectionsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codestar_connections.types.list_tags_for_resource_input.ListTagsForResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_codestar_connections.types.list_tags_for_resource_input.ListTagsForResourceInput = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -1331,15 +1476,17 @@ class AsyncCodeStarconnectionsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codestar_connections.types.tag_resource_input.TagResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_codestar_connections.types.tag_resource_input.TagResourceInput = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -1376,15 +1523,17 @@ class AsyncCodeStarconnectionsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codestar_connections.types.untag_resource_input.UntagResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_codestar_connections.types.untag_resource_input.UntagResourceInput = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_host(
@@ -1428,8 +1577,9 @@ class AsyncCodeStarconnectionsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codestar_connections.types.update_host_input.UpdateHostInput = {}  # type: ignore[typeddict-item]
-        input_["host_arn"] = host_arn
+        input_: capo_codestar_connections.types.update_host_input.UpdateHostInput = {
+            "host_arn": host_arn
+        }
         if provider_endpoint is not None:
             input_["provider_endpoint"] = provider_endpoint
         if vpc_configuration is not None:
@@ -1440,6 +1590,7 @@ class AsyncCodeStarconnectionsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_repository_link(
@@ -1488,18 +1639,20 @@ class AsyncCodeStarconnectionsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codestar_connections.types.update_repository_link_input.UpdateRepositoryLinkInput = {}  # type: ignore[typeddict-item]
+        input_: capo_codestar_connections.types.update_repository_link_input.UpdateRepositoryLinkInput = {
+            "repository_link_id": repository_link_id
+        }
         if connection_arn is not None:
             input_["connection_arn"] = connection_arn
         if encryption_key_arn is not None:
             input_["encryption_key_arn"] = encryption_key_arn
-        input_["repository_link_id"] = repository_link_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_sync_blocker(
@@ -1546,17 +1699,19 @@ class AsyncCodeStarconnectionsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codestar_connections.types.update_sync_blocker_input.UpdateSyncBlockerInput = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["sync_type"] = sync_type
-        input_["resource_name"] = resource_name
-        input_["resolved_reason"] = resolved_reason
+        input_: capo_codestar_connections.types.update_sync_blocker_input.UpdateSyncBlockerInput = {
+            "id": id,
+            "sync_type": sync_type,
+            "resource_name": resource_name,
+            "resolved_reason": resolved_reason,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_sync_configuration(
@@ -1623,17 +1778,18 @@ class AsyncCodeStarconnectionsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_codestar_connections.types.update_sync_configuration_input.UpdateSyncConfigurationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_codestar_connections.types.update_sync_configuration_input.UpdateSyncConfigurationInput = {
+            "resource_name": resource_name,
+            "sync_type": sync_type,
+        }
         if branch is not None:
             input_["branch"] = branch
         if config_file is not None:
             input_["config_file"] = config_file
         if repository_link_id is not None:
             input_["repository_link_id"] = repository_link_id
-        input_["resource_name"] = resource_name
         if role_arn is not None:
             input_["role_arn"] = role_arn
-        input_["sync_type"] = sync_type
         if publish_deployment_status is not None:
             input_["publish_deployment_status"] = publish_deployment_status
         if trigger_resource_update_on is not None:
@@ -1644,6 +1800,7 @@ class AsyncCodeStarconnectionsClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

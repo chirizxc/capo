@@ -87,31 +87,31 @@ def serialize_json(value: Outpost) -> dict:
 
 def deserialize_json(data: dict) -> Outpost:
     out: Outpost = {}  # type: ignore[typeddict-item]
-    if "OutpostId" in data:
+    if data.get("OutpostId") is not None:
         out["outpost_id"] = data["OutpostId"]
-    if "OwnerId" in data:
+    if data.get("OwnerId") is not None:
         out["owner_id"] = data["OwnerId"]
-    if "OutpostArn" in data:
+    if data.get("OutpostArn") is not None:
         out["outpost_arn"] = data["OutpostArn"]
-    if "SiteId" in data:
+    if data.get("SiteId") is not None:
         out["site_id"] = data["SiteId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "LifeCycleStatus" in data:
+    if data.get("LifeCycleStatus") is not None:
         out["life_cycle_status"] = data["LifeCycleStatus"]
-    if "AvailabilityZone" in data:
+    if data.get("AvailabilityZone") is not None:
         out["availability_zone"] = data["AvailabilityZone"]
-    if "AvailabilityZoneId" in data:
+    if data.get("AvailabilityZoneId") is not None:
         out["availability_zone_id"] = data["AvailabilityZoneId"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_outposts.types.tag_map
 
         out["tags"] = capo_outposts.types.tag_map.deserialize_json(data["Tags"])
-    if "SiteArn" in data:
+    if data.get("SiteArn") is not None:
         out["site_arn"] = data["SiteArn"]
-    if "SupportedHardwareType" in data:
+    if data.get("SupportedHardwareType") is not None:
         import capo_outposts.types.supported_hardware_type
 
         out["supported_hardware_type"] = (

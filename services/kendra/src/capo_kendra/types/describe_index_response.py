@@ -167,19 +167,19 @@ def serialize_aws_json_1_1(value: DescribeIndexResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeIndexResponse:
     out: DescribeIndexResponse = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Edition" in data:
+    if data.get("Edition") is not None:
         import capo_kendra.types.index_edition
 
         out["edition"] = capo_kendra.types.index_edition.deserialize_aws_json_1_1(
             data["Edition"]
         )
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "ServerSideEncryptionConfiguration" in data:
+    if data.get("ServerSideEncryptionConfiguration") is not None:
         import capo_kendra.types.server_side_encryption_configuration
 
         out["server_side_encryption_configuration"] = (
@@ -187,27 +187,27 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeIndexResponse:
                 data["ServerSideEncryptionConfiguration"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_kendra.types.index_status
 
         out["status"] = capo_kendra.types.index_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_kendra.types.timestamp
 
         out["created_at"] = capo_kendra.types.timestamp.deserialize_aws_json_1_1(
             data["CreatedAt"]
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_kendra.types.timestamp
 
         out["updated_at"] = capo_kendra.types.timestamp.deserialize_aws_json_1_1(
             data["UpdatedAt"]
         )
-    if "DocumentMetadataConfigurations" in data:
+    if data.get("DocumentMetadataConfigurations") is not None:
         import capo_kendra.types.document_metadata_configuration_list
 
         out["document_metadata_configurations"] = (
@@ -215,7 +215,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeIndexResponse:
                 data["DocumentMetadataConfigurations"]
             )
         )
-    if "IndexStatistics" in data:
+    if data.get("IndexStatistics") is not None:
         import capo_kendra.types.index_statistics
 
         out["index_statistics"] = (
@@ -223,9 +223,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeIndexResponse:
                 data["IndexStatistics"]
             )
         )
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "CapacityUnits" in data:
+    if data.get("CapacityUnits") is not None:
         import capo_kendra.types.capacity_units_configuration
 
         out["capacity_units"] = (
@@ -233,7 +233,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeIndexResponse:
                 data["CapacityUnits"]
             )
         )
-    if "UserTokenConfigurations" in data:
+    if data.get("UserTokenConfigurations") is not None:
         import capo_kendra.types.user_token_configuration_list
 
         out["user_token_configurations"] = (
@@ -241,7 +241,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeIndexResponse:
                 data["UserTokenConfigurations"]
             )
         )
-    if "UserContextPolicy" in data:
+    if data.get("UserContextPolicy") is not None:
         import capo_kendra.types.user_context_policy
 
         out["user_context_policy"] = (
@@ -249,7 +249,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeIndexResponse:
                 data["UserContextPolicy"]
             )
         )
-    if "UserGroupResolutionConfiguration" in data:
+    if data.get("UserGroupResolutionConfiguration") is not None:
         import capo_kendra.types.user_group_resolution_configuration
 
         out["user_group_resolution_configuration"] = (

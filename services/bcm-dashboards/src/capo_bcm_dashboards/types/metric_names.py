@@ -23,5 +23,7 @@ def deserialize_aws_json_1_0(data: list) -> MetricNames:
 
     out: MetricNames = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_bcm_dashboards.types.metric_name.deserialize_aws_json_1_0(item))
     return out

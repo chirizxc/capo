@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> PurchaseOptionBadgeList:
 
     out: PurchaseOptionBadgeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_marketplace_discovery.types.purchase_option_badge.deserialize_json(
                 item

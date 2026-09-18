@@ -65,11 +65,11 @@ def serialize_json(value: FastRestoreRule) -> dict:
 
 def deserialize_json(data: dict) -> FastRestoreRule:
     out: FastRestoreRule = {}  # type: ignore[typeddict-item]
-    if "Count" in data:
+    if data.get("Count") is not None:
         out["count"] = data["Count"]
-    if "Interval" in data:
+    if data.get("Interval") is not None:
         out["interval"] = data["Interval"]
-    if "IntervalUnit" in data:
+    if data.get("IntervalUnit") is not None:
         import capo_dlm.types.retention_interval_unit_values
 
         out["interval_unit"] = (
@@ -77,7 +77,7 @@ def deserialize_json(data: dict) -> FastRestoreRule:
                 data["IntervalUnit"]
             )
         )
-    if "AvailabilityZones" in data:
+    if data.get("AvailabilityZones") is not None:
         import capo_dlm.types.availability_zone_list
 
         out["availability_zones"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> FastRestoreRule:
                 data["AvailabilityZones"]
             )
         )
-    if "AvailabilityZoneIds" in data:
+    if data.get("AvailabilityZoneIds") is not None:
         import capo_dlm.types.availability_zone_id_list
 
         out["availability_zone_ids"] = (

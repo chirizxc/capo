@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AssetContractList:
 
     out: AssetContractList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_managedblockchain_query.types.asset_contract.deserialize_json(item)
         )

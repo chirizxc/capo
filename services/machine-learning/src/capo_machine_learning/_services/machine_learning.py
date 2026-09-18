@@ -249,16 +249,18 @@ class MachineLearningClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_machine_learning.types.add_tags_input.AddTagsInput = {}  # type: ignore[typeddict-item]
-        input_["tags"] = tags
-        input_["resource_id"] = resource_id
-        input_["resource_type"] = resource_type
+        input_: capo_machine_learning.types.add_tags_input.AddTagsInput = {
+            "tags": tags,
+            "resource_id": resource_id,
+            "resource_type": resource_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_batch_prediction(
@@ -304,19 +306,21 @@ class MachineLearningClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_machine_learning.types.create_batch_prediction_input.CreateBatchPredictionInput = {}  # type: ignore[typeddict-item]
-        input_["batch_prediction_id"] = batch_prediction_id
+        input_: capo_machine_learning.types.create_batch_prediction_input.CreateBatchPredictionInput = {
+            "batch_prediction_id": batch_prediction_id,
+            "ml_model_id": ml_model_id,
+            "batch_prediction_data_source_id": batch_prediction_data_source_id,
+            "output_uri": output_uri,
+        }
         if batch_prediction_name is not None:
             input_["batch_prediction_name"] = batch_prediction_name
-        input_["ml_model_id"] = ml_model_id
-        input_["batch_prediction_data_source_id"] = batch_prediction_data_source_id
-        input_["output_uri"] = output_uri
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_data_source_from_rds(
@@ -364,12 +368,13 @@ class MachineLearningClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_machine_learning.types.create_data_source_from_rds_input.CreateDataSourceFromRDSInput = {}  # type: ignore[typeddict-item]
-        input_["data_source_id"] = data_source_id
+        input_: capo_machine_learning.types.create_data_source_from_rds_input.CreateDataSourceFromRDSInput = {
+            "data_source_id": data_source_id,
+            "rds_data": rds_data,
+            "role_arn": role_arn,
+        }
         if data_source_name is not None:
             input_["data_source_name"] = data_source_name
-        input_["rds_data"] = rds_data
-        input_["role_arn"] = role_arn
         if compute_statistics is not None:
             input_["compute_statistics"] = compute_statistics
 
@@ -378,6 +383,7 @@ class MachineLearningClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_data_source_from_redshift(
@@ -425,12 +431,13 @@ class MachineLearningClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_machine_learning.types.create_data_source_from_redshift_input.CreateDataSourceFromRedshiftInput = {}  # type: ignore[typeddict-item]
-        input_["data_source_id"] = data_source_id
+        input_: capo_machine_learning.types.create_data_source_from_redshift_input.CreateDataSourceFromRedshiftInput = {
+            "data_source_id": data_source_id,
+            "data_spec": data_spec,
+            "role_arn": role_arn,
+        }
         if data_source_name is not None:
             input_["data_source_name"] = data_source_name
-        input_["data_spec"] = data_spec
-        input_["role_arn"] = role_arn
         if compute_statistics is not None:
             input_["compute_statistics"] = compute_statistics
 
@@ -439,6 +446,7 @@ class MachineLearningClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_data_source_from_s3(
@@ -484,11 +492,12 @@ class MachineLearningClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_machine_learning.types.create_data_source_from_s3_input.CreateDataSourceFromS3Input = {}  # type: ignore[typeddict-item]
-        input_["data_source_id"] = data_source_id
+        input_: capo_machine_learning.types.create_data_source_from_s3_input.CreateDataSourceFromS3Input = {
+            "data_source_id": data_source_id,
+            "data_spec": data_spec,
+        }
         if data_source_name is not None:
             input_["data_source_name"] = data_source_name
-        input_["data_spec"] = data_spec
         if compute_statistics is not None:
             input_["compute_statistics"] = compute_statistics
 
@@ -497,6 +506,7 @@ class MachineLearningClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_evaluation(
@@ -540,18 +550,20 @@ class MachineLearningClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_machine_learning.types.create_evaluation_input.CreateEvaluationInput = {}  # type: ignore[typeddict-item]
-        input_["evaluation_id"] = evaluation_id
+        input_: capo_machine_learning.types.create_evaluation_input.CreateEvaluationInput = {
+            "evaluation_id": evaluation_id,
+            "ml_model_id": ml_model_id,
+            "evaluation_data_source_id": evaluation_data_source_id,
+        }
         if evaluation_name is not None:
             input_["evaluation_name"] = evaluation_name
-        input_["ml_model_id"] = ml_model_id
-        input_["evaluation_data_source_id"] = evaluation_data_source_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_ml_model(
@@ -603,14 +615,15 @@ class MachineLearningClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_machine_learning.types.create_ml_model_input.CreateMLModelInput = {}  # type: ignore[typeddict-item]
-        input_["ml_model_id"] = ml_model_id
+        input_: capo_machine_learning.types.create_ml_model_input.CreateMLModelInput = {
+            "ml_model_id": ml_model_id,
+            "ml_model_type": ml_model_type,
+            "training_data_source_id": training_data_source_id,
+        }
         if ml_model_name is not None:
             input_["ml_model_name"] = ml_model_name
-        input_["ml_model_type"] = ml_model_type
         if parameters is not None:
             input_["parameters"] = parameters
-        input_["training_data_source_id"] = training_data_source_id
         if recipe is not None:
             input_["recipe"] = recipe
         if recipe_uri is not None:
@@ -621,6 +634,7 @@ class MachineLearningClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_realtime_endpoint(
@@ -656,14 +670,16 @@ class MachineLearningClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_machine_learning.types.create_realtime_endpoint_input.CreateRealtimeEndpointInput = {}  # type: ignore[typeddict-item]
-        input_["ml_model_id"] = ml_model_id
+        input_: capo_machine_learning.types.create_realtime_endpoint_input.CreateRealtimeEndpointInput = {
+            "ml_model_id": ml_model_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_batch_prediction(
@@ -699,14 +715,16 @@ class MachineLearningClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_machine_learning.types.delete_batch_prediction_input.DeleteBatchPredictionInput = {}  # type: ignore[typeddict-item]
-        input_["batch_prediction_id"] = batch_prediction_id
+        input_: capo_machine_learning.types.delete_batch_prediction_input.DeleteBatchPredictionInput = {
+            "batch_prediction_id": batch_prediction_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_data_source(
@@ -742,14 +760,16 @@ class MachineLearningClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_machine_learning.types.delete_data_source_input.DeleteDataSourceInput = {}  # type: ignore[typeddict-item]
-        input_["data_source_id"] = data_source_id
+        input_: capo_machine_learning.types.delete_data_source_input.DeleteDataSourceInput = {
+            "data_source_id": data_source_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_evaluation(
@@ -785,14 +805,16 @@ class MachineLearningClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_machine_learning.types.delete_evaluation_input.DeleteEvaluationInput = {}  # type: ignore[typeddict-item]
-        input_["evaluation_id"] = evaluation_id
+        input_: capo_machine_learning.types.delete_evaluation_input.DeleteEvaluationInput = {
+            "evaluation_id": evaluation_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_ml_model(
@@ -828,14 +850,16 @@ class MachineLearningClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_machine_learning.types.delete_ml_model_input.DeleteMLModelInput = {}  # type: ignore[typeddict-item]
-        input_["ml_model_id"] = ml_model_id
+        input_: capo_machine_learning.types.delete_ml_model_input.DeleteMLModelInput = {
+            "ml_model_id": ml_model_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_realtime_endpoint(
@@ -871,14 +895,16 @@ class MachineLearningClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_machine_learning.types.delete_realtime_endpoint_input.DeleteRealtimeEndpointInput = {}  # type: ignore[typeddict-item]
-        input_["ml_model_id"] = ml_model_id
+        input_: capo_machine_learning.types.delete_realtime_endpoint_input.DeleteRealtimeEndpointInput = {
+            "ml_model_id": ml_model_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_tags(
@@ -919,16 +945,18 @@ class MachineLearningClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_machine_learning.types.delete_tags_input.DeleteTagsInput = {}  # type: ignore[typeddict-item]
-        input_["tag_keys"] = tag_keys
-        input_["resource_id"] = resource_id
-        input_["resource_type"] = resource_type
+        input_: capo_machine_learning.types.delete_tags_input.DeleteTagsInput = {
+            "tag_keys": tag_keys,
+            "resource_id": resource_id,
+            "resource_type": resource_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_batch_predictions(
@@ -1001,7 +1029,7 @@ class MachineLearningClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_machine_learning.types.describe_batch_predictions_input.DescribeBatchPredictionsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_machine_learning.types.describe_batch_predictions_input.DescribeBatchPredictionsInput = {}
         if filter_variable is not None:
             input_["filter_variable"] = filter_variable
         if eq is not None:
@@ -1030,6 +1058,7 @@ class MachineLearningClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_batch_predictions(
@@ -1159,7 +1188,7 @@ class MachineLearningClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_machine_learning.types.describe_data_sources_input.DescribeDataSourcesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_machine_learning.types.describe_data_sources_input.DescribeDataSourcesInput = {}
         if filter_variable is not None:
             input_["filter_variable"] = filter_variable
         if eq is not None:
@@ -1188,6 +1217,7 @@ class MachineLearningClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_data_sources(
@@ -1317,7 +1347,7 @@ class MachineLearningClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_machine_learning.types.describe_evaluations_input.DescribeEvaluationsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_machine_learning.types.describe_evaluations_input.DescribeEvaluationsInput = {}
         if filter_variable is not None:
             input_["filter_variable"] = filter_variable
         if eq is not None:
@@ -1346,6 +1376,7 @@ class MachineLearningClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_evaluations(
@@ -1475,7 +1506,7 @@ class MachineLearningClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_machine_learning.types.describe_ml_models_input.DescribeMLModelsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_machine_learning.types.describe_ml_models_input.DescribeMLModelsInput = {}
         if filter_variable is not None:
             input_["filter_variable"] = filter_variable
         if eq is not None:
@@ -1504,6 +1535,7 @@ class MachineLearningClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_ml_models(
@@ -1598,15 +1630,17 @@ class MachineLearningClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_machine_learning.types.describe_tags_input.DescribeTagsInput = {}  # type: ignore[typeddict-item]
-        input_["resource_id"] = resource_id
-        input_["resource_type"] = resource_type
+        input_: capo_machine_learning.types.describe_tags_input.DescribeTagsInput = {
+            "resource_id": resource_id,
+            "resource_type": resource_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_batch_prediction(
@@ -1642,14 +1676,16 @@ class MachineLearningClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_machine_learning.types.get_batch_prediction_input.GetBatchPredictionInput = {}  # type: ignore[typeddict-item]
-        input_["batch_prediction_id"] = batch_prediction_id
+        input_: capo_machine_learning.types.get_batch_prediction_input.GetBatchPredictionInput = {
+            "batch_prediction_id": batch_prediction_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_data_source(
@@ -1687,8 +1723,9 @@ class MachineLearningClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_machine_learning.types.get_data_source_input.GetDataSourceInput = {}  # type: ignore[typeddict-item]
-        input_["data_source_id"] = data_source_id
+        input_: capo_machine_learning.types.get_data_source_input.GetDataSourceInput = {
+            "data_source_id": data_source_id
+        }
         if verbose is not None:
             input_["verbose"] = verbose
 
@@ -1697,6 +1734,7 @@ class MachineLearningClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_evaluation(
@@ -1732,14 +1770,16 @@ class MachineLearningClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_machine_learning.types.get_evaluation_input.GetEvaluationInput = {}  # type: ignore[typeddict-item]
-        input_["evaluation_id"] = evaluation_id
+        input_: capo_machine_learning.types.get_evaluation_input.GetEvaluationInput = {
+            "evaluation_id": evaluation_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_ml_model(
@@ -1777,8 +1817,9 @@ class MachineLearningClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_machine_learning.types.get_ml_model_input.GetMLModelInput = {}  # type: ignore[typeddict-item]
-        input_["ml_model_id"] = ml_model_id
+        input_: capo_machine_learning.types.get_ml_model_input.GetMLModelInput = {
+            "ml_model_id": ml_model_id
+        }
         if verbose is not None:
             input_["verbose"] = verbose
 
@@ -1787,6 +1828,7 @@ class MachineLearningClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def predict(
@@ -1826,16 +1868,18 @@ class MachineLearningClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_machine_learning.types.predict_input.PredictInput = {}  # type: ignore[typeddict-item]
-        input_["ml_model_id"] = ml_model_id
-        input_["record"] = record
-        input_["predict_endpoint"] = predict_endpoint
+        input_: capo_machine_learning.types.predict_input.PredictInput = {
+            "ml_model_id": ml_model_id,
+            "record": record,
+            "predict_endpoint": predict_endpoint,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_batch_prediction(
@@ -1873,15 +1917,17 @@ class MachineLearningClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_machine_learning.types.update_batch_prediction_input.UpdateBatchPredictionInput = {}  # type: ignore[typeddict-item]
-        input_["batch_prediction_id"] = batch_prediction_id
-        input_["batch_prediction_name"] = batch_prediction_name
+        input_: capo_machine_learning.types.update_batch_prediction_input.UpdateBatchPredictionInput = {
+            "batch_prediction_id": batch_prediction_id,
+            "batch_prediction_name": batch_prediction_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_data_source(
@@ -1919,15 +1965,17 @@ class MachineLearningClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_machine_learning.types.update_data_source_input.UpdateDataSourceInput = {}  # type: ignore[typeddict-item]
-        input_["data_source_id"] = data_source_id
-        input_["data_source_name"] = data_source_name
+        input_: capo_machine_learning.types.update_data_source_input.UpdateDataSourceInput = {
+            "data_source_id": data_source_id,
+            "data_source_name": data_source_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_evaluation(
@@ -1965,15 +2013,17 @@ class MachineLearningClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_machine_learning.types.update_evaluation_input.UpdateEvaluationInput = {}  # type: ignore[typeddict-item]
-        input_["evaluation_id"] = evaluation_id
-        input_["evaluation_name"] = evaluation_name
+        input_: capo_machine_learning.types.update_evaluation_input.UpdateEvaluationInput = {
+            "evaluation_id": evaluation_id,
+            "evaluation_name": evaluation_name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_ml_model(
@@ -2017,8 +2067,9 @@ class MachineLearningClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_machine_learning.types.update_ml_model_input.UpdateMLModelInput = {}  # type: ignore[typeddict-item]
-        input_["ml_model_id"] = ml_model_id
+        input_: capo_machine_learning.types.update_ml_model_input.UpdateMLModelInput = {
+            "ml_model_id": ml_model_id
+        }
         if ml_model_name is not None:
             input_["ml_model_name"] = ml_model_name
         if score_threshold is not None:
@@ -2029,6 +2080,7 @@ class MachineLearningClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

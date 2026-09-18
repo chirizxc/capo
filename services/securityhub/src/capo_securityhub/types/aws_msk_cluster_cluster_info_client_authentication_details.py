@@ -57,7 +57,7 @@ def serialize_json(value: AwsMskClusterClusterInfoClientAuthenticationDetails) -
 
 def deserialize_json(data: dict) -> AwsMskClusterClusterInfoClientAuthenticationDetails:
     out: AwsMskClusterClusterInfoClientAuthenticationDetails = {}  # type: ignore[typeddict-item]
-    if "Sasl" in data:
+    if data.get("Sasl") is not None:
         import capo_securityhub.types.aws_msk_cluster_cluster_info_client_authentication_sasl_details
 
         out["sasl"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> AwsMskClusterClusterInfoClientAuthentication
                 data["Sasl"]
             )
         )
-    if "Unauthenticated" in data:
+    if data.get("Unauthenticated") is not None:
         import capo_securityhub.types.aws_msk_cluster_cluster_info_client_authentication_unauthenticated_details
 
         out["unauthenticated"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> AwsMskClusterClusterInfoClientAuthentication
                 data["Unauthenticated"]
             )
         )
-    if "Tls" in data:
+    if data.get("Tls") is not None:
         import capo_securityhub.types.aws_msk_cluster_cluster_info_client_authentication_tls_details
 
         out["tls"] = (

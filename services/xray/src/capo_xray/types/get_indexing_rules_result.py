@@ -32,12 +32,12 @@ def serialize_json(value: GetIndexingRulesResult) -> dict:
 
 def deserialize_json(data: dict) -> GetIndexingRulesResult:
     out: GetIndexingRulesResult = {}  # type: ignore[typeddict-item]
-    if "IndexingRules" in data:
+    if data.get("IndexingRules") is not None:
         import capo_xray.types.indexing_rule_list
 
         out["indexing_rules"] = capo_xray.types.indexing_rule_list.deserialize_json(
             data["IndexingRules"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

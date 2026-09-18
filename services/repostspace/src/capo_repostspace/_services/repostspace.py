@@ -226,17 +226,19 @@ class repostspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_repostspace.types.batch_add_channel_role_to_accessors_input.BatchAddChannelRoleToAccessorsInput = {}  # type: ignore[typeddict-item]
-        input_["space_id"] = space_id
-        input_["channel_id"] = channel_id
-        input_["accessor_ids"] = accessor_ids
-        input_["channel_role"] = channel_role
+        input_: capo_repostspace.types.batch_add_channel_role_to_accessors_input.BatchAddChannelRoleToAccessorsInput = {
+            "space_id": space_id,
+            "channel_id": channel_id,
+            "accessor_ids": accessor_ids,
+            "channel_role": channel_role,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_add_role(
@@ -283,16 +285,18 @@ class repostspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_repostspace.types.batch_add_role_input.BatchAddRoleInput = {}  # type: ignore[typeddict-item]
-        input_["space_id"] = space_id
-        input_["accessor_ids"] = accessor_ids
-        input_["role"] = role
+        input_: capo_repostspace.types.batch_add_role_input.BatchAddRoleInput = {
+            "space_id": space_id,
+            "accessor_ids": accessor_ids,
+            "role": role,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_remove_channel_role_from_accessors(
@@ -341,17 +345,19 @@ class repostspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_repostspace.types.batch_remove_channel_role_from_accessors_input.BatchRemoveChannelRoleFromAccessorsInput = {}  # type: ignore[typeddict-item]
-        input_["space_id"] = space_id
-        input_["channel_id"] = channel_id
-        input_["accessor_ids"] = accessor_ids
-        input_["channel_role"] = channel_role
+        input_: capo_repostspace.types.batch_remove_channel_role_from_accessors_input.BatchRemoveChannelRoleFromAccessorsInput = {
+            "space_id": space_id,
+            "channel_id": channel_id,
+            "accessor_ids": accessor_ids,
+            "channel_role": channel_role,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_remove_role(
@@ -398,16 +404,18 @@ class repostspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_repostspace.types.batch_remove_role_input.BatchRemoveRoleInput = {}  # type: ignore[typeddict-item]
-        input_["space_id"] = space_id
-        input_["accessor_ids"] = accessor_ids
-        input_["role"] = role
+        input_: capo_repostspace.types.batch_remove_role_input.BatchRemoveRoleInput = {
+            "space_id": space_id,
+            "accessor_ids": accessor_ids,
+            "role": role,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_channel(
@@ -458,9 +466,10 @@ class repostspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_repostspace.types.create_channel_input.CreateChannelInput = {}  # type: ignore[typeddict-item]
-        input_["space_id"] = space_id
-        input_["channel_name"] = channel_name
+        input_: capo_repostspace.types.create_channel_input.CreateChannelInput = {
+            "space_id": space_id,
+            "channel_name": channel_name,
+        }
         if channel_description is not None:
             input_["channel_description"] = channel_description
 
@@ -469,6 +478,7 @@ class repostspaceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_space(
@@ -526,10 +536,11 @@ class repostspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_repostspace.types.create_space_input.CreateSpaceInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["subdomain"] = subdomain
-        input_["tier"] = tier
+        input_: capo_repostspace.types.create_space_input.CreateSpaceInput = {
+            "name": name,
+            "subdomain": subdomain,
+            "tier": tier,
+        }
         if description is not None:
             input_["description"] = description
         if user_kms_key is not None:
@@ -546,6 +557,7 @@ class repostspaceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_space(
@@ -581,14 +593,16 @@ class repostspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_repostspace.types.delete_space_input.DeleteSpaceInput = {}  # type: ignore[typeddict-item]
-        input_["space_id"] = space_id
+        input_: capo_repostspace.types.delete_space_input.DeleteSpaceInput = {
+            "space_id": space_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def deregister_admin(
@@ -626,15 +640,17 @@ class repostspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_repostspace.types.deregister_admin_input.DeregisterAdminInput = {}  # type: ignore[typeddict-item]
-        input_["space_id"] = space_id
-        input_["admin_id"] = admin_id
+        input_: capo_repostspace.types.deregister_admin_input.DeregisterAdminInput = {
+            "space_id": space_id,
+            "admin_id": admin_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_channel(
@@ -679,15 +695,17 @@ class repostspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_repostspace.types.get_channel_input.GetChannelInput = {}  # type: ignore[typeddict-item]
-        input_["space_id"] = space_id
-        input_["channel_id"] = channel_id
+        input_: capo_repostspace.types.get_channel_input.GetChannelInput = {
+            "space_id": space_id,
+            "channel_id": channel_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_space(
@@ -725,14 +743,16 @@ class repostspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_repostspace.types.get_space_input.GetSpaceInput = {}  # type: ignore[typeddict-item]
-        input_["space_id"] = space_id
+        input_: capo_repostspace.types.get_space_input.GetSpaceInput = {
+            "space_id": space_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_channels(
@@ -780,8 +800,9 @@ class repostspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_repostspace.types.list_channels_input.ListChannelsInput = {}  # type: ignore[typeddict-item]
-        input_["space_id"] = space_id
+        input_: capo_repostspace.types.list_channels_input.ListChannelsInput = {
+            "space_id": space_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -792,6 +813,7 @@ class repostspaceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_channels(
@@ -857,7 +879,7 @@ class repostspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_repostspace.types.list_spaces_input.ListSpacesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_repostspace.types.list_spaces_input.ListSpacesInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -868,6 +890,7 @@ class repostspaceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_spaces(
@@ -928,14 +951,16 @@ class repostspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_repostspace.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_repostspace.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def register_admin(
@@ -973,15 +998,17 @@ class repostspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_repostspace.types.register_admin_input.RegisterAdminInput = {}  # type: ignore[typeddict-item]
-        input_["space_id"] = space_id
-        input_["admin_id"] = admin_id
+        input_: capo_repostspace.types.register_admin_input.RegisterAdminInput = {
+            "space_id": space_id,
+            "admin_id": admin_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def send_invites(
@@ -1023,17 +1050,19 @@ class repostspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_repostspace.types.send_invites_input.SendInvitesInput = {}  # type: ignore[typeddict-item]
-        input_["space_id"] = space_id
-        input_["accessor_ids"] = accessor_ids
-        input_["title"] = title
-        input_["body"] = body
+        input_: capo_repostspace.types.send_invites_input.SendInvitesInput = {
+            "space_id": space_id,
+            "accessor_ids": accessor_ids,
+            "title": title,
+            "body": body,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -1073,15 +1102,17 @@ class repostspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_repostspace.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_repostspace.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -1121,15 +1152,17 @@ class repostspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_repostspace.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_repostspace.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_channel(
@@ -1181,10 +1214,11 @@ class repostspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_repostspace.types.update_channel_input.UpdateChannelInput = {}  # type: ignore[typeddict-item]
-        input_["space_id"] = space_id
-        input_["channel_id"] = channel_id
-        input_["channel_name"] = channel_name
+        input_: capo_repostspace.types.update_channel_input.UpdateChannelInput = {
+            "space_id": space_id,
+            "channel_id": channel_id,
+            "channel_name": channel_name,
+        }
         if channel_description is not None:
             input_["channel_description"] = channel_description
 
@@ -1193,6 +1227,7 @@ class repostspaceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_space(
@@ -1241,8 +1276,9 @@ class repostspaceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_repostspace.types.update_space_input.UpdateSpaceInput = {}  # type: ignore[typeddict-item]
-        input_["space_id"] = space_id
+        input_: capo_repostspace.types.update_space_input.UpdateSpaceInput = {
+            "space_id": space_id
+        }
         if description is not None:
             input_["description"] = description
         if tier is not None:
@@ -1257,6 +1293,7 @@ class repostspaceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

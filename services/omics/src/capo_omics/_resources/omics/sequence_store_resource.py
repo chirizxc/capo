@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from collections.abc import AsyncIterator, Iterator
 from typing import TYPE_CHECKING, Optional
 
@@ -170,16 +171,18 @@ class SequenceStoreResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.create_sequence_store_request.CreateSequenceStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_omics.types.create_sequence_store_request.CreateSequenceStoreRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if sse_config is not None:
             input_["sse_config"] = sse_config
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if fallback_location is not None:
             input_["fallback_location"] = fallback_location
         if e_tag_algorithm_family is not None:
@@ -194,6 +197,7 @@ class SequenceStoreResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -232,14 +236,16 @@ class SequenceStoreResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.get_sequence_store_request.GetSequenceStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_omics.types.get_sequence_store_request.GetSequenceStoreRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -299,14 +305,16 @@ class SequenceStoreResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.update_sequence_store_request.UpdateSequenceStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_omics.types.update_sequence_store_request.UpdateSequenceStoreRequest = {
+            "id": id
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
             input_["description"] = description
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if fallback_location is not None:
             input_["fallback_location"] = fallback_location
         if propagated_set_level_tags is not None:
@@ -319,6 +327,7 @@ class SequenceStoreResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -358,14 +367,16 @@ class SequenceStoreResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.delete_sequence_store_request.DeleteSequenceStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_omics.types.delete_sequence_store_request.DeleteSequenceStoreRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -409,7 +420,7 @@ class SequenceStoreResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.list_sequence_stores_request.ListSequenceStoresRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_omics.types.list_sequence_stores_request.ListSequenceStoresRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -422,6 +433,7 @@ class SequenceStoreResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def abort_multipart_read_set_upload(
@@ -464,15 +476,17 @@ class SequenceStoreResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.abort_multipart_read_set_upload_request.AbortMultipartReadSetUploadRequest = {}  # type: ignore[typeddict-item]
-        input_["sequence_store_id"] = sequence_store_id
-        input_["upload_id"] = upload_id
+        input_: capo_omics.types.abort_multipart_read_set_upload_request.AbortMultipartReadSetUploadRequest = {
+            "sequence_store_id": sequence_store_id,
+            "upload_id": upload_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def complete_multipart_read_set_upload(
@@ -517,16 +531,18 @@ class SequenceStoreResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.complete_multipart_read_set_upload_request.CompleteMultipartReadSetUploadRequest = {}  # type: ignore[typeddict-item]
-        input_["sequence_store_id"] = sequence_store_id
-        input_["upload_id"] = upload_id
-        input_["parts"] = parts
+        input_: capo_omics.types.complete_multipart_read_set_upload_request.CompleteMultipartReadSetUploadRequest = {
+            "sequence_store_id": sequence_store_id,
+            "upload_id": upload_id,
+            "parts": parts,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_multipart_read_set_upload(
@@ -589,18 +605,19 @@ class SequenceStoreResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.create_multipart_read_set_upload_request.CreateMultipartReadSetUploadRequest = {}  # type: ignore[typeddict-item]
-        input_["sequence_store_id"] = sequence_store_id
+        input_: capo_omics.types.create_multipart_read_set_upload_request.CreateMultipartReadSetUploadRequest = {
+            "sequence_store_id": sequence_store_id,
+            "source_file_type": source_file_type,
+            "subject_id": subject_id,
+            "sample_id": sample_id,
+            "name": name,
+        }
         if client_token is not None:
             input_["client_token"] = client_token
-        input_["source_file_type"] = source_file_type
-        input_["subject_id"] = subject_id
-        input_["sample_id"] = sample_id
         if generated_from is not None:
             input_["generated_from"] = generated_from
         if reference_arn is not None:
             input_["reference_arn"] = reference_arn
-        input_["name"] = name
         if description is not None:
             input_["description"] = description
         if tags is not None:
@@ -611,6 +628,7 @@ class SequenceStoreResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_read_set_activation_job(
@@ -651,15 +669,17 @@ class SequenceStoreResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.get_read_set_activation_job_request.GetReadSetActivationJobRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["sequence_store_id"] = sequence_store_id
+        input_: capo_omics.types.get_read_set_activation_job_request.GetReadSetActivationJobRequest = {
+            "id": id,
+            "sequence_store_id": sequence_store_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_read_set_export_job(
@@ -702,15 +722,17 @@ class SequenceStoreResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.get_read_set_export_job_request.GetReadSetExportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["sequence_store_id"] = sequence_store_id
-        input_["id"] = id
+        input_: capo_omics.types.get_read_set_export_job_request.GetReadSetExportJobRequest = {
+            "sequence_store_id": sequence_store_id,
+            "id": id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_read_set_import_job(
@@ -753,15 +775,17 @@ class SequenceStoreResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.get_read_set_import_job_request.GetReadSetImportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["sequence_store_id"] = sequence_store_id
+        input_: capo_omics.types.get_read_set_import_job_request.GetReadSetImportJobRequest = {
+            "id": id,
+            "sequence_store_id": sequence_store_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_multipart_read_set_uploads(
@@ -806,8 +830,9 @@ class SequenceStoreResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.list_multipart_read_set_uploads_request.ListMultipartReadSetUploadsRequest = {}  # type: ignore[typeddict-item]
-        input_["sequence_store_id"] = sequence_store_id
+        input_: capo_omics.types.list_multipart_read_set_uploads_request.ListMultipartReadSetUploadsRequest = {
+            "sequence_store_id": sequence_store_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -818,6 +843,7 @@ class SequenceStoreResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_read_set_activation_jobs(
@@ -864,8 +890,9 @@ class SequenceStoreResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.list_read_set_activation_jobs_request.ListReadSetActivationJobsRequest = {}  # type: ignore[typeddict-item]
-        input_["sequence_store_id"] = sequence_store_id
+        input_: capo_omics.types.list_read_set_activation_jobs_request.ListReadSetActivationJobsRequest = {
+            "sequence_store_id": sequence_store_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -878,6 +905,7 @@ class SequenceStoreResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_read_set_export_jobs(
@@ -924,8 +952,9 @@ class SequenceStoreResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.list_read_set_export_jobs_request.ListReadSetExportJobsRequest = {}  # type: ignore[typeddict-item]
-        input_["sequence_store_id"] = sequence_store_id
+        input_: capo_omics.types.list_read_set_export_jobs_request.ListReadSetExportJobsRequest = {
+            "sequence_store_id": sequence_store_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -938,6 +967,7 @@ class SequenceStoreResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_read_set_import_jobs(
@@ -984,12 +1014,13 @@ class SequenceStoreResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.list_read_set_import_jobs_request.ListReadSetImportJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_omics.types.list_read_set_import_jobs_request.ListReadSetImportJobsRequest = {
+            "sequence_store_id": sequence_store_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["sequence_store_id"] = sequence_store_id
         if filter is not None:
             input_["filter"] = filter
 
@@ -998,6 +1029,7 @@ class SequenceStoreResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_read_set_upload_parts(
@@ -1050,10 +1082,11 @@ class SequenceStoreResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.list_read_set_upload_parts_request.ListReadSetUploadPartsRequest = {}  # type: ignore[typeddict-item]
-        input_["sequence_store_id"] = sequence_store_id
-        input_["upload_id"] = upload_id
-        input_["part_source"] = part_source
+        input_: capo_omics.types.list_read_set_upload_parts_request.ListReadSetUploadPartsRequest = {
+            "sequence_store_id": sequence_store_id,
+            "upload_id": upload_id,
+            "part_source": part_source,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1066,6 +1099,7 @@ class SequenceStoreResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_read_set_activation_job(
@@ -1109,17 +1143,19 @@ class SequenceStoreResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.start_read_set_activation_job_request.StartReadSetActivationJobRequest = {}  # type: ignore[typeddict-item]
-        input_["sequence_store_id"] = sequence_store_id
+        input_: capo_omics.types.start_read_set_activation_job_request.StartReadSetActivationJobRequest = {
+            "sequence_store_id": sequence_store_id,
+            "sources": sources,
+        }
         if client_token is not None:
             input_["client_token"] = client_token
-        input_["sources"] = sources
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_read_set_export_job(
@@ -1167,19 +1203,21 @@ class SequenceStoreResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.start_read_set_export_job_request.StartReadSetExportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["sequence_store_id"] = sequence_store_id
-        input_["destination"] = destination
-        input_["role_arn"] = role_arn
+        input_: capo_omics.types.start_read_set_export_job_request.StartReadSetExportJobRequest = {
+            "sequence_store_id": sequence_store_id,
+            "destination": destination,
+            "role_arn": role_arn,
+            "sources": sources,
+        }
         if client_token is not None:
             input_["client_token"] = client_token
-        input_["sources"] = sources
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_read_set_import_job(
@@ -1225,18 +1263,20 @@ class SequenceStoreResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.start_read_set_import_job_request.StartReadSetImportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["sequence_store_id"] = sequence_store_id
-        input_["role_arn"] = role_arn
+        input_: capo_omics.types.start_read_set_import_job_request.StartReadSetImportJobRequest = {
+            "sequence_store_id": sequence_store_id,
+            "role_arn": role_arn,
+            "sources": sources,
+        }
         if client_token is not None:
             input_["client_token"] = client_token
-        input_["sources"] = sources
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def upload_read_set_part(
@@ -1285,18 +1325,20 @@ class SequenceStoreResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.upload_read_set_part_request.UploadReadSetPartRequest = {}  # type: ignore[typeddict-item]
-        input_["sequence_store_id"] = sequence_store_id
-        input_["upload_id"] = upload_id
-        input_["part_source"] = part_source
-        input_["part_number"] = part_number
-        input_["payload"] = ensure_sync_iterator(payload)
+        input_: capo_omics.types.upload_read_set_part_request.UploadReadSetPartRequest = {
+            "sequence_store_id": sequence_store_id,
+            "upload_id": upload_id,
+            "part_source": part_source,
+            "part_number": part_number,
+            "payload": ensure_sync_iterator(payload),
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -1367,16 +1409,18 @@ class AsyncSequenceStoreResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.create_sequence_store_request.CreateSequenceStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_omics.types.create_sequence_store_request.CreateSequenceStoreRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if sse_config is not None:
             input_["sse_config"] = sse_config
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if fallback_location is not None:
             input_["fallback_location"] = fallback_location
         if e_tag_algorithm_family is not None:
@@ -1391,6 +1435,7 @@ class AsyncSequenceStoreResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -1430,14 +1475,16 @@ class AsyncSequenceStoreResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.get_sequence_store_request.GetSequenceStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_omics.types.get_sequence_store_request.GetSequenceStoreRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -1498,14 +1545,16 @@ class AsyncSequenceStoreResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.update_sequence_store_request.UpdateSequenceStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_omics.types.update_sequence_store_request.UpdateSequenceStoreRequest = {
+            "id": id
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
             input_["description"] = description
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if fallback_location is not None:
             input_["fallback_location"] = fallback_location
         if propagated_set_level_tags is not None:
@@ -1518,6 +1567,7 @@ class AsyncSequenceStoreResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -1558,14 +1608,16 @@ class AsyncSequenceStoreResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.delete_sequence_store_request.DeleteSequenceStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_omics.types.delete_sequence_store_request.DeleteSequenceStoreRequest = {
+            "id": id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -1610,7 +1662,7 @@ class AsyncSequenceStoreResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.list_sequence_stores_request.ListSequenceStoresRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_omics.types.list_sequence_stores_request.ListSequenceStoresRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1623,6 +1675,7 @@ class AsyncSequenceStoreResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def abort_multipart_read_set_upload(
@@ -1666,15 +1719,17 @@ class AsyncSequenceStoreResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.abort_multipart_read_set_upload_request.AbortMultipartReadSetUploadRequest = {}  # type: ignore[typeddict-item]
-        input_["sequence_store_id"] = sequence_store_id
-        input_["upload_id"] = upload_id
+        input_: capo_omics.types.abort_multipart_read_set_upload_request.AbortMultipartReadSetUploadRequest = {
+            "sequence_store_id": sequence_store_id,
+            "upload_id": upload_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def complete_multipart_read_set_upload(
@@ -1720,16 +1775,18 @@ class AsyncSequenceStoreResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.complete_multipart_read_set_upload_request.CompleteMultipartReadSetUploadRequest = {}  # type: ignore[typeddict-item]
-        input_["sequence_store_id"] = sequence_store_id
-        input_["upload_id"] = upload_id
-        input_["parts"] = parts
+        input_: capo_omics.types.complete_multipart_read_set_upload_request.CompleteMultipartReadSetUploadRequest = {
+            "sequence_store_id": sequence_store_id,
+            "upload_id": upload_id,
+            "parts": parts,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_multipart_read_set_upload(
@@ -1793,18 +1850,19 @@ class AsyncSequenceStoreResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.create_multipart_read_set_upload_request.CreateMultipartReadSetUploadRequest = {}  # type: ignore[typeddict-item]
-        input_["sequence_store_id"] = sequence_store_id
+        input_: capo_omics.types.create_multipart_read_set_upload_request.CreateMultipartReadSetUploadRequest = {
+            "sequence_store_id": sequence_store_id,
+            "source_file_type": source_file_type,
+            "subject_id": subject_id,
+            "sample_id": sample_id,
+            "name": name,
+        }
         if client_token is not None:
             input_["client_token"] = client_token
-        input_["source_file_type"] = source_file_type
-        input_["subject_id"] = subject_id
-        input_["sample_id"] = sample_id
         if generated_from is not None:
             input_["generated_from"] = generated_from
         if reference_arn is not None:
             input_["reference_arn"] = reference_arn
-        input_["name"] = name
         if description is not None:
             input_["description"] = description
         if tags is not None:
@@ -1815,6 +1873,7 @@ class AsyncSequenceStoreResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_read_set_activation_job(
@@ -1856,15 +1915,17 @@ class AsyncSequenceStoreResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.get_read_set_activation_job_request.GetReadSetActivationJobRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["sequence_store_id"] = sequence_store_id
+        input_: capo_omics.types.get_read_set_activation_job_request.GetReadSetActivationJobRequest = {
+            "id": id,
+            "sequence_store_id": sequence_store_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_read_set_export_job(
@@ -1908,15 +1969,17 @@ class AsyncSequenceStoreResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.get_read_set_export_job_request.GetReadSetExportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["sequence_store_id"] = sequence_store_id
-        input_["id"] = id
+        input_: capo_omics.types.get_read_set_export_job_request.GetReadSetExportJobRequest = {
+            "sequence_store_id": sequence_store_id,
+            "id": id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_read_set_import_job(
@@ -1960,15 +2023,17 @@ class AsyncSequenceStoreResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.get_read_set_import_job_request.GetReadSetImportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
-        input_["sequence_store_id"] = sequence_store_id
+        input_: capo_omics.types.get_read_set_import_job_request.GetReadSetImportJobRequest = {
+            "id": id,
+            "sequence_store_id": sequence_store_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_multipart_read_set_uploads(
@@ -2014,8 +2079,9 @@ class AsyncSequenceStoreResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.list_multipart_read_set_uploads_request.ListMultipartReadSetUploadsRequest = {}  # type: ignore[typeddict-item]
-        input_["sequence_store_id"] = sequence_store_id
+        input_: capo_omics.types.list_multipart_read_set_uploads_request.ListMultipartReadSetUploadsRequest = {
+            "sequence_store_id": sequence_store_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2026,6 +2092,7 @@ class AsyncSequenceStoreResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_read_set_activation_jobs(
@@ -2073,8 +2140,9 @@ class AsyncSequenceStoreResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.list_read_set_activation_jobs_request.ListReadSetActivationJobsRequest = {}  # type: ignore[typeddict-item]
-        input_["sequence_store_id"] = sequence_store_id
+        input_: capo_omics.types.list_read_set_activation_jobs_request.ListReadSetActivationJobsRequest = {
+            "sequence_store_id": sequence_store_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2087,6 +2155,7 @@ class AsyncSequenceStoreResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_read_set_export_jobs(
@@ -2134,8 +2203,9 @@ class AsyncSequenceStoreResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.list_read_set_export_jobs_request.ListReadSetExportJobsRequest = {}  # type: ignore[typeddict-item]
-        input_["sequence_store_id"] = sequence_store_id
+        input_: capo_omics.types.list_read_set_export_jobs_request.ListReadSetExportJobsRequest = {
+            "sequence_store_id": sequence_store_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2148,6 +2218,7 @@ class AsyncSequenceStoreResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_read_set_import_jobs(
@@ -2195,12 +2266,13 @@ class AsyncSequenceStoreResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.list_read_set_import_jobs_request.ListReadSetImportJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_omics.types.list_read_set_import_jobs_request.ListReadSetImportJobsRequest = {
+            "sequence_store_id": sequence_store_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["sequence_store_id"] = sequence_store_id
         if filter is not None:
             input_["filter"] = filter
 
@@ -2209,6 +2281,7 @@ class AsyncSequenceStoreResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_read_set_upload_parts(
@@ -2262,10 +2335,11 @@ class AsyncSequenceStoreResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.list_read_set_upload_parts_request.ListReadSetUploadPartsRequest = {}  # type: ignore[typeddict-item]
-        input_["sequence_store_id"] = sequence_store_id
-        input_["upload_id"] = upload_id
-        input_["part_source"] = part_source
+        input_: capo_omics.types.list_read_set_upload_parts_request.ListReadSetUploadPartsRequest = {
+            "sequence_store_id": sequence_store_id,
+            "upload_id": upload_id,
+            "part_source": part_source,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2278,6 +2352,7 @@ class AsyncSequenceStoreResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_read_set_activation_job(
@@ -2322,17 +2397,19 @@ class AsyncSequenceStoreResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.start_read_set_activation_job_request.StartReadSetActivationJobRequest = {}  # type: ignore[typeddict-item]
-        input_["sequence_store_id"] = sequence_store_id
+        input_: capo_omics.types.start_read_set_activation_job_request.StartReadSetActivationJobRequest = {
+            "sequence_store_id": sequence_store_id,
+            "sources": sources,
+        }
         if client_token is not None:
             input_["client_token"] = client_token
-        input_["sources"] = sources
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_read_set_export_job(
@@ -2381,19 +2458,21 @@ class AsyncSequenceStoreResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.start_read_set_export_job_request.StartReadSetExportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["sequence_store_id"] = sequence_store_id
-        input_["destination"] = destination
-        input_["role_arn"] = role_arn
+        input_: capo_omics.types.start_read_set_export_job_request.StartReadSetExportJobRequest = {
+            "sequence_store_id": sequence_store_id,
+            "destination": destination,
+            "role_arn": role_arn,
+            "sources": sources,
+        }
         if client_token is not None:
             input_["client_token"] = client_token
-        input_["sources"] = sources
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_read_set_import_job(
@@ -2440,18 +2519,20 @@ class AsyncSequenceStoreResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.start_read_set_import_job_request.StartReadSetImportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["sequence_store_id"] = sequence_store_id
-        input_["role_arn"] = role_arn
+        input_: capo_omics.types.start_read_set_import_job_request.StartReadSetImportJobRequest = {
+            "sequence_store_id": sequence_store_id,
+            "role_arn": role_arn,
+            "sources": sources,
+        }
         if client_token is not None:
             input_["client_token"] = client_token
-        input_["sources"] = sources
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def upload_read_set_part(
@@ -2501,16 +2582,18 @@ class AsyncSequenceStoreResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_omics.types.upload_read_set_part_request.UploadReadSetPartRequest = {}  # type: ignore[typeddict-item]
-        input_["sequence_store_id"] = sequence_store_id
-        input_["upload_id"] = upload_id
-        input_["part_source"] = part_source
-        input_["part_number"] = part_number
-        input_["payload"] = ensure_async_iterator(payload)
+        input_: capo_omics.types.upload_read_set_part_request.UploadReadSetPartRequest = {
+            "sequence_store_id": sequence_store_id,
+            "upload_id": upload_id,
+            "part_source": part_source,
+            "part_number": part_number,
+            "payload": ensure_async_iterator(payload),
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

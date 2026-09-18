@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: ChallengeAction) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ChallengeAction:
     out: ChallengeAction = {}  # type: ignore[typeddict-item]
-    if "CustomRequestHandling" in data:
+    if data.get("CustomRequestHandling") is not None:
         import capo_wafv2.types.custom_request_handling
 
         out["custom_request_handling"] = (

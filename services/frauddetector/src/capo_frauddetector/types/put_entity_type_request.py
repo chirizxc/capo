@@ -38,13 +38,13 @@ def serialize_aws_json_1_1(value: PutEntityTypeRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutEntityTypeRequest:
     out: PutEntityTypeRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("PutEntityTypeRequest.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_frauddetector.types.tag_list
 
         out["tags"] = capo_frauddetector.types.tag_list.deserialize_aws_json_1_1(

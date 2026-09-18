@@ -85,15 +85,15 @@ def serialize_json(value: AuthorizerDescription) -> dict:
 
 def deserialize_json(data: dict) -> AuthorizerDescription:
     out: AuthorizerDescription = {}  # type: ignore[typeddict-item]
-    if "authorizerName" in data:
+    if data.get("authorizerName") is not None:
         out["authorizer_name"] = data["authorizerName"]
-    if "authorizerArn" in data:
+    if data.get("authorizerArn") is not None:
         out["authorizer_arn"] = data["authorizerArn"]
-    if "authorizerFunctionArn" in data:
+    if data.get("authorizerFunctionArn") is not None:
         out["authorizer_function_arn"] = data["authorizerFunctionArn"]
-    if "tokenKeyName" in data:
+    if data.get("tokenKeyName") is not None:
         out["token_key_name"] = data["tokenKeyName"]
-    if "tokenSigningPublicKeys" in data:
+    if data.get("tokenSigningPublicKeys") is not None:
         import capo_iot.types.public_key_map
 
         out["token_signing_public_keys"] = (
@@ -101,26 +101,26 @@ def deserialize_json(data: dict) -> AuthorizerDescription:
                 data["tokenSigningPublicKeys"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iot.types.authorizer_status
 
         out["status"] = capo_iot.types.authorizer_status.deserialize_json(
             data["status"]
         )
-    if "creationDate" in data:
+    if data.get("creationDate") is not None:
         import capo_iot.types.date_type
 
         out["creation_date"] = capo_iot.types.date_type.deserialize_json(
             data["creationDate"]
         )
-    if "lastModifiedDate" in data:
+    if data.get("lastModifiedDate") is not None:
         import capo_iot.types.date_type
 
         out["last_modified_date"] = capo_iot.types.date_type.deserialize_json(
             data["lastModifiedDate"]
         )
-    if "signingDisabled" in data:
+    if data.get("signingDisabled") is not None:
         out["signing_disabled"] = data["signingDisabled"]
-    if "enableCachingForHttp" in data:
+    if data.get("enableCachingForHttp") is not None:
         out["enable_caching_for_http"] = data["enableCachingForHttp"]
     return out

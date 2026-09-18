@@ -40,15 +40,18 @@ class TooManyPlatformsException(ServiceError):
 
     code: str | None = "TooManyPlatformsException"
 
-    def __init__(self, data: TooManyPlatformsException_):
+    def __init__(self, data: TooManyPlatformsException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="TooManyPlatformsException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "TooManyPlatformsException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "TooManyPlatformsException":
+        return cls(deserialize_query(el), message)

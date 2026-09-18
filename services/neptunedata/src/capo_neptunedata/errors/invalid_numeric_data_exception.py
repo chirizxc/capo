@@ -25,17 +25,17 @@ def serialize_json(value: InvalidNumericDataException_) -> dict:
 
 def deserialize_json(data: dict) -> InvalidNumericDataException_:
     out: InvalidNumericDataException_ = {}  # type: ignore[typeddict-item]
-    if "detailedMessage" in data:
+    if data.get("detailedMessage") is not None:
         out["detailed_message"] = data["detailedMessage"]
     else:
         raise DeserializationError(
             "InvalidNumericDataException_.detailed_message required"
         )
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
     else:
         raise DeserializationError("InvalidNumericDataException_.request_id required")
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
     else:
         raise DeserializationError("InvalidNumericDataException_.code required")
@@ -47,15 +47,18 @@ class InvalidNumericDataException(ServiceError):
 
     code: str | None = "InvalidNumericDataException"
 
-    def __init__(self, data: InvalidNumericDataException_):
+    def __init__(self, data: InvalidNumericDataException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidNumericDataException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "InvalidNumericDataException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidNumericDataException":
+        return cls(deserialize_json(data), message)

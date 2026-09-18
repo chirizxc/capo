@@ -61,11 +61,11 @@ def serialize_json(value: ValidityTerm) -> dict:
 
 def deserialize_json(data: dict) -> ValidityTerm:
     out: ValidityTerm = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("ValidityTerm.id required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_marketplace_discovery.types.term_type
 
         out["type"] = capo_marketplace_discovery.types.term_type.deserialize_json(
@@ -73,9 +73,9 @@ def deserialize_json(data: dict) -> ValidityTerm:
         )
     else:
         raise DeserializationError("ValidityTerm.type required")
-    if "agreementDuration" in data:
+    if data.get("agreementDuration") is not None:
         out["agreement_duration"] = data["agreementDuration"]
-    if "agreementEndDate" in data:
+    if data.get("agreementEndDate") is not None:
         import capo_marketplace_discovery.types._prelude.timestamp
 
         out["agreement_end_date"] = (
@@ -83,7 +83,7 @@ def deserialize_json(data: dict) -> ValidityTerm:
                 data["agreementEndDate"]
             )
         )
-    if "agreementStartDate" in data:
+    if data.get("agreementStartDate") is not None:
         import capo_marketplace_discovery.types._prelude.timestamp
 
         out["agreement_start_date"] = (

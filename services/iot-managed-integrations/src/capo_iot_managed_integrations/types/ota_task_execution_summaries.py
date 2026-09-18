@@ -38,7 +38,7 @@ def serialize_json(value: OtaTaskExecutionSummaries) -> dict:
 
 def deserialize_json(data: dict) -> OtaTaskExecutionSummaries:
     out: OtaTaskExecutionSummaries = {}  # type: ignore[typeddict-item]
-    if "TaskExecutionSummary" in data:
+    if data.get("TaskExecutionSummary") is not None:
         import capo_iot_managed_integrations.types.ota_task_execution_summary
 
         out["task_execution_summary"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> OtaTaskExecutionSummaries:
                 data["TaskExecutionSummary"]
             )
         )
-    if "ManagedThingId" in data:
+    if data.get("ManagedThingId") is not None:
         out["managed_thing_id"] = data["ManagedThingId"]
     return out

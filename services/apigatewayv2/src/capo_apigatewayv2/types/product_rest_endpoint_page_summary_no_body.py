@@ -101,9 +101,9 @@ def serialize_json(value: ProductRestEndpointPageSummaryNoBody) -> dict:
 
 def deserialize_json(data: dict) -> ProductRestEndpointPageSummaryNoBody:
     out: ProductRestEndpointPageSummaryNoBody = {}  # type: ignore[typeddict-item]
-    if "endpoint" in data:
+    if data.get("endpoint") is not None:
         out["endpoint"] = data["endpoint"]
-    if "lastModified" in data:
+    if data.get("lastModified") is not None:
         import capo_apigatewayv2.types.__timestamp_iso8601
 
         out["last_modified"] = (
@@ -111,13 +111,13 @@ def deserialize_json(data: dict) -> ProductRestEndpointPageSummaryNoBody:
                 data["lastModified"]
             )
         )
-    if "operationName" in data:
+    if data.get("operationName") is not None:
         out["operation_name"] = data["operationName"]
-    if "productRestEndpointPageArn" in data:
+    if data.get("productRestEndpointPageArn") is not None:
         out["product_rest_endpoint_page_arn"] = data["productRestEndpointPageArn"]
-    if "productRestEndpointPageId" in data:
+    if data.get("productRestEndpointPageId") is not None:
         out["product_rest_endpoint_page_id"] = data["productRestEndpointPageId"]
-    if "restEndpointIdentifier" in data:
+    if data.get("restEndpointIdentifier") is not None:
         import capo_apigatewayv2.types.rest_endpoint_identifier
 
         out["rest_endpoint_identifier"] = (
@@ -125,11 +125,11 @@ def deserialize_json(data: dict) -> ProductRestEndpointPageSummaryNoBody:
                 data["restEndpointIdentifier"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_apigatewayv2.types.status
 
         out["status"] = capo_apigatewayv2.types.status.deserialize_json(data["status"])
-    if "statusException" in data:
+    if data.get("statusException") is not None:
         import capo_apigatewayv2.types.status_exception
 
         out["status_exception"] = (
@@ -137,7 +137,7 @@ def deserialize_json(data: dict) -> ProductRestEndpointPageSummaryNoBody:
                 data["statusException"]
             )
         )
-    if "tryItState" in data:
+    if data.get("tryItState") is not None:
         import capo_apigatewayv2.types.try_it_state
 
         out["try_it_state"] = capo_apigatewayv2.types.try_it_state.deserialize_json(

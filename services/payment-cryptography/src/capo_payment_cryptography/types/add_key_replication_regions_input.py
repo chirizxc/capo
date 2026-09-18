@@ -36,13 +36,13 @@ def serialize_aws_json_1_0(value: AddKeyReplicationRegionsInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AddKeyReplicationRegionsInput:
     out: AddKeyReplicationRegionsInput = {}  # type: ignore[typeddict-item]
-    if "KeyIdentifier" in data:
+    if data.get("KeyIdentifier") is not None:
         out["key_identifier"] = data["KeyIdentifier"]
     else:
         raise DeserializationError(
             "AddKeyReplicationRegionsInput.key_identifier required"
         )
-    if "ReplicationRegions" in data:
+    if data.get("ReplicationRegions") is not None:
         import capo_payment_cryptography.types.regions
 
         out["replication_regions"] = (

@@ -98,11 +98,12 @@ class ConfiguredModelAlgorithm:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.create_configured_model_algorithm_request.CreateConfiguredModelAlgorithmRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_cleanroomsml.types.create_configured_model_algorithm_request.CreateConfiguredModelAlgorithmRequest = {
+            "name": name,
+            "role_arn": role_arn,
+        }
         if description is not None:
             input_["description"] = description
-        input_["role_arn"] = role_arn
         if training_container_config is not None:
             input_["training_container_config"] = training_container_config
         if inference_container_config is not None:
@@ -117,6 +118,7 @@ class ConfiguredModelAlgorithm:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -152,14 +154,16 @@ class ConfiguredModelAlgorithm:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.get_configured_model_algorithm_request.GetConfiguredModelAlgorithmRequest = {}  # type: ignore[typeddict-item]
-        input_["configured_model_algorithm_arn"] = configured_model_algorithm_arn
+        input_: capo_cleanroomsml.types.get_configured_model_algorithm_request.GetConfiguredModelAlgorithmRequest = {
+            "configured_model_algorithm_arn": configured_model_algorithm_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -194,14 +198,16 @@ class ConfiguredModelAlgorithm:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.delete_configured_model_algorithm_request.DeleteConfiguredModelAlgorithmRequest = {}  # type: ignore[typeddict-item]
-        input_["configured_model_algorithm_arn"] = configured_model_algorithm_arn
+        input_: capo_cleanroomsml.types.delete_configured_model_algorithm_request.DeleteConfiguredModelAlgorithmRequest = {
+            "configured_model_algorithm_arn": configured_model_algorithm_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -238,7 +244,7 @@ class ConfiguredModelAlgorithm:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.list_configured_model_algorithms_request.ListConfiguredModelAlgorithmsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cleanroomsml.types.list_configured_model_algorithms_request.ListConfiguredModelAlgorithmsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -249,6 +255,7 @@ class ConfiguredModelAlgorithm:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -309,11 +316,12 @@ class AsyncConfiguredModelAlgorithm:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.create_configured_model_algorithm_request.CreateConfiguredModelAlgorithmRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_cleanroomsml.types.create_configured_model_algorithm_request.CreateConfiguredModelAlgorithmRequest = {
+            "name": name,
+            "role_arn": role_arn,
+        }
         if description is not None:
             input_["description"] = description
-        input_["role_arn"] = role_arn
         if training_container_config is not None:
             input_["training_container_config"] = training_container_config
         if inference_container_config is not None:
@@ -328,6 +336,7 @@ class AsyncConfiguredModelAlgorithm:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -364,14 +373,16 @@ class AsyncConfiguredModelAlgorithm:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.get_configured_model_algorithm_request.GetConfiguredModelAlgorithmRequest = {}  # type: ignore[typeddict-item]
-        input_["configured_model_algorithm_arn"] = configured_model_algorithm_arn
+        input_: capo_cleanroomsml.types.get_configured_model_algorithm_request.GetConfiguredModelAlgorithmRequest = {
+            "configured_model_algorithm_arn": configured_model_algorithm_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -407,14 +418,16 @@ class AsyncConfiguredModelAlgorithm:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.delete_configured_model_algorithm_request.DeleteConfiguredModelAlgorithmRequest = {}  # type: ignore[typeddict-item]
-        input_["configured_model_algorithm_arn"] = configured_model_algorithm_arn
+        input_: capo_cleanroomsml.types.delete_configured_model_algorithm_request.DeleteConfiguredModelAlgorithmRequest = {
+            "configured_model_algorithm_arn": configured_model_algorithm_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -452,7 +465,7 @@ class AsyncConfiguredModelAlgorithm:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_cleanroomsml.types.list_configured_model_algorithms_request.ListConfiguredModelAlgorithmsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cleanroomsml.types.list_configured_model_algorithms_request.ListConfiguredModelAlgorithmsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -463,4 +476,5 @@ class AsyncConfiguredModelAlgorithm:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

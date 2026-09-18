@@ -27,8 +27,8 @@ def serialize_json(value: MulticastSource) -> dict:
 
 def deserialize_json(data: dict) -> MulticastSource:
     out: MulticastSource = {}  # type: ignore[typeddict-item]
-    if "sourceIp" in data:
+    if data.get("sourceIp") is not None:
         out["source_ip"] = data["sourceIp"]
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
     return out

@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: InputLambdaProcessorUpdate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InputLambdaProcessorUpdate:
     out: InputLambdaProcessorUpdate = {}  # type: ignore[typeddict-item]
-    if "ResourceARNUpdate" in data:
+    if data.get("ResourceARNUpdate") is not None:
         out["resource_arn_update"] = data["ResourceARNUpdate"]
-    if "RoleARNUpdate" in data:
+    if data.get("RoleARNUpdate") is not None:
         out["role_arn_update"] = data["RoleARNUpdate"]
     return out

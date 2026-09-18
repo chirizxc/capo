@@ -56,14 +56,12 @@ def serialize_json(value: GetSolNetworkOperationMetadata) -> dict:
         out["instantiateMetadata"] = capo_tnb.types.instantiate_metadata.serialize_json(
             value["instantiate_metadata"]
         )
-    import capo_tnb.types._prelude.timestamp
+    import capo_tnb._protocol.serialize
 
-    out["createdAt"] = capo_tnb.types._prelude.timestamp.serialize_json(
-        value["created_at"]
-    )
-    import capo_tnb.types._prelude.timestamp
+    out["createdAt"] = capo_tnb._protocol.serialize.fmt_date_time(value["created_at"])
+    import capo_tnb._protocol.serialize
 
-    out["lastModified"] = capo_tnb.types._prelude.timestamp.serialize_json(
+    out["lastModified"] = capo_tnb._protocol.serialize.fmt_date_time(
         value["last_modified"]
     )
     return out
@@ -71,13 +69,13 @@ def serialize_json(value: GetSolNetworkOperationMetadata) -> dict:
 
 def deserialize_json(data: dict) -> GetSolNetworkOperationMetadata:
     out: GetSolNetworkOperationMetadata = {}  # type: ignore[typeddict-item]
-    if "updateNsMetadata" in data:
+    if data.get("updateNsMetadata") is not None:
         import capo_tnb.types.update_ns_metadata
 
         out["update_ns_metadata"] = capo_tnb.types.update_ns_metadata.deserialize_json(
             data["updateNsMetadata"]
         )
-    if "modifyVnfInfoMetadata" in data:
+    if data.get("modifyVnfInfoMetadata") is not None:
         import capo_tnb.types.modify_vnf_info_metadata
 
         out["modify_vnf_info_metadata"] = (
@@ -85,7 +83,7 @@ def deserialize_json(data: dict) -> GetSolNetworkOperationMetadata:
                 data["modifyVnfInfoMetadata"]
             )
         )
-    if "instantiateMetadata" in data:
+    if data.get("instantiateMetadata") is not None:
         import capo_tnb.types.instantiate_metadata
 
         out["instantiate_metadata"] = (
@@ -93,19 +91,19 @@ def deserialize_json(data: dict) -> GetSolNetworkOperationMetadata:
                 data["instantiateMetadata"]
             )
         )
-    if "createdAt" in data:
-        import capo_tnb.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = capo_tnb.types._prelude.timestamp.deserialize_json(
-            data["createdAt"]
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("GetSolNetworkOperationMetadata.created_at required")
-    if "lastModified" in data:
-        import capo_tnb.types._prelude.timestamp
+    if data.get("lastModified") is not None:
+        import datetime
 
-        out["last_modified"] = capo_tnb.types._prelude.timestamp.deserialize_json(
-            data["lastModified"]
+        out["last_modified"] = datetime.datetime.fromisoformat(
+            data["lastModified"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError(

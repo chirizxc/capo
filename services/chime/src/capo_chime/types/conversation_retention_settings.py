@@ -23,6 +23,6 @@ def serialize_json(value: ConversationRetentionSettings) -> dict:
 
 def deserialize_json(data: dict) -> ConversationRetentionSettings:
     out: ConversationRetentionSettings = {}  # type: ignore[typeddict-item]
-    if "RetentionDays" in data:
+    if data.get("RetentionDays") is not None:
         out["retention_days"] = data["RetentionDays"]
     return out

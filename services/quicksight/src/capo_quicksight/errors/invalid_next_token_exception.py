@@ -28,9 +28,9 @@ def serialize_json(value: InvalidNextTokenException_) -> dict:
 
 def deserialize_json(data: dict) -> InvalidNextTokenException_:
     out: InvalidNextTokenException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out
 
@@ -40,15 +40,18 @@ class InvalidNextTokenException(ServiceError):
 
     code: str | None = "InvalidNextTokenException"
 
-    def __init__(self, data: InvalidNextTokenException_):
+    def __init__(self, data: InvalidNextTokenException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidNextTokenException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "InvalidNextTokenException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidNextTokenException":
+        return cls(deserialize_json(data), message)

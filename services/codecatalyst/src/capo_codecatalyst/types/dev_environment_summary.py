@@ -60,9 +60,9 @@ def serialize_json(value: DevEnvironmentSummary) -> dict:
     if "project_name" in value:
         out["projectName"] = value["project_name"]
     out["id"] = value["id"]
-    import capo_codecatalyst.types.timestamp
+    import capo_codecatalyst._protocol.serialize
 
-    out["lastUpdatedTime"] = capo_codecatalyst.types.timestamp.serialize_json(
+    out["lastUpdatedTime"] = capo_codecatalyst._protocol.serialize.fmt_date_time(
         value["last_updated_time"]
     )
     out["creatorId"] = value["creator_id"]
@@ -98,33 +98,33 @@ def serialize_json(value: DevEnvironmentSummary) -> dict:
 
 def deserialize_json(data: dict) -> DevEnvironmentSummary:
     out: DevEnvironmentSummary = {}  # type: ignore[typeddict-item]
-    if "spaceName" in data:
+    if data.get("spaceName") is not None:
         out["space_name"] = data["spaceName"]
-    if "projectName" in data:
+    if data.get("projectName") is not None:
         out["project_name"] = data["projectName"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("DevEnvironmentSummary.id required")
-    if "lastUpdatedTime" in data:
-        import capo_codecatalyst.types.timestamp
+    if data.get("lastUpdatedTime") is not None:
+        import datetime
 
-        out["last_updated_time"] = capo_codecatalyst.types.timestamp.deserialize_json(
-            data["lastUpdatedTime"]
+        out["last_updated_time"] = datetime.datetime.fromisoformat(
+            data["lastUpdatedTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("DevEnvironmentSummary.last_updated_time required")
-    if "creatorId" in data:
+    if data.get("creatorId") is not None:
         out["creator_id"] = data["creatorId"]
     else:
         raise DeserializationError("DevEnvironmentSummary.creator_id required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("DevEnvironmentSummary.status required")
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "repositories" in data:
+    if data.get("repositories") is not None:
         import capo_codecatalyst.types.dev_environment_repository_summaries
 
         out["repositories"] = (
@@ -134,21 +134,21 @@ def deserialize_json(data: dict) -> DevEnvironmentSummary:
         )
     else:
         raise DeserializationError("DevEnvironmentSummary.repositories required")
-    if "alias" in data:
+    if data.get("alias") is not None:
         out["alias"] = data["alias"]
-    if "ides" in data:
+    if data.get("ides") is not None:
         import capo_codecatalyst.types.ides
 
         out["ides"] = capo_codecatalyst.types.ides.deserialize_json(data["ides"])
-    if "instanceType" in data:
+    if data.get("instanceType") is not None:
         out["instance_type"] = data["instanceType"]
     else:
         raise DeserializationError("DevEnvironmentSummary.instance_type required")
-    if "inactivityTimeoutMinutes" in data:
+    if data.get("inactivityTimeoutMinutes") is not None:
         out["inactivity_timeout_minutes"] = data["inactivityTimeoutMinutes"]
     else:
         out["inactivity_timeout_minutes"] = 0
-    if "persistentStorage" in data:
+    if data.get("persistentStorage") is not None:
         import capo_codecatalyst.types.persistent_storage
 
         out["persistent_storage"] = (
@@ -158,6 +158,6 @@ def deserialize_json(data: dict) -> DevEnvironmentSummary:
         )
     else:
         raise DeserializationError("DevEnvironmentSummary.persistent_storage required")
-    if "vpcConnectionName" in data:
+    if data.get("vpcConnectionName") is not None:
         out["vpc_connection_name"] = data["vpcConnectionName"]
     return out

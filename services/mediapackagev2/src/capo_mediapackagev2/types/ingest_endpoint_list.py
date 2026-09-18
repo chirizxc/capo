@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> IngestEndpointList:
 
     out: IngestEndpointList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mediapackagev2.types.ingest_endpoint.deserialize_json(item))
     return out

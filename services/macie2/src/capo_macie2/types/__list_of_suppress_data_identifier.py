@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfSuppressDataIdentifier:
 
     out: __listOfSuppressDataIdentifier = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_macie2.types.suppress_data_identifier.deserialize_json(item))
     return out

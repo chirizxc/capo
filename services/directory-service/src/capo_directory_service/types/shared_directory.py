@@ -95,11 +95,11 @@ def serialize_aws_json_1_1(value: SharedDirectory) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SharedDirectory:
     out: SharedDirectory = {}  # type: ignore[typeddict-item]
-    if "OwnerAccountId" in data:
+    if data.get("OwnerAccountId") is not None:
         out["owner_account_id"] = data["OwnerAccountId"]
-    if "OwnerDirectoryId" in data:
+    if data.get("OwnerDirectoryId") is not None:
         out["owner_directory_id"] = data["OwnerDirectoryId"]
-    if "ShareMethod" in data:
+    if data.get("ShareMethod") is not None:
         import capo_directory_service.types.share_method
 
         out["share_method"] = (
@@ -107,11 +107,11 @@ def deserialize_aws_json_1_1(data: dict) -> SharedDirectory:
                 data["ShareMethod"]
             )
         )
-    if "SharedAccountId" in data:
+    if data.get("SharedAccountId") is not None:
         out["shared_account_id"] = data["SharedAccountId"]
-    if "SharedDirectoryId" in data:
+    if data.get("SharedDirectoryId") is not None:
         out["shared_directory_id"] = data["SharedDirectoryId"]
-    if "ShareStatus" in data:
+    if data.get("ShareStatus") is not None:
         import capo_directory_service.types.share_status
 
         out["share_status"] = (
@@ -119,9 +119,9 @@ def deserialize_aws_json_1_1(data: dict) -> SharedDirectory:
                 data["ShareStatus"]
             )
         )
-    if "ShareNotes" in data:
+    if data.get("ShareNotes") is not None:
         out["share_notes"] = data["ShareNotes"]
-    if "CreatedDateTime" in data:
+    if data.get("CreatedDateTime") is not None:
         import capo_directory_service.types.created_date_time
 
         out["created_date_time"] = (
@@ -129,7 +129,7 @@ def deserialize_aws_json_1_1(data: dict) -> SharedDirectory:
                 data["CreatedDateTime"]
             )
         )
-    if "LastUpdatedDateTime" in data:
+    if data.get("LastUpdatedDateTime") is not None:
         import capo_directory_service.types.last_updated_date_time
 
         out["last_updated_date_time"] = (

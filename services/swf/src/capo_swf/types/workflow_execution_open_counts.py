@@ -37,23 +37,23 @@ def serialize_aws_json_1_0(value: WorkflowExecutionOpenCounts) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> WorkflowExecutionOpenCounts:
     out: WorkflowExecutionOpenCounts = {}  # type: ignore[typeddict-item]
-    if "openActivityTasks" in data:
+    if data.get("openActivityTasks") is not None:
         out["open_activity_tasks"] = data["openActivityTasks"]
     else:
         out["open_activity_tasks"] = 0
-    if "openDecisionTasks" in data:
+    if data.get("openDecisionTasks") is not None:
         out["open_decision_tasks"] = data["openDecisionTasks"]
     else:
         out["open_decision_tasks"] = 0
-    if "openTimers" in data:
+    if data.get("openTimers") is not None:
         out["open_timers"] = data["openTimers"]
     else:
         out["open_timers"] = 0
-    if "openChildWorkflowExecutions" in data:
+    if data.get("openChildWorkflowExecutions") is not None:
         out["open_child_workflow_executions"] = data["openChildWorkflowExecutions"]
     else:
         out["open_child_workflow_executions"] = 0
-    if "openLambdaFunctions" in data:
+    if data.get("openLambdaFunctions") is not None:
         out["open_lambda_functions"] = data["openLambdaFunctions"]
     else:
         out["open_lambda_functions"] = 0

@@ -36,7 +36,7 @@ def serialize_json(value: AssetBundleImportJobVPCConnectionOverrideTags) -> dict
 
 def deserialize_json(data: dict) -> AssetBundleImportJobVPCConnectionOverrideTags:
     out: AssetBundleImportJobVPCConnectionOverrideTags = {}  # type: ignore[typeddict-item]
-    if "VPCConnectionIds" in data:
+    if data.get("VPCConnectionIds") is not None:
         import capo_quicksight.types.asset_bundle_restrictive_resource_id_list
 
         out["vpc_connection_ids"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> AssetBundleImportJobVPCConnectionOverrideTag
         raise DeserializationError(
             "AssetBundleImportJobVPCConnectionOverrideTags.vpc_connection_ids required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_quicksight.types.tag_list
 
         out["tags"] = capo_quicksight.types.tag_list.deserialize_json(data["Tags"])

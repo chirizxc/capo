@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteRotationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteRotationRequest:
     out: DeleteRotationRequest = {}  # type: ignore[typeddict-item]
-    if "RotationId" in data:
+    if data.get("RotationId") is not None:
         out["rotation_id"] = data["RotationId"]
     else:
         raise DeserializationError("DeleteRotationRequest.rotation_id required")

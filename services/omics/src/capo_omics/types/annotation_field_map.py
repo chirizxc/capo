@@ -16,5 +16,7 @@ def serialize_json(input_to_serialize: AnnotationFieldMap) -> dict:
 def deserialize_json(data: dict) -> AnnotationFieldMap:
     out: AnnotationFieldMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         out[key] = value
     return out

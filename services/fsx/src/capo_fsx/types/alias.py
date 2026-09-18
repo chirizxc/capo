@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: Alias) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Alias:
     out: Alias = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Lifecycle" in data:
+    if data.get("Lifecycle") is not None:
         import capo_fsx.types.alias_lifecycle
 
         out["lifecycle"] = capo_fsx.types.alias_lifecycle.deserialize_aws_json_1_1(

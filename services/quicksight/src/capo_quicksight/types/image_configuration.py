@@ -27,7 +27,7 @@ def serialize_json(value: ImageConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ImageConfiguration:
     out: ImageConfiguration = {}  # type: ignore[typeddict-item]
-    if "Source" in data:
+    if data.get("Source") is not None:
         import capo_quicksight.types.image_source
 
         out["source"] = capo_quicksight.types.image_source.deserialize_json(

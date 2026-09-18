@@ -33,19 +33,19 @@ def serialize_json(value: DependencyCounts) -> dict:
 
 def deserialize_json(data: dict) -> DependencyCounts:
     out: DependencyCounts = {}  # type: ignore[typeddict-item]
-    if "dependenciesResolved" in data:
+    if data.get("dependenciesResolved") is not None:
         out["dependencies_resolved"] = data["dependenciesResolved"]
     else:
         raise DeserializationError("DependencyCounts.dependencies_resolved required")
-    if "dependenciesUnresolved" in data:
+    if data.get("dependenciesUnresolved") is not None:
         out["dependencies_unresolved"] = data["dependenciesUnresolved"]
     else:
         raise DeserializationError("DependencyCounts.dependencies_unresolved required")
-    if "consumersResolved" in data:
+    if data.get("consumersResolved") is not None:
         out["consumers_resolved"] = data["consumersResolved"]
     else:
         raise DeserializationError("DependencyCounts.consumers_resolved required")
-    if "consumersUnresolved" in data:
+    if data.get("consumersUnresolved") is not None:
         out["consumers_unresolved"] = data["consumersUnresolved"]
     else:
         raise DeserializationError("DependencyCounts.consumers_unresolved required")

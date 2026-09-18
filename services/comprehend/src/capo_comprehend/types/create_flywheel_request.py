@@ -86,35 +86,35 @@ def serialize_aws_json_1_1(value: CreateFlywheelRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateFlywheelRequest:
     out: CreateFlywheelRequest = {}  # type: ignore[typeddict-item]
-    if "FlywheelName" in data:
+    if data.get("FlywheelName") is not None:
         out["flywheel_name"] = data["FlywheelName"]
     else:
         raise DeserializationError("CreateFlywheelRequest.flywheel_name required")
-    if "ActiveModelArn" in data:
+    if data.get("ActiveModelArn") is not None:
         out["active_model_arn"] = data["ActiveModelArn"]
-    if "DataAccessRoleArn" in data:
+    if data.get("DataAccessRoleArn") is not None:
         out["data_access_role_arn"] = data["DataAccessRoleArn"]
     else:
         raise DeserializationError(
             "CreateFlywheelRequest.data_access_role_arn required"
         )
-    if "TaskConfig" in data:
+    if data.get("TaskConfig") is not None:
         import capo_comprehend.types.task_config
 
         out["task_config"] = capo_comprehend.types.task_config.deserialize_aws_json_1_1(
             data["TaskConfig"]
         )
-    if "ModelType" in data:
+    if data.get("ModelType") is not None:
         import capo_comprehend.types.model_type
 
         out["model_type"] = capo_comprehend.types.model_type.deserialize_aws_json_1_1(
             data["ModelType"]
         )
-    if "DataLakeS3Uri" in data:
+    if data.get("DataLakeS3Uri") is not None:
         out["data_lake_s3_uri"] = data["DataLakeS3Uri"]
     else:
         raise DeserializationError("CreateFlywheelRequest.data_lake_s3_uri required")
-    if "DataSecurityConfig" in data:
+    if data.get("DataSecurityConfig") is not None:
         import capo_comprehend.types.data_security_config
 
         out["data_security_config"] = (
@@ -122,9 +122,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateFlywheelRequest:
                 data["DataSecurityConfig"]
             )
         )
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_comprehend.types.tag_list
 
         out["tags"] = capo_comprehend.types.tag_list.deserialize_aws_json_1_1(

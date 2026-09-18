@@ -46,11 +46,11 @@ def serialize_json(value: CreateGatewayRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateGatewayRequest:
     out: CreateGatewayRequest = {}  # type: ignore[typeddict-item]
-    if "gatewayName" in data:
+    if data.get("gatewayName") is not None:
         out["gateway_name"] = data["gatewayName"]
     else:
         raise DeserializationError("CreateGatewayRequest.gateway_name required")
-    if "gatewayPlatform" in data:
+    if data.get("gatewayPlatform") is not None:
         import capo_iotsitewise.types.gateway_platform
 
         out["gateway_platform"] = (
@@ -60,9 +60,9 @@ def deserialize_json(data: dict) -> CreateGatewayRequest:
         )
     else:
         raise DeserializationError("CreateGatewayRequest.gateway_platform required")
-    if "gatewayVersion" in data:
+    if data.get("gatewayVersion") is not None:
         out["gateway_version"] = data["gatewayVersion"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_iotsitewise.types.tag_map
 
         out["tags"] = capo_iotsitewise.types.tag_map.deserialize_json(data["tags"])

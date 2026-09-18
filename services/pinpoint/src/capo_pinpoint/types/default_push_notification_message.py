@@ -63,19 +63,19 @@ def serialize_json(value: DefaultPushNotificationMessage) -> dict:
 
 def deserialize_json(data: dict) -> DefaultPushNotificationMessage:
     out: DefaultPushNotificationMessage = {}  # type: ignore[typeddict-item]
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_pinpoint.types.action
 
         out["action"] = capo_pinpoint.types.action.deserialize_json(data["Action"])
-    if "Body" in data:
+    if data.get("Body") is not None:
         out["body"] = data["Body"]
-    if "Data" in data:
+    if data.get("Data") is not None:
         import capo_pinpoint.types.map_of__string
 
         out["data"] = capo_pinpoint.types.map_of__string.deserialize_json(data["Data"])
-    if "SilentPush" in data:
+    if data.get("SilentPush") is not None:
         out["silent_push"] = data["SilentPush"]
-    if "Substitutions" in data:
+    if data.get("Substitutions") is not None:
         import capo_pinpoint.types.map_of_list_of__string
 
         out["substitutions"] = (
@@ -83,8 +83,8 @@ def deserialize_json(data: dict) -> DefaultPushNotificationMessage:
                 data["Substitutions"]
             )
         )
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
     return out

@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ResourcesStringFilterList:
 
     out: ResourcesStringFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.resources_string_filter.deserialize_json(item)
         )

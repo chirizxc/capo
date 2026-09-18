@@ -47,7 +47,7 @@ def serialize_json(value: EvaluationFormItem) -> dict:
 
 
 def deserialize_json(data: dict) -> EvaluationFormItem:
-    if "Section" in data:
+    if data.get("Section") is not None:
         import capo_connect.types.evaluation_form_section
 
         return {
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> EvaluationFormItem:
                 data["Section"]
             )
         }
-    elif "Question" in data:
+    elif data.get("Question") is not None:
         import capo_connect.types.evaluation_form_question
 
         return {

@@ -32,10 +32,10 @@ def serialize_json(value: ExtensionAssociationSummary) -> dict:
 
 def deserialize_json(data: dict) -> ExtensionAssociationSummary:
     out: ExtensionAssociationSummary = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "ExtensionArn" in data:
+    if data.get("ExtensionArn") is not None:
         out["extension_arn"] = data["ExtensionArn"]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     return out

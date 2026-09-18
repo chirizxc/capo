@@ -62,7 +62,7 @@ def serialize_json(value: ListenerTlsCertificate) -> dict:
 
 
 def deserialize_json(data: dict) -> ListenerTlsCertificate:
-    if "acm" in data:
+    if data.get("acm") is not None:
         import capo_app_mesh.types.listener_tls_acm_certificate
 
         return {
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> ListenerTlsCertificate:
                 data["acm"]
             )
         }
-    elif "file" in data:
+    elif data.get("file") is not None:
         import capo_app_mesh.types.listener_tls_file_certificate
 
         return {
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> ListenerTlsCertificate:
                 data["file"]
             )
         }
-    elif "sds" in data:
+    elif data.get("sds") is not None:
         import capo_app_mesh.types.listener_tls_sds_certificate
 
         return {

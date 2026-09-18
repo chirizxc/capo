@@ -34,12 +34,12 @@ def serialize_json(value: GetChannelScheduleResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetChannelScheduleResponse:
     out: GetChannelScheduleResponse = {}  # type: ignore[typeddict-item]
-    if "Items" in data:
+    if data.get("Items") is not None:
         import capo_mediatailor.types.__list_of_schedule_entry
 
         out["items"] = capo_mediatailor.types.__list_of_schedule_entry.deserialize_json(
             data["Items"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

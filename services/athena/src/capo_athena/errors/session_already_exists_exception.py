@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: SessionAlreadyExistsException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SessionAlreadyExistsException_:
     out: SessionAlreadyExistsException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,20 @@ class SessionAlreadyExistsException(ServiceError):
 
     code: str | None = "SessionAlreadyExistsException"
 
-    def __init__(self, data: SessionAlreadyExistsException_):
+    def __init__(
+        self, data: SessionAlreadyExistsException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="SessionAlreadyExistsException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "SessionAlreadyExistsException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "SessionAlreadyExistsException":
+        return cls(deserialize_aws_json_1_1(data), message)

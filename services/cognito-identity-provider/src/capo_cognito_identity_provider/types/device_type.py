@@ -75,9 +75,9 @@ def serialize_aws_json_1_1(value: DeviceType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeviceType:
     out: DeviceType = {}  # type: ignore[typeddict-item]
-    if "DeviceKey" in data:
+    if data.get("DeviceKey") is not None:
         out["device_key"] = data["DeviceKey"]
-    if "DeviceAttributes" in data:
+    if data.get("DeviceAttributes") is not None:
         import capo_cognito_identity_provider.types.attribute_list_type
 
         out["device_attributes"] = (
@@ -85,7 +85,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeviceType:
                 data["DeviceAttributes"]
             )
         )
-    if "DeviceCreateDate" in data:
+    if data.get("DeviceCreateDate") is not None:
         import capo_cognito_identity_provider.types.date_type
 
         out["device_create_date"] = (
@@ -93,7 +93,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeviceType:
                 data["DeviceCreateDate"]
             )
         )
-    if "DeviceLastModifiedDate" in data:
+    if data.get("DeviceLastModifiedDate") is not None:
         import capo_cognito_identity_provider.types.date_type
 
         out["device_last_modified_date"] = (
@@ -101,7 +101,7 @@ def deserialize_aws_json_1_1(data: dict) -> DeviceType:
                 data["DeviceLastModifiedDate"]
             )
         )
-    if "DeviceLastAuthenticatedDate" in data:
+    if data.get("DeviceLastAuthenticatedDate") is not None:
         import capo_cognito_identity_provider.types.date_type
 
         out["device_last_authenticated_date"] = (

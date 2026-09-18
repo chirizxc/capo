@@ -22,14 +22,22 @@ def serialize_aws_json_1_1(value: FaceSearchSettings) -> dict:
     if "collection_id" in value:
         out["CollectionId"] = value["collection_id"]
     if "face_match_threshold" in value:
-        out["FaceMatchThreshold"] = value["face_match_threshold"]
+        out["FaceMatchThreshold"] = (
+            "NaN"
+            if value["face_match_threshold"] != value["face_match_threshold"]
+            else "Infinity"
+            if value["face_match_threshold"] == float("inf")
+            else "-Infinity"
+            if value["face_match_threshold"] == float("-inf")
+            else value["face_match_threshold"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> FaceSearchSettings:
     out: FaceSearchSettings = {}  # type: ignore[typeddict-item]
-    if "CollectionId" in data:
+    if data.get("CollectionId") is not None:
         out["collection_id"] = data["CollectionId"]
-    if "FaceMatchThreshold" in data:
-        out["face_match_threshold"] = data["FaceMatchThreshold"]
+    if data.get("FaceMatchThreshold") is not None:
+        out["face_match_threshold"] = float(data["FaceMatchThreshold"])
     return out

@@ -39,13 +39,13 @@ def serialize_aws_json_1_0(value: ExportTr31KeyBlock) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ExportTr31KeyBlock:
     out: ExportTr31KeyBlock = {}  # type: ignore[typeddict-item]
-    if "WrappingKeyIdentifier" in data:
+    if data.get("WrappingKeyIdentifier") is not None:
         out["wrapping_key_identifier"] = data["WrappingKeyIdentifier"]
     else:
         raise DeserializationError(
             "ExportTr31KeyBlock.wrapping_key_identifier required"
         )
-    if "KeyBlockHeaders" in data:
+    if data.get("KeyBlockHeaders") is not None:
         import capo_payment_cryptography.types.key_block_headers
 
         out["key_block_headers"] = (

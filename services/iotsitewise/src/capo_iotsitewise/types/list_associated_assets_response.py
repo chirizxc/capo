@@ -37,7 +37,7 @@ def serialize_json(value: ListAssociatedAssetsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListAssociatedAssetsResponse:
     out: ListAssociatedAssetsResponse = {}  # type: ignore[typeddict-item]
-    if "assetSummaries" in data:
+    if data.get("assetSummaries") is not None:
         import capo_iotsitewise.types.associated_assets_summaries
 
         out["asset_summaries"] = (
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> ListAssociatedAssetsResponse:
         raise DeserializationError(
             "ListAssociatedAssetsResponse.asset_summaries required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

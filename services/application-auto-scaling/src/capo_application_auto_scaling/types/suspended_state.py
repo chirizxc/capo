@@ -37,10 +37,10 @@ def serialize_aws_json_1_1(value: SuspendedState) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SuspendedState:
     out: SuspendedState = {}  # type: ignore[typeddict-item]
-    if "DynamicScalingInSuspended" in data:
+    if data.get("DynamicScalingInSuspended") is not None:
         out["dynamic_scaling_in_suspended"] = data["DynamicScalingInSuspended"]
-    if "DynamicScalingOutSuspended" in data:
+    if data.get("DynamicScalingOutSuspended") is not None:
         out["dynamic_scaling_out_suspended"] = data["DynamicScalingOutSuspended"]
-    if "ScheduledScalingSuspended" in data:
+    if data.get("ScheduledScalingSuspended") is not None:
         out["scheduled_scaling_suspended"] = data["ScheduledScalingSuspended"]
     return out

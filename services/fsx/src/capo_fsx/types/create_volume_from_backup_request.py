@@ -52,13 +52,13 @@ def serialize_aws_json_1_1(value: CreateVolumeFromBackupRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateVolumeFromBackupRequest:
     out: CreateVolumeFromBackupRequest = {}  # type: ignore[typeddict-item]
-    if "BackupId" in data:
+    if data.get("BackupId") is not None:
         out["backup_id"] = data["BackupId"]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "OntapConfiguration" in data:
+    if data.get("OntapConfiguration") is not None:
         import capo_fsx.types.create_ontap_volume_configuration
 
         out["ontap_configuration"] = (
@@ -66,7 +66,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateVolumeFromBackupRequest:
                 data["OntapConfiguration"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_fsx.types.tags
 
         out["tags"] = capo_fsx.types.tags.deserialize_aws_json_1_1(data["Tags"])

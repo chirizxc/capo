@@ -89,19 +89,19 @@ def serialize_aws_json_1_1(value: ImportCustomWorkspaceImageRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ImportCustomWorkspaceImageRequest:
     out: ImportCustomWorkspaceImageRequest = {}  # type: ignore[typeddict-item]
-    if "ImageName" in data:
+    if data.get("ImageName") is not None:
         out["image_name"] = data["ImageName"]
     else:
         raise DeserializationError(
             "ImportCustomWorkspaceImageRequest.image_name required"
         )
-    if "ImageDescription" in data:
+    if data.get("ImageDescription") is not None:
         out["image_description"] = data["ImageDescription"]
     else:
         raise DeserializationError(
             "ImportCustomWorkspaceImageRequest.image_description required"
         )
-    if "ComputeType" in data:
+    if data.get("ComputeType") is not None:
         import capo_workspaces.types.image_compute_type
 
         out["compute_type"] = (
@@ -113,7 +113,7 @@ def deserialize_aws_json_1_1(data: dict) -> ImportCustomWorkspaceImageRequest:
         raise DeserializationError(
             "ImportCustomWorkspaceImageRequest.compute_type required"
         )
-    if "Protocol" in data:
+    if data.get("Protocol") is not None:
         import capo_workspaces.types.custom_image_protocol
 
         out["protocol"] = (
@@ -125,7 +125,7 @@ def deserialize_aws_json_1_1(data: dict) -> ImportCustomWorkspaceImageRequest:
         raise DeserializationError(
             "ImportCustomWorkspaceImageRequest.protocol required"
         )
-    if "ImageSource" in data:
+    if data.get("ImageSource") is not None:
         import capo_workspaces.types.image_source_identifier
 
         out["image_source"] = (
@@ -137,13 +137,13 @@ def deserialize_aws_json_1_1(data: dict) -> ImportCustomWorkspaceImageRequest:
         raise DeserializationError(
             "ImportCustomWorkspaceImageRequest.image_source required"
         )
-    if "InfrastructureConfigurationArn" in data:
+    if data.get("InfrastructureConfigurationArn") is not None:
         out["infrastructure_configuration_arn"] = data["InfrastructureConfigurationArn"]
     else:
         raise DeserializationError(
             "ImportCustomWorkspaceImageRequest.infrastructure_configuration_arn required"
         )
-    if "Platform" in data:
+    if data.get("Platform") is not None:
         import capo_workspaces.types.platform
 
         out["platform"] = capo_workspaces.types.platform.deserialize_aws_json_1_1(
@@ -153,7 +153,7 @@ def deserialize_aws_json_1_1(data: dict) -> ImportCustomWorkspaceImageRequest:
         raise DeserializationError(
             "ImportCustomWorkspaceImageRequest.platform required"
         )
-    if "OsVersion" in data:
+    if data.get("OsVersion") is not None:
         import capo_workspaces.types.os_version
 
         out["os_version"] = capo_workspaces.types.os_version.deserialize_aws_json_1_1(
@@ -163,7 +163,7 @@ def deserialize_aws_json_1_1(data: dict) -> ImportCustomWorkspaceImageRequest:
         raise DeserializationError(
             "ImportCustomWorkspaceImageRequest.os_version required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_workspaces.types.tag_list
 
         out["tags"] = capo_workspaces.types.tag_list.deserialize_aws_json_1_1(

@@ -27,8 +27,8 @@ def serialize_json(value: InputDestinationVpc) -> dict:
 
 def deserialize_json(data: dict) -> InputDestinationVpc:
     out: InputDestinationVpc = {}  # type: ignore[typeddict-item]
-    if "availabilityZone" in data:
+    if data.get("availabilityZone") is not None:
         out["availability_zone"] = data["availabilityZone"]
-    if "networkInterfaceId" in data:
+    if data.get("networkInterfaceId") is not None:
         out["network_interface_id"] = data["networkInterfaceId"]
     return out

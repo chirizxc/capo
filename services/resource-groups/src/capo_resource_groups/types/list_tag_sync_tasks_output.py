@@ -36,7 +36,7 @@ def serialize_json(value: ListTagSyncTasksOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListTagSyncTasksOutput:
     out: ListTagSyncTasksOutput = {}  # type: ignore[typeddict-item]
-    if "TagSyncTasks" in data:
+    if data.get("TagSyncTasks") is not None:
         import capo_resource_groups.types.tag_sync_task_list
 
         out["tag_sync_tasks"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListTagSyncTasksOutput:
                 data["TagSyncTasks"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

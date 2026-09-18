@@ -62,7 +62,7 @@ def serialize_json(value: DestinationConfiguration) -> dict:
 
 
 def deserialize_json(data: dict) -> DestinationConfiguration:
-    if "s3" in data:
+    if data.get("s3") is not None:
         import capo_ivschat.types.s3_destination_configuration
 
         return {
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> DestinationConfiguration:
                 data["s3"]
             )
         }
-    elif "cloudWatchLogs" in data:
+    elif data.get("cloudWatchLogs") is not None:
         import capo_ivschat.types.cloud_watch_logs_destination_configuration
 
         return {
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> DestinationConfiguration:
                 data["cloudWatchLogs"]
             )
         }
-    elif "firehose" in data:
+    elif data.get("firehose") is not None:
         import capo_ivschat.types.firehose_destination_configuration
 
         return {

@@ -56,9 +56,9 @@ def serialize_json(value: EnvironmentConfigurationUserParameter) -> dict:
 
 def deserialize_json(data: dict) -> EnvironmentConfigurationUserParameter:
     out: EnvironmentConfigurationUserParameter = {}  # type: ignore[typeddict-item]
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
-    if "environmentResolvedAccount" in data:
+    if data.get("environmentResolvedAccount") is not None:
         import capo_datazone.types.environment_resolved_account
 
         out["environment_resolved_account"] = (
@@ -66,9 +66,9 @@ def deserialize_json(data: dict) -> EnvironmentConfigurationUserParameter:
                 data["environmentResolvedAccount"]
             )
         )
-    if "environmentConfigurationName" in data:
+    if data.get("environmentConfigurationName") is not None:
         out["environment_configuration_name"] = data["environmentConfigurationName"]
-    if "environmentParameters" in data:
+    if data.get("environmentParameters") is not None:
         import capo_datazone.types.environment_parameters_list
 
         out["environment_parameters"] = (

@@ -13,9 +13,9 @@ from capo_iot_managed_integrations import AsyncIoTManagedIntegrationsClient
 
 
 async def main():
-    async with AsyncIoTManagedIntegrationsClient() as s3:
+    async with AsyncIoTManagedIntegrationsClient() as io_t_managed_integrations:
         # Example: call the get_custom_endpoint operation
-        response = await s3.get_custom_endpoint()
+        response = await io_t_managed_integrations.get_custom_endpoint()
         print(response["endpoint_address"])
 ```
 
@@ -29,9 +29,9 @@ from capo_iot_managed_integrations.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncIoTManagedIntegrationsClient() as s3:
+    async with AsyncIoTManagedIntegrationsClient() as io_t_managed_integrations:
         try:
-            await s3.get_custom_endpoint()
+            await io_t_managed_integrations.get_custom_endpoint()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_iot_managed_integrations import AsyncIoTManagedIntegrationsClient
 
 
 async def main():
-    async with AsyncIoTManagedIntegrationsClient() as s3:
+    async with AsyncIoTManagedIntegrationsClient() as io_t_managed_integrations:
         # Default: 3 attempts for every operation
-        response = await s3.get_custom_endpoint()
+        response = await io_t_managed_integrations.get_custom_endpoint()
 
         # Override per operation
-        response = await s3.get_custom_endpoint(config_overrides={"retry_max_attempts": 5})
+        response = await io_t_managed_integrations.get_custom_endpoint(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.get_custom_endpoint(config_overrides={"retry_max_attempts": 1})
+        response = await io_t_managed_integrations.get_custom_endpoint(config_overrides={"retry_max_attempts": 1})
 ```

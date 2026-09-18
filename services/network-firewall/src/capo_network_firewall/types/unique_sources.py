@@ -22,7 +22,7 @@ def serialize_aws_json_1_0(value: UniqueSources) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UniqueSources:
     out: UniqueSources = {}  # type: ignore[typeddict-item]
-    if "Count" in data:
+    if data.get("Count") is not None:
         out["count"] = data["Count"]
     else:
         out["count"] = 0

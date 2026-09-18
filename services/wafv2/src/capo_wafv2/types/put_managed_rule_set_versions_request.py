@@ -58,29 +58,29 @@ def serialize_aws_json_1_1(value: PutManagedRuleSetVersionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutManagedRuleSetVersionsRequest:
     out: PutManagedRuleSetVersionsRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("PutManagedRuleSetVersionsRequest.name required")
-    if "Scope" in data:
+    if data.get("Scope") is not None:
         import capo_wafv2.types.scope
 
         out["scope"] = capo_wafv2.types.scope.deserialize_aws_json_1_1(data["Scope"])
     else:
         raise DeserializationError("PutManagedRuleSetVersionsRequest.scope required")
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("PutManagedRuleSetVersionsRequest.id required")
-    if "LockToken" in data:
+    if data.get("LockToken") is not None:
         out["lock_token"] = data["LockToken"]
     else:
         raise DeserializationError(
             "PutManagedRuleSetVersionsRequest.lock_token required"
         )
-    if "RecommendedVersion" in data:
+    if data.get("RecommendedVersion") is not None:
         out["recommended_version"] = data["RecommendedVersion"]
-    if "VersionsToPublish" in data:
+    if data.get("VersionsToPublish") is not None:
         import capo_wafv2.types.versions_to_publish
 
         out["versions_to_publish"] = (

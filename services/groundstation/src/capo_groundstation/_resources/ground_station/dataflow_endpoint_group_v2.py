@@ -77,8 +77,9 @@ class DataflowEndpointGroupV2:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.create_dataflow_endpoint_group_v2_request.CreateDataflowEndpointGroupV2Request = {}  # type: ignore[typeddict-item]
-        input_["endpoints"] = endpoints
+        input_: capo_groundstation.types.create_dataflow_endpoint_group_v2_request.CreateDataflowEndpointGroupV2Request = {
+            "endpoints": endpoints
+        }
         if contact_pre_pass_duration_seconds is not None:
             input_["contact_pre_pass_duration_seconds"] = (
                 contact_pre_pass_duration_seconds
@@ -95,6 +96,7 @@ class DataflowEndpointGroupV2:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -147,8 +149,9 @@ class AsyncDataflowEndpointGroupV2:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_groundstation.types.create_dataflow_endpoint_group_v2_request.CreateDataflowEndpointGroupV2Request = {}  # type: ignore[typeddict-item]
-        input_["endpoints"] = endpoints
+        input_: capo_groundstation.types.create_dataflow_endpoint_group_v2_request.CreateDataflowEndpointGroupV2Request = {
+            "endpoints": endpoints
+        }
         if contact_pre_pass_duration_seconds is not None:
             input_["contact_pre_pass_duration_seconds"] = (
                 contact_pre_pass_duration_seconds
@@ -165,4 +168,5 @@ class AsyncDataflowEndpointGroupV2:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

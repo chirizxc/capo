@@ -99,27 +99,27 @@ def serialize_json(value: GetEmailIdentityResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetEmailIdentityResponse:
     out: GetEmailIdentityResponse = {}  # type: ignore[typeddict-item]
-    if "IdentityType" in data:
+    if data.get("IdentityType") is not None:
         import capo_sesv2.types.identity_type
 
         out["identity_type"] = capo_sesv2.types.identity_type.deserialize_json(
             data["IdentityType"]
         )
-    if "FeedbackForwardingStatus" in data:
+    if data.get("FeedbackForwardingStatus") is not None:
         out["feedback_forwarding_status"] = data["FeedbackForwardingStatus"]
     else:
         out["feedback_forwarding_status"] = False
-    if "VerifiedForSendingStatus" in data:
+    if data.get("VerifiedForSendingStatus") is not None:
         out["verified_for_sending_status"] = data["VerifiedForSendingStatus"]
     else:
         out["verified_for_sending_status"] = False
-    if "DkimAttributes" in data:
+    if data.get("DkimAttributes") is not None:
         import capo_sesv2.types.dkim_attributes
 
         out["dkim_attributes"] = capo_sesv2.types.dkim_attributes.deserialize_json(
             data["DkimAttributes"]
         )
-    if "MailFromAttributes" in data:
+    if data.get("MailFromAttributes") is not None:
         import capo_sesv2.types.mail_from_attributes
 
         out["mail_from_attributes"] = (
@@ -127,17 +127,17 @@ def deserialize_json(data: dict) -> GetEmailIdentityResponse:
                 data["MailFromAttributes"]
             )
         )
-    if "Policies" in data:
+    if data.get("Policies") is not None:
         import capo_sesv2.types.policy_map
 
         out["policies"] = capo_sesv2.types.policy_map.deserialize_json(data["Policies"])
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sesv2.types.tag_list
 
         out["tags"] = capo_sesv2.types.tag_list.deserialize_json(data["Tags"])
-    if "ConfigurationSetName" in data:
+    if data.get("ConfigurationSetName") is not None:
         out["configuration_set_name"] = data["ConfigurationSetName"]
-    if "VerificationStatus" in data:
+    if data.get("VerificationStatus") is not None:
         import capo_sesv2.types.verification_status
 
         out["verification_status"] = (
@@ -145,7 +145,7 @@ def deserialize_json(data: dict) -> GetEmailIdentityResponse:
                 data["VerificationStatus"]
             )
         )
-    if "VerificationInfo" in data:
+    if data.get("VerificationInfo") is not None:
         import capo_sesv2.types.verification_info
 
         out["verification_info"] = capo_sesv2.types.verification_info.deserialize_json(

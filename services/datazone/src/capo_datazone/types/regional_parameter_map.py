@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: RegionalParameterMap) -> dict:
 def deserialize_json(data: dict) -> RegionalParameterMap:
     out: RegionalParameterMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_datazone.types.regional_parameter
 
         out[key] = capo_datazone.types.regional_parameter.deserialize_json(value)

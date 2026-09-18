@@ -25,5 +25,7 @@ def deserialize_aws_json_1_0(data: list) -> HostInfoForCreateList:
 
     out: HostInfoForCreateList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_evs.types.host_info_for_create.deserialize_aws_json_1_0(item))
     return out

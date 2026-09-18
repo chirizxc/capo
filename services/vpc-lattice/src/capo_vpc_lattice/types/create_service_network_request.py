@@ -50,19 +50,19 @@ def serialize_json(value: CreateServiceNetworkRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateServiceNetworkRequest:
     out: CreateServiceNetworkRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateServiceNetworkRequest.name required")
-    if "authType" in data:
+    if data.get("authType") is not None:
         out["auth_type"] = data["authType"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_vpc_lattice.types.tag_map
 
         out["tags"] = capo_vpc_lattice.types.tag_map.deserialize_json(data["tags"])
-    if "sharingConfig" in data:
+    if data.get("sharingConfig") is not None:
         import capo_vpc_lattice.types.sharing_config
 
         out["sharing_config"] = capo_vpc_lattice.types.sharing_config.deserialize_json(

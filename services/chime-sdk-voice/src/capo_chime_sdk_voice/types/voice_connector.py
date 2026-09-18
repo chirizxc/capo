@@ -108,9 +108,9 @@ def serialize_json(value: VoiceConnector) -> dict:
 
 def deserialize_json(data: dict) -> VoiceConnector:
     out: VoiceConnector = {}  # type: ignore[typeddict-item]
-    if "VoiceConnectorId" in data:
+    if data.get("VoiceConnectorId") is not None:
         out["voice_connector_id"] = data["VoiceConnectorId"]
-    if "AwsRegion" in data:
+    if data.get("AwsRegion") is not None:
         import capo_chime_sdk_voice.types.voice_connector_aws_region
 
         out["aws_region"] = (
@@ -118,13 +118,13 @@ def deserialize_json(data: dict) -> VoiceConnector:
                 data["AwsRegion"]
             )
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "OutboundHostName" in data:
+    if data.get("OutboundHostName") is not None:
         out["outbound_host_name"] = data["OutboundHostName"]
-    if "RequireEncryption" in data:
+    if data.get("RequireEncryption") is not None:
         out["require_encryption"] = data["RequireEncryption"]
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_chime_sdk_voice.types.iso8601_timestamp
 
         out["created_timestamp"] = (
@@ -132,7 +132,7 @@ def deserialize_json(data: dict) -> VoiceConnector:
                 data["CreatedTimestamp"]
             )
         )
-    if "UpdatedTimestamp" in data:
+    if data.get("UpdatedTimestamp") is not None:
         import capo_chime_sdk_voice.types.iso8601_timestamp
 
         out["updated_timestamp"] = (
@@ -140,9 +140,9 @@ def deserialize_json(data: dict) -> VoiceConnector:
                 data["UpdatedTimestamp"]
             )
         )
-    if "VoiceConnectorArn" in data:
+    if data.get("VoiceConnectorArn") is not None:
         out["voice_connector_arn"] = data["VoiceConnectorArn"]
-    if "IntegrationType" in data:
+    if data.get("IntegrationType") is not None:
         import capo_chime_sdk_voice.types.voice_connector_integration_type
 
         out["integration_type"] = (
@@ -150,7 +150,7 @@ def deserialize_json(data: dict) -> VoiceConnector:
                 data["IntegrationType"]
             )
         )
-    if "NetworkType" in data:
+    if data.get("NetworkType") is not None:
         import capo_chime_sdk_voice.types.network_type
 
         out["network_type"] = capo_chime_sdk_voice.types.network_type.deserialize_json(

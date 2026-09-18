@@ -36,9 +36,9 @@ def serialize_json(value: CustomDeliveryConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> CustomDeliveryConfiguration:
     out: CustomDeliveryConfiguration = {}  # type: ignore[typeddict-item]
-    if "DeliveryUri" in data:
+    if data.get("DeliveryUri") is not None:
         out["delivery_uri"] = data["DeliveryUri"]
-    if "EndpointTypes" in data:
+    if data.get("EndpointTypes") is not None:
         import capo_pinpoint.types.list_of__endpoint_types_element
 
         out["endpoint_types"] = (

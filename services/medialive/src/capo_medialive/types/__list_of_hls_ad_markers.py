@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfHlsAdMarkers:
 
     out: __listOfHlsAdMarkers = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_medialive.types.hls_ad_markers.deserialize_json(item))
     return out

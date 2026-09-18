@@ -43,7 +43,7 @@ def serialize_aws_json_1_1(value: ScriptDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ScriptDetails:
     out: ScriptDetails = {}  # type: ignore[typeddict-item]
-    if "ScriptS3Location" in data:
+    if data.get("ScriptS3Location") is not None:
         import capo_appstream.types.s3_location
 
         out["script_s3_location"] = (
@@ -51,10 +51,10 @@ def deserialize_aws_json_1_1(data: dict) -> ScriptDetails:
                 data["ScriptS3Location"]
             )
         )
-    if "ExecutablePath" in data:
+    if data.get("ExecutablePath") is not None:
         out["executable_path"] = data["ExecutablePath"]
-    if "ExecutableParameters" in data:
+    if data.get("ExecutableParameters") is not None:
         out["executable_parameters"] = data["ExecutableParameters"]
-    if "TimeoutInSeconds" in data:
+    if data.get("TimeoutInSeconds") is not None:
         out["timeout_in_seconds"] = data["TimeoutInSeconds"]
     return out

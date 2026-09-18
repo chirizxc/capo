@@ -40,15 +40,15 @@ def serialize_aws_json_1_0(value: CrossRegionS3RestoreSourcesAccess) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CrossRegionS3RestoreSourcesAccess:
     out: CrossRegionS3RestoreSourcesAccess = {}  # type: ignore[typeddict-item]
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
-    if "ipv4Addresses" in data:
+    if data.get("ipv4Addresses") is not None:
         import capo_odb.types.string_list
 
         out["ipv4_addresses"] = capo_odb.types.string_list.deserialize_aws_json_1_0(
             data["ipv4Addresses"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_odb.types.managed_resource_status
 
         out["status"] = capo_odb.types.managed_resource_status.deserialize_aws_json_1_0(

@@ -97,13 +97,13 @@ def serialize_aws_json_1_1(value: OracleDataProviderSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OracleDataProviderSettings:
     out: OracleDataProviderSettings = {}  # type: ignore[typeddict-item]
-    if "ServerName" in data:
+    if data.get("ServerName") is not None:
         out["server_name"] = data["ServerName"]
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
-    if "SslMode" in data:
+    if data.get("SslMode") is not None:
         import capo_database_migration_service.types.dms_ssl_mode_value
 
         out["ssl_mode"] = (
@@ -111,28 +111,28 @@ def deserialize_aws_json_1_1(data: dict) -> OracleDataProviderSettings:
                 data["SslMode"]
             )
         )
-    if "CertificateArn" in data:
+    if data.get("CertificateArn") is not None:
         out["certificate_arn"] = data["CertificateArn"]
-    if "AsmServer" in data:
+    if data.get("AsmServer") is not None:
         out["asm_server"] = data["AsmServer"]
-    if "SecretsManagerOracleAsmSecretId" in data:
+    if data.get("SecretsManagerOracleAsmSecretId") is not None:
         out["secrets_manager_oracle_asm_secret_id"] = data[
             "SecretsManagerOracleAsmSecretId"
         ]
-    if "SecretsManagerOracleAsmAccessRoleArn" in data:
+    if data.get("SecretsManagerOracleAsmAccessRoleArn") is not None:
         out["secrets_manager_oracle_asm_access_role_arn"] = data[
             "SecretsManagerOracleAsmAccessRoleArn"
         ]
-    if "SecretsManagerSecurityDbEncryptionSecretId" in data:
+    if data.get("SecretsManagerSecurityDbEncryptionSecretId") is not None:
         out["secrets_manager_security_db_encryption_secret_id"] = data[
             "SecretsManagerSecurityDbEncryptionSecretId"
         ]
-    if "SecretsManagerSecurityDbEncryptionAccessRoleArn" in data:
+    if data.get("SecretsManagerSecurityDbEncryptionAccessRoleArn") is not None:
         out["secrets_manager_security_db_encryption_access_role_arn"] = data[
             "SecretsManagerSecurityDbEncryptionAccessRoleArn"
         ]
-    if "S3Path" in data:
+    if data.get("S3Path") is not None:
         out["s3_path"] = data["S3Path"]
-    if "S3AccessRoleArn" in data:
+    if data.get("S3AccessRoleArn") is not None:
         out["s3_access_role_arn"] = data["S3AccessRoleArn"]
     return out

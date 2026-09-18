@@ -27,11 +27,11 @@ def serialize_json(value: EfsStorageConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> EfsStorageConfiguration:
     out: EfsStorageConfiguration = {}  # type: ignore[typeddict-item]
-    if "file-system-id" in data:
+    if data.get("file-system-id") is not None:
         out["file_system_id"] = data["file-system-id"]
     else:
         raise DeserializationError("EfsStorageConfiguration.file_system_id required")
-    if "mount-point" in data:
+    if data.get("mount-point") is not None:
         out["mount_point"] = data["mount-point"]
     else:
         raise DeserializationError("EfsStorageConfiguration.mount_point required")

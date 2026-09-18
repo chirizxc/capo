@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> GeospatialLayerMeasureFieldList:
 
     out: GeospatialLayerMeasureFieldList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.measure_field.deserialize_json(item))
     return out

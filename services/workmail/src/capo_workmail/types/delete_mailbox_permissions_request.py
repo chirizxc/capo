@@ -31,17 +31,17 @@ def serialize_aws_json_1_1(value: DeleteMailboxPermissionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteMailboxPermissionsRequest:
     out: DeleteMailboxPermissionsRequest = {}  # type: ignore[typeddict-item]
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
     else:
         raise DeserializationError(
             "DeleteMailboxPermissionsRequest.organization_id required"
         )
-    if "EntityId" in data:
+    if data.get("EntityId") is not None:
         out["entity_id"] = data["EntityId"]
     else:
         raise DeserializationError("DeleteMailboxPermissionsRequest.entity_id required")
-    if "GranteeId" in data:
+    if data.get("GranteeId") is not None:
         out["grantee_id"] = data["GranteeId"]
     else:
         raise DeserializationError(

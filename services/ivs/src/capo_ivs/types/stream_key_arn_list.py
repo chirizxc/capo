@@ -14,4 +14,4 @@ def serialize_json(value: StreamKeyArnList) -> list:
 
 
 def deserialize_json(data: list) -> StreamKeyArnList:
-    return list(data)
+    return [item for item in data if item is not None]

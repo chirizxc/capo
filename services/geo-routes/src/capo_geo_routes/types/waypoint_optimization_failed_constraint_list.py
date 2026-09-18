@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> WaypointOptimizationFailedConstraintList:
 
     out: WaypointOptimizationFailedConstraintList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_geo_routes.types.waypoint_optimization_failed_constraint.deserialize_json(
                 item

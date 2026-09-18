@@ -47,7 +47,7 @@ def serialize_json(value: SendMessageContentBlockDelta) -> dict:
 
 
 def deserialize_json(data: dict) -> SendMessageContentBlockDelta:
-    if "textDelta" in data:
+    if data.get("textDelta") is not None:
         import capo_devops_agent.types.send_message_text_delta
 
         return {
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> SendMessageContentBlockDelta:
                 data["textDelta"]
             )
         }
-    elif "jsonDelta" in data:
+    elif data.get("jsonDelta") is not None:
         import capo_devops_agent.types.send_message_json_delta
 
         return {

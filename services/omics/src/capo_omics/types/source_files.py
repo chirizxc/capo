@@ -28,10 +28,10 @@ def serialize_json(value: SourceFiles) -> dict:
 
 def deserialize_json(data: dict) -> SourceFiles:
     out: SourceFiles = {}  # type: ignore[typeddict-item]
-    if "source1" in data:
+    if data.get("source1") is not None:
         out["source1"] = data["source1"]
     else:
         raise DeserializationError("SourceFiles.source1 required")
-    if "source2" in data:
+    if data.get("source2") is not None:
         out["source2"] = data["source2"]
     return out

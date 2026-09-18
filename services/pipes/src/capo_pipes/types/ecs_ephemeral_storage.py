@@ -24,7 +24,7 @@ def serialize_json(value: EcsEphemeralStorage) -> dict:
 
 def deserialize_json(data: dict) -> EcsEphemeralStorage:
     out: EcsEphemeralStorage = {}  # type: ignore[typeddict-item]
-    if "sizeInGiB" in data:
+    if data.get("sizeInGiB") is not None:
         out["size_in_gi_b"] = data["sizeInGiB"]
     else:
         raise DeserializationError("EcsEphemeralStorage.size_in_gi_b required")

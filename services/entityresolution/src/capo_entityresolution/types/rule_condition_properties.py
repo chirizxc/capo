@@ -41,7 +41,7 @@ def serialize_json(value: RuleConditionProperties) -> dict:
 
 def deserialize_json(data: dict) -> RuleConditionProperties:
     out: RuleConditionProperties = {}  # type: ignore[typeddict-item]
-    if "rules" in data:
+    if data.get("rules") is not None:
         import capo_entityresolution.types.rule_condition_list
 
         out["rules"] = capo_entityresolution.types.rule_condition_list.deserialize_json(
@@ -49,7 +49,7 @@ def deserialize_json(data: dict) -> RuleConditionProperties:
         )
     else:
         raise DeserializationError("RuleConditionProperties.rules required")
-    if "matchingConfig" in data:
+    if data.get("matchingConfig") is not None:
         import capo_entityresolution.types.matching_config
 
         out["matching_config"] = (

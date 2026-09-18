@@ -46,20 +46,20 @@ def serialize_json(value: GetTraceSummariesResult) -> dict:
 
 def deserialize_json(data: dict) -> GetTraceSummariesResult:
     out: GetTraceSummariesResult = {}  # type: ignore[typeddict-item]
-    if "TraceSummaries" in data:
+    if data.get("TraceSummaries") is not None:
         import capo_xray.types.trace_summary_list
 
         out["trace_summaries"] = capo_xray.types.trace_summary_list.deserialize_json(
             data["TraceSummaries"]
         )
-    if "ApproximateTime" in data:
+    if data.get("ApproximateTime") is not None:
         import capo_xray.types.timestamp
 
         out["approximate_time"] = capo_xray.types.timestamp.deserialize_json(
             data["ApproximateTime"]
         )
-    if "TracesProcessedCount" in data:
+    if data.get("TracesProcessedCount") is not None:
         out["traces_processed_count"] = data["TracesProcessedCount"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -23,6 +23,6 @@ def serialize_json(value: CreateNodeRegistrationScriptResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateNodeRegistrationScriptResponse:
     out: CreateNodeRegistrationScriptResponse = {}  # type: ignore[typeddict-item]
-    if "nodeRegistrationScript" in data:
+    if data.get("nodeRegistrationScript") is not None:
         out["node_registration_script"] = data["nodeRegistrationScript"]
     return out

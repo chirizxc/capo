@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> DataSetsSummaryList:
 
     out: DataSetsSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_m2.types.data_set_summary.deserialize_json(item))
     return out

@@ -24,7 +24,7 @@ def serialize_json(value: DynatraceConnectorProfileCredentials) -> dict:
 
 def deserialize_json(data: dict) -> DynatraceConnectorProfileCredentials:
     out: DynatraceConnectorProfileCredentials = {}  # type: ignore[typeddict-item]
-    if "apiToken" in data:
+    if data.get("apiToken") is not None:
         out["api_token"] = data["apiToken"]
     else:
         raise DeserializationError(

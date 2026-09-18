@@ -57,7 +57,7 @@ def serialize_aws_json_1_0(value: Header) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Header:
     out: Header = {}  # type: ignore[typeddict-item]
-    if "Protocol" in data:
+    if data.get("Protocol") is not None:
         import capo_network_firewall.types.stateful_rule_protocol
 
         out["protocol"] = (
@@ -67,15 +67,15 @@ def deserialize_aws_json_1_0(data: dict) -> Header:
         )
     else:
         raise DeserializationError("Header.protocol required")
-    if "Source" in data:
+    if data.get("Source") is not None:
         out["source"] = data["Source"]
     else:
         raise DeserializationError("Header.source required")
-    if "SourcePort" in data:
+    if data.get("SourcePort") is not None:
         out["source_port"] = data["SourcePort"]
     else:
         raise DeserializationError("Header.source_port required")
-    if "Direction" in data:
+    if data.get("Direction") is not None:
         import capo_network_firewall.types.stateful_rule_direction
 
         out["direction"] = (
@@ -85,11 +85,11 @@ def deserialize_aws_json_1_0(data: dict) -> Header:
         )
     else:
         raise DeserializationError("Header.direction required")
-    if "Destination" in data:
+    if data.get("Destination") is not None:
         out["destination"] = data["Destination"]
     else:
         raise DeserializationError("Header.destination required")
-    if "DestinationPort" in data:
+    if data.get("DestinationPort") is not None:
         out["destination_port"] = data["DestinationPort"]
     else:
         raise DeserializationError("Header.destination_port required")

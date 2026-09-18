@@ -36,11 +36,11 @@ def serialize_aws_json_1_1(value: ParameterObject) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ParameterObject:
     out: ParameterObject = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("ParameterObject.id required")
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_data_pipeline.types.parameter_attribute_list
 
         out["attributes"] = (

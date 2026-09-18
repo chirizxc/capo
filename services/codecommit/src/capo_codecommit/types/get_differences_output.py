@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: GetDifferencesOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetDifferencesOutput:
     out: GetDifferencesOutput = {}  # type: ignore[typeddict-item]
-    if "differences" in data:
+    if data.get("differences") is not None:
         import capo_codecommit.types.difference_list
 
         out["differences"] = (
@@ -42,6 +42,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetDifferencesOutput:
                 data["differences"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -101,27 +101,27 @@ def serialize_json(value: ConnectorProfile) -> dict:
 
 def deserialize_json(data: dict) -> ConnectorProfile:
     out: ConnectorProfile = {}  # type: ignore[typeddict-item]
-    if "connectorProfileArn" in data:
+    if data.get("connectorProfileArn") is not None:
         out["connector_profile_arn"] = data["connectorProfileArn"]
-    if "connectorProfileName" in data:
+    if data.get("connectorProfileName") is not None:
         out["connector_profile_name"] = data["connectorProfileName"]
-    if "connectorType" in data:
+    if data.get("connectorType") is not None:
         import capo_appflow.types.connector_type
 
         out["connector_type"] = capo_appflow.types.connector_type.deserialize_json(
             data["connectorType"]
         )
-    if "connectorLabel" in data:
+    if data.get("connectorLabel") is not None:
         out["connector_label"] = data["connectorLabel"]
-    if "connectionMode" in data:
+    if data.get("connectionMode") is not None:
         import capo_appflow.types.connection_mode
 
         out["connection_mode"] = capo_appflow.types.connection_mode.deserialize_json(
             data["connectionMode"]
         )
-    if "credentialsArn" in data:
+    if data.get("credentialsArn") is not None:
         out["credentials_arn"] = data["credentialsArn"]
-    if "connectorProfileProperties" in data:
+    if data.get("connectorProfileProperties") is not None:
         import capo_appflow.types.connector_profile_properties
 
         out["connector_profile_properties"] = (
@@ -129,17 +129,17 @@ def deserialize_json(data: dict) -> ConnectorProfile:
                 data["connectorProfileProperties"]
             )
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_appflow.types.date
 
         out["created_at"] = capo_appflow.types.date.deserialize_json(data["createdAt"])
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_appflow.types.date
 
         out["last_updated_at"] = capo_appflow.types.date.deserialize_json(
             data["lastUpdatedAt"]
         )
-    if "privateConnectionProvisioningState" in data:
+    if data.get("privateConnectionProvisioningState") is not None:
         import capo_appflow.types.private_connection_provisioning_state
 
         out["private_connection_provisioning_state"] = (

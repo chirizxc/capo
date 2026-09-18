@@ -39,10 +39,10 @@ def serialize_json(value: NoiseReducerSpatialFilterSettings) -> dict:
 
 def deserialize_json(data: dict) -> NoiseReducerSpatialFilterSettings:
     out: NoiseReducerSpatialFilterSettings = {}  # type: ignore[typeddict-item]
-    if "postFilterSharpenStrength" in data:
+    if data.get("postFilterSharpenStrength") is not None:
         out["post_filter_sharpen_strength"] = data["postFilterSharpenStrength"]
-    if "speed" in data:
+    if data.get("speed") is not None:
         out["speed"] = data["speed"]
-    if "strength" in data:
+    if data.get("strength") is not None:
         out["strength"] = data["strength"]
     return out

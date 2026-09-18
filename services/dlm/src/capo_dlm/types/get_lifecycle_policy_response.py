@@ -25,7 +25,7 @@ def serialize_json(value: GetLifecyclePolicyResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetLifecyclePolicyResponse:
     out: GetLifecyclePolicyResponse = {}  # type: ignore[typeddict-item]
-    if "Policy" in data:
+    if data.get("Policy") is not None:
         import capo_dlm.types.lifecycle_policy
 
         out["policy"] = capo_dlm.types.lifecycle_policy.deserialize_json(data["Policy"])

@@ -13,9 +13,9 @@ from capo_budgets import AsyncBudgetsClient
 
 
 async def main():
-    async with AsyncBudgetsClient() as s3:
+    async with AsyncBudgetsClient() as budgets:
         # Example: call the create_budget operation
-        response = await s3.create_budget()
+        response = await budgets.create_budget()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_budgets import AsyncBudgetsClient
 
 
 async def main():
-    async with AsyncBudgetsClient() as s3:
+    async with AsyncBudgetsClient() as budgets:
         # Example: paginate over describe_budget_action_histories
-        async for item in s3.iter_describe_budget_action_histories():
+        async for item in budgets.iter_describe_budget_action_histories():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_budgets.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncBudgetsClient() as s3:
+    async with AsyncBudgetsClient() as budgets:
         try:
-            await s3.create_budget()
+            await budgets.create_budget()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_budgets import AsyncBudgetsClient
 
 
 async def main():
-    async with AsyncBudgetsClient() as s3:
+    async with AsyncBudgetsClient() as budgets:
         # Default: 3 attempts for every operation
-        response = await s3.create_budget()
+        response = await budgets.create_budget()
 
         # Override per operation
-        response = await s3.create_budget(config_overrides={"retry_max_attempts": 5})
+        response = await budgets.create_budget(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_budget(config_overrides={"retry_max_attempts": 1})
+        response = await budgets.create_budget(config_overrides={"retry_max_attempts": 1})
 ```

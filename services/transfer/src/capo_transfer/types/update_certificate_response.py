@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: UpdateCertificateResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateCertificateResponse:
     out: UpdateCertificateResponse = {}  # type: ignore[typeddict-item]
-    if "CertificateId" in data:
+    if data.get("CertificateId") is not None:
         out["certificate_id"] = data["CertificateId"]
     else:
         raise DeserializationError("UpdateCertificateResponse.certificate_id required")

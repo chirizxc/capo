@@ -47,15 +47,15 @@ def serialize_aws_json_1_1(value: CreateDataSourceFromRDSInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateDataSourceFromRDSInput:
     out: CreateDataSourceFromRDSInput = {}  # type: ignore[typeddict-item]
-    if "DataSourceId" in data:
+    if data.get("DataSourceId") is not None:
         out["data_source_id"] = data["DataSourceId"]
     else:
         raise DeserializationError(
             "CreateDataSourceFromRDSInput.data_source_id required"
         )
-    if "DataSourceName" in data:
+    if data.get("DataSourceName") is not None:
         out["data_source_name"] = data["DataSourceName"]
-    if "RDSData" in data:
+    if data.get("RDSData") is not None:
         import capo_machine_learning.types.rds_data_spec
 
         out["rds_data"] = (
@@ -65,11 +65,11 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDataSourceFromRDSInput:
         )
     else:
         raise DeserializationError("CreateDataSourceFromRDSInput.rds_data required")
-    if "RoleARN" in data:
+    if data.get("RoleARN") is not None:
         out["role_arn"] = data["RoleARN"]
     else:
         raise DeserializationError("CreateDataSourceFromRDSInput.role_arn required")
-    if "ComputeStatistics" in data:
+    if data.get("ComputeStatistics") is not None:
         out["compute_statistics"] = data["ComputeStatistics"]
     else:
         out["compute_statistics"] = False

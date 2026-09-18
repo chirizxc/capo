@@ -23,6 +23,6 @@ def serialize_json(value: CreateAnalyzerResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateAnalyzerResponse:
     out: CreateAnalyzerResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     return out

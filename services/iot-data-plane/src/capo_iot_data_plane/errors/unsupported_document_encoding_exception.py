@@ -25,7 +25,7 @@ def serialize_json(value: UnsupportedDocumentEncodingException_) -> dict:
 
 def deserialize_json(data: dict) -> UnsupportedDocumentEncodingException_:
     out: UnsupportedDocumentEncodingException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,20 @@ class UnsupportedDocumentEncodingException(ServiceError):
 
     code: str | None = "UnsupportedDocumentEncodingException"
 
-    def __init__(self, data: UnsupportedDocumentEncodingException_):
+    def __init__(
+        self, data: UnsupportedDocumentEncodingException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="UnsupportedDocumentEncodingException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "UnsupportedDocumentEncodingException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "UnsupportedDocumentEncodingException":
+        return cls(deserialize_json(data), message)

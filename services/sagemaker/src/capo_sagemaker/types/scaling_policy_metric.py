@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: ScalingPolicyMetric) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ScalingPolicyMetric:
     out: ScalingPolicyMetric = {}  # type: ignore[typeddict-item]
-    if "InvocationsPerInstance" in data:
+    if data.get("InvocationsPerInstance") is not None:
         out["invocations_per_instance"] = data["InvocationsPerInstance"]
-    if "ModelLatency" in data:
+    if data.get("ModelLatency") is not None:
         out["model_latency"] = data["ModelLatency"]
     return out

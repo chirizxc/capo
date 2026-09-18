@@ -81,7 +81,7 @@ def serialize_aws_json_1_1(value: StartDataQualityRulesetEvaluationRunRequest) -
 
 def deserialize_aws_json_1_1(data: dict) -> StartDataQualityRulesetEvaluationRunRequest:
     out: StartDataQualityRulesetEvaluationRunRequest = {}  # type: ignore[typeddict-item]
-    if "DataSource" in data:
+    if data.get("DataSource") is not None:
         import capo_glue.types.data_source
 
         out["data_source"] = capo_glue.types.data_source.deserialize_aws_json_1_1(
@@ -91,19 +91,19 @@ def deserialize_aws_json_1_1(data: dict) -> StartDataQualityRulesetEvaluationRun
         raise DeserializationError(
             "StartDataQualityRulesetEvaluationRunRequest.data_source required"
         )
-    if "Role" in data:
+    if data.get("Role") is not None:
         out["role"] = data["Role"]
     else:
         raise DeserializationError(
             "StartDataQualityRulesetEvaluationRunRequest.role required"
         )
-    if "NumberOfWorkers" in data:
+    if data.get("NumberOfWorkers") is not None:
         out["number_of_workers"] = data["NumberOfWorkers"]
-    if "Timeout" in data:
+    if data.get("Timeout") is not None:
         out["timeout"] = data["Timeout"]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "AdditionalRunOptions" in data:
+    if data.get("AdditionalRunOptions") is not None:
         import capo_glue.types.data_quality_evaluation_run_additional_run_options
 
         out["additional_run_options"] = (
@@ -111,7 +111,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartDataQualityRulesetEvaluationRun
                 data["AdditionalRunOptions"]
             )
         )
-    if "RulesetNames" in data:
+    if data.get("RulesetNames") is not None:
         import capo_glue.types.ruleset_names
 
         out["ruleset_names"] = capo_glue.types.ruleset_names.deserialize_aws_json_1_1(
@@ -121,7 +121,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartDataQualityRulesetEvaluationRun
         raise DeserializationError(
             "StartDataQualityRulesetEvaluationRunRequest.ruleset_names required"
         )
-    if "AdditionalDataSources" in data:
+    if data.get("AdditionalDataSources") is not None:
         import capo_glue.types.data_source_map
 
         out["additional_data_sources"] = (

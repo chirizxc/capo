@@ -33,9 +33,9 @@ def serialize_json(value: Region) -> dict:
 
 
 def deserialize_json(data: dict) -> Region:
-    if "regionName" in data:
+    if data.get("regionName") is not None:
         return {"regionName": data["regionName"]}
-    elif "regionNamePath" in data:
+    elif data.get("regionNamePath") is not None:
         return {"regionNamePath": data["regionNamePath"]}
     else:
         raise DeserializationError("Region: no recognized variant key")

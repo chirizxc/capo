@@ -16,5 +16,7 @@ def serialize_json(input_to_serialize: TableProperties) -> dict:
 def deserialize_json(data: dict) -> TableProperties:
     out: TableProperties = {}
     for key, value in data.items():
+        if value is None:
+            continue
         out[key] = value
     return out

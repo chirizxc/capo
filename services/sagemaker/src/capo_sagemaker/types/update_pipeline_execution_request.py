@@ -52,13 +52,13 @@ def serialize_aws_json_1_1(value: UpdatePipelineExecutionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdatePipelineExecutionRequest:
     out: UpdatePipelineExecutionRequest = {}  # type: ignore[typeddict-item]
-    if "PipelineExecutionArn" in data:
+    if data.get("PipelineExecutionArn") is not None:
         out["pipeline_execution_arn"] = data["PipelineExecutionArn"]
-    if "PipelineExecutionDescription" in data:
+    if data.get("PipelineExecutionDescription") is not None:
         out["pipeline_execution_description"] = data["PipelineExecutionDescription"]
-    if "PipelineExecutionDisplayName" in data:
+    if data.get("PipelineExecutionDisplayName") is not None:
         out["pipeline_execution_display_name"] = data["PipelineExecutionDisplayName"]
-    if "ParallelismConfiguration" in data:
+    if data.get("ParallelismConfiguration") is not None:
         import capo_sagemaker.types.parallelism_configuration
 
         out["parallelism_configuration"] = (

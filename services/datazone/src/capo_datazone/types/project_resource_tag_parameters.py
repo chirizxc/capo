@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ProjectResourceTagParameters:
 
     out: ProjectResourceTagParameters = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_datazone.types.resource_tag_parameter.deserialize_json(item))
     return out

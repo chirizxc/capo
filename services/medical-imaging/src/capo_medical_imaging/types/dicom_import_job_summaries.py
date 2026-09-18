@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> DICOMImportJobSummaries:
 
     out: DICOMImportJobSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_medical_imaging.types.dicom_import_job_summary.deserialize_json(item)
         )

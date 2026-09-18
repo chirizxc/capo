@@ -44,20 +44,20 @@ def serialize_aws_json_1_1(value: DescribeBackupsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeBackupsRequest:
     out: DescribeBackupsRequest = {}  # type: ignore[typeddict-item]
-    if "BackupIds" in data:
+    if data.get("BackupIds") is not None:
         import capo_fsx.types.backup_ids
 
         out["backup_ids"] = capo_fsx.types.backup_ids.deserialize_aws_json_1_1(
             data["BackupIds"]
         )
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_fsx.types.filters
 
         out["filters"] = capo_fsx.types.filters.deserialize_aws_json_1_1(
             data["Filters"]
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

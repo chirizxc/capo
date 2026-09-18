@@ -44,11 +44,11 @@ def serialize_aws_json_1_1(value: RetryStageMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RetryStageMetadata:
     out: RetryStageMetadata = {}  # type: ignore[typeddict-item]
-    if "autoStageRetryAttempt" in data:
+    if data.get("autoStageRetryAttempt") is not None:
         out["auto_stage_retry_attempt"] = data["autoStageRetryAttempt"]
-    if "manualStageRetryAttempt" in data:
+    if data.get("manualStageRetryAttempt") is not None:
         out["manual_stage_retry_attempt"] = data["manualStageRetryAttempt"]
-    if "latestRetryTrigger" in data:
+    if data.get("latestRetryTrigger") is not None:
         import capo_codepipeline.types.retry_trigger
 
         out["latest_retry_trigger"] = (

@@ -36,9 +36,9 @@ def serialize_json(value: RouterInputSourceMetadataDetails) -> dict:
             value["source_metadata_messages"]
         )
     )
-    import capo_mediaconnect.types._prelude.timestamp
+    import capo_mediaconnect._protocol.serialize
 
-    out["timestamp"] = capo_mediaconnect.types._prelude.timestamp.serialize_json(
+    out["timestamp"] = capo_mediaconnect._protocol.serialize.fmt_date_time(
         value["timestamp"]
     )
     if "router_input_metadata" in value:
@@ -54,7 +54,7 @@ def serialize_json(value: RouterInputSourceMetadataDetails) -> dict:
 
 def deserialize_json(data: dict) -> RouterInputSourceMetadataDetails:
     out: RouterInputSourceMetadataDetails = {}  # type: ignore[typeddict-item]
-    if "sourceMetadataMessages" in data:
+    if data.get("sourceMetadataMessages") is not None:
         import capo_mediaconnect.types.router_input_messages
 
         out["source_metadata_messages"] = (
@@ -66,17 +66,17 @@ def deserialize_json(data: dict) -> RouterInputSourceMetadataDetails:
         raise DeserializationError(
             "RouterInputSourceMetadataDetails.source_metadata_messages required"
         )
-    if "timestamp" in data:
-        import capo_mediaconnect.types._prelude.timestamp
+    if data.get("timestamp") is not None:
+        import datetime
 
-        out["timestamp"] = capo_mediaconnect.types._prelude.timestamp.deserialize_json(
-            data["timestamp"]
+        out["timestamp"] = datetime.datetime.fromisoformat(
+            data["timestamp"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError(
             "RouterInputSourceMetadataDetails.timestamp required"
         )
-    if "routerInputMetadata" in data:
+    if data.get("routerInputMetadata") is not None:
         import capo_mediaconnect.types.router_input_metadata
 
         out["router_input_metadata"] = (

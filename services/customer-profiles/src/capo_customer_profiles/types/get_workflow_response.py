@@ -91,9 +91,9 @@ def serialize_json(value: GetWorkflowResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetWorkflowResponse:
     out: GetWorkflowResponse = {}  # type: ignore[typeddict-item]
-    if "WorkflowId" in data:
+    if data.get("WorkflowId") is not None:
         out["workflow_id"] = data["WorkflowId"]
-    if "WorkflowType" in data:
+    if data.get("WorkflowType") is not None:
         import capo_customer_profiles.types.workflow_type
 
         out["workflow_type"] = (
@@ -101,21 +101,21 @@ def deserialize_json(data: dict) -> GetWorkflowResponse:
                 data["WorkflowType"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_customer_profiles.types.status
 
         out["status"] = capo_customer_profiles.types.status.deserialize_json(
             data["Status"]
         )
-    if "ErrorDescription" in data:
+    if data.get("ErrorDescription") is not None:
         out["error_description"] = data["ErrorDescription"]
-    if "StartDate" in data:
+    if data.get("StartDate") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["start_date"] = capo_customer_profiles.types.timestamp.deserialize_json(
             data["StartDate"]
         )
-    if "LastUpdatedAt" in data:
+    if data.get("LastUpdatedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["last_updated_at"] = (
@@ -123,7 +123,7 @@ def deserialize_json(data: dict) -> GetWorkflowResponse:
                 data["LastUpdatedAt"]
             )
         )
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_customer_profiles.types.workflow_attributes
 
         out["attributes"] = (
@@ -131,7 +131,7 @@ def deserialize_json(data: dict) -> GetWorkflowResponse:
                 data["Attributes"]
             )
         )
-    if "Metrics" in data:
+    if data.get("Metrics") is not None:
         import capo_customer_profiles.types.workflow_metrics
 
         out["metrics"] = capo_customer_profiles.types.workflow_metrics.deserialize_json(

@@ -34,7 +34,7 @@ def serialize_json(value: DatadogAuthorizationConfig) -> dict:
 
 
 def deserialize_json(data: dict) -> DatadogAuthorizationConfig:
-    if "authorizationDiscovery" in data:
+    if data.get("authorizationDiscovery") is not None:
         import capo_devops_agent.types.mcp_server_authorization_discovery_config
 
         return {

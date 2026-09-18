@@ -34,23 +34,23 @@ def serialize_json(value: StopDevEnvironmentSessionResponse) -> dict:
 
 def deserialize_json(data: dict) -> StopDevEnvironmentSessionResponse:
     out: StopDevEnvironmentSessionResponse = {}  # type: ignore[typeddict-item]
-    if "spaceName" in data:
+    if data.get("spaceName") is not None:
         out["space_name"] = data["spaceName"]
     else:
         raise DeserializationError(
             "StopDevEnvironmentSessionResponse.space_name required"
         )
-    if "projectName" in data:
+    if data.get("projectName") is not None:
         out["project_name"] = data["projectName"]
     else:
         raise DeserializationError(
             "StopDevEnvironmentSessionResponse.project_name required"
         )
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("StopDevEnvironmentSessionResponse.id required")
-    if "sessionId" in data:
+    if data.get("sessionId") is not None:
         out["session_id"] = data["sessionId"]
     else:
         raise DeserializationError(

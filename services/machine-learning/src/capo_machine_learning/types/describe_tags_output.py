@@ -45,9 +45,9 @@ def serialize_aws_json_1_1(value: DescribeTagsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeTagsOutput:
     out: DescribeTagsOutput = {}  # type: ignore[typeddict-item]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_machine_learning.types.taggable_resource_type
 
         out["resource_type"] = (
@@ -55,7 +55,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeTagsOutput:
                 data["ResourceType"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_machine_learning.types.tag_list
 
         out["tags"] = capo_machine_learning.types.tag_list.deserialize_aws_json_1_1(

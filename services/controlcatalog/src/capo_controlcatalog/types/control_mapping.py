@@ -38,11 +38,11 @@ def serialize_json(value: ControlMapping) -> dict:
 
 def deserialize_json(data: dict) -> ControlMapping:
     out: ControlMapping = {}  # type: ignore[typeddict-item]
-    if "ControlArn" in data:
+    if data.get("ControlArn") is not None:
         out["control_arn"] = data["ControlArn"]
     else:
         raise DeserializationError("ControlMapping.control_arn required")
-    if "MappingType" in data:
+    if data.get("MappingType") is not None:
         import capo_controlcatalog.types.mapping_type
 
         out["mapping_type"] = capo_controlcatalog.types.mapping_type.deserialize_json(
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> ControlMapping:
         )
     else:
         raise DeserializationError("ControlMapping.mapping_type required")
-    if "Mapping" in data:
+    if data.get("Mapping") is not None:
         import capo_controlcatalog.types.mapping
 
         out["mapping"] = capo_controlcatalog.types.mapping.deserialize_json(

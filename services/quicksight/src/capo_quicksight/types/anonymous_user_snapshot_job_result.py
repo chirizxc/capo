@@ -31,7 +31,7 @@ def serialize_json(value: AnonymousUserSnapshotJobResult) -> dict:
 
 def deserialize_json(data: dict) -> AnonymousUserSnapshotJobResult:
     out: AnonymousUserSnapshotJobResult = {}  # type: ignore[typeddict-item]
-    if "FileGroups" in data:
+    if data.get("FileGroups") is not None:
         import capo_quicksight.types.snapshot_job_result_file_group_list
 
         out["file_groups"] = (

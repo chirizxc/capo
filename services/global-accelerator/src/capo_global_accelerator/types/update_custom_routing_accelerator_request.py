@@ -57,15 +57,15 @@ def serialize_aws_json_1_1(value: UpdateCustomRoutingAcceleratorRequest) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateCustomRoutingAcceleratorRequest:
     out: UpdateCustomRoutingAcceleratorRequest = {}  # type: ignore[typeddict-item]
-    if "AcceleratorArn" in data:
+    if data.get("AcceleratorArn") is not None:
         out["accelerator_arn"] = data["AcceleratorArn"]
     else:
         raise DeserializationError(
             "UpdateCustomRoutingAcceleratorRequest.accelerator_arn required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "IpAddressType" in data:
+    if data.get("IpAddressType") is not None:
         import capo_global_accelerator.types.ip_address_type
 
         out["ip_address_type"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateCustomRoutingAcceleratorReques
                 data["IpAddressType"]
             )
         )
-    if "IpAddresses" in data:
+    if data.get("IpAddresses") is not None:
         import capo_global_accelerator.types.ip_addresses
 
         out["ip_addresses"] = (
@@ -81,6 +81,6 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateCustomRoutingAcceleratorReques
                 data["IpAddresses"]
             )
         )
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
     return out

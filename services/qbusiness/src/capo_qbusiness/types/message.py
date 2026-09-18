@@ -84,25 +84,25 @@ def serialize_json(value: Message) -> dict:
 
 def deserialize_json(data: dict) -> Message:
     out: Message = {}  # type: ignore[typeddict-item]
-    if "messageId" in data:
+    if data.get("messageId") is not None:
         out["message_id"] = data["messageId"]
-    if "body" in data:
+    if data.get("body") is not None:
         out["body"] = data["body"]
-    if "time" in data:
+    if data.get("time") is not None:
         import capo_qbusiness.types.timestamp
 
         out["time"] = capo_qbusiness.types.timestamp.deserialize_json(data["time"])
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_qbusiness.types.message_type
 
         out["type"] = capo_qbusiness.types.message_type.deserialize_json(data["type"])
-    if "attachments" in data:
+    if data.get("attachments") is not None:
         import capo_qbusiness.types.attachments_output
 
         out["attachments"] = capo_qbusiness.types.attachments_output.deserialize_json(
             data["attachments"]
         )
-    if "sourceAttribution" in data:
+    if data.get("sourceAttribution") is not None:
         import capo_qbusiness.types.source_attributions
 
         out["source_attribution"] = (
@@ -110,13 +110,13 @@ def deserialize_json(data: dict) -> Message:
                 data["sourceAttribution"]
             )
         )
-    if "actionReview" in data:
+    if data.get("actionReview") is not None:
         import capo_qbusiness.types.action_review
 
         out["action_review"] = capo_qbusiness.types.action_review.deserialize_json(
             data["actionReview"]
         )
-    if "actionExecution" in data:
+    if data.get("actionExecution") is not None:
         import capo_qbusiness.types.action_execution
 
         out["action_execution"] = (

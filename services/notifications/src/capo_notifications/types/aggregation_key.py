@@ -22,11 +22,11 @@ def serialize_json(value: AggregationKey) -> dict:
 
 def deserialize_json(data: dict) -> AggregationKey:
     out: AggregationKey = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("AggregationKey.name required")
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         raise DeserializationError("AggregationKey.value required")

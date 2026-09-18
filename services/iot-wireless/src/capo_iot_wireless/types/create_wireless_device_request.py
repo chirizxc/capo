@@ -91,7 +91,7 @@ def serialize_json(value: CreateWirelessDeviceRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateWirelessDeviceRequest:
     out: CreateWirelessDeviceRequest = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_iot_wireless.types.wireless_device_type
 
         out["type"] = capo_iot_wireless.types.wireless_device_type.deserialize_json(
@@ -99,29 +99,29 @@ def deserialize_json(data: dict) -> CreateWirelessDeviceRequest:
         )
     else:
         raise DeserializationError("CreateWirelessDeviceRequest.type required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DestinationName" in data:
+    if data.get("DestinationName") is not None:
         out["destination_name"] = data["DestinationName"]
     else:
         raise DeserializationError(
             "CreateWirelessDeviceRequest.destination_name required"
         )
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "LoRaWAN" in data:
+    if data.get("LoRaWAN") is not None:
         import capo_iot_wireless.types.lo_ra_wan_device
 
         out["lo_ra_wan"] = capo_iot_wireless.types.lo_ra_wan_device.deserialize_json(
             data["LoRaWAN"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_iot_wireless.types.tag_list
 
         out["tags"] = capo_iot_wireless.types.tag_list.deserialize_json(data["Tags"])
-    if "Positioning" in data:
+    if data.get("Positioning") is not None:
         import capo_iot_wireless.types.positioning_config_status
 
         out["positioning"] = (
@@ -129,7 +129,7 @@ def deserialize_json(data: dict) -> CreateWirelessDeviceRequest:
                 data["Positioning"]
             )
         )
-    if "Sidewalk" in data:
+    if data.get("Sidewalk") is not None:
         import capo_iot_wireless.types.sidewalk_create_wireless_device
 
         out["sidewalk"] = (

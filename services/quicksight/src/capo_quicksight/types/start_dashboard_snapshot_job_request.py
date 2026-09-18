@@ -58,13 +58,13 @@ def serialize_json(value: StartDashboardSnapshotJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartDashboardSnapshotJobRequest:
     out: StartDashboardSnapshotJobRequest = {}  # type: ignore[typeddict-item]
-    if "SnapshotJobId" in data:
+    if data.get("SnapshotJobId") is not None:
         out["snapshot_job_id"] = data["SnapshotJobId"]
     else:
         raise DeserializationError(
             "StartDashboardSnapshotJobRequest.snapshot_job_id required"
         )
-    if "UserConfiguration" in data:
+    if data.get("UserConfiguration") is not None:
         import capo_quicksight.types.snapshot_user_configuration
 
         out["user_configuration"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> StartDashboardSnapshotJobRequest:
                 data["UserConfiguration"]
             )
         )
-    if "SnapshotConfiguration" in data:
+    if data.get("SnapshotConfiguration") is not None:
         import capo_quicksight.types.snapshot_configuration
 
         out["snapshot_configuration"] = (

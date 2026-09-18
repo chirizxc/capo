@@ -28,7 +28,7 @@ def serialize_json(value: AnalysisTemplateArtifact) -> dict:
 
 def deserialize_json(data: dict) -> AnalysisTemplateArtifact:
     out: AnalysisTemplateArtifact = {}  # type: ignore[typeddict-item]
-    if "location" in data:
+    if data.get("location") is not None:
         import capo_cleanrooms.types.s3_location
 
         out["location"] = capo_cleanrooms.types.s3_location.deserialize_json(

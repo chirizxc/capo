@@ -68,14 +68,16 @@ class Authentication:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_grafana.types.describe_workspace_authentication_request.DescribeWorkspaceAuthenticationRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
+        input_: capo_grafana.types.describe_workspace_authentication_request.DescribeWorkspaceAuthenticationRequest = {
+            "workspace_id": workspace_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -120,9 +122,10 @@ class Authentication:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_grafana.types.update_workspace_authentication_request.UpdateWorkspaceAuthenticationRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
-        input_["authentication_providers"] = authentication_providers
+        input_: capo_grafana.types.update_workspace_authentication_request.UpdateWorkspaceAuthenticationRequest = {
+            "workspace_id": workspace_id,
+            "authentication_providers": authentication_providers,
+        }
         if saml_configuration is not None:
             input_["saml_configuration"] = saml_configuration
 
@@ -131,6 +134,7 @@ class Authentication:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -175,14 +179,16 @@ class AsyncAuthentication:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_grafana.types.describe_workspace_authentication_request.DescribeWorkspaceAuthenticationRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
+        input_: capo_grafana.types.describe_workspace_authentication_request.DescribeWorkspaceAuthenticationRequest = {
+            "workspace_id": workspace_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -228,9 +234,10 @@ class AsyncAuthentication:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_grafana.types.update_workspace_authentication_request.UpdateWorkspaceAuthenticationRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
-        input_["authentication_providers"] = authentication_providers
+        input_: capo_grafana.types.update_workspace_authentication_request.UpdateWorkspaceAuthenticationRequest = {
+            "workspace_id": workspace_id,
+            "authentication_providers": authentication_providers,
+        }
         if saml_configuration is not None:
             input_["saml_configuration"] = saml_configuration
 
@@ -239,4 +246,5 @@ class AsyncAuthentication:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

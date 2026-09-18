@@ -39,12 +39,12 @@ def serialize_aws_json_1_1(value: CopyImageRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CopyImageRequest:
     out: CopyImageRequest = {}  # type: ignore[typeddict-item]
-    if "SourceImageName" in data:
+    if data.get("SourceImageName") is not None:
         out["source_image_name"] = data["SourceImageName"]
-    if "DestinationImageName" in data:
+    if data.get("DestinationImageName") is not None:
         out["destination_image_name"] = data["DestinationImageName"]
-    if "DestinationRegion" in data:
+    if data.get("DestinationRegion") is not None:
         out["destination_region"] = data["DestinationRegion"]
-    if "DestinationImageDescription" in data:
+    if data.get("DestinationImageDescription") is not None:
         out["destination_image_description"] = data["DestinationImageDescription"]
     return out

@@ -105,11 +105,11 @@ def serialize_aws_json_1_1(value: RequestCertificateRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RequestCertificateRequest:
     out: RequestCertificateRequest = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
     else:
         raise DeserializationError("RequestCertificateRequest.domain_name required")
-    if "ValidationMethod" in data:
+    if data.get("ValidationMethod") is not None:
         import capo_acm.types.validation_method
 
         out["validation_method"] = (
@@ -117,7 +117,7 @@ def deserialize_aws_json_1_1(data: dict) -> RequestCertificateRequest:
                 data["ValidationMethod"]
             )
         )
-    if "SubjectAlternativeNames" in data:
+    if data.get("SubjectAlternativeNames") is not None:
         import capo_acm.types.domain_list
 
         out["subject_alternative_names"] = (
@@ -125,9 +125,9 @@ def deserialize_aws_json_1_1(data: dict) -> RequestCertificateRequest:
                 data["SubjectAlternativeNames"]
             )
         )
-    if "IdempotencyToken" in data:
+    if data.get("IdempotencyToken") is not None:
         out["idempotency_token"] = data["IdempotencyToken"]
-    if "DomainValidationOptions" in data:
+    if data.get("DomainValidationOptions") is not None:
         import capo_acm.types.domain_validation_option_list
 
         out["domain_validation_options"] = (
@@ -135,25 +135,25 @@ def deserialize_aws_json_1_1(data: dict) -> RequestCertificateRequest:
                 data["DomainValidationOptions"]
             )
         )
-    if "Options" in data:
+    if data.get("Options") is not None:
         import capo_acm.types.certificate_options
 
         out["options"] = capo_acm.types.certificate_options.deserialize_aws_json_1_1(
             data["Options"]
         )
-    if "CertificateAuthorityArn" in data:
+    if data.get("CertificateAuthorityArn") is not None:
         out["certificate_authority_arn"] = data["CertificateAuthorityArn"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_acm.types.tag_list
 
         out["tags"] = capo_acm.types.tag_list.deserialize_aws_json_1_1(data["Tags"])
-    if "KeyAlgorithm" in data:
+    if data.get("KeyAlgorithm") is not None:
         import capo_acm.types.key_algorithm
 
         out["key_algorithm"] = capo_acm.types.key_algorithm.deserialize_aws_json_1_1(
             data["KeyAlgorithm"]
         )
-    if "ManagedBy" in data:
+    if data.get("ManagedBy") is not None:
         import capo_acm.types.certificate_managed_by
 
         out["managed_by"] = (

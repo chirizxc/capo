@@ -38,17 +38,17 @@ def serialize_json(value: AccountState) -> dict:
 
 def deserialize_json(data: dict) -> AccountState:
     out: AccountState = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
     else:
         raise DeserializationError("AccountState.account_id required")
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_inspector2.types.state
 
         out["state"] = capo_inspector2.types.state.deserialize_json(data["state"])
     else:
         raise DeserializationError("AccountState.state required")
-    if "resourceState" in data:
+    if data.get("resourceState") is not None:
         import capo_inspector2.types.resource_state
 
         out["resource_state"] = capo_inspector2.types.resource_state.deserialize_json(

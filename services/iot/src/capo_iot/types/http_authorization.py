@@ -27,7 +27,7 @@ def serialize_json(value: HttpAuthorization) -> dict:
 
 def deserialize_json(data: dict) -> HttpAuthorization:
     out: HttpAuthorization = {}  # type: ignore[typeddict-item]
-    if "sigv4" in data:
+    if data.get("sigv4") is not None:
         import capo_iot.types.sig_v4_authorization
 
         out["sigv4"] = capo_iot.types.sig_v4_authorization.deserialize_json(

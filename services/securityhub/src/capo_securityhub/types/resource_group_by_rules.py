@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ResourceGroupByRules:
 
     out: ResourceGroupByRules = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityhub.types.resource_group_by_rule.deserialize_json(item))
     return out

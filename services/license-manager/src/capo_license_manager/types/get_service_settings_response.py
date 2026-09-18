@@ -89,11 +89,11 @@ def serialize_aws_json_1_1(value: GetServiceSettingsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetServiceSettingsResponse:
     out: GetServiceSettingsResponse = {}  # type: ignore[typeddict-item]
-    if "S3BucketArn" in data:
+    if data.get("S3BucketArn") is not None:
         out["s3_bucket_arn"] = data["S3BucketArn"]
-    if "SnsTopicArn" in data:
+    if data.get("SnsTopicArn") is not None:
         out["sns_topic_arn"] = data["SnsTopicArn"]
-    if "OrganizationConfiguration" in data:
+    if data.get("OrganizationConfiguration") is not None:
         import capo_license_manager.types.organization_configuration
 
         out["organization_configuration"] = (
@@ -101,17 +101,17 @@ def deserialize_aws_json_1_1(data: dict) -> GetServiceSettingsResponse:
                 data["OrganizationConfiguration"]
             )
         )
-    if "EnableCrossAccountsDiscovery" in data:
+    if data.get("EnableCrossAccountsDiscovery") is not None:
         out["enable_cross_accounts_discovery"] = data["EnableCrossAccountsDiscovery"]
-    if "LicenseManagerResourceShareArn" in data:
+    if data.get("LicenseManagerResourceShareArn") is not None:
         out["license_manager_resource_share_arn"] = data[
             "LicenseManagerResourceShareArn"
         ]
-    if "CrossRegionDiscoveryHomeRegion" in data:
+    if data.get("CrossRegionDiscoveryHomeRegion") is not None:
         out["cross_region_discovery_home_region"] = data[
             "CrossRegionDiscoveryHomeRegion"
         ]
-    if "CrossRegionDiscoverySourceRegions" in data:
+    if data.get("CrossRegionDiscoverySourceRegions") is not None:
         import capo_license_manager.types.string_list
 
         out["cross_region_discovery_source_regions"] = (
@@ -119,7 +119,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetServiceSettingsResponse:
                 data["CrossRegionDiscoverySourceRegions"]
             )
         )
-    if "ServiceStatus" in data:
+    if data.get("ServiceStatus") is not None:
         import capo_license_manager.types.service_status
 
         out["service_status"] = (

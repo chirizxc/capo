@@ -430,7 +430,7 @@ def serialize_json(value: HlsGroupSettings) -> dict:
 
 def deserialize_json(data: dict) -> HlsGroupSettings:
     out: HlsGroupSettings = {}  # type: ignore[typeddict-item]
-    if "adMarkers" in data:
+    if data.get("adMarkers") is not None:
         import capo_medialive.types.__list_of_hls_ad_markers
 
         out["ad_markers"] = (
@@ -438,15 +438,15 @@ def deserialize_json(data: dict) -> HlsGroupSettings:
                 data["adMarkers"]
             )
         )
-    if "baseUrlContent" in data:
+    if data.get("baseUrlContent") is not None:
         out["base_url_content"] = data["baseUrlContent"]
-    if "baseUrlContent1" in data:
+    if data.get("baseUrlContent1") is not None:
         out["base_url_content1"] = data["baseUrlContent1"]
-    if "baseUrlManifest" in data:
+    if data.get("baseUrlManifest") is not None:
         out["base_url_manifest"] = data["baseUrlManifest"]
-    if "baseUrlManifest1" in data:
+    if data.get("baseUrlManifest1") is not None:
         out["base_url_manifest1"] = data["baseUrlManifest1"]
-    if "captionLanguageMappings" in data:
+    if data.get("captionLanguageMappings") is not None:
         import capo_medialive.types.__list_of_caption_language_mapping
 
         out["caption_language_mappings"] = (
@@ -454,7 +454,7 @@ def deserialize_json(data: dict) -> HlsGroupSettings:
                 data["captionLanguageMappings"]
             )
         )
-    if "captionLanguageSetting" in data:
+    if data.get("captionLanguageSetting") is not None:
         import capo_medialive.types.hls_caption_language_setting
 
         out["caption_language_setting"] = (
@@ -462,13 +462,13 @@ def deserialize_json(data: dict) -> HlsGroupSettings:
                 data["captionLanguageSetting"]
             )
         )
-    if "clientCache" in data:
+    if data.get("clientCache") is not None:
         import capo_medialive.types.hls_client_cache
 
         out["client_cache"] = capo_medialive.types.hls_client_cache.deserialize_json(
             data["clientCache"]
         )
-    if "codecSpecification" in data:
+    if data.get("codecSpecification") is not None:
         import capo_medialive.types.hls_codec_specification
 
         out["codec_specification"] = (
@@ -476,15 +476,15 @@ def deserialize_json(data: dict) -> HlsGroupSettings:
                 data["codecSpecification"]
             )
         )
-    if "constantIv" in data:
+    if data.get("constantIv") is not None:
         out["constant_iv"] = data["constantIv"]
-    if "destination" in data:
+    if data.get("destination") is not None:
         import capo_medialive.types.output_location_ref
 
         out["destination"] = capo_medialive.types.output_location_ref.deserialize_json(
             data["destination"]
         )
-    if "directoryStructure" in data:
+    if data.get("directoryStructure") is not None:
         import capo_medialive.types.hls_directory_structure
 
         out["directory_structure"] = (
@@ -492,7 +492,7 @@ def deserialize_json(data: dict) -> HlsGroupSettings:
                 data["directoryStructure"]
             )
         )
-    if "discontinuityTags" in data:
+    if data.get("discontinuityTags") is not None:
         import capo_medialive.types.hls_discontinuity_tags
 
         out["discontinuity_tags"] = (
@@ -500,7 +500,7 @@ def deserialize_json(data: dict) -> HlsGroupSettings:
                 data["discontinuityTags"]
             )
         )
-    if "encryptionType" in data:
+    if data.get("encryptionType") is not None:
         import capo_medialive.types.hls_encryption_type
 
         out["encryption_type"] = (
@@ -508,7 +508,7 @@ def deserialize_json(data: dict) -> HlsGroupSettings:
                 data["encryptionType"]
             )
         )
-    if "hlsCdnSettings" in data:
+    if data.get("hlsCdnSettings") is not None:
         import capo_medialive.types.hls_cdn_settings
 
         out["hls_cdn_settings"] = (
@@ -516,7 +516,7 @@ def deserialize_json(data: dict) -> HlsGroupSettings:
                 data["hlsCdnSettings"]
             )
         )
-    if "hlsId3SegmentTagging" in data:
+    if data.get("hlsId3SegmentTagging") is not None:
         import capo_medialive.types.hls_id3_segment_tagging_state
 
         out["hls_id3_segment_tagging"] = (
@@ -524,7 +524,7 @@ def deserialize_json(data: dict) -> HlsGroupSettings:
                 data["hlsId3SegmentTagging"]
             )
         )
-    if "iFrameOnlyPlaylists" in data:
+    if data.get("iFrameOnlyPlaylists") is not None:
         import capo_medialive.types.i_frame_only_playlist_type
 
         out["i_frame_only_playlists"] = (
@@ -532,7 +532,7 @@ def deserialize_json(data: dict) -> HlsGroupSettings:
                 data["iFrameOnlyPlaylists"]
             )
         )
-    if "incompleteSegmentBehavior" in data:
+    if data.get("incompleteSegmentBehavior") is not None:
         import capo_medialive.types.hls_incomplete_segment_behavior
 
         out["incomplete_segment_behavior"] = (
@@ -540,9 +540,9 @@ def deserialize_json(data: dict) -> HlsGroupSettings:
                 data["incompleteSegmentBehavior"]
             )
         )
-    if "indexNSegments" in data:
+    if data.get("indexNSegments") is not None:
         out["index_n_segments"] = data["indexNSegments"]
-    if "inputLossAction" in data:
+    if data.get("inputLossAction") is not None:
         import capo_medialive.types.input_loss_action_for_hls_out
 
         out["input_loss_action"] = (
@@ -550,7 +550,7 @@ def deserialize_json(data: dict) -> HlsGroupSettings:
                 data["inputLossAction"]
             )
         )
-    if "ivInManifest" in data:
+    if data.get("ivInManifest") is not None:
         import capo_medialive.types.hls_iv_in_manifest
 
         out["iv_in_manifest"] = (
@@ -558,19 +558,19 @@ def deserialize_json(data: dict) -> HlsGroupSettings:
                 data["ivInManifest"]
             )
         )
-    if "ivSource" in data:
+    if data.get("ivSource") is not None:
         import capo_medialive.types.hls_iv_source
 
         out["iv_source"] = capo_medialive.types.hls_iv_source.deserialize_json(
             data["ivSource"]
         )
-    if "keepSegments" in data:
+    if data.get("keepSegments") is not None:
         out["keep_segments"] = data["keepSegments"]
-    if "keyFormat" in data:
+    if data.get("keyFormat") is not None:
         out["key_format"] = data["keyFormat"]
-    if "keyFormatVersions" in data:
+    if data.get("keyFormatVersions") is not None:
         out["key_format_versions"] = data["keyFormatVersions"]
-    if "keyProviderSettings" in data:
+    if data.get("keyProviderSettings") is not None:
         import capo_medialive.types.key_provider_settings
 
         out["key_provider_settings"] = (
@@ -578,7 +578,7 @@ def deserialize_json(data: dict) -> HlsGroupSettings:
                 data["keyProviderSettings"]
             )
         )
-    if "manifestCompression" in data:
+    if data.get("manifestCompression") is not None:
         import capo_medialive.types.hls_manifest_compression
 
         out["manifest_compression"] = (
@@ -586,7 +586,7 @@ def deserialize_json(data: dict) -> HlsGroupSettings:
                 data["manifestCompression"]
             )
         )
-    if "manifestDurationFormat" in data:
+    if data.get("manifestDurationFormat") is not None:
         import capo_medialive.types.hls_manifest_duration_format
 
         out["manifest_duration_format"] = (
@@ -594,13 +594,13 @@ def deserialize_json(data: dict) -> HlsGroupSettings:
                 data["manifestDurationFormat"]
             )
         )
-    if "minSegmentLength" in data:
+    if data.get("minSegmentLength") is not None:
         out["min_segment_length"] = data["minSegmentLength"]
-    if "mode" in data:
+    if data.get("mode") is not None:
         import capo_medialive.types.hls_mode
 
         out["mode"] = capo_medialive.types.hls_mode.deserialize_json(data["mode"])
-    if "outputSelection" in data:
+    if data.get("outputSelection") is not None:
         import capo_medialive.types.hls_output_selection
 
         out["output_selection"] = (
@@ -608,7 +608,7 @@ def deserialize_json(data: dict) -> HlsGroupSettings:
                 data["outputSelection"]
             )
         )
-    if "programDateTime" in data:
+    if data.get("programDateTime") is not None:
         import capo_medialive.types.hls_program_date_time
 
         out["program_date_time"] = (
@@ -616,7 +616,7 @@ def deserialize_json(data: dict) -> HlsGroupSettings:
                 data["programDateTime"]
             )
         )
-    if "programDateTimeClock" in data:
+    if data.get("programDateTimeClock") is not None:
         import capo_medialive.types.hls_program_date_time_clock
 
         out["program_date_time_clock"] = (
@@ -624,9 +624,9 @@ def deserialize_json(data: dict) -> HlsGroupSettings:
                 data["programDateTimeClock"]
             )
         )
-    if "programDateTimePeriod" in data:
+    if data.get("programDateTimePeriod") is not None:
         out["program_date_time_period"] = data["programDateTimePeriod"]
-    if "redundantManifest" in data:
+    if data.get("redundantManifest") is not None:
         import capo_medialive.types.hls_redundant_manifest
 
         out["redundant_manifest"] = (
@@ -634,9 +634,9 @@ def deserialize_json(data: dict) -> HlsGroupSettings:
                 data["redundantManifest"]
             )
         )
-    if "segmentLength" in data:
+    if data.get("segmentLength") is not None:
         out["segment_length"] = data["segmentLength"]
-    if "segmentationMode" in data:
+    if data.get("segmentationMode") is not None:
         import capo_medialive.types.hls_segmentation_mode
 
         out["segmentation_mode"] = (
@@ -644,9 +644,9 @@ def deserialize_json(data: dict) -> HlsGroupSettings:
                 data["segmentationMode"]
             )
         )
-    if "segmentsPerSubdirectory" in data:
+    if data.get("segmentsPerSubdirectory") is not None:
         out["segments_per_subdirectory"] = data["segmentsPerSubdirectory"]
-    if "streamInfResolution" in data:
+    if data.get("streamInfResolution") is not None:
         import capo_medialive.types.hls_stream_inf_resolution
 
         out["stream_inf_resolution"] = (
@@ -654,7 +654,7 @@ def deserialize_json(data: dict) -> HlsGroupSettings:
                 data["streamInfResolution"]
             )
         )
-    if "timedMetadataId3Frame" in data:
+    if data.get("timedMetadataId3Frame") is not None:
         import capo_medialive.types.hls_timed_metadata_id3_frame
 
         out["timed_metadata_id3_frame"] = (
@@ -662,11 +662,11 @@ def deserialize_json(data: dict) -> HlsGroupSettings:
                 data["timedMetadataId3Frame"]
             )
         )
-    if "timedMetadataId3Period" in data:
+    if data.get("timedMetadataId3Period") is not None:
         out["timed_metadata_id3_period"] = data["timedMetadataId3Period"]
-    if "timestampDeltaMilliseconds" in data:
+    if data.get("timestampDeltaMilliseconds") is not None:
         out["timestamp_delta_milliseconds"] = data["timestampDeltaMilliseconds"]
-    if "tsFileMode" in data:
+    if data.get("tsFileMode") is not None:
         import capo_medialive.types.hls_ts_file_mode
 
         out["ts_file_mode"] = capo_medialive.types.hls_ts_file_mode.deserialize_json(

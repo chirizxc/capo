@@ -56,19 +56,19 @@ def serialize_json(value: UpdateKeyRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateKeyRequest:
     out: UpdateKeyRequest = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ExpireTime" in data:
+    if data.get("ExpireTime") is not None:
         import capo_location.types.timestamp
 
         out["expire_time"] = capo_location.types.timestamp.deserialize_json(
             data["ExpireTime"]
         )
-    if "NoExpiry" in data:
+    if data.get("NoExpiry") is not None:
         out["no_expiry"] = data["NoExpiry"]
-    if "ForceUpdate" in data:
+    if data.get("ForceUpdate") is not None:
         out["force_update"] = data["ForceUpdate"]
-    if "Restrictions" in data:
+    if data.get("Restrictions") is not None:
         import capo_location.types.api_key_restrictions
 
         out["restrictions"] = capo_location.types.api_key_restrictions.deserialize_json(

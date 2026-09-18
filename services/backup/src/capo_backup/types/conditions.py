@@ -59,13 +59,13 @@ def serialize_json(value: Conditions) -> dict:
 
 def deserialize_json(data: dict) -> Conditions:
     out: Conditions = {}  # type: ignore[typeddict-item]
-    if "StringEquals" in data:
+    if data.get("StringEquals") is not None:
         import capo_backup.types.condition_parameters
 
         out["string_equals"] = capo_backup.types.condition_parameters.deserialize_json(
             data["StringEquals"]
         )
-    if "StringNotEquals" in data:
+    if data.get("StringNotEquals") is not None:
         import capo_backup.types.condition_parameters
 
         out["string_not_equals"] = (
@@ -73,13 +73,13 @@ def deserialize_json(data: dict) -> Conditions:
                 data["StringNotEquals"]
             )
         )
-    if "StringLike" in data:
+    if data.get("StringLike") is not None:
         import capo_backup.types.condition_parameters
 
         out["string_like"] = capo_backup.types.condition_parameters.deserialize_json(
             data["StringLike"]
         )
-    if "StringNotLike" in data:
+    if data.get("StringNotLike") is not None:
         import capo_backup.types.condition_parameters
 
         out["string_not_like"] = (

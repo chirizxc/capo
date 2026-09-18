@@ -45,19 +45,19 @@ def serialize_json(value: VpcAttachment) -> dict:
 
 def deserialize_json(data: dict) -> VpcAttachment:
     out: VpcAttachment = {}  # type: ignore[typeddict-item]
-    if "Attachment" in data:
+    if data.get("Attachment") is not None:
         import capo_networkmanager.types.attachment
 
         out["attachment"] = capo_networkmanager.types.attachment.deserialize_json(
             data["Attachment"]
         )
-    if "SubnetArns" in data:
+    if data.get("SubnetArns") is not None:
         import capo_networkmanager.types.subnet_arn_list
 
         out["subnet_arns"] = capo_networkmanager.types.subnet_arn_list.deserialize_json(
             data["SubnetArns"]
         )
-    if "Options" in data:
+    if data.get("Options") is not None:
         import capo_networkmanager.types.vpc_options
 
         out["options"] = capo_networkmanager.types.vpc_options.deserialize_json(

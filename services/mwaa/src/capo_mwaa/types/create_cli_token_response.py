@@ -28,8 +28,8 @@ def serialize_json(value: CreateCliTokenResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateCliTokenResponse:
     out: CreateCliTokenResponse = {}  # type: ignore[typeddict-item]
-    if "CliToken" in data:
+    if data.get("CliToken") is not None:
         out["cli_token"] = data["CliToken"]
-    if "WebServerHostname" in data:
+    if data.get("WebServerHostname") is not None:
         out["web_server_hostname"] = data["WebServerHostname"]
     return out

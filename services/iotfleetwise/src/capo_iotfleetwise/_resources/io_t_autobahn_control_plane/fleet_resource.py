@@ -87,11 +87,12 @@ class FleetResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.create_fleet_request.CreateFleetRequest = {}  # type: ignore[typeddict-item]
-        input_["fleet_id"] = fleet_id
+        input_: capo_iotfleetwise.types.create_fleet_request.CreateFleetRequest = {
+            "fleet_id": fleet_id,
+            "signal_catalog_arn": signal_catalog_arn,
+        }
         if description is not None:
             input_["description"] = description
-        input_["signal_catalog_arn"] = signal_catalog_arn
         if tags is not None:
             input_["tags"] = tags
 
@@ -100,6 +101,7 @@ class FleetResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -137,14 +139,16 @@ class FleetResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.get_fleet_request.GetFleetRequest = {}  # type: ignore[typeddict-item]
-        input_["fleet_id"] = fleet_id
+        input_: capo_iotfleetwise.types.get_fleet_request.GetFleetRequest = {
+            "fleet_id": fleet_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -185,8 +189,9 @@ class FleetResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.update_fleet_request.UpdateFleetRequest = {}  # type: ignore[typeddict-item]
-        input_["fleet_id"] = fleet_id
+        input_: capo_iotfleetwise.types.update_fleet_request.UpdateFleetRequest = {
+            "fleet_id": fleet_id
+        }
         if description is not None:
             input_["description"] = description
 
@@ -195,6 +200,7 @@ class FleetResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -231,14 +237,16 @@ class FleetResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.delete_fleet_request.DeleteFleetRequest = {}  # type: ignore[typeddict-item]
-        input_["fleet_id"] = fleet_id
+        input_: capo_iotfleetwise.types.delete_fleet_request.DeleteFleetRequest = {
+            "fleet_id": fleet_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -282,7 +290,7 @@ class FleetResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.list_fleets_request.ListFleetsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotfleetwise.types.list_fleets_request.ListFleetsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -295,6 +303,7 @@ class FleetResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -346,11 +355,12 @@ class AsyncFleetResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.create_fleet_request.CreateFleetRequest = {}  # type: ignore[typeddict-item]
-        input_["fleet_id"] = fleet_id
+        input_: capo_iotfleetwise.types.create_fleet_request.CreateFleetRequest = {
+            "fleet_id": fleet_id,
+            "signal_catalog_arn": signal_catalog_arn,
+        }
         if description is not None:
             input_["description"] = description
-        input_["signal_catalog_arn"] = signal_catalog_arn
         if tags is not None:
             input_["tags"] = tags
 
@@ -359,6 +369,7 @@ class AsyncFleetResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -397,14 +408,16 @@ class AsyncFleetResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.get_fleet_request.GetFleetRequest = {}  # type: ignore[typeddict-item]
-        input_["fleet_id"] = fleet_id
+        input_: capo_iotfleetwise.types.get_fleet_request.GetFleetRequest = {
+            "fleet_id": fleet_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -446,8 +459,9 @@ class AsyncFleetResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.update_fleet_request.UpdateFleetRequest = {}  # type: ignore[typeddict-item]
-        input_["fleet_id"] = fleet_id
+        input_: capo_iotfleetwise.types.update_fleet_request.UpdateFleetRequest = {
+            "fleet_id": fleet_id
+        }
         if description is not None:
             input_["description"] = description
 
@@ -456,6 +470,7 @@ class AsyncFleetResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -493,14 +508,16 @@ class AsyncFleetResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.delete_fleet_request.DeleteFleetRequest = {}  # type: ignore[typeddict-item]
-        input_["fleet_id"] = fleet_id
+        input_: capo_iotfleetwise.types.delete_fleet_request.DeleteFleetRequest = {
+            "fleet_id": fleet_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -545,7 +562,7 @@ class AsyncFleetResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_iotfleetwise.types.list_fleets_request.ListFleetsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_iotfleetwise.types.list_fleets_request.ListFleetsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -558,4 +575,5 @@ class AsyncFleetResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

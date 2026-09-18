@@ -30,10 +30,10 @@ def serialize_json(value: GetResourcePoliciesResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetResourcePoliciesResponse:
     out: GetResourcePoliciesResponse = {}  # type: ignore[typeddict-item]
-    if "policies" in data:
+    if data.get("policies") is not None:
         import capo_ram.types.policy_list
 
         out["policies"] = capo_ram.types.policy_list.deserialize_json(data["policies"])
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

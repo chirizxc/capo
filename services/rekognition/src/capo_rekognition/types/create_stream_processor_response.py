@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: CreateStreamProcessorResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateStreamProcessorResponse:
     out: CreateStreamProcessorResponse = {}  # type: ignore[typeddict-item]
-    if "StreamProcessorArn" in data:
+    if data.get("StreamProcessorArn") is not None:
         out["stream_processor_arn"] = data["StreamProcessorArn"]
     return out

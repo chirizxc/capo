@@ -113,9 +113,10 @@ class Template:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.create_template_request.CreateTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["name"] = name
+        input_: capo_connectcases.types.create_template_request.CreateTemplateRequest = {
+            "domain_id": domain_id,
+            "name": name,
+        }
         if description is not None:
             input_["description"] = description
         if layout_configuration is not None:
@@ -134,6 +135,7 @@ class Template:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -173,15 +175,17 @@ class Template:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.get_template_request.GetTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["template_id"] = template_id
+        input_: capo_connectcases.types.get_template_request.GetTemplateRequest = {
+            "domain_id": domain_id,
+            "template_id": template_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -249,9 +253,10 @@ class Template:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.update_template_request.UpdateTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["template_id"] = template_id
+        input_: capo_connectcases.types.update_template_request.UpdateTemplateRequest = {
+            "domain_id": domain_id,
+            "template_id": template_id,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -272,6 +277,7 @@ class Template:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -312,15 +318,17 @@ class Template:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.delete_template_request.DeleteTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["template_id"] = template_id
+        input_: capo_connectcases.types.delete_template_request.DeleteTemplateRequest = {
+            "domain_id": domain_id,
+            "template_id": template_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -366,8 +374,9 @@ class Template:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.list_templates_request.ListTemplatesRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
+        input_: capo_connectcases.types.list_templates_request.ListTemplatesRequest = {
+            "domain_id": domain_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -380,6 +389,7 @@ class Template:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -451,9 +461,10 @@ class AsyncTemplate:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.create_template_request.CreateTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["name"] = name
+        input_: capo_connectcases.types.create_template_request.CreateTemplateRequest = {
+            "domain_id": domain_id,
+            "name": name,
+        }
         if description is not None:
             input_["description"] = description
         if layout_configuration is not None:
@@ -472,6 +483,7 @@ class AsyncTemplate:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -512,15 +524,17 @@ class AsyncTemplate:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.get_template_request.GetTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["template_id"] = template_id
+        input_: capo_connectcases.types.get_template_request.GetTemplateRequest = {
+            "domain_id": domain_id,
+            "template_id": template_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -589,9 +603,10 @@ class AsyncTemplate:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.update_template_request.UpdateTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["template_id"] = template_id
+        input_: capo_connectcases.types.update_template_request.UpdateTemplateRequest = {
+            "domain_id": domain_id,
+            "template_id": template_id,
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -612,6 +627,7 @@ class AsyncTemplate:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -653,15 +669,17 @@ class AsyncTemplate:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.delete_template_request.DeleteTemplateRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
-        input_["template_id"] = template_id
+        input_: capo_connectcases.types.delete_template_request.DeleteTemplateRequest = {
+            "domain_id": domain_id,
+            "template_id": template_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -708,8 +726,9 @@ class AsyncTemplate:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_connectcases.types.list_templates_request.ListTemplatesRequest = {}  # type: ignore[typeddict-item]
-        input_["domain_id"] = domain_id
+        input_: capo_connectcases.types.list_templates_request.ListTemplatesRequest = {
+            "domain_id": domain_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -722,4 +741,5 @@ class AsyncTemplate:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

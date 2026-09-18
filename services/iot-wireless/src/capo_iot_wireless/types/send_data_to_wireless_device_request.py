@@ -43,19 +43,19 @@ def serialize_json(value: SendDataToWirelessDeviceRequest) -> dict:
 
 def deserialize_json(data: dict) -> SendDataToWirelessDeviceRequest:
     out: SendDataToWirelessDeviceRequest = {}  # type: ignore[typeddict-item]
-    if "TransmitMode" in data:
+    if data.get("TransmitMode") is not None:
         out["transmit_mode"] = data["TransmitMode"]
     else:
         raise DeserializationError(
             "SendDataToWirelessDeviceRequest.transmit_mode required"
         )
-    if "PayloadData" in data:
+    if data.get("PayloadData") is not None:
         out["payload_data"] = data["PayloadData"]
     else:
         raise DeserializationError(
             "SendDataToWirelessDeviceRequest.payload_data required"
         )
-    if "WirelessMetadata" in data:
+    if data.get("WirelessMetadata") is not None:
         import capo_iot_wireless.types.wireless_metadata
 
         out["wireless_metadata"] = (

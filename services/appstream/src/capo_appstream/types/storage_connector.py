@@ -59,7 +59,7 @@ def serialize_aws_json_1_1(value: StorageConnector) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StorageConnector:
     out: StorageConnector = {}  # type: ignore[typeddict-item]
-    if "ConnectorType" in data:
+    if data.get("ConnectorType") is not None:
         import capo_appstream.types.storage_connector_type
 
         out["connector_type"] = (
@@ -67,15 +67,15 @@ def deserialize_aws_json_1_1(data: dict) -> StorageConnector:
                 data["ConnectorType"]
             )
         )
-    if "ResourceIdentifier" in data:
+    if data.get("ResourceIdentifier") is not None:
         out["resource_identifier"] = data["ResourceIdentifier"]
-    if "Domains" in data:
+    if data.get("Domains") is not None:
         import capo_appstream.types.domain_list
 
         out["domains"] = capo_appstream.types.domain_list.deserialize_aws_json_1_1(
             data["Domains"]
         )
-    if "DomainsRequireAdminConsent" in data:
+    if data.get("DomainsRequireAdminConsent") is not None:
         import capo_appstream.types.domain_list
 
         out["domains_require_admin_consent"] = (

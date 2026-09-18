@@ -32,12 +32,12 @@ def serialize_json(value: ListLexBotsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListLexBotsResponse:
     out: ListLexBotsResponse = {}  # type: ignore[typeddict-item]
-    if "LexBots" in data:
+    if data.get("LexBots") is not None:
         import capo_connect.types.lex_bots_list
 
         out["lex_bots"] = capo_connect.types.lex_bots_list.deserialize_json(
             data["LexBots"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

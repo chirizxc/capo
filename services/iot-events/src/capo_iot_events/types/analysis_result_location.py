@@ -25,6 +25,6 @@ def serialize_json(value: AnalysisResultLocation) -> dict:
 
 def deserialize_json(data: dict) -> AnalysisResultLocation:
     out: AnalysisResultLocation = {}  # type: ignore[typeddict-item]
-    if "path" in data:
+    if data.get("path") is not None:
         out["path"] = data["path"]
     return out

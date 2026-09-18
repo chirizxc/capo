@@ -39,18 +39,18 @@ def serialize_json(value: PendingMaintenanceActionDetails) -> dict:
 
 def deserialize_json(data: dict) -> PendingMaintenanceActionDetails:
     out: PendingMaintenanceActionDetails = {}  # type: ignore[typeddict-item]
-    if "action" in data:
+    if data.get("action") is not None:
         out["action"] = data["action"]
     else:
         raise DeserializationError("PendingMaintenanceActionDetails.action required")
-    if "autoAppliedAfterDate" in data:
+    if data.get("autoAppliedAfterDate") is not None:
         out["auto_applied_after_date"] = data["autoAppliedAfterDate"]
-    if "forcedApplyDate" in data:
+    if data.get("forcedApplyDate") is not None:
         out["forced_apply_date"] = data["forcedApplyDate"]
-    if "optInStatus" in data:
+    if data.get("optInStatus") is not None:
         out["opt_in_status"] = data["optInStatus"]
-    if "currentApplyDate" in data:
+    if data.get("currentApplyDate") is not None:
         out["current_apply_date"] = data["currentApplyDate"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

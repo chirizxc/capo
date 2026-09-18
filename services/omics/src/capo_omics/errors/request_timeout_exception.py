@@ -18,7 +18,7 @@ def serialize_json(value: RequestTimeoutException_) -> dict:
 
 def deserialize_json(data: dict) -> RequestTimeoutException_:
     out: RequestTimeoutException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("RequestTimeoutException_.message required")
@@ -30,15 +30,18 @@ class RequestTimeoutException(ServiceError):
 
     code: str | None = "RequestTimeoutException"
 
-    def __init__(self, data: RequestTimeoutException_):
+    def __init__(self, data: RequestTimeoutException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="RequestTimeoutException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "RequestTimeoutException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "RequestTimeoutException":
+        return cls(deserialize_json(data), message)

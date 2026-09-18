@@ -34,12 +34,12 @@ def serialize_json(value: ListExtensibleSourceServersResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListExtensibleSourceServersResponse:
     out: ListExtensibleSourceServersResponse = {}  # type: ignore[typeddict-item]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_drs.types.staging_source_servers_list
 
         out["items"] = capo_drs.types.staging_source_servers_list.deserialize_json(
             data["items"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

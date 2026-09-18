@@ -28,8 +28,8 @@ def serialize_json(value: CreateContactFlowVersionResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateContactFlowVersionResponse:
     out: CreateContactFlowVersionResponse = {}  # type: ignore[typeddict-item]
-    if "ContactFlowArn" in data:
+    if data.get("ContactFlowArn") is not None:
         out["contact_flow_arn"] = data["ContactFlowArn"]
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
     return out

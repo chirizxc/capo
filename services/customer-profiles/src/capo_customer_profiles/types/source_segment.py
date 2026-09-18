@@ -23,6 +23,6 @@ def serialize_json(value: SourceSegment) -> dict:
 
 def deserialize_json(data: dict) -> SourceSegment:
     out: SourceSegment = {}  # type: ignore[typeddict-item]
-    if "SegmentDefinitionName" in data:
+    if data.get("SegmentDefinitionName") is not None:
         out["segment_definition_name"] = data["SegmentDefinitionName"]
     return out

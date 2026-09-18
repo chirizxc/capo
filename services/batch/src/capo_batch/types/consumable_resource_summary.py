@@ -40,14 +40,14 @@ def serialize_json(value: ConsumableResourceSummary) -> dict:
 
 def deserialize_json(data: dict) -> ConsumableResourceSummary:
     out: ConsumableResourceSummary = {}  # type: ignore[typeddict-item]
-    if "consumableResourceArn" in data:
+    if data.get("consumableResourceArn") is not None:
         out["consumable_resource_arn"] = data["consumableResourceArn"]
-    if "consumableResourceName" in data:
+    if data.get("consumableResourceName") is not None:
         out["consumable_resource_name"] = data["consumableResourceName"]
-    if "totalQuantity" in data:
+    if data.get("totalQuantity") is not None:
         out["total_quantity"] = data["totalQuantity"]
-    if "inUseQuantity" in data:
+    if data.get("inUseQuantity") is not None:
         out["in_use_quantity"] = data["inUseQuantity"]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         out["resource_type"] = data["resourceType"]
     return out

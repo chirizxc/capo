@@ -98,13 +98,13 @@ def serialize_json(value: TableCellStyle) -> dict:
 
 def deserialize_json(data: dict) -> TableCellStyle:
     out: TableCellStyle = {}  # type: ignore[typeddict-item]
-    if "Visibility" in data:
+    if data.get("Visibility") is not None:
         import capo_quicksight.types.visibility
 
         out["visibility"] = capo_quicksight.types.visibility.deserialize_json(
             data["Visibility"]
         )
-    if "FontConfiguration" in data:
+    if data.get("FontConfiguration") is not None:
         import capo_quicksight.types.font_configuration
 
         out["font_configuration"] = (
@@ -112,13 +112,13 @@ def deserialize_json(data: dict) -> TableCellStyle:
                 data["FontConfiguration"]
             )
         )
-    if "TextWrap" in data:
+    if data.get("TextWrap") is not None:
         import capo_quicksight.types.text_wrap
 
         out["text_wrap"] = capo_quicksight.types.text_wrap.deserialize_json(
             data["TextWrap"]
         )
-    if "HorizontalTextAlignment" in data:
+    if data.get("HorizontalTextAlignment") is not None:
         import capo_quicksight.types.horizontal_text_alignment
 
         out["horizontal_text_alignment"] = (
@@ -126,7 +126,7 @@ def deserialize_json(data: dict) -> TableCellStyle:
                 data["HorizontalTextAlignment"]
             )
         )
-    if "VerticalTextAlignment" in data:
+    if data.get("VerticalTextAlignment") is not None:
         import capo_quicksight.types.vertical_text_alignment
 
         out["vertical_text_alignment"] = (
@@ -134,11 +134,11 @@ def deserialize_json(data: dict) -> TableCellStyle:
                 data["VerticalTextAlignment"]
             )
         )
-    if "BackgroundColor" in data:
+    if data.get("BackgroundColor") is not None:
         out["background_color"] = data["BackgroundColor"]
-    if "Height" in data:
+    if data.get("Height") is not None:
         out["height"] = data["Height"]
-    if "Border" in data:
+    if data.get("Border") is not None:
         import capo_quicksight.types.global_table_border_options
 
         out["border"] = (

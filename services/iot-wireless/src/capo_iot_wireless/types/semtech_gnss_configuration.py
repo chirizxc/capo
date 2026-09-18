@@ -38,7 +38,7 @@ def serialize_json(value: SemtechGnssConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SemtechGnssConfiguration:
     out: SemtechGnssConfiguration = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_iot_wireless.types.position_configuration_status
 
         out["status"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> SemtechGnssConfiguration:
         )
     else:
         raise DeserializationError("SemtechGnssConfiguration.status required")
-    if "Fec" in data:
+    if data.get("Fec") is not None:
         import capo_iot_wireless.types.position_configuration_fec
 
         out["fec"] = (

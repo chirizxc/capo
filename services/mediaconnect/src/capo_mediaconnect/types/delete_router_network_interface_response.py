@@ -39,15 +39,15 @@ def serialize_json(value: DeleteRouterNetworkInterfaceResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteRouterNetworkInterfaceResponse:
     out: DeleteRouterNetworkInterfaceResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("DeleteRouterNetworkInterfaceResponse.arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("DeleteRouterNetworkInterfaceResponse.name required")
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_mediaconnect.types.router_network_interface_state
 
         out["state"] = (

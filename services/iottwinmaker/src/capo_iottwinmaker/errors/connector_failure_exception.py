@@ -24,7 +24,7 @@ def serialize_json(value: ConnectorFailureException_) -> dict:
 
 def deserialize_json(data: dict) -> ConnectorFailureException_:
     out: ConnectorFailureException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,18 @@ class ConnectorFailureException(ServiceError):
 
     code: str | None = "ConnectorFailureException"
 
-    def __init__(self, data: ConnectorFailureException_):
+    def __init__(self, data: ConnectorFailureException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ConnectorFailureException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ConnectorFailureException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "ConnectorFailureException":
+        return cls(deserialize_json(data), message)

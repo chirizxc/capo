@@ -32,7 +32,7 @@ def serialize_json(value: EventLogConfig) -> dict:
 
 def deserialize_json(data: dict) -> EventLogConfig:
     out: EventLogConfig = {}  # type: ignore[typeddict-item]
-    if "logLevel" in data:
+    if data.get("logLevel") is not None:
         import capo_appsync.types.event_log_level
 
         out["log_level"] = capo_appsync.types.event_log_level.deserialize_json(
@@ -40,7 +40,7 @@ def deserialize_json(data: dict) -> EventLogConfig:
         )
     else:
         raise DeserializationError("EventLogConfig.log_level required")
-    if "cloudWatchLogsRoleArn" in data:
+    if data.get("cloudWatchLogsRoleArn") is not None:
         out["cloud_watch_logs_role_arn"] = data["cloudWatchLogsRoleArn"]
     else:
         raise DeserializationError("EventLogConfig.cloud_watch_logs_role_arn required")

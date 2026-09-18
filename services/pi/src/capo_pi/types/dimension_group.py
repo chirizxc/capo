@@ -38,11 +38,11 @@ def serialize_aws_json_1_1(value: DimensionGroup) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DimensionGroup:
     out: DimensionGroup = {}  # type: ignore[typeddict-item]
-    if "Group" in data:
+    if data.get("Group") is not None:
         out["group"] = data["Group"]
     else:
         raise DeserializationError("DimensionGroup.group required")
-    if "Dimensions" in data:
+    if data.get("Dimensions") is not None:
         import capo_pi.types.sanitized_string_list
 
         out["dimensions"] = (
@@ -50,6 +50,6 @@ def deserialize_aws_json_1_1(data: dict) -> DimensionGroup:
                 data["Dimensions"]
             )
         )
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
     return out

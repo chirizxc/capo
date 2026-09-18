@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> TemplateInputList:
 
     out: TemplateInputList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_migrationhuborchestrator.types.template_input.deserialize_json(item)
         )

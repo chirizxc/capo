@@ -2,6 +2,7 @@
 
 import time
 import warnings
+from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -17,6 +18,7 @@ from capo_kinesis._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_kinesis._auth._zapros_handler import AuthMiddleware
+from capo_kinesis._pagination import resolve_path as _resolve_path
 from capo_kinesis._services._aws_config import aws_config
 from capo_kinesis._services._pipeline import (
     Interceptor,
@@ -262,10 +264,11 @@ class KinesisClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis.types.add_tags_to_stream_input.AddTagsToStreamInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis.types.add_tags_to_stream_input.AddTagsToStreamInput = {
+            "tags": tags
+        }
         if stream_name is not None:
             input_["stream_name"] = stream_name
-        input_["tags"] = tags
         if stream_arn is not None:
             input_["stream_arn"] = stream_arn
         if stream_id is not None:
@@ -276,6 +279,7 @@ class KinesisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_stream(
@@ -328,8 +332,9 @@ class KinesisClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis.types.create_stream_input.CreateStreamInput = {}  # type: ignore[typeddict-item]
-        input_["stream_name"] = stream_name
+        input_: capo_kinesis.types.create_stream_input.CreateStreamInput = {
+            "stream_name": stream_name
+        }
         if shard_count is not None:
             input_["shard_count"] = shard_count
         if stream_mode_details is not None:
@@ -346,6 +351,7 @@ class KinesisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def decrease_stream_retention_period(
@@ -387,10 +393,11 @@ class KinesisClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis.types.decrease_stream_retention_period_input.DecreaseStreamRetentionPeriodInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis.types.decrease_stream_retention_period_input.DecreaseStreamRetentionPeriodInput = {
+            "retention_period_hours": retention_period_hours
+        }
         if stream_name is not None:
             input_["stream_name"] = stream_name
-        input_["retention_period_hours"] = retention_period_hours
         if stream_arn is not None:
             input_["stream_arn"] = stream_arn
         if stream_id is not None:
@@ -401,6 +408,7 @@ class KinesisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_resource_policy(
@@ -438,8 +446,9 @@ class KinesisClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis.types.delete_resource_policy_input.DeleteResourcePolicyInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_kinesis.types.delete_resource_policy_input.DeleteResourcePolicyInput = {
+            "resource_arn": resource_arn
+        }
         if stream_id is not None:
             input_["stream_id"] = stream_id
 
@@ -448,6 +457,7 @@ class KinesisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_stream(
@@ -491,7 +501,7 @@ class KinesisClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis.types.delete_stream_input.DeleteStreamInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis.types.delete_stream_input.DeleteStreamInput = {}
         if stream_name is not None:
             input_["stream_name"] = stream_name
         if enforce_consumer_deletion is not None:
@@ -506,6 +516,7 @@ class KinesisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def deregister_stream_consumer(
@@ -545,7 +556,7 @@ class KinesisClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis.types.deregister_stream_consumer_input.DeregisterStreamConsumerInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis.types.deregister_stream_consumer_input.DeregisterStreamConsumerInput = {}
         if stream_arn is not None:
             input_["stream_arn"] = stream_arn
         if consumer_name is not None:
@@ -560,6 +571,7 @@ class KinesisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_account_settings(
@@ -587,13 +599,14 @@ class KinesisClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis.types.describe_account_settings_input.DescribeAccountSettingsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis.types.describe_account_settings_input.DescribeAccountSettingsInput = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_limits(
@@ -621,13 +634,14 @@ class KinesisClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis.types.describe_limits_input.DescribeLimitsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis.types.describe_limits_input.DescribeLimitsInput = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_stream(
@@ -676,7 +690,7 @@ class KinesisClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis.types.describe_stream_input.DescribeStreamInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis.types.describe_stream_input.DescribeStreamInput = {}
         if stream_name is not None:
             input_["stream_name"] = stream_name
         if limit is not None:
@@ -693,6 +707,7 @@ class KinesisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def wait_until_stream_not_exists(
@@ -791,7 +806,7 @@ class KinesisClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis.types.describe_stream_consumer_input.DescribeStreamConsumerInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis.types.describe_stream_consumer_input.DescribeStreamConsumerInput = {}
         if stream_arn is not None:
             input_["stream_arn"] = stream_arn
         if consumer_name is not None:
@@ -806,6 +821,7 @@ class KinesisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_stream_summary(
@@ -848,7 +864,7 @@ class KinesisClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis.types.describe_stream_summary_input.DescribeStreamSummaryInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis.types.describe_stream_summary_input.DescribeStreamSummaryInput = {}
         if stream_name is not None:
             input_["stream_name"] = stream_name
         if stream_arn is not None:
@@ -861,6 +877,7 @@ class KinesisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disable_enhanced_monitoring(
@@ -904,10 +921,11 @@ class KinesisClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis.types.disable_enhanced_monitoring_input.DisableEnhancedMonitoringInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis.types.disable_enhanced_monitoring_input.DisableEnhancedMonitoringInput = {
+            "shard_level_metrics": shard_level_metrics
+        }
         if stream_name is not None:
             input_["stream_name"] = stream_name
-        input_["shard_level_metrics"] = shard_level_metrics
         if stream_arn is not None:
             input_["stream_arn"] = stream_arn
         if stream_id is not None:
@@ -918,6 +936,7 @@ class KinesisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def enable_enhanced_monitoring(
@@ -961,10 +980,11 @@ class KinesisClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis.types.enable_enhanced_monitoring_input.EnableEnhancedMonitoringInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis.types.enable_enhanced_monitoring_input.EnableEnhancedMonitoringInput = {
+            "shard_level_metrics": shard_level_metrics
+        }
         if stream_name is not None:
             input_["stream_name"] = stream_name
-        input_["shard_level_metrics"] = shard_level_metrics
         if stream_arn is not None:
             input_["stream_arn"] = stream_arn
         if stream_id is not None:
@@ -975,6 +995,7 @@ class KinesisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_records(
@@ -1027,8 +1048,9 @@ class KinesisClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis.types.get_records_input.GetRecordsInput = {}  # type: ignore[typeddict-item]
-        input_["shard_iterator"] = shard_iterator
+        input_: capo_kinesis.types.get_records_input.GetRecordsInput = {
+            "shard_iterator": shard_iterator
+        }
         if limit is not None:
             input_["limit"] = limit
         if stream_arn is not None:
@@ -1041,6 +1063,7 @@ class KinesisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_resource_policy(
@@ -1080,8 +1103,9 @@ class KinesisClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis.types.get_resource_policy_input.GetResourcePolicyInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_kinesis.types.get_resource_policy_input.GetResourcePolicyInput = {
+            "resource_arn": resource_arn
+        }
         if stream_id is not None:
             input_["stream_id"] = stream_id
 
@@ -1090,6 +1114,7 @@ class KinesisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_shard_iterator(
@@ -1141,11 +1166,12 @@ class KinesisClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis.types.get_shard_iterator_input.GetShardIteratorInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis.types.get_shard_iterator_input.GetShardIteratorInput = {
+            "shard_id": shard_id,
+            "shard_iterator_type": shard_iterator_type,
+        }
         if stream_name is not None:
             input_["stream_name"] = stream_name
-        input_["shard_id"] = shard_id
-        input_["shard_iterator_type"] = shard_iterator_type
         if starting_sequence_number is not None:
             input_["starting_sequence_number"] = starting_sequence_number
         if timestamp is not None:
@@ -1160,6 +1186,7 @@ class KinesisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def increase_stream_retention_period(
@@ -1201,10 +1228,11 @@ class KinesisClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis.types.increase_stream_retention_period_input.IncreaseStreamRetentionPeriodInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis.types.increase_stream_retention_period_input.IncreaseStreamRetentionPeriodInput = {
+            "retention_period_hours": retention_period_hours
+        }
         if stream_name is not None:
             input_["stream_name"] = stream_name
-        input_["retention_period_hours"] = retention_period_hours
         if stream_arn is not None:
             input_["stream_arn"] = stream_arn
         if stream_id is not None:
@@ -1215,6 +1243,7 @@ class KinesisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_shards(
@@ -1273,7 +1302,7 @@ class KinesisClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis.types.list_shards_input.ListShardsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis.types.list_shards_input.ListShardsInput = {}
         if stream_name is not None:
             input_["stream_name"] = stream_name
         if next_token is not None:
@@ -1296,6 +1325,7 @@ class KinesisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_stream_consumers(
@@ -1345,8 +1375,9 @@ class KinesisClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis.types.list_stream_consumers_input.ListStreamConsumersInput = {}  # type: ignore[typeddict-item]
-        input_["stream_arn"] = stream_arn
+        input_: capo_kinesis.types.list_stream_consumers_input.ListStreamConsumersInput = {
+            "stream_arn": stream_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1361,7 +1392,37 @@ class KinesisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_stream_consumers(
+        self,
+        stream_arn: "capo_kinesis.types.stream_arn.StreamARN",
+        *,
+        config_overrides: Optional[KinesisClientConfig] = None,
+        next_token: Optional["capo_kinesis.types.next_token.NextToken"] = None,
+        max_results: Optional[
+            "capo_kinesis.types.list_stream_consumers_input_limit.ListStreamConsumersInputLimit"
+        ] = None,
+        stream_creation_timestamp: Optional[
+            "capo_kinesis.types.timestamp.Timestamp"
+        ] = None,
+        stream_id: Optional["capo_kinesis.types.stream_id.StreamId"] = None,
+    ) -> "Iterator[capo_kinesis.types.list_stream_consumers_output.ListStreamConsumersOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_stream_consumers(
+                stream_arn,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                stream_creation_timestamp=stream_creation_timestamp,
+                stream_id=stream_id,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_streams(
         self,
@@ -1404,7 +1465,7 @@ class KinesisClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis.types.list_streams_input.ListStreamsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis.types.list_streams_input.ListStreamsInput = {}
         if limit is not None:
             input_["limit"] = limit
         if exclusive_start_stream_name is not None:
@@ -1417,7 +1478,33 @@ class KinesisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_streams(
+        self,
+        *,
+        config_overrides: Optional[KinesisClientConfig] = None,
+        limit: Optional[
+            "capo_kinesis.types.list_streams_input_limit.ListStreamsInputLimit"
+        ] = None,
+        exclusive_start_stream_name: Optional[
+            "capo_kinesis.types.stream_name.StreamName"
+        ] = None,
+        next_token: Optional["capo_kinesis.types.next_token.NextToken"] = None,
+    ) -> "Iterator[capo_kinesis.types.list_streams_output.ListStreamsOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_streams(
+                config_overrides=config_overrides,
+                limit=limit,
+                exclusive_start_stream_name=exclusive_start_stream_name,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_tags_for_resource(
         self,
@@ -1456,8 +1543,9 @@ class KinesisClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis.types.list_tags_for_resource_input.ListTagsForResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_kinesis.types.list_tags_for_resource_input.ListTagsForResourceInput = {
+            "resource_arn": resource_arn
+        }
         if stream_id is not None:
             input_["stream_id"] = stream_id
 
@@ -1466,6 +1554,7 @@ class KinesisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_tags_for_stream(
@@ -1512,7 +1601,7 @@ class KinesisClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis.types.list_tags_for_stream_input.ListTagsForStreamInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis.types.list_tags_for_stream_input.ListTagsForStreamInput = {}
         if stream_name is not None:
             input_["stream_name"] = stream_name
         if exclusive_start_tag_key is not None:
@@ -1529,6 +1618,7 @@ class KinesisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def merge_shards(
@@ -1573,11 +1663,12 @@ class KinesisClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis.types.merge_shards_input.MergeShardsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis.types.merge_shards_input.MergeShardsInput = {
+            "shard_to_merge": shard_to_merge,
+            "adjacent_shard_to_merge": adjacent_shard_to_merge,
+        }
         if stream_name is not None:
             input_["stream_name"] = stream_name
-        input_["shard_to_merge"] = shard_to_merge
-        input_["adjacent_shard_to_merge"] = adjacent_shard_to_merge
         if stream_arn is not None:
             input_["stream_arn"] = stream_arn
         if stream_id is not None:
@@ -1588,6 +1679,7 @@ class KinesisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_record(
@@ -1643,11 +1735,12 @@ class KinesisClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis.types.put_record_input.PutRecordInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis.types.put_record_input.PutRecordInput = {
+            "data": data,
+            "partition_key": partition_key,
+        }
         if stream_name is not None:
             input_["stream_name"] = stream_name
-        input_["data"] = data
-        input_["partition_key"] = partition_key
         if explicit_hash_key is not None:
             input_["explicit_hash_key"] = explicit_hash_key
         if sequence_number_for_ordering is not None:
@@ -1662,6 +1755,7 @@ class KinesisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_records(
@@ -1711,8 +1805,9 @@ class KinesisClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis.types.put_records_input.PutRecordsInput = {}  # type: ignore[typeddict-item]
-        input_["records"] = records
+        input_: capo_kinesis.types.put_records_input.PutRecordsInput = {
+            "records": records
+        }
         if stream_name is not None:
             input_["stream_name"] = stream_name
         if stream_arn is not None:
@@ -1725,6 +1820,7 @@ class KinesisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_resource_policy(
@@ -1764,17 +1860,19 @@ class KinesisClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis.types.put_resource_policy_input.PutResourcePolicyInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_kinesis.types.put_resource_policy_input.PutResourcePolicyInput = {
+            "resource_arn": resource_arn,
+            "policy": policy,
+        }
         if stream_id is not None:
             input_["stream_id"] = stream_id
-        input_["policy"] = policy
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def register_stream_consumer(
@@ -1817,9 +1915,10 @@ class KinesisClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis.types.register_stream_consumer_input.RegisterStreamConsumerInput = {}  # type: ignore[typeddict-item]
-        input_["stream_arn"] = stream_arn
-        input_["consumer_name"] = consumer_name
+        input_: capo_kinesis.types.register_stream_consumer_input.RegisterStreamConsumerInput = {
+            "stream_arn": stream_arn,
+            "consumer_name": consumer_name,
+        }
         if stream_id is not None:
             input_["stream_id"] = stream_id
         if tags is not None:
@@ -1830,6 +1929,7 @@ class KinesisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def remove_tags_from_stream(
@@ -1871,10 +1971,11 @@ class KinesisClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis.types.remove_tags_from_stream_input.RemoveTagsFromStreamInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis.types.remove_tags_from_stream_input.RemoveTagsFromStreamInput = {
+            "tag_keys": tag_keys
+        }
         if stream_name is not None:
             input_["stream_name"] = stream_name
-        input_["tag_keys"] = tag_keys
         if stream_arn is not None:
             input_["stream_arn"] = stream_arn
         if stream_id is not None:
@@ -1885,6 +1986,7 @@ class KinesisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def split_shard(
@@ -1929,11 +2031,12 @@ class KinesisClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis.types.split_shard_input.SplitShardInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis.types.split_shard_input.SplitShardInput = {
+            "shard_to_split": shard_to_split,
+            "new_starting_hash_key": new_starting_hash_key,
+        }
         if stream_name is not None:
             input_["stream_name"] = stream_name
-        input_["shard_to_split"] = shard_to_split
-        input_["new_starting_hash_key"] = new_starting_hash_key
         if stream_arn is not None:
             input_["stream_arn"] = stream_arn
         if stream_id is not None:
@@ -1944,6 +2047,7 @@ class KinesisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_stream_encryption(
@@ -1993,11 +2097,12 @@ class KinesisClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis.types.start_stream_encryption_input.StartStreamEncryptionInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis.types.start_stream_encryption_input.StartStreamEncryptionInput = {
+            "encryption_type": encryption_type,
+            "key_id": key_id,
+        }
         if stream_name is not None:
             input_["stream_name"] = stream_name
-        input_["encryption_type"] = encryption_type
-        input_["key_id"] = key_id
         if stream_arn is not None:
             input_["stream_arn"] = stream_arn
         if stream_id is not None:
@@ -2008,6 +2113,7 @@ class KinesisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_stream_encryption(
@@ -2051,11 +2157,12 @@ class KinesisClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis.types.stop_stream_encryption_input.StopStreamEncryptionInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis.types.stop_stream_encryption_input.StopStreamEncryptionInput = {
+            "encryption_type": encryption_type,
+            "key_id": key_id,
+        }
         if stream_name is not None:
             input_["stream_name"] = stream_name
-        input_["encryption_type"] = encryption_type
-        input_["key_id"] = key_id
         if stream_arn is not None:
             input_["stream_arn"] = stream_arn
         if stream_id is not None:
@@ -2066,6 +2173,7 @@ class KinesisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def subscribe_to_shard(
@@ -2109,12 +2217,13 @@ class KinesisClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis.types.subscribe_to_shard_input.SubscribeToShardInput = {}  # type: ignore[typeddict-item]
-        input_["consumer_arn"] = consumer_arn
+        input_: capo_kinesis.types.subscribe_to_shard_input.SubscribeToShardInput = {
+            "consumer_arn": consumer_arn,
+            "shard_id": shard_id,
+            "starting_position": starting_position,
+        }
         if stream_id is not None:
             input_["stream_id"] = stream_id
-        input_["shard_id"] = shard_id
-        input_["starting_position"] = starting_position
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
@@ -2160,9 +2269,10 @@ class KinesisClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis.types.tag_resource_input.TagResourceInput = {}  # type: ignore[typeddict-item]
-        input_["tags"] = tags
-        input_["resource_arn"] = resource_arn
+        input_: capo_kinesis.types.tag_resource_input.TagResourceInput = {
+            "tags": tags,
+            "resource_arn": resource_arn,
+        }
         if stream_id is not None:
             input_["stream_id"] = stream_id
 
@@ -2171,6 +2281,7 @@ class KinesisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -2210,9 +2321,10 @@ class KinesisClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis.types.untag_resource_input.UntagResourceInput = {}  # type: ignore[typeddict-item]
-        input_["tag_keys"] = tag_keys
-        input_["resource_arn"] = resource_arn
+        input_: capo_kinesis.types.untag_resource_input.UntagResourceInput = {
+            "tag_keys": tag_keys,
+            "resource_arn": resource_arn,
+        }
         if stream_id is not None:
             input_["stream_id"] = stream_id
 
@@ -2221,6 +2333,7 @@ class KinesisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_account_settings(
@@ -2258,16 +2371,16 @@ class KinesisClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis.types.update_account_settings_input.UpdateAccountSettingsInput = {}  # type: ignore[typeddict-item]
-        input_["minimum_throughput_billing_commitment"] = (
-            minimum_throughput_billing_commitment
-        )
+        input_: capo_kinesis.types.update_account_settings_input.UpdateAccountSettingsInput = {
+            "minimum_throughput_billing_commitment": minimum_throughput_billing_commitment
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_max_record_size(
@@ -2308,18 +2421,20 @@ class KinesisClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis.types.update_max_record_size_input.UpdateMaxRecordSizeInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis.types.update_max_record_size_input.UpdateMaxRecordSizeInput = {
+            "max_record_size_in_ki_b": max_record_size_in_ki_b
+        }
         if stream_arn is not None:
             input_["stream_arn"] = stream_arn
         if stream_id is not None:
             input_["stream_id"] = stream_id
-        input_["max_record_size_in_ki_b"] = max_record_size_in_ki_b
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_shard_count(
@@ -2366,11 +2481,12 @@ class KinesisClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis.types.update_shard_count_input.UpdateShardCountInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis.types.update_shard_count_input.UpdateShardCountInput = {
+            "target_shard_count": target_shard_count,
+            "scaling_type": scaling_type,
+        }
         if stream_name is not None:
             input_["stream_name"] = stream_name
-        input_["target_shard_count"] = target_shard_count
-        input_["scaling_type"] = scaling_type
         if stream_arn is not None:
             input_["stream_arn"] = stream_arn
         if stream_id is not None:
@@ -2381,6 +2497,7 @@ class KinesisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_stream_mode(
@@ -2424,11 +2541,12 @@ class KinesisClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis.types.update_stream_mode_input.UpdateStreamModeInput = {}  # type: ignore[typeddict-item]
-        input_["stream_arn"] = stream_arn
+        input_: capo_kinesis.types.update_stream_mode_input.UpdateStreamModeInput = {
+            "stream_arn": stream_arn,
+            "stream_mode_details": stream_mode_details,
+        }
         if stream_id is not None:
             input_["stream_id"] = stream_id
-        input_["stream_mode_details"] = stream_mode_details
         if warm_throughput_mi_bps is not None:
             input_["warm_throughput_mi_bps"] = warm_throughput_mi_bps
 
@@ -2437,6 +2555,7 @@ class KinesisClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_stream_warm_throughput(
@@ -2481,20 +2600,22 @@ class KinesisClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_kinesis.types.update_stream_warm_throughput_input.UpdateStreamWarmThroughputInput = {}  # type: ignore[typeddict-item]
+        input_: capo_kinesis.types.update_stream_warm_throughput_input.UpdateStreamWarmThroughputInput = {
+            "warm_throughput_mi_bps": warm_throughput_mi_bps
+        }
         if stream_arn is not None:
             input_["stream_arn"] = stream_arn
         if stream_name is not None:
             input_["stream_name"] = stream_name
         if stream_id is not None:
             input_["stream_id"] = stream_id
-        input_["warm_throughput_mi_bps"] = warm_throughput_mi_bps
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

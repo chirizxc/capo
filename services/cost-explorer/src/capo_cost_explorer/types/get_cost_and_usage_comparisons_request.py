@@ -83,9 +83,9 @@ def serialize_aws_json_1_1(value: GetCostAndUsageComparisonsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetCostAndUsageComparisonsRequest:
     out: GetCostAndUsageComparisonsRequest = {}  # type: ignore[typeddict-item]
-    if "BillingViewArn" in data:
+    if data.get("BillingViewArn") is not None:
         out["billing_view_arn"] = data["BillingViewArn"]
-    if "BaselineTimePeriod" in data:
+    if data.get("BaselineTimePeriod") is not None:
         import capo_cost_explorer.types.date_interval
 
         out["baseline_time_period"] = (
@@ -97,7 +97,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetCostAndUsageComparisonsRequest:
         raise DeserializationError(
             "GetCostAndUsageComparisonsRequest.baseline_time_period required"
         )
-    if "ComparisonTimePeriod" in data:
+    if data.get("ComparisonTimePeriod") is not None:
         import capo_cost_explorer.types.date_interval
 
         out["comparison_time_period"] = (
@@ -109,19 +109,19 @@ def deserialize_aws_json_1_1(data: dict) -> GetCostAndUsageComparisonsRequest:
         raise DeserializationError(
             "GetCostAndUsageComparisonsRequest.comparison_time_period required"
         )
-    if "MetricForComparison" in data:
+    if data.get("MetricForComparison") is not None:
         out["metric_for_comparison"] = data["MetricForComparison"]
     else:
         raise DeserializationError(
             "GetCostAndUsageComparisonsRequest.metric_for_comparison required"
         )
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_cost_explorer.types.expression
 
         out["filter"] = capo_cost_explorer.types.expression.deserialize_aws_json_1_1(
             data["Filter"]
         )
-    if "GroupBy" in data:
+    if data.get("GroupBy") is not None:
         import capo_cost_explorer.types.group_definitions
 
         out["group_by"] = (
@@ -129,8 +129,8 @@ def deserialize_aws_json_1_1(data: dict) -> GetCostAndUsageComparisonsRequest:
                 data["GroupBy"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextPageToken" in data:
+    if data.get("NextPageToken") is not None:
         out["next_page_token"] = data["NextPageToken"]
     return out

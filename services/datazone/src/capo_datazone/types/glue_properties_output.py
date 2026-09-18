@@ -31,12 +31,12 @@ def serialize_json(value: GluePropertiesOutput) -> dict:
 
 def deserialize_json(data: dict) -> GluePropertiesOutput:
     out: GluePropertiesOutput = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.connection_status
 
         out["status"] = capo_datazone.types.connection_status.deserialize_json(
             data["status"]
         )
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     return out

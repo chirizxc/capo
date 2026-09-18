@@ -42,13 +42,13 @@ def serialize_json(value: CreateTargetDomainInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateTargetDomainInput:
     out: CreateTargetDomainInput = {}  # type: ignore[typeddict-item]
-    if "targetDomainName" in data:
+    if data.get("targetDomainName") is not None:
         out["target_domain_name"] = data["targetDomainName"]
     else:
         raise DeserializationError(
             "CreateTargetDomainInput.target_domain_name required"
         )
-    if "verificationMethod" in data:
+    if data.get("verificationMethod") is not None:
         import capo_securityagent.types.domain_verification_method
 
         out["verification_method"] = (
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> CreateTargetDomainInput:
         raise DeserializationError(
             "CreateTargetDomainInput.verification_method required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_securityagent.types.tag_map
 
         out["tags"] = capo_securityagent.types.tag_map.deserialize_json(data["tags"])

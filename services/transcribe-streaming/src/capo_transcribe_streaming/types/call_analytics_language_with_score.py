@@ -29,13 +29,21 @@ def serialize_json(value: CallAnalyticsLanguageWithScore) -> dict:
                 value["language_code"]
             )
         )
-    out["Score"] = value.get("score", 0)
+    out["Score"] = (
+        "NaN"
+        if value.get("score", 0) != value.get("score", 0)
+        else "Infinity"
+        if value.get("score", 0) == float("inf")
+        else "-Infinity"
+        if value.get("score", 0) == float("-inf")
+        else value.get("score", 0)
+    )
     return out
 
 
 def deserialize_json(data: dict) -> CallAnalyticsLanguageWithScore:
     out: CallAnalyticsLanguageWithScore = {}  # type: ignore[typeddict-item]
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         import capo_transcribe_streaming.types.call_analytics_language_code
 
         out["language_code"] = (
@@ -43,8 +51,8 @@ def deserialize_json(data: dict) -> CallAnalyticsLanguageWithScore:
                 data["LanguageCode"]
             )
         )
-    if "Score" in data:
-        out["score"] = data["Score"]
+    if data.get("Score") is not None:
+        out["score"] = float(data["Score"])
     else:
         out["score"] = 0
     return out

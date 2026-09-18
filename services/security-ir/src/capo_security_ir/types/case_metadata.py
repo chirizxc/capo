@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> CaseMetadata:
 
     out: CaseMetadata = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_security_ir.types.case_metadata_entry.deserialize_json(item))
     return out

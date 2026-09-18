@@ -32,9 +32,9 @@ def serialize_json(value: GetAuthorizationTokenResult) -> dict:
 
 def deserialize_json(data: dict) -> GetAuthorizationTokenResult:
     out: GetAuthorizationTokenResult = {}  # type: ignore[typeddict-item]
-    if "authorizationToken" in data:
+    if data.get("authorizationToken") is not None:
         out["authorization_token"] = data["authorizationToken"]
-    if "expiration" in data:
+    if data.get("expiration") is not None:
         import capo_codeartifact.types.timestamp
 
         out["expiration"] = capo_codeartifact.types.timestamp.deserialize_json(

@@ -31,7 +31,7 @@ def serialize_json(value: AppRegistryConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AppRegistryConfiguration:
     out: AppRegistryConfiguration = {}  # type: ignore[typeddict-item]
-    if "tagQueryConfiguration" in data:
+    if data.get("tagQueryConfiguration") is not None:
         import capo_service_catalog_appregistry.types.tag_query_configuration
 
         out["tag_query_configuration"] = (

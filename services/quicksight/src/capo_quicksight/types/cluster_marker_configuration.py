@@ -27,7 +27,7 @@ def serialize_json(value: ClusterMarkerConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ClusterMarkerConfiguration:
     out: ClusterMarkerConfiguration = {}  # type: ignore[typeddict-item]
-    if "ClusterMarker" in data:
+    if data.get("ClusterMarker") is not None:
         import capo_quicksight.types.cluster_marker
 
         out["cluster_marker"] = capo_quicksight.types.cluster_marker.deserialize_json(

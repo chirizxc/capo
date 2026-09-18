@@ -45,16 +45,16 @@ def serialize_json(value: UpdateDataSourceResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDataSourceResponse:
     out: UpdateDataSourceResponse = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "DataSourceId" in data:
+    if data.get("DataSourceId") is not None:
         out["data_source_id"] = data["DataSourceId"]
-    if "UpdateStatus" in data:
+    if data.get("UpdateStatus") is not None:
         import capo_quicksight.types.resource_status
 
         out["update_status"] = capo_quicksight.types.resource_status.deserialize_json(
             data["UpdateStatus"]
         )
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

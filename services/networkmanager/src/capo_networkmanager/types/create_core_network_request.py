@@ -50,20 +50,20 @@ def serialize_json(value: CreateCoreNetworkRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateCoreNetworkRequest:
     out: CreateCoreNetworkRequest = {}  # type: ignore[typeddict-item]
-    if "GlobalNetworkId" in data:
+    if data.get("GlobalNetworkId") is not None:
         out["global_network_id"] = data["GlobalNetworkId"]
     else:
         raise DeserializationError(
             "CreateCoreNetworkRequest.global_network_id required"
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_networkmanager.types.tag_list
 
         out["tags"] = capo_networkmanager.types.tag_list.deserialize_json(data["Tags"])
-    if "PolicyDocument" in data:
+    if data.get("PolicyDocument") is not None:
         out["policy_document"] = data["PolicyDocument"]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

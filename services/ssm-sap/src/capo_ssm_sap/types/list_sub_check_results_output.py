@@ -36,7 +36,7 @@ def serialize_json(value: ListSubCheckResultsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListSubCheckResultsOutput:
     out: ListSubCheckResultsOutput = {}  # type: ignore[typeddict-item]
-    if "SubCheckResults" in data:
+    if data.get("SubCheckResults") is not None:
         import capo_ssm_sap.types.sub_check_result_list
 
         out["sub_check_results"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListSubCheckResultsOutput:
                 data["SubCheckResults"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

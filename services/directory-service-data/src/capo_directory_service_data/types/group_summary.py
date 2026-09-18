@@ -44,15 +44,15 @@ def serialize_json(value: GroupSummary) -> dict:
 
 def deserialize_json(data: dict) -> GroupSummary:
     out: GroupSummary = {}  # type: ignore[typeddict-item]
-    if "SID" in data:
+    if data.get("SID") is not None:
         out["sid"] = data["SID"]
     else:
         raise DeserializationError("GroupSummary.sid required")
-    if "SAMAccountName" in data:
+    if data.get("SAMAccountName") is not None:
         out["sam_account_name"] = data["SAMAccountName"]
     else:
         raise DeserializationError("GroupSummary.sam_account_name required")
-    if "GroupType" in data:
+    if data.get("GroupType") is not None:
         import capo_directory_service_data.types.group_type
 
         out["group_type"] = (
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> GroupSummary:
         )
     else:
         raise DeserializationError("GroupSummary.group_type required")
-    if "GroupScope" in data:
+    if data.get("GroupScope") is not None:
         import capo_directory_service_data.types.group_scope
 
         out["group_scope"] = (

@@ -63,17 +63,17 @@ def serialize_json(value: DecalSettings) -> dict:
 
 def deserialize_json(data: dict) -> DecalSettings:
     out: DecalSettings = {}  # type: ignore[typeddict-item]
-    if "ElementValue" in data:
+    if data.get("ElementValue") is not None:
         out["element_value"] = data["ElementValue"]
-    if "DecalVisibility" in data:
+    if data.get("DecalVisibility") is not None:
         import capo_quicksight.types.visibility
 
         out["decal_visibility"] = capo_quicksight.types.visibility.deserialize_json(
             data["DecalVisibility"]
         )
-    if "DecalColor" in data:
+    if data.get("DecalColor") is not None:
         out["decal_color"] = data["DecalColor"]
-    if "DecalPatternType" in data:
+    if data.get("DecalPatternType") is not None:
         import capo_quicksight.types.decal_pattern_type
 
         out["decal_pattern_type"] = (
@@ -81,7 +81,7 @@ def deserialize_json(data: dict) -> DecalSettings:
                 data["DecalPatternType"]
             )
         )
-    if "DecalStyleType" in data:
+    if data.get("DecalStyleType") is not None:
         import capo_quicksight.types.decal_style_type
 
         out["decal_style_type"] = (

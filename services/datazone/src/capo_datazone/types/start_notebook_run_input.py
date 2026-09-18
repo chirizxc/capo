@@ -99,19 +99,19 @@ def serialize_json(value: StartNotebookRunInput) -> dict:
 
 def deserialize_json(data: dict) -> StartNotebookRunInput:
     out: StartNotebookRunInput = {}  # type: ignore[typeddict-item]
-    if "owningProjectIdentifier" in data:
+    if data.get("owningProjectIdentifier") is not None:
         out["owning_project_identifier"] = data["owningProjectIdentifier"]
     else:
         raise DeserializationError(
             "StartNotebookRunInput.owning_project_identifier required"
         )
-    if "notebookIdentifier" in data:
+    if data.get("notebookIdentifier") is not None:
         out["notebook_identifier"] = data["notebookIdentifier"]
     else:
         raise DeserializationError("StartNotebookRunInput.notebook_identifier required")
-    if "scheduleIdentifier" in data:
+    if data.get("scheduleIdentifier") is not None:
         out["schedule_identifier"] = data["scheduleIdentifier"]
-    if "computeConfiguration" in data:
+    if data.get("computeConfiguration") is not None:
         import capo_datazone.types.compute_config
 
         out["compute_configuration"] = (
@@ -119,7 +119,7 @@ def deserialize_json(data: dict) -> StartNotebookRunInput:
                 data["computeConfiguration"]
             )
         )
-    if "networkConfiguration" in data:
+    if data.get("networkConfiguration") is not None:
         import capo_datazone.types.network_config
 
         out["network_configuration"] = (
@@ -127,7 +127,7 @@ def deserialize_json(data: dict) -> StartNotebookRunInput:
                 data["networkConfiguration"]
             )
         )
-    if "timeoutConfiguration" in data:
+    if data.get("timeoutConfiguration") is not None:
         import capo_datazone.types.timeout_config
 
         out["timeout_configuration"] = (
@@ -135,24 +135,24 @@ def deserialize_json(data: dict) -> StartNotebookRunInput:
                 data["timeoutConfiguration"]
             )
         )
-    if "triggerSource" in data:
+    if data.get("triggerSource") is not None:
         import capo_datazone.types.trigger_source
 
         out["trigger_source"] = capo_datazone.types.trigger_source.deserialize_json(
             data["triggerSource"]
         )
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         import capo_datazone.types.metadata
 
         out["metadata"] = capo_datazone.types.metadata.deserialize_json(
             data["metadata"]
         )
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_datazone.types.parameters
 
         out["parameters"] = capo_datazone.types.parameters.deserialize_json(
             data["parameters"]
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

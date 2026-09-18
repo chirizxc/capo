@@ -30,9 +30,9 @@ def serialize_json(value: LoRaWANFuotaTaskGetInfo) -> dict:
 
 def deserialize_json(data: dict) -> LoRaWANFuotaTaskGetInfo:
     out: LoRaWANFuotaTaskGetInfo = {}  # type: ignore[typeddict-item]
-    if "RfRegion" in data:
+    if data.get("RfRegion") is not None:
         out["rf_region"] = data["RfRegion"]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_iot_wireless.types.start_time
 
         out["start_time"] = capo_iot_wireless.types.start_time.deserialize_json(

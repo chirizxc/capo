@@ -30,7 +30,7 @@ def serialize_json(value: MulticastSettingsUpdateRequest) -> dict:
 
 def deserialize_json(data: dict) -> MulticastSettingsUpdateRequest:
     out: MulticastSettingsUpdateRequest = {}  # type: ignore[typeddict-item]
-    if "sources" in data:
+    if data.get("sources") is not None:
         import capo_medialive.types.__list_of_multicast_source_update_request
 
         out["sources"] = (

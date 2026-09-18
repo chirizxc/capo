@@ -26,7 +26,7 @@ def serialize_json(value: PutEventsResponse) -> dict:
 
 def deserialize_json(data: dict) -> PutEventsResponse:
     out: PutEventsResponse = {}  # type: ignore[typeddict-item]
-    if "EventsResponse" in data:
+    if data.get("EventsResponse") is not None:
         import capo_pinpoint.types.events_response
 
         out["events_response"] = capo_pinpoint.types.events_response.deserialize_json(

@@ -129,17 +129,17 @@ def serialize_json(value: ServiceLevelObjective) -> dict:
 
 def deserialize_json(data: dict) -> ServiceLevelObjective:
     out: ServiceLevelObjective = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("ServiceLevelObjective.arn required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("ServiceLevelObjective.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_application_signals.types._prelude.timestamp
 
         out["created_time"] = (
@@ -149,7 +149,7 @@ def deserialize_json(data: dict) -> ServiceLevelObjective:
         )
     else:
         raise DeserializationError("ServiceLevelObjective.created_time required")
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_application_signals.types._prelude.timestamp
 
         out["last_updated_time"] = (
@@ -159,7 +159,7 @@ def deserialize_json(data: dict) -> ServiceLevelObjective:
         )
     else:
         raise DeserializationError("ServiceLevelObjective.last_updated_time required")
-    if "Sli" in data:
+    if data.get("Sli") is not None:
         import capo_application_signals.types.service_level_indicator
 
         out["sli"] = (
@@ -167,7 +167,7 @@ def deserialize_json(data: dict) -> ServiceLevelObjective:
                 data["Sli"]
             )
         )
-    if "RequestBasedSli" in data:
+    if data.get("RequestBasedSli") is not None:
         import capo_application_signals.types.request_based_service_level_indicator
 
         out["request_based_sli"] = (
@@ -175,7 +175,7 @@ def deserialize_json(data: dict) -> ServiceLevelObjective:
                 data["RequestBasedSli"]
             )
         )
-    if "EvaluationType" in data:
+    if data.get("EvaluationType") is not None:
         import capo_application_signals.types.evaluation_type
 
         out["evaluation_type"] = (
@@ -183,13 +183,13 @@ def deserialize_json(data: dict) -> ServiceLevelObjective:
                 data["EvaluationType"]
             )
         )
-    if "Goal" in data:
+    if data.get("Goal") is not None:
         import capo_application_signals.types.goal
 
         out["goal"] = capo_application_signals.types.goal.deserialize_json(data["Goal"])
     else:
         raise DeserializationError("ServiceLevelObjective.goal required")
-    if "BurnRateConfigurations" in data:
+    if data.get("BurnRateConfigurations") is not None:
         import capo_application_signals.types.burn_rate_configurations
 
         out["burn_rate_configurations"] = (
@@ -197,7 +197,7 @@ def deserialize_json(data: dict) -> ServiceLevelObjective:
                 data["BurnRateConfigurations"]
             )
         )
-    if "MetricSourceType" in data:
+    if data.get("MetricSourceType") is not None:
         import capo_application_signals.types.metric_source_type
 
         out["metric_source_type"] = (
@@ -205,6 +205,6 @@ def deserialize_json(data: dict) -> ServiceLevelObjective:
                 data["MetricSourceType"]
             )
         )
-    if "AutoInvestigationEnabled" in data:
+    if data.get("AutoInvestigationEnabled") is not None:
         out["auto_investigation_enabled"] = data["AutoInvestigationEnabled"]
     return out

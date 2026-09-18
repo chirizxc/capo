@@ -30,13 +30,13 @@ def serialize_aws_json_1_0(value: GetComputeNodeGroupRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetComputeNodeGroupRequest:
     out: GetComputeNodeGroupRequest = {}  # type: ignore[typeddict-item]
-    if "clusterIdentifier" in data:
+    if data.get("clusterIdentifier") is not None:
         out["cluster_identifier"] = data["clusterIdentifier"]
     else:
         raise DeserializationError(
             "GetComputeNodeGroupRequest.cluster_identifier required"
         )
-    if "computeNodeGroupIdentifier" in data:
+    if data.get("computeNodeGroupIdentifier") is not None:
         out["compute_node_group_identifier"] = data["computeNodeGroupIdentifier"]
     else:
         raise DeserializationError(

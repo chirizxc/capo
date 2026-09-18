@@ -126,33 +126,33 @@ def serialize_aws_json_1_1(value: RegisterWorkspaceDirectoryRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RegisterWorkspaceDirectoryRequest:
     out: RegisterWorkspaceDirectoryRequest = {}  # type: ignore[typeddict-item]
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
-    if "SubnetIds" in data:
+    if data.get("SubnetIds") is not None:
         import capo_workspaces.types.subnet_ids
 
         out["subnet_ids"] = capo_workspaces.types.subnet_ids.deserialize_aws_json_1_1(
             data["SubnetIds"]
         )
-    if "EnableSelfService" in data:
+    if data.get("EnableSelfService") is not None:
         out["enable_self_service"] = data["EnableSelfService"]
-    if "Tenancy" in data:
+    if data.get("Tenancy") is not None:
         import capo_workspaces.types.tenancy
 
         out["tenancy"] = capo_workspaces.types.tenancy.deserialize_aws_json_1_1(
             data["Tenancy"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_workspaces.types.tag_list
 
         out["tags"] = capo_workspaces.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "WorkspaceDirectoryName" in data:
+    if data.get("WorkspaceDirectoryName") is not None:
         out["workspace_directory_name"] = data["WorkspaceDirectoryName"]
-    if "WorkspaceDirectoryDescription" in data:
+    if data.get("WorkspaceDirectoryDescription") is not None:
         out["workspace_directory_description"] = data["WorkspaceDirectoryDescription"]
-    if "UserIdentityType" in data:
+    if data.get("UserIdentityType") is not None:
         import capo_workspaces.types.user_identity_type
 
         out["user_identity_type"] = (
@@ -160,9 +160,9 @@ def deserialize_aws_json_1_1(data: dict) -> RegisterWorkspaceDirectoryRequest:
                 data["UserIdentityType"]
             )
         )
-    if "IdcInstanceArn" in data:
+    if data.get("IdcInstanceArn") is not None:
         out["idc_instance_arn"] = data["IdcInstanceArn"]
-    if "MicrosoftEntraConfig" in data:
+    if data.get("MicrosoftEntraConfig") is not None:
         import capo_workspaces.types.microsoft_entra_config
 
         out["microsoft_entra_config"] = (
@@ -170,7 +170,7 @@ def deserialize_aws_json_1_1(data: dict) -> RegisterWorkspaceDirectoryRequest:
                 data["MicrosoftEntraConfig"]
             )
         )
-    if "WorkspaceType" in data:
+    if data.get("WorkspaceType") is not None:
         import capo_workspaces.types.workspace_type
 
         out["workspace_type"] = (
@@ -178,7 +178,7 @@ def deserialize_aws_json_1_1(data: dict) -> RegisterWorkspaceDirectoryRequest:
                 data["WorkspaceType"]
             )
         )
-    if "ActiveDirectoryConfig" in data:
+    if data.get("ActiveDirectoryConfig") is not None:
         import capo_workspaces.types.active_directory_config
 
         out["active_directory_config"] = (

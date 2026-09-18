@@ -25,6 +25,6 @@ def serialize_json(value: AwsCloudFormationStackDriftInformationDetails) -> dict
 
 def deserialize_json(data: dict) -> AwsCloudFormationStackDriftInformationDetails:
     out: AwsCloudFormationStackDriftInformationDetails = {}  # type: ignore[typeddict-item]
-    if "StackDriftStatus" in data:
+    if data.get("StackDriftStatus") is not None:
         out["stack_drift_status"] = data["StackDriftStatus"]
     return out

@@ -50,19 +50,19 @@ def serialize_aws_json_1_1(value: LoadBalancerTlsPolicy) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LoadBalancerTlsPolicy:
     out: LoadBalancerTlsPolicy = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "isDefault" in data:
+    if data.get("isDefault") is not None:
         out["is_default"] = data["isDefault"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "protocols" in data:
+    if data.get("protocols") is not None:
         import capo_lightsail.types.string_list
 
         out["protocols"] = capo_lightsail.types.string_list.deserialize_aws_json_1_1(
             data["protocols"]
         )
-    if "ciphers" in data:
+    if data.get("ciphers") is not None:
         import capo_lightsail.types.string_list
 
         out["ciphers"] = capo_lightsail.types.string_list.deserialize_aws_json_1_1(

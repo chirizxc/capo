@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> RouterOutputMessages:
 
     out: RouterOutputMessages = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mediaconnect.types.router_output_message.deserialize_json(item))
     return out

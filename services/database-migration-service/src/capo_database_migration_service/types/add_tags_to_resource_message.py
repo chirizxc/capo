@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: AddTagsToResourceMessage) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AddTagsToResourceMessage:
     out: AddTagsToResourceMessage = {}  # type: ignore[typeddict-item]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     else:
         raise DeserializationError("AddTagsToResourceMessage.resource_arn required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_database_migration_service.types.tag_list
 
         out["tags"] = (

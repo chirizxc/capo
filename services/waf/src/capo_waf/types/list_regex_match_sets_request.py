@@ -27,9 +27,9 @@ def serialize_aws_json_1_1(value: ListRegexMatchSetsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListRegexMatchSetsRequest:
     out: ListRegexMatchSetsRequest = {}  # type: ignore[typeddict-item]
-    if "NextMarker" in data:
+    if data.get("NextMarker") is not None:
         out["next_marker"] = data["NextMarker"]
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
     else:
         out["limit"] = 0

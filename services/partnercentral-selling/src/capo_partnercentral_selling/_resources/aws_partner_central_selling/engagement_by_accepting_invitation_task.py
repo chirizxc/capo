@@ -83,10 +83,11 @@ class EngagementByAcceptingInvitationTask:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.start_engagement_by_accepting_invitation_task_request.StartEngagementByAcceptingInvitationTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["client_token"] = client_token
-        input_["identifier"] = identifier
+        input_: capo_partnercentral_selling.types.start_engagement_by_accepting_invitation_task_request.StartEngagementByAcceptingInvitationTaskRequest = {
+            "catalog": catalog,
+            "client_token": client_token,
+            "identifier": identifier,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -95,6 +96,7 @@ class EngagementByAcceptingInvitationTask:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -156,14 +158,15 @@ class EngagementByAcceptingInvitationTask:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.list_engagement_by_accepting_invitation_tasks_request.ListEngagementByAcceptingInvitationTasksRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_partnercentral_selling.types.list_engagement_by_accepting_invitation_tasks_request.ListEngagementByAcceptingInvitationTasksRequest = {
+            "catalog": catalog
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
         if sort is not None:
             input_["sort"] = sort
-        input_["catalog"] = catalog
         if task_status is not None:
             input_["task_status"] = task_status
         if opportunity_identifier is not None:
@@ -180,6 +183,7 @@ class EngagementByAcceptingInvitationTask:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -231,10 +235,11 @@ class AsyncEngagementByAcceptingInvitationTask:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.start_engagement_by_accepting_invitation_task_request.StartEngagementByAcceptingInvitationTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["client_token"] = client_token
-        input_["identifier"] = identifier
+        input_: capo_partnercentral_selling.types.start_engagement_by_accepting_invitation_task_request.StartEngagementByAcceptingInvitationTaskRequest = {
+            "catalog": catalog,
+            "client_token": client_token,
+            "identifier": identifier,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -243,6 +248,7 @@ class AsyncEngagementByAcceptingInvitationTask:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -305,14 +311,15 @@ class AsyncEngagementByAcceptingInvitationTask:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_partnercentral_selling.types.list_engagement_by_accepting_invitation_tasks_request.ListEngagementByAcceptingInvitationTasksRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_partnercentral_selling.types.list_engagement_by_accepting_invitation_tasks_request.ListEngagementByAcceptingInvitationTasksRequest = {
+            "catalog": catalog
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
         if sort is not None:
             input_["sort"] = sort
-        input_["catalog"] = catalog
         if task_status is not None:
             input_["task_status"] = task_status
         if opportunity_identifier is not None:
@@ -329,4 +336,5 @@ class AsyncEngagementByAcceptingInvitationTask:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

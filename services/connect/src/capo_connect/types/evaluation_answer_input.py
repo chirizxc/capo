@@ -27,7 +27,7 @@ def serialize_json(value: EvaluationAnswerInput) -> dict:
 
 def deserialize_json(data: dict) -> EvaluationAnswerInput:
     out: EvaluationAnswerInput = {}  # type: ignore[typeddict-item]
-    if "Value" in data:
+    if data.get("Value") is not None:
         import capo_connect.types.evaluation_answer_data
 
         out["value"] = capo_connect.types.evaluation_answer_data.deserialize_json(

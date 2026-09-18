@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> LanguageIdentification:
 
     out: LanguageIdentification = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_transcribe_streaming.types.language_with_score.deserialize_json(item)
         )

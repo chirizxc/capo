@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> MemberAccountEc2DeepInspectionStatusList:
 
     out: MemberAccountEc2DeepInspectionStatusList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_inspector2.types.member_account_ec2_deep_inspection_status.deserialize_json(
                 item

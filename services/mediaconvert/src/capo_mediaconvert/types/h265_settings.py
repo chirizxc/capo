@@ -348,7 +348,15 @@ def serialize_json(value: H265Settings) -> dict:
     if "gop_closed_cadence" in value:
         out["gopClosedCadence"] = value["gop_closed_cadence"]
     if "gop_size" in value:
-        out["gopSize"] = value["gop_size"]
+        out["gopSize"] = (
+            "NaN"
+            if value["gop_size"] != value["gop_size"]
+            else "Infinity"
+            if value["gop_size"] == float("inf")
+            else "-Infinity"
+            if value["gop_size"] == float("-inf")
+            else value["gop_size"]
+        )
     if "gop_size_units" in value:
         import capo_mediaconvert.types.h265_gop_size_units
 
@@ -542,7 +550,7 @@ def serialize_json(value: H265Settings) -> dict:
 
 def deserialize_json(data: dict) -> H265Settings:
     out: H265Settings = {}  # type: ignore[typeddict-item]
-    if "adaptiveQuantization" in data:
+    if data.get("adaptiveQuantization") is not None:
         import capo_mediaconvert.types.h265_adaptive_quantization
 
         out["adaptive_quantization"] = (
@@ -550,7 +558,7 @@ def deserialize_json(data: dict) -> H265Settings:
                 data["adaptiveQuantization"]
             )
         )
-    if "alternateTransferFunctionSei" in data:
+    if data.get("alternateTransferFunctionSei") is not None:
         import capo_mediaconvert.types.h265_alternate_transfer_function_sei
 
         out["alternate_transfer_function_sei"] = (
@@ -558,7 +566,7 @@ def deserialize_json(data: dict) -> H265Settings:
                 data["alternateTransferFunctionSei"]
             )
         )
-    if "bandwidthReductionFilter" in data:
+    if data.get("bandwidthReductionFilter") is not None:
         import capo_mediaconvert.types.bandwidth_reduction_filter
 
         out["bandwidth_reduction_filter"] = (
@@ -566,15 +574,15 @@ def deserialize_json(data: dict) -> H265Settings:
                 data["bandwidthReductionFilter"]
             )
         )
-    if "bitrate" in data:
+    if data.get("bitrate") is not None:
         out["bitrate"] = data["bitrate"]
-    if "codecLevel" in data:
+    if data.get("codecLevel") is not None:
         import capo_mediaconvert.types.h265_codec_level
 
         out["codec_level"] = capo_mediaconvert.types.h265_codec_level.deserialize_json(
             data["codecLevel"]
         )
-    if "codecProfile" in data:
+    if data.get("codecProfile") is not None:
         import capo_mediaconvert.types.h265_codec_profile
 
         out["codec_profile"] = (
@@ -582,13 +590,13 @@ def deserialize_json(data: dict) -> H265Settings:
                 data["codecProfile"]
             )
         )
-    if "deblocking" in data:
+    if data.get("deblocking") is not None:
         import capo_mediaconvert.types.h265_deblocking
 
         out["deblocking"] = capo_mediaconvert.types.h265_deblocking.deserialize_json(
             data["deblocking"]
         )
-    if "dynamicSubGop" in data:
+    if data.get("dynamicSubGop") is not None:
         import capo_mediaconvert.types.h265_dynamic_sub_gop
 
         out["dynamic_sub_gop"] = (
@@ -596,7 +604,7 @@ def deserialize_json(data: dict) -> H265Settings:
                 data["dynamicSubGop"]
             )
         )
-    if "endOfStreamMarkers" in data:
+    if data.get("endOfStreamMarkers") is not None:
         import capo_mediaconvert.types.h265_end_of_stream_markers
 
         out["end_of_stream_markers"] = (
@@ -604,7 +612,7 @@ def deserialize_json(data: dict) -> H265Settings:
                 data["endOfStreamMarkers"]
             )
         )
-    if "flickerAdaptiveQuantization" in data:
+    if data.get("flickerAdaptiveQuantization") is not None:
         import capo_mediaconvert.types.h265_flicker_adaptive_quantization
 
         out["flicker_adaptive_quantization"] = (
@@ -612,7 +620,7 @@ def deserialize_json(data: dict) -> H265Settings:
                 data["flickerAdaptiveQuantization"]
             )
         )
-    if "framerateControl" in data:
+    if data.get("framerateControl") is not None:
         import capo_mediaconvert.types.h265_framerate_control
 
         out["framerate_control"] = (
@@ -620,7 +628,7 @@ def deserialize_json(data: dict) -> H265Settings:
                 data["framerateControl"]
             )
         )
-    if "framerateConversionAlgorithm" in data:
+    if data.get("framerateConversionAlgorithm") is not None:
         import capo_mediaconvert.types.h265_framerate_conversion_algorithm
 
         out["framerate_conversion_algorithm"] = (
@@ -628,11 +636,11 @@ def deserialize_json(data: dict) -> H265Settings:
                 data["framerateConversionAlgorithm"]
             )
         )
-    if "framerateDenominator" in data:
+    if data.get("framerateDenominator") is not None:
         out["framerate_denominator"] = data["framerateDenominator"]
-    if "framerateNumerator" in data:
+    if data.get("framerateNumerator") is not None:
         out["framerate_numerator"] = data["framerateNumerator"]
-    if "gopBReference" in data:
+    if data.get("gopBReference") is not None:
         import capo_mediaconvert.types.h265_gop_b_reference
 
         out["gop_b_reference"] = (
@@ -640,11 +648,11 @@ def deserialize_json(data: dict) -> H265Settings:
                 data["gopBReference"]
             )
         )
-    if "gopClosedCadence" in data:
+    if data.get("gopClosedCadence") is not None:
         out["gop_closed_cadence"] = data["gopClosedCadence"]
-    if "gopSize" in data:
-        out["gop_size"] = data["gopSize"]
-    if "gopSizeUnits" in data:
+    if data.get("gopSize") is not None:
+        out["gop_size"] = float(data["gopSize"])
+    if data.get("gopSizeUnits") is not None:
         import capo_mediaconvert.types.h265_gop_size_units
 
         out["gop_size_units"] = (
@@ -652,15 +660,15 @@ def deserialize_json(data: dict) -> H265Settings:
                 data["gopSizeUnits"]
             )
         )
-    if "hrdBufferFinalFillPercentage" in data:
+    if data.get("hrdBufferFinalFillPercentage") is not None:
         out["hrd_buffer_final_fill_percentage"] = data["hrdBufferFinalFillPercentage"]
-    if "hrdBufferInitialFillPercentage" in data:
+    if data.get("hrdBufferInitialFillPercentage") is not None:
         out["hrd_buffer_initial_fill_percentage"] = data[
             "hrdBufferInitialFillPercentage"
         ]
-    if "hrdBufferSize" in data:
+    if data.get("hrdBufferSize") is not None:
         out["hrd_buffer_size"] = data["hrdBufferSize"]
-    if "interlaceMode" in data:
+    if data.get("interlaceMode") is not None:
         import capo_mediaconvert.types.h265_interlace_mode
 
         out["interlace_mode"] = (
@@ -668,11 +676,11 @@ def deserialize_json(data: dict) -> H265Settings:
                 data["interlaceMode"]
             )
         )
-    if "maxBitrate" in data:
+    if data.get("maxBitrate") is not None:
         out["max_bitrate"] = data["maxBitrate"]
-    if "minIInterval" in data:
+    if data.get("minIInterval") is not None:
         out["min_i_interval"] = data["minIInterval"]
-    if "mvOverPictureBoundaries" in data:
+    if data.get("mvOverPictureBoundaries") is not None:
         import capo_mediaconvert.types.h265_mv_over_picture_boundaries
 
         out["mv_over_picture_boundaries"] = (
@@ -680,7 +688,7 @@ def deserialize_json(data: dict) -> H265Settings:
                 data["mvOverPictureBoundaries"]
             )
         )
-    if "mvTemporalPredictor" in data:
+    if data.get("mvTemporalPredictor") is not None:
         import capo_mediaconvert.types.h265_mv_temporal_predictor
 
         out["mv_temporal_predictor"] = (
@@ -688,23 +696,23 @@ def deserialize_json(data: dict) -> H265Settings:
                 data["mvTemporalPredictor"]
             )
         )
-    if "numberBFramesBetweenReferenceFrames" in data:
+    if data.get("numberBFramesBetweenReferenceFrames") is not None:
         out["number_b_frames_between_reference_frames"] = data[
             "numberBFramesBetweenReferenceFrames"
         ]
-    if "numberReferenceFrames" in data:
+    if data.get("numberReferenceFrames") is not None:
         out["number_reference_frames"] = data["numberReferenceFrames"]
-    if "parControl" in data:
+    if data.get("parControl") is not None:
         import capo_mediaconvert.types.h265_par_control
 
         out["par_control"] = capo_mediaconvert.types.h265_par_control.deserialize_json(
             data["parControl"]
         )
-    if "parDenominator" in data:
+    if data.get("parDenominator") is not None:
         out["par_denominator"] = data["parDenominator"]
-    if "parNumerator" in data:
+    if data.get("parNumerator") is not None:
         out["par_numerator"] = data["parNumerator"]
-    if "perFrameMetrics" in data:
+    if data.get("perFrameMetrics") is not None:
         import capo_mediaconvert.types.__list_of_frame_metric_type
 
         out["per_frame_metrics"] = (
@@ -712,7 +720,7 @@ def deserialize_json(data: dict) -> H265Settings:
                 data["perFrameMetrics"]
             )
         )
-    if "qualityTuningLevel" in data:
+    if data.get("qualityTuningLevel") is not None:
         import capo_mediaconvert.types.h265_quality_tuning_level
 
         out["quality_tuning_level"] = (
@@ -720,7 +728,7 @@ def deserialize_json(data: dict) -> H265Settings:
                 data["qualityTuningLevel"]
             )
         )
-    if "qvbrSettings" in data:
+    if data.get("qvbrSettings") is not None:
         import capo_mediaconvert.types.h265_qvbr_settings
 
         out["qvbr_settings"] = (
@@ -728,7 +736,7 @@ def deserialize_json(data: dict) -> H265Settings:
                 data["qvbrSettings"]
             )
         )
-    if "rateControlMode" in data:
+    if data.get("rateControlMode") is not None:
         import capo_mediaconvert.types.h265_rate_control_mode
 
         out["rate_control_mode"] = (
@@ -736,7 +744,7 @@ def deserialize_json(data: dict) -> H265Settings:
                 data["rateControlMode"]
             )
         )
-    if "sampleAdaptiveOffsetFilterMode" in data:
+    if data.get("sampleAdaptiveOffsetFilterMode") is not None:
         import capo_mediaconvert.types.h265_sample_adaptive_offset_filter_mode
 
         out["sample_adaptive_offset_filter_mode"] = (
@@ -744,7 +752,7 @@ def deserialize_json(data: dict) -> H265Settings:
                 data["sampleAdaptiveOffsetFilterMode"]
             )
         )
-    if "scanTypeConversionMode" in data:
+    if data.get("scanTypeConversionMode") is not None:
         import capo_mediaconvert.types.h265_scan_type_conversion_mode
 
         out["scan_type_conversion_mode"] = (
@@ -752,7 +760,7 @@ def deserialize_json(data: dict) -> H265Settings:
                 data["scanTypeConversionMode"]
             )
         )
-    if "sceneChangeDetect" in data:
+    if data.get("sceneChangeDetect") is not None:
         import capo_mediaconvert.types.h265_scene_change_detect
 
         out["scene_change_detect"] = (
@@ -760,15 +768,15 @@ def deserialize_json(data: dict) -> H265Settings:
                 data["sceneChangeDetect"]
             )
         )
-    if "slices" in data:
+    if data.get("slices") is not None:
         out["slices"] = data["slices"]
-    if "slowPal" in data:
+    if data.get("slowPal") is not None:
         import capo_mediaconvert.types.h265_slow_pal
 
         out["slow_pal"] = capo_mediaconvert.types.h265_slow_pal.deserialize_json(
             data["slowPal"]
         )
-    if "spatialAdaptiveQuantization" in data:
+    if data.get("spatialAdaptiveQuantization") is not None:
         import capo_mediaconvert.types.h265_spatial_adaptive_quantization
 
         out["spatial_adaptive_quantization"] = (
@@ -776,13 +784,13 @@ def deserialize_json(data: dict) -> H265Settings:
                 data["spatialAdaptiveQuantization"]
             )
         )
-    if "telecine" in data:
+    if data.get("telecine") is not None:
         import capo_mediaconvert.types.h265_telecine
 
         out["telecine"] = capo_mediaconvert.types.h265_telecine.deserialize_json(
             data["telecine"]
         )
-    if "temporalAdaptiveQuantization" in data:
+    if data.get("temporalAdaptiveQuantization") is not None:
         import capo_mediaconvert.types.h265_temporal_adaptive_quantization
 
         out["temporal_adaptive_quantization"] = (
@@ -790,7 +798,7 @@ def deserialize_json(data: dict) -> H265Settings:
                 data["temporalAdaptiveQuantization"]
             )
         )
-    if "temporalIds" in data:
+    if data.get("temporalIds") is not None:
         import capo_mediaconvert.types.h265_temporal_ids
 
         out["temporal_ids"] = (
@@ -798,9 +806,9 @@ def deserialize_json(data: dict) -> H265Settings:
                 data["temporalIds"]
             )
         )
-    if "tileHeight" in data:
+    if data.get("tileHeight") is not None:
         out["tile_height"] = data["tileHeight"]
-    if "tilePadding" in data:
+    if data.get("tilePadding") is not None:
         import capo_mediaconvert.types.h265_tile_padding
 
         out["tile_padding"] = (
@@ -808,15 +816,15 @@ def deserialize_json(data: dict) -> H265Settings:
                 data["tilePadding"]
             )
         )
-    if "tileWidth" in data:
+    if data.get("tileWidth") is not None:
         out["tile_width"] = data["tileWidth"]
-    if "tiles" in data:
+    if data.get("tiles") is not None:
         import capo_mediaconvert.types.h265_tiles
 
         out["tiles"] = capo_mediaconvert.types.h265_tiles.deserialize_json(
             data["tiles"]
         )
-    if "treeBlockSize" in data:
+    if data.get("treeBlockSize") is not None:
         import capo_mediaconvert.types.h265_tree_block_size
 
         out["tree_block_size"] = (
@@ -824,7 +832,7 @@ def deserialize_json(data: dict) -> H265Settings:
                 data["treeBlockSize"]
             )
         )
-    if "unregisteredSeiTimecode" in data:
+    if data.get("unregisteredSeiTimecode") is not None:
         import capo_mediaconvert.types.h265_unregistered_sei_timecode
 
         out["unregistered_sei_timecode"] = (
@@ -832,7 +840,7 @@ def deserialize_json(data: dict) -> H265Settings:
                 data["unregisteredSeiTimecode"]
             )
         )
-    if "writeMp4PackagingType" in data:
+    if data.get("writeMp4PackagingType") is not None:
         import capo_mediaconvert.types.h265_write_mp4_packaging_type
 
         out["write_mp4_packaging_type"] = (

@@ -47,7 +47,7 @@ def serialize_json(value: BatchUpdateAttendeeCapabilitiesExceptRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchUpdateAttendeeCapabilitiesExceptRequest:
     out: BatchUpdateAttendeeCapabilitiesExceptRequest = {}  # type: ignore[typeddict-item]
-    if "ExcludedAttendeeIds" in data:
+    if data.get("ExcludedAttendeeIds") is not None:
         import capo_chime_sdk_meetings.types.attendee_ids_list
 
         out["excluded_attendee_ids"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> BatchUpdateAttendeeCapabilitiesExceptRequest
         raise DeserializationError(
             "BatchUpdateAttendeeCapabilitiesExceptRequest.excluded_attendee_ids required"
         )
-    if "Capabilities" in data:
+    if data.get("Capabilities") is not None:
         import capo_chime_sdk_meetings.types.attendee_capabilities
 
         out["capabilities"] = (

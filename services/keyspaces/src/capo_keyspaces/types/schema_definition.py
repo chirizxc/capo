@@ -66,7 +66,7 @@ def serialize_aws_json_1_0(value: SchemaDefinition) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SchemaDefinition:
     out: SchemaDefinition = {}  # type: ignore[typeddict-item]
-    if "allColumns" in data:
+    if data.get("allColumns") is not None:
         import capo_keyspaces.types.column_definition_list
 
         out["all_columns"] = (
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_0(data: dict) -> SchemaDefinition:
         )
     else:
         raise DeserializationError("SchemaDefinition.all_columns required")
-    if "partitionKeys" in data:
+    if data.get("partitionKeys") is not None:
         import capo_keyspaces.types.partition_key_list
 
         out["partition_keys"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_0(data: dict) -> SchemaDefinition:
         )
     else:
         raise DeserializationError("SchemaDefinition.partition_keys required")
-    if "clusteringKeys" in data:
+    if data.get("clusteringKeys") is not None:
         import capo_keyspaces.types.clustering_key_list
 
         out["clustering_keys"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_0(data: dict) -> SchemaDefinition:
                 data["clusteringKeys"]
             )
         )
-    if "staticColumns" in data:
+    if data.get("staticColumns") is not None:
         import capo_keyspaces.types.static_column_list
 
         out["static_columns"] = (

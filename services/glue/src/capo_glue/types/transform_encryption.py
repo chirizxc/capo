@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: TransformEncryption) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TransformEncryption:
     out: TransformEncryption = {}  # type: ignore[typeddict-item]
-    if "MlUserDataEncryption" in data:
+    if data.get("MlUserDataEncryption") is not None:
         import capo_glue.types.ml_user_data_encryption
 
         out["ml_user_data_encryption"] = (
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(data: dict) -> TransformEncryption:
                 data["MlUserDataEncryption"]
             )
         )
-    if "TaskRunSecurityConfigurationName" in data:
+    if data.get("TaskRunSecurityConfigurationName") is not None:
         out["task_run_security_configuration_name"] = data[
             "TaskRunSecurityConfigurationName"
         ]

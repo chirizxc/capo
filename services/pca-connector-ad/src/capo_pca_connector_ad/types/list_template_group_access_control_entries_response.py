@@ -36,7 +36,7 @@ def serialize_json(value: ListTemplateGroupAccessControlEntriesResponse) -> dict
 
 def deserialize_json(data: dict) -> ListTemplateGroupAccessControlEntriesResponse:
     out: ListTemplateGroupAccessControlEntriesResponse = {}  # type: ignore[typeddict-item]
-    if "AccessControlEntries" in data:
+    if data.get("AccessControlEntries") is not None:
         import capo_pca_connector_ad.types.access_control_entry_list
 
         out["access_control_entries"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListTemplateGroupAccessControlEntriesRespons
                 data["AccessControlEntries"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

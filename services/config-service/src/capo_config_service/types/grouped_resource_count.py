@@ -30,11 +30,11 @@ def serialize_aws_json_1_1(value: GroupedResourceCount) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GroupedResourceCount:
     out: GroupedResourceCount = {}  # type: ignore[typeddict-item]
-    if "GroupName" in data:
+    if data.get("GroupName") is not None:
         out["group_name"] = data["GroupName"]
     else:
         raise DeserializationError("GroupedResourceCount.group_name required")
-    if "ResourceCount" in data:
+    if data.get("ResourceCount") is not None:
         out["resource_count"] = data["ResourceCount"]
     else:
         out["resource_count"] = 0

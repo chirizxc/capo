@@ -28,8 +28,8 @@ def serialize_json(value: LocalPortDetails) -> dict:
 
 def deserialize_json(data: dict) -> LocalPortDetails:
     out: LocalPortDetails = {}  # type: ignore[typeddict-item]
-    if "port" in data:
+    if data.get("port") is not None:
         out["port"] = data["port"]
-    if "portName" in data:
+    if data.get("portName") is not None:
         out["port_name"] = data["portName"]
     return out

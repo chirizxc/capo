@@ -62,29 +62,29 @@ def serialize_aws_json_1_1(value: Member) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Member:
     out: Member = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_workmail.types.member_type
 
         out["type"] = capo_workmail.types.member_type.deserialize_aws_json_1_1(
             data["Type"]
         )
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_workmail.types.entity_state
 
         out["state"] = capo_workmail.types.entity_state.deserialize_aws_json_1_1(
             data["State"]
         )
-    if "EnabledDate" in data:
+    if data.get("EnabledDate") is not None:
         import capo_workmail.types.timestamp
 
         out["enabled_date"] = capo_workmail.types.timestamp.deserialize_aws_json_1_1(
             data["EnabledDate"]
         )
-    if "DisabledDate" in data:
+    if data.get("DisabledDate") is not None:
         import capo_workmail.types.timestamp
 
         out["disabled_date"] = capo_workmail.types.timestamp.deserialize_aws_json_1_1(

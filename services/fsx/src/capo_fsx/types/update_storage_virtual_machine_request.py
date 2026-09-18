@@ -49,7 +49,7 @@ def serialize_aws_json_1_1(value: UpdateStorageVirtualMachineRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateStorageVirtualMachineRequest:
     out: UpdateStorageVirtualMachineRequest = {}  # type: ignore[typeddict-item]
-    if "ActiveDirectoryConfiguration" in data:
+    if data.get("ActiveDirectoryConfiguration") is not None:
         import capo_fsx.types.update_svm_active_directory_configuration
 
         out["active_directory_configuration"] = (
@@ -57,10 +57,10 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateStorageVirtualMachineRequest:
                 data["ActiveDirectoryConfiguration"]
             )
         )
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "StorageVirtualMachineId" in data:
+    if data.get("StorageVirtualMachineId") is not None:
         out["storage_virtual_machine_id"] = data["StorageVirtualMachineId"]
-    if "SvmAdminPassword" in data:
+    if data.get("SvmAdminPassword") is not None:
         out["svm_admin_password"] = data["SvmAdminPassword"]
     return out

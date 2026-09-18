@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> MessageTemplateAttachmentList:
 
     out: MessageTemplateAttachmentList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_qconnect.types.message_template_attachment.deserialize_json(item)
         )

@@ -37,7 +37,7 @@ def serialize_aws_json_1_1(value: GetSavingsPlansCoverageResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetSavingsPlansCoverageResponse:
     out: GetSavingsPlansCoverageResponse = {}  # type: ignore[typeddict-item]
-    if "SavingsPlansCoverages" in data:
+    if data.get("SavingsPlansCoverages") is not None:
         import capo_cost_explorer.types.savings_plans_coverages
 
         out["savings_plans_coverages"] = (
@@ -49,6 +49,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetSavingsPlansCoverageResponse:
         raise DeserializationError(
             "GetSavingsPlansCoverageResponse.savings_plans_coverages required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

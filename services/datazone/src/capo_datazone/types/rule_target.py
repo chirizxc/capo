@@ -32,7 +32,7 @@ def serialize_json(value: RuleTarget) -> dict:
 
 
 def deserialize_json(data: dict) -> RuleTarget:
-    if "domainUnitTarget" in data:
+    if data.get("domainUnitTarget") is not None:
         import capo_datazone.types.domain_unit_target
 
         return {

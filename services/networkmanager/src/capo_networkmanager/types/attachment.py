@@ -175,15 +175,15 @@ def serialize_json(value: Attachment) -> dict:
 
 def deserialize_json(data: dict) -> Attachment:
     out: Attachment = {}  # type: ignore[typeddict-item]
-    if "CoreNetworkId" in data:
+    if data.get("CoreNetworkId") is not None:
         out["core_network_id"] = data["CoreNetworkId"]
-    if "CoreNetworkArn" in data:
+    if data.get("CoreNetworkArn") is not None:
         out["core_network_arn"] = data["CoreNetworkArn"]
-    if "AttachmentId" in data:
+    if data.get("AttachmentId") is not None:
         out["attachment_id"] = data["AttachmentId"]
-    if "OwnerAccountId" in data:
+    if data.get("OwnerAccountId") is not None:
         out["owner_account_id"] = data["OwnerAccountId"]
-    if "AttachmentType" in data:
+    if data.get("AttachmentType") is not None:
         import capo_networkmanager.types.attachment_type
 
         out["attachment_type"] = (
@@ -191,15 +191,15 @@ def deserialize_json(data: dict) -> Attachment:
                 data["AttachmentType"]
             )
         )
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_networkmanager.types.attachment_state
 
         out["state"] = capo_networkmanager.types.attachment_state.deserialize_json(
             data["State"]
         )
-    if "EdgeLocation" in data:
+    if data.get("EdgeLocation") is not None:
         out["edge_location"] = data["EdgeLocation"]
-    if "EdgeLocations" in data:
+    if data.get("EdgeLocations") is not None:
         import capo_networkmanager.types.external_region_code_list
 
         out["edge_locations"] = (
@@ -207,19 +207,19 @@ def deserialize_json(data: dict) -> Attachment:
                 data["EdgeLocations"]
             )
         )
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "AttachmentPolicyRuleNumber" in data:
+    if data.get("AttachmentPolicyRuleNumber") is not None:
         out["attachment_policy_rule_number"] = data["AttachmentPolicyRuleNumber"]
-    if "SegmentName" in data:
+    if data.get("SegmentName") is not None:
         out["segment_name"] = data["SegmentName"]
-    if "NetworkFunctionGroupName" in data:
+    if data.get("NetworkFunctionGroupName") is not None:
         out["network_function_group_name"] = data["NetworkFunctionGroupName"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_networkmanager.types.tag_list
 
         out["tags"] = capo_networkmanager.types.tag_list.deserialize_json(data["Tags"])
-    if "ProposedSegmentChange" in data:
+    if data.get("ProposedSegmentChange") is not None:
         import capo_networkmanager.types.proposed_segment_change
 
         out["proposed_segment_change"] = (
@@ -227,7 +227,7 @@ def deserialize_json(data: dict) -> Attachment:
                 data["ProposedSegmentChange"]
             )
         )
-    if "ProposedNetworkFunctionGroupChange" in data:
+    if data.get("ProposedNetworkFunctionGroupChange") is not None:
         import capo_networkmanager.types.proposed_network_function_group_change
 
         out["proposed_network_function_group_change"] = (
@@ -235,19 +235,19 @@ def deserialize_json(data: dict) -> Attachment:
                 data["ProposedNetworkFunctionGroupChange"]
             )
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_networkmanager.types.date_time
 
         out["created_at"] = capo_networkmanager.types.date_time.deserialize_json(
             data["CreatedAt"]
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_networkmanager.types.date_time
 
         out["updated_at"] = capo_networkmanager.types.date_time.deserialize_json(
             data["UpdatedAt"]
         )
-    if "LastModificationErrors" in data:
+    if data.get("LastModificationErrors") is not None:
         import capo_networkmanager.types.attachment_error_list
 
         out["last_modification_errors"] = (

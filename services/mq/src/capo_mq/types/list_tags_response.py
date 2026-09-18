@@ -25,7 +25,7 @@ def serialize_json(value: ListTagsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListTagsResponse:
     out: ListTagsResponse = {}  # type: ignore[typeddict-item]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mq.types.__map_of__string
 
         out["tags"] = capo_mq.types.__map_of__string.deserialize_json(data["tags"])

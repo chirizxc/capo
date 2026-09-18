@@ -26,7 +26,7 @@ def serialize_json(value: BackupPolicy) -> dict:
 
 def deserialize_json(data: dict) -> BackupPolicy:
     out: BackupPolicy = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_efs.types.status
 
         out["status"] = capo_efs.types.status.deserialize_json(data["Status"])

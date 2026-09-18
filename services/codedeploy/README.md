@@ -13,9 +13,9 @@ from capo_codedeploy import AsyncCodeDeployClient
 
 
 async def main():
-    async with AsyncCodeDeployClient() as s3:
+    async with AsyncCodeDeployClient() as code_deploy:
         # Example: call the add_tags_to_on_premises_instances operation
-        response = await s3.add_tags_to_on_premises_instances()
+        response = await code_deploy.add_tags_to_on_premises_instances()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_codedeploy import AsyncCodeDeployClient
 
 
 async def main():
-    async with AsyncCodeDeployClient() as s3:
+    async with AsyncCodeDeployClient() as code_deploy:
         # Example: paginate over list_application_revisions
-        async for item in s3.iter_list_application_revisions():
+        async for item in code_deploy.iter_list_application_revisions():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_codedeploy.error import InstanceLimitExceededException
 
 
 async def main():
-    async with AsyncCodeDeployClient() as s3:
+    async with AsyncCodeDeployClient() as code_deploy:
         try:
-            await s3.add_tags_to_on_premises_instances()
+            await code_deploy.add_tags_to_on_premises_instances()
         except InstanceLimitExceededException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_codedeploy import AsyncCodeDeployClient
 
 
 async def main():
-    async with AsyncCodeDeployClient() as s3:
+    async with AsyncCodeDeployClient() as code_deploy:
         # Default: 3 attempts for every operation
-        response = await s3.add_tags_to_on_premises_instances()
+        response = await code_deploy.add_tags_to_on_premises_instances()
 
         # Override per operation
-        response = await s3.add_tags_to_on_premises_instances(config_overrides={"retry_max_attempts": 5})
+        response = await code_deploy.add_tags_to_on_premises_instances(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.add_tags_to_on_premises_instances(config_overrides={"retry_max_attempts": 1})
+        response = await code_deploy.add_tags_to_on_premises_instances(config_overrides={"retry_max_attempts": 1})
 ```

@@ -62,7 +62,7 @@ def serialize_aws_json_1_0(value: HealthCheckConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> HealthCheckConfiguration:
     out: HealthCheckConfiguration = {}  # type: ignore[typeddict-item]
-    if "Protocol" in data:
+    if data.get("Protocol") is not None:
         import capo_apprunner.types.health_check_protocol
 
         out["protocol"] = (
@@ -70,14 +70,14 @@ def deserialize_aws_json_1_0(data: dict) -> HealthCheckConfiguration:
                 data["Protocol"]
             )
         )
-    if "Path" in data:
+    if data.get("Path") is not None:
         out["path"] = data["Path"]
-    if "Interval" in data:
+    if data.get("Interval") is not None:
         out["interval"] = data["Interval"]
-    if "Timeout" in data:
+    if data.get("Timeout") is not None:
         out["timeout"] = data["Timeout"]
-    if "HealthyThreshold" in data:
+    if data.get("HealthyThreshold") is not None:
         out["healthy_threshold"] = data["HealthyThreshold"]
-    if "UnhealthyThreshold" in data:
+    if data.get("UnhealthyThreshold") is not None:
         out["unhealthy_threshold"] = data["UnhealthyThreshold"]
     return out

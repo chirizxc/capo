@@ -13,9 +13,9 @@ from capo_networkmanager import AsyncNetworkManagerClient
 
 
 async def main():
-    async with AsyncNetworkManagerClient() as s3:
+    async with AsyncNetworkManagerClient() as network_manager:
         # Example: call the accept_attachment operation
-        response = await s3.accept_attachment()
+        response = await network_manager.accept_attachment()
         print(response["attachment"])
 ```
 
@@ -28,9 +28,9 @@ from capo_networkmanager import AsyncNetworkManagerClient
 
 
 async def main():
-    async with AsyncNetworkManagerClient() as s3:
+    async with AsyncNetworkManagerClient() as network_manager:
         # Example: paginate over describe_global_networks
-        async for item in s3.iter_describe_global_networks():
+        async for item in network_manager.iter_describe_global_networks():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_networkmanager.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncNetworkManagerClient() as s3:
+    async with AsyncNetworkManagerClient() as network_manager:
         try:
-            await s3.accept_attachment()
+            await network_manager.accept_attachment()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_networkmanager import AsyncNetworkManagerClient
 
 
 async def main():
-    async with AsyncNetworkManagerClient() as s3:
+    async with AsyncNetworkManagerClient() as network_manager:
         # Default: 3 attempts for every operation
-        response = await s3.accept_attachment()
+        response = await network_manager.accept_attachment()
 
         # Override per operation
-        response = await s3.accept_attachment(config_overrides={"retry_max_attempts": 5})
+        response = await network_manager.accept_attachment(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.accept_attachment(config_overrides={"retry_max_attempts": 1})
+        response = await network_manager.accept_attachment(config_overrides={"retry_max_attempts": 1})
 ```

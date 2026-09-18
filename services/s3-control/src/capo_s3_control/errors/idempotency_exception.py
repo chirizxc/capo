@@ -35,15 +35,18 @@ class IdempotencyException(ServiceError):
 
     code: str | None = "IdempotencyException"
 
-    def __init__(self, data: IdempotencyException_):
+    def __init__(self, data: IdempotencyException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="IdempotencyException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_xml(cls, el: Element) -> "IdempotencyException":
-        return cls(deserialize_xml(el))
+    def from_xml(
+        cls, el: Element, message: str | None = None
+    ) -> "IdempotencyException":
+        return cls(deserialize_xml(el), message)

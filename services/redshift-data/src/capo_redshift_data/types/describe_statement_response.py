@@ -144,27 +144,27 @@ def serialize_aws_json_1_1(value: DescribeStatementResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeStatementResponse:
     out: DescribeStatementResponse = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("DescribeStatementResponse.id required")
-    if "SecretArn" in data:
+    if data.get("SecretArn") is not None:
         out["secret_arn"] = data["SecretArn"]
-    if "DbUser" in data:
+    if data.get("DbUser") is not None:
         out["db_user"] = data["DbUser"]
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
-    if "ClusterIdentifier" in data:
+    if data.get("ClusterIdentifier") is not None:
         out["cluster_identifier"] = data["ClusterIdentifier"]
-    if "Duration" in data:
+    if data.get("Duration") is not None:
         out["duration"] = data["Duration"]
     else:
         out["duration"] = 0
-    if "Error" in data:
+    if data.get("Error") is not None:
         out["error"] = data["Error"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_redshift_data.types._prelude.timestamp
 
         out["created_at"] = (
@@ -172,7 +172,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeStatementResponse:
                 data["CreatedAt"]
             )
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_redshift_data.types._prelude.timestamp
 
         out["updated_at"] = (
@@ -180,27 +180,27 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeStatementResponse:
                 data["UpdatedAt"]
             )
         )
-    if "RedshiftPid" in data:
+    if data.get("RedshiftPid") is not None:
         out["redshift_pid"] = data["RedshiftPid"]
     else:
         out["redshift_pid"] = 0
-    if "HasResultSet" in data:
+    if data.get("HasResultSet") is not None:
         out["has_result_set"] = data["HasResultSet"]
-    if "QueryString" in data:
+    if data.get("QueryString") is not None:
         out["query_string"] = data["QueryString"]
-    if "ResultRows" in data:
+    if data.get("ResultRows") is not None:
         out["result_rows"] = data["ResultRows"]
     else:
         out["result_rows"] = 0
-    if "ResultSize" in data:
+    if data.get("ResultSize") is not None:
         out["result_size"] = data["ResultSize"]
     else:
         out["result_size"] = 0
-    if "RedshiftQueryId" in data:
+    if data.get("RedshiftQueryId") is not None:
         out["redshift_query_id"] = data["RedshiftQueryId"]
     else:
         out["redshift_query_id"] = 0
-    if "QueryParameters" in data:
+    if data.get("QueryParameters") is not None:
         import capo_redshift_data.types.sql_parameters_list
 
         out["query_parameters"] = (
@@ -208,7 +208,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeStatementResponse:
                 data["QueryParameters"]
             )
         )
-    if "SubStatements" in data:
+    if data.get("SubStatements") is not None:
         import capo_redshift_data.types.sub_statement_list
 
         out["sub_statements"] = (
@@ -216,10 +216,10 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeStatementResponse:
                 data["SubStatements"]
             )
         )
-    if "WorkgroupName" in data:
+    if data.get("WorkgroupName") is not None:
         out["workgroup_name"] = data["WorkgroupName"]
-    if "ResultFormat" in data:
+    if data.get("ResultFormat") is not None:
         out["result_format"] = data["ResultFormat"]
-    if "SessionId" in data:
+    if data.get("SessionId") is not None:
         out["session_id"] = data["SessionId"]
     return out

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> UpstreamRepositoryInfoList:
 
     out: UpstreamRepositoryInfoList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codeartifact.types.upstream_repository_info.deserialize_json(item)
         )

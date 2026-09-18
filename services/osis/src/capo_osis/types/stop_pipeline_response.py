@@ -24,7 +24,7 @@ def serialize_json(value: StopPipelineResponse) -> dict:
 
 def deserialize_json(data: dict) -> StopPipelineResponse:
     out: StopPipelineResponse = {}  # type: ignore[typeddict-item]
-    if "Pipeline" in data:
+    if data.get("Pipeline") is not None:
         import capo_osis.types.pipeline
 
         out["pipeline"] = capo_osis.types.pipeline.deserialize_json(data["Pipeline"])

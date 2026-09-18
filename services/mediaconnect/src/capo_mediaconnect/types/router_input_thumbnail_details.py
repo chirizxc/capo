@@ -44,9 +44,9 @@ def serialize_json(value: RouterInputThumbnailDetails) -> dict:
     if "timecode" in value:
         out["timecode"] = value["timecode"]
     if "timestamp" in value:
-        import capo_mediaconnect.types._prelude.timestamp
+        import capo_mediaconnect._protocol.serialize
 
-        out["timestamp"] = capo_mediaconnect.types._prelude.timestamp.serialize_json(
+        out["timestamp"] = capo_mediaconnect._protocol.serialize.fmt_date_time(
             value["timestamp"]
         )
     return out
@@ -54,7 +54,7 @@ def serialize_json(value: RouterInputThumbnailDetails) -> dict:
 
 def deserialize_json(data: dict) -> RouterInputThumbnailDetails:
     out: RouterInputThumbnailDetails = {}  # type: ignore[typeddict-item]
-    if "thumbnailMessages" in data:
+    if data.get("thumbnailMessages") is not None:
         import capo_mediaconnect.types.router_input_messages
 
         out["thumbnail_messages"] = (
@@ -66,18 +66,18 @@ def deserialize_json(data: dict) -> RouterInputThumbnailDetails:
         raise DeserializationError(
             "RouterInputThumbnailDetails.thumbnail_messages required"
         )
-    if "thumbnail" in data:
+    if data.get("thumbnail") is not None:
         import capo_mediaconnect.types._prelude.blob
 
         out["thumbnail"] = capo_mediaconnect.types._prelude.blob.deserialize_json(
             data["thumbnail"]
         )
-    if "timecode" in data:
+    if data.get("timecode") is not None:
         out["timecode"] = data["timecode"]
-    if "timestamp" in data:
-        import capo_mediaconnect.types._prelude.timestamp
+    if data.get("timestamp") is not None:
+        import datetime
 
-        out["timestamp"] = capo_mediaconnect.types._prelude.timestamp.deserialize_json(
-            data["timestamp"]
+        out["timestamp"] = datetime.datetime.fromisoformat(
+            data["timestamp"].replace("Z", "+00:00")
         )
     return out

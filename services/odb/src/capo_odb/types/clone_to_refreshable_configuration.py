@@ -49,12 +49,10 @@ def serialize_aws_json_1_0(value: CloneToRefreshableConfiguration) -> dict:
     if "auto_refresh_point_lag_in_seconds" in value:
         out["autoRefreshPointLagInSeconds"] = value["auto_refresh_point_lag_in_seconds"]
     if "time_of_auto_refresh_start" in value:
-        import capo_odb.types._prelude.timestamp
+        import capo_odb._protocol.serialize
 
-        out["timeOfAutoRefreshStart"] = (
-            capo_odb.types._prelude.timestamp.serialize_aws_json_1_0(
-                value["time_of_auto_refresh_start"]
-            )
+        out["timeOfAutoRefreshStart"] = capo_odb._protocol.serialize.fmt_date_time(
+            value["time_of_auto_refresh_start"]
         )
     if "open_mode" in value:
         import capo_odb.types.open_mode
@@ -73,13 +71,13 @@ def serialize_aws_json_1_0(value: CloneToRefreshableConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CloneToRefreshableConfiguration:
     out: CloneToRefreshableConfiguration = {}  # type: ignore[typeddict-item]
-    if "sourceAutonomousDatabaseId" in data:
+    if data.get("sourceAutonomousDatabaseId") is not None:
         out["source_autonomous_database_id"] = data["sourceAutonomousDatabaseId"]
     else:
         raise DeserializationError(
             "CloneToRefreshableConfiguration.source_autonomous_database_id required"
         )
-    if "refreshableMode" in data:
+    if data.get("refreshableMode") is not None:
         import capo_odb.types.refreshable_mode
 
         out["refreshable_mode"] = (
@@ -87,25 +85,23 @@ def deserialize_aws_json_1_0(data: dict) -> CloneToRefreshableConfiguration:
                 data["refreshableMode"]
             )
         )
-    if "autoRefreshFrequencyInSeconds" in data:
+    if data.get("autoRefreshFrequencyInSeconds") is not None:
         out["auto_refresh_frequency_in_seconds"] = data["autoRefreshFrequencyInSeconds"]
-    if "autoRefreshPointLagInSeconds" in data:
+    if data.get("autoRefreshPointLagInSeconds") is not None:
         out["auto_refresh_point_lag_in_seconds"] = data["autoRefreshPointLagInSeconds"]
-    if "timeOfAutoRefreshStart" in data:
-        import capo_odb.types._prelude.timestamp
+    if data.get("timeOfAutoRefreshStart") is not None:
+        import datetime
 
-        out["time_of_auto_refresh_start"] = (
-            capo_odb.types._prelude.timestamp.deserialize_aws_json_1_0(
-                data["timeOfAutoRefreshStart"]
-            )
+        out["time_of_auto_refresh_start"] = datetime.datetime.fromisoformat(
+            data["timeOfAutoRefreshStart"].replace("Z", "+00:00")
         )
-    if "openMode" in data:
+    if data.get("openMode") is not None:
         import capo_odb.types.open_mode
 
         out["open_mode"] = capo_odb.types.open_mode.deserialize_aws_json_1_0(
             data["openMode"]
         )
-    if "cloneType" in data:
+    if data.get("cloneType") is not None:
         import capo_odb.types.clone_type
 
         out["clone_type"] = capo_odb.types.clone_type.deserialize_aws_json_1_0(

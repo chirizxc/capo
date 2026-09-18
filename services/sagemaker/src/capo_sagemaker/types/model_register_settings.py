@@ -36,13 +36,13 @@ def serialize_aws_json_1_1(value: ModelRegisterSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ModelRegisterSettings:
     out: ModelRegisterSettings = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.feature_status
 
         out["status"] = capo_sagemaker.types.feature_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "CrossAccountModelRegisterRoleArn" in data:
+    if data.get("CrossAccountModelRegisterRoleArn") is not None:
         out["cross_account_model_register_role_arn"] = data[
             "CrossAccountModelRegisterRoleArn"
         ]

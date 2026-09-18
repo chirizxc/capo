@@ -210,14 +210,16 @@ class AsyncOmicsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_omics.types.delete_s3_access_policy_request.DeleteS3AccessPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["s3_access_point_arn"] = s3_access_point_arn
+        input_: capo_omics.types.delete_s3_access_policy_request.DeleteS3AccessPolicyRequest = {
+            "s3_access_point_arn": s3_access_point_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_s3_access_policy(
@@ -259,14 +261,16 @@ class AsyncOmicsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_omics.types.get_s3_access_policy_request.GetS3AccessPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["s3_access_point_arn"] = s3_access_point_arn
+        input_: capo_omics.types.get_s3_access_policy_request.GetS3AccessPolicyRequest = {
+            "s3_access_point_arn": s3_access_point_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_s3_access_policy(
@@ -309,15 +313,17 @@ class AsyncOmicsClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_omics.types.put_s3_access_policy_request.PutS3AccessPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["s3_access_point_arn"] = s3_access_point_arn
-        input_["s3_access_policy"] = s3_access_policy
+        input_: capo_omics.types.put_s3_access_policy_request.PutS3AccessPolicyRequest = {
+            "s3_access_point_arn": s3_access_point_arn,
+            "s3_access_policy": s3_access_policy,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

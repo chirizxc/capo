@@ -41,11 +41,11 @@ def serialize_aws_json_1_1(value: OpenZFSPosixFileSystemUser) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OpenZFSPosixFileSystemUser:
     out: OpenZFSPosixFileSystemUser = {}  # type: ignore[typeddict-item]
-    if "Uid" in data:
+    if data.get("Uid") is not None:
         out["uid"] = data["Uid"]
-    if "Gid" in data:
+    if data.get("Gid") is not None:
         out["gid"] = data["Gid"]
-    if "SecondaryGids" in data:
+    if data.get("SecondaryGids") is not None:
         import capo_fsx.types.file_system_secondary_gi_ds
 
         out["secondary_gids"] = (

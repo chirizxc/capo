@@ -22,7 +22,7 @@ def serialize_aws_json_1_1(value: WirelessConnection) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WirelessConnection:
     out: WirelessConnection = {}  # type: ignore[typeddict-item]
-    if "IsWifiEnabled" in data:
+    if data.get("IsWifiEnabled") is not None:
         out["is_wifi_enabled"] = data["IsWifiEnabled"]
     else:
         out["is_wifi_enabled"] = False

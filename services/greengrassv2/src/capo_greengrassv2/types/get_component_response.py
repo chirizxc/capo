@@ -45,7 +45,7 @@ def serialize_json(value: GetComponentResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetComponentResponse:
     out: GetComponentResponse = {}  # type: ignore[typeddict-item]
-    if "recipeOutputFormat" in data:
+    if data.get("recipeOutputFormat") is not None:
         import capo_greengrassv2.types.recipe_output_format
 
         out["recipe_output_format"] = (
@@ -55,7 +55,7 @@ def deserialize_json(data: dict) -> GetComponentResponse:
         )
     else:
         raise DeserializationError("GetComponentResponse.recipe_output_format required")
-    if "recipe" in data:
+    if data.get("recipe") is not None:
         import capo_greengrassv2.types.recipe_blob
 
         out["recipe"] = capo_greengrassv2.types.recipe_blob.deserialize_json(
@@ -63,7 +63,7 @@ def deserialize_json(data: dict) -> GetComponentResponse:
         )
     else:
         raise DeserializationError("GetComponentResponse.recipe required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_greengrassv2.types.tag_map
 
         out["tags"] = capo_greengrassv2.types.tag_map.deserialize_json(data["tags"])

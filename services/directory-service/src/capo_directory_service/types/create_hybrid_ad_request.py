@@ -37,15 +37,15 @@ def serialize_aws_json_1_1(value: CreateHybridADRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateHybridADRequest:
     out: CreateHybridADRequest = {}  # type: ignore[typeddict-item]
-    if "SecretArn" in data:
+    if data.get("SecretArn") is not None:
         out["secret_arn"] = data["SecretArn"]
     else:
         raise DeserializationError("CreateHybridADRequest.secret_arn required")
-    if "AssessmentId" in data:
+    if data.get("AssessmentId") is not None:
         out["assessment_id"] = data["AssessmentId"]
     else:
         raise DeserializationError("CreateHybridADRequest.assessment_id required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_directory_service.types.tags
 
         out["tags"] = capo_directory_service.types.tags.deserialize_aws_json_1_1(

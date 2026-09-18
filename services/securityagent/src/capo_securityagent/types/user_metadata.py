@@ -27,11 +27,11 @@ def serialize_json(value: UserMetadata) -> dict:
 
 def deserialize_json(data: dict) -> UserMetadata:
     out: UserMetadata = {}  # type: ignore[typeddict-item]
-    if "username" in data:
+    if data.get("username") is not None:
         out["username"] = data["username"]
     else:
         raise DeserializationError("UserMetadata.username required")
-    if "email" in data:
+    if data.get("email") is not None:
         out["email"] = data["email"]
     else:
         raise DeserializationError("UserMetadata.email required")

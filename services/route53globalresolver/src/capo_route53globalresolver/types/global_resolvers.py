@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> GlobalResolvers:
 
     out: GlobalResolvers = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_route53globalresolver.types.global_resolvers_item.deserialize_json(
                 item

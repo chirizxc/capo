@@ -33,9 +33,9 @@ def serialize_json(value: DataLakeSourceStatus) -> dict:
 
 def deserialize_json(data: dict) -> DataLakeSourceStatus:
     out: DataLakeSourceStatus = {}  # type: ignore[typeddict-item]
-    if "resource" in data:
+    if data.get("resource") is not None:
         out["resource"] = data["resource"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_securitylake.types.source_collection_status
 
         out["status"] = (

@@ -59,15 +59,15 @@ def serialize_json(value: CreateSolNetworkPackageOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateSolNetworkPackageOutput:
     out: CreateSolNetworkPackageOutput = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("CreateSolNetworkPackageOutput.id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("CreateSolNetworkPackageOutput.arn required")
-    if "nsdOnboardingState" in data:
+    if data.get("nsdOnboardingState") is not None:
         import capo_tnb.types.nsd_onboarding_state
 
         out["nsd_onboarding_state"] = (
@@ -79,7 +79,7 @@ def deserialize_json(data: dict) -> CreateSolNetworkPackageOutput:
         raise DeserializationError(
             "CreateSolNetworkPackageOutput.nsd_onboarding_state required"
         )
-    if "nsdOperationalState" in data:
+    if data.get("nsdOperationalState") is not None:
         import capo_tnb.types.nsd_operational_state
 
         out["nsd_operational_state"] = (
@@ -91,7 +91,7 @@ def deserialize_json(data: dict) -> CreateSolNetworkPackageOutput:
         raise DeserializationError(
             "CreateSolNetworkPackageOutput.nsd_operational_state required"
         )
-    if "nsdUsageState" in data:
+    if data.get("nsdUsageState") is not None:
         import capo_tnb.types.nsd_usage_state
 
         out["nsd_usage_state"] = capo_tnb.types.nsd_usage_state.deserialize_json(
@@ -101,7 +101,7 @@ def deserialize_json(data: dict) -> CreateSolNetworkPackageOutput:
         raise DeserializationError(
             "CreateSolNetworkPackageOutput.nsd_usage_state required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_tnb.types.tag_map
 
         out["tags"] = capo_tnb.types.tag_map.deserialize_json(data["tags"])

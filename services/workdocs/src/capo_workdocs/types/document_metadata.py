@@ -82,25 +82,25 @@ def serialize_json(value: DocumentMetadata) -> dict:
 
 def deserialize_json(data: dict) -> DocumentMetadata:
     out: DocumentMetadata = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "CreatorId" in data:
+    if data.get("CreatorId") is not None:
         out["creator_id"] = data["CreatorId"]
-    if "ParentFolderId" in data:
+    if data.get("ParentFolderId") is not None:
         out["parent_folder_id"] = data["ParentFolderId"]
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_workdocs.types.timestamp_type
 
         out["created_timestamp"] = capo_workdocs.types.timestamp_type.deserialize_json(
             data["CreatedTimestamp"]
         )
-    if "ModifiedTimestamp" in data:
+    if data.get("ModifiedTimestamp") is not None:
         import capo_workdocs.types.timestamp_type
 
         out["modified_timestamp"] = capo_workdocs.types.timestamp_type.deserialize_json(
             data["ModifiedTimestamp"]
         )
-    if "LatestVersionMetadata" in data:
+    if data.get("LatestVersionMetadata") is not None:
         import capo_workdocs.types.document_version_metadata
 
         out["latest_version_metadata"] = (
@@ -108,7 +108,7 @@ def deserialize_json(data: dict) -> DocumentMetadata:
                 data["LatestVersionMetadata"]
             )
         )
-    if "ResourceState" in data:
+    if data.get("ResourceState") is not None:
         import capo_workdocs.types.resource_state_type
 
         out["resource_state"] = (
@@ -116,7 +116,7 @@ def deserialize_json(data: dict) -> DocumentMetadata:
                 data["ResourceState"]
             )
         )
-    if "Labels" in data:
+    if data.get("Labels") is not None:
         import capo_workdocs.types.shared_labels
 
         out["labels"] = capo_workdocs.types.shared_labels.deserialize_json(

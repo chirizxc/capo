@@ -27,11 +27,11 @@ def serialize_json(value: Category) -> dict:
 
 def deserialize_json(data: dict) -> Category:
     out: Category = {}  # type: ignore[typeddict-item]
-    if "categoryId" in data:
+    if data.get("categoryId") is not None:
         out["category_id"] = data["categoryId"]
     else:
         raise DeserializationError("Category.category_id required")
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     else:
         raise DeserializationError("Category.display_name required")

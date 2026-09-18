@@ -65,15 +65,17 @@ class DbNodeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.get_db_node_input.GetDbNodeInput = {}  # type: ignore[typeddict-item]
-        input_["cloud_vm_cluster_id"] = cloud_vm_cluster_id
-        input_["db_node_id"] = db_node_id
+        input_: capo_odb.types.get_db_node_input.GetDbNodeInput = {
+            "cloud_vm_cluster_id": cloud_vm_cluster_id,
+            "db_node_id": db_node_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -113,18 +115,20 @@ class DbNodeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.list_db_nodes_input.ListDbNodesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_odb.types.list_db_nodes_input.ListDbNodesInput = {
+            "cloud_vm_cluster_id": cloud_vm_cluster_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["cloud_vm_cluster_id"] = cloud_vm_cluster_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def reboot_db_node(
@@ -164,15 +168,17 @@ class DbNodeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.reboot_db_node_input.RebootDbNodeInput = {}  # type: ignore[typeddict-item]
-        input_["cloud_vm_cluster_id"] = cloud_vm_cluster_id
-        input_["db_node_id"] = db_node_id
+        input_: capo_odb.types.reboot_db_node_input.RebootDbNodeInput = {
+            "cloud_vm_cluster_id": cloud_vm_cluster_id,
+            "db_node_id": db_node_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_db_node(
@@ -210,15 +216,17 @@ class DbNodeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.start_db_node_input.StartDbNodeInput = {}  # type: ignore[typeddict-item]
-        input_["cloud_vm_cluster_id"] = cloud_vm_cluster_id
-        input_["db_node_id"] = db_node_id
+        input_: capo_odb.types.start_db_node_input.StartDbNodeInput = {
+            "cloud_vm_cluster_id": cloud_vm_cluster_id,
+            "db_node_id": db_node_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_db_node(
@@ -254,15 +262,17 @@ class DbNodeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.stop_db_node_input.StopDbNodeInput = {}  # type: ignore[typeddict-item]
-        input_["cloud_vm_cluster_id"] = cloud_vm_cluster_id
-        input_["db_node_id"] = db_node_id
+        input_: capo_odb.types.stop_db_node_input.StopDbNodeInput = {
+            "cloud_vm_cluster_id": cloud_vm_cluster_id,
+            "db_node_id": db_node_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -308,15 +318,17 @@ class AsyncDbNodeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.get_db_node_input.GetDbNodeInput = {}  # type: ignore[typeddict-item]
-        input_["cloud_vm_cluster_id"] = cloud_vm_cluster_id
-        input_["db_node_id"] = db_node_id
+        input_: capo_odb.types.get_db_node_input.GetDbNodeInput = {
+            "cloud_vm_cluster_id": cloud_vm_cluster_id,
+            "db_node_id": db_node_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -359,18 +371,20 @@ class AsyncDbNodeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.list_db_nodes_input.ListDbNodesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_odb.types.list_db_nodes_input.ListDbNodesInput = {
+            "cloud_vm_cluster_id": cloud_vm_cluster_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["cloud_vm_cluster_id"] = cloud_vm_cluster_id
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def reboot_db_node(
@@ -411,15 +425,17 @@ class AsyncDbNodeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.reboot_db_node_input.RebootDbNodeInput = {}  # type: ignore[typeddict-item]
-        input_["cloud_vm_cluster_id"] = cloud_vm_cluster_id
-        input_["db_node_id"] = db_node_id
+        input_: capo_odb.types.reboot_db_node_input.RebootDbNodeInput = {
+            "cloud_vm_cluster_id": cloud_vm_cluster_id,
+            "db_node_id": db_node_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_db_node(
@@ -460,15 +476,17 @@ class AsyncDbNodeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.start_db_node_input.StartDbNodeInput = {}  # type: ignore[typeddict-item]
-        input_["cloud_vm_cluster_id"] = cloud_vm_cluster_id
-        input_["db_node_id"] = db_node_id
+        input_: capo_odb.types.start_db_node_input.StartDbNodeInput = {
+            "cloud_vm_cluster_id": cloud_vm_cluster_id,
+            "db_node_id": db_node_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_db_node(
@@ -509,13 +527,15 @@ class AsyncDbNodeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_odb.types.stop_db_node_input.StopDbNodeInput = {}  # type: ignore[typeddict-item]
-        input_["cloud_vm_cluster_id"] = cloud_vm_cluster_id
-        input_["db_node_id"] = db_node_id
+        input_: capo_odb.types.stop_db_node_input.StopDbNodeInput = {
+            "cloud_vm_cluster_id": cloud_vm_cluster_id,
+            "db_node_id": db_node_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

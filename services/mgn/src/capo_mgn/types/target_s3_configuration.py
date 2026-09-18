@@ -28,11 +28,11 @@ def serialize_json(value: TargetS3Configuration) -> dict:
 
 def deserialize_json(data: dict) -> TargetS3Configuration:
     out: TargetS3Configuration = {}  # type: ignore[typeddict-item]
-    if "s3Bucket" in data:
+    if data.get("s3Bucket") is not None:
         out["s3_bucket"] = data["s3Bucket"]
     else:
         raise DeserializationError("TargetS3Configuration.s3_bucket required")
-    if "s3BucketOwner" in data:
+    if data.get("s3BucketOwner") is not None:
         out["s3_bucket_owner"] = data["s3BucketOwner"]
     else:
         raise DeserializationError("TargetS3Configuration.s3_bucket_owner required")

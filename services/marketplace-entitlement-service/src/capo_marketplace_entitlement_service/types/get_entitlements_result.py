@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: GetEntitlementsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetEntitlementsResult:
     out: GetEntitlementsResult = {}  # type: ignore[typeddict-item]
-    if "Entitlements" in data:
+    if data.get("Entitlements") is not None:
         import capo_marketplace_entitlement_service.types.entitlement_list
 
         out["entitlements"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetEntitlementsResult:
                 data["Entitlements"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

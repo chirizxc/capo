@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> SnapshotJobS3ResultList:
 
     out: SnapshotJobS3ResultList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.snapshot_job_s3_result.deserialize_json(item))
     return out

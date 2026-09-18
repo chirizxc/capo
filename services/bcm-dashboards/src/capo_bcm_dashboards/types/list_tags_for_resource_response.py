@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: ListTagsForResourceResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListTagsForResourceResponse:
     out: ListTagsForResourceResponse = {}  # type: ignore[typeddict-item]
-    if "resourceTags" in data:
+    if data.get("resourceTags") is not None:
         import capo_bcm_dashboards.types.resource_tag_list
 
         out["resource_tags"] = (

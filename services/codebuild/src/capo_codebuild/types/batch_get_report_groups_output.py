@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: BatchGetReportGroupsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetReportGroupsOutput:
     out: BatchGetReportGroupsOutput = {}  # type: ignore[typeddict-item]
-    if "reportGroups" in data:
+    if data.get("reportGroups") is not None:
         import capo_codebuild.types.report_groups
 
         out["report_groups"] = (
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchGetReportGroupsOutput:
                 data["reportGroups"]
             )
         )
-    if "reportGroupsNotFound" in data:
+    if data.get("reportGroupsNotFound") is not None:
         import capo_codebuild.types.report_group_arns
 
         out["report_groups_not_found"] = (

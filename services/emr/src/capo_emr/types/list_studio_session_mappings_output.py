@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListStudioSessionMappingsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListStudioSessionMappingsOutput:
     out: ListStudioSessionMappingsOutput = {}  # type: ignore[typeddict-item]
-    if "SessionMappings" in data:
+    if data.get("SessionMappings") is not None:
         import capo_emr.types.session_mapping_summary_list
 
         out["session_mappings"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListStudioSessionMappingsOutput:
                 data["SessionMappings"]
             )
         )
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
     return out

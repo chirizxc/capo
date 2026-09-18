@@ -16,20 +16,44 @@ class TotalResourceUtilization(TypedDict, closed=True):
 def serialize_json(value: TotalResourceUtilization) -> dict:
     out: dict = {}
     if "v_cpu_hour" in value:
-        out["vCPUHour"] = value["v_cpu_hour"]
+        out["vCPUHour"] = (
+            "NaN"
+            if value["v_cpu_hour"] != value["v_cpu_hour"]
+            else "Infinity"
+            if value["v_cpu_hour"] == float("inf")
+            else "-Infinity"
+            if value["v_cpu_hour"] == float("-inf")
+            else value["v_cpu_hour"]
+        )
     if "memory_gb_hour" in value:
-        out["memoryGBHour"] = value["memory_gb_hour"]
+        out["memoryGBHour"] = (
+            "NaN"
+            if value["memory_gb_hour"] != value["memory_gb_hour"]
+            else "Infinity"
+            if value["memory_gb_hour"] == float("inf")
+            else "-Infinity"
+            if value["memory_gb_hour"] == float("-inf")
+            else value["memory_gb_hour"]
+        )
     if "storage_gb_hour" in value:
-        out["storageGBHour"] = value["storage_gb_hour"]
+        out["storageGBHour"] = (
+            "NaN"
+            if value["storage_gb_hour"] != value["storage_gb_hour"]
+            else "Infinity"
+            if value["storage_gb_hour"] == float("inf")
+            else "-Infinity"
+            if value["storage_gb_hour"] == float("-inf")
+            else value["storage_gb_hour"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> TotalResourceUtilization:
     out: TotalResourceUtilization = {}  # type: ignore[typeddict-item]
-    if "vCPUHour" in data:
-        out["v_cpu_hour"] = data["vCPUHour"]
-    if "memoryGBHour" in data:
-        out["memory_gb_hour"] = data["memoryGBHour"]
-    if "storageGBHour" in data:
-        out["storage_gb_hour"] = data["storageGBHour"]
+    if data.get("vCPUHour") is not None:
+        out["v_cpu_hour"] = float(data["vCPUHour"])
+    if data.get("memoryGBHour") is not None:
+        out["memory_gb_hour"] = float(data["memoryGBHour"])
+    if data.get("storageGBHour") is not None:
+        out["storage_gb_hour"] = float(data["storageGBHour"])
     return out

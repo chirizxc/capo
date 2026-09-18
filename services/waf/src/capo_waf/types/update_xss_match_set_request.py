@@ -36,15 +36,15 @@ def serialize_aws_json_1_1(value: UpdateXssMatchSetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateXssMatchSetRequest:
     out: UpdateXssMatchSetRequest = {}  # type: ignore[typeddict-item]
-    if "XssMatchSetId" in data:
+    if data.get("XssMatchSetId") is not None:
         out["xss_match_set_id"] = data["XssMatchSetId"]
     else:
         raise DeserializationError("UpdateXssMatchSetRequest.xss_match_set_id required")
-    if "ChangeToken" in data:
+    if data.get("ChangeToken") is not None:
         out["change_token"] = data["ChangeToken"]
     else:
         raise DeserializationError("UpdateXssMatchSetRequest.change_token required")
-    if "Updates" in data:
+    if data.get("Updates") is not None:
         import capo_waf.types.xss_match_set_updates
 
         out["updates"] = capo_waf.types.xss_match_set_updates.deserialize_aws_json_1_1(

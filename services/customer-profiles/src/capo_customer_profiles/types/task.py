@@ -69,7 +69,7 @@ def serialize_json(value: Task) -> dict:
 
 def deserialize_json(data: dict) -> Task:
     out: Task = {}  # type: ignore[typeddict-item]
-    if "ConnectorOperator" in data:
+    if data.get("ConnectorOperator") is not None:
         import capo_customer_profiles.types.connector_operator
 
         out["connector_operator"] = (
@@ -77,9 +77,9 @@ def deserialize_json(data: dict) -> Task:
                 data["ConnectorOperator"]
             )
         )
-    if "DestinationField" in data:
+    if data.get("DestinationField") is not None:
         out["destination_field"] = data["DestinationField"]
-    if "SourceFields" in data:
+    if data.get("SourceFields") is not None:
         import capo_customer_profiles.types.source_fields
 
         out["source_fields"] = (
@@ -89,7 +89,7 @@ def deserialize_json(data: dict) -> Task:
         )
     else:
         raise DeserializationError("Task.source_fields required")
-    if "TaskProperties" in data:
+    if data.get("TaskProperties") is not None:
         import capo_customer_profiles.types.task_properties_map
 
         out["task_properties"] = (
@@ -97,7 +97,7 @@ def deserialize_json(data: dict) -> Task:
                 data["TaskProperties"]
             )
         )
-    if "TaskType" in data:
+    if data.get("TaskType") is not None:
         import capo_customer_profiles.types.task_type
 
         out["task_type"] = capo_customer_profiles.types.task_type.deserialize_json(

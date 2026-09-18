@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> WebACLUpdates:
 
     out: WebACLUpdates = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_waf.types.web_acl_update.deserialize_aws_json_1_1(item))
     return out

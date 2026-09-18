@@ -50,13 +50,13 @@ def serialize_aws_json_1_1(value: UpdateCertificateAuthorityRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateCertificateAuthorityRequest:
     out: UpdateCertificateAuthorityRequest = {}  # type: ignore[typeddict-item]
-    if "CertificateAuthorityArn" in data:
+    if data.get("CertificateAuthorityArn") is not None:
         out["certificate_authority_arn"] = data["CertificateAuthorityArn"]
     else:
         raise DeserializationError(
             "UpdateCertificateAuthorityRequest.certificate_authority_arn required"
         )
-    if "RevocationConfiguration" in data:
+    if data.get("RevocationConfiguration") is not None:
         import capo_acm_pca.types.revocation_configuration
 
         out["revocation_configuration"] = (
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateCertificateAuthorityRequest:
                 data["RevocationConfiguration"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_acm_pca.types.certificate_authority_status
 
         out["status"] = (

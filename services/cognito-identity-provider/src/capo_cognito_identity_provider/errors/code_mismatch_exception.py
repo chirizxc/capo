@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: CodeMismatchException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CodeMismatchException_:
     out: CodeMismatchException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -37,15 +37,18 @@ class CodeMismatchException(ServiceError):
 
     code: str | None = "CodeMismatchException"
 
-    def __init__(self, data: CodeMismatchException_):
+    def __init__(self, data: CodeMismatchException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="CodeMismatchException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "CodeMismatchException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "CodeMismatchException":
+        return cls(deserialize_aws_json_1_1(data), message)

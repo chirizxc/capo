@@ -45,7 +45,7 @@ def serialize_json(value: OutpostConfigRequest) -> dict:
 
 def deserialize_json(data: dict) -> OutpostConfigRequest:
     out: OutpostConfigRequest = {}  # type: ignore[typeddict-item]
-    if "outpostArns" in data:
+    if data.get("outpostArns") is not None:
         import capo_eks.types.string_list
 
         out["outpost_arns"] = capo_eks.types.string_list.deserialize_json(
@@ -53,13 +53,13 @@ def deserialize_json(data: dict) -> OutpostConfigRequest:
         )
     else:
         raise DeserializationError("OutpostConfigRequest.outpost_arns required")
-    if "controlPlaneInstanceType" in data:
+    if data.get("controlPlaneInstanceType") is not None:
         out["control_plane_instance_type"] = data["controlPlaneInstanceType"]
     else:
         raise DeserializationError(
             "OutpostConfigRequest.control_plane_instance_type required"
         )
-    if "controlPlanePlacement" in data:
+    if data.get("controlPlanePlacement") is not None:
         import capo_eks.types.control_plane_placement_request
 
         out["control_plane_placement"] = (

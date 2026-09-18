@@ -34,19 +34,19 @@ def serialize_json(value: StartWorkflowRunResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartWorkflowRunResponse:
     out: StartWorkflowRunResponse = {}  # type: ignore[typeddict-item]
-    if "spaceName" in data:
+    if data.get("spaceName") is not None:
         out["space_name"] = data["spaceName"]
     else:
         raise DeserializationError("StartWorkflowRunResponse.space_name required")
-    if "projectName" in data:
+    if data.get("projectName") is not None:
         out["project_name"] = data["projectName"]
     else:
         raise DeserializationError("StartWorkflowRunResponse.project_name required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("StartWorkflowRunResponse.id required")
-    if "workflowId" in data:
+    if data.get("workflowId") is not None:
         out["workflow_id"] = data["workflowId"]
     else:
         raise DeserializationError("StartWorkflowRunResponse.workflow_id required")

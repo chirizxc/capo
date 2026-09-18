@@ -24,7 +24,7 @@ def serialize_json(value: TextFullAIPromptEditTemplateConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> TextFullAIPromptEditTemplateConfiguration:
     out: TextFullAIPromptEditTemplateConfiguration = {}  # type: ignore[typeddict-item]
-    if "text" in data:
+    if data.get("text") is not None:
         out["text"] = data["text"]
     else:
         raise DeserializationError(

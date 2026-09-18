@@ -24,7 +24,7 @@ def serialize_json(value: ImportApplicationUsageResult) -> dict:
 
 def deserialize_json(data: dict) -> ImportApplicationUsageResult:
     out: ImportApplicationUsageResult = {}  # type: ignore[typeddict-item]
-    if "importId" in data:
+    if data.get("importId") is not None:
         out["import_id"] = data["importId"]
     else:
         raise DeserializationError("ImportApplicationUsageResult.import_id required")

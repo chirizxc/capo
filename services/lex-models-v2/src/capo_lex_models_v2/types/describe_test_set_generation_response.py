@@ -109,9 +109,9 @@ def serialize_json(value: DescribeTestSetGenerationResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeTestSetGenerationResponse:
     out: DescribeTestSetGenerationResponse = {}  # type: ignore[typeddict-item]
-    if "testSetGenerationId" in data:
+    if data.get("testSetGenerationId") is not None:
         out["test_set_generation_id"] = data["testSetGenerationId"]
-    if "testSetGenerationStatus" in data:
+    if data.get("testSetGenerationStatus") is not None:
         import capo_lex_models_v2.types.test_set_generation_status
 
         out["test_set_generation_status"] = (
@@ -119,7 +119,7 @@ def deserialize_json(data: dict) -> DescribeTestSetGenerationResponse:
                 data["testSetGenerationStatus"]
             )
         )
-    if "failureReasons" in data:
+    if data.get("failureReasons") is not None:
         import capo_lex_models_v2.types.failure_reasons
 
         out["failure_reasons"] = (
@@ -127,13 +127,13 @@ def deserialize_json(data: dict) -> DescribeTestSetGenerationResponse:
                 data["failureReasons"]
             )
         )
-    if "testSetId" in data:
+    if data.get("testSetId") is not None:
         out["test_set_id"] = data["testSetId"]
-    if "testSetName" in data:
+    if data.get("testSetName") is not None:
         out["test_set_name"] = data["testSetName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "storageLocation" in data:
+    if data.get("storageLocation") is not None:
         import capo_lex_models_v2.types.test_set_storage_location
 
         out["storage_location"] = (
@@ -141,7 +141,7 @@ def deserialize_json(data: dict) -> DescribeTestSetGenerationResponse:
                 data["storageLocation"]
             )
         )
-    if "generationDataSource" in data:
+    if data.get("generationDataSource") is not None:
         import capo_lex_models_v2.types.test_set_generation_data_source
 
         out["generation_data_source"] = (
@@ -149,15 +149,15 @@ def deserialize_json(data: dict) -> DescribeTestSetGenerationResponse:
                 data["generationDataSource"]
             )
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["creation_date_time"] = capo_lex_models_v2.types.timestamp.deserialize_json(
             data["creationDateTime"]
         )
-    if "lastUpdatedDateTime" in data:
+    if data.get("lastUpdatedDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["last_updated_date_time"] = (

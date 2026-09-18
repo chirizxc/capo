@@ -34,9 +34,9 @@ def serialize_json(value: EventTriggerLimits) -> dict:
 
 def deserialize_json(data: dict) -> EventTriggerLimits:
     out: EventTriggerLimits = {}  # type: ignore[typeddict-item]
-    if "EventExpiration" in data:
+    if data.get("EventExpiration") is not None:
         out["event_expiration"] = data["EventExpiration"]
-    if "Periods" in data:
+    if data.get("Periods") is not None:
         import capo_customer_profiles.types.periods
 
         out["periods"] = capo_customer_profiles.types.periods.deserialize_json(

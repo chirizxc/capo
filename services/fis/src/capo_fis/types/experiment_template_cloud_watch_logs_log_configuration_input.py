@@ -28,7 +28,7 @@ def deserialize_json(
     data: dict,
 ) -> ExperimentTemplateCloudWatchLogsLogConfigurationInput:
     out: ExperimentTemplateCloudWatchLogsLogConfigurationInput = {}  # type: ignore[typeddict-item]
-    if "logGroupArn" in data:
+    if data.get("logGroupArn") is not None:
         out["log_group_arn"] = data["logGroupArn"]
     else:
         raise DeserializationError(

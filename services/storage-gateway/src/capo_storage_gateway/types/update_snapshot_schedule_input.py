@@ -48,23 +48,23 @@ def serialize_aws_json_1_1(value: UpdateSnapshotScheduleInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateSnapshotScheduleInput:
     out: UpdateSnapshotScheduleInput = {}  # type: ignore[typeddict-item]
-    if "VolumeARN" in data:
+    if data.get("VolumeARN") is not None:
         out["volume_arn"] = data["VolumeARN"]
     else:
         raise DeserializationError("UpdateSnapshotScheduleInput.volume_arn required")
-    if "StartAt" in data:
+    if data.get("StartAt") is not None:
         out["start_at"] = data["StartAt"]
     else:
         raise DeserializationError("UpdateSnapshotScheduleInput.start_at required")
-    if "RecurrenceInHours" in data:
+    if data.get("RecurrenceInHours") is not None:
         out["recurrence_in_hours"] = data["RecurrenceInHours"]
     else:
         raise DeserializationError(
             "UpdateSnapshotScheduleInput.recurrence_in_hours required"
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_storage_gateway.types.tags
 
         out["tags"] = capo_storage_gateway.types.tags.deserialize_aws_json_1_1(

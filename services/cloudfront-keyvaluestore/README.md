@@ -13,9 +13,9 @@ from capo_cloudfront_keyvaluestore import AsyncCloudFrontKeyValueStoreClient
 
 
 async def main():
-    async with AsyncCloudFrontKeyValueStoreClient() as s3:
+    async with AsyncCloudFrontKeyValueStoreClient() as cloud_front_key_value_store:
         # Example: call the delete_key operation
-        response = await s3.delete_key()
+        response = await cloud_front_key_value_store.delete_key()
         print(response["item_count"])
 ```
 
@@ -28,9 +28,9 @@ from capo_cloudfront_keyvaluestore import AsyncCloudFrontKeyValueStoreClient
 
 
 async def main():
-    async with AsyncCloudFrontKeyValueStoreClient() as s3:
+    async with AsyncCloudFrontKeyValueStoreClient() as cloud_front_key_value_store:
         # Example: paginate over list_keys
-        async for item in s3.iter_list_keys():
+        async for item in cloud_front_key_value_store.iter_list_keys():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_cloudfront_keyvaluestore.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncCloudFrontKeyValueStoreClient() as s3:
+    async with AsyncCloudFrontKeyValueStoreClient() as cloud_front_key_value_store:
         try:
-            await s3.delete_key()
+            await cloud_front_key_value_store.delete_key()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_cloudfront_keyvaluestore import AsyncCloudFrontKeyValueStoreClient
 
 
 async def main():
-    async with AsyncCloudFrontKeyValueStoreClient() as s3:
+    async with AsyncCloudFrontKeyValueStoreClient() as cloud_front_key_value_store:
         # Default: 3 attempts for every operation
-        response = await s3.delete_key()
+        response = await cloud_front_key_value_store.delete_key()
 
         # Override per operation
-        response = await s3.delete_key(config_overrides={"retry_max_attempts": 5})
+        response = await cloud_front_key_value_store.delete_key(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.delete_key(config_overrides={"retry_max_attempts": 1})
+        response = await cloud_front_key_value_store.delete_key(config_overrides={"retry_max_attempts": 1})
 ```

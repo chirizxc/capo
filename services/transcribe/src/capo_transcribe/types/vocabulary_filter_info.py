@@ -47,9 +47,9 @@ def serialize_aws_json_1_1(value: VocabularyFilterInfo) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> VocabularyFilterInfo:
     out: VocabularyFilterInfo = {}  # type: ignore[typeddict-item]
-    if "VocabularyFilterName" in data:
+    if data.get("VocabularyFilterName") is not None:
         out["vocabulary_filter_name"] = data["VocabularyFilterName"]
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         import capo_transcribe.types.language_code
 
         out["language_code"] = (
@@ -57,7 +57,7 @@ def deserialize_aws_json_1_1(data: dict) -> VocabularyFilterInfo:
                 data["LanguageCode"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_transcribe.types.date_time
 
         out["last_modified_time"] = (

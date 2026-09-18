@@ -50,7 +50,15 @@ def serialize_json(value: GetSimilarProfilesResponse) -> dict:
     if "rule_level" in value:
         out["RuleLevel"] = value["rule_level"]
     if "confidence_score" in value:
-        out["ConfidenceScore"] = value["confidence_score"]
+        out["ConfidenceScore"] = (
+            "NaN"
+            if value["confidence_score"] != value["confidence_score"]
+            else "Infinity"
+            if value["confidence_score"] == float("inf")
+            else "-Infinity"
+            if value["confidence_score"] == float("-inf")
+            else value["confidence_score"]
+        )
     if "next_token" in value:
         out["NextToken"] = value["next_token"]
     return out
@@ -58,7 +66,7 @@ def serialize_json(value: GetSimilarProfilesResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetSimilarProfilesResponse:
     out: GetSimilarProfilesResponse = {}  # type: ignore[typeddict-item]
-    if "ProfileIds" in data:
+    if data.get("ProfileIds") is not None:
         import capo_customer_profiles.types.profile_id_list
 
         out["profile_ids"] = (
@@ -66,18 +74,18 @@ def deserialize_json(data: dict) -> GetSimilarProfilesResponse:
                 data["ProfileIds"]
             )
         )
-    if "MatchId" in data:
+    if data.get("MatchId") is not None:
         out["match_id"] = data["MatchId"]
-    if "MatchType" in data:
+    if data.get("MatchType") is not None:
         import capo_customer_profiles.types.match_type
 
         out["match_type"] = capo_customer_profiles.types.match_type.deserialize_json(
             data["MatchType"]
         )
-    if "RuleLevel" in data:
+    if data.get("RuleLevel") is not None:
         out["rule_level"] = data["RuleLevel"]
-    if "ConfidenceScore" in data:
-        out["confidence_score"] = data["ConfidenceScore"]
-    if "NextToken" in data:
+    if data.get("ConfidenceScore") is not None:
+        out["confidence_score"] = float(data["ConfidenceScore"])
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

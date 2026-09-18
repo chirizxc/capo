@@ -25,6 +25,6 @@ def serialize_aws_json_1_1(value: CreateSMBFileShareOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateSMBFileShareOutput:
     out: CreateSMBFileShareOutput = {}  # type: ignore[typeddict-item]
-    if "FileShareARN" in data:
+    if data.get("FileShareARN") is not None:
         out["file_share_arn"] = data["FileShareARN"]
     return out

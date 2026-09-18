@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteProjectRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteProjectRequest:
     out: DeleteProjectRequest = {}  # type: ignore[typeddict-item]
-    if "ProjectArn" in data:
+    if data.get("ProjectArn") is not None:
         out["project_arn"] = data["ProjectArn"]
     else:
         raise DeserializationError("DeleteProjectRequest.project_arn required")

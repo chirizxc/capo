@@ -39,7 +39,7 @@ def serialize_aws_json_1_0(value: FilterTimestamp) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> FilterTimestamp:
     out: FilterTimestamp = {}  # type: ignore[typeddict-item]
-    if "afterTimestamp" in data:
+    if data.get("afterTimestamp") is not None:
         import capo_bcm_pricing_calculator.types._prelude.timestamp
 
         out["after_timestamp"] = (
@@ -47,7 +47,7 @@ def deserialize_aws_json_1_0(data: dict) -> FilterTimestamp:
                 data["afterTimestamp"]
             )
         )
-    if "beforeTimestamp" in data:
+    if data.get("beforeTimestamp") is not None:
         import capo_bcm_pricing_calculator.types._prelude.timestamp
 
         out["before_timestamp"] = (

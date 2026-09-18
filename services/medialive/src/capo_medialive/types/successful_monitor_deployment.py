@@ -37,9 +37,9 @@ def serialize_json(value: SuccessfulMonitorDeployment) -> dict:
 
 def deserialize_json(data: dict) -> SuccessfulMonitorDeployment:
     out: SuccessfulMonitorDeployment = {}  # type: ignore[typeddict-item]
-    if "detailsUri" in data:
+    if data.get("detailsUri") is not None:
         out["details_uri"] = data["detailsUri"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_medialive.types.signal_map_monitor_deployment_status
 
         out["status"] = (

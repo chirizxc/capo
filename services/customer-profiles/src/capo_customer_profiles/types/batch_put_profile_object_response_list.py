@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> BatchPutProfileObjectResponseList:
 
     out: BatchPutProfileObjectResponseList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_customer_profiles.types.batch_put_profile_object_response_item.deserialize_json(
                 item

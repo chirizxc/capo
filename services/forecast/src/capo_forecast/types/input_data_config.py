@@ -37,11 +37,11 @@ def serialize_aws_json_1_1(value: InputDataConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InputDataConfig:
     out: InputDataConfig = {}  # type: ignore[typeddict-item]
-    if "DatasetGroupArn" in data:
+    if data.get("DatasetGroupArn") is not None:
         out["dataset_group_arn"] = data["DatasetGroupArn"]
     else:
         raise DeserializationError("InputDataConfig.dataset_group_arn required")
-    if "SupplementaryFeatures" in data:
+    if data.get("SupplementaryFeatures") is not None:
         import capo_forecast.types.supplementary_features
 
         out["supplementary_features"] = (

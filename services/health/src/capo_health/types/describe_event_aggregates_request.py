@@ -49,13 +49,13 @@ def serialize_aws_json_1_1(value: DescribeEventAggregatesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeEventAggregatesRequest:
     out: DescribeEventAggregatesRequest = {}  # type: ignore[typeddict-item]
-    if "filter" in data:
+    if data.get("filter") is not None:
         import capo_health.types.event_filter
 
         out["filter"] = capo_health.types.event_filter.deserialize_aws_json_1_1(
             data["filter"]
         )
-    if "aggregateField" in data:
+    if data.get("aggregateField") is not None:
         import capo_health.types.event_aggregate_field
 
         out["aggregate_field"] = (
@@ -67,8 +67,8 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeEventAggregatesRequest:
         raise DeserializationError(
             "DescribeEventAggregatesRequest.aggregate_field required"
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

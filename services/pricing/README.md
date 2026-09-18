@@ -13,9 +13,9 @@ from capo_pricing import AsyncPricingClient
 
 
 async def main():
-    async with AsyncPricingClient() as s3:
+    async with AsyncPricingClient() as pricing:
         # Example: call the describe_services operation
-        response = await s3.describe_services()
+        response = await pricing.describe_services()
         print(response["services"])
 ```
 
@@ -28,9 +28,9 @@ from capo_pricing import AsyncPricingClient
 
 
 async def main():
-    async with AsyncPricingClient() as s3:
+    async with AsyncPricingClient() as pricing:
         # Example: paginate over describe_services
-        async for item in s3.iter_describe_services():
+        async for item in pricing.iter_describe_services():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_pricing.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncPricingClient() as s3:
+    async with AsyncPricingClient() as pricing:
         try:
-            await s3.describe_services()
+            await pricing.describe_services()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_pricing import AsyncPricingClient
 
 
 async def main():
-    async with AsyncPricingClient() as s3:
+    async with AsyncPricingClient() as pricing:
         # Default: 3 attempts for every operation
-        response = await s3.describe_services()
+        response = await pricing.describe_services()
 
         # Override per operation
-        response = await s3.describe_services(config_overrides={"retry_max_attempts": 5})
+        response = await pricing.describe_services(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.describe_services(config_overrides={"retry_max_attempts": 1})
+        response = await pricing.describe_services(config_overrides={"retry_max_attempts": 1})
 ```

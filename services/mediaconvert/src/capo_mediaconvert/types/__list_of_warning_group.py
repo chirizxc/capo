@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfWarningGroup:
 
     out: __listOfWarningGroup = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mediaconvert.types.warning_group.deserialize_json(item))
     return out

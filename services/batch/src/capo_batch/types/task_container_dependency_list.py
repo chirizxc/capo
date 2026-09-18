@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> TaskContainerDependencyList:
 
     out: TaskContainerDependencyList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_batch.types.task_container_dependency.deserialize_json(item))
     return out

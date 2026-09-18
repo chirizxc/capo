@@ -185,17 +185,17 @@ def serialize_aws_json_1_1(value: ContainerService) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ContainerService:
     out: ContainerService = {}  # type: ignore[typeddict-item]
-    if "containerServiceName" in data:
+    if data.get("containerServiceName") is not None:
         out["container_service_name"] = data["containerServiceName"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_lightsail.types.iso_date
 
         out["created_at"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
             data["createdAt"]
         )
-    if "location" in data:
+    if data.get("location") is not None:
         import capo_lightsail.types.resource_location
 
         out["location"] = (
@@ -203,7 +203,7 @@ def deserialize_aws_json_1_1(data: dict) -> ContainerService:
                 data["location"]
             )
         )
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_lightsail.types.resource_type
 
         out["resource_type"] = (
@@ -211,13 +211,13 @@ def deserialize_aws_json_1_1(data: dict) -> ContainerService:
                 data["resourceType"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_lightsail.types.tag_list
 
         out["tags"] = capo_lightsail.types.tag_list.deserialize_aws_json_1_1(
             data["tags"]
         )
-    if "power" in data:
+    if data.get("power") is not None:
         import capo_lightsail.types.container_service_power_name
 
         out["power"] = (
@@ -225,9 +225,9 @@ def deserialize_aws_json_1_1(data: dict) -> ContainerService:
                 data["power"]
             )
         )
-    if "powerId" in data:
+    if data.get("powerId") is not None:
         out["power_id"] = data["powerId"]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_lightsail.types.container_service_state
 
         out["state"] = (
@@ -235,7 +235,7 @@ def deserialize_aws_json_1_1(data: dict) -> ContainerService:
                 data["state"]
             )
         )
-    if "stateDetail" in data:
+    if data.get("stateDetail") is not None:
         import capo_lightsail.types.container_service_state_detail
 
         out["state_detail"] = (
@@ -243,9 +243,9 @@ def deserialize_aws_json_1_1(data: dict) -> ContainerService:
                 data["stateDetail"]
             )
         )
-    if "scale" in data:
+    if data.get("scale") is not None:
         out["scale"] = data["scale"]
-    if "currentDeployment" in data:
+    if data.get("currentDeployment") is not None:
         import capo_lightsail.types.container_service_deployment
 
         out["current_deployment"] = (
@@ -253,7 +253,7 @@ def deserialize_aws_json_1_1(data: dict) -> ContainerService:
                 data["currentDeployment"]
             )
         )
-    if "nextDeployment" in data:
+    if data.get("nextDeployment") is not None:
         import capo_lightsail.types.container_service_deployment
 
         out["next_deployment"] = (
@@ -261,13 +261,13 @@ def deserialize_aws_json_1_1(data: dict) -> ContainerService:
                 data["nextDeployment"]
             )
         )
-    if "isDisabled" in data:
+    if data.get("isDisabled") is not None:
         out["is_disabled"] = data["isDisabled"]
-    if "principalArn" in data:
+    if data.get("principalArn") is not None:
         out["principal_arn"] = data["principalArn"]
-    if "privateDomainName" in data:
+    if data.get("privateDomainName") is not None:
         out["private_domain_name"] = data["privateDomainName"]
-    if "publicDomainNames" in data:
+    if data.get("publicDomainNames") is not None:
         import capo_lightsail.types.container_service_public_domains
 
         out["public_domain_names"] = (
@@ -275,9 +275,9 @@ def deserialize_aws_json_1_1(data: dict) -> ContainerService:
                 data["publicDomainNames"]
             )
         )
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
-    if "privateRegistryAccess" in data:
+    if data.get("privateRegistryAccess") is not None:
         import capo_lightsail.types.private_registry_access
 
         out["private_registry_access"] = (

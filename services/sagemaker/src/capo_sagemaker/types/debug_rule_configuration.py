@@ -73,15 +73,15 @@ def serialize_aws_json_1_1(value: DebugRuleConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DebugRuleConfiguration:
     out: DebugRuleConfiguration = {}  # type: ignore[typeddict-item]
-    if "RuleConfigurationName" in data:
+    if data.get("RuleConfigurationName") is not None:
         out["rule_configuration_name"] = data["RuleConfigurationName"]
-    if "LocalPath" in data:
+    if data.get("LocalPath") is not None:
         out["local_path"] = data["LocalPath"]
-    if "S3OutputPath" in data:
+    if data.get("S3OutputPath") is not None:
         out["s3_output_path"] = data["S3OutputPath"]
-    if "RuleEvaluatorImage" in data:
+    if data.get("RuleEvaluatorImage") is not None:
         out["rule_evaluator_image"] = data["RuleEvaluatorImage"]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         import capo_sagemaker.types.processing_instance_type
 
         out["instance_type"] = (
@@ -89,9 +89,9 @@ def deserialize_aws_json_1_1(data: dict) -> DebugRuleConfiguration:
                 data["InstanceType"]
             )
         )
-    if "VolumeSizeInGB" in data:
+    if data.get("VolumeSizeInGB") is not None:
         out["volume_size_in_gb"] = data["VolumeSizeInGB"]
-    if "RuleParameters" in data:
+    if data.get("RuleParameters") is not None:
         import capo_sagemaker.types.rule_parameters
 
         out["rule_parameters"] = (

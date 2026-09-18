@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AwsOrganizationScopeList:
 
     out: AwsOrganizationScopeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityhub.types.aws_organization_scope.deserialize_json(item))
     return out

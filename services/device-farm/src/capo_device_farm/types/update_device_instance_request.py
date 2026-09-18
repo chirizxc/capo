@@ -39,13 +39,13 @@ def serialize_aws_json_1_1(value: UpdateDeviceInstanceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateDeviceInstanceRequest:
     out: UpdateDeviceInstanceRequest = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("UpdateDeviceInstanceRequest.arn required")
-    if "profileArn" in data:
+    if data.get("profileArn") is not None:
         out["profile_arn"] = data["profileArn"]
-    if "labels" in data:
+    if data.get("labels") is not None:
         import capo_device_farm.types.instance_labels
 
         out["labels"] = capo_device_farm.types.instance_labels.deserialize_aws_json_1_1(

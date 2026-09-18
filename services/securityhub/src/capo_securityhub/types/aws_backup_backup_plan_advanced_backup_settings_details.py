@@ -32,12 +32,12 @@ def serialize_json(value: AwsBackupBackupPlanAdvancedBackupSettingsDetails) -> d
 
 def deserialize_json(data: dict) -> AwsBackupBackupPlanAdvancedBackupSettingsDetails:
     out: AwsBackupBackupPlanAdvancedBackupSettingsDetails = {}  # type: ignore[typeddict-item]
-    if "BackupOptions" in data:
+    if data.get("BackupOptions") is not None:
         import capo_securityhub.types.field_map
 
         out["backup_options"] = capo_securityhub.types.field_map.deserialize_json(
             data["BackupOptions"]
         )
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
     return out

@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: InvalidInstanceTypeException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidInstanceTypeException_:
     out: InvalidInstanceTypeException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,18 @@ class InvalidInstanceTypeException(ServiceError):
 
     code: str | None = "InvalidInstanceTypeException"
 
-    def __init__(self, data: InvalidInstanceTypeException_):
+    def __init__(self, data: InvalidInstanceTypeException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidInstanceTypeException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidInstanceTypeException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidInstanceTypeException":
+        return cls(deserialize_aws_json_1_1(data), message)

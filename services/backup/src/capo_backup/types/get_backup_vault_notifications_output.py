@@ -45,13 +45,13 @@ def serialize_json(value: GetBackupVaultNotificationsOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetBackupVaultNotificationsOutput:
     out: GetBackupVaultNotificationsOutput = {}  # type: ignore[typeddict-item]
-    if "BackupVaultName" in data:
+    if data.get("BackupVaultName") is not None:
         out["backup_vault_name"] = data["BackupVaultName"]
-    if "BackupVaultArn" in data:
+    if data.get("BackupVaultArn") is not None:
         out["backup_vault_arn"] = data["BackupVaultArn"]
-    if "SNSTopicArn" in data:
+    if data.get("SNSTopicArn") is not None:
         out["sns_topic_arn"] = data["SNSTopicArn"]
-    if "BackupVaultEvents" in data:
+    if data.get("BackupVaultEvents") is not None:
         import capo_backup.types.backup_vault_events
 
         out["backup_vault_events"] = (

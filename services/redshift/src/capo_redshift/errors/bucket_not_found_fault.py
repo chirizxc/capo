@@ -37,15 +37,18 @@ class BucketNotFoundFault(ServiceError):
 
     code: str | None = "BucketNotFoundFault"
 
-    def __init__(self, data: BucketNotFoundFault_):
+    def __init__(self, data: BucketNotFoundFault_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="BucketNotFoundFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "BucketNotFoundFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "BucketNotFoundFault":
+        return cls(deserialize_query(el), message)

@@ -40,7 +40,7 @@ def serialize_json(value: ResourceGroupByRule) -> dict:
 
 def deserialize_json(data: dict) -> ResourceGroupByRule:
     out: ResourceGroupByRule = {}  # type: ignore[typeddict-item]
-    if "GroupByField" in data:
+    if data.get("GroupByField") is not None:
         import capo_securityhub.types.resource_group_by_field
 
         out["group_by_field"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> ResourceGroupByRule:
                 data["GroupByField"]
             )
         )
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_securityhub.types.resources_filters
 
         out["filters"] = capo_securityhub.types.resources_filters.deserialize_json(

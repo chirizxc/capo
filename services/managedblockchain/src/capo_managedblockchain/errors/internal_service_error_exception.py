@@ -25,15 +25,20 @@ class InternalServiceErrorException(ServiceError):
 
     code: str | None = "InternalServiceErrorException"
 
-    def __init__(self, data: InternalServiceErrorException_):
+    def __init__(
+        self, data: InternalServiceErrorException_, message: str | None = None
+    ):
         super().__init__(
             "server",
             is_throttling_error=False,
             is_retryable=False,
             code="InternalServiceErrorException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "InternalServiceErrorException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "InternalServiceErrorException":
+        return cls(deserialize_json(data), message)

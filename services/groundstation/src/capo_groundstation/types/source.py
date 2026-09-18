@@ -48,7 +48,7 @@ def serialize_json(value: Source) -> dict:
 
 def deserialize_json(data: dict) -> Source:
     out: Source = {}  # type: ignore[typeddict-item]
-    if "configType" in data:
+    if data.get("configType") is not None:
         import capo_groundstation.types.config_capability_type
 
         out["config_type"] = (
@@ -56,9 +56,9 @@ def deserialize_json(data: dict) -> Source:
                 data["configType"]
             )
         )
-    if "configId" in data:
+    if data.get("configId") is not None:
         out["config_id"] = data["configId"]
-    if "configDetails" in data:
+    if data.get("configDetails") is not None:
         import capo_groundstation.types.config_details
 
         out["config_details"] = (
@@ -66,6 +66,6 @@ def deserialize_json(data: dict) -> Source:
                 data["configDetails"]
             )
         )
-    if "dataflowSourceRegion" in data:
+    if data.get("dataflowSourceRegion") is not None:
         out["dataflow_source_region"] = data["dataflowSourceRegion"]
     return out

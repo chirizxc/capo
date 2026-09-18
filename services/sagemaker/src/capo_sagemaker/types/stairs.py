@@ -35,10 +35,10 @@ def serialize_aws_json_1_1(value: Stairs) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Stairs:
     out: Stairs = {}  # type: ignore[typeddict-item]
-    if "DurationInSeconds" in data:
+    if data.get("DurationInSeconds") is not None:
         out["duration_in_seconds"] = data["DurationInSeconds"]
-    if "NumberOfSteps" in data:
+    if data.get("NumberOfSteps") is not None:
         out["number_of_steps"] = data["NumberOfSteps"]
-    if "UsersPerStep" in data:
+    if data.get("UsersPerStep") is not None:
         out["users_per_step"] = data["UsersPerStep"]
     return out

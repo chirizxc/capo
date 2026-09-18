@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> AssistantMessage:
 
     out: AssistantMessage = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_devops_agent.types.assistant_message_block.deserialize_json(item)
         )

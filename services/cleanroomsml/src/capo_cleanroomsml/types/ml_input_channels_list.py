@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> MLInputChannelsList:
 
     out: MLInputChannelsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cleanroomsml.types.ml_input_channel_summary.deserialize_json(item)
         )

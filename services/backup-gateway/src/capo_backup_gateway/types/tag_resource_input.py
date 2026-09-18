@@ -30,11 +30,11 @@ def serialize_aws_json_1_0(value: TagResourceInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TagResourceInput:
     out: TagResourceInput = {}  # type: ignore[typeddict-item]
-    if "ResourceARN" in data:
+    if data.get("ResourceARN") is not None:
         out["resource_arn"] = data["ResourceARN"]
     else:
         raise DeserializationError("TagResourceInput.resource_arn required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_backup_gateway.types.tags
 
         out["tags"] = capo_backup_gateway.types.tags.deserialize_aws_json_1_0(

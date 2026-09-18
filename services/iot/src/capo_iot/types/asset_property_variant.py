@@ -56,13 +56,13 @@ def serialize_json(value: AssetPropertyVariant) -> dict:
 
 
 def deserialize_json(data: dict) -> AssetPropertyVariant:
-    if "stringValue" in data:
+    if data.get("stringValue") is not None:
         return {"stringValue": data["stringValue"]}
-    elif "integerValue" in data:
+    elif data.get("integerValue") is not None:
         return {"integerValue": data["integerValue"]}
-    elif "doubleValue" in data:
+    elif data.get("doubleValue") is not None:
         return {"doubleValue": data["doubleValue"]}
-    elif "booleanValue" in data:
+    elif data.get("booleanValue") is not None:
         return {"booleanValue": data["booleanValue"]}
     else:
         raise DeserializationError("AssetPropertyVariant: no recognized variant key")

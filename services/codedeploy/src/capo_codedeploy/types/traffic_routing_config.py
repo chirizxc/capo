@@ -53,7 +53,7 @@ def serialize_aws_json_1_1(value: TrafficRoutingConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TrafficRoutingConfig:
     out: TrafficRoutingConfig = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_codedeploy.types.traffic_routing_type
 
         out["type"] = (
@@ -61,7 +61,7 @@ def deserialize_aws_json_1_1(data: dict) -> TrafficRoutingConfig:
                 data["type"]
             )
         )
-    if "timeBasedCanary" in data:
+    if data.get("timeBasedCanary") is not None:
         import capo_codedeploy.types.time_based_canary
 
         out["time_based_canary"] = (
@@ -69,7 +69,7 @@ def deserialize_aws_json_1_1(data: dict) -> TrafficRoutingConfig:
                 data["timeBasedCanary"]
             )
         )
-    if "timeBasedLinear" in data:
+    if data.get("timeBasedLinear") is not None:
         import capo_codedeploy.types.time_based_linear
 
         out["time_based_linear"] = (

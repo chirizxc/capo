@@ -32,12 +32,12 @@ def serialize_json(value: ListDevicesJobsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListDevicesJobsResponse:
     out: ListDevicesJobsResponse = {}  # type: ignore[typeddict-item]
-    if "DeviceJobs" in data:
+    if data.get("DeviceJobs") is not None:
         import capo_panorama.types.device_job_list
 
         out["device_jobs"] = capo_panorama.types.device_job_list.deserialize_json(
             data["DeviceJobs"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

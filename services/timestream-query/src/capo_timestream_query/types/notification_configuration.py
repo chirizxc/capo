@@ -30,7 +30,7 @@ def serialize_aws_json_1_0(value: NotificationConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> NotificationConfiguration:
     out: NotificationConfiguration = {}  # type: ignore[typeddict-item]
-    if "SnsConfiguration" in data:
+    if data.get("SnsConfiguration") is not None:
         import capo_timestream_query.types.sns_configuration
 
         out["sns_configuration"] = (

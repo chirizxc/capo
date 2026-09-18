@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> CloudWatchDimensionConfigurations:
 
     out: CloudWatchDimensionConfigurations = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sesv2.types.cloud_watch_dimension_configuration.deserialize_json(item)
         )

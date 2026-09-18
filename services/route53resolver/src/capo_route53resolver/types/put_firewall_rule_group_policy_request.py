@@ -30,11 +30,11 @@ def serialize_aws_json_1_1(value: PutFirewallRuleGroupPolicyRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutFirewallRuleGroupPolicyRequest:
     out: PutFirewallRuleGroupPolicyRequest = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("PutFirewallRuleGroupPolicyRequest.arn required")
-    if "FirewallRuleGroupPolicy" in data:
+    if data.get("FirewallRuleGroupPolicy") is not None:
         out["firewall_rule_group_policy"] = data["FirewallRuleGroupPolicy"]
     else:
         raise DeserializationError(

@@ -32,12 +32,12 @@ def serialize_json(value: ListPrincipalsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListPrincipalsResponse:
     out: ListPrincipalsResponse = {}  # type: ignore[typeddict-item]
-    if "principals" in data:
+    if data.get("principals") is not None:
         import capo_ram.types.principal_list
 
         out["principals"] = capo_ram.types.principal_list.deserialize_json(
             data["principals"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

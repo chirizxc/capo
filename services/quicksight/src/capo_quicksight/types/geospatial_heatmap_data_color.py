@@ -24,7 +24,7 @@ def serialize_json(value: GeospatialHeatmapDataColor) -> dict:
 
 def deserialize_json(data: dict) -> GeospatialHeatmapDataColor:
     out: GeospatialHeatmapDataColor = {}  # type: ignore[typeddict-item]
-    if "Color" in data:
+    if data.get("Color") is not None:
         out["color"] = data["Color"]
     else:
         raise DeserializationError("GeospatialHeatmapDataColor.color required")

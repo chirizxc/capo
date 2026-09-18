@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> ContainerServiceList:
 
     out: ContainerServiceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lightsail.types.container_service.deserialize_aws_json_1_1(item)
         )

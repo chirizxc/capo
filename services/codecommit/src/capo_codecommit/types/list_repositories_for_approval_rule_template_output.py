@@ -40,7 +40,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> ListRepositoriesForApprovalRuleTemplateOutput:
     out: ListRepositoriesForApprovalRuleTemplateOutput = {}  # type: ignore[typeddict-item]
-    if "repositoryNames" in data:
+    if data.get("repositoryNames") is not None:
         import capo_codecommit.types.repository_name_list
 
         out["repository_names"] = (
@@ -48,6 +48,6 @@ def deserialize_aws_json_1_1(
                 data["repositoryNames"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

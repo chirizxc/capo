@@ -68,7 +68,7 @@ def serialize_json(value: MonitoringConfig) -> dict:
 
 def deserialize_json(data: dict) -> MonitoringConfig:
     out: MonitoringConfig = {}  # type: ignore[typeddict-item]
-    if "thumbnailState" in data:
+    if data.get("thumbnailState") is not None:
         import capo_mediaconnect.types.thumbnail_state
 
         out["thumbnail_state"] = (
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> MonitoringConfig:
                 data["thumbnailState"]
             )
         )
-    if "audioMonitoringSettings" in data:
+    if data.get("audioMonitoringSettings") is not None:
         import capo_mediaconnect.types.__list_of_audio_monitoring_setting
 
         out["audio_monitoring_settings"] = (
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> MonitoringConfig:
                 data["audioMonitoringSettings"]
             )
         )
-    if "contentQualityAnalysisState" in data:
+    if data.get("contentQualityAnalysisState") is not None:
         import capo_mediaconnect.types.content_quality_analysis_state
 
         out["content_quality_analysis_state"] = (
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> MonitoringConfig:
                 data["contentQualityAnalysisState"]
             )
         )
-    if "videoMonitoringSettings" in data:
+    if data.get("videoMonitoringSettings") is not None:
         import capo_mediaconnect.types.__list_of_video_monitoring_setting
 
         out["video_monitoring_settings"] = (

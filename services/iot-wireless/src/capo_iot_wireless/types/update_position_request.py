@@ -34,7 +34,7 @@ def serialize_json(value: UpdatePositionRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePositionRequest:
     out: UpdatePositionRequest = {}  # type: ignore[typeddict-item]
-    if "Position" in data:
+    if data.get("Position") is not None:
         import capo_iot_wireless.types.position_coordinate
 
         out["position"] = capo_iot_wireless.types.position_coordinate.deserialize_json(

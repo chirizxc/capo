@@ -30,7 +30,7 @@ def serialize_aws_json_1_0(value: LogDeliveryConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> LogDeliveryConfiguration:
     out: LogDeliveryConfiguration = {}  # type: ignore[typeddict-item]
-    if "s3Configuration" in data:
+    if data.get("s3Configuration") is not None:
         import capo_timestream_influxdb.types.s3_configuration
 
         out["s3_configuration"] = (

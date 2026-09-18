@@ -33,13 +33,13 @@ def serialize_aws_json_1_1(value: ListAppsListsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListAppsListsRequest:
     out: ListAppsListsRequest = {}  # type: ignore[typeddict-item]
-    if "DefaultLists" in data:
+    if data.get("DefaultLists") is not None:
         out["default_lists"] = data["DefaultLists"]
     else:
         out["default_lists"] = False
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     else:
         raise DeserializationError("ListAppsListsRequest.max_results required")

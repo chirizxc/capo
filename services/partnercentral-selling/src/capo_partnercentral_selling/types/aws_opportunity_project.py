@@ -44,7 +44,7 @@ def serialize_aws_json_1_0(value: AwsOpportunityProject) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AwsOpportunityProject:
     out: AwsOpportunityProject = {}  # type: ignore[typeddict-item]
-    if "ExpectedCustomerSpend" in data:
+    if data.get("ExpectedCustomerSpend") is not None:
         import capo_partnercentral_selling.types.expected_customer_spend_list
 
         out["expected_customer_spend"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_0(data: dict) -> AwsOpportunityProject:
                 data["ExpectedCustomerSpend"]
             )
         )
-    if "AwsPartition" in data:
+    if data.get("AwsPartition") is not None:
         import capo_partnercentral_selling.types.aws_partition
 
         out["aws_partition"] = (

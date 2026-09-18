@@ -57,27 +57,27 @@ def serialize_json(value: RealTimeContactAnalysisSegmentEvent) -> dict:
 
 def deserialize_json(data: dict) -> RealTimeContactAnalysisSegmentEvent:
     out: RealTimeContactAnalysisSegmentEvent = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("RealTimeContactAnalysisSegmentEvent.id required")
-    if "ParticipantId" in data:
+    if data.get("ParticipantId") is not None:
         out["participant_id"] = data["ParticipantId"]
-    if "ParticipantRole" in data:
+    if data.get("ParticipantRole") is not None:
         import capo_connect.types.participant_role
 
         out["participant_role"] = capo_connect.types.participant_role.deserialize_json(
             data["ParticipantRole"]
         )
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "EventType" in data:
+    if data.get("EventType") is not None:
         out["event_type"] = data["EventType"]
     else:
         raise DeserializationError(
             "RealTimeContactAnalysisSegmentEvent.event_type required"
         )
-    if "Time" in data:
+    if data.get("Time") is not None:
         import capo_connect.types.real_time_contact_analysis_time_data
 
         out["time"] = (

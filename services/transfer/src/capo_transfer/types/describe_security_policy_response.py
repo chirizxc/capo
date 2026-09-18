@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: DescribeSecurityPolicyResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeSecurityPolicyResponse:
     out: DescribeSecurityPolicyResponse = {}  # type: ignore[typeddict-item]
-    if "SecurityPolicy" in data:
+    if data.get("SecurityPolicy") is not None:
         import capo_transfer.types.described_security_policy
 
         out["security_policy"] = (

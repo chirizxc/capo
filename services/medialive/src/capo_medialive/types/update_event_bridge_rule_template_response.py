@@ -101,17 +101,17 @@ def serialize_json(value: UpdateEventBridgeRuleTemplateResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateEventBridgeRuleTemplateResponse:
     out: UpdateEventBridgeRuleTemplateResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_medialive.types.__timestamp_iso8601
 
         out["created_at"] = capo_medialive.types.__timestamp_iso8601.deserialize_json(
             data["createdAt"]
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "eventTargets" in data:
+    if data.get("eventTargets") is not None:
         import capo_medialive.types.__list_of_event_bridge_rule_template_target
 
         out["event_targets"] = (
@@ -119,7 +119,7 @@ def deserialize_json(data: dict) -> UpdateEventBridgeRuleTemplateResponse:
                 data["eventTargets"]
             )
         )
-    if "eventType" in data:
+    if data.get("eventType") is not None:
         import capo_medialive.types.event_bridge_rule_template_event_type
 
         out["event_type"] = (
@@ -127,19 +127,19 @@ def deserialize_json(data: dict) -> UpdateEventBridgeRuleTemplateResponse:
                 data["eventType"]
             )
         )
-    if "groupId" in data:
+    if data.get("groupId") is not None:
         out["group_id"] = data["groupId"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "modifiedAt" in data:
+    if data.get("modifiedAt") is not None:
         import capo_medialive.types.__timestamp_iso8601
 
         out["modified_at"] = capo_medialive.types.__timestamp_iso8601.deserialize_json(
             data["modifiedAt"]
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_medialive.types.tag_map
 
         out["tags"] = capo_medialive.types.tag_map.deserialize_json(data["tags"])

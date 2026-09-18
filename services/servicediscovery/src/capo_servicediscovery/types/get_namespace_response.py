@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: GetNamespaceResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetNamespaceResponse:
     out: GetNamespaceResponse = {}  # type: ignore[typeddict-item]
-    if "Namespace" in data:
+    if data.get("Namespace") is not None:
         import capo_servicediscovery.types.namespace
 
         out["namespace"] = (

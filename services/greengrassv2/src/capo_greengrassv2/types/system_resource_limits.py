@@ -20,18 +20,26 @@ class SystemResourceLimits(TypedDict, closed=True):
 def serialize_json(value: SystemResourceLimits) -> dict:
     out: dict = {}
     out["memory"] = value.get("memory", 0)
-    out["cpus"] = value.get("cpus", 0)
+    out["cpus"] = (
+        "NaN"
+        if value.get("cpus", 0) != value.get("cpus", 0)
+        else "Infinity"
+        if value.get("cpus", 0) == float("inf")
+        else "-Infinity"
+        if value.get("cpus", 0) == float("-inf")
+        else value.get("cpus", 0)
+    )
     return out
 
 
 def deserialize_json(data: dict) -> SystemResourceLimits:
     out: SystemResourceLimits = {}  # type: ignore[typeddict-item]
-    if "memory" in data:
+    if data.get("memory") is not None:
         out["memory"] = data["memory"]
     else:
         out["memory"] = 0
-    if "cpus" in data:
-        out["cpus"] = data["cpus"]
+    if data.get("cpus") is not None:
+        out["cpus"] = float(data["cpus"])
     else:
         out["cpus"] = 0
     return out

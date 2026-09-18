@@ -32,7 +32,7 @@ def serialize_json(value: ListDomainsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListDomainsOutput:
     out: ListDomainsOutput = {}  # type: ignore[typeddict-item]
-    if "domains" in data:
+    if data.get("domains") is not None:
         import capo_connecthealth.types.domain_summary_list
 
         out["domains"] = capo_connecthealth.types.domain_summary_list.deserialize_json(
@@ -40,6 +40,6 @@ def deserialize_json(data: dict) -> ListDomainsOutput:
         )
     else:
         raise DeserializationError("ListDomainsOutput.domains required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

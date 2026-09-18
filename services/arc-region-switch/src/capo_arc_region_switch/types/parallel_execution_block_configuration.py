@@ -28,7 +28,7 @@ def serialize_aws_json_1_0(value: ParallelExecutionBlockConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ParallelExecutionBlockConfiguration:
     out: ParallelExecutionBlockConfiguration = {}  # type: ignore[typeddict-item]
-    if "steps" in data:
+    if data.get("steps") is not None:
         import capo_arc_region_switch.types.steps
 
         out["steps"] = capo_arc_region_switch.types.steps.deserialize_aws_json_1_0(

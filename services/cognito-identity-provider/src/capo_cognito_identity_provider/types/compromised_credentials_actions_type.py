@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: CompromisedCredentialsActionsType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CompromisedCredentialsActionsType:
     out: CompromisedCredentialsActionsType = {}  # type: ignore[typeddict-item]
-    if "EventAction" in data:
+    if data.get("EventAction") is not None:
         import capo_cognito_identity_provider.types.compromised_credentials_event_action_type
 
         out["event_action"] = (

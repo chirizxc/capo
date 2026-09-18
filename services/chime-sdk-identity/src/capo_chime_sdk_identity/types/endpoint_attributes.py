@@ -30,10 +30,10 @@ def serialize_json(value: EndpointAttributes) -> dict:
 
 def deserialize_json(data: dict) -> EndpointAttributes:
     out: EndpointAttributes = {}  # type: ignore[typeddict-item]
-    if "DeviceToken" in data:
+    if data.get("DeviceToken") is not None:
         out["device_token"] = data["DeviceToken"]
     else:
         raise DeserializationError("EndpointAttributes.device_token required")
-    if "VoipDeviceToken" in data:
+    if data.get("VoipDeviceToken") is not None:
         out["voip_device_token"] = data["VoipDeviceToken"]
     return out

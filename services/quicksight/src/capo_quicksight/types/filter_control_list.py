@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> FilterControlList:
 
     out: FilterControlList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_quicksight.types.filter_control.deserialize_json(item))
     return out

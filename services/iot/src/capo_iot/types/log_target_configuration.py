@@ -32,13 +32,13 @@ def serialize_json(value: LogTargetConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> LogTargetConfiguration:
     out: LogTargetConfiguration = {}  # type: ignore[typeddict-item]
-    if "logTarget" in data:
+    if data.get("logTarget") is not None:
         import capo_iot.types.log_target
 
         out["log_target"] = capo_iot.types.log_target.deserialize_json(
             data["logTarget"]
         )
-    if "logLevel" in data:
+    if data.get("logLevel") is not None:
         import capo_iot.types.log_level
 
         out["log_level"] = capo_iot.types.log_level.deserialize_json(data["logLevel"])

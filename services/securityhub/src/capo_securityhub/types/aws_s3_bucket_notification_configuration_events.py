@@ -16,4 +16,4 @@ def serialize_json(value: AwsS3BucketNotificationConfigurationEvents) -> list:
 
 
 def deserialize_json(data: list) -> AwsS3BucketNotificationConfigurationEvents:
-    return list(data)
+    return [item for item in data if item is not None]

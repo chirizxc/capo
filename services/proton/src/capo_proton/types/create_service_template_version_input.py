@@ -81,19 +81,19 @@ def serialize_aws_json_1_0(value: CreateServiceTemplateVersionInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateServiceTemplateVersionInput:
     out: CreateServiceTemplateVersionInput = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "templateName" in data:
+    if data.get("templateName") is not None:
         out["template_name"] = data["templateName"]
     else:
         raise DeserializationError(
             "CreateServiceTemplateVersionInput.template_name required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "majorVersion" in data:
+    if data.get("majorVersion") is not None:
         out["major_version"] = data["majorVersion"]
-    if "source" in data:
+    if data.get("source") is not None:
         import capo_proton.types.template_version_source_input
 
         out["source"] = (
@@ -103,7 +103,7 @@ def deserialize_aws_json_1_0(data: dict) -> CreateServiceTemplateVersionInput:
         )
     else:
         raise DeserializationError("CreateServiceTemplateVersionInput.source required")
-    if "compatibleEnvironmentTemplates" in data:
+    if data.get("compatibleEnvironmentTemplates") is not None:
         import capo_proton.types.compatible_environment_template_input_list
 
         out["compatible_environment_templates"] = (
@@ -115,11 +115,11 @@ def deserialize_aws_json_1_0(data: dict) -> CreateServiceTemplateVersionInput:
         raise DeserializationError(
             "CreateServiceTemplateVersionInput.compatible_environment_templates required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_proton.types.tag_list
 
         out["tags"] = capo_proton.types.tag_list.deserialize_aws_json_1_0(data["tags"])
-    if "supportedComponentSources" in data:
+    if data.get("supportedComponentSources") is not None:
         import capo_proton.types.service_template_supported_component_source_input_list
 
         out["supported_component_sources"] = (

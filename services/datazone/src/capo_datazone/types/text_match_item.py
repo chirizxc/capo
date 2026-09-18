@@ -36,11 +36,11 @@ def serialize_json(value: TextMatchItem) -> dict:
 
 def deserialize_json(data: dict) -> TextMatchItem:
     out: TextMatchItem = {}  # type: ignore[typeddict-item]
-    if "attribute" in data:
+    if data.get("attribute") is not None:
         out["attribute"] = data["attribute"]
-    if "text" in data:
+    if data.get("text") is not None:
         out["text"] = data["text"]
-    if "matchOffsets" in data:
+    if data.get("matchOffsets") is not None:
         import capo_datazone.types.match_offsets
 
         out["match_offsets"] = capo_datazone.types.match_offsets.deserialize_json(

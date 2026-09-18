@@ -37,14 +37,14 @@ def serialize_json(value: PhoneNumberError) -> dict:
 
 def deserialize_json(data: dict) -> PhoneNumberError:
     out: PhoneNumberError = {}  # type: ignore[typeddict-item]
-    if "PhoneNumberId" in data:
+    if data.get("PhoneNumberId") is not None:
         out["phone_number_id"] = data["PhoneNumberId"]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         import capo_chime.types.error_code
 
         out["error_code"] = capo_chime.types.error_code.deserialize_json(
             data["ErrorCode"]
         )
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
     return out

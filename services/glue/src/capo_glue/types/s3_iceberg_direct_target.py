@@ -119,11 +119,11 @@ def serialize_aws_json_1_1(value: S3IcebergDirectTarget) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3IcebergDirectTarget:
     out: S3IcebergDirectTarget = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("S3IcebergDirectTarget.name required")
-    if "Inputs" in data:
+    if data.get("Inputs") is not None:
         import capo_glue.types.one_input
 
         out["inputs"] = capo_glue.types.one_input.deserialize_aws_json_1_1(
@@ -131,7 +131,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3IcebergDirectTarget:
         )
     else:
         raise DeserializationError("S3IcebergDirectTarget.inputs required")
-    if "PartitionKeys" in data:
+    if data.get("PartitionKeys") is not None:
         import capo_glue.types.glue_studio_path_list
 
         out["partition_keys"] = (
@@ -139,11 +139,11 @@ def deserialize_aws_json_1_1(data: dict) -> S3IcebergDirectTarget:
                 data["PartitionKeys"]
             )
         )
-    if "Path" in data:
+    if data.get("Path") is not None:
         out["path"] = data["Path"]
     else:
         raise DeserializationError("S3IcebergDirectTarget.path required")
-    if "Format" in data:
+    if data.get("Format") is not None:
         import capo_glue.types.target_format
 
         out["format"] = capo_glue.types.target_format.deserialize_aws_json_1_1(
@@ -151,7 +151,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3IcebergDirectTarget:
         )
     else:
         raise DeserializationError("S3IcebergDirectTarget.format required")
-    if "AdditionalOptions" in data:
+    if data.get("AdditionalOptions") is not None:
         import capo_glue.types.additional_options
 
         out["additional_options"] = (
@@ -159,7 +159,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3IcebergDirectTarget:
                 data["AdditionalOptions"]
             )
         )
-    if "SchemaChangePolicy" in data:
+    if data.get("SchemaChangePolicy") is not None:
         import capo_glue.types.direct_schema_change_policy
 
         out["schema_change_policy"] = (
@@ -167,7 +167,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3IcebergDirectTarget:
                 data["SchemaChangePolicy"]
             )
         )
-    if "AutoDataQuality" in data:
+    if data.get("AutoDataQuality") is not None:
         import capo_glue.types.auto_data_quality
 
         out["auto_data_quality"] = (
@@ -175,7 +175,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3IcebergDirectTarget:
                 data["AutoDataQuality"]
             )
         )
-    if "Compression" in data:
+    if data.get("Compression") is not None:
         import capo_glue.types.iceberg_target_compression_type
 
         out["compression"] = (
@@ -185,9 +185,9 @@ def deserialize_aws_json_1_1(data: dict) -> S3IcebergDirectTarget:
         )
     else:
         raise DeserializationError("S3IcebergDirectTarget.compression required")
-    if "NumberTargetPartitions" in data:
+    if data.get("NumberTargetPartitions") is not None:
         out["number_target_partitions"] = data["NumberTargetPartitions"]
-    if "OutputSchemas" in data:
+    if data.get("OutputSchemas") is not None:
         import capo_glue.types.glue_schemas
 
         out["output_schemas"] = capo_glue.types.glue_schemas.deserialize_aws_json_1_1(

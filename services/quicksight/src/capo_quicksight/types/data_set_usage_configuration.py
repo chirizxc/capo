@@ -29,13 +29,13 @@ def serialize_json(value: DataSetUsageConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DataSetUsageConfiguration:
     out: DataSetUsageConfiguration = {}  # type: ignore[typeddict-item]
-    if "DisableUseAsDirectQuerySource" in data:
+    if data.get("DisableUseAsDirectQuerySource") is not None:
         out["disable_use_as_direct_query_source"] = data[
             "DisableUseAsDirectQuerySource"
         ]
     else:
         out["disable_use_as_direct_query_source"] = False
-    if "DisableUseAsImportedSource" in data:
+    if data.get("DisableUseAsImportedSource") is not None:
         out["disable_use_as_imported_source"] = data["DisableUseAsImportedSource"]
     else:
         out["disable_use_as_imported_source"] = False

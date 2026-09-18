@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> TemplateShareSummaries:
 
     out: TemplateShareSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_wellarchitected.types.template_share_summary.deserialize_json(item)
         )

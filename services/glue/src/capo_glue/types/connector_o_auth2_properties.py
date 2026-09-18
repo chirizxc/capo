@@ -71,7 +71,7 @@ def serialize_aws_json_1_1(value: ConnectorOAuth2Properties) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConnectorOAuth2Properties:
     out: ConnectorOAuth2Properties = {}  # type: ignore[typeddict-item]
-    if "OAuth2GrantType" in data:
+    if data.get("OAuth2GrantType") is not None:
         import capo_glue.types.connector_o_auth2_grant_type
 
         out["o_auth2_grant_type"] = (
@@ -83,7 +83,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConnectorOAuth2Properties:
         raise DeserializationError(
             "ConnectorOAuth2Properties.o_auth2_grant_type required"
         )
-    if "ClientCredentialsProperties" in data:
+    if data.get("ClientCredentialsProperties") is not None:
         import capo_glue.types.client_credentials_properties
 
         out["client_credentials_properties"] = (
@@ -91,7 +91,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConnectorOAuth2Properties:
                 data["ClientCredentialsProperties"]
             )
         )
-    if "JWTBearerProperties" in data:
+    if data.get("JWTBearerProperties") is not None:
         import capo_glue.types.jwt_bearer_properties
 
         out["jwt_bearer_properties"] = (
@@ -99,7 +99,7 @@ def deserialize_aws_json_1_1(data: dict) -> ConnectorOAuth2Properties:
                 data["JWTBearerProperties"]
             )
         )
-    if "AuthorizationCodeProperties" in data:
+    if data.get("AuthorizationCodeProperties") is not None:
         import capo_glue.types.connector_authorization_code_properties
 
         out["authorization_code_properties"] = (

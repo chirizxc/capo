@@ -100,11 +100,11 @@ def serialize_aws_json_1_1(value: EngineVersion) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EngineVersion:
     out: EngineVersion = {}  # type: ignore[typeddict-item]
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
-    if "Lifecycle" in data:
+    if data.get("Lifecycle") is not None:
         out["lifecycle"] = data["Lifecycle"]
-    if "ReleaseStatus" in data:
+    if data.get("ReleaseStatus") is not None:
         import capo_database_migration_service.types.release_status_values
 
         out["release_status"] = (
@@ -112,7 +112,7 @@ def deserialize_aws_json_1_1(data: dict) -> EngineVersion:
                 data["ReleaseStatus"]
             )
         )
-    if "LaunchDate" in data:
+    if data.get("LaunchDate") is not None:
         import capo_database_migration_service.types.t_stamp
 
         out["launch_date"] = (
@@ -120,7 +120,7 @@ def deserialize_aws_json_1_1(data: dict) -> EngineVersion:
                 data["LaunchDate"]
             )
         )
-    if "AutoUpgradeDate" in data:
+    if data.get("AutoUpgradeDate") is not None:
         import capo_database_migration_service.types.t_stamp
 
         out["auto_upgrade_date"] = (
@@ -128,7 +128,7 @@ def deserialize_aws_json_1_1(data: dict) -> EngineVersion:
                 data["AutoUpgradeDate"]
             )
         )
-    if "DeprecationDate" in data:
+    if data.get("DeprecationDate") is not None:
         import capo_database_migration_service.types.t_stamp
 
         out["deprecation_date"] = (
@@ -136,7 +136,7 @@ def deserialize_aws_json_1_1(data: dict) -> EngineVersion:
                 data["DeprecationDate"]
             )
         )
-    if "ForceUpgradeDate" in data:
+    if data.get("ForceUpgradeDate") is not None:
         import capo_database_migration_service.types.t_stamp
 
         out["force_upgrade_date"] = (
@@ -144,7 +144,7 @@ def deserialize_aws_json_1_1(data: dict) -> EngineVersion:
                 data["ForceUpgradeDate"]
             )
         )
-    if "AvailableUpgrades" in data:
+    if data.get("AvailableUpgrades") is not None:
         import capo_database_migration_service.types.available_upgrades_list
 
         out["available_upgrades"] = (

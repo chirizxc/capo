@@ -78,11 +78,11 @@ def serialize_json(value: GetExportResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetExportResponse:
     out: GetExportResponse = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_lex_model_building_service.types.resource_type
 
         out["resource_type"] = (
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> GetExportResponse:
                 data["resourceType"]
             )
         )
-    if "exportType" in data:
+    if data.get("exportType") is not None:
         import capo_lex_model_building_service.types.export_type
 
         out["export_type"] = (
@@ -98,7 +98,7 @@ def deserialize_json(data: dict) -> GetExportResponse:
                 data["exportType"]
             )
         )
-    if "exportStatus" in data:
+    if data.get("exportStatus") is not None:
         import capo_lex_model_building_service.types.export_status
 
         out["export_status"] = (
@@ -106,8 +106,8 @@ def deserialize_json(data: dict) -> GetExportResponse:
                 data["exportStatus"]
             )
         )
-    if "failureReason" in data:
+    if data.get("failureReason") is not None:
         out["failure_reason"] = data["failureReason"]
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
     return out

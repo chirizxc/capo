@@ -38,9 +38,9 @@ def serialize_json(value: ListIdentityProvidersResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListIdentityProvidersResponse:
     out: ListIdentityProvidersResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "identityProviders" in data:
+    if data.get("identityProviders") is not None:
         import capo_workspaces_web.types.identity_provider_list
 
         out["identity_providers"] = (

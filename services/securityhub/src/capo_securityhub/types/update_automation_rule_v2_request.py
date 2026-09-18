@@ -43,7 +43,15 @@ def serialize_json(value: UpdateAutomationRuleV2Request) -> dict:
             value["rule_status"]
         )
     if "rule_order" in value:
-        out["RuleOrder"] = value["rule_order"]
+        out["RuleOrder"] = (
+            "NaN"
+            if value["rule_order"] != value["rule_order"]
+            else "Infinity"
+            if value["rule_order"] == float("inf")
+            else "-Infinity"
+            if value["rule_order"] == float("-inf")
+            else value["rule_order"]
+        )
     if "description" in value:
         out["Description"] = value["description"]
     if "rule_name" in value:
@@ -67,25 +75,25 @@ def serialize_json(value: UpdateAutomationRuleV2Request) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAutomationRuleV2Request:
     out: UpdateAutomationRuleV2Request = {}  # type: ignore[typeddict-item]
-    if "RuleStatus" in data:
+    if data.get("RuleStatus") is not None:
         import capo_securityhub.types.rule_status_v2
 
         out["rule_status"] = capo_securityhub.types.rule_status_v2.deserialize_json(
             data["RuleStatus"]
         )
-    if "RuleOrder" in data:
-        out["rule_order"] = data["RuleOrder"]
-    if "Description" in data:
+    if data.get("RuleOrder") is not None:
+        out["rule_order"] = float(data["RuleOrder"])
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "RuleName" in data:
+    if data.get("RuleName") is not None:
         out["rule_name"] = data["RuleName"]
-    if "Criteria" in data:
+    if data.get("Criteria") is not None:
         import capo_securityhub.types.criteria
 
         out["criteria"] = capo_securityhub.types.criteria.deserialize_json(
             data["Criteria"]
         )
-    if "Actions" in data:
+    if data.get("Actions") is not None:
         import capo_securityhub.types.automation_rules_action_list_v2
 
         out["actions"] = (

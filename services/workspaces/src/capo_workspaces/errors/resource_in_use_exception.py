@@ -29,9 +29,9 @@ def serialize_aws_json_1_1(value: ResourceInUseException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResourceInUseException_:
     out: ResourceInUseException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     return out
 
@@ -41,15 +41,18 @@ class ResourceInUseException(ServiceError):
 
     code: str | None = "ResourceInUseException"
 
-    def __init__(self, data: ResourceInUseException_):
+    def __init__(self, data: ResourceInUseException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ResourceInUseException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "ResourceInUseException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "ResourceInUseException":
+        return cls(deserialize_aws_json_1_1(data), message)

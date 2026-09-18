@@ -32,15 +32,15 @@ def serialize_aws_json_1_0(value: DisassociateFraudsterRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DisassociateFraudsterRequest:
     out: DisassociateFraudsterRequest = {}  # type: ignore[typeddict-item]
-    if "DomainId" in data:
+    if data.get("DomainId") is not None:
         out["domain_id"] = data["DomainId"]
     else:
         raise DeserializationError("DisassociateFraudsterRequest.domain_id required")
-    if "WatchlistId" in data:
+    if data.get("WatchlistId") is not None:
         out["watchlist_id"] = data["WatchlistId"]
     else:
         raise DeserializationError("DisassociateFraudsterRequest.watchlist_id required")
-    if "FraudsterId" in data:
+    if data.get("FraudsterId") is not None:
         out["fraudster_id"] = data["FraudsterId"]
     else:
         raise DeserializationError("DisassociateFraudsterRequest.fraudster_id required")

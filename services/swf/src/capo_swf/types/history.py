@@ -33,7 +33,7 @@ def serialize_aws_json_1_0(value: History) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> History:
     out: History = {}  # type: ignore[typeddict-item]
-    if "events" in data:
+    if data.get("events") is not None:
         import capo_swf.types.history_event_list
 
         out["events"] = capo_swf.types.history_event_list.deserialize_aws_json_1_0(
@@ -41,6 +41,6 @@ def deserialize_aws_json_1_0(data: dict) -> History:
         )
     else:
         raise DeserializationError("History.events required")
-    if "nextPageToken" in data:
+    if data.get("nextPageToken") is not None:
         out["next_page_token"] = data["nextPageToken"]
     return out

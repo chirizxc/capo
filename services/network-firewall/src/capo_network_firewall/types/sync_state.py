@@ -40,7 +40,7 @@ def serialize_aws_json_1_0(value: SyncState) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SyncState:
     out: SyncState = {}  # type: ignore[typeddict-item]
-    if "Attachment" in data:
+    if data.get("Attachment") is not None:
         import capo_network_firewall.types.attachment
 
         out["attachment"] = (
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_0(data: dict) -> SyncState:
                 data["Attachment"]
             )
         )
-    if "Config" in data:
+    if data.get("Config") is not None:
         import capo_network_firewall.types.sync_state_config
 
         out["config"] = (

@@ -33,10 +33,10 @@ def serialize_json(value: S3Config) -> dict:
 
 def deserialize_json(data: dict) -> S3Config:
     out: S3Config = {}  # type: ignore[typeddict-item]
-    if "BucketName" in data:
+    if data.get("BucketName") is not None:
         out["bucket_name"] = data["BucketName"]
-    if "BucketPrefix" in data:
+    if data.get("BucketPrefix") is not None:
         out["bucket_prefix"] = data["BucketPrefix"]
-    if "LogDeliveryStatus" in data:
+    if data.get("LogDeliveryStatus") is not None:
         out["log_delivery_status"] = data["LogDeliveryStatus"]
     return out

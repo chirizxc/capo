@@ -39,12 +39,12 @@ def serialize_aws_json_1_1(value: DescribeFileSystemAliasesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeFileSystemAliasesRequest:
     out: DescribeFileSystemAliasesRequest = {}  # type: ignore[typeddict-item]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "FileSystemId" in data:
+    if data.get("FileSystemId") is not None:
         out["file_system_id"] = data["FileSystemId"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

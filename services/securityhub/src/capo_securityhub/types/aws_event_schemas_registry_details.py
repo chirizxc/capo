@@ -31,10 +31,10 @@ def serialize_json(value: AwsEventSchemasRegistryDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEventSchemasRegistryDetails:
     out: AwsEventSchemasRegistryDetails = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "RegistryArn" in data:
+    if data.get("RegistryArn") is not None:
         out["registry_arn"] = data["RegistryArn"]
-    if "RegistryName" in data:
+    if data.get("RegistryName") is not None:
         out["registry_name"] = data["RegistryName"]
     return out

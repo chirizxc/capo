@@ -37,15 +37,15 @@ def serialize_json(value: GetDataSetImportTaskResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetDataSetImportTaskResponse:
     out: GetDataSetImportTaskResponse = {}  # type: ignore[typeddict-item]
-    if "taskId" in data:
+    if data.get("taskId") is not None:
         out["task_id"] = data["taskId"]
     else:
         raise DeserializationError("GetDataSetImportTaskResponse.task_id required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("GetDataSetImportTaskResponse.status required")
-    if "summary" in data:
+    if data.get("summary") is not None:
         import capo_m2.types.data_set_import_summary
 
         out["summary"] = capo_m2.types.data_set_import_summary.deserialize_json(

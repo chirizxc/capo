@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> HostedZoneAssociations:
 
     out: HostedZoneAssociations = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_route53globalresolver.types.hosted_zone_association_summary.deserialize_json(
                 item

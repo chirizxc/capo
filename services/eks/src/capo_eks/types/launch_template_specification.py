@@ -31,10 +31,10 @@ def serialize_json(value: LaunchTemplateSpecification) -> dict:
 
 def deserialize_json(data: dict) -> LaunchTemplateSpecification:
     out: LaunchTemplateSpecification = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     return out

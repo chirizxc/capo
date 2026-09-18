@@ -44,7 +44,7 @@ def serialize_json(value: TableFieldURLConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> TableFieldURLConfiguration:
     out: TableFieldURLConfiguration = {}  # type: ignore[typeddict-item]
-    if "LinkConfiguration" in data:
+    if data.get("LinkConfiguration") is not None:
         import capo_quicksight.types.table_field_link_configuration
 
         out["link_configuration"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> TableFieldURLConfiguration:
                 data["LinkConfiguration"]
             )
         )
-    if "ImageConfiguration" in data:
+    if data.get("ImageConfiguration") is not None:
         import capo_quicksight.types.table_field_image_configuration
 
         out["image_configuration"] = (

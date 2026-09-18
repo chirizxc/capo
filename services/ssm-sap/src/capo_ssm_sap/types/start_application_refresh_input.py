@@ -24,7 +24,7 @@ def serialize_json(value: StartApplicationRefreshInput) -> dict:
 
 def deserialize_json(data: dict) -> StartApplicationRefreshInput:
     out: StartApplicationRefreshInput = {}  # type: ignore[typeddict-item]
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
     else:
         raise DeserializationError(

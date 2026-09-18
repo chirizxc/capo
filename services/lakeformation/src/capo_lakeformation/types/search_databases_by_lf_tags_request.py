@@ -45,13 +45,13 @@ def serialize_json(value: SearchDatabasesByLFTagsRequest) -> dict:
 
 def deserialize_json(data: dict) -> SearchDatabasesByLFTagsRequest:
     out: SearchDatabasesByLFTagsRequest = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "Expression" in data:
+    if data.get("Expression") is not None:
         import capo_lakeformation.types.expression
 
         out["expression"] = capo_lakeformation.types.expression.deserialize_json(

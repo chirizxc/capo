@@ -38,7 +38,7 @@ def serialize_json(value: StepRequiredCapabilities) -> dict:
 
 def deserialize_json(data: dict) -> StepRequiredCapabilities:
     out: StepRequiredCapabilities = {}  # type: ignore[typeddict-item]
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_deadline.types.step_attribute_capabilities
 
         out["attributes"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> StepRequiredCapabilities:
         )
     else:
         raise DeserializationError("StepRequiredCapabilities.attributes required")
-    if "amounts" in data:
+    if data.get("amounts") is not None:
         import capo_deadline.types.step_amount_capabilities
 
         out["amounts"] = capo_deadline.types.step_amount_capabilities.deserialize_json(

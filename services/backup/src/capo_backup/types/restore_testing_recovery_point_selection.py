@@ -65,7 +65,7 @@ def serialize_json(value: RestoreTestingRecoveryPointSelection) -> dict:
 
 def deserialize_json(data: dict) -> RestoreTestingRecoveryPointSelection:
     out: RestoreTestingRecoveryPointSelection = {}  # type: ignore[typeddict-item]
-    if "Algorithm" in data:
+    if data.get("Algorithm") is not None:
         import capo_backup.types.restore_testing_recovery_point_selection_algorithm
 
         out["algorithm"] = (
@@ -73,19 +73,19 @@ def deserialize_json(data: dict) -> RestoreTestingRecoveryPointSelection:
                 data["Algorithm"]
             )
         )
-    if "ExcludeVaults" in data:
+    if data.get("ExcludeVaults") is not None:
         import capo_backup.types.string_list
 
         out["exclude_vaults"] = capo_backup.types.string_list.deserialize_json(
             data["ExcludeVaults"]
         )
-    if "IncludeVaults" in data:
+    if data.get("IncludeVaults") is not None:
         import capo_backup.types.string_list
 
         out["include_vaults"] = capo_backup.types.string_list.deserialize_json(
             data["IncludeVaults"]
         )
-    if "RecoveryPointTypes" in data:
+    if data.get("RecoveryPointTypes") is not None:
         import capo_backup.types.restore_testing_recovery_point_type_list
 
         out["recovery_point_types"] = (
@@ -93,7 +93,7 @@ def deserialize_json(data: dict) -> RestoreTestingRecoveryPointSelection:
                 data["RecoveryPointTypes"]
             )
         )
-    if "SelectionWindowDays" in data:
+    if data.get("SelectionWindowDays") is not None:
         out["selection_window_days"] = data["SelectionWindowDays"]
     else:
         out["selection_window_days"] = 0

@@ -32,9 +32,9 @@ def serialize_json(value: DeleteBotResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteBotResponse:
     out: DeleteBotResponse = {}  # type: ignore[typeddict-item]
-    if "botId" in data:
+    if data.get("botId") is not None:
         out["bot_id"] = data["botId"]
-    if "botStatus" in data:
+    if data.get("botStatus") is not None:
         import capo_lex_models_v2.types.bot_status
 
         out["bot_status"] = capo_lex_models_v2.types.bot_status.deserialize_json(

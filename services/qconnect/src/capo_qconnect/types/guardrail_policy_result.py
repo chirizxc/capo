@@ -33,14 +33,14 @@ def serialize_json(value: GuardrailPolicyResult) -> dict:
 
 def deserialize_json(data: dict) -> GuardrailPolicyResult:
     out: GuardrailPolicyResult = {}  # type: ignore[typeddict-item]
-    if "policyType" in data:
+    if data.get("policyType") is not None:
         out["policy_type"] = data["policyType"]
     else:
         raise DeserializationError("GuardrailPolicyResult.policy_type required")
-    if "action" in data:
+    if data.get("action") is not None:
         out["action"] = data["action"]
     else:
         raise DeserializationError("GuardrailPolicyResult.action required")
-    if "details" in data:
+    if data.get("details") is not None:
         out["details"] = data["details"]
     return out

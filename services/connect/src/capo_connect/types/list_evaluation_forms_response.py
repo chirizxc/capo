@@ -37,7 +37,7 @@ def serialize_json(value: ListEvaluationFormsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListEvaluationFormsResponse:
     out: ListEvaluationFormsResponse = {}  # type: ignore[typeddict-item]
-    if "EvaluationFormSummaryList" in data:
+    if data.get("EvaluationFormSummaryList") is not None:
         import capo_connect.types.evaluation_form_summary_list
 
         out["evaluation_form_summary_list"] = (
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> ListEvaluationFormsResponse:
         raise DeserializationError(
             "ListEvaluationFormsResponse.evaluation_form_summary_list required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

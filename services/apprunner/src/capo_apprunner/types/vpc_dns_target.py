@@ -35,10 +35,10 @@ def serialize_aws_json_1_0(value: VpcDNSTarget) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> VpcDNSTarget:
     out: VpcDNSTarget = {}  # type: ignore[typeddict-item]
-    if "VpcIngressConnectionArn" in data:
+    if data.get("VpcIngressConnectionArn") is not None:
         out["vpc_ingress_connection_arn"] = data["VpcIngressConnectionArn"]
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
     return out

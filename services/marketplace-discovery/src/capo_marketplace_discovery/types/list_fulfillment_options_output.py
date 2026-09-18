@@ -35,7 +35,7 @@ def serialize_json(value: ListFulfillmentOptionsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListFulfillmentOptionsOutput:
     out: ListFulfillmentOptionsOutput = {}  # type: ignore[typeddict-item]
-    if "fulfillmentOptions" in data:
+    if data.get("fulfillmentOptions") is not None:
         import capo_marketplace_discovery.types.fulfillment_options_list
 
         out["fulfillment_options"] = (
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> ListFulfillmentOptionsOutput:
         raise DeserializationError(
             "ListFulfillmentOptionsOutput.fulfillment_options required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

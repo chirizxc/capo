@@ -42,7 +42,7 @@ def serialize_aws_json_1_0(value: GetResourceRequestStatusOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetResourceRequestStatusOutput:
     out: GetResourceRequestStatusOutput = {}  # type: ignore[typeddict-item]
-    if "ProgressEvent" in data:
+    if data.get("ProgressEvent") is not None:
         import capo_cloudcontrol.types.progress_event
 
         out["progress_event"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetResourceRequestStatusOutput:
                 data["ProgressEvent"]
             )
         )
-    if "HooksProgressEvent" in data:
+    if data.get("HooksProgressEvent") is not None:
         import capo_cloudcontrol.types.hooks_progress_event
 
         out["hooks_progress_event"] = (

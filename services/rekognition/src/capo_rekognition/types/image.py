@@ -36,13 +36,13 @@ def serialize_aws_json_1_1(value: Image) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Image:
     out: Image = {}  # type: ignore[typeddict-item]
-    if "Bytes" in data:
+    if data.get("Bytes") is not None:
         import capo_rekognition.types.image_blob
 
         out["bytes"] = capo_rekognition.types.image_blob.deserialize_aws_json_1_1(
             data["Bytes"]
         )
-    if "S3Object" in data:
+    if data.get("S3Object") is not None:
         import capo_rekognition.types.s3_object
 
         out["s3_object"] = capo_rekognition.types.s3_object.deserialize_aws_json_1_1(

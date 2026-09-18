@@ -36,7 +36,7 @@ def serialize_json(value: ListLakeFormationOptInsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListLakeFormationOptInsResponse:
     out: ListLakeFormationOptInsResponse = {}  # type: ignore[typeddict-item]
-    if "LakeFormationOptInsInfoList" in data:
+    if data.get("LakeFormationOptInsInfoList") is not None:
         import capo_lakeformation.types.lake_formation_opt_ins_info_list
 
         out["lake_formation_opt_ins_info_list"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListLakeFormationOptInsResponse:
                 data["LakeFormationOptInsInfoList"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

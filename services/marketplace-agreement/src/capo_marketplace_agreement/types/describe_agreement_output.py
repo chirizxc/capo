@@ -122,9 +122,9 @@ def serialize_aws_json_1_0(value: DescribeAgreementOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeAgreementOutput:
     out: DescribeAgreementOutput = {}  # type: ignore[typeddict-item]
-    if "agreementId" in data:
+    if data.get("agreementId") is not None:
         out["agreement_id"] = data["agreementId"]
-    if "acceptor" in data:
+    if data.get("acceptor") is not None:
         import capo_marketplace_agreement.types.acceptor
 
         out["acceptor"] = (
@@ -132,7 +132,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeAgreementOutput:
                 data["acceptor"]
             )
         )
-    if "proposer" in data:
+    if data.get("proposer") is not None:
         import capo_marketplace_agreement.types.proposer
 
         out["proposer"] = (
@@ -140,7 +140,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeAgreementOutput:
                 data["proposer"]
             )
         )
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_marketplace_agreement.types.timestamp
 
         out["start_time"] = (
@@ -148,7 +148,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeAgreementOutput:
                 data["startTime"]
             )
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_marketplace_agreement.types.timestamp
 
         out["end_time"] = (
@@ -156,7 +156,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeAgreementOutput:
                 data["endTime"]
             )
         )
-    if "acceptanceTime" in data:
+    if data.get("acceptanceTime") is not None:
         import capo_marketplace_agreement.types.timestamp
 
         out["acceptance_time"] = (
@@ -164,9 +164,9 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeAgreementOutput:
                 data["acceptanceTime"]
             )
         )
-    if "agreementType" in data:
+    if data.get("agreementType") is not None:
         out["agreement_type"] = data["agreementType"]
-    if "estimatedCharges" in data:
+    if data.get("estimatedCharges") is not None:
         import capo_marketplace_agreement.types.estimated_charges
 
         out["estimated_charges"] = (
@@ -174,7 +174,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeAgreementOutput:
                 data["estimatedCharges"]
             )
         )
-    if "proposalSummary" in data:
+    if data.get("proposalSummary") is not None:
         import capo_marketplace_agreement.types.proposal_summary
 
         out["proposal_summary"] = (
@@ -182,7 +182,7 @@ def deserialize_aws_json_1_0(data: dict) -> DescribeAgreementOutput:
                 data["proposalSummary"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_marketplace_agreement.types.agreement_status
 
         out["status"] = (

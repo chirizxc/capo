@@ -24,7 +24,7 @@ def serialize_json(value: PipeTargetKinesisStreamParameters) -> dict:
 
 def deserialize_json(data: dict) -> PipeTargetKinesisStreamParameters:
     out: PipeTargetKinesisStreamParameters = {}  # type: ignore[typeddict-item]
-    if "PartitionKey" in data:
+    if data.get("PartitionKey") is not None:
         out["partition_key"] = data["PartitionKey"]
     else:
         raise DeserializationError(

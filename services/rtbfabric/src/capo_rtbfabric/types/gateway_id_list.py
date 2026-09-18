@@ -14,4 +14,4 @@ def serialize_json(value: GatewayIdList) -> list:
 
 
 def deserialize_json(data: list) -> GatewayIdList:
-    return list(data)
+    return [item for item in data if item is not None]

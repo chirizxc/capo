@@ -108,7 +108,16 @@ def serialize_json(value: DescribeBotLocaleResponse) -> dict:
     if "description" in value:
         out["description"] = value["description"]
     if "nlu_intent_confidence_threshold" in value:
-        out["nluIntentConfidenceThreshold"] = value["nlu_intent_confidence_threshold"]
+        out["nluIntentConfidenceThreshold"] = (
+            "NaN"
+            if value["nlu_intent_confidence_threshold"]
+            != value["nlu_intent_confidence_threshold"]
+            else "Infinity"
+            if value["nlu_intent_confidence_threshold"] == float("inf")
+            else "-Infinity"
+            if value["nlu_intent_confidence_threshold"] == float("-inf")
+            else value["nlu_intent_confidence_threshold"]
+        )
     if "voice_settings" in value:
         import capo_lex_models_v2.types.voice_settings
 
@@ -214,19 +223,21 @@ def serialize_json(value: DescribeBotLocaleResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeBotLocaleResponse:
     out: DescribeBotLocaleResponse = {}  # type: ignore[typeddict-item]
-    if "botId" in data:
+    if data.get("botId") is not None:
         out["bot_id"] = data["botId"]
-    if "botVersion" in data:
+    if data.get("botVersion") is not None:
         out["bot_version"] = data["botVersion"]
-    if "localeId" in data:
+    if data.get("localeId") is not None:
         out["locale_id"] = data["localeId"]
-    if "localeName" in data:
+    if data.get("localeName") is not None:
         out["locale_name"] = data["localeName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "nluIntentConfidenceThreshold" in data:
-        out["nlu_intent_confidence_threshold"] = data["nluIntentConfidenceThreshold"]
-    if "voiceSettings" in data:
+    if data.get("nluIntentConfidenceThreshold") is not None:
+        out["nlu_intent_confidence_threshold"] = float(
+            data["nluIntentConfidenceThreshold"]
+        )
+    if data.get("voiceSettings") is not None:
         import capo_lex_models_v2.types.voice_settings
 
         out["voice_settings"] = (
@@ -234,7 +245,7 @@ def deserialize_json(data: dict) -> DescribeBotLocaleResponse:
                 data["voiceSettings"]
             )
         )
-    if "unifiedSpeechSettings" in data:
+    if data.get("unifiedSpeechSettings") is not None:
         import capo_lex_models_v2.types.unified_speech_settings
 
         out["unified_speech_settings"] = (
@@ -242,7 +253,7 @@ def deserialize_json(data: dict) -> DescribeBotLocaleResponse:
                 data["unifiedSpeechSettings"]
             )
         )
-    if "audioFillerSettings" in data:
+    if data.get("audioFillerSettings") is not None:
         import capo_lex_models_v2.types.audio_filler_settings
 
         out["audio_filler_settings"] = (
@@ -250,7 +261,7 @@ def deserialize_json(data: dict) -> DescribeBotLocaleResponse:
                 data["audioFillerSettings"]
             )
         )
-    if "speechRecognitionSettings" in data:
+    if data.get("speechRecognitionSettings") is not None:
         import capo_lex_models_v2.types.speech_recognition_settings
 
         out["speech_recognition_settings"] = (
@@ -258,11 +269,11 @@ def deserialize_json(data: dict) -> DescribeBotLocaleResponse:
                 data["speechRecognitionSettings"]
             )
         )
-    if "intentsCount" in data:
+    if data.get("intentsCount") is not None:
         out["intents_count"] = data["intentsCount"]
-    if "slotTypesCount" in data:
+    if data.get("slotTypesCount") is not None:
         out["slot_types_count"] = data["slotTypesCount"]
-    if "botLocaleStatus" in data:
+    if data.get("botLocaleStatus") is not None:
         import capo_lex_models_v2.types.bot_locale_status
 
         out["bot_locale_status"] = (
@@ -270,7 +281,7 @@ def deserialize_json(data: dict) -> DescribeBotLocaleResponse:
                 data["botLocaleStatus"]
             )
         )
-    if "failureReasons" in data:
+    if data.get("failureReasons") is not None:
         import capo_lex_models_v2.types.failure_reasons
 
         out["failure_reasons"] = (
@@ -278,13 +289,13 @@ def deserialize_json(data: dict) -> DescribeBotLocaleResponse:
                 data["failureReasons"]
             )
         )
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["creation_date_time"] = capo_lex_models_v2.types.timestamp.deserialize_json(
             data["creationDateTime"]
         )
-    if "lastUpdatedDateTime" in data:
+    if data.get("lastUpdatedDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["last_updated_date_time"] = (
@@ -292,7 +303,7 @@ def deserialize_json(data: dict) -> DescribeBotLocaleResponse:
                 data["lastUpdatedDateTime"]
             )
         )
-    if "lastBuildSubmittedDateTime" in data:
+    if data.get("lastBuildSubmittedDateTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["last_build_submitted_date_time"] = (
@@ -300,7 +311,7 @@ def deserialize_json(data: dict) -> DescribeBotLocaleResponse:
                 data["lastBuildSubmittedDateTime"]
             )
         )
-    if "botLocaleHistoryEvents" in data:
+    if data.get("botLocaleHistoryEvents") is not None:
         import capo_lex_models_v2.types.bot_locale_history_events_list
 
         out["bot_locale_history_events"] = (
@@ -308,7 +319,7 @@ def deserialize_json(data: dict) -> DescribeBotLocaleResponse:
                 data["botLocaleHistoryEvents"]
             )
         )
-    if "recommendedActions" in data:
+    if data.get("recommendedActions") is not None:
         import capo_lex_models_v2.types.recommended_actions
 
         out["recommended_actions"] = (
@@ -316,7 +327,7 @@ def deserialize_json(data: dict) -> DescribeBotLocaleResponse:
                 data["recommendedActions"]
             )
         )
-    if "generativeAISettings" in data:
+    if data.get("generativeAISettings") is not None:
         import capo_lex_models_v2.types.generative_ai_settings
 
         out["generative_ai_settings"] = (
@@ -324,7 +335,7 @@ def deserialize_json(data: dict) -> DescribeBotLocaleResponse:
                 data["generativeAISettings"]
             )
         )
-    if "speechDetectionSensitivity" in data:
+    if data.get("speechDetectionSensitivity") is not None:
         import capo_lex_models_v2.types.speech_detection_sensitivity
 
         out["speech_detection_sensitivity"] = (

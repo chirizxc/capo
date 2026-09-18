@@ -41,13 +41,13 @@ def serialize_aws_json_1_1(value: PutRecordBatchOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutRecordBatchOutput:
     out: PutRecordBatchOutput = {}  # type: ignore[typeddict-item]
-    if "FailedPutCount" in data:
+    if data.get("FailedPutCount") is not None:
         out["failed_put_count"] = data["FailedPutCount"]
     else:
         raise DeserializationError("PutRecordBatchOutput.failed_put_count required")
-    if "Encrypted" in data:
+    if data.get("Encrypted") is not None:
         out["encrypted"] = data["Encrypted"]
-    if "RequestResponses" in data:
+    if data.get("RequestResponses") is not None:
         import capo_firehose.types.put_record_batch_response_entry_list
 
         out["request_responses"] = (

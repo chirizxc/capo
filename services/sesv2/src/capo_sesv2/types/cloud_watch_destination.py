@@ -30,7 +30,7 @@ def serialize_json(value: CloudWatchDestination) -> dict:
 
 def deserialize_json(data: dict) -> CloudWatchDestination:
     out: CloudWatchDestination = {}  # type: ignore[typeddict-item]
-    if "DimensionConfigurations" in data:
+    if data.get("DimensionConfigurations") is not None:
         import capo_sesv2.types.cloud_watch_dimension_configurations
 
         out["dimension_configurations"] = (

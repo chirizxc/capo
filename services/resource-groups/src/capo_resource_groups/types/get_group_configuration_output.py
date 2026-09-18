@@ -31,7 +31,7 @@ def serialize_json(value: GetGroupConfigurationOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetGroupConfigurationOutput:
     out: GetGroupConfigurationOutput = {}  # type: ignore[typeddict-item]
-    if "GroupConfiguration" in data:
+    if data.get("GroupConfiguration") is not None:
         import capo_resource_groups.types.group_configuration
 
         out["group_configuration"] = (

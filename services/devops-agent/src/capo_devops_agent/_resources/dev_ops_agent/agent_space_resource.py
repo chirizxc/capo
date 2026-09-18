@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_devops_agent._auth._signers
@@ -106,16 +107,18 @@ class AgentSpaceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_devops_agent.types.create_agent_space_input.CreateAgentSpaceInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_devops_agent.types.create_agent_space_input.CreateAgentSpaceInput = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if locale is not None:
             input_["locale"] = locale
         if kms_key_arn is not None:
             input_["kms_key_arn"] = kms_key_arn
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -124,6 +127,7 @@ class AgentSpaceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -165,14 +169,16 @@ class AgentSpaceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_devops_agent.types.get_agent_space_input.GetAgentSpaceInput = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
+        input_: capo_devops_agent.types.get_agent_space_input.GetAgentSpaceInput = {
+            "agent_space_id": agent_space_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -222,8 +228,9 @@ class AgentSpaceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_devops_agent.types.update_agent_space_input.UpdateAgentSpaceInput = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
+        input_: capo_devops_agent.types.update_agent_space_input.UpdateAgentSpaceInput = {
+            "agent_space_id": agent_space_id
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -236,6 +243,7 @@ class AgentSpaceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -277,14 +285,16 @@ class AgentSpaceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_devops_agent.types.delete_agent_space_input.DeleteAgentSpaceInput = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
+        input_: capo_devops_agent.types.delete_agent_space_input.DeleteAgentSpaceInput = {
+            "agent_space_id": agent_space_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disable_operator_app(
@@ -327,8 +337,9 @@ class AgentSpaceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_devops_agent.types.disable_operator_app_input.DisableOperatorAppInput = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
+        input_: capo_devops_agent.types.disable_operator_app_input.DisableOperatorAppInput = {
+            "agent_space_id": agent_space_id
+        }
         if auth_flow is not None:
             input_["auth_flow"] = auth_flow
 
@@ -337,6 +348,7 @@ class AgentSpaceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def enable_operator_app(
@@ -397,10 +409,11 @@ class AgentSpaceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_devops_agent.types.enable_operator_app_input.EnableOperatorAppInput = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
-        input_["auth_flow"] = auth_flow
-        input_["operator_app_role_arn"] = operator_app_role_arn
+        input_: capo_devops_agent.types.enable_operator_app_input.EnableOperatorAppInput = {
+            "agent_space_id": agent_space_id,
+            "auth_flow": auth_flow,
+            "operator_app_role_arn": operator_app_role_arn,
+        }
         if idc_instance_arn is not None:
             input_["idc_instance_arn"] = idc_instance_arn
         if issuer_url is not None:
@@ -417,6 +430,7 @@ class AgentSpaceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_operator_app(
@@ -458,14 +472,16 @@ class AgentSpaceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_devops_agent.types.get_operator_app_input.GetOperatorAppInput = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
+        input_: capo_devops_agent.types.get_operator_app_input.GetOperatorAppInput = {
+            "agent_space_id": agent_space_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_operator_app_idp_config(
@@ -511,8 +527,9 @@ class AgentSpaceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_devops_agent.types.update_operator_app_idp_config_input.UpdateOperatorAppIdpConfigInput = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
+        input_: capo_devops_agent.types.update_operator_app_idp_config_input.UpdateOperatorAppIdpConfigInput = {
+            "agent_space_id": agent_space_id
+        }
         if idp_client_secret is not None:
             input_["idp_client_secret"] = idp_client_secret
 
@@ -521,6 +538,7 @@ class AgentSpaceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_agent_spaces(
@@ -564,7 +582,7 @@ class AgentSpaceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_devops_agent.types.list_agent_spaces_input.ListAgentSpacesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_devops_agent.types.list_agent_spaces_input.ListAgentSpacesInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -575,6 +593,7 @@ class AgentSpaceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -632,16 +651,18 @@ class AsyncAgentSpaceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_devops_agent.types.create_agent_space_input.CreateAgentSpaceInput = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_devops_agent.types.create_agent_space_input.CreateAgentSpaceInput = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
         if locale is not None:
             input_["locale"] = locale
         if kms_key_arn is not None:
             input_["kms_key_arn"] = kms_key_arn
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -650,6 +671,7 @@ class AsyncAgentSpaceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -692,14 +714,16 @@ class AsyncAgentSpaceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_devops_agent.types.get_agent_space_input.GetAgentSpaceInput = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
+        input_: capo_devops_agent.types.get_agent_space_input.GetAgentSpaceInput = {
+            "agent_space_id": agent_space_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -750,8 +774,9 @@ class AsyncAgentSpaceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_devops_agent.types.update_agent_space_input.UpdateAgentSpaceInput = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
+        input_: capo_devops_agent.types.update_agent_space_input.UpdateAgentSpaceInput = {
+            "agent_space_id": agent_space_id
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -764,6 +789,7 @@ class AsyncAgentSpaceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -806,14 +832,16 @@ class AsyncAgentSpaceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_devops_agent.types.delete_agent_space_input.DeleteAgentSpaceInput = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
+        input_: capo_devops_agent.types.delete_agent_space_input.DeleteAgentSpaceInput = {
+            "agent_space_id": agent_space_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disable_operator_app(
@@ -857,8 +885,9 @@ class AsyncAgentSpaceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_devops_agent.types.disable_operator_app_input.DisableOperatorAppInput = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
+        input_: capo_devops_agent.types.disable_operator_app_input.DisableOperatorAppInput = {
+            "agent_space_id": agent_space_id
+        }
         if auth_flow is not None:
             input_["auth_flow"] = auth_flow
 
@@ -867,6 +896,7 @@ class AsyncAgentSpaceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def enable_operator_app(
@@ -928,10 +958,11 @@ class AsyncAgentSpaceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_devops_agent.types.enable_operator_app_input.EnableOperatorAppInput = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
-        input_["auth_flow"] = auth_flow
-        input_["operator_app_role_arn"] = operator_app_role_arn
+        input_: capo_devops_agent.types.enable_operator_app_input.EnableOperatorAppInput = {
+            "agent_space_id": agent_space_id,
+            "auth_flow": auth_flow,
+            "operator_app_role_arn": operator_app_role_arn,
+        }
         if idc_instance_arn is not None:
             input_["idc_instance_arn"] = idc_instance_arn
         if issuer_url is not None:
@@ -948,6 +979,7 @@ class AsyncAgentSpaceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_operator_app(
@@ -990,14 +1022,16 @@ class AsyncAgentSpaceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_devops_agent.types.get_operator_app_input.GetOperatorAppInput = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
+        input_: capo_devops_agent.types.get_operator_app_input.GetOperatorAppInput = {
+            "agent_space_id": agent_space_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_operator_app_idp_config(
@@ -1044,8 +1078,9 @@ class AsyncAgentSpaceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_devops_agent.types.update_operator_app_idp_config_input.UpdateOperatorAppIdpConfigInput = {}  # type: ignore[typeddict-item]
-        input_["agent_space_id"] = agent_space_id
+        input_: capo_devops_agent.types.update_operator_app_idp_config_input.UpdateOperatorAppIdpConfigInput = {
+            "agent_space_id": agent_space_id
+        }
         if idp_client_secret is not None:
             input_["idp_client_secret"] = idp_client_secret
 
@@ -1054,6 +1089,7 @@ class AsyncAgentSpaceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_agent_spaces(
@@ -1098,7 +1134,7 @@ class AsyncAgentSpaceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_devops_agent.types.list_agent_spaces_input.ListAgentSpacesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_devops_agent.types.list_agent_spaces_input.ListAgentSpacesInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1109,4 +1145,5 @@ class AsyncAgentSpaceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

@@ -89,9 +89,9 @@ def serialize_json(value: ProfilingGroupDescription) -> dict:
 
 def deserialize_json(data: dict) -> ProfilingGroupDescription:
     out: ProfilingGroupDescription = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "agentOrchestrationConfig" in data:
+    if data.get("agentOrchestrationConfig") is not None:
         import capo_codeguruprofiler.types.agent_orchestration_config
 
         out["agent_orchestration_config"] = (
@@ -99,21 +99,21 @@ def deserialize_json(data: dict) -> ProfilingGroupDescription:
                 data["agentOrchestrationConfig"]
             )
         )
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_codeguruprofiler.types.timestamp
 
         out["created_at"] = capo_codeguruprofiler.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_codeguruprofiler.types.timestamp
 
         out["updated_at"] = capo_codeguruprofiler.types.timestamp.deserialize_json(
             data["updatedAt"]
         )
-    if "profilingStatus" in data:
+    if data.get("profilingStatus") is not None:
         import capo_codeguruprofiler.types.profiling_status
 
         out["profiling_status"] = (
@@ -121,9 +121,9 @@ def deserialize_json(data: dict) -> ProfilingGroupDescription:
                 data["profilingStatus"]
             )
         )
-    if "computePlatform" in data:
+    if data.get("computePlatform") is not None:
         out["compute_platform"] = data["computePlatform"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_codeguruprofiler.types.tags_map
 
         out["tags"] = capo_codeguruprofiler.types.tags_map.deserialize_json(

@@ -42,7 +42,7 @@ def serialize_json(value: UpdateProxySessionRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateProxySessionRequest:
     out: UpdateProxySessionRequest = {}  # type: ignore[typeddict-item]
-    if "Capabilities" in data:
+    if data.get("Capabilities") is not None:
         import capo_chime_sdk_voice.types.capability_list
 
         out["capabilities"] = (
@@ -52,6 +52,6 @@ def deserialize_json(data: dict) -> UpdateProxySessionRequest:
         )
     else:
         raise DeserializationError("UpdateProxySessionRequest.capabilities required")
-    if "ExpiryMinutes" in data:
+    if data.get("ExpiryMinutes") is not None:
         out["expiry_minutes"] = data["ExpiryMinutes"]
     return out

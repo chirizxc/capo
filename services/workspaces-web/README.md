@@ -13,9 +13,9 @@ from capo_workspaces_web import AsyncWorkSpacesWebClient
 
 
 async def main():
-    async with AsyncWorkSpacesWebClient() as s3:
+    async with AsyncWorkSpacesWebClient() as work_spaces_web:
         # Example: call the expire_session operation
-        response = await s3.expire_session()
+        response = await work_spaces_web.expire_session()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_workspaces_web import AsyncWorkSpacesWebClient
 
 
 async def main():
-    async with AsyncWorkSpacesWebClient() as s3:
+    async with AsyncWorkSpacesWebClient() as work_spaces_web:
         # Example: paginate over list_sessions
-        async for item in s3.iter_list_sessions():
+        async for item in work_spaces_web.iter_list_sessions():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_workspaces_web.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncWorkSpacesWebClient() as s3:
+    async with AsyncWorkSpacesWebClient() as work_spaces_web:
         try:
-            await s3.expire_session()
+            await work_spaces_web.expire_session()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_workspaces_web import AsyncWorkSpacesWebClient
 
 
 async def main():
-    async with AsyncWorkSpacesWebClient() as s3:
+    async with AsyncWorkSpacesWebClient() as work_spaces_web:
         # Default: 3 attempts for every operation
-        response = await s3.expire_session()
+        response = await work_spaces_web.expire_session()
 
         # Override per operation
-        response = await s3.expire_session(config_overrides={"retry_max_attempts": 5})
+        response = await work_spaces_web.expire_session(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.expire_session(config_overrides={"retry_max_attempts": 1})
+        response = await work_spaces_web.expire_session(config_overrides={"retry_max_attempts": 1})
 ```

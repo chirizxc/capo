@@ -104,7 +104,7 @@ def serialize_aws_json_1_1(value: DescribeDimensionKeysRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeDimensionKeysRequest:
     out: DescribeDimensionKeysRequest = {}  # type: ignore[typeddict-item]
-    if "ServiceType" in data:
+    if data.get("ServiceType") is not None:
         import capo_pi.types.service_type
 
         out["service_type"] = capo_pi.types.service_type.deserialize_aws_json_1_1(
@@ -112,11 +112,11 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeDimensionKeysRequest:
         )
     else:
         raise DeserializationError("DescribeDimensionKeysRequest.service_type required")
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
     else:
         raise DeserializationError("DescribeDimensionKeysRequest.identifier required")
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_pi.types.iso_timestamp
 
         out["start_time"] = capo_pi.types.iso_timestamp.deserialize_aws_json_1_1(
@@ -124,7 +124,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeDimensionKeysRequest:
         )
     else:
         raise DeserializationError("DescribeDimensionKeysRequest.start_time required")
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_pi.types.iso_timestamp
 
         out["end_time"] = capo_pi.types.iso_timestamp.deserialize_aws_json_1_1(
@@ -132,13 +132,13 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeDimensionKeysRequest:
         )
     else:
         raise DeserializationError("DescribeDimensionKeysRequest.end_time required")
-    if "Metric" in data:
+    if data.get("Metric") is not None:
         out["metric"] = data["Metric"]
     else:
         raise DeserializationError("DescribeDimensionKeysRequest.metric required")
-    if "PeriodInSeconds" in data:
+    if data.get("PeriodInSeconds") is not None:
         out["period_in_seconds"] = data["PeriodInSeconds"]
-    if "GroupBy" in data:
+    if data.get("GroupBy") is not None:
         import capo_pi.types.dimension_group
 
         out["group_by"] = capo_pi.types.dimension_group.deserialize_aws_json_1_1(
@@ -146,7 +146,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeDimensionKeysRequest:
         )
     else:
         raise DeserializationError("DescribeDimensionKeysRequest.group_by required")
-    if "AdditionalMetrics" in data:
+    if data.get("AdditionalMetrics") is not None:
         import capo_pi.types.additional_metrics_list
 
         out["additional_metrics"] = (
@@ -154,20 +154,20 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeDimensionKeysRequest:
                 data["AdditionalMetrics"]
             )
         )
-    if "PartitionBy" in data:
+    if data.get("PartitionBy") is not None:
         import capo_pi.types.dimension_group
 
         out["partition_by"] = capo_pi.types.dimension_group.deserialize_aws_json_1_1(
             data["PartitionBy"]
         )
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_pi.types.metric_query_filter_map
 
         out["filter"] = capo_pi.types.metric_query_filter_map.deserialize_aws_json_1_1(
             data["Filter"]
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

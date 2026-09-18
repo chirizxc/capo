@@ -34,7 +34,7 @@ def serialize_aws_json_1_1(value: ListEventTrackersResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListEventTrackersResponse:
     out: ListEventTrackersResponse = {}  # type: ignore[typeddict-item]
-    if "eventTrackers" in data:
+    if data.get("eventTrackers") is not None:
         import capo_personalize.types.event_trackers
 
         out["event_trackers"] = (
@@ -42,6 +42,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListEventTrackersResponse:
                 data["eventTrackers"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

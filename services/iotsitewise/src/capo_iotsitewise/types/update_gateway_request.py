@@ -27,7 +27,7 @@ def serialize_json(value: UpdateGatewayRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateGatewayRequest:
     out: UpdateGatewayRequest = {}  # type: ignore[typeddict-item]
-    if "gatewayName" in data:
+    if data.get("gatewayName") is not None:
         out["gateway_name"] = data["gatewayName"]
     else:
         raise DeserializationError("UpdateGatewayRequest.gateway_name required")

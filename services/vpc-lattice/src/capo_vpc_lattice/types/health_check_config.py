@@ -82,25 +82,25 @@ def serialize_json(value: HealthCheckConfig) -> dict:
 
 def deserialize_json(data: dict) -> HealthCheckConfig:
     out: HealthCheckConfig = {}  # type: ignore[typeddict-item]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
-    if "protocol" in data:
+    if data.get("protocol") is not None:
         out["protocol"] = data["protocol"]
-    if "protocolVersion" in data:
+    if data.get("protocolVersion") is not None:
         out["protocol_version"] = data["protocolVersion"]
-    if "port" in data:
+    if data.get("port") is not None:
         out["port"] = data["port"]
-    if "path" in data:
+    if data.get("path") is not None:
         out["path"] = data["path"]
-    if "healthCheckIntervalSeconds" in data:
+    if data.get("healthCheckIntervalSeconds") is not None:
         out["health_check_interval_seconds"] = data["healthCheckIntervalSeconds"]
-    if "healthCheckTimeoutSeconds" in data:
+    if data.get("healthCheckTimeoutSeconds") is not None:
         out["health_check_timeout_seconds"] = data["healthCheckTimeoutSeconds"]
-    if "healthyThresholdCount" in data:
+    if data.get("healthyThresholdCount") is not None:
         out["healthy_threshold_count"] = data["healthyThresholdCount"]
-    if "unhealthyThresholdCount" in data:
+    if data.get("unhealthyThresholdCount") is not None:
         out["unhealthy_threshold_count"] = data["unhealthyThresholdCount"]
-    if "matcher" in data:
+    if data.get("matcher") is not None:
         import capo_vpc_lattice.types.matcher
 
         out["matcher"] = capo_vpc_lattice.types.matcher.deserialize_json(

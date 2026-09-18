@@ -79,13 +79,13 @@ def serialize_aws_json_1_1(value: NotebookExecutionSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NotebookExecutionSummary:
     out: NotebookExecutionSummary = {}  # type: ignore[typeddict-item]
-    if "NotebookExecutionId" in data:
+    if data.get("NotebookExecutionId") is not None:
         out["notebook_execution_id"] = data["NotebookExecutionId"]
-    if "EditorId" in data:
+    if data.get("EditorId") is not None:
         out["editor_id"] = data["EditorId"]
-    if "NotebookExecutionName" in data:
+    if data.get("NotebookExecutionName") is not None:
         out["notebook_execution_name"] = data["NotebookExecutionName"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_emr.types.notebook_execution_status
 
         out["status"] = (
@@ -93,17 +93,17 @@ def deserialize_aws_json_1_1(data: dict) -> NotebookExecutionSummary:
                 data["Status"]
             )
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_emr.types.date
 
         out["start_time"] = capo_emr.types.date.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_emr.types.date
 
         out["end_time"] = capo_emr.types.date.deserialize_aws_json_1_1(data["EndTime"])
-    if "NotebookS3Location" in data:
+    if data.get("NotebookS3Location") is not None:
         import capo_emr.types.notebook_s3_location_for_output
 
         out["notebook_s3_location"] = (
@@ -111,6 +111,6 @@ def deserialize_aws_json_1_1(data: dict) -> NotebookExecutionSummary:
                 data["NotebookS3Location"]
             )
         )
-    if "ExecutionEngineId" in data:
+    if data.get("ExecutionEngineId") is not None:
         out["execution_engine_id"] = data["ExecutionEngineId"]
     return out

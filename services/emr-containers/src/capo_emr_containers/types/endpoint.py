@@ -146,29 +146,29 @@ def serialize_json(value: Endpoint) -> dict:
 
 def deserialize_json(data: dict) -> Endpoint:
     out: Endpoint = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "virtualClusterId" in data:
+    if data.get("virtualClusterId") is not None:
         out["virtual_cluster_id"] = data["virtualClusterId"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_emr_containers.types.endpoint_state
 
         out["state"] = capo_emr_containers.types.endpoint_state.deserialize_json(
             data["state"]
         )
-    if "releaseLabel" in data:
+    if data.get("releaseLabel") is not None:
         out["release_label"] = data["releaseLabel"]
-    if "executionRoleArn" in data:
+    if data.get("executionRoleArn") is not None:
         out["execution_role_arn"] = data["executionRoleArn"]
-    if "certificateArn" in data:
+    if data.get("certificateArn") is not None:
         out["certificate_arn"] = data["certificateArn"]
-    if "certificateAuthority" in data:
+    if data.get("certificateAuthority") is not None:
         import capo_emr_containers.types.certificate
 
         out["certificate_authority"] = (
@@ -176,7 +176,7 @@ def deserialize_json(data: dict) -> Endpoint:
                 data["certificateAuthority"]
             )
         )
-    if "configurationOverrides" in data:
+    if data.get("configurationOverrides") is not None:
         import capo_emr_containers.types.configuration_overrides
 
         out["configuration_overrides"] = (
@@ -184,25 +184,25 @@ def deserialize_json(data: dict) -> Endpoint:
                 data["configurationOverrides"]
             )
         )
-    if "serverUrl" in data:
+    if data.get("serverUrl") is not None:
         out["server_url"] = data["serverUrl"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_emr_containers.types.date
 
         out["created_at"] = capo_emr_containers.types.date.deserialize_json(
             data["createdAt"]
         )
-    if "securityGroup" in data:
+    if data.get("securityGroup") is not None:
         out["security_group"] = data["securityGroup"]
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_emr_containers.types.subnet_ids
 
         out["subnet_ids"] = capo_emr_containers.types.subnet_ids.deserialize_json(
             data["subnetIds"]
         )
-    if "stateDetails" in data:
+    if data.get("stateDetails") is not None:
         out["state_details"] = data["stateDetails"]
-    if "failureReason" in data:
+    if data.get("failureReason") is not None:
         import capo_emr_containers.types.failure_reason
 
         out["failure_reason"] = (
@@ -210,7 +210,7 @@ def deserialize_json(data: dict) -> Endpoint:
                 data["failureReason"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_emr_containers.types.tag_map
 
         out["tags"] = capo_emr_containers.types.tag_map.deserialize_json(data["tags"])

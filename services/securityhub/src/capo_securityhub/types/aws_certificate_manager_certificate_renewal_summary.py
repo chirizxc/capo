@@ -48,7 +48,7 @@ def serialize_json(value: AwsCertificateManagerCertificateRenewalSummary) -> dic
 
 def deserialize_json(data: dict) -> AwsCertificateManagerCertificateRenewalSummary:
     out: AwsCertificateManagerCertificateRenewalSummary = {}  # type: ignore[typeddict-item]
-    if "DomainValidationOptions" in data:
+    if data.get("DomainValidationOptions") is not None:
         import capo_securityhub.types.aws_certificate_manager_certificate_domain_validation_options
 
         out["domain_validation_options"] = (
@@ -56,10 +56,10 @@ def deserialize_json(data: dict) -> AwsCertificateManagerCertificateRenewalSumma
                 data["DomainValidationOptions"]
             )
         )
-    if "RenewalStatus" in data:
+    if data.get("RenewalStatus") is not None:
         out["renewal_status"] = data["RenewalStatus"]
-    if "RenewalStatusReason" in data:
+    if data.get("RenewalStatusReason") is not None:
         out["renewal_status_reason"] = data["RenewalStatusReason"]
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         out["updated_at"] = data["UpdatedAt"]
     return out

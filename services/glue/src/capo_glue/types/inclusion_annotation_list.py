@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> InclusionAnnotationList:
 
     out: InclusionAnnotationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_glue.types.datapoint_inclusion_annotation.deserialize_aws_json_1_1(
                 item

@@ -27,7 +27,7 @@ def serialize_aws_json_1_0(value: ListTagsForResourceResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListTagsForResourceResponse:
     out: ListTagsForResourceResponse = {}  # type: ignore[typeddict-item]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_interconnect.types.tag_map
 
         out["tags"] = capo_interconnect.types.tag_map.deserialize_aws_json_1_0(

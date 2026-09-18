@@ -43,7 +43,7 @@ def serialize_json(value: EbsVolumeDetails) -> dict:
 
 def deserialize_json(data: dict) -> EbsVolumeDetails:
     out: EbsVolumeDetails = {}  # type: ignore[typeddict-item]
-    if "scannedVolumeDetails" in data:
+    if data.get("scannedVolumeDetails") is not None:
         import capo_guardduty.types.volume_details
 
         out["scanned_volume_details"] = (
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> EbsVolumeDetails:
                 data["scannedVolumeDetails"]
             )
         )
-    if "skippedVolumeDetails" in data:
+    if data.get("skippedVolumeDetails") is not None:
         import capo_guardduty.types.volume_details
 
         out["skipped_volume_details"] = (

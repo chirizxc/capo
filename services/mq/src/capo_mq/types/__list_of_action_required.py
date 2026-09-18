@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> __listOfActionRequired:
 
     out: __listOfActionRequired = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mq.types.action_required.deserialize_json(item))
     return out

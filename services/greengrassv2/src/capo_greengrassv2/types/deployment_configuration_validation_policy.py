@@ -25,6 +25,6 @@ def serialize_json(value: DeploymentConfigurationValidationPolicy) -> dict:
 
 def deserialize_json(data: dict) -> DeploymentConfigurationValidationPolicy:
     out: DeploymentConfigurationValidationPolicy = {}  # type: ignore[typeddict-item]
-    if "timeoutInSeconds" in data:
+    if data.get("timeoutInSeconds") is not None:
         out["timeout_in_seconds"] = data["timeoutInSeconds"]
     return out

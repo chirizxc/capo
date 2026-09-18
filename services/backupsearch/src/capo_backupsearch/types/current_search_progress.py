@@ -26,10 +26,10 @@ def serialize_json(value: CurrentSearchProgress) -> dict:
 
 def deserialize_json(data: dict) -> CurrentSearchProgress:
     out: CurrentSearchProgress = {}  # type: ignore[typeddict-item]
-    if "RecoveryPointsScannedCount" in data:
+    if data.get("RecoveryPointsScannedCount") is not None:
         out["recovery_points_scanned_count"] = data["RecoveryPointsScannedCount"]
-    if "ItemsScannedCount" in data:
+    if data.get("ItemsScannedCount") is not None:
         out["items_scanned_count"] = data["ItemsScannedCount"]
-    if "ItemsMatchedCount" in data:
+    if data.get("ItemsMatchedCount") is not None:
         out["items_matched_count"] = data["ItemsMatchedCount"]
     return out

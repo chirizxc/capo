@@ -28,8 +28,8 @@ def serialize_aws_json_1_0(value: DeleteFirewallRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteFirewallRequest:
     out: DeleteFirewallRequest = {}  # type: ignore[typeddict-item]
-    if "FirewallName" in data:
+    if data.get("FirewallName") is not None:
         out["firewall_name"] = data["FirewallName"]
-    if "FirewallArn" in data:
+    if data.get("FirewallArn") is not None:
         out["firewall_arn"] = data["FirewallArn"]
     return out

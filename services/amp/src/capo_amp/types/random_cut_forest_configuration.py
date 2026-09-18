@@ -55,19 +55,19 @@ def serialize_json(value: RandomCutForestConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> RandomCutForestConfiguration:
     out: RandomCutForestConfiguration = {}  # type: ignore[typeddict-item]
-    if "query" in data:
+    if data.get("query") is not None:
         out["query"] = data["query"]
     else:
         raise DeserializationError("RandomCutForestConfiguration.query required")
-    if "shingleSize" in data:
+    if data.get("shingleSize") is not None:
         out["shingle_size"] = data["shingleSize"]
     else:
         out["shingle_size"] = 8
-    if "sampleSize" in data:
+    if data.get("sampleSize") is not None:
         out["sample_size"] = data["sampleSize"]
     else:
         out["sample_size"] = 256
-    if "ignoreNearExpectedFromAbove" in data:
+    if data.get("ignoreNearExpectedFromAbove") is not None:
         import capo_amp.types.ignore_near_expected
 
         out["ignore_near_expected_from_above"] = (
@@ -75,7 +75,7 @@ def deserialize_json(data: dict) -> RandomCutForestConfiguration:
                 data["ignoreNearExpectedFromAbove"]
             )
         )
-    if "ignoreNearExpectedFromBelow" in data:
+    if data.get("ignoreNearExpectedFromBelow") is not None:
         import capo_amp.types.ignore_near_expected
 
         out["ignore_near_expected_from_below"] = (

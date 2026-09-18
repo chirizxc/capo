@@ -48,15 +48,15 @@ def serialize_aws_json_1_0(value: HostInfoForCreate) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> HostInfoForCreate:
     out: HostInfoForCreate = {}  # type: ignore[typeddict-item]
-    if "hostName" in data:
+    if data.get("hostName") is not None:
         out["host_name"] = data["hostName"]
     else:
         raise DeserializationError("HostInfoForCreate.host_name required")
-    if "keyName" in data:
+    if data.get("keyName") is not None:
         out["key_name"] = data["keyName"]
     else:
         raise DeserializationError("HostInfoForCreate.key_name required")
-    if "instanceType" in data:
+    if data.get("instanceType") is not None:
         import capo_evs.types.instance_type
 
         out["instance_type"] = capo_evs.types.instance_type.deserialize_aws_json_1_0(
@@ -64,8 +64,8 @@ def deserialize_aws_json_1_0(data: dict) -> HostInfoForCreate:
         )
     else:
         raise DeserializationError("HostInfoForCreate.instance_type required")
-    if "placementGroupId" in data:
+    if data.get("placementGroupId") is not None:
         out["placement_group_id"] = data["placementGroupId"]
-    if "dedicatedHostId" in data:
+    if data.get("dedicatedHostId") is not None:
         out["dedicated_host_id"] = data["dedicatedHostId"]
     return out

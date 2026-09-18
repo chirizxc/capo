@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: RegionStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RegionStatus:
     out: RegionStatus = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     return out

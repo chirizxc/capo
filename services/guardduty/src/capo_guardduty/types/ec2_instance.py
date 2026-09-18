@@ -77,13 +77,13 @@ def serialize_json(value: Ec2Instance) -> dict:
 
 def deserialize_json(data: dict) -> Ec2Instance:
     out: Ec2Instance = {}  # type: ignore[typeddict-item]
-    if "availabilityZone" in data:
+    if data.get("availabilityZone") is not None:
         out["availability_zone"] = data["availabilityZone"]
-    if "imageDescription" in data:
+    if data.get("imageDescription") is not None:
         out["image_description"] = data["imageDescription"]
-    if "instanceState" in data:
+    if data.get("instanceState") is not None:
         out["instance_state"] = data["instanceState"]
-    if "IamInstanceProfile" in data:
+    if data.get("IamInstanceProfile") is not None:
         import capo_guardduty.types.iam_instance_profile
 
         out["iam_instance_profile"] = (
@@ -91,19 +91,19 @@ def deserialize_json(data: dict) -> Ec2Instance:
                 data["IamInstanceProfile"]
             )
         )
-    if "instanceType" in data:
+    if data.get("instanceType") is not None:
         out["instance_type"] = data["instanceType"]
-    if "outpostArn" in data:
+    if data.get("outpostArn") is not None:
         out["outpost_arn"] = data["outpostArn"]
-    if "platform" in data:
+    if data.get("platform") is not None:
         out["platform"] = data["platform"]
-    if "productCodes" in data:
+    if data.get("productCodes") is not None:
         import capo_guardduty.types.product_codes
 
         out["product_codes"] = capo_guardduty.types.product_codes.deserialize_json(
             data["productCodes"]
         )
-    if "ec2NetworkInterfaceUids" in data:
+    if data.get("ec2NetworkInterfaceUids") is not None:
         import capo_guardduty.types.ec2_network_interface_uids
 
         out["ec2_network_interface_uids"] = (

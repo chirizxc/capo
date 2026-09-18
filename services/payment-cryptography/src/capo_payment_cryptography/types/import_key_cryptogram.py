@@ -49,7 +49,7 @@ def serialize_aws_json_1_0(value: ImportKeyCryptogram) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ImportKeyCryptogram:
     out: ImportKeyCryptogram = {}  # type: ignore[typeddict-item]
-    if "KeyAttributes" in data:
+    if data.get("KeyAttributes") is not None:
         import capo_payment_cryptography.types.key_attributes
 
         out["key_attributes"] = (
@@ -59,20 +59,20 @@ def deserialize_aws_json_1_0(data: dict) -> ImportKeyCryptogram:
         )
     else:
         raise DeserializationError("ImportKeyCryptogram.key_attributes required")
-    if "Exportable" in data:
+    if data.get("Exportable") is not None:
         out["exportable"] = data["Exportable"]
     else:
         raise DeserializationError("ImportKeyCryptogram.exportable required")
-    if "WrappedKeyCryptogram" in data:
+    if data.get("WrappedKeyCryptogram") is not None:
         out["wrapped_key_cryptogram"] = data["WrappedKeyCryptogram"]
     else:
         raise DeserializationError(
             "ImportKeyCryptogram.wrapped_key_cryptogram required"
         )
-    if "ImportToken" in data:
+    if data.get("ImportToken") is not None:
         out["import_token"] = data["ImportToken"]
     else:
         raise DeserializationError("ImportKeyCryptogram.import_token required")
-    if "WrappingSpec" in data:
+    if data.get("WrappingSpec") is not None:
         out["wrapping_spec"] = data["WrappingSpec"]
     return out

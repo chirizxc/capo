@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: CreatePartnerAppPresignedUrlResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreatePartnerAppPresignedUrlResponse:
     out: CreatePartnerAppPresignedUrlResponse = {}  # type: ignore[typeddict-item]
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
     return out

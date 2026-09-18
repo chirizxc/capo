@@ -46,11 +46,11 @@ def serialize_json(value: ConfigurableEnvironmentAction) -> dict:
 
 def deserialize_json(data: dict) -> ConfigurableEnvironmentAction:
     out: ConfigurableEnvironmentAction = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("ConfigurableEnvironmentAction.type required")
-    if "auth" in data:
+    if data.get("auth") is not None:
         import capo_datazone.types.configurable_action_type_authorization
 
         out["auth"] = (
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> ConfigurableEnvironmentAction:
                 data["auth"]
             )
         )
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_datazone.types.configurable_action_parameter_list
 
         out["parameters"] = (

@@ -50,9 +50,9 @@ def serialize_aws_json_1_1(value: MonitoringClusterConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MonitoringClusterConfig:
     out: MonitoringClusterConfig = {}  # type: ignore[typeddict-item]
-    if "InstanceCount" in data:
+    if data.get("InstanceCount") is not None:
         out["instance_count"] = data["InstanceCount"]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         import capo_sagemaker.types.processing_instance_type
 
         out["instance_type"] = (
@@ -60,8 +60,8 @@ def deserialize_aws_json_1_1(data: dict) -> MonitoringClusterConfig:
                 data["InstanceType"]
             )
         )
-    if "VolumeSizeInGB" in data:
+    if data.get("VolumeSizeInGB") is not None:
         out["volume_size_in_gb"] = data["VolumeSizeInGB"]
-    if "VolumeKmsKeyId" in data:
+    if data.get("VolumeKmsKeyId") is not None:
         out["volume_kms_key_id"] = data["VolumeKmsKeyId"]
     return out

@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Percentiles:
 
     out: Percentiles = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot.types.percent_pair.deserialize_json(item))
     return out

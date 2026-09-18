@@ -38,12 +38,12 @@ def serialize_json(value: GetDatabaseInput) -> dict:
 
 def deserialize_json(data: dict) -> GetDatabaseInput:
     out: GetDatabaseInput = {}  # type: ignore[typeddict-item]
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
-    if "ComponentId" in data:
+    if data.get("ComponentId") is not None:
         out["component_id"] = data["ComponentId"]
-    if "DatabaseId" in data:
+    if data.get("DatabaseId") is not None:
         out["database_id"] = data["DatabaseId"]
-    if "DatabaseArn" in data:
+    if data.get("DatabaseArn") is not None:
         out["database_arn"] = data["DatabaseArn"]
     return out

@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> DeletableSamlPropertiesList:
 
     out: DeletableSamlPropertiesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_workspaces.types.deletable_saml_property.deserialize_aws_json_1_1(item)
         )

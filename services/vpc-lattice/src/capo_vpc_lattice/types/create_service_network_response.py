@@ -47,18 +47,18 @@ def serialize_json(value: CreateServiceNetworkResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateServiceNetworkResponse:
     out: CreateServiceNetworkResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "sharingConfig" in data:
+    if data.get("sharingConfig") is not None:
         import capo_vpc_lattice.types.sharing_config
 
         out["sharing_config"] = capo_vpc_lattice.types.sharing_config.deserialize_json(
             data["sharingConfig"]
         )
-    if "authType" in data:
+    if data.get("authType") is not None:
         out["auth_type"] = data["authType"]
     return out

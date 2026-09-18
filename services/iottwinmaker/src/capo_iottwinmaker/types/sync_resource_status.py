@@ -32,9 +32,9 @@ def serialize_json(value: SyncResourceStatus) -> dict:
 
 def deserialize_json(data: dict) -> SyncResourceStatus:
     out: SyncResourceStatus = {}  # type: ignore[typeddict-item]
-    if "state" in data:
+    if data.get("state") is not None:
         out["state"] = data["state"]
-    if "error" in data:
+    if data.get("error") is not None:
         import capo_iottwinmaker.types.error_details
 
         out["error"] = capo_iottwinmaker.types.error_details.deserialize_json(

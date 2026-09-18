@@ -34,12 +34,12 @@ def serialize_json(value: CampaignHook) -> dict:
 
 def deserialize_json(data: dict) -> CampaignHook:
     out: CampaignHook = {}  # type: ignore[typeddict-item]
-    if "LambdaFunctionName" in data:
+    if data.get("LambdaFunctionName") is not None:
         out["lambda_function_name"] = data["LambdaFunctionName"]
-    if "Mode" in data:
+    if data.get("Mode") is not None:
         import capo_pinpoint.types.mode
 
         out["mode"] = capo_pinpoint.types.mode.deserialize_json(data["Mode"])
-    if "WebUrl" in data:
+    if data.get("WebUrl") is not None:
         out["web_url"] = data["WebUrl"]
     return out

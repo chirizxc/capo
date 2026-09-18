@@ -30,7 +30,7 @@ def serialize_json(value: UntagResourceRequest) -> dict:
 
 def deserialize_json(data: dict) -> UntagResourceRequest:
     out: UntagResourceRequest = {}  # type: ignore[typeddict-item]
-    if "tagKeys" in data:
+    if data.get("tagKeys") is not None:
         import capo_mediaconvert.types.__list_of__string
 
         out["tag_keys"] = capo_mediaconvert.types.__list_of__string.deserialize_json(

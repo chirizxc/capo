@@ -46,7 +46,7 @@ def serialize_aws_json_1_1(value: GetOfferingStatusResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetOfferingStatusResult:
     out: GetOfferingStatusResult = {}  # type: ignore[typeddict-item]
-    if "current" in data:
+    if data.get("current") is not None:
         import capo_device_farm.types.offering_status_map
 
         out["current"] = (
@@ -54,7 +54,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetOfferingStatusResult:
                 data["current"]
             )
         )
-    if "nextPeriod" in data:
+    if data.get("nextPeriod") is not None:
         import capo_device_farm.types.offering_status_map
 
         out["next_period"] = (
@@ -62,6 +62,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetOfferingStatusResult:
                 data["nextPeriod"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

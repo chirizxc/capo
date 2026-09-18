@@ -52,25 +52,25 @@ def serialize_json(value: PropertyType) -> dict:
 
 def deserialize_json(data: dict) -> PropertyType:
     out: PropertyType = {}  # type: ignore[typeddict-item]
-    if "attribute" in data:
+    if data.get("attribute") is not None:
         import capo_iotsitewise.types.attribute
 
         out["attribute"] = capo_iotsitewise.types.attribute.deserialize_json(
             data["attribute"]
         )
-    if "measurement" in data:
+    if data.get("measurement") is not None:
         import capo_iotsitewise.types.measurement
 
         out["measurement"] = capo_iotsitewise.types.measurement.deserialize_json(
             data["measurement"]
         )
-    if "transform" in data:
+    if data.get("transform") is not None:
         import capo_iotsitewise.types.transform
 
         out["transform"] = capo_iotsitewise.types.transform.deserialize_json(
             data["transform"]
         )
-    if "metric" in data:
+    if data.get("metric") is not None:
         import capo_iotsitewise.types.metric
 
         out["metric"] = capo_iotsitewise.types.metric.deserialize_json(data["metric"])

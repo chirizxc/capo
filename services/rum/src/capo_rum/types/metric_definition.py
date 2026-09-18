@@ -57,26 +57,26 @@ def serialize_json(value: MetricDefinition) -> dict:
 
 def deserialize_json(data: dict) -> MetricDefinition:
     out: MetricDefinition = {}  # type: ignore[typeddict-item]
-    if "MetricDefinitionId" in data:
+    if data.get("MetricDefinitionId") is not None:
         out["metric_definition_id"] = data["MetricDefinitionId"]
     else:
         raise DeserializationError("MetricDefinition.metric_definition_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("MetricDefinition.name required")
-    if "ValueKey" in data:
+    if data.get("ValueKey") is not None:
         out["value_key"] = data["ValueKey"]
-    if "UnitLabel" in data:
+    if data.get("UnitLabel") is not None:
         out["unit_label"] = data["UnitLabel"]
-    if "DimensionKeys" in data:
+    if data.get("DimensionKeys") is not None:
         import capo_rum.types.dimension_keys_map
 
         out["dimension_keys"] = capo_rum.types.dimension_keys_map.deserialize_json(
             data["DimensionKeys"]
         )
-    if "EventPattern" in data:
+    if data.get("EventPattern") is not None:
         out["event_pattern"] = data["EventPattern"]
-    if "Namespace" in data:
+    if data.get("Namespace") is not None:
         out["namespace"] = data["Namespace"]
     return out

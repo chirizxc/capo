@@ -79,9 +79,9 @@ def serialize_aws_json_1_1(value: AvailabilityConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AvailabilityConfiguration:
     out: AvailabilityConfiguration = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
-    if "ProviderType" in data:
+    if data.get("ProviderType") is not None:
         import capo_workmail.types.availability_provider_type
 
         out["provider_type"] = (
@@ -89,7 +89,7 @@ def deserialize_aws_json_1_1(data: dict) -> AvailabilityConfiguration:
                 data["ProviderType"]
             )
         )
-    if "EwsProvider" in data:
+    if data.get("EwsProvider") is not None:
         import capo_workmail.types.redacted_ews_availability_provider
 
         out["ews_provider"] = (
@@ -97,7 +97,7 @@ def deserialize_aws_json_1_1(data: dict) -> AvailabilityConfiguration:
                 data["EwsProvider"]
             )
         )
-    if "LambdaProvider" in data:
+    if data.get("LambdaProvider") is not None:
         import capo_workmail.types.lambda_availability_provider
 
         out["lambda_provider"] = (
@@ -105,13 +105,13 @@ def deserialize_aws_json_1_1(data: dict) -> AvailabilityConfiguration:
                 data["LambdaProvider"]
             )
         )
-    if "DateCreated" in data:
+    if data.get("DateCreated") is not None:
         import capo_workmail.types.timestamp
 
         out["date_created"] = capo_workmail.types.timestamp.deserialize_aws_json_1_1(
             data["DateCreated"]
         )
-    if "DateModified" in data:
+    if data.get("DateModified") is not None:
         import capo_workmail.types.timestamp
 
         out["date_modified"] = capo_workmail.types.timestamp.deserialize_aws_json_1_1(

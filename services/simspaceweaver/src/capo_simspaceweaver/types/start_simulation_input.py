@@ -73,19 +73,19 @@ def serialize_json(value: StartSimulationInput) -> dict:
 
 def deserialize_json(data: dict) -> StartSimulationInput:
     out: StartSimulationInput = {}  # type: ignore[typeddict-item]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("StartSimulationInput.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     else:
         raise DeserializationError("StartSimulationInput.role_arn required")
-    if "SchemaS3Location" in data:
+    if data.get("SchemaS3Location") is not None:
         import capo_simspaceweaver.types.s3_location
 
         out["schema_s3_location"] = (
@@ -93,13 +93,13 @@ def deserialize_json(data: dict) -> StartSimulationInput:
                 data["SchemaS3Location"]
             )
         )
-    if "MaximumDuration" in data:
+    if data.get("MaximumDuration") is not None:
         out["maximum_duration"] = data["MaximumDuration"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_simspaceweaver.types.tag_map
 
         out["tags"] = capo_simspaceweaver.types.tag_map.deserialize_json(data["Tags"])
-    if "SnapshotS3Location" in data:
+    if data.get("SnapshotS3Location") is not None:
         import capo_simspaceweaver.types.s3_location
 
         out["snapshot_s3_location"] = (

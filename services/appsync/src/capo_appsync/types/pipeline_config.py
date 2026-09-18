@@ -27,7 +27,7 @@ def serialize_json(value: PipelineConfig) -> dict:
 
 def deserialize_json(data: dict) -> PipelineConfig:
     out: PipelineConfig = {}  # type: ignore[typeddict-item]
-    if "functions" in data:
+    if data.get("functions") is not None:
         import capo_appsync.types.functions_ids
 
         out["functions"] = capo_appsync.types.functions_ids.deserialize_json(

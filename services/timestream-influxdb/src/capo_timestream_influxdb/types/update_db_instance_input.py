@@ -110,11 +110,11 @@ def serialize_aws_json_1_0(value: UpdateDbInstanceInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateDbInstanceInput:
     out: UpdateDbInstanceInput = {}  # type: ignore[typeddict-item]
-    if "identifier" in data:
+    if data.get("identifier") is not None:
         out["identifier"] = data["identifier"]
     else:
         raise DeserializationError("UpdateDbInstanceInput.identifier required")
-    if "logDeliveryConfiguration" in data:
+    if data.get("logDeliveryConfiguration") is not None:
         import capo_timestream_influxdb.types.log_delivery_configuration
 
         out["log_delivery_configuration"] = (
@@ -122,11 +122,11 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateDbInstanceInput:
                 data["logDeliveryConfiguration"]
             )
         )
-    if "dbParameterGroupIdentifier" in data:
+    if data.get("dbParameterGroupIdentifier") is not None:
         out["db_parameter_group_identifier"] = data["dbParameterGroupIdentifier"]
-    if "port" in data:
+    if data.get("port") is not None:
         out["port"] = data["port"]
-    if "dbInstanceType" in data:
+    if data.get("dbInstanceType") is not None:
         import capo_timestream_influxdb.types.db_instance_type
 
         out["db_instance_type"] = (
@@ -134,7 +134,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateDbInstanceInput:
                 data["dbInstanceType"]
             )
         )
-    if "deploymentType" in data:
+    if data.get("deploymentType") is not None:
         import capo_timestream_influxdb.types.deployment_type
 
         out["deployment_type"] = (
@@ -142,7 +142,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateDbInstanceInput:
                 data["deploymentType"]
             )
         )
-    if "dbStorageType" in data:
+    if data.get("dbStorageType") is not None:
         import capo_timestream_influxdb.types.db_storage_type
 
         out["db_storage_type"] = (
@@ -150,9 +150,9 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateDbInstanceInput:
                 data["dbStorageType"]
             )
         )
-    if "allocatedStorage" in data:
+    if data.get("allocatedStorage") is not None:
         out["allocated_storage"] = data["allocatedStorage"]
-    if "maintenanceSchedule" in data:
+    if data.get("maintenanceSchedule") is not None:
         import capo_timestream_influxdb.types.maintenance_schedule
 
         out["maintenance_schedule"] = (

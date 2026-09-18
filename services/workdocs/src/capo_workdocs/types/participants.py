@@ -36,13 +36,13 @@ def serialize_json(value: Participants) -> dict:
 
 def deserialize_json(data: dict) -> Participants:
     out: Participants = {}  # type: ignore[typeddict-item]
-    if "Users" in data:
+    if data.get("Users") is not None:
         import capo_workdocs.types.user_metadata_list
 
         out["users"] = capo_workdocs.types.user_metadata_list.deserialize_json(
             data["Users"]
         )
-    if "Groups" in data:
+    if data.get("Groups") is not None:
         import capo_workdocs.types.group_metadata_list
 
         out["groups"] = capo_workdocs.types.group_metadata_list.deserialize_json(

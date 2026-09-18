@@ -32,12 +32,12 @@ def serialize_json(value: ListSigningProfilesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListSigningProfilesResponse:
     out: ListSigningProfilesResponse = {}  # type: ignore[typeddict-item]
-    if "profiles" in data:
+    if data.get("profiles") is not None:
         import capo_signer.types.signing_profiles
 
         out["profiles"] = capo_signer.types.signing_profiles.deserialize_json(
             data["profiles"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

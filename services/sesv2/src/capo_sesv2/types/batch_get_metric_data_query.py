@@ -58,11 +58,11 @@ def serialize_json(value: BatchGetMetricDataQuery) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetMetricDataQuery:
     out: BatchGetMetricDataQuery = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("BatchGetMetricDataQuery.id required")
-    if "Namespace" in data:
+    if data.get("Namespace") is not None:
         import capo_sesv2.types.metric_namespace
 
         out["namespace"] = capo_sesv2.types.metric_namespace.deserialize_json(
@@ -70,19 +70,19 @@ def deserialize_json(data: dict) -> BatchGetMetricDataQuery:
         )
     else:
         raise DeserializationError("BatchGetMetricDataQuery.namespace required")
-    if "Metric" in data:
+    if data.get("Metric") is not None:
         import capo_sesv2.types.metric
 
         out["metric"] = capo_sesv2.types.metric.deserialize_json(data["Metric"])
     else:
         raise DeserializationError("BatchGetMetricDataQuery.metric required")
-    if "Dimensions" in data:
+    if data.get("Dimensions") is not None:
         import capo_sesv2.types.dimensions
 
         out["dimensions"] = capo_sesv2.types.dimensions.deserialize_json(
             data["Dimensions"]
         )
-    if "StartDate" in data:
+    if data.get("StartDate") is not None:
         import capo_sesv2.types.timestamp
 
         out["start_date"] = capo_sesv2.types.timestamp.deserialize_json(
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> BatchGetMetricDataQuery:
         )
     else:
         raise DeserializationError("BatchGetMetricDataQuery.start_date required")
-    if "EndDate" in data:
+    if data.get("EndDate") is not None:
         import capo_sesv2.types.timestamp
 
         out["end_date"] = capo_sesv2.types.timestamp.deserialize_json(data["EndDate"])

@@ -35,7 +35,7 @@ def serialize_json(value: InferenceResourceConfig) -> dict:
 
 def deserialize_json(data: dict) -> InferenceResourceConfig:
     out: InferenceResourceConfig = {}  # type: ignore[typeddict-item]
-    if "instanceType" in data:
+    if data.get("instanceType") is not None:
         import capo_cleanroomsml.types.inference_instance_type
 
         out["instance_type"] = (
@@ -45,7 +45,7 @@ def deserialize_json(data: dict) -> InferenceResourceConfig:
         )
     else:
         raise DeserializationError("InferenceResourceConfig.instance_type required")
-    if "instanceCount" in data:
+    if data.get("instanceCount") is not None:
         out["instance_count"] = data["instanceCount"]
     else:
         out["instance_count"] = 1

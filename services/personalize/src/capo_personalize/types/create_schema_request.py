@@ -37,15 +37,15 @@ def serialize_aws_json_1_1(value: CreateSchemaRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateSchemaRequest:
     out: CreateSchemaRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateSchemaRequest.name required")
-    if "schema" in data:
+    if data.get("schema") is not None:
         out["schema"] = data["schema"]
     else:
         raise DeserializationError("CreateSchemaRequest.schema required")
-    if "domain" in data:
+    if data.get("domain") is not None:
         import capo_personalize.types.domain
 
         out["domain"] = capo_personalize.types.domain.deserialize_aws_json_1_1(

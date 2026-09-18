@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: BatchDetectTargetedSentimentResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchDetectTargetedSentimentResponse:
     out: BatchDetectTargetedSentimentResponse = {}  # type: ignore[typeddict-item]
-    if "ResultList" in data:
+    if data.get("ResultList") is not None:
         import capo_comprehend.types.list_of_detect_targeted_sentiment_result
 
         out["result_list"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchDetectTargetedSentimentResponse
         raise DeserializationError(
             "BatchDetectTargetedSentimentResponse.result_list required"
         )
-    if "ErrorList" in data:
+    if data.get("ErrorList") is not None:
         import capo_comprehend.types.batch_item_error_list
 
         out["error_list"] = (

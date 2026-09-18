@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: InvalidCloudWatchLogsLogGroupArnException_) ->
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidCloudWatchLogsLogGroupArnException_:
     out: InvalidCloudWatchLogsLogGroupArnException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -35,17 +35,22 @@ class InvalidCloudWatchLogsLogGroupArnException(ServiceError):
 
     code: str | None = "InvalidCloudWatchLogsLogGroupArnException"
 
-    def __init__(self, data: InvalidCloudWatchLogsLogGroupArnException_):
+    def __init__(
+        self,
+        data: InvalidCloudWatchLogsLogGroupArnException_,
+        message: str | None = None,
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidCloudWatchLogsLogGroupArnException",
+            message=message,
         )
         self.data = data
 
     @classmethod
     def from_aws_json_1_1(
-        cls, data: dict
+        cls, data: dict, message: str | None = None
     ) -> "InvalidCloudWatchLogsLogGroupArnException":
-        return cls(deserialize_aws_json_1_1(data))
+        return cls(deserialize_aws_json_1_1(data), message)

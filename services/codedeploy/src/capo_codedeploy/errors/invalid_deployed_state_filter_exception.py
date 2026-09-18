@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: InvalidDeployedStateFilterException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidDeployedStateFilterException_:
     out: InvalidDeployedStateFilterException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,20 @@ class InvalidDeployedStateFilterException(ServiceError):
 
     code: str | None = "InvalidDeployedStateFilterException"
 
-    def __init__(self, data: InvalidDeployedStateFilterException_):
+    def __init__(
+        self, data: InvalidDeployedStateFilterException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidDeployedStateFilterException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidDeployedStateFilterException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidDeployedStateFilterException":
+        return cls(deserialize_aws_json_1_1(data), message)

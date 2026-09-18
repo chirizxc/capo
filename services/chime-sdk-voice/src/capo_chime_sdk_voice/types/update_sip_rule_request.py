@@ -45,13 +45,13 @@ def serialize_json(value: UpdateSipRuleRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSipRuleRequest:
     out: UpdateSipRuleRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("UpdateSipRuleRequest.name required")
-    if "Disabled" in data:
+    if data.get("Disabled") is not None:
         out["disabled"] = data["Disabled"]
-    if "TargetApplications" in data:
+    if data.get("TargetApplications") is not None:
         import capo_chime_sdk_voice.types.sip_rule_target_application_list
 
         out["target_applications"] = (

@@ -64,7 +64,7 @@ def serialize_json(value: GetTraceSummariesRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetTraceSummariesRequest:
     out: GetTraceSummariesRequest = {}  # type: ignore[typeddict-item]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_xray.types.timestamp
 
         out["start_time"] = capo_xray.types.timestamp.deserialize_json(
@@ -72,28 +72,28 @@ def deserialize_json(data: dict) -> GetTraceSummariesRequest:
         )
     else:
         raise DeserializationError("GetTraceSummariesRequest.start_time required")
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_xray.types.timestamp
 
         out["end_time"] = capo_xray.types.timestamp.deserialize_json(data["EndTime"])
     else:
         raise DeserializationError("GetTraceSummariesRequest.end_time required")
-    if "TimeRangeType" in data:
+    if data.get("TimeRangeType") is not None:
         import capo_xray.types.time_range_type
 
         out["time_range_type"] = capo_xray.types.time_range_type.deserialize_json(
             data["TimeRangeType"]
         )
-    if "Sampling" in data:
+    if data.get("Sampling") is not None:
         out["sampling"] = data["Sampling"]
-    if "SamplingStrategy" in data:
+    if data.get("SamplingStrategy") is not None:
         import capo_xray.types.sampling_strategy
 
         out["sampling_strategy"] = capo_xray.types.sampling_strategy.deserialize_json(
             data["SamplingStrategy"]
         )
-    if "FilterExpression" in data:
+    if data.get("FilterExpression") is not None:
         out["filter_expression"] = data["FilterExpression"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

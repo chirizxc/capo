@@ -31,7 +31,7 @@ def serialize_json(value: GetSubscriptionOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetSubscriptionOutput:
     out: GetSubscriptionOutput = {}  # type: ignore[typeddict-item]
-    if "subscription" in data:
+    if data.get("subscription") is not None:
         import capo_connecthealth.types.subscription_description
 
         out["subscription"] = (

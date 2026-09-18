@@ -70,7 +70,7 @@ def serialize_json(value: MonitoringConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> MonitoringConfiguration:
     out: MonitoringConfiguration = {}  # type: ignore[typeddict-item]
-    if "s3MonitoringConfiguration" in data:
+    if data.get("s3MonitoringConfiguration") is not None:
         import capo_emr_serverless.types.s3_monitoring_configuration
 
         out["s3_monitoring_configuration"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> MonitoringConfiguration:
                 data["s3MonitoringConfiguration"]
             )
         )
-    if "managedPersistenceMonitoringConfiguration" in data:
+    if data.get("managedPersistenceMonitoringConfiguration") is not None:
         import capo_emr_serverless.types.managed_persistence_monitoring_configuration
 
         out["managed_persistence_monitoring_configuration"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> MonitoringConfiguration:
                 data["managedPersistenceMonitoringConfiguration"]
             )
         )
-    if "cloudWatchLoggingConfiguration" in data:
+    if data.get("cloudWatchLoggingConfiguration") is not None:
         import capo_emr_serverless.types.cloud_watch_logging_configuration
 
         out["cloud_watch_logging_configuration"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> MonitoringConfiguration:
                 data["cloudWatchLoggingConfiguration"]
             )
         )
-    if "prometheusMonitoringConfiguration" in data:
+    if data.get("prometheusMonitoringConfiguration") is not None:
         import capo_emr_serverless.types.prometheus_monitoring_configuration
 
         out["prometheus_monitoring_configuration"] = (

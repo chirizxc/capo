@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfAvailabilityZone:
 
     out: __listOfAvailabilityZone = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mq.types.availability_zone.deserialize_json(item))
     return out

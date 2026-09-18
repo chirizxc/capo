@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> UpdateTagCollectionFilters:
 
     out: UpdateTagCollectionFilters = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_devops_guru.types.update_tag_collection_filter.deserialize_json(item)
         )

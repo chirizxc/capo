@@ -42,17 +42,17 @@ def serialize_aws_json_1_1(value: MetricQuery) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MetricQuery:
     out: MetricQuery = {}  # type: ignore[typeddict-item]
-    if "Metric" in data:
+    if data.get("Metric") is not None:
         out["metric"] = data["Metric"]
     else:
         raise DeserializationError("MetricQuery.metric required")
-    if "GroupBy" in data:
+    if data.get("GroupBy") is not None:
         import capo_pi.types.dimension_group
 
         out["group_by"] = capo_pi.types.dimension_group.deserialize_aws_json_1_1(
             data["GroupBy"]
         )
-    if "Filter" in data:
+    if data.get("Filter") is not None:
         import capo_pi.types.metric_query_filter_map
 
         out["filter"] = capo_pi.types.metric_query_filter_map.deserialize_aws_json_1_1(

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AssociatedPackageList:
 
     out: AssociatedPackageList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_codeartifact.types.associated_package.deserialize_json(item))
     return out

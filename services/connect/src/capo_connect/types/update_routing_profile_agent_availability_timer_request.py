@@ -38,7 +38,7 @@ def serialize_json(value: UpdateRoutingProfileAgentAvailabilityTimerRequest) -> 
 
 def deserialize_json(data: dict) -> UpdateRoutingProfileAgentAvailabilityTimerRequest:
     out: UpdateRoutingProfileAgentAvailabilityTimerRequest = {}  # type: ignore[typeddict-item]
-    if "AgentAvailabilityTimer" in data:
+    if data.get("AgentAvailabilityTimer") is not None:
         import capo_connect.types.agent_availability_timer
 
         out["agent_availability_timer"] = (

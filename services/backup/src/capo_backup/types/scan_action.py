@@ -34,13 +34,13 @@ def serialize_json(value: ScanAction) -> dict:
 
 def deserialize_json(data: dict) -> ScanAction:
     out: ScanAction = {}  # type: ignore[typeddict-item]
-    if "MalwareScanner" in data:
+    if data.get("MalwareScanner") is not None:
         import capo_backup.types.malware_scanner
 
         out["malware_scanner"] = capo_backup.types.malware_scanner.deserialize_json(
             data["MalwareScanner"]
         )
-    if "ScanMode" in data:
+    if data.get("ScanMode") is not None:
         import capo_backup.types.scan_mode
 
         out["scan_mode"] = capo_backup.types.scan_mode.deserialize_json(

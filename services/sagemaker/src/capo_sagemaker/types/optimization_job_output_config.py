@@ -41,11 +41,11 @@ def serialize_aws_json_1_1(value: OptimizationJobOutputConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OptimizationJobOutputConfig:
     out: OptimizationJobOutputConfig = {}  # type: ignore[typeddict-item]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "S3OutputLocation" in data:
+    if data.get("S3OutputLocation") is not None:
         out["s3_output_location"] = data["S3OutputLocation"]
-    if "SageMakerModel" in data:
+    if data.get("SageMakerModel") is not None:
         import capo_sagemaker.types.optimization_sage_maker_model
 
         out["sage_maker_model"] = (

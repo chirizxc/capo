@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: DescribeRetentionConfigurationsResponse) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeRetentionConfigurationsResponse:
     out: DescribeRetentionConfigurationsResponse = {}  # type: ignore[typeddict-item]
-    if "RetentionConfigurations" in data:
+    if data.get("RetentionConfigurations") is not None:
         import capo_config_service.types.retention_configuration_list
 
         out["retention_configurations"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeRetentionConfigurationsRespo
                 data["RetentionConfigurations"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -32,7 +32,7 @@ def serialize_json(value: ListCustomActionsResult) -> dict:
 
 def deserialize_json(data: dict) -> ListCustomActionsResult:
     out: ListCustomActionsResult = {}  # type: ignore[typeddict-item]
-    if "CustomActions" in data:
+    if data.get("CustomActions") is not None:
         import capo_chatbot.types.custom_action_arn_list
 
         out["custom_actions"] = (
@@ -42,6 +42,6 @@ def deserialize_json(data: dict) -> ListCustomActionsResult:
         )
     else:
         raise DeserializationError("ListCustomActionsResult.custom_actions required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

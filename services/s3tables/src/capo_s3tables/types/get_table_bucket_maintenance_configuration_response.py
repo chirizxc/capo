@@ -34,13 +34,13 @@ def serialize_json(value: GetTableBucketMaintenanceConfigurationResponse) -> dic
 
 def deserialize_json(data: dict) -> GetTableBucketMaintenanceConfigurationResponse:
     out: GetTableBucketMaintenanceConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "tableBucketARN" in data:
+    if data.get("tableBucketARN") is not None:
         out["table_bucket_arn"] = data["tableBucketARN"]
     else:
         raise DeserializationError(
             "GetTableBucketMaintenanceConfigurationResponse.table_bucket_arn required"
         )
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_s3tables.types.table_bucket_maintenance_configuration
 
         out["configuration"] = (

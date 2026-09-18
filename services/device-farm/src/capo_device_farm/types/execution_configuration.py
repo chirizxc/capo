@@ -49,14 +49,14 @@ def serialize_aws_json_1_1(value: ExecutionConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExecutionConfiguration:
     out: ExecutionConfiguration = {}  # type: ignore[typeddict-item]
-    if "jobTimeoutMinutes" in data:
+    if data.get("jobTimeoutMinutes") is not None:
         out["job_timeout_minutes"] = data["jobTimeoutMinutes"]
-    if "accountsCleanup" in data:
+    if data.get("accountsCleanup") is not None:
         out["accounts_cleanup"] = data["accountsCleanup"]
-    if "appPackagesCleanup" in data:
+    if data.get("appPackagesCleanup") is not None:
         out["app_packages_cleanup"] = data["appPackagesCleanup"]
-    if "videoCapture" in data:
+    if data.get("videoCapture") is not None:
         out["video_capture"] = data["videoCapture"]
-    if "skipAppResign" in data:
+    if data.get("skipAppResign") is not None:
         out["skip_app_resign"] = data["skipAppResign"]
     return out

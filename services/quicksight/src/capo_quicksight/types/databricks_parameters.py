@@ -32,15 +32,15 @@ def serialize_json(value: DatabricksParameters) -> dict:
 
 def deserialize_json(data: dict) -> DatabricksParameters:
     out: DatabricksParameters = {}  # type: ignore[typeddict-item]
-    if "Host" in data:
+    if data.get("Host") is not None:
         out["host"] = data["Host"]
     else:
         raise DeserializationError("DatabricksParameters.host required")
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
     else:
         raise DeserializationError("DatabricksParameters.port required")
-    if "SqlEndpointPath" in data:
+    if data.get("SqlEndpointPath") is not None:
         out["sql_endpoint_path"] = data["SqlEndpointPath"]
     else:
         raise DeserializationError("DatabricksParameters.sql_endpoint_path required")

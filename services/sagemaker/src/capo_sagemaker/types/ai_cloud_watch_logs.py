@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: AICloudWatchLogs) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AICloudWatchLogs:
     out: AICloudWatchLogs = {}  # type: ignore[typeddict-item]
-    if "LogGroupArn" in data:
+    if data.get("LogGroupArn") is not None:
         out["log_group_arn"] = data["LogGroupArn"]
-    if "LogStreamName" in data:
+    if data.get("LogStreamName") is not None:
         out["log_stream_name"] = data["LogStreamName"]
     return out

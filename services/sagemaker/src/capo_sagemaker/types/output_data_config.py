@@ -41,11 +41,11 @@ def serialize_aws_json_1_1(value: OutputDataConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OutputDataConfig:
     out: OutputDataConfig = {}  # type: ignore[typeddict-item]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "S3OutputPath" in data:
+    if data.get("S3OutputPath") is not None:
         out["s3_output_path"] = data["S3OutputPath"]
-    if "CompressionType" in data:
+    if data.get("CompressionType") is not None:
         import capo_sagemaker.types.output_compression_type
 
         out["compression_type"] = (

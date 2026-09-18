@@ -34,13 +34,13 @@ def serialize_aws_json_1_1(value: BatchGetApplicationRevisionsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchGetApplicationRevisionsInput:
     out: BatchGetApplicationRevisionsInput = {}  # type: ignore[typeddict-item]
-    if "applicationName" in data:
+    if data.get("applicationName") is not None:
         out["application_name"] = data["applicationName"]
     else:
         raise DeserializationError(
             "BatchGetApplicationRevisionsInput.application_name required"
         )
-    if "revisions" in data:
+    if data.get("revisions") is not None:
         import capo_codedeploy.types.revision_location_list
 
         out["revisions"] = (

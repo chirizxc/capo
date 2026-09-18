@@ -51,7 +51,7 @@ def serialize_aws_json_1_1(value: GetCostAndUsageComparisonsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetCostAndUsageComparisonsResponse:
     out: GetCostAndUsageComparisonsResponse = {}  # type: ignore[typeddict-item]
-    if "CostAndUsageComparisons" in data:
+    if data.get("CostAndUsageComparisons") is not None:
         import capo_cost_explorer.types.cost_and_usage_comparisons
 
         out["cost_and_usage_comparisons"] = (
@@ -59,7 +59,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetCostAndUsageComparisonsResponse:
                 data["CostAndUsageComparisons"]
             )
         )
-    if "TotalCostAndUsage" in data:
+    if data.get("TotalCostAndUsage") is not None:
         import capo_cost_explorer.types.comparison_metrics
 
         out["total_cost_and_usage"] = (
@@ -67,6 +67,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetCostAndUsageComparisonsResponse:
                 data["TotalCostAndUsage"]
             )
         )
-    if "NextPageToken" in data:
+    if data.get("NextPageToken") is not None:
         out["next_page_token"] = data["NextPageToken"]
     return out

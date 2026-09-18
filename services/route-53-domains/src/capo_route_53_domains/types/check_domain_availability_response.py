@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: CheckDomainAvailabilityResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CheckDomainAvailabilityResponse:
     out: CheckDomainAvailabilityResponse = {}  # type: ignore[typeddict-item]
-    if "Availability" in data:
+    if data.get("Availability") is not None:
         import capo_route_53_domains.types.domain_availability
 
         out["availability"] = (

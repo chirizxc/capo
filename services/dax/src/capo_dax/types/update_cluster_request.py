@@ -57,21 +57,21 @@ def serialize_aws_json_1_1(value: UpdateClusterRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateClusterRequest:
     out: UpdateClusterRequest = {}  # type: ignore[typeddict-item]
-    if "ClusterName" in data:
+    if data.get("ClusterName") is not None:
         out["cluster_name"] = data["ClusterName"]
     else:
         raise DeserializationError("UpdateClusterRequest.cluster_name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "PreferredMaintenanceWindow" in data:
+    if data.get("PreferredMaintenanceWindow") is not None:
         out["preferred_maintenance_window"] = data["PreferredMaintenanceWindow"]
-    if "NotificationTopicArn" in data:
+    if data.get("NotificationTopicArn") is not None:
         out["notification_topic_arn"] = data["NotificationTopicArn"]
-    if "NotificationTopicStatus" in data:
+    if data.get("NotificationTopicStatus") is not None:
         out["notification_topic_status"] = data["NotificationTopicStatus"]
-    if "ParameterGroupName" in data:
+    if data.get("ParameterGroupName") is not None:
         out["parameter_group_name"] = data["ParameterGroupName"]
-    if "SecurityGroupIds" in data:
+    if data.get("SecurityGroupIds") is not None:
         import capo_dax.types.security_group_identifier_list
 
         out["security_group_ids"] = (

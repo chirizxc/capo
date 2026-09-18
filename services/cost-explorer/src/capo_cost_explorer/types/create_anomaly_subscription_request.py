@@ -45,7 +45,7 @@ def serialize_aws_json_1_1(value: CreateAnomalySubscriptionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateAnomalySubscriptionRequest:
     out: CreateAnomalySubscriptionRequest = {}  # type: ignore[typeddict-item]
-    if "AnomalySubscription" in data:
+    if data.get("AnomalySubscription") is not None:
         import capo_cost_explorer.types.anomaly_subscription
 
         out["anomaly_subscription"] = (
@@ -57,7 +57,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateAnomalySubscriptionRequest:
         raise DeserializationError(
             "CreateAnomalySubscriptionRequest.anomaly_subscription required"
         )
-    if "ResourceTags" in data:
+    if data.get("ResourceTags") is not None:
         import capo_cost_explorer.types.resource_tag_list
 
         out["resource_tags"] = (

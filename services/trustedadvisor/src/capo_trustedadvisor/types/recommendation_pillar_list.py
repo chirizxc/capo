@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> RecommendationPillarList:
 
     out: RecommendationPillarList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_trustedadvisor.types.recommendation_pillar.deserialize_json(item)
         )

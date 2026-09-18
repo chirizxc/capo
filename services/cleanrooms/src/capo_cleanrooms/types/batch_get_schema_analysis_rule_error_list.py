@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> BatchGetSchemaAnalysisRuleErrorList:
 
     out: BatchGetSchemaAnalysisRuleErrorList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cleanrooms.types.batch_get_schema_analysis_rule_error.deserialize_json(
                 item

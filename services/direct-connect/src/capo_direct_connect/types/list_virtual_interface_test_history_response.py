@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: ListVirtualInterfaceTestHistoryResponse) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> ListVirtualInterfaceTestHistoryResponse:
     out: ListVirtualInterfaceTestHistoryResponse = {}  # type: ignore[typeddict-item]
-    if "virtualInterfaceTestHistory" in data:
+    if data.get("virtualInterfaceTestHistory") is not None:
         import capo_direct_connect.types.virtual_interface_test_history_list
 
         out["virtual_interface_test_history"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListVirtualInterfaceTestHistoryRespo
                 data["virtualInterfaceTestHistory"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

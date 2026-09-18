@@ -45,22 +45,22 @@ def serialize_json(value: UpdateParticipantAuthenticationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateParticipantAuthenticationRequest:
     out: UpdateParticipantAuthenticationRequest = {}  # type: ignore[typeddict-item]
-    if "State" in data:
+    if data.get("State") is not None:
         out["state"] = data["State"]
     else:
         raise DeserializationError(
             "UpdateParticipantAuthenticationRequest.state required"
         )
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
     else:
         raise DeserializationError(
             "UpdateParticipantAuthenticationRequest.instance_id required"
         )
-    if "Code" in data:
+    if data.get("Code") is not None:
         out["code"] = data["Code"]
-    if "Error" in data:
+    if data.get("Error") is not None:
         out["error"] = data["Error"]
-    if "ErrorDescription" in data:
+    if data.get("ErrorDescription") is not None:
         out["error_description"] = data["ErrorDescription"]
     return out

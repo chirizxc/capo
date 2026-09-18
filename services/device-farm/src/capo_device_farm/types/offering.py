@@ -59,17 +59,17 @@ def serialize_aws_json_1_1(value: Offering) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Offering:
     out: Offering = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_device_farm.types.offering_type
 
         out["type"] = capo_device_farm.types.offering_type.deserialize_aws_json_1_1(
             data["type"]
         )
-    if "platform" in data:
+    if data.get("platform") is not None:
         import capo_device_farm.types.device_platform
 
         out["platform"] = (
@@ -77,7 +77,7 @@ def deserialize_aws_json_1_1(data: dict) -> Offering:
                 data["platform"]
             )
         )
-    if "recurringCharges" in data:
+    if data.get("recurringCharges") is not None:
         import capo_device_farm.types.recurring_charges
 
         out["recurring_charges"] = (

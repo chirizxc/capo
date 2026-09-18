@@ -60,21 +60,21 @@ def serialize_aws_json_1_1(value: HostKeyAttributes) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HostKeyAttributes:
     out: HostKeyAttributes = {}  # type: ignore[typeddict-item]
-    if "algorithm" in data:
+    if data.get("algorithm") is not None:
         out["algorithm"] = data["algorithm"]
-    if "publicKey" in data:
+    if data.get("publicKey") is not None:
         out["public_key"] = data["publicKey"]
-    if "witnessedAt" in data:
+    if data.get("witnessedAt") is not None:
         import capo_lightsail.types.iso_date
 
         out["witnessed_at"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
             data["witnessedAt"]
         )
-    if "fingerprintSHA1" in data:
+    if data.get("fingerprintSHA1") is not None:
         out["fingerprint_sha1"] = data["fingerprintSHA1"]
-    if "fingerprintSHA256" in data:
+    if data.get("fingerprintSHA256") is not None:
         out["fingerprint_sha256"] = data["fingerprintSHA256"]
-    if "notValidBefore" in data:
+    if data.get("notValidBefore") is not None:
         import capo_lightsail.types.iso_date
 
         out["not_valid_before"] = (
@@ -82,7 +82,7 @@ def deserialize_aws_json_1_1(data: dict) -> HostKeyAttributes:
                 data["notValidBefore"]
             )
         )
-    if "notValidAfter" in data:
+    if data.get("notValidAfter") is not None:
         import capo_lightsail.types.iso_date
 
         out["not_valid_after"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(

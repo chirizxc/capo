@@ -43,7 +43,7 @@ def serialize_json(value: ListVPCConnectionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListVPCConnectionsResponse:
     out: ListVPCConnectionsResponse = {}  # type: ignore[typeddict-item]
-    if "VPCConnectionSummaries" in data:
+    if data.get("VPCConnectionSummaries") is not None:
         import capo_quicksight.types.vpc_connection_summary_list
 
         out["vpc_connection_summaries"] = (
@@ -51,8 +51,8 @@ def deserialize_json(data: dict) -> ListVPCConnectionsResponse:
                 data["VPCConnectionSummaries"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

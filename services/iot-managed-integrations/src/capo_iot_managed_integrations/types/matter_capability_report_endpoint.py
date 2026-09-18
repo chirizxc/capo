@@ -83,11 +83,11 @@ def serialize_json(value: MatterCapabilityReportEndpoint) -> dict:
 
 def deserialize_json(data: dict) -> MatterCapabilityReportEndpoint:
     out: MatterCapabilityReportEndpoint = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("MatterCapabilityReportEndpoint.id required")
-    if "deviceTypes" in data:
+    if data.get("deviceTypes") is not None:
         import capo_iot_managed_integrations.types.device_types
 
         out["device_types"] = (
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> MatterCapabilityReportEndpoint:
         raise DeserializationError(
             "MatterCapabilityReportEndpoint.device_types required"
         )
-    if "clusters" in data:
+    if data.get("clusters") is not None:
         import capo_iot_managed_integrations.types.matter_capability_report_clusters
 
         out["clusters"] = (
@@ -109,7 +109,7 @@ def deserialize_json(data: dict) -> MatterCapabilityReportEndpoint:
         )
     else:
         raise DeserializationError("MatterCapabilityReportEndpoint.clusters required")
-    if "parts" in data:
+    if data.get("parts") is not None:
         import capo_iot_managed_integrations.types.matter_capability_report_endpoint_parts
 
         out["parts"] = (
@@ -117,7 +117,7 @@ def deserialize_json(data: dict) -> MatterCapabilityReportEndpoint:
                 data["parts"]
             )
         )
-    if "semanticTags" in data:
+    if data.get("semanticTags") is not None:
         import capo_iot_managed_integrations.types.matter_capability_report_endpoint_semantic_tags
 
         out["semantic_tags"] = (
@@ -125,7 +125,7 @@ def deserialize_json(data: dict) -> MatterCapabilityReportEndpoint:
                 data["semanticTags"]
             )
         )
-    if "clientClusters" in data:
+    if data.get("clientClusters") is not None:
         import capo_iot_managed_integrations.types.matter_capability_report_endpoint_client_clusters
 
         out["client_clusters"] = (

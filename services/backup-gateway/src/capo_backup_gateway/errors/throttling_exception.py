@@ -27,11 +27,11 @@ def serialize_aws_json_1_0(value: ThrottlingException_) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ThrottlingException_:
     out: ThrottlingException_ = {}  # type: ignore[typeddict-item]
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
     else:
         raise DeserializationError("ThrottlingException_.error_code required")
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -41,15 +41,18 @@ class ThrottlingException(ServiceError):
 
     code: str | None = "ThrottlingException"
 
-    def __init__(self, data: ThrottlingException_):
+    def __init__(self, data: ThrottlingException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ThrottlingException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_0(cls, data: dict) -> "ThrottlingException":
-        return cls(deserialize_aws_json_1_0(data))
+    def from_aws_json_1_0(
+        cls, data: dict, message: str | None = None
+    ) -> "ThrottlingException":
+        return cls(deserialize_aws_json_1_0(data), message)

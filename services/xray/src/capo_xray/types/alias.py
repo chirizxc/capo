@@ -34,12 +34,12 @@ def serialize_json(value: Alias) -> dict:
 
 def deserialize_json(data: dict) -> Alias:
     out: Alias = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Names" in data:
+    if data.get("Names") is not None:
         import capo_xray.types.alias_names
 
         out["names"] = capo_xray.types.alias_names.deserialize_json(data["Names"])
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     return out

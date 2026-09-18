@@ -48,9 +48,9 @@ def serialize_json(value: FormInputValueProperty) -> dict:
 
 def deserialize_json(data: dict) -> FormInputValueProperty:
     out: FormInputValueProperty = {}  # type: ignore[typeddict-item]
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
-    if "bindingProperties" in data:
+    if data.get("bindingProperties") is not None:
         import capo_amplifyuibuilder.types.form_input_value_property_binding_properties
 
         out["binding_properties"] = (
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> FormInputValueProperty:
                 data["bindingProperties"]
             )
         )
-    if "concat" in data:
+    if data.get("concat") is not None:
         import capo_amplifyuibuilder.types.form_input_value_property_list
 
         out["concat"] = (

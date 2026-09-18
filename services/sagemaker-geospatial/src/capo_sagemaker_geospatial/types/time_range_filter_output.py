@@ -20,16 +20,14 @@ class TimeRangeFilterOutput(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: TimeRangeFilterOutput) -> dict:
     out: dict = {}
-    import capo_sagemaker_geospatial.types._prelude.timestamp
+    import capo_sagemaker_geospatial._protocol.serialize
 
-    out["StartTime"] = (
-        capo_sagemaker_geospatial.types._prelude.timestamp.serialize_json(
-            value["start_time"]
-        )
+    out["StartTime"] = capo_sagemaker_geospatial._protocol.serialize.fmt_date_time(
+        value["start_time"]
     )
-    import capo_sagemaker_geospatial.types._prelude.timestamp
+    import capo_sagemaker_geospatial._protocol.serialize
 
-    out["EndTime"] = capo_sagemaker_geospatial.types._prelude.timestamp.serialize_json(
+    out["EndTime"] = capo_sagemaker_geospatial._protocol.serialize.fmt_date_time(
         value["end_time"]
     )
     return out
@@ -37,23 +35,19 @@ def serialize_json(value: TimeRangeFilterOutput) -> dict:
 
 def deserialize_json(data: dict) -> TimeRangeFilterOutput:
     out: TimeRangeFilterOutput = {}  # type: ignore[typeddict-item]
-    if "StartTime" in data:
-        import capo_sagemaker_geospatial.types._prelude.timestamp
+    if data.get("StartTime") is not None:
+        import datetime
 
-        out["start_time"] = (
-            capo_sagemaker_geospatial.types._prelude.timestamp.deserialize_json(
-                data["StartTime"]
-            )
+        out["start_time"] = datetime.datetime.fromisoformat(
+            data["StartTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("TimeRangeFilterOutput.start_time required")
-    if "EndTime" in data:
-        import capo_sagemaker_geospatial.types._prelude.timestamp
+    if data.get("EndTime") is not None:
+        import datetime
 
-        out["end_time"] = (
-            capo_sagemaker_geospatial.types._prelude.timestamp.deserialize_json(
-                data["EndTime"]
-            )
+        out["end_time"] = datetime.datetime.fromisoformat(
+            data["EndTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("TimeRangeFilterOutput.end_time required")

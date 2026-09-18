@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: OrganizationResourceDetailedStatusFilters) -> 
 
 def deserialize_aws_json_1_1(data: dict) -> OrganizationResourceDetailedStatusFilters:
     out: OrganizationResourceDetailedStatusFilters = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_config_service.types.organization_resource_detailed_status
 
         out["status"] = (

@@ -56,7 +56,7 @@ def serialize_json(value: PutRecordRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutRecordRequest:
     out: PutRecordRequest = {}  # type: ignore[typeddict-item]
-    if "Record" in data:
+    if data.get("Record") is not None:
         import capo_sagemaker_featurestore_runtime.types.record
 
         out["record"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> PutRecordRequest:
                 data["Record"]
             )
         )
-    if "TargetStores" in data:
+    if data.get("TargetStores") is not None:
         import capo_sagemaker_featurestore_runtime.types.target_stores
 
         out["target_stores"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> PutRecordRequest:
                 data["TargetStores"]
             )
         )
-    if "TtlDuration" in data:
+    if data.get("TtlDuration") is not None:
         import capo_sagemaker_featurestore_runtime.types.ttl_duration
 
         out["ttl_duration"] = (

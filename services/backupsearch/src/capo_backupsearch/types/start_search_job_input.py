@@ -59,17 +59,17 @@ def serialize_json(value: StartSearchJobInput) -> dict:
 
 def deserialize_json(data: dict) -> StartSearchJobInput:
     out: StartSearchJobInput = {}  # type: ignore[typeddict-item]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_backupsearch.types.tag_map
 
         out["tags"] = capo_backupsearch.types.tag_map.deserialize_json(data["Tags"])
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "EncryptionKeyArn" in data:
+    if data.get("EncryptionKeyArn") is not None:
         out["encryption_key_arn"] = data["EncryptionKeyArn"]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "SearchScope" in data:
+    if data.get("SearchScope") is not None:
         import capo_backupsearch.types.search_scope
 
         out["search_scope"] = capo_backupsearch.types.search_scope.deserialize_json(
@@ -77,7 +77,7 @@ def deserialize_json(data: dict) -> StartSearchJobInput:
         )
     else:
         raise DeserializationError("StartSearchJobInput.search_scope required")
-    if "ItemFilters" in data:
+    if data.get("ItemFilters") is not None:
         import capo_backupsearch.types.item_filters
 
         out["item_filters"] = capo_backupsearch.types.item_filters.deserialize_json(

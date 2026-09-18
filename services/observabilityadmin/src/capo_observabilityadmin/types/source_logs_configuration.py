@@ -43,13 +43,13 @@ def serialize_json(value: SourceLogsConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SourceLogsConfiguration:
     out: SourceLogsConfiguration = {}  # type: ignore[typeddict-item]
-    if "LogGroupSelectionCriteria" in data:
+    if data.get("LogGroupSelectionCriteria") is not None:
         out["log_group_selection_criteria"] = data["LogGroupSelectionCriteria"]
     else:
         out["log_group_selection_criteria"] = "*"
-    if "DataSourceSelectionCriteria" in data:
+    if data.get("DataSourceSelectionCriteria") is not None:
         out["data_source_selection_criteria"] = data["DataSourceSelectionCriteria"]
-    if "EncryptedLogGroupStrategy" in data:
+    if data.get("EncryptedLogGroupStrategy") is not None:
         import capo_observabilityadmin.types.encrypted_log_group_strategy
 
         out["encrypted_log_group_strategy"] = (

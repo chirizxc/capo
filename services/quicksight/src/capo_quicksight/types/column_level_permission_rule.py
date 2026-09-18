@@ -40,13 +40,13 @@ def serialize_json(value: ColumnLevelPermissionRule) -> dict:
 
 def deserialize_json(data: dict) -> ColumnLevelPermissionRule:
     out: ColumnLevelPermissionRule = {}  # type: ignore[typeddict-item]
-    if "Principals" in data:
+    if data.get("Principals") is not None:
         import capo_quicksight.types.principal_list
 
         out["principals"] = capo_quicksight.types.principal_list.deserialize_json(
             data["Principals"]
         )
-    if "ColumnNames" in data:
+    if data.get("ColumnNames") is not None:
         import capo_quicksight.types.column_level_permission_rule_column_name_list
 
         out["column_names"] = (

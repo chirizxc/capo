@@ -31,8 +31,8 @@ def serialize_aws_json_1_1(value: DeleteVpcPeeringAuthorizationInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteVpcPeeringAuthorizationInput:
     out: DeleteVpcPeeringAuthorizationInput = {}  # type: ignore[typeddict-item]
-    if "GameLiftAwsAccountId" in data:
+    if data.get("GameLiftAwsAccountId") is not None:
         out["game_lift_aws_account_id"] = data["GameLiftAwsAccountId"]
-    if "PeerVpcId" in data:
+    if data.get("PeerVpcId") is not None:
         out["peer_vpc_id"] = data["PeerVpcId"]
     return out

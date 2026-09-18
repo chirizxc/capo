@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> DeliverabilityTestReports:
 
     out: DeliverabilityTestReports = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_pinpoint_email.types.deliverability_test_report.deserialize_json(item)
         )

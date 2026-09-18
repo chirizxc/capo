@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: GetManagedScalingPolicyInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetManagedScalingPolicyInput:
     out: GetManagedScalingPolicyInput = {}  # type: ignore[typeddict-item]
-    if "ClusterId" in data:
+    if data.get("ClusterId") is not None:
         out["cluster_id"] = data["ClusterId"]
     return out

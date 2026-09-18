@@ -39,15 +39,15 @@ def serialize_json(value: UpdateApplicationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateApplicationRequest:
     out: UpdateApplicationRequest = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "currentApplicationVersion" in data:
+    if data.get("currentApplicationVersion") is not None:
         out["current_application_version"] = data["currentApplicationVersion"]
     else:
         raise DeserializationError(
             "UpdateApplicationRequest.current_application_version required"
         )
-    if "definition" in data:
+    if data.get("definition") is not None:
         import capo_m2.types.definition
 
         out["definition"] = capo_m2.types.definition.deserialize_json(

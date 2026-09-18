@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfConnectorSummary:
 
     out: __listOfConnectorSummary = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_kafkaconnect.types.connector_summary.deserialize_json(item))
     return out

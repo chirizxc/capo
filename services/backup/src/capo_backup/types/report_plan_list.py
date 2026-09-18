@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> ReportPlanList:
 
     out: ReportPlanList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_backup.types.report_plan.deserialize_json(item))
     return out

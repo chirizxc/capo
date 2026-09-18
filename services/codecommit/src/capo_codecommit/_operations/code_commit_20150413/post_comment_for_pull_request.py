@@ -10,6 +10,7 @@ from typing_extensions import Never
 
 import capo_codecommit._auth._signers
 import capo_codecommit._auth._sigv4
+import capo_codecommit._protocol.eventstream
 import capo_codecommit.errors.before_commit_id_and_after_commit_id_are_same_exception
 import capo_codecommit.errors.client_request_token_required_exception
 import capo_codecommit.errors.comment_content_required_exception
@@ -53,111 +54,111 @@ def handle_error(response: zapros.Response) -> Never:
     match code:
         case "BeforeCommitIdAndAfterCommitIdAreSameException":
             raise capo_codecommit.errors.before_commit_id_and_after_commit_id_are_same_exception.BeforeCommitIdAndAfterCommitIdAreSameException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "ClientRequestTokenRequiredException":
             raise capo_codecommit.errors.client_request_token_required_exception.ClientRequestTokenRequiredException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "CommentContentRequiredException":
             raise capo_codecommit.errors.comment_content_required_exception.CommentContentRequiredException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "CommentContentSizeLimitExceededException":
             raise capo_codecommit.errors.comment_content_size_limit_exceeded_exception.CommentContentSizeLimitExceededException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "CommitDoesNotExistException":
             raise capo_codecommit.errors.commit_does_not_exist_exception.CommitDoesNotExistException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "CommitIdRequiredException":
             raise capo_codecommit.errors.commit_id_required_exception.CommitIdRequiredException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "EncryptionIntegrityChecksFailedException":
             raise capo_codecommit.errors.encryption_integrity_checks_failed_exception.EncryptionIntegrityChecksFailedException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "EncryptionKeyAccessDeniedException":
             raise capo_codecommit.errors.encryption_key_access_denied_exception.EncryptionKeyAccessDeniedException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "EncryptionKeyDisabledException":
             raise capo_codecommit.errors.encryption_key_disabled_exception.EncryptionKeyDisabledException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "EncryptionKeyNotFoundException":
             raise capo_codecommit.errors.encryption_key_not_found_exception.EncryptionKeyNotFoundException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "EncryptionKeyUnavailableException":
             raise capo_codecommit.errors.encryption_key_unavailable_exception.EncryptionKeyUnavailableException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "IdempotencyParameterMismatchException":
             raise capo_codecommit.errors.idempotency_parameter_mismatch_exception.IdempotencyParameterMismatchException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "InvalidClientRequestTokenException":
             raise capo_codecommit.errors.invalid_client_request_token_exception.InvalidClientRequestTokenException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "InvalidCommitIdException":
             raise capo_codecommit.errors.invalid_commit_id_exception.InvalidCommitIdException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "InvalidFileLocationException":
             raise capo_codecommit.errors.invalid_file_location_exception.InvalidFileLocationException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "InvalidFilePositionException":
             raise capo_codecommit.errors.invalid_file_position_exception.InvalidFilePositionException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "InvalidPathException":
             raise capo_codecommit.errors.invalid_path_exception.InvalidPathException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "InvalidPullRequestIdException":
             raise capo_codecommit.errors.invalid_pull_request_id_exception.InvalidPullRequestIdException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "InvalidRelativeFileVersionEnumException":
             raise capo_codecommit.errors.invalid_relative_file_version_enum_exception.InvalidRelativeFileVersionEnumException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "InvalidRepositoryNameException":
             raise capo_codecommit.errors.invalid_repository_name_exception.InvalidRepositoryNameException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "PathDoesNotExistException":
             raise capo_codecommit.errors.path_does_not_exist_exception.PathDoesNotExistException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "PathRequiredException":
             raise capo_codecommit.errors.path_required_exception.PathRequiredException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "PullRequestDoesNotExistException":
             raise capo_codecommit.errors.pull_request_does_not_exist_exception.PullRequestDoesNotExistException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "PullRequestIdRequiredException":
             raise capo_codecommit.errors.pull_request_id_required_exception.PullRequestIdRequiredException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "RepositoryDoesNotExistException":
             raise capo_codecommit.errors.repository_does_not_exist_exception.RepositoryDoesNotExistException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "RepositoryNameRequiredException":
             raise capo_codecommit.errors.repository_name_required_exception.RepositoryNameRequiredException.from_aws_json_1_1(
-                data
+                data, message
             )
         case "RepositoryNotAssociatedWithPullRequestException":
             raise capo_codecommit.errors.repository_not_associated_with_pull_request_exception.RepositoryNotAssociatedWithPullRequestException.from_aws_json_1_1(
-                data
+                data, message
             )
         case _:
             raise UnknownServiceError(code=code, message=message, response=response)
@@ -186,19 +187,26 @@ def get_signer(
     auth_schemes: list[dict[str, Any]] | None = None,
 ) -> capo_codecommit._auth._signers.Signer | None:
     name_to_schema = {s["name"]: s for s in (auth_schemes or [])}  # noqa: F841
-    if options.credentials_provider is not None:
-        sigv4_config = (
-            name_to_schema.get("sigv4")
-            or name_to_schema.get("sigv4a")
-            or name_to_schema.get("sigv4-s3express")
-            or capo_codecommit._auth._sigv4.build_sigv4_auth_scheme(
-                "codecommit", options.region
-            )
+    if (
+        options.credentials_provider is not None
+        and name_to_schema
+        and not name_to_schema.keys() & {"sigv4", "sigv4-s3express"}
+    ):
+        raise RuntimeError(
+            "Endpoint requires an unsupported auth scheme: " + ", ".join(name_to_schema)
         )
-        if sigv4_config is not None:
-            return capo_codecommit._auth._signers.SigV4Signer(
-                options.credentials_provider, auth_scheme=sigv4_config
+    if options.credentials_provider is not None:
+        endpoint_scheme = name_to_schema.get("sigv4") or name_to_schema.get(
+            "sigv4-s3express"
+        )
+        if endpoint_scheme is not None or not name_to_schema:
+            sigv4_config = capo_codecommit._auth._sigv4.build_sigv4_auth_scheme(
+                "codecommit", options.region, endpoint_scheme
             )
+            if sigv4_config is not None:
+                return capo_codecommit._auth._signers.SigV4Signer(
+                    options.credentials_provider, auth_scheme=sigv4_config
+                )
     raise RuntimeError("Auth was not resolved")
 
 
@@ -215,18 +223,20 @@ def build_request(
         )
     )  # noqa: F841
     url = endpoint.url.rstrip("/") + ""
-    params: dict[str, str] = {}
+    params: list[tuple[str, str]] = []
     headers: dict[str, str] = {k: ", ".join(v) for k, v in endpoint.headers.items()}
     headers["X-Amz-Target"] = "CodeCommit_20150413.PostCommentForPullRequest"
     body: bytes | None = json.dumps(
         capo_codecommit.types.post_comment_for_pull_request_input.serialize_aws_json_1_1(
             input_
-        )
+        ),
+        allow_nan=False,
     ).encode()
     headers["content-type"] = "application/x-amz-json-1.1"
     signer = get_signer(options, auth_schemes=endpoint.properties.get("authSchemes"))
     normalized_url = zapros.URL(url)
-    normalized_url.search_params.update(params)
+    for k, v in params:
+        normalized_url.search_params.append(k, v)
     return zapros.Request(
         normalized_url, "POST", headers=headers, body=body, context={"signer": signer}
     )
@@ -241,7 +251,7 @@ def post_comment_for_pull_request(
 ]:
     response = options.client.handler.handle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             response.read()
             handle_error(response)
         return handle_response(response), response
@@ -259,7 +269,7 @@ async def async_post_comment_for_pull_request(
 ]:
     response = await options.client.handler.ahandle(build_request(options, input_))
     try:
-        if response.status >= 400:
+        if response.status >= 300:
             await response.aread()
             handle_error(response)
         return await async_handle_response(response), response

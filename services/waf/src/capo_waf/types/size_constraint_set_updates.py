@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> SizeConstraintSetUpdates:
 
     out: SizeConstraintSetUpdates = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_waf.types.size_constraint_set_update.deserialize_aws_json_1_1(item)
         )

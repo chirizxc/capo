@@ -37,7 +37,7 @@ def serialize_json(value: UplinkSpectrumConfig) -> dict:
 
 def deserialize_json(data: dict) -> UplinkSpectrumConfig:
     out: UplinkSpectrumConfig = {}  # type: ignore[typeddict-item]
-    if "centerFrequency" in data:
+    if data.get("centerFrequency") is not None:
         import capo_groundstation.types.frequency
 
         out["center_frequency"] = capo_groundstation.types.frequency.deserialize_json(
@@ -45,7 +45,7 @@ def deserialize_json(data: dict) -> UplinkSpectrumConfig:
         )
     else:
         raise DeserializationError("UplinkSpectrumConfig.center_frequency required")
-    if "polarization" in data:
+    if data.get("polarization") is not None:
         import capo_groundstation.types.polarization
 
         out["polarization"] = capo_groundstation.types.polarization.deserialize_json(

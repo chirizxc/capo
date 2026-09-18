@@ -16,4 +16,4 @@ def serialize_json(value: AssociatedResources) -> list:
 
 
 def deserialize_json(data: list) -> AssociatedResources:
-    return list(data)
+    return [item for item in data if item is not None]

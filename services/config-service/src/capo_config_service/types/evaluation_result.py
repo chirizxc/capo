@@ -77,7 +77,7 @@ def serialize_aws_json_1_1(value: EvaluationResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EvaluationResult:
     out: EvaluationResult = {}  # type: ignore[typeddict-item]
-    if "EvaluationResultIdentifier" in data:
+    if data.get("EvaluationResultIdentifier") is not None:
         import capo_config_service.types.evaluation_result_identifier
 
         out["evaluation_result_identifier"] = (
@@ -85,7 +85,7 @@ def deserialize_aws_json_1_1(data: dict) -> EvaluationResult:
                 data["EvaluationResultIdentifier"]
             )
         )
-    if "ComplianceType" in data:
+    if data.get("ComplianceType") is not None:
         import capo_config_service.types.compliance_type
 
         out["compliance_type"] = (
@@ -93,7 +93,7 @@ def deserialize_aws_json_1_1(data: dict) -> EvaluationResult:
                 data["ComplianceType"]
             )
         )
-    if "ResultRecordedTime" in data:
+    if data.get("ResultRecordedTime") is not None:
         import capo_config_service.types.date
 
         out["result_recorded_time"] = (
@@ -101,7 +101,7 @@ def deserialize_aws_json_1_1(data: dict) -> EvaluationResult:
                 data["ResultRecordedTime"]
             )
         )
-    if "ConfigRuleInvokedTime" in data:
+    if data.get("ConfigRuleInvokedTime") is not None:
         import capo_config_service.types.date
 
         out["config_rule_invoked_time"] = (
@@ -109,8 +109,8 @@ def deserialize_aws_json_1_1(data: dict) -> EvaluationResult:
                 data["ConfigRuleInvokedTime"]
             )
         )
-    if "Annotation" in data:
+    if data.get("Annotation") is not None:
         out["annotation"] = data["Annotation"]
-    if "ResultToken" in data:
+    if data.get("ResultToken") is not None:
         out["result_token"] = data["ResultToken"]
     return out

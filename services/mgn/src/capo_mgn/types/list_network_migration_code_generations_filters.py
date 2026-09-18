@@ -31,7 +31,7 @@ def serialize_json(value: ListNetworkMigrationCodeGenerationsFilters) -> dict:
 
 def deserialize_json(data: dict) -> ListNetworkMigrationCodeGenerationsFilters:
     out: ListNetworkMigrationCodeGenerationsFilters = {}  # type: ignore[typeddict-item]
-    if "jobIDs" in data:
+    if data.get("jobIDs") is not None:
         import capo_mgn.types.list_network_migration_code_generations_i_ds_filter
 
         out["job_i_ds"] = (

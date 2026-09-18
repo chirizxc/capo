@@ -13,9 +13,9 @@ from capo_iot import AsyncIoTClient
 
 
 async def main():
-    async with AsyncIoTClient() as s3:
+    async with AsyncIoTClient() as io_t:
         # Example: call the accept_certificate_transfer operation
-        response = await s3.accept_certificate_transfer()
+        response = await io_t.accept_certificate_transfer()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_iot import AsyncIoTClient
 
 
 async def main():
-    async with AsyncIoTClient() as s3:
+    async with AsyncIoTClient() as io_t:
         # Example: paginate over get_behavior_model_training_summaries
-        async for item in s3.iter_get_behavior_model_training_summaries():
+        async for item in io_t.iter_get_behavior_model_training_summaries():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_iot.error import InternalFailureException
 
 
 async def main():
-    async with AsyncIoTClient() as s3:
+    async with AsyncIoTClient() as io_t:
         try:
-            await s3.accept_certificate_transfer()
+            await io_t.accept_certificate_transfer()
         except InternalFailureException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_iot import AsyncIoTClient
 
 
 async def main():
-    async with AsyncIoTClient() as s3:
+    async with AsyncIoTClient() as io_t:
         # Default: 3 attempts for every operation
-        response = await s3.accept_certificate_transfer()
+        response = await io_t.accept_certificate_transfer()
 
         # Override per operation
-        response = await s3.accept_certificate_transfer(config_overrides={"retry_max_attempts": 5})
+        response = await io_t.accept_certificate_transfer(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.accept_certificate_transfer(config_overrides={"retry_max_attempts": 1})
+        response = await io_t.accept_certificate_transfer(config_overrides={"retry_max_attempts": 1})
 ```

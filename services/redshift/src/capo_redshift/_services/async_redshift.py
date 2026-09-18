@@ -510,7 +510,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.accept_reserved_node_exchange_input_message.AcceptReservedNodeExchangeInputMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.accept_reserved_node_exchange_input_message.AcceptReservedNodeExchangeInputMessage = {}
         if reserved_node_id is not None:
             input_["reserved_node_id"] = reserved_node_id
         if target_reserved_node_offering_id is not None:
@@ -523,6 +523,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def add_partner(
@@ -574,7 +575,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.partner_integration_input_message.PartnerIntegrationInputMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.partner_integration_input_message.PartnerIntegrationInputMessage = {}
         if account_id is not None:
             input_["account_id"] = account_id
         if cluster_identifier is not None:
@@ -589,6 +590,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_data_share_consumer(
@@ -634,7 +636,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.associate_data_share_consumer_message.AssociateDataShareConsumerMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.associate_data_share_consumer_message.AssociateDataShareConsumerMessage = {}
         if data_share_arn is not None:
             input_["data_share_arn"] = data_share_arn
         if associate_entire_account is not None:
@@ -651,6 +653,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def authorize_cluster_security_group_ingress(
@@ -698,7 +701,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.authorize_cluster_security_group_ingress_message.AuthorizeClusterSecurityGroupIngressMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.authorize_cluster_security_group_ingress_message.AuthorizeClusterSecurityGroupIngressMessage = {}
         if cluster_security_group_name is not None:
             input_["cluster_security_group_name"] = cluster_security_group_name
         if cidrip is not None:
@@ -713,6 +716,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def authorize_data_share(
@@ -751,7 +755,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.authorize_data_share_message.AuthorizeDataShareMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.authorize_data_share_message.AuthorizeDataShareMessage = {}
         if data_share_arn is not None:
             input_["data_share_arn"] = data_share_arn
         if consumer_identifier is not None:
@@ -764,6 +768,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def authorize_endpoint_access(
@@ -809,7 +814,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.authorize_endpoint_access_message.AuthorizeEndpointAccessMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.authorize_endpoint_access_message.AuthorizeEndpointAccessMessage = {}
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
         if account is not None:
@@ -822,6 +827,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def authorize_snapshot_access(
@@ -872,7 +878,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.authorize_snapshot_access_message.AuthorizeSnapshotAccessMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.authorize_snapshot_access_message.AuthorizeSnapshotAccessMessage = {}
         if snapshot_identifier is not None:
             input_["snapshot_identifier"] = snapshot_identifier
         if snapshot_arn is not None:
@@ -887,6 +893,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_delete_cluster_snapshots(
@@ -923,7 +930,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.batch_delete_cluster_snapshots_request.BatchDeleteClusterSnapshotsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.batch_delete_cluster_snapshots_request.BatchDeleteClusterSnapshotsRequest = {}
         if identifiers is not None:
             input_["identifiers"] = identifiers
 
@@ -932,6 +939,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_modify_cluster_snapshots(
@@ -975,7 +983,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.batch_modify_cluster_snapshots_message.BatchModifyClusterSnapshotsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.batch_modify_cluster_snapshots_message.BatchModifyClusterSnapshotsMessage = {}
         if snapshot_identifier_list is not None:
             input_["snapshot_identifier_list"] = snapshot_identifier_list
         if manual_snapshot_retention_period is not None:
@@ -990,6 +998,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def cancel_resize(
@@ -1027,7 +1036,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.cancel_resize_message.CancelResizeMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.cancel_resize_message.CancelResizeMessage = {}
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
 
@@ -1036,6 +1045,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def copy_cluster_snapshot(
@@ -1089,7 +1099,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.copy_cluster_snapshot_message.CopyClusterSnapshotMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.copy_cluster_snapshot_message.CopyClusterSnapshotMessage = {}
         if source_snapshot_identifier is not None:
             input_["source_snapshot_identifier"] = source_snapshot_identifier
         if source_snapshot_cluster_identifier is not None:
@@ -1108,6 +1118,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_authentication_profile(
@@ -1150,7 +1161,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.create_authentication_profile_message.CreateAuthenticationProfileMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.create_authentication_profile_message.CreateAuthenticationProfileMessage = {}
         if authentication_profile_name is not None:
             input_["authentication_profile_name"] = authentication_profile_name
         if authentication_profile_content is not None:
@@ -1161,6 +1172,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_cluster(
@@ -1349,7 +1361,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.create_cluster_message.CreateClusterMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.create_cluster_message.CreateClusterMessage = {}
         if db_name is not None:
             input_["db_name"] = db_name
         if cluster_identifier is not None:
@@ -1448,6 +1460,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_cluster_parameter_group(
@@ -1491,7 +1504,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.create_cluster_parameter_group_message.CreateClusterParameterGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.create_cluster_parameter_group_message.CreateClusterParameterGroupMessage = {}
         if parameter_group_name is not None:
             input_["parameter_group_name"] = parameter_group_name
         if parameter_group_family is not None:
@@ -1506,6 +1519,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_cluster_security_group(
@@ -1549,7 +1563,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.create_cluster_security_group_message.CreateClusterSecurityGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.create_cluster_security_group_message.CreateClusterSecurityGroupMessage = {}
         if cluster_security_group_name is not None:
             input_["cluster_security_group_name"] = cluster_security_group_name
         if description is not None:
@@ -1562,6 +1576,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_cluster_snapshot(
@@ -1612,7 +1627,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.create_cluster_snapshot_message.CreateClusterSnapshotMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.create_cluster_snapshot_message.CreateClusterSnapshotMessage = {}
         if snapshot_identifier is not None:
             input_["snapshot_identifier"] = snapshot_identifier
         if cluster_identifier is not None:
@@ -1629,6 +1644,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_cluster_subnet_group(
@@ -1678,7 +1694,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.create_cluster_subnet_group_message.CreateClusterSubnetGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.create_cluster_subnet_group_message.CreateClusterSubnetGroupMessage = {}
         if cluster_subnet_group_name is not None:
             input_["cluster_subnet_group_name"] = cluster_subnet_group_name
         if description is not None:
@@ -1693,6 +1709,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_custom_domain_association(
@@ -1737,7 +1754,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.create_custom_domain_association_message.CreateCustomDomainAssociationMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.create_custom_domain_association_message.CreateCustomDomainAssociationMessage = {}
         if custom_domain_name is not None:
             input_["custom_domain_name"] = custom_domain_name
         if custom_domain_certificate_arn is not None:
@@ -1750,6 +1767,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_endpoint_access(
@@ -1803,7 +1821,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.create_endpoint_access_message.CreateEndpointAccessMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.create_endpoint_access_message.CreateEndpointAccessMessage = {}
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
         if resource_owner is not None:
@@ -1820,6 +1838,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_event_subscription(
@@ -1884,7 +1903,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.create_event_subscription_message.CreateEventSubscriptionMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.create_event_subscription_message.CreateEventSubscriptionMessage = {}
         if subscription_name is not None:
             input_["subscription_name"] = subscription_name
         if sns_topic_arn is not None:
@@ -1907,6 +1926,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_hsm_client_certificate(
@@ -1948,7 +1968,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.create_hsm_client_certificate_message.CreateHsmClientCertificateMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.create_hsm_client_certificate_message.CreateHsmClientCertificateMessage = {}
         if hsm_client_certificate_identifier is not None:
             input_["hsm_client_certificate_identifier"] = (
                 hsm_client_certificate_identifier
@@ -1961,6 +1981,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_hsm_configuration(
@@ -2014,7 +2035,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.create_hsm_configuration_message.CreateHsmConfigurationMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.create_hsm_configuration_message.CreateHsmConfigurationMessage = {}
         if hsm_configuration_identifier is not None:
             input_["hsm_configuration_identifier"] = hsm_configuration_identifier
         if description is not None:
@@ -2035,6 +2056,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_integration(
@@ -2093,7 +2115,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.create_integration_message.CreateIntegrationMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.create_integration_message.CreateIntegrationMessage = {}
         if source_arn is not None:
             input_["source_arn"] = source_arn
         if target_arn is not None:
@@ -2114,6 +2136,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_redshift_idc_application(
@@ -2184,7 +2207,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.create_redshift_idc_application_message.CreateRedshiftIdcApplicationMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.create_redshift_idc_application_message.CreateRedshiftIdcApplicationMessage = {}
         if idc_instance_arn is not None:
             input_["idc_instance_arn"] = idc_instance_arn
         if redshift_idc_application_name is not None:
@@ -2211,6 +2234,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_scheduled_action(
@@ -2270,7 +2294,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.create_scheduled_action_message.CreateScheduledActionMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.create_scheduled_action_message.CreateScheduledActionMessage = {}
         if scheduled_action_name is not None:
             input_["scheduled_action_name"] = scheduled_action_name
         if target_action is not None:
@@ -2293,6 +2317,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_snapshot_copy_grant(
@@ -2336,7 +2361,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.create_snapshot_copy_grant_message.CreateSnapshotCopyGrantMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.create_snapshot_copy_grant_message.CreateSnapshotCopyGrantMessage = {}
         if snapshot_copy_grant_name is not None:
             input_["snapshot_copy_grant_name"] = snapshot_copy_grant_name
         if kms_key_id is not None:
@@ -2349,6 +2374,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_snapshot_schedule(
@@ -2404,7 +2430,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.create_snapshot_schedule_message.CreateSnapshotScheduleMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.create_snapshot_schedule_message.CreateSnapshotScheduleMessage = {}
         if schedule_definitions is not None:
             input_["schedule_definitions"] = schedule_definitions
         if schedule_identifier is not None:
@@ -2423,6 +2449,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_tags(
@@ -2460,7 +2487,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.create_tags_message.CreateTagsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.create_tags_message.CreateTagsMessage = {}
         if resource_name is not None:
             input_["resource_name"] = resource_name
         if tags is not None:
@@ -2471,6 +2498,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_usage_limit(
@@ -2529,7 +2557,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.create_usage_limit_message.CreateUsageLimitMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.create_usage_limit_message.CreateUsageLimitMessage = {}
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
         if feature_type is not None:
@@ -2550,6 +2578,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def deauthorize_data_share(
@@ -2584,7 +2613,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.deauthorize_data_share_message.DeauthorizeDataShareMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.deauthorize_data_share_message.DeauthorizeDataShareMessage = {}
         if data_share_arn is not None:
             input_["data_share_arn"] = data_share_arn
         if consumer_identifier is not None:
@@ -2595,6 +2624,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_authentication_profile(
@@ -2632,7 +2662,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.delete_authentication_profile_message.DeleteAuthenticationProfileMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.delete_authentication_profile_message.DeleteAuthenticationProfileMessage = {}
         if authentication_profile_name is not None:
             input_["authentication_profile_name"] = authentication_profile_name
 
@@ -2641,6 +2671,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_cluster(
@@ -2691,7 +2722,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.delete_cluster_message.DeleteClusterMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.delete_cluster_message.DeleteClusterMessage = {}
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
         if skip_final_cluster_snapshot is not None:
@@ -2710,6 +2741,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_cluster_parameter_group(
@@ -2743,7 +2775,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.delete_cluster_parameter_group_message.DeleteClusterParameterGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.delete_cluster_parameter_group_message.DeleteClusterParameterGroupMessage = {}
         if parameter_group_name is not None:
             input_["parameter_group_name"] = parameter_group_name
 
@@ -2752,6 +2784,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_cluster_security_group(
@@ -2787,7 +2820,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.delete_cluster_security_group_message.DeleteClusterSecurityGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.delete_cluster_security_group_message.DeleteClusterSecurityGroupMessage = {}
         if cluster_security_group_name is not None:
             input_["cluster_security_group_name"] = cluster_security_group_name
 
@@ -2796,6 +2829,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_cluster_snapshot(
@@ -2837,7 +2871,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.delete_cluster_snapshot_message.DeleteClusterSnapshotMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.delete_cluster_snapshot_message.DeleteClusterSnapshotMessage = {}
         if snapshot_identifier is not None:
             input_["snapshot_identifier"] = snapshot_identifier
         if snapshot_cluster_identifier is not None:
@@ -2848,6 +2882,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_cluster_subnet_group(
@@ -2882,7 +2917,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.delete_cluster_subnet_group_message.DeleteClusterSubnetGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.delete_cluster_subnet_group_message.DeleteClusterSubnetGroupMessage = {}
         if cluster_subnet_group_name is not None:
             input_["cluster_subnet_group_name"] = cluster_subnet_group_name
 
@@ -2891,6 +2926,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_custom_domain_association(
@@ -2930,7 +2966,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.delete_custom_domain_association_message.DeleteCustomDomainAssociationMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.delete_custom_domain_association_message.DeleteCustomDomainAssociationMessage = {}
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
         if custom_domain_name is not None:
@@ -2941,6 +2977,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_endpoint_access(
@@ -2979,7 +3016,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.delete_endpoint_access_message.DeleteEndpointAccessMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.delete_endpoint_access_message.DeleteEndpointAccessMessage = {}
         if endpoint_name is not None:
             input_["endpoint_name"] = endpoint_name
 
@@ -2988,6 +3025,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_event_subscription(
@@ -3021,7 +3059,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.delete_event_subscription_message.DeleteEventSubscriptionMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.delete_event_subscription_message.DeleteEventSubscriptionMessage = {}
         if subscription_name is not None:
             input_["subscription_name"] = subscription_name
 
@@ -3030,6 +3068,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_hsm_client_certificate(
@@ -3065,7 +3104,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.delete_hsm_client_certificate_message.DeleteHsmClientCertificateMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.delete_hsm_client_certificate_message.DeleteHsmClientCertificateMessage = {}
         if hsm_client_certificate_identifier is not None:
             input_["hsm_client_certificate_identifier"] = (
                 hsm_client_certificate_identifier
@@ -3076,6 +3115,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_hsm_configuration(
@@ -3111,7 +3151,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.delete_hsm_configuration_message.DeleteHsmConfigurationMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.delete_hsm_configuration_message.DeleteHsmConfigurationMessage = {}
         if hsm_configuration_identifier is not None:
             input_["hsm_configuration_identifier"] = hsm_configuration_identifier
 
@@ -3120,6 +3160,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_integration(
@@ -3157,7 +3198,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.delete_integration_message.DeleteIntegrationMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.delete_integration_message.DeleteIntegrationMessage = {}
         if integration_arn is not None:
             input_["integration_arn"] = integration_arn
 
@@ -3166,6 +3207,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_partner(
@@ -3217,7 +3259,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.partner_integration_input_message.PartnerIntegrationInputMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.partner_integration_input_message.PartnerIntegrationInputMessage = {}
         if account_id is not None:
             input_["account_id"] = account_id
         if cluster_identifier is not None:
@@ -3232,6 +3274,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_redshift_idc_application(
@@ -3269,7 +3312,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.delete_redshift_idc_application_message.DeleteRedshiftIdcApplicationMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.delete_redshift_idc_application_message.DeleteRedshiftIdcApplicationMessage = {}
         if redshift_idc_application_arn is not None:
             input_["redshift_idc_application_arn"] = redshift_idc_application_arn
 
@@ -3278,6 +3321,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_resource_policy(
@@ -3311,7 +3355,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.delete_resource_policy_message.DeleteResourcePolicyMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.delete_resource_policy_message.DeleteResourcePolicyMessage = {}
         if resource_arn is not None:
             input_["resource_arn"] = resource_arn
 
@@ -3320,6 +3364,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_scheduled_action(
@@ -3353,7 +3398,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.delete_scheduled_action_message.DeleteScheduledActionMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.delete_scheduled_action_message.DeleteScheduledActionMessage = {}
         if scheduled_action_name is not None:
             input_["scheduled_action_name"] = scheduled_action_name
 
@@ -3362,6 +3407,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_snapshot_copy_grant(
@@ -3395,7 +3441,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.delete_snapshot_copy_grant_message.DeleteSnapshotCopyGrantMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.delete_snapshot_copy_grant_message.DeleteSnapshotCopyGrantMessage = {}
         if snapshot_copy_grant_name is not None:
             input_["snapshot_copy_grant_name"] = snapshot_copy_grant_name
 
@@ -3404,6 +3450,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_snapshot_schedule(
@@ -3437,7 +3484,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.delete_snapshot_schedule_message.DeleteSnapshotScheduleMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.delete_snapshot_schedule_message.DeleteSnapshotScheduleMessage = {}
         if schedule_identifier is not None:
             input_["schedule_identifier"] = schedule_identifier
 
@@ -3446,6 +3493,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_tags(
@@ -3481,7 +3529,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.delete_tags_message.DeleteTagsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.delete_tags_message.DeleteTagsMessage = {}
         if resource_name is not None:
             input_["resource_name"] = resource_name
         if tag_keys is not None:
@@ -3492,6 +3540,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_usage_limit(
@@ -3525,7 +3574,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.delete_usage_limit_message.DeleteUsageLimitMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.delete_usage_limit_message.DeleteUsageLimitMessage = {}
         if usage_limit_id is not None:
             input_["usage_limit_id"] = usage_limit_id
 
@@ -3534,6 +3583,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def deregister_namespace(
@@ -3576,7 +3626,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.deregister_namespace_input_message.DeregisterNamespaceInputMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.deregister_namespace_input_message.DeregisterNamespaceInputMessage = {}
         if namespace_identifier is not None:
             input_["namespace_identifier"] = namespace_identifier
         if consumer_identifiers is not None:
@@ -3587,6 +3637,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_account_attributes(
@@ -3622,7 +3673,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.describe_account_attributes_message.DescribeAccountAttributesMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.describe_account_attributes_message.DescribeAccountAttributesMessage = {}
         if attribute_names is not None:
             input_["attribute_names"] = attribute_names
 
@@ -3631,6 +3682,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_authentication_profiles(
@@ -3668,7 +3720,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.describe_authentication_profiles_message.DescribeAuthenticationProfilesMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.describe_authentication_profiles_message.DescribeAuthenticationProfilesMessage = {}
         if authentication_profile_name is not None:
             input_["authentication_profile_name"] = authentication_profile_name
 
@@ -3677,6 +3729,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_cluster_db_revisions(
@@ -3718,7 +3771,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.describe_cluster_db_revisions_message.DescribeClusterDbRevisionsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.describe_cluster_db_revisions_message.DescribeClusterDbRevisionsMessage = {}
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
         if max_records is not None:
@@ -3731,6 +3784,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_cluster_db_revisions(
@@ -3801,7 +3855,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.describe_cluster_parameter_groups_message.DescribeClusterParameterGroupsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.describe_cluster_parameter_groups_message.DescribeClusterParameterGroupsMessage = {}
         if parameter_group_name is not None:
             input_["parameter_group_name"] = parameter_group_name
         if max_records is not None:
@@ -3818,6 +3872,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_cluster_parameter_groups(
@@ -3889,7 +3944,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.describe_cluster_parameters_message.DescribeClusterParametersMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.describe_cluster_parameters_message.DescribeClusterParametersMessage = {}
         if parameter_group_name is not None:
             input_["parameter_group_name"] = parameter_group_name
         if source is not None:
@@ -3904,6 +3959,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_cluster_parameters(
@@ -3976,7 +4032,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.describe_clusters_message.DescribeClustersMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.describe_clusters_message.DescribeClustersMessage = {}
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
         if max_records is not None:
@@ -3993,6 +4049,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_clusters(
@@ -4071,7 +4128,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.describe_cluster_security_groups_message.DescribeClusterSecurityGroupsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.describe_cluster_security_groups_message.DescribeClusterSecurityGroupsMessage = {}
         if cluster_security_group_name is not None:
             input_["cluster_security_group_name"] = cluster_security_group_name
         if max_records is not None:
@@ -4088,6 +4145,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_cluster_security_groups(
@@ -4188,7 +4246,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.describe_cluster_snapshots_message.DescribeClusterSnapshotsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.describe_cluster_snapshots_message.DescribeClusterSnapshotsMessage = {}
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
         if snapshot_identifier is not None:
@@ -4221,6 +4279,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_cluster_snapshots(
@@ -4315,7 +4374,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.describe_cluster_subnet_groups_message.DescribeClusterSubnetGroupsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.describe_cluster_subnet_groups_message.DescribeClusterSubnetGroupsMessage = {}
         if cluster_subnet_group_name is not None:
             input_["cluster_subnet_group_name"] = cluster_subnet_group_name
         if max_records is not None:
@@ -4332,6 +4391,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_cluster_subnet_groups(
@@ -4402,7 +4462,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.describe_cluster_tracks_message.DescribeClusterTracksMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.describe_cluster_tracks_message.DescribeClusterTracksMessage = {}
         if maintenance_track_name is not None:
             input_["maintenance_track_name"] = maintenance_track_name
         if max_records is not None:
@@ -4415,6 +4475,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_cluster_tracks(
@@ -4483,7 +4544,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.describe_cluster_versions_message.DescribeClusterVersionsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.describe_cluster_versions_message.DescribeClusterVersionsMessage = {}
         if cluster_version is not None:
             input_["cluster_version"] = cluster_version
         if cluster_parameter_group_family is not None:
@@ -4498,6 +4559,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_cluster_versions(
@@ -4574,7 +4636,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.describe_custom_domain_associations_message.DescribeCustomDomainAssociationsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.describe_custom_domain_associations_message.DescribeCustomDomainAssociationsMessage = {}
         if custom_domain_name is not None:
             input_["custom_domain_name"] = custom_domain_name
         if custom_domain_certificate_arn is not None:
@@ -4589,6 +4651,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_custom_domain_associations(
@@ -4660,7 +4723,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.describe_data_shares_message.DescribeDataSharesMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.describe_data_shares_message.DescribeDataSharesMessage = {}
         if data_share_arn is not None:
             input_["data_share_arn"] = data_share_arn
         if max_records is not None:
@@ -4673,6 +4736,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_data_shares(
@@ -4742,7 +4806,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.describe_data_shares_for_consumer_message.DescribeDataSharesForConsumerMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.describe_data_shares_for_consumer_message.DescribeDataSharesForConsumerMessage = {}
         if consumer_arn is not None:
             input_["consumer_arn"] = consumer_arn
         if status is not None:
@@ -4757,6 +4821,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_data_shares_for_consumer(
@@ -4830,7 +4895,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.describe_data_shares_for_producer_message.DescribeDataSharesForProducerMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.describe_data_shares_for_producer_message.DescribeDataSharesForProducerMessage = {}
         if producer_arn is not None:
             input_["producer_arn"] = producer_arn
         if status is not None:
@@ -4845,6 +4910,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_data_shares_for_producer(
@@ -4913,7 +4979,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.describe_default_cluster_parameters_message.DescribeDefaultClusterParametersMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.describe_default_cluster_parameters_message.DescribeDefaultClusterParametersMessage = {}
         if parameter_group_family is not None:
             input_["parameter_group_family"] = parameter_group_family
         if max_records is not None:
@@ -4926,6 +4992,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_default_cluster_parameters(
@@ -5001,7 +5068,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.describe_endpoint_access_message.DescribeEndpointAccessMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.describe_endpoint_access_message.DescribeEndpointAccessMessage = {}
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
         if resource_owner is not None:
@@ -5020,6 +5087,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_endpoint_access(
@@ -5098,7 +5166,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.describe_endpoint_authorization_message.DescribeEndpointAuthorizationMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.describe_endpoint_authorization_message.DescribeEndpointAuthorizationMessage = {}
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
         if account is not None:
@@ -5115,6 +5183,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_endpoint_authorization(
@@ -5179,7 +5248,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.describe_event_categories_message.DescribeEventCategoriesMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.describe_event_categories_message.DescribeEventCategoriesMessage = {}
         if source_type is not None:
             input_["source_type"] = source_type
 
@@ -5188,6 +5257,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_events(
@@ -5235,7 +5305,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.describe_events_message.DescribeEventsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.describe_events_message.DescribeEventsMessage = {}
         if source_identifier is not None:
             input_["source_identifier"] = source_identifier
         if source_type is not None:
@@ -5256,6 +5326,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_events(
@@ -5336,7 +5407,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.describe_event_subscriptions_message.DescribeEventSubscriptionsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.describe_event_subscriptions_message.DescribeEventSubscriptionsMessage = {}
         if subscription_name is not None:
             input_["subscription_name"] = subscription_name
         if max_records is not None:
@@ -5353,6 +5424,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_event_subscriptions(
@@ -5431,7 +5503,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.describe_hsm_client_certificates_message.DescribeHsmClientCertificatesMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.describe_hsm_client_certificates_message.DescribeHsmClientCertificatesMessage = {}
         if hsm_client_certificate_identifier is not None:
             input_["hsm_client_certificate_identifier"] = (
                 hsm_client_certificate_identifier
@@ -5450,6 +5522,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_hsm_client_certificates(
@@ -5530,7 +5603,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.describe_hsm_configurations_message.DescribeHsmConfigurationsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.describe_hsm_configurations_message.DescribeHsmConfigurationsMessage = {}
         if hsm_configuration_identifier is not None:
             input_["hsm_configuration_identifier"] = hsm_configuration_identifier
         if max_records is not None:
@@ -5547,6 +5620,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_hsm_configurations(
@@ -5624,7 +5698,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.describe_inbound_integrations_message.DescribeInboundIntegrationsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.describe_inbound_integrations_message.DescribeInboundIntegrationsMessage = {}
         if integration_arn is not None:
             input_["integration_arn"] = integration_arn
         if target_arn is not None:
@@ -5639,6 +5713,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_inbound_integrations(
@@ -5715,7 +5790,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.describe_integrations_message.DescribeIntegrationsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.describe_integrations_message.DescribeIntegrationsMessage = {}
         if integration_arn is not None:
             input_["integration_arn"] = integration_arn
         if max_records is not None:
@@ -5730,6 +5805,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_integrations(
@@ -5794,7 +5870,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.describe_logging_status_message.DescribeLoggingStatusMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.describe_logging_status_message.DescribeLoggingStatusMessage = {}
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
 
@@ -5803,6 +5879,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_node_configuration_options(
@@ -5859,7 +5936,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.describe_node_configuration_options_message.DescribeNodeConfigurationOptionsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.describe_node_configuration_options_message.DescribeNodeConfigurationOptionsMessage = {}
         if action_type is not None:
             input_["action_type"] = action_type
         if cluster_identifier is not None:
@@ -5882,6 +5959,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_node_configuration_options(
@@ -5960,7 +6038,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.describe_orderable_cluster_options_message.DescribeOrderableClusterOptionsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.describe_orderable_cluster_options_message.DescribeOrderableClusterOptionsMessage = {}
         if cluster_version is not None:
             input_["cluster_version"] = cluster_version
         if node_type is not None:
@@ -5975,6 +6053,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_orderable_cluster_options(
@@ -6052,7 +6131,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.describe_partners_input_message.DescribePartnersInputMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.describe_partners_input_message.DescribePartnersInputMessage = {}
         if account_id is not None:
             input_["account_id"] = account_id
         if cluster_identifier is not None:
@@ -6067,6 +6146,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_redshift_idc_applications(
@@ -6112,7 +6192,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.describe_redshift_idc_applications_message.DescribeRedshiftIdcApplicationsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.describe_redshift_idc_applications_message.DescribeRedshiftIdcApplicationsMessage = {}
         if redshift_idc_application_arn is not None:
             input_["redshift_idc_application_arn"] = redshift_idc_application_arn
         if max_records is not None:
@@ -6125,6 +6205,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_redshift_idc_applications(
@@ -6198,7 +6279,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.describe_reserved_node_exchange_status_input_message.DescribeReservedNodeExchangeStatusInputMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.describe_reserved_node_exchange_status_input_message.DescribeReservedNodeExchangeStatusInputMessage = {}
         if reserved_node_id is not None:
             input_["reserved_node_id"] = reserved_node_id
         if reserved_node_exchange_request_id is not None:
@@ -6215,6 +6296,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_reserved_node_exchange_status(
@@ -6286,7 +6368,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.describe_reserved_node_offerings_message.DescribeReservedNodeOfferingsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.describe_reserved_node_offerings_message.DescribeReservedNodeOfferingsMessage = {}
         if reserved_node_offering_id is not None:
             input_["reserved_node_offering_id"] = reserved_node_offering_id
         if max_records is not None:
@@ -6299,6 +6381,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_reserved_node_offerings(
@@ -6367,7 +6450,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.describe_reserved_nodes_message.DescribeReservedNodesMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.describe_reserved_nodes_message.DescribeReservedNodesMessage = {}
         if reserved_node_id is not None:
             input_["reserved_node_id"] = reserved_node_id
         if max_records is not None:
@@ -6380,6 +6463,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_reserved_nodes(
@@ -6441,7 +6525,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.describe_resize_message.DescribeResizeMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.describe_resize_message.DescribeResizeMessage = {}
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
 
@@ -6450,6 +6534,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_scheduled_actions(
@@ -6505,7 +6590,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.describe_scheduled_actions_message.DescribeScheduledActionsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.describe_scheduled_actions_message.DescribeScheduledActionsMessage = {}
         if scheduled_action_name is not None:
             input_["scheduled_action_name"] = scheduled_action_name
         if target_action_type is not None:
@@ -6528,6 +6613,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_scheduled_actions(
@@ -6612,7 +6698,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.describe_snapshot_copy_grants_message.DescribeSnapshotCopyGrantsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.describe_snapshot_copy_grants_message.DescribeSnapshotCopyGrantsMessage = {}
         if snapshot_copy_grant_name is not None:
             input_["snapshot_copy_grant_name"] = snapshot_copy_grant_name
         if max_records is not None:
@@ -6629,6 +6715,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_snapshot_copy_grants(
@@ -6703,7 +6790,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.describe_snapshot_schedules_message.DescribeSnapshotSchedulesMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.describe_snapshot_schedules_message.DescribeSnapshotSchedulesMessage = {}
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
         if schedule_identifier is not None:
@@ -6722,6 +6809,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_snapshot_schedules(
@@ -6786,6 +6874,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_table_restore_status(
@@ -6829,7 +6918,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.describe_table_restore_status_message.DescribeTableRestoreStatusMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.describe_table_restore_status_message.DescribeTableRestoreStatusMessage = {}
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
         if table_restore_request_id is not None:
@@ -6844,6 +6933,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_table_restore_status(
@@ -6918,7 +7008,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.describe_tags_message.DescribeTagsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.describe_tags_message.DescribeTagsMessage = {}
         if resource_name is not None:
             input_["resource_name"] = resource_name
         if resource_type is not None:
@@ -6937,6 +7027,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_tags(
@@ -7019,7 +7110,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.describe_usage_limits_message.DescribeUsageLimitsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.describe_usage_limits_message.DescribeUsageLimitsMessage = {}
         if usage_limit_id is not None:
             input_["usage_limit_id"] = usage_limit_id
         if cluster_identifier is not None:
@@ -7040,6 +7131,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_describe_usage_limits(
@@ -7109,7 +7201,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.disable_logging_message.DisableLoggingMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.disable_logging_message.DisableLoggingMessage = {}
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
 
@@ -7118,6 +7210,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disable_snapshot_copy(
@@ -7156,7 +7249,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.disable_snapshot_copy_message.DisableSnapshotCopyMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.disable_snapshot_copy_message.DisableSnapshotCopyMessage = {}
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
 
@@ -7165,6 +7258,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_data_share_consumer(
@@ -7206,7 +7300,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.disassociate_data_share_consumer_message.DisassociateDataShareConsumerMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.disassociate_data_share_consumer_message.DisassociateDataShareConsumerMessage = {}
         if data_share_arn is not None:
             input_["data_share_arn"] = data_share_arn
         if disassociate_entire_account is not None:
@@ -7221,6 +7315,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def enable_logging(
@@ -7271,7 +7366,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.enable_logging_message.EnableLoggingMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.enable_logging_message.EnableLoggingMessage = {}
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
         if bucket_name is not None:
@@ -7288,6 +7383,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def enable_snapshot_copy(
@@ -7344,7 +7440,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.enable_snapshot_copy_message.EnableSnapshotCopyMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.enable_snapshot_copy_message.EnableSnapshotCopyMessage = {}
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
         if destination_region is not None:
@@ -7363,6 +7459,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def failover_primary_compute(
@@ -7400,7 +7497,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.failover_primary_compute_input_message.FailoverPrimaryComputeInputMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.failover_primary_compute_input_message.FailoverPrimaryComputeInputMessage = {}
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
 
@@ -7409,6 +7506,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_cluster_credentials(
@@ -7460,7 +7558,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.get_cluster_credentials_message.GetClusterCredentialsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.get_cluster_credentials_message.GetClusterCredentialsMessage = {}
         if db_user is not None:
             input_["db_user"] = db_user
         if db_name is not None:
@@ -7481,6 +7579,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_cluster_credentials_with_iam(
@@ -7524,7 +7623,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.get_cluster_credentials_with_iam_message.GetClusterCredentialsWithIAMMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.get_cluster_credentials_with_iam_message.GetClusterCredentialsWithIAMMessage = {}
         if db_name is not None:
             input_["db_name"] = db_name
         if cluster_identifier is not None:
@@ -7539,6 +7638,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_identity_center_auth_token(
@@ -7578,7 +7678,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.get_identity_center_auth_token_request.GetIdentityCenterAuthTokenRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.get_identity_center_auth_token_request.GetIdentityCenterAuthTokenRequest = {}
         if cluster_ids is not None:
             input_["cluster_ids"] = cluster_ids
 
@@ -7587,6 +7687,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_reserved_node_exchange_configuration_options(
@@ -7640,7 +7741,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.get_reserved_node_exchange_configuration_options_input_message.GetReservedNodeExchangeConfigurationOptionsInputMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.get_reserved_node_exchange_configuration_options_input_message.GetReservedNodeExchangeConfigurationOptionsInputMessage = {}
         if action_type is not None:
             input_["action_type"] = action_type
         if cluster_identifier is not None:
@@ -7657,6 +7758,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_get_reserved_node_exchange_configuration_options(
@@ -7735,7 +7837,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.get_reserved_node_exchange_offerings_input_message.GetReservedNodeExchangeOfferingsInputMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.get_reserved_node_exchange_offerings_input_message.GetReservedNodeExchangeOfferingsInputMessage = {}
         if reserved_node_id is not None:
             input_["reserved_node_id"] = reserved_node_id
         if max_records is not None:
@@ -7748,6 +7850,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_get_reserved_node_exchange_offerings(
@@ -7811,7 +7914,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.get_resource_policy_message.GetResourcePolicyMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.get_resource_policy_message.GetResourcePolicyMessage = {}
         if resource_arn is not None:
             input_["resource_arn"] = resource_arn
 
@@ -7820,6 +7923,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_recommendations(
@@ -7863,7 +7967,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.list_recommendations_message.ListRecommendationsMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.list_recommendations_message.ListRecommendationsMessage = {}
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
         if namespace_arn is not None:
@@ -7878,6 +7982,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_recommendations(
@@ -7945,7 +8050,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.modify_aqua_input_message.ModifyAquaInputMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.modify_aqua_input_message.ModifyAquaInputMessage = {}
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
         if aqua_configuration_status is not None:
@@ -7956,6 +8061,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_authentication_profile(
@@ -7998,7 +8104,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.modify_authentication_profile_message.ModifyAuthenticationProfileMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.modify_authentication_profile_message.ModifyAuthenticationProfileMessage = {}
         if authentication_profile_name is not None:
             input_["authentication_profile_name"] = authentication_profile_name
         if authentication_profile_content is not None:
@@ -8009,6 +8115,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_cluster(
@@ -8160,7 +8267,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.modify_cluster_message.ModifyClusterMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.modify_cluster_message.ModifyClusterMessage = {}
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
         if cluster_type is not None:
@@ -8237,6 +8344,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_cluster_db_revision(
@@ -8276,7 +8384,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.modify_cluster_db_revision_message.ModifyClusterDbRevisionMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.modify_cluster_db_revision_message.ModifyClusterDbRevisionMessage = {}
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
         if revision_target is not None:
@@ -8287,6 +8395,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_cluster_iam_roles(
@@ -8332,7 +8441,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.modify_cluster_iam_roles_message.ModifyClusterIamRolesMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.modify_cluster_iam_roles_message.ModifyClusterIamRolesMessage = {}
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
         if add_iam_roles is not None:
@@ -8347,6 +8456,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_cluster_maintenance(
@@ -8402,7 +8512,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.modify_cluster_maintenance_message.ModifyClusterMaintenanceMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.modify_cluster_maintenance_message.ModifyClusterMaintenanceMessage = {}
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
         if defer_maintenance is not None:
@@ -8421,6 +8531,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_cluster_parameter_group(
@@ -8460,7 +8571,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.modify_cluster_parameter_group_message.ModifyClusterParameterGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.modify_cluster_parameter_group_message.ModifyClusterParameterGroupMessage = {}
         if parameter_group_name is not None:
             input_["parameter_group_name"] = parameter_group_name
         if parameters is not None:
@@ -8471,6 +8582,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_cluster_snapshot(
@@ -8515,7 +8627,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.modify_cluster_snapshot_message.ModifyClusterSnapshotMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.modify_cluster_snapshot_message.ModifyClusterSnapshotMessage = {}
         if snapshot_identifier is not None:
             input_["snapshot_identifier"] = snapshot_identifier
         if manual_snapshot_retention_period is not None:
@@ -8530,6 +8642,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_cluster_snapshot_schedule(
@@ -8570,7 +8683,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.modify_cluster_snapshot_schedule_message.ModifyClusterSnapshotScheduleMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.modify_cluster_snapshot_schedule_message.ModifyClusterSnapshotScheduleMessage = {}
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
         if schedule_identifier is not None:
@@ -8583,6 +8696,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_cluster_subnet_group(
@@ -8628,7 +8742,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.modify_cluster_subnet_group_message.ModifyClusterSubnetGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.modify_cluster_subnet_group_message.ModifyClusterSubnetGroupMessage = {}
         if cluster_subnet_group_name is not None:
             input_["cluster_subnet_group_name"] = cluster_subnet_group_name
         if description is not None:
@@ -8641,6 +8755,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_custom_domain_association(
@@ -8686,7 +8801,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.modify_custom_domain_association_message.ModifyCustomDomainAssociationMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.modify_custom_domain_association_message.ModifyCustomDomainAssociationMessage = {}
         if custom_domain_name is not None:
             input_["custom_domain_name"] = custom_domain_name
         if custom_domain_certificate_arn is not None:
@@ -8699,6 +8814,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_endpoint_access(
@@ -8742,7 +8858,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.modify_endpoint_access_message.ModifyEndpointAccessMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.modify_endpoint_access_message.ModifyEndpointAccessMessage = {}
         if endpoint_name is not None:
             input_["endpoint_name"] = endpoint_name
         if vpc_security_group_ids is not None:
@@ -8753,6 +8869,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_event_subscription(
@@ -8813,7 +8930,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.modify_event_subscription_message.ModifyEventSubscriptionMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.modify_event_subscription_message.ModifyEventSubscriptionMessage = {}
         if subscription_name is not None:
             input_["subscription_name"] = subscription_name
         if sns_topic_arn is not None:
@@ -8834,6 +8951,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_integration(
@@ -8880,7 +8998,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.modify_integration_message.ModifyIntegrationMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.modify_integration_message.ModifyIntegrationMessage = {}
         if integration_arn is not None:
             input_["integration_arn"] = integration_arn
         if description is not None:
@@ -8893,6 +9011,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_lakehouse_configuration(
@@ -8953,7 +9072,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.modify_lakehouse_configuration_message.ModifyLakehouseConfigurationMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.modify_lakehouse_configuration_message.ModifyLakehouseConfigurationMessage = {}
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
         if lakehouse_registration is not None:
@@ -8972,6 +9091,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_redshift_idc_application(
@@ -9029,7 +9149,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.modify_redshift_idc_application_message.ModifyRedshiftIdcApplicationMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.modify_redshift_idc_application_message.ModifyRedshiftIdcApplicationMessage = {}
         if redshift_idc_application_arn is not None:
             input_["redshift_idc_application_arn"] = redshift_idc_application_arn
         if identity_namespace is not None:
@@ -9048,6 +9168,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_scheduled_action(
@@ -9106,7 +9227,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.modify_scheduled_action_message.ModifyScheduledActionMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.modify_scheduled_action_message.ModifyScheduledActionMessage = {}
         if scheduled_action_name is not None:
             input_["scheduled_action_name"] = scheduled_action_name
         if target_action is not None:
@@ -9129,6 +9250,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_snapshot_copy_retention_period(
@@ -9171,7 +9293,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.modify_snapshot_copy_retention_period_message.ModifySnapshotCopyRetentionPeriodMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.modify_snapshot_copy_retention_period_message.ModifySnapshotCopyRetentionPeriodMessage = {}
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
         if retention_period is not None:
@@ -9184,6 +9306,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_snapshot_schedule(
@@ -9224,7 +9347,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.modify_snapshot_schedule_message.ModifySnapshotScheduleMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.modify_snapshot_schedule_message.ModifySnapshotScheduleMessage = {}
         if schedule_identifier is not None:
             input_["schedule_identifier"] = schedule_identifier
         if schedule_definitions is not None:
@@ -9235,6 +9358,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def modify_usage_limit(
@@ -9275,7 +9399,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.modify_usage_limit_message.ModifyUsageLimitMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.modify_usage_limit_message.ModifyUsageLimitMessage = {}
         if usage_limit_id is not None:
             input_["usage_limit_id"] = usage_limit_id
         if amount is not None:
@@ -9288,6 +9412,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def pause_cluster(
@@ -9324,7 +9449,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.pause_cluster_message.PauseClusterMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.pause_cluster_message.PauseClusterMessage = {}
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
 
@@ -9333,6 +9458,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def purchase_reserved_node_offering(
@@ -9374,7 +9500,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.purchase_reserved_node_offering_message.PurchaseReservedNodeOfferingMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.purchase_reserved_node_offering_message.PurchaseReservedNodeOfferingMessage = {}
         if reserved_node_offering_id is not None:
             input_["reserved_node_offering_id"] = reserved_node_offering_id
         if node_count is not None:
@@ -9385,6 +9511,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_resource_policy(
@@ -9424,7 +9551,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.put_resource_policy_message.PutResourcePolicyMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.put_resource_policy_message.PutResourcePolicyMessage = {}
         if resource_arn is not None:
             input_["resource_arn"] = resource_arn
         if policy is not None:
@@ -9435,6 +9562,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def reboot_cluster(
@@ -9470,7 +9598,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.reboot_cluster_message.RebootClusterMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.reboot_cluster_message.RebootClusterMessage = {}
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
 
@@ -9479,6 +9607,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def register_namespace(
@@ -9521,7 +9650,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.register_namespace_input_message.RegisterNamespaceInputMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.register_namespace_input_message.RegisterNamespaceInputMessage = {}
         if namespace_identifier is not None:
             input_["namespace_identifier"] = namespace_identifier
         if consumer_identifiers is not None:
@@ -9532,6 +9661,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def reject_data_share(
@@ -9564,7 +9694,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.reject_data_share_message.RejectDataShareMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.reject_data_share_message.RejectDataShareMessage = {}
         if data_share_arn is not None:
             input_["data_share_arn"] = data_share_arn
 
@@ -9573,6 +9703,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def reset_cluster_parameter_group(
@@ -9614,7 +9745,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.reset_cluster_parameter_group_message.ResetClusterParameterGroupMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.reset_cluster_parameter_group_message.ResetClusterParameterGroupMessage = {}
         if parameter_group_name is not None:
             input_["parameter_group_name"] = parameter_group_name
         if reset_all_parameters is not None:
@@ -9627,6 +9758,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def resize_cluster(
@@ -9693,7 +9825,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.resize_cluster_message.ResizeClusterMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.resize_cluster_message.ResizeClusterMessage = {}
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
         if cluster_type is not None:
@@ -9716,6 +9848,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def restore_from_cluster_snapshot(
@@ -9908,7 +10041,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.restore_from_cluster_snapshot_message.RestoreFromClusterSnapshotMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.restore_from_cluster_snapshot_message.RestoreFromClusterSnapshotMessage = {}
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
         if snapshot_identifier is not None:
@@ -10003,6 +10136,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def restore_table_from_cluster_snapshot(
@@ -10061,7 +10195,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.restore_table_from_cluster_snapshot_message.RestoreTableFromClusterSnapshotMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.restore_table_from_cluster_snapshot_message.RestoreTableFromClusterSnapshotMessage = {}
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
         if snapshot_identifier is not None:
@@ -10088,6 +10222,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def resume_cluster(
@@ -10125,7 +10260,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.resume_cluster_message.ResumeClusterMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.resume_cluster_message.ResumeClusterMessage = {}
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
 
@@ -10134,6 +10269,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def revoke_cluster_security_group_ingress(
@@ -10180,7 +10316,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.revoke_cluster_security_group_ingress_message.RevokeClusterSecurityGroupIngressMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.revoke_cluster_security_group_ingress_message.RevokeClusterSecurityGroupIngressMessage = {}
         if cluster_security_group_name is not None:
             input_["cluster_security_group_name"] = cluster_security_group_name
         if cidrip is not None:
@@ -10195,6 +10331,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def revoke_endpoint_access(
@@ -10243,7 +10380,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.revoke_endpoint_access_message.RevokeEndpointAccessMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.revoke_endpoint_access_message.RevokeEndpointAccessMessage = {}
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
         if account is not None:
@@ -10258,6 +10395,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def revoke_snapshot_access(
@@ -10305,7 +10443,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.revoke_snapshot_access_message.RevokeSnapshotAccessMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.revoke_snapshot_access_message.RevokeSnapshotAccessMessage = {}
         if snapshot_identifier is not None:
             input_["snapshot_identifier"] = snapshot_identifier
         if snapshot_arn is not None:
@@ -10320,6 +10458,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def rotate_encryption_key(
@@ -10357,7 +10496,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.rotate_encryption_key_message.RotateEncryptionKeyMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.rotate_encryption_key_message.RotateEncryptionKeyMessage = {}
         if cluster_identifier is not None:
             input_["cluster_identifier"] = cluster_identifier
 
@@ -10366,6 +10505,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_partner_status(
@@ -10425,7 +10565,7 @@ class AsyncRedshiftClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_redshift.types.update_partner_status_input_message.UpdatePartnerStatusInputMessage = {}  # type: ignore[typeddict-item]
+        input_: capo_redshift.types.update_partner_status_input_message.UpdatePartnerStatusInputMessage = {}
         if account_id is not None:
             input_["account_id"] = account_id
         if cluster_identifier is not None:
@@ -10444,6 +10584,7 @@ class AsyncRedshiftClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

@@ -54,13 +54,13 @@ def serialize_json(value: CreateCustomLogSourceRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateCustomLogSourceRequest:
     out: CreateCustomLogSourceRequest = {}  # type: ignore[typeddict-item]
-    if "sourceName" in data:
+    if data.get("sourceName") is not None:
         out["source_name"] = data["sourceName"]
     else:
         raise DeserializationError("CreateCustomLogSourceRequest.source_name required")
-    if "sourceVersion" in data:
+    if data.get("sourceVersion") is not None:
         out["source_version"] = data["sourceVersion"]
-    if "eventClasses" in data:
+    if data.get("eventClasses") is not None:
         import capo_securitylake.types.ocsf_event_class_list
 
         out["event_classes"] = (
@@ -68,7 +68,7 @@ def deserialize_json(data: dict) -> CreateCustomLogSourceRequest:
                 data["eventClasses"]
             )
         )
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_securitylake.types.custom_log_source_configuration
 
         out["configuration"] = (

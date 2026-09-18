@@ -40,16 +40,16 @@ def serialize_json(value: MaintenanceStatus) -> dict:
 
 def deserialize_json(data: dict) -> MaintenanceStatus:
     out: MaintenanceStatus = {}  # type: ignore[typeddict-item]
-    if "maintenanceDay" in data:
+    if data.get("maintenanceDay") is not None:
         import capo_medialive.types.maintenance_day
 
         out["maintenance_day"] = capo_medialive.types.maintenance_day.deserialize_json(
             data["maintenanceDay"]
         )
-    if "maintenanceDeadline" in data:
+    if data.get("maintenanceDeadline") is not None:
         out["maintenance_deadline"] = data["maintenanceDeadline"]
-    if "maintenanceScheduledDate" in data:
+    if data.get("maintenanceScheduledDate") is not None:
         out["maintenance_scheduled_date"] = data["maintenanceScheduledDate"]
-    if "maintenanceStartTime" in data:
+    if data.get("maintenanceStartTime") is not None:
         out["maintenance_start_time"] = data["maintenanceStartTime"]
     return out

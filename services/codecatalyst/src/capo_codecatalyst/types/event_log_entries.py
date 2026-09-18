@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> EventLogEntries:
 
     out: EventLogEntries = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_codecatalyst.types.event_log_entry.deserialize_json(item))
     return out

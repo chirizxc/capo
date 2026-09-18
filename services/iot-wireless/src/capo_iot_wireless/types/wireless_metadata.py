@@ -44,7 +44,7 @@ def serialize_json(value: WirelessMetadata) -> dict:
 
 def deserialize_json(data: dict) -> WirelessMetadata:
     out: WirelessMetadata = {}  # type: ignore[typeddict-item]
-    if "LoRaWAN" in data:
+    if data.get("LoRaWAN") is not None:
         import capo_iot_wireless.types.lo_ra_wan_send_data_to_device
 
         out["lo_ra_wan"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> WirelessMetadata:
                 data["LoRaWAN"]
             )
         )
-    if "Sidewalk" in data:
+    if data.get("Sidewalk") is not None:
         import capo_iot_wireless.types.sidewalk_send_data_to_device
 
         out["sidewalk"] = (

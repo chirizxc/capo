@@ -33,12 +33,12 @@ def serialize_json(value: FoodType) -> dict:
 
 def deserialize_json(data: dict) -> FoodType:
     out: FoodType = {}  # type: ignore[typeddict-item]
-    if "LocalizedName" in data:
+    if data.get("LocalizedName") is not None:
         out["localized_name"] = data["LocalizedName"]
     else:
         raise DeserializationError("FoodType.localized_name required")
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Primary" in data:
+    if data.get("Primary") is not None:
         out["primary"] = data["Primary"]
     return out

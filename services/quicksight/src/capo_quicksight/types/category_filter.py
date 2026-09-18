@@ -57,11 +57,11 @@ def serialize_json(value: CategoryFilter) -> dict:
 
 def deserialize_json(data: dict) -> CategoryFilter:
     out: CategoryFilter = {}  # type: ignore[typeddict-item]
-    if "FilterId" in data:
+    if data.get("FilterId") is not None:
         out["filter_id"] = data["FilterId"]
     else:
         raise DeserializationError("CategoryFilter.filter_id required")
-    if "Column" in data:
+    if data.get("Column") is not None:
         import capo_quicksight.types.column_identifier
 
         out["column"] = capo_quicksight.types.column_identifier.deserialize_json(
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> CategoryFilter:
         )
     else:
         raise DeserializationError("CategoryFilter.column required")
-    if "Configuration" in data:
+    if data.get("Configuration") is not None:
         import capo_quicksight.types.category_filter_configuration
 
         out["configuration"] = (
@@ -79,7 +79,7 @@ def deserialize_json(data: dict) -> CategoryFilter:
         )
     else:
         raise DeserializationError("CategoryFilter.configuration required")
-    if "DefaultFilterControlConfiguration" in data:
+    if data.get("DefaultFilterControlConfiguration") is not None:
         import capo_quicksight.types.default_filter_control_configuration
 
         out["default_filter_control_configuration"] = (

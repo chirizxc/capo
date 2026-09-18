@@ -22,8 +22,8 @@ def serialize_json(value: UnusedAccessTypeStatistics) -> dict:
 
 def deserialize_json(data: dict) -> UnusedAccessTypeStatistics:
     out: UnusedAccessTypeStatistics = {}  # type: ignore[typeddict-item]
-    if "unusedAccessType" in data:
+    if data.get("unusedAccessType") is not None:
         out["unused_access_type"] = data["unusedAccessType"]
-    if "total" in data:
+    if data.get("total") is not None:
         out["total"] = data["total"]
     return out

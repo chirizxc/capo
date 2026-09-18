@@ -32,8 +32,8 @@ def serialize_aws_json_1_1(value: OriginApprovalRuleTemplate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OriginApprovalRuleTemplate:
     out: OriginApprovalRuleTemplate = {}  # type: ignore[typeddict-item]
-    if "approvalRuleTemplateId" in data:
+    if data.get("approvalRuleTemplateId") is not None:
         out["approval_rule_template_id"] = data["approvalRuleTemplateId"]
-    if "approvalRuleTemplateName" in data:
+    if data.get("approvalRuleTemplateName") is not None:
         out["approval_rule_template_name"] = data["approvalRuleTemplateName"]
     return out

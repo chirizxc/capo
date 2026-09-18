@@ -35,7 +35,7 @@ def serialize_json(value: Authentication) -> dict:
 
 def deserialize_json(data: dict) -> Authentication:
     out: Authentication = {}  # type: ignore[typeddict-item]
-    if "providerType" in data:
+    if data.get("providerType") is not None:
         import capo_securityagent.types.authentication_provider_type
 
         out["provider_type"] = (
@@ -43,6 +43,6 @@ def deserialize_json(data: dict) -> Authentication:
                 data["providerType"]
             )
         )
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     return out

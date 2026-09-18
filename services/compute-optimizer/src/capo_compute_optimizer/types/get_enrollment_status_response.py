@@ -62,19 +62,19 @@ def serialize_aws_json_1_0(value: GetEnrollmentStatusResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetEnrollmentStatusResponse:
     out: GetEnrollmentStatusResponse = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_compute_optimizer.types.status
 
         out["status"] = capo_compute_optimizer.types.status.deserialize_aws_json_1_0(
             data["status"]
         )
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "memberAccountsEnrolled" in data:
+    if data.get("memberAccountsEnrolled") is not None:
         out["member_accounts_enrolled"] = data["memberAccountsEnrolled"]
     else:
         out["member_accounts_enrolled"] = False
-    if "lastUpdatedTimestamp" in data:
+    if data.get("lastUpdatedTimestamp") is not None:
         import capo_compute_optimizer.types.last_updated_timestamp
 
         out["last_updated_timestamp"] = (
@@ -82,7 +82,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetEnrollmentStatusResponse:
                 data["lastUpdatedTimestamp"]
             )
         )
-    if "numberOfMemberAccountsOptedIn" in data:
+    if data.get("numberOfMemberAccountsOptedIn") is not None:
         out["number_of_member_accounts_opted_in"] = data[
             "numberOfMemberAccountsOptedIn"
         ]

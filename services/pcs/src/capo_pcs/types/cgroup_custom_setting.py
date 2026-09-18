@@ -22,11 +22,11 @@ def serialize_aws_json_1_0(value: CgroupCustomSetting) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CgroupCustomSetting:
     out: CgroupCustomSetting = {}  # type: ignore[typeddict-item]
-    if "parameterName" in data:
+    if data.get("parameterName") is not None:
         out["parameter_name"] = data["parameterName"]
     else:
         raise DeserializationError("CgroupCustomSetting.parameter_name required")
-    if "parameterValue" in data:
+    if data.get("parameterValue") is not None:
         out["parameter_value"] = data["parameterValue"]
     else:
         raise DeserializationError("CgroupCustomSetting.parameter_value required")

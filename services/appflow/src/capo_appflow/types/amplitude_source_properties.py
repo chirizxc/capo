@@ -24,7 +24,7 @@ def serialize_json(value: AmplitudeSourceProperties) -> dict:
 
 def deserialize_json(data: dict) -> AmplitudeSourceProperties:
     out: AmplitudeSourceProperties = {}  # type: ignore[typeddict-item]
-    if "object" in data:
+    if data.get("object") is not None:
         out["object"] = data["object"]
     else:
         raise DeserializationError("AmplitudeSourceProperties.object required")

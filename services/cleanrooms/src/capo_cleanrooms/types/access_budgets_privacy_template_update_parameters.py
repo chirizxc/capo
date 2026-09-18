@@ -28,7 +28,7 @@ def serialize_json(value: AccessBudgetsPrivacyTemplateUpdateParameters) -> dict:
 
 def deserialize_json(data: dict) -> AccessBudgetsPrivacyTemplateUpdateParameters:
     out: AccessBudgetsPrivacyTemplateUpdateParameters = {}  # type: ignore[typeddict-item]
-    if "budgetParameters" in data:
+    if data.get("budgetParameters") is not None:
         import capo_cleanrooms.types.budget_parameters
 
         out["budget_parameters"] = (

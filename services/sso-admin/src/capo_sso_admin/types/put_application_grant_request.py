@@ -38,13 +38,13 @@ def serialize_aws_json_1_1(value: PutApplicationGrantRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutApplicationGrantRequest:
     out: PutApplicationGrantRequest = {}  # type: ignore[typeddict-item]
-    if "ApplicationArn" in data:
+    if data.get("ApplicationArn") is not None:
         out["application_arn"] = data["ApplicationArn"]
     else:
         raise DeserializationError(
             "PutApplicationGrantRequest.application_arn required"
         )
-    if "GrantType" in data:
+    if data.get("GrantType") is not None:
         import capo_sso_admin.types.grant_type
 
         out["grant_type"] = capo_sso_admin.types.grant_type.deserialize_aws_json_1_1(
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> PutApplicationGrantRequest:
         )
     else:
         raise DeserializationError("PutApplicationGrantRequest.grant_type required")
-    if "Grant" in data:
+    if data.get("Grant") is not None:
         import capo_sso_admin.types.grant
 
         out["grant"] = capo_sso_admin.types.grant.deserialize_aws_json_1_1(

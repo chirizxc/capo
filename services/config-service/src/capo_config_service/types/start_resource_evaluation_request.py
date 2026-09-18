@@ -62,7 +62,7 @@ def serialize_aws_json_1_1(value: StartResourceEvaluationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartResourceEvaluationRequest:
     out: StartResourceEvaluationRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceDetails" in data:
+    if data.get("ResourceDetails") is not None:
         import capo_config_service.types.resource_details
 
         out["resource_details"] = (
@@ -74,7 +74,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartResourceEvaluationRequest:
         raise DeserializationError(
             "StartResourceEvaluationRequest.resource_details required"
         )
-    if "EvaluationContext" in data:
+    if data.get("EvaluationContext") is not None:
         import capo_config_service.types.evaluation_context
 
         out["evaluation_context"] = (
@@ -82,7 +82,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartResourceEvaluationRequest:
                 data["EvaluationContext"]
             )
         )
-    if "EvaluationMode" in data:
+    if data.get("EvaluationMode") is not None:
         import capo_config_service.types.evaluation_mode
 
         out["evaluation_mode"] = (
@@ -94,10 +94,10 @@ def deserialize_aws_json_1_1(data: dict) -> StartResourceEvaluationRequest:
         raise DeserializationError(
             "StartResourceEvaluationRequest.evaluation_mode required"
         )
-    if "EvaluationTimeout" in data:
+    if data.get("EvaluationTimeout") is not None:
         out["evaluation_timeout"] = data["EvaluationTimeout"]
     else:
         out["evaluation_timeout"] = 0
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     return out

@@ -41,11 +41,11 @@ def serialize_json(value: CanaryScheduleOutput) -> dict:
 
 def deserialize_json(data: dict) -> CanaryScheduleOutput:
     out: CanaryScheduleOutput = {}  # type: ignore[typeddict-item]
-    if "Expression" in data:
+    if data.get("Expression") is not None:
         out["expression"] = data["Expression"]
-    if "DurationInSeconds" in data:
+    if data.get("DurationInSeconds") is not None:
         out["duration_in_seconds"] = data["DurationInSeconds"]
-    if "RetryConfig" in data:
+    if data.get("RetryConfig") is not None:
         import capo_synthetics.types.retry_config_output
 
         out["retry_config"] = (

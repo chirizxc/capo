@@ -46,15 +46,15 @@ def serialize_aws_json_1_1(value: ColumnStatistics) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ColumnStatistics:
     out: ColumnStatistics = {}  # type: ignore[typeddict-item]
-    if "ColumnName" in data:
+    if data.get("ColumnName") is not None:
         out["column_name"] = data["ColumnName"]
     else:
         raise DeserializationError("ColumnStatistics.column_name required")
-    if "ColumnType" in data:
+    if data.get("ColumnType") is not None:
         out["column_type"] = data["ColumnType"]
     else:
         raise DeserializationError("ColumnStatistics.column_type required")
-    if "AnalyzedTime" in data:
+    if data.get("AnalyzedTime") is not None:
         import capo_glue.types.timestamp
 
         out["analyzed_time"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
@@ -62,7 +62,7 @@ def deserialize_aws_json_1_1(data: dict) -> ColumnStatistics:
         )
     else:
         raise DeserializationError("ColumnStatistics.analyzed_time required")
-    if "StatisticsData" in data:
+    if data.get("StatisticsData") is not None:
         import capo_glue.types.column_statistics_data
 
         out["statistics_data"] = (

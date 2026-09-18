@@ -23,6 +23,6 @@ def serialize_json(value: CreateAnonymousWebExperienceUrlResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateAnonymousWebExperienceUrlResponse:
     out: CreateAnonymousWebExperienceUrlResponse = {}  # type: ignore[typeddict-item]
-    if "anonymousUrl" in data:
+    if data.get("anonymousUrl") is not None:
         out["anonymous_url"] = data["anonymousUrl"]
     return out

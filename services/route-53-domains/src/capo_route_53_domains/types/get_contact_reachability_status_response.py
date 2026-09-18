@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: GetContactReachabilityStatusResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetContactReachabilityStatusResponse:
     out: GetContactReachabilityStatusResponse = {}  # type: ignore[typeddict-item]
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_route_53_domains.types.reachability_status
 
         out["status"] = (

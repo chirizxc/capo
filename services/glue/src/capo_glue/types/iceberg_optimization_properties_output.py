@@ -59,21 +59,21 @@ def serialize_aws_json_1_1(value: IcebergOptimizationPropertiesOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IcebergOptimizationPropertiesOutput:
     out: IcebergOptimizationPropertiesOutput = {}  # type: ignore[typeddict-item]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "Compaction" in data:
+    if data.get("Compaction") is not None:
         import capo_glue.types.parameters_map
 
         out["compaction"] = capo_glue.types.parameters_map.deserialize_aws_json_1_1(
             data["Compaction"]
         )
-    if "Retention" in data:
+    if data.get("Retention") is not None:
         import capo_glue.types.parameters_map
 
         out["retention"] = capo_glue.types.parameters_map.deserialize_aws_json_1_1(
             data["Retention"]
         )
-    if "OrphanFileDeletion" in data:
+    if data.get("OrphanFileDeletion") is not None:
         import capo_glue.types.parameters_map
 
         out["orphan_file_deletion"] = (
@@ -81,7 +81,7 @@ def deserialize_aws_json_1_1(data: dict) -> IcebergOptimizationPropertiesOutput:
                 data["OrphanFileDeletion"]
             )
         )
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_glue.types.timestamp
 
         out["last_updated_time"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(

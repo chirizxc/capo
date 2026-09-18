@@ -31,7 +31,7 @@ def serialize_json(value: PackageAssociationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> PackageAssociationConfiguration:
     out: PackageAssociationConfiguration = {}  # type: ignore[typeddict-item]
-    if "KeyStoreAccessOption" in data:
+    if data.get("KeyStoreAccessOption") is not None:
         import capo_opensearch.types.key_store_access_option
 
         out["key_store_access_option"] = (

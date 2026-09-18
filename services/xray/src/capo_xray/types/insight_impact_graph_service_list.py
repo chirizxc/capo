@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> InsightImpactGraphServiceList:
 
     out: InsightImpactGraphServiceList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_xray.types.insight_impact_graph_service.deserialize_json(item))
     return out

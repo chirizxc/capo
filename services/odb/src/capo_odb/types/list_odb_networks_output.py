@@ -32,9 +32,9 @@ def serialize_aws_json_1_0(value: ListOdbNetworksOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListOdbNetworksOutput:
     out: ListOdbNetworksOutput = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "odbNetworks" in data:
+    if data.get("odbNetworks") is not None:
         import capo_odb.types.odb_network_list
 
         out["odb_networks"] = capo_odb.types.odb_network_list.deserialize_aws_json_1_0(

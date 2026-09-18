@@ -74,17 +74,17 @@ def serialize_json(value: ReEncryptDataInput) -> dict:
 
 def deserialize_json(data: dict) -> ReEncryptDataInput:
     out: ReEncryptDataInput = {}  # type: ignore[typeddict-item]
-    if "OutgoingKeyIdentifier" in data:
+    if data.get("OutgoingKeyIdentifier") is not None:
         out["outgoing_key_identifier"] = data["OutgoingKeyIdentifier"]
     else:
         raise DeserializationError(
             "ReEncryptDataInput.outgoing_key_identifier required"
         )
-    if "CipherText" in data:
+    if data.get("CipherText") is not None:
         out["cipher_text"] = data["CipherText"]
     else:
         raise DeserializationError("ReEncryptDataInput.cipher_text required")
-    if "IncomingEncryptionAttributes" in data:
+    if data.get("IncomingEncryptionAttributes") is not None:
         import capo_payment_cryptography_data.types.re_encryption_attributes
 
         out["incoming_encryption_attributes"] = (
@@ -96,7 +96,7 @@ def deserialize_json(data: dict) -> ReEncryptDataInput:
         raise DeserializationError(
             "ReEncryptDataInput.incoming_encryption_attributes required"
         )
-    if "OutgoingEncryptionAttributes" in data:
+    if data.get("OutgoingEncryptionAttributes") is not None:
         import capo_payment_cryptography_data.types.re_encryption_attributes
 
         out["outgoing_encryption_attributes"] = (
@@ -108,7 +108,7 @@ def deserialize_json(data: dict) -> ReEncryptDataInput:
         raise DeserializationError(
             "ReEncryptDataInput.outgoing_encryption_attributes required"
         )
-    if "IncomingWrappedKey" in data:
+    if data.get("IncomingWrappedKey") is not None:
         import capo_payment_cryptography_data.types.wrapped_key
 
         out["incoming_wrapped_key"] = (
@@ -116,7 +116,7 @@ def deserialize_json(data: dict) -> ReEncryptDataInput:
                 data["IncomingWrappedKey"]
             )
         )
-    if "OutgoingWrappedKey" in data:
+    if data.get("OutgoingWrappedKey") is not None:
         import capo_payment_cryptography_data.types.wrapped_key
 
         out["outgoing_wrapped_key"] = (

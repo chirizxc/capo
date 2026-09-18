@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: BucketState) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BucketState:
     out: BucketState = {}  # type: ignore[typeddict-item]
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out

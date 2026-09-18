@@ -27,7 +27,7 @@ def serialize_json(value: LoaderIdResult) -> dict:
 
 def deserialize_json(data: dict) -> LoaderIdResult:
     out: LoaderIdResult = {}  # type: ignore[typeddict-item]
-    if "loadIds" in data:
+    if data.get("loadIds") is not None:
         import capo_neptunedata.types.string_list
 
         out["load_ids"] = capo_neptunedata.types.string_list.deserialize_json(

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ListObjectTypeAttributeValuesList:
 
     out: ListObjectTypeAttributeValuesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_customer_profiles.types.list_object_type_attribute_values_item.deserialize_json(
                 item

@@ -34,13 +34,13 @@ def serialize_json(value: SearchCriteria) -> dict:
 
 def deserialize_json(data: dict) -> SearchCriteria:
     out: SearchCriteria = {}  # type: ignore[typeddict-item]
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_medical_imaging.types.search_filters
 
         out["filters"] = capo_medical_imaging.types.search_filters.deserialize_json(
             data["filters"]
         )
-    if "sort" in data:
+    if data.get("sort") is not None:
         import capo_medical_imaging.types.sort
 
         out["sort"] = capo_medical_imaging.types.sort.deserialize_json(data["sort"])

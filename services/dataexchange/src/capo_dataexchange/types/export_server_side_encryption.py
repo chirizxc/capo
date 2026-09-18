@@ -31,9 +31,9 @@ def serialize_json(value: ExportServerSideEncryption) -> dict:
 
 def deserialize_json(data: dict) -> ExportServerSideEncryption:
     out: ExportServerSideEncryption = {}  # type: ignore[typeddict-item]
-    if "KmsKeyArn" in data:
+    if data.get("KmsKeyArn") is not None:
         out["kms_key_arn"] = data["KmsKeyArn"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     else:
         raise DeserializationError("ExportServerSideEncryption.type required")

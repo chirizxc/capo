@@ -99,51 +99,51 @@ def serialize_json(value: MultiplexProgramPacketIdentifiersMap) -> dict:
 
 def deserialize_json(data: dict) -> MultiplexProgramPacketIdentifiersMap:
     out: MultiplexProgramPacketIdentifiersMap = {}  # type: ignore[typeddict-item]
-    if "audioPids" in data:
+    if data.get("audioPids") is not None:
         import capo_medialive.types.__list_of__integer
 
         out["audio_pids"] = capo_medialive.types.__list_of__integer.deserialize_json(
             data["audioPids"]
         )
-    if "dvbSubPids" in data:
+    if data.get("dvbSubPids") is not None:
         import capo_medialive.types.__list_of__integer
 
         out["dvb_sub_pids"] = capo_medialive.types.__list_of__integer.deserialize_json(
             data["dvbSubPids"]
         )
-    if "dvbTeletextPid" in data:
+    if data.get("dvbTeletextPid") is not None:
         out["dvb_teletext_pid"] = data["dvbTeletextPid"]
-    if "etvPlatformPid" in data:
+    if data.get("etvPlatformPid") is not None:
         out["etv_platform_pid"] = data["etvPlatformPid"]
-    if "etvSignalPid" in data:
+    if data.get("etvSignalPid") is not None:
         out["etv_signal_pid"] = data["etvSignalPid"]
-    if "klvDataPids" in data:
+    if data.get("klvDataPids") is not None:
         import capo_medialive.types.__list_of__integer
 
         out["klv_data_pids"] = capo_medialive.types.__list_of__integer.deserialize_json(
             data["klvDataPids"]
         )
-    if "pcrPid" in data:
+    if data.get("pcrPid") is not None:
         out["pcr_pid"] = data["pcrPid"]
-    if "pmtPid" in data:
+    if data.get("pmtPid") is not None:
         out["pmt_pid"] = data["pmtPid"]
-    if "privateMetadataPid" in data:
+    if data.get("privateMetadataPid") is not None:
         out["private_metadata_pid"] = data["privateMetadataPid"]
-    if "scte27Pids" in data:
+    if data.get("scte27Pids") is not None:
         import capo_medialive.types.__list_of__integer
 
         out["scte27_pids"] = capo_medialive.types.__list_of__integer.deserialize_json(
             data["scte27Pids"]
         )
-    if "scte35Pid" in data:
+    if data.get("scte35Pid") is not None:
         out["scte35_pid"] = data["scte35Pid"]
-    if "timedMetadataPid" in data:
+    if data.get("timedMetadataPid") is not None:
         out["timed_metadata_pid"] = data["timedMetadataPid"]
-    if "videoPid" in data:
+    if data.get("videoPid") is not None:
         out["video_pid"] = data["videoPid"]
-    if "aribCaptionsPid" in data:
+    if data.get("aribCaptionsPid") is not None:
         out["arib_captions_pid"] = data["aribCaptionsPid"]
-    if "dvbTeletextPids" in data:
+    if data.get("dvbTeletextPids") is not None:
         import capo_medialive.types.__list_of__integer
 
         out["dvb_teletext_pids"] = (
@@ -151,8 +151,8 @@ def deserialize_json(data: dict) -> MultiplexProgramPacketIdentifiersMap:
                 data["dvbTeletextPids"]
             )
         )
-    if "ecmPid" in data:
+    if data.get("ecmPid") is not None:
         out["ecm_pid"] = data["ecmPid"]
-    if "smpte2038Pid" in data:
+    if data.get("smpte2038Pid") is not None:
         out["smpte2038_pid"] = data["smpte2038Pid"]
     return out

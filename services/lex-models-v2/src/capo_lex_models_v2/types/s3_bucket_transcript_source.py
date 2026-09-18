@@ -59,17 +59,17 @@ def serialize_json(value: S3BucketTranscriptSource) -> dict:
 
 def deserialize_json(data: dict) -> S3BucketTranscriptSource:
     out: S3BucketTranscriptSource = {}  # type: ignore[typeddict-item]
-    if "s3BucketName" in data:
+    if data.get("s3BucketName") is not None:
         out["s3_bucket_name"] = data["s3BucketName"]
     else:
         raise DeserializationError("S3BucketTranscriptSource.s3_bucket_name required")
-    if "pathFormat" in data:
+    if data.get("pathFormat") is not None:
         import capo_lex_models_v2.types.path_format
 
         out["path_format"] = capo_lex_models_v2.types.path_format.deserialize_json(
             data["pathFormat"]
         )
-    if "transcriptFormat" in data:
+    if data.get("transcriptFormat") is not None:
         import capo_lex_models_v2.types.transcript_format
 
         out["transcript_format"] = (
@@ -81,7 +81,7 @@ def deserialize_json(data: dict) -> S3BucketTranscriptSource:
         raise DeserializationError(
             "S3BucketTranscriptSource.transcript_format required"
         )
-    if "transcriptFilter" in data:
+    if data.get("transcriptFilter") is not None:
         import capo_lex_models_v2.types.transcript_filter
 
         out["transcript_filter"] = (
@@ -89,6 +89,6 @@ def deserialize_json(data: dict) -> S3BucketTranscriptSource:
                 data["transcriptFilter"]
             )
         )
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
     return out

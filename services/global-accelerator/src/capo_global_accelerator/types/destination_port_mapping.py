@@ -95,9 +95,9 @@ def serialize_aws_json_1_1(value: DestinationPortMapping) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DestinationPortMapping:
     out: DestinationPortMapping = {}  # type: ignore[typeddict-item]
-    if "AcceleratorArn" in data:
+    if data.get("AcceleratorArn") is not None:
         out["accelerator_arn"] = data["AcceleratorArn"]
-    if "AcceleratorSocketAddresses" in data:
+    if data.get("AcceleratorSocketAddresses") is not None:
         import capo_global_accelerator.types.socket_addresses
 
         out["accelerator_socket_addresses"] = (
@@ -105,13 +105,13 @@ def deserialize_aws_json_1_1(data: dict) -> DestinationPortMapping:
                 data["AcceleratorSocketAddresses"]
             )
         )
-    if "EndpointGroupArn" in data:
+    if data.get("EndpointGroupArn") is not None:
         out["endpoint_group_arn"] = data["EndpointGroupArn"]
-    if "EndpointId" in data:
+    if data.get("EndpointId") is not None:
         out["endpoint_id"] = data["EndpointId"]
-    if "EndpointGroupRegion" in data:
+    if data.get("EndpointGroupRegion") is not None:
         out["endpoint_group_region"] = data["EndpointGroupRegion"]
-    if "DestinationSocketAddress" in data:
+    if data.get("DestinationSocketAddress") is not None:
         import capo_global_accelerator.types.socket_address
 
         out["destination_socket_address"] = (
@@ -119,7 +119,7 @@ def deserialize_aws_json_1_1(data: dict) -> DestinationPortMapping:
                 data["DestinationSocketAddress"]
             )
         )
-    if "IpAddressType" in data:
+    if data.get("IpAddressType") is not None:
         import capo_global_accelerator.types.ip_address_type
 
         out["ip_address_type"] = (
@@ -127,7 +127,7 @@ def deserialize_aws_json_1_1(data: dict) -> DestinationPortMapping:
                 data["IpAddressType"]
             )
         )
-    if "DestinationTrafficState" in data:
+    if data.get("DestinationTrafficState") is not None:
         import capo_global_accelerator.types.custom_routing_destination_traffic_state
 
         out["destination_traffic_state"] = (

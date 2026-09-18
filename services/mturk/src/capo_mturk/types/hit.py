@@ -136,51 +136,51 @@ def serialize_aws_json_1_1(value: HIT) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> HIT:
     out: HIT = {}  # type: ignore[typeddict-item]
-    if "HITId" in data:
+    if data.get("HITId") is not None:
         out["hit_id"] = data["HITId"]
-    if "HITTypeId" in data:
+    if data.get("HITTypeId") is not None:
         out["hit_type_id"] = data["HITTypeId"]
-    if "HITGroupId" in data:
+    if data.get("HITGroupId") is not None:
         out["hit_group_id"] = data["HITGroupId"]
-    if "HITLayoutId" in data:
+    if data.get("HITLayoutId") is not None:
         out["hit_layout_id"] = data["HITLayoutId"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_mturk.types.timestamp
 
         out["creation_time"] = capo_mturk.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Question" in data:
+    if data.get("Question") is not None:
         out["question"] = data["Question"]
-    if "Keywords" in data:
+    if data.get("Keywords") is not None:
         out["keywords"] = data["Keywords"]
-    if "HITStatus" in data:
+    if data.get("HITStatus") is not None:
         import capo_mturk.types.hit_status
 
         out["hit_status"] = capo_mturk.types.hit_status.deserialize_aws_json_1_1(
             data["HITStatus"]
         )
-    if "MaxAssignments" in data:
+    if data.get("MaxAssignments") is not None:
         out["max_assignments"] = data["MaxAssignments"]
-    if "Reward" in data:
+    if data.get("Reward") is not None:
         out["reward"] = data["Reward"]
-    if "AutoApprovalDelayInSeconds" in data:
+    if data.get("AutoApprovalDelayInSeconds") is not None:
         out["auto_approval_delay_in_seconds"] = data["AutoApprovalDelayInSeconds"]
-    if "Expiration" in data:
+    if data.get("Expiration") is not None:
         import capo_mturk.types.timestamp
 
         out["expiration"] = capo_mturk.types.timestamp.deserialize_aws_json_1_1(
             data["Expiration"]
         )
-    if "AssignmentDurationInSeconds" in data:
+    if data.get("AssignmentDurationInSeconds") is not None:
         out["assignment_duration_in_seconds"] = data["AssignmentDurationInSeconds"]
-    if "RequesterAnnotation" in data:
+    if data.get("RequesterAnnotation") is not None:
         out["requester_annotation"] = data["RequesterAnnotation"]
-    if "QualificationRequirements" in data:
+    if data.get("QualificationRequirements") is not None:
         import capo_mturk.types.qualification_requirement_list
 
         out["qualification_requirements"] = (
@@ -188,7 +188,7 @@ def deserialize_aws_json_1_1(data: dict) -> HIT:
                 data["QualificationRequirements"]
             )
         )
-    if "HITReviewStatus" in data:
+    if data.get("HITReviewStatus") is not None:
         import capo_mturk.types.hit_review_status
 
         out["hit_review_status"] = (
@@ -196,10 +196,10 @@ def deserialize_aws_json_1_1(data: dict) -> HIT:
                 data["HITReviewStatus"]
             )
         )
-    if "NumberOfAssignmentsPending" in data:
+    if data.get("NumberOfAssignmentsPending") is not None:
         out["number_of_assignments_pending"] = data["NumberOfAssignmentsPending"]
-    if "NumberOfAssignmentsAvailable" in data:
+    if data.get("NumberOfAssignmentsAvailable") is not None:
         out["number_of_assignments_available"] = data["NumberOfAssignmentsAvailable"]
-    if "NumberOfAssignmentsCompleted" in data:
+    if data.get("NumberOfAssignmentsCompleted") is not None:
         out["number_of_assignments_completed"] = data["NumberOfAssignmentsCompleted"]
     return out

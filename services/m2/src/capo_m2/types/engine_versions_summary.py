@@ -22,11 +22,11 @@ def serialize_json(value: EngineVersionsSummary) -> dict:
 
 def deserialize_json(data: dict) -> EngineVersionsSummary:
     out: EngineVersionsSummary = {}  # type: ignore[typeddict-item]
-    if "engineType" in data:
+    if data.get("engineType") is not None:
         out["engine_type"] = data["engineType"]
     else:
         raise DeserializationError("EngineVersionsSummary.engine_type required")
-    if "engineVersion" in data:
+    if data.get("engineVersion") is not None:
         out["engine_version"] = data["engineVersion"]
     else:
         raise DeserializationError("EngineVersionsSummary.engine_version required")

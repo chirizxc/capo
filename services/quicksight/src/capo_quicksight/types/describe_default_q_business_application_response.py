@@ -30,8 +30,8 @@ def serialize_json(value: DescribeDefaultQBusinessApplicationResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeDefaultQBusinessApplicationResponse:
     out: DescribeDefaultQBusinessApplicationResponse = {}  # type: ignore[typeddict-item]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
     return out

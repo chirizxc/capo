@@ -33,8 +33,8 @@ def serialize_json(value: GetEffectivePoliciesRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetEffectivePoliciesRequest:
     out: GetEffectivePoliciesRequest = {}  # type: ignore[typeddict-item]
-    if "principal" in data:
+    if data.get("principal") is not None:
         out["principal"] = data["principal"]
-    if "cognitoIdentityPoolId" in data:
+    if data.get("cognitoIdentityPoolId") is not None:
         out["cognito_identity_pool_id"] = data["cognitoIdentityPoolId"]
     return out

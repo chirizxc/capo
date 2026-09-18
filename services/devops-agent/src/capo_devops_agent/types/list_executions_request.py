@@ -36,12 +36,12 @@ def serialize_json(value: ListExecutionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListExecutionsRequest:
     out: ListExecutionsRequest = {}  # type: ignore[typeddict-item]
-    if "taskId" in data:
+    if data.get("taskId") is not None:
         out["task_id"] = data["taskId"]
     else:
         raise DeserializationError("ListExecutionsRequest.task_id required")
-    if "limit" in data:
+    if data.get("limit") is not None:
         out["limit"] = data["limit"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

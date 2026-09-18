@@ -76,23 +76,23 @@ def serialize_json(value: VariantImportJobItem) -> dict:
 
 def deserialize_json(data: dict) -> VariantImportJobItem:
     out: VariantImportJobItem = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("VariantImportJobItem.id required")
-    if "destinationName" in data:
+    if data.get("destinationName") is not None:
         out["destination_name"] = data["destinationName"]
     else:
         raise DeserializationError("VariantImportJobItem.destination_name required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("VariantImportJobItem.role_arn required")
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("VariantImportJobItem.status required")
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_omics.types.creation_time
 
         out["creation_time"] = capo_omics.types.creation_time.deserialize_json(
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> VariantImportJobItem:
         )
     else:
         raise DeserializationError("VariantImportJobItem.creation_time required")
-    if "updateTime" in data:
+    if data.get("updateTime") is not None:
         import capo_omics.types.update_time
 
         out["update_time"] = capo_omics.types.update_time.deserialize_json(
@@ -108,17 +108,17 @@ def deserialize_json(data: dict) -> VariantImportJobItem:
         )
     else:
         raise DeserializationError("VariantImportJobItem.update_time required")
-    if "completionTime" in data:
+    if data.get("completionTime") is not None:
         import capo_omics.types.completion_time
 
         out["completion_time"] = capo_omics.types.completion_time.deserialize_json(
             data["completionTime"]
         )
-    if "runLeftNormalization" in data:
+    if data.get("runLeftNormalization") is not None:
         out["run_left_normalization"] = data["runLeftNormalization"]
     else:
         out["run_left_normalization"] = False
-    if "annotationFields" in data:
+    if data.get("annotationFields") is not None:
         import capo_omics.types.annotation_field_map
 
         out["annotation_fields"] = (

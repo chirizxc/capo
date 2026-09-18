@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: DeleteFaqRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteFaqRequest:
     out: DeleteFaqRequest = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("DeleteFaqRequest.id required")
-    if "IndexId" in data:
+    if data.get("IndexId") is not None:
         out["index_id"] = data["IndexId"]
     else:
         raise DeserializationError("DeleteFaqRequest.index_id required")

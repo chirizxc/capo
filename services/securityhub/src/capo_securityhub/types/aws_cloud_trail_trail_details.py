@@ -88,34 +88,34 @@ def serialize_json(value: AwsCloudTrailTrailDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsCloudTrailTrailDetails:
     out: AwsCloudTrailTrailDetails = {}  # type: ignore[typeddict-item]
-    if "CloudWatchLogsLogGroupArn" in data:
+    if data.get("CloudWatchLogsLogGroupArn") is not None:
         out["cloud_watch_logs_log_group_arn"] = data["CloudWatchLogsLogGroupArn"]
-    if "CloudWatchLogsRoleArn" in data:
+    if data.get("CloudWatchLogsRoleArn") is not None:
         out["cloud_watch_logs_role_arn"] = data["CloudWatchLogsRoleArn"]
-    if "HasCustomEventSelectors" in data:
+    if data.get("HasCustomEventSelectors") is not None:
         out["has_custom_event_selectors"] = data["HasCustomEventSelectors"]
-    if "HomeRegion" in data:
+    if data.get("HomeRegion") is not None:
         out["home_region"] = data["HomeRegion"]
-    if "IncludeGlobalServiceEvents" in data:
+    if data.get("IncludeGlobalServiceEvents") is not None:
         out["include_global_service_events"] = data["IncludeGlobalServiceEvents"]
-    if "IsMultiRegionTrail" in data:
+    if data.get("IsMultiRegionTrail") is not None:
         out["is_multi_region_trail"] = data["IsMultiRegionTrail"]
-    if "IsOrganizationTrail" in data:
+    if data.get("IsOrganizationTrail") is not None:
         out["is_organization_trail"] = data["IsOrganizationTrail"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "LogFileValidationEnabled" in data:
+    if data.get("LogFileValidationEnabled") is not None:
         out["log_file_validation_enabled"] = data["LogFileValidationEnabled"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "S3BucketName" in data:
+    if data.get("S3BucketName") is not None:
         out["s3_bucket_name"] = data["S3BucketName"]
-    if "S3KeyPrefix" in data:
+    if data.get("S3KeyPrefix") is not None:
         out["s3_key_prefix"] = data["S3KeyPrefix"]
-    if "SnsTopicArn" in data:
+    if data.get("SnsTopicArn") is not None:
         out["sns_topic_arn"] = data["SnsTopicArn"]
-    if "SnsTopicName" in data:
+    if data.get("SnsTopicName") is not None:
         out["sns_topic_name"] = data["SnsTopicName"]
-    if "TrailArn" in data:
+    if data.get("TrailArn") is not None:
         out["trail_arn"] = data["TrailArn"]
     return out

@@ -47,7 +47,7 @@ def serialize_aws_json_1_1(value: SourceTableConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SourceTableConfig:
     out: SourceTableConfig = {}  # type: ignore[typeddict-item]
-    if "Fields" in data:
+    if data.get("Fields") is not None:
         import capo_glue.types.source_table_fields_list
 
         out["fields"] = (
@@ -55,14 +55,14 @@ def deserialize_aws_json_1_1(data: dict) -> SourceTableConfig:
                 data["Fields"]
             )
         )
-    if "FilterPredicate" in data:
+    if data.get("FilterPredicate") is not None:
         out["filter_predicate"] = data["FilterPredicate"]
-    if "PrimaryKey" in data:
+    if data.get("PrimaryKey") is not None:
         import capo_glue.types.primary_key_list
 
         out["primary_key"] = capo_glue.types.primary_key_list.deserialize_aws_json_1_1(
             data["PrimaryKey"]
         )
-    if "RecordUpdateField" in data:
+    if data.get("RecordUpdateField") is not None:
         out["record_update_field"] = data["RecordUpdateField"]
     return out

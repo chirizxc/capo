@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: ResourceAlreadyExistsException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResourceAlreadyExistsException_:
     out: ResourceAlreadyExistsException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,20 @@ class ResourceAlreadyExistsException(ServiceError):
 
     code: str | None = "ResourceAlreadyExistsException"
 
-    def __init__(self, data: ResourceAlreadyExistsException_):
+    def __init__(
+        self, data: ResourceAlreadyExistsException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ResourceAlreadyExistsException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "ResourceAlreadyExistsException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "ResourceAlreadyExistsException":
+        return cls(deserialize_aws_json_1_1(data), message)

@@ -31,13 +31,21 @@ def serialize_aws_json_1_1(value: ListUsageLimitsRequest) -> dict:
         out["resourceArn"] = value["resource_arn"]
     if "usage_type" in value:
         out["usageType"] = value["usage_type"]
+    if "next_token" in value:
+        out["nextToken"] = value["next_token"]
+    if "max_results" in value:
+        out["maxResults"] = value["max_results"]
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> ListUsageLimitsRequest:
     out: ListUsageLimitsRequest = {}  # type: ignore[typeddict-item]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
-    if "usageType" in data:
+    if data.get("usageType") is not None:
         out["usage_type"] = data["usageType"]
+    if data.get("nextToken") is not None:
+        out["next_token"] = data["nextToken"]
+    if data.get("maxResults") is not None:
+        out["max_results"] = data["maxResults"]
     return out

@@ -74,35 +74,35 @@ def serialize_json(value: Recommendation) -> dict:
 
 def deserialize_json(data: dict) -> Recommendation:
     out: Recommendation = {}  # type: ignore[typeddict-item]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_sesv2.types.recommendation_type
 
         out["type"] = capo_sesv2.types.recommendation_type.deserialize_json(
             data["Type"]
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sesv2.types.recommendation_status
 
         out["status"] = capo_sesv2.types.recommendation_status.deserialize_json(
             data["Status"]
         )
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_sesv2.types.timestamp
 
         out["created_timestamp"] = capo_sesv2.types.timestamp.deserialize_json(
             data["CreatedTimestamp"]
         )
-    if "LastUpdatedTimestamp" in data:
+    if data.get("LastUpdatedTimestamp") is not None:
         import capo_sesv2.types.timestamp
 
         out["last_updated_timestamp"] = capo_sesv2.types.timestamp.deserialize_json(
             data["LastUpdatedTimestamp"]
         )
-    if "Impact" in data:
+    if data.get("Impact") is not None:
         import capo_sesv2.types.recommendation_impact
 
         out["impact"] = capo_sesv2.types.recommendation_impact.deserialize_json(

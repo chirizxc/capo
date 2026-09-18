@@ -32,7 +32,7 @@ def serialize_json(value: EventsConfig) -> dict:
 
 def deserialize_json(data: dict) -> EventsConfig:
     out: EventsConfig = {}  # type: ignore[typeddict-item]
-    if "EventParametersList" in data:
+    if data.get("EventParametersList") is not None:
         import capo_customer_profiles.types.event_parameters_list
 
         out["event_parameters_list"] = (

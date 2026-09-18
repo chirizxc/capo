@@ -120,7 +120,7 @@ def serialize_aws_json_1_1(value: TableOptimizerRun) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TableOptimizerRun:
     out: TableOptimizerRun = {}  # type: ignore[typeddict-item]
-    if "eventType" in data:
+    if data.get("eventType") is not None:
         import capo_glue.types.table_optimizer_event_type
 
         out["event_type"] = (
@@ -128,7 +128,7 @@ def deserialize_aws_json_1_1(data: dict) -> TableOptimizerRun:
                 data["eventType"]
             )
         )
-    if "startTimestamp" in data:
+    if data.get("startTimestamp") is not None:
         import capo_glue.types.table_optimizer_run_timestamp
 
         out["start_timestamp"] = (
@@ -136,7 +136,7 @@ def deserialize_aws_json_1_1(data: dict) -> TableOptimizerRun:
                 data["startTimestamp"]
             )
         )
-    if "endTimestamp" in data:
+    if data.get("endTimestamp") is not None:
         import capo_glue.types.table_optimizer_run_timestamp
 
         out["end_timestamp"] = (
@@ -144,15 +144,15 @@ def deserialize_aws_json_1_1(data: dict) -> TableOptimizerRun:
                 data["endTimestamp"]
             )
         )
-    if "metrics" in data:
+    if data.get("metrics") is not None:
         import capo_glue.types.run_metrics
 
         out["metrics"] = capo_glue.types.run_metrics.deserialize_aws_json_1_1(
             data["metrics"]
         )
-    if "error" in data:
+    if data.get("error") is not None:
         out["error"] = data["error"]
-    if "compactionMetrics" in data:
+    if data.get("compactionMetrics") is not None:
         import capo_glue.types.compaction_metrics
 
         out["compaction_metrics"] = (
@@ -160,7 +160,7 @@ def deserialize_aws_json_1_1(data: dict) -> TableOptimizerRun:
                 data["compactionMetrics"]
             )
         )
-    if "compactionStrategy" in data:
+    if data.get("compactionStrategy") is not None:
         import capo_glue.types.compaction_strategy
 
         out["compaction_strategy"] = (
@@ -168,7 +168,7 @@ def deserialize_aws_json_1_1(data: dict) -> TableOptimizerRun:
                 data["compactionStrategy"]
             )
         )
-    if "retentionMetrics" in data:
+    if data.get("retentionMetrics") is not None:
         import capo_glue.types.retention_metrics
 
         out["retention_metrics"] = (
@@ -176,7 +176,7 @@ def deserialize_aws_json_1_1(data: dict) -> TableOptimizerRun:
                 data["retentionMetrics"]
             )
         )
-    if "orphanFileDeletionMetrics" in data:
+    if data.get("orphanFileDeletionMetrics") is not None:
         import capo_glue.types.orphan_file_deletion_metrics
 
         out["orphan_file_deletion_metrics"] = (

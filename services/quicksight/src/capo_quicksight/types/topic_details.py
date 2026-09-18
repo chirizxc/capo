@@ -63,11 +63,11 @@ def serialize_json(value: TopicDetails) -> dict:
 
 def deserialize_json(data: dict) -> TopicDetails:
     out: TopicDetails = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "UserExperienceVersion" in data:
+    if data.get("UserExperienceVersion") is not None:
         import capo_quicksight.types.topic_user_experience_version
 
         out["user_experience_version"] = (
@@ -75,13 +75,13 @@ def deserialize_json(data: dict) -> TopicDetails:
                 data["UserExperienceVersion"]
             )
         )
-    if "DataSets" in data:
+    if data.get("DataSets") is not None:
         import capo_quicksight.types.datasets
 
         out["data_sets"] = capo_quicksight.types.datasets.deserialize_json(
             data["DataSets"]
         )
-    if "ConfigOptions" in data:
+    if data.get("ConfigOptions") is not None:
         import capo_quicksight.types.topic_config_options
 
         out["config_options"] = (

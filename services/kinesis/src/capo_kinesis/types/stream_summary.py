@@ -59,15 +59,15 @@ def serialize_aws_json_1_1(value: StreamSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StreamSummary:
     out: StreamSummary = {}  # type: ignore[typeddict-item]
-    if "StreamName" in data:
+    if data.get("StreamName") is not None:
         out["stream_name"] = data["StreamName"]
     else:
         raise DeserializationError("StreamSummary.stream_name required")
-    if "StreamARN" in data:
+    if data.get("StreamARN") is not None:
         out["stream_arn"] = data["StreamARN"]
     else:
         raise DeserializationError("StreamSummary.stream_arn required")
-    if "StreamStatus" in data:
+    if data.get("StreamStatus") is not None:
         import capo_kinesis.types.stream_status
 
         out["stream_status"] = (
@@ -77,7 +77,7 @@ def deserialize_aws_json_1_1(data: dict) -> StreamSummary:
         )
     else:
         raise DeserializationError("StreamSummary.stream_status required")
-    if "StreamModeDetails" in data:
+    if data.get("StreamModeDetails") is not None:
         import capo_kinesis.types.stream_mode_details
 
         out["stream_mode_details"] = (
@@ -85,7 +85,7 @@ def deserialize_aws_json_1_1(data: dict) -> StreamSummary:
                 data["StreamModeDetails"]
             )
         )
-    if "StreamCreationTimestamp" in data:
+    if data.get("StreamCreationTimestamp") is not None:
         import capo_kinesis.types.timestamp
 
         out["stream_creation_timestamp"] = (

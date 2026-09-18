@@ -79,14 +79,16 @@ class Space:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codecatalyst.types.get_space_request.GetSpaceRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_codecatalyst.types.get_space_request.GetSpaceRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -129,8 +131,9 @@ class Space:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codecatalyst.types.update_space_request.UpdateSpaceRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_codecatalyst.types.update_space_request.UpdateSpaceRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
 
@@ -139,6 +142,7 @@ class Space:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -177,14 +181,16 @@ class Space:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codecatalyst.types.delete_space_request.DeleteSpaceRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_codecatalyst.types.delete_space_request.DeleteSpaceRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -223,7 +229,7 @@ class Space:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codecatalyst.types.list_spaces_request.ListSpacesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_codecatalyst.types.list_spaces_request.ListSpacesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -232,6 +238,7 @@ class Space:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_dev_environments(
@@ -278,8 +285,9 @@ class Space:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codecatalyst.types.list_dev_environments_request.ListDevEnvironmentsRequest = {}  # type: ignore[typeddict-item]
-        input_["space_name"] = space_name
+        input_: capo_codecatalyst.types.list_dev_environments_request.ListDevEnvironmentsRequest = {
+            "space_name": space_name
+        }
         if project_name is not None:
             input_["project_name"] = project_name
         if filters is not None:
@@ -294,6 +302,7 @@ class Space:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -338,14 +347,16 @@ class AsyncSpace:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codecatalyst.types.get_space_request.GetSpaceRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_codecatalyst.types.get_space_request.GetSpaceRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -389,8 +400,9 @@ class AsyncSpace:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codecatalyst.types.update_space_request.UpdateSpaceRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_codecatalyst.types.update_space_request.UpdateSpaceRequest = {
+            "name": name
+        }
         if description is not None:
             input_["description"] = description
 
@@ -399,6 +411,7 @@ class AsyncSpace:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -438,14 +451,16 @@ class AsyncSpace:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codecatalyst.types.delete_space_request.DeleteSpaceRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_codecatalyst.types.delete_space_request.DeleteSpaceRequest = {
+            "name": name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -485,7 +500,7 @@ class AsyncSpace:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codecatalyst.types.list_spaces_request.ListSpacesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_codecatalyst.types.list_spaces_request.ListSpacesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -494,6 +509,7 @@ class AsyncSpace:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_dev_environments(
@@ -541,8 +557,9 @@ class AsyncSpace:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_codecatalyst.types.list_dev_environments_request.ListDevEnvironmentsRequest = {}  # type: ignore[typeddict-item]
-        input_["space_name"] = space_name
+        input_: capo_codecatalyst.types.list_dev_environments_request.ListDevEnvironmentsRequest = {
+            "space_name": space_name
+        }
         if project_name is not None:
             input_["project_name"] = project_name
         if filters is not None:
@@ -557,4 +574,5 @@ class AsyncSpace:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

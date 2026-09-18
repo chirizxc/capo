@@ -32,15 +32,15 @@ def serialize_aws_json_1_0(value: RepositoryBranchInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RepositoryBranchInput:
     out: RepositoryBranchInput = {}  # type: ignore[typeddict-item]
-    if "provider" in data:
+    if data.get("provider") is not None:
         out["provider"] = data["provider"]
     else:
         raise DeserializationError("RepositoryBranchInput.provider required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("RepositoryBranchInput.name required")
-    if "branch" in data:
+    if data.get("branch") is not None:
         out["branch"] = data["branch"]
     else:
         raise DeserializationError("RepositoryBranchInput.branch required")

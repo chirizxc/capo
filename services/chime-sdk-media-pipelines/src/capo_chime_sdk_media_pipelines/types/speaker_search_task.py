@@ -63,9 +63,9 @@ def serialize_json(value: SpeakerSearchTask) -> dict:
 
 def deserialize_json(data: dict) -> SpeakerSearchTask:
     out: SpeakerSearchTask = {}  # type: ignore[typeddict-item]
-    if "SpeakerSearchTaskId" in data:
+    if data.get("SpeakerSearchTaskId") is not None:
         out["speaker_search_task_id"] = data["SpeakerSearchTaskId"]
-    if "SpeakerSearchTaskStatus" in data:
+    if data.get("SpeakerSearchTaskStatus") is not None:
         import capo_chime_sdk_media_pipelines.types.media_pipeline_task_status
 
         out["speaker_search_task_status"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> SpeakerSearchTask:
                 data["SpeakerSearchTaskStatus"]
             )
         )
-    if "CreatedTimestamp" in data:
+    if data.get("CreatedTimestamp") is not None:
         import capo_chime_sdk_media_pipelines.types.iso8601_timestamp
 
         out["created_timestamp"] = (
@@ -81,7 +81,7 @@ def deserialize_json(data: dict) -> SpeakerSearchTask:
                 data["CreatedTimestamp"]
             )
         )
-    if "UpdatedTimestamp" in data:
+    if data.get("UpdatedTimestamp") is not None:
         import capo_chime_sdk_media_pipelines.types.iso8601_timestamp
 
         out["updated_timestamp"] = (

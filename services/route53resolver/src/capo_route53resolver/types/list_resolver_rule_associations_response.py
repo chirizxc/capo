@@ -41,11 +41,11 @@ def serialize_aws_json_1_1(value: ListResolverRuleAssociationsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListResolverRuleAssociationsResponse:
     out: ListResolverRuleAssociationsResponse = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "ResolverRuleAssociations" in data:
+    if data.get("ResolverRuleAssociations") is not None:
         import capo_route53resolver.types.resolver_rule_associations
 
         out["resolver_rule_associations"] = (

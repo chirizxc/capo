@@ -28,8 +28,8 @@ def serialize_json(value: PresignedUrlConfig) -> dict:
 
 def deserialize_json(data: dict) -> PresignedUrlConfig:
     out: PresignedUrlConfig = {}  # type: ignore[typeddict-item]
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "expiresInSec" in data:
+    if data.get("expiresInSec") is not None:
         out["expires_in_sec"] = data["expiresInSec"]
     return out

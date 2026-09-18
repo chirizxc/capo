@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: ListHsmsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListHsmsResponse:
     out: ListHsmsResponse = {}  # type: ignore[typeddict-item]
-    if "HsmList" in data:
+    if data.get("HsmList") is not None:
         import capo_cloudhsm.types.hsm_list
 
         out["hsm_list"] = capo_cloudhsm.types.hsm_list.deserialize_aws_json_1_1(
             data["HsmList"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

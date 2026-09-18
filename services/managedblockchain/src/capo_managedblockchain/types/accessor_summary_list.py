@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AccessorSummaryList:
 
     out: AccessorSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_managedblockchain.types.accessor_summary.deserialize_json(item))
     return out

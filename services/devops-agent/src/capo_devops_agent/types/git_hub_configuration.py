@@ -40,19 +40,19 @@ def serialize_json(value: GitHubConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> GitHubConfiguration:
     out: GitHubConfiguration = {}  # type: ignore[typeddict-item]
-    if "repoName" in data:
+    if data.get("repoName") is not None:
         out["repo_name"] = data["repoName"]
     else:
         raise DeserializationError("GitHubConfiguration.repo_name required")
-    if "repoId" in data:
+    if data.get("repoId") is not None:
         out["repo_id"] = data["repoId"]
     else:
         raise DeserializationError("GitHubConfiguration.repo_id required")
-    if "owner" in data:
+    if data.get("owner") is not None:
         out["owner"] = data["owner"]
     else:
         raise DeserializationError("GitHubConfiguration.owner required")
-    if "ownerType" in data:
+    if data.get("ownerType") is not None:
         import capo_devops_agent.types.github_repo_owner_type
 
         out["owner_type"] = (
@@ -62,6 +62,6 @@ def deserialize_json(data: dict) -> GitHubConfiguration:
         )
     else:
         raise DeserializationError("GitHubConfiguration.owner_type required")
-    if "instanceIdentifier" in data:
+    if data.get("instanceIdentifier") is not None:
         out["instance_identifier"] = data["instanceIdentifier"]
     return out

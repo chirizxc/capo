@@ -53,29 +53,29 @@ class GetAudienceModelResponse(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: GetAudienceModelResponse) -> dict:
     out: dict = {}
-    import capo_cleanroomsml.types._prelude.timestamp
+    import capo_cleanroomsml._protocol.serialize
 
-    out["createTime"] = capo_cleanroomsml.types._prelude.timestamp.serialize_json(
+    out["createTime"] = capo_cleanroomsml._protocol.serialize.fmt_date_time(
         value["create_time"]
     )
-    import capo_cleanroomsml.types._prelude.timestamp
+    import capo_cleanroomsml._protocol.serialize
 
-    out["updateTime"] = capo_cleanroomsml.types._prelude.timestamp.serialize_json(
+    out["updateTime"] = capo_cleanroomsml._protocol.serialize.fmt_date_time(
         value["update_time"]
     )
     if "training_data_start_time" in value:
-        import capo_cleanroomsml.types._prelude.timestamp
+        import capo_cleanroomsml._protocol.serialize
 
         out["trainingDataStartTime"] = (
-            capo_cleanroomsml.types._prelude.timestamp.serialize_json(
+            capo_cleanroomsml._protocol.serialize.fmt_date_time(
                 value["training_data_start_time"]
             )
         )
     if "training_data_end_time" in value:
-        import capo_cleanroomsml.types._prelude.timestamp
+        import capo_cleanroomsml._protocol.serialize
 
         out["trainingDataEndTime"] = (
-            capo_cleanroomsml.types._prelude.timestamp.serialize_json(
+            capo_cleanroomsml._protocol.serialize.fmt_date_time(
                 value["training_data_end_time"]
             )
         )
@@ -106,59 +106,51 @@ def serialize_json(value: GetAudienceModelResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetAudienceModelResponse:
     out: GetAudienceModelResponse = {}  # type: ignore[typeddict-item]
-    if "createTime" in data:
-        import capo_cleanroomsml.types._prelude.timestamp
+    if data.get("createTime") is not None:
+        import datetime
 
-        out["create_time"] = (
-            capo_cleanroomsml.types._prelude.timestamp.deserialize_json(
-                data["createTime"]
-            )
+        out["create_time"] = datetime.datetime.fromisoformat(
+            data["createTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("GetAudienceModelResponse.create_time required")
-    if "updateTime" in data:
-        import capo_cleanroomsml.types._prelude.timestamp
+    if data.get("updateTime") is not None:
+        import datetime
 
-        out["update_time"] = (
-            capo_cleanroomsml.types._prelude.timestamp.deserialize_json(
-                data["updateTime"]
-            )
+        out["update_time"] = datetime.datetime.fromisoformat(
+            data["updateTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("GetAudienceModelResponse.update_time required")
-    if "trainingDataStartTime" in data:
-        import capo_cleanroomsml.types._prelude.timestamp
+    if data.get("trainingDataStartTime") is not None:
+        import datetime
 
-        out["training_data_start_time"] = (
-            capo_cleanroomsml.types._prelude.timestamp.deserialize_json(
-                data["trainingDataStartTime"]
-            )
+        out["training_data_start_time"] = datetime.datetime.fromisoformat(
+            data["trainingDataStartTime"].replace("Z", "+00:00")
         )
-    if "trainingDataEndTime" in data:
-        import capo_cleanroomsml.types._prelude.timestamp
+    if data.get("trainingDataEndTime") is not None:
+        import datetime
 
-        out["training_data_end_time"] = (
-            capo_cleanroomsml.types._prelude.timestamp.deserialize_json(
-                data["trainingDataEndTime"]
-            )
+        out["training_data_end_time"] = datetime.datetime.fromisoformat(
+            data["trainingDataEndTime"].replace("Z", "+00:00")
         )
-    if "audienceModelArn" in data:
+    if data.get("audienceModelArn") is not None:
         out["audience_model_arn"] = data["audienceModelArn"]
     else:
         raise DeserializationError(
             "GetAudienceModelResponse.audience_model_arn required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("GetAudienceModelResponse.name required")
-    if "trainingDatasetArn" in data:
+    if data.get("trainingDatasetArn") is not None:
         out["training_dataset_arn"] = data["trainingDatasetArn"]
     else:
         raise DeserializationError(
             "GetAudienceModelResponse.training_dataset_arn required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_cleanroomsml.types.audience_model_status
 
         out["status"] = capo_cleanroomsml.types.audience_model_status.deserialize_json(
@@ -166,18 +158,18 @@ def deserialize_json(data: dict) -> GetAudienceModelResponse:
         )
     else:
         raise DeserializationError("GetAudienceModelResponse.status required")
-    if "statusDetails" in data:
+    if data.get("statusDetails") is not None:
         import capo_cleanroomsml.types.status_details
 
         out["status_details"] = capo_cleanroomsml.types.status_details.deserialize_json(
             data["statusDetails"]
         )
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_cleanroomsml.types.tag_map
 
         out["tags"] = capo_cleanroomsml.types.tag_map.deserialize_json(data["tags"])
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
     return out

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ApprovalTeamRequestApprovers:
 
     out: ApprovalTeamRequestApprovers = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mpa.types.approval_team_request_approver.deserialize_json(item))
     return out

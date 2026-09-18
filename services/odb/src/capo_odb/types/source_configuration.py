@@ -106,7 +106,7 @@ def serialize_aws_json_1_0(value: SourceConfiguration) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> SourceConfiguration:
-    if "databaseClone" in data:
+    if data.get("databaseClone") is not None:
         import capo_odb.types.database_clone_configuration
 
         return {
@@ -114,7 +114,7 @@ def deserialize_aws_json_1_0(data: dict) -> SourceConfiguration:
                 data["databaseClone"]
             )
         }
-    elif "restoreFromBackup" in data:
+    elif data.get("restoreFromBackup") is not None:
         import capo_odb.types.restore_from_backup_configuration
 
         return {
@@ -122,7 +122,7 @@ def deserialize_aws_json_1_0(data: dict) -> SourceConfiguration:
                 data["restoreFromBackup"]
             )
         }
-    elif "pointInTimeRestore" in data:
+    elif data.get("pointInTimeRestore") is not None:
         import capo_odb.types.point_in_time_restore_configuration
 
         return {
@@ -130,7 +130,7 @@ def deserialize_aws_json_1_0(data: dict) -> SourceConfiguration:
                 data["pointInTimeRestore"]
             )
         }
-    elif "crossRegionDataGuard" in data:
+    elif data.get("crossRegionDataGuard") is not None:
         import capo_odb.types.cross_region_data_guard_configuration
 
         return {
@@ -138,7 +138,7 @@ def deserialize_aws_json_1_0(data: dict) -> SourceConfiguration:
                 data["crossRegionDataGuard"]
             )
         }
-    elif "crossRegionDisasterRecovery" in data:
+    elif data.get("crossRegionDisasterRecovery") is not None:
         import capo_odb.types.cross_region_disaster_recovery_configuration
 
         return {
@@ -146,7 +146,7 @@ def deserialize_aws_json_1_0(data: dict) -> SourceConfiguration:
                 data["crossRegionDisasterRecovery"]
             )
         }
-    elif "cloneToRefreshable" in data:
+    elif data.get("cloneToRefreshable") is not None:
         import capo_odb.types.clone_to_refreshable_configuration
 
         return {

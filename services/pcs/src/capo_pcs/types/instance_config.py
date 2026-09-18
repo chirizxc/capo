@@ -18,6 +18,6 @@ def serialize_aws_json_1_0(value: InstanceConfig) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> InstanceConfig:
     out: InstanceConfig = {}  # type: ignore[typeddict-item]
-    if "instanceType" in data:
+    if data.get("instanceType") is not None:
         out["instance_type"] = data["instanceType"]
     return out

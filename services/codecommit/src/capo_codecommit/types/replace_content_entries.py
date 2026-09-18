@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ReplaceContentEntries:
 
     out: ReplaceContentEntries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codecommit.types.replace_content_entry.deserialize_aws_json_1_1(item)
         )

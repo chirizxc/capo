@@ -39,7 +39,7 @@ def serialize_json(value: ContributionAnalysisTimeRanges) -> dict:
 
 def deserialize_json(data: dict) -> ContributionAnalysisTimeRanges:
     out: ContributionAnalysisTimeRanges = {}  # type: ignore[typeddict-item]
-    if "StartRange" in data:
+    if data.get("StartRange") is not None:
         import capo_quicksight.types.topic_ir_filter_option
 
         out["start_range"] = (
@@ -47,7 +47,7 @@ def deserialize_json(data: dict) -> ContributionAnalysisTimeRanges:
                 data["StartRange"]
             )
         )
-    if "EndRange" in data:
+    if data.get("EndRange") is not None:
         import capo_quicksight.types.topic_ir_filter_option
 
         out["end_range"] = (

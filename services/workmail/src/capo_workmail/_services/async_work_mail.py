@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.workmail#WorkMailService``."""
 
+import uuid
 import warnings
 from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -432,16 +433,18 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.associate_delegate_to_resource_request.AssociateDelegateToResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["resource_id"] = resource_id
-        input_["entity_id"] = entity_id
+        input_: capo_workmail.types.associate_delegate_to_resource_request.AssociateDelegateToResourceRequest = {
+            "organization_id": organization_id,
+            "resource_id": resource_id,
+            "entity_id": entity_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def associate_member_to_group(
@@ -487,16 +490,18 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.associate_member_to_group_request.AssociateMemberToGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["group_id"] = group_id
-        input_["member_id"] = member_id
+        input_: capo_workmail.types.associate_member_to_group_request.AssociateMemberToGroupRequest = {
+            "organization_id": organization_id,
+            "group_id": group_id,
+            "member_id": member_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def assume_impersonation_role(
@@ -536,15 +541,17 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.assume_impersonation_role_request.AssumeImpersonationRoleRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["impersonation_role_id"] = impersonation_role_id
+        input_: capo_workmail.types.assume_impersonation_role_request.AssumeImpersonationRoleRequest = {
+            "organization_id": organization_id,
+            "impersonation_role_id": impersonation_role_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def cancel_mailbox_export_job(
@@ -586,16 +593,18 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.cancel_mailbox_export_job_request.CancelMailboxExportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["client_token"] = client_token
-        input_["job_id"] = job_id
-        input_["organization_id"] = organization_id
+        input_: capo_workmail.types.cancel_mailbox_export_job_request.CancelMailboxExportJobRequest = {
+            "client_token": client_token,
+            "job_id": job_id,
+            "organization_id": organization_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_alias(
@@ -642,16 +651,18 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.create_alias_request.CreateAliasRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["entity_id"] = entity_id
-        input_["alias"] = alias
+        input_: capo_workmail.types.create_alias_request.CreateAliasRequest = {
+            "organization_id": organization_id,
+            "entity_id": entity_id,
+            "alias": alias,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_availability_configuration(
@@ -704,11 +715,13 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.create_availability_configuration_request.CreateAvailabilityConfigurationRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["organization_id"] = organization_id
-        input_["domain_name"] = domain_name
+        input_: capo_workmail.types.create_availability_configuration_request.CreateAvailabilityConfigurationRequest = {
+            "organization_id": organization_id,
+            "domain_name": domain_name,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if ews_provider is not None:
             input_["ews_provider"] = ews_provider
         if lambda_provider is not None:
@@ -719,6 +732,7 @@ class AsyncWorkMailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_group(
@@ -766,9 +780,10 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.create_group_request.CreateGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["name"] = name
+        input_: capo_workmail.types.create_group_request.CreateGroupRequest = {
+            "organization_id": organization_id,
+            "name": name,
+        }
         if hidden_from_global_address_list is not None:
             input_["hidden_from_global_address_list"] = hidden_from_global_address_list
 
@@ -777,6 +792,7 @@ class AsyncWorkMailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_identity_center_application(
@@ -817,17 +833,20 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.create_identity_center_application_request.CreateIdentityCenterApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["instance_arn"] = instance_arn
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_workmail.types.create_identity_center_application_request.CreateIdentityCenterApplicationRequest = {
+            "name": name,
+            "instance_arn": instance_arn,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_impersonation_role(
@@ -881,21 +900,24 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.create_impersonation_role_request.CreateImpersonationRoleRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["organization_id"] = organization_id
-        input_["name"] = name
-        input_["type"] = type
+        input_: capo_workmail.types.create_impersonation_role_request.CreateImpersonationRoleRequest = {
+            "organization_id": organization_id,
+            "name": name,
+            "type": type,
+            "rules": rules,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if description is not None:
             input_["description"] = description
-        input_["rules"] = rules
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_mobile_device_access_rule(
@@ -977,14 +999,16 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.create_mobile_device_access_rule_request.CreateMobileDeviceAccessRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["name"] = name
+        input_: capo_workmail.types.create_mobile_device_access_rule_request.CreateMobileDeviceAccessRuleRequest = {
+            "organization_id": organization_id,
+            "name": name,
+            "effect": effect,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if description is not None:
             input_["description"] = description
-        input_["effect"] = effect
         if device_types is not None:
             input_["device_types"] = device_types
         if not_device_types is not None:
@@ -1007,6 +1031,7 @@ class AsyncWorkMailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_organization(
@@ -1057,12 +1082,14 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.create_organization_request.CreateOrganizationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workmail.types.create_organization_request.CreateOrganizationRequest = {
+            "alias": alias
+        }
         if directory_id is not None:
             input_["directory_id"] = directory_id
-        input_["alias"] = alias
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if domains is not None:
             input_["domains"] = domains
         if kms_key_arn is not None:
@@ -1075,6 +1102,7 @@ class AsyncWorkMailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_resource(
@@ -1128,10 +1156,11 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.create_resource_request.CreateResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["name"] = name
-        input_["type"] = type
+        input_: capo_workmail.types.create_resource_request.CreateResourceRequest = {
+            "organization_id": organization_id,
+            "name": name,
+            "type": type,
+        }
         if description is not None:
             input_["description"] = description
         if hidden_from_global_address_list is not None:
@@ -1142,6 +1171,7 @@ class AsyncWorkMailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_user(
@@ -1204,10 +1234,11 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.create_user_request.CreateUserRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["name"] = name
-        input_["display_name"] = display_name
+        input_: capo_workmail.types.create_user_request.CreateUserRequest = {
+            "organization_id": organization_id,
+            "name": name,
+            "display_name": display_name,
+        }
         if password is not None:
             input_["password"] = password
         if role is not None:
@@ -1226,6 +1257,7 @@ class AsyncWorkMailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_access_control_rule(
@@ -1263,15 +1295,17 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.delete_access_control_rule_request.DeleteAccessControlRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["name"] = name
+        input_: capo_workmail.types.delete_access_control_rule_request.DeleteAccessControlRuleRequest = {
+            "organization_id": organization_id,
+            "name": name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_alias(
@@ -1314,16 +1348,18 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.delete_alias_request.DeleteAliasRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["entity_id"] = entity_id
-        input_["alias"] = alias
+        input_: capo_workmail.types.delete_alias_request.DeleteAliasRequest = {
+            "organization_id": organization_id,
+            "entity_id": entity_id,
+            "alias": alias,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_availability_configuration(
@@ -1361,15 +1397,17 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.delete_availability_configuration_request.DeleteAvailabilityConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["domain_name"] = domain_name
+        input_: capo_workmail.types.delete_availability_configuration_request.DeleteAvailabilityConfigurationRequest = {
+            "organization_id": organization_id,
+            "domain_name": domain_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_email_monitoring_configuration(
@@ -1406,14 +1444,16 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.delete_email_monitoring_configuration_request.DeleteEmailMonitoringConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
+        input_: capo_workmail.types.delete_email_monitoring_configuration_request.DeleteEmailMonitoringConfigurationRequest = {
+            "organization_id": organization_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_group(
@@ -1456,15 +1496,17 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.delete_group_request.DeleteGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["group_id"] = group_id
+        input_: capo_workmail.types.delete_group_request.DeleteGroupRequest = {
+            "organization_id": organization_id,
+            "group_id": group_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_identity_center_application(
@@ -1500,14 +1542,16 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.delete_identity_center_application_request.DeleteIdentityCenterApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["application_arn"] = application_arn
+        input_: capo_workmail.types.delete_identity_center_application_request.DeleteIdentityCenterApplicationRequest = {
+            "application_arn": application_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_identity_provider_configuration(
@@ -1544,14 +1588,16 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.delete_identity_provider_configuration_request.DeleteIdentityProviderConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
+        input_: capo_workmail.types.delete_identity_provider_configuration_request.DeleteIdentityProviderConfigurationRequest = {
+            "organization_id": organization_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_impersonation_role(
@@ -1590,15 +1636,17 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.delete_impersonation_role_request.DeleteImpersonationRoleRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["impersonation_role_id"] = impersonation_role_id
+        input_: capo_workmail.types.delete_impersonation_role_request.DeleteImpersonationRoleRequest = {
+            "organization_id": organization_id,
+            "impersonation_role_id": impersonation_role_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_mailbox_permissions(
@@ -1641,16 +1689,18 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.delete_mailbox_permissions_request.DeleteMailboxPermissionsRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["entity_id"] = entity_id
-        input_["grantee_id"] = grantee_id
+        input_: capo_workmail.types.delete_mailbox_permissions_request.DeleteMailboxPermissionsRequest = {
+            "organization_id": organization_id,
+            "entity_id": entity_id,
+            "grantee_id": grantee_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_mobile_device_access_override(
@@ -1692,16 +1742,18 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.delete_mobile_device_access_override_request.DeleteMobileDeviceAccessOverrideRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["user_id"] = user_id
-        input_["device_id"] = device_id
+        input_: capo_workmail.types.delete_mobile_device_access_override_request.DeleteMobileDeviceAccessOverrideRequest = {
+            "organization_id": organization_id,
+            "user_id": user_id,
+            "device_id": device_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_mobile_device_access_rule(
@@ -1740,15 +1792,17 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.delete_mobile_device_access_rule_request.DeleteMobileDeviceAccessRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["mobile_device_access_rule_id"] = mobile_device_access_rule_id
+        input_: capo_workmail.types.delete_mobile_device_access_rule_request.DeleteMobileDeviceAccessRuleRequest = {
+            "organization_id": organization_id,
+            "mobile_device_access_rule_id": mobile_device_access_rule_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_organization(
@@ -1797,11 +1851,13 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.delete_organization_request.DeleteOrganizationRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["organization_id"] = organization_id
-        input_["delete_directory"] = delete_directory
+        input_: capo_workmail.types.delete_organization_request.DeleteOrganizationRequest = {
+            "organization_id": organization_id,
+            "delete_directory": delete_directory,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if force_delete is not None:
             input_["force_delete"] = force_delete
         if delete_identity_center_application is not None:
@@ -1814,6 +1870,7 @@ class AsyncWorkMailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_personal_access_token(
@@ -1852,15 +1909,17 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.delete_personal_access_token_request.DeletePersonalAccessTokenRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["personal_access_token_id"] = personal_access_token_id
+        input_: capo_workmail.types.delete_personal_access_token_request.DeletePersonalAccessTokenRequest = {
+            "organization_id": organization_id,
+            "personal_access_token_id": personal_access_token_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_resource(
@@ -1901,15 +1960,17 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.delete_resource_request.DeleteResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["resource_id"] = resource_id
+        input_: capo_workmail.types.delete_resource_request.DeleteResourceRequest = {
+            "organization_id": organization_id,
+            "resource_id": resource_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_retention_policy(
@@ -1948,15 +2009,17 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.delete_retention_policy_request.DeleteRetentionPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["id"] = id
+        input_: capo_workmail.types.delete_retention_policy_request.DeleteRetentionPolicyRequest = {
+            "organization_id": organization_id,
+            "id": id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_user(
@@ -1999,15 +2062,17 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.delete_user_request.DeleteUserRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["user_id"] = user_id
+        input_: capo_workmail.types.delete_user_request.DeleteUserRequest = {
+            "organization_id": organization_id,
+            "user_id": user_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def deregister_from_work_mail(
@@ -2048,15 +2113,17 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.deregister_from_work_mail_request.DeregisterFromWorkMailRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["entity_id"] = entity_id
+        input_: capo_workmail.types.deregister_from_work_mail_request.DeregisterFromWorkMailRequest = {
+            "organization_id": organization_id,
+            "entity_id": entity_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def deregister_mail_domain(
@@ -2097,15 +2164,17 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.deregister_mail_domain_request.DeregisterMailDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["domain_name"] = domain_name
+        input_: capo_workmail.types.deregister_mail_domain_request.DeregisterMailDomainRequest = {
+            "organization_id": organization_id,
+            "domain_name": domain_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_email_monitoring_configuration(
@@ -2143,14 +2212,16 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.describe_email_monitoring_configuration_request.DescribeEmailMonitoringConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
+        input_: capo_workmail.types.describe_email_monitoring_configuration_request.DescribeEmailMonitoringConfigurationRequest = {
+            "organization_id": organization_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_entity(
@@ -2190,15 +2261,17 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.describe_entity_request.DescribeEntityRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["email"] = email
+        input_: capo_workmail.types.describe_entity_request.DescribeEntityRequest = {
+            "organization_id": organization_id,
+            "email": email,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_group(
@@ -2238,15 +2311,17 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.describe_group_request.DescribeGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["group_id"] = group_id
+        input_: capo_workmail.types.describe_group_request.DescribeGroupRequest = {
+            "organization_id": organization_id,
+            "group_id": group_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_identity_provider_configuration(
@@ -2284,14 +2359,16 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.describe_identity_provider_configuration_request.DescribeIdentityProviderConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
+        input_: capo_workmail.types.describe_identity_provider_configuration_request.DescribeIdentityProviderConfigurationRequest = {
+            "organization_id": organization_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_inbound_dmarc_settings(
@@ -2327,14 +2404,16 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.describe_inbound_dmarc_settings_request.DescribeInboundDmarcSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
+        input_: capo_workmail.types.describe_inbound_dmarc_settings_request.DescribeInboundDmarcSettingsRequest = {
+            "organization_id": organization_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_mailbox_export_job(
@@ -2374,15 +2453,17 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.describe_mailbox_export_job_request.DescribeMailboxExportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
-        input_["organization_id"] = organization_id
+        input_: capo_workmail.types.describe_mailbox_export_job_request.DescribeMailboxExportJobRequest = {
+            "job_id": job_id,
+            "organization_id": organization_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_organization(
@@ -2418,14 +2499,16 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.describe_organization_request.DescribeOrganizationRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
+        input_: capo_workmail.types.describe_organization_request.DescribeOrganizationRequest = {
+            "organization_id": organization_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_resource(
@@ -2466,15 +2549,17 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.describe_resource_request.DescribeResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["resource_id"] = resource_id
+        input_: capo_workmail.types.describe_resource_request.DescribeResourceRequest = {
+            "organization_id": organization_id,
+            "resource_id": resource_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_user(
@@ -2516,15 +2601,17 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.describe_user_request.DescribeUserRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["user_id"] = user_id
+        input_: capo_workmail.types.describe_user_request.DescribeUserRequest = {
+            "organization_id": organization_id,
+            "user_id": user_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_delegate_from_resource(
@@ -2568,16 +2655,18 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.disassociate_delegate_from_resource_request.DisassociateDelegateFromResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["resource_id"] = resource_id
-        input_["entity_id"] = entity_id
+        input_: capo_workmail.types.disassociate_delegate_from_resource_request.DisassociateDelegateFromResourceRequest = {
+            "organization_id": organization_id,
+            "resource_id": resource_id,
+            "entity_id": entity_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def disassociate_member_from_group(
@@ -2623,16 +2712,18 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.disassociate_member_from_group_request.DisassociateMemberFromGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["group_id"] = group_id
-        input_["member_id"] = member_id
+        input_: capo_workmail.types.disassociate_member_from_group_request.DisassociateMemberFromGroupRequest = {
+            "organization_id": organization_id,
+            "group_id": group_id,
+            "member_id": member_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_access_control_effect(
@@ -2683,10 +2774,11 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.get_access_control_effect_request.GetAccessControlEffectRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["ip_address"] = ip_address
-        input_["action"] = action
+        input_: capo_workmail.types.get_access_control_effect_request.GetAccessControlEffectRequest = {
+            "organization_id": organization_id,
+            "ip_address": ip_address,
+            "action": action,
+        }
         if user_id is not None:
             input_["user_id"] = user_id
         if impersonation_role_id is not None:
@@ -2697,6 +2789,7 @@ class AsyncWorkMailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_default_retention_policy(
@@ -2734,14 +2827,16 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.get_default_retention_policy_request.GetDefaultRetentionPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
+        input_: capo_workmail.types.get_default_retention_policy_request.GetDefaultRetentionPolicyRequest = {
+            "organization_id": organization_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_impersonation_role(
@@ -2781,15 +2876,17 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.get_impersonation_role_request.GetImpersonationRoleRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["impersonation_role_id"] = impersonation_role_id
+        input_: capo_workmail.types.get_impersonation_role_request.GetImpersonationRoleRequest = {
+            "organization_id": organization_id,
+            "impersonation_role_id": impersonation_role_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_impersonation_role_effect(
@@ -2833,16 +2930,18 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.get_impersonation_role_effect_request.GetImpersonationRoleEffectRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["impersonation_role_id"] = impersonation_role_id
-        input_["target_user"] = target_user
+        input_: capo_workmail.types.get_impersonation_role_effect_request.GetImpersonationRoleEffectRequest = {
+            "organization_id": organization_id,
+            "impersonation_role_id": impersonation_role_id,
+            "target_user": target_user,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_mailbox_details(
@@ -2882,15 +2981,17 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.get_mailbox_details_request.GetMailboxDetailsRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["user_id"] = user_id
+        input_: capo_workmail.types.get_mailbox_details_request.GetMailboxDetailsRequest = {
+            "organization_id": organization_id,
+            "user_id": user_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_mail_domain(
@@ -2930,15 +3031,17 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.get_mail_domain_request.GetMailDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["domain_name"] = domain_name
+        input_: capo_workmail.types.get_mail_domain_request.GetMailDomainRequest = {
+            "organization_id": organization_id,
+            "domain_name": domain_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_mobile_device_access_effect(
@@ -2987,8 +3090,9 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.get_mobile_device_access_effect_request.GetMobileDeviceAccessEffectRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
+        input_: capo_workmail.types.get_mobile_device_access_effect_request.GetMobileDeviceAccessEffectRequest = {
+            "organization_id": organization_id
+        }
         if device_type is not None:
             input_["device_type"] = device_type
         if device_model is not None:
@@ -3003,6 +3107,7 @@ class AsyncWorkMailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_mobile_device_access_override(
@@ -3045,16 +3150,18 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.get_mobile_device_access_override_request.GetMobileDeviceAccessOverrideRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["user_id"] = user_id
-        input_["device_id"] = device_id
+        input_: capo_workmail.types.get_mobile_device_access_override_request.GetMobileDeviceAccessOverrideRequest = {
+            "organization_id": organization_id,
+            "user_id": user_id,
+            "device_id": device_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_personal_access_token_metadata(
@@ -3094,15 +3201,17 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.get_personal_access_token_metadata_request.GetPersonalAccessTokenMetadataRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["personal_access_token_id"] = personal_access_token_id
+        input_: capo_workmail.types.get_personal_access_token_metadata_request.GetPersonalAccessTokenMetadataRequest = {
+            "organization_id": organization_id,
+            "personal_access_token_id": personal_access_token_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_access_control_rules(
@@ -3138,14 +3247,16 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.list_access_control_rules_request.ListAccessControlRulesRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
+        input_: capo_workmail.types.list_access_control_rules_request.ListAccessControlRulesRequest = {
+            "organization_id": organization_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_aliases(
@@ -3190,9 +3301,10 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.list_aliases_request.ListAliasesRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["entity_id"] = entity_id
+        input_: capo_workmail.types.list_aliases_request.ListAliasesRequest = {
+            "organization_id": organization_id,
+            "entity_id": entity_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3203,7 +3315,31 @@ class AsyncWorkMailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_aliases(
+        self,
+        organization_id: "capo_workmail.types.organization_id.OrganizationId",
+        entity_id: "capo_workmail.types.work_mail_identifier.WorkMailIdentifier",
+        *,
+        config_overrides: Optional[AsyncWorkMailClientConfig] = None,
+        next_token: Optional["capo_workmail.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_workmail.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_workmail.types.list_aliases_response.ListAliasesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_aliases(
+                organization_id,
+                entity_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_availability_configurations(
         self,
@@ -3243,8 +3379,9 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.list_availability_configurations_request.ListAvailabilityConfigurationsRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
+        input_: capo_workmail.types.list_availability_configurations_request.ListAvailabilityConfigurationsRequest = {
+            "organization_id": organization_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3255,6 +3392,7 @@ class AsyncWorkMailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_availability_configurations(
@@ -3322,9 +3460,10 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.list_group_members_request.ListGroupMembersRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["group_id"] = group_id
+        input_: capo_workmail.types.list_group_members_request.ListGroupMembersRequest = {
+            "organization_id": organization_id,
+            "group_id": group_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3335,7 +3474,31 @@ class AsyncWorkMailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_group_members(
+        self,
+        organization_id: "capo_workmail.types.organization_id.OrganizationId",
+        group_id: "capo_workmail.types.entity_identifier.EntityIdentifier",
+        *,
+        config_overrides: Optional[AsyncWorkMailClientConfig] = None,
+        next_token: Optional["capo_workmail.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_workmail.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_workmail.types.list_group_members_response.ListGroupMembersResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_group_members(
+                organization_id,
+                group_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_groups(
         self,
@@ -3380,8 +3543,9 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.list_groups_request.ListGroupsRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
+        input_: capo_workmail.types.list_groups_request.ListGroupsRequest = {
+            "organization_id": organization_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3394,7 +3558,33 @@ class AsyncWorkMailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_groups(
+        self,
+        organization_id: "capo_workmail.types.organization_id.OrganizationId",
+        *,
+        config_overrides: Optional[AsyncWorkMailClientConfig] = None,
+        next_token: Optional["capo_workmail.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_workmail.types.max_results.MaxResults"] = None,
+        filters: Optional[
+            "capo_workmail.types.list_groups_filters.ListGroupsFilters"
+        ] = None,
+    ) -> "AsyncIterator[capo_workmail.types.list_groups_response.ListGroupsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_groups(
+                organization_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                filters=filters,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_groups_for_entity(
         self,
@@ -3442,9 +3632,10 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.list_groups_for_entity_request.ListGroupsForEntityRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["entity_id"] = entity_id
+        input_: capo_workmail.types.list_groups_for_entity_request.ListGroupsForEntityRequest = {
+            "organization_id": organization_id,
+            "entity_id": entity_id,
+        }
         if filters is not None:
             input_["filters"] = filters
         if next_token is not None:
@@ -3457,7 +3648,35 @@ class AsyncWorkMailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_groups_for_entity(
+        self,
+        organization_id: "capo_workmail.types.organization_id.OrganizationId",
+        entity_id: "capo_workmail.types.entity_identifier.EntityIdentifier",
+        *,
+        config_overrides: Optional[AsyncWorkMailClientConfig] = None,
+        filters: Optional[
+            "capo_workmail.types.list_groups_for_entity_filters.ListGroupsForEntityFilters"
+        ] = None,
+        next_token: Optional["capo_workmail.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_workmail.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_workmail.types.list_groups_for_entity_response.ListGroupsForEntityResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_groups_for_entity(
+                organization_id,
+                entity_id,
+                config_overrides=config_overrides,
+                filters=filters,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_impersonation_roles(
         self,
@@ -3497,8 +3716,9 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.list_impersonation_roles_request.ListImpersonationRolesRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
+        input_: capo_workmail.types.list_impersonation_roles_request.ListImpersonationRolesRequest = {
+            "organization_id": organization_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3509,7 +3729,29 @@ class AsyncWorkMailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_impersonation_roles(
+        self,
+        organization_id: "capo_workmail.types.organization_id.OrganizationId",
+        *,
+        config_overrides: Optional[AsyncWorkMailClientConfig] = None,
+        next_token: Optional["capo_workmail.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_workmail.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_workmail.types.list_impersonation_roles_response.ListImpersonationRolesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_impersonation_roles(
+                organization_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_mailbox_export_jobs(
         self,
@@ -3549,8 +3791,9 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.list_mailbox_export_jobs_request.ListMailboxExportJobsRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
+        input_: capo_workmail.types.list_mailbox_export_jobs_request.ListMailboxExportJobsRequest = {
+            "organization_id": organization_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3561,7 +3804,29 @@ class AsyncWorkMailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_mailbox_export_jobs(
+        self,
+        organization_id: "capo_workmail.types.organization_id.OrganizationId",
+        *,
+        config_overrides: Optional[AsyncWorkMailClientConfig] = None,
+        next_token: Optional["capo_workmail.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_workmail.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_workmail.types.list_mailbox_export_jobs_response.ListMailboxExportJobsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_mailbox_export_jobs(
+                organization_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_mailbox_permissions(
         self,
@@ -3604,9 +3869,10 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.list_mailbox_permissions_request.ListMailboxPermissionsRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["entity_id"] = entity_id
+        input_: capo_workmail.types.list_mailbox_permissions_request.ListMailboxPermissionsRequest = {
+            "organization_id": organization_id,
+            "entity_id": entity_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3617,7 +3883,31 @@ class AsyncWorkMailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_mailbox_permissions(
+        self,
+        organization_id: "capo_workmail.types.organization_id.OrganizationId",
+        entity_id: "capo_workmail.types.entity_identifier.EntityIdentifier",
+        *,
+        config_overrides: Optional[AsyncWorkMailClientConfig] = None,
+        next_token: Optional["capo_workmail.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_workmail.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_workmail.types.list_mailbox_permissions_response.ListMailboxPermissionsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_mailbox_permissions(
+                organization_id,
+                entity_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_mail_domains(
         self,
@@ -3657,8 +3947,9 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.list_mail_domains_request.ListMailDomainsRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
+        input_: capo_workmail.types.list_mail_domains_request.ListMailDomainsRequest = {
+            "organization_id": organization_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3669,7 +3960,29 @@ class AsyncWorkMailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_mail_domains(
+        self,
+        organization_id: "capo_workmail.types.organization_id.OrganizationId",
+        *,
+        config_overrides: Optional[AsyncWorkMailClientConfig] = None,
+        max_results: Optional["capo_workmail.types.max_results.MaxResults"] = None,
+        next_token: Optional["capo_workmail.types.next_token.NextToken"] = None,
+    ) -> "AsyncIterator[capo_workmail.types.list_mail_domains_response.ListMailDomainsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_mail_domains(
+                organization_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_mobile_device_access_overrides(
         self,
@@ -3716,8 +4029,9 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.list_mobile_device_access_overrides_request.ListMobileDeviceAccessOverridesRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
+        input_: capo_workmail.types.list_mobile_device_access_overrides_request.ListMobileDeviceAccessOverridesRequest = {
+            "organization_id": organization_id
+        }
         if user_id is not None:
             input_["user_id"] = user_id
         if device_id is not None:
@@ -3732,7 +4046,35 @@ class AsyncWorkMailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_mobile_device_access_overrides(
+        self,
+        organization_id: "capo_workmail.types.organization_id.OrganizationId",
+        *,
+        config_overrides: Optional[AsyncWorkMailClientConfig] = None,
+        user_id: Optional[
+            "capo_workmail.types.entity_identifier.EntityIdentifier"
+        ] = None,
+        device_id: Optional["capo_workmail.types.device_id.DeviceId"] = None,
+        next_token: Optional["capo_workmail.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_workmail.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_workmail.types.list_mobile_device_access_overrides_response.ListMobileDeviceAccessOverridesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_mobile_device_access_overrides(
+                organization_id,
+                config_overrides=config_overrides,
+                user_id=user_id,
+                device_id=device_id,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_mobile_device_access_rules(
         self,
@@ -3768,14 +4110,16 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.list_mobile_device_access_rules_request.ListMobileDeviceAccessRulesRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
+        input_: capo_workmail.types.list_mobile_device_access_rules_request.ListMobileDeviceAccessRulesRequest = {
+            "organization_id": organization_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_organizations(
@@ -3812,7 +4156,7 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.list_organizations_request.ListOrganizationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workmail.types.list_organizations_request.ListOrganizationsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3823,7 +4167,27 @@ class AsyncWorkMailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_organizations(
+        self,
+        *,
+        config_overrides: Optional[AsyncWorkMailClientConfig] = None,
+        next_token: Optional["capo_workmail.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_workmail.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_workmail.types.list_organizations_response.ListOrganizationsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_organizations(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_personal_access_tokens(
         self,
@@ -3869,8 +4233,9 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.list_personal_access_tokens_request.ListPersonalAccessTokensRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
+        input_: capo_workmail.types.list_personal_access_tokens_request.ListPersonalAccessTokensRequest = {
+            "organization_id": organization_id
+        }
         if user_id is not None:
             input_["user_id"] = user_id
         if next_token is not None:
@@ -3883,6 +4248,7 @@ class AsyncWorkMailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_personal_access_tokens(
@@ -3955,9 +4321,10 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.list_resource_delegates_request.ListResourceDelegatesRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["resource_id"] = resource_id
+        input_: capo_workmail.types.list_resource_delegates_request.ListResourceDelegatesRequest = {
+            "organization_id": organization_id,
+            "resource_id": resource_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3968,7 +4335,31 @@ class AsyncWorkMailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_resource_delegates(
+        self,
+        organization_id: "capo_workmail.types.organization_id.OrganizationId",
+        resource_id: "capo_workmail.types.entity_identifier.EntityIdentifier",
+        *,
+        config_overrides: Optional[AsyncWorkMailClientConfig] = None,
+        next_token: Optional["capo_workmail.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_workmail.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_workmail.types.list_resource_delegates_response.ListResourceDelegatesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_resource_delegates(
+                organization_id,
+                resource_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_resources(
         self,
@@ -4013,8 +4404,9 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.list_resources_request.ListResourcesRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
+        input_: capo_workmail.types.list_resources_request.ListResourcesRequest = {
+            "organization_id": organization_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -4027,7 +4419,33 @@ class AsyncWorkMailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_resources(
+        self,
+        organization_id: "capo_workmail.types.organization_id.OrganizationId",
+        *,
+        config_overrides: Optional[AsyncWorkMailClientConfig] = None,
+        next_token: Optional["capo_workmail.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_workmail.types.max_results.MaxResults"] = None,
+        filters: Optional[
+            "capo_workmail.types.list_resources_filters.ListResourcesFilters"
+        ] = None,
+    ) -> "AsyncIterator[capo_workmail.types.list_resources_response.ListResourcesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_resources(
+                organization_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                filters=filters,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_tags_for_resource(
         self,
@@ -4061,14 +4479,16 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_workmail.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_users(
@@ -4113,8 +4533,9 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.list_users_request.ListUsersRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
+        input_: capo_workmail.types.list_users_request.ListUsersRequest = {
+            "organization_id": organization_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -4127,7 +4548,33 @@ class AsyncWorkMailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_users(
+        self,
+        organization_id: "capo_workmail.types.organization_id.OrganizationId",
+        *,
+        config_overrides: Optional[AsyncWorkMailClientConfig] = None,
+        next_token: Optional["capo_workmail.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_workmail.types.max_results.MaxResults"] = None,
+        filters: Optional[
+            "capo_workmail.types.list_users_filters.ListUsersFilters"
+        ] = None,
+    ) -> "AsyncIterator[capo_workmail.types.list_users_response.ListUsersResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_users(
+                organization_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                filters=filters,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def put_access_control_rule(
         self,
@@ -4192,10 +4639,12 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.put_access_control_rule_request.PutAccessControlRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["effect"] = effect
-        input_["description"] = description
+        input_: capo_workmail.types.put_access_control_rule_request.PutAccessControlRuleRequest = {
+            "name": name,
+            "effect": effect,
+            "description": description,
+            "organization_id": organization_id,
+        }
         if ip_ranges is not None:
             input_["ip_ranges"] = ip_ranges
         if not_ip_ranges is not None:
@@ -4208,7 +4657,6 @@ class AsyncWorkMailClient:
             input_["user_ids"] = user_ids
         if not_user_ids is not None:
             input_["not_user_ids"] = not_user_ids
-        input_["organization_id"] = organization_id
         if impersonation_role_ids is not None:
             input_["impersonation_role_ids"] = impersonation_role_ids
         if not_impersonation_role_ids is not None:
@@ -4219,6 +4667,7 @@ class AsyncWorkMailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_email_monitoring_configuration(
@@ -4260,17 +4709,19 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.put_email_monitoring_configuration_request.PutEmailMonitoringConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
+        input_: capo_workmail.types.put_email_monitoring_configuration_request.PutEmailMonitoringConfigurationRequest = {
+            "organization_id": organization_id,
+            "log_group_arn": log_group_arn,
+        }
         if role_arn is not None:
             input_["role_arn"] = role_arn
-        input_["log_group_arn"] = log_group_arn
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_identity_provider_configuration(
@@ -4314,19 +4765,19 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.put_identity_provider_configuration_request.PutIdentityProviderConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["authentication_mode"] = authentication_mode
-        input_["identity_center_configuration"] = identity_center_configuration
-        input_["personal_access_token_configuration"] = (
-            personal_access_token_configuration
-        )
+        input_: capo_workmail.types.put_identity_provider_configuration_request.PutIdentityProviderConfigurationRequest = {
+            "organization_id": organization_id,
+            "authentication_mode": authentication_mode,
+            "identity_center_configuration": identity_center_configuration,
+            "personal_access_token_configuration": personal_access_token_configuration,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_inbound_dmarc_settings(
@@ -4364,15 +4815,17 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.put_inbound_dmarc_settings_request.PutInboundDmarcSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["enforced"] = enforced
+        input_: capo_workmail.types.put_inbound_dmarc_settings_request.PutInboundDmarcSettingsRequest = {
+            "organization_id": organization_id,
+            "enforced": enforced,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_mailbox_permissions(
@@ -4417,17 +4870,19 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.put_mailbox_permissions_request.PutMailboxPermissionsRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["entity_id"] = entity_id
-        input_["grantee_id"] = grantee_id
-        input_["permission_values"] = permission_values
+        input_: capo_workmail.types.put_mailbox_permissions_request.PutMailboxPermissionsRequest = {
+            "organization_id": organization_id,
+            "entity_id": entity_id,
+            "grantee_id": grantee_id,
+            "permission_values": permission_values,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_mobile_device_access_override(
@@ -4476,11 +4931,12 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.put_mobile_device_access_override_request.PutMobileDeviceAccessOverrideRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["user_id"] = user_id
-        input_["device_id"] = device_id
-        input_["effect"] = effect
+        input_: capo_workmail.types.put_mobile_device_access_override_request.PutMobileDeviceAccessOverrideRequest = {
+            "organization_id": organization_id,
+            "user_id": user_id,
+            "device_id": device_id,
+            "effect": effect,
+        }
         if description is not None:
             input_["description"] = description
 
@@ -4489,6 +4945,7 @@ class AsyncWorkMailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_retention_policy(
@@ -4536,20 +4993,22 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.put_retention_policy_request.PutRetentionPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
+        input_: capo_workmail.types.put_retention_policy_request.PutRetentionPolicyRequest = {
+            "organization_id": organization_id,
+            "name": name,
+            "folder_configurations": folder_configurations,
+        }
         if id is not None:
             input_["id"] = id
-        input_["name"] = name
         if description is not None:
             input_["description"] = description
-        input_["folder_configurations"] = folder_configurations
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def register_mail_domain(
@@ -4594,17 +5053,20 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.register_mail_domain_request.RegisterMailDomainRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["organization_id"] = organization_id
-        input_["domain_name"] = domain_name
+        input_: capo_workmail.types.register_mail_domain_request.RegisterMailDomainRequest = {
+            "organization_id": organization_id,
+            "domain_name": domain_name,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def register_to_work_mail(
@@ -4656,16 +5118,18 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.register_to_work_mail_request.RegisterToWorkMailRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["entity_id"] = entity_id
-        input_["email"] = email
+        input_: capo_workmail.types.register_to_work_mail_request.RegisterToWorkMailRequest = {
+            "organization_id": organization_id,
+            "entity_id": entity_id,
+            "email": email,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def reset_password(
@@ -4712,16 +5176,18 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.reset_password_request.ResetPasswordRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["user_id"] = user_id
-        input_["password"] = password
+        input_: capo_workmail.types.reset_password_request.ResetPasswordRequest = {
+            "organization_id": organization_id,
+            "user_id": user_id,
+            "password": password,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_mailbox_export_job(
@@ -4774,22 +5240,24 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.start_mailbox_export_job_request.StartMailboxExportJobRequest = {}  # type: ignore[typeddict-item]
-        input_["client_token"] = client_token
-        input_["organization_id"] = organization_id
-        input_["entity_id"] = entity_id
+        input_: capo_workmail.types.start_mailbox_export_job_request.StartMailboxExportJobRequest = {
+            "client_token": client_token,
+            "organization_id": organization_id,
+            "entity_id": entity_id,
+            "role_arn": role_arn,
+            "kms_key_arn": kms_key_arn,
+            "s3_bucket_name": s3_bucket_name,
+            "s3_prefix": s3_prefix,
+        }
         if description is not None:
             input_["description"] = description
-        input_["role_arn"] = role_arn
-        input_["kms_key_arn"] = kms_key_arn
-        input_["s3_bucket_name"] = s3_bucket_name
-        input_["s3_prefix"] = s3_prefix
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -4829,15 +5297,17 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_workmail.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def test_availability_configuration(
@@ -4883,8 +5353,9 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.test_availability_configuration_request.TestAvailabilityConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
+        input_: capo_workmail.types.test_availability_configuration_request.TestAvailabilityConfigurationRequest = {
+            "organization_id": organization_id
+        }
         if domain_name is not None:
             input_["domain_name"] = domain_name
         if ews_provider is not None:
@@ -4897,6 +5368,7 @@ class AsyncWorkMailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -4933,15 +5405,17 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_workmail.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_availability_configuration(
@@ -4989,9 +5463,10 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.update_availability_configuration_request.UpdateAvailabilityConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["domain_name"] = domain_name
+        input_: capo_workmail.types.update_availability_configuration_request.UpdateAvailabilityConfigurationRequest = {
+            "organization_id": organization_id,
+            "domain_name": domain_name,
+        }
         if ews_provider is not None:
             input_["ews_provider"] = ews_provider
         if lambda_provider is not None:
@@ -5002,6 +5477,7 @@ class AsyncWorkMailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_default_mail_domain(
@@ -5042,15 +5518,17 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.update_default_mail_domain_request.UpdateDefaultMailDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["domain_name"] = domain_name
+        input_: capo_workmail.types.update_default_mail_domain_request.UpdateDefaultMailDomainRequest = {
+            "organization_id": organization_id,
+            "domain_name": domain_name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_group(
@@ -5096,9 +5574,10 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.update_group_request.UpdateGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["group_id"] = group_id
+        input_: capo_workmail.types.update_group_request.UpdateGroupRequest = {
+            "organization_id": organization_id,
+            "group_id": group_id,
+        }
         if hidden_from_global_address_list is not None:
             input_["hidden_from_global_address_list"] = hidden_from_global_address_list
 
@@ -5107,6 +5586,7 @@ class AsyncWorkMailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_impersonation_role(
@@ -5159,20 +5639,22 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.update_impersonation_role_request.UpdateImpersonationRoleRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["impersonation_role_id"] = impersonation_role_id
-        input_["name"] = name
-        input_["type"] = type
+        input_: capo_workmail.types.update_impersonation_role_request.UpdateImpersonationRoleRequest = {
+            "organization_id": organization_id,
+            "impersonation_role_id": impersonation_role_id,
+            "name": name,
+            "type": type,
+            "rules": rules,
+        }
         if description is not None:
             input_["description"] = description
-        input_["rules"] = rules
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_mailbox_quota(
@@ -5215,16 +5697,18 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.update_mailbox_quota_request.UpdateMailboxQuotaRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["user_id"] = user_id
-        input_["mailbox_quota"] = mailbox_quota
+        input_: capo_workmail.types.update_mailbox_quota_request.UpdateMailboxQuotaRequest = {
+            "organization_id": organization_id,
+            "user_id": user_id,
+            "mailbox_quota": mailbox_quota,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_mobile_device_access_rule(
@@ -5304,13 +5788,14 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.update_mobile_device_access_rule_request.UpdateMobileDeviceAccessRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["mobile_device_access_rule_id"] = mobile_device_access_rule_id
-        input_["name"] = name
+        input_: capo_workmail.types.update_mobile_device_access_rule_request.UpdateMobileDeviceAccessRuleRequest = {
+            "organization_id": organization_id,
+            "mobile_device_access_rule_id": mobile_device_access_rule_id,
+            "name": name,
+            "effect": effect,
+        }
         if description is not None:
             input_["description"] = description
-        input_["effect"] = effect
         if device_types is not None:
             input_["device_types"] = device_types
         if not_device_types is not None:
@@ -5333,6 +5818,7 @@ class AsyncWorkMailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_primary_email_address(
@@ -5381,16 +5867,18 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.update_primary_email_address_request.UpdatePrimaryEmailAddressRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["entity_id"] = entity_id
-        input_["email"] = email
+        input_: capo_workmail.types.update_primary_email_address_request.UpdatePrimaryEmailAddressRequest = {
+            "organization_id": organization_id,
+            "entity_id": entity_id,
+            "email": email,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_resource(
@@ -5454,9 +5942,10 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.update_resource_request.UpdateResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["resource_id"] = resource_id
+        input_: capo_workmail.types.update_resource_request.UpdateResourceRequest = {
+            "organization_id": organization_id,
+            "resource_id": resource_id,
+        }
         if name is not None:
             input_["name"] = name
         if booking_options is not None:
@@ -5473,6 +5962,7 @@ class AsyncWorkMailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_user(
@@ -5554,9 +6044,10 @@ class AsyncWorkMailClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_workmail.types.update_user_request.UpdateUserRequest = {}  # type: ignore[typeddict-item]
-        input_["organization_id"] = organization_id
-        input_["user_id"] = user_id
+        input_: capo_workmail.types.update_user_request.UpdateUserRequest = {
+            "organization_id": organization_id,
+            "user_id": user_id,
+        }
         if role is not None:
             input_["role"] = role
         if display_name is not None:
@@ -5595,6 +6086,7 @@ class AsyncWorkMailClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

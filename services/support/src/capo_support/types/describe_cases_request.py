@@ -70,28 +70,28 @@ def serialize_aws_json_1_1(value: DescribeCasesRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeCasesRequest:
     out: DescribeCasesRequest = {}  # type: ignore[typeddict-item]
-    if "caseIdList" in data:
+    if data.get("caseIdList") is not None:
         import capo_support.types.case_id_list
 
         out["case_id_list"] = capo_support.types.case_id_list.deserialize_aws_json_1_1(
             data["caseIdList"]
         )
-    if "displayId" in data:
+    if data.get("displayId") is not None:
         out["display_id"] = data["displayId"]
-    if "afterTime" in data:
+    if data.get("afterTime") is not None:
         out["after_time"] = data["afterTime"]
-    if "beforeTime" in data:
+    if data.get("beforeTime") is not None:
         out["before_time"] = data["beforeTime"]
-    if "includeResolvedCases" in data:
+    if data.get("includeResolvedCases") is not None:
         out["include_resolved_cases"] = data["includeResolvedCases"]
     else:
         out["include_resolved_cases"] = False
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "language" in data:
+    if data.get("language") is not None:
         out["language"] = data["language"]
-    if "includeCommunications" in data:
+    if data.get("includeCommunications") is not None:
         out["include_communications"] = data["includeCommunications"]
     return out

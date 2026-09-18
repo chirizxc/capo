@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: CustomSecretConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CustomSecretConfig:
     out: CustomSecretConfig = {}  # type: ignore[typeddict-item]
-    if "SecretArn" in data:
+    if data.get("SecretArn") is not None:
         out["secret_arn"] = data["SecretArn"]
-    if "SecretAccessRoleArn" in data:
+    if data.get("SecretAccessRoleArn") is not None:
         out["secret_access_role_arn"] = data["SecretAccessRoleArn"]
     return out

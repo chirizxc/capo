@@ -44,7 +44,7 @@ def serialize_json(value: RuleGroupVariables) -> dict:
 
 def deserialize_json(data: dict) -> RuleGroupVariables:
     out: RuleGroupVariables = {}  # type: ignore[typeddict-item]
-    if "IpSets" in data:
+    if data.get("IpSets") is not None:
         import capo_securityhub.types.rule_group_variables_ip_sets_details
 
         out["ip_sets"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> RuleGroupVariables:
                 data["IpSets"]
             )
         )
-    if "PortSets" in data:
+    if data.get("PortSets") is not None:
         import capo_securityhub.types.rule_group_variables_port_sets_details
 
         out["port_sets"] = (

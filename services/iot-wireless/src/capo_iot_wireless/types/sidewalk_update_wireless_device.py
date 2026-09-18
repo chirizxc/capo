@@ -31,7 +31,7 @@ def serialize_json(value: SidewalkUpdateWirelessDevice) -> dict:
 
 def deserialize_json(data: dict) -> SidewalkUpdateWirelessDevice:
     out: SidewalkUpdateWirelessDevice = {}  # type: ignore[typeddict-item]
-    if "Positioning" in data:
+    if data.get("Positioning") is not None:
         import capo_iot_wireless.types.sidewalk_positioning
 
         out["positioning"] = (

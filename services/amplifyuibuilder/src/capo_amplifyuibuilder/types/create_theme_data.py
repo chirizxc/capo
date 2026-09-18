@@ -49,11 +49,11 @@ def serialize_json(value: CreateThemeData) -> dict:
 
 def deserialize_json(data: dict) -> CreateThemeData:
     out: CreateThemeData = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateThemeData.name required")
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_amplifyuibuilder.types.theme_values_list
 
         out["values"] = capo_amplifyuibuilder.types.theme_values_list.deserialize_json(
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> CreateThemeData:
         )
     else:
         raise DeserializationError("CreateThemeData.values required")
-    if "overrides" in data:
+    if data.get("overrides") is not None:
         import capo_amplifyuibuilder.types.theme_values_list
 
         out["overrides"] = (
@@ -69,7 +69,7 @@ def deserialize_json(data: dict) -> CreateThemeData:
                 data["overrides"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_amplifyuibuilder.types.tags
 
         out["tags"] = capo_amplifyuibuilder.types.tags.deserialize_json(data["tags"])

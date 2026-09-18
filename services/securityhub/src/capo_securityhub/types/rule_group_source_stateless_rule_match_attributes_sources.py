@@ -25,6 +25,6 @@ def serialize_json(value: RuleGroupSourceStatelessRuleMatchAttributesSources) ->
 
 def deserialize_json(data: dict) -> RuleGroupSourceStatelessRuleMatchAttributesSources:
     out: RuleGroupSourceStatelessRuleMatchAttributesSources = {}  # type: ignore[typeddict-item]
-    if "AddressDefinition" in data:
+    if data.get("AddressDefinition") is not None:
         out["address_definition"] = data["AddressDefinition"]
     return out

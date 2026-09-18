@@ -24,7 +24,7 @@ def serialize_json(value: DataSetSemanticDescription) -> dict:
 
 def deserialize_json(data: dict) -> DataSetSemanticDescription:
     out: DataSetSemanticDescription = {}  # type: ignore[typeddict-item]
-    if "Text" in data:
+    if data.get("Text") is not None:
         out["text"] = data["Text"]
     else:
         raise DeserializationError("DataSetSemanticDescription.text required")

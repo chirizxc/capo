@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: AsyncInferenceClientConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AsyncInferenceClientConfig:
     out: AsyncInferenceClientConfig = {}  # type: ignore[typeddict-item]
-    if "MaxConcurrentInvocationsPerInstance" in data:
+    if data.get("MaxConcurrentInvocationsPerInstance") is not None:
         out["max_concurrent_invocations_per_instance"] = data[
             "MaxConcurrentInvocationsPerInstance"
         ]

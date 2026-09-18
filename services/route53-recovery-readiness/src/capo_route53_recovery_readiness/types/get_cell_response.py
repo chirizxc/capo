@@ -66,11 +66,11 @@ def serialize_json(value: GetCellResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetCellResponse:
     out: GetCellResponse = {}  # type: ignore[typeddict-item]
-    if "cellArn" in data:
+    if data.get("cellArn") is not None:
         out["cell_arn"] = data["cellArn"]
-    if "cellName" in data:
+    if data.get("cellName") is not None:
         out["cell_name"] = data["cellName"]
-    if "cells" in data:
+    if data.get("cells") is not None:
         import capo_route53_recovery_readiness.types.__list_of__string
 
         out["cells"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> GetCellResponse:
                 data["cells"]
             )
         )
-    if "parentReadinessScopes" in data:
+    if data.get("parentReadinessScopes") is not None:
         import capo_route53_recovery_readiness.types.__list_of__string
 
         out["parent_readiness_scopes"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> GetCellResponse:
                 data["parentReadinessScopes"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_route53_recovery_readiness.types.tags
 
         out["tags"] = capo_route53_recovery_readiness.types.tags.deserialize_json(

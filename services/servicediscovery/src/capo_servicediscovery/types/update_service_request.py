@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: UpdateServiceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateServiceRequest:
     out: UpdateServiceRequest = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("UpdateServiceRequest.id required")
-    if "Service" in data:
+    if data.get("Service") is not None:
         import capo_servicediscovery.types.service_change
 
         out["service"] = (

@@ -45,14 +45,14 @@ def serialize_aws_json_1_1(value: UpdateConstraintInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateConstraintInput:
     out: UpdateConstraintInput = {}  # type: ignore[typeddict-item]
-    if "AcceptLanguage" in data:
+    if data.get("AcceptLanguage") is not None:
         out["accept_language"] = data["AcceptLanguage"]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("UpdateConstraintInput.id required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         out["parameters"] = data["Parameters"]
     return out

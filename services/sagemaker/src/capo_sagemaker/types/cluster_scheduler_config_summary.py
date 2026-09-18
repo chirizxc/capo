@@ -79,21 +79,21 @@ def serialize_aws_json_1_1(value: ClusterSchedulerConfigSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClusterSchedulerConfigSummary:
     out: ClusterSchedulerConfigSummary = {}  # type: ignore[typeddict-item]
-    if "ClusterSchedulerConfigArn" in data:
+    if data.get("ClusterSchedulerConfigArn") is not None:
         out["cluster_scheduler_config_arn"] = data["ClusterSchedulerConfigArn"]
-    if "ClusterSchedulerConfigId" in data:
+    if data.get("ClusterSchedulerConfigId") is not None:
         out["cluster_scheduler_config_id"] = data["ClusterSchedulerConfigId"]
-    if "ClusterSchedulerConfigVersion" in data:
+    if data.get("ClusterSchedulerConfigVersion") is not None:
         out["cluster_scheduler_config_version"] = data["ClusterSchedulerConfigVersion"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (
@@ -101,7 +101,7 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterSchedulerConfigSummary:
                 data["LastModifiedTime"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.scheduler_resource_status
 
         out["status"] = (
@@ -109,6 +109,6 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterSchedulerConfigSummary:
                 data["Status"]
             )
         )
-    if "ClusterArn" in data:
+    if data.get("ClusterArn") is not None:
         out["cluster_arn"] = data["ClusterArn"]
     return out

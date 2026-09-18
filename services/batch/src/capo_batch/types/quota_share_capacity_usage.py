@@ -22,14 +22,22 @@ def serialize_json(value: QuotaShareCapacityUsage) -> dict:
     if "capacity_unit" in value:
         out["capacityUnit"] = value["capacity_unit"]
     if "quantity" in value:
-        out["quantity"] = value["quantity"]
+        out["quantity"] = (
+            "NaN"
+            if value["quantity"] != value["quantity"]
+            else "Infinity"
+            if value["quantity"] == float("inf")
+            else "-Infinity"
+            if value["quantity"] == float("-inf")
+            else value["quantity"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> QuotaShareCapacityUsage:
     out: QuotaShareCapacityUsage = {}  # type: ignore[typeddict-item]
-    if "capacityUnit" in data:
+    if data.get("capacityUnit") is not None:
         out["capacity_unit"] = data["capacityUnit"]
-    if "quantity" in data:
-        out["quantity"] = data["quantity"]
+    if data.get("quantity") is not None:
+        out["quantity"] = float(data["quantity"])
     return out

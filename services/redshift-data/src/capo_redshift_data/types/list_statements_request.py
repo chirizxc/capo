@@ -61,22 +61,22 @@ def serialize_aws_json_1_1(value: ListStatementsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListStatementsRequest:
     out: ListStatementsRequest = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     else:
         out["max_results"] = 0
-    if "StatementName" in data:
+    if data.get("StatementName") is not None:
         out["statement_name"] = data["StatementName"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "RoleLevel" in data:
+    if data.get("RoleLevel") is not None:
         out["role_level"] = data["RoleLevel"]
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
-    if "ClusterIdentifier" in data:
+    if data.get("ClusterIdentifier") is not None:
         out["cluster_identifier"] = data["ClusterIdentifier"]
-    if "WorkgroupName" in data:
+    if data.get("WorkgroupName") is not None:
         out["workgroup_name"] = data["WorkgroupName"]
     return out

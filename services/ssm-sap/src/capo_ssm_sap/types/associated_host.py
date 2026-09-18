@@ -39,16 +39,16 @@ def serialize_json(value: AssociatedHost) -> dict:
 
 def deserialize_json(data: dict) -> AssociatedHost:
     out: AssociatedHost = {}  # type: ignore[typeddict-item]
-    if "Hostname" in data:
+    if data.get("Hostname") is not None:
         out["hostname"] = data["Hostname"]
-    if "Ec2InstanceId" in data:
+    if data.get("Ec2InstanceId") is not None:
         out["ec2_instance_id"] = data["Ec2InstanceId"]
-    if "IpAddresses" in data:
+    if data.get("IpAddresses") is not None:
         import capo_ssm_sap.types.ip_address_list
 
         out["ip_addresses"] = capo_ssm_sap.types.ip_address_list.deserialize_json(
             data["IpAddresses"]
         )
-    if "OsVersion" in data:
+    if data.get("OsVersion") is not None:
         out["os_version"] = data["OsVersion"]
     return out

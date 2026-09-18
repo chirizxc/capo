@@ -72,13 +72,13 @@ def serialize_aws_json_1_1(value: Location) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Location:
     out: Location = {}  # type: ignore[typeddict-item]
-    if "locationCode" in data:
+    if data.get("locationCode") is not None:
         out["location_code"] = data["locationCode"]
-    if "locationName" in data:
+    if data.get("locationName") is not None:
         out["location_name"] = data["locationName"]
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
-    if "availablePortSpeeds" in data:
+    if data.get("availablePortSpeeds") is not None:
         import capo_direct_connect.types.available_port_speeds
 
         out["available_port_speeds"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_1(data: dict) -> Location:
                 data["availablePortSpeeds"]
             )
         )
-    if "availableProviders" in data:
+    if data.get("availableProviders") is not None:
         import capo_direct_connect.types.provider_list
 
         out["available_providers"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_1(data: dict) -> Location:
                 data["availableProviders"]
             )
         )
-    if "availableMacSecPortSpeeds" in data:
+    if data.get("availableMacSecPortSpeeds") is not None:
         import capo_direct_connect.types.available_mac_sec_port_speeds
 
         out["available_mac_sec_port_speeds"] = (

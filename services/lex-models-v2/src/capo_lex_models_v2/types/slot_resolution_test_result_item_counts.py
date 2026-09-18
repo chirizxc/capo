@@ -46,13 +46,13 @@ def serialize_json(value: SlotResolutionTestResultItemCounts) -> dict:
 
 def deserialize_json(data: dict) -> SlotResolutionTestResultItemCounts:
     out: SlotResolutionTestResultItemCounts = {}  # type: ignore[typeddict-item]
-    if "totalResultCount" in data:
+    if data.get("totalResultCount") is not None:
         out["total_result_count"] = data["totalResultCount"]
     else:
         raise DeserializationError(
             "SlotResolutionTestResultItemCounts.total_result_count required"
         )
-    if "speechTranscriptionResultCounts" in data:
+    if data.get("speechTranscriptionResultCounts") is not None:
         import capo_lex_models_v2.types.test_result_match_status_count_map
 
         out["speech_transcription_result_counts"] = (
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> SlotResolutionTestResultItemCounts:
                 data["speechTranscriptionResultCounts"]
             )
         )
-    if "slotMatchResultCounts" in data:
+    if data.get("slotMatchResultCounts") is not None:
         import capo_lex_models_v2.types.test_result_match_status_count_map
 
         out["slot_match_result_counts"] = (

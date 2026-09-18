@@ -37,13 +37,13 @@ def serialize_aws_json_1_0(value: ExportAs2805KeyCryptogram) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ExportAs2805KeyCryptogram:
     out: ExportAs2805KeyCryptogram = {}  # type: ignore[typeddict-item]
-    if "WrappingKeyIdentifier" in data:
+    if data.get("WrappingKeyIdentifier") is not None:
         out["wrapping_key_identifier"] = data["WrappingKeyIdentifier"]
     else:
         raise DeserializationError(
             "ExportAs2805KeyCryptogram.wrapping_key_identifier required"
         )
-    if "As2805KeyVariant" in data:
+    if data.get("As2805KeyVariant") is not None:
         import capo_payment_cryptography.types.as2805_key_variant
 
         out["as2805_key_variant"] = (

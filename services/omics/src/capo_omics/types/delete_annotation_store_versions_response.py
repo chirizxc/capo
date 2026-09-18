@@ -29,7 +29,7 @@ def serialize_json(value: DeleteAnnotationStoreVersionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteAnnotationStoreVersionsResponse:
     out: DeleteAnnotationStoreVersionsResponse = {}  # type: ignore[typeddict-item]
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_omics.types.version_delete_error_list
 
         out["errors"] = capo_omics.types.version_delete_error_list.deserialize_json(

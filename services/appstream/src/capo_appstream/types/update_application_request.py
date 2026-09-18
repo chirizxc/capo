@@ -73,13 +73,13 @@ def serialize_aws_json_1_1(value: UpdateApplicationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateApplicationRequest:
     out: UpdateApplicationRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "IconS3Location" in data:
+    if data.get("IconS3Location") is not None:
         import capo_appstream.types.s3_location
 
         out["icon_s3_location"] = (
@@ -87,15 +87,15 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateApplicationRequest:
                 data["IconS3Location"]
             )
         )
-    if "LaunchPath" in data:
+    if data.get("LaunchPath") is not None:
         out["launch_path"] = data["LaunchPath"]
-    if "WorkingDirectory" in data:
+    if data.get("WorkingDirectory") is not None:
         out["working_directory"] = data["WorkingDirectory"]
-    if "LaunchParameters" in data:
+    if data.get("LaunchParameters") is not None:
         out["launch_parameters"] = data["LaunchParameters"]
-    if "AppBlockArn" in data:
+    if data.get("AppBlockArn") is not None:
         out["app_block_arn"] = data["AppBlockArn"]
-    if "AttributesToDelete" in data:
+    if data.get("AttributesToDelete") is not None:
         import capo_appstream.types.application_attributes
 
         out["attributes_to_delete"] = (

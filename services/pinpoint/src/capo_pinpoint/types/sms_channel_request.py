@@ -32,10 +32,10 @@ def serialize_json(value: SMSChannelRequest) -> dict:
 
 def deserialize_json(data: dict) -> SMSChannelRequest:
     out: SMSChannelRequest = {}  # type: ignore[typeddict-item]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "SenderId" in data:
+    if data.get("SenderId") is not None:
         out["sender_id"] = data["SenderId"]
-    if "ShortCode" in data:
+    if data.get("ShortCode") is not None:
         out["short_code"] = data["ShortCode"]
     return out

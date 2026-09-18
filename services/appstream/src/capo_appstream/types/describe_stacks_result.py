@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: DescribeStacksResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeStacksResult:
     out: DescribeStacksResult = {}  # type: ignore[typeddict-item]
-    if "Stacks" in data:
+    if data.get("Stacks") is not None:
         import capo_appstream.types.stack_list
 
         out["stacks"] = capo_appstream.types.stack_list.deserialize_aws_json_1_1(
             data["Stacks"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: RunConfigurationUpdate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RunConfigurationUpdate:
     out: RunConfigurationUpdate = {}  # type: ignore[typeddict-item]
-    if "FlinkRunConfiguration" in data:
+    if data.get("FlinkRunConfiguration") is not None:
         import capo_kinesis_analytics_v2.types.flink_run_configuration
 
         out["flink_run_configuration"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> RunConfigurationUpdate:
                 data["FlinkRunConfiguration"]
             )
         )
-    if "ApplicationRestoreConfiguration" in data:
+    if data.get("ApplicationRestoreConfiguration") is not None:
         import capo_kinesis_analytics_v2.types.application_restore_configuration
 
         out["application_restore_configuration"] = (

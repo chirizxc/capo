@@ -37,11 +37,11 @@ def serialize_aws_json_1_1(value: GetTerminologyRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetTerminologyRequest:
     out: GetTerminologyRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("GetTerminologyRequest.name required")
-    if "TerminologyDataFormat" in data:
+    if data.get("TerminologyDataFormat") is not None:
         import capo_translate.types.terminology_data_format
 
         out["terminology_data_format"] = (

@@ -55,19 +55,19 @@ def serialize_aws_json_1_0(value: WorkflowRunSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> WorkflowRunSummary:
     out: WorkflowRunSummary = {}  # type: ignore[typeddict-item]
-    if "RunId" in data:
+    if data.get("RunId") is not None:
         out["run_id"] = data["RunId"]
-    if "WorkflowArn" in data:
+    if data.get("WorkflowArn") is not None:
         out["workflow_arn"] = data["WorkflowArn"]
-    if "WorkflowVersion" in data:
+    if data.get("WorkflowVersion") is not None:
         out["workflow_version"] = data["WorkflowVersion"]
-    if "RunType" in data:
+    if data.get("RunType") is not None:
         import capo_mwaa_serverless.types.run_type
 
         out["run_type"] = capo_mwaa_serverless.types.run_type.deserialize_aws_json_1_0(
             data["RunType"]
         )
-    if "RunDetailSummary" in data:
+    if data.get("RunDetailSummary") is not None:
         import capo_mwaa_serverless.types.run_detail_summary
 
         out["run_detail_summary"] = (

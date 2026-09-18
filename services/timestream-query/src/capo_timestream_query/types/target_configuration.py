@@ -32,7 +32,7 @@ def serialize_aws_json_1_0(value: TargetConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TargetConfiguration:
     out: TargetConfiguration = {}  # type: ignore[typeddict-item]
-    if "TimestreamConfiguration" in data:
+    if data.get("TimestreamConfiguration") is not None:
         import capo_timestream_query.types.timestream_configuration
 
         out["timestream_configuration"] = (

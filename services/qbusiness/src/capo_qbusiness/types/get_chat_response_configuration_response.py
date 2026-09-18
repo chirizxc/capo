@@ -71,19 +71,19 @@ def serialize_json(value: GetChatResponseConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetChatResponseConfigurationResponse:
     out: GetChatResponseConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "chatResponseConfigurationId" in data:
+    if data.get("chatResponseConfigurationId") is not None:
         out["chat_response_configuration_id"] = data["chatResponseConfigurationId"]
-    if "chatResponseConfigurationArn" in data:
+    if data.get("chatResponseConfigurationArn") is not None:
         out["chat_response_configuration_arn"] = data["chatResponseConfigurationArn"]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_qbusiness.types.timestamp
 
         out["created_at"] = capo_qbusiness.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "inUseConfiguration" in data:
+    if data.get("inUseConfiguration") is not None:
         import capo_qbusiness.types.chat_response_configuration_detail
 
         out["in_use_configuration"] = (
@@ -91,7 +91,7 @@ def deserialize_json(data: dict) -> GetChatResponseConfigurationResponse:
                 data["inUseConfiguration"]
             )
         )
-    if "lastUpdateConfiguration" in data:
+    if data.get("lastUpdateConfiguration") is not None:
         import capo_qbusiness.types.chat_response_configuration_detail
 
         out["last_update_configuration"] = (

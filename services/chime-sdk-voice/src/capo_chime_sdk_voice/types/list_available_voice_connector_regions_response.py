@@ -31,7 +31,7 @@ def serialize_json(value: ListAvailableVoiceConnectorRegionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListAvailableVoiceConnectorRegionsResponse:
     out: ListAvailableVoiceConnectorRegionsResponse = {}  # type: ignore[typeddict-item]
-    if "VoiceConnectorRegions" in data:
+    if data.get("VoiceConnectorRegions") is not None:
         import capo_chime_sdk_voice.types.voice_connector_aws_region_list
 
         out["voice_connector_regions"] = (

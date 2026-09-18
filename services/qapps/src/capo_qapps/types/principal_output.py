@@ -33,12 +33,12 @@ def serialize_json(value: PrincipalOutput) -> dict:
 
 def deserialize_json(data: dict) -> PrincipalOutput:
     out: PrincipalOutput = {}  # type: ignore[typeddict-item]
-    if "userId" in data:
+    if data.get("userId") is not None:
         out["user_id"] = data["userId"]
-    if "userType" in data:
+    if data.get("userType") is not None:
         import capo_qapps.types.user_type
 
         out["user_type"] = capo_qapps.types.user_type.deserialize_json(data["userType"])
-    if "email" in data:
+    if data.get("email") is not None:
         out["email"] = data["email"]
     return out

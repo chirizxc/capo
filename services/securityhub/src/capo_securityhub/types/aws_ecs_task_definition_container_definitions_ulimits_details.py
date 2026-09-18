@@ -36,10 +36,10 @@ def deserialize_json(
     data: dict,
 ) -> AwsEcsTaskDefinitionContainerDefinitionsUlimitsDetails:
     out: AwsEcsTaskDefinitionContainerDefinitionsUlimitsDetails = {}  # type: ignore[typeddict-item]
-    if "HardLimit" in data:
+    if data.get("HardLimit") is not None:
         out["hard_limit"] = data["HardLimit"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "SoftLimit" in data:
+    if data.get("SoftLimit") is not None:
         out["soft_limit"] = data["SoftLimit"]
     return out

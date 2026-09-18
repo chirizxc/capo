@@ -43,11 +43,11 @@ def serialize_json(value: AwsWafv2CustomResponseDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsWafv2CustomResponseDetails:
     out: AwsWafv2CustomResponseDetails = {}  # type: ignore[typeddict-item]
-    if "CustomResponseBodyKey" in data:
+    if data.get("CustomResponseBodyKey") is not None:
         out["custom_response_body_key"] = data["CustomResponseBodyKey"]
-    if "ResponseCode" in data:
+    if data.get("ResponseCode") is not None:
         out["response_code"] = data["ResponseCode"]
-    if "ResponseHeaders" in data:
+    if data.get("ResponseHeaders") is not None:
         import capo_securityhub.types.aws_wafv2_insert_headers_list
 
         out["response_headers"] = (

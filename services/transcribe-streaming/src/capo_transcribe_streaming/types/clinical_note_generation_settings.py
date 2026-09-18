@@ -37,13 +37,13 @@ def serialize_json(value: ClinicalNoteGenerationSettings) -> dict:
 
 def deserialize_json(data: dict) -> ClinicalNoteGenerationSettings:
     out: ClinicalNoteGenerationSettings = {}  # type: ignore[typeddict-item]
-    if "OutputBucketName" in data:
+    if data.get("OutputBucketName") is not None:
         out["output_bucket_name"] = data["OutputBucketName"]
     else:
         raise DeserializationError(
             "ClinicalNoteGenerationSettings.output_bucket_name required"
         )
-    if "NoteTemplate" in data:
+    if data.get("NoteTemplate") is not None:
         import capo_transcribe_streaming.types.medical_scribe_note_template
 
         out["note_template"] = (

@@ -49,7 +49,7 @@ def serialize_json(value: AutoTuneOptionsInput) -> dict:
 
 def deserialize_json(data: dict) -> AutoTuneOptionsInput:
     out: AutoTuneOptionsInput = {}  # type: ignore[typeddict-item]
-    if "DesiredState" in data:
+    if data.get("DesiredState") is not None:
         import capo_opensearch.types.auto_tune_desired_state
 
         out["desired_state"] = (
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> AutoTuneOptionsInput:
                 data["DesiredState"]
             )
         )
-    if "MaintenanceSchedules" in data:
+    if data.get("MaintenanceSchedules") is not None:
         import capo_opensearch.types.auto_tune_maintenance_schedule_list
 
         out["maintenance_schedules"] = (
@@ -65,6 +65,6 @@ def deserialize_json(data: dict) -> AutoTuneOptionsInput:
                 data["MaintenanceSchedules"]
             )
         )
-    if "UseOffPeakWindow" in data:
+    if data.get("UseOffPeakWindow") is not None:
         out["use_off_peak_window"] = data["UseOffPeakWindow"]
     return out

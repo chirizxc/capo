@@ -81,19 +81,19 @@ def serialize_aws_json_1_1(value: Dataset) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Dataset:
     out: Dataset = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "datasetArn" in data:
+    if data.get("datasetArn") is not None:
         out["dataset_arn"] = data["datasetArn"]
-    if "datasetGroupArn" in data:
+    if data.get("datasetGroupArn") is not None:
         out["dataset_group_arn"] = data["datasetGroupArn"]
-    if "datasetType" in data:
+    if data.get("datasetType") is not None:
         out["dataset_type"] = data["datasetType"]
-    if "schemaArn" in data:
+    if data.get("schemaArn") is not None:
         out["schema_arn"] = data["schemaArn"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_personalize.types.date
 
         out["creation_date_time"] = (
@@ -101,7 +101,7 @@ def deserialize_aws_json_1_1(data: dict) -> Dataset:
                 data["creationDateTime"]
             )
         )
-    if "lastUpdatedDateTime" in data:
+    if data.get("lastUpdatedDateTime") is not None:
         import capo_personalize.types.date
 
         out["last_updated_date_time"] = (
@@ -109,7 +109,7 @@ def deserialize_aws_json_1_1(data: dict) -> Dataset:
                 data["lastUpdatedDateTime"]
             )
         )
-    if "latestDatasetUpdate" in data:
+    if data.get("latestDatasetUpdate") is not None:
         import capo_personalize.types.dataset_update_summary
 
         out["latest_dataset_update"] = (
@@ -117,6 +117,6 @@ def deserialize_aws_json_1_1(data: dict) -> Dataset:
                 data["latestDatasetUpdate"]
             )
         )
-    if "trackingId" in data:
+    if data.get("trackingId") is not None:
         out["tracking_id"] = data["trackingId"]
     return out

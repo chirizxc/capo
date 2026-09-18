@@ -16,4 +16,4 @@ def serialize_json(value: RelatedRequirementsList) -> list:
 
 
 def deserialize_json(data: list) -> RelatedRequirementsList:
-    return list(data)
+    return [item for item in data if item is not None]

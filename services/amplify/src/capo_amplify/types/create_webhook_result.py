@@ -26,7 +26,7 @@ def serialize_json(value: CreateWebhookResult) -> dict:
 
 def deserialize_json(data: dict) -> CreateWebhookResult:
     out: CreateWebhookResult = {}  # type: ignore[typeddict-item]
-    if "webhook" in data:
+    if data.get("webhook") is not None:
         import capo_amplify.types.webhook
 
         out["webhook"] = capo_amplify.types.webhook.deserialize_json(data["webhook"])

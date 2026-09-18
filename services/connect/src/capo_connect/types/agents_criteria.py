@@ -27,7 +27,7 @@ def serialize_json(value: AgentsCriteria) -> dict:
 
 def deserialize_json(data: dict) -> AgentsCriteria:
     out: AgentsCriteria = {}  # type: ignore[typeddict-item]
-    if "AgentIds" in data:
+    if data.get("AgentIds") is not None:
         import capo_connect.types.agent_ids
 
         out["agent_ids"] = capo_connect.types.agent_ids.deserialize_json(

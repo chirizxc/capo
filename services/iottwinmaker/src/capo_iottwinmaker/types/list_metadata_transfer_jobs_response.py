@@ -35,7 +35,7 @@ def serialize_json(value: ListMetadataTransferJobsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListMetadataTransferJobsResponse:
     out: ListMetadataTransferJobsResponse = {}  # type: ignore[typeddict-item]
-    if "metadataTransferJobSummaries" in data:
+    if data.get("metadataTransferJobSummaries") is not None:
         import capo_iottwinmaker.types.metadata_transfer_job_summaries
 
         out["metadata_transfer_job_summaries"] = (
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> ListMetadataTransferJobsResponse:
         raise DeserializationError(
             "ListMetadataTransferJobsResponse.metadata_transfer_job_summaries required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

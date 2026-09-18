@@ -31,7 +31,7 @@ def serialize_json(value: EnabledBaselineDriftStatusSummary) -> dict:
 
 def deserialize_json(data: dict) -> EnabledBaselineDriftStatusSummary:
     out: EnabledBaselineDriftStatusSummary = {}  # type: ignore[typeddict-item]
-    if "types" in data:
+    if data.get("types") is not None:
         import capo_controltower.types.enabled_baseline_drift_types
 
         out["types"] = (

@@ -38,15 +38,15 @@ def serialize_aws_json_1_1(value: BatchDeleteAgentError) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchDeleteAgentError:
     out: BatchDeleteAgentError = {}  # type: ignore[typeddict-item]
-    if "agentId" in data:
+    if data.get("agentId") is not None:
         out["agent_id"] = data["agentId"]
     else:
         raise DeserializationError("BatchDeleteAgentError.agent_id required")
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     else:
         raise DeserializationError("BatchDeleteAgentError.error_message required")
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         import capo_application_discovery_service.types.delete_agent_error_code
 
         out["error_code"] = (

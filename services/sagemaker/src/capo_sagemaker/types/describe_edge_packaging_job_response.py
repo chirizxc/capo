@@ -125,19 +125,19 @@ def serialize_aws_json_1_1(value: DescribeEdgePackagingJobResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeEdgePackagingJobResponse:
     out: DescribeEdgePackagingJobResponse = {}  # type: ignore[typeddict-item]
-    if "EdgePackagingJobArn" in data:
+    if data.get("EdgePackagingJobArn") is not None:
         out["edge_packaging_job_arn"] = data["EdgePackagingJobArn"]
-    if "EdgePackagingJobName" in data:
+    if data.get("EdgePackagingJobName") is not None:
         out["edge_packaging_job_name"] = data["EdgePackagingJobName"]
-    if "CompilationJobName" in data:
+    if data.get("CompilationJobName") is not None:
         out["compilation_job_name"] = data["CompilationJobName"]
-    if "ModelName" in data:
+    if data.get("ModelName") is not None:
         out["model_name"] = data["ModelName"]
-    if "ModelVersion" in data:
+    if data.get("ModelVersion") is not None:
         out["model_version"] = data["ModelVersion"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "OutputConfig" in data:
+    if data.get("OutputConfig") is not None:
         import capo_sagemaker.types.edge_output_config
 
         out["output_config"] = (
@@ -145,9 +145,9 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeEdgePackagingJobResponse:
                 data["OutputConfig"]
             )
         )
-    if "ResourceKey" in data:
+    if data.get("ResourceKey") is not None:
         out["resource_key"] = data["ResourceKey"]
-    if "EdgePackagingJobStatus" in data:
+    if data.get("EdgePackagingJobStatus") is not None:
         import capo_sagemaker.types.edge_packaging_job_status
 
         out["edge_packaging_job_status"] = (
@@ -155,15 +155,15 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeEdgePackagingJobResponse:
                 data["EdgePackagingJobStatus"]
             )
         )
-    if "EdgePackagingJobStatusMessage" in data:
+    if data.get("EdgePackagingJobStatusMessage") is not None:
         out["edge_packaging_job_status_message"] = data["EdgePackagingJobStatusMessage"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["creation_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (
@@ -171,11 +171,11 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeEdgePackagingJobResponse:
                 data["LastModifiedTime"]
             )
         )
-    if "ModelArtifact" in data:
+    if data.get("ModelArtifact") is not None:
         out["model_artifact"] = data["ModelArtifact"]
-    if "ModelSignature" in data:
+    if data.get("ModelSignature") is not None:
         out["model_signature"] = data["ModelSignature"]
-    if "PresetDeploymentOutput" in data:
+    if data.get("PresetDeploymentOutput") is not None:
         import capo_sagemaker.types.edge_preset_deployment_output
 
         out["preset_deployment_output"] = (

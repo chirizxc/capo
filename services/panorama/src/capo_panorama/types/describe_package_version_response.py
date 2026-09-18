@@ -74,43 +74,43 @@ def serialize_json(value: DescribePackageVersionResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribePackageVersionResponse:
     out: DescribePackageVersionResponse = {}  # type: ignore[typeddict-item]
-    if "OwnerAccount" in data:
+    if data.get("OwnerAccount") is not None:
         out["owner_account"] = data["OwnerAccount"]
-    if "PackageId" in data:
+    if data.get("PackageId") is not None:
         out["package_id"] = data["PackageId"]
     else:
         raise DeserializationError("DescribePackageVersionResponse.package_id required")
-    if "PackageArn" in data:
+    if data.get("PackageArn") is not None:
         out["package_arn"] = data["PackageArn"]
-    if "PackageName" in data:
+    if data.get("PackageName") is not None:
         out["package_name"] = data["PackageName"]
     else:
         raise DeserializationError(
             "DescribePackageVersionResponse.package_name required"
         )
-    if "PackageVersion" in data:
+    if data.get("PackageVersion") is not None:
         out["package_version"] = data["PackageVersion"]
     else:
         raise DeserializationError(
             "DescribePackageVersionResponse.package_version required"
         )
-    if "PatchVersion" in data:
+    if data.get("PatchVersion") is not None:
         out["patch_version"] = data["PatchVersion"]
     else:
         raise DeserializationError(
             "DescribePackageVersionResponse.patch_version required"
         )
-    if "IsLatestPatch" in data:
+    if data.get("IsLatestPatch") is not None:
         out["is_latest_patch"] = data["IsLatestPatch"]
     else:
         out["is_latest_patch"] = False
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     else:
         raise DeserializationError("DescribePackageVersionResponse.status required")
-    if "StatusDescription" in data:
+    if data.get("StatusDescription") is not None:
         out["status_description"] = data["StatusDescription"]
-    if "RegisteredTime" in data:
+    if data.get("RegisteredTime") is not None:
         import capo_panorama.types.time_stamp
 
         out["registered_time"] = capo_panorama.types.time_stamp.deserialize_json(

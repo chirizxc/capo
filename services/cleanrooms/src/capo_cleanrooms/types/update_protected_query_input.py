@@ -36,7 +36,7 @@ def serialize_json(value: UpdateProtectedQueryInput) -> dict:
 
 def deserialize_json(data: dict) -> UpdateProtectedQueryInput:
     out: UpdateProtectedQueryInput = {}  # type: ignore[typeddict-item]
-    if "targetStatus" in data:
+    if data.get("targetStatus") is not None:
         out["target_status"] = data["targetStatus"]
     else:
         raise DeserializationError("UpdateProtectedQueryInput.target_status required")

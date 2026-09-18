@@ -28,8 +28,8 @@ def serialize_json(value: URL) -> dict:
 
 def deserialize_json(data: dict) -> URL:
     out: URL = {}  # type: ignore[typeddict-item]
-    if "hyperlinkName" in data:
+    if data.get("hyperlinkName") is not None:
         out["hyperlink_name"] = data["hyperlinkName"]
-    if "link" in data:
+    if data.get("link") is not None:
         out["link"] = data["link"]
     return out

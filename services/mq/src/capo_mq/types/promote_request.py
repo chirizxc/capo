@@ -28,7 +28,7 @@ def serialize_json(value: PromoteRequest) -> dict:
 
 def deserialize_json(data: dict) -> PromoteRequest:
     out: PromoteRequest = {}  # type: ignore[typeddict-item]
-    if "mode" in data:
+    if data.get("mode") is not None:
         import capo_mq.types.promote_mode
 
         out["mode"] = capo_mq.types.promote_mode.deserialize_json(data["mode"])

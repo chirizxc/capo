@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> RouteMatrixAvoidanceZoneCategoryList:
 
     out: RouteMatrixAvoidanceZoneCategoryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_geo_routes.types.route_matrix_avoidance_zone_category.deserialize_json(
                 item

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AppComponentList:
 
     out: AppComponentList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_resiliencehub.types.app_component.deserialize_json(item))
     return out

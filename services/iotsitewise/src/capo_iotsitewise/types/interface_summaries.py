@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> InterfaceSummaries:
 
     out: InterfaceSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iotsitewise.types.interface_summary.deserialize_json(item))
     return out

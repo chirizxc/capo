@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.savingsplans#AWSSavingsPlan``."""
 
+import uuid
 import warnings
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
@@ -224,15 +225,17 @@ class savingsplansClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_savingsplans.types.create_savings_plan_request.CreateSavingsPlanRequest = {}  # type: ignore[typeddict-item]
-        input_["savings_plan_offering_id"] = savings_plan_offering_id
-        input_["commitment"] = commitment
+        input_: capo_savingsplans.types.create_savings_plan_request.CreateSavingsPlanRequest = {
+            "savings_plan_offering_id": savings_plan_offering_id,
+            "commitment": commitment,
+        }
         if upfront_payment_amount is not None:
             input_["upfront_payment_amount"] = upfront_payment_amount
         if purchase_time is not None:
             input_["purchase_time"] = purchase_time
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -241,6 +244,7 @@ class savingsplansClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_queued_savings_plan(
@@ -277,14 +281,16 @@ class savingsplansClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_savingsplans.types.delete_queued_savings_plan_request.DeleteQueuedSavingsPlanRequest = {}  # type: ignore[typeddict-item]
-        input_["savings_plan_id"] = savings_plan_id
+        input_: capo_savingsplans.types.delete_queued_savings_plan_request.DeleteQueuedSavingsPlanRequest = {
+            "savings_plan_id": savings_plan_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_savings_plan_rates(
@@ -330,8 +336,9 @@ class savingsplansClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_savingsplans.types.describe_savings_plan_rates_request.DescribeSavingsPlanRatesRequest = {}  # type: ignore[typeddict-item]
-        input_["savings_plan_id"] = savings_plan_id
+        input_: capo_savingsplans.types.describe_savings_plan_rates_request.DescribeSavingsPlanRatesRequest = {
+            "savings_plan_id": savings_plan_id
+        }
         if filters is not None:
             input_["filters"] = filters
         if next_token is not None:
@@ -344,6 +351,7 @@ class savingsplansClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_savings_plans(
@@ -398,7 +406,7 @@ class savingsplansClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_savingsplans.types.describe_savings_plans_request.DescribeSavingsPlansRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_savingsplans.types.describe_savings_plans_request.DescribeSavingsPlansRequest = {}
         if savings_plan_arns is not None:
             input_["savings_plan_arns"] = savings_plan_arns
         if savings_plan_ids is not None:
@@ -417,6 +425,7 @@ class savingsplansClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_savings_plans_offering_rates(
@@ -487,7 +496,7 @@ class savingsplansClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_savingsplans.types.describe_savings_plans_offering_rates_request.DescribeSavingsPlansOfferingRatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_savingsplans.types.describe_savings_plans_offering_rates_request.DescribeSavingsPlansOfferingRatesRequest = {}
         if savings_plan_offering_ids is not None:
             input_["savings_plan_offering_ids"] = savings_plan_offering_ids
         if savings_plan_payment_options is not None:
@@ -514,6 +523,7 @@ class savingsplansClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_savings_plans_offerings(
@@ -594,7 +604,7 @@ class savingsplansClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_savingsplans.types.describe_savings_plans_offerings_request.DescribeSavingsPlansOfferingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_savingsplans.types.describe_savings_plans_offerings_request.DescribeSavingsPlansOfferingsRequest = {}
         if offering_ids is not None:
             input_["offering_ids"] = offering_ids
         if payment_options is not None:
@@ -627,6 +637,7 @@ class savingsplansClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_tags_for_resource(
@@ -662,14 +673,16 @@ class savingsplansClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_savingsplans.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_savingsplans.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def return_savings_plan(
@@ -712,16 +725,19 @@ class savingsplansClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_savingsplans.types.return_savings_plan_request.ReturnSavingsPlanRequest = {}  # type: ignore[typeddict-item]
-        input_["savings_plan_id"] = savings_plan_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_savingsplans.types.return_savings_plan_request.ReturnSavingsPlanRequest = {
+            "savings_plan_id": savings_plan_id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -760,15 +776,17 @@ class savingsplansClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_savingsplans.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_savingsplans.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -806,15 +824,17 @@ class savingsplansClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_savingsplans.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_savingsplans.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> CoreNetworkRoutingInformationList:
 
     out: CoreNetworkRoutingInformationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_networkmanager.types.core_network_routing_information.deserialize_json(
                 item

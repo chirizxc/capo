@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: DescribeScalingPoliciesOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeScalingPoliciesOutput:
     out: DescribeScalingPoliciesOutput = {}  # type: ignore[typeddict-item]
-    if "ScalingPolicies" in data:
+    if data.get("ScalingPolicies") is not None:
         import capo_gamelift.types.scaling_policy_list
 
         out["scaling_policies"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeScalingPoliciesOutput:
                 data["ScalingPolicies"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

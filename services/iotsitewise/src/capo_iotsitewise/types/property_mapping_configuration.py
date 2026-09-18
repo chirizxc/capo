@@ -39,15 +39,15 @@ def serialize_json(value: PropertyMappingConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> PropertyMappingConfiguration:
     out: PropertyMappingConfiguration = {}  # type: ignore[typeddict-item]
-    if "matchByPropertyName" in data:
+    if data.get("matchByPropertyName") is not None:
         out["match_by_property_name"] = data["matchByPropertyName"]
     else:
         out["match_by_property_name"] = False
-    if "createMissingProperty" in data:
+    if data.get("createMissingProperty") is not None:
         out["create_missing_property"] = data["createMissingProperty"]
     else:
         out["create_missing_property"] = False
-    if "overrides" in data:
+    if data.get("overrides") is not None:
         import capo_iotsitewise.types.property_mappings
 
         out["overrides"] = capo_iotsitewise.types.property_mappings.deserialize_json(

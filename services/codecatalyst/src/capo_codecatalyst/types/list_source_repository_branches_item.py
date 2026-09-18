@@ -33,9 +33,9 @@ def serialize_json(value: ListSourceRepositoryBranchesItem) -> dict:
     if "name" in value:
         out["name"] = value["name"]
     if "last_updated_time" in value:
-        import capo_codecatalyst.types.timestamp
+        import capo_codecatalyst._protocol.serialize
 
-        out["lastUpdatedTime"] = capo_codecatalyst.types.timestamp.serialize_json(
+        out["lastUpdatedTime"] = capo_codecatalyst._protocol.serialize.fmt_date_time(
             value["last_updated_time"]
         )
     if "head_commit_id" in value:
@@ -45,16 +45,16 @@ def serialize_json(value: ListSourceRepositoryBranchesItem) -> dict:
 
 def deserialize_json(data: dict) -> ListSourceRepositoryBranchesItem:
     out: ListSourceRepositoryBranchesItem = {}  # type: ignore[typeddict-item]
-    if "ref" in data:
+    if data.get("ref") is not None:
         out["ref"] = data["ref"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "lastUpdatedTime" in data:
-        import capo_codecatalyst.types.timestamp
+    if data.get("lastUpdatedTime") is not None:
+        import datetime
 
-        out["last_updated_time"] = capo_codecatalyst.types.timestamp.deserialize_json(
-            data["lastUpdatedTime"]
+        out["last_updated_time"] = datetime.datetime.fromisoformat(
+            data["lastUpdatedTime"].replace("Z", "+00:00")
         )
-    if "headCommitId" in data:
+    if data.get("headCommitId") is not None:
         out["head_commit_id"] = data["headCommitId"]
     return out

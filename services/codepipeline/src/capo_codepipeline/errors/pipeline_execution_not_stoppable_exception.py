@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: PipelineExecutionNotStoppableException_) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> PipelineExecutionNotStoppableException_:
     out: PipelineExecutionNotStoppableException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,20 @@ class PipelineExecutionNotStoppableException(ServiceError):
 
     code: str | None = "PipelineExecutionNotStoppableException"
 
-    def __init__(self, data: PipelineExecutionNotStoppableException_):
+    def __init__(
+        self, data: PipelineExecutionNotStoppableException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="PipelineExecutionNotStoppableException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "PipelineExecutionNotStoppableException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "PipelineExecutionNotStoppableException":
+        return cls(deserialize_aws_json_1_1(data), message)

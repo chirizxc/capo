@@ -62,13 +62,13 @@ def serialize_json(value: UpdateChannelRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateChannelRequest:
     out: UpdateChannelRequest = {}  # type: ignore[typeddict-item]
-    if "FillerSlate" in data:
+    if data.get("FillerSlate") is not None:
         import capo_mediatailor.types.slate_source
 
         out["filler_slate"] = capo_mediatailor.types.slate_source.deserialize_json(
             data["FillerSlate"]
         )
-    if "Outputs" in data:
+    if data.get("Outputs") is not None:
         import capo_mediatailor.types.request_outputs
 
         out["outputs"] = capo_mediatailor.types.request_outputs.deserialize_json(
@@ -76,7 +76,7 @@ def deserialize_json(data: dict) -> UpdateChannelRequest:
         )
     else:
         raise DeserializationError("UpdateChannelRequest.outputs required")
-    if "TimeShiftConfiguration" in data:
+    if data.get("TimeShiftConfiguration") is not None:
         import capo_mediatailor.types.time_shift_configuration
 
         out["time_shift_configuration"] = (
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> UpdateChannelRequest:
                 data["TimeShiftConfiguration"]
             )
         )
-    if "Audiences" in data:
+    if data.get("Audiences") is not None:
         import capo_mediatailor.types.audiences
 
         out["audiences"] = capo_mediatailor.types.audiences.deserialize_json(

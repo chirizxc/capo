@@ -50,7 +50,7 @@ def serialize_aws_json_1_1(value: ListStreamsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListStreamsOutput:
     out: ListStreamsOutput = {}  # type: ignore[typeddict-item]
-    if "StreamNames" in data:
+    if data.get("StreamNames") is not None:
         import capo_kinesis.types.stream_name_list
 
         out["stream_names"] = (
@@ -60,13 +60,13 @@ def deserialize_aws_json_1_1(data: dict) -> ListStreamsOutput:
         )
     else:
         raise DeserializationError("ListStreamsOutput.stream_names required")
-    if "HasMoreStreams" in data:
+    if data.get("HasMoreStreams") is not None:
         out["has_more_streams"] = data["HasMoreStreams"]
     else:
         raise DeserializationError("ListStreamsOutput.has_more_streams required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "StreamSummaries" in data:
+    if data.get("StreamSummaries") is not None:
         import capo_kinesis.types.stream_summary_list
 
         out["stream_summaries"] = (

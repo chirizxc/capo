@@ -27,8 +27,8 @@ def serialize_json(value: AudioFeedInput) -> dict:
 
 def deserialize_json(data: dict) -> AudioFeedInput:
     out: AudioFeedInput = {}  # type: ignore[typeddict-item]
-    if "audioSelectorName" in data:
+    if data.get("audioSelectorName") is not None:
         out["audio_selector_name"] = data["audioSelectorName"]
-    if "feedInput" in data:
+    if data.get("feedInput") is not None:
         out["feed_input"] = data["feedInput"]
     return out

@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: MonitoringCsvDatasetFormat) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MonitoringCsvDatasetFormat:
     out: MonitoringCsvDatasetFormat = {}  # type: ignore[typeddict-item]
-    if "Header" in data:
+    if data.get("Header") is not None:
         out["header"] = data["Header"]
     return out

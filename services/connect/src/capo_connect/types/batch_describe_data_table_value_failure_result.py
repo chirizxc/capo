@@ -36,7 +36,7 @@ def serialize_json(value: BatchDescribeDataTableValueFailureResult) -> dict:
 
 def deserialize_json(data: dict) -> BatchDescribeDataTableValueFailureResult:
     out: BatchDescribeDataTableValueFailureResult = {}  # type: ignore[typeddict-item]
-    if "PrimaryValues" in data:
+    if data.get("PrimaryValues") is not None:
         import capo_connect.types.primary_values_set
 
         out["primary_values"] = capo_connect.types.primary_values_set.deserialize_json(
@@ -46,13 +46,13 @@ def deserialize_json(data: dict) -> BatchDescribeDataTableValueFailureResult:
         raise DeserializationError(
             "BatchDescribeDataTableValueFailureResult.primary_values required"
         )
-    if "AttributeName" in data:
+    if data.get("AttributeName") is not None:
         out["attribute_name"] = data["AttributeName"]
     else:
         raise DeserializationError(
             "BatchDescribeDataTableValueFailureResult.attribute_name required"
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     else:
         raise DeserializationError(

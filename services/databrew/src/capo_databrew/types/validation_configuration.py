@@ -33,11 +33,11 @@ def serialize_json(value: ValidationConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ValidationConfiguration:
     out: ValidationConfiguration = {}  # type: ignore[typeddict-item]
-    if "RulesetArn" in data:
+    if data.get("RulesetArn") is not None:
         out["ruleset_arn"] = data["RulesetArn"]
     else:
         raise DeserializationError("ValidationConfiguration.ruleset_arn required")
-    if "ValidationMode" in data:
+    if data.get("ValidationMode") is not None:
         import capo_databrew.types.validation_mode
 
         out["validation_mode"] = capo_databrew.types.validation_mode.deserialize_json(

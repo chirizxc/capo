@@ -38,7 +38,7 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> ListDecoderManifestNetworkInterfacesResponse:
     out: ListDecoderManifestNetworkInterfacesResponse = {}  # type: ignore[typeddict-item]
-    if "networkInterfaces" in data:
+    if data.get("networkInterfaces") is not None:
         import capo_iotfleetwise.types.network_interfaces
 
         out["network_interfaces"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_0(
                 data["networkInterfaces"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

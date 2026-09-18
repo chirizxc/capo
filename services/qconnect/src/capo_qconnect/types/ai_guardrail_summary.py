@@ -71,41 +71,41 @@ def serialize_json(value: AIGuardrailSummary) -> dict:
 
 def deserialize_json(data: dict) -> AIGuardrailSummary:
     out: AIGuardrailSummary = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("AIGuardrailSummary.name required")
-    if "assistantId" in data:
+    if data.get("assistantId") is not None:
         out["assistant_id"] = data["assistantId"]
     else:
         raise DeserializationError("AIGuardrailSummary.assistant_id required")
-    if "assistantArn" in data:
+    if data.get("assistantArn") is not None:
         out["assistant_arn"] = data["assistantArn"]
     else:
         raise DeserializationError("AIGuardrailSummary.assistant_arn required")
-    if "aiGuardrailId" in data:
+    if data.get("aiGuardrailId") is not None:
         out["ai_guardrail_id"] = data["aiGuardrailId"]
     else:
         raise DeserializationError("AIGuardrailSummary.ai_guardrail_id required")
-    if "aiGuardrailArn" in data:
+    if data.get("aiGuardrailArn") is not None:
         out["ai_guardrail_arn"] = data["aiGuardrailArn"]
     else:
         raise DeserializationError("AIGuardrailSummary.ai_guardrail_arn required")
-    if "modifiedTime" in data:
+    if data.get("modifiedTime") is not None:
         import capo_qconnect.types._prelude.timestamp
 
         out["modified_time"] = capo_qconnect.types._prelude.timestamp.deserialize_json(
             data["modifiedTime"]
         )
-    if "visibilityStatus" in data:
+    if data.get("visibilityStatus") is not None:
         out["visibility_status"] = data["visibilityStatus"]
     else:
         raise DeserializationError("AIGuardrailSummary.visibility_status required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_qconnect.types.tags
 
         out["tags"] = capo_qconnect.types.tags.deserialize_json(data["tags"])

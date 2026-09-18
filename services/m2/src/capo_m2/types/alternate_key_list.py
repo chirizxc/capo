@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> AlternateKeyList:
 
     out: AlternateKeyList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_m2.types.alternate_key.deserialize_json(item))
     return out

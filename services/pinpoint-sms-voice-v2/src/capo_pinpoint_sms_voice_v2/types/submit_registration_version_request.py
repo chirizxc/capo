@@ -29,13 +29,13 @@ def serialize_aws_json_1_0(value: SubmitRegistrationVersionRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SubmitRegistrationVersionRequest:
     out: SubmitRegistrationVersionRequest = {}  # type: ignore[typeddict-item]
-    if "RegistrationId" in data:
+    if data.get("RegistrationId") is not None:
         out["registration_id"] = data["RegistrationId"]
     else:
         raise DeserializationError(
             "SubmitRegistrationVersionRequest.registration_id required"
         )
-    if "AwsReview" in data:
+    if data.get("AwsReview") is not None:
         out["aws_review"] = data["AwsReview"]
     else:
         out["aws_review"] = False

@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> DetailedInstanceTypeListDefinition:
 
     out: DetailedInstanceTypeListDefinition = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_outposts.types.detailed_instance_type_item.deserialize_json(item)
         )

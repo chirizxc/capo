@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: DetachAndDeleteS3AccessPointResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DetachAndDeleteS3AccessPointResponse:
     out: DetachAndDeleteS3AccessPointResponse = {}  # type: ignore[typeddict-item]
-    if "Lifecycle" in data:
+    if data.get("Lifecycle") is not None:
         import capo_fsx.types.s3_access_point_attachment_lifecycle
 
         out["lifecycle"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_1(data: dict) -> DetachAndDeleteS3AccessPointResponse
                 data["Lifecycle"]
             )
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     return out

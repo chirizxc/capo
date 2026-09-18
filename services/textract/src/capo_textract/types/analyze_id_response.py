@@ -48,7 +48,7 @@ def serialize_aws_json_1_1(value: AnalyzeIDResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AnalyzeIDResponse:
     out: AnalyzeIDResponse = {}  # type: ignore[typeddict-item]
-    if "IdentityDocuments" in data:
+    if data.get("IdentityDocuments") is not None:
         import capo_textract.types.identity_document_list
 
         out["identity_documents"] = (
@@ -56,7 +56,7 @@ def deserialize_aws_json_1_1(data: dict) -> AnalyzeIDResponse:
                 data["IdentityDocuments"]
             )
         )
-    if "DocumentMetadata" in data:
+    if data.get("DocumentMetadata") is not None:
         import capo_textract.types.document_metadata
 
         out["document_metadata"] = (
@@ -64,6 +64,6 @@ def deserialize_aws_json_1_1(data: dict) -> AnalyzeIDResponse:
                 data["DocumentMetadata"]
             )
         )
-    if "AnalyzeIDModelVersion" in data:
+    if data.get("AnalyzeIDModelVersion") is not None:
         out["analyze_id_model_version"] = data["AnalyzeIDModelVersion"]
     return out

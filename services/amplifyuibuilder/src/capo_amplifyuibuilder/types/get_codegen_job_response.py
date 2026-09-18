@@ -27,7 +27,7 @@ def serialize_json(value: GetCodegenJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetCodegenJobResponse:
     out: GetCodegenJobResponse = {}  # type: ignore[typeddict-item]
-    if "job" in data:
+    if data.get("job") is not None:
         import capo_amplifyuibuilder.types.codegen_job
 
         out["job"] = capo_amplifyuibuilder.types.codegen_job.deserialize_json(

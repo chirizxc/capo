@@ -76,7 +76,7 @@ def serialize_json(value: QuickConnectConfig) -> dict:
 
 def deserialize_json(data: dict) -> QuickConnectConfig:
     out: QuickConnectConfig = {}  # type: ignore[typeddict-item]
-    if "QuickConnectType" in data:
+    if data.get("QuickConnectType") is not None:
         import capo_connect.types.quick_connect_type
 
         out["quick_connect_type"] = (
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> QuickConnectConfig:
         )
     else:
         raise DeserializationError("QuickConnectConfig.quick_connect_type required")
-    if "UserConfig" in data:
+    if data.get("UserConfig") is not None:
         import capo_connect.types.user_quick_connect_config
 
         out["user_config"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> QuickConnectConfig:
                 data["UserConfig"]
             )
         )
-    if "QueueConfig" in data:
+    if data.get("QueueConfig") is not None:
         import capo_connect.types.queue_quick_connect_config
 
         out["queue_config"] = (
@@ -102,7 +102,7 @@ def deserialize_json(data: dict) -> QuickConnectConfig:
                 data["QueueConfig"]
             )
         )
-    if "PhoneConfig" in data:
+    if data.get("PhoneConfig") is not None:
         import capo_connect.types.phone_number_quick_connect_config
 
         out["phone_config"] = (
@@ -110,7 +110,7 @@ def deserialize_json(data: dict) -> QuickConnectConfig:
                 data["PhoneConfig"]
             )
         )
-    if "FlowConfig" in data:
+    if data.get("FlowConfig") is not None:
         import capo_connect.types.flow_quick_connect_config
 
         out["flow_config"] = (

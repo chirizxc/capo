@@ -29,6 +29,8 @@ def serialize_json(input_to_serialize: StringAttributeValueBoosting) -> dict:
 def deserialize_json(data: dict) -> StringAttributeValueBoosting:
     out: StringAttributeValueBoosting = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_qbusiness.types.string_attribute_value_boosting_level
 
         out[key] = (

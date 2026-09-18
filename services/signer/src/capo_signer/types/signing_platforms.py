@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> SigningPlatforms:
 
     out: SigningPlatforms = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_signer.types.signing_platform.deserialize_json(item))
     return out

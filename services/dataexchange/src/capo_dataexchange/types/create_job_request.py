@@ -45,7 +45,7 @@ def serialize_json(value: CreateJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateJobRequest:
     out: CreateJobRequest = {}  # type: ignore[typeddict-item]
-    if "AssetConfiguration" in data:
+    if data.get("AssetConfiguration") is not None:
         import capo_dataexchange.types.asset_configuration
 
         out["asset_configuration"] = (
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> CreateJobRequest:
                 data["AssetConfiguration"]
             )
         )
-    if "Details" in data:
+    if data.get("Details") is not None:
         import capo_dataexchange.types.request_details
 
         out["details"] = capo_dataexchange.types.request_details.deserialize_json(
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> CreateJobRequest:
         )
     else:
         raise DeserializationError("CreateJobRequest.details required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     else:
         raise DeserializationError("CreateJobRequest.type required")

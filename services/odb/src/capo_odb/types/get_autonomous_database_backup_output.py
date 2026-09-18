@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: GetAutonomousDatabaseBackupOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetAutonomousDatabaseBackupOutput:
     out: GetAutonomousDatabaseBackupOutput = {}  # type: ignore[typeddict-item]
-    if "autonomousDatabaseBackup" in data:
+    if data.get("autonomousDatabaseBackup") is not None:
         import capo_odb.types.autonomous_database_backup
 
         out["autonomous_database_backup"] = (

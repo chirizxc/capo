@@ -39,11 +39,11 @@ def serialize_json(value: ServiceNowServiceDetails) -> dict:
 
 def deserialize_json(data: dict) -> ServiceNowServiceDetails:
     out: ServiceNowServiceDetails = {}  # type: ignore[typeddict-item]
-    if "instanceUrl" in data:
+    if data.get("instanceUrl") is not None:
         out["instance_url"] = data["instanceUrl"]
     else:
         raise DeserializationError("ServiceNowServiceDetails.instance_url required")
-    if "authorizationConfig" in data:
+    if data.get("authorizationConfig") is not None:
         import capo_devops_agent.types.service_now_service_authorization_config
 
         out["authorization_config"] = (

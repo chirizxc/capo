@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> MetricsList:
 
     out: MetricsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cleanroomsml.types.shared_audience_metrics.deserialize_json(item)
         )

@@ -36,7 +36,7 @@ def serialize_json(value: GenerationSortBy) -> dict:
 
 def deserialize_json(data: dict) -> GenerationSortBy:
     out: GenerationSortBy = {}  # type: ignore[typeddict-item]
-    if "attribute" in data:
+    if data.get("attribute") is not None:
         import capo_lex_models_v2.types.generation_sort_by_attribute
 
         out["attribute"] = (
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> GenerationSortBy:
         )
     else:
         raise DeserializationError("GenerationSortBy.attribute required")
-    if "order" in data:
+    if data.get("order") is not None:
         import capo_lex_models_v2.types.sort_order
 
         out["order"] = capo_lex_models_v2.types.sort_order.deserialize_json(

@@ -31,9 +31,9 @@ def serialize_json(value: ListClustersOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListClustersOutput:
     out: ListClustersOutput = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "clusters" in data:
+    if data.get("clusters") is not None:
         import capo_dsql.types.cluster_list
 
         out["clusters"] = capo_dsql.types.cluster_list.deserialize_json(

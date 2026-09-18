@@ -30,7 +30,7 @@ def serialize_json(value: DeploymentStrategyOptions) -> dict:
 
 def deserialize_json(data: dict) -> DeploymentStrategyOptions:
     out: DeploymentStrategyOptions = {}  # type: ignore[typeddict-item]
-    if "DeploymentStrategy" in data:
+    if data.get("DeploymentStrategy") is not None:
         import capo_opensearch.types.deployment_strategy
 
         out["deployment_strategy"] = (

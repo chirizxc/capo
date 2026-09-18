@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_pca_connector_ad._auth._signers
@@ -88,19 +89,22 @@ class TemplateGroupAccessControlEntryResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_ad.types.create_template_group_access_control_entry_request.CreateTemplateGroupAccessControlEntryRequest = {}  # type: ignore[typeddict-item]
-        input_["template_arn"] = template_arn
-        input_["group_security_identifier"] = group_security_identifier
-        input_["group_display_name"] = group_display_name
-        input_["access_rights"] = access_rights
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_pca_connector_ad.types.create_template_group_access_control_entry_request.CreateTemplateGroupAccessControlEntryRequest = {
+            "template_arn": template_arn,
+            "group_security_identifier": group_security_identifier,
+            "group_display_name": group_display_name,
+            "access_rights": access_rights,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -140,15 +144,17 @@ class TemplateGroupAccessControlEntryResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_ad.types.get_template_group_access_control_entry_request.GetTemplateGroupAccessControlEntryRequest = {}  # type: ignore[typeddict-item]
-        input_["template_arn"] = template_arn
-        input_["group_security_identifier"] = group_security_identifier
+        input_: capo_pca_connector_ad.types.get_template_group_access_control_entry_request.GetTemplateGroupAccessControlEntryRequest = {
+            "template_arn": template_arn,
+            "group_security_identifier": group_security_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -195,9 +201,10 @@ class TemplateGroupAccessControlEntryResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_ad.types.update_template_group_access_control_entry_request.UpdateTemplateGroupAccessControlEntryRequest = {}  # type: ignore[typeddict-item]
-        input_["template_arn"] = template_arn
-        input_["group_security_identifier"] = group_security_identifier
+        input_: capo_pca_connector_ad.types.update_template_group_access_control_entry_request.UpdateTemplateGroupAccessControlEntryRequest = {
+            "template_arn": template_arn,
+            "group_security_identifier": group_security_identifier,
+        }
         if group_display_name is not None:
             input_["group_display_name"] = group_display_name
         if access_rights is not None:
@@ -208,6 +215,7 @@ class TemplateGroupAccessControlEntryResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -246,15 +254,17 @@ class TemplateGroupAccessControlEntryResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_ad.types.delete_template_group_access_control_entry_request.DeleteTemplateGroupAccessControlEntryRequest = {}  # type: ignore[typeddict-item]
-        input_["template_arn"] = template_arn
-        input_["group_security_identifier"] = group_security_identifier
+        input_: capo_pca_connector_ad.types.delete_template_group_access_control_entry_request.DeleteTemplateGroupAccessControlEntryRequest = {
+            "template_arn": template_arn,
+            "group_security_identifier": group_security_identifier,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -298,18 +308,20 @@ class TemplateGroupAccessControlEntryResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_ad.types.list_template_group_access_control_entries_request.ListTemplateGroupAccessControlEntriesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pca_connector_ad.types.list_template_group_access_control_entries_request.ListTemplateGroupAccessControlEntriesRequest = {
+            "template_arn": template_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["template_arn"] = template_arn
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -363,19 +375,22 @@ class AsyncTemplateGroupAccessControlEntryResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_ad.types.create_template_group_access_control_entry_request.CreateTemplateGroupAccessControlEntryRequest = {}  # type: ignore[typeddict-item]
-        input_["template_arn"] = template_arn
-        input_["group_security_identifier"] = group_security_identifier
-        input_["group_display_name"] = group_display_name
-        input_["access_rights"] = access_rights
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_pca_connector_ad.types.create_template_group_access_control_entry_request.CreateTemplateGroupAccessControlEntryRequest = {
+            "template_arn": template_arn,
+            "group_security_identifier": group_security_identifier,
+            "group_display_name": group_display_name,
+            "access_rights": access_rights,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -416,15 +431,17 @@ class AsyncTemplateGroupAccessControlEntryResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_ad.types.get_template_group_access_control_entry_request.GetTemplateGroupAccessControlEntryRequest = {}  # type: ignore[typeddict-item]
-        input_["template_arn"] = template_arn
-        input_["group_security_identifier"] = group_security_identifier
+        input_: capo_pca_connector_ad.types.get_template_group_access_control_entry_request.GetTemplateGroupAccessControlEntryRequest = {
+            "template_arn": template_arn,
+            "group_security_identifier": group_security_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -472,9 +489,10 @@ class AsyncTemplateGroupAccessControlEntryResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_ad.types.update_template_group_access_control_entry_request.UpdateTemplateGroupAccessControlEntryRequest = {}  # type: ignore[typeddict-item]
-        input_["template_arn"] = template_arn
-        input_["group_security_identifier"] = group_security_identifier
+        input_: capo_pca_connector_ad.types.update_template_group_access_control_entry_request.UpdateTemplateGroupAccessControlEntryRequest = {
+            "template_arn": template_arn,
+            "group_security_identifier": group_security_identifier,
+        }
         if group_display_name is not None:
             input_["group_display_name"] = group_display_name
         if access_rights is not None:
@@ -485,6 +503,7 @@ class AsyncTemplateGroupAccessControlEntryResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -524,15 +543,17 @@ class AsyncTemplateGroupAccessControlEntryResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_ad.types.delete_template_group_access_control_entry_request.DeleteTemplateGroupAccessControlEntryRequest = {}  # type: ignore[typeddict-item]
-        input_["template_arn"] = template_arn
-        input_["group_security_identifier"] = group_security_identifier
+        input_: capo_pca_connector_ad.types.delete_template_group_access_control_entry_request.DeleteTemplateGroupAccessControlEntryRequest = {
+            "template_arn": template_arn,
+            "group_security_identifier": group_security_identifier,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -577,16 +598,18 @@ class AsyncTemplateGroupAccessControlEntryResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_pca_connector_ad.types.list_template_group_access_control_entries_request.ListTemplateGroupAccessControlEntriesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_pca_connector_ad.types.list_template_group_access_control_entries_request.ListTemplateGroupAccessControlEntriesRequest = {
+            "template_arn": template_arn
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
             input_["next_token"] = next_token
-        input_["template_arn"] = template_arn
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

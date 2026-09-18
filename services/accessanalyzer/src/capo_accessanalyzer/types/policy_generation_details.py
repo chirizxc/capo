@@ -24,7 +24,7 @@ def serialize_json(value: PolicyGenerationDetails) -> dict:
 
 def deserialize_json(data: dict) -> PolicyGenerationDetails:
     out: PolicyGenerationDetails = {}  # type: ignore[typeddict-item]
-    if "principalArn" in data:
+    if data.get("principalArn") is not None:
         out["principal_arn"] = data["principalArn"]
     else:
         raise DeserializationError("PolicyGenerationDetails.principal_arn required")

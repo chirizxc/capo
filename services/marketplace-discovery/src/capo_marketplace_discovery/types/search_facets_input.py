@@ -54,9 +54,9 @@ def serialize_json(value: SearchFacetsInput) -> dict:
 
 def deserialize_json(data: dict) -> SearchFacetsInput:
     out: SearchFacetsInput = {}  # type: ignore[typeddict-item]
-    if "searchText" in data:
+    if data.get("searchText") is not None:
         out["search_text"] = data["searchText"]
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_marketplace_discovery.types.search_filter_list
 
         out["filters"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> SearchFacetsInput:
                 data["filters"]
             )
         )
-    if "facetTypes" in data:
+    if data.get("facetTypes") is not None:
         import capo_marketplace_discovery.types.facet_type_list
 
         out["facet_types"] = (
@@ -72,6 +72,6 @@ def deserialize_json(data: dict) -> SearchFacetsInput:
                 data["facetTypes"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

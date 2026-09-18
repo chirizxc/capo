@@ -24,7 +24,7 @@ def serialize_json(value: UpstreamRepository) -> dict:
 
 def deserialize_json(data: dict) -> UpstreamRepository:
     out: UpstreamRepository = {}  # type: ignore[typeddict-item]
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
     else:
         raise DeserializationError("UpstreamRepository.repository_name required")

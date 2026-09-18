@@ -26,10 +26,10 @@ def serialize_json(value: StatusCounts) -> dict:
 
 def deserialize_json(data: dict) -> StatusCounts:
     out: StatusCounts = {}  # type: ignore[typeddict-item]
-    if "failed" in data:
+    if data.get("failed") is not None:
         out["failed"] = data["failed"]
-    if "skipped" in data:
+    if data.get("skipped") is not None:
         out["skipped"] = data["skipped"]
-    if "passed" in data:
+    if data.get("passed") is not None:
         out["passed"] = data["passed"]
     return out

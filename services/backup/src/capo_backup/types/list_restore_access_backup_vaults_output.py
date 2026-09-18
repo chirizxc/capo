@@ -36,9 +36,9 @@ def serialize_json(value: ListRestoreAccessBackupVaultsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListRestoreAccessBackupVaultsOutput:
     out: ListRestoreAccessBackupVaultsOutput = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "RestoreAccessBackupVaults" in data:
+    if data.get("RestoreAccessBackupVaults") is not None:
         import capo_backup.types.restore_access_backup_vault_list
 
         out["restore_access_backup_vaults"] = (

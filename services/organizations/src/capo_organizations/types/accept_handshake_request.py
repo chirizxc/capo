@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: AcceptHandshakeRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AcceptHandshakeRequest:
     out: AcceptHandshakeRequest = {}  # type: ignore[typeddict-item]
-    if "HandshakeId" in data:
+    if data.get("HandshakeId") is not None:
         out["handshake_id"] = data["HandshakeId"]
     else:
         raise DeserializationError("AcceptHandshakeRequest.handshake_id required")

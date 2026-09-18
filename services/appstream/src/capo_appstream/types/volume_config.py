@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: VolumeConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> VolumeConfig:
     out: VolumeConfig = {}  # type: ignore[typeddict-item]
-    if "VolumeSizeInGb" in data:
+    if data.get("VolumeSizeInGb") is not None:
         out["volume_size_in_gb"] = data["VolumeSizeInGb"]
     return out

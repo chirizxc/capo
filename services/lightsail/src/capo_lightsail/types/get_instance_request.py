@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetInstanceRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetInstanceRequest:
     out: GetInstanceRequest = {}  # type: ignore[typeddict-item]
-    if "instanceName" in data:
+    if data.get("instanceName") is not None:
         out["instance_name"] = data["instanceName"]
     else:
         raise DeserializationError("GetInstanceRequest.instance_name required")

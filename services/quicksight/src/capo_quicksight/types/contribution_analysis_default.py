@@ -36,13 +36,13 @@ def serialize_json(value: ContributionAnalysisDefault) -> dict:
 
 def deserialize_json(data: dict) -> ContributionAnalysisDefault:
     out: ContributionAnalysisDefault = {}  # type: ignore[typeddict-item]
-    if "MeasureFieldId" in data:
+    if data.get("MeasureFieldId") is not None:
         out["measure_field_id"] = data["MeasureFieldId"]
     else:
         raise DeserializationError(
             "ContributionAnalysisDefault.measure_field_id required"
         )
-    if "ContributorDimensions" in data:
+    if data.get("ContributorDimensions") is not None:
         import capo_quicksight.types.contributor_dimension_list
 
         out["contributor_dimensions"] = (

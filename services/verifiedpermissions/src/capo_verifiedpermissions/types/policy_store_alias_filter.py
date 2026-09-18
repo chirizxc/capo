@@ -25,6 +25,6 @@ def serialize_aws_json_1_0(value: PolicyStoreAliasFilter) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PolicyStoreAliasFilter:
     out: PolicyStoreAliasFilter = {}  # type: ignore[typeddict-item]
-    if "policyStoreId" in data:
+    if data.get("policyStoreId") is not None:
         out["policy_store_id"] = data["policyStoreId"]
     return out

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ReceiverConfigurationsList:
 
     out: ReceiverConfigurationsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_cleanrooms.types.receiver_configuration.deserialize_json(item))
     return out

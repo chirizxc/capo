@@ -20,32 +20,26 @@ class TimePeriod(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: TimePeriod) -> dict:
     out: dict = {}
-    import capo_braket.types._prelude.timestamp
-
-    out["startAt"] = capo_braket.types._prelude.timestamp.serialize_json(
-        value["start_at"]
-    )
-    import capo_braket.types._prelude.timestamp
-
-    out["endAt"] = capo_braket.types._prelude.timestamp.serialize_json(value["end_at"])
+    out["startAt"] = value["start_at"].timestamp()
+    out["endAt"] = value["end_at"].timestamp()
     return out
 
 
 def deserialize_json(data: dict) -> TimePeriod:
     out: TimePeriod = {}  # type: ignore[typeddict-item]
-    if "startAt" in data:
-        import capo_braket.types._prelude.timestamp
+    if data.get("startAt") is not None:
+        import datetime
 
-        out["start_at"] = capo_braket.types._prelude.timestamp.deserialize_json(
-            data["startAt"]
+        out["start_at"] = datetime.datetime.fromtimestamp(
+            float(data["startAt"]), tz=datetime.timezone.utc
         )
     else:
         raise DeserializationError("TimePeriod.start_at required")
-    if "endAt" in data:
-        import capo_braket.types._prelude.timestamp
+    if data.get("endAt") is not None:
+        import datetime
 
-        out["end_at"] = capo_braket.types._prelude.timestamp.deserialize_json(
-            data["endAt"]
+        out["end_at"] = datetime.datetime.fromtimestamp(
+            float(data["endAt"]), tz=datetime.timezone.utc
         )
     else:
         raise DeserializationError("TimePeriod.end_at required")

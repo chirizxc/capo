@@ -60,17 +60,17 @@ def serialize_json(value: SearchWorkspaceAssociationsRequest) -> dict:
 
 def deserialize_json(data: dict) -> SearchWorkspaceAssociationsRequest:
     out: SearchWorkspaceAssociationsRequest = {}  # type: ignore[typeddict-item]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
     else:
         raise DeserializationError(
             "SearchWorkspaceAssociationsRequest.instance_id required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "SearchFilter" in data:
+    if data.get("SearchFilter") is not None:
         import capo_connect.types.workspace_association_search_filter
 
         out["search_filter"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> SearchWorkspaceAssociationsRequest:
                 data["SearchFilter"]
             )
         )
-    if "SearchCriteria" in data:
+    if data.get("SearchCriteria") is not None:
         import capo_connect.types.workspace_association_search_criteria
 
         out["search_criteria"] = (

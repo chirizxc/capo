@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: __mapOfAudioSelectorGroup) -> dict:
 def deserialize_json(data: dict) -> __mapOfAudioSelectorGroup:
     out: __mapOfAudioSelectorGroup = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_mediaconvert.types.audio_selector_group
 
         out[key] = capo_mediaconvert.types.audio_selector_group.deserialize_json(value)

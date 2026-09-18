@@ -87,7 +87,15 @@ def serialize_aws_json_1_1(value: ColumnStatisticsTaskRun) -> dict:
         out["CatalogID"] = value["catalog_id"]
     if "role" in value:
         out["Role"] = value["role"]
-    out["SampleSize"] = value.get("sample_size", 0)
+    out["SampleSize"] = (
+        "NaN"
+        if value.get("sample_size", 0) != value.get("sample_size", 0)
+        else "Infinity"
+        if value.get("sample_size", 0) == float("inf")
+        else "-Infinity"
+        if value.get("sample_size", 0) == float("-inf")
+        else value.get("sample_size", 0)
+    )
     if "security_configuration" in value:
         out["SecurityConfiguration"] = value["security_configuration"]
     out["NumberOfWorkers"] = value.get("number_of_workers", 0)
@@ -133,21 +141,29 @@ def serialize_aws_json_1_1(value: ColumnStatisticsTaskRun) -> dict:
         )
     if "error_message" in value:
         out["ErrorMessage"] = value["error_message"]
-    out["DPUSeconds"] = value.get("dpu_seconds", 0)
+    out["DPUSeconds"] = (
+        "NaN"
+        if value.get("dpu_seconds", 0) != value.get("dpu_seconds", 0)
+        else "Infinity"
+        if value.get("dpu_seconds", 0) == float("inf")
+        else "-Infinity"
+        if value.get("dpu_seconds", 0) == float("-inf")
+        else value.get("dpu_seconds", 0)
+    )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> ColumnStatisticsTaskRun:
     out: ColumnStatisticsTaskRun = {}  # type: ignore[typeddict-item]
-    if "CustomerId" in data:
+    if data.get("CustomerId") is not None:
         out["customer_id"] = data["CustomerId"]
-    if "ColumnStatisticsTaskRunId" in data:
+    if data.get("ColumnStatisticsTaskRunId") is not None:
         out["column_statistics_task_run_id"] = data["ColumnStatisticsTaskRunId"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
-    if "ColumnNameList" in data:
+    if data.get("ColumnNameList") is not None:
         import capo_glue.types.column_name_list
 
         out["column_name_list"] = (
@@ -155,23 +171,23 @@ def deserialize_aws_json_1_1(data: dict) -> ColumnStatisticsTaskRun:
                 data["ColumnNameList"]
             )
         )
-    if "CatalogID" in data:
+    if data.get("CatalogID") is not None:
         out["catalog_id"] = data["CatalogID"]
-    if "Role" in data:
+    if data.get("Role") is not None:
         out["role"] = data["Role"]
-    if "SampleSize" in data:
-        out["sample_size"] = data["SampleSize"]
+    if data.get("SampleSize") is not None:
+        out["sample_size"] = float(data["SampleSize"])
     else:
         out["sample_size"] = 0
-    if "SecurityConfiguration" in data:
+    if data.get("SecurityConfiguration") is not None:
         out["security_configuration"] = data["SecurityConfiguration"]
-    if "NumberOfWorkers" in data:
+    if data.get("NumberOfWorkers") is not None:
         out["number_of_workers"] = data["NumberOfWorkers"]
     else:
         out["number_of_workers"] = 0
-    if "WorkerType" in data:
+    if data.get("WorkerType") is not None:
         out["worker_type"] = data["WorkerType"]
-    if "ComputationType" in data:
+    if data.get("ComputationType") is not None:
         import capo_glue.types.computation_type
 
         out["computation_type"] = (
@@ -179,7 +195,7 @@ def deserialize_aws_json_1_1(data: dict) -> ColumnStatisticsTaskRun:
                 data["ComputationType"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_glue.types.column_statistics_state
 
         out["status"] = (
@@ -187,34 +203,34 @@ def deserialize_aws_json_1_1(data: dict) -> ColumnStatisticsTaskRun:
                 data["Status"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_glue.types.timestamp
 
         out["creation_time"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastUpdated" in data:
+    if data.get("LastUpdated") is not None:
         import capo_glue.types.timestamp
 
         out["last_updated"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["LastUpdated"]
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_glue.types.timestamp
 
         out["start_time"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_glue.types.timestamp
 
         out["end_time"] = capo_glue.types.timestamp.deserialize_aws_json_1_1(
             data["EndTime"]
         )
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "DPUSeconds" in data:
-        out["dpu_seconds"] = data["DPUSeconds"]
+    if data.get("DPUSeconds") is not None:
+        out["dpu_seconds"] = float(data["DPUSeconds"])
     else:
         out["dpu_seconds"] = 0
     return out

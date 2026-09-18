@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: CancelResourceRequestInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CancelResourceRequestInput:
     out: CancelResourceRequestInput = {}  # type: ignore[typeddict-item]
-    if "RequestToken" in data:
+    if data.get("RequestToken") is not None:
         out["request_token"] = data["RequestToken"]
     else:
         raise DeserializationError("CancelResourceRequestInput.request_token required")

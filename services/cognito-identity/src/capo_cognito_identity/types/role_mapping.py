@@ -54,7 +54,7 @@ def serialize_aws_json_1_1(value: RoleMapping) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RoleMapping:
     out: RoleMapping = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_cognito_identity.types.role_mapping_type
 
         out["type"] = (
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_1(data: dict) -> RoleMapping:
         )
     else:
         raise DeserializationError("RoleMapping.type required")
-    if "AmbiguousRoleResolution" in data:
+    if data.get("AmbiguousRoleResolution") is not None:
         import capo_cognito_identity.types.ambiguous_role_resolution_type
 
         out["ambiguous_role_resolution"] = (
@@ -72,7 +72,7 @@ def deserialize_aws_json_1_1(data: dict) -> RoleMapping:
                 data["AmbiguousRoleResolution"]
             )
         )
-    if "RulesConfiguration" in data:
+    if data.get("RulesConfiguration") is not None:
         import capo_cognito_identity.types.rules_configuration_type
 
         out["rules_configuration"] = (

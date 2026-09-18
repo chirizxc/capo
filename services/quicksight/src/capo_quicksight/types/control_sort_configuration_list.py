@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ControlSortConfigurationList:
 
     out: ControlSortConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.control_sort_configuration.deserialize_json(item)
         )

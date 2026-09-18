@@ -69,29 +69,29 @@ def serialize_json(value: ReportJob) -> dict:
 
 def deserialize_json(data: dict) -> ReportJob:
     out: ReportJob = {}  # type: ignore[typeddict-item]
-    if "ReportJobId" in data:
+    if data.get("ReportJobId") is not None:
         out["report_job_id"] = data["ReportJobId"]
-    if "ReportPlanArn" in data:
+    if data.get("ReportPlanArn") is not None:
         out["report_plan_arn"] = data["ReportPlanArn"]
-    if "ReportTemplate" in data:
+    if data.get("ReportTemplate") is not None:
         out["report_template"] = data["ReportTemplate"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_backup.types.timestamp
 
         out["creation_time"] = capo_backup.types.timestamp.deserialize_json(
             data["CreationTime"]
         )
-    if "CompletionTime" in data:
+    if data.get("CompletionTime") is not None:
         import capo_backup.types.timestamp
 
         out["completion_time"] = capo_backup.types.timestamp.deserialize_json(
             data["CompletionTime"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "ReportDestination" in data:
+    if data.get("ReportDestination") is not None:
         import capo_backup.types.report_destination
 
         out["report_destination"] = (

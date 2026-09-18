@@ -102,50 +102,50 @@ def serialize_json(value: View) -> dict:
 
 def deserialize_json(data: dict) -> View:
     out: View = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_connect.types.view_status
 
         out["status"] = capo_connect.types.view_status.deserialize_json(data["Status"])
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_connect.types.view_type
 
         out["type"] = capo_connect.types.view_type.deserialize_json(data["Type"])
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
     else:
         out["version"] = 0
-    if "VersionDescription" in data:
+    if data.get("VersionDescription") is not None:
         out["version_description"] = data["VersionDescription"]
-    if "Content" in data:
+    if data.get("Content") is not None:
         import capo_connect.types.view_content
 
         out["content"] = capo_connect.types.view_content.deserialize_json(
             data["Content"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_connect.types.timestamp
 
         out["created_time"] = capo_connect.types.timestamp.deserialize_json(
             data["CreatedTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_connect.types.timestamp
 
         out["last_modified_time"] = capo_connect.types.timestamp.deserialize_json(
             data["LastModifiedTime"]
         )
-    if "ViewContentSha256" in data:
+    if data.get("ViewContentSha256") is not None:
         out["view_content_sha256"] = data["ViewContentSha256"]
     return out

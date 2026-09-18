@@ -36,9 +36,9 @@ def serialize_json(value: ListRulesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListRulesResponse:
     out: ListRulesResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "rules" in data:
+    if data.get("rules") is not None:
         import capo_route53_recovery_readiness.types.__list_of_list_rules_output
 
         out["rules"] = (

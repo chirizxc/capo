@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: InvalidCredentialsException_) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> InvalidCredentialsException_:
     out: InvalidCredentialsException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class InvalidCredentialsException(ServiceError):
 
     code: str | None = "InvalidCredentialsException"
 
-    def __init__(self, data: InvalidCredentialsException_):
+    def __init__(self, data: InvalidCredentialsException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidCredentialsException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_0(cls, data: dict) -> "InvalidCredentialsException":
-        return cls(deserialize_aws_json_1_0(data))
+    def from_aws_json_1_0(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidCredentialsException":
+        return cls(deserialize_aws_json_1_0(data), message)

@@ -43,7 +43,7 @@ def serialize_aws_json_1_0(value: UpdateRoutingControlStatesRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateRoutingControlStatesRequest:
     out: UpdateRoutingControlStatesRequest = {}  # type: ignore[typeddict-item]
-    if "UpdateRoutingControlStateEntries" in data:
+    if data.get("UpdateRoutingControlStateEntries") is not None:
         import capo_route53_recovery_cluster.types.update_routing_control_state_entries
 
         out["update_routing_control_state_entries"] = (
@@ -55,7 +55,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateRoutingControlStatesRequest:
         raise DeserializationError(
             "UpdateRoutingControlStatesRequest.update_routing_control_state_entries required"
         )
-    if "SafetyRulesToOverride" in data:
+    if data.get("SafetyRulesToOverride") is not None:
         import capo_route53_recovery_cluster.types.arns
 
         out["safety_rules_to_override"] = (

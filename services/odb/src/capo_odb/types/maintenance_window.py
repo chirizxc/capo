@@ -86,29 +86,29 @@ def serialize_aws_json_1_0(value: MaintenanceWindow) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> MaintenanceWindow:
     out: MaintenanceWindow = {}  # type: ignore[typeddict-item]
-    if "customActionTimeoutInMins" in data:
+    if data.get("customActionTimeoutInMins") is not None:
         out["custom_action_timeout_in_mins"] = data["customActionTimeoutInMins"]
-    if "daysOfWeek" in data:
+    if data.get("daysOfWeek") is not None:
         import capo_odb.types.days_of_week
 
         out["days_of_week"] = capo_odb.types.days_of_week.deserialize_aws_json_1_0(
             data["daysOfWeek"]
         )
-    if "hoursOfDay" in data:
+    if data.get("hoursOfDay") is not None:
         import capo_odb.types.hours_of_day
 
         out["hours_of_day"] = capo_odb.types.hours_of_day.deserialize_aws_json_1_0(
             data["hoursOfDay"]
         )
-    if "isCustomActionTimeoutEnabled" in data:
+    if data.get("isCustomActionTimeoutEnabled") is not None:
         out["is_custom_action_timeout_enabled"] = data["isCustomActionTimeoutEnabled"]
-    if "leadTimeInWeeks" in data:
+    if data.get("leadTimeInWeeks") is not None:
         out["lead_time_in_weeks"] = data["leadTimeInWeeks"]
-    if "months" in data:
+    if data.get("months") is not None:
         import capo_odb.types.months
 
         out["months"] = capo_odb.types.months.deserialize_aws_json_1_0(data["months"])
-    if "patchingMode" in data:
+    if data.get("patchingMode") is not None:
         import capo_odb.types.patching_mode_type
 
         out["patching_mode"] = (
@@ -116,15 +116,15 @@ def deserialize_aws_json_1_0(data: dict) -> MaintenanceWindow:
                 data["patchingMode"]
             )
         )
-    if "preference" in data:
+    if data.get("preference") is not None:
         import capo_odb.types.preference_type
 
         out["preference"] = capo_odb.types.preference_type.deserialize_aws_json_1_0(
             data["preference"]
         )
-    if "skipRu" in data:
+    if data.get("skipRu") is not None:
         out["skip_ru"] = data["skipRu"]
-    if "weeksOfMonth" in data:
+    if data.get("weeksOfMonth") is not None:
         import capo_odb.types.weeks_of_month
 
         out["weeks_of_month"] = capo_odb.types.weeks_of_month.deserialize_aws_json_1_0(

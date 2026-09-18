@@ -47,13 +47,13 @@ def serialize_json(value: BatchGetAssetPropertyValueSkippedEntry) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetAssetPropertyValueSkippedEntry:
     out: BatchGetAssetPropertyValueSkippedEntry = {}  # type: ignore[typeddict-item]
-    if "entryId" in data:
+    if data.get("entryId") is not None:
         out["entry_id"] = data["entryId"]
     else:
         raise DeserializationError(
             "BatchGetAssetPropertyValueSkippedEntry.entry_id required"
         )
-    if "completionStatus" in data:
+    if data.get("completionStatus") is not None:
         import capo_iotsitewise.types.batch_entry_completion_status
 
         out["completion_status"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> BatchGetAssetPropertyValueSkippedEntry:
         raise DeserializationError(
             "BatchGetAssetPropertyValueSkippedEntry.completion_status required"
         )
-    if "errorInfo" in data:
+    if data.get("errorInfo") is not None:
         import capo_iotsitewise.types.batch_get_asset_property_value_error_info
 
         out["error_info"] = (

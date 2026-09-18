@@ -47,16 +47,16 @@ def serialize_aws_json_1_1(value: CreateStreamingURLRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateStreamingURLRequest:
     out: CreateStreamingURLRequest = {}  # type: ignore[typeddict-item]
-    if "StackName" in data:
+    if data.get("StackName") is not None:
         out["stack_name"] = data["StackName"]
-    if "FleetName" in data:
+    if data.get("FleetName") is not None:
         out["fleet_name"] = data["FleetName"]
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
-    if "Validity" in data:
+    if data.get("Validity") is not None:
         out["validity"] = data["Validity"]
-    if "SessionContext" in data:
+    if data.get("SessionContext") is not None:
         out["session_context"] = data["SessionContext"]
     return out

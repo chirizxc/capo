@@ -32,12 +32,12 @@ def serialize_json(value: ListLFTagsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListLFTagsResponse:
     out: ListLFTagsResponse = {}  # type: ignore[typeddict-item]
-    if "LFTags" in data:
+    if data.get("LFTags") is not None:
         import capo_lakeformation.types.lf_tags_list
 
         out["lf_tags"] = capo_lakeformation.types.lf_tags_list.deserialize_json(
             data["LFTags"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

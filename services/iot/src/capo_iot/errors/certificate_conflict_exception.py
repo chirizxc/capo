@@ -25,7 +25,7 @@ def serialize_json(value: CertificateConflictException_) -> dict:
 
 def deserialize_json(data: dict) -> CertificateConflictException_:
     out: CertificateConflictException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,18 @@ class CertificateConflictException(ServiceError):
 
     code: str | None = "CertificateConflictException"
 
-    def __init__(self, data: CertificateConflictException_):
+    def __init__(self, data: CertificateConflictException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="CertificateConflictException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "CertificateConflictException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "CertificateConflictException":
+        return cls(deserialize_json(data), message)

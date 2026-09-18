@@ -29,7 +29,7 @@ def serialize_json(value: CdiInputSpecification) -> dict:
 
 def deserialize_json(data: dict) -> CdiInputSpecification:
     out: CdiInputSpecification = {}  # type: ignore[typeddict-item]
-    if "resolution" in data:
+    if data.get("resolution") is not None:
         import capo_medialive.types.cdi_input_resolution
 
         out["resolution"] = capo_medialive.types.cdi_input_resolution.deserialize_json(

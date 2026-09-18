@@ -31,7 +31,7 @@ def serialize_json(value: BatchGetFindingsInput) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetFindingsInput:
     out: BatchGetFindingsInput = {}  # type: ignore[typeddict-item]
-    if "findingIds" in data:
+    if data.get("findingIds") is not None:
         import capo_securityagent.types.finding_id_list
 
         out["finding_ids"] = capo_securityagent.types.finding_id_list.deserialize_json(
@@ -39,7 +39,7 @@ def deserialize_json(data: dict) -> BatchGetFindingsInput:
         )
     else:
         raise DeserializationError("BatchGetFindingsInput.finding_ids required")
-    if "agentSpaceId" in data:
+    if data.get("agentSpaceId") is not None:
         out["agent_space_id"] = data["agentSpaceId"]
     else:
         raise DeserializationError("BatchGetFindingsInput.agent_space_id required")

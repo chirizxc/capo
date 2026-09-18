@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: CancelEnvironmentDeploymentInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CancelEnvironmentDeploymentInput:
     out: CancelEnvironmentDeploymentInput = {}  # type: ignore[typeddict-item]
-    if "environmentName" in data:
+    if data.get("environmentName") is not None:
         out["environment_name"] = data["environmentName"]
     else:
         raise DeserializationError(

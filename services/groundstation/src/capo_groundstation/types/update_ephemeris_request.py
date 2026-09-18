@@ -38,12 +38,12 @@ def serialize_json(value: UpdateEphemerisRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateEphemerisRequest:
     out: UpdateEphemerisRequest = {}  # type: ignore[typeddict-item]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
     else:
         raise DeserializationError("UpdateEphemerisRequest.enabled required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "priority" in data:
+    if data.get("priority") is not None:
         out["priority"] = data["priority"]
     return out

@@ -35,7 +35,7 @@ def serialize_json(value: ListPendingMaintenanceActionsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListPendingMaintenanceActionsOutput:
     out: ListPendingMaintenanceActionsOutput = {}  # type: ignore[typeddict-item]
-    if "resourcePendingMaintenanceActions" in data:
+    if data.get("resourcePendingMaintenanceActions") is not None:
         import capo_docdb_elastic.types.resource_pending_maintenance_action_list
 
         out["resource_pending_maintenance_actions"] = (
@@ -47,6 +47,6 @@ def deserialize_json(data: dict) -> ListPendingMaintenanceActionsOutput:
         raise DeserializationError(
             "ListPendingMaintenanceActionsOutput.resource_pending_maintenance_actions required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

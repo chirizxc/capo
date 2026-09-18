@@ -57,25 +57,25 @@ def serialize_json(value: FilterConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> FilterConfiguration:
     out: FilterConfiguration = {}  # type: ignore[typeddict-item]
-    if "ManifestFilter" in data:
+    if data.get("ManifestFilter") is not None:
         out["manifest_filter"] = data["ManifestFilter"]
-    if "DrmSettings" in data:
+    if data.get("DrmSettings") is not None:
         out["drm_settings"] = data["DrmSettings"]
-    if "Start" in data:
+    if data.get("Start") is not None:
         import capo_mediapackagev2.types._prelude.timestamp
 
         out["start"] = capo_mediapackagev2.types._prelude.timestamp.deserialize_json(
             data["Start"]
         )
-    if "End" in data:
+    if data.get("End") is not None:
         import capo_mediapackagev2.types._prelude.timestamp
 
         out["end"] = capo_mediapackagev2.types._prelude.timestamp.deserialize_json(
             data["End"]
         )
-    if "TimeDelaySeconds" in data:
+    if data.get("TimeDelaySeconds") is not None:
         out["time_delay_seconds"] = data["TimeDelaySeconds"]
-    if "ClipStartTime" in data:
+    if data.get("ClipStartTime") is not None:
         import capo_mediapackagev2.types._prelude.timestamp
 
         out["clip_start_time"] = (

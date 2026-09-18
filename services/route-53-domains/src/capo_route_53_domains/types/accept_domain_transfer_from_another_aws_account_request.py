@@ -32,13 +32,13 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> AcceptDomainTransferFromAnotherAwsAccountRequest:
     out: AcceptDomainTransferFromAnotherAwsAccountRequest = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
     else:
         raise DeserializationError(
             "AcceptDomainTransferFromAnotherAwsAccountRequest.domain_name required"
         )
-    if "Password" in data:
+    if data.get("Password") is not None:
         out["password"] = data["Password"]
     else:
         raise DeserializationError(

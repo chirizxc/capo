@@ -86,15 +86,17 @@ class PolicyStoreAlias:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_verifiedpermissions.types.create_policy_store_alias_input.CreatePolicyStoreAliasInput = {}  # type: ignore[typeddict-item]
-        input_["alias_name"] = alias_name
-        input_["policy_store_id"] = policy_store_id
+        input_: capo_verifiedpermissions.types.create_policy_store_alias_input.CreatePolicyStoreAliasInput = {
+            "alias_name": alias_name,
+            "policy_store_id": policy_store_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -138,14 +140,16 @@ class PolicyStoreAlias:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_verifiedpermissions.types.get_policy_store_alias_input.GetPolicyStoreAliasInput = {}  # type: ignore[typeddict-item]
-        input_["alias_name"] = alias_name
+        input_: capo_verifiedpermissions.types.get_policy_store_alias_input.GetPolicyStoreAliasInput = {
+            "alias_name": alias_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -197,8 +201,9 @@ class PolicyStoreAlias:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_verifiedpermissions.types.delete_policy_store_alias_input.DeletePolicyStoreAliasInput = {}  # type: ignore[typeddict-item]
-        input_["alias_name"] = alias_name
+        input_: capo_verifiedpermissions.types.delete_policy_store_alias_input.DeletePolicyStoreAliasInput = {
+            "alias_name": alias_name
+        }
         if deletion_mode is not None:
             input_["deletion_mode"] = deletion_mode
 
@@ -207,6 +212,7 @@ class PolicyStoreAlias:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -263,7 +269,7 @@ class PolicyStoreAlias:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_verifiedpermissions.types.list_policy_store_aliases_input.ListPolicyStoreAliasesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_verifiedpermissions.types.list_policy_store_aliases_input.ListPolicyStoreAliasesInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -276,6 +282,7 @@ class PolicyStoreAlias:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -329,15 +336,17 @@ class AsyncPolicyStoreAlias:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_verifiedpermissions.types.create_policy_store_alias_input.CreatePolicyStoreAliasInput = {}  # type: ignore[typeddict-item]
-        input_["alias_name"] = alias_name
-        input_["policy_store_id"] = policy_store_id
+        input_: capo_verifiedpermissions.types.create_policy_store_alias_input.CreatePolicyStoreAliasInput = {
+            "alias_name": alias_name,
+            "policy_store_id": policy_store_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -382,14 +391,16 @@ class AsyncPolicyStoreAlias:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_verifiedpermissions.types.get_policy_store_alias_input.GetPolicyStoreAliasInput = {}  # type: ignore[typeddict-item]
-        input_["alias_name"] = alias_name
+        input_: capo_verifiedpermissions.types.get_policy_store_alias_input.GetPolicyStoreAliasInput = {
+            "alias_name": alias_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -442,8 +453,9 @@ class AsyncPolicyStoreAlias:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_verifiedpermissions.types.delete_policy_store_alias_input.DeletePolicyStoreAliasInput = {}  # type: ignore[typeddict-item]
-        input_["alias_name"] = alias_name
+        input_: capo_verifiedpermissions.types.delete_policy_store_alias_input.DeletePolicyStoreAliasInput = {
+            "alias_name": alias_name
+        }
         if deletion_mode is not None:
             input_["deletion_mode"] = deletion_mode
 
@@ -452,6 +464,7 @@ class AsyncPolicyStoreAlias:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -509,7 +522,7 @@ class AsyncPolicyStoreAlias:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_verifiedpermissions.types.list_policy_store_aliases_input.ListPolicyStoreAliasesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_verifiedpermissions.types.list_policy_store_aliases_input.ListPolicyStoreAliasesInput = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -522,4 +535,5 @@ class AsyncPolicyStoreAlias:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

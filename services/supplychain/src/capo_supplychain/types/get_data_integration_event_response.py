@@ -28,7 +28,7 @@ def serialize_json(value: GetDataIntegrationEventResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetDataIntegrationEventResponse:
     out: GetDataIntegrationEventResponse = {}  # type: ignore[typeddict-item]
-    if "event" in data:
+    if data.get("event") is not None:
         import capo_supplychain.types.data_integration_event
 
         out["event"] = capo_supplychain.types.data_integration_event.deserialize_json(

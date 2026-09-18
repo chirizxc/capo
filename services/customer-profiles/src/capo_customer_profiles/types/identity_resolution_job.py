@@ -85,11 +85,11 @@ def serialize_json(value: IdentityResolutionJob) -> dict:
 
 def deserialize_json(data: dict) -> IdentityResolutionJob:
     out: IdentityResolutionJob = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_customer_profiles.types.identity_resolution_job_status
 
         out["status"] = (
@@ -97,25 +97,25 @@ def deserialize_json(data: dict) -> IdentityResolutionJob:
                 data["Status"]
             )
         )
-    if "JobStartTime" in data:
+    if data.get("JobStartTime") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["job_start_time"] = capo_customer_profiles.types.timestamp.deserialize_json(
             data["JobStartTime"]
         )
-    if "JobEndTime" in data:
+    if data.get("JobEndTime") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["job_end_time"] = capo_customer_profiles.types.timestamp.deserialize_json(
             data["JobEndTime"]
         )
-    if "JobStats" in data:
+    if data.get("JobStats") is not None:
         import capo_customer_profiles.types.job_stats
 
         out["job_stats"] = capo_customer_profiles.types.job_stats.deserialize_json(
             data["JobStats"]
         )
-    if "ExportingLocation" in data:
+    if data.get("ExportingLocation") is not None:
         import capo_customer_profiles.types.exporting_location
 
         out["exporting_location"] = (
@@ -123,6 +123,6 @@ def deserialize_json(data: dict) -> IdentityResolutionJob:
                 data["ExportingLocation"]
             )
         )
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out

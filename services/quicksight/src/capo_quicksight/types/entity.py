@@ -23,6 +23,6 @@ def serialize_json(value: Entity) -> dict:
 
 def deserialize_json(data: dict) -> Entity:
     out: Entity = {}  # type: ignore[typeddict-item]
-    if "Path" in data:
+    if data.get("Path") is not None:
         out["path"] = data["Path"]
     return out

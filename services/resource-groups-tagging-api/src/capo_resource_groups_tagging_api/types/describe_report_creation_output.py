@@ -44,12 +44,12 @@ def serialize_aws_json_1_1(value: DescribeReportCreationOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeReportCreationOutput:
     out: DescribeReportCreationOutput = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "S3Location" in data:
+    if data.get("S3Location") is not None:
         out["s3_location"] = data["S3Location"]
-    if "StartDate" in data:
+    if data.get("StartDate") is not None:
         out["start_date"] = data["StartDate"]
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
     return out

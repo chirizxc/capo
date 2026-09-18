@@ -25,28 +25,68 @@ class PlacementStatistics(TypedDict, closed=True):
 def serialize_json(value: PlacementStatistics) -> dict:
     out: dict = {}
     if "inbox_percentage" in value:
-        out["InboxPercentage"] = value["inbox_percentage"]
+        out["InboxPercentage"] = (
+            "NaN"
+            if value["inbox_percentage"] != value["inbox_percentage"]
+            else "Infinity"
+            if value["inbox_percentage"] == float("inf")
+            else "-Infinity"
+            if value["inbox_percentage"] == float("-inf")
+            else value["inbox_percentage"]
+        )
     if "spam_percentage" in value:
-        out["SpamPercentage"] = value["spam_percentage"]
+        out["SpamPercentage"] = (
+            "NaN"
+            if value["spam_percentage"] != value["spam_percentage"]
+            else "Infinity"
+            if value["spam_percentage"] == float("inf")
+            else "-Infinity"
+            if value["spam_percentage"] == float("-inf")
+            else value["spam_percentage"]
+        )
     if "missing_percentage" in value:
-        out["MissingPercentage"] = value["missing_percentage"]
+        out["MissingPercentage"] = (
+            "NaN"
+            if value["missing_percentage"] != value["missing_percentage"]
+            else "Infinity"
+            if value["missing_percentage"] == float("inf")
+            else "-Infinity"
+            if value["missing_percentage"] == float("-inf")
+            else value["missing_percentage"]
+        )
     if "spf_percentage" in value:
-        out["SpfPercentage"] = value["spf_percentage"]
+        out["SpfPercentage"] = (
+            "NaN"
+            if value["spf_percentage"] != value["spf_percentage"]
+            else "Infinity"
+            if value["spf_percentage"] == float("inf")
+            else "-Infinity"
+            if value["spf_percentage"] == float("-inf")
+            else value["spf_percentage"]
+        )
     if "dkim_percentage" in value:
-        out["DkimPercentage"] = value["dkim_percentage"]
+        out["DkimPercentage"] = (
+            "NaN"
+            if value["dkim_percentage"] != value["dkim_percentage"]
+            else "Infinity"
+            if value["dkim_percentage"] == float("inf")
+            else "-Infinity"
+            if value["dkim_percentage"] == float("-inf")
+            else value["dkim_percentage"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> PlacementStatistics:
     out: PlacementStatistics = {}  # type: ignore[typeddict-item]
-    if "InboxPercentage" in data:
-        out["inbox_percentage"] = data["InboxPercentage"]
-    if "SpamPercentage" in data:
-        out["spam_percentage"] = data["SpamPercentage"]
-    if "MissingPercentage" in data:
-        out["missing_percentage"] = data["MissingPercentage"]
-    if "SpfPercentage" in data:
-        out["spf_percentage"] = data["SpfPercentage"]
-    if "DkimPercentage" in data:
-        out["dkim_percentage"] = data["DkimPercentage"]
+    if data.get("InboxPercentage") is not None:
+        out["inbox_percentage"] = float(data["InboxPercentage"])
+    if data.get("SpamPercentage") is not None:
+        out["spam_percentage"] = float(data["SpamPercentage"])
+    if data.get("MissingPercentage") is not None:
+        out["missing_percentage"] = float(data["MissingPercentage"])
+    if data.get("SpfPercentage") is not None:
+        out["spf_percentage"] = float(data["SpfPercentage"])
+    if data.get("DkimPercentage") is not None:
+        out["dkim_percentage"] = float(data["DkimPercentage"])
     return out

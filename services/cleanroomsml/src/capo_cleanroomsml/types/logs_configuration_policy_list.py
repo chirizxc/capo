@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> LogsConfigurationPolicyList:
 
     out: LogsConfigurationPolicyList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cleanroomsml.types.logs_configuration_policy.deserialize_json(item)
         )

@@ -29,9 +29,9 @@ def serialize_json(value: JobIdentifier) -> dict:
 
 
 def deserialize_json(data: dict) -> JobIdentifier:
-    if "fileName" in data:
+    if data.get("fileName") is not None:
         return {"fileName": data["fileName"]}
-    elif "scriptName" in data:
+    elif data.get("scriptName") is not None:
         return {"scriptName": data["scriptName"]}
     else:
         raise DeserializationError("JobIdentifier: no recognized variant key")

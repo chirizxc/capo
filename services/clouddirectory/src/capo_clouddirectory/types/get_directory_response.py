@@ -28,7 +28,7 @@ def serialize_json(value: GetDirectoryResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetDirectoryResponse:
     out: GetDirectoryResponse = {}  # type: ignore[typeddict-item]
-    if "Directory" in data:
+    if data.get("Directory") is not None:
         import capo_clouddirectory.types.directory
 
         out["directory"] = capo_clouddirectory.types.directory.deserialize_json(

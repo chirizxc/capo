@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> InviteList:
 
     out: InviteList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_chime.types.invite.deserialize_json(item))
     return out

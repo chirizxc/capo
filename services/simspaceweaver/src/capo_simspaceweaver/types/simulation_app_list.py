@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> SimulationAppList:
 
     out: SimulationAppList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_simspaceweaver.types.simulation_app_metadata.deserialize_json(item)
         )

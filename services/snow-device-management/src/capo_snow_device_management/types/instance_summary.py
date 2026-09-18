@@ -39,13 +39,13 @@ def serialize_json(value: InstanceSummary) -> dict:
 
 def deserialize_json(data: dict) -> InstanceSummary:
     out: InstanceSummary = {}  # type: ignore[typeddict-item]
-    if "instance" in data:
+    if data.get("instance") is not None:
         import capo_snow_device_management.types.instance
 
         out["instance"] = capo_snow_device_management.types.instance.deserialize_json(
             data["instance"]
         )
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_snow_device_management.types._prelude.timestamp
 
         out["last_updated_at"] = (

@@ -26,6 +26,8 @@ def serialize_json(input_to_serialize: EnvironmentFailureReasons) -> dict:
 def deserialize_json(data: dict) -> EnvironmentFailureReasons:
     out: EnvironmentFailureReasons = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_datazone.types.environment_failure_reasons_list
 
         out[key] = (

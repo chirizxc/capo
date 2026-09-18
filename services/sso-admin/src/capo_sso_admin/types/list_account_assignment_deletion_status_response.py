@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListAccountAssignmentDeletionStatusResponse) -
 
 def deserialize_aws_json_1_1(data: dict) -> ListAccountAssignmentDeletionStatusResponse:
     out: ListAccountAssignmentDeletionStatusResponse = {}  # type: ignore[typeddict-item]
-    if "AccountAssignmentsDeletionStatus" in data:
+    if data.get("AccountAssignmentsDeletionStatus") is not None:
         import capo_sso_admin.types.account_assignment_operation_status_list
 
         out["account_assignments_deletion_status"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListAccountAssignmentDeletionStatusR
                 data["AccountAssignmentsDeletionStatus"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

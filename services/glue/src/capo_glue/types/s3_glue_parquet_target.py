@@ -91,11 +91,11 @@ def serialize_aws_json_1_1(value: S3GlueParquetTarget) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3GlueParquetTarget:
     out: S3GlueParquetTarget = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("S3GlueParquetTarget.name required")
-    if "Inputs" in data:
+    if data.get("Inputs") is not None:
         import capo_glue.types.one_input
 
         out["inputs"] = capo_glue.types.one_input.deserialize_aws_json_1_1(
@@ -103,7 +103,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3GlueParquetTarget:
         )
     else:
         raise DeserializationError("S3GlueParquetTarget.inputs required")
-    if "PartitionKeys" in data:
+    if data.get("PartitionKeys") is not None:
         import capo_glue.types.glue_studio_path_list
 
         out["partition_keys"] = (
@@ -111,11 +111,11 @@ def deserialize_aws_json_1_1(data: dict) -> S3GlueParquetTarget:
                 data["PartitionKeys"]
             )
         )
-    if "Path" in data:
+    if data.get("Path") is not None:
         out["path"] = data["Path"]
     else:
         raise DeserializationError("S3GlueParquetTarget.path required")
-    if "Compression" in data:
+    if data.get("Compression") is not None:
         import capo_glue.types.parquet_compression_type
 
         out["compression"] = (
@@ -123,9 +123,9 @@ def deserialize_aws_json_1_1(data: dict) -> S3GlueParquetTarget:
                 data["Compression"]
             )
         )
-    if "NumberTargetPartitions" in data:
+    if data.get("NumberTargetPartitions") is not None:
         out["number_target_partitions"] = data["NumberTargetPartitions"]
-    if "SchemaChangePolicy" in data:
+    if data.get("SchemaChangePolicy") is not None:
         import capo_glue.types.direct_schema_change_policy
 
         out["schema_change_policy"] = (
@@ -133,7 +133,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3GlueParquetTarget:
                 data["SchemaChangePolicy"]
             )
         )
-    if "AutoDataQuality" in data:
+    if data.get("AutoDataQuality") is not None:
         import capo_glue.types.auto_data_quality
 
         out["auto_data_quality"] = (

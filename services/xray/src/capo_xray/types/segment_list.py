@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> SegmentList:
 
     out: SegmentList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_xray.types.segment.deserialize_json(item))
     return out

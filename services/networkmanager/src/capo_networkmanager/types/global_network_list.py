@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> GlobalNetworkList:
 
     out: GlobalNetworkList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_networkmanager.types.global_network.deserialize_json(item))
     return out

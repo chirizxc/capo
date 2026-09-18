@@ -66,15 +66,15 @@ def serialize_json(value: CompositionSummary) -> dict:
 
 def deserialize_json(data: dict) -> CompositionSummary:
     out: CompositionSummary = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("CompositionSummary.arn required")
-    if "stageArn" in data:
+    if data.get("stageArn") is not None:
         out["stage_arn"] = data["stageArn"]
     else:
         raise DeserializationError("CompositionSummary.stage_arn required")
-    if "destinations" in data:
+    if data.get("destinations") is not None:
         import capo_ivs_realtime.types.destination_summary_list
 
         out["destinations"] = (
@@ -84,21 +84,21 @@ def deserialize_json(data: dict) -> CompositionSummary:
         )
     else:
         raise DeserializationError("CompositionSummary.destinations required")
-    if "state" in data:
+    if data.get("state") is not None:
         out["state"] = data["state"]
     else:
         raise DeserializationError("CompositionSummary.state required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_ivs_realtime.types.tags
 
         out["tags"] = capo_ivs_realtime.types.tags.deserialize_json(data["tags"])
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_ivs_realtime.types.time
 
         out["start_time"] = capo_ivs_realtime.types.time.deserialize_json(
             data["startTime"]
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_ivs_realtime.types.time
 
         out["end_time"] = capo_ivs_realtime.types.time.deserialize_json(data["endTime"])

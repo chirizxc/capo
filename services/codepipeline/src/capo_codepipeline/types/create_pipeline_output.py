@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: CreatePipelineOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreatePipelineOutput:
     out: CreatePipelineOutput = {}  # type: ignore[typeddict-item]
-    if "pipeline" in data:
+    if data.get("pipeline") is not None:
         import capo_codepipeline.types.pipeline_declaration
 
         out["pipeline"] = (
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreatePipelineOutput:
                 data["pipeline"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_codepipeline.types.tag_list
 
         out["tags"] = capo_codepipeline.types.tag_list.deserialize_aws_json_1_1(

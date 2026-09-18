@@ -32,7 +32,15 @@ def serialize_aws_json_1_1(value: AttributeValue) -> dict:
     if "s" in value:
         out["S"] = value["s"]
     if "n" in value:
-        out["N"] = value["n"]
+        out["N"] = (
+            "NaN"
+            if value["n"] != value["n"]
+            else "Infinity"
+            if value["n"] == float("inf")
+            else "-Infinity"
+            if value["n"] == float("-inf")
+            else value["n"]
+        )
     if "sl" in value:
         import capo_gamelift.types.player_attribute_string_list
 
@@ -54,11 +62,11 @@ def serialize_aws_json_1_1(value: AttributeValue) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AttributeValue:
     out: AttributeValue = {}  # type: ignore[typeddict-item]
-    if "S" in data:
+    if data.get("S") is not None:
         out["s"] = data["S"]
-    if "N" in data:
-        out["n"] = data["N"]
-    if "SL" in data:
+    if data.get("N") is not None:
+        out["n"] = float(data["N"])
+    if data.get("SL") is not None:
         import capo_gamelift.types.player_attribute_string_list
 
         out["sl"] = (
@@ -66,7 +74,7 @@ def deserialize_aws_json_1_1(data: dict) -> AttributeValue:
                 data["SL"]
             )
         )
-    if "SDM" in data:
+    if data.get("SDM") is not None:
         import capo_gamelift.types.player_attribute_string_double_map
 
         out["sdm"] = (

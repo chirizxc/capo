@@ -11,4 +11,4 @@ def serialize_json(value: TagKeys) -> list:
 
 
 def deserialize_json(data: list) -> TagKeys:
-    return list(data)
+    return [item for item in data if item is not None]

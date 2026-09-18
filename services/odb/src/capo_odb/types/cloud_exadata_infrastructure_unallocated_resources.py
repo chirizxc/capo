@@ -48,7 +48,15 @@ def serialize_aws_json_1_0(
             "cloud_exadata_infrastructure_display_name"
         ]
     if "exadata_storage_in_t_bs" in value:
-        out["exadataStorageInTBs"] = value["exadata_storage_in_t_bs"]
+        out["exadataStorageInTBs"] = (
+            "NaN"
+            if value["exadata_storage_in_t_bs"] != value["exadata_storage_in_t_bs"]
+            else "Infinity"
+            if value["exadata_storage_in_t_bs"] == float("inf")
+            else "-Infinity"
+            if value["exadata_storage_in_t_bs"] == float("-inf")
+            else value["exadata_storage_in_t_bs"]
+        )
     if "cloud_exadata_infrastructure_id" in value:
         out["cloudExadataInfrastructureId"] = value["cloud_exadata_infrastructure_id"]
     if "local_storage_in_g_bs" in value:
@@ -64,7 +72,7 @@ def deserialize_aws_json_1_0(
     data: dict,
 ) -> CloudExadataInfrastructureUnallocatedResources:
     out: CloudExadataInfrastructureUnallocatedResources = {}  # type: ignore[typeddict-item]
-    if "cloudAutonomousVmClusters" in data:
+    if data.get("cloudAutonomousVmClusters") is not None:
         import capo_odb.types.cloud_autonomous_vm_cluster_resource_details_list
 
         out["cloud_autonomous_vm_clusters"] = (
@@ -72,18 +80,18 @@ def deserialize_aws_json_1_0(
                 data["cloudAutonomousVmClusters"]
             )
         )
-    if "cloudExadataInfrastructureDisplayName" in data:
+    if data.get("cloudExadataInfrastructureDisplayName") is not None:
         out["cloud_exadata_infrastructure_display_name"] = data[
             "cloudExadataInfrastructureDisplayName"
         ]
-    if "exadataStorageInTBs" in data:
-        out["exadata_storage_in_t_bs"] = data["exadataStorageInTBs"]
-    if "cloudExadataInfrastructureId" in data:
+    if data.get("exadataStorageInTBs") is not None:
+        out["exadata_storage_in_t_bs"] = float(data["exadataStorageInTBs"])
+    if data.get("cloudExadataInfrastructureId") is not None:
         out["cloud_exadata_infrastructure_id"] = data["cloudExadataInfrastructureId"]
-    if "localStorageInGBs" in data:
+    if data.get("localStorageInGBs") is not None:
         out["local_storage_in_g_bs"] = data["localStorageInGBs"]
-    if "memoryInGBs" in data:
+    if data.get("memoryInGBs") is not None:
         out["memory_in_g_bs"] = data["memoryInGBs"]
-    if "ocpus" in data:
+    if data.get("ocpus") is not None:
         out["ocpus"] = data["ocpus"]
     return out

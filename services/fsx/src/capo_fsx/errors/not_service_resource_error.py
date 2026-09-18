@@ -29,9 +29,9 @@ def serialize_aws_json_1_1(value: NotServiceResourceError_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> NotServiceResourceError_:
     out: NotServiceResourceError_ = {}  # type: ignore[typeddict-item]
-    if "ResourceARN" in data:
+    if data.get("ResourceARN") is not None:
         out["resource_arn"] = data["ResourceARN"]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -41,15 +41,18 @@ class NotServiceResourceError(ServiceError):
 
     code: str | None = "NotServiceResourceError"
 
-    def __init__(self, data: NotServiceResourceError_):
+    def __init__(self, data: NotServiceResourceError_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="NotServiceResourceError",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "NotServiceResourceError":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "NotServiceResourceError":
+        return cls(deserialize_aws_json_1_1(data), message)

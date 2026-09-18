@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> UnprocessedAccounts:
 
     out: UnprocessedAccounts = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_guardduty.types.unprocessed_account.deserialize_json(item))
     return out

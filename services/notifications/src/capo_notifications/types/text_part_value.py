@@ -42,13 +42,13 @@ def serialize_json(value: TextPartValue) -> dict:
 
 def deserialize_json(data: dict) -> TextPartValue:
     out: TextPartValue = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("TextPartValue.type required")
-    if "displayText" in data:
+    if data.get("displayText") is not None:
         out["display_text"] = data["displayText"]
-    if "textByLocale" in data:
+    if data.get("textByLocale") is not None:
         import capo_notifications.types.text_by_locale
 
         out["text_by_locale"] = (
@@ -56,6 +56,6 @@ def deserialize_json(data: dict) -> TextPartValue:
                 data["textByLocale"]
             )
         )
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
     return out

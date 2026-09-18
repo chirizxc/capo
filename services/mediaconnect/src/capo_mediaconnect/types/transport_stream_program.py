@@ -47,15 +47,15 @@ def serialize_json(value: TransportStreamProgram) -> dict:
 
 def deserialize_json(data: dict) -> TransportStreamProgram:
     out: TransportStreamProgram = {}  # type: ignore[typeddict-item]
-    if "pcrPid" in data:
+    if data.get("pcrPid") is not None:
         out["pcr_pid"] = data["pcrPid"]
-    if "programName" in data:
+    if data.get("programName") is not None:
         out["program_name"] = data["programName"]
-    if "programNumber" in data:
+    if data.get("programNumber") is not None:
         out["program_number"] = data["programNumber"]
-    if "programPid" in data:
+    if data.get("programPid") is not None:
         out["program_pid"] = data["programPid"]
-    if "streams" in data:
+    if data.get("streams") is not None:
         import capo_mediaconnect.types.__list_of_transport_stream
 
         out["streams"] = (

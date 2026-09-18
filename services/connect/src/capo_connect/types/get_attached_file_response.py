@@ -97,29 +97,29 @@ def serialize_json(value: GetAttachedFileResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetAttachedFileResponse:
     out: GetAttachedFileResponse = {}  # type: ignore[typeddict-item]
-    if "FileArn" in data:
+    if data.get("FileArn") is not None:
         out["file_arn"] = data["FileArn"]
-    if "FileId" in data:
+    if data.get("FileId") is not None:
         out["file_id"] = data["FileId"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         out["creation_time"] = data["CreationTime"]
-    if "FileStatus" in data:
+    if data.get("FileStatus") is not None:
         import capo_connect.types.file_status_type
 
         out["file_status"] = capo_connect.types.file_status_type.deserialize_json(
             data["FileStatus"]
         )
-    if "FileName" in data:
+    if data.get("FileName") is not None:
         out["file_name"] = data["FileName"]
-    if "FileSizeInBytes" in data:
+    if data.get("FileSizeInBytes") is not None:
         out["file_size_in_bytes"] = data["FileSizeInBytes"]
     else:
         raise DeserializationError(
             "GetAttachedFileResponse.file_size_in_bytes required"
         )
-    if "AssociatedResourceArn" in data:
+    if data.get("AssociatedResourceArn") is not None:
         out["associated_resource_arn"] = data["AssociatedResourceArn"]
-    if "FileUseCaseType" in data:
+    if data.get("FileUseCaseType") is not None:
         import capo_connect.types.file_use_case_type
 
         out["file_use_case_type"] = (
@@ -127,13 +127,13 @@ def deserialize_json(data: dict) -> GetAttachedFileResponse:
                 data["FileUseCaseType"]
             )
         )
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         import capo_connect.types.created_by_info
 
         out["created_by"] = capo_connect.types.created_by_info.deserialize_json(
             data["CreatedBy"]
         )
-    if "DownloadUrlMetadata" in data:
+    if data.get("DownloadUrlMetadata") is not None:
         import capo_connect.types.download_url_metadata
 
         out["download_url_metadata"] = (
@@ -141,7 +141,7 @@ def deserialize_json(data: dict) -> GetAttachedFileResponse:
                 data["DownloadUrlMetadata"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])

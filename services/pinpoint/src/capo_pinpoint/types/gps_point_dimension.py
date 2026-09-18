@@ -26,18 +26,26 @@ def serialize_json(value: GPSPointDimension) -> dict:
             value["coordinates"]
         )
     if "range_in_kilometers" in value:
-        out["RangeInKilometers"] = value["range_in_kilometers"]
+        out["RangeInKilometers"] = (
+            "NaN"
+            if value["range_in_kilometers"] != value["range_in_kilometers"]
+            else "Infinity"
+            if value["range_in_kilometers"] == float("inf")
+            else "-Infinity"
+            if value["range_in_kilometers"] == float("-inf")
+            else value["range_in_kilometers"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> GPSPointDimension:
     out: GPSPointDimension = {}  # type: ignore[typeddict-item]
-    if "Coordinates" in data:
+    if data.get("Coordinates") is not None:
         import capo_pinpoint.types.gps_coordinates
 
         out["coordinates"] = capo_pinpoint.types.gps_coordinates.deserialize_json(
             data["Coordinates"]
         )
-    if "RangeInKilometers" in data:
-        out["range_in_kilometers"] = data["RangeInKilometers"]
+    if data.get("RangeInKilometers") is not None:
+        out["range_in_kilometers"] = float(data["RangeInKilometers"])
     return out

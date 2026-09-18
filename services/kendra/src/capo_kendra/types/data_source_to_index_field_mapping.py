@@ -37,15 +37,15 @@ def serialize_aws_json_1_1(value: DataSourceToIndexFieldMapping) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataSourceToIndexFieldMapping:
     out: DataSourceToIndexFieldMapping = {}  # type: ignore[typeddict-item]
-    if "DataSourceFieldName" in data:
+    if data.get("DataSourceFieldName") is not None:
         out["data_source_field_name"] = data["DataSourceFieldName"]
     else:
         raise DeserializationError(
             "DataSourceToIndexFieldMapping.data_source_field_name required"
         )
-    if "DateFieldFormat" in data:
+    if data.get("DateFieldFormat") is not None:
         out["date_field_format"] = data["DateFieldFormat"]
-    if "IndexFieldName" in data:
+    if data.get("IndexFieldName") is not None:
         out["index_field_name"] = data["IndexFieldName"]
     else:
         raise DeserializationError(

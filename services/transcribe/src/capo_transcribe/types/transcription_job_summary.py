@@ -135,7 +135,15 @@ def serialize_aws_json_1_1(value: TranscriptionJobSummary) -> dict:
     if "identify_multiple_languages" in value:
         out["IdentifyMultipleLanguages"] = value["identify_multiple_languages"]
     if "identified_language_score" in value:
-        out["IdentifiedLanguageScore"] = value["identified_language_score"]
+        out["IdentifiedLanguageScore"] = (
+            "NaN"
+            if value["identified_language_score"] != value["identified_language_score"]
+            else "Infinity"
+            if value["identified_language_score"] == float("inf")
+            else "-Infinity"
+            if value["identified_language_score"] == float("-inf")
+            else value["identified_language_score"]
+        )
     if "language_codes" in value:
         import capo_transcribe.types.language_code_list
 
@@ -157,21 +165,21 @@ def serialize_aws_json_1_1(value: TranscriptionJobSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TranscriptionJobSummary:
     out: TranscriptionJobSummary = {}  # type: ignore[typeddict-item]
-    if "TranscriptionJobName" in data:
+    if data.get("TranscriptionJobName") is not None:
         out["transcription_job_name"] = data["TranscriptionJobName"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_transcribe.types.date_time
 
         out["creation_time"] = capo_transcribe.types.date_time.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_transcribe.types.date_time
 
         out["start_time"] = capo_transcribe.types.date_time.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "CompletionTime" in data:
+    if data.get("CompletionTime") is not None:
         import capo_transcribe.types.date_time
 
         out["completion_time"] = (
@@ -179,7 +187,7 @@ def deserialize_aws_json_1_1(data: dict) -> TranscriptionJobSummary:
                 data["CompletionTime"]
             )
         )
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         import capo_transcribe.types.language_code
 
         out["language_code"] = (
@@ -187,7 +195,7 @@ def deserialize_aws_json_1_1(data: dict) -> TranscriptionJobSummary:
                 data["LanguageCode"]
             )
         )
-    if "TranscriptionJobStatus" in data:
+    if data.get("TranscriptionJobStatus") is not None:
         import capo_transcribe.types.transcription_job_status
 
         out["transcription_job_status"] = (
@@ -195,9 +203,9 @@ def deserialize_aws_json_1_1(data: dict) -> TranscriptionJobSummary:
                 data["TranscriptionJobStatus"]
             )
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "OutputLocationType" in data:
+    if data.get("OutputLocationType") is not None:
         import capo_transcribe.types.output_location_type
 
         out["output_location_type"] = (
@@ -205,7 +213,7 @@ def deserialize_aws_json_1_1(data: dict) -> TranscriptionJobSummary:
                 data["OutputLocationType"]
             )
         )
-    if "ContentRedaction" in data:
+    if data.get("ContentRedaction") is not None:
         import capo_transcribe.types.content_redaction
 
         out["content_redaction"] = (
@@ -213,7 +221,7 @@ def deserialize_aws_json_1_1(data: dict) -> TranscriptionJobSummary:
                 data["ContentRedaction"]
             )
         )
-    if "ModelSettings" in data:
+    if data.get("ModelSettings") is not None:
         import capo_transcribe.types.model_settings
 
         out["model_settings"] = (
@@ -221,13 +229,13 @@ def deserialize_aws_json_1_1(data: dict) -> TranscriptionJobSummary:
                 data["ModelSettings"]
             )
         )
-    if "IdentifyLanguage" in data:
+    if data.get("IdentifyLanguage") is not None:
         out["identify_language"] = data["IdentifyLanguage"]
-    if "IdentifyMultipleLanguages" in data:
+    if data.get("IdentifyMultipleLanguages") is not None:
         out["identify_multiple_languages"] = data["IdentifyMultipleLanguages"]
-    if "IdentifiedLanguageScore" in data:
-        out["identified_language_score"] = data["IdentifiedLanguageScore"]
-    if "LanguageCodes" in data:
+    if data.get("IdentifiedLanguageScore") is not None:
+        out["identified_language_score"] = float(data["IdentifiedLanguageScore"])
+    if data.get("LanguageCodes") is not None:
         import capo_transcribe.types.language_code_list
 
         out["language_codes"] = (
@@ -235,7 +243,7 @@ def deserialize_aws_json_1_1(data: dict) -> TranscriptionJobSummary:
                 data["LanguageCodes"]
             )
         )
-    if "ToxicityDetection" in data:
+    if data.get("ToxicityDetection") is not None:
         import capo_transcribe.types.toxicity_detection
 
         out["toxicity_detection"] = (

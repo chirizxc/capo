@@ -43,7 +43,7 @@ def serialize_aws_json_1_0(value: LastModifiedDate) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> LastModifiedDate:
     out: LastModifiedDate = {}  # type: ignore[typeddict-item]
-    if "AfterLastModifiedDate" in data:
+    if data.get("AfterLastModifiedDate") is not None:
         import capo_partnercentral_selling.types.date_time
 
         out["after_last_modified_date"] = (
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_0(data: dict) -> LastModifiedDate:
                 data["AfterLastModifiedDate"]
             )
         )
-    if "BeforeLastModifiedDate" in data:
+    if data.get("BeforeLastModifiedDate") is not None:
         import capo_partnercentral_selling.types.date_time
 
         out["before_last_modified_date"] = (

@@ -90,13 +90,13 @@ def serialize_aws_json_1_0(value: ChargeSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ChargeSummary:
     out: ChargeSummary = {}  # type: ignore[typeddict-item]
-    if "currencyCode" in data:
+    if data.get("currencyCode") is not None:
         out["currency_code"] = data["currencyCode"]
-    if "newAgreementValue" in data:
+    if data.get("newAgreementValue") is not None:
         out["new_agreement_value"] = data["newAgreementValue"]
-    if "newAgreementValueAfterTax" in data:
+    if data.get("newAgreementValueAfterTax") is not None:
         out["new_agreement_value_after_tax"] = data["newAgreementValueAfterTax"]
-    if "expectedCharges" in data:
+    if data.get("expectedCharges") is not None:
         import capo_marketplace_agreement.types.expected_charge_list
 
         out["expected_charges"] = (
@@ -104,7 +104,7 @@ def deserialize_aws_json_1_0(data: dict) -> ChargeSummary:
                 data["expectedCharges"]
             )
         )
-    if "estimatedTaxes" in data:
+    if data.get("estimatedTaxes") is not None:
         import capo_marketplace_agreement.types.estimated_taxes
 
         out["estimated_taxes"] = (
@@ -112,7 +112,7 @@ def deserialize_aws_json_1_0(data: dict) -> ChargeSummary:
                 data["estimatedTaxes"]
             )
         )
-    if "itemizedCharges" in data:
+    if data.get("itemizedCharges") is not None:
         import capo_marketplace_agreement.types.itemized_charge_list
 
         out["itemized_charges"] = (
@@ -120,7 +120,7 @@ def deserialize_aws_json_1_0(data: dict) -> ChargeSummary:
                 data["itemizedCharges"]
             )
         )
-    if "invoicingEntity" in data:
+    if data.get("invoicingEntity") is not None:
         import capo_marketplace_agreement.types.invoicing_entity
 
         out["invoicing_entity"] = (

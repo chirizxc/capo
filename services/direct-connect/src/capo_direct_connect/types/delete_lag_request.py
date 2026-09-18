@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteLagRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteLagRequest:
     out: DeleteLagRequest = {}  # type: ignore[typeddict-item]
-    if "lagId" in data:
+    if data.get("lagId") is not None:
         out["lag_id"] = data["lagId"]
     else:
         raise DeserializationError("DeleteLagRequest.lag_id required")

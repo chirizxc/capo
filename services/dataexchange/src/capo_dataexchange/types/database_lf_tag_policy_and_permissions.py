@@ -38,7 +38,7 @@ def serialize_json(value: DatabaseLFTagPolicyAndPermissions) -> dict:
 
 def deserialize_json(data: dict) -> DatabaseLFTagPolicyAndPermissions:
     out: DatabaseLFTagPolicyAndPermissions = {}  # type: ignore[typeddict-item]
-    if "Expression" in data:
+    if data.get("Expression") is not None:
         import capo_dataexchange.types.list_of_lf_tags
 
         out["expression"] = capo_dataexchange.types.list_of_lf_tags.deserialize_json(
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> DatabaseLFTagPolicyAndPermissions:
         raise DeserializationError(
             "DatabaseLFTagPolicyAndPermissions.expression required"
         )
-    if "Permissions" in data:
+    if data.get("Permissions") is not None:
         import capo_dataexchange.types.list_of_database_lf_tag_policy_permissions
 
         out["permissions"] = (

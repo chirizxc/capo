@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_vpc_lattice._auth._signers
@@ -93,11 +94,13 @@ class ServiceNetworkResourceAssociation:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.create_service_network_resource_association_request.CreateServiceNetworkResourceAssociationRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["resource_configuration_identifier"] = resource_configuration_identifier
-        input_["service_network_identifier"] = service_network_identifier
+        input_: capo_vpc_lattice.types.create_service_network_resource_association_request.CreateServiceNetworkResourceAssociationRequest = {
+            "resource_configuration_identifier": resource_configuration_identifier,
+            "service_network_identifier": service_network_identifier,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if private_dns_enabled is not None:
             input_["private_dns_enabled"] = private_dns_enabled
         if tags is not None:
@@ -108,6 +111,7 @@ class ServiceNetworkResourceAssociation:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -145,16 +149,16 @@ class ServiceNetworkResourceAssociation:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.get_service_network_resource_association_request.GetServiceNetworkResourceAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["service_network_resource_association_identifier"] = (
-            service_network_resource_association_identifier
-        )
+        input_: capo_vpc_lattice.types.get_service_network_resource_association_request.GetServiceNetworkResourceAssociationRequest = {
+            "service_network_resource_association_identifier": service_network_resource_association_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -193,16 +197,16 @@ class ServiceNetworkResourceAssociation:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.delete_service_network_resource_association_request.DeleteServiceNetworkResourceAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["service_network_resource_association_identifier"] = (
-            service_network_resource_association_identifier
-        )
+        input_: capo_vpc_lattice.types.delete_service_network_resource_association_request.DeleteServiceNetworkResourceAssociationRequest = {
+            "service_network_resource_association_identifier": service_network_resource_association_identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -251,7 +255,7 @@ class ServiceNetworkResourceAssociation:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.list_service_network_resource_associations_request.ListServiceNetworkResourceAssociationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_vpc_lattice.types.list_service_network_resource_associations_request.ListServiceNetworkResourceAssociationsRequest = {}
         if service_network_identifier is not None:
             input_["service_network_identifier"] = service_network_identifier
         if resource_configuration_identifier is not None:
@@ -270,6 +274,7 @@ class ServiceNetworkResourceAssociation:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -325,11 +330,13 @@ class AsyncServiceNetworkResourceAssociation:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.create_service_network_resource_association_request.CreateServiceNetworkResourceAssociationRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["resource_configuration_identifier"] = resource_configuration_identifier
-        input_["service_network_identifier"] = service_network_identifier
+        input_: capo_vpc_lattice.types.create_service_network_resource_association_request.CreateServiceNetworkResourceAssociationRequest = {
+            "resource_configuration_identifier": resource_configuration_identifier,
+            "service_network_identifier": service_network_identifier,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if private_dns_enabled is not None:
             input_["private_dns_enabled"] = private_dns_enabled
         if tags is not None:
@@ -340,6 +347,7 @@ class AsyncServiceNetworkResourceAssociation:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -378,16 +386,16 @@ class AsyncServiceNetworkResourceAssociation:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.get_service_network_resource_association_request.GetServiceNetworkResourceAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["service_network_resource_association_identifier"] = (
-            service_network_resource_association_identifier
-        )
+        input_: capo_vpc_lattice.types.get_service_network_resource_association_request.GetServiceNetworkResourceAssociationRequest = {
+            "service_network_resource_association_identifier": service_network_resource_association_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -427,16 +435,16 @@ class AsyncServiceNetworkResourceAssociation:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.delete_service_network_resource_association_request.DeleteServiceNetworkResourceAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["service_network_resource_association_identifier"] = (
-            service_network_resource_association_identifier
-        )
+        input_: capo_vpc_lattice.types.delete_service_network_resource_association_request.DeleteServiceNetworkResourceAssociationRequest = {
+            "service_network_resource_association_identifier": service_network_resource_association_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -486,7 +494,7 @@ class AsyncServiceNetworkResourceAssociation:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_vpc_lattice.types.list_service_network_resource_associations_request.ListServiceNetworkResourceAssociationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_vpc_lattice.types.list_service_network_resource_associations_request.ListServiceNetworkResourceAssociationsRequest = {}
         if service_network_identifier is not None:
             input_["service_network_identifier"] = service_network_identifier
         if resource_configuration_identifier is not None:
@@ -505,4 +513,5 @@ class AsyncServiceNetworkResourceAssociation:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

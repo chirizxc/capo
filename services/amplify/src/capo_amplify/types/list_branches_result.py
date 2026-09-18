@@ -31,12 +31,12 @@ def serialize_json(value: ListBranchesResult) -> dict:
 
 def deserialize_json(data: dict) -> ListBranchesResult:
     out: ListBranchesResult = {}  # type: ignore[typeddict-item]
-    if "branches" in data:
+    if data.get("branches") is not None:
         import capo_amplify.types.branches
 
         out["branches"] = capo_amplify.types.branches.deserialize_json(data["branches"])
     else:
         raise DeserializationError("ListBranchesResult.branches required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

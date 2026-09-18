@@ -34,14 +34,14 @@ def serialize_json(value: JobMetrics) -> dict:
 
 def deserialize_json(data: dict) -> JobMetrics:
     out: JobMetrics = {}  # type: ignore[typeddict-item]
-    if "inputRecords" in data:
+    if data.get("inputRecords") is not None:
         out["input_records"] = data["inputRecords"]
-    if "totalRecordsProcessed" in data:
+    if data.get("totalRecordsProcessed") is not None:
         out["total_records_processed"] = data["totalRecordsProcessed"]
-    if "recordsNotProcessed" in data:
+    if data.get("recordsNotProcessed") is not None:
         out["records_not_processed"] = data["recordsNotProcessed"]
-    if "deleteRecordsProcessed" in data:
+    if data.get("deleteRecordsProcessed") is not None:
         out["delete_records_processed"] = data["deleteRecordsProcessed"]
-    if "matchIDs" in data:
+    if data.get("matchIDs") is not None:
         out["match_i_ds"] = data["matchIDs"]
     return out

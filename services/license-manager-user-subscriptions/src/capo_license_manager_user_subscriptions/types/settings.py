@@ -36,7 +36,7 @@ def serialize_json(value: Settings) -> dict:
 
 def deserialize_json(data: dict) -> Settings:
     out: Settings = {}  # type: ignore[typeddict-item]
-    if "Subnets" in data:
+    if data.get("Subnets") is not None:
         import capo_license_manager_user_subscriptions.types.subnets
 
         out["subnets"] = (
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> Settings:
         )
     else:
         raise DeserializationError("Settings.subnets required")
-    if "SecurityGroupId" in data:
+    if data.get("SecurityGroupId") is not None:
         out["security_group_id"] = data["SecurityGroupId"]
     else:
         raise DeserializationError("Settings.security_group_id required")

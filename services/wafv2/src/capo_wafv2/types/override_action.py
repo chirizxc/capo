@@ -34,13 +34,13 @@ def serialize_aws_json_1_1(value: OverrideAction) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OverrideAction:
     out: OverrideAction = {}  # type: ignore[typeddict-item]
-    if "Count" in data:
+    if data.get("Count") is not None:
         import capo_wafv2.types.count_action
 
         out["count"] = capo_wafv2.types.count_action.deserialize_aws_json_1_1(
             data["Count"]
         )
-    if "None" in data:
+    if data.get("None") is not None:
         import capo_wafv2.types.none_action
 
         out["none"] = capo_wafv2.types.none_action.deserialize_aws_json_1_1(

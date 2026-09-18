@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: CreateLocationHdfsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateLocationHdfsResponse:
     out: CreateLocationHdfsResponse = {}  # type: ignore[typeddict-item]
-    if "LocationArn" in data:
+    if data.get("LocationArn") is not None:
         out["location_arn"] = data["LocationArn"]
     return out

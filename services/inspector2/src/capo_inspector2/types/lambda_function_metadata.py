@@ -45,20 +45,20 @@ def serialize_json(value: LambdaFunctionMetadata) -> dict:
 
 def deserialize_json(data: dict) -> LambdaFunctionMetadata:
     out: LambdaFunctionMetadata = {}  # type: ignore[typeddict-item]
-    if "functionTags" in data:
+    if data.get("functionTags") is not None:
         import capo_inspector2.types.tag_map
 
         out["function_tags"] = capo_inspector2.types.tag_map.deserialize_json(
             data["functionTags"]
         )
-    if "layers" in data:
+    if data.get("layers") is not None:
         import capo_inspector2.types.lambda_layer_list
 
         out["layers"] = capo_inspector2.types.lambda_layer_list.deserialize_json(
             data["layers"]
         )
-    if "functionName" in data:
+    if data.get("functionName") is not None:
         out["function_name"] = data["functionName"]
-    if "runtime" in data:
+    if data.get("runtime") is not None:
         out["runtime"] = data["runtime"]
     return out

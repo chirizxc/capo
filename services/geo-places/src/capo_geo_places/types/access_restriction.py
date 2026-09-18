@@ -32,9 +32,9 @@ def serialize_json(value: AccessRestriction) -> dict:
 
 def deserialize_json(data: dict) -> AccessRestriction:
     out: AccessRestriction = {}  # type: ignore[typeddict-item]
-    if "Restricted" in data:
+    if data.get("Restricted") is not None:
         out["restricted"] = data["Restricted"]
-    if "Categories" in data:
+    if data.get("Categories") is not None:
         import capo_geo_places.types.category_list
 
         out["categories"] = capo_geo_places.types.category_list.deserialize_json(

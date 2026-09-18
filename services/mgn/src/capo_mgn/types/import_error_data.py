@@ -52,20 +52,20 @@ def serialize_json(value: ImportErrorData) -> dict:
 
 def deserialize_json(data: dict) -> ImportErrorData:
     out: ImportErrorData = {}  # type: ignore[typeddict-item]
-    if "sourceServerID" in data:
+    if data.get("sourceServerID") is not None:
         out["source_server_id"] = data["sourceServerID"]
-    if "applicationID" in data:
+    if data.get("applicationID") is not None:
         out["application_id"] = data["applicationID"]
-    if "waveID" in data:
+    if data.get("waveID") is not None:
         out["wave_id"] = data["waveID"]
-    if "ec2LaunchTemplateID" in data:
+    if data.get("ec2LaunchTemplateID") is not None:
         out["ec2_launch_template_id"] = data["ec2LaunchTemplateID"]
-    if "rowNumber" in data:
+    if data.get("rowNumber") is not None:
         out["row_number"] = data["rowNumber"]
     else:
         out["row_number"] = 0
-    if "rawError" in data:
+    if data.get("rawError") is not None:
         out["raw_error"] = data["rawError"]
-    if "accountID" in data:
+    if data.get("accountID") is not None:
         out["account_id"] = data["accountID"]
     return out

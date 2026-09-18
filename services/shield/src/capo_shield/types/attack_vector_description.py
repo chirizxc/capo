@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: AttackVectorDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AttackVectorDescription:
     out: AttackVectorDescription = {}  # type: ignore[typeddict-item]
-    if "VectorType" in data:
+    if data.get("VectorType") is not None:
         out["vector_type"] = data["VectorType"]
     else:
         raise DeserializationError("AttackVectorDescription.vector_type required")

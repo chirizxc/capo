@@ -18,6 +18,6 @@ def serialize_json(value: WebCrawlerLimits) -> dict:
 
 def deserialize_json(data: dict) -> WebCrawlerLimits:
     out: WebCrawlerLimits = {}  # type: ignore[typeddict-item]
-    if "rateLimit" in data:
+    if data.get("rateLimit") is not None:
         out["rate_limit"] = data["rateLimit"]
     return out

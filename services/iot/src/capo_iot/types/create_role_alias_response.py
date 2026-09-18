@@ -28,8 +28,8 @@ def serialize_json(value: CreateRoleAliasResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateRoleAliasResponse:
     out: CreateRoleAliasResponse = {}  # type: ignore[typeddict-item]
-    if "roleAlias" in data:
+    if data.get("roleAlias") is not None:
         out["role_alias"] = data["roleAlias"]
-    if "roleAliasArn" in data:
+    if data.get("roleAliasArn") is not None:
         out["role_alias_arn"] = data["roleAliasArn"]
     return out

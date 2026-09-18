@@ -75,42 +75,42 @@ def serialize_json(value: ImageSetsMetadataSummary) -> dict:
 
 def deserialize_json(data: dict) -> ImageSetsMetadataSummary:
     out: ImageSetsMetadataSummary = {}  # type: ignore[typeddict-item]
-    if "imageSetId" in data:
+    if data.get("imageSetId") is not None:
         out["image_set_id"] = data["imageSetId"]
     else:
         raise DeserializationError("ImageSetsMetadataSummary.image_set_id required")
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_medical_imaging.types.date
 
         out["created_at"] = capo_medical_imaging.types.date.deserialize_json(
             data["createdAt"]
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_medical_imaging.types.date
 
         out["updated_at"] = capo_medical_imaging.types.date.deserialize_json(
             data["updatedAt"]
         )
-    if "lastAccessedAt" in data:
+    if data.get("lastAccessedAt") is not None:
         import capo_medical_imaging.types.date
 
         out["last_accessed_at"] = capo_medical_imaging.types.date.deserialize_json(
             data["lastAccessedAt"]
         )
-    if "storageTier" in data:
+    if data.get("storageTier") is not None:
         import capo_medical_imaging.types.storage_tier
 
         out["storage_tier"] = capo_medical_imaging.types.storage_tier.deserialize_json(
             data["storageTier"]
         )
-    if "DICOMTags" in data:
+    if data.get("DICOMTags") is not None:
         import capo_medical_imaging.types.dicom_tags
 
         out["dicom_tags"] = capo_medical_imaging.types.dicom_tags.deserialize_json(
             data["DICOMTags"]
         )
-    if "isPrimary" in data:
+    if data.get("isPrimary") is not None:
         out["is_primary"] = data["isPrimary"]
     return out

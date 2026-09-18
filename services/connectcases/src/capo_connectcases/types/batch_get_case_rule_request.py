@@ -33,7 +33,7 @@ def serialize_json(value: BatchGetCaseRuleRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetCaseRuleRequest:
     out: BatchGetCaseRuleRequest = {}  # type: ignore[typeddict-item]
-    if "caseRules" in data:
+    if data.get("caseRules") is not None:
         import capo_connectcases.types.case_rule_identifier_list
 
         out["case_rules"] = (

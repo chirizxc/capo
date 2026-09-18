@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: ContactReferences) -> dict:
 def deserialize_json(data: dict) -> ContactReferences:
     out: ContactReferences = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_connect.types.reference
 
         out[key] = capo_connect.types.reference.deserialize_json(value)

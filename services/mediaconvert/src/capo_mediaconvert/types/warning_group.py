@@ -27,8 +27,8 @@ def serialize_json(value: WarningGroup) -> dict:
 
 def deserialize_json(data: dict) -> WarningGroup:
     out: WarningGroup = {}  # type: ignore[typeddict-item]
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
-    if "count" in data:
+    if data.get("count") is not None:
         out["count"] = data["count"]
     return out

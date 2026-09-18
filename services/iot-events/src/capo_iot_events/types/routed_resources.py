@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> RoutedResources:
 
     out: RoutedResources = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot_events.types.routed_resource.deserialize_json(item))
     return out

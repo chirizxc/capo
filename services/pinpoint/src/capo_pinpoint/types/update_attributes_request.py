@@ -27,7 +27,7 @@ def serialize_json(value: UpdateAttributesRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateAttributesRequest:
     out: UpdateAttributesRequest = {}  # type: ignore[typeddict-item]
-    if "Blacklist" in data:
+    if data.get("Blacklist") is not None:
         import capo_pinpoint.types.list_of__string
 
         out["blacklist"] = capo_pinpoint.types.list_of__string.deserialize_json(

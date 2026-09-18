@@ -36,12 +36,12 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> ListAccountsForProvisionedPermissionSetResponse:
     out: ListAccountsForProvisionedPermissionSetResponse = {}  # type: ignore[typeddict-item]
-    if "AccountIds" in data:
+    if data.get("AccountIds") is not None:
         import capo_sso_admin.types.account_list
 
         out["account_ids"] = capo_sso_admin.types.account_list.deserialize_aws_json_1_1(
             data["AccountIds"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

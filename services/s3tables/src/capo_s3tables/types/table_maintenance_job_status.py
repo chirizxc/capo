@@ -28,8 +28,11 @@ def serialize_json(input_to_serialize: TableMaintenanceJobStatus) -> dict:
 def deserialize_json(data: dict) -> TableMaintenanceJobStatus:
     out: TableMaintenanceJobStatus = {}
     for key, value in data.items():
-        import capo_s3tables.types.table_maintenance_job_status_value
         import capo_s3tables.types.table_maintenance_job_type
+
+        if value is None:
+            continue
+        import capo_s3tables.types.table_maintenance_job_status_value
 
         out[capo_s3tables.types.table_maintenance_job_type.deserialize_json(key)] = (
             capo_s3tables.types.table_maintenance_job_status_value.deserialize_json(

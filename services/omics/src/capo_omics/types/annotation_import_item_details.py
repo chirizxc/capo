@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> AnnotationImportItemDetails:
 
     out: AnnotationImportItemDetails = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_omics.types.annotation_import_item_detail.deserialize_json(item)
         )

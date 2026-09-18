@@ -55,24 +55,24 @@ def serialize_json(value: CreateAssetRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateAssetRequest:
     out: CreateAssetRequest = {}  # type: ignore[typeddict-item]
-    if "assetName" in data:
+    if data.get("assetName") is not None:
         out["asset_name"] = data["assetName"]
     else:
         raise DeserializationError("CreateAssetRequest.asset_name required")
-    if "assetModelId" in data:
+    if data.get("assetModelId") is not None:
         out["asset_model_id"] = data["assetModelId"]
     else:
         raise DeserializationError("CreateAssetRequest.asset_model_id required")
-    if "assetId" in data:
+    if data.get("assetId") is not None:
         out["asset_id"] = data["assetId"]
-    if "assetExternalId" in data:
+    if data.get("assetExternalId") is not None:
         out["asset_external_id"] = data["assetExternalId"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_iotsitewise.types.tag_map
 
         out["tags"] = capo_iotsitewise.types.tag_map.deserialize_json(data["tags"])
-    if "assetDescription" in data:
+    if data.get("assetDescription") is not None:
         out["asset_description"] = data["assetDescription"]
     return out

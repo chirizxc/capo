@@ -60,7 +60,7 @@ def serialize_json(value: CommunicationTimeConfig) -> dict:
 
 def deserialize_json(data: dict) -> CommunicationTimeConfig:
     out: CommunicationTimeConfig = {}  # type: ignore[typeddict-item]
-    if "localTimeZoneConfig" in data:
+    if data.get("localTimeZoneConfig") is not None:
         import capo_connectcampaignsv2.types.local_time_zone_config
 
         out["local_time_zone_config"] = (
@@ -72,25 +72,25 @@ def deserialize_json(data: dict) -> CommunicationTimeConfig:
         raise DeserializationError(
             "CommunicationTimeConfig.local_time_zone_config required"
         )
-    if "telephony" in data:
+    if data.get("telephony") is not None:
         import capo_connectcampaignsv2.types.time_window
 
         out["telephony"] = capo_connectcampaignsv2.types.time_window.deserialize_json(
             data["telephony"]
         )
-    if "sms" in data:
+    if data.get("sms") is not None:
         import capo_connectcampaignsv2.types.time_window
 
         out["sms"] = capo_connectcampaignsv2.types.time_window.deserialize_json(
             data["sms"]
         )
-    if "email" in data:
+    if data.get("email") is not None:
         import capo_connectcampaignsv2.types.time_window
 
         out["email"] = capo_connectcampaignsv2.types.time_window.deserialize_json(
             data["email"]
         )
-    if "whatsApp" in data:
+    if data.get("whatsApp") is not None:
         import capo_connectcampaignsv2.types.time_window
 
         out["whats_app"] = capo_connectcampaignsv2.types.time_window.deserialize_json(

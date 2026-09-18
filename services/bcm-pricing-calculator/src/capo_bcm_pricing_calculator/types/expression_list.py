@@ -27,6 +27,8 @@ def deserialize_aws_json_1_0(data: list) -> ExpressionList:
 
     out: ExpressionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_bcm_pricing_calculator.types.expression.deserialize_aws_json_1_0(item)
         )

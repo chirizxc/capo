@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ManagedNotificationChannelAssociations:
 
     out: ManagedNotificationChannelAssociations = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_notifications.types.managed_notification_channel_association_summary.deserialize_json(
                 item

@@ -28,8 +28,8 @@ def serialize_json(value: UpdateChangesetResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateChangesetResponse:
     out: UpdateChangesetResponse = {}  # type: ignore[typeddict-item]
-    if "changesetId" in data:
+    if data.get("changesetId") is not None:
         out["changeset_id"] = data["changesetId"]
-    if "datasetId" in data:
+    if data.get("datasetId") is not None:
         out["dataset_id"] = data["datasetId"]
     return out

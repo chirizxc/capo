@@ -40,7 +40,7 @@ def serialize_aws_json_1_0(value: InsufficientSensorData) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> InsufficientSensorData:
     out: InsufficientSensorData = {}  # type: ignore[typeddict-item]
-    if "MissingCompleteSensorData" in data:
+    if data.get("MissingCompleteSensorData") is not None:
         import capo_lookoutequipment.types.missing_complete_sensor_data
 
         out["missing_complete_sensor_data"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_0(data: dict) -> InsufficientSensorData:
         raise DeserializationError(
             "InsufficientSensorData.missing_complete_sensor_data required"
         )
-    if "SensorsWithShortDateRange" in data:
+    if data.get("SensorsWithShortDateRange") is not None:
         import capo_lookoutequipment.types.sensors_with_short_date_range
 
         out["sensors_with_short_date_range"] = (

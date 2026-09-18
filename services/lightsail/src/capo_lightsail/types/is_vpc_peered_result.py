@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: IsVpcPeeredResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> IsVpcPeeredResult:
     out: IsVpcPeeredResult = {}  # type: ignore[typeddict-item]
-    if "isPeered" in data:
+    if data.get("isPeered") is not None:
         out["is_peered"] = data["isPeered"]
     return out

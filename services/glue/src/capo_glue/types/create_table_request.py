@@ -75,21 +75,21 @@ def serialize_aws_json_1_1(value: CreateTableRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateTableRequest:
     out: CreateTableRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
     else:
         raise DeserializationError("CreateTableRequest.database_name required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "TableInput" in data:
+    if data.get("TableInput") is not None:
         import capo_glue.types.table_input
 
         out["table_input"] = capo_glue.types.table_input.deserialize_aws_json_1_1(
             data["TableInput"]
         )
-    if "PartitionIndexes" in data:
+    if data.get("PartitionIndexes") is not None:
         import capo_glue.types.partition_index_list
 
         out["partition_indexes"] = (
@@ -97,9 +97,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateTableRequest:
                 data["PartitionIndexes"]
             )
         )
-    if "TransactionId" in data:
+    if data.get("TransactionId") is not None:
         out["transaction_id"] = data["TransactionId"]
-    if "OpenTableFormatInput" in data:
+    if data.get("OpenTableFormatInput") is not None:
         import capo_glue.types.open_table_format_input
 
         out["open_table_format_input"] = (

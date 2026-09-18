@@ -57,17 +57,17 @@ def serialize_aws_json_1_1(value: GetQuerySuggestionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetQuerySuggestionsRequest:
     out: GetQuerySuggestionsRequest = {}  # type: ignore[typeddict-item]
-    if "IndexId" in data:
+    if data.get("IndexId") is not None:
         out["index_id"] = data["IndexId"]
     else:
         raise DeserializationError("GetQuerySuggestionsRequest.index_id required")
-    if "QueryText" in data:
+    if data.get("QueryText") is not None:
         out["query_text"] = data["QueryText"]
     else:
         raise DeserializationError("GetQuerySuggestionsRequest.query_text required")
-    if "MaxSuggestionsCount" in data:
+    if data.get("MaxSuggestionsCount") is not None:
         out["max_suggestions_count"] = data["MaxSuggestionsCount"]
-    if "SuggestionTypes" in data:
+    if data.get("SuggestionTypes") is not None:
         import capo_kendra.types.suggestion_types
 
         out["suggestion_types"] = (
@@ -75,7 +75,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetQuerySuggestionsRequest:
                 data["SuggestionTypes"]
             )
         )
-    if "AttributeSuggestionsConfig" in data:
+    if data.get("AttributeSuggestionsConfig") is not None:
         import capo_kendra.types.attribute_suggestions_get_config
 
         out["attribute_suggestions_config"] = (

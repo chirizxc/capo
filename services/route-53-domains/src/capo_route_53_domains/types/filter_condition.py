@@ -46,7 +46,7 @@ def serialize_aws_json_1_1(value: FilterCondition) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FilterCondition:
     out: FilterCondition = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         import capo_route_53_domains.types.list_domains_attribute_name
 
         out["name"] = (
@@ -56,7 +56,7 @@ def deserialize_aws_json_1_1(data: dict) -> FilterCondition:
         )
     else:
         raise DeserializationError("FilterCondition.name required")
-    if "Operator" in data:
+    if data.get("Operator") is not None:
         import capo_route_53_domains.types.operator
 
         out["operator"] = capo_route_53_domains.types.operator.deserialize_aws_json_1_1(
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_1(data: dict) -> FilterCondition:
         )
     else:
         raise DeserializationError("FilterCondition.operator required")
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_route_53_domains.types.values
 
         out["values"] = capo_route_53_domains.types.values.deserialize_aws_json_1_1(

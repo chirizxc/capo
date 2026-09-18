@@ -35,10 +35,10 @@ def serialize_json(value: CreateContactFlowResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateContactFlowResponse:
     out: CreateContactFlowResponse = {}  # type: ignore[typeddict-item]
-    if "ContactFlowId" in data:
+    if data.get("ContactFlowId") is not None:
         out["contact_flow_id"] = data["ContactFlowId"]
-    if "ContactFlowArn" in data:
+    if data.get("ContactFlowArn") is not None:
         out["contact_flow_arn"] = data["ContactFlowArn"]
-    if "FlowContentSha256" in data:
+    if data.get("FlowContentSha256") is not None:
         out["flow_content_sha256"] = data["FlowContentSha256"]
     return out

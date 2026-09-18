@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ScheduledActionsList:
 
     out: ScheduledActionsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_opensearch.types.scheduled_action.deserialize_json(item))
     return out

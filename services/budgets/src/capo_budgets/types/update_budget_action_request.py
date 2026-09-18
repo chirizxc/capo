@@ -82,19 +82,19 @@ def serialize_aws_json_1_1(value: UpdateBudgetActionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateBudgetActionRequest:
     out: UpdateBudgetActionRequest = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
     else:
         raise DeserializationError("UpdateBudgetActionRequest.account_id required")
-    if "BudgetName" in data:
+    if data.get("BudgetName") is not None:
         out["budget_name"] = data["BudgetName"]
     else:
         raise DeserializationError("UpdateBudgetActionRequest.budget_name required")
-    if "ActionId" in data:
+    if data.get("ActionId") is not None:
         out["action_id"] = data["ActionId"]
     else:
         raise DeserializationError("UpdateBudgetActionRequest.action_id required")
-    if "NotificationType" in data:
+    if data.get("NotificationType") is not None:
         import capo_budgets.types.notification_type
 
         out["notification_type"] = (
@@ -102,7 +102,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateBudgetActionRequest:
                 data["NotificationType"]
             )
         )
-    if "ActionThreshold" in data:
+    if data.get("ActionThreshold") is not None:
         import capo_budgets.types.action_threshold
 
         out["action_threshold"] = (
@@ -110,15 +110,15 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateBudgetActionRequest:
                 data["ActionThreshold"]
             )
         )
-    if "Definition" in data:
+    if data.get("Definition") is not None:
         import capo_budgets.types.definition
 
         out["definition"] = capo_budgets.types.definition.deserialize_aws_json_1_1(
             data["Definition"]
         )
-    if "ExecutionRoleArn" in data:
+    if data.get("ExecutionRoleArn") is not None:
         out["execution_role_arn"] = data["ExecutionRoleArn"]
-    if "ApprovalModel" in data:
+    if data.get("ApprovalModel") is not None:
         import capo_budgets.types.approval_model
 
         out["approval_model"] = (
@@ -126,7 +126,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateBudgetActionRequest:
                 data["ApprovalModel"]
             )
         )
-    if "Subscribers" in data:
+    if data.get("Subscribers") is not None:
         import capo_budgets.types.subscribers
 
         out["subscribers"] = capo_budgets.types.subscribers.deserialize_aws_json_1_1(

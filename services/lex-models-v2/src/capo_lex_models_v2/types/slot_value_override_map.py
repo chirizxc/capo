@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: SlotValueOverrideMap) -> dict:
 def deserialize_json(data: dict) -> SlotValueOverrideMap:
     out: SlotValueOverrideMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_lex_models_v2.types.slot_value_override
 
         out[key] = capo_lex_models_v2.types.slot_value_override.deserialize_json(value)

@@ -33,10 +33,10 @@ def serialize_aws_json_1_1(value: DetachClusterNodeVolumeRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DetachClusterNodeVolumeRequest:
     out: DetachClusterNodeVolumeRequest = {}  # type: ignore[typeddict-item]
-    if "ClusterArn" in data:
+    if data.get("ClusterArn") is not None:
         out["cluster_arn"] = data["ClusterArn"]
-    if "NodeId" in data:
+    if data.get("NodeId") is not None:
         out["node_id"] = data["NodeId"]
-    if "VolumeId" in data:
+    if data.get("VolumeId") is not None:
         out["volume_id"] = data["VolumeId"]
     return out

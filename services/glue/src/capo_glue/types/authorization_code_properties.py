@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: AuthorizationCodeProperties) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AuthorizationCodeProperties:
     out: AuthorizationCodeProperties = {}  # type: ignore[typeddict-item]
-    if "AuthorizationCode" in data:
+    if data.get("AuthorizationCode") is not None:
         out["authorization_code"] = data["AuthorizationCode"]
-    if "RedirectUri" in data:
+    if data.get("RedirectUri") is not None:
         out["redirect_uri"] = data["RedirectUri"]
     return out

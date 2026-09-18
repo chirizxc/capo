@@ -60,11 +60,11 @@ def serialize_json(value: UpdateIndexRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateIndexRequest:
     out: UpdateIndexRequest = {}  # type: ignore[typeddict-item]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "capacityConfiguration" in data:
+    if data.get("capacityConfiguration") is not None:
         import capo_qbusiness.types.index_capacity_configuration
 
         out["capacity_configuration"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> UpdateIndexRequest:
                 data["capacityConfiguration"]
             )
         )
-    if "documentAttributeConfigurations" in data:
+    if data.get("documentAttributeConfigurations") is not None:
         import capo_qbusiness.types.document_attribute_configurations
 
         out["document_attribute_configurations"] = (

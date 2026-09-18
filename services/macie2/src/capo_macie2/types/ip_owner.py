@@ -35,12 +35,12 @@ def serialize_json(value: IpOwner) -> dict:
 
 def deserialize_json(data: dict) -> IpOwner:
     out: IpOwner = {}  # type: ignore[typeddict-item]
-    if "asn" in data:
+    if data.get("asn") is not None:
         out["asn"] = data["asn"]
-    if "asnOrg" in data:
+    if data.get("asnOrg") is not None:
         out["asn_org"] = data["asnOrg"]
-    if "isp" in data:
+    if data.get("isp") is not None:
         out["isp"] = data["isp"]
-    if "org" in data:
+    if data.get("org") is not None:
         out["org"] = data["org"]
     return out

@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: GetAWSDefaultServiceQuotaResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetAWSDefaultServiceQuotaResponse:
     out: GetAWSDefaultServiceQuotaResponse = {}  # type: ignore[typeddict-item]
-    if "Quota" in data:
+    if data.get("Quota") is not None:
         import capo_service_quotas.types.service_quota
 
         out["quota"] = capo_service_quotas.types.service_quota.deserialize_aws_json_1_1(

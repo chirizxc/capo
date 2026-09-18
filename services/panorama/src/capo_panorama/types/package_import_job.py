@@ -64,21 +64,21 @@ def serialize_json(value: PackageImportJob) -> dict:
 
 def deserialize_json(data: dict) -> PackageImportJob:
     out: PackageImportJob = {}  # type: ignore[typeddict-item]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
-    if "JobType" in data:
+    if data.get("JobType") is not None:
         out["job_type"] = data["JobType"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_panorama.types.created_time
 
         out["created_time"] = capo_panorama.types.created_time.deserialize_json(
             data["CreatedTime"]
         )
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_panorama.types.last_updated_time
 
         out["last_updated_time"] = (

@@ -23,6 +23,6 @@ def serialize_json(value: DescribeFeedbackRequest) -> dict:
 
 def deserialize_json(data: dict) -> DescribeFeedbackRequest:
     out: DescribeFeedbackRequest = {}  # type: ignore[typeddict-item]
-    if "InsightId" in data:
+    if data.get("InsightId") is not None:
         out["insight_id"] = data["InsightId"]
     return out

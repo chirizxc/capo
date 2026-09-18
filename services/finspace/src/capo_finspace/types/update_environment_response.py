@@ -27,7 +27,7 @@ def serialize_json(value: UpdateEnvironmentResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateEnvironmentResponse:
     out: UpdateEnvironmentResponse = {}  # type: ignore[typeddict-item]
-    if "environment" in data:
+    if data.get("environment") is not None:
         import capo_finspace.types.environment
 
         out["environment"] = capo_finspace.types.environment.deserialize_json(

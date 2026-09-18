@@ -39,11 +39,11 @@ def serialize_aws_json_1_1(value: DeleteSchemaResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteSchemaResponse:
     out: DeleteSchemaResponse = {}  # type: ignore[typeddict-item]
-    if "SchemaArn" in data:
+    if data.get("SchemaArn") is not None:
         out["schema_arn"] = data["SchemaArn"]
-    if "SchemaName" in data:
+    if data.get("SchemaName") is not None:
         out["schema_name"] = data["SchemaName"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_glue.types.schema_status
 
         out["status"] = capo_glue.types.schema_status.deserialize_aws_json_1_1(

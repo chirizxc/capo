@@ -27,5 +27,7 @@ def deserialize_json(data: dict) -> TaskPropertiesMap:
     for key, value in data.items():
         import capo_appflow.types.operator_properties_keys
 
+        if value is None:
+            continue
         out[capo_appflow.types.operator_properties_keys.deserialize_json(key)] = value
     return out

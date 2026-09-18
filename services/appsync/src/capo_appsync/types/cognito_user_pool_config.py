@@ -31,14 +31,14 @@ def serialize_json(value: CognitoUserPoolConfig) -> dict:
 
 def deserialize_json(data: dict) -> CognitoUserPoolConfig:
     out: CognitoUserPoolConfig = {}  # type: ignore[typeddict-item]
-    if "userPoolId" in data:
+    if data.get("userPoolId") is not None:
         out["user_pool_id"] = data["userPoolId"]
     else:
         raise DeserializationError("CognitoUserPoolConfig.user_pool_id required")
-    if "awsRegion" in data:
+    if data.get("awsRegion") is not None:
         out["aws_region"] = data["awsRegion"]
     else:
         raise DeserializationError("CognitoUserPoolConfig.aws_region required")
-    if "appIdClientRegex" in data:
+    if data.get("appIdClientRegex") is not None:
         out["app_id_client_regex"] = data["appIdClientRegex"]
     return out

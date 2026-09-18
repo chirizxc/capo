@@ -60,11 +60,11 @@ def serialize_json(value: IntentMetadata) -> dict:
 
 def deserialize_json(data: dict) -> IntentMetadata:
     out: IntentMetadata = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "lastUpdatedDate" in data:
+    if data.get("lastUpdatedDate") is not None:
         import capo_lex_model_building_service.types.timestamp
 
         out["last_updated_date"] = (
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> IntentMetadata:
                 data["lastUpdatedDate"]
             )
         )
-    if "createdDate" in data:
+    if data.get("createdDate") is not None:
         import capo_lex_model_building_service.types.timestamp
 
         out["created_date"] = (
@@ -80,6 +80,6 @@ def deserialize_json(data: dict) -> IntentMetadata:
                 data["createdDate"]
             )
         )
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     return out

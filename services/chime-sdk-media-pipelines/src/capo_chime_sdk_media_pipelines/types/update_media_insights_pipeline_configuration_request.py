@@ -50,13 +50,13 @@ def serialize_json(value: UpdateMediaInsightsPipelineConfigurationRequest) -> di
 
 def deserialize_json(data: dict) -> UpdateMediaInsightsPipelineConfigurationRequest:
     out: UpdateMediaInsightsPipelineConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceAccessRoleArn" in data:
+    if data.get("ResourceAccessRoleArn") is not None:
         out["resource_access_role_arn"] = data["ResourceAccessRoleArn"]
     else:
         raise DeserializationError(
             "UpdateMediaInsightsPipelineConfigurationRequest.resource_access_role_arn required"
         )
-    if "RealTimeAlertConfiguration" in data:
+    if data.get("RealTimeAlertConfiguration") is not None:
         import capo_chime_sdk_media_pipelines.types.real_time_alert_configuration
 
         out["real_time_alert_configuration"] = (
@@ -64,7 +64,7 @@ def deserialize_json(data: dict) -> UpdateMediaInsightsPipelineConfigurationRequ
                 data["RealTimeAlertConfiguration"]
             )
         )
-    if "Elements" in data:
+    if data.get("Elements") is not None:
         import capo_chime_sdk_media_pipelines.types.media_insights_pipeline_configuration_elements
 
         out["elements"] = (

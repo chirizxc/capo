@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> CrawlsFilterList:
 
     out: CrawlsFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_glue.types.crawls_filter.deserialize_aws_json_1_1(item))
     return out

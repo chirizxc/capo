@@ -58,13 +58,13 @@ def serialize_aws_json_1_1(value: ClusterStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ClusterStatus:
     out: ClusterStatus = {}  # type: ignore[typeddict-item]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_emr.types.cluster_state
 
         out["state"] = capo_emr.types.cluster_state.deserialize_aws_json_1_1(
             data["State"]
         )
-    if "StateChangeReason" in data:
+    if data.get("StateChangeReason") is not None:
         import capo_emr.types.cluster_state_change_reason
 
         out["state_change_reason"] = (
@@ -72,13 +72,13 @@ def deserialize_aws_json_1_1(data: dict) -> ClusterStatus:
                 data["StateChangeReason"]
             )
         )
-    if "Timeline" in data:
+    if data.get("Timeline") is not None:
         import capo_emr.types.cluster_timeline
 
         out["timeline"] = capo_emr.types.cluster_timeline.deserialize_aws_json_1_1(
             data["Timeline"]
         )
-    if "ErrorDetails" in data:
+    if data.get("ErrorDetails") is not None:
         import capo_emr.types.error_detail_list
 
         out["error_details"] = (

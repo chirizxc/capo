@@ -129,15 +129,15 @@ def serialize_json(value: ServiceSummary) -> dict:
 
 def deserialize_json(data: dict) -> ServiceSummary:
     out: ServiceSummary = {}  # type: ignore[typeddict-item]
-    if "serviceArn" in data:
+    if data.get("serviceArn") is not None:
         out["service_arn"] = data["serviceArn"]
     else:
         raise DeserializationError("ServiceSummary.service_arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ServiceSummary.name required")
-    if "associatedSystems" in data:
+    if data.get("associatedSystems") is not None:
         import capo_resiliencehubv2.types.associated_system_list
 
         out["associated_systems"] = (
@@ -145,15 +145,15 @@ def deserialize_json(data: dict) -> ServiceSummary:
                 data["associatedSystems"]
             )
         )
-    if "regions" in data:
+    if data.get("regions") is not None:
         import capo_resiliencehubv2.types.region_list
 
         out["regions"] = capo_resiliencehubv2.types.region_list.deserialize_json(
             data["regions"]
         )
-    if "policyArn" in data:
+    if data.get("policyArn") is not None:
         out["policy_arn"] = data["policyArn"]
-    if "assessmentStatus" in data:
+    if data.get("assessmentStatus") is not None:
         import capo_resiliencehubv2.types.assessment_status
 
         out["assessment_status"] = (
@@ -161,11 +161,11 @@ def deserialize_json(data: dict) -> ServiceSummary:
                 data["assessmentStatus"]
             )
         )
-    if "openFindingsCount" in data:
+    if data.get("openFindingsCount") is not None:
         out["open_findings_count"] = data["openFindingsCount"]
-    if "resolvedFindingsCount" in data:
+    if data.get("resolvedFindingsCount") is not None:
         out["resolved_findings_count"] = data["resolvedFindingsCount"]
-    if "dependencyDiscovery" in data:
+    if data.get("dependencyDiscovery") is not None:
         import capo_resiliencehubv2.types.dependency_discovery_config
 
         out["dependency_discovery"] = (
@@ -173,7 +173,7 @@ def deserialize_json(data: dict) -> ServiceSummary:
                 data["dependencyDiscovery"]
             )
         )
-    if "achievability" in data:
+    if data.get("achievability") is not None:
         import capo_resiliencehubv2.types.achievability
 
         out["achievability"] = (
@@ -181,13 +181,13 @@ def deserialize_json(data: dict) -> ServiceSummary:
                 data["achievability"]
             )
         )
-    if "organizationId" in data:
+    if data.get("organizationId") is not None:
         out["organization_id"] = data["organizationId"]
-    if "ouId" in data:
+    if data.get("ouId") is not None:
         out["ou_id"] = data["ouId"]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_resiliencehubv2.types._prelude.timestamp
 
         out["created_at"] = (
@@ -195,7 +195,7 @@ def deserialize_json(data: dict) -> ServiceSummary:
                 data["createdAt"]
             )
         )
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_resiliencehubv2.types._prelude.timestamp
 
         out["updated_at"] = (

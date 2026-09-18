@@ -38,12 +38,12 @@ def serialize_json(value: ListNotificationsInput) -> dict:
 
 def deserialize_json(data: dict) -> ListNotificationsInput:
     out: ListNotificationsInput = {}  # type: ignore[typeddict-item]
-    if "WorkloadId" in data:
+    if data.get("WorkloadId") is not None:
         out["workload_id"] = data["WorkloadId"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     return out

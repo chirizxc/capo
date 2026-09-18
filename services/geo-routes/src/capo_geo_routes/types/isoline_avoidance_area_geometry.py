@@ -71,25 +71,25 @@ def serialize_json(value: IsolineAvoidanceAreaGeometry) -> dict:
 
 def deserialize_json(data: dict) -> IsolineAvoidanceAreaGeometry:
     out: IsolineAvoidanceAreaGeometry = {}  # type: ignore[typeddict-item]
-    if "BoundingBox" in data:
+    if data.get("BoundingBox") is not None:
         import capo_geo_routes.types.bounding_box
 
         out["bounding_box"] = capo_geo_routes.types.bounding_box.deserialize_json(
             data["BoundingBox"]
         )
-    if "Corridor" in data:
+    if data.get("Corridor") is not None:
         import capo_geo_routes.types.corridor
 
         out["corridor"] = capo_geo_routes.types.corridor.deserialize_json(
             data["Corridor"]
         )
-    if "Polygon" in data:
+    if data.get("Polygon") is not None:
         import capo_geo_routes.types.linear_rings
 
         out["polygon"] = capo_geo_routes.types.linear_rings.deserialize_json(
             data["Polygon"]
         )
-    if "PolylineCorridor" in data:
+    if data.get("PolylineCorridor") is not None:
         import capo_geo_routes.types.polyline_corridor
 
         out["polyline_corridor"] = (
@@ -97,7 +97,7 @@ def deserialize_json(data: dict) -> IsolineAvoidanceAreaGeometry:
                 data["PolylineCorridor"]
             )
         )
-    if "PolylinePolygon" in data:
+    if data.get("PolylinePolygon") is not None:
         import capo_geo_routes.types.polyline_ring_list
 
         out["polyline_polygon"] = (

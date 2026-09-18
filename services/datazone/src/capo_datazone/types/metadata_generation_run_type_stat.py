@@ -42,7 +42,7 @@ def serialize_json(value: MetadataGenerationRunTypeStat) -> dict:
 
 def deserialize_json(data: dict) -> MetadataGenerationRunTypeStat:
     out: MetadataGenerationRunTypeStat = {}  # type: ignore[typeddict-item]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_datazone.types.metadata_generation_run_type
 
         out["type"] = capo_datazone.types.metadata_generation_run_type.deserialize_json(
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> MetadataGenerationRunTypeStat:
         )
     else:
         raise DeserializationError("MetadataGenerationRunTypeStat.type required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_datazone.types.metadata_generation_run_status
 
         out["status"] = (
@@ -60,6 +60,6 @@ def deserialize_json(data: dict) -> MetadataGenerationRunTypeStat:
         )
     else:
         raise DeserializationError("MetadataGenerationRunTypeStat.status required")
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     return out

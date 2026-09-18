@@ -42,16 +42,16 @@ def serialize_aws_json_1_1(value: ListReviewableHITsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListReviewableHITsRequest:
     out: ListReviewableHITsRequest = {}  # type: ignore[typeddict-item]
-    if "HITTypeId" in data:
+    if data.get("HITTypeId") is not None:
         out["hit_type_id"] = data["HITTypeId"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_mturk.types.reviewable_hit_status
 
         out["status"] = capo_mturk.types.reviewable_hit_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

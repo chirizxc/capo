@@ -130,14 +130,14 @@ def serialize_json(value: GetMLInputChannelResponse) -> dict:
                 value["payer_configuration"]
             )
         )
-    import capo_cleanroomsml.types._prelude.timestamp
+    import capo_cleanroomsml._protocol.serialize
 
-    out["createTime"] = capo_cleanroomsml.types._prelude.timestamp.serialize_json(
+    out["createTime"] = capo_cleanroomsml._protocol.serialize.fmt_date_time(
         value["create_time"]
     )
-    import capo_cleanroomsml.types._prelude.timestamp
+    import capo_cleanroomsml._protocol.serialize
 
-    out["updateTime"] = capo_cleanroomsml.types._prelude.timestamp.serialize_json(
+    out["updateTime"] = capo_cleanroomsml._protocol.serialize.fmt_date_time(
         value["update_time"]
     )
     import capo_cleanroomsml.types.input_channel
@@ -148,9 +148,25 @@ def serialize_json(value: GetMLInputChannelResponse) -> dict:
     if "protected_query_identifier" in value:
         out["protectedQueryIdentifier"] = value["protected_query_identifier"]
     if "number_of_files" in value:
-        out["numberOfFiles"] = value["number_of_files"]
+        out["numberOfFiles"] = (
+            "NaN"
+            if value["number_of_files"] != value["number_of_files"]
+            else "Infinity"
+            if value["number_of_files"] == float("inf")
+            else "-Infinity"
+            if value["number_of_files"] == float("-inf")
+            else value["number_of_files"]
+        )
     if "size_in_gb" in value:
-        out["sizeInGb"] = value["size_in_gb"]
+        out["sizeInGb"] = (
+            "NaN"
+            if value["size_in_gb"] != value["size_in_gb"]
+            else "Infinity"
+            if value["size_in_gb"] == float("inf")
+            else "-Infinity"
+            if value["size_in_gb"] == float("-inf")
+            else value["size_in_gb"]
+        )
     if "kms_key_arn" in value:
         out["kmsKeyArn"] = value["kms_key_arn"]
     if "tags" in value:
@@ -162,29 +178,29 @@ def serialize_json(value: GetMLInputChannelResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetMLInputChannelResponse:
     out: GetMLInputChannelResponse = {}  # type: ignore[typeddict-item]
-    if "membershipIdentifier" in data:
+    if data.get("membershipIdentifier") is not None:
         out["membership_identifier"] = data["membershipIdentifier"]
     else:
         raise DeserializationError(
             "GetMLInputChannelResponse.membership_identifier required"
         )
-    if "collaborationIdentifier" in data:
+    if data.get("collaborationIdentifier") is not None:
         out["collaboration_identifier"] = data["collaborationIdentifier"]
     else:
         raise DeserializationError(
             "GetMLInputChannelResponse.collaboration_identifier required"
         )
-    if "mlInputChannelArn" in data:
+    if data.get("mlInputChannelArn") is not None:
         out["ml_input_channel_arn"] = data["mlInputChannelArn"]
     else:
         raise DeserializationError(
             "GetMLInputChannelResponse.ml_input_channel_arn required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("GetMLInputChannelResponse.name required")
-    if "configuredModelAlgorithmAssociations" in data:
+    if data.get("configuredModelAlgorithmAssociations") is not None:
         import capo_cleanroomsml.types.configured_model_algorithm_association_arn_list
 
         out["configured_model_algorithm_associations"] = (
@@ -196,7 +212,7 @@ def deserialize_json(data: dict) -> GetMLInputChannelResponse:
         raise DeserializationError(
             "GetMLInputChannelResponse.configured_model_algorithm_associations required"
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_cleanroomsml.types.ml_input_channel_status
 
         out["status"] = (
@@ -206,21 +222,21 @@ def deserialize_json(data: dict) -> GetMLInputChannelResponse:
         )
     else:
         raise DeserializationError("GetMLInputChannelResponse.status required")
-    if "statusDetails" in data:
+    if data.get("statusDetails") is not None:
         import capo_cleanroomsml.types.status_details
 
         out["status_details"] = capo_cleanroomsml.types.status_details.deserialize_json(
             data["statusDetails"]
         )
-    if "retentionInDays" in data:
+    if data.get("retentionInDays") is not None:
         out["retention_in_days"] = data["retentionInDays"]
     else:
         raise DeserializationError(
             "GetMLInputChannelResponse.retention_in_days required"
         )
-    if "numberOfRecords" in data:
+    if data.get("numberOfRecords") is not None:
         out["number_of_records"] = data["numberOfRecords"]
-    if "privacyBudgets" in data:
+    if data.get("privacyBudgets") is not None:
         import capo_cleanroomsml.types.privacy_budgets
 
         out["privacy_budgets"] = (
@@ -228,9 +244,9 @@ def deserialize_json(data: dict) -> GetMLInputChannelResponse:
                 data["privacyBudgets"]
             )
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "syntheticDataConfiguration" in data:
+    if data.get("syntheticDataConfiguration") is not None:
         import capo_cleanroomsml.types.synthetic_data_configuration
 
         out["synthetic_data_configuration"] = (
@@ -238,7 +254,7 @@ def deserialize_json(data: dict) -> GetMLInputChannelResponse:
                 data["syntheticDataConfiguration"]
             )
         )
-    if "payerConfiguration" in data:
+    if data.get("payerConfiguration") is not None:
         import capo_cleanroomsml.types.payer_configuration
 
         out["payer_configuration"] = (
@@ -246,27 +262,23 @@ def deserialize_json(data: dict) -> GetMLInputChannelResponse:
                 data["payerConfiguration"]
             )
         )
-    if "createTime" in data:
-        import capo_cleanroomsml.types._prelude.timestamp
+    if data.get("createTime") is not None:
+        import datetime
 
-        out["create_time"] = (
-            capo_cleanroomsml.types._prelude.timestamp.deserialize_json(
-                data["createTime"]
-            )
+        out["create_time"] = datetime.datetime.fromisoformat(
+            data["createTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("GetMLInputChannelResponse.create_time required")
-    if "updateTime" in data:
-        import capo_cleanroomsml.types._prelude.timestamp
+    if data.get("updateTime") is not None:
+        import datetime
 
-        out["update_time"] = (
-            capo_cleanroomsml.types._prelude.timestamp.deserialize_json(
-                data["updateTime"]
-            )
+        out["update_time"] = datetime.datetime.fromisoformat(
+            data["updateTime"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("GetMLInputChannelResponse.update_time required")
-    if "inputChannel" in data:
+    if data.get("inputChannel") is not None:
         import capo_cleanroomsml.types.input_channel
 
         out["input_channel"] = capo_cleanroomsml.types.input_channel.deserialize_json(
@@ -274,15 +286,15 @@ def deserialize_json(data: dict) -> GetMLInputChannelResponse:
         )
     else:
         raise DeserializationError("GetMLInputChannelResponse.input_channel required")
-    if "protectedQueryIdentifier" in data:
+    if data.get("protectedQueryIdentifier") is not None:
         out["protected_query_identifier"] = data["protectedQueryIdentifier"]
-    if "numberOfFiles" in data:
-        out["number_of_files"] = data["numberOfFiles"]
-    if "sizeInGb" in data:
-        out["size_in_gb"] = data["sizeInGb"]
-    if "kmsKeyArn" in data:
+    if data.get("numberOfFiles") is not None:
+        out["number_of_files"] = float(data["numberOfFiles"])
+    if data.get("sizeInGb") is not None:
+        out["size_in_gb"] = float(data["sizeInGb"])
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_cleanroomsml.types.tag_map
 
         out["tags"] = capo_cleanroomsml.types.tag_map.deserialize_json(data["tags"])

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> InstanceStorageConfigs:
 
     out: InstanceStorageConfigs = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.instance_storage_config.deserialize_json(item))
     return out

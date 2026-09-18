@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> CurrentMetricSortCriteriaMaxOne:
 
     out: CurrentMetricSortCriteriaMaxOne = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.current_metric_sort_criteria.deserialize_json(item)
         )

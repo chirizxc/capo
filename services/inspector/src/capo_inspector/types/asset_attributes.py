@@ -77,19 +77,19 @@ def serialize_aws_json_1_1(value: AssetAttributes) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AssetAttributes:
     out: AssetAttributes = {}  # type: ignore[typeddict-item]
-    if "schemaVersion" in data:
+    if data.get("schemaVersion") is not None:
         out["schema_version"] = data["schemaVersion"]
     else:
         out["schema_version"] = 0
-    if "agentId" in data:
+    if data.get("agentId") is not None:
         out["agent_id"] = data["agentId"]
-    if "autoScalingGroup" in data:
+    if data.get("autoScalingGroup") is not None:
         out["auto_scaling_group"] = data["autoScalingGroup"]
-    if "amiId" in data:
+    if data.get("amiId") is not None:
         out["ami_id"] = data["amiId"]
-    if "hostname" in data:
+    if data.get("hostname") is not None:
         out["hostname"] = data["hostname"]
-    if "ipv4Addresses" in data:
+    if data.get("ipv4Addresses") is not None:
         import capo_inspector.types.ipv4_address_list
 
         out["ipv4_addresses"] = (
@@ -97,11 +97,11 @@ def deserialize_aws_json_1_1(data: dict) -> AssetAttributes:
                 data["ipv4Addresses"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_inspector.types.tags
 
         out["tags"] = capo_inspector.types.tags.deserialize_aws_json_1_1(data["tags"])
-    if "networkInterfaces" in data:
+    if data.get("networkInterfaces") is not None:
         import capo_inspector.types.network_interfaces
 
         out["network_interfaces"] = (

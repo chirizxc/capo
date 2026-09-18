@@ -74,7 +74,7 @@ def serialize_json(value: DecimalParameterDeclaration) -> dict:
 
 def deserialize_json(data: dict) -> DecimalParameterDeclaration:
     out: DecimalParameterDeclaration = {}  # type: ignore[typeddict-item]
-    if "ParameterValueType" in data:
+    if data.get("ParameterValueType") is not None:
         import capo_quicksight.types.parameter_value_type
 
         out["parameter_value_type"] = (
@@ -86,11 +86,11 @@ def deserialize_json(data: dict) -> DecimalParameterDeclaration:
         raise DeserializationError(
             "DecimalParameterDeclaration.parameter_value_type required"
         )
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("DecimalParameterDeclaration.name required")
-    if "DefaultValues" in data:
+    if data.get("DefaultValues") is not None:
         import capo_quicksight.types.decimal_default_values
 
         out["default_values"] = (
@@ -98,7 +98,7 @@ def deserialize_json(data: dict) -> DecimalParameterDeclaration:
                 data["DefaultValues"]
             )
         )
-    if "ValueWhenUnset" in data:
+    if data.get("ValueWhenUnset") is not None:
         import capo_quicksight.types.decimal_value_when_unset_configuration
 
         out["value_when_unset"] = (
@@ -106,7 +106,7 @@ def deserialize_json(data: dict) -> DecimalParameterDeclaration:
                 data["ValueWhenUnset"]
             )
         )
-    if "MappedDataSetParameters" in data:
+    if data.get("MappedDataSetParameters") is not None:
         import capo_quicksight.types.mapped_data_set_parameters
 
         out["mapped_data_set_parameters"] = (

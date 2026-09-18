@@ -49,9 +49,9 @@ def serialize_json(value: MessageResponse) -> dict:
 
 def deserialize_json(data: dict) -> MessageResponse:
     out: MessageResponse = {}  # type: ignore[typeddict-item]
-    if "ApplicationId" in data:
+    if data.get("ApplicationId") is not None:
         out["application_id"] = data["ApplicationId"]
-    if "EndpointResult" in data:
+    if data.get("EndpointResult") is not None:
         import capo_pinpoint.types.map_of_endpoint_message_result
 
         out["endpoint_result"] = (
@@ -59,9 +59,9 @@ def deserialize_json(data: dict) -> MessageResponse:
                 data["EndpointResult"]
             )
         )
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
-    if "Result" in data:
+    if data.get("Result") is not None:
         import capo_pinpoint.types.map_of_message_result
 
         out["result"] = capo_pinpoint.types.map_of_message_result.deserialize_json(

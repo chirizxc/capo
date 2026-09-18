@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: PlayerGatewayConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PlayerGatewayConfiguration:
     out: PlayerGatewayConfiguration = {}  # type: ignore[typeddict-item]
-    if "GameServerIpProtocolSupported" in data:
+    if data.get("GameServerIpProtocolSupported") is not None:
         import capo_gamelift.types.game_server_ip_protocol_supported
 
         out["game_server_ip_protocol_supported"] = (

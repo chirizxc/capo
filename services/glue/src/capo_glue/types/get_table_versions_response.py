@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: GetTableVersionsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetTableVersionsResponse:
     out: GetTableVersionsResponse = {}  # type: ignore[typeddict-item]
-    if "TableVersions" in data:
+    if data.get("TableVersions") is not None:
         import capo_glue.types.get_table_versions_list
 
         out["table_versions"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> GetTableVersionsResponse:
                 data["TableVersions"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

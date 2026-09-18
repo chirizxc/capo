@@ -71,28 +71,28 @@ def serialize_json(value: StreamInfo) -> dict:
 
 def deserialize_json(data: dict) -> StreamInfo:
     out: StreamInfo = {}  # type: ignore[typeddict-item]
-    if "DeviceName" in data:
+    if data.get("DeviceName") is not None:
         out["device_name"] = data["DeviceName"]
-    if "StreamName" in data:
+    if data.get("StreamName") is not None:
         out["stream_name"] = data["StreamName"]
-    if "StreamARN" in data:
+    if data.get("StreamARN") is not None:
         out["stream_arn"] = data["StreamARN"]
-    if "MediaType" in data:
+    if data.get("MediaType") is not None:
         out["media_type"] = data["MediaType"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "Version" in data:
+    if data.get("Version") is not None:
         out["version"] = data["Version"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_kinesis_video.types.status
 
         out["status"] = capo_kinesis_video.types.status.deserialize_json(data["Status"])
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_kinesis_video.types.timestamp
 
         out["creation_time"] = capo_kinesis_video.types.timestamp.deserialize_json(
             data["CreationTime"]
         )
-    if "DataRetentionInHours" in data:
+    if data.get("DataRetentionInHours") is not None:
         out["data_retention_in_hours"] = data["DataRetentionInHours"]
     return out

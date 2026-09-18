@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: CostCategorySplitChargeRuleParameter) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CostCategorySplitChargeRuleParameter:
     out: CostCategorySplitChargeRuleParameter = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_cost_explorer.types.cost_category_split_charge_rule_parameter_type
 
         out["type"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> CostCategorySplitChargeRuleParameter
         )
     else:
         raise DeserializationError("CostCategorySplitChargeRuleParameter.type required")
-    if "Values" in data:
+    if data.get("Values") is not None:
         import capo_cost_explorer.types.cost_category_split_charge_rule_parameter_values_list
 
         out["values"] = (

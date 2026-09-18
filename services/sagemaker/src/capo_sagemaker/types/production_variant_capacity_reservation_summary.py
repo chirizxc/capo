@@ -64,9 +64,9 @@ def serialize_aws_json_1_1(value: ProductionVariantCapacityReservationSummary) -
 
 def deserialize_aws_json_1_1(data: dict) -> ProductionVariantCapacityReservationSummary:
     out: ProductionVariantCapacityReservationSummary = {}  # type: ignore[typeddict-item]
-    if "MlReservationArn" in data:
+    if data.get("MlReservationArn") is not None:
         out["ml_reservation_arn"] = data["MlReservationArn"]
-    if "CapacityReservationPreference" in data:
+    if data.get("CapacityReservationPreference") is not None:
         import capo_sagemaker.types.capacity_reservation_preference
 
         out["capacity_reservation_preference"] = (
@@ -74,13 +74,13 @@ def deserialize_aws_json_1_1(data: dict) -> ProductionVariantCapacityReservation
                 data["CapacityReservationPreference"]
             )
         )
-    if "TotalInstanceCount" in data:
+    if data.get("TotalInstanceCount") is not None:
         out["total_instance_count"] = data["TotalInstanceCount"]
-    if "AvailableInstanceCount" in data:
+    if data.get("AvailableInstanceCount") is not None:
         out["available_instance_count"] = data["AvailableInstanceCount"]
-    if "UsedByCurrentEndpoint" in data:
+    if data.get("UsedByCurrentEndpoint") is not None:
         out["used_by_current_endpoint"] = data["UsedByCurrentEndpoint"]
-    if "Ec2CapacityReservations" in data:
+    if data.get("Ec2CapacityReservations") is not None:
         import capo_sagemaker.types.ec2_capacity_reservations_list
 
         out["ec2_capacity_reservations"] = (

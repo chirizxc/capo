@@ -58,21 +58,21 @@ def serialize_json(value: BackendEnvironment) -> dict:
 
 def deserialize_json(data: dict) -> BackendEnvironment:
     out: BackendEnvironment = {}  # type: ignore[typeddict-item]
-    if "backendEnvironmentArn" in data:
+    if data.get("backendEnvironmentArn") is not None:
         out["backend_environment_arn"] = data["backendEnvironmentArn"]
     else:
         raise DeserializationError(
             "BackendEnvironment.backend_environment_arn required"
         )
-    if "environmentName" in data:
+    if data.get("environmentName") is not None:
         out["environment_name"] = data["environmentName"]
     else:
         raise DeserializationError("BackendEnvironment.environment_name required")
-    if "stackName" in data:
+    if data.get("stackName") is not None:
         out["stack_name"] = data["stackName"]
-    if "deploymentArtifacts" in data:
+    if data.get("deploymentArtifacts") is not None:
         out["deployment_artifacts"] = data["deploymentArtifacts"]
-    if "createTime" in data:
+    if data.get("createTime") is not None:
         import capo_amplify.types.create_time
 
         out["create_time"] = capo_amplify.types.create_time.deserialize_json(
@@ -80,7 +80,7 @@ def deserialize_json(data: dict) -> BackendEnvironment:
         )
     else:
         raise DeserializationError("BackendEnvironment.create_time required")
-    if "updateTime" in data:
+    if data.get("updateTime") is not None:
         import capo_amplify.types.update_time
 
         out["update_time"] = capo_amplify.types.update_time.deserialize_json(

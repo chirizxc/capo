@@ -36,21 +36,21 @@ def serialize_json(value: UpdateComponentTypeResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateComponentTypeResponse:
     out: UpdateComponentTypeResponse = {}  # type: ignore[typeddict-item]
-    if "workspaceId" in data:
+    if data.get("workspaceId") is not None:
         out["workspace_id"] = data["workspaceId"]
     else:
         raise DeserializationError("UpdateComponentTypeResponse.workspace_id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("UpdateComponentTypeResponse.arn required")
-    if "componentTypeId" in data:
+    if data.get("componentTypeId") is not None:
         out["component_type_id"] = data["componentTypeId"]
     else:
         raise DeserializationError(
             "UpdateComponentTypeResponse.component_type_id required"
         )
-    if "state" in data:
+    if data.get("state") is not None:
         out["state"] = data["state"]
     else:
         raise DeserializationError("UpdateComponentTypeResponse.state required")

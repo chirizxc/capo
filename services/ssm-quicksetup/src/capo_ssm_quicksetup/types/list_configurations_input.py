@@ -43,18 +43,18 @@ def serialize_json(value: ListConfigurationsInput) -> dict:
 
 def deserialize_json(data: dict) -> ListConfigurationsInput:
     out: ListConfigurationsInput = {}  # type: ignore[typeddict-item]
-    if "StartingToken" in data:
+    if data.get("StartingToken") is not None:
         out["starting_token"] = data["StartingToken"]
-    if "MaxItems" in data:
+    if data.get("MaxItems") is not None:
         out["max_items"] = data["MaxItems"]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_ssm_quicksetup.types.filters_list
 
         out["filters"] = capo_ssm_quicksetup.types.filters_list.deserialize_json(
             data["Filters"]
         )
-    if "ManagerArn" in data:
+    if data.get("ManagerArn") is not None:
         out["manager_arn"] = data["ManagerArn"]
-    if "ConfigurationDefinitionId" in data:
+    if data.get("ConfigurationDefinitionId") is not None:
         out["configuration_definition_id"] = data["ConfigurationDefinitionId"]
     return out

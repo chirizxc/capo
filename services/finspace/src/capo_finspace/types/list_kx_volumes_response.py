@@ -32,12 +32,12 @@ def serialize_json(value: ListKxVolumesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListKxVolumesResponse:
     out: ListKxVolumesResponse = {}  # type: ignore[typeddict-item]
-    if "kxVolumeSummaries" in data:
+    if data.get("kxVolumeSummaries") is not None:
         import capo_finspace.types.kx_volumes
 
         out["kx_volume_summaries"] = capo_finspace.types.kx_volumes.deserialize_json(
             data["kxVolumeSummaries"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

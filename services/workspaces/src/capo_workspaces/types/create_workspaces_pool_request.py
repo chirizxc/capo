@@ -92,23 +92,23 @@ def serialize_aws_json_1_1(value: CreateWorkspacesPoolRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateWorkspacesPoolRequest:
     out: CreateWorkspacesPoolRequest = {}  # type: ignore[typeddict-item]
-    if "PoolName" in data:
+    if data.get("PoolName") is not None:
         out["pool_name"] = data["PoolName"]
     else:
         raise DeserializationError("CreateWorkspacesPoolRequest.pool_name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     else:
         raise DeserializationError("CreateWorkspacesPoolRequest.description required")
-    if "BundleId" in data:
+    if data.get("BundleId") is not None:
         out["bundle_id"] = data["BundleId"]
     else:
         raise DeserializationError("CreateWorkspacesPoolRequest.bundle_id required")
-    if "DirectoryId" in data:
+    if data.get("DirectoryId") is not None:
         out["directory_id"] = data["DirectoryId"]
     else:
         raise DeserializationError("CreateWorkspacesPoolRequest.directory_id required")
-    if "Capacity" in data:
+    if data.get("Capacity") is not None:
         import capo_workspaces.types.capacity
 
         out["capacity"] = capo_workspaces.types.capacity.deserialize_aws_json_1_1(
@@ -116,13 +116,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreateWorkspacesPoolRequest:
         )
     else:
         raise DeserializationError("CreateWorkspacesPoolRequest.capacity required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_workspaces.types.tag_list
 
         out["tags"] = capo_workspaces.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "ApplicationSettings" in data:
+    if data.get("ApplicationSettings") is not None:
         import capo_workspaces.types.application_settings_request
 
         out["application_settings"] = (
@@ -130,7 +130,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateWorkspacesPoolRequest:
                 data["ApplicationSettings"]
             )
         )
-    if "TimeoutSettings" in data:
+    if data.get("TimeoutSettings") is not None:
         import capo_workspaces.types.timeout_settings
 
         out["timeout_settings"] = (
@@ -138,7 +138,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateWorkspacesPoolRequest:
                 data["TimeoutSettings"]
             )
         )
-    if "RunningMode" in data:
+    if data.get("RunningMode") is not None:
         import capo_workspaces.types.pools_running_mode
 
         out["running_mode"] = (

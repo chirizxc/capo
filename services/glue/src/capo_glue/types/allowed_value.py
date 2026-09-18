@@ -31,9 +31,9 @@ def serialize_aws_json_1_1(value: AllowedValue) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AllowedValue:
     out: AllowedValue = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         raise DeserializationError("AllowedValue.value required")

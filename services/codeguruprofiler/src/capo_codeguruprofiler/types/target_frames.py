@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> TargetFrames:
 
     out: TargetFrames = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_codeguruprofiler.types.target_frame.deserialize_json(item))
     return out

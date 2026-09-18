@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: CreateDistributionResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateDistributionResult:
     out: CreateDistributionResult = {}  # type: ignore[typeddict-item]
-    if "distribution" in data:
+    if data.get("distribution") is not None:
         import capo_lightsail.types.lightsail_distribution
 
         out["distribution"] = (
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDistributionResult:
                 data["distribution"]
             )
         )
-    if "operation" in data:
+    if data.get("operation") is not None:
         import capo_lightsail.types.operation
 
         out["operation"] = capo_lightsail.types.operation.deserialize_aws_json_1_1(

@@ -28,13 +28,13 @@ def serialize_aws_json_1_1(value: DisassociateMacSecKeyRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DisassociateMacSecKeyRequest:
     out: DisassociateMacSecKeyRequest = {}  # type: ignore[typeddict-item]
-    if "connectionId" in data:
+    if data.get("connectionId") is not None:
         out["connection_id"] = data["connectionId"]
     else:
         raise DeserializationError(
             "DisassociateMacSecKeyRequest.connection_id required"
         )
-    if "secretARN" in data:
+    if data.get("secretARN") is not None:
         out["secret_arn"] = data["secretARN"]
     else:
         raise DeserializationError("DisassociateMacSecKeyRequest.secret_arn required")

@@ -46,18 +46,18 @@ def serialize_json(value: VoiceTemplateRequest) -> dict:
 
 def deserialize_json(data: dict) -> VoiceTemplateRequest:
     out: VoiceTemplateRequest = {}  # type: ignore[typeddict-item]
-    if "Body" in data:
+    if data.get("Body") is not None:
         out["body"] = data["Body"]
-    if "DefaultSubstitutions" in data:
+    if data.get("DefaultSubstitutions") is not None:
         out["default_substitutions"] = data["DefaultSubstitutions"]
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         out["language_code"] = data["LanguageCode"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_pinpoint.types.map_of__string
 
         out["tags"] = capo_pinpoint.types.map_of__string.deserialize_json(data["tags"])
-    if "TemplateDescription" in data:
+    if data.get("TemplateDescription") is not None:
         out["template_description"] = data["TemplateDescription"]
-    if "VoiceId" in data:
+    if data.get("VoiceId") is not None:
         out["voice_id"] = data["VoiceId"]
     return out

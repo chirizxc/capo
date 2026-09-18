@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> BudgetNotificationsForAccountList:
 
     out: BudgetNotificationsForAccountList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_budgets.types.budget_notifications_for_account.deserialize_aws_json_1_1(
                 item

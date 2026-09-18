@@ -62,7 +62,7 @@ def serialize_json(value: PutConfigurationSetSuppressionOptionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutConfigurationSetSuppressionOptionsRequest:
     out: PutConfigurationSetSuppressionOptionsRequest = {}  # type: ignore[typeddict-item]
-    if "SuppressionScope" in data:
+    if data.get("SuppressionScope") is not None:
         import capo_sesv2.types.suppression_list_scope
 
         out["suppression_scope"] = (
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> PutConfigurationSetSuppressionOptionsRequest
                 data["SuppressionScope"]
             )
         )
-    if "SuppressedReasons" in data:
+    if data.get("SuppressedReasons") is not None:
         import capo_sesv2.types.suppression_list_reasons
 
         out["suppressed_reasons"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> PutConfigurationSetSuppressionOptionsRequest
                 data["SuppressedReasons"]
             )
         )
-    if "ValidationOptions" in data:
+    if data.get("ValidationOptions") is not None:
         import capo_sesv2.types.suppression_validation_options
 
         out["validation_options"] = (

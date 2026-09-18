@@ -37,7 +37,7 @@ def serialize_json(value: FileConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> FileConfiguration:
     out: FileConfiguration = {}  # type: ignore[typeddict-item]
-    if "Folders" in data:
+    if data.get("Folders") is not None:
         import capo_appintegrations.types.folder_list
 
         out["folders"] = capo_appintegrations.types.folder_list.deserialize_json(
@@ -45,7 +45,7 @@ def deserialize_json(data: dict) -> FileConfiguration:
         )
     else:
         raise DeserializationError("FileConfiguration.folders required")
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_appintegrations.types.fields_map
 
         out["filters"] = capo_appintegrations.types.fields_map.deserialize_json(

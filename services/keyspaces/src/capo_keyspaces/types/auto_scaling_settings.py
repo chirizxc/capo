@@ -44,15 +44,15 @@ def serialize_aws_json_1_0(value: AutoScalingSettings) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AutoScalingSettings:
     out: AutoScalingSettings = {}  # type: ignore[typeddict-item]
-    if "autoScalingDisabled" in data:
+    if data.get("autoScalingDisabled") is not None:
         out["auto_scaling_disabled"] = data["autoScalingDisabled"]
     else:
         out["auto_scaling_disabled"] = False
-    if "minimumUnits" in data:
+    if data.get("minimumUnits") is not None:
         out["minimum_units"] = data["minimumUnits"]
-    if "maximumUnits" in data:
+    if data.get("maximumUnits") is not None:
         out["maximum_units"] = data["maximumUnits"]
-    if "scalingPolicy" in data:
+    if data.get("scalingPolicy") is not None:
         import capo_keyspaces.types.auto_scaling_policy
 
         out["scaling_policy"] = (

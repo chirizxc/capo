@@ -27,8 +27,8 @@ def serialize_json(value: AwsSnsTopicSubscription) -> dict:
 
 def deserialize_json(data: dict) -> AwsSnsTopicSubscription:
     out: AwsSnsTopicSubscription = {}  # type: ignore[typeddict-item]
-    if "Endpoint" in data:
+    if data.get("Endpoint") is not None:
         out["endpoint"] = data["Endpoint"]
-    if "Protocol" in data:
+    if data.get("Protocol") is not None:
         out["protocol"] = data["Protocol"]
     return out

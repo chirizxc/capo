@@ -112,31 +112,31 @@ def serialize_aws_json_1_1(value: PipelineExecutionStep) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PipelineExecutionStep:
     out: PipelineExecutionStep = {}  # type: ignore[typeddict-item]
-    if "StepName" in data:
+    if data.get("StepName") is not None:
         out["step_name"] = data["StepName"]
-    if "StepDisplayName" in data:
+    if data.get("StepDisplayName") is not None:
         out["step_display_name"] = data["StepDisplayName"]
-    if "StepDescription" in data:
+    if data.get("StepDescription") is not None:
         out["step_description"] = data["StepDescription"]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["start_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["end_time"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["EndTime"]
         )
-    if "StepStatus" in data:
+    if data.get("StepStatus") is not None:
         import capo_sagemaker.types.step_status
 
         out["step_status"] = capo_sagemaker.types.step_status.deserialize_aws_json_1_1(
             data["StepStatus"]
         )
-    if "CacheHitResult" in data:
+    if data.get("CacheHitResult") is not None:
         import capo_sagemaker.types.cache_hit_result
 
         out["cache_hit_result"] = (
@@ -144,9 +144,9 @@ def deserialize_aws_json_1_1(data: dict) -> PipelineExecutionStep:
                 data["CacheHitResult"]
             )
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
-    if "Metadata" in data:
+    if data.get("Metadata") is not None:
         import capo_sagemaker.types.pipeline_execution_step_metadata
 
         out["metadata"] = (
@@ -154,9 +154,9 @@ def deserialize_aws_json_1_1(data: dict) -> PipelineExecutionStep:
                 data["Metadata"]
             )
         )
-    if "AttemptCount" in data:
+    if data.get("AttemptCount") is not None:
         out["attempt_count"] = data["AttemptCount"]
-    if "SelectiveExecutionResult" in data:
+    if data.get("SelectiveExecutionResult") is not None:
         import capo_sagemaker.types.selective_execution_result
 
         out["selective_execution_result"] = (

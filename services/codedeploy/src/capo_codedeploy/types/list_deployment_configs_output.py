@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListDeploymentConfigsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListDeploymentConfigsOutput:
     out: ListDeploymentConfigsOutput = {}  # type: ignore[typeddict-item]
-    if "deploymentConfigsList" in data:
+    if data.get("deploymentConfigsList") is not None:
         import capo_codedeploy.types.deployment_configs_list
 
         out["deployment_configs_list"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListDeploymentConfigsOutput:
                 data["deploymentConfigsList"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

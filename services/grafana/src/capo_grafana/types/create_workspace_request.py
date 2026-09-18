@@ -164,23 +164,23 @@ def serialize_json(value: CreateWorkspaceRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateWorkspaceRequest:
     out: CreateWorkspaceRequest = {}  # type: ignore[typeddict-item]
-    if "accountAccessType" in data:
+    if data.get("accountAccessType") is not None:
         out["account_access_type"] = data["accountAccessType"]
     else:
         raise DeserializationError(
             "CreateWorkspaceRequest.account_access_type required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "organizationRoleName" in data:
+    if data.get("organizationRoleName") is not None:
         out["organization_role_name"] = data["organizationRoleName"]
-    if "permissionType" in data:
+    if data.get("permissionType") is not None:
         out["permission_type"] = data["permissionType"]
     else:
         raise DeserializationError("CreateWorkspaceRequest.permission_type required")
-    if "stackSetName" in data:
+    if data.get("stackSetName") is not None:
         out["stack_set_name"] = data["stackSetName"]
-    if "workspaceDataSources" in data:
+    if data.get("workspaceDataSources") is not None:
         import capo_grafana.types.data_source_types_list
 
         out["workspace_data_sources"] = (
@@ -188,11 +188,11 @@ def deserialize_json(data: dict) -> CreateWorkspaceRequest:
                 data["workspaceDataSources"]
             )
         )
-    if "workspaceDescription" in data:
+    if data.get("workspaceDescription") is not None:
         out["workspace_description"] = data["workspaceDescription"]
-    if "workspaceName" in data:
+    if data.get("workspaceName") is not None:
         out["workspace_name"] = data["workspaceName"]
-    if "workspaceNotificationDestinations" in data:
+    if data.get("workspaceNotificationDestinations") is not None:
         import capo_grafana.types.notification_destinations_list
 
         out["workspace_notification_destinations"] = (
@@ -200,7 +200,7 @@ def deserialize_json(data: dict) -> CreateWorkspaceRequest:
                 data["workspaceNotificationDestinations"]
             )
         )
-    if "workspaceOrganizationalUnits" in data:
+    if data.get("workspaceOrganizationalUnits") is not None:
         import capo_grafana.types.organizational_unit_list
 
         out["workspace_organizational_units"] = (
@@ -208,9 +208,9 @@ def deserialize_json(data: dict) -> CreateWorkspaceRequest:
                 data["workspaceOrganizationalUnits"]
             )
         )
-    if "workspaceRoleArn" in data:
+    if data.get("workspaceRoleArn") is not None:
         out["workspace_role_arn"] = data["workspaceRoleArn"]
-    if "authenticationProviders" in data:
+    if data.get("authenticationProviders") is not None:
         import capo_grafana.types.authentication_providers
 
         out["authentication_providers"] = (
@@ -222,11 +222,11 @@ def deserialize_json(data: dict) -> CreateWorkspaceRequest:
         raise DeserializationError(
             "CreateWorkspaceRequest.authentication_providers required"
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_grafana.types.tag_map
 
         out["tags"] = capo_grafana.types.tag_map.deserialize_json(data["tags"])
-    if "vpcConfiguration" in data:
+    if data.get("vpcConfiguration") is not None:
         import capo_grafana.types.vpc_configuration
 
         out["vpc_configuration"] = (
@@ -234,9 +234,9 @@ def deserialize_json(data: dict) -> CreateWorkspaceRequest:
                 data["vpcConfiguration"]
             )
         )
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         out["configuration"] = data["configuration"]
-    if "networkAccessControl" in data:
+    if data.get("networkAccessControl") is not None:
         import capo_grafana.types.network_access_configuration
 
         out["network_access_control"] = (
@@ -244,10 +244,10 @@ def deserialize_json(data: dict) -> CreateWorkspaceRequest:
                 data["networkAccessControl"]
             )
         )
-    if "grafanaVersion" in data:
+    if data.get("grafanaVersion") is not None:
         out["grafana_version"] = data["grafanaVersion"]
-    if "ipAddressType" in data:
+    if data.get("ipAddressType") is not None:
         out["ip_address_type"] = data["ipAddressType"]
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
     return out

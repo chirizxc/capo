@@ -57,7 +57,7 @@ def serialize_json(value: CreateDynamicThingGroupRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDynamicThingGroupRequest:
     out: CreateDynamicThingGroupRequest = {}  # type: ignore[typeddict-item]
-    if "thingGroupProperties" in data:
+    if data.get("thingGroupProperties") is not None:
         import capo_iot.types.thing_group_properties
 
         out["thing_group_properties"] = (
@@ -65,17 +65,17 @@ def deserialize_json(data: dict) -> CreateDynamicThingGroupRequest:
                 data["thingGroupProperties"]
             )
         )
-    if "indexName" in data:
+    if data.get("indexName") is not None:
         out["index_name"] = data["indexName"]
-    if "queryString" in data:
+    if data.get("queryString") is not None:
         out["query_string"] = data["queryString"]
     else:
         raise DeserializationError(
             "CreateDynamicThingGroupRequest.query_string required"
         )
-    if "queryVersion" in data:
+    if data.get("queryVersion") is not None:
         out["query_version"] = data["queryVersion"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_iot.types.tag_list
 
         out["tags"] = capo_iot.types.tag_list.deserialize_json(data["tags"])

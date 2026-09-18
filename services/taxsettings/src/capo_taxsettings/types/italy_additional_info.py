@@ -47,15 +47,15 @@ def serialize_json(value: ItalyAdditionalInfo) -> dict:
 
 def deserialize_json(data: dict) -> ItalyAdditionalInfo:
     out: ItalyAdditionalInfo = {}  # type: ignore[typeddict-item]
-    if "sdiAccountId" in data:
+    if data.get("sdiAccountId") is not None:
         out["sdi_account_id"] = data["sdiAccountId"]
-    if "cigNumber" in data:
+    if data.get("cigNumber") is not None:
         out["cig_number"] = data["cigNumber"]
-    if "cupNumber" in data:
+    if data.get("cupNumber") is not None:
         out["cup_number"] = data["cupNumber"]
-    if "taxCode" in data:
+    if data.get("taxCode") is not None:
         out["tax_code"] = data["taxCode"]
-    if "customerType" in data:
+    if data.get("customerType") is not None:
         import capo_taxsettings.types.customer_type
 
         out["customer_type"] = capo_taxsettings.types.customer_type.deserialize_json(

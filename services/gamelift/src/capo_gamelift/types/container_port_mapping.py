@@ -36,11 +36,11 @@ def serialize_aws_json_1_1(value: ContainerPortMapping) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ContainerPortMapping:
     out: ContainerPortMapping = {}  # type: ignore[typeddict-item]
-    if "ContainerPort" in data:
+    if data.get("ContainerPort") is not None:
         out["container_port"] = data["ContainerPort"]
-    if "ConnectionPort" in data:
+    if data.get("ConnectionPort") is not None:
         out["connection_port"] = data["ConnectionPort"]
-    if "Protocol" in data:
+    if data.get("Protocol") is not None:
         import capo_gamelift.types.ip_protocol
 
         out["protocol"] = capo_gamelift.types.ip_protocol.deserialize_aws_json_1_1(

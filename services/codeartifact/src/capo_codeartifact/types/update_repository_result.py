@@ -31,7 +31,7 @@ def serialize_json(value: UpdateRepositoryResult) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRepositoryResult:
     out: UpdateRepositoryResult = {}  # type: ignore[typeddict-item]
-    if "repository" in data:
+    if data.get("repository") is not None:
         import capo_codeartifact.types.repository_description
 
         out["repository"] = (

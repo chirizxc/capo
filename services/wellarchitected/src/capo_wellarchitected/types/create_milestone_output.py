@@ -28,8 +28,8 @@ def serialize_json(value: CreateMilestoneOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateMilestoneOutput:
     out: CreateMilestoneOutput = {}  # type: ignore[typeddict-item]
-    if "WorkloadId" in data:
+    if data.get("WorkloadId") is not None:
         out["workload_id"] = data["WorkloadId"]
-    if "MilestoneNumber" in data:
+    if data.get("MilestoneNumber") is not None:
         out["milestone_number"] = data["MilestoneNumber"]
     return out

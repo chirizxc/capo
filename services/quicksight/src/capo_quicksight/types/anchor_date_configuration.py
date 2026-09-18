@@ -32,12 +32,12 @@ def serialize_json(value: AnchorDateConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AnchorDateConfiguration:
     out: AnchorDateConfiguration = {}  # type: ignore[typeddict-item]
-    if "AnchorOption" in data:
+    if data.get("AnchorOption") is not None:
         import capo_quicksight.types.anchor_option
 
         out["anchor_option"] = capo_quicksight.types.anchor_option.deserialize_json(
             data["AnchorOption"]
         )
-    if "ParameterName" in data:
+    if data.get("ParameterName") is not None:
         out["parameter_name"] = data["ParameterName"]
     return out

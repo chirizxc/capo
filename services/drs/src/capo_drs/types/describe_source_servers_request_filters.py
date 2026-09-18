@@ -45,7 +45,7 @@ def serialize_json(value: DescribeSourceServersRequestFilters) -> dict:
 
 def deserialize_json(data: dict) -> DescribeSourceServersRequestFilters:
     out: DescribeSourceServersRequestFilters = {}  # type: ignore[typeddict-item]
-    if "sourceServerIDs" in data:
+    if data.get("sourceServerIDs") is not None:
         import capo_drs.types.describe_source_servers_request_filters_i_ds
 
         out["source_server_i_ds"] = (
@@ -53,9 +53,9 @@ def deserialize_json(data: dict) -> DescribeSourceServersRequestFilters:
                 data["sourceServerIDs"]
             )
         )
-    if "hardwareId" in data:
+    if data.get("hardwareId") is not None:
         out["hardware_id"] = data["hardwareId"]
-    if "stagingAccountIDs" in data:
+    if data.get("stagingAccountIDs") is not None:
         import capo_drs.types.account_i_ds
 
         out["staging_account_i_ds"] = capo_drs.types.account_i_ds.deserialize_json(

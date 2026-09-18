@@ -19,7 +19,7 @@ def serialize_json(value: ExecuteGremlinExplainQueryInput) -> dict:
 
 def deserialize_json(data: dict) -> ExecuteGremlinExplainQueryInput:
     out: ExecuteGremlinExplainQueryInput = {}  # type: ignore[typeddict-item]
-    if "gremlin" in data:
+    if data.get("gremlin") is not None:
         out["gremlin_query"] = data["gremlin"]
     else:
         raise DeserializationError(

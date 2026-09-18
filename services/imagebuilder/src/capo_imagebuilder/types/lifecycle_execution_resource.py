@@ -100,11 +100,11 @@ def serialize_json(value: LifecycleExecutionResource) -> dict:
 
 def deserialize_json(data: dict) -> LifecycleExecutionResource:
     out: LifecycleExecutionResource = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         out["resource_id"] = data["resourceId"]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_imagebuilder.types.lifecycle_execution_resource_state
 
         out["state"] = (
@@ -112,7 +112,7 @@ def deserialize_json(data: dict) -> LifecycleExecutionResource:
                 data["state"]
             )
         )
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_imagebuilder.types.lifecycle_execution_resource_action
 
         out["action"] = (
@@ -120,9 +120,9 @@ def deserialize_json(data: dict) -> LifecycleExecutionResource:
                 data["action"]
             )
         )
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
-    if "snapshots" in data:
+    if data.get("snapshots") is not None:
         import capo_imagebuilder.types.lifecycle_execution_snapshot_resource_list
 
         out["snapshots"] = (
@@ -130,13 +130,13 @@ def deserialize_json(data: dict) -> LifecycleExecutionResource:
                 data["snapshots"]
             )
         )
-    if "imageUris" in data:
+    if data.get("imageUris") is not None:
         import capo_imagebuilder.types.string_list
 
         out["image_uris"] = capo_imagebuilder.types.string_list.deserialize_json(
             data["imageUris"]
         )
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_imagebuilder.types.date_time_timestamp
 
         out["start_time"] = (
@@ -144,7 +144,7 @@ def deserialize_json(data: dict) -> LifecycleExecutionResource:
                 data["startTime"]
             )
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_imagebuilder.types.date_time_timestamp
 
         out["end_time"] = capo_imagebuilder.types.date_time_timestamp.deserialize_json(

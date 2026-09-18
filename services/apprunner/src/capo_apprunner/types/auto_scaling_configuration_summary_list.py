@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> AutoScalingConfigurationSummaryList:
 
     out: AutoScalingConfigurationSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_apprunner.types.auto_scaling_configuration_summary.deserialize_aws_json_1_0(
                 item

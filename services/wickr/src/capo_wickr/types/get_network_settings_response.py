@@ -26,7 +26,7 @@ def serialize_json(value: GetNetworkSettingsResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetNetworkSettingsResponse:
     out: GetNetworkSettingsResponse = {}  # type: ignore[typeddict-item]
-    if "settings" in data:
+    if data.get("settings") is not None:
         import capo_wickr.types.settings_list
 
         out["settings"] = capo_wickr.types.settings_list.deserialize_json(

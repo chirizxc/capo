@@ -43,14 +43,14 @@ def serialize_aws_json_1_1(value: NetworkFirewallMissingExpectedRTViolation) -> 
 
 def deserialize_aws_json_1_1(data: dict) -> NetworkFirewallMissingExpectedRTViolation:
     out: NetworkFirewallMissingExpectedRTViolation = {}  # type: ignore[typeddict-item]
-    if "ViolationTarget" in data:
+    if data.get("ViolationTarget") is not None:
         out["violation_target"] = data["ViolationTarget"]
-    if "VPC" in data:
+    if data.get("VPC") is not None:
         out["vpc"] = data["VPC"]
-    if "AvailabilityZone" in data:
+    if data.get("AvailabilityZone") is not None:
         out["availability_zone"] = data["AvailabilityZone"]
-    if "CurrentRouteTable" in data:
+    if data.get("CurrentRouteTable") is not None:
         out["current_route_table"] = data["CurrentRouteTable"]
-    if "ExpectedRouteTable" in data:
+    if data.get("ExpectedRouteTable") is not None:
         out["expected_route_table"] = data["ExpectedRouteTable"]
     return out

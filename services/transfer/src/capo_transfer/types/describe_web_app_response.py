@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: DescribeWebAppResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeWebAppResponse:
     out: DescribeWebAppResponse = {}  # type: ignore[typeddict-item]
-    if "WebApp" in data:
+    if data.get("WebApp") is not None:
         import capo_transfer.types.described_web_app
 
         out["web_app"] = capo_transfer.types.described_web_app.deserialize_aws_json_1_1(

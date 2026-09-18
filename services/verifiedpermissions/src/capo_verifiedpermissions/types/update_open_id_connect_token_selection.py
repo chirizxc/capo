@@ -50,7 +50,7 @@ def serialize_aws_json_1_0(value: UpdateOpenIdConnectTokenSelection) -> dict:
 
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateOpenIdConnectTokenSelection:
-    if "accessTokenOnly" in data:
+    if data.get("accessTokenOnly") is not None:
         import capo_verifiedpermissions.types.update_open_id_connect_access_token_configuration
 
         return {
@@ -58,7 +58,7 @@ def deserialize_aws_json_1_0(data: dict) -> UpdateOpenIdConnectTokenSelection:
                 data["accessTokenOnly"]
             )
         }
-    elif "identityTokenOnly" in data:
+    elif data.get("identityTokenOnly") is not None:
         import capo_verifiedpermissions.types.update_open_id_connect_identity_token_configuration
 
         return {

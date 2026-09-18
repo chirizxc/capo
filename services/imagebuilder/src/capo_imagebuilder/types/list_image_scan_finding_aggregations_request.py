@@ -29,10 +29,10 @@ def serialize_json(value: ListImageScanFindingAggregationsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListImageScanFindingAggregationsRequest:
     out: ListImageScanFindingAggregationsRequest = {}  # type: ignore[typeddict-item]
-    if "filter" in data:
+    if data.get("filter") is not None:
         import capo_imagebuilder.types.filter
 
         out["filter"] = capo_imagebuilder.types.filter.deserialize_json(data["filter"])
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

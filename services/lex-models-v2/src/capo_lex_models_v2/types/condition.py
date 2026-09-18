@@ -26,7 +26,7 @@ def serialize_json(value: Condition) -> dict:
 
 def deserialize_json(data: dict) -> Condition:
     out: Condition = {}  # type: ignore[typeddict-item]
-    if "expressionString" in data:
+    if data.get("expressionString") is not None:
         out["expression_string"] = data["expressionString"]
     else:
         raise DeserializationError("Condition.expression_string required")

@@ -93,9 +93,9 @@ def serialize_json(value: GetImportResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetImportResponse:
     out: GetImportResponse = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         import capo_lex_model_building_service.types.resource_type
 
         out["resource_type"] = (
@@ -103,7 +103,7 @@ def deserialize_json(data: dict) -> GetImportResponse:
                 data["resourceType"]
             )
         )
-    if "mergeStrategy" in data:
+    if data.get("mergeStrategy") is not None:
         import capo_lex_model_building_service.types.merge_strategy
 
         out["merge_strategy"] = (
@@ -111,9 +111,9 @@ def deserialize_json(data: dict) -> GetImportResponse:
                 data["mergeStrategy"]
             )
         )
-    if "importId" in data:
+    if data.get("importId") is not None:
         out["import_id"] = data["importId"]
-    if "importStatus" in data:
+    if data.get("importStatus") is not None:
         import capo_lex_model_building_service.types.import_status
 
         out["import_status"] = (
@@ -121,7 +121,7 @@ def deserialize_json(data: dict) -> GetImportResponse:
                 data["importStatus"]
             )
         )
-    if "failureReason" in data:
+    if data.get("failureReason") is not None:
         import capo_lex_model_building_service.types.string_list
 
         out["failure_reason"] = (
@@ -129,7 +129,7 @@ def deserialize_json(data: dict) -> GetImportResponse:
                 data["failureReason"]
             )
         )
-    if "createdDate" in data:
+    if data.get("createdDate") is not None:
         import capo_lex_model_building_service.types.timestamp
 
         out["created_date"] = (

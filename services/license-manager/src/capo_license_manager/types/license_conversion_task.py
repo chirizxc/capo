@@ -101,11 +101,11 @@ def serialize_aws_json_1_1(value: LicenseConversionTask) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LicenseConversionTask:
     out: LicenseConversionTask = {}  # type: ignore[typeddict-item]
-    if "LicenseConversionTaskId" in data:
+    if data.get("LicenseConversionTaskId") is not None:
         out["license_conversion_task_id"] = data["LicenseConversionTaskId"]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "SourceLicenseContext" in data:
+    if data.get("SourceLicenseContext") is not None:
         import capo_license_manager.types.license_conversion_context
 
         out["source_license_context"] = (
@@ -113,7 +113,7 @@ def deserialize_aws_json_1_1(data: dict) -> LicenseConversionTask:
                 data["SourceLicenseContext"]
             )
         )
-    if "DestinationLicenseContext" in data:
+    if data.get("DestinationLicenseContext") is not None:
         import capo_license_manager.types.license_conversion_context
 
         out["destination_license_context"] = (
@@ -121,7 +121,7 @@ def deserialize_aws_json_1_1(data: dict) -> LicenseConversionTask:
                 data["DestinationLicenseContext"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_license_manager.types.license_conversion_task_status
 
         out["status"] = (
@@ -129,9 +129,9 @@ def deserialize_aws_json_1_1(data: dict) -> LicenseConversionTask:
                 data["Status"]
             )
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_license_manager.types.date_time
 
         out["start_time"] = (
@@ -139,7 +139,7 @@ def deserialize_aws_json_1_1(data: dict) -> LicenseConversionTask:
                 data["StartTime"]
             )
         )
-    if "LicenseConversionTime" in data:
+    if data.get("LicenseConversionTime") is not None:
         import capo_license_manager.types.date_time
 
         out["license_conversion_time"] = (
@@ -147,7 +147,7 @@ def deserialize_aws_json_1_1(data: dict) -> LicenseConversionTask:
                 data["LicenseConversionTime"]
             )
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_license_manager.types.date_time
 
         out["end_time"] = capo_license_manager.types.date_time.deserialize_aws_json_1_1(

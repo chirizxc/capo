@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: ProcessingResources) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProcessingResources:
     out: ProcessingResources = {}  # type: ignore[typeddict-item]
-    if "ClusterConfig" in data:
+    if data.get("ClusterConfig") is not None:
         import capo_sagemaker.types.processing_cluster_config
 
         out["cluster_config"] = (

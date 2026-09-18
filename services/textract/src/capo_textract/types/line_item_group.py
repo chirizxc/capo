@@ -32,9 +32,9 @@ def serialize_aws_json_1_1(value: LineItemGroup) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LineItemGroup:
     out: LineItemGroup = {}  # type: ignore[typeddict-item]
-    if "LineItemGroupIndex" in data:
+    if data.get("LineItemGroupIndex") is not None:
         out["line_item_group_index"] = data["LineItemGroupIndex"]
-    if "LineItems" in data:
+    if data.get("LineItems") is not None:
         import capo_textract.types.line_item_list
 
         out["line_items"] = capo_textract.types.line_item_list.deserialize_aws_json_1_1(

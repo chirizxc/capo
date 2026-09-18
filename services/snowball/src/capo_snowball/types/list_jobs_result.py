@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListJobsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListJobsResult:
     out: ListJobsResult = {}  # type: ignore[typeddict-item]
-    if "JobListEntries" in data:
+    if data.get("JobListEntries") is not None:
         import capo_snowball.types.job_list_entry_list
 
         out["job_list_entries"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListJobsResult:
                 data["JobListEntries"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

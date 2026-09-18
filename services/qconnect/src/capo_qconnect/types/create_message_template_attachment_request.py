@@ -43,24 +43,24 @@ def serialize_json(value: CreateMessageTemplateAttachmentRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateMessageTemplateAttachmentRequest:
     out: CreateMessageTemplateAttachmentRequest = {}  # type: ignore[typeddict-item]
-    if "contentDisposition" in data:
+    if data.get("contentDisposition") is not None:
         out["content_disposition"] = data["contentDisposition"]
     else:
         raise DeserializationError(
             "CreateMessageTemplateAttachmentRequest.content_disposition required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError(
             "CreateMessageTemplateAttachmentRequest.name required"
         )
-    if "body" in data:
+    if data.get("body") is not None:
         out["body"] = data["body"]
     else:
         raise DeserializationError(
             "CreateMessageTemplateAttachmentRequest.body required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

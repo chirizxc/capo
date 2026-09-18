@@ -26,10 +26,10 @@ def serialize_json(value: GetSolVnfcResourceInfoMetadata) -> dict:
 
 def deserialize_json(data: dict) -> GetSolVnfcResourceInfoMetadata:
     out: GetSolVnfcResourceInfoMetadata = {}  # type: ignore[typeddict-item]
-    if "nodeGroup" in data:
+    if data.get("nodeGroup") is not None:
         out["node_group"] = data["nodeGroup"]
-    if "cluster" in data:
+    if data.get("cluster") is not None:
         out["cluster"] = data["cluster"]
-    if "helmChart" in data:
+    if data.get("helmChart") is not None:
         out["helm_chart"] = data["helmChart"]
     return out

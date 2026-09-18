@@ -30,11 +30,11 @@ def serialize_aws_json_1_0(value: ActivityTaskCancelRequestedEventAttributes) ->
 
 def deserialize_aws_json_1_0(data: dict) -> ActivityTaskCancelRequestedEventAttributes:
     out: ActivityTaskCancelRequestedEventAttributes = {}  # type: ignore[typeddict-item]
-    if "decisionTaskCompletedEventId" in data:
+    if data.get("decisionTaskCompletedEventId") is not None:
         out["decision_task_completed_event_id"] = data["decisionTaskCompletedEventId"]
     else:
         out["decision_task_completed_event_id"] = 0
-    if "activityId" in data:
+    if data.get("activityId") is not None:
         out["activity_id"] = data["activityId"]
     else:
         raise DeserializationError(

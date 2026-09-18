@@ -37,11 +37,11 @@ def serialize_json(value: DescribeQAppPermissionsOutput) -> dict:
 
 def deserialize_json(data: dict) -> DescribeQAppPermissionsOutput:
     out: DescribeQAppPermissionsOutput = {}  # type: ignore[typeddict-item]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
-    if "appId" in data:
+    if data.get("appId") is not None:
         out["app_id"] = data["appId"]
-    if "permissions" in data:
+    if data.get("permissions") is not None:
         import capo_qapps.types.permissions_output_list
 
         out["permissions"] = capo_qapps.types.permissions_output_list.deserialize_json(

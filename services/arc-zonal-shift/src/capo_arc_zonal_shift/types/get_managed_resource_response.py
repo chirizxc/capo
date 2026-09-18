@@ -89,11 +89,11 @@ def serialize_json(value: GetManagedResourceResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetManagedResourceResponse:
     out: GetManagedResourceResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "appliedWeights" in data:
+    if data.get("appliedWeights") is not None:
         import capo_arc_zonal_shift.types.applied_weights
 
         out["applied_weights"] = (
@@ -105,7 +105,7 @@ def deserialize_json(data: dict) -> GetManagedResourceResponse:
         raise DeserializationError(
             "GetManagedResourceResponse.applied_weights required"
         )
-    if "zonalShifts" in data:
+    if data.get("zonalShifts") is not None:
         import capo_arc_zonal_shift.types.zonal_shifts_in_resource
 
         out["zonal_shifts"] = (
@@ -115,7 +115,7 @@ def deserialize_json(data: dict) -> GetManagedResourceResponse:
         )
     else:
         raise DeserializationError("GetManagedResourceResponse.zonal_shifts required")
-    if "autoshifts" in data:
+    if data.get("autoshifts") is not None:
         import capo_arc_zonal_shift.types.autoshifts_in_resource
 
         out["autoshifts"] = (
@@ -123,7 +123,7 @@ def deserialize_json(data: dict) -> GetManagedResourceResponse:
                 data["autoshifts"]
             )
         )
-    if "practiceRunConfiguration" in data:
+    if data.get("practiceRunConfiguration") is not None:
         import capo_arc_zonal_shift.types.practice_run_configuration
 
         out["practice_run_configuration"] = (
@@ -131,7 +131,7 @@ def deserialize_json(data: dict) -> GetManagedResourceResponse:
                 data["practiceRunConfiguration"]
             )
         )
-    if "zonalAutoshiftStatus" in data:
+    if data.get("zonalAutoshiftStatus") is not None:
         import capo_arc_zonal_shift.types.zonal_autoshift_status
 
         out["zonal_autoshift_status"] = (

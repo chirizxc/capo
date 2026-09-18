@@ -38,12 +38,12 @@ def serialize_json(value: UpdateServiceNetworkResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateServiceNetworkResponse:
     out: UpdateServiceNetworkResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "authType" in data:
+    if data.get("authType") is not None:
         out["auth_type"] = data["authType"]
     return out

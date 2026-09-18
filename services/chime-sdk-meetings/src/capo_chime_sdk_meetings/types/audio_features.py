@@ -31,7 +31,7 @@ def serialize_json(value: AudioFeatures) -> dict:
 
 def deserialize_json(data: dict) -> AudioFeatures:
     out: AudioFeatures = {}  # type: ignore[typeddict-item]
-    if "EchoReduction" in data:
+    if data.get("EchoReduction") is not None:
         import capo_chime_sdk_meetings.types.meeting_feature_status
 
         out["echo_reduction"] = (

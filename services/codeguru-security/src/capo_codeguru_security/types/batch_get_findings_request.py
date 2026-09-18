@@ -32,7 +32,7 @@ def serialize_json(value: BatchGetFindingsRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchGetFindingsRequest:
     out: BatchGetFindingsRequest = {}  # type: ignore[typeddict-item]
-    if "findingIdentifiers" in data:
+    if data.get("findingIdentifiers") is not None:
         import capo_codeguru_security.types.finding_identifiers
 
         out["finding_identifiers"] = (

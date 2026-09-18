@@ -27,8 +27,8 @@ def serialize_json(value: Total) -> dict:
 
 def deserialize_json(data: dict) -> Total:
     out: Total = {}  # type: ignore[typeddict-item]
-    if "amount" in data:
+    if data.get("amount") is not None:
         out["amount"] = data["amount"]
-    if "unit" in data:
+    if data.get("unit") is not None:
         out["unit"] = data["unit"]
     return out

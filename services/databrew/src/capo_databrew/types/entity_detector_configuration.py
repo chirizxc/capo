@@ -41,7 +41,7 @@ def serialize_json(value: EntityDetectorConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> EntityDetectorConfiguration:
     out: EntityDetectorConfiguration = {}  # type: ignore[typeddict-item]
-    if "EntityTypes" in data:
+    if data.get("EntityTypes") is not None:
         import capo_databrew.types.entity_type_list
 
         out["entity_types"] = capo_databrew.types.entity_type_list.deserialize_json(
@@ -49,7 +49,7 @@ def deserialize_json(data: dict) -> EntityDetectorConfiguration:
         )
     else:
         raise DeserializationError("EntityDetectorConfiguration.entity_types required")
-    if "AllowedStatistics" in data:
+    if data.get("AllowedStatistics") is not None:
         import capo_databrew.types.allowed_statistic_list
 
         out["allowed_statistics"] = (

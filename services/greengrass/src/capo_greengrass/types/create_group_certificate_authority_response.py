@@ -25,6 +25,6 @@ def serialize_json(value: CreateGroupCertificateAuthorityResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateGroupCertificateAuthorityResponse:
     out: CreateGroupCertificateAuthorityResponse = {}  # type: ignore[typeddict-item]
-    if "GroupCertificateAuthorityArn" in data:
+    if data.get("GroupCertificateAuthorityArn") is not None:
         out["group_certificate_authority_arn"] = data["GroupCertificateAuthorityArn"]
     return out

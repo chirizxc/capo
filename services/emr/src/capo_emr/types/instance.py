@@ -85,37 +85,37 @@ def serialize_aws_json_1_1(value: Instance) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Instance:
     out: Instance = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Ec2InstanceId" in data:
+    if data.get("Ec2InstanceId") is not None:
         out["ec2_instance_id"] = data["Ec2InstanceId"]
-    if "PublicDnsName" in data:
+    if data.get("PublicDnsName") is not None:
         out["public_dns_name"] = data["PublicDnsName"]
-    if "PublicIpAddress" in data:
+    if data.get("PublicIpAddress") is not None:
         out["public_ip_address"] = data["PublicIpAddress"]
-    if "PrivateDnsName" in data:
+    if data.get("PrivateDnsName") is not None:
         out["private_dns_name"] = data["PrivateDnsName"]
-    if "PrivateIpAddress" in data:
+    if data.get("PrivateIpAddress") is not None:
         out["private_ip_address"] = data["PrivateIpAddress"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_emr.types.instance_status
 
         out["status"] = capo_emr.types.instance_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "InstanceGroupId" in data:
+    if data.get("InstanceGroupId") is not None:
         out["instance_group_id"] = data["InstanceGroupId"]
-    if "InstanceFleetId" in data:
+    if data.get("InstanceFleetId") is not None:
         out["instance_fleet_id"] = data["InstanceFleetId"]
-    if "Market" in data:
+    if data.get("Market") is not None:
         import capo_emr.types.market_type
 
         out["market"] = capo_emr.types.market_type.deserialize_aws_json_1_1(
             data["Market"]
         )
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         out["instance_type"] = data["InstanceType"]
-    if "EbsVolumes" in data:
+    if data.get("EbsVolumes") is not None:
         import capo_emr.types.ebs_volume_list
 
         out["ebs_volumes"] = capo_emr.types.ebs_volume_list.deserialize_aws_json_1_1(

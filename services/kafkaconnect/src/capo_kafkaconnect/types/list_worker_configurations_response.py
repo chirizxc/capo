@@ -36,9 +36,9 @@ def serialize_json(value: ListWorkerConfigurationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListWorkerConfigurationsResponse:
     out: ListWorkerConfigurationsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "workerConfigurations" in data:
+    if data.get("workerConfigurations") is not None:
         import capo_kafkaconnect.types.__list_of_worker_configuration_summary
 
         out["worker_configurations"] = (

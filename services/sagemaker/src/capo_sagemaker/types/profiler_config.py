@@ -52,13 +52,13 @@ def serialize_aws_json_1_1(value: ProfilerConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProfilerConfig:
     out: ProfilerConfig = {}  # type: ignore[typeddict-item]
-    if "S3OutputPath" in data:
+    if data.get("S3OutputPath") is not None:
         out["s3_output_path"] = data["S3OutputPath"]
-    if "ProfilingIntervalInMilliseconds" in data:
+    if data.get("ProfilingIntervalInMilliseconds") is not None:
         out["profiling_interval_in_milliseconds"] = data[
             "ProfilingIntervalInMilliseconds"
         ]
-    if "ProfilingParameters" in data:
+    if data.get("ProfilingParameters") is not None:
         import capo_sagemaker.types.profiling_parameters
 
         out["profiling_parameters"] = (
@@ -66,6 +66,6 @@ def deserialize_aws_json_1_1(data: dict) -> ProfilerConfig:
                 data["ProfilingParameters"]
             )
         )
-    if "DisableProfiler" in data:
+    if data.get("DisableProfiler") is not None:
         out["disable_profiler"] = data["DisableProfiler"]
     return out

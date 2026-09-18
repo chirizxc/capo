@@ -95,9 +95,10 @@ class DataLakeNamespaceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_supplychain.types.create_data_lake_namespace_request.CreateDataLakeNamespaceRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["name"] = name
+        input_: capo_supplychain.types.create_data_lake_namespace_request.CreateDataLakeNamespaceRequest = {
+            "instance_id": instance_id,
+            "name": name,
+        }
         if description is not None:
             input_["description"] = description
         if tags is not None:
@@ -108,6 +109,7 @@ class DataLakeNamespaceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -157,15 +159,17 @@ class DataLakeNamespaceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_supplychain.types.get_data_lake_namespace_request.GetDataLakeNamespaceRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["name"] = name
+        input_: capo_supplychain.types.get_data_lake_namespace_request.GetDataLakeNamespaceRequest = {
+            "instance_id": instance_id,
+            "name": name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -216,9 +220,10 @@ class DataLakeNamespaceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_supplychain.types.update_data_lake_namespace_request.UpdateDataLakeNamespaceRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["name"] = name
+        input_: capo_supplychain.types.update_data_lake_namespace_request.UpdateDataLakeNamespaceRequest = {
+            "instance_id": instance_id,
+            "name": name,
+        }
         if description is not None:
             input_["description"] = description
 
@@ -227,6 +232,7 @@ class DataLakeNamespaceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -273,15 +279,17 @@ class DataLakeNamespaceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_supplychain.types.delete_data_lake_namespace_request.DeleteDataLakeNamespaceRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["name"] = name
+        input_: capo_supplychain.types.delete_data_lake_namespace_request.DeleteDataLakeNamespaceRequest = {
+            "instance_id": instance_id,
+            "name": name,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -337,8 +345,9 @@ class DataLakeNamespaceResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_supplychain.types.list_data_lake_namespaces_request.ListDataLakeNamespacesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_supplychain.types.list_data_lake_namespaces_request.ListDataLakeNamespacesRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -349,6 +358,7 @@ class DataLakeNamespaceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -407,9 +417,10 @@ class AsyncDataLakeNamespaceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_supplychain.types.create_data_lake_namespace_request.CreateDataLakeNamespaceRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["name"] = name
+        input_: capo_supplychain.types.create_data_lake_namespace_request.CreateDataLakeNamespaceRequest = {
+            "instance_id": instance_id,
+            "name": name,
+        }
         if description is not None:
             input_["description"] = description
         if tags is not None:
@@ -420,6 +431,7 @@ class AsyncDataLakeNamespaceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -470,15 +482,17 @@ class AsyncDataLakeNamespaceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_supplychain.types.get_data_lake_namespace_request.GetDataLakeNamespaceRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["name"] = name
+        input_: capo_supplychain.types.get_data_lake_namespace_request.GetDataLakeNamespaceRequest = {
+            "instance_id": instance_id,
+            "name": name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -530,9 +544,10 @@ class AsyncDataLakeNamespaceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_supplychain.types.update_data_lake_namespace_request.UpdateDataLakeNamespaceRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["name"] = name
+        input_: capo_supplychain.types.update_data_lake_namespace_request.UpdateDataLakeNamespaceRequest = {
+            "instance_id": instance_id,
+            "name": name,
+        }
         if description is not None:
             input_["description"] = description
 
@@ -541,6 +556,7 @@ class AsyncDataLakeNamespaceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -588,15 +604,17 @@ class AsyncDataLakeNamespaceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_supplychain.types.delete_data_lake_namespace_request.DeleteDataLakeNamespaceRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
-        input_["name"] = name
+        input_: capo_supplychain.types.delete_data_lake_namespace_request.DeleteDataLakeNamespaceRequest = {
+            "instance_id": instance_id,
+            "name": name,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -653,8 +671,9 @@ class AsyncDataLakeNamespaceResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_supplychain.types.list_data_lake_namespaces_request.ListDataLakeNamespacesRequest = {}  # type: ignore[typeddict-item]
-        input_["instance_id"] = instance_id
+        input_: capo_supplychain.types.list_data_lake_namespaces_request.ListDataLakeNamespacesRequest = {
+            "instance_id": instance_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -665,4 +684,5 @@ class AsyncDataLakeNamespaceResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

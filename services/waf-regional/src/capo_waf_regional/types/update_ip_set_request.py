@@ -36,15 +36,15 @@ def serialize_aws_json_1_1(value: UpdateIPSetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateIPSetRequest:
     out: UpdateIPSetRequest = {}  # type: ignore[typeddict-item]
-    if "IPSetId" in data:
+    if data.get("IPSetId") is not None:
         out["ip_set_id"] = data["IPSetId"]
     else:
         raise DeserializationError("UpdateIPSetRequest.ip_set_id required")
-    if "ChangeToken" in data:
+    if data.get("ChangeToken") is not None:
         out["change_token"] = data["ChangeToken"]
     else:
         raise DeserializationError("UpdateIPSetRequest.change_token required")
-    if "Updates" in data:
+    if data.get("Updates") is not None:
         import capo_waf_regional.types.ip_set_updates
 
         out["updates"] = (

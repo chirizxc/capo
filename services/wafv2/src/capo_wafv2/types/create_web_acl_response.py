@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: CreateWebACLResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateWebACLResponse:
     out: CreateWebACLResponse = {}  # type: ignore[typeddict-item]
-    if "Summary" in data:
+    if data.get("Summary") is not None:
         import capo_wafv2.types.web_acl_summary
 
         out["summary"] = capo_wafv2.types.web_acl_summary.deserialize_aws_json_1_1(

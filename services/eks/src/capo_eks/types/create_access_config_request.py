@@ -38,11 +38,11 @@ def serialize_json(value: CreateAccessConfigRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateAccessConfigRequest:
     out: CreateAccessConfigRequest = {}  # type: ignore[typeddict-item]
-    if "bootstrapClusterCreatorAdminPermissions" in data:
+    if data.get("bootstrapClusterCreatorAdminPermissions") is not None:
         out["bootstrap_cluster_creator_admin_permissions"] = data[
             "bootstrapClusterCreatorAdminPermissions"
         ]
-    if "authenticationMode" in data:
+    if data.get("authenticationMode") is not None:
         import capo_eks.types.authentication_mode
 
         out["authentication_mode"] = (

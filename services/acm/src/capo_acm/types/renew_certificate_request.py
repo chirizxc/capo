@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: RenewCertificateRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RenewCertificateRequest:
     out: RenewCertificateRequest = {}  # type: ignore[typeddict-item]
-    if "CertificateArn" in data:
+    if data.get("CertificateArn") is not None:
         out["certificate_arn"] = data["CertificateArn"]
     else:
         raise DeserializationError("RenewCertificateRequest.certificate_arn required")

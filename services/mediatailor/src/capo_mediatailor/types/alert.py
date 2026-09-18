@@ -57,15 +57,15 @@ def serialize_json(value: Alert) -> dict:
 
 def deserialize_json(data: dict) -> Alert:
     out: Alert = {}  # type: ignore[typeddict-item]
-    if "AlertCode" in data:
+    if data.get("AlertCode") is not None:
         out["alert_code"] = data["AlertCode"]
     else:
         raise DeserializationError("Alert.alert_code required")
-    if "AlertMessage" in data:
+    if data.get("AlertMessage") is not None:
         out["alert_message"] = data["AlertMessage"]
     else:
         raise DeserializationError("Alert.alert_message required")
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_mediatailor.types.__timestamp_unix
 
         out["last_modified_time"] = (
@@ -75,7 +75,7 @@ def deserialize_json(data: dict) -> Alert:
         )
     else:
         raise DeserializationError("Alert.last_modified_time required")
-    if "RelatedResourceArns" in data:
+    if data.get("RelatedResourceArns") is not None:
         import capo_mediatailor.types.__list_of__string
 
         out["related_resource_arns"] = (
@@ -85,11 +85,11 @@ def deserialize_json(data: dict) -> Alert:
         )
     else:
         raise DeserializationError("Alert.related_resource_arns required")
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     else:
         raise DeserializationError("Alert.resource_arn required")
-    if "Category" in data:
+    if data.get("Category") is not None:
         import capo_mediatailor.types.alert_category
 
         out["category"] = capo_mediatailor.types.alert_category.deserialize_json(

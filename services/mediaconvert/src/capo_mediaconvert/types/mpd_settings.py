@@ -163,7 +163,7 @@ def serialize_json(value: MpdSettings) -> dict:
 
 def deserialize_json(data: dict) -> MpdSettings:
     out: MpdSettings = {}  # type: ignore[typeddict-item]
-    if "accessibilityCaptionHints" in data:
+    if data.get("accessibilityCaptionHints") is not None:
         import capo_mediaconvert.types.mpd_accessibility_caption_hints
 
         out["accessibility_caption_hints"] = (
@@ -171,7 +171,7 @@ def deserialize_json(data: dict) -> MpdSettings:
                 data["accessibilityCaptionHints"]
             )
         )
-    if "audioDuration" in data:
+    if data.get("audioDuration") is not None:
         import capo_mediaconvert.types.mpd_audio_duration
 
         out["audio_duration"] = (
@@ -179,7 +179,7 @@ def deserialize_json(data: dict) -> MpdSettings:
                 data["audioDuration"]
             )
         )
-    if "c2paManifest" in data:
+    if data.get("c2paManifest") is not None:
         import capo_mediaconvert.types.mpd_c2pa_manifest
 
         out["c2pa_manifest"] = (
@@ -187,7 +187,7 @@ def deserialize_json(data: dict) -> MpdSettings:
                 data["c2paManifest"]
             )
         )
-    if "captionContainerType" in data:
+    if data.get("captionContainerType") is not None:
         import capo_mediaconvert.types.mpd_caption_container_type
 
         out["caption_container_type"] = (
@@ -195,15 +195,15 @@ def deserialize_json(data: dict) -> MpdSettings:
                 data["captionContainerType"]
             )
         )
-    if "certificateSecret" in data:
+    if data.get("certificateSecret") is not None:
         out["certificate_secret"] = data["certificateSecret"]
-    if "klvMetadata" in data:
+    if data.get("klvMetadata") is not None:
         import capo_mediaconvert.types.mpd_klv_metadata
 
         out["klv_metadata"] = capo_mediaconvert.types.mpd_klv_metadata.deserialize_json(
             data["klvMetadata"]
         )
-    if "manifestMetadataSignaling" in data:
+    if data.get("manifestMetadataSignaling") is not None:
         import capo_mediaconvert.types.mpd_manifest_metadata_signaling
 
         out["manifest_metadata_signaling"] = (
@@ -211,13 +211,13 @@ def deserialize_json(data: dict) -> MpdSettings:
                 data["manifestMetadataSignaling"]
             )
         )
-    if "scte35Esam" in data:
+    if data.get("scte35Esam") is not None:
         import capo_mediaconvert.types.mpd_scte35_esam
 
         out["scte35_esam"] = capo_mediaconvert.types.mpd_scte35_esam.deserialize_json(
             data["scte35Esam"]
         )
-    if "scte35Source" in data:
+    if data.get("scte35Source") is not None:
         import capo_mediaconvert.types.mpd_scte35_source
 
         out["scte35_source"] = (
@@ -225,9 +225,9 @@ def deserialize_json(data: dict) -> MpdSettings:
                 data["scte35Source"]
             )
         )
-    if "signingKmsKey" in data:
+    if data.get("signingKmsKey") is not None:
         out["signing_kms_key"] = data["signingKmsKey"]
-    if "timedMetadata" in data:
+    if data.get("timedMetadata") is not None:
         import capo_mediaconvert.types.mpd_timed_metadata
 
         out["timed_metadata"] = (
@@ -235,7 +235,7 @@ def deserialize_json(data: dict) -> MpdSettings:
                 data["timedMetadata"]
             )
         )
-    if "timedMetadataBoxVersion" in data:
+    if data.get("timedMetadataBoxVersion") is not None:
         import capo_mediaconvert.types.mpd_timed_metadata_box_version
 
         out["timed_metadata_box_version"] = (
@@ -243,8 +243,8 @@ def deserialize_json(data: dict) -> MpdSettings:
                 data["timedMetadataBoxVersion"]
             )
         )
-    if "timedMetadataSchemeIdUri" in data:
+    if data.get("timedMetadataSchemeIdUri") is not None:
         out["timed_metadata_scheme_id_uri"] = data["timedMetadataSchemeIdUri"]
-    if "timedMetadataValue" in data:
+    if data.get("timedMetadataValue") is not None:
         out["timed_metadata_value"] = data["timedMetadataValue"]
     return out

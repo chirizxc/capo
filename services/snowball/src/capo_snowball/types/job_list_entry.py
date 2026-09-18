@@ -67,25 +67,25 @@ def serialize_aws_json_1_1(value: JobListEntry) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> JobListEntry:
     out: JobListEntry = {}  # type: ignore[typeddict-item]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
-    if "JobState" in data:
+    if data.get("JobState") is not None:
         import capo_snowball.types.job_state
 
         out["job_state"] = capo_snowball.types.job_state.deserialize_aws_json_1_1(
             data["JobState"]
         )
-    if "IsMaster" in data:
+    if data.get("IsMaster") is not None:
         out["is_master"] = data["IsMaster"]
     else:
         out["is_master"] = False
-    if "JobType" in data:
+    if data.get("JobType") is not None:
         import capo_snowball.types.job_type
 
         out["job_type"] = capo_snowball.types.job_type.deserialize_aws_json_1_1(
             data["JobType"]
         )
-    if "SnowballType" in data:
+    if data.get("SnowballType") is not None:
         import capo_snowball.types.snowball_type
 
         out["snowball_type"] = (
@@ -93,12 +93,12 @@ def deserialize_aws_json_1_1(data: dict) -> JobListEntry:
                 data["SnowballType"]
             )
         )
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         import capo_snowball.types.timestamp
 
         out["creation_date"] = capo_snowball.types.timestamp.deserialize_aws_json_1_1(
             data["CreationDate"]
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

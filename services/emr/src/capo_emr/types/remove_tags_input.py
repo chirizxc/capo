@@ -37,14 +37,14 @@ def serialize_aws_json_1_1(value: RemoveTagsInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RemoveTagsInput:
     out: RemoveTagsInput = {}  # type: ignore[typeddict-item]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
-    if "TagKeys" in data:
+    if data.get("TagKeys") is not None:
         import capo_emr.types.string_list
 
         out["tag_keys"] = capo_emr.types.string_list.deserialize_aws_json_1_1(
             data["TagKeys"]
         )
-    if "ClusterId" in data:
+    if data.get("ClusterId") is not None:
         out["cluster_id"] = data["ClusterId"]
     return out

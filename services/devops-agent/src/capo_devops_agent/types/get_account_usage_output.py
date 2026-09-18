@@ -84,7 +84,7 @@ def serialize_json(value: GetAccountUsageOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetAccountUsageOutput:
     out: GetAccountUsageOutput = {}  # type: ignore[typeddict-item]
-    if "monthlyAccountInvestigationHours" in data:
+    if data.get("monthlyAccountInvestigationHours") is not None:
         import capo_devops_agent.types.usage_metric
 
         out["monthly_account_investigation_hours"] = (
@@ -92,7 +92,7 @@ def deserialize_json(data: dict) -> GetAccountUsageOutput:
                 data["monthlyAccountInvestigationHours"]
             )
         )
-    if "monthlyAccountEvaluationHours" in data:
+    if data.get("monthlyAccountEvaluationHours") is not None:
         import capo_devops_agent.types.usage_metric
 
         out["monthly_account_evaluation_hours"] = (
@@ -100,7 +100,7 @@ def deserialize_json(data: dict) -> GetAccountUsageOutput:
                 data["monthlyAccountEvaluationHours"]
             )
         )
-    if "monthlyAccountSystemLearningHours" in data:
+    if data.get("monthlyAccountSystemLearningHours") is not None:
         import capo_devops_agent.types.usage_metric
 
         out["monthly_account_system_learning_hours"] = (
@@ -108,7 +108,7 @@ def deserialize_json(data: dict) -> GetAccountUsageOutput:
                 data["monthlyAccountSystemLearningHours"]
             )
         )
-    if "monthlyAccountOnDemandHours" in data:
+    if data.get("monthlyAccountOnDemandHours") is not None:
         import capo_devops_agent.types.usage_metric
 
         out["monthly_account_on_demand_hours"] = (
@@ -116,7 +116,7 @@ def deserialize_json(data: dict) -> GetAccountUsageOutput:
                 data["monthlyAccountOnDemandHours"]
             )
         )
-    if "usagePeriodStartTime" in data:
+    if data.get("usagePeriodStartTime") is not None:
         import capo_devops_agent.types.date_time
 
         out["usage_period_start_time"] = (
@@ -128,7 +128,7 @@ def deserialize_json(data: dict) -> GetAccountUsageOutput:
         raise DeserializationError(
             "GetAccountUsageOutput.usage_period_start_time required"
         )
-    if "usagePeriodEndTime" in data:
+    if data.get("usagePeriodEndTime") is not None:
         import capo_devops_agent.types.date_time
 
         out["usage_period_end_time"] = (

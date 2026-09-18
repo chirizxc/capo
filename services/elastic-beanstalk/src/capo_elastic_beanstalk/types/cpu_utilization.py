@@ -37,21 +37,125 @@ def serialize_query(
 ) -> None:
     key_prefix = f"{prefix}." if prefix else ""
     if "user" in value:
-        pairs.append((f"{key_prefix}User", str(value["user"])))
+        pairs.append(
+            (
+                f"{key_prefix}User",
+                (
+                    "NaN"
+                    if value["user"] != value["user"]
+                    else "Infinity"
+                    if value["user"] == float("inf")
+                    else "-Infinity"
+                    if value["user"] == float("-inf")
+                    else str(value["user"])
+                ),
+            )
+        )
     if "nice" in value:
-        pairs.append((f"{key_prefix}Nice", str(value["nice"])))
+        pairs.append(
+            (
+                f"{key_prefix}Nice",
+                (
+                    "NaN"
+                    if value["nice"] != value["nice"]
+                    else "Infinity"
+                    if value["nice"] == float("inf")
+                    else "-Infinity"
+                    if value["nice"] == float("-inf")
+                    else str(value["nice"])
+                ),
+            )
+        )
     if "system" in value:
-        pairs.append((f"{key_prefix}System", str(value["system"])))
+        pairs.append(
+            (
+                f"{key_prefix}System",
+                (
+                    "NaN"
+                    if value["system"] != value["system"]
+                    else "Infinity"
+                    if value["system"] == float("inf")
+                    else "-Infinity"
+                    if value["system"] == float("-inf")
+                    else str(value["system"])
+                ),
+            )
+        )
     if "idle" in value:
-        pairs.append((f"{key_prefix}Idle", str(value["idle"])))
+        pairs.append(
+            (
+                f"{key_prefix}Idle",
+                (
+                    "NaN"
+                    if value["idle"] != value["idle"]
+                    else "Infinity"
+                    if value["idle"] == float("inf")
+                    else "-Infinity"
+                    if value["idle"] == float("-inf")
+                    else str(value["idle"])
+                ),
+            )
+        )
     if "io_wait" in value:
-        pairs.append((f"{key_prefix}IOWait", str(value["io_wait"])))
+        pairs.append(
+            (
+                f"{key_prefix}IOWait",
+                (
+                    "NaN"
+                    if value["io_wait"] != value["io_wait"]
+                    else "Infinity"
+                    if value["io_wait"] == float("inf")
+                    else "-Infinity"
+                    if value["io_wait"] == float("-inf")
+                    else str(value["io_wait"])
+                ),
+            )
+        )
     if "irq" in value:
-        pairs.append((f"{key_prefix}IRQ", str(value["irq"])))
+        pairs.append(
+            (
+                f"{key_prefix}IRQ",
+                (
+                    "NaN"
+                    if value["irq"] != value["irq"]
+                    else "Infinity"
+                    if value["irq"] == float("inf")
+                    else "-Infinity"
+                    if value["irq"] == float("-inf")
+                    else str(value["irq"])
+                ),
+            )
+        )
     if "soft_irq" in value:
-        pairs.append((f"{key_prefix}SoftIRQ", str(value["soft_irq"])))
+        pairs.append(
+            (
+                f"{key_prefix}SoftIRQ",
+                (
+                    "NaN"
+                    if value["soft_irq"] != value["soft_irq"]
+                    else "Infinity"
+                    if value["soft_irq"] == float("inf")
+                    else "-Infinity"
+                    if value["soft_irq"] == float("-inf")
+                    else str(value["soft_irq"])
+                ),
+            )
+        )
     if "privileged" in value:
-        pairs.append((f"{key_prefix}Privileged", str(value["privileged"])))
+        pairs.append(
+            (
+                f"{key_prefix}Privileged",
+                (
+                    "NaN"
+                    if value["privileged"] != value["privileged"]
+                    else "Infinity"
+                    if value["privileged"] == float("inf")
+                    else "-Infinity"
+                    if value["privileged"] == float("-inf")
+                    else str(value["privileged"])
+                ),
+            )
+        )
 
 
 def deserialize_query(el: Element) -> CPUUtilization:

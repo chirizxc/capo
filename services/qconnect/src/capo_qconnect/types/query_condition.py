@@ -32,7 +32,7 @@ def serialize_json(value: QueryCondition) -> dict:
 
 
 def deserialize_json(data: dict) -> QueryCondition:
-    if "single" in data:
+    if data.get("single") is not None:
         import capo_qconnect.types.query_condition_item
 
         return {

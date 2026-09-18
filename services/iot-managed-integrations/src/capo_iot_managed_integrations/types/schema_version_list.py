@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> SchemaVersionList:
 
     out: SchemaVersionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot_managed_integrations.types.schema_version_list_item.deserialize_json(
                 item

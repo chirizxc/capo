@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: ExclusionByResourceTypes) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExclusionByResourceTypes:
     out: ExclusionByResourceTypes = {}  # type: ignore[typeddict-item]
-    if "resourceTypes" in data:
+    if data.get("resourceTypes") is not None:
         import capo_config_service.types.resource_type_list
 
         out["resource_types"] = (

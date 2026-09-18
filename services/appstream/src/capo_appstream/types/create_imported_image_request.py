@@ -105,23 +105,23 @@ def serialize_aws_json_1_1(value: CreateImportedImageRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateImportedImageRequest:
     out: CreateImportedImageRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "SourceAmiId" in data:
+    if data.get("SourceAmiId") is not None:
         out["source_ami_id"] = data["SourceAmiId"]
-    if "WorkspaceImageId" in data:
+    if data.get("WorkspaceImageId") is not None:
         out["workspace_image_id"] = data["WorkspaceImageId"]
-    if "IamRoleArn" in data:
+    if data.get("IamRoleArn") is not None:
         out["iam_role_arn"] = data["IamRoleArn"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_appstream.types.tags
 
         out["tags"] = capo_appstream.types.tags.deserialize_aws_json_1_1(data["Tags"])
-    if "RuntimeValidationConfig" in data:
+    if data.get("RuntimeValidationConfig") is not None:
         import capo_appstream.types.runtime_validation_config
 
         out["runtime_validation_config"] = (
@@ -129,7 +129,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateImportedImageRequest:
                 data["RuntimeValidationConfig"]
             )
         )
-    if "AgentSoftwareVersion" in data:
+    if data.get("AgentSoftwareVersion") is not None:
         import capo_appstream.types.agent_software_version
 
         out["agent_software_version"] = (
@@ -137,7 +137,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateImportedImageRequest:
                 data["AgentSoftwareVersion"]
             )
         )
-    if "AppCatalogConfig" in data:
+    if data.get("AppCatalogConfig") is not None:
         import capo_appstream.types.app_catalog_config
 
         out["app_catalog_config"] = (
@@ -145,6 +145,6 @@ def deserialize_aws_json_1_1(data: dict) -> CreateImportedImageRequest:
                 data["AppCatalogConfig"]
             )
         )
-    if "DryRun" in data:
+    if data.get("DryRun") is not None:
         out["dry_run"] = data["DryRun"]
     return out

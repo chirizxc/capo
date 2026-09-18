@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: DeleteProtectConfigurationRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteProtectConfigurationRequest:
     out: DeleteProtectConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "ProtectConfigurationId" in data:
+    if data.get("ProtectConfigurationId") is not None:
         out["protect_configuration_id"] = data["ProtectConfigurationId"]
     else:
         raise DeserializationError(

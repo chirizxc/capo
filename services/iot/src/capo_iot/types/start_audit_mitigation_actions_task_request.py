@@ -47,7 +47,7 @@ def serialize_json(value: StartAuditMitigationActionsTaskRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartAuditMitigationActionsTaskRequest:
     out: StartAuditMitigationActionsTaskRequest = {}  # type: ignore[typeddict-item]
-    if "target" in data:
+    if data.get("target") is not None:
         import capo_iot.types.audit_mitigation_actions_task_target
 
         out["target"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> StartAuditMitigationActionsTaskRequest:
         raise DeserializationError(
             "StartAuditMitigationActionsTaskRequest.target required"
         )
-    if "auditCheckToActionsMapping" in data:
+    if data.get("auditCheckToActionsMapping") is not None:
         import capo_iot.types.audit_check_to_actions_mapping
 
         out["audit_check_to_actions_mapping"] = (
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> StartAuditMitigationActionsTaskRequest:
         raise DeserializationError(
             "StartAuditMitigationActionsTaskRequest.audit_check_to_actions_mapping required"
         )
-    if "clientRequestToken" in data:
+    if data.get("clientRequestToken") is not None:
         out["client_request_token"] = data["clientRequestToken"]
     else:
         raise DeserializationError(

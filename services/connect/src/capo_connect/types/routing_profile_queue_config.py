@@ -38,7 +38,7 @@ def serialize_json(value: RoutingProfileQueueConfig) -> dict:
 
 def deserialize_json(data: dict) -> RoutingProfileQueueConfig:
     out: RoutingProfileQueueConfig = {}  # type: ignore[typeddict-item]
-    if "QueueReference" in data:
+    if data.get("QueueReference") is not None:
         import capo_connect.types.routing_profile_queue_reference
 
         out["queue_reference"] = (
@@ -48,11 +48,11 @@ def deserialize_json(data: dict) -> RoutingProfileQueueConfig:
         )
     else:
         raise DeserializationError("RoutingProfileQueueConfig.queue_reference required")
-    if "Priority" in data:
+    if data.get("Priority") is not None:
         out["priority"] = data["Priority"]
     else:
         raise DeserializationError("RoutingProfileQueueConfig.priority required")
-    if "Delay" in data:
+    if data.get("Delay") is not None:
         out["delay"] = data["Delay"]
     else:
         raise DeserializationError("RoutingProfileQueueConfig.delay required")

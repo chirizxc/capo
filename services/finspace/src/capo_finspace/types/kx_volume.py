@@ -90,29 +90,29 @@ def serialize_json(value: KxVolume) -> dict:
 
 def deserialize_json(data: dict) -> KxVolume:
     out: KxVolume = {}  # type: ignore[typeddict-item]
-    if "volumeName" in data:
+    if data.get("volumeName") is not None:
         out["volume_name"] = data["volumeName"]
-    if "volumeType" in data:
+    if data.get("volumeType") is not None:
         import capo_finspace.types.kx_volume_type
 
         out["volume_type"] = capo_finspace.types.kx_volume_type.deserialize_json(
             data["volumeType"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_finspace.types.kx_volume_status
 
         out["status"] = capo_finspace.types.kx_volume_status.deserialize_json(
             data["status"]
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "statusReason" in data:
+    if data.get("statusReason") is not None:
         out["status_reason"] = data["statusReason"]
-    if "azMode" in data:
+    if data.get("azMode") is not None:
         import capo_finspace.types.kx_az_mode
 
         out["az_mode"] = capo_finspace.types.kx_az_mode.deserialize_json(data["azMode"])
-    if "availabilityZoneIds" in data:
+    if data.get("availabilityZoneIds") is not None:
         import capo_finspace.types.availability_zone_ids
 
         out["availability_zone_ids"] = (
@@ -120,13 +120,13 @@ def deserialize_json(data: dict) -> KxVolume:
                 data["availabilityZoneIds"]
             )
         )
-    if "createdTimestamp" in data:
+    if data.get("createdTimestamp") is not None:
         import capo_finspace.types.timestamp
 
         out["created_timestamp"] = capo_finspace.types.timestamp.deserialize_json(
             data["createdTimestamp"]
         )
-    if "lastModifiedTimestamp" in data:
+    if data.get("lastModifiedTimestamp") is not None:
         import capo_finspace.types.timestamp
 
         out["last_modified_timestamp"] = capo_finspace.types.timestamp.deserialize_json(

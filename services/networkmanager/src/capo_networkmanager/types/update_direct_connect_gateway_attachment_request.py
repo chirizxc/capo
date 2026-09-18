@@ -34,7 +34,7 @@ def serialize_json(value: UpdateDirectConnectGatewayAttachmentRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateDirectConnectGatewayAttachmentRequest:
     out: UpdateDirectConnectGatewayAttachmentRequest = {}  # type: ignore[typeddict-item]
-    if "EdgeLocations" in data:
+    if data.get("EdgeLocations") is not None:
         import capo_networkmanager.types.external_region_code_list
 
         out["edge_locations"] = (

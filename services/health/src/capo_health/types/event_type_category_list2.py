@@ -25,5 +25,7 @@ def deserialize_aws_json_1_1(data: list) -> eventTypeCategoryList2:
 
     out: eventTypeCategoryList2 = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_health.types.event_type_category.deserialize_aws_json_1_1(item))
     return out

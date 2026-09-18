@@ -30,11 +30,11 @@ def serialize_json(value: CodeHook) -> dict:
 
 def deserialize_json(data: dict) -> CodeHook:
     out: CodeHook = {}  # type: ignore[typeddict-item]
-    if "uri" in data:
+    if data.get("uri") is not None:
         out["uri"] = data["uri"]
     else:
         raise DeserializationError("CodeHook.uri required")
-    if "messageVersion" in data:
+    if data.get("messageVersion") is not None:
         out["message_version"] = data["messageVersion"]
     else:
         raise DeserializationError("CodeHook.message_version required")

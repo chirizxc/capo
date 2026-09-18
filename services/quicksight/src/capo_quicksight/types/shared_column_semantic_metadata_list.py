@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> SharedColumnSemanticMetadataList:
 
     out: SharedColumnSemanticMetadataList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.shared_column_semantic_metadata.deserialize_json(item)
         )

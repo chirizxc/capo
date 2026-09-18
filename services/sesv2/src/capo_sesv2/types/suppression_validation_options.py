@@ -32,7 +32,7 @@ def serialize_json(value: SuppressionValidationOptions) -> dict:
 
 def deserialize_json(data: dict) -> SuppressionValidationOptions:
     out: SuppressionValidationOptions = {}  # type: ignore[typeddict-item]
-    if "ConditionThreshold" in data:
+    if data.get("ConditionThreshold") is not None:
         import capo_sesv2.types.suppression_condition_threshold
 
         out["condition_threshold"] = (

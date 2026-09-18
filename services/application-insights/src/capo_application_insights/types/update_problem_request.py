@@ -48,11 +48,11 @@ def serialize_aws_json_1_1(value: UpdateProblemRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateProblemRequest:
     out: UpdateProblemRequest = {}  # type: ignore[typeddict-item]
-    if "ProblemId" in data:
+    if data.get("ProblemId") is not None:
         out["problem_id"] = data["ProblemId"]
     else:
         raise DeserializationError("UpdateProblemRequest.problem_id required")
-    if "UpdateStatus" in data:
+    if data.get("UpdateStatus") is not None:
         import capo_application_insights.types.update_status
 
         out["update_status"] = (
@@ -60,7 +60,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateProblemRequest:
                 data["UpdateStatus"]
             )
         )
-    if "Visibility" in data:
+    if data.get("Visibility") is not None:
         import capo_application_insights.types.visibility
 
         out["visibility"] = (

@@ -98,17 +98,17 @@ def serialize_aws_json_1_1(value: InstanceAccessDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InstanceAccessDetails:
     out: InstanceAccessDetails = {}  # type: ignore[typeddict-item]
-    if "certKey" in data:
+    if data.get("certKey") is not None:
         out["cert_key"] = data["certKey"]
-    if "expiresAt" in data:
+    if data.get("expiresAt") is not None:
         import capo_lightsail.types.iso_date
 
         out["expires_at"] = capo_lightsail.types.iso_date.deserialize_aws_json_1_1(
             data["expiresAt"]
         )
-    if "ipAddress" in data:
+    if data.get("ipAddress") is not None:
         out["ip_address"] = data["ipAddress"]
-    if "ipv6Addresses" in data:
+    if data.get("ipv6Addresses") is not None:
         import capo_lightsail.types.ipv6_address_list
 
         out["ipv6_addresses"] = (
@@ -116,9 +116,9 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceAccessDetails:
                 data["ipv6Addresses"]
             )
         )
-    if "password" in data:
+    if data.get("password") is not None:
         out["password"] = data["password"]
-    if "passwordData" in data:
+    if data.get("passwordData") is not None:
         import capo_lightsail.types.password_data
 
         out["password_data"] = (
@@ -126,9 +126,9 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceAccessDetails:
                 data["passwordData"]
             )
         )
-    if "privateKey" in data:
+    if data.get("privateKey") is not None:
         out["private_key"] = data["privateKey"]
-    if "protocol" in data:
+    if data.get("protocol") is not None:
         import capo_lightsail.types.instance_access_protocol
 
         out["protocol"] = (
@@ -136,11 +136,11 @@ def deserialize_aws_json_1_1(data: dict) -> InstanceAccessDetails:
                 data["protocol"]
             )
         )
-    if "instanceName" in data:
+    if data.get("instanceName") is not None:
         out["instance_name"] = data["instanceName"]
-    if "username" in data:
+    if data.get("username") is not None:
         out["username"] = data["username"]
-    if "hostKeys" in data:
+    if data.get("hostKeys") is not None:
         import capo_lightsail.types.host_keys_list
 
         out["host_keys"] = capo_lightsail.types.host_keys_list.deserialize_aws_json_1_1(

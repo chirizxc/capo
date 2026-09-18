@@ -91,21 +91,21 @@ def serialize_json(value: CreateRoutingProfileRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateRoutingProfileRequest:
     out: CreateRoutingProfileRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateRoutingProfileRequest.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     else:
         raise DeserializationError("CreateRoutingProfileRequest.description required")
-    if "DefaultOutboundQueueId" in data:
+    if data.get("DefaultOutboundQueueId") is not None:
         out["default_outbound_queue_id"] = data["DefaultOutboundQueueId"]
     else:
         raise DeserializationError(
             "CreateRoutingProfileRequest.default_outbound_queue_id required"
         )
-    if "QueueConfigs" in data:
+    if data.get("QueueConfigs") is not None:
         import capo_connect.types.routing_profile_queue_config_list
 
         out["queue_configs"] = (
@@ -113,7 +113,7 @@ def deserialize_json(data: dict) -> CreateRoutingProfileRequest:
                 data["QueueConfigs"]
             )
         )
-    if "ManualAssignmentQueueConfigs" in data:
+    if data.get("ManualAssignmentQueueConfigs") is not None:
         import capo_connect.types.routing_profile_manual_assignment_queue_config_list
 
         out["manual_assignment_queue_configs"] = (
@@ -121,7 +121,7 @@ def deserialize_json(data: dict) -> CreateRoutingProfileRequest:
                 data["ManualAssignmentQueueConfigs"]
             )
         )
-    if "MediaConcurrencies" in data:
+    if data.get("MediaConcurrencies") is not None:
         import capo_connect.types.media_concurrencies
 
         out["media_concurrencies"] = (
@@ -133,11 +133,11 @@ def deserialize_json(data: dict) -> CreateRoutingProfileRequest:
         raise DeserializationError(
             "CreateRoutingProfileRequest.media_concurrencies required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])
-    if "AgentAvailabilityTimer" in data:
+    if data.get("AgentAvailabilityTimer") is not None:
         import capo_connect.types.agent_availability_timer
 
         out["agent_availability_timer"] = (

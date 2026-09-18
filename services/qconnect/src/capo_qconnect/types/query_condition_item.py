@@ -32,15 +32,15 @@ def serialize_json(value: QueryConditionItem) -> dict:
 
 def deserialize_json(data: dict) -> QueryConditionItem:
     out: QueryConditionItem = {}  # type: ignore[typeddict-item]
-    if "field" in data:
+    if data.get("field") is not None:
         out["field"] = data["field"]
     else:
         raise DeserializationError("QueryConditionItem.field required")
-    if "comparator" in data:
+    if data.get("comparator") is not None:
         out["comparator"] = data["comparator"]
     else:
         raise DeserializationError("QueryConditionItem.comparator required")
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         raise DeserializationError("QueryConditionItem.value required")

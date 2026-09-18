@@ -63,7 +63,7 @@ def serialize_json(value: RecommenderUpdate) -> dict:
 
 def deserialize_json(data: dict) -> RecommenderUpdate:
     out: RecommenderUpdate = {}  # type: ignore[typeddict-item]
-    if "RecommenderConfig" in data:
+    if data.get("RecommenderConfig") is not None:
         import capo_customer_profiles.types.recommender_config
 
         out["recommender_config"] = (
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> RecommenderUpdate:
                 data["RecommenderConfig"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_customer_profiles.types.recommender_status
 
         out["status"] = (
@@ -79,13 +79,13 @@ def deserialize_json(data: dict) -> RecommenderUpdate:
                 data["Status"]
             )
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["created_at"] = capo_customer_profiles.types.timestamp.deserialize_json(
             data["CreatedAt"]
         )
-    if "LastUpdatedAt" in data:
+    if data.get("LastUpdatedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["last_updated_at"] = (
@@ -93,6 +93,6 @@ def deserialize_json(data: dict) -> RecommenderUpdate:
                 data["LastUpdatedAt"]
             )
         )
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
     return out

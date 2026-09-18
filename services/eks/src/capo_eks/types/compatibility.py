@@ -36,15 +36,15 @@ def serialize_json(value: Compatibility) -> dict:
 
 def deserialize_json(data: dict) -> Compatibility:
     out: Compatibility = {}  # type: ignore[typeddict-item]
-    if "clusterVersion" in data:
+    if data.get("clusterVersion") is not None:
         out["cluster_version"] = data["clusterVersion"]
-    if "platformVersions" in data:
+    if data.get("platformVersions") is not None:
         import capo_eks.types.string_list
 
         out["platform_versions"] = capo_eks.types.string_list.deserialize_json(
             data["platformVersions"]
         )
-    if "defaultVersion" in data:
+    if data.get("defaultVersion") is not None:
         out["default_version"] = data["defaultVersion"]
     else:
         out["default_version"] = False

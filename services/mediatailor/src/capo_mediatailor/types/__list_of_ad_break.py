@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> __listOfAdBreak:
 
     out: __listOfAdBreak = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mediatailor.types.ad_break.deserialize_json(item))
     return out

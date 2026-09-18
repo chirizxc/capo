@@ -211,7 +211,9 @@ class CloudSearchDomainClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudsearch_domain.types.search_request.SearchRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_cloudsearch_domain.types.search_request.SearchRequest = {
+            "query": query
+        }
         if cursor is not None:
             input_["cursor"] = cursor
         if expr is not None:
@@ -224,7 +226,6 @@ class CloudSearchDomainClient:
             input_["highlight"] = highlight
         if partial is not None:
             input_["partial"] = partial
-        input_["query"] = query
         if query_options is not None:
             input_["query_options"] = query_options
         if query_parser is not None:
@@ -245,6 +246,7 @@ class CloudSearchDomainClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def suggest(
@@ -284,9 +286,10 @@ class CloudSearchDomainClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudsearch_domain.types.suggest_request.SuggestRequest = {}  # type: ignore[typeddict-item]
-        input_["query"] = query
-        input_["suggester"] = suggester
+        input_: capo_cloudsearch_domain.types.suggest_request.SuggestRequest = {
+            "query": query,
+            "suggester": suggester,
+        }
         if size is not None:
             input_["size"] = size
 
@@ -295,6 +298,7 @@ class CloudSearchDomainClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def upload_documents(
@@ -330,15 +334,17 @@ class CloudSearchDomainClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_cloudsearch_domain.types.upload_documents_request.UploadDocumentsRequest = {}  # type: ignore[typeddict-item]
-        input_["documents"] = ensure_sync_iterator(documents)
-        input_["content_type"] = content_type
+        input_: capo_cloudsearch_domain.types.upload_documents_request.UploadDocumentsRequest = {
+            "documents": ensure_sync_iterator(documents),
+            "content_type": content_type,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

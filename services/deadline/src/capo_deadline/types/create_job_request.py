@@ -121,33 +121,33 @@ def serialize_json(value: CreateJobRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateJobRequest:
     out: CreateJobRequest = {}  # type: ignore[typeddict-item]
-    if "template" in data:
+    if data.get("template") is not None:
         out["template"] = data["template"]
-    if "templateType" in data:
+    if data.get("templateType") is not None:
         import capo_deadline.types.job_template_type
 
         out["template_type"] = capo_deadline.types.job_template_type.deserialize_json(
             data["templateType"]
         )
-    if "priority" in data:
+    if data.get("priority") is not None:
         out["priority"] = data["priority"]
     else:
         raise DeserializationError("CreateJobRequest.priority required")
-    if "parameters" in data:
+    if data.get("parameters") is not None:
         import capo_deadline.types.job_parameters
 
         out["parameters"] = capo_deadline.types.job_parameters.deserialize_json(
             data["parameters"]
         )
-    if "attachments" in data:
+    if data.get("attachments") is not None:
         import capo_deadline.types.attachments
 
         out["attachments"] = capo_deadline.types.attachments.deserialize_json(
             data["attachments"]
         )
-    if "storageProfileId" in data:
+    if data.get("storageProfileId") is not None:
         out["storage_profile_id"] = data["storageProfileId"]
-    if "targetTaskRunStatus" in data:
+    if data.get("targetTaskRunStatus") is not None:
         import capo_deadline.types.create_job_target_task_run_status
 
         out["target_task_run_status"] = (
@@ -157,23 +157,23 @@ def deserialize_json(data: dict) -> CreateJobRequest:
         )
     else:
         out["target_task_run_status"] = "READY"
-    if "maxFailedTasksCount" in data:
+    if data.get("maxFailedTasksCount") is not None:
         out["max_failed_tasks_count"] = data["maxFailedTasksCount"]
     else:
         out["max_failed_tasks_count"] = 20
-    if "maxRetriesPerTask" in data:
+    if data.get("maxRetriesPerTask") is not None:
         out["max_retries_per_task"] = data["maxRetriesPerTask"]
     else:
         out["max_retries_per_task"] = 5
-    if "maxWorkerCount" in data:
+    if data.get("maxWorkerCount") is not None:
         out["max_worker_count"] = data["maxWorkerCount"]
-    if "sourceJobId" in data:
+    if data.get("sourceJobId") is not None:
         out["source_job_id"] = data["sourceJobId"]
-    if "nameOverride" in data:
+    if data.get("nameOverride") is not None:
         out["name_override"] = data["nameOverride"]
-    if "descriptionOverride" in data:
+    if data.get("descriptionOverride") is not None:
         out["description_override"] = data["descriptionOverride"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_deadline.types.tags
 
         out["tags"] = capo_deadline.types.tags.deserialize_json(data["tags"])

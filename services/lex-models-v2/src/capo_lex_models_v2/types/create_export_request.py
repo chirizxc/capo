@@ -49,7 +49,7 @@ def serialize_json(value: CreateExportRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateExportRequest:
     out: CreateExportRequest = {}  # type: ignore[typeddict-item]
-    if "resourceSpecification" in data:
+    if data.get("resourceSpecification") is not None:
         import capo_lex_models_v2.types.export_resource_specification
 
         out["resource_specification"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> CreateExportRequest:
         raise DeserializationError(
             "CreateExportRequest.resource_specification required"
         )
-    if "fileFormat" in data:
+    if data.get("fileFormat") is not None:
         import capo_lex_models_v2.types.import_export_file_format
 
         out["file_format"] = (
@@ -71,6 +71,6 @@ def deserialize_json(data: dict) -> CreateExportRequest:
         )
     else:
         raise DeserializationError("CreateExportRequest.file_format required")
-    if "filePassword" in data:
+    if data.get("filePassword") is not None:
         out["file_password"] = data["filePassword"]
     return out

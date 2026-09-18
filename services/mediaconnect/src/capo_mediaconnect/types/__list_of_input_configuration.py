@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfInputConfiguration:
 
     out: __listOfInputConfiguration = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mediaconnect.types.input_configuration.deserialize_json(item))
     return out

@@ -77,27 +77,27 @@ def serialize_json(value: GetAccountResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetAccountResponse:
     out: GetAccountResponse = {}  # type: ignore[typeddict-item]
-    if "DedicatedIpAutoWarmupEnabled" in data:
+    if data.get("DedicatedIpAutoWarmupEnabled") is not None:
         out["dedicated_ip_auto_warmup_enabled"] = data["DedicatedIpAutoWarmupEnabled"]
     else:
         out["dedicated_ip_auto_warmup_enabled"] = False
-    if "EnforcementStatus" in data:
+    if data.get("EnforcementStatus") is not None:
         out["enforcement_status"] = data["EnforcementStatus"]
-    if "ProductionAccessEnabled" in data:
+    if data.get("ProductionAccessEnabled") is not None:
         out["production_access_enabled"] = data["ProductionAccessEnabled"]
     else:
         out["production_access_enabled"] = False
-    if "SendQuota" in data:
+    if data.get("SendQuota") is not None:
         import capo_sesv2.types.send_quota
 
         out["send_quota"] = capo_sesv2.types.send_quota.deserialize_json(
             data["SendQuota"]
         )
-    if "SendingEnabled" in data:
+    if data.get("SendingEnabled") is not None:
         out["sending_enabled"] = data["SendingEnabled"]
     else:
         out["sending_enabled"] = False
-    if "SuppressionAttributes" in data:
+    if data.get("SuppressionAttributes") is not None:
         import capo_sesv2.types.suppression_attributes
 
         out["suppression_attributes"] = (
@@ -105,13 +105,13 @@ def deserialize_json(data: dict) -> GetAccountResponse:
                 data["SuppressionAttributes"]
             )
         )
-    if "Details" in data:
+    if data.get("Details") is not None:
         import capo_sesv2.types.account_details
 
         out["details"] = capo_sesv2.types.account_details.deserialize_json(
             data["Details"]
         )
-    if "VdmAttributes" in data:
+    if data.get("VdmAttributes") is not None:
         import capo_sesv2.types.vdm_attributes
 
         out["vdm_attributes"] = capo_sesv2.types.vdm_attributes.deserialize_json(

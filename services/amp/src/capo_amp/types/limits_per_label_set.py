@@ -34,7 +34,7 @@ def serialize_json(value: LimitsPerLabelSet) -> dict:
 
 def deserialize_json(data: dict) -> LimitsPerLabelSet:
     out: LimitsPerLabelSet = {}  # type: ignore[typeddict-item]
-    if "limits" in data:
+    if data.get("limits") is not None:
         import capo_amp.types.limits_per_label_set_entry
 
         out["limits"] = capo_amp.types.limits_per_label_set_entry.deserialize_json(
@@ -42,7 +42,7 @@ def deserialize_json(data: dict) -> LimitsPerLabelSet:
         )
     else:
         raise DeserializationError("LimitsPerLabelSet.limits required")
-    if "labelSet" in data:
+    if data.get("labelSet") is not None:
         import capo_amp.types.label_set
 
         out["label_set"] = capo_amp.types.label_set.deserialize_json(data["labelSet"])

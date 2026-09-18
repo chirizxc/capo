@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> MemberList:
 
     out: MemberList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_cleanrooms.types.member_specification.deserialize_json(item))
     return out

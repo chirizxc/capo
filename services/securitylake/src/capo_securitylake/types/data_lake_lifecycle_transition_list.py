@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> DataLakeLifecycleTransitionList:
 
     out: DataLakeLifecycleTransitionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securitylake.types.data_lake_lifecycle_transition.deserialize_json(
                 item

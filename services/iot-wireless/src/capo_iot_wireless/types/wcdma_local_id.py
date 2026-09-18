@@ -28,11 +28,11 @@ def serialize_json(value: WcdmaLocalId) -> dict:
 
 def deserialize_json(data: dict) -> WcdmaLocalId:
     out: WcdmaLocalId = {}  # type: ignore[typeddict-item]
-    if "Uarfcndl" in data:
+    if data.get("Uarfcndl") is not None:
         out["uarfcndl"] = data["Uarfcndl"]
     else:
         raise DeserializationError("WcdmaLocalId.uarfcndl required")
-    if "Psc" in data:
+    if data.get("Psc") is not None:
         out["psc"] = data["Psc"]
     else:
         raise DeserializationError("WcdmaLocalId.psc required")

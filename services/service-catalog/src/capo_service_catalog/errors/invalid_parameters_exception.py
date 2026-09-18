@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: InvalidParametersException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidParametersException_:
     out: InvalidParametersException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,18 @@ class InvalidParametersException(ServiceError):
 
     code: str | None = "InvalidParametersException"
 
-    def __init__(self, data: InvalidParametersException_):
+    def __init__(self, data: InvalidParametersException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidParametersException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidParametersException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidParametersException":
+        return cls(deserialize_aws_json_1_1(data), message)

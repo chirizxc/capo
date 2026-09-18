@@ -30,11 +30,11 @@ def serialize_aws_json_1_0(value: GetIdentitySourceInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetIdentitySourceInput:
     out: GetIdentitySourceInput = {}  # type: ignore[typeddict-item]
-    if "policyStoreId" in data:
+    if data.get("policyStoreId") is not None:
         out["policy_store_id"] = data["policyStoreId"]
     else:
         raise DeserializationError("GetIdentitySourceInput.policy_store_id required")
-    if "identitySourceId" in data:
+    if data.get("identitySourceId") is not None:
         out["identity_source_id"] = data["identitySourceId"]
     else:
         raise DeserializationError("GetIdentitySourceInput.identity_source_id required")

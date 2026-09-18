@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> BenefitAllocationStatusList:
 
     out: BenefitAllocationStatusList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_partnercentral_benefits.types.benefit_allocation_status.deserialize_aws_json_1_0(
                 item

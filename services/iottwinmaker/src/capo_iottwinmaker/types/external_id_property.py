@@ -21,5 +21,7 @@ def serialize_json(input_to_serialize: ExternalIdProperty) -> dict:
 def deserialize_json(data: dict) -> ExternalIdProperty:
     out: ExternalIdProperty = {}
     for key, value in data.items():
+        if value is None:
+            continue
         out[key] = value
     return out

@@ -45,13 +45,13 @@ def serialize_json(value: GetCanaryRunsRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetCanaryRunsRequest:
     out: GetCanaryRunsRequest = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "DryRunId" in data:
+    if data.get("DryRunId") is not None:
         out["dry_run_id"] = data["DryRunId"]
-    if "RunType" in data:
+    if data.get("RunType") is not None:
         import capo_synthetics.types.run_type
 
         out["run_type"] = capo_synthetics.types.run_type.deserialize_json(

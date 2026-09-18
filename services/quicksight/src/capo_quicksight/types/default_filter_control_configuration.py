@@ -47,11 +47,11 @@ def serialize_json(value: DefaultFilterControlConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DefaultFilterControlConfiguration:
     out: DefaultFilterControlConfiguration = {}  # type: ignore[typeddict-item]
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
     else:
         out["title"] = ""
-    if "ControlOptions" in data:
+    if data.get("ControlOptions") is not None:
         import capo_quicksight.types.default_filter_control_options
 
         out["control_options"] = (
@@ -63,7 +63,7 @@ def deserialize_json(data: dict) -> DefaultFilterControlConfiguration:
         raise DeserializationError(
             "DefaultFilterControlConfiguration.control_options required"
         )
-    if "ControlTitleFormatText" in data:
+    if data.get("ControlTitleFormatText") is not None:
         import capo_quicksight.types.control_title_format_text
 
         out["control_title_format_text"] = (

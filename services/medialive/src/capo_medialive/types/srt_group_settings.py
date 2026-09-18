@@ -31,7 +31,7 @@ def serialize_json(value: SrtGroupSettings) -> dict:
 
 def deserialize_json(data: dict) -> SrtGroupSettings:
     out: SrtGroupSettings = {}  # type: ignore[typeddict-item]
-    if "inputLossAction" in data:
+    if data.get("inputLossAction") is not None:
         import capo_medialive.types.input_loss_action_for_udp_out
 
         out["input_loss_action"] = (

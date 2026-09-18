@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: GetArchiveSearchRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetArchiveSearchRequest:
     out: GetArchiveSearchRequest = {}  # type: ignore[typeddict-item]
-    if "SearchId" in data:
+    if data.get("SearchId") is not None:
         out["search_id"] = data["SearchId"]
     else:
         raise DeserializationError("GetArchiveSearchRequest.search_id required")

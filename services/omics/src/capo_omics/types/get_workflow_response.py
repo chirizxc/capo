@@ -192,27 +192,27 @@ def serialize_json(value: GetWorkflowResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetWorkflowResponse:
     out: GetWorkflowResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "engine" in data:
+    if data.get("engine") is not None:
         out["engine"] = data["engine"]
-    if "definition" in data:
+    if data.get("definition") is not None:
         out["definition"] = data["definition"]
-    if "main" in data:
+    if data.get("main") is not None:
         out["main"] = data["main"]
-    if "digest" in data:
+    if data.get("digest") is not None:
         out["digest"] = data["digest"]
-    if "parameterTemplate" in data:
+    if data.get("parameterTemplate") is not None:
         import capo_omics.types.workflow_parameter_template
 
         out["parameter_template"] = (
@@ -220,33 +220,33 @@ def deserialize_json(data: dict) -> GetWorkflowResponse:
                 data["parameterTemplate"]
             )
         )
-    if "storageCapacity" in data:
+    if data.get("storageCapacity") is not None:
         out["storage_capacity"] = data["storageCapacity"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_omics.types.workflow_timestamp
 
         out["creation_time"] = capo_omics.types.workflow_timestamp.deserialize_json(
             data["creationTime"]
         )
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_omics.types.tag_map
 
         out["tags"] = capo_omics.types.tag_map.deserialize_json(data["tags"])
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         import capo_omics.types.workflow_metadata
 
         out["metadata"] = capo_omics.types.workflow_metadata.deserialize_json(
             data["metadata"]
         )
-    if "accelerators" in data:
+    if data.get("accelerators") is not None:
         out["accelerators"] = data["accelerators"]
-    if "storageType" in data:
+    if data.get("storageType") is not None:
         out["storage_type"] = data["storageType"]
-    if "uuid" in data:
+    if data.get("uuid") is not None:
         out["uuid"] = data["uuid"]
-    if "containerRegistryMap" in data:
+    if data.get("containerRegistryMap") is not None:
         import capo_omics.types.container_registry_map
 
         out["container_registry_map"] = (
@@ -254,9 +254,9 @@ def deserialize_json(data: dict) -> GetWorkflowResponse:
                 data["containerRegistryMap"]
             )
         )
-    if "readme" in data:
+    if data.get("readme") is not None:
         out["readme"] = data["readme"]
-    if "definitionRepositoryDetails" in data:
+    if data.get("definitionRepositoryDetails") is not None:
         import capo_omics.types.definition_repository_details
 
         out["definition_repository_details"] = (
@@ -264,15 +264,15 @@ def deserialize_json(data: dict) -> GetWorkflowResponse:
                 data["definitionRepositoryDetails"]
             )
         )
-    if "readmePath" in data:
+    if data.get("readmePath") is not None:
         out["readme_path"] = data["readmePath"]
-    if "profiles" in data:
+    if data.get("profiles") is not None:
         import capo_omics.types.workflow_profile_list
 
         out["profiles"] = capo_omics.types.workflow_profile_list.deserialize_json(
             data["profiles"]
         )
-    if "profileParameterTemplates" in data:
+    if data.get("profileParameterTemplates") is not None:
         import capo_omics.types.workflow_profile_parameter_templates
 
         out["profile_parameter_templates"] = (

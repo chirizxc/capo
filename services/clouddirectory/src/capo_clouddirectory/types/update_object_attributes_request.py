@@ -41,7 +41,7 @@ def serialize_json(value: UpdateObjectAttributesRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateObjectAttributesRequest:
     out: UpdateObjectAttributesRequest = {}  # type: ignore[typeddict-item]
-    if "ObjectReference" in data:
+    if data.get("ObjectReference") is not None:
         import capo_clouddirectory.types.object_reference
 
         out["object_reference"] = (
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> UpdateObjectAttributesRequest:
         raise DeserializationError(
             "UpdateObjectAttributesRequest.object_reference required"
         )
-    if "AttributeUpdates" in data:
+    if data.get("AttributeUpdates") is not None:
         import capo_clouddirectory.types.object_attribute_update_list
 
         out["attribute_updates"] = (

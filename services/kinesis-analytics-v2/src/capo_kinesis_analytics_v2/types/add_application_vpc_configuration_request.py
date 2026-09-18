@@ -50,15 +50,15 @@ def serialize_aws_json_1_1(value: AddApplicationVpcConfigurationRequest) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> AddApplicationVpcConfigurationRequest:
     out: AddApplicationVpcConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "ApplicationName" in data:
+    if data.get("ApplicationName") is not None:
         out["application_name"] = data["ApplicationName"]
     else:
         raise DeserializationError(
             "AddApplicationVpcConfigurationRequest.application_name required"
         )
-    if "CurrentApplicationVersionId" in data:
+    if data.get("CurrentApplicationVersionId") is not None:
         out["current_application_version_id"] = data["CurrentApplicationVersionId"]
-    if "VpcConfiguration" in data:
+    if data.get("VpcConfiguration") is not None:
         import capo_kinesis_analytics_v2.types.vpc_configuration
 
         out["vpc_configuration"] = (
@@ -70,6 +70,6 @@ def deserialize_aws_json_1_1(data: dict) -> AddApplicationVpcConfigurationReques
         raise DeserializationError(
             "AddApplicationVpcConfigurationRequest.vpc_configuration required"
         )
-    if "ConditionalToken" in data:
+    if data.get("ConditionalToken") is not None:
         out["conditional_token"] = data["ConditionalToken"]
     return out

@@ -71,11 +71,11 @@ def serialize_json(value: ApiCache) -> dict:
 
 def deserialize_json(data: dict) -> ApiCache:
     out: ApiCache = {}  # type: ignore[typeddict-item]
-    if "ttl" in data:
+    if data.get("ttl") is not None:
         out["ttl"] = data["ttl"]
     else:
         out["ttl"] = 0
-    if "apiCachingBehavior" in data:
+    if data.get("apiCachingBehavior") is not None:
         import capo_appsync.types.api_caching_behavior
 
         out["api_caching_behavior"] = (
@@ -83,25 +83,25 @@ def deserialize_json(data: dict) -> ApiCache:
                 data["apiCachingBehavior"]
             )
         )
-    if "transitEncryptionEnabled" in data:
+    if data.get("transitEncryptionEnabled") is not None:
         out["transit_encryption_enabled"] = data["transitEncryptionEnabled"]
     else:
         out["transit_encryption_enabled"] = False
-    if "atRestEncryptionEnabled" in data:
+    if data.get("atRestEncryptionEnabled") is not None:
         out["at_rest_encryption_enabled"] = data["atRestEncryptionEnabled"]
     else:
         out["at_rest_encryption_enabled"] = False
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_appsync.types.api_cache_type
 
         out["type"] = capo_appsync.types.api_cache_type.deserialize_json(data["type"])
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_appsync.types.api_cache_status
 
         out["status"] = capo_appsync.types.api_cache_status.deserialize_json(
             data["status"]
         )
-    if "healthMetricsConfig" in data:
+    if data.get("healthMetricsConfig") is not None:
         import capo_appsync.types.cache_health_metrics_config
 
         out["health_metrics_config"] = (

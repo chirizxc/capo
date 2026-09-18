@@ -32,9 +32,9 @@ def serialize_json(value: ListConfigsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListConfigsResponse:
     out: ListConfigsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "configList" in data:
+    if data.get("configList") is not None:
         import capo_groundstation.types.config_list
 
         out["config_list"] = capo_groundstation.types.config_list.deserialize_json(

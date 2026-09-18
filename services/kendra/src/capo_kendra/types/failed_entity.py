@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: FailedEntity) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FailedEntity:
     out: FailedEntity = {}  # type: ignore[typeddict-item]
-    if "EntityId" in data:
+    if data.get("EntityId") is not None:
         out["entity_id"] = data["EntityId"]
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
     return out

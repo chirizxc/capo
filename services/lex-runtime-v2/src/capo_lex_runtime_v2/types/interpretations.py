@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> Interpretations:
 
     out: Interpretations = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_lex_runtime_v2.types.interpretation.deserialize_json(item))
     return out

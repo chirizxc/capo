@@ -74,17 +74,17 @@ def serialize_json(value: CreatePluginRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreatePluginRequest:
     out: CreatePluginRequest = {}  # type: ignore[typeddict-item]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
     else:
         raise DeserializationError("CreatePluginRequest.display_name required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_qbusiness.types.plugin_type
 
         out["type"] = capo_qbusiness.types.plugin_type.deserialize_json(data["type"])
     else:
         raise DeserializationError("CreatePluginRequest.type required")
-    if "authConfiguration" in data:
+    if data.get("authConfiguration") is not None:
         import capo_qbusiness.types.plugin_auth_configuration
 
         out["auth_configuration"] = (
@@ -94,9 +94,9 @@ def deserialize_json(data: dict) -> CreatePluginRequest:
         )
     else:
         raise DeserializationError("CreatePluginRequest.auth_configuration required")
-    if "serverUrl" in data:
+    if data.get("serverUrl") is not None:
         out["server_url"] = data["serverUrl"]
-    if "customPluginConfiguration" in data:
+    if data.get("customPluginConfiguration") is not None:
         import capo_qbusiness.types.custom_plugin_configuration
 
         out["custom_plugin_configuration"] = (
@@ -104,10 +104,10 @@ def deserialize_json(data: dict) -> CreatePluginRequest:
                 data["customPluginConfiguration"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_qbusiness.types.tags
 
         out["tags"] = capo_qbusiness.types.tags.deserialize_json(data["tags"])
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

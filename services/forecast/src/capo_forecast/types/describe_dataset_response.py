@@ -97,31 +97,31 @@ def serialize_aws_json_1_1(value: DescribeDatasetResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeDatasetResponse:
     out: DescribeDatasetResponse = {}  # type: ignore[typeddict-item]
-    if "DatasetArn" in data:
+    if data.get("DatasetArn") is not None:
         out["dataset_arn"] = data["DatasetArn"]
-    if "DatasetName" in data:
+    if data.get("DatasetName") is not None:
         out["dataset_name"] = data["DatasetName"]
-    if "Domain" in data:
+    if data.get("Domain") is not None:
         import capo_forecast.types.domain
 
         out["domain"] = capo_forecast.types.domain.deserialize_aws_json_1_1(
             data["Domain"]
         )
-    if "DatasetType" in data:
+    if data.get("DatasetType") is not None:
         import capo_forecast.types.dataset_type
 
         out["dataset_type"] = capo_forecast.types.dataset_type.deserialize_aws_json_1_1(
             data["DatasetType"]
         )
-    if "DataFrequency" in data:
+    if data.get("DataFrequency") is not None:
         out["data_frequency"] = data["DataFrequency"]
-    if "Schema" in data:
+    if data.get("Schema") is not None:
         import capo_forecast.types.schema
 
         out["schema"] = capo_forecast.types.schema.deserialize_aws_json_1_1(
             data["Schema"]
         )
-    if "EncryptionConfig" in data:
+    if data.get("EncryptionConfig") is not None:
         import capo_forecast.types.encryption_config
 
         out["encryption_config"] = (
@@ -129,15 +129,15 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeDatasetResponse:
                 data["EncryptionConfig"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_forecast.types.timestamp
 
         out["creation_time"] = capo_forecast.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModificationTime" in data:
+    if data.get("LastModificationTime") is not None:
         import capo_forecast.types.timestamp
 
         out["last_modification_time"] = (

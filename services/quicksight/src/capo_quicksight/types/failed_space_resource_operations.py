@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> FailedSpaceResourceOperations:
 
     out: FailedSpaceResourceOperations = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_quicksight.types.failed_space_resource_operation.deserialize_json(item)
         )

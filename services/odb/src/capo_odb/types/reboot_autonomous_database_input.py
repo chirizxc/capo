@@ -28,12 +28,12 @@ def serialize_aws_json_1_0(value: RebootAutonomousDatabaseInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RebootAutonomousDatabaseInput:
     out: RebootAutonomousDatabaseInput = {}  # type: ignore[typeddict-item]
-    if "autonomousDatabaseId" in data:
+    if data.get("autonomousDatabaseId") is not None:
         out["autonomous_database_id"] = data["autonomousDatabaseId"]
     else:
         raise DeserializationError(
             "RebootAutonomousDatabaseInput.autonomous_database_id required"
         )
-    if "isOnlineReboot" in data:
+    if data.get("isOnlineReboot") is not None:
         out["is_online_reboot"] = data["isOnlineReboot"]
     return out

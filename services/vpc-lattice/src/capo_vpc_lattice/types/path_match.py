@@ -31,7 +31,7 @@ def serialize_json(value: PathMatch) -> dict:
 
 def deserialize_json(data: dict) -> PathMatch:
     out: PathMatch = {}  # type: ignore[typeddict-item]
-    if "match" in data:
+    if data.get("match") is not None:
         import capo_vpc_lattice.types.path_match_type
 
         out["match"] = capo_vpc_lattice.types.path_match_type.deserialize_json(
@@ -39,6 +39,6 @@ def deserialize_json(data: dict) -> PathMatch:
         )
     else:
         raise DeserializationError("PathMatch.match required")
-    if "caseSensitive" in data:
+    if data.get("caseSensitive") is not None:
         out["case_sensitive"] = data["caseSensitive"]
     return out

@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: BatchDeleteAgentsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchDeleteAgentsResponse:
     out: BatchDeleteAgentsResponse = {}  # type: ignore[typeddict-item]
-    if "errors" in data:
+    if data.get("errors") is not None:
         import capo_application_discovery_service.types.batch_delete_agent_errors
 
         out["errors"] = (

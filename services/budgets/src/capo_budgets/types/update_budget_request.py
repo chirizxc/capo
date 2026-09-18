@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: UpdateBudgetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateBudgetRequest:
     out: UpdateBudgetRequest = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
     else:
         raise DeserializationError("UpdateBudgetRequest.account_id required")
-    if "NewBudget" in data:
+    if data.get("NewBudget") is not None:
         import capo_budgets.types.budget
 
         out["new_budget"] = capo_budgets.types.budget.deserialize_aws_json_1_1(

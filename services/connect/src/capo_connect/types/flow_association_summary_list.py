@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> FlowAssociationSummaryList:
 
     out: FlowAssociationSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.flow_association_summary.deserialize_json(item))
     return out

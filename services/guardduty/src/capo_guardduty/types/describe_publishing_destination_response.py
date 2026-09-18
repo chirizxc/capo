@@ -70,9 +70,9 @@ def serialize_json(value: DescribePublishingDestinationResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribePublishingDestinationResponse:
     out: DescribePublishingDestinationResponse = {}  # type: ignore[typeddict-item]
-    if "destinationId" in data:
+    if data.get("destinationId") is not None:
         out["destination_id"] = data["destinationId"]
-    if "destinationType" in data:
+    if data.get("destinationType") is not None:
         import capo_guardduty.types.destination_type
 
         out["destination_type"] = (
@@ -80,17 +80,17 @@ def deserialize_json(data: dict) -> DescribePublishingDestinationResponse:
                 data["destinationType"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_guardduty.types.publishing_status
 
         out["status"] = capo_guardduty.types.publishing_status.deserialize_json(
             data["status"]
         )
-    if "publishingFailureStartTimestamp" in data:
+    if data.get("publishingFailureStartTimestamp") is not None:
         out["publishing_failure_start_timestamp"] = data[
             "publishingFailureStartTimestamp"
         ]
-    if "destinationProperties" in data:
+    if data.get("destinationProperties") is not None:
         import capo_guardduty.types.destination_properties
 
         out["destination_properties"] = (
@@ -98,7 +98,7 @@ def deserialize_json(data: dict) -> DescribePublishingDestinationResponse:
                 data["destinationProperties"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_guardduty.types.tag_map
 
         out["tags"] = capo_guardduty.types.tag_map.deserialize_json(data["tags"])

@@ -37,11 +37,11 @@ def serialize_aws_json_1_0(value: RequestedTerm) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RequestedTerm:
     out: RequestedTerm = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("RequestedTerm.id required")
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_marketplace_agreement.types.requested_term_configuration
 
         out["configuration"] = (

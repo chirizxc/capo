@@ -28,7 +28,7 @@ def serialize_json(value: RegisteredPagerDutyDetails) -> dict:
 
 def deserialize_json(data: dict) -> RegisteredPagerDutyDetails:
     out: RegisteredPagerDutyDetails = {}  # type: ignore[typeddict-item]
-    if "scopes" in data:
+    if data.get("scopes") is not None:
         import capo_devops_agent.types.pager_duty_scopes_list
 
         out["scopes"] = capo_devops_agent.types.pager_duty_scopes_list.deserialize_json(

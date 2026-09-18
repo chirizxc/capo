@@ -16,4 +16,4 @@ def serialize_json(value: E164PhoneNumberList) -> list:
 
 
 def deserialize_json(data: list) -> E164PhoneNumberList:
-    return list(data)
+    return [item for item in data if item is not None]

@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: StartDirectoryListingResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartDirectoryListingResponse:
     out: StartDirectoryListingResponse = {}  # type: ignore[typeddict-item]
-    if "ListingId" in data:
+    if data.get("ListingId") is not None:
         out["listing_id"] = data["ListingId"]
     else:
         raise DeserializationError("StartDirectoryListingResponse.listing_id required")
-    if "OutputFileName" in data:
+    if data.get("OutputFileName") is not None:
         out["output_file_name"] = data["OutputFileName"]
     else:
         raise DeserializationError(

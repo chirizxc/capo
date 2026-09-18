@@ -65,19 +65,19 @@ def serialize_json(value: VocabularySummary) -> dict:
 
 def deserialize_json(data: dict) -> VocabularySummary:
     out: VocabularySummary = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("VocabularySummary.name required")
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("VocabularySummary.id required")
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("VocabularySummary.arn required")
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         import capo_connect.types.vocabulary_language_code
 
         out["language_code"] = (
@@ -87,7 +87,7 @@ def deserialize_json(data: dict) -> VocabularySummary:
         )
     else:
         raise DeserializationError("VocabularySummary.language_code required")
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_connect.types.vocabulary_state
 
         out["state"] = capo_connect.types.vocabulary_state.deserialize_json(
@@ -95,7 +95,7 @@ def deserialize_json(data: dict) -> VocabularySummary:
         )
     else:
         raise DeserializationError("VocabularySummary.state required")
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_connect.types.vocabulary_last_modified_time
 
         out["last_modified_time"] = (
@@ -105,6 +105,6 @@ def deserialize_json(data: dict) -> VocabularySummary:
         )
     else:
         raise DeserializationError("VocabularySummary.last_modified_time required")
-    if "FailureReason" in data:
+    if data.get("FailureReason") is not None:
         out["failure_reason"] = data["FailureReason"]
     return out

@@ -13,9 +13,9 @@ from capo_license_manager import AsyncLicenseManagerClient
 
 
 async def main():
-    async with AsyncLicenseManagerClient() as s3:
+    async with AsyncLicenseManagerClient() as license_manager:
         # Example: call the accept_grant operation
-        response = await s3.accept_grant()
+        response = await license_manager.accept_grant()
         print(response["grant_arn"])
 ```
 
@@ -29,9 +29,9 @@ from capo_license_manager.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncLicenseManagerClient() as s3:
+    async with AsyncLicenseManagerClient() as license_manager:
         try:
-            await s3.accept_grant()
+            await license_manager.accept_grant()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -48,13 +48,13 @@ from capo_license_manager import AsyncLicenseManagerClient
 
 
 async def main():
-    async with AsyncLicenseManagerClient() as s3:
+    async with AsyncLicenseManagerClient() as license_manager:
         # Default: 3 attempts for every operation
-        response = await s3.accept_grant()
+        response = await license_manager.accept_grant()
 
         # Override per operation
-        response = await s3.accept_grant(config_overrides={"retry_max_attempts": 5})
+        response = await license_manager.accept_grant(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.accept_grant(config_overrides={"retry_max_attempts": 1})
+        response = await license_manager.accept_grant(config_overrides={"retry_max_attempts": 1})
 ```

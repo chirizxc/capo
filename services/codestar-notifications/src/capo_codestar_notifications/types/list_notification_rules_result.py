@@ -36,9 +36,9 @@ def serialize_json(value: ListNotificationRulesResult) -> dict:
 
 def deserialize_json(data: dict) -> ListNotificationRulesResult:
     out: ListNotificationRulesResult = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "NotificationRules" in data:
+    if data.get("NotificationRules") is not None:
         import capo_codestar_notifications.types.notification_rule_batch
 
         out["notification_rules"] = (

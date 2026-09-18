@@ -40,15 +40,15 @@ def serialize_aws_json_1_1(value: ListPortfoliosForProductInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListPortfoliosForProductInput:
     out: ListPortfoliosForProductInput = {}  # type: ignore[typeddict-item]
-    if "AcceptLanguage" in data:
+    if data.get("AcceptLanguage") is not None:
         out["accept_language"] = data["AcceptLanguage"]
-    if "ProductId" in data:
+    if data.get("ProductId") is not None:
         out["product_id"] = data["ProductId"]
     else:
         raise DeserializationError("ListPortfoliosForProductInput.product_id required")
-    if "PageToken" in data:
+    if data.get("PageToken") is not None:
         out["page_token"] = data["PageToken"]
-    if "PageSize" in data:
+    if data.get("PageSize") is not None:
         out["page_size"] = data["PageSize"]
     else:
         out["page_size"] = 0

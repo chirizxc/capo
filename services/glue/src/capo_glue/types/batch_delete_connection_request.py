@@ -37,9 +37,9 @@ def serialize_aws_json_1_1(value: BatchDeleteConnectionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchDeleteConnectionRequest:
     out: BatchDeleteConnectionRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "ConnectionNameList" in data:
+    if data.get("ConnectionNameList") is not None:
         import capo_glue.types.delete_connection_name_list
 
         out["connection_name_list"] = (

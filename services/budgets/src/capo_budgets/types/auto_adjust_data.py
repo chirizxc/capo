@@ -54,7 +54,7 @@ def serialize_aws_json_1_1(value: AutoAdjustData) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AutoAdjustData:
     out: AutoAdjustData = {}  # type: ignore[typeddict-item]
-    if "AutoAdjustType" in data:
+    if data.get("AutoAdjustType") is not None:
         import capo_budgets.types.auto_adjust_type
 
         out["auto_adjust_type"] = (
@@ -64,7 +64,7 @@ def deserialize_aws_json_1_1(data: dict) -> AutoAdjustData:
         )
     else:
         raise DeserializationError("AutoAdjustData.auto_adjust_type required")
-    if "HistoricalOptions" in data:
+    if data.get("HistoricalOptions") is not None:
         import capo_budgets.types.historical_options
 
         out["historical_options"] = (
@@ -72,7 +72,7 @@ def deserialize_aws_json_1_1(data: dict) -> AutoAdjustData:
                 data["HistoricalOptions"]
             )
         )
-    if "LastAutoAdjustTime" in data:
+    if data.get("LastAutoAdjustTime") is not None:
         import capo_budgets.types.generic_timestamp
 
         out["last_auto_adjust_time"] = (

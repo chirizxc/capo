@@ -35,7 +35,7 @@ def serialize_json(value: ListPlaceIndexesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListPlaceIndexesResponse:
     out: ListPlaceIndexesResponse = {}  # type: ignore[typeddict-item]
-    if "Entries" in data:
+    if data.get("Entries") is not None:
         import capo_location.types.list_place_indexes_response_entry_list
 
         out["entries"] = (
@@ -45,6 +45,6 @@ def deserialize_json(data: dict) -> ListPlaceIndexesResponse:
         )
     else:
         raise DeserializationError("ListPlaceIndexesResponse.entries required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

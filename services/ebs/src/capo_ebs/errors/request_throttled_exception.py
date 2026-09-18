@@ -37,9 +37,9 @@ def serialize_json(value: RequestThrottledException_) -> dict:
 
 def deserialize_json(data: dict) -> RequestThrottledException_:
     out: RequestThrottledException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "Reason" in data:
+    if data.get("Reason") is not None:
         import capo_ebs.types.request_throttled_exception_reason
 
         out["reason"] = (
@@ -55,15 +55,18 @@ class RequestThrottledException(ServiceError):
 
     code: str | None = "RequestThrottledException"
 
-    def __init__(self, data: RequestThrottledException_):
+    def __init__(self, data: RequestThrottledException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="RequestThrottledException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "RequestThrottledException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "RequestThrottledException":
+        return cls(deserialize_json(data), message)

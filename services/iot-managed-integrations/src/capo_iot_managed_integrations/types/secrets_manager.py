@@ -28,11 +28,11 @@ def serialize_json(value: SecretsManager) -> dict:
 
 def deserialize_json(data: dict) -> SecretsManager:
     out: SecretsManager = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("SecretsManager.arn required")
-    if "versionId" in data:
+    if data.get("versionId") is not None:
         out["version_id"] = data["versionId"]
     else:
         raise DeserializationError("SecretsManager.version_id required")

@@ -35,10 +35,10 @@ def serialize_json(value: UpdateImagePipelineResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateImagePipelineResponse:
     out: UpdateImagePipelineResponse = {}  # type: ignore[typeddict-item]
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "imagePipelineArn" in data:
+    if data.get("imagePipelineArn") is not None:
         out["image_pipeline_arn"] = data["imagePipelineArn"]
     return out

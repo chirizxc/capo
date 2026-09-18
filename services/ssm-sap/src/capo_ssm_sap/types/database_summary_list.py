@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DatabaseSummaryList:
 
     out: DatabaseSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_ssm_sap.types.database_summary.deserialize_json(item))
     return out

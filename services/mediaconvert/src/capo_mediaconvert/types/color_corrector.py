@@ -115,15 +115,15 @@ def serialize_json(value: ColorCorrector) -> dict:
 
 def deserialize_json(data: dict) -> ColorCorrector:
     out: ColorCorrector = {}  # type: ignore[typeddict-item]
-    if "brightness" in data:
+    if data.get("brightness") is not None:
         out["brightness"] = data["brightness"]
-    if "clipLimits" in data:
+    if data.get("clipLimits") is not None:
         import capo_mediaconvert.types.clip_limits
 
         out["clip_limits"] = capo_mediaconvert.types.clip_limits.deserialize_json(
             data["clipLimits"]
         )
-    if "colorSpaceConversion" in data:
+    if data.get("colorSpaceConversion") is not None:
         import capo_mediaconvert.types.color_space_conversion
 
         out["color_space_conversion"] = (
@@ -131,15 +131,15 @@ def deserialize_json(data: dict) -> ColorCorrector:
                 data["colorSpaceConversion"]
             )
         )
-    if "contrast" in data:
+    if data.get("contrast") is not None:
         out["contrast"] = data["contrast"]
-    if "hdr10Metadata" in data:
+    if data.get("hdr10Metadata") is not None:
         import capo_mediaconvert.types.hdr10_metadata
 
         out["hdr10_metadata"] = capo_mediaconvert.types.hdr10_metadata.deserialize_json(
             data["hdr10Metadata"]
         )
-    if "hdrToSdrToneMapper" in data:
+    if data.get("hdrToSdrToneMapper") is not None:
         import capo_mediaconvert.types.hdr_to_sdr_tone_mapper
 
         out["hdr_to_sdr_tone_mapper"] = (
@@ -147,11 +147,11 @@ def deserialize_json(data: dict) -> ColorCorrector:
                 data["hdrToSdrToneMapper"]
             )
         )
-    if "hue" in data:
+    if data.get("hue") is not None:
         out["hue"] = data["hue"]
-    if "maxLuminance" in data:
+    if data.get("maxLuminance") is not None:
         out["max_luminance"] = data["maxLuminance"]
-    if "sampleRangeConversion" in data:
+    if data.get("sampleRangeConversion") is not None:
         import capo_mediaconvert.types.sample_range_conversion
 
         out["sample_range_conversion"] = (
@@ -159,8 +159,8 @@ def deserialize_json(data: dict) -> ColorCorrector:
                 data["sampleRangeConversion"]
             )
         )
-    if "saturation" in data:
+    if data.get("saturation") is not None:
         out["saturation"] = data["saturation"]
-    if "sdrReferenceWhiteLevel" in data:
+    if data.get("sdrReferenceWhiteLevel") is not None:
         out["sdr_reference_white_level"] = data["sdrReferenceWhiteLevel"]
     return out

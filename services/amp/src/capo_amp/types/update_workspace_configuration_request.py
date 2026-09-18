@@ -53,9 +53,9 @@ def serialize_json(value: UpdateWorkspaceConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateWorkspaceConfigurationRequest:
     out: UpdateWorkspaceConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "limitsPerLabelSet" in data:
+    if data.get("limitsPerLabelSet") is not None:
         import capo_amp.types.limits_per_label_set_list
 
         out["limits_per_label_set"] = (
@@ -63,12 +63,12 @@ def deserialize_json(data: dict) -> UpdateWorkspaceConfigurationRequest:
                 data["limitsPerLabelSet"]
             )
         )
-    if "retentionPeriodInDays" in data:
+    if data.get("retentionPeriodInDays") is not None:
         out["retention_period_in_days"] = data["retentionPeriodInDays"]
-    if "outOfOrderTimeWindowInSeconds" in data:
+    if data.get("outOfOrderTimeWindowInSeconds") is not None:
         out["out_of_order_time_window_in_seconds"] = data[
             "outOfOrderTimeWindowInSeconds"
         ]
-    if "ruleQueryOffsetInSeconds" in data:
+    if data.get("ruleQueryOffsetInSeconds") is not None:
         out["rule_query_offset_in_seconds"] = data["ruleQueryOffsetInSeconds"]
     return out

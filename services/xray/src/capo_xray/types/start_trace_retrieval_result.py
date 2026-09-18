@@ -23,6 +23,6 @@ def serialize_json(value: StartTraceRetrievalResult) -> dict:
 
 def deserialize_json(data: dict) -> StartTraceRetrievalResult:
     out: StartTraceRetrievalResult = {}  # type: ignore[typeddict-item]
-    if "RetrievalToken" in data:
+    if data.get("RetrievalToken") is not None:
         out["retrieval_token"] = data["RetrievalToken"]
     return out

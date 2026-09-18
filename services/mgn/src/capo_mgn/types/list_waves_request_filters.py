@@ -31,12 +31,12 @@ def serialize_json(value: ListWavesRequestFilters) -> dict:
 
 def deserialize_json(data: dict) -> ListWavesRequestFilters:
     out: ListWavesRequestFilters = {}  # type: ignore[typeddict-item]
-    if "waveIDs" in data:
+    if data.get("waveIDs") is not None:
         import capo_mgn.types.wave_i_ds_filter
 
         out["wave_i_ds"] = capo_mgn.types.wave_i_ds_filter.deserialize_json(
             data["waveIDs"]
         )
-    if "isArchived" in data:
+    if data.get("isArchived") is not None:
         out["is_archived"] = data["isArchived"]
     return out

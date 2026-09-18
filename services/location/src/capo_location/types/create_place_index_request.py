@@ -59,19 +59,19 @@ def serialize_json(value: CreatePlaceIndexRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreatePlaceIndexRequest:
     out: CreatePlaceIndexRequest = {}  # type: ignore[typeddict-item]
-    if "IndexName" in data:
+    if data.get("IndexName") is not None:
         out["index_name"] = data["IndexName"]
     else:
         raise DeserializationError("CreatePlaceIndexRequest.index_name required")
-    if "DataSource" in data:
+    if data.get("DataSource") is not None:
         out["data_source"] = data["DataSource"]
     else:
         raise DeserializationError("CreatePlaceIndexRequest.data_source required")
-    if "PricingPlan" in data:
+    if data.get("PricingPlan") is not None:
         out["pricing_plan"] = data["PricingPlan"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DataSourceConfiguration" in data:
+    if data.get("DataSourceConfiguration") is not None:
         import capo_location.types.data_source_configuration
 
         out["data_source_configuration"] = (
@@ -79,7 +79,7 @@ def deserialize_json(data: dict) -> CreatePlaceIndexRequest:
                 data["DataSourceConfiguration"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_location.types.tag_map
 
         out["tags"] = capo_location.types.tag_map.deserialize_json(data["Tags"])

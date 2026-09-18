@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: ResendOperationAuthorizationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResendOperationAuthorizationRequest:
     out: ResendOperationAuthorizationRequest = {}  # type: ignore[typeddict-item]
-    if "OperationId" in data:
+    if data.get("OperationId") is not None:
         out["operation_id"] = data["OperationId"]
     else:
         raise DeserializationError(

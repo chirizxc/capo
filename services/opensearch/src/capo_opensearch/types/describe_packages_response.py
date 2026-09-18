@@ -36,7 +36,7 @@ def serialize_json(value: DescribePackagesResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribePackagesResponse:
     out: DescribePackagesResponse = {}  # type: ignore[typeddict-item]
-    if "PackageDetailsList" in data:
+    if data.get("PackageDetailsList") is not None:
         import capo_opensearch.types.package_details_list
 
         out["package_details_list"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> DescribePackagesResponse:
                 data["PackageDetailsList"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -31,7 +31,7 @@ def serialize_json(value: GrammarSlotTypeSetting) -> dict:
 
 def deserialize_json(data: dict) -> GrammarSlotTypeSetting:
     out: GrammarSlotTypeSetting = {}  # type: ignore[typeddict-item]
-    if "source" in data:
+    if data.get("source") is not None:
         import capo_lex_models_v2.types.grammar_slot_type_source
 
         out["source"] = (

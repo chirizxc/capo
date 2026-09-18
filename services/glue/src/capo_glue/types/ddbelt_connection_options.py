@@ -63,7 +63,7 @@ def serialize_aws_json_1_1(value: DDBELTConnectionOptions) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DDBELTConnectionOptions:
     out: DDBELTConnectionOptions = {}  # type: ignore[typeddict-item]
-    if "DynamodbExport" in data:
+    if data.get("DynamodbExport") is not None:
         import capo_glue.types.ddb_export_type
 
         out["dynamodb_export"] = (
@@ -71,22 +71,22 @@ def deserialize_aws_json_1_1(data: dict) -> DDBELTConnectionOptions:
                 data["DynamodbExport"]
             )
         )
-    if "DynamodbUnnestDDBJson" in data:
+    if data.get("DynamodbUnnestDDBJson") is not None:
         out["dynamodb_unnest_ddb_json"] = data["DynamodbUnnestDDBJson"]
     else:
         out["dynamodb_unnest_ddb_json"] = False
-    if "DynamodbTableArn" in data:
+    if data.get("DynamodbTableArn") is not None:
         out["dynamodb_table_arn"] = data["DynamodbTableArn"]
     else:
         raise DeserializationError(
             "DDBELTConnectionOptions.dynamodb_table_arn required"
         )
-    if "DynamodbS3Bucket" in data:
+    if data.get("DynamodbS3Bucket") is not None:
         out["dynamodb_s3_bucket"] = data["DynamodbS3Bucket"]
-    if "DynamodbS3Prefix" in data:
+    if data.get("DynamodbS3Prefix") is not None:
         out["dynamodb_s3_prefix"] = data["DynamodbS3Prefix"]
-    if "DynamodbS3BucketOwner" in data:
+    if data.get("DynamodbS3BucketOwner") is not None:
         out["dynamodb_s3_bucket_owner"] = data["DynamodbS3BucketOwner"]
-    if "DynamodbStsRoleArn" in data:
+    if data.get("DynamodbStsRoleArn") is not None:
         out["dynamodb_sts_role_arn"] = data["DynamodbStsRoleArn"]
     return out

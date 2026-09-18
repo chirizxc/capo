@@ -21,7 +21,15 @@ class EncodingParametersRequest(TypedDict, closed=True):
 def serialize_json(value: EncodingParametersRequest) -> dict:
     out: dict = {}
     if "compression_factor" in value:
-        out["compressionFactor"] = value["compression_factor"]
+        out["compressionFactor"] = (
+            "NaN"
+            if value["compression_factor"] != value["compression_factor"]
+            else "Infinity"
+            if value["compression_factor"] == float("inf")
+            else "-Infinity"
+            if value["compression_factor"] == float("-inf")
+            else value["compression_factor"]
+        )
     if "encoder_profile" in value:
         import capo_mediaconnect.types.encoder_profile
 
@@ -33,9 +41,9 @@ def serialize_json(value: EncodingParametersRequest) -> dict:
 
 def deserialize_json(data: dict) -> EncodingParametersRequest:
     out: EncodingParametersRequest = {}  # type: ignore[typeddict-item]
-    if "compressionFactor" in data:
-        out["compression_factor"] = data["compressionFactor"]
-    if "encoderProfile" in data:
+    if data.get("compressionFactor") is not None:
+        out["compression_factor"] = float(data["compressionFactor"])
+    if data.get("encoderProfile") is not None:
         import capo_mediaconnect.types.encoder_profile
 
         out["encoder_profile"] = (

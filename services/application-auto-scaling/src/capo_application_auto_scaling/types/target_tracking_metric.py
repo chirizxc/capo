@@ -45,7 +45,7 @@ def serialize_aws_json_1_1(value: TargetTrackingMetric) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TargetTrackingMetric:
     out: TargetTrackingMetric = {}  # type: ignore[typeddict-item]
-    if "Dimensions" in data:
+    if data.get("Dimensions") is not None:
         import capo_application_auto_scaling.types.target_tracking_metric_dimensions
 
         out["dimensions"] = (
@@ -53,8 +53,8 @@ def deserialize_aws_json_1_1(data: dict) -> TargetTrackingMetric:
                 data["Dimensions"]
             )
         )
-    if "MetricName" in data:
+    if data.get("MetricName") is not None:
         out["metric_name"] = data["MetricName"]
-    if "Namespace" in data:
+    if data.get("Namespace") is not None:
         out["namespace"] = data["Namespace"]
     return out

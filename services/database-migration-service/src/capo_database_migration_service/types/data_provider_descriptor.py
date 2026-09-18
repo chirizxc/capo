@@ -43,12 +43,12 @@ def serialize_aws_json_1_1(value: DataProviderDescriptor) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DataProviderDescriptor:
     out: DataProviderDescriptor = {}  # type: ignore[typeddict-item]
-    if "SecretsManagerSecretId" in data:
+    if data.get("SecretsManagerSecretId") is not None:
         out["secrets_manager_secret_id"] = data["SecretsManagerSecretId"]
-    if "SecretsManagerAccessRoleArn" in data:
+    if data.get("SecretsManagerAccessRoleArn") is not None:
         out["secrets_manager_access_role_arn"] = data["SecretsManagerAccessRoleArn"]
-    if "DataProviderName" in data:
+    if data.get("DataProviderName") is not None:
         out["data_provider_name"] = data["DataProviderName"]
-    if "DataProviderArn" in data:
+    if data.get("DataProviderArn") is not None:
         out["data_provider_arn"] = data["DataProviderArn"]
     return out

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ProactiveAnomalies:
 
     out: ProactiveAnomalies = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_devops_guru.types.proactive_anomaly_summary.deserialize_json(item)
         )

@@ -28,11 +28,11 @@ def serialize_json(value: DataSetReference) -> dict:
 
 def deserialize_json(data: dict) -> DataSetReference:
     out: DataSetReference = {}  # type: ignore[typeddict-item]
-    if "DataSetPlaceholder" in data:
+    if data.get("DataSetPlaceholder") is not None:
         out["data_set_placeholder"] = data["DataSetPlaceholder"]
     else:
         raise DeserializationError("DataSetReference.data_set_placeholder required")
-    if "DataSetArn" in data:
+    if data.get("DataSetArn") is not None:
         out["data_set_arn"] = data["DataSetArn"]
     else:
         raise DeserializationError("DataSetReference.data_set_arn required")

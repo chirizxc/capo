@@ -30,7 +30,7 @@ def serialize_json(value: CreateInAppTemplateResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateInAppTemplateResponse:
     out: CreateInAppTemplateResponse = {}  # type: ignore[typeddict-item]
-    if "TemplateCreateMessageBody" in data:
+    if data.get("TemplateCreateMessageBody") is not None:
         import capo_pinpoint.types.template_create_message_body
 
         out["template_create_message_body"] = (

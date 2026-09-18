@@ -36,12 +36,12 @@ def serialize_json(value: ListCasesForContactRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListCasesForContactRequest:
     out: ListCasesForContactRequest = {}  # type: ignore[typeddict-item]
-    if "contactArn" in data:
+    if data.get("contactArn") is not None:
         out["contact_arn"] = data["contactArn"]
     else:
         raise DeserializationError("ListCasesForContactRequest.contact_arn required")
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

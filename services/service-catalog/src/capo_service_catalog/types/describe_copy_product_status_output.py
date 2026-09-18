@@ -41,7 +41,7 @@ def serialize_aws_json_1_1(value: DescribeCopyProductStatusOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeCopyProductStatusOutput:
     out: DescribeCopyProductStatusOutput = {}  # type: ignore[typeddict-item]
-    if "CopyProductStatus" in data:
+    if data.get("CopyProductStatus") is not None:
         import capo_service_catalog.types.copy_product_status
 
         out["copy_product_status"] = (
@@ -49,8 +49,8 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeCopyProductStatusOutput:
                 data["CopyProductStatus"]
             )
         )
-    if "TargetProductId" in data:
+    if data.get("TargetProductId") is not None:
         out["target_product_id"] = data["TargetProductId"]
-    if "StatusDetail" in data:
+    if data.get("StatusDetail") is not None:
         out["status_detail"] = data["StatusDetail"]
     return out

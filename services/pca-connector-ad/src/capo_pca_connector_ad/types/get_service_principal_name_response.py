@@ -31,7 +31,7 @@ def serialize_json(value: GetServicePrincipalNameResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetServicePrincipalNameResponse:
     out: GetServicePrincipalNameResponse = {}  # type: ignore[typeddict-item]
-    if "ServicePrincipalName" in data:
+    if data.get("ServicePrincipalName") is not None:
         import capo_pca_connector_ad.types.service_principal_name
 
         out["service_principal_name"] = (

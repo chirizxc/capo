@@ -46,7 +46,7 @@ def serialize_json(value: SuggestResponse) -> dict:
 
 def deserialize_json(data: dict) -> SuggestResponse:
     out: SuggestResponse = {}  # type: ignore[typeddict-item]
-    if "ResultItems" in data:
+    if data.get("ResultItems") is not None:
         import capo_geo_places.types.suggest_result_item_list
 
         out["result_items"] = (
@@ -54,7 +54,7 @@ def deserialize_json(data: dict) -> SuggestResponse:
                 data["ResultItems"]
             )
         )
-    if "QueryRefinements" in data:
+    if data.get("QueryRefinements") is not None:
         import capo_geo_places.types.query_refinement_list
 
         out["query_refinements"] = (

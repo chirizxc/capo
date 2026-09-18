@@ -42,13 +42,13 @@ def serialize_aws_json_1_1(value: UpdateLocationFsxOntapRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateLocationFsxOntapRequest:
     out: UpdateLocationFsxOntapRequest = {}  # type: ignore[typeddict-item]
-    if "LocationArn" in data:
+    if data.get("LocationArn") is not None:
         out["location_arn"] = data["LocationArn"]
     else:
         raise DeserializationError(
             "UpdateLocationFsxOntapRequest.location_arn required"
         )
-    if "Protocol" in data:
+    if data.get("Protocol") is not None:
         import capo_datasync.types.fsx_update_protocol
 
         out["protocol"] = (
@@ -56,6 +56,6 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateLocationFsxOntapRequest:
                 data["Protocol"]
             )
         )
-    if "Subdirectory" in data:
+    if data.get("Subdirectory") is not None:
         out["subdirectory"] = data["Subdirectory"]
     return out

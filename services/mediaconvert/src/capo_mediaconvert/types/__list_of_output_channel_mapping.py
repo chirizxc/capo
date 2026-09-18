@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> __listOfOutputChannelMapping:
 
     out: __listOfOutputChannelMapping = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mediaconvert.types.output_channel_mapping.deserialize_json(item)
         )

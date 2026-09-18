@@ -38,10 +38,10 @@ def deserialize_json(
     data: dict,
 ) -> PurchaseReservedElasticsearchInstanceOfferingResponse:
     out: PurchaseReservedElasticsearchInstanceOfferingResponse = {}  # type: ignore[typeddict-item]
-    if "ReservedElasticsearchInstanceId" in data:
+    if data.get("ReservedElasticsearchInstanceId") is not None:
         out["reserved_elasticsearch_instance_id"] = data[
             "ReservedElasticsearchInstanceId"
         ]
-    if "ReservationName" in data:
+    if data.get("ReservationName") is not None:
         out["reservation_name"] = data["ReservationName"]
     return out

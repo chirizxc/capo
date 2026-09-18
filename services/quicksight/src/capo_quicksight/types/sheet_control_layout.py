@@ -30,7 +30,7 @@ def serialize_json(value: SheetControlLayout) -> dict:
 
 def deserialize_json(data: dict) -> SheetControlLayout:
     out: SheetControlLayout = {}  # type: ignore[typeddict-item]
-    if "Configuration" in data:
+    if data.get("Configuration") is not None:
         import capo_quicksight.types.sheet_control_layout_configuration
 
         out["configuration"] = (

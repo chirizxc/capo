@@ -36,9 +36,9 @@ def serialize_json(value: ListContactVersionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListContactVersionsResponse:
     out: ListContactVersionsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "contactVersionsList" in data:
+    if data.get("contactVersionsList") is not None:
         import capo_groundstation.types.contact_versions_list
 
         out["contact_versions_list"] = (

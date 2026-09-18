@@ -42,9 +42,9 @@ def serialize_json(value: StartImportRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartImportRequest:
     out: StartImportRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "s3BucketSource" in data:
+    if data.get("s3BucketSource") is not None:
         import capo_mgn.types.s3_bucket_source
 
         out["s3_bucket_source"] = capo_mgn.types.s3_bucket_source.deserialize_json(
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> StartImportRequest:
         )
     else:
         raise DeserializationError("StartImportRequest.s3_bucket_source required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mgn.types.tags_map
 
         out["tags"] = capo_mgn.types.tags_map.deserialize_json(data["tags"])

@@ -54,20 +54,20 @@ def serialize_json(value: StreetComponents) -> dict:
 
 def deserialize_json(data: dict) -> StreetComponents:
     out: StreetComponents = {}  # type: ignore[typeddict-item]
-    if "BaseName" in data:
+    if data.get("BaseName") is not None:
         out["base_name"] = data["BaseName"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "TypePlacement" in data:
+    if data.get("TypePlacement") is not None:
         out["type_placement"] = data["TypePlacement"]
-    if "TypeSeparator" in data:
+    if data.get("TypeSeparator") is not None:
         out["type_separator"] = data["TypeSeparator"]
-    if "Prefix" in data:
+    if data.get("Prefix") is not None:
         out["prefix"] = data["Prefix"]
-    if "Suffix" in data:
+    if data.get("Suffix") is not None:
         out["suffix"] = data["Suffix"]
-    if "Direction" in data:
+    if data.get("Direction") is not None:
         out["direction"] = data["Direction"]
-    if "Language" in data:
+    if data.get("Language") is not None:
         out["language"] = data["Language"]
     return out

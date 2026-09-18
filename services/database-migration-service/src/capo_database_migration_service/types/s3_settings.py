@@ -313,19 +313,19 @@ def serialize_aws_json_1_1(value: S3Settings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3Settings:
     out: S3Settings = {}  # type: ignore[typeddict-item]
-    if "ServiceAccessRoleArn" in data:
+    if data.get("ServiceAccessRoleArn") is not None:
         out["service_access_role_arn"] = data["ServiceAccessRoleArn"]
-    if "ExternalTableDefinition" in data:
+    if data.get("ExternalTableDefinition") is not None:
         out["external_table_definition"] = data["ExternalTableDefinition"]
-    if "CsvRowDelimiter" in data:
+    if data.get("CsvRowDelimiter") is not None:
         out["csv_row_delimiter"] = data["CsvRowDelimiter"]
-    if "CsvDelimiter" in data:
+    if data.get("CsvDelimiter") is not None:
         out["csv_delimiter"] = data["CsvDelimiter"]
-    if "BucketFolder" in data:
+    if data.get("BucketFolder") is not None:
         out["bucket_folder"] = data["BucketFolder"]
-    if "BucketName" in data:
+    if data.get("BucketName") is not None:
         out["bucket_name"] = data["BucketName"]
-    if "CompressionType" in data:
+    if data.get("CompressionType") is not None:
         import capo_database_migration_service.types.compression_type_value
 
         out["compression_type"] = (
@@ -333,7 +333,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3Settings:
                 data["CompressionType"]
             )
         )
-    if "EncryptionMode" in data:
+    if data.get("EncryptionMode") is not None:
         import capo_database_migration_service.types.encryption_mode_value
 
         out["encryption_mode"] = (
@@ -341,9 +341,9 @@ def deserialize_aws_json_1_1(data: dict) -> S3Settings:
                 data["EncryptionMode"]
             )
         )
-    if "ServerSideEncryptionKmsKeyId" in data:
+    if data.get("ServerSideEncryptionKmsKeyId") is not None:
         out["server_side_encryption_kms_key_id"] = data["ServerSideEncryptionKmsKeyId"]
-    if "DataFormat" in data:
+    if data.get("DataFormat") is not None:
         import capo_database_migration_service.types.data_format_value
 
         out["data_format"] = (
@@ -351,7 +351,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3Settings:
                 data["DataFormat"]
             )
         )
-    if "EncodingType" in data:
+    if data.get("EncodingType") is not None:
         import capo_database_migration_service.types.encoding_type_value
 
         out["encoding_type"] = (
@@ -359,13 +359,13 @@ def deserialize_aws_json_1_1(data: dict) -> S3Settings:
                 data["EncodingType"]
             )
         )
-    if "DictPageSizeLimit" in data:
+    if data.get("DictPageSizeLimit") is not None:
         out["dict_page_size_limit"] = data["DictPageSizeLimit"]
-    if "RowGroupLength" in data:
+    if data.get("RowGroupLength") is not None:
         out["row_group_length"] = data["RowGroupLength"]
-    if "DataPageSize" in data:
+    if data.get("DataPageSize") is not None:
         out["data_page_size"] = data["DataPageSize"]
-    if "ParquetVersion" in data:
+    if data.get("ParquetVersion") is not None:
         import capo_database_migration_service.types.parquet_version_value
 
         out["parquet_version"] = (
@@ -373,21 +373,21 @@ def deserialize_aws_json_1_1(data: dict) -> S3Settings:
                 data["ParquetVersion"]
             )
         )
-    if "EnableStatistics" in data:
+    if data.get("EnableStatistics") is not None:
         out["enable_statistics"] = data["EnableStatistics"]
-    if "IncludeOpForFullLoad" in data:
+    if data.get("IncludeOpForFullLoad") is not None:
         out["include_op_for_full_load"] = data["IncludeOpForFullLoad"]
-    if "CdcInsertsOnly" in data:
+    if data.get("CdcInsertsOnly") is not None:
         out["cdc_inserts_only"] = data["CdcInsertsOnly"]
-    if "TimestampColumnName" in data:
+    if data.get("TimestampColumnName") is not None:
         out["timestamp_column_name"] = data["TimestampColumnName"]
-    if "ParquetTimestampInMillisecond" in data:
+    if data.get("ParquetTimestampInMillisecond") is not None:
         out["parquet_timestamp_in_millisecond"] = data["ParquetTimestampInMillisecond"]
-    if "CdcInsertsAndUpdates" in data:
+    if data.get("CdcInsertsAndUpdates") is not None:
         out["cdc_inserts_and_updates"] = data["CdcInsertsAndUpdates"]
-    if "DatePartitionEnabled" in data:
+    if data.get("DatePartitionEnabled") is not None:
         out["date_partition_enabled"] = data["DatePartitionEnabled"]
-    if "DatePartitionSequence" in data:
+    if data.get("DatePartitionSequence") is not None:
         import capo_database_migration_service.types.date_partition_sequence_value
 
         out["date_partition_sequence"] = (
@@ -395,7 +395,7 @@ def deserialize_aws_json_1_1(data: dict) -> S3Settings:
                 data["DatePartitionSequence"]
             )
         )
-    if "DatePartitionDelimiter" in data:
+    if data.get("DatePartitionDelimiter") is not None:
         import capo_database_migration_service.types.date_partition_delimiter_value
 
         out["date_partition_delimiter"] = (
@@ -403,19 +403,19 @@ def deserialize_aws_json_1_1(data: dict) -> S3Settings:
                 data["DatePartitionDelimiter"]
             )
         )
-    if "UseCsvNoSupValue" in data:
+    if data.get("UseCsvNoSupValue") is not None:
         out["use_csv_no_sup_value"] = data["UseCsvNoSupValue"]
-    if "CsvNoSupValue" in data:
+    if data.get("CsvNoSupValue") is not None:
         out["csv_no_sup_value"] = data["CsvNoSupValue"]
-    if "PreserveTransactions" in data:
+    if data.get("PreserveTransactions") is not None:
         out["preserve_transactions"] = data["PreserveTransactions"]
-    if "CdcPath" in data:
+    if data.get("CdcPath") is not None:
         out["cdc_path"] = data["CdcPath"]
-    if "UseTaskStartTimeForFullLoadTimestamp" in data:
+    if data.get("UseTaskStartTimeForFullLoadTimestamp") is not None:
         out["use_task_start_time_for_full_load_timestamp"] = data[
             "UseTaskStartTimeForFullLoadTimestamp"
         ]
-    if "CannedAclForObjects" in data:
+    if data.get("CannedAclForObjects") is not None:
         import capo_database_migration_service.types.canned_acl_for_objects_value
 
         out["canned_acl_for_objects"] = (
@@ -423,26 +423,26 @@ def deserialize_aws_json_1_1(data: dict) -> S3Settings:
                 data["CannedAclForObjects"]
             )
         )
-    if "AddColumnName" in data:
+    if data.get("AddColumnName") is not None:
         out["add_column_name"] = data["AddColumnName"]
-    if "CdcMaxBatchInterval" in data:
+    if data.get("CdcMaxBatchInterval") is not None:
         out["cdc_max_batch_interval"] = data["CdcMaxBatchInterval"]
-    if "CdcMinFileSize" in data:
+    if data.get("CdcMinFileSize") is not None:
         out["cdc_min_file_size"] = data["CdcMinFileSize"]
-    if "CsvNullValue" in data:
+    if data.get("CsvNullValue") is not None:
         out["csv_null_value"] = data["CsvNullValue"]
-    if "IgnoreHeaderRows" in data:
+    if data.get("IgnoreHeaderRows") is not None:
         out["ignore_header_rows"] = data["IgnoreHeaderRows"]
-    if "MaxFileSize" in data:
+    if data.get("MaxFileSize") is not None:
         out["max_file_size"] = data["MaxFileSize"]
-    if "Rfc4180" in data:
+    if data.get("Rfc4180") is not None:
         out["rfc4180"] = data["Rfc4180"]
-    if "DatePartitionTimezone" in data:
+    if data.get("DatePartitionTimezone") is not None:
         out["date_partition_timezone"] = data["DatePartitionTimezone"]
-    if "AddTrailingPaddingCharacter" in data:
+    if data.get("AddTrailingPaddingCharacter") is not None:
         out["add_trailing_padding_character"] = data["AddTrailingPaddingCharacter"]
-    if "ExpectedBucketOwner" in data:
+    if data.get("ExpectedBucketOwner") is not None:
         out["expected_bucket_owner"] = data["ExpectedBucketOwner"]
-    if "GlueCatalogGeneration" in data:
+    if data.get("GlueCatalogGeneration") is not None:
         out["glue_catalog_generation"] = data["GlueCatalogGeneration"]
     return out

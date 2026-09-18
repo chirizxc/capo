@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: MetricValue) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MetricValue:
     out: MetricValue = {}  # type: ignore[typeddict-item]
-    if "Amount" in data:
+    if data.get("Amount") is not None:
         out["amount"] = data["Amount"]
-    if "Unit" in data:
+    if data.get("Unit") is not None:
         out["unit"] = data["Unit"]
     return out

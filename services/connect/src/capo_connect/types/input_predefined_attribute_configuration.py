@@ -24,7 +24,7 @@ def serialize_json(value: InputPredefinedAttributeConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> InputPredefinedAttributeConfiguration:
     out: InputPredefinedAttributeConfiguration = {}  # type: ignore[typeddict-item]
-    if "EnableValueValidationOnAssociation" in data:
+    if data.get("EnableValueValidationOnAssociation") is not None:
         out["enable_value_validation_on_association"] = data[
             "EnableValueValidationOnAssociation"
         ]

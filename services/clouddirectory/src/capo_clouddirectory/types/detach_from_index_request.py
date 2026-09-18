@@ -38,7 +38,7 @@ def serialize_json(value: DetachFromIndexRequest) -> dict:
 
 def deserialize_json(data: dict) -> DetachFromIndexRequest:
     out: DetachFromIndexRequest = {}  # type: ignore[typeddict-item]
-    if "IndexReference" in data:
+    if data.get("IndexReference") is not None:
         import capo_clouddirectory.types.object_reference
 
         out["index_reference"] = (
@@ -48,7 +48,7 @@ def deserialize_json(data: dict) -> DetachFromIndexRequest:
         )
     else:
         raise DeserializationError("DetachFromIndexRequest.index_reference required")
-    if "TargetReference" in data:
+    if data.get("TargetReference") is not None:
         import capo_clouddirectory.types.object_reference
 
         out["target_reference"] = (

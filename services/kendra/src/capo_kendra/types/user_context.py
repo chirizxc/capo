@@ -48,17 +48,17 @@ def serialize_aws_json_1_1(value: UserContext) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UserContext:
     out: UserContext = {}  # type: ignore[typeddict-item]
-    if "Token" in data:
+    if data.get("Token") is not None:
         out["token"] = data["Token"]
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
-    if "Groups" in data:
+    if data.get("Groups") is not None:
         import capo_kendra.types.groups
 
         out["groups"] = capo_kendra.types.groups.deserialize_aws_json_1_1(
             data["Groups"]
         )
-    if "DataSourceGroups" in data:
+    if data.get("DataSourceGroups") is not None:
         import capo_kendra.types.data_source_groups
 
         out["data_source_groups"] = (

@@ -40,13 +40,13 @@ def serialize_aws_json_1_0(value: ResourceRequestStatusFilter) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ResourceRequestStatusFilter:
     out: ResourceRequestStatusFilter = {}  # type: ignore[typeddict-item]
-    if "Operations" in data:
+    if data.get("Operations") is not None:
         import capo_cloudcontrol.types.operations
 
         out["operations"] = capo_cloudcontrol.types.operations.deserialize_aws_json_1_0(
             data["Operations"]
         )
-    if "OperationStatuses" in data:
+    if data.get("OperationStatuses") is not None:
         import capo_cloudcontrol.types.operation_statuses
 
         out["operation_statuses"] = (

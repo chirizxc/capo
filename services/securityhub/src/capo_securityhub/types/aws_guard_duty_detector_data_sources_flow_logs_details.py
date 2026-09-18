@@ -23,6 +23,6 @@ def serialize_json(value: AwsGuardDutyDetectorDataSourcesFlowLogsDetails) -> dic
 
 def deserialize_json(data: dict) -> AwsGuardDutyDetectorDataSourcesFlowLogsDetails:
     out: AwsGuardDutyDetectorDataSourcesFlowLogsDetails = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     return out

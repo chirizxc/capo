@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ByoipCidrEvents:
 
     out: ByoipCidrEvents = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_global_accelerator.types.byoip_cidr_event.deserialize_aws_json_1_1(
                 item

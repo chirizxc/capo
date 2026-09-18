@@ -23,6 +23,6 @@ def serialize_json(value: CreateIPSetResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateIPSetResponse:
     out: CreateIPSetResponse = {}  # type: ignore[typeddict-item]
-    if "ipSetId" in data:
+    if data.get("ipSetId") is not None:
         out["ip_set_id"] = data["ipSetId"]
     return out

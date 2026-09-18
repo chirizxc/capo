@@ -22,11 +22,11 @@ def serialize_json(value: AssumedRoleUser) -> dict:
 
 def deserialize_json(data: dict) -> AssumedRoleUser:
     out: AssumedRoleUser = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("AssumedRoleUser.arn required")
-    if "assumeRoleId" in data:
+    if data.get("assumeRoleId") is not None:
         out["assume_role_id"] = data["assumeRoleId"]
     else:
         raise DeserializationError("AssumedRoleUser.assume_role_id required")

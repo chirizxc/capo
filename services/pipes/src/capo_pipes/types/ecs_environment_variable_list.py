@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> EcsEnvironmentVariableList:
 
     out: EcsEnvironmentVariableList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_pipes.types.ecs_environment_variable.deserialize_json(item))
     return out

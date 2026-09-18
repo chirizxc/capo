@@ -47,11 +47,11 @@ def serialize_json(value: CreateQueueEnvironmentRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateQueueEnvironmentRequest:
     out: CreateQueueEnvironmentRequest = {}  # type: ignore[typeddict-item]
-    if "priority" in data:
+    if data.get("priority") is not None:
         out["priority"] = data["priority"]
     else:
         raise DeserializationError("CreateQueueEnvironmentRequest.priority required")
-    if "templateType" in data:
+    if data.get("templateType") is not None:
         import capo_deadline.types.environment_template_type
 
         out["template_type"] = (
@@ -63,7 +63,7 @@ def deserialize_json(data: dict) -> CreateQueueEnvironmentRequest:
         raise DeserializationError(
             "CreateQueueEnvironmentRequest.template_type required"
         )
-    if "template" in data:
+    if data.get("template") is not None:
         out["template"] = data["template"]
     else:
         raise DeserializationError("CreateQueueEnvironmentRequest.template required")

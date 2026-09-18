@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> BatchDeleteDevicePositionHistoryErrorList:
 
     out: BatchDeleteDevicePositionHistoryErrorList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_location.types.batch_delete_device_position_history_error.deserialize_json(
                 item

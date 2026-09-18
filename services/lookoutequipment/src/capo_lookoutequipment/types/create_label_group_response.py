@@ -32,8 +32,8 @@ def serialize_aws_json_1_0(value: CreateLabelGroupResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateLabelGroupResponse:
     out: CreateLabelGroupResponse = {}  # type: ignore[typeddict-item]
-    if "LabelGroupName" in data:
+    if data.get("LabelGroupName") is not None:
         out["label_group_name"] = data["LabelGroupName"]
-    if "LabelGroupArn" in data:
+    if data.get("LabelGroupArn") is not None:
         out["label_group_arn"] = data["LabelGroupArn"]
     return out

@@ -27,8 +27,8 @@ def serialize_json(value: AwsEcsTaskDefinitionPlacementConstraintsDetails) -> di
 
 def deserialize_json(data: dict) -> AwsEcsTaskDefinitionPlacementConstraintsDetails:
     out: AwsEcsTaskDefinitionPlacementConstraintsDetails = {}  # type: ignore[typeddict-item]
-    if "Expression" in data:
+    if data.get("Expression") is not None:
         out["expression"] = data["Expression"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     return out

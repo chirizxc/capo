@@ -44,7 +44,7 @@ def serialize_json(value: UpdatePackageVersionsStatusResult) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePackageVersionsStatusResult:
     out: UpdatePackageVersionsStatusResult = {}  # type: ignore[typeddict-item]
-    if "successfulVersions" in data:
+    if data.get("successfulVersions") is not None:
         import capo_codeartifact.types.successful_package_version_info_map
 
         out["successful_versions"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> UpdatePackageVersionsStatusResult:
                 data["successfulVersions"]
             )
         )
-    if "failedVersions" in data:
+    if data.get("failedVersions") is not None:
         import capo_codeartifact.types.package_version_error_map
 
         out["failed_versions"] = (

@@ -40,7 +40,7 @@ def serialize_aws_json_1_0(value: TagSpecification) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TagSpecification:
     out: TagSpecification = {}  # type: ignore[typeddict-item]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_workspaces_instances.types.resource_type_enum
 
         out["resource_type"] = (
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_0(data: dict) -> TagSpecification:
                 data["ResourceType"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_workspaces_instances.types.tag_list
 
         out["tags"] = capo_workspaces_instances.types.tag_list.deserialize_aws_json_1_0(

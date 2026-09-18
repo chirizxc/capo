@@ -128,31 +128,31 @@ def serialize_aws_json_1_1(value: BoxConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BoxConfiguration:
     out: BoxConfiguration = {}  # type: ignore[typeddict-item]
-    if "EnterpriseId" in data:
+    if data.get("EnterpriseId") is not None:
         out["enterprise_id"] = data["EnterpriseId"]
     else:
         raise DeserializationError("BoxConfiguration.enterprise_id required")
-    if "SecretArn" in data:
+    if data.get("SecretArn") is not None:
         out["secret_arn"] = data["SecretArn"]
     else:
         raise DeserializationError("BoxConfiguration.secret_arn required")
-    if "UseChangeLog" in data:
+    if data.get("UseChangeLog") is not None:
         out["use_change_log"] = data["UseChangeLog"]
     else:
         out["use_change_log"] = False
-    if "CrawlComments" in data:
+    if data.get("CrawlComments") is not None:
         out["crawl_comments"] = data["CrawlComments"]
     else:
         out["crawl_comments"] = False
-    if "CrawlTasks" in data:
+    if data.get("CrawlTasks") is not None:
         out["crawl_tasks"] = data["CrawlTasks"]
     else:
         out["crawl_tasks"] = False
-    if "CrawlWebLinks" in data:
+    if data.get("CrawlWebLinks") is not None:
         out["crawl_web_links"] = data["CrawlWebLinks"]
     else:
         out["crawl_web_links"] = False
-    if "FileFieldMappings" in data:
+    if data.get("FileFieldMappings") is not None:
         import capo_kendra.types.data_source_to_index_field_mapping_list
 
         out["file_field_mappings"] = (
@@ -160,7 +160,7 @@ def deserialize_aws_json_1_1(data: dict) -> BoxConfiguration:
                 data["FileFieldMappings"]
             )
         )
-    if "TaskFieldMappings" in data:
+    if data.get("TaskFieldMappings") is not None:
         import capo_kendra.types.data_source_to_index_field_mapping_list
 
         out["task_field_mappings"] = (
@@ -168,7 +168,7 @@ def deserialize_aws_json_1_1(data: dict) -> BoxConfiguration:
                 data["TaskFieldMappings"]
             )
         )
-    if "CommentFieldMappings" in data:
+    if data.get("CommentFieldMappings") is not None:
         import capo_kendra.types.data_source_to_index_field_mapping_list
 
         out["comment_field_mappings"] = (
@@ -176,7 +176,7 @@ def deserialize_aws_json_1_1(data: dict) -> BoxConfiguration:
                 data["CommentFieldMappings"]
             )
         )
-    if "WebLinkFieldMappings" in data:
+    if data.get("WebLinkFieldMappings") is not None:
         import capo_kendra.types.data_source_to_index_field_mapping_list
 
         out["web_link_field_mappings"] = (
@@ -184,7 +184,7 @@ def deserialize_aws_json_1_1(data: dict) -> BoxConfiguration:
                 data["WebLinkFieldMappings"]
             )
         )
-    if "InclusionPatterns" in data:
+    if data.get("InclusionPatterns") is not None:
         import capo_kendra.types.data_source_inclusions_exclusions_strings
 
         out["inclusion_patterns"] = (
@@ -192,7 +192,7 @@ def deserialize_aws_json_1_1(data: dict) -> BoxConfiguration:
                 data["InclusionPatterns"]
             )
         )
-    if "ExclusionPatterns" in data:
+    if data.get("ExclusionPatterns") is not None:
         import capo_kendra.types.data_source_inclusions_exclusions_strings
 
         out["exclusion_patterns"] = (
@@ -200,7 +200,7 @@ def deserialize_aws_json_1_1(data: dict) -> BoxConfiguration:
                 data["ExclusionPatterns"]
             )
         )
-    if "VpcConfiguration" in data:
+    if data.get("VpcConfiguration") is not None:
         import capo_kendra.types.data_source_vpc_configuration
 
         out["vpc_configuration"] = (

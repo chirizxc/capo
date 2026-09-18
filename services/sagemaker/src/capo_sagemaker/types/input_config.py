@@ -46,16 +46,16 @@ def serialize_aws_json_1_1(value: InputConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InputConfig:
     out: InputConfig = {}  # type: ignore[typeddict-item]
-    if "S3Uri" in data:
+    if data.get("S3Uri") is not None:
         out["s3_uri"] = data["S3Uri"]
-    if "DataInputConfig" in data:
+    if data.get("DataInputConfig") is not None:
         out["data_input_config"] = data["DataInputConfig"]
-    if "Framework" in data:
+    if data.get("Framework") is not None:
         import capo_sagemaker.types.framework
 
         out["framework"] = capo_sagemaker.types.framework.deserialize_aws_json_1_1(
             data["Framework"]
         )
-    if "FrameworkVersion" in data:
+    if data.get("FrameworkVersion") is not None:
         out["framework_version"] = data["FrameworkVersion"]
     return out

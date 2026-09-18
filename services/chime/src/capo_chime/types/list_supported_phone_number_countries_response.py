@@ -31,7 +31,7 @@ def serialize_json(value: ListSupportedPhoneNumberCountriesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListSupportedPhoneNumberCountriesResponse:
     out: ListSupportedPhoneNumberCountriesResponse = {}  # type: ignore[typeddict-item]
-    if "PhoneNumberCountries" in data:
+    if data.get("PhoneNumberCountries") is not None:
         import capo_chime.types.phone_number_countries_list
 
         out["phone_number_countries"] = (

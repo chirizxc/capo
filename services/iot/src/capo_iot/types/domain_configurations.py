@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DomainConfigurations:
 
     out: DomainConfigurations = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot.types.domain_configuration_summary.deserialize_json(item))
     return out

@@ -45,15 +45,15 @@ def serialize_aws_json_1_1(value: UpdateAdapterRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateAdapterRequest:
     out: UpdateAdapterRequest = {}  # type: ignore[typeddict-item]
-    if "AdapterId" in data:
+    if data.get("AdapterId") is not None:
         out["adapter_id"] = data["AdapterId"]
     else:
         raise DeserializationError("UpdateAdapterRequest.adapter_id required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "AdapterName" in data:
+    if data.get("AdapterName") is not None:
         out["adapter_name"] = data["AdapterName"]
-    if "AutoUpdate" in data:
+    if data.get("AutoUpdate") is not None:
         import capo_textract.types.auto_update
 
         out["auto_update"] = capo_textract.types.auto_update.deserialize_aws_json_1_1(

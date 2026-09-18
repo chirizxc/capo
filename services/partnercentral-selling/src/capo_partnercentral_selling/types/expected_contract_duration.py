@@ -33,7 +33,7 @@ def serialize_aws_json_1_0(value: ExpectedContractDuration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ExpectedContractDuration:
     out: ExpectedContractDuration = {}  # type: ignore[typeddict-item]
-    if "Term" in data:
+    if data.get("Term") is not None:
         import capo_partnercentral_selling.types.expected_contract_duration_term
 
         out["term"] = (
@@ -43,7 +43,7 @@ def deserialize_aws_json_1_0(data: dict) -> ExpectedContractDuration:
         )
     else:
         raise DeserializationError("ExpectedContractDuration.term required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         raise DeserializationError("ExpectedContractDuration.value required")

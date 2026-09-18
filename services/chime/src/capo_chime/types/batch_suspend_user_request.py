@@ -31,7 +31,7 @@ def serialize_json(value: BatchSuspendUserRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchSuspendUserRequest:
     out: BatchSuspendUserRequest = {}  # type: ignore[typeddict-item]
-    if "UserIdList" in data:
+    if data.get("UserIdList") is not None:
         import capo_chime.types.user_id_list
 
         out["user_id_list"] = capo_chime.types.user_id_list.deserialize_json(

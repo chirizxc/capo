@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> RelatedFindingList:
 
     out: RelatedFindingList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityhub.types.related_finding.deserialize_json(item))
     return out

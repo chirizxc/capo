@@ -34,12 +34,12 @@ def serialize_aws_json_1_1(value: ListLicenseVersionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListLicenseVersionsRequest:
     out: ListLicenseVersionsRequest = {}  # type: ignore[typeddict-item]
-    if "LicenseArn" in data:
+    if data.get("LicenseArn") is not None:
         out["license_arn"] = data["LicenseArn"]
     else:
         raise DeserializationError("ListLicenseVersionsRequest.license_arn required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

@@ -39,16 +39,16 @@ def serialize_json(value: UploadListElement) -> dict:
 
 def deserialize_json(data: dict) -> UploadListElement:
     out: UploadListElement = {}  # type: ignore[typeddict-item]
-    if "MultipartUploadId" in data:
+    if data.get("MultipartUploadId") is not None:
         out["multipart_upload_id"] = data["MultipartUploadId"]
-    if "VaultARN" in data:
+    if data.get("VaultARN") is not None:
         out["vault_arn"] = data["VaultARN"]
-    if "ArchiveDescription" in data:
+    if data.get("ArchiveDescription") is not None:
         out["archive_description"] = data["ArchiveDescription"]
-    if "PartSizeInBytes" in data:
+    if data.get("PartSizeInBytes") is not None:
         out["part_size_in_bytes"] = data["PartSizeInBytes"]
     else:
         out["part_size_in_bytes"] = 0
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         out["creation_date"] = data["CreationDate"]
     return out

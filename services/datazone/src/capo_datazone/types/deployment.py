@@ -68,15 +68,15 @@ def serialize_json(value: Deployment) -> dict:
 
 def deserialize_json(data: dict) -> Deployment:
     out: Deployment = {}  # type: ignore[typeddict-item]
-    if "deploymentId" in data:
+    if data.get("deploymentId") is not None:
         out["deployment_id"] = data["deploymentId"]
-    if "deploymentType" in data:
+    if data.get("deploymentType") is not None:
         import capo_datazone.types.deployment_type
 
         out["deployment_type"] = capo_datazone.types.deployment_type.deserialize_json(
             data["deploymentType"]
         )
-    if "deploymentStatus" in data:
+    if data.get("deploymentStatus") is not None:
         import capo_datazone.types.deployment_status
 
         out["deployment_status"] = (
@@ -84,18 +84,18 @@ def deserialize_json(data: dict) -> Deployment:
                 data["deploymentStatus"]
             )
         )
-    if "failureReason" in data:
+    if data.get("failureReason") is not None:
         import capo_datazone.types.environment_error
 
         out["failure_reason"] = capo_datazone.types.environment_error.deserialize_json(
             data["failureReason"]
         )
-    if "messages" in data:
+    if data.get("messages") is not None:
         import capo_datazone.types.deployment_messages_list
 
         out["messages"] = capo_datazone.types.deployment_messages_list.deserialize_json(
             data["messages"]
         )
-    if "isDeploymentComplete" in data:
+    if data.get("isDeploymentComplete") is not None:
         out["is_deployment_complete"] = data["isDeploymentComplete"]
     return out

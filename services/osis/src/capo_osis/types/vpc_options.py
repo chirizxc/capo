@@ -63,7 +63,7 @@ def serialize_json(value: VpcOptions) -> dict:
 
 def deserialize_json(data: dict) -> VpcOptions:
     out: VpcOptions = {}  # type: ignore[typeddict-item]
-    if "SubnetIds" in data:
+    if data.get("SubnetIds") is not None:
         import capo_osis.types.subnet_ids
 
         out["subnet_ids"] = capo_osis.types.subnet_ids.deserialize_json(
@@ -71,13 +71,13 @@ def deserialize_json(data: dict) -> VpcOptions:
         )
     else:
         raise DeserializationError("VpcOptions.subnet_ids required")
-    if "SecurityGroupIds" in data:
+    if data.get("SecurityGroupIds") is not None:
         import capo_osis.types.security_group_ids
 
         out["security_group_ids"] = capo_osis.types.security_group_ids.deserialize_json(
             data["SecurityGroupIds"]
         )
-    if "VpcAttachmentOptions" in data:
+    if data.get("VpcAttachmentOptions") is not None:
         import capo_osis.types.vpc_attachment_options
 
         out["vpc_attachment_options"] = (
@@ -85,7 +85,7 @@ def deserialize_json(data: dict) -> VpcOptions:
                 data["VpcAttachmentOptions"]
             )
         )
-    if "VpcEndpointManagement" in data:
+    if data.get("VpcEndpointManagement") is not None:
         import capo_osis.types.vpc_endpoint_management
 
         out["vpc_endpoint_management"] = (

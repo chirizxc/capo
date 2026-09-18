@@ -61,7 +61,7 @@ def serialize_aws_json_1_0(value: SnsAction) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SnsAction:
     out: SnsAction = {}  # type: ignore[typeddict-item]
-    if "ActionFailurePolicy" in data:
+    if data.get("ActionFailurePolicy") is not None:
         import capo_mailmanager.types.action_failure_policy
 
         out["action_failure_policy"] = (
@@ -69,15 +69,15 @@ def deserialize_aws_json_1_0(data: dict) -> SnsAction:
                 data["ActionFailurePolicy"]
             )
         )
-    if "TopicArn" in data:
+    if data.get("TopicArn") is not None:
         out["topic_arn"] = data["TopicArn"]
     else:
         raise DeserializationError("SnsAction.topic_arn required")
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     else:
         raise DeserializationError("SnsAction.role_arn required")
-    if "Encoding" in data:
+    if data.get("Encoding") is not None:
         import capo_mailmanager.types.sns_notification_encoding
 
         out["encoding"] = (
@@ -87,7 +87,7 @@ def deserialize_aws_json_1_0(data: dict) -> SnsAction:
         )
     else:
         out["encoding"] = "UTF-8"
-    if "PayloadType" in data:
+    if data.get("PayloadType") is not None:
         import capo_mailmanager.types.sns_notification_payload_type
 
         out["payload_type"] = (

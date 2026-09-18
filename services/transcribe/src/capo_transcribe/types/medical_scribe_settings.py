@@ -70,17 +70,17 @@ def serialize_aws_json_1_1(value: MedicalScribeSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MedicalScribeSettings:
     out: MedicalScribeSettings = {}  # type: ignore[typeddict-item]
-    if "ShowSpeakerLabels" in data:
+    if data.get("ShowSpeakerLabels") is not None:
         out["show_speaker_labels"] = data["ShowSpeakerLabels"]
-    if "MaxSpeakerLabels" in data:
+    if data.get("MaxSpeakerLabels") is not None:
         out["max_speaker_labels"] = data["MaxSpeakerLabels"]
-    if "ChannelIdentification" in data:
+    if data.get("ChannelIdentification") is not None:
         out["channel_identification"] = data["ChannelIdentification"]
-    if "VocabularyName" in data:
+    if data.get("VocabularyName") is not None:
         out["vocabulary_name"] = data["VocabularyName"]
-    if "VocabularyFilterName" in data:
+    if data.get("VocabularyFilterName") is not None:
         out["vocabulary_filter_name"] = data["VocabularyFilterName"]
-    if "VocabularyFilterMethod" in data:
+    if data.get("VocabularyFilterMethod") is not None:
         import capo_transcribe.types.vocabulary_filter_method
 
         out["vocabulary_filter_method"] = (
@@ -88,7 +88,7 @@ def deserialize_aws_json_1_1(data: dict) -> MedicalScribeSettings:
                 data["VocabularyFilterMethod"]
             )
         )
-    if "ClinicalNoteGenerationSettings" in data:
+    if data.get("ClinicalNoteGenerationSettings") is not None:
         import capo_transcribe.types.clinical_note_generation_settings
 
         out["clinical_note_generation_settings"] = (

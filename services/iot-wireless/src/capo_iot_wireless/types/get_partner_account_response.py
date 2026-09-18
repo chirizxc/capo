@@ -35,7 +35,7 @@ def serialize_json(value: GetPartnerAccountResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetPartnerAccountResponse:
     out: GetPartnerAccountResponse = {}  # type: ignore[typeddict-item]
-    if "Sidewalk" in data:
+    if data.get("Sidewalk") is not None:
         import capo_iot_wireless.types.sidewalk_account_info_with_fingerprint
 
         out["sidewalk"] = (
@@ -43,7 +43,7 @@ def deserialize_json(data: dict) -> GetPartnerAccountResponse:
                 data["Sidewalk"]
             )
         )
-    if "AccountLinked" in data:
+    if data.get("AccountLinked") is not None:
         out["account_linked"] = data["AccountLinked"]
     else:
         out["account_linked"] = False

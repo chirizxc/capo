@@ -68,7 +68,7 @@ def serialize_aws_json_1_1(value: UpdateLicenseManagerReportGeneratorRequest) ->
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateLicenseManagerReportGeneratorRequest:
     out: UpdateLicenseManagerReportGeneratorRequest = {}  # type: ignore[typeddict-item]
-    if "LicenseManagerReportGeneratorArn" in data:
+    if data.get("LicenseManagerReportGeneratorArn") is not None:
         out["license_manager_report_generator_arn"] = data[
             "LicenseManagerReportGeneratorArn"
         ]
@@ -76,13 +76,13 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateLicenseManagerReportGeneratorR
         raise DeserializationError(
             "UpdateLicenseManagerReportGeneratorRequest.license_manager_report_generator_arn required"
         )
-    if "ReportGeneratorName" in data:
+    if data.get("ReportGeneratorName") is not None:
         out["report_generator_name"] = data["ReportGeneratorName"]
     else:
         raise DeserializationError(
             "UpdateLicenseManagerReportGeneratorRequest.report_generator_name required"
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_license_manager.types.report_type_list
 
         out["type"] = (
@@ -94,7 +94,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateLicenseManagerReportGeneratorR
         raise DeserializationError(
             "UpdateLicenseManagerReportGeneratorRequest.type required"
         )
-    if "ReportContext" in data:
+    if data.get("ReportContext") is not None:
         import capo_license_manager.types.report_context
 
         out["report_context"] = (
@@ -106,7 +106,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateLicenseManagerReportGeneratorR
         raise DeserializationError(
             "UpdateLicenseManagerReportGeneratorRequest.report_context required"
         )
-    if "ReportFrequency" in data:
+    if data.get("ReportFrequency") is not None:
         import capo_license_manager.types.report_frequency
 
         out["report_frequency"] = (
@@ -118,12 +118,12 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateLicenseManagerReportGeneratorR
         raise DeserializationError(
             "UpdateLicenseManagerReportGeneratorRequest.report_frequency required"
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     else:
         raise DeserializationError(
             "UpdateLicenseManagerReportGeneratorRequest.client_token required"
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

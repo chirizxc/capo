@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: UpdateFileCacheResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateFileCacheResponse:
     out: UpdateFileCacheResponse = {}  # type: ignore[typeddict-item]
-    if "FileCache" in data:
+    if data.get("FileCache") is not None:
         import capo_fsx.types.file_cache
 
         out["file_cache"] = capo_fsx.types.file_cache.deserialize_aws_json_1_1(

@@ -180,8 +180,9 @@ class AsyncFreeTierClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_freetier.types.get_account_activity_request.GetAccountActivityRequest = {}  # type: ignore[typeddict-item]
-        input_["activity_id"] = activity_id
+        input_: capo_freetier.types.get_account_activity_request.GetAccountActivityRequest = {
+            "activity_id": activity_id
+        }
         if language_code is not None:
             input_["language_code"] = language_code
 
@@ -190,6 +191,7 @@ class AsyncFreeTierClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_account_plan_state(
@@ -239,13 +241,14 @@ class AsyncFreeTierClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_freetier.types.get_account_plan_state_request.GetAccountPlanStateRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_freetier.types.get_account_plan_state_request.GetAccountPlanStateRequest = {}
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_free_tier_usage(
@@ -288,7 +291,7 @@ class AsyncFreeTierClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_freetier.types.get_free_tier_usage_request.GetFreeTierUsageRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_freetier.types.get_free_tier_usage_request.GetFreeTierUsageRequest = {}
         if filter is not None:
             input_["filter"] = filter
         if max_results is not None:
@@ -301,6 +304,7 @@ class AsyncFreeTierClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_get_free_tier_usage(
@@ -379,7 +383,7 @@ class AsyncFreeTierClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_freetier.types.list_account_activities_request.ListAccountActivitiesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_freetier.types.list_account_activities_request.ListAccountActivitiesRequest = {}
         if filter_activity_statuses is not None:
             input_["filter_activity_statuses"] = filter_activity_statuses
         if next_token is not None:
@@ -394,6 +398,7 @@ class AsyncFreeTierClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_account_activities(
@@ -483,14 +488,16 @@ class AsyncFreeTierClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_freetier.types.upgrade_account_plan_request.UpgradeAccountPlanRequest = {}  # type: ignore[typeddict-item]
-        input_["account_plan_type"] = account_plan_type
+        input_: capo_freetier.types.upgrade_account_plan_request.UpgradeAccountPlanRequest = {
+            "account_plan_type": account_plan_type
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

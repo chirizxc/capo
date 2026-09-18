@@ -84,11 +84,11 @@ def serialize_json(value: JoinOperation) -> dict:
 
 def deserialize_json(data: dict) -> JoinOperation:
     out: JoinOperation = {}  # type: ignore[typeddict-item]
-    if "Alias" in data:
+    if data.get("Alias") is not None:
         out["alias"] = data["Alias"]
     else:
         raise DeserializationError("JoinOperation.alias required")
-    if "LeftOperand" in data:
+    if data.get("LeftOperand") is not None:
         import capo_quicksight.types.transform_operation_source
 
         out["left_operand"] = (
@@ -98,7 +98,7 @@ def deserialize_json(data: dict) -> JoinOperation:
         )
     else:
         raise DeserializationError("JoinOperation.left_operand required")
-    if "RightOperand" in data:
+    if data.get("RightOperand") is not None:
         import capo_quicksight.types.transform_operation_source
 
         out["right_operand"] = (
@@ -108,7 +108,7 @@ def deserialize_json(data: dict) -> JoinOperation:
         )
     else:
         raise DeserializationError("JoinOperation.right_operand required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_quicksight.types.join_operation_type
 
         out["type"] = capo_quicksight.types.join_operation_type.deserialize_json(
@@ -116,11 +116,11 @@ def deserialize_json(data: dict) -> JoinOperation:
         )
     else:
         raise DeserializationError("JoinOperation.type required")
-    if "OnClause" in data:
+    if data.get("OnClause") is not None:
         out["on_clause"] = data["OnClause"]
     else:
         raise DeserializationError("JoinOperation.on_clause required")
-    if "LeftOperandProperties" in data:
+    if data.get("LeftOperandProperties") is not None:
         import capo_quicksight.types.join_operand_properties
 
         out["left_operand_properties"] = (
@@ -128,7 +128,7 @@ def deserialize_json(data: dict) -> JoinOperation:
                 data["LeftOperandProperties"]
             )
         )
-    if "RightOperandProperties" in data:
+    if data.get("RightOperandProperties") is not None:
         import capo_quicksight.types.join_operand_properties
 
         out["right_operand_properties"] = (

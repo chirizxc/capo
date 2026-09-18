@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: InvalidPerUnitStorageThroughput_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidPerUnitStorageThroughput_:
     out: InvalidPerUnitStorageThroughput_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -34,15 +34,20 @@ class InvalidPerUnitStorageThroughput(ServiceError):
 
     code: str | None = "InvalidPerUnitStorageThroughput"
 
-    def __init__(self, data: InvalidPerUnitStorageThroughput_):
+    def __init__(
+        self, data: InvalidPerUnitStorageThroughput_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidPerUnitStorageThroughput",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidPerUnitStorageThroughput":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidPerUnitStorageThroughput":
+        return cls(deserialize_aws_json_1_1(data), message)

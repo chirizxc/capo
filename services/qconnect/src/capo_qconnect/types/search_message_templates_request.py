@@ -39,7 +39,7 @@ def serialize_json(value: SearchMessageTemplatesRequest) -> dict:
 
 def deserialize_json(data: dict) -> SearchMessageTemplatesRequest:
     out: SearchMessageTemplatesRequest = {}  # type: ignore[typeddict-item]
-    if "searchExpression" in data:
+    if data.get("searchExpression") is not None:
         import capo_qconnect.types.message_template_search_expression
 
         out["search_expression"] = (

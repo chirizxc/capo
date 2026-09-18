@@ -38,10 +38,10 @@ def serialize_aws_json_1_1(value: DeleteDataRepositoryAssociationRequest) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteDataRepositoryAssociationRequest:
     out: DeleteDataRepositoryAssociationRequest = {}  # type: ignore[typeddict-item]
-    if "AssociationId" in data:
+    if data.get("AssociationId") is not None:
         out["association_id"] = data["AssociationId"]
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "DeleteDataInFileSystem" in data:
+    if data.get("DeleteDataInFileSystem") is not None:
         out["delete_data_in_file_system"] = data["DeleteDataInFileSystem"]
     return out

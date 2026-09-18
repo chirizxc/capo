@@ -31,7 +31,7 @@ def serialize_json(value: DeleteInvitationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteInvitationsResponse:
     out: DeleteInvitationsResponse = {}  # type: ignore[typeddict-item]
-    if "unprocessedAccounts" in data:
+    if data.get("unprocessedAccounts") is not None:
         import capo_macie2.types.__list_of_unprocessed_account
 
         out["unprocessed_accounts"] = (

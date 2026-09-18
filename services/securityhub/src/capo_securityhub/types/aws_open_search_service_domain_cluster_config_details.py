@@ -72,15 +72,15 @@ def serialize_json(value: AwsOpenSearchServiceDomainClusterConfigDetails) -> dic
 
 def deserialize_json(data: dict) -> AwsOpenSearchServiceDomainClusterConfigDetails:
     out: AwsOpenSearchServiceDomainClusterConfigDetails = {}  # type: ignore[typeddict-item]
-    if "InstanceCount" in data:
+    if data.get("InstanceCount") is not None:
         out["instance_count"] = data["InstanceCount"]
-    if "WarmEnabled" in data:
+    if data.get("WarmEnabled") is not None:
         out["warm_enabled"] = data["WarmEnabled"]
-    if "WarmCount" in data:
+    if data.get("WarmCount") is not None:
         out["warm_count"] = data["WarmCount"]
-    if "DedicatedMasterEnabled" in data:
+    if data.get("DedicatedMasterEnabled") is not None:
         out["dedicated_master_enabled"] = data["DedicatedMasterEnabled"]
-    if "ZoneAwarenessConfig" in data:
+    if data.get("ZoneAwarenessConfig") is not None:
         import capo_securityhub.types.aws_open_search_service_domain_cluster_config_zone_awareness_config_details
 
         out["zone_awareness_config"] = (
@@ -88,14 +88,14 @@ def deserialize_json(data: dict) -> AwsOpenSearchServiceDomainClusterConfigDetai
                 data["ZoneAwarenessConfig"]
             )
         )
-    if "DedicatedMasterCount" in data:
+    if data.get("DedicatedMasterCount") is not None:
         out["dedicated_master_count"] = data["DedicatedMasterCount"]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         out["instance_type"] = data["InstanceType"]
-    if "WarmType" in data:
+    if data.get("WarmType") is not None:
         out["warm_type"] = data["WarmType"]
-    if "ZoneAwarenessEnabled" in data:
+    if data.get("ZoneAwarenessEnabled") is not None:
         out["zone_awareness_enabled"] = data["ZoneAwarenessEnabled"]
-    if "DedicatedMasterType" in data:
+    if data.get("DedicatedMasterType") is not None:
         out["dedicated_master_type"] = data["DedicatedMasterType"]
     return out

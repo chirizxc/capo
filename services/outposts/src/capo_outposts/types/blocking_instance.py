@@ -36,11 +36,11 @@ def serialize_json(value: BlockingInstance) -> dict:
 
 def deserialize_json(data: dict) -> BlockingInstance:
     out: BlockingInstance = {}  # type: ignore[typeddict-item]
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "AwsServiceName" in data:
+    if data.get("AwsServiceName") is not None:
         import capo_outposts.types.aws_service_name
 
         out["aws_service_name"] = capo_outposts.types.aws_service_name.deserialize_json(

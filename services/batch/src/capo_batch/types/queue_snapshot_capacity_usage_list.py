@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> QueueSnapshotCapacityUsageList:
 
     out: QueueSnapshotCapacityUsageList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_batch.types.queue_snapshot_capacity_usage.deserialize_json(item)
         )

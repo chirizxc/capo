@@ -46,17 +46,17 @@ def serialize_json(value: CACertificate) -> dict:
 
 def deserialize_json(data: dict) -> CACertificate:
     out: CACertificate = {}  # type: ignore[typeddict-item]
-    if "certificateArn" in data:
+    if data.get("certificateArn") is not None:
         out["certificate_arn"] = data["certificateArn"]
-    if "certificateId" in data:
+    if data.get("certificateId") is not None:
         out["certificate_id"] = data["certificateId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iot.types.ca_certificate_status
 
         out["status"] = capo_iot.types.ca_certificate_status.deserialize_json(
             data["status"]
         )
-    if "creationDate" in data:
+    if data.get("creationDate") is not None:
         import capo_iot.types.date_type
 
         out["creation_date"] = capo_iot.types.date_type.deserialize_json(

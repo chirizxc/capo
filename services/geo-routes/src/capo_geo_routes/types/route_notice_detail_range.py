@@ -22,8 +22,8 @@ def serialize_json(value: RouteNoticeDetailRange) -> dict:
 
 def deserialize_json(data: dict) -> RouteNoticeDetailRange:
     out: RouteNoticeDetailRange = {}  # type: ignore[typeddict-item]
-    if "Min" in data:
+    if data.get("Min") is not None:
         out["min"] = data["Min"]
-    if "Max" in data:
+    if data.get("Max") is not None:
         out["max"] = data["Max"]
     return out

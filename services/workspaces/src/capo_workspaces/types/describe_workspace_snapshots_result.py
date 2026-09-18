@@ -39,7 +39,7 @@ def serialize_aws_json_1_1(value: DescribeWorkspaceSnapshotsResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeWorkspaceSnapshotsResult:
     out: DescribeWorkspaceSnapshotsResult = {}  # type: ignore[typeddict-item]
-    if "RebuildSnapshots" in data:
+    if data.get("RebuildSnapshots") is not None:
         import capo_workspaces.types.snapshot_list
 
         out["rebuild_snapshots"] = (
@@ -47,7 +47,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeWorkspaceSnapshotsResult:
                 data["RebuildSnapshots"]
             )
         )
-    if "RestoreSnapshots" in data:
+    if data.get("RestoreSnapshots") is not None:
         import capo_workspaces.types.snapshot_list
 
         out["restore_snapshots"] = (

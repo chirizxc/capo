@@ -35,10 +35,35 @@ def serialize_aws_json_1_1(value: CrawlerMetrics) -> dict:
     out: dict = {}
     if "crawler_name" in value:
         out["CrawlerName"] = value["crawler_name"]
-    out["TimeLeftSeconds"] = value.get("time_left_seconds", 0)
+    out["TimeLeftSeconds"] = (
+        "NaN"
+        if value.get("time_left_seconds", 0) != value.get("time_left_seconds", 0)
+        else "Infinity"
+        if value.get("time_left_seconds", 0) == float("inf")
+        else "-Infinity"
+        if value.get("time_left_seconds", 0) == float("-inf")
+        else value.get("time_left_seconds", 0)
+    )
     out["StillEstimating"] = value.get("still_estimating", False)
-    out["LastRuntimeSeconds"] = value.get("last_runtime_seconds", 0)
-    out["MedianRuntimeSeconds"] = value.get("median_runtime_seconds", 0)
+    out["LastRuntimeSeconds"] = (
+        "NaN"
+        if value.get("last_runtime_seconds", 0) != value.get("last_runtime_seconds", 0)
+        else "Infinity"
+        if value.get("last_runtime_seconds", 0) == float("inf")
+        else "-Infinity"
+        if value.get("last_runtime_seconds", 0) == float("-inf")
+        else value.get("last_runtime_seconds", 0)
+    )
+    out["MedianRuntimeSeconds"] = (
+        "NaN"
+        if value.get("median_runtime_seconds", 0)
+        != value.get("median_runtime_seconds", 0)
+        else "Infinity"
+        if value.get("median_runtime_seconds", 0) == float("inf")
+        else "-Infinity"
+        if value.get("median_runtime_seconds", 0) == float("-inf")
+        else value.get("median_runtime_seconds", 0)
+    )
     out["TablesCreated"] = value.get("tables_created", 0)
     out["TablesUpdated"] = value.get("tables_updated", 0)
     out["TablesDeleted"] = value.get("tables_deleted", 0)
@@ -47,33 +72,33 @@ def serialize_aws_json_1_1(value: CrawlerMetrics) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CrawlerMetrics:
     out: CrawlerMetrics = {}  # type: ignore[typeddict-item]
-    if "CrawlerName" in data:
+    if data.get("CrawlerName") is not None:
         out["crawler_name"] = data["CrawlerName"]
-    if "TimeLeftSeconds" in data:
-        out["time_left_seconds"] = data["TimeLeftSeconds"]
+    if data.get("TimeLeftSeconds") is not None:
+        out["time_left_seconds"] = float(data["TimeLeftSeconds"])
     else:
         out["time_left_seconds"] = 0
-    if "StillEstimating" in data:
+    if data.get("StillEstimating") is not None:
         out["still_estimating"] = data["StillEstimating"]
     else:
         out["still_estimating"] = False
-    if "LastRuntimeSeconds" in data:
-        out["last_runtime_seconds"] = data["LastRuntimeSeconds"]
+    if data.get("LastRuntimeSeconds") is not None:
+        out["last_runtime_seconds"] = float(data["LastRuntimeSeconds"])
     else:
         out["last_runtime_seconds"] = 0
-    if "MedianRuntimeSeconds" in data:
-        out["median_runtime_seconds"] = data["MedianRuntimeSeconds"]
+    if data.get("MedianRuntimeSeconds") is not None:
+        out["median_runtime_seconds"] = float(data["MedianRuntimeSeconds"])
     else:
         out["median_runtime_seconds"] = 0
-    if "TablesCreated" in data:
+    if data.get("TablesCreated") is not None:
         out["tables_created"] = data["TablesCreated"]
     else:
         out["tables_created"] = 0
-    if "TablesUpdated" in data:
+    if data.get("TablesUpdated") is not None:
         out["tables_updated"] = data["TablesUpdated"]
     else:
         out["tables_updated"] = 0
-    if "TablesDeleted" in data:
+    if data.get("TablesDeleted") is not None:
         out["tables_deleted"] = data["TablesDeleted"]
     else:
         out["tables_deleted"] = 0

@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: DescribeDeliveryChannelStatusResponse) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeDeliveryChannelStatusResponse:
     out: DescribeDeliveryChannelStatusResponse = {}  # type: ignore[typeddict-item]
-    if "DeliveryChannelsStatus" in data:
+    if data.get("DeliveryChannelsStatus") is not None:
         import capo_config_service.types.delivery_channel_status_list
 
         out["delivery_channels_status"] = (

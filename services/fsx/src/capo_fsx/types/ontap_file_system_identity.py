@@ -55,7 +55,7 @@ def serialize_aws_json_1_1(value: OntapFileSystemIdentity) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OntapFileSystemIdentity:
     out: OntapFileSystemIdentity = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_fsx.types.ontap_file_system_user_type
 
         out["type"] = (
@@ -63,7 +63,7 @@ def deserialize_aws_json_1_1(data: dict) -> OntapFileSystemIdentity:
                 data["Type"]
             )
         )
-    if "UnixUser" in data:
+    if data.get("UnixUser") is not None:
         import capo_fsx.types.ontap_unix_file_system_user
 
         out["unix_user"] = (
@@ -71,7 +71,7 @@ def deserialize_aws_json_1_1(data: dict) -> OntapFileSystemIdentity:
                 data["UnixUser"]
             )
         )
-    if "WindowsUser" in data:
+    if data.get("WindowsUser") is not None:
         import capo_fsx.types.ontap_windows_file_system_user
 
         out["windows_user"] = (

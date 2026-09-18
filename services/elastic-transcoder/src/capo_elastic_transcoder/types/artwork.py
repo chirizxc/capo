@@ -60,19 +60,19 @@ def serialize_json(value: Artwork) -> dict:
 
 def deserialize_json(data: dict) -> Artwork:
     out: Artwork = {}  # type: ignore[typeddict-item]
-    if "InputKey" in data:
+    if data.get("InputKey") is not None:
         out["input_key"] = data["InputKey"]
-    if "MaxWidth" in data:
+    if data.get("MaxWidth") is not None:
         out["max_width"] = data["MaxWidth"]
-    if "MaxHeight" in data:
+    if data.get("MaxHeight") is not None:
         out["max_height"] = data["MaxHeight"]
-    if "SizingPolicy" in data:
+    if data.get("SizingPolicy") is not None:
         out["sizing_policy"] = data["SizingPolicy"]
-    if "PaddingPolicy" in data:
+    if data.get("PaddingPolicy") is not None:
         out["padding_policy"] = data["PaddingPolicy"]
-    if "AlbumArtFormat" in data:
+    if data.get("AlbumArtFormat") is not None:
         out["album_art_format"] = data["AlbumArtFormat"]
-    if "Encryption" in data:
+    if data.get("Encryption") is not None:
         import capo_elastic_transcoder.types.encryption
 
         out["encryption"] = capo_elastic_transcoder.types.encryption.deserialize_json(

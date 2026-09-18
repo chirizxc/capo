@@ -27,11 +27,11 @@ def serialize_json(value: HierarchyMapping) -> dict:
 
 def deserialize_json(data: dict) -> HierarchyMapping:
     out: HierarchyMapping = {}  # type: ignore[typeddict-item]
-    if "assetModelHierarchyId" in data:
+    if data.get("assetModelHierarchyId") is not None:
         out["asset_model_hierarchy_id"] = data["assetModelHierarchyId"]
     else:
         raise DeserializationError("HierarchyMapping.asset_model_hierarchy_id required")
-    if "interfaceAssetModelHierarchyId" in data:
+    if data.get("interfaceAssetModelHierarchyId") is not None:
         out["interface_asset_model_hierarchy_id"] = data[
             "interfaceAssetModelHierarchyId"
         ]

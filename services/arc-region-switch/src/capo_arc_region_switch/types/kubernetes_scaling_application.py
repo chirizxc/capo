@@ -28,6 +28,8 @@ def serialize_aws_json_1_0(input_to_serialize: KubernetesScalingApplication) -> 
 def deserialize_aws_json_1_0(data: dict) -> KubernetesScalingApplication:
     out: KubernetesScalingApplication = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_arc_region_switch.types.regional_scaling_resource
 
         out[key] = (

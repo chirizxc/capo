@@ -38,11 +38,11 @@ def serialize_aws_json_1_1(value: Route) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Route:
     out: Route = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("Route.name required")
-    if "Inputs" in data:
+    if data.get("Inputs") is not None:
         import capo_glue.types.one_input
 
         out["inputs"] = capo_glue.types.one_input.deserialize_aws_json_1_1(
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> Route:
         )
     else:
         raise DeserializationError("Route.inputs required")
-    if "GroupFiltersList" in data:
+    if data.get("GroupFiltersList") is not None:
         import capo_glue.types.group_filters_list
 
         out["group_filters_list"] = (

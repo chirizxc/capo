@@ -13,9 +13,9 @@ from capo_config_service import AsyncConfigServiceClient
 
 
 async def main():
-    async with AsyncConfigServiceClient() as s3:
+    async with AsyncConfigServiceClient() as config_service:
         # Example: call the associate_resource_types operation
-        response = await s3.associate_resource_types()
+        response = await config_service.associate_resource_types()
         print(response["configuration_recorder"])
 ```
 
@@ -28,9 +28,9 @@ from capo_config_service import AsyncConfigServiceClient
 
 
 async def main():
-    async with AsyncConfigServiceClient() as s3:
-        # Example: paginate over describe_aggregate_compliance_by_conformance_packs
-        async for item in s3.iter_describe_aggregate_compliance_by_conformance_packs():
+    async with AsyncConfigServiceClient() as config_service:
+        # Example: paginate over describe_aggregate_compliance_by_config_rules
+        async for item in config_service.iter_describe_aggregate_compliance_by_config_rules():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_config_service.error import ConflictException
 
 
 async def main():
-    async with AsyncConfigServiceClient() as s3:
+    async with AsyncConfigServiceClient() as config_service:
         try:
-            await s3.associate_resource_types()
+            await config_service.associate_resource_types()
         except ConflictException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_config_service import AsyncConfigServiceClient
 
 
 async def main():
-    async with AsyncConfigServiceClient() as s3:
+    async with AsyncConfigServiceClient() as config_service:
         # Default: 3 attempts for every operation
-        response = await s3.associate_resource_types()
+        response = await config_service.associate_resource_types()
 
         # Override per operation
-        response = await s3.associate_resource_types(config_overrides={"retry_max_attempts": 5})
+        response = await config_service.associate_resource_types(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.associate_resource_types(config_overrides={"retry_max_attempts": 1})
+        response = await config_service.associate_resource_types(config_overrides={"retry_max_attempts": 1})
 ```

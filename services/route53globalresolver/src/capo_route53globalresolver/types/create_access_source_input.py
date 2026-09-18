@@ -69,13 +69,13 @@ def serialize_json(value: CreateAccessSourceInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateAccessSourceInput:
     out: CreateAccessSourceInput = {}  # type: ignore[typeddict-item]
-    if "cidr" in data:
+    if data.get("cidr") is not None:
         out["cidr"] = data["cidr"]
     else:
         raise DeserializationError("CreateAccessSourceInput.cidr required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "ipAddressType" in data:
+    if data.get("ipAddressType") is not None:
         import capo_route53globalresolver.types.ip_address_type
 
         out["ip_address_type"] = (
@@ -85,13 +85,13 @@ def deserialize_json(data: dict) -> CreateAccessSourceInput:
         )
     else:
         out["ip_address_type"] = "IPV4"
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "dnsViewId" in data:
+    if data.get("dnsViewId") is not None:
         out["dns_view_id"] = data["dnsViewId"]
     else:
         raise DeserializationError("CreateAccessSourceInput.dns_view_id required")
-    if "protocol" in data:
+    if data.get("protocol") is not None:
         import capo_route53globalresolver.types.dns_protocol
 
         out["protocol"] = (
@@ -101,7 +101,7 @@ def deserialize_json(data: dict) -> CreateAccessSourceInput:
         )
     else:
         raise DeserializationError("CreateAccessSourceInput.protocol required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_route53globalresolver.types.tags
 
         out["tags"] = capo_route53globalresolver.types.tags.deserialize_json(

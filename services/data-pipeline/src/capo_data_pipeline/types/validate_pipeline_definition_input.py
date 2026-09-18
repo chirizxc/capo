@@ -60,13 +60,13 @@ def serialize_aws_json_1_1(value: ValidatePipelineDefinitionInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ValidatePipelineDefinitionInput:
     out: ValidatePipelineDefinitionInput = {}  # type: ignore[typeddict-item]
-    if "pipelineId" in data:
+    if data.get("pipelineId") is not None:
         out["pipeline_id"] = data["pipelineId"]
     else:
         raise DeserializationError(
             "ValidatePipelineDefinitionInput.pipeline_id required"
         )
-    if "pipelineObjects" in data:
+    if data.get("pipelineObjects") is not None:
         import capo_data_pipeline.types.pipeline_object_list
 
         out["pipeline_objects"] = (
@@ -78,7 +78,7 @@ def deserialize_aws_json_1_1(data: dict) -> ValidatePipelineDefinitionInput:
         raise DeserializationError(
             "ValidatePipelineDefinitionInput.pipeline_objects required"
         )
-    if "parameterObjects" in data:
+    if data.get("parameterObjects") is not None:
         import capo_data_pipeline.types.parameter_object_list
 
         out["parameter_objects"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_1(data: dict) -> ValidatePipelineDefinitionInput:
                 data["parameterObjects"]
             )
         )
-    if "parameterValues" in data:
+    if data.get("parameterValues") is not None:
         import capo_data_pipeline.types.parameter_value_list
 
         out["parameter_values"] = (

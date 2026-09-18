@@ -32,13 +32,13 @@ def serialize_aws_json_1_0(value: ImportTr31KeyBlock) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ImportTr31KeyBlock:
     out: ImportTr31KeyBlock = {}  # type: ignore[typeddict-item]
-    if "WrappingKeyIdentifier" in data:
+    if data.get("WrappingKeyIdentifier") is not None:
         out["wrapping_key_identifier"] = data["WrappingKeyIdentifier"]
     else:
         raise DeserializationError(
             "ImportTr31KeyBlock.wrapping_key_identifier required"
         )
-    if "WrappedKeyBlock" in data:
+    if data.get("WrappedKeyBlock") is not None:
         out["wrapped_key_block"] = data["WrappedKeyBlock"]
     else:
         raise DeserializationError("ImportTr31KeyBlock.wrapped_key_block required")

@@ -46,11 +46,11 @@ def serialize_aws_json_1_1(value: CatalogTarget) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CatalogTarget:
     out: CatalogTarget = {}  # type: ignore[typeddict-item]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
     else:
         raise DeserializationError("CatalogTarget.database_name required")
-    if "Tables" in data:
+    if data.get("Tables") is not None:
         import capo_glue.types.catalog_tables_list
 
         out["tables"] = capo_glue.types.catalog_tables_list.deserialize_aws_json_1_1(
@@ -58,10 +58,10 @@ def deserialize_aws_json_1_1(data: dict) -> CatalogTarget:
         )
     else:
         raise DeserializationError("CatalogTarget.tables required")
-    if "ConnectionName" in data:
+    if data.get("ConnectionName") is not None:
         out["connection_name"] = data["ConnectionName"]
-    if "EventQueueArn" in data:
+    if data.get("EventQueueArn") is not None:
         out["event_queue_arn"] = data["EventQueueArn"]
-    if "DlqEventQueueArn" in data:
+    if data.get("DlqEventQueueArn") is not None:
         out["dlq_event_queue_arn"] = data["DlqEventQueueArn"]
     return out

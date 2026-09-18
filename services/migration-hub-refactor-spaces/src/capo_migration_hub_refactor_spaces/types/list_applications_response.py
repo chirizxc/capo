@@ -38,7 +38,7 @@ def serialize_json(value: ListApplicationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListApplicationsResponse:
     out: ListApplicationsResponse = {}  # type: ignore[typeddict-item]
-    if "ApplicationSummaryList" in data:
+    if data.get("ApplicationSummaryList") is not None:
         import capo_migration_hub_refactor_spaces.types.application_summaries
 
         out["application_summary_list"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> ListApplicationsResponse:
                 data["ApplicationSummaryList"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

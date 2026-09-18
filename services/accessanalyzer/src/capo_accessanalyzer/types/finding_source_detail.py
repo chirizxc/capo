@@ -22,8 +22,8 @@ def serialize_json(value: FindingSourceDetail) -> dict:
 
 def deserialize_json(data: dict) -> FindingSourceDetail:
     out: FindingSourceDetail = {}  # type: ignore[typeddict-item]
-    if "accessPointArn" in data:
+    if data.get("accessPointArn") is not None:
         out["access_point_arn"] = data["accessPointArn"]
-    if "accessPointAccount" in data:
+    if data.get("accessPointAccount") is not None:
         out["access_point_account"] = data["accessPointAccount"]
     return out

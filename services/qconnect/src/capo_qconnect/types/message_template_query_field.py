@@ -47,11 +47,11 @@ def serialize_json(value: MessageTemplateQueryField) -> dict:
 
 def deserialize_json(data: dict) -> MessageTemplateQueryField:
     out: MessageTemplateQueryField = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("MessageTemplateQueryField.name required")
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_qconnect.types.message_template_query_value_list
 
         out["values"] = (
@@ -61,12 +61,12 @@ def deserialize_json(data: dict) -> MessageTemplateQueryField:
         )
     else:
         raise DeserializationError("MessageTemplateQueryField.values required")
-    if "operator" in data:
+    if data.get("operator") is not None:
         out["operator"] = data["operator"]
     else:
         raise DeserializationError("MessageTemplateQueryField.operator required")
-    if "allowFuzziness" in data:
+    if data.get("allowFuzziness") is not None:
         out["allow_fuzziness"] = data["allowFuzziness"]
-    if "priority" in data:
+    if data.get("priority") is not None:
         out["priority"] = data["priority"]
     return out

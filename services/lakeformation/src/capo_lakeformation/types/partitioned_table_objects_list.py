@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> PartitionedTableObjectsList:
 
     out: PartitionedTableObjectsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_lakeformation.types.partition_objects.deserialize_json(item))
     return out

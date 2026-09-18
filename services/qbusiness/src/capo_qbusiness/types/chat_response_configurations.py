@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ChatResponseConfigurations:
 
     out: ChatResponseConfigurations = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_qbusiness.types.chat_response_configuration.deserialize_json(item)
         )

@@ -254,9 +254,10 @@ class AsyncObservabilityAdminClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_observabilityadmin.types.create_centralization_rule_for_organization_input.CreateCentralizationRuleForOrganizationInput = {}  # type: ignore[typeddict-item]
-        input_["rule_name"] = rule_name
-        input_["rule"] = rule
+        input_: capo_observabilityadmin.types.create_centralization_rule_for_organization_input.CreateCentralizationRuleForOrganizationInput = {
+            "rule_name": rule_name,
+            "rule": rule,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -265,6 +266,7 @@ class AsyncObservabilityAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_s3_table_integration(
@@ -310,9 +312,10 @@ class AsyncObservabilityAdminClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_observabilityadmin.types.create_s3_table_integration_input.CreateS3TableIntegrationInput = {}  # type: ignore[typeddict-item]
-        input_["encryption"] = encryption
-        input_["role_arn"] = role_arn
+        input_: capo_observabilityadmin.types.create_s3_table_integration_input.CreateS3TableIntegrationInput = {
+            "encryption": encryption,
+            "role_arn": role_arn,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -321,6 +324,7 @@ class AsyncObservabilityAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_telemetry_rule(
@@ -366,9 +370,10 @@ class AsyncObservabilityAdminClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_observabilityadmin.types.create_telemetry_rule_input.CreateTelemetryRuleInput = {}  # type: ignore[typeddict-item]
-        input_["rule_name"] = rule_name
-        input_["rule"] = rule
+        input_: capo_observabilityadmin.types.create_telemetry_rule_input.CreateTelemetryRuleInput = {
+            "rule_name": rule_name,
+            "rule": rule,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -377,6 +382,7 @@ class AsyncObservabilityAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_telemetry_rule_for_organization(
@@ -422,9 +428,10 @@ class AsyncObservabilityAdminClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_observabilityadmin.types.create_telemetry_rule_for_organization_input.CreateTelemetryRuleForOrganizationInput = {}  # type: ignore[typeddict-item]
-        input_["rule_name"] = rule_name
-        input_["rule"] = rule
+        input_: capo_observabilityadmin.types.create_telemetry_rule_for_organization_input.CreateTelemetryRuleForOrganizationInput = {
+            "rule_name": rule_name,
+            "rule": rule,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -433,6 +440,7 @@ class AsyncObservabilityAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_centralization_rule_for_organization(
@@ -469,14 +477,16 @@ class AsyncObservabilityAdminClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_observabilityadmin.types.delete_centralization_rule_for_organization_input.DeleteCentralizationRuleForOrganizationInput = {}  # type: ignore[typeddict-item]
-        input_["rule_identifier"] = rule_identifier
+        input_: capo_observabilityadmin.types.delete_centralization_rule_for_organization_input.DeleteCentralizationRuleForOrganizationInput = {
+            "rule_identifier": rule_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_s3_table_integration(
@@ -514,14 +524,16 @@ class AsyncObservabilityAdminClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_observabilityadmin.types.delete_s3_table_integration_input.DeleteS3TableIntegrationInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_observabilityadmin.types.delete_s3_table_integration_input.DeleteS3TableIntegrationInput = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_telemetry_rule(
@@ -558,14 +570,16 @@ class AsyncObservabilityAdminClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_observabilityadmin.types.delete_telemetry_rule_input.DeleteTelemetryRuleInput = {}  # type: ignore[typeddict-item]
-        input_["rule_identifier"] = rule_identifier
+        input_: capo_observabilityadmin.types.delete_telemetry_rule_input.DeleteTelemetryRuleInput = {
+            "rule_identifier": rule_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_telemetry_rule_for_organization(
@@ -602,14 +616,16 @@ class AsyncObservabilityAdminClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_observabilityadmin.types.delete_telemetry_rule_for_organization_input.DeleteTelemetryRuleForOrganizationInput = {}  # type: ignore[typeddict-item]
-        input_["rule_identifier"] = rule_identifier
+        input_: capo_observabilityadmin.types.delete_telemetry_rule_for_organization_input.DeleteTelemetryRuleForOrganizationInput = {
+            "rule_identifier": rule_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_centralization_rule_for_organization(
@@ -648,14 +664,16 @@ class AsyncObservabilityAdminClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_observabilityadmin.types.get_centralization_rule_for_organization_input.GetCentralizationRuleForOrganizationInput = {}  # type: ignore[typeddict-item]
-        input_["rule_identifier"] = rule_identifier
+        input_: capo_observabilityadmin.types.get_centralization_rule_for_organization_input.GetCentralizationRuleForOrganizationInput = {
+            "rule_identifier": rule_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_s3_table_integration(
@@ -694,14 +712,16 @@ class AsyncObservabilityAdminClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_observabilityadmin.types.get_s3_table_integration_input.GetS3TableIntegrationInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_observabilityadmin.types.get_s3_table_integration_input.GetS3TableIntegrationInput = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_telemetry_enrichment_status(
@@ -739,6 +759,7 @@ class AsyncObservabilityAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_telemetry_evaluation_status(
@@ -775,6 +796,7 @@ class AsyncObservabilityAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_telemetry_evaluation_status_for_organization(
@@ -812,6 +834,7 @@ class AsyncObservabilityAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_telemetry_rule(
@@ -852,14 +875,16 @@ class AsyncObservabilityAdminClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_observabilityadmin.types.get_telemetry_rule_input.GetTelemetryRuleInput = {}  # type: ignore[typeddict-item]
-        input_["rule_identifier"] = rule_identifier
+        input_: capo_observabilityadmin.types.get_telemetry_rule_input.GetTelemetryRuleInput = {
+            "rule_identifier": rule_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_telemetry_rule_for_organization(
@@ -898,14 +923,16 @@ class AsyncObservabilityAdminClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_observabilityadmin.types.get_telemetry_rule_for_organization_input.GetTelemetryRuleForOrganizationInput = {}  # type: ignore[typeddict-item]
-        input_["rule_identifier"] = rule_identifier
+        input_: capo_observabilityadmin.types.get_telemetry_rule_for_organization_input.GetTelemetryRuleForOrganizationInput = {
+            "rule_identifier": rule_identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_centralization_rules_for_organization(
@@ -953,7 +980,7 @@ class AsyncObservabilityAdminClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_observabilityadmin.types.list_centralization_rules_for_organization_input.ListCentralizationRulesForOrganizationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_observabilityadmin.types.list_centralization_rules_for_organization_input.ListCentralizationRulesForOrganizationInput = {}
         if rule_name_prefix is not None:
             input_["rule_name_prefix"] = rule_name_prefix
         if all_regions is not None:
@@ -968,6 +995,7 @@ class AsyncObservabilityAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_centralization_rules_for_organization(
@@ -1056,7 +1084,7 @@ class AsyncObservabilityAdminClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_observabilityadmin.types.list_resource_telemetry_input.ListResourceTelemetryInput = {}  # type: ignore[typeddict-item]
+        input_: capo_observabilityadmin.types.list_resource_telemetry_input.ListResourceTelemetryInput = {}
         if resource_identifier_prefix is not None:
             input_["resource_identifier_prefix"] = resource_identifier_prefix
         if resource_types is not None:
@@ -1075,6 +1103,7 @@ class AsyncObservabilityAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_resource_telemetry(
@@ -1179,7 +1208,7 @@ class AsyncObservabilityAdminClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_observabilityadmin.types.list_resource_telemetry_for_organization_input.ListResourceTelemetryForOrganizationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_observabilityadmin.types.list_resource_telemetry_for_organization_input.ListResourceTelemetryForOrganizationInput = {}
         if account_identifiers is not None:
             input_["account_identifiers"] = account_identifiers
         if resource_identifier_prefix is not None:
@@ -1200,6 +1229,7 @@ class AsyncObservabilityAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_resource_telemetry_for_organization(
@@ -1288,7 +1318,7 @@ class AsyncObservabilityAdminClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_observabilityadmin.types.list_s3_table_integrations_input.ListS3TableIntegrationsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_observabilityadmin.types.list_s3_table_integrations_input.ListS3TableIntegrationsInput = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -1299,6 +1329,7 @@ class AsyncObservabilityAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_s3_table_integrations(
@@ -1362,14 +1393,16 @@ class AsyncObservabilityAdminClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_observabilityadmin.types.list_tags_for_resource_input.ListTagsForResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_observabilityadmin.types.list_tags_for_resource_input.ListTagsForResourceInput = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_telemetry_rules(
@@ -1415,7 +1448,7 @@ class AsyncObservabilityAdminClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_observabilityadmin.types.list_telemetry_rules_input.ListTelemetryRulesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_observabilityadmin.types.list_telemetry_rules_input.ListTelemetryRulesInput = {}
         if rule_name_prefix is not None:
             input_["rule_name_prefix"] = rule_name_prefix
         if max_results is not None:
@@ -1428,6 +1461,7 @@ class AsyncObservabilityAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_telemetry_rules(
@@ -1508,7 +1542,7 @@ class AsyncObservabilityAdminClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_observabilityadmin.types.list_telemetry_rules_for_organization_input.ListTelemetryRulesForOrganizationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_observabilityadmin.types.list_telemetry_rules_for_organization_input.ListTelemetryRulesForOrganizationInput = {}
         if rule_name_prefix is not None:
             input_["rule_name_prefix"] = rule_name_prefix
         if source_account_ids is not None:
@@ -1525,6 +1559,7 @@ class AsyncObservabilityAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_telemetry_rules_for_organization(
@@ -1597,6 +1632,7 @@ class AsyncObservabilityAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_telemetry_evaluation(
@@ -1636,7 +1672,7 @@ class AsyncObservabilityAdminClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_observabilityadmin.types.start_telemetry_evaluation_input.StartTelemetryEvaluationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_observabilityadmin.types.start_telemetry_evaluation_input.StartTelemetryEvaluationInput = {}
         if regions is not None:
             input_["regions"] = regions
         if all_regions is not None:
@@ -1647,6 +1683,7 @@ class AsyncObservabilityAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_telemetry_evaluation_for_organization(
@@ -1686,7 +1723,7 @@ class AsyncObservabilityAdminClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_observabilityadmin.types.start_telemetry_evaluation_for_organization_input.StartTelemetryEvaluationForOrganizationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_observabilityadmin.types.start_telemetry_evaluation_for_organization_input.StartTelemetryEvaluationForOrganizationInput = {}
         if regions is not None:
             input_["regions"] = regions
         if all_regions is not None:
@@ -1697,6 +1734,7 @@ class AsyncObservabilityAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_telemetry_enrichment(
@@ -1734,6 +1772,7 @@ class AsyncObservabilityAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_telemetry_evaluation(
@@ -1769,6 +1808,7 @@ class AsyncObservabilityAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def stop_telemetry_evaluation_for_organization(
@@ -1804,6 +1844,7 @@ class AsyncObservabilityAdminClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -1843,15 +1884,17 @@ class AsyncObservabilityAdminClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_observabilityadmin.types.tag_resource_input.TagResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_observabilityadmin.types.tag_resource_input.TagResourceInput = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def test_telemetry_pipeline(
@@ -1891,15 +1934,17 @@ class AsyncObservabilityAdminClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_observabilityadmin.types.test_telemetry_pipeline_input.TestTelemetryPipelineInput = {}  # type: ignore[typeddict-item]
-        input_["records"] = records
-        input_["configuration"] = configuration
+        input_: capo_observabilityadmin.types.test_telemetry_pipeline_input.TestTelemetryPipelineInput = {
+            "records": records,
+            "configuration": configuration,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -1938,15 +1983,17 @@ class AsyncObservabilityAdminClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_observabilityadmin.types.untag_resource_input.UntagResourceInput = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_observabilityadmin.types.untag_resource_input.UntagResourceInput = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_centralization_rule_for_organization(
@@ -1988,15 +2035,17 @@ class AsyncObservabilityAdminClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_observabilityadmin.types.update_centralization_rule_for_organization_input.UpdateCentralizationRuleForOrganizationInput = {}  # type: ignore[typeddict-item]
-        input_["rule_identifier"] = rule_identifier
-        input_["rule"] = rule
+        input_: capo_observabilityadmin.types.update_centralization_rule_for_organization_input.UpdateCentralizationRuleForOrganizationInput = {
+            "rule_identifier": rule_identifier,
+            "rule": rule,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_telemetry_rule(
@@ -2039,15 +2088,17 @@ class AsyncObservabilityAdminClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_observabilityadmin.types.update_telemetry_rule_input.UpdateTelemetryRuleInput = {}  # type: ignore[typeddict-item]
-        input_["rule_identifier"] = rule_identifier
-        input_["rule"] = rule
+        input_: capo_observabilityadmin.types.update_telemetry_rule_input.UpdateTelemetryRuleInput = {
+            "rule_identifier": rule_identifier,
+            "rule": rule,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_telemetry_rule_for_organization(
@@ -2089,15 +2140,17 @@ class AsyncObservabilityAdminClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_observabilityadmin.types.update_telemetry_rule_for_organization_input.UpdateTelemetryRuleForOrganizationInput = {}  # type: ignore[typeddict-item]
-        input_["rule_identifier"] = rule_identifier
-        input_["rule"] = rule
+        input_: capo_observabilityadmin.types.update_telemetry_rule_for_organization_input.UpdateTelemetryRuleForOrganizationInput = {
+            "rule_identifier": rule_identifier,
+            "rule": rule,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def validate_telemetry_pipeline_configuration(
@@ -2135,14 +2188,16 @@ class AsyncObservabilityAdminClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_observabilityadmin.types.validate_telemetry_pipeline_configuration_input.ValidateTelemetryPipelineConfigurationInput = {}  # type: ignore[typeddict-item]
-        input_["configuration"] = configuration
+        input_: capo_observabilityadmin.types.validate_telemetry_pipeline_configuration_input.ValidateTelemetryPipelineConfigurationInput = {
+            "configuration": configuration
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

@@ -37,9 +37,25 @@ class TargetedSentimentMention(TypedDict, closed=True):
 def serialize_aws_json_1_1(value: TargetedSentimentMention) -> dict:
     out: dict = {}
     if "score" in value:
-        out["Score"] = value["score"]
+        out["Score"] = (
+            "NaN"
+            if value["score"] != value["score"]
+            else "Infinity"
+            if value["score"] == float("inf")
+            else "-Infinity"
+            if value["score"] == float("-inf")
+            else value["score"]
+        )
     if "group_score" in value:
-        out["GroupScore"] = value["group_score"]
+        out["GroupScore"] = (
+            "NaN"
+            if value["group_score"] != value["group_score"]
+            else "Infinity"
+            if value["group_score"] == float("inf")
+            else "-Infinity"
+            if value["group_score"] == float("-inf")
+            else value["group_score"]
+        )
     if "text" in value:
         out["Text"] = value["text"]
     if "type" in value:
@@ -67,13 +83,13 @@ def serialize_aws_json_1_1(value: TargetedSentimentMention) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TargetedSentimentMention:
     out: TargetedSentimentMention = {}  # type: ignore[typeddict-item]
-    if "Score" in data:
-        out["score"] = data["Score"]
-    if "GroupScore" in data:
-        out["group_score"] = data["GroupScore"]
-    if "Text" in data:
+    if data.get("Score") is not None:
+        out["score"] = float(data["Score"])
+    if data.get("GroupScore") is not None:
+        out["group_score"] = float(data["GroupScore"])
+    if data.get("Text") is not None:
         out["text"] = data["Text"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_comprehend.types.targeted_sentiment_entity_type
 
         out["type"] = (
@@ -81,7 +97,7 @@ def deserialize_aws_json_1_1(data: dict) -> TargetedSentimentMention:
                 data["Type"]
             )
         )
-    if "MentionSentiment" in data:
+    if data.get("MentionSentiment") is not None:
         import capo_comprehend.types.mention_sentiment
 
         out["mention_sentiment"] = (
@@ -89,8 +105,8 @@ def deserialize_aws_json_1_1(data: dict) -> TargetedSentimentMention:
                 data["MentionSentiment"]
             )
         )
-    if "BeginOffset" in data:
+    if data.get("BeginOffset") is not None:
         out["begin_offset"] = data["BeginOffset"]
-    if "EndOffset" in data:
+    if data.get("EndOffset") is not None:
         out["end_offset"] = data["EndOffset"]
     return out

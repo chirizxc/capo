@@ -357,7 +357,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.add_instance_fleet_input.AddInstanceFleetInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.add_instance_fleet_input.AddInstanceFleetInput = {}
         if cluster_id is not None:
             input_["cluster_id"] = cluster_id
         if instance_fleet is not None:
@@ -368,6 +368,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def add_instance_groups(
@@ -407,7 +408,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.add_instance_groups_input.AddInstanceGroupsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.add_instance_groups_input.AddInstanceGroupsInput = {}
         if instance_groups is not None:
             input_["instance_groups"] = instance_groups
         if job_flow_id is not None:
@@ -418,6 +419,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def add_job_flow_steps(
@@ -457,7 +459,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.add_job_flow_steps_input.AddJobFlowStepsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.add_job_flow_steps_input.AddJobFlowStepsInput = {}
         if job_flow_id is not None:
             input_["job_flow_id"] = job_flow_id
         if steps is not None:
@@ -470,6 +472,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def add_tags(
@@ -506,7 +509,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.add_tags_input.AddTagsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.add_tags_input.AddTagsInput = {}
         if resource_id is not None:
             input_["resource_id"] = resource_id
         if tags is not None:
@@ -519,6 +522,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_steps(
@@ -559,7 +563,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.cancel_steps_input.CancelStepsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.cancel_steps_input.CancelStepsInput = {}
         if cluster_id is not None:
             input_["cluster_id"] = cluster_id
         if step_ids is not None:
@@ -572,6 +576,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_persistent_app_ui(
@@ -616,7 +621,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.create_persistent_app_ui_input.CreatePersistentAppUIInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.create_persistent_app_ui_input.CreatePersistentAppUIInput = {}
         if target_resource_arn is not None:
             input_["target_resource_arn"] = target_resource_arn
         if emr_containers_config is not None:
@@ -633,6 +638,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_security_configuration(
@@ -669,7 +675,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.create_security_configuration_input.CreateSecurityConfigurationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.create_security_configuration_input.CreateSecurityConfigurationInput = {}
         if name is not None:
             input_["name"] = name
         if security_configuration is not None:
@@ -680,6 +686,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_studio(
@@ -762,7 +769,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.create_studio_input.CreateStudioInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.create_studio_input.CreateStudioInput = {}
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -805,6 +812,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_studio_session_mapping(
@@ -853,7 +861,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.create_studio_session_mapping_input.CreateStudioSessionMappingInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.create_studio_session_mapping_input.CreateStudioSessionMappingInput = {}
         if studio_id is not None:
             input_["studio_id"] = studio_id
         if identity_id is not None:
@@ -870,6 +878,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_security_configuration(
@@ -904,7 +913,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.delete_security_configuration_input.DeleteSecurityConfigurationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.delete_security_configuration_input.DeleteSecurityConfigurationInput = {}
         if name is not None:
             input_["name"] = name
 
@@ -913,6 +922,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_studio(
@@ -947,7 +957,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.delete_studio_input.DeleteStudioInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.delete_studio_input.DeleteStudioInput = {}
         if studio_id is not None:
             input_["studio_id"] = studio_id
 
@@ -956,6 +966,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_studio_session_mapping(
@@ -1000,7 +1011,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.delete_studio_session_mapping_input.DeleteStudioSessionMappingInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.delete_studio_session_mapping_input.DeleteStudioSessionMappingInput = {}
         if studio_id is not None:
             input_["studio_id"] = studio_id
         if identity_id is not None:
@@ -1015,6 +1026,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_cluster(
@@ -1049,7 +1061,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.describe_cluster_input.DescribeClusterInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.describe_cluster_input.DescribeClusterInput = {}
         if cluster_id is not None:
             input_["cluster_id"] = cluster_id
 
@@ -1058,6 +1070,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_job_flows(
@@ -1099,7 +1112,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.describe_job_flows_input.DescribeJobFlowsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.describe_job_flows_input.DescribeJobFlowsInput = {}
         if created_after is not None:
             input_["created_after"] = created_after
         if created_before is not None:
@@ -1114,6 +1127,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_notebook_execution(
@@ -1150,7 +1164,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.describe_notebook_execution_input.DescribeNotebookExecutionInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.describe_notebook_execution_input.DescribeNotebookExecutionInput = {}
         if notebook_execution_id is not None:
             input_["notebook_execution_id"] = notebook_execution_id
 
@@ -1159,6 +1173,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_persistent_app_ui(
@@ -1197,7 +1212,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.describe_persistent_app_ui_input.DescribePersistentAppUIInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.describe_persistent_app_ui_input.DescribePersistentAppUIInput = {}
         if persistent_app_ui_id is not None:
             input_["persistent_app_ui_id"] = persistent_app_ui_id
 
@@ -1206,6 +1221,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_release_label(
@@ -1246,7 +1262,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.describe_release_label_input.DescribeReleaseLabelInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.describe_release_label_input.DescribeReleaseLabelInput = {}
         if release_label is not None:
             input_["release_label"] = release_label
         if next_token is not None:
@@ -1259,6 +1275,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_security_configuration(
@@ -1293,7 +1310,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.describe_security_configuration_input.DescribeSecurityConfigurationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.describe_security_configuration_input.DescribeSecurityConfigurationInput = {}
         if name is not None:
             input_["name"] = name
 
@@ -1302,6 +1319,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_step(
@@ -1338,7 +1356,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.describe_step_input.DescribeStepInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.describe_step_input.DescribeStepInput = {}
         if cluster_id is not None:
             input_["cluster_id"] = cluster_id
         if step_id is not None:
@@ -1349,6 +1367,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_studio(
@@ -1385,7 +1404,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.describe_studio_input.DescribeStudioInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.describe_studio_input.DescribeStudioInput = {}
         if studio_id is not None:
             input_["studio_id"] = studio_id
 
@@ -1394,6 +1413,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_auto_termination_policy(
@@ -1426,7 +1446,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.get_auto_termination_policy_input.GetAutoTerminationPolicyInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.get_auto_termination_policy_input.GetAutoTerminationPolicyInput = {}
         if cluster_id is not None:
             input_["cluster_id"] = cluster_id
 
@@ -1435,6 +1455,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_block_public_access_configuration(
@@ -1463,13 +1484,14 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.get_block_public_access_configuration_input.GetBlockPublicAccessConfigurationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.get_block_public_access_configuration_input.GetBlockPublicAccessConfigurationInput = {}
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_cluster_session_credentials(
@@ -1508,7 +1530,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.get_cluster_session_credentials_input.GetClusterSessionCredentialsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.get_cluster_session_credentials_input.GetClusterSessionCredentialsInput = {}
         if cluster_id is not None:
             input_["cluster_id"] = cluster_id
         if execution_role_arn is not None:
@@ -1519,6 +1541,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_managed_scaling_policy(
@@ -1553,7 +1576,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.get_managed_scaling_policy_input.GetManagedScalingPolicyInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.get_managed_scaling_policy_input.GetManagedScalingPolicyInput = {}
         if cluster_id is not None:
             input_["cluster_id"] = cluster_id
 
@@ -1562,6 +1585,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_on_cluster_app_ui_presigned_url(
@@ -1610,7 +1634,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.get_on_cluster_app_ui_presigned_url_input.GetOnClusterAppUIPresignedURLInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.get_on_cluster_app_ui_presigned_url_input.GetOnClusterAppUIPresignedURLInput = {}
         if cluster_id is not None:
             input_["cluster_id"] = cluster_id
         if on_cluster_app_ui_type is not None:
@@ -1627,6 +1651,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_persistent_app_ui_presigned_url(
@@ -1675,7 +1700,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.get_persistent_app_ui_presigned_url_input.GetPersistentAppUIPresignedURLInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.get_persistent_app_ui_presigned_url_input.GetPersistentAppUIPresignedURLInput = {}
         if persistent_app_ui_id is not None:
             input_["persistent_app_ui_id"] = persistent_app_ui_id
         if persistent_app_ui_type is not None:
@@ -1692,6 +1717,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_session(
@@ -1726,7 +1752,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.get_session_input.GetSessionInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.get_session_input.GetSessionInput = {}
         if cluster_id is not None:
             input_["cluster_id"] = cluster_id
         if session_id is not None:
@@ -1737,6 +1763,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_session_endpoint(
@@ -1773,7 +1800,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.get_session_endpoint_input.GetSessionEndpointInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.get_session_endpoint_input.GetSessionEndpointInput = {}
         if cluster_id is not None:
             input_["cluster_id"] = cluster_id
         if session_id is not None:
@@ -1784,6 +1811,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_studio_session_mapping(
@@ -1832,7 +1860,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.get_studio_session_mapping_input.GetStudioSessionMappingInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.get_studio_session_mapping_input.GetStudioSessionMappingInput = {}
         if studio_id is not None:
             input_["studio_id"] = studio_id
         if identity_id is not None:
@@ -1847,6 +1875,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_bootstrap_actions(
@@ -1883,7 +1912,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.list_bootstrap_actions_input.ListBootstrapActionsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.list_bootstrap_actions_input.ListBootstrapActionsInput = {}
         if cluster_id is not None:
             input_["cluster_id"] = cluster_id
         if marker is not None:
@@ -1894,6 +1923,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_bootstrap_actions(
@@ -1957,7 +1987,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.list_clusters_input.ListClustersInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.list_clusters_input.ListClustersInput = {}
         if created_after is not None:
             input_["created_after"] = created_after
         if created_before is not None:
@@ -1972,6 +2002,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_clusters(
@@ -2035,7 +2066,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.list_instance_fleets_input.ListInstanceFleetsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.list_instance_fleets_input.ListInstanceFleetsInput = {}
         if cluster_id is not None:
             input_["cluster_id"] = cluster_id
         if marker is not None:
@@ -2046,6 +2077,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_instance_fleets(
@@ -2103,7 +2135,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.list_instance_groups_input.ListInstanceGroupsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.list_instance_groups_input.ListInstanceGroupsInput = {}
         if cluster_id is not None:
             input_["cluster_id"] = cluster_id
         if marker is not None:
@@ -2114,6 +2146,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_instance_groups(
@@ -2191,7 +2224,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.list_instances_input.ListInstancesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.list_instances_input.ListInstancesInput = {}
         if cluster_id is not None:
             input_["cluster_id"] = cluster_id
         if instance_group_id is not None:
@@ -2212,6 +2245,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_instances(
@@ -2301,7 +2335,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.list_notebook_executions_input.ListNotebookExecutionsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.list_notebook_executions_input.ListNotebookExecutionsInput = {}
         if editor_id is not None:
             input_["editor_id"] = editor_id
         if status is not None:
@@ -2320,6 +2354,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_notebook_executions(
@@ -2395,7 +2430,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.list_release_labels_input.ListReleaseLabelsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.list_release_labels_input.ListReleaseLabelsInput = {}
         if filters is not None:
             input_["filters"] = filters
         if next_token is not None:
@@ -2408,7 +2443,33 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_release_labels(
+        self,
+        *,
+        config_overrides: Optional[EMRClientConfig] = None,
+        filters: Optional[
+            "capo_emr.types.release_label_filter.ReleaseLabelFilter"
+        ] = None,
+        next_token: Optional["capo_emr.types.string.String"] = None,
+        max_results: Optional[
+            "capo_emr.types.max_results_number.MaxResultsNumber"
+        ] = None,
+    ) -> "Iterator[capo_emr.types.list_release_labels_output.ListReleaseLabelsOutput]":
+        _token = next_token
+        while True:
+            _response = self.list_release_labels(
+                config_overrides=config_overrides,
+                filters=filters,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_security_configurations(
         self,
@@ -2442,7 +2503,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.list_security_configurations_input.ListSecurityConfigurationsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.list_security_configurations_input.ListSecurityConfigurationsInput = {}
         if marker is not None:
             input_["marker"] = marker
 
@@ -2451,6 +2512,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_security_configurations(
@@ -2514,7 +2576,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.list_sessions_input.ListSessionsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.list_sessions_input.ListSessionsInput = {}
         if cluster_id is not None:
             input_["cluster_id"] = cluster_id
         if session_states is not None:
@@ -2529,6 +2591,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_sessions(
@@ -2596,7 +2659,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.list_steps_input.ListStepsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.list_steps_input.ListStepsInput = {}
         if cluster_id is not None:
             input_["cluster_id"] = cluster_id
         if step_states is not None:
@@ -2611,6 +2674,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_steps(
@@ -2668,7 +2732,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.list_studios_input.ListStudiosInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.list_studios_input.ListStudiosInput = {}
         if marker is not None:
             input_["marker"] = marker
 
@@ -2677,6 +2741,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_studios(
@@ -2736,7 +2801,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.list_studio_session_mappings_input.ListStudioSessionMappingsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.list_studio_session_mappings_input.ListStudioSessionMappingsInput = {}
         if studio_id is not None:
             input_["studio_id"] = studio_id
         if identity_type is not None:
@@ -2749,6 +2814,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_studio_session_mappings(
@@ -2810,7 +2876,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.list_supported_instance_types_input.ListSupportedInstanceTypesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.list_supported_instance_types_input.ListSupportedInstanceTypesInput = {}
         if release_label is not None:
             input_["release_label"] = release_label
         if marker is not None:
@@ -2821,7 +2887,27 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_supported_instance_types(
+        self,
+        *,
+        config_overrides: Optional[EMRClientConfig] = None,
+        release_label: Optional["capo_emr.types.string.String"] = None,
+        marker: Optional["capo_emr.types.string.String"] = None,
+    ) -> "Iterator[capo_emr.types.list_supported_instance_types_output.ListSupportedInstanceTypesOutput]":
+        _token = marker
+        while True:
+            _response = self.list_supported_instance_types(
+                config_overrides=config_overrides,
+                release_label=release_label,
+                marker=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("marker",))
+            if not _token:
+                break
 
     def modify_cluster(
         self,
@@ -2861,7 +2947,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.modify_cluster_input.ModifyClusterInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.modify_cluster_input.ModifyClusterInput = {}
         if cluster_id is not None:
             input_["cluster_id"] = cluster_id
         if step_concurrency_level is not None:
@@ -2874,6 +2960,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def modify_instance_fleet(
@@ -2910,7 +2997,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.modify_instance_fleet_input.ModifyInstanceFleetInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.modify_instance_fleet_input.ModifyInstanceFleetInput = {}
         if cluster_id is not None:
             input_["cluster_id"] = cluster_id
         if instance_fleet is not None:
@@ -2921,6 +3008,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def modify_instance_groups(
@@ -2956,7 +3044,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.modify_instance_groups_input.ModifyInstanceGroupsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.modify_instance_groups_input.ModifyInstanceGroupsInput = {}
         if cluster_id is not None:
             input_["cluster_id"] = cluster_id
         if instance_groups is not None:
@@ -2967,6 +3055,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_auto_scaling_policy(
@@ -3007,7 +3096,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.put_auto_scaling_policy_input.PutAutoScalingPolicyInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.put_auto_scaling_policy_input.PutAutoScalingPolicyInput = {}
         if cluster_id is not None:
             input_["cluster_id"] = cluster_id
         if instance_group_id is not None:
@@ -3020,6 +3109,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_auto_termination_policy(
@@ -3056,7 +3146,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.put_auto_termination_policy_input.PutAutoTerminationPolicyInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.put_auto_termination_policy_input.PutAutoTerminationPolicyInput = {}
         if cluster_id is not None:
             input_["cluster_id"] = cluster_id
         if auto_termination_policy is not None:
@@ -3067,6 +3157,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_block_public_access_configuration(
@@ -3103,7 +3194,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.put_block_public_access_configuration_input.PutBlockPublicAccessConfigurationInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.put_block_public_access_configuration_input.PutBlockPublicAccessConfigurationInput = {}
         if block_public_access_configuration is not None:
             input_["block_public_access_configuration"] = (
                 block_public_access_configuration
@@ -3114,6 +3205,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_managed_scaling_policy(
@@ -3152,7 +3244,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.put_managed_scaling_policy_input.PutManagedScalingPolicyInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.put_managed_scaling_policy_input.PutManagedScalingPolicyInput = {}
         if cluster_id is not None:
             input_["cluster_id"] = cluster_id
         if managed_scaling_policy is not None:
@@ -3163,6 +3255,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def remove_auto_scaling_policy(
@@ -3201,7 +3294,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.remove_auto_scaling_policy_input.RemoveAutoScalingPolicyInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.remove_auto_scaling_policy_input.RemoveAutoScalingPolicyInput = {}
         if cluster_id is not None:
             input_["cluster_id"] = cluster_id
         if instance_group_id is not None:
@@ -3212,6 +3305,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def remove_auto_termination_policy(
@@ -3244,7 +3338,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.remove_auto_termination_policy_input.RemoveAutoTerminationPolicyInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.remove_auto_termination_policy_input.RemoveAutoTerminationPolicyInput = {}
         if cluster_id is not None:
             input_["cluster_id"] = cluster_id
 
@@ -3253,6 +3347,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def remove_managed_scaling_policy(
@@ -3285,7 +3380,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.remove_managed_scaling_policy_input.RemoveManagedScalingPolicyInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.remove_managed_scaling_policy_input.RemoveManagedScalingPolicyInput = {}
         if cluster_id is not None:
             input_["cluster_id"] = cluster_id
 
@@ -3294,6 +3389,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def remove_tags(
@@ -3330,7 +3426,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.remove_tags_input.RemoveTagsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.remove_tags_input.RemoveTagsInput = {}
         if resource_id is not None:
             input_["resource_id"] = resource_id
         if tag_keys is not None:
@@ -3343,6 +3439,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def run_job_flow(
@@ -3481,7 +3578,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.run_job_flow_input.RunJobFlowInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.run_job_flow_input.RunJobFlowInput = {}
         if name is not None:
             input_["name"] = name
         if log_uri is not None:
@@ -3558,6 +3655,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def set_keep_job_flow_alive_when_no_steps(
@@ -3593,7 +3691,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.set_keep_job_flow_alive_when_no_steps_input.SetKeepJobFlowAliveWhenNoStepsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.set_keep_job_flow_alive_when_no_steps_input.SetKeepJobFlowAliveWhenNoStepsInput = {}
         if job_flow_ids is not None:
             input_["job_flow_ids"] = job_flow_ids
         if keep_job_flow_alive_when_no_steps is not None:
@@ -3606,6 +3704,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def set_termination_protection(
@@ -3639,7 +3738,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.set_termination_protection_input.SetTerminationProtectionInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.set_termination_protection_input.SetTerminationProtectionInput = {}
         if job_flow_ids is not None:
             input_["job_flow_ids"] = job_flow_ids
         if termination_protected is not None:
@@ -3650,6 +3749,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def set_unhealthy_node_replacement(
@@ -3685,7 +3785,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.set_unhealthy_node_replacement_input.SetUnhealthyNodeReplacementInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.set_unhealthy_node_replacement_input.SetUnhealthyNodeReplacementInput = {}
         if job_flow_ids is not None:
             input_["job_flow_ids"] = job_flow_ids
         if unhealthy_node_replacement is not None:
@@ -3696,6 +3796,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def set_visible_to_all_users(
@@ -3729,7 +3830,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.set_visible_to_all_users_input.SetVisibleToAllUsersInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.set_visible_to_all_users_input.SetVisibleToAllUsersInput = {}
         if job_flow_ids is not None:
             input_["job_flow_ids"] = job_flow_ids
         if visible_to_all_users is not None:
@@ -3740,6 +3841,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_notebook_execution(
@@ -3812,7 +3914,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.start_notebook_execution_input.StartNotebookExecutionInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.start_notebook_execution_input.StartNotebookExecutionInput = {}
         if editor_id is not None:
             input_["editor_id"] = editor_id
         if relative_path is not None:
@@ -3845,6 +3947,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_session(
@@ -3901,7 +4004,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.start_session_input.StartSessionInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.start_session_input.StartSessionInput = {}
         if name is not None:
             input_["name"] = name
         if cluster_id is not None:
@@ -3924,6 +4027,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_notebook_execution(
@@ -3958,7 +4062,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.stop_notebook_execution_input.StopNotebookExecutionInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.stop_notebook_execution_input.StopNotebookExecutionInput = {}
         if notebook_execution_id is not None:
             input_["notebook_execution_id"] = notebook_execution_id
 
@@ -3967,6 +4071,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def terminate_job_flows(
@@ -3998,7 +4103,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.terminate_job_flows_input.TerminateJobFlowsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.terminate_job_flows_input.TerminateJobFlowsInput = {}
         if job_flow_ids is not None:
             input_["job_flow_ids"] = job_flow_ids
 
@@ -4007,6 +4112,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def terminate_session(
@@ -4043,7 +4149,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.terminate_session_input.TerminateSessionInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.terminate_session_input.TerminateSessionInput = {}
         if cluster_id is not None:
             input_["cluster_id"] = cluster_id
         if session_id is not None:
@@ -4054,6 +4160,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_studio(
@@ -4102,7 +4209,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.update_studio_input.UpdateStudioInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.update_studio_input.UpdateStudioInput = {}
         if studio_id is not None:
             input_["studio_id"] = studio_id
         if name is not None:
@@ -4121,6 +4228,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_studio_session_mapping(
@@ -4169,7 +4277,7 @@ class EMRClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_emr.types.update_studio_session_mapping_input.UpdateStudioSessionMappingInput = {}  # type: ignore[typeddict-item]
+        input_: capo_emr.types.update_studio_session_mapping_input.UpdateStudioSessionMappingInput = {}
         if studio_id is not None:
             input_["studio_id"] = studio_id
         if identity_id is not None:
@@ -4186,6 +4294,7 @@ class EMRClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

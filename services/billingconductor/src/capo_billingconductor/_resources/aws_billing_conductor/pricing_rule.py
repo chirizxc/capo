@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_billingconductor._auth._signers
@@ -129,14 +130,16 @@ class PricingRule:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_billingconductor.types.create_pricing_rule_input.CreatePricingRuleInput = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["name"] = name
+        input_: capo_billingconductor.types.create_pricing_rule_input.CreatePricingRuleInput = {
+            "name": name,
+            "scope": scope,
+            "type": type,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if description is not None:
             input_["description"] = description
-        input_["scope"] = scope
-        input_["type"] = type
         if modifier_percentage is not None:
             input_["modifier_percentage"] = modifier_percentage
         if service is not None:
@@ -157,6 +160,7 @@ class PricingRule:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -217,8 +221,9 @@ class PricingRule:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_billingconductor.types.update_pricing_rule_input.UpdatePricingRuleInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_billingconductor.types.update_pricing_rule_input.UpdatePricingRuleInput = {
+            "arn": arn
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -235,6 +240,7 @@ class PricingRule:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -274,14 +280,16 @@ class PricingRule:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_billingconductor.types.delete_pricing_rule_input.DeletePricingRuleInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_billingconductor.types.delete_pricing_rule_input.DeletePricingRuleInput = {
+            "arn": arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -330,7 +338,7 @@ class PricingRule:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_billingconductor.types.list_pricing_rules_input.ListPricingRulesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_billingconductor.types.list_pricing_rules_input.ListPricingRulesInput = {}
         if billing_period is not None:
             input_["billing_period"] = billing_period
         if filters is not None:
@@ -345,6 +353,7 @@ class PricingRule:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_pricing_rules_associated_to_pricing_plan(
@@ -392,10 +401,11 @@ class PricingRule:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_billingconductor.types.list_pricing_rules_associated_to_pricing_plan_input.ListPricingRulesAssociatedToPricingPlanInput = {}  # type: ignore[typeddict-item]
+        input_: capo_billingconductor.types.list_pricing_rules_associated_to_pricing_plan_input.ListPricingRulesAssociatedToPricingPlanInput = {
+            "pricing_plan_arn": pricing_plan_arn
+        }
         if billing_period is not None:
             input_["billing_period"] = billing_period
-        input_["pricing_plan_arn"] = pricing_plan_arn
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -406,6 +416,7 @@ class PricingRule:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -484,14 +495,16 @@ class AsyncPricingRule:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_billingconductor.types.create_pricing_rule_input.CreatePricingRuleInput = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["name"] = name
+        input_: capo_billingconductor.types.create_pricing_rule_input.CreatePricingRuleInput = {
+            "name": name,
+            "scope": scope,
+            "type": type,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if description is not None:
             input_["description"] = description
-        input_["scope"] = scope
-        input_["type"] = type
         if modifier_percentage is not None:
             input_["modifier_percentage"] = modifier_percentage
         if service is not None:
@@ -512,6 +525,7 @@ class AsyncPricingRule:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -573,8 +587,9 @@ class AsyncPricingRule:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_billingconductor.types.update_pricing_rule_input.UpdatePricingRuleInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_billingconductor.types.update_pricing_rule_input.UpdatePricingRuleInput = {
+            "arn": arn
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -591,6 +606,7 @@ class AsyncPricingRule:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -631,14 +647,16 @@ class AsyncPricingRule:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_billingconductor.types.delete_pricing_rule_input.DeletePricingRuleInput = {}  # type: ignore[typeddict-item]
-        input_["arn"] = arn
+        input_: capo_billingconductor.types.delete_pricing_rule_input.DeletePricingRuleInput = {
+            "arn": arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -688,7 +706,7 @@ class AsyncPricingRule:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_billingconductor.types.list_pricing_rules_input.ListPricingRulesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_billingconductor.types.list_pricing_rules_input.ListPricingRulesInput = {}
         if billing_period is not None:
             input_["billing_period"] = billing_period
         if filters is not None:
@@ -703,6 +721,7 @@ class AsyncPricingRule:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_pricing_rules_associated_to_pricing_plan(
@@ -751,10 +770,11 @@ class AsyncPricingRule:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_billingconductor.types.list_pricing_rules_associated_to_pricing_plan_input.ListPricingRulesAssociatedToPricingPlanInput = {}  # type: ignore[typeddict-item]
+        input_: capo_billingconductor.types.list_pricing_rules_associated_to_pricing_plan_input.ListPricingRulesAssociatedToPricingPlanInput = {
+            "pricing_plan_arn": pricing_plan_arn
+        }
         if billing_period is not None:
             input_["billing_period"] = billing_period
-        input_["pricing_plan_arn"] = pricing_plan_arn
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -765,4 +785,5 @@ class AsyncPricingRule:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

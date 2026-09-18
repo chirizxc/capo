@@ -24,6 +24,8 @@ def serialize_json(input_to_serialize: Criterion) -> dict:
 def deserialize_json(data: dict) -> Criterion:
     out: Criterion = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_guardduty.types.condition
 
         out[key] = capo_guardduty.types.condition.deserialize_json(value)

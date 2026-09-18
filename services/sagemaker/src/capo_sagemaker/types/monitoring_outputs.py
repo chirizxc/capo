@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> MonitoringOutputs:
 
     out: MonitoringOutputs = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.monitoring_output.deserialize_aws_json_1_1(item)
         )

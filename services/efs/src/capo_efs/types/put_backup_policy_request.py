@@ -31,7 +31,7 @@ def serialize_json(value: PutBackupPolicyRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutBackupPolicyRequest:
     out: PutBackupPolicyRequest = {}  # type: ignore[typeddict-item]
-    if "BackupPolicy" in data:
+    if data.get("BackupPolicy") is not None:
         import capo_efs.types.backup_policy
 
         out["backup_policy"] = capo_efs.types.backup_policy.deserialize_json(

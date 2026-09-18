@@ -34,7 +34,7 @@ def serialize_json(value: ListElasticsearchVersionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListElasticsearchVersionsResponse:
     out: ListElasticsearchVersionsResponse = {}  # type: ignore[typeddict-item]
-    if "ElasticsearchVersions" in data:
+    if data.get("ElasticsearchVersions") is not None:
         import capo_elasticsearch_service.types.elasticsearch_version_list
 
         out["elasticsearch_versions"] = (
@@ -42,6 +42,6 @@ def deserialize_json(data: dict) -> ListElasticsearchVersionsResponse:
                 data["ElasticsearchVersions"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

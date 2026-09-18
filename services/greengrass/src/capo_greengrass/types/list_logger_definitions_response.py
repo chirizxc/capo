@@ -36,7 +36,7 @@ def serialize_json(value: ListLoggerDefinitionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListLoggerDefinitionsResponse:
     out: ListLoggerDefinitionsResponse = {}  # type: ignore[typeddict-item]
-    if "Definitions" in data:
+    if data.get("Definitions") is not None:
         import capo_greengrass.types.__list_of_definition_information
 
         out["definitions"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListLoggerDefinitionsResponse:
                 data["Definitions"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

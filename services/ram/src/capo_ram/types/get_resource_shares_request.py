@@ -86,7 +86,7 @@ def serialize_json(value: GetResourceSharesRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetResourceSharesRequest:
     out: GetResourceSharesRequest = {}  # type: ignore[typeddict-item]
-    if "resourceShareArns" in data:
+    if data.get("resourceShareArns") is not None:
         import capo_ram.types.resource_share_arn_list
 
         out["resource_share_arns"] = (
@@ -94,7 +94,7 @@ def deserialize_json(data: dict) -> GetResourceSharesRequest:
                 data["resourceShareArns"]
             )
         )
-    if "resourceShareStatus" in data:
+    if data.get("resourceShareStatus") is not None:
         import capo_ram.types.resource_share_status
 
         out["resource_share_status"] = (
@@ -102,7 +102,7 @@ def deserialize_json(data: dict) -> GetResourceSharesRequest:
                 data["resourceShareStatus"]
             )
         )
-    if "resourceOwner" in data:
+    if data.get("resourceOwner") is not None:
         import capo_ram.types.resource_owner
 
         out["resource_owner"] = capo_ram.types.resource_owner.deserialize_json(
@@ -110,20 +110,20 @@ def deserialize_json(data: dict) -> GetResourceSharesRequest:
         )
     else:
         raise DeserializationError("GetResourceSharesRequest.resource_owner required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "tagFilters" in data:
+    if data.get("tagFilters") is not None:
         import capo_ram.types.tag_filters
 
         out["tag_filters"] = capo_ram.types.tag_filters.deserialize_json(
             data["tagFilters"]
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "permissionArn" in data:
+    if data.get("permissionArn") is not None:
         out["permission_arn"] = data["permissionArn"]
-    if "permissionVersion" in data:
+    if data.get("permissionVersion") is not None:
         out["permission_version"] = data["permissionVersion"]
     return out

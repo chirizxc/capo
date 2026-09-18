@@ -41,17 +41,17 @@ def serialize_json(value: CreateMembersRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateMembersRequest:
     out: CreateMembersRequest = {}  # type: ignore[typeddict-item]
-    if "GraphArn" in data:
+    if data.get("GraphArn") is not None:
         out["graph_arn"] = data["GraphArn"]
     else:
         raise DeserializationError("CreateMembersRequest.graph_arn required")
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "DisableEmailNotification" in data:
+    if data.get("DisableEmailNotification") is not None:
         out["disable_email_notification"] = data["DisableEmailNotification"]
     else:
         out["disable_email_notification"] = False
-    if "Accounts" in data:
+    if data.get("Accounts") is not None:
         import capo_detective.types.account_list
 
         out["accounts"] = capo_detective.types.account_list.deserialize_json(

@@ -39,11 +39,11 @@ def serialize_json(value: StepParameter) -> dict:
 
 def deserialize_json(data: dict) -> StepParameter:
     out: StepParameter = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("StepParameter.name required")
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_deadline.types.step_parameter_type
 
         out["type"] = capo_deadline.types.step_parameter_type.deserialize_json(
@@ -51,7 +51,7 @@ def deserialize_json(data: dict) -> StepParameter:
         )
     else:
         raise DeserializationError("StepParameter.type required")
-    if "chunks" in data:
+    if data.get("chunks") is not None:
         import capo_deadline.types.step_parameter_chunks
 
         out["chunks"] = capo_deadline.types.step_parameter_chunks.deserialize_json(

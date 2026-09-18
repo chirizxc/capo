@@ -35,7 +35,7 @@ def deserialize_aws_json_1_1(
     data: dict,
 ) -> DescribeEntityAggregatesForOrganizationResponse:
     out: DescribeEntityAggregatesForOrganizationResponse = {}  # type: ignore[typeddict-item]
-    if "organizationEntityAggregates" in data:
+    if data.get("organizationEntityAggregates") is not None:
         import capo_health.types.organization_entity_aggregates_list
 
         out["organization_entity_aggregates"] = (

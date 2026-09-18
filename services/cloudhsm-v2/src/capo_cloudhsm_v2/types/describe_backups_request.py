@@ -46,18 +46,18 @@ def serialize_aws_json_1_1(value: DescribeBackupsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeBackupsRequest:
     out: DescribeBackupsRequest = {}  # type: ignore[typeddict-item]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "Filters" in data:
+    if data.get("Filters") is not None:
         import capo_cloudhsm_v2.types.filters
 
         out["filters"] = capo_cloudhsm_v2.types.filters.deserialize_aws_json_1_1(
             data["Filters"]
         )
-    if "Shared" in data:
+    if data.get("Shared") is not None:
         out["shared"] = data["Shared"]
-    if "SortAscending" in data:
+    if data.get("SortAscending") is not None:
         out["sort_ascending"] = data["SortAscending"]
     return out

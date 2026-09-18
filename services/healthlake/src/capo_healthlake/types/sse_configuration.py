@@ -32,7 +32,7 @@ def serialize_aws_json_1_0(value: SseConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SseConfiguration:
     out: SseConfiguration = {}  # type: ignore[typeddict-item]
-    if "KmsEncryptionConfig" in data:
+    if data.get("KmsEncryptionConfig") is not None:
         import capo_healthlake.types.kms_encryption_config
 
         out["kms_encryption_config"] = (

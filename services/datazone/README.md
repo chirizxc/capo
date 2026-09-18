@@ -13,9 +13,9 @@ from capo_datazone import AsyncDataZoneClient
 
 
 async def main():
-    async with AsyncDataZoneClient() as s3:
+    async with AsyncDataZoneClient() as data_zone:
         # Example: call the accept_predictions operation
-        response = await s3.accept_predictions()
+        response = await data_zone.accept_predictions()
         print(response["domain_id"])
 ```
 
@@ -28,9 +28,9 @@ from capo_datazone import AsyncDataZoneClient
 
 
 async def main():
-    async with AsyncDataZoneClient() as s3:
+    async with AsyncDataZoneClient() as data_zone:
         # Example: paginate over list_account_pools
-        async for item in s3.iter_list_account_pools():
+        async for item in data_zone.iter_list_account_pools():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_datazone.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncDataZoneClient() as s3:
+    async with AsyncDataZoneClient() as data_zone:
         try:
-            await s3.accept_predictions()
+            await data_zone.accept_predictions()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_datazone import AsyncDataZoneClient
 
 
 async def main():
-    async with AsyncDataZoneClient() as s3:
+    async with AsyncDataZoneClient() as data_zone:
         # Default: 3 attempts for every operation
-        response = await s3.accept_predictions()
+        response = await data_zone.accept_predictions()
 
         # Override per operation
-        response = await s3.accept_predictions(config_overrides={"retry_max_attempts": 5})
+        response = await data_zone.accept_predictions(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.accept_predictions(config_overrides={"retry_max_attempts": 1})
+        response = await data_zone.accept_predictions(config_overrides={"retry_max_attempts": 1})
 ```

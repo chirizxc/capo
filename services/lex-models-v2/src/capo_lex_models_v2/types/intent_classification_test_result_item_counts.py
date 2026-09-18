@@ -46,13 +46,13 @@ def serialize_json(value: IntentClassificationTestResultItemCounts) -> dict:
 
 def deserialize_json(data: dict) -> IntentClassificationTestResultItemCounts:
     out: IntentClassificationTestResultItemCounts = {}  # type: ignore[typeddict-item]
-    if "totalResultCount" in data:
+    if data.get("totalResultCount") is not None:
         out["total_result_count"] = data["totalResultCount"]
     else:
         raise DeserializationError(
             "IntentClassificationTestResultItemCounts.total_result_count required"
         )
-    if "speechTranscriptionResultCounts" in data:
+    if data.get("speechTranscriptionResultCounts") is not None:
         import capo_lex_models_v2.types.test_result_match_status_count_map
 
         out["speech_transcription_result_counts"] = (
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> IntentClassificationTestResultItemCounts:
                 data["speechTranscriptionResultCounts"]
             )
         )
-    if "intentMatchResultCounts" in data:
+    if data.get("intentMatchResultCounts") is not None:
         import capo_lex_models_v2.types.test_result_match_status_count_map
 
         out["intent_match_result_counts"] = (

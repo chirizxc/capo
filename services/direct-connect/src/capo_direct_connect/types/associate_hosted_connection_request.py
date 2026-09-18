@@ -27,13 +27,13 @@ def serialize_aws_json_1_1(value: AssociateHostedConnectionRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AssociateHostedConnectionRequest:
     out: AssociateHostedConnectionRequest = {}  # type: ignore[typeddict-item]
-    if "connectionId" in data:
+    if data.get("connectionId") is not None:
         out["connection_id"] = data["connectionId"]
     else:
         raise DeserializationError(
             "AssociateHostedConnectionRequest.connection_id required"
         )
-    if "parentConnectionId" in data:
+    if data.get("parentConnectionId") is not None:
         out["parent_connection_id"] = data["parentConnectionId"]
     else:
         raise DeserializationError(

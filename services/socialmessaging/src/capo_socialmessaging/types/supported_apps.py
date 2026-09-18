@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> SupportedApps:
 
     out: SupportedApps = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_socialmessaging.types.supported_app.deserialize_json(item))
     return out

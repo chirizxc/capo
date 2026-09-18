@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: InitializeClusterResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InitializeClusterResponse:
     out: InitializeClusterResponse = {}  # type: ignore[typeddict-item]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_cloudhsm_v2.types.cluster_state
 
         out["state"] = capo_cloudhsm_v2.types.cluster_state.deserialize_aws_json_1_1(
             data["State"]
         )
-    if "StateMessage" in data:
+    if data.get("StateMessage") is not None:
         out["state_message"] = data["StateMessage"]
     return out

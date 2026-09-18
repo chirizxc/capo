@@ -26,7 +26,7 @@ def serialize_aws_json_1_0(value: CreateAddonSubscriptionResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CreateAddonSubscriptionResponse:
     out: CreateAddonSubscriptionResponse = {}  # type: ignore[typeddict-item]
-    if "AddonSubscriptionId" in data:
+    if data.get("AddonSubscriptionId") is not None:
         out["addon_subscription_id"] = data["AddonSubscriptionId"]
     else:
         raise DeserializationError(

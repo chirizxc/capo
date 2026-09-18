@@ -98,7 +98,7 @@ def serialize_json(value: VideoPreprocessor) -> dict:
 
 def deserialize_json(data: dict) -> VideoPreprocessor:
     out: VideoPreprocessor = {}  # type: ignore[typeddict-item]
-    if "colorCorrector" in data:
+    if data.get("colorCorrector") is not None:
         import capo_mediaconvert.types.color_corrector
 
         out["color_corrector"] = (
@@ -106,37 +106,37 @@ def deserialize_json(data: dict) -> VideoPreprocessor:
                 data["colorCorrector"]
             )
         )
-    if "deinterlacer" in data:
+    if data.get("deinterlacer") is not None:
         import capo_mediaconvert.types.deinterlacer
 
         out["deinterlacer"] = capo_mediaconvert.types.deinterlacer.deserialize_json(
             data["deinterlacer"]
         )
-    if "dolbyVision" in data:
+    if data.get("dolbyVision") is not None:
         import capo_mediaconvert.types.dolby_vision
 
         out["dolby_vision"] = capo_mediaconvert.types.dolby_vision.deserialize_json(
             data["dolbyVision"]
         )
-    if "hdr10Plus" in data:
+    if data.get("hdr10Plus") is not None:
         import capo_mediaconvert.types.hdr10_plus
 
         out["hdr10_plus"] = capo_mediaconvert.types.hdr10_plus.deserialize_json(
             data["hdr10Plus"]
         )
-    if "imageInserter" in data:
+    if data.get("imageInserter") is not None:
         import capo_mediaconvert.types.image_inserter
 
         out["image_inserter"] = capo_mediaconvert.types.image_inserter.deserialize_json(
             data["imageInserter"]
         )
-    if "noiseReducer" in data:
+    if data.get("noiseReducer") is not None:
         import capo_mediaconvert.types.noise_reducer
 
         out["noise_reducer"] = capo_mediaconvert.types.noise_reducer.deserialize_json(
             data["noiseReducer"]
         )
-    if "partnerWatermarking" in data:
+    if data.get("partnerWatermarking") is not None:
         import capo_mediaconvert.types.partner_watermarking
 
         out["partner_watermarking"] = (
@@ -144,7 +144,7 @@ def deserialize_json(data: dict) -> VideoPreprocessor:
                 data["partnerWatermarking"]
             )
         )
-    if "timecodeBurnin" in data:
+    if data.get("timecodeBurnin") is not None:
         import capo_mediaconvert.types.timecode_burnin
 
         out["timecode_burnin"] = (

@@ -56,11 +56,11 @@ def serialize_json(value: HlsMediaStoreSettings) -> dict:
 
 def deserialize_json(data: dict) -> HlsMediaStoreSettings:
     out: HlsMediaStoreSettings = {}  # type: ignore[typeddict-item]
-    if "connectionRetryInterval" in data:
+    if data.get("connectionRetryInterval") is not None:
         out["connection_retry_interval"] = data["connectionRetryInterval"]
-    if "filecacheDuration" in data:
+    if data.get("filecacheDuration") is not None:
         out["filecache_duration"] = data["filecacheDuration"]
-    if "mediaStoreStorageClass" in data:
+    if data.get("mediaStoreStorageClass") is not None:
         import capo_medialive.types.hls_media_store_storage_class
 
         out["media_store_storage_class"] = (
@@ -68,8 +68,8 @@ def deserialize_json(data: dict) -> HlsMediaStoreSettings:
                 data["mediaStoreStorageClass"]
             )
         )
-    if "numRetries" in data:
+    if data.get("numRetries") is not None:
         out["num_retries"] = data["numRetries"]
-    if "restartDelay" in data:
+    if data.get("restartDelay") is not None:
         out["restart_delay"] = data["restartDelay"]
     return out

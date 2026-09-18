@@ -40,11 +40,11 @@ def serialize_aws_json_1_1(value: AsyncInferenceNotificationConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AsyncInferenceNotificationConfig:
     out: AsyncInferenceNotificationConfig = {}  # type: ignore[typeddict-item]
-    if "SuccessTopic" in data:
+    if data.get("SuccessTopic") is not None:
         out["success_topic"] = data["SuccessTopic"]
-    if "ErrorTopic" in data:
+    if data.get("ErrorTopic") is not None:
         out["error_topic"] = data["ErrorTopic"]
-    if "IncludeInferenceResponseIn" in data:
+    if data.get("IncludeInferenceResponseIn") is not None:
         import capo_sagemaker.types.async_notification_topic_type_list
 
         out["include_inference_response_in"] = (

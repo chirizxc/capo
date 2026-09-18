@@ -29,6 +29,6 @@ def serialize_json(value: UpdateQueueMaxContactsRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateQueueMaxContactsRequest:
     out: UpdateQueueMaxContactsRequest = {}  # type: ignore[typeddict-item]
-    if "MaxContacts" in data:
+    if data.get("MaxContacts") is not None:
         out["max_contacts"] = data["MaxContacts"]
     return out

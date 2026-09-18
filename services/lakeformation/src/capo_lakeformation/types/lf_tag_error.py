@@ -36,13 +36,13 @@ def serialize_json(value: LFTagError) -> dict:
 
 def deserialize_json(data: dict) -> LFTagError:
     out: LFTagError = {}  # type: ignore[typeddict-item]
-    if "LFTag" in data:
+    if data.get("LFTag") is not None:
         import capo_lakeformation.types.lf_tag_pair
 
         out["lf_tag"] = capo_lakeformation.types.lf_tag_pair.deserialize_json(
             data["LFTag"]
         )
-    if "Error" in data:
+    if data.get("Error") is not None:
         import capo_lakeformation.types.error_detail
 
         out["error"] = capo_lakeformation.types.error_detail.deserialize_json(

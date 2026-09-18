@@ -78,7 +78,15 @@ def serialize_aws_json_1_0(value: InstanceRecommendationOption) -> dict:
                 value["platform_differences"]
             )
         )
-    out["performanceRisk"] = value.get("performance_risk", 0)
+    out["performanceRisk"] = (
+        "NaN"
+        if value.get("performance_risk", 0) != value.get("performance_risk", 0)
+        else "Infinity"
+        if value.get("performance_risk", 0) == float("inf")
+        else "-Infinity"
+        if value.get("performance_risk", 0) == float("-inf")
+        else value.get("performance_risk", 0)
+    )
     out["rank"] = value.get("rank", 0)
     if "savings_opportunity" in value:
         import capo_compute_optimizer.types.savings_opportunity
@@ -109,9 +117,9 @@ def serialize_aws_json_1_0(value: InstanceRecommendationOption) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> InstanceRecommendationOption:
     out: InstanceRecommendationOption = {}  # type: ignore[typeddict-item]
-    if "instanceType" in data:
+    if data.get("instanceType") is not None:
         out["instance_type"] = data["instanceType"]
-    if "instanceGpuInfo" in data:
+    if data.get("instanceGpuInfo") is not None:
         import capo_compute_optimizer.types.gpu_info
 
         out["instance_gpu_info"] = (
@@ -119,7 +127,7 @@ def deserialize_aws_json_1_0(data: dict) -> InstanceRecommendationOption:
                 data["instanceGpuInfo"]
             )
         )
-    if "projectedUtilizationMetrics" in data:
+    if data.get("projectedUtilizationMetrics") is not None:
         import capo_compute_optimizer.types.projected_utilization_metrics
 
         out["projected_utilization_metrics"] = (
@@ -127,7 +135,7 @@ def deserialize_aws_json_1_0(data: dict) -> InstanceRecommendationOption:
                 data["projectedUtilizationMetrics"]
             )
         )
-    if "platformDifferences" in data:
+    if data.get("platformDifferences") is not None:
         import capo_compute_optimizer.types.platform_differences
 
         out["platform_differences"] = (
@@ -135,15 +143,15 @@ def deserialize_aws_json_1_0(data: dict) -> InstanceRecommendationOption:
                 data["platformDifferences"]
             )
         )
-    if "performanceRisk" in data:
-        out["performance_risk"] = data["performanceRisk"]
+    if data.get("performanceRisk") is not None:
+        out["performance_risk"] = float(data["performanceRisk"])
     else:
         out["performance_risk"] = 0
-    if "rank" in data:
+    if data.get("rank") is not None:
         out["rank"] = data["rank"]
     else:
         out["rank"] = 0
-    if "savingsOpportunity" in data:
+    if data.get("savingsOpportunity") is not None:
         import capo_compute_optimizer.types.savings_opportunity
 
         out["savings_opportunity"] = (
@@ -151,7 +159,7 @@ def deserialize_aws_json_1_0(data: dict) -> InstanceRecommendationOption:
                 data["savingsOpportunity"]
             )
         )
-    if "savingsOpportunityAfterDiscounts" in data:
+    if data.get("savingsOpportunityAfterDiscounts") is not None:
         import capo_compute_optimizer.types.instance_savings_opportunity_after_discounts
 
         out["savings_opportunity_after_discounts"] = (
@@ -159,7 +167,7 @@ def deserialize_aws_json_1_0(data: dict) -> InstanceRecommendationOption:
                 data["savingsOpportunityAfterDiscounts"]
             )
         )
-    if "migrationEffort" in data:
+    if data.get("migrationEffort") is not None:
         import capo_compute_optimizer.types.migration_effort
 
         out["migration_effort"] = (

@@ -74,13 +74,13 @@ def serialize_json(value: PutDomainObjectTypeResponse) -> dict:
 
 def deserialize_json(data: dict) -> PutDomainObjectTypeResponse:
     out: PutDomainObjectTypeResponse = {}  # type: ignore[typeddict-item]
-    if "ObjectTypeName" in data:
+    if data.get("ObjectTypeName") is not None:
         out["object_type_name"] = data["ObjectTypeName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "EncryptionKey" in data:
+    if data.get("EncryptionKey") is not None:
         out["encryption_key"] = data["EncryptionKey"]
-    if "Fields" in data:
+    if data.get("Fields") is not None:
         import capo_customer_profiles.types.domain_object_type_fields
 
         out["fields"] = (
@@ -88,13 +88,13 @@ def deserialize_json(data: dict) -> PutDomainObjectTypeResponse:
                 data["Fields"]
             )
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["created_at"] = capo_customer_profiles.types.timestamp.deserialize_json(
             data["CreatedAt"]
         )
-    if "LastUpdatedAt" in data:
+    if data.get("LastUpdatedAt") is not None:
         import capo_customer_profiles.types.timestamp
 
         out["last_updated_at"] = (
@@ -102,7 +102,7 @@ def deserialize_json(data: dict) -> PutDomainObjectTypeResponse:
                 data["LastUpdatedAt"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_customer_profiles.types.tag_map
 
         out["tags"] = capo_customer_profiles.types.tag_map.deserialize_json(

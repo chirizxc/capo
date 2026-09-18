@@ -32,7 +32,7 @@ def serialize_aws_json_1_0(value: RetentionProperties) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RetentionProperties:
     out: RetentionProperties = {}  # type: ignore[typeddict-item]
-    if "MemoryStoreRetentionPeriodInHours" in data:
+    if data.get("MemoryStoreRetentionPeriodInHours") is not None:
         out["memory_store_retention_period_in_hours"] = data[
             "MemoryStoreRetentionPeriodInHours"
         ]
@@ -40,7 +40,7 @@ def deserialize_aws_json_1_0(data: dict) -> RetentionProperties:
         raise DeserializationError(
             "RetentionProperties.memory_store_retention_period_in_hours required"
         )
-    if "MagneticStoreRetentionPeriodInDays" in data:
+    if data.get("MagneticStoreRetentionPeriodInDays") is not None:
         out["magnetic_store_retention_period_in_days"] = data[
             "MagneticStoreRetentionPeriodInDays"
         ]

@@ -35,7 +35,7 @@ def serialize_json(value: CreateThemeAliasRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateThemeAliasRequest:
     out: CreateThemeAliasRequest = {}  # type: ignore[typeddict-item]
-    if "ThemeVersionNumber" in data:
+    if data.get("ThemeVersionNumber") is not None:
         out["theme_version_number"] = data["ThemeVersionNumber"]
     else:
         raise DeserializationError(

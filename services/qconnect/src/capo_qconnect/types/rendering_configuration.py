@@ -23,6 +23,6 @@ def serialize_json(value: RenderingConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> RenderingConfiguration:
     out: RenderingConfiguration = {}  # type: ignore[typeddict-item]
-    if "templateUri" in data:
+    if data.get("templateUri") is not None:
         out["template_uri"] = data["templateUri"]
     return out

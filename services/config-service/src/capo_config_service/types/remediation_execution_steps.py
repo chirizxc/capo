@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> RemediationExecutionSteps:
 
     out: RemediationExecutionSteps = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_config_service.types.remediation_execution_step.deserialize_aws_json_1_1(
                 item

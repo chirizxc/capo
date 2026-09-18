@@ -44,15 +44,15 @@ def serialize_json(value: RegionInfo) -> dict:
 
 def deserialize_json(data: dict) -> RegionInfo:
     out: RegionInfo = {}  # type: ignore[typeddict-item]
-    if "sseKmsKeyId" in data:
+    if data.get("sseKmsKeyId") is not None:
         out["sse_kms_key_id"] = data["sseKmsKeyId"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("RegionInfo.status required")
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
-    if "statusUpdateDateTime" in data:
+    if data.get("statusUpdateDateTime") is not None:
         import capo_ssm_incidents.types._prelude.timestamp
 
         out["status_update_date_time"] = (

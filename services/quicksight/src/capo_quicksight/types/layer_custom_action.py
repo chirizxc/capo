@@ -59,21 +59,21 @@ def serialize_json(value: LayerCustomAction) -> dict:
 
 def deserialize_json(data: dict) -> LayerCustomAction:
     out: LayerCustomAction = {}  # type: ignore[typeddict-item]
-    if "CustomActionId" in data:
+    if data.get("CustomActionId") is not None:
         out["custom_action_id"] = data["CustomActionId"]
     else:
         raise DeserializationError("LayerCustomAction.custom_action_id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("LayerCustomAction.name required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_quicksight.types.widget_status
 
         out["status"] = capo_quicksight.types.widget_status.deserialize_json(
             data["Status"]
         )
-    if "Trigger" in data:
+    if data.get("Trigger") is not None:
         import capo_quicksight.types.layer_custom_action_trigger
 
         out["trigger"] = (
@@ -83,7 +83,7 @@ def deserialize_json(data: dict) -> LayerCustomAction:
         )
     else:
         raise DeserializationError("LayerCustomAction.trigger required")
-    if "ActionOperations" in data:
+    if data.get("ActionOperations") is not None:
         import capo_quicksight.types.layer_custom_action_operation_list
 
         out["action_operations"] = (

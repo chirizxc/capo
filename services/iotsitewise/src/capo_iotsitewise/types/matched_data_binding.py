@@ -28,7 +28,7 @@ def serialize_json(value: MatchedDataBinding) -> dict:
 
 def deserialize_json(data: dict) -> MatchedDataBinding:
     out: MatchedDataBinding = {}  # type: ignore[typeddict-item]
-    if "value" in data:
+    if data.get("value") is not None:
         import capo_iotsitewise.types.data_binding_value
 
         out["value"] = capo_iotsitewise.types.data_binding_value.deserialize_json(

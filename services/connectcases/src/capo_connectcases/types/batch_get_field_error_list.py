@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> BatchGetFieldErrorList:
 
     out: BatchGetFieldErrorList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connectcases.types.field_error.deserialize_json(item))
     return out

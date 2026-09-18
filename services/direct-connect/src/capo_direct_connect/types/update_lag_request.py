@@ -40,16 +40,16 @@ def serialize_aws_json_1_1(value: UpdateLagRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateLagRequest:
     out: UpdateLagRequest = {}  # type: ignore[typeddict-item]
-    if "lagId" in data:
+    if data.get("lagId") is not None:
         out["lag_id"] = data["lagId"]
     else:
         raise DeserializationError("UpdateLagRequest.lag_id required")
-    if "lagName" in data:
+    if data.get("lagName") is not None:
         out["lag_name"] = data["lagName"]
-    if "minimumLinks" in data:
+    if data.get("minimumLinks") is not None:
         out["minimum_links"] = data["minimumLinks"]
     else:
         out["minimum_links"] = 0
-    if "encryptionMode" in data:
+    if data.get("encryptionMode") is not None:
         out["encryption_mode"] = data["encryptionMode"]
     return out

@@ -105,51 +105,51 @@ def serialize_json(value: Insight) -> dict:
 
 def deserialize_json(data: dict) -> Insight:
     out: Insight = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "category" in data:
+    if data.get("category") is not None:
         import capo_eks.types.category
 
         out["category"] = capo_eks.types.category.deserialize_json(data["category"])
-    if "kubernetesVersion" in data:
+    if data.get("kubernetesVersion") is not None:
         out["kubernetes_version"] = data["kubernetesVersion"]
-    if "lastRefreshTime" in data:
+    if data.get("lastRefreshTime") is not None:
         import capo_eks.types.timestamp
 
         out["last_refresh_time"] = capo_eks.types.timestamp.deserialize_json(
             data["lastRefreshTime"]
         )
-    if "lastTransitionTime" in data:
+    if data.get("lastTransitionTime") is not None:
         import capo_eks.types.timestamp
 
         out["last_transition_time"] = capo_eks.types.timestamp.deserialize_json(
             data["lastTransitionTime"]
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "insightStatus" in data:
+    if data.get("insightStatus") is not None:
         import capo_eks.types.insight_status
 
         out["insight_status"] = capo_eks.types.insight_status.deserialize_json(
             data["insightStatus"]
         )
-    if "recommendation" in data:
+    if data.get("recommendation") is not None:
         out["recommendation"] = data["recommendation"]
-    if "additionalInfo" in data:
+    if data.get("additionalInfo") is not None:
         import capo_eks.types.additional_info_map
 
         out["additional_info"] = capo_eks.types.additional_info_map.deserialize_json(
             data["additionalInfo"]
         )
-    if "resources" in data:
+    if data.get("resources") is not None:
         import capo_eks.types.insight_resource_details
 
         out["resources"] = capo_eks.types.insight_resource_details.deserialize_json(
             data["resources"]
         )
-    if "categorySpecificSummary" in data:
+    if data.get("categorySpecificSummary") is not None:
         import capo_eks.types.insight_category_specific_summary
 
         out["category_specific_summary"] = (

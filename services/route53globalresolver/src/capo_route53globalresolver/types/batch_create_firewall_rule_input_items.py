@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> BatchCreateFirewallRuleInputItems:
 
     out: BatchCreateFirewallRuleInputItems = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_route53globalresolver.types.batch_create_firewall_rule_input_item.deserialize_json(
                 item

@@ -24,7 +24,7 @@ def serialize_json(value: InvalidSampleRateException_) -> dict:
 
 def deserialize_json(data: dict) -> InvalidSampleRateException_:
     out: InvalidSampleRateException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,18 @@ class InvalidSampleRateException(ServiceError):
 
     code: str | None = "InvalidSampleRateException"
 
-    def __init__(self, data: InvalidSampleRateException_):
+    def __init__(self, data: InvalidSampleRateException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidSampleRateException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "InvalidSampleRateException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidSampleRateException":
+        return cls(deserialize_json(data), message)

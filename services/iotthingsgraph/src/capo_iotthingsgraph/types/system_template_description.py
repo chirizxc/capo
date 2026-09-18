@@ -51,7 +51,7 @@ def serialize_aws_json_1_1(value: SystemTemplateDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SystemTemplateDescription:
     out: SystemTemplateDescription = {}  # type: ignore[typeddict-item]
-    if "summary" in data:
+    if data.get("summary") is not None:
         import capo_iotthingsgraph.types.system_template_summary
 
         out["summary"] = (
@@ -59,7 +59,7 @@ def deserialize_aws_json_1_1(data: dict) -> SystemTemplateDescription:
                 data["summary"]
             )
         )
-    if "definition" in data:
+    if data.get("definition") is not None:
         import capo_iotthingsgraph.types.definition_document
 
         out["definition"] = (
@@ -67,6 +67,6 @@ def deserialize_aws_json_1_1(data: dict) -> SystemTemplateDescription:
                 data["definition"]
             )
         )
-    if "validatedNamespaceVersion" in data:
+    if data.get("validatedNamespaceVersion") is not None:
         out["validated_namespace_version"] = data["validatedNamespaceVersion"]
     return out

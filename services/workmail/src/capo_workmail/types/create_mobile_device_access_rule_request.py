@@ -148,21 +148,21 @@ def serialize_aws_json_1_1(value: CreateMobileDeviceAccessRuleRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateMobileDeviceAccessRuleRequest:
     out: CreateMobileDeviceAccessRuleRequest = {}  # type: ignore[typeddict-item]
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
     else:
         raise DeserializationError(
             "CreateMobileDeviceAccessRuleRequest.organization_id required"
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateMobileDeviceAccessRuleRequest.name required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Effect" in data:
+    if data.get("Effect") is not None:
         import capo_workmail.types.mobile_device_access_rule_effect
 
         out["effect"] = (
@@ -174,7 +174,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateMobileDeviceAccessRuleRequest:
         raise DeserializationError(
             "CreateMobileDeviceAccessRuleRequest.effect required"
         )
-    if "DeviceTypes" in data:
+    if data.get("DeviceTypes") is not None:
         import capo_workmail.types.device_type_list
 
         out["device_types"] = (
@@ -182,7 +182,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateMobileDeviceAccessRuleRequest:
                 data["DeviceTypes"]
             )
         )
-    if "NotDeviceTypes" in data:
+    if data.get("NotDeviceTypes") is not None:
         import capo_workmail.types.device_type_list
 
         out["not_device_types"] = (
@@ -190,7 +190,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateMobileDeviceAccessRuleRequest:
                 data["NotDeviceTypes"]
             )
         )
-    if "DeviceModels" in data:
+    if data.get("DeviceModels") is not None:
         import capo_workmail.types.device_model_list
 
         out["device_models"] = (
@@ -198,7 +198,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateMobileDeviceAccessRuleRequest:
                 data["DeviceModels"]
             )
         )
-    if "NotDeviceModels" in data:
+    if data.get("NotDeviceModels") is not None:
         import capo_workmail.types.device_model_list
 
         out["not_device_models"] = (
@@ -206,7 +206,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateMobileDeviceAccessRuleRequest:
                 data["NotDeviceModels"]
             )
         )
-    if "DeviceOperatingSystems" in data:
+    if data.get("DeviceOperatingSystems") is not None:
         import capo_workmail.types.device_operating_system_list
 
         out["device_operating_systems"] = (
@@ -214,7 +214,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateMobileDeviceAccessRuleRequest:
                 data["DeviceOperatingSystems"]
             )
         )
-    if "NotDeviceOperatingSystems" in data:
+    if data.get("NotDeviceOperatingSystems") is not None:
         import capo_workmail.types.device_operating_system_list
 
         out["not_device_operating_systems"] = (
@@ -222,7 +222,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateMobileDeviceAccessRuleRequest:
                 data["NotDeviceOperatingSystems"]
             )
         )
-    if "DeviceUserAgents" in data:
+    if data.get("DeviceUserAgents") is not None:
         import capo_workmail.types.device_user_agent_list
 
         out["device_user_agents"] = (
@@ -230,7 +230,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateMobileDeviceAccessRuleRequest:
                 data["DeviceUserAgents"]
             )
         )
-    if "NotDeviceUserAgents" in data:
+    if data.get("NotDeviceUserAgents") is not None:
         import capo_workmail.types.device_user_agent_list
 
         out["not_device_user_agents"] = (

@@ -31,10 +31,10 @@ def serialize_json(value: S3LocationDescription) -> dict:
 
 def deserialize_json(data: dict) -> S3LocationDescription:
     out: S3LocationDescription = {}  # type: ignore[typeddict-item]
-    if "bucketArn" in data:
+    if data.get("bucketArn") is not None:
         out["bucket_arn"] = data["bucketArn"]
-    if "fileKey" in data:
+    if data.get("fileKey") is not None:
         out["file_key"] = data["fileKey"]
-    if "objectVersion" in data:
+    if data.get("objectVersion") is not None:
         out["object_version"] = data["objectVersion"]
     return out

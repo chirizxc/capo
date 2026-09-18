@@ -29,10 +29,10 @@ def serialize_json(value: DeleteSignalingChannelInput) -> dict:
 
 def deserialize_json(data: dict) -> DeleteSignalingChannelInput:
     out: DeleteSignalingChannelInput = {}  # type: ignore[typeddict-item]
-    if "ChannelARN" in data:
+    if data.get("ChannelARN") is not None:
         out["channel_arn"] = data["ChannelARN"]
     else:
         raise DeserializationError("DeleteSignalingChannelInput.channel_arn required")
-    if "CurrentVersion" in data:
+    if data.get("CurrentVersion") is not None:
         out["current_version"] = data["CurrentVersion"]
     return out

@@ -38,9 +38,9 @@ def serialize_json(value: RenditionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> RenditionConfiguration:
     out: RenditionConfiguration = {}  # type: ignore[typeddict-item]
-    if "renditionSelection" in data:
+    if data.get("renditionSelection") is not None:
         out["rendition_selection"] = data["renditionSelection"]
-    if "renditions" in data:
+    if data.get("renditions") is not None:
         import capo_ivs.types.rendition_configuration_rendition_list
 
         out["renditions"] = (

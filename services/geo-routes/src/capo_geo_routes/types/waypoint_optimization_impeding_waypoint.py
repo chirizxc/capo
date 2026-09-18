@@ -40,7 +40,7 @@ def serialize_json(value: WaypointOptimizationImpedingWaypoint) -> dict:
 
 def deserialize_json(data: dict) -> WaypointOptimizationImpedingWaypoint:
     out: WaypointOptimizationImpedingWaypoint = {}  # type: ignore[typeddict-item]
-    if "FailedConstraints" in data:
+    if data.get("FailedConstraints") is not None:
         import capo_geo_routes.types.waypoint_optimization_failed_constraint_list
 
         out["failed_constraints"] = (
@@ -52,11 +52,11 @@ def deserialize_json(data: dict) -> WaypointOptimizationImpedingWaypoint:
         raise DeserializationError(
             "WaypointOptimizationImpedingWaypoint.failed_constraints required"
         )
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("WaypointOptimizationImpedingWaypoint.id required")
-    if "Position" in data:
+    if data.get("Position") is not None:
         import capo_geo_routes.types.position
 
         out["position"] = capo_geo_routes.types.position.deserialize_json(

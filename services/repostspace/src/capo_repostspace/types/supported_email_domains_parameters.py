@@ -42,7 +42,7 @@ def serialize_json(value: SupportedEmailDomainsParameters) -> dict:
 
 def deserialize_json(data: dict) -> SupportedEmailDomainsParameters:
     out: SupportedEmailDomainsParameters = {}  # type: ignore[typeddict-item]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         import capo_repostspace.types.feature_enable_parameter
 
         out["enabled"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> SupportedEmailDomainsParameters:
                 data["enabled"]
             )
         )
-    if "allowedDomains" in data:
+    if data.get("allowedDomains") is not None:
         import capo_repostspace.types.allowed_domains_list
 
         out["allowed_domains"] = (

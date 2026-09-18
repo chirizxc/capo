@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: Compliance) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Compliance:
     out: Compliance = {}  # type: ignore[typeddict-item]
-    if "ComplianceType" in data:
+    if data.get("ComplianceType") is not None:
         import capo_config_service.types.compliance_type
 
         out["compliance_type"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> Compliance:
                 data["ComplianceType"]
             )
         )
-    if "ComplianceContributorCount" in data:
+    if data.get("ComplianceContributorCount") is not None:
         import capo_config_service.types.compliance_contributor_count
 
         out["compliance_contributor_count"] = (

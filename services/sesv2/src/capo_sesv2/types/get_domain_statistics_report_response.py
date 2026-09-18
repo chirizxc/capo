@@ -36,7 +36,7 @@ def serialize_json(value: GetDomainStatisticsReportResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetDomainStatisticsReportResponse:
     out: GetDomainStatisticsReportResponse = {}  # type: ignore[typeddict-item]
-    if "OverallVolume" in data:
+    if data.get("OverallVolume") is not None:
         import capo_sesv2.types.overall_volume
 
         out["overall_volume"] = capo_sesv2.types.overall_volume.deserialize_json(
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> GetDomainStatisticsReportResponse:
         raise DeserializationError(
             "GetDomainStatisticsReportResponse.overall_volume required"
         )
-    if "DailyVolumes" in data:
+    if data.get("DailyVolumes") is not None:
         import capo_sesv2.types.daily_volumes
 
         out["daily_volumes"] = capo_sesv2.types.daily_volumes.deserialize_json(

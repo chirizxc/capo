@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_workspaces_web._auth._signers
@@ -94,18 +95,21 @@ class TrustStoreResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.create_trust_store_request.CreateTrustStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_list"] = certificate_list
+        input_: capo_workspaces_web.types.create_trust_store_request.CreateTrustStoreRequest = {
+            "certificate_list": certificate_list
+        }
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -143,14 +147,16 @@ class TrustStoreResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.get_trust_store_request.GetTrustStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["trust_store_arn"] = trust_store_arn
+        input_: capo_workspaces_web.types.get_trust_store_request.GetTrustStoreRequest = {
+            "trust_store_arn": trust_store_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -203,20 +209,23 @@ class TrustStoreResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.update_trust_store_request.UpdateTrustStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["trust_store_arn"] = trust_store_arn
+        input_: capo_workspaces_web.types.update_trust_store_request.UpdateTrustStoreRequest = {
+            "trust_store_arn": trust_store_arn
+        }
         if certificates_to_add is not None:
             input_["certificates_to_add"] = certificates_to_add
         if certificates_to_delete is not None:
             input_["certificates_to_delete"] = certificates_to_delete
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -256,14 +265,16 @@ class TrustStoreResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.delete_trust_store_request.DeleteTrustStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["trust_store_arn"] = trust_store_arn
+        input_: capo_workspaces_web.types.delete_trust_store_request.DeleteTrustStoreRequest = {
+            "trust_store_arn": trust_store_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -306,7 +317,7 @@ class TrustStoreResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.list_trust_stores_request.ListTrustStoresRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces_web.types.list_trust_stores_request.ListTrustStoresRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -317,6 +328,7 @@ class TrustStoreResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_trust_store_certificate(
@@ -356,15 +368,17 @@ class TrustStoreResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.get_trust_store_certificate_request.GetTrustStoreCertificateRequest = {}  # type: ignore[typeddict-item]
-        input_["trust_store_arn"] = trust_store_arn
-        input_["thumbprint"] = thumbprint
+        input_: capo_workspaces_web.types.get_trust_store_certificate_request.GetTrustStoreCertificateRequest = {
+            "trust_store_arn": trust_store_arn,
+            "thumbprint": thumbprint,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_trust_store_certificates(
@@ -410,8 +424,9 @@ class TrustStoreResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.list_trust_store_certificates_request.ListTrustStoreCertificatesRequest = {}  # type: ignore[typeddict-item]
-        input_["trust_store_arn"] = trust_store_arn
+        input_: capo_workspaces_web.types.list_trust_store_certificates_request.ListTrustStoreCertificatesRequest = {
+            "trust_store_arn": trust_store_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -422,6 +437,7 @@ class TrustStoreResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -474,18 +490,21 @@ class AsyncTrustStoreResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.create_trust_store_request.CreateTrustStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["certificate_list"] = certificate_list
+        input_: capo_workspaces_web.types.create_trust_store_request.CreateTrustStoreRequest = {
+            "certificate_list": certificate_list
+        }
         if tags is not None:
             input_["tags"] = tags
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -524,14 +543,16 @@ class AsyncTrustStoreResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.get_trust_store_request.GetTrustStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["trust_store_arn"] = trust_store_arn
+        input_: capo_workspaces_web.types.get_trust_store_request.GetTrustStoreRequest = {
+            "trust_store_arn": trust_store_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -585,20 +606,23 @@ class AsyncTrustStoreResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.update_trust_store_request.UpdateTrustStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["trust_store_arn"] = trust_store_arn
+        input_: capo_workspaces_web.types.update_trust_store_request.UpdateTrustStoreRequest = {
+            "trust_store_arn": trust_store_arn
+        }
         if certificates_to_add is not None:
             input_["certificates_to_add"] = certificates_to_add
         if certificates_to_delete is not None:
             input_["certificates_to_delete"] = certificates_to_delete
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -639,14 +663,16 @@ class AsyncTrustStoreResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.delete_trust_store_request.DeleteTrustStoreRequest = {}  # type: ignore[typeddict-item]
-        input_["trust_store_arn"] = trust_store_arn
+        input_: capo_workspaces_web.types.delete_trust_store_request.DeleteTrustStoreRequest = {
+            "trust_store_arn": trust_store_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -690,7 +716,7 @@ class AsyncTrustStoreResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.list_trust_stores_request.ListTrustStoresRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_workspaces_web.types.list_trust_stores_request.ListTrustStoresRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -701,6 +727,7 @@ class AsyncTrustStoreResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_trust_store_certificate(
@@ -741,15 +768,17 @@ class AsyncTrustStoreResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.get_trust_store_certificate_request.GetTrustStoreCertificateRequest = {}  # type: ignore[typeddict-item]
-        input_["trust_store_arn"] = trust_store_arn
-        input_["thumbprint"] = thumbprint
+        input_: capo_workspaces_web.types.get_trust_store_certificate_request.GetTrustStoreCertificateRequest = {
+            "trust_store_arn": trust_store_arn,
+            "thumbprint": thumbprint,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_trust_store_certificates(
@@ -796,8 +825,9 @@ class AsyncTrustStoreResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_workspaces_web.types.list_trust_store_certificates_request.ListTrustStoreCertificatesRequest = {}  # type: ignore[typeddict-item]
-        input_["trust_store_arn"] = trust_store_arn
+        input_: capo_workspaces_web.types.list_trust_store_certificates_request.ListTrustStoreCertificatesRequest = {
+            "trust_store_arn": trust_store_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -808,4 +838,5 @@ class AsyncTrustStoreResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

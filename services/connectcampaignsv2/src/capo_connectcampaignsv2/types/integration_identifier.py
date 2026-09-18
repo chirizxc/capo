@@ -66,7 +66,7 @@ def serialize_json(value: IntegrationIdentifier) -> dict:
 
 
 def deserialize_json(data: dict) -> IntegrationIdentifier:
-    if "customerProfiles" in data:
+    if data.get("customerProfiles") is not None:
         import capo_connectcampaignsv2.types.customer_profiles_integration_identifier
 
         return {
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> IntegrationIdentifier:
                 data["customerProfiles"]
             )
         }
-    elif "qConnect" in data:
+    elif data.get("qConnect") is not None:
         import capo_connectcampaignsv2.types.q_connect_integration_identifier
 
         return {
@@ -82,7 +82,7 @@ def deserialize_json(data: dict) -> IntegrationIdentifier:
                 data["qConnect"]
             )
         }
-    elif "lambda" in data:
+    elif data.get("lambda") is not None:
         import capo_connectcampaignsv2.types.lambda_integration_identifier
 
         return {

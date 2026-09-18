@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> CachediSCSIVolumes:
 
     out: CachediSCSIVolumes = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_storage_gateway.types.cachedi_scsi_volume.deserialize_aws_json_1_1(
                 item

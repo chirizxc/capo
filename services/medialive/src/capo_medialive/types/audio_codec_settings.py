@@ -82,19 +82,19 @@ def serialize_json(value: AudioCodecSettings) -> dict:
 
 def deserialize_json(data: dict) -> AudioCodecSettings:
     out: AudioCodecSettings = {}  # type: ignore[typeddict-item]
-    if "aacSettings" in data:
+    if data.get("aacSettings") is not None:
         import capo_medialive.types.aac_settings
 
         out["aac_settings"] = capo_medialive.types.aac_settings.deserialize_json(
             data["aacSettings"]
         )
-    if "ac3Settings" in data:
+    if data.get("ac3Settings") is not None:
         import capo_medialive.types.ac3_settings
 
         out["ac3_settings"] = capo_medialive.types.ac3_settings.deserialize_json(
             data["ac3Settings"]
         )
-    if "eac3AtmosSettings" in data:
+    if data.get("eac3AtmosSettings") is not None:
         import capo_medialive.types.eac3_atmos_settings
 
         out["eac3_atmos_settings"] = (
@@ -102,19 +102,19 @@ def deserialize_json(data: dict) -> AudioCodecSettings:
                 data["eac3AtmosSettings"]
             )
         )
-    if "eac3Settings" in data:
+    if data.get("eac3Settings") is not None:
         import capo_medialive.types.eac3_settings
 
         out["eac3_settings"] = capo_medialive.types.eac3_settings.deserialize_json(
             data["eac3Settings"]
         )
-    if "mp2Settings" in data:
+    if data.get("mp2Settings") is not None:
         import capo_medialive.types.mp2_settings
 
         out["mp2_settings"] = capo_medialive.types.mp2_settings.deserialize_json(
             data["mp2Settings"]
         )
-    if "passThroughSettings" in data:
+    if data.get("passThroughSettings") is not None:
         import capo_medialive.types.pass_through_settings
 
         out["pass_through_settings"] = (
@@ -122,7 +122,7 @@ def deserialize_json(data: dict) -> AudioCodecSettings:
                 data["passThroughSettings"]
             )
         )
-    if "wavSettings" in data:
+    if data.get("wavSettings") is not None:
         import capo_medialive.types.wav_settings
 
         out["wav_settings"] = capo_medialive.types.wav_settings.deserialize_json(

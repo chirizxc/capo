@@ -30,7 +30,7 @@ def serialize_json(value: CreateConfiguredAudienceModelAssociationOutput) -> dic
 
 def deserialize_json(data: dict) -> CreateConfiguredAudienceModelAssociationOutput:
     out: CreateConfiguredAudienceModelAssociationOutput = {}  # type: ignore[typeddict-item]
-    if "configuredAudienceModelAssociation" in data:
+    if data.get("configuredAudienceModelAssociation") is not None:
         import capo_cleanrooms.types.configured_audience_model_association
 
         out["configured_audience_model_association"] = (

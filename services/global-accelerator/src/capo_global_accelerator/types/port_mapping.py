@@ -77,13 +77,13 @@ def serialize_aws_json_1_1(value: PortMapping) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PortMapping:
     out: PortMapping = {}  # type: ignore[typeddict-item]
-    if "AcceleratorPort" in data:
+    if data.get("AcceleratorPort") is not None:
         out["accelerator_port"] = data["AcceleratorPort"]
-    if "EndpointGroupArn" in data:
+    if data.get("EndpointGroupArn") is not None:
         out["endpoint_group_arn"] = data["EndpointGroupArn"]
-    if "EndpointId" in data:
+    if data.get("EndpointId") is not None:
         out["endpoint_id"] = data["EndpointId"]
-    if "DestinationSocketAddress" in data:
+    if data.get("DestinationSocketAddress") is not None:
         import capo_global_accelerator.types.socket_address
 
         out["destination_socket_address"] = (
@@ -91,7 +91,7 @@ def deserialize_aws_json_1_1(data: dict) -> PortMapping:
                 data["DestinationSocketAddress"]
             )
         )
-    if "Protocols" in data:
+    if data.get("Protocols") is not None:
         import capo_global_accelerator.types.custom_routing_protocols
 
         out["protocols"] = (
@@ -99,7 +99,7 @@ def deserialize_aws_json_1_1(data: dict) -> PortMapping:
                 data["Protocols"]
             )
         )
-    if "DestinationTrafficState" in data:
+    if data.get("DestinationTrafficState") is not None:
         import capo_global_accelerator.types.custom_routing_destination_traffic_state
 
         out["destination_traffic_state"] = (

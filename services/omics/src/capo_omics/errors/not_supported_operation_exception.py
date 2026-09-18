@@ -18,7 +18,7 @@ def serialize_json(value: NotSupportedOperationException_) -> dict:
 
 def deserialize_json(data: dict) -> NotSupportedOperationException_:
     out: NotSupportedOperationException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("NotSupportedOperationException_.message required")
@@ -30,15 +30,20 @@ class NotSupportedOperationException(ServiceError):
 
     code: str | None = "NotSupportedOperationException"
 
-    def __init__(self, data: NotSupportedOperationException_):
+    def __init__(
+        self, data: NotSupportedOperationException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="NotSupportedOperationException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "NotSupportedOperationException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "NotSupportedOperationException":
+        return cls(deserialize_json(data), message)

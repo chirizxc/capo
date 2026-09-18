@@ -29,7 +29,7 @@ def serialize_aws_json_1_1(value: PollForThirdPartyJobsOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PollForThirdPartyJobsOutput:
     out: PollForThirdPartyJobsOutput = {}  # type: ignore[typeddict-item]
-    if "jobs" in data:
+    if data.get("jobs") is not None:
         import capo_codepipeline.types.third_party_job_list
 
         out["jobs"] = (

@@ -30,27 +30,43 @@ def serialize_json(value: PayloadTooLargeException_) -> dict:
         out["Measure"] = capo_appconfig.types.bytes_measure.serialize_json(
             value["measure"]
         )
-    out["Limit"] = value.get("limit", 0)
-    out["Size"] = value.get("size", 0)
+    out["Limit"] = (
+        "NaN"
+        if value.get("limit", 0) != value.get("limit", 0)
+        else "Infinity"
+        if value.get("limit", 0) == float("inf")
+        else "-Infinity"
+        if value.get("limit", 0) == float("-inf")
+        else value.get("limit", 0)
+    )
+    out["Size"] = (
+        "NaN"
+        if value.get("size", 0) != value.get("size", 0)
+        else "Infinity"
+        if value.get("size", 0) == float("inf")
+        else "-Infinity"
+        if value.get("size", 0) == float("-inf")
+        else value.get("size", 0)
+    )
     return out
 
 
 def deserialize_json(data: dict) -> PayloadTooLargeException_:
     out: PayloadTooLargeException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "Measure" in data:
+    if data.get("Measure") is not None:
         import capo_appconfig.types.bytes_measure
 
         out["measure"] = capo_appconfig.types.bytes_measure.deserialize_json(
             data["Measure"]
         )
-    if "Limit" in data:
-        out["limit"] = data["Limit"]
+    if data.get("Limit") is not None:
+        out["limit"] = float(data["Limit"])
     else:
         out["limit"] = 0
-    if "Size" in data:
-        out["size"] = data["Size"]
+    if data.get("Size") is not None:
+        out["size"] = float(data["Size"])
     else:
         out["size"] = 0
     return out
@@ -61,15 +77,18 @@ class PayloadTooLargeException(ServiceError):
 
     code: str | None = "PayloadTooLargeException"
 
-    def __init__(self, data: PayloadTooLargeException_):
+    def __init__(self, data: PayloadTooLargeException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="PayloadTooLargeException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "PayloadTooLargeException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "PayloadTooLargeException":
+        return cls(deserialize_json(data), message)

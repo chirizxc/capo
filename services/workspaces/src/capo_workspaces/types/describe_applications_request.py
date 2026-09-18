@@ -85,7 +85,7 @@ def serialize_aws_json_1_1(value: DescribeApplicationsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeApplicationsRequest:
     out: DescribeApplicationsRequest = {}  # type: ignore[typeddict-item]
-    if "ApplicationIds" in data:
+    if data.get("ApplicationIds") is not None:
         import capo_workspaces.types.work_space_application_id_list
 
         out["application_ids"] = (
@@ -93,7 +93,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeApplicationsRequest:
                 data["ApplicationIds"]
             )
         )
-    if "ComputeTypeNames" in data:
+    if data.get("ComputeTypeNames") is not None:
         import capo_workspaces.types.compute_list
 
         out["compute_type_names"] = (
@@ -101,7 +101,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeApplicationsRequest:
                 data["ComputeTypeNames"]
             )
         )
-    if "LicenseType" in data:
+    if data.get("LicenseType") is not None:
         import capo_workspaces.types.work_space_application_license_type
 
         out["license_type"] = (
@@ -109,7 +109,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeApplicationsRequest:
                 data["LicenseType"]
             )
         )
-    if "OperatingSystemNames" in data:
+    if data.get("OperatingSystemNames") is not None:
         import capo_workspaces.types.operating_system_name_list
 
         out["operating_system_names"] = (
@@ -117,10 +117,10 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeApplicationsRequest:
                 data["OperatingSystemNames"]
             )
         )
-    if "Owner" in data:
+    if data.get("Owner") is not None:
         out["owner"] = data["Owner"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

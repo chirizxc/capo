@@ -84,13 +84,13 @@ def serialize_json(value: ListApprovalTeamsResponseApprovalTeam) -> dict:
 
 def deserialize_json(data: dict) -> ListApprovalTeamsResponseApprovalTeam:
     out: ListApprovalTeamsResponseApprovalTeam = {}  # type: ignore[typeddict-item]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_mpa.types.iso_timestamp
 
         out["creation_time"] = capo_mpa.types.iso_timestamp.deserialize_json(
             data["CreationTime"]
         )
-    if "ApprovalStrategy" in data:
+    if data.get("ApprovalStrategy") is not None:
         import capo_mpa.types.approval_strategy_response
 
         out["approval_strategy"] = (
@@ -98,26 +98,26 @@ def deserialize_json(data: dict) -> ListApprovalTeamsResponseApprovalTeam:
                 data["ApprovalStrategy"]
             )
         )
-    if "NumberOfApprovers" in data:
+    if data.get("NumberOfApprovers") is not None:
         out["number_of_approvers"] = data["NumberOfApprovers"]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_mpa.types.approval_team_status
 
         out["status"] = capo_mpa.types.approval_team_status.deserialize_json(
             data["Status"]
         )
-    if "StatusCode" in data:
+    if data.get("StatusCode") is not None:
         import capo_mpa.types.approval_team_status_code
 
         out["status_code"] = capo_mpa.types.approval_team_status_code.deserialize_json(
             data["StatusCode"]
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
     return out

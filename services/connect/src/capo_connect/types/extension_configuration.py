@@ -32,7 +32,7 @@ def serialize_json(value: ExtensionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ExtensionConfiguration:
     out: ExtensionConfiguration = {}  # type: ignore[typeddict-item]
-    if "AllowedExtensions" in data:
+    if data.get("AllowedExtensions") is not None:
         import capo_connect.types.allowed_extensions_list
 
         out["allowed_extensions"] = (

@@ -24,7 +24,7 @@ def serialize_json(value: CreateIdentityProviderResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateIdentityProviderResponse:
     out: CreateIdentityProviderResponse = {}  # type: ignore[typeddict-item]
-    if "identityProviderArn" in data:
+    if data.get("identityProviderArn") is not None:
         out["identity_provider_arn"] = data["identityProviderArn"]
     else:
         raise DeserializationError(

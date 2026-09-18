@@ -79,15 +79,15 @@ def serialize_aws_json_1_1(value: DirectConnectGatewayAttachment) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DirectConnectGatewayAttachment:
     out: DirectConnectGatewayAttachment = {}  # type: ignore[typeddict-item]
-    if "directConnectGatewayId" in data:
+    if data.get("directConnectGatewayId") is not None:
         out["direct_connect_gateway_id"] = data["directConnectGatewayId"]
-    if "virtualInterfaceId" in data:
+    if data.get("virtualInterfaceId") is not None:
         out["virtual_interface_id"] = data["virtualInterfaceId"]
-    if "virtualInterfaceRegion" in data:
+    if data.get("virtualInterfaceRegion") is not None:
         out["virtual_interface_region"] = data["virtualInterfaceRegion"]
-    if "virtualInterfaceOwnerAccount" in data:
+    if data.get("virtualInterfaceOwnerAccount") is not None:
         out["virtual_interface_owner_account"] = data["virtualInterfaceOwnerAccount"]
-    if "attachmentState" in data:
+    if data.get("attachmentState") is not None:
         import capo_direct_connect.types.direct_connect_gateway_attachment_state
 
         out["attachment_state"] = (
@@ -95,7 +95,7 @@ def deserialize_aws_json_1_1(data: dict) -> DirectConnectGatewayAttachment:
                 data["attachmentState"]
             )
         )
-    if "attachmentType" in data:
+    if data.get("attachmentType") is not None:
         import capo_direct_connect.types.direct_connect_gateway_attachment_type
 
         out["attachment_type"] = (
@@ -103,6 +103,6 @@ def deserialize_aws_json_1_1(data: dict) -> DirectConnectGatewayAttachment:
                 data["attachmentType"]
             )
         )
-    if "stateChangeError" in data:
+    if data.get("stateChangeError") is not None:
         out["state_change_error"] = data["stateChangeError"]
     return out

@@ -31,13 +31,21 @@ def serialize_json(value: WhatIfRangeScenario) -> dict:
     import capo_quicksight.types.timestamp
 
     out["EndDate"] = capo_quicksight.types.timestamp.serialize_json(value["end_date"])
-    out["Value"] = value.get("value", 0)
+    out["Value"] = (
+        "NaN"
+        if value.get("value", 0) != value.get("value", 0)
+        else "Infinity"
+        if value.get("value", 0) == float("inf")
+        else "-Infinity"
+        if value.get("value", 0) == float("-inf")
+        else value.get("value", 0)
+    )
     return out
 
 
 def deserialize_json(data: dict) -> WhatIfRangeScenario:
     out: WhatIfRangeScenario = {}  # type: ignore[typeddict-item]
-    if "StartDate" in data:
+    if data.get("StartDate") is not None:
         import capo_quicksight.types.timestamp
 
         out["start_date"] = capo_quicksight.types.timestamp.deserialize_json(
@@ -45,7 +53,7 @@ def deserialize_json(data: dict) -> WhatIfRangeScenario:
         )
     else:
         raise DeserializationError("WhatIfRangeScenario.start_date required")
-    if "EndDate" in data:
+    if data.get("EndDate") is not None:
         import capo_quicksight.types.timestamp
 
         out["end_date"] = capo_quicksight.types.timestamp.deserialize_json(
@@ -53,8 +61,8 @@ def deserialize_json(data: dict) -> WhatIfRangeScenario:
         )
     else:
         raise DeserializationError("WhatIfRangeScenario.end_date required")
-    if "Value" in data:
-        out["value"] = data["Value"]
+    if data.get("Value") is not None:
+        out["value"] = float(data["Value"])
     else:
         out["value"] = 0
     return out

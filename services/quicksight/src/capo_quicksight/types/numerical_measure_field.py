@@ -58,11 +58,11 @@ def serialize_json(value: NumericalMeasureField) -> dict:
 
 def deserialize_json(data: dict) -> NumericalMeasureField:
     out: NumericalMeasureField = {}  # type: ignore[typeddict-item]
-    if "FieldId" in data:
+    if data.get("FieldId") is not None:
         out["field_id"] = data["FieldId"]
     else:
         raise DeserializationError("NumericalMeasureField.field_id required")
-    if "Column" in data:
+    if data.get("Column") is not None:
         import capo_quicksight.types.column_identifier
 
         out["column"] = capo_quicksight.types.column_identifier.deserialize_json(
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> NumericalMeasureField:
         )
     else:
         raise DeserializationError("NumericalMeasureField.column required")
-    if "AggregationFunction" in data:
+    if data.get("AggregationFunction") is not None:
         import capo_quicksight.types.numerical_aggregation_function
 
         out["aggregation_function"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> NumericalMeasureField:
                 data["AggregationFunction"]
             )
         )
-    if "FormatConfiguration" in data:
+    if data.get("FormatConfiguration") is not None:
         import capo_quicksight.types.number_format_configuration
 
         out["format_configuration"] = (

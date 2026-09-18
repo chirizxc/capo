@@ -37,12 +37,12 @@ def serialize_json(value: AwsLocation) -> dict:
 
 def deserialize_json(data: dict) -> AwsLocation:
     out: AwsLocation = {}  # type: ignore[typeddict-item]
-    if "accessRole" in data:
+    if data.get("accessRole") is not None:
         out["access_role"] = data["accessRole"]
-    if "awsAccountId" in data:
+    if data.get("awsAccountId") is not None:
         out["aws_account_id"] = data["awsAccountId"]
-    if "awsRegion" in data:
+    if data.get("awsRegion") is not None:
         out["aws_region"] = data["awsRegion"]
-    if "iamConnectionId" in data:
+    if data.get("iamConnectionId") is not None:
         out["iam_connection_id"] = data["iamConnectionId"]
     return out

@@ -44,11 +44,11 @@ def serialize_aws_json_1_1(value: InferenceComponentRuntimeConfigSummary) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> InferenceComponentRuntimeConfigSummary:
     out: InferenceComponentRuntimeConfigSummary = {}  # type: ignore[typeddict-item]
-    if "DesiredCopyCount" in data:
+    if data.get("DesiredCopyCount") is not None:
         out["desired_copy_count"] = data["DesiredCopyCount"]
-    if "CurrentCopyCount" in data:
+    if data.get("CurrentCopyCount") is not None:
         out["current_copy_count"] = data["CurrentCopyCount"]
-    if "PlacementStatus" in data:
+    if data.get("PlacementStatus") is not None:
         import capo_sagemaker.types.inference_component_placement_status_list
 
         out["placement_status"] = (

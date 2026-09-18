@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> RecordingConfigurationList:
 
     out: RecordingConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_ivs.types.recording_configuration_summary.deserialize_json(item)
         )

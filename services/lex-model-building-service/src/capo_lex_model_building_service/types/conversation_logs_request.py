@@ -34,7 +34,7 @@ def serialize_json(value: ConversationLogsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ConversationLogsRequest:
     out: ConversationLogsRequest = {}  # type: ignore[typeddict-item]
-    if "logSettings" in data:
+    if data.get("logSettings") is not None:
         import capo_lex_model_building_service.types.log_settings_request_list
 
         out["log_settings"] = (
@@ -44,7 +44,7 @@ def deserialize_json(data: dict) -> ConversationLogsRequest:
         )
     else:
         raise DeserializationError("ConversationLogsRequest.log_settings required")
-    if "iamRoleArn" in data:
+    if data.get("iamRoleArn") is not None:
         out["iam_role_arn"] = data["iamRoleArn"]
     else:
         raise DeserializationError("ConversationLogsRequest.iam_role_arn required")

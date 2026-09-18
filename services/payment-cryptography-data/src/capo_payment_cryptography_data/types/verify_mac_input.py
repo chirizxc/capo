@@ -53,19 +53,19 @@ def serialize_json(value: VerifyMacInput) -> dict:
 
 def deserialize_json(data: dict) -> VerifyMacInput:
     out: VerifyMacInput = {}  # type: ignore[typeddict-item]
-    if "KeyIdentifier" in data:
+    if data.get("KeyIdentifier") is not None:
         out["key_identifier"] = data["KeyIdentifier"]
     else:
         raise DeserializationError("VerifyMacInput.key_identifier required")
-    if "MessageData" in data:
+    if data.get("MessageData") is not None:
         out["message_data"] = data["MessageData"]
     else:
         raise DeserializationError("VerifyMacInput.message_data required")
-    if "Mac" in data:
+    if data.get("Mac") is not None:
         out["mac"] = data["Mac"]
     else:
         raise DeserializationError("VerifyMacInput.mac required")
-    if "VerificationAttributes" in data:
+    if data.get("VerificationAttributes") is not None:
         import capo_payment_cryptography_data.types.mac_attributes
 
         out["verification_attributes"] = (
@@ -75,6 +75,6 @@ def deserialize_json(data: dict) -> VerifyMacInput:
         )
     else:
         raise DeserializationError("VerifyMacInput.verification_attributes required")
-    if "MacLength" in data:
+    if data.get("MacLength") is not None:
         out["mac_length"] = data["MacLength"]
     return out

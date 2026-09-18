@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> DriftStatuses:
 
     out: DriftStatuses = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_controltower.types.drift_status.deserialize_json(item))
     return out

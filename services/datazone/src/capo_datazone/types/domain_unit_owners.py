@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> DomainUnitOwners:
 
     out: DomainUnitOwners = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_datazone.types.domain_unit_owner_properties.deserialize_json(item)
         )

@@ -40,18 +40,18 @@ def serialize_json(value: UpdateUserJourneyRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateUserJourneyRequest:
     out: UpdateUserJourneyRequest = {}  # type: ignore[typeddict-item]
-    if "systemArn" in data:
+    if data.get("systemArn") is not None:
         out["system_arn"] = data["systemArn"]
     else:
         raise DeserializationError("UpdateUserJourneyRequest.system_arn required")
-    if "userJourneyId" in data:
+    if data.get("userJourneyId") is not None:
         out["user_journey_id"] = data["userJourneyId"]
     else:
         raise DeserializationError("UpdateUserJourneyRequest.user_journey_id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "policyArn" in data:
+    if data.get("policyArn") is not None:
         out["policy_arn"] = data["policyArn"]
     return out

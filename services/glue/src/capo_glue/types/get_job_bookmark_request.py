@@ -29,10 +29,10 @@ def serialize_aws_json_1_1(value: GetJobBookmarkRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetJobBookmarkRequest:
     out: GetJobBookmarkRequest = {}  # type: ignore[typeddict-item]
-    if "JobName" in data:
+    if data.get("JobName") is not None:
         out["job_name"] = data["JobName"]
     else:
         raise DeserializationError("GetJobBookmarkRequest.job_name required")
-    if "RunId" in data:
+    if data.get("RunId") is not None:
         out["run_id"] = data["RunId"]
     return out

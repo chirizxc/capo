@@ -32,7 +32,7 @@ def serialize_json(value: DataSourceErrorMessage) -> dict:
 
 def deserialize_json(data: dict) -> DataSourceErrorMessage:
     out: DataSourceErrorMessage = {}  # type: ignore[typeddict-item]
-    if "errorType" in data:
+    if data.get("errorType") is not None:
         import capo_datazone.types.data_source_error_type
 
         out["error_type"] = capo_datazone.types.data_source_error_type.deserialize_json(
@@ -40,6 +40,6 @@ def deserialize_json(data: dict) -> DataSourceErrorMessage:
         )
     else:
         raise DeserializationError("DataSourceErrorMessage.error_type required")
-    if "errorDetail" in data:
+    if data.get("errorDetail") is not None:
         out["error_detail"] = data["errorDetail"]
     return out

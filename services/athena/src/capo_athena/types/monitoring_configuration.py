@@ -57,7 +57,7 @@ def serialize_aws_json_1_1(value: MonitoringConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MonitoringConfiguration:
     out: MonitoringConfiguration = {}  # type: ignore[typeddict-item]
-    if "CloudWatchLoggingConfiguration" in data:
+    if data.get("CloudWatchLoggingConfiguration") is not None:
         import capo_athena.types.cloud_watch_logging_configuration
 
         out["cloud_watch_logging_configuration"] = (
@@ -65,7 +65,7 @@ def deserialize_aws_json_1_1(data: dict) -> MonitoringConfiguration:
                 data["CloudWatchLoggingConfiguration"]
             )
         )
-    if "ManagedLoggingConfiguration" in data:
+    if data.get("ManagedLoggingConfiguration") is not None:
         import capo_athena.types.managed_logging_configuration
 
         out["managed_logging_configuration"] = (
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> MonitoringConfiguration:
                 data["ManagedLoggingConfiguration"]
             )
         )
-    if "S3LoggingConfiguration" in data:
+    if data.get("S3LoggingConfiguration") is not None:
         import capo_athena.types.s3_logging_configuration
 
         out["s3_logging_configuration"] = (

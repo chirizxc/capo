@@ -43,7 +43,7 @@ def serialize_json(value: SearchHoursOfOperationOverridesResponse) -> dict:
 
 def deserialize_json(data: dict) -> SearchHoursOfOperationOverridesResponse:
     out: SearchHoursOfOperationOverridesResponse = {}  # type: ignore[typeddict-item]
-    if "HoursOfOperationOverrides" in data:
+    if data.get("HoursOfOperationOverrides") is not None:
         import capo_connect.types.hours_of_operation_override_list
 
         out["hours_of_operation_overrides"] = (
@@ -51,8 +51,8 @@ def deserialize_json(data: dict) -> SearchHoursOfOperationOverridesResponse:
                 data["HoursOfOperationOverrides"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "ApproximateTotalCount" in data:
+    if data.get("ApproximateTotalCount") is not None:
         out["approximate_total_count"] = data["ApproximateTotalCount"]
     return out

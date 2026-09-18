@@ -97,19 +97,19 @@ def serialize_aws_json_1_1(value: ListInsightsMetricDataRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListInsightsMetricDataRequest:
     out: ListInsightsMetricDataRequest = {}  # type: ignore[typeddict-item]
-    if "TrailName" in data:
+    if data.get("TrailName") is not None:
         out["trail_name"] = data["TrailName"]
-    if "EventSource" in data:
+    if data.get("EventSource") is not None:
         out["event_source"] = data["EventSource"]
     else:
         raise DeserializationError(
             "ListInsightsMetricDataRequest.event_source required"
         )
-    if "EventName" in data:
+    if data.get("EventName") is not None:
         out["event_name"] = data["EventName"]
     else:
         raise DeserializationError("ListInsightsMetricDataRequest.event_name required")
-    if "InsightType" in data:
+    if data.get("InsightType") is not None:
         import capo_cloudtrail.types.insight_type
 
         out["insight_type"] = (
@@ -121,23 +121,23 @@ def deserialize_aws_json_1_1(data: dict) -> ListInsightsMetricDataRequest:
         raise DeserializationError(
             "ListInsightsMetricDataRequest.insight_type required"
         )
-    if "ErrorCode" in data:
+    if data.get("ErrorCode") is not None:
         out["error_code"] = data["ErrorCode"]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_cloudtrail.types.date
 
         out["start_time"] = capo_cloudtrail.types.date.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_cloudtrail.types.date
 
         out["end_time"] = capo_cloudtrail.types.date.deserialize_aws_json_1_1(
             data["EndTime"]
         )
-    if "Period" in data:
+    if data.get("Period") is not None:
         out["period"] = data["Period"]
-    if "DataType" in data:
+    if data.get("DataType") is not None:
         import capo_cloudtrail.types.insights_metric_data_type
 
         out["data_type"] = (
@@ -145,8 +145,8 @@ def deserialize_aws_json_1_1(data: dict) -> ListInsightsMetricDataRequest:
                 data["DataType"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -510,7 +510,7 @@ def serialize_json(value: DataSourceParameters) -> dict:
 
 
 def deserialize_json(data: dict) -> DataSourceParameters:
-    if "AmazonElasticsearchParameters" in data:
+    if data.get("AmazonElasticsearchParameters") is not None:
         import capo_quicksight.types.amazon_elasticsearch_parameters
 
         return {
@@ -518,7 +518,7 @@ def deserialize_json(data: dict) -> DataSourceParameters:
                 data["AmazonElasticsearchParameters"]
             )
         }
-    elif "AthenaParameters" in data:
+    elif data.get("AthenaParameters") is not None:
         import capo_quicksight.types.athena_parameters
 
         return {
@@ -526,7 +526,7 @@ def deserialize_json(data: dict) -> DataSourceParameters:
                 data["AthenaParameters"]
             )
         }
-    elif "AuroraParameters" in data:
+    elif data.get("AuroraParameters") is not None:
         import capo_quicksight.types.aurora_parameters
 
         return {
@@ -534,7 +534,7 @@ def deserialize_json(data: dict) -> DataSourceParameters:
                 data["AuroraParameters"]
             )
         }
-    elif "AuroraPostgreSqlParameters" in data:
+    elif data.get("AuroraPostgreSqlParameters") is not None:
         import capo_quicksight.types.aurora_postgre_sql_parameters
 
         return {
@@ -542,7 +542,7 @@ def deserialize_json(data: dict) -> DataSourceParameters:
                 data["AuroraPostgreSqlParameters"]
             )
         }
-    elif "AwsIotAnalyticsParameters" in data:
+    elif data.get("AwsIotAnalyticsParameters") is not None:
         import capo_quicksight.types.aws_iot_analytics_parameters
 
         return {
@@ -550,7 +550,7 @@ def deserialize_json(data: dict) -> DataSourceParameters:
                 data["AwsIotAnalyticsParameters"]
             )
         }
-    elif "JiraParameters" in data:
+    elif data.get("JiraParameters") is not None:
         import capo_quicksight.types.jira_parameters
 
         return {
@@ -558,7 +558,7 @@ def deserialize_json(data: dict) -> DataSourceParameters:
                 data["JiraParameters"]
             )
         }
-    elif "MariaDbParameters" in data:
+    elif data.get("MariaDbParameters") is not None:
         import capo_quicksight.types.maria_db_parameters
 
         return {
@@ -566,7 +566,7 @@ def deserialize_json(data: dict) -> DataSourceParameters:
                 data["MariaDbParameters"]
             )
         }
-    elif "MySqlParameters" in data:
+    elif data.get("MySqlParameters") is not None:
         import capo_quicksight.types.my_sql_parameters
 
         return {
@@ -574,7 +574,7 @@ def deserialize_json(data: dict) -> DataSourceParameters:
                 data["MySqlParameters"]
             )
         }
-    elif "OracleParameters" in data:
+    elif data.get("OracleParameters") is not None:
         import capo_quicksight.types.oracle_parameters
 
         return {
@@ -582,7 +582,7 @@ def deserialize_json(data: dict) -> DataSourceParameters:
                 data["OracleParameters"]
             )
         }
-    elif "PostgreSqlParameters" in data:
+    elif data.get("PostgreSqlParameters") is not None:
         import capo_quicksight.types.postgre_sql_parameters
 
         return {
@@ -590,7 +590,7 @@ def deserialize_json(data: dict) -> DataSourceParameters:
                 data["PostgreSqlParameters"]
             )
         }
-    elif "PrestoParameters" in data:
+    elif data.get("PrestoParameters") is not None:
         import capo_quicksight.types.presto_parameters
 
         return {
@@ -598,7 +598,7 @@ def deserialize_json(data: dict) -> DataSourceParameters:
                 data["PrestoParameters"]
             )
         }
-    elif "RdsParameters" in data:
+    elif data.get("RdsParameters") is not None:
         import capo_quicksight.types.rds_parameters
 
         return {
@@ -606,7 +606,7 @@ def deserialize_json(data: dict) -> DataSourceParameters:
                 data["RdsParameters"]
             )
         }
-    elif "RedshiftParameters" in data:
+    elif data.get("RedshiftParameters") is not None:
         import capo_quicksight.types.redshift_parameters
 
         return {
@@ -614,7 +614,7 @@ def deserialize_json(data: dict) -> DataSourceParameters:
                 data["RedshiftParameters"]
             )
         }
-    elif "S3Parameters" in data:
+    elif data.get("S3Parameters") is not None:
         import capo_quicksight.types.s3_parameters
 
         return {
@@ -622,7 +622,7 @@ def deserialize_json(data: dict) -> DataSourceParameters:
                 data["S3Parameters"]
             )
         }
-    elif "S3TablesParameters" in data:
+    elif data.get("S3TablesParameters") is not None:
         import capo_quicksight.types.s3_tables_parameters
 
         return {
@@ -630,7 +630,7 @@ def deserialize_json(data: dict) -> DataSourceParameters:
                 data["S3TablesParameters"]
             )
         }
-    elif "S3KnowledgeBaseParameters" in data:
+    elif data.get("S3KnowledgeBaseParameters") is not None:
         import capo_quicksight.types.s3_knowledge_base_parameters
 
         return {
@@ -638,7 +638,7 @@ def deserialize_json(data: dict) -> DataSourceParameters:
                 data["S3KnowledgeBaseParameters"]
             )
         }
-    elif "ServiceNowParameters" in data:
+    elif data.get("ServiceNowParameters") is not None:
         import capo_quicksight.types.service_now_parameters
 
         return {
@@ -646,7 +646,7 @@ def deserialize_json(data: dict) -> DataSourceParameters:
                 data["ServiceNowParameters"]
             )
         }
-    elif "SnowflakeParameters" in data:
+    elif data.get("SnowflakeParameters") is not None:
         import capo_quicksight.types.snowflake_parameters
 
         return {
@@ -654,7 +654,7 @@ def deserialize_json(data: dict) -> DataSourceParameters:
                 data["SnowflakeParameters"]
             )
         }
-    elif "SparkParameters" in data:
+    elif data.get("SparkParameters") is not None:
         import capo_quicksight.types.spark_parameters
 
         return {
@@ -662,7 +662,7 @@ def deserialize_json(data: dict) -> DataSourceParameters:
                 data["SparkParameters"]
             )
         }
-    elif "SqlServerParameters" in data:
+    elif data.get("SqlServerParameters") is not None:
         import capo_quicksight.types.sql_server_parameters
 
         return {
@@ -670,7 +670,7 @@ def deserialize_json(data: dict) -> DataSourceParameters:
                 data["SqlServerParameters"]
             )
         }
-    elif "TeradataParameters" in data:
+    elif data.get("TeradataParameters") is not None:
         import capo_quicksight.types.teradata_parameters
 
         return {
@@ -678,7 +678,7 @@ def deserialize_json(data: dict) -> DataSourceParameters:
                 data["TeradataParameters"]
             )
         }
-    elif "TwitterParameters" in data:
+    elif data.get("TwitterParameters") is not None:
         import capo_quicksight.types.twitter_parameters
 
         return {
@@ -686,7 +686,7 @@ def deserialize_json(data: dict) -> DataSourceParameters:
                 data["TwitterParameters"]
             )
         }
-    elif "AmazonOpenSearchParameters" in data:
+    elif data.get("AmazonOpenSearchParameters") is not None:
         import capo_quicksight.types.amazon_open_search_parameters
 
         return {
@@ -694,7 +694,7 @@ def deserialize_json(data: dict) -> DataSourceParameters:
                 data["AmazonOpenSearchParameters"]
             )
         }
-    elif "ExasolParameters" in data:
+    elif data.get("ExasolParameters") is not None:
         import capo_quicksight.types.exasol_parameters
 
         return {
@@ -702,7 +702,7 @@ def deserialize_json(data: dict) -> DataSourceParameters:
                 data["ExasolParameters"]
             )
         }
-    elif "DatabricksParameters" in data:
+    elif data.get("DatabricksParameters") is not None:
         import capo_quicksight.types.databricks_parameters
 
         return {
@@ -710,7 +710,7 @@ def deserialize_json(data: dict) -> DataSourceParameters:
                 data["DatabricksParameters"]
             )
         }
-    elif "StarburstParameters" in data:
+    elif data.get("StarburstParameters") is not None:
         import capo_quicksight.types.starburst_parameters
 
         return {
@@ -718,7 +718,7 @@ def deserialize_json(data: dict) -> DataSourceParameters:
                 data["StarburstParameters"]
             )
         }
-    elif "TrinoParameters" in data:
+    elif data.get("TrinoParameters") is not None:
         import capo_quicksight.types.trino_parameters
 
         return {
@@ -726,7 +726,7 @@ def deserialize_json(data: dict) -> DataSourceParameters:
                 data["TrinoParameters"]
             )
         }
-    elif "BigQueryParameters" in data:
+    elif data.get("BigQueryParameters") is not None:
         import capo_quicksight.types.big_query_parameters
 
         return {
@@ -734,7 +734,7 @@ def deserialize_json(data: dict) -> DataSourceParameters:
                 data["BigQueryParameters"]
             )
         }
-    elif "ImpalaParameters" in data:
+    elif data.get("ImpalaParameters") is not None:
         import capo_quicksight.types.impala_parameters
 
         return {
@@ -742,7 +742,7 @@ def deserialize_json(data: dict) -> DataSourceParameters:
                 data["ImpalaParameters"]
             )
         }
-    elif "CustomConnectionParameters" in data:
+    elif data.get("CustomConnectionParameters") is not None:
         import capo_quicksight.types.custom_connection_parameters
 
         return {
@@ -750,7 +750,7 @@ def deserialize_json(data: dict) -> DataSourceParameters:
                 data["CustomConnectionParameters"]
             )
         }
-    elif "WebCrawlerParameters" in data:
+    elif data.get("WebCrawlerParameters") is not None:
         import capo_quicksight.types.web_crawler_parameters
 
         return {
@@ -758,7 +758,7 @@ def deserialize_json(data: dict) -> DataSourceParameters:
                 data["WebCrawlerParameters"]
             )
         }
-    elif "ConfluenceParameters" in data:
+    elif data.get("ConfluenceParameters") is not None:
         import capo_quicksight.types.confluence_parameters
 
         return {
@@ -766,7 +766,7 @@ def deserialize_json(data: dict) -> DataSourceParameters:
                 data["ConfluenceParameters"]
             )
         }
-    elif "QBusinessParameters" in data:
+    elif data.get("QBusinessParameters") is not None:
         import capo_quicksight.types.q_business_parameters
 
         return {

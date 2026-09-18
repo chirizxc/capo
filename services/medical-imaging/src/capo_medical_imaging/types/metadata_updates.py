@@ -41,7 +41,7 @@ def serialize_json(value: MetadataUpdates) -> dict:
 
 
 def deserialize_json(data: dict) -> MetadataUpdates:
-    if "DICOMUpdates" in data:
+    if data.get("DICOMUpdates") is not None:
         import capo_medical_imaging.types.dicom_updates
 
         return {
@@ -49,7 +49,7 @@ def deserialize_json(data: dict) -> MetadataUpdates:
                 data["DICOMUpdates"]
             )
         }
-    elif "revertToVersionId" in data:
+    elif data.get("revertToVersionId") is not None:
         return {"revertToVersionId": data["revertToVersionId"]}
     else:
         raise DeserializationError("MetadataUpdates: no recognized variant key")

@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: BatchSegmentJobInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchSegmentJobInput:
     out: BatchSegmentJobInput = {}  # type: ignore[typeddict-item]
-    if "s3DataSource" in data:
+    if data.get("s3DataSource") is not None:
         import capo_personalize.types.s3_data_config
 
         out["s3_data_source"] = (

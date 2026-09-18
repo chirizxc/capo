@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: CreateHsmResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateHsmResponse:
     out: CreateHsmResponse = {}  # type: ignore[typeddict-item]
-    if "Hsm" in data:
+    if data.get("Hsm") is not None:
         import capo_cloudhsm_v2.types.hsm
 
         out["hsm"] = capo_cloudhsm_v2.types.hsm.deserialize_aws_json_1_1(data["Hsm"])

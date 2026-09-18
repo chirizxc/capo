@@ -32,15 +32,15 @@ def serialize_aws_json_1_1(value: CustomPolicyDetails) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CustomPolicyDetails:
     out: CustomPolicyDetails = {}  # type: ignore[typeddict-item]
-    if "PolicyRuntime" in data:
+    if data.get("PolicyRuntime") is not None:
         out["policy_runtime"] = data["PolicyRuntime"]
     else:
         raise DeserializationError("CustomPolicyDetails.policy_runtime required")
-    if "PolicyText" in data:
+    if data.get("PolicyText") is not None:
         out["policy_text"] = data["PolicyText"]
     else:
         raise DeserializationError("CustomPolicyDetails.policy_text required")
-    if "EnableDebugLogDelivery" in data:
+    if data.get("EnableDebugLogDelivery") is not None:
         out["enable_debug_log_delivery"] = data["EnableDebugLogDelivery"]
     else:
         out["enable_debug_log_delivery"] = False

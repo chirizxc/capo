@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetAdapterRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetAdapterRequest:
     out: GetAdapterRequest = {}  # type: ignore[typeddict-item]
-    if "AdapterId" in data:
+    if data.get("AdapterId") is not None:
         out["adapter_id"] = data["AdapterId"]
     else:
         raise DeserializationError("GetAdapterRequest.adapter_id required")

@@ -64,11 +64,11 @@ def serialize_aws_json_1_0(value: ResourceSnapshotSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ResourceSnapshotSummary:
     out: ResourceSnapshotSummary = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Revision" in data:
+    if data.get("Revision") is not None:
         out["revision"] = data["Revision"]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_partnercentral_selling.types.resource_type
 
         out["resource_type"] = (
@@ -76,10 +76,10 @@ def deserialize_aws_json_1_0(data: dict) -> ResourceSnapshotSummary:
                 data["ResourceType"]
             )
         )
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
-    if "ResourceSnapshotTemplateName" in data:
+    if data.get("ResourceSnapshotTemplateName") is not None:
         out["resource_snapshot_template_name"] = data["ResourceSnapshotTemplateName"]
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         out["created_by"] = data["CreatedBy"]
     return out

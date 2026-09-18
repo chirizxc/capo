@@ -37,17 +37,17 @@ def serialize_json(value: ContactConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ContactConfiguration:
     out: ContactConfiguration = {}  # type: ignore[typeddict-item]
-    if "ContactId" in data:
+    if data.get("ContactId") is not None:
         out["contact_id"] = data["ContactId"]
     else:
         raise DeserializationError("ContactConfiguration.contact_id required")
-    if "ParticipantRole" in data:
+    if data.get("ParticipantRole") is not None:
         import capo_connect.types.participant_role
 
         out["participant_role"] = capo_connect.types.participant_role.deserialize_json(
             data["ParticipantRole"]
         )
-    if "IncludeRawMessage" in data:
+    if data.get("IncludeRawMessage") is not None:
         out["include_raw_message"] = data["IncludeRawMessage"]
     else:
         out["include_raw_message"] = False

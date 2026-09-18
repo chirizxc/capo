@@ -44,7 +44,7 @@ def serialize_json(value: ComparisonConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ComparisonConfiguration:
     out: ComparisonConfiguration = {}  # type: ignore[typeddict-item]
-    if "ComparisonMethod" in data:
+    if data.get("ComparisonMethod") is not None:
         import capo_quicksight.types.comparison_method
 
         out["comparison_method"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> ComparisonConfiguration:
                 data["ComparisonMethod"]
             )
         )
-    if "ComparisonFormat" in data:
+    if data.get("ComparisonFormat") is not None:
         import capo_quicksight.types.comparison_format_configuration
 
         out["comparison_format"] = (

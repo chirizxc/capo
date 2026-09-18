@@ -25,15 +25,15 @@ def serialize_json(value: AccessToken) -> dict:
 
 def deserialize_json(data: dict) -> AccessToken:
     out: AccessToken = {}  # type: ignore[typeddict-item]
-    if "accessKeyId" in data:
+    if data.get("accessKeyId") is not None:
         out["access_key_id"] = data["accessKeyId"]
     else:
         raise DeserializationError("AccessToken.access_key_id required")
-    if "secretAccessKey" in data:
+    if data.get("secretAccessKey") is not None:
         out["secret_access_key"] = data["secretAccessKey"]
     else:
         raise DeserializationError("AccessToken.secret_access_key required")
-    if "sessionToken" in data:
+    if data.get("sessionToken") is not None:
         out["session_token"] = data["sessionToken"]
     else:
         raise DeserializationError("AccessToken.session_token required")

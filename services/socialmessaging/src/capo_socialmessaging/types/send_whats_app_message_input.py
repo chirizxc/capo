@@ -37,13 +37,13 @@ def serialize_json(value: SendWhatsAppMessageInput) -> dict:
 
 def deserialize_json(data: dict) -> SendWhatsAppMessageInput:
     out: SendWhatsAppMessageInput = {}  # type: ignore[typeddict-item]
-    if "originationPhoneNumberId" in data:
+    if data.get("originationPhoneNumberId") is not None:
         out["origination_phone_number_id"] = data["originationPhoneNumberId"]
     else:
         raise DeserializationError(
             "SendWhatsAppMessageInput.origination_phone_number_id required"
         )
-    if "message" in data:
+    if data.get("message") is not None:
         import capo_socialmessaging.types.whats_app_message_blob
 
         out["message"] = (
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> SendWhatsAppMessageInput:
         )
     else:
         raise DeserializationError("SendWhatsAppMessageInput.message required")
-    if "metaApiVersion" in data:
+    if data.get("metaApiVersion") is not None:
         out["meta_api_version"] = data["metaApiVersion"]
     else:
         raise DeserializationError("SendWhatsAppMessageInput.meta_api_version required")

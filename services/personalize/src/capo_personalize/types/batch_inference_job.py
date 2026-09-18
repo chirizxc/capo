@@ -138,19 +138,19 @@ def serialize_aws_json_1_1(value: BatchInferenceJob) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BatchInferenceJob:
     out: BatchInferenceJob = {}  # type: ignore[typeddict-item]
-    if "jobName" in data:
+    if data.get("jobName") is not None:
         out["job_name"] = data["jobName"]
-    if "batchInferenceJobArn" in data:
+    if data.get("batchInferenceJobArn") is not None:
         out["batch_inference_job_arn"] = data["batchInferenceJobArn"]
-    if "filterArn" in data:
+    if data.get("filterArn") is not None:
         out["filter_arn"] = data["filterArn"]
-    if "failureReason" in data:
+    if data.get("failureReason") is not None:
         out["failure_reason"] = data["failureReason"]
-    if "solutionVersionArn" in data:
+    if data.get("solutionVersionArn") is not None:
         out["solution_version_arn"] = data["solutionVersionArn"]
-    if "numResults" in data:
+    if data.get("numResults") is not None:
         out["num_results"] = data["numResults"]
-    if "jobInput" in data:
+    if data.get("jobInput") is not None:
         import capo_personalize.types.batch_inference_job_input
 
         out["job_input"] = (
@@ -158,7 +158,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchInferenceJob:
                 data["jobInput"]
             )
         )
-    if "jobOutput" in data:
+    if data.get("jobOutput") is not None:
         import capo_personalize.types.batch_inference_job_output
 
         out["job_output"] = (
@@ -166,7 +166,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchInferenceJob:
                 data["jobOutput"]
             )
         )
-    if "batchInferenceJobConfig" in data:
+    if data.get("batchInferenceJobConfig") is not None:
         import capo_personalize.types.batch_inference_job_config
 
         out["batch_inference_job_config"] = (
@@ -174,9 +174,9 @@ def deserialize_aws_json_1_1(data: dict) -> BatchInferenceJob:
                 data["batchInferenceJobConfig"]
             )
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "batchInferenceJobMode" in data:
+    if data.get("batchInferenceJobMode") is not None:
         import capo_personalize.types.batch_inference_job_mode
 
         out["batch_inference_job_mode"] = (
@@ -184,7 +184,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchInferenceJob:
                 data["batchInferenceJobMode"]
             )
         )
-    if "themeGenerationConfig" in data:
+    if data.get("themeGenerationConfig") is not None:
         import capo_personalize.types.theme_generation_config
 
         out["theme_generation_config"] = (
@@ -192,9 +192,9 @@ def deserialize_aws_json_1_1(data: dict) -> BatchInferenceJob:
                 data["themeGenerationConfig"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "creationDateTime" in data:
+    if data.get("creationDateTime") is not None:
         import capo_personalize.types.date
 
         out["creation_date_time"] = (
@@ -202,7 +202,7 @@ def deserialize_aws_json_1_1(data: dict) -> BatchInferenceJob:
                 data["creationDateTime"]
             )
         )
-    if "lastUpdatedDateTime" in data:
+    if data.get("lastUpdatedDateTime") is not None:
         import capo_personalize.types.date
 
         out["last_updated_date_time"] = (

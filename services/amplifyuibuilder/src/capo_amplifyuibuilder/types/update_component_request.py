@@ -41,7 +41,7 @@ def serialize_json(value: UpdateComponentRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateComponentRequest:
     out: UpdateComponentRequest = {}  # type: ignore[typeddict-item]
-    if "updatedComponent" in data:
+    if data.get("updatedComponent") is not None:
         import capo_amplifyuibuilder.types.update_component_data
 
         out["updated_component"] = (

@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: ProjectFleet) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProjectFleet:
     out: ProjectFleet = {}  # type: ignore[typeddict-item]
-    if "fleetArn" in data:
+    if data.get("fleetArn") is not None:
         out["fleet_arn"] = data["fleetArn"]
     return out

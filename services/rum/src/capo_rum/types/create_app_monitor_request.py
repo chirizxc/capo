@@ -91,23 +91,23 @@ def serialize_json(value: CreateAppMonitorRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateAppMonitorRequest:
     out: CreateAppMonitorRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateAppMonitorRequest.name required")
-    if "Domain" in data:
+    if data.get("Domain") is not None:
         out["domain"] = data["Domain"]
-    if "DomainList" in data:
+    if data.get("DomainList") is not None:
         import capo_rum.types.app_monitor_domain_list
 
         out["domain_list"] = capo_rum.types.app_monitor_domain_list.deserialize_json(
             data["DomainList"]
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_rum.types.tag_map
 
         out["tags"] = capo_rum.types.tag_map.deserialize_json(data["Tags"])
-    if "AppMonitorConfiguration" in data:
+    if data.get("AppMonitorConfiguration") is not None:
         import capo_rum.types.app_monitor_configuration
 
         out["app_monitor_configuration"] = (
@@ -115,15 +115,15 @@ def deserialize_json(data: dict) -> CreateAppMonitorRequest:
                 data["AppMonitorConfiguration"]
             )
         )
-    if "CwLogEnabled" in data:
+    if data.get("CwLogEnabled") is not None:
         out["cw_log_enabled"] = data["CwLogEnabled"]
-    if "CustomEvents" in data:
+    if data.get("CustomEvents") is not None:
         import capo_rum.types.custom_events
 
         out["custom_events"] = capo_rum.types.custom_events.deserialize_json(
             data["CustomEvents"]
         )
-    if "DeobfuscationConfiguration" in data:
+    if data.get("DeobfuscationConfiguration") is not None:
         import capo_rum.types.deobfuscation_configuration
 
         out["deobfuscation_configuration"] = (
@@ -131,6 +131,6 @@ def deserialize_json(data: dict) -> CreateAppMonitorRequest:
                 data["DeobfuscationConfiguration"]
             )
         )
-    if "Platform" in data:
+    if data.get("Platform") is not None:
         out["platform"] = data["Platform"]
     return out

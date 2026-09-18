@@ -86,41 +86,41 @@ def serialize_json(value: CreateSlackChannelConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateSlackChannelConfigurationRequest:
     out: CreateSlackChannelConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "SlackTeamId" in data:
+    if data.get("SlackTeamId") is not None:
         out["slack_team_id"] = data["SlackTeamId"]
     else:
         raise DeserializationError(
             "CreateSlackChannelConfigurationRequest.slack_team_id required"
         )
-    if "SlackChannelId" in data:
+    if data.get("SlackChannelId") is not None:
         out["slack_channel_id"] = data["SlackChannelId"]
     else:
         raise DeserializationError(
             "CreateSlackChannelConfigurationRequest.slack_channel_id required"
         )
-    if "SlackChannelName" in data:
+    if data.get("SlackChannelName") is not None:
         out["slack_channel_name"] = data["SlackChannelName"]
-    if "SnsTopicArns" in data:
+    if data.get("SnsTopicArns") is not None:
         import capo_chatbot.types.sns_topic_arn_list
 
         out["sns_topic_arns"] = capo_chatbot.types.sns_topic_arn_list.deserialize_json(
             data["SnsTopicArns"]
         )
-    if "IamRoleArn" in data:
+    if data.get("IamRoleArn") is not None:
         out["iam_role_arn"] = data["IamRoleArn"]
     else:
         raise DeserializationError(
             "CreateSlackChannelConfigurationRequest.iam_role_arn required"
         )
-    if "ConfigurationName" in data:
+    if data.get("ConfigurationName") is not None:
         out["configuration_name"] = data["ConfigurationName"]
     else:
         raise DeserializationError(
             "CreateSlackChannelConfigurationRequest.configuration_name required"
         )
-    if "LoggingLevel" in data:
+    if data.get("LoggingLevel") is not None:
         out["logging_level"] = data["LoggingLevel"]
-    if "GuardrailPolicyArns" in data:
+    if data.get("GuardrailPolicyArns") is not None:
         import capo_chatbot.types.guardrail_policy_arn_list
 
         out["guardrail_policy_arns"] = (
@@ -128,9 +128,9 @@ def deserialize_json(data: dict) -> CreateSlackChannelConfigurationRequest:
                 data["GuardrailPolicyArns"]
             )
         )
-    if "UserAuthorizationRequired" in data:
+    if data.get("UserAuthorizationRequired") is not None:
         out["user_authorization_required"] = data["UserAuthorizationRequired"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_chatbot.types.tags
 
         out["tags"] = capo_chatbot.types.tags.deserialize_json(data["Tags"])

@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: MaximumRepositoryTriggersExceededException_) -
 
 def deserialize_aws_json_1_1(data: dict) -> MaximumRepositoryTriggersExceededException_:
     out: MaximumRepositoryTriggersExceededException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,17 +35,22 @@ class MaximumRepositoryTriggersExceededException(ServiceError):
 
     code: str | None = "MaximumRepositoryTriggersExceededException"
 
-    def __init__(self, data: MaximumRepositoryTriggersExceededException_):
+    def __init__(
+        self,
+        data: MaximumRepositoryTriggersExceededException_,
+        message: str | None = None,
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="MaximumRepositoryTriggersExceededException",
+            message=message,
         )
         self.data = data
 
     @classmethod
     def from_aws_json_1_1(
-        cls, data: dict
+        cls, data: dict, message: str | None = None
     ) -> "MaximumRepositoryTriggersExceededException":
-        return cls(deserialize_aws_json_1_1(data))
+        return cls(deserialize_aws_json_1_1(data), message)

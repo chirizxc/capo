@@ -31,7 +31,7 @@ def serialize_json(value: GetTypedLinkFacetInformationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetTypedLinkFacetInformationResponse:
     out: GetTypedLinkFacetInformationResponse = {}  # type: ignore[typeddict-item]
-    if "IdentityAttributeOrder" in data:
+    if data.get("IdentityAttributeOrder") is not None:
         import capo_clouddirectory.types.attribute_name_list
 
         out["identity_attribute_order"] = (

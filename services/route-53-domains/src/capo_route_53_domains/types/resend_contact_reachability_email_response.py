@@ -33,10 +33,10 @@ def serialize_aws_json_1_1(value: ResendContactReachabilityEmailResponse) -> dic
 
 def deserialize_aws_json_1_1(data: dict) -> ResendContactReachabilityEmailResponse:
     out: ResendContactReachabilityEmailResponse = {}  # type: ignore[typeddict-item]
-    if "domainName" in data:
+    if data.get("domainName") is not None:
         out["domain_name"] = data["domainName"]
-    if "emailAddress" in data:
+    if data.get("emailAddress") is not None:
         out["email_address"] = data["emailAddress"]
-    if "isAlreadyVerified" in data:
+    if data.get("isAlreadyVerified") is not None:
         out["is_already_verified"] = data["isAlreadyVerified"]
     return out

@@ -35,11 +35,11 @@ def serialize_aws_json_1_1(value: TaskSchedule) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TaskSchedule:
     out: TaskSchedule = {}  # type: ignore[typeddict-item]
-    if "ScheduleExpression" in data:
+    if data.get("ScheduleExpression") is not None:
         out["schedule_expression"] = data["ScheduleExpression"]
     else:
         raise DeserializationError("TaskSchedule.schedule_expression required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_datasync.types.schedule_status
 
         out["status"] = capo_datasync.types.schedule_status.deserialize_aws_json_1_1(

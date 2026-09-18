@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> ExportedEnvironmentVariables:
 
     out: ExportedEnvironmentVariables = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codebuild.types.exported_environment_variable.deserialize_aws_json_1_1(
                 item

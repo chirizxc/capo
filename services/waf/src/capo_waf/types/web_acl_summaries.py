@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> WebACLSummaries:
 
     out: WebACLSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_waf.types.web_acl_summary.deserialize_aws_json_1_1(item))
     return out

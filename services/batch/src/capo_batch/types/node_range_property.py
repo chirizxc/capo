@@ -72,33 +72,33 @@ def serialize_json(value: NodeRangeProperty) -> dict:
 
 def deserialize_json(data: dict) -> NodeRangeProperty:
     out: NodeRangeProperty = {}  # type: ignore[typeddict-item]
-    if "targetNodes" in data:
+    if data.get("targetNodes") is not None:
         out["target_nodes"] = data["targetNodes"]
-    if "container" in data:
+    if data.get("container") is not None:
         import capo_batch.types.container_properties
 
         out["container"] = capo_batch.types.container_properties.deserialize_json(
             data["container"]
         )
-    if "instanceTypes" in data:
+    if data.get("instanceTypes") is not None:
         import capo_batch.types.string_list
 
         out["instance_types"] = capo_batch.types.string_list.deserialize_json(
             data["instanceTypes"]
         )
-    if "ecsProperties" in data:
+    if data.get("ecsProperties") is not None:
         import capo_batch.types.ecs_properties
 
         out["ecs_properties"] = capo_batch.types.ecs_properties.deserialize_json(
             data["ecsProperties"]
         )
-    if "eksProperties" in data:
+    if data.get("eksProperties") is not None:
         import capo_batch.types.eks_properties
 
         out["eks_properties"] = capo_batch.types.eks_properties.deserialize_json(
             data["eksProperties"]
         )
-    if "consumableResourceProperties" in data:
+    if data.get("consumableResourceProperties") is not None:
         import capo_batch.types.consumable_resource_properties
 
         out["consumable_resource_properties"] = (

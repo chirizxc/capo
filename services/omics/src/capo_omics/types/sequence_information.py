@@ -35,12 +35,12 @@ def serialize_json(value: SequenceInformation) -> dict:
 
 def deserialize_json(data: dict) -> SequenceInformation:
     out: SequenceInformation = {}  # type: ignore[typeddict-item]
-    if "totalReadCount" in data:
+    if data.get("totalReadCount") is not None:
         out["total_read_count"] = data["totalReadCount"]
-    if "totalBaseCount" in data:
+    if data.get("totalBaseCount") is not None:
         out["total_base_count"] = data["totalBaseCount"]
-    if "generatedFrom" in data:
+    if data.get("generatedFrom") is not None:
         out["generated_from"] = data["generatedFrom"]
-    if "alignment" in data:
+    if data.get("alignment") is not None:
         out["alignment"] = data["alignment"]
     return out

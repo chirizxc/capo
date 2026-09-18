@@ -32,8 +32,8 @@ def serialize_json(value: ThrottlingReason) -> dict:
 
 def deserialize_json(data: dict) -> ThrottlingReason:
     out: ThrottlingReason = {}  # type: ignore[typeddict-item]
-    if "reason" in data:
+    if data.get("reason") is not None:
         out["reason"] = data["reason"]
-    if "resource" in data:
+    if data.get("resource") is not None:
         out["resource"] = data["resource"]
     return out

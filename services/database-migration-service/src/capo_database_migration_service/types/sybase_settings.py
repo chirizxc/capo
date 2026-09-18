@@ -57,18 +57,18 @@ def serialize_aws_json_1_1(value: SybaseSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SybaseSettings:
     out: SybaseSettings = {}  # type: ignore[typeddict-item]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
-    if "Password" in data:
+    if data.get("Password") is not None:
         out["password"] = data["Password"]
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
-    if "ServerName" in data:
+    if data.get("ServerName") is not None:
         out["server_name"] = data["ServerName"]
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
-    if "SecretsManagerAccessRoleArn" in data:
+    if data.get("SecretsManagerAccessRoleArn") is not None:
         out["secrets_manager_access_role_arn"] = data["SecretsManagerAccessRoleArn"]
-    if "SecretsManagerSecretId" in data:
+    if data.get("SecretsManagerSecretId") is not None:
         out["secrets_manager_secret_id"] = data["SecretsManagerSecretId"]
     return out

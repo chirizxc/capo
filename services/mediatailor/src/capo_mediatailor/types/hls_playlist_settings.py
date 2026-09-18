@@ -32,9 +32,9 @@ def serialize_json(value: HlsPlaylistSettings) -> dict:
 
 def deserialize_json(data: dict) -> HlsPlaylistSettings:
     out: HlsPlaylistSettings = {}  # type: ignore[typeddict-item]
-    if "ManifestWindowSeconds" in data:
+    if data.get("ManifestWindowSeconds") is not None:
         out["manifest_window_seconds"] = data["ManifestWindowSeconds"]
-    if "AdMarkupType" in data:
+    if data.get("AdMarkupType") is not None:
         import capo_mediatailor.types.ad_markup_types
 
         out["ad_markup_type"] = capo_mediatailor.types.ad_markup_types.deserialize_json(

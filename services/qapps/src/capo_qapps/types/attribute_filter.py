@@ -105,49 +105,49 @@ def serialize_json(value: AttributeFilter) -> dict:
 
 def deserialize_json(data: dict) -> AttributeFilter:
     out: AttributeFilter = {}  # type: ignore[typeddict-item]
-    if "andAllFilters" in data:
+    if data.get("andAllFilters") is not None:
         import capo_qapps.types.attribute_filters
 
         out["and_all_filters"] = capo_qapps.types.attribute_filters.deserialize_json(
             data["andAllFilters"]
         )
-    if "orAllFilters" in data:
+    if data.get("orAllFilters") is not None:
         import capo_qapps.types.attribute_filters
 
         out["or_all_filters"] = capo_qapps.types.attribute_filters.deserialize_json(
             data["orAllFilters"]
         )
-    if "notFilter" in data:
+    if data.get("notFilter") is not None:
         import capo_qapps.types.attribute_filter
 
         out["not_filter"] = capo_qapps.types.attribute_filter.deserialize_json(
             data["notFilter"]
         )
-    if "equalsTo" in data:
+    if data.get("equalsTo") is not None:
         import capo_qapps.types.document_attribute
 
         out["equals_to"] = capo_qapps.types.document_attribute.deserialize_json(
             data["equalsTo"]
         )
-    if "containsAll" in data:
+    if data.get("containsAll") is not None:
         import capo_qapps.types.document_attribute
 
         out["contains_all"] = capo_qapps.types.document_attribute.deserialize_json(
             data["containsAll"]
         )
-    if "containsAny" in data:
+    if data.get("containsAny") is not None:
         import capo_qapps.types.document_attribute
 
         out["contains_any"] = capo_qapps.types.document_attribute.deserialize_json(
             data["containsAny"]
         )
-    if "greaterThan" in data:
+    if data.get("greaterThan") is not None:
         import capo_qapps.types.document_attribute
 
         out["greater_than"] = capo_qapps.types.document_attribute.deserialize_json(
             data["greaterThan"]
         )
-    if "greaterThanOrEquals" in data:
+    if data.get("greaterThanOrEquals") is not None:
         import capo_qapps.types.document_attribute
 
         out["greater_than_or_equals"] = (
@@ -155,13 +155,13 @@ def deserialize_json(data: dict) -> AttributeFilter:
                 data["greaterThanOrEquals"]
             )
         )
-    if "lessThan" in data:
+    if data.get("lessThan") is not None:
         import capo_qapps.types.document_attribute
 
         out["less_than"] = capo_qapps.types.document_attribute.deserialize_json(
             data["lessThan"]
         )
-    if "lessThanOrEquals" in data:
+    if data.get("lessThanOrEquals") is not None:
         import capo_qapps.types.document_attribute
 
         out["less_than_or_equals"] = (

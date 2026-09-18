@@ -72,13 +72,13 @@ def serialize_json(value: Session) -> dict:
 
 def deserialize_json(data: dict) -> Session:
     out: Session = {}  # type: ignore[typeddict-item]
-    if "portalArn" in data:
+    if data.get("portalArn") is not None:
         out["portal_arn"] = data["portalArn"]
-    if "sessionId" in data:
+    if data.get("sessionId") is not None:
         out["session_id"] = data["sessionId"]
-    if "username" in data:
+    if data.get("username") is not None:
         out["username"] = data["username"]
-    if "clientIpAddresses" in data:
+    if data.get("clientIpAddresses") is not None:
         import capo_workspaces_web.types.ip_address_list
 
         out["client_ip_addresses"] = (
@@ -86,19 +86,19 @@ def deserialize_json(data: dict) -> Session:
                 data["clientIpAddresses"]
             )
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_workspaces_web.types.session_status
 
         out["status"] = capo_workspaces_web.types.session_status.deserialize_json(
             data["status"]
         )
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_workspaces_web.types.timestamp
 
         out["start_time"] = capo_workspaces_web.types.timestamp.deserialize_json(
             data["startTime"]
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_workspaces_web.types.timestamp
 
         out["end_time"] = capo_workspaces_web.types.timestamp.deserialize_json(

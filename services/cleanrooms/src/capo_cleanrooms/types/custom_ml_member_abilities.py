@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> CustomMLMemberAbilities:
 
     out: CustomMLMemberAbilities = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cleanrooms.types.custom_ml_member_ability.deserialize_json(item)
         )

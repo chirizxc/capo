@@ -27,6 +27,8 @@ def deserialize_aws_json_1_0(data: list) -> ExportJobPropertiesList:
 
     out: ExportJobPropertiesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_healthlake.types.export_job_properties.deserialize_aws_json_1_0(item)
         )

@@ -42,11 +42,11 @@ def serialize_aws_json_1_1(value: CookieMatchPattern) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CookieMatchPattern:
     out: CookieMatchPattern = {}  # type: ignore[typeddict-item]
-    if "All" in data:
+    if data.get("All") is not None:
         import capo_wafv2.types.all
 
         out["all"] = capo_wafv2.types.all.deserialize_aws_json_1_1(data["All"])
-    if "IncludedCookies" in data:
+    if data.get("IncludedCookies") is not None:
         import capo_wafv2.types.cookie_names
 
         out["included_cookies"] = (
@@ -54,7 +54,7 @@ def deserialize_aws_json_1_1(data: dict) -> CookieMatchPattern:
                 data["IncludedCookies"]
             )
         )
-    if "ExcludedCookies" in data:
+    if data.get("ExcludedCookies") is not None:
         import capo_wafv2.types.cookie_names
 
         out["excluded_cookies"] = (

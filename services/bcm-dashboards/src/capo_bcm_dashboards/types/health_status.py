@@ -56,7 +56,7 @@ def serialize_aws_json_1_0(value: HealthStatus) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> HealthStatus:
     out: HealthStatus = {}  # type: ignore[typeddict-item]
-    if "statusCode" in data:
+    if data.get("statusCode") is not None:
         import capo_bcm_dashboards.types.health_status_code
 
         out["status_code"] = (
@@ -66,7 +66,7 @@ def deserialize_aws_json_1_0(data: dict) -> HealthStatus:
         )
     else:
         raise DeserializationError("HealthStatus.status_code required")
-    if "lastRefreshedAt" in data:
+    if data.get("lastRefreshedAt") is not None:
         import capo_bcm_dashboards.types.generic_time_stamp
 
         out["last_refreshed_at"] = (
@@ -74,7 +74,7 @@ def deserialize_aws_json_1_0(data: dict) -> HealthStatus:
                 data["lastRefreshedAt"]
             )
         )
-    if "statusReasons" in data:
+    if data.get("statusReasons") is not None:
         import capo_bcm_dashboards.types.status_reason_list
 
         out["status_reasons"] = (

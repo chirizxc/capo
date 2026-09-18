@@ -34,11 +34,11 @@ def serialize_aws_json_1_1(value: ListExecutionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListExecutionsRequest:
     out: ListExecutionsRequest = {}  # type: ignore[typeddict-item]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "WorkflowId" in data:
+    if data.get("WorkflowId") is not None:
         out["workflow_id"] = data["WorkflowId"]
     else:
         raise DeserializationError("ListExecutionsRequest.workflow_id required")

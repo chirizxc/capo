@@ -33,10 +33,10 @@ def serialize_json(value: DeviceInfo) -> dict:
 
 def deserialize_json(data: dict) -> DeviceInfo:
     out: DeviceInfo = {}  # type: ignore[typeddict-item]
-    if "PlatformName" in data:
+    if data.get("PlatformName") is not None:
         out["platform_name"] = data["PlatformName"]
-    if "PlatformVersion" in data:
+    if data.get("PlatformVersion") is not None:
         out["platform_version"] = data["PlatformVersion"]
-    if "OperatingSystem" in data:
+    if data.get("OperatingSystem") is not None:
         out["operating_system"] = data["OperatingSystem"]
     return out

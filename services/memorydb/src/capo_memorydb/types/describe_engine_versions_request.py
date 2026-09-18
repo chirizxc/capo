@@ -44,17 +44,17 @@ def serialize_aws_json_1_1(value: DescribeEngineVersionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeEngineVersionsRequest:
     out: DescribeEngineVersionsRequest = {}  # type: ignore[typeddict-item]
-    if "Engine" in data:
+    if data.get("Engine") is not None:
         out["engine"] = data["Engine"]
-    if "EngineVersion" in data:
+    if data.get("EngineVersion") is not None:
         out["engine_version"] = data["EngineVersion"]
-    if "ParameterGroupFamily" in data:
+    if data.get("ParameterGroupFamily") is not None:
         out["parameter_group_family"] = data["ParameterGroupFamily"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "DefaultOnly" in data:
+    if data.get("DefaultOnly") is not None:
         out["default_only"] = data["DefaultOnly"]
     else:
         out["default_only"] = False

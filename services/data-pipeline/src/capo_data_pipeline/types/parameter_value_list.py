@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ParameterValueList:
 
     out: ParameterValueList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_data_pipeline.types.parameter_value.deserialize_aws_json_1_1(item)
         )

@@ -23,6 +23,6 @@ def serialize_json(value: DeleteDatasetResponse) -> dict:
 
 def deserialize_json(data: dict) -> DeleteDatasetResponse:
     out: DeleteDatasetResponse = {}  # type: ignore[typeddict-item]
-    if "datasetId" in data:
+    if data.get("datasetId") is not None:
         out["dataset_id"] = data["datasetId"]
     return out

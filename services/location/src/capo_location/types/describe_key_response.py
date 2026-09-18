@@ -75,19 +75,19 @@ def serialize_json(value: DescribeKeyResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeKeyResponse:
     out: DescribeKeyResponse = {}  # type: ignore[typeddict-item]
-    if "Key" in data:
+    if data.get("Key") is not None:
         out["key"] = data["Key"]
     else:
         raise DeserializationError("DescribeKeyResponse.key required")
-    if "KeyArn" in data:
+    if data.get("KeyArn") is not None:
         out["key_arn"] = data["KeyArn"]
     else:
         raise DeserializationError("DescribeKeyResponse.key_arn required")
-    if "KeyName" in data:
+    if data.get("KeyName") is not None:
         out["key_name"] = data["KeyName"]
     else:
         raise DeserializationError("DescribeKeyResponse.key_name required")
-    if "Restrictions" in data:
+    if data.get("Restrictions") is not None:
         import capo_location.types.api_key_restrictions
 
         out["restrictions"] = capo_location.types.api_key_restrictions.deserialize_json(
@@ -95,7 +95,7 @@ def deserialize_json(data: dict) -> DescribeKeyResponse:
         )
     else:
         raise DeserializationError("DescribeKeyResponse.restrictions required")
-    if "CreateTime" in data:
+    if data.get("CreateTime") is not None:
         import capo_location.types.timestamp
 
         out["create_time"] = capo_location.types.timestamp.deserialize_json(
@@ -103,7 +103,7 @@ def deserialize_json(data: dict) -> DescribeKeyResponse:
         )
     else:
         raise DeserializationError("DescribeKeyResponse.create_time required")
-    if "ExpireTime" in data:
+    if data.get("ExpireTime") is not None:
         import capo_location.types.timestamp
 
         out["expire_time"] = capo_location.types.timestamp.deserialize_json(
@@ -111,7 +111,7 @@ def deserialize_json(data: dict) -> DescribeKeyResponse:
         )
     else:
         raise DeserializationError("DescribeKeyResponse.expire_time required")
-    if "UpdateTime" in data:
+    if data.get("UpdateTime") is not None:
         import capo_location.types.timestamp
 
         out["update_time"] = capo_location.types.timestamp.deserialize_json(
@@ -119,9 +119,9 @@ def deserialize_json(data: dict) -> DescribeKeyResponse:
         )
     else:
         raise DeserializationError("DescribeKeyResponse.update_time required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_location.types.tag_map
 
         out["tags"] = capo_location.types.tag_map.deserialize_json(data["Tags"])

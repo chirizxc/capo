@@ -79,57 +79,57 @@ def serialize_json(value: ConfiguredAudienceModelAssociation) -> dict:
 
 def deserialize_json(data: dict) -> ConfiguredAudienceModelAssociation:
     out: ConfiguredAudienceModelAssociation = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("ConfiguredAudienceModelAssociation.id required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("ConfiguredAudienceModelAssociation.arn required")
-    if "configuredAudienceModelArn" in data:
+    if data.get("configuredAudienceModelArn") is not None:
         out["configured_audience_model_arn"] = data["configuredAudienceModelArn"]
     else:
         raise DeserializationError(
             "ConfiguredAudienceModelAssociation.configured_audience_model_arn required"
         )
-    if "membershipId" in data:
+    if data.get("membershipId") is not None:
         out["membership_id"] = data["membershipId"]
     else:
         raise DeserializationError(
             "ConfiguredAudienceModelAssociation.membership_id required"
         )
-    if "membershipArn" in data:
+    if data.get("membershipArn") is not None:
         out["membership_arn"] = data["membershipArn"]
     else:
         raise DeserializationError(
             "ConfiguredAudienceModelAssociation.membership_arn required"
         )
-    if "collaborationId" in data:
+    if data.get("collaborationId") is not None:
         out["collaboration_id"] = data["collaborationId"]
     else:
         raise DeserializationError(
             "ConfiguredAudienceModelAssociation.collaboration_id required"
         )
-    if "collaborationArn" in data:
+    if data.get("collaborationArn") is not None:
         out["collaboration_arn"] = data["collaborationArn"]
     else:
         raise DeserializationError(
             "ConfiguredAudienceModelAssociation.collaboration_arn required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("ConfiguredAudienceModelAssociation.name required")
-    if "manageResourcePolicies" in data:
+    if data.get("manageResourcePolicies") is not None:
         out["manage_resource_policies"] = data["manageResourcePolicies"]
     else:
         raise DeserializationError(
             "ConfiguredAudienceModelAssociation.manage_resource_policies required"
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "createTime" in data:
+    if data.get("createTime") is not None:
         import capo_cleanrooms.types._prelude.timestamp
 
         out["create_time"] = capo_cleanrooms.types._prelude.timestamp.deserialize_json(
@@ -139,7 +139,7 @@ def deserialize_json(data: dict) -> ConfiguredAudienceModelAssociation:
         raise DeserializationError(
             "ConfiguredAudienceModelAssociation.create_time required"
         )
-    if "updateTime" in data:
+    if data.get("updateTime") is not None:
         import capo_cleanrooms.types._prelude.timestamp
 
         out["update_time"] = capo_cleanrooms.types._prelude.timestamp.deserialize_json(

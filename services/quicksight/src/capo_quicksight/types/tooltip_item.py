@@ -44,7 +44,7 @@ def serialize_json(value: TooltipItem) -> dict:
 
 def deserialize_json(data: dict) -> TooltipItem:
     out: TooltipItem = {}  # type: ignore[typeddict-item]
-    if "FieldTooltipItem" in data:
+    if data.get("FieldTooltipItem") is not None:
         import capo_quicksight.types.field_tooltip_item
 
         out["field_tooltip_item"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> TooltipItem:
                 data["FieldTooltipItem"]
             )
         )
-    if "ColumnTooltipItem" in data:
+    if data.get("ColumnTooltipItem") is not None:
         import capo_quicksight.types.column_tooltip_item
 
         out["column_tooltip_item"] = (

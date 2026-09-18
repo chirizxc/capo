@@ -58,11 +58,11 @@ def serialize_json(value: DateMeasureField) -> dict:
 
 def deserialize_json(data: dict) -> DateMeasureField:
     out: DateMeasureField = {}  # type: ignore[typeddict-item]
-    if "FieldId" in data:
+    if data.get("FieldId") is not None:
         out["field_id"] = data["FieldId"]
     else:
         raise DeserializationError("DateMeasureField.field_id required")
-    if "Column" in data:
+    if data.get("Column") is not None:
         import capo_quicksight.types.column_identifier
 
         out["column"] = capo_quicksight.types.column_identifier.deserialize_json(
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> DateMeasureField:
         )
     else:
         raise DeserializationError("DateMeasureField.column required")
-    if "AggregationFunction" in data:
+    if data.get("AggregationFunction") is not None:
         import capo_quicksight.types.date_aggregation_function
 
         out["aggregation_function"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> DateMeasureField:
                 data["AggregationFunction"]
             )
         )
-    if "FormatConfiguration" in data:
+    if data.get("FormatConfiguration") is not None:
         import capo_quicksight.types.date_time_format_configuration
 
         out["format_configuration"] = (

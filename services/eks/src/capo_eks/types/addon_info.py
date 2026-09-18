@@ -63,21 +63,21 @@ def serialize_json(value: AddonInfo) -> dict:
 
 def deserialize_json(data: dict) -> AddonInfo:
     out: AddonInfo = {}  # type: ignore[typeddict-item]
-    if "addonName" in data:
+    if data.get("addonName") is not None:
         out["addon_name"] = data["addonName"]
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
-    if "addonVersions" in data:
+    if data.get("addonVersions") is not None:
         import capo_eks.types.addon_version_info_list
 
         out["addon_versions"] = capo_eks.types.addon_version_info_list.deserialize_json(
             data["addonVersions"]
         )
-    if "publisher" in data:
+    if data.get("publisher") is not None:
         out["publisher"] = data["publisher"]
-    if "owner" in data:
+    if data.get("owner") is not None:
         out["owner"] = data["owner"]
-    if "marketplaceInformation" in data:
+    if data.get("marketplaceInformation") is not None:
         import capo_eks.types.marketplace_information
 
         out["marketplace_information"] = (
@@ -85,6 +85,6 @@ def deserialize_json(data: dict) -> AddonInfo:
                 data["marketplaceInformation"]
             )
         )
-    if "defaultNamespace" in data:
+    if data.get("defaultNamespace") is not None:
         out["default_namespace"] = data["defaultNamespace"]
     return out

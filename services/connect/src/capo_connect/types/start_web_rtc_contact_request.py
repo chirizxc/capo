@@ -81,23 +81,23 @@ def serialize_json(value: StartWebRTCContactRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartWebRTCContactRequest:
     out: StartWebRTCContactRequest = {}  # type: ignore[typeddict-item]
-    if "Attributes" in data:
+    if data.get("Attributes") is not None:
         import capo_connect.types.attributes
 
         out["attributes"] = capo_connect.types.attributes.deserialize_json(
             data["Attributes"]
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "ContactFlowId" in data:
+    if data.get("ContactFlowId") is not None:
         out["contact_flow_id"] = data["ContactFlowId"]
     else:
         raise DeserializationError("StartWebRTCContactRequest.contact_flow_id required")
-    if "InstanceId" in data:
+    if data.get("InstanceId") is not None:
         out["instance_id"] = data["InstanceId"]
     else:
         raise DeserializationError("StartWebRTCContactRequest.instance_id required")
-    if "AllowedCapabilities" in data:
+    if data.get("AllowedCapabilities") is not None:
         import capo_connect.types.allowed_capabilities
 
         out["allowed_capabilities"] = (
@@ -105,7 +105,7 @@ def deserialize_json(data: dict) -> StartWebRTCContactRequest:
                 data["AllowedCapabilities"]
             )
         )
-    if "ParticipantDetails" in data:
+    if data.get("ParticipantDetails") is not None:
         import capo_connect.types.participant_details
 
         out["participant_details"] = (
@@ -117,14 +117,14 @@ def deserialize_json(data: dict) -> StartWebRTCContactRequest:
         raise DeserializationError(
             "StartWebRTCContactRequest.participant_details required"
         )
-    if "RelatedContactId" in data:
+    if data.get("RelatedContactId") is not None:
         out["related_contact_id"] = data["RelatedContactId"]
-    if "References" in data:
+    if data.get("References") is not None:
         import capo_connect.types.contact_references
 
         out["references"] = capo_connect.types.contact_references.deserialize_json(
             data["References"]
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     return out

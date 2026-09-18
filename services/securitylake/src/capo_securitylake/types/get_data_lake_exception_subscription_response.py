@@ -34,10 +34,10 @@ def serialize_json(value: GetDataLakeExceptionSubscriptionResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetDataLakeExceptionSubscriptionResponse:
     out: GetDataLakeExceptionSubscriptionResponse = {}  # type: ignore[typeddict-item]
-    if "subscriptionProtocol" in data:
+    if data.get("subscriptionProtocol") is not None:
         out["subscription_protocol"] = data["subscriptionProtocol"]
-    if "notificationEndpoint" in data:
+    if data.get("notificationEndpoint") is not None:
         out["notification_endpoint"] = data["notificationEndpoint"]
-    if "exceptionTimeToLive" in data:
+    if data.get("exceptionTimeToLive") is not None:
         out["exception_time_to_live"] = data["exceptionTimeToLive"]
     return out

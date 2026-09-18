@@ -31,7 +31,7 @@ def serialize_json(value: DisassociateSigninDelegateGroupsFromAccountRequest) ->
 
 def deserialize_json(data: dict) -> DisassociateSigninDelegateGroupsFromAccountRequest:
     out: DisassociateSigninDelegateGroupsFromAccountRequest = {}  # type: ignore[typeddict-item]
-    if "GroupNames" in data:
+    if data.get("GroupNames") is not None:
         import capo_chime.types.non_empty_string_list
 
         out["group_names"] = capo_chime.types.non_empty_string_list.deserialize_json(

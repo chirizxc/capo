@@ -49,7 +49,7 @@ def serialize_json(value: UpdateBridgeSourceRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateBridgeSourceRequest:
     out: UpdateBridgeSourceRequest = {}  # type: ignore[typeddict-item]
-    if "flowSource" in data:
+    if data.get("flowSource") is not None:
         import capo_mediaconnect.types.update_bridge_flow_source_request
 
         out["flow_source"] = (
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> UpdateBridgeSourceRequest:
                 data["flowSource"]
             )
         )
-    if "networkSource" in data:
+    if data.get("networkSource") is not None:
         import capo_mediaconnect.types.update_bridge_network_source_request
 
         out["network_source"] = (

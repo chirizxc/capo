@@ -23,6 +23,6 @@ def serialize_json(value: FrameCaptureOutputSettings) -> dict:
 
 def deserialize_json(data: dict) -> FrameCaptureOutputSettings:
     out: FrameCaptureOutputSettings = {}  # type: ignore[typeddict-item]
-    if "nameModifier" in data:
+    if data.get("nameModifier") is not None:
         out["name_modifier"] = data["nameModifier"]
     return out

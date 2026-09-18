@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AuditMitigationActionExecutionMetadataList:
 
     out: AuditMitigationActionExecutionMetadataList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot.types.audit_mitigation_action_execution_metadata.deserialize_json(
                 item

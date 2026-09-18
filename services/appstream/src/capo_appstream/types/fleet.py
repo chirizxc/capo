@@ -214,27 +214,27 @@ def serialize_aws_json_1_1(value: Fleet) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Fleet:
     out: Fleet = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "ImageName" in data:
+    if data.get("ImageName") is not None:
         out["image_name"] = data["ImageName"]
-    if "ImageArn" in data:
+    if data.get("ImageArn") is not None:
         out["image_arn"] = data["ImageArn"]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         out["instance_type"] = data["InstanceType"]
-    if "FleetType" in data:
+    if data.get("FleetType") is not None:
         import capo_appstream.types.fleet_type
 
         out["fleet_type"] = capo_appstream.types.fleet_type.deserialize_aws_json_1_1(
             data["FleetType"]
         )
-    if "ComputeCapacityStatus" in data:
+    if data.get("ComputeCapacityStatus") is not None:
         import capo_appstream.types.compute_capacity_status
 
         out["compute_capacity_status"] = (
@@ -242,29 +242,29 @@ def deserialize_aws_json_1_1(data: dict) -> Fleet:
                 data["ComputeCapacityStatus"]
             )
         )
-    if "MaxUserDurationInSeconds" in data:
+    if data.get("MaxUserDurationInSeconds") is not None:
         out["max_user_duration_in_seconds"] = data["MaxUserDurationInSeconds"]
-    if "DisconnectTimeoutInSeconds" in data:
+    if data.get("DisconnectTimeoutInSeconds") is not None:
         out["disconnect_timeout_in_seconds"] = data["DisconnectTimeoutInSeconds"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_appstream.types.fleet_state
 
         out["state"] = capo_appstream.types.fleet_state.deserialize_aws_json_1_1(
             data["State"]
         )
-    if "VpcConfig" in data:
+    if data.get("VpcConfig") is not None:
         import capo_appstream.types.vpc_config
 
         out["vpc_config"] = capo_appstream.types.vpc_config.deserialize_aws_json_1_1(
             data["VpcConfig"]
         )
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_appstream.types.timestamp
 
         out["created_time"] = capo_appstream.types.timestamp.deserialize_aws_json_1_1(
             data["CreatedTime"]
         )
-    if "FleetErrors" in data:
+    if data.get("FleetErrors") is not None:
         import capo_appstream.types.fleet_errors
 
         out["fleet_errors"] = (
@@ -272,9 +272,9 @@ def deserialize_aws_json_1_1(data: dict) -> Fleet:
                 data["FleetErrors"]
             )
         )
-    if "EnableDefaultInternetAccess" in data:
+    if data.get("EnableDefaultInternetAccess") is not None:
         out["enable_default_internet_access"] = data["EnableDefaultInternetAccess"]
-    if "DomainJoinInfo" in data:
+    if data.get("DomainJoinInfo") is not None:
         import capo_appstream.types.domain_join_info
 
         out["domain_join_info"] = (
@@ -282,27 +282,27 @@ def deserialize_aws_json_1_1(data: dict) -> Fleet:
                 data["DomainJoinInfo"]
             )
         )
-    if "IdleDisconnectTimeoutInSeconds" in data:
+    if data.get("IdleDisconnectTimeoutInSeconds") is not None:
         out["idle_disconnect_timeout_in_seconds"] = data[
             "IdleDisconnectTimeoutInSeconds"
         ]
-    if "IamRoleArn" in data:
+    if data.get("IamRoleArn") is not None:
         out["iam_role_arn"] = data["IamRoleArn"]
-    if "StreamView" in data:
+    if data.get("StreamView") is not None:
         import capo_appstream.types.stream_view
 
         out["stream_view"] = capo_appstream.types.stream_view.deserialize_aws_json_1_1(
             data["StreamView"]
         )
-    if "Platform" in data:
+    if data.get("Platform") is not None:
         import capo_appstream.types.platform_type
 
         out["platform"] = capo_appstream.types.platform_type.deserialize_aws_json_1_1(
             data["Platform"]
         )
-    if "MaxConcurrentSessions" in data:
+    if data.get("MaxConcurrentSessions") is not None:
         out["max_concurrent_sessions"] = data["MaxConcurrentSessions"]
-    if "UsbDeviceFilterStrings" in data:
+    if data.get("UsbDeviceFilterStrings") is not None:
         import capo_appstream.types.usb_device_filter_strings
 
         out["usb_device_filter_strings"] = (
@@ -310,7 +310,7 @@ def deserialize_aws_json_1_1(data: dict) -> Fleet:
                 data["UsbDeviceFilterStrings"]
             )
         )
-    if "SessionScriptS3Location" in data:
+    if data.get("SessionScriptS3Location") is not None:
         import capo_appstream.types.s3_location
 
         out["session_script_s3_location"] = (
@@ -318,9 +318,9 @@ def deserialize_aws_json_1_1(data: dict) -> Fleet:
                 data["SessionScriptS3Location"]
             )
         )
-    if "MaxSessionsPerInstance" in data:
+    if data.get("MaxSessionsPerInstance") is not None:
         out["max_sessions_per_instance"] = data["MaxSessionsPerInstance"]
-    if "RootVolumeConfig" in data:
+    if data.get("RootVolumeConfig") is not None:
         import capo_appstream.types.volume_config
 
         out["root_volume_config"] = (
@@ -328,6 +328,6 @@ def deserialize_aws_json_1_1(data: dict) -> Fleet:
                 data["RootVolumeConfig"]
             )
         )
-    if "DisableIMDSV1" in data:
+    if data.get("DisableIMDSV1") is not None:
         out["disable_imdsv1"] = data["DisableIMDSV1"]
     return out

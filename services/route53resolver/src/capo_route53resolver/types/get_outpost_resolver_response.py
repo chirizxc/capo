@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: GetOutpostResolverResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetOutpostResolverResponse:
     out: GetOutpostResolverResponse = {}  # type: ignore[typeddict-item]
-    if "OutpostResolver" in data:
+    if data.get("OutpostResolver") is not None:
         import capo_route53resolver.types.outpost_resolver
 
         out["outpost_resolver"] = (

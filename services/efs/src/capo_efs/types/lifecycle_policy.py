@@ -55,7 +55,7 @@ def serialize_json(value: LifecyclePolicy) -> dict:
 
 def deserialize_json(data: dict) -> LifecyclePolicy:
     out: LifecyclePolicy = {}  # type: ignore[typeddict-item]
-    if "TransitionToIA" in data:
+    if data.get("TransitionToIA") is not None:
         import capo_efs.types.transition_to_ia_rules
 
         out["transition_to_ia"] = (
@@ -63,7 +63,7 @@ def deserialize_json(data: dict) -> LifecyclePolicy:
                 data["TransitionToIA"]
             )
         )
-    if "TransitionToPrimaryStorageClass" in data:
+    if data.get("TransitionToPrimaryStorageClass") is not None:
         import capo_efs.types.transition_to_primary_storage_class_rules
 
         out["transition_to_primary_storage_class"] = (
@@ -71,7 +71,7 @@ def deserialize_json(data: dict) -> LifecyclePolicy:
                 data["TransitionToPrimaryStorageClass"]
             )
         )
-    if "TransitionToArchive" in data:
+    if data.get("TransitionToArchive") is not None:
         import capo_efs.types.transition_to_archive_rules
 
         out["transition_to_archive"] = (

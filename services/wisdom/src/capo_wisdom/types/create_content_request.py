@@ -62,27 +62,27 @@ def serialize_json(value: CreateContentRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateContentRequest:
     out: CreateContentRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateContentRequest.name required")
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
-    if "overrideLinkOutUri" in data:
+    if data.get("overrideLinkOutUri") is not None:
         out["override_link_out_uri"] = data["overrideLinkOutUri"]
-    if "metadata" in data:
+    if data.get("metadata") is not None:
         import capo_wisdom.types.content_metadata
 
         out["metadata"] = capo_wisdom.types.content_metadata.deserialize_json(
             data["metadata"]
         )
-    if "uploadId" in data:
+    if data.get("uploadId") is not None:
         out["upload_id"] = data["uploadId"]
     else:
         raise DeserializationError("CreateContentRequest.upload_id required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_wisdom.types.tags
 
         out["tags"] = capo_wisdom.types.tags.deserialize_json(data["tags"])

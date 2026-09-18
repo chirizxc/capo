@@ -34,19 +34,19 @@ def serialize_json(value: GetConfiguredAudienceModelPolicyResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetConfiguredAudienceModelPolicyResponse:
     out: GetConfiguredAudienceModelPolicyResponse = {}  # type: ignore[typeddict-item]
-    if "configuredAudienceModelArn" in data:
+    if data.get("configuredAudienceModelArn") is not None:
         out["configured_audience_model_arn"] = data["configuredAudienceModelArn"]
     else:
         raise DeserializationError(
             "GetConfiguredAudienceModelPolicyResponse.configured_audience_model_arn required"
         )
-    if "configuredAudienceModelPolicy" in data:
+    if data.get("configuredAudienceModelPolicy") is not None:
         out["configured_audience_model_policy"] = data["configuredAudienceModelPolicy"]
     else:
         raise DeserializationError(
             "GetConfiguredAudienceModelPolicyResponse.configured_audience_model_policy required"
         )
-    if "policyHash" in data:
+    if data.get("policyHash") is not None:
         out["policy_hash"] = data["policyHash"]
     else:
         raise DeserializationError(

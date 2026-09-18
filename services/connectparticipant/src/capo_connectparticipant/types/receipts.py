@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> Receipts:
 
     out: Receipts = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connectparticipant.types.receipt.deserialize_json(item))
     return out

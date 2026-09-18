@@ -13,9 +13,9 @@ from capo_qapps import AsyncQAppsClient
 
 
 async def main():
-    async with AsyncQAppsClient() as s3:
+    async with AsyncQAppsClient() as q_apps:
         # Example: call the associate_library_item_review operation
-        response = await s3.associate_library_item_review()
+        response = await q_apps.associate_library_item_review()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_qapps import AsyncQAppsClient
 
 
 async def main():
-    async with AsyncQAppsClient() as s3:
+    async with AsyncQAppsClient() as q_apps:
         # Example: paginate over list_library_items
-        async for item in s3.iter_list_library_items():
+        async for item in q_apps.iter_list_library_items():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_qapps.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncQAppsClient() as s3:
+    async with AsyncQAppsClient() as q_apps:
         try:
-            await s3.associate_library_item_review()
+            await q_apps.associate_library_item_review()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_qapps import AsyncQAppsClient
 
 
 async def main():
-    async with AsyncQAppsClient() as s3:
+    async with AsyncQAppsClient() as q_apps:
         # Default: 3 attempts for every operation
-        response = await s3.associate_library_item_review()
+        response = await q_apps.associate_library_item_review()
 
         # Override per operation
-        response = await s3.associate_library_item_review(config_overrides={"retry_max_attempts": 5})
+        response = await q_apps.associate_library_item_review(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.associate_library_item_review(config_overrides={"retry_max_attempts": 1})
+        response = await q_apps.associate_library_item_review(config_overrides={"retry_max_attempts": 1})
 ```

@@ -40,15 +40,15 @@ def serialize_json(value: StepDetailsError) -> dict:
 
 def deserialize_json(data: dict) -> StepDetailsError:
     out: StepDetailsError = {}  # type: ignore[typeddict-item]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
     else:
         raise DeserializationError("StepDetailsError.job_id required")
-    if "stepId" in data:
+    if data.get("stepId") is not None:
         out["step_id"] = data["stepId"]
     else:
         raise DeserializationError("StepDetailsError.step_id required")
-    if "code" in data:
+    if data.get("code") is not None:
         import capo_deadline.types.job_entity_error_code
 
         out["code"] = capo_deadline.types.job_entity_error_code.deserialize_json(
@@ -56,7 +56,7 @@ def deserialize_json(data: dict) -> StepDetailsError:
         )
     else:
         raise DeserializationError("StepDetailsError.code required")
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("StepDetailsError.message required")

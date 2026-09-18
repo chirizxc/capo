@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: ListAvailableZonesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListAvailableZonesResponse:
     out: ListAvailableZonesResponse = {}  # type: ignore[typeddict-item]
-    if "AZList" in data:
+    if data.get("AZList") is not None:
         import capo_cloudhsm.types.az_list
 
         out["az_list"] = capo_cloudhsm.types.az_list.deserialize_aws_json_1_1(

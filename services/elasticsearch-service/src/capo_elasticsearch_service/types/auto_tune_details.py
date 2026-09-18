@@ -30,7 +30,7 @@ def serialize_json(value: AutoTuneDetails) -> dict:
 
 def deserialize_json(data: dict) -> AutoTuneDetails:
     out: AutoTuneDetails = {}  # type: ignore[typeddict-item]
-    if "ScheduledAutoTuneDetails" in data:
+    if data.get("ScheduledAutoTuneDetails") is not None:
         import capo_elasticsearch_service.types.scheduled_auto_tune_details
 
         out["scheduled_auto_tune_details"] = (

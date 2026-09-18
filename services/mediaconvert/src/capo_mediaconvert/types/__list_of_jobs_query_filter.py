@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> __listOfJobsQueryFilter:
 
     out: __listOfJobsQueryFilter = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_mediaconvert.types.jobs_query_filter.deserialize_json(item))
     return out

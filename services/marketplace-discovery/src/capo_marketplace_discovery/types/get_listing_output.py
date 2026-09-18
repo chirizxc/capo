@@ -180,7 +180,7 @@ def serialize_json(value: GetListingOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetListingOutput:
     out: GetListingOutput = {}  # type: ignore[typeddict-item]
-    if "associatedEntities" in data:
+    if data.get("associatedEntities") is not None:
         import capo_marketplace_discovery.types.listing_associated_entity_list
 
         out["associated_entities"] = (
@@ -190,7 +190,7 @@ def deserialize_json(data: dict) -> GetListingOutput:
         )
     else:
         raise DeserializationError("GetListingOutput.associated_entities required")
-    if "badges" in data:
+    if data.get("badges") is not None:
         import capo_marketplace_discovery.types.listing_badge_list
 
         out["badges"] = (
@@ -200,11 +200,11 @@ def deserialize_json(data: dict) -> GetListingOutput:
         )
     else:
         raise DeserializationError("GetListingOutput.badges required")
-    if "catalog" in data:
+    if data.get("catalog") is not None:
         out["catalog"] = data["catalog"]
     else:
         raise DeserializationError("GetListingOutput.catalog required")
-    if "categories" in data:
+    if data.get("categories") is not None:
         import capo_marketplace_discovery.types.category_list
 
         out["categories"] = (
@@ -214,7 +214,7 @@ def deserialize_json(data: dict) -> GetListingOutput:
         )
     else:
         raise DeserializationError("GetListingOutput.categories required")
-    if "fulfillmentOptionSummaries" in data:
+    if data.get("fulfillmentOptionSummaries") is not None:
         import capo_marketplace_discovery.types.fulfillment_option_summary_list
 
         out["fulfillment_option_summaries"] = (
@@ -226,7 +226,7 @@ def deserialize_json(data: dict) -> GetListingOutput:
         raise DeserializationError(
             "GetListingOutput.fulfillment_option_summaries required"
         )
-    if "highlights" in data:
+    if data.get("highlights") is not None:
         import capo_marketplace_discovery.types.highlight_list
 
         out["highlights"] = (
@@ -236,25 +236,25 @@ def deserialize_json(data: dict) -> GetListingOutput:
         )
     else:
         raise DeserializationError("GetListingOutput.highlights required")
-    if "integrationGuide" in data:
+    if data.get("integrationGuide") is not None:
         out["integration_guide"] = data["integrationGuide"]
-    if "listingId" in data:
+    if data.get("listingId") is not None:
         out["listing_id"] = data["listingId"]
     else:
         raise DeserializationError("GetListingOutput.listing_id required")
-    if "listingName" in data:
+    if data.get("listingName") is not None:
         out["listing_name"] = data["listingName"]
     else:
         raise DeserializationError("GetListingOutput.listing_name required")
-    if "logoThumbnailUrl" in data:
+    if data.get("logoThumbnailUrl") is not None:
         out["logo_thumbnail_url"] = data["logoThumbnailUrl"]
     else:
         raise DeserializationError("GetListingOutput.logo_thumbnail_url required")
-    if "longDescription" in data:
+    if data.get("longDescription") is not None:
         out["long_description"] = data["longDescription"]
     else:
         raise DeserializationError("GetListingOutput.long_description required")
-    if "pricingModels" in data:
+    if data.get("pricingModels") is not None:
         import capo_marketplace_discovery.types.pricing_model_list
 
         out["pricing_models"] = (
@@ -264,7 +264,7 @@ def deserialize_json(data: dict) -> GetListingOutput:
         )
     else:
         raise DeserializationError("GetListingOutput.pricing_models required")
-    if "pricingUnits" in data:
+    if data.get("pricingUnits") is not None:
         import capo_marketplace_discovery.types.pricing_unit_list
 
         out["pricing_units"] = (
@@ -274,7 +274,7 @@ def deserialize_json(data: dict) -> GetListingOutput:
         )
     else:
         raise DeserializationError("GetListingOutput.pricing_units required")
-    if "promotionalMedia" in data:
+    if data.get("promotionalMedia") is not None:
         import capo_marketplace_discovery.types.promotional_media_list
 
         out["promotional_media"] = (
@@ -284,7 +284,7 @@ def deserialize_json(data: dict) -> GetListingOutput:
         )
     else:
         raise DeserializationError("GetListingOutput.promotional_media required")
-    if "publisher" in data:
+    if data.get("publisher") is not None:
         import capo_marketplace_discovery.types.seller_information
 
         out["publisher"] = (
@@ -294,7 +294,7 @@ def deserialize_json(data: dict) -> GetListingOutput:
         )
     else:
         raise DeserializationError("GetListingOutput.publisher required")
-    if "resources" in data:
+    if data.get("resources") is not None:
         import capo_marketplace_discovery.types.resource_list
 
         out["resources"] = (
@@ -304,7 +304,7 @@ def deserialize_json(data: dict) -> GetListingOutput:
         )
     else:
         raise DeserializationError("GetListingOutput.resources required")
-    if "reviewSummary" in data:
+    if data.get("reviewSummary") is not None:
         import capo_marketplace_discovery.types.review_summary
 
         out["review_summary"] = (
@@ -312,7 +312,7 @@ def deserialize_json(data: dict) -> GetListingOutput:
                 data["reviewSummary"]
             )
         )
-    if "sellerEngagements" in data:
+    if data.get("sellerEngagements") is not None:
         import capo_marketplace_discovery.types.seller_engagement_list
 
         out["seller_engagements"] = (
@@ -322,11 +322,11 @@ def deserialize_json(data: dict) -> GetListingOutput:
         )
     else:
         raise DeserializationError("GetListingOutput.seller_engagements required")
-    if "shortDescription" in data:
+    if data.get("shortDescription") is not None:
         out["short_description"] = data["shortDescription"]
     else:
         raise DeserializationError("GetListingOutput.short_description required")
-    if "useCases" in data:
+    if data.get("useCases") is not None:
         import capo_marketplace_discovery.types.use_case_list
 
         out["use_cases"] = (

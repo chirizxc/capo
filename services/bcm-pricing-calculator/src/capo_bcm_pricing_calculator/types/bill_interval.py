@@ -39,7 +39,7 @@ def serialize_aws_json_1_0(value: BillInterval) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> BillInterval:
     out: BillInterval = {}  # type: ignore[typeddict-item]
-    if "start" in data:
+    if data.get("start") is not None:
         import capo_bcm_pricing_calculator.types._prelude.timestamp
 
         out["start"] = (
@@ -47,7 +47,7 @@ def deserialize_aws_json_1_0(data: dict) -> BillInterval:
                 data["start"]
             )
         )
-    if "end" in data:
+    if data.get("end") is not None:
         import capo_bcm_pricing_calculator.types._prelude.timestamp
 
         out["end"] = (

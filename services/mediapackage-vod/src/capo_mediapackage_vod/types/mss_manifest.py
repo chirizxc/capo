@@ -35,9 +35,9 @@ def serialize_json(value: MssManifest) -> dict:
 
 def deserialize_json(data: dict) -> MssManifest:
     out: MssManifest = {}  # type: ignore[typeddict-item]
-    if "manifestName" in data:
+    if data.get("manifestName") is not None:
         out["manifest_name"] = data["manifestName"]
-    if "streamSelection" in data:
+    if data.get("streamSelection") is not None:
         import capo_mediapackage_vod.types.stream_selection
 
         out["stream_selection"] = (

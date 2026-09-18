@@ -38,12 +38,12 @@ def serialize_json(value: CreateWebLoginTokenResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateWebLoginTokenResponse:
     out: CreateWebLoginTokenResponse = {}  # type: ignore[typeddict-item]
-    if "WebToken" in data:
+    if data.get("WebToken") is not None:
         out["web_token"] = data["WebToken"]
-    if "WebServerHostname" in data:
+    if data.get("WebServerHostname") is not None:
         out["web_server_hostname"] = data["WebServerHostname"]
-    if "IamIdentity" in data:
+    if data.get("IamIdentity") is not None:
         out["iam_identity"] = data["IamIdentity"]
-    if "AirflowIdentity" in data:
+    if data.get("AirflowIdentity") is not None:
         out["airflow_identity"] = data["AirflowIdentity"]
     return out

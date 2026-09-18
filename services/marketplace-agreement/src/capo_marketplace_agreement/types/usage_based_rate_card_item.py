@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: UsageBasedRateCardItem) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UsageBasedRateCardItem:
     out: UsageBasedRateCardItem = {}  # type: ignore[typeddict-item]
-    if "rateCard" in data:
+    if data.get("rateCard") is not None:
         import capo_marketplace_agreement.types.rate_card_list
 
         out["rate_card"] = (

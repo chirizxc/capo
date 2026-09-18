@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: AddWorkloadResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AddWorkloadResponse:
     out: AddWorkloadResponse = {}  # type: ignore[typeddict-item]
-    if "WorkloadId" in data:
+    if data.get("WorkloadId") is not None:
         out["workload_id"] = data["WorkloadId"]
-    if "WorkloadConfiguration" in data:
+    if data.get("WorkloadConfiguration") is not None:
         import capo_application_insights.types.workload_configuration
 
         out["workload_configuration"] = (

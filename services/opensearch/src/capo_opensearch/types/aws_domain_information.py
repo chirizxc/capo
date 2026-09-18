@@ -34,12 +34,12 @@ def serialize_json(value: AWSDomainInformation) -> dict:
 
 def deserialize_json(data: dict) -> AWSDomainInformation:
     out: AWSDomainInformation = {}  # type: ignore[typeddict-item]
-    if "OwnerId" in data:
+    if data.get("OwnerId") is not None:
         out["owner_id"] = data["OwnerId"]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
     else:
         raise DeserializationError("AWSDomainInformation.domain_name required")
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
     return out

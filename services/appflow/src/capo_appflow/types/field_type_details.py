@@ -69,11 +69,11 @@ def serialize_json(value: FieldTypeDetails) -> dict:
 
 def deserialize_json(data: dict) -> FieldTypeDetails:
     out: FieldTypeDetails = {}  # type: ignore[typeddict-item]
-    if "fieldType" in data:
+    if data.get("fieldType") is not None:
         out["field_type"] = data["fieldType"]
     else:
         raise DeserializationError("FieldTypeDetails.field_type required")
-    if "filterOperators" in data:
+    if data.get("filterOperators") is not None:
         import capo_appflow.types.filter_operator_list
 
         out["filter_operators"] = (
@@ -83,7 +83,7 @@ def deserialize_json(data: dict) -> FieldTypeDetails:
         )
     else:
         raise DeserializationError("FieldTypeDetails.filter_operators required")
-    if "supportedValues" in data:
+    if data.get("supportedValues") is not None:
         import capo_appflow.types.supported_value_list
 
         out["supported_values"] = (
@@ -91,17 +91,17 @@ def deserialize_json(data: dict) -> FieldTypeDetails:
                 data["supportedValues"]
             )
         )
-    if "valueRegexPattern" in data:
+    if data.get("valueRegexPattern") is not None:
         out["value_regex_pattern"] = data["valueRegexPattern"]
-    if "supportedDateFormat" in data:
+    if data.get("supportedDateFormat") is not None:
         out["supported_date_format"] = data["supportedDateFormat"]
-    if "fieldValueRange" in data:
+    if data.get("fieldValueRange") is not None:
         import capo_appflow.types.range
 
         out["field_value_range"] = capo_appflow.types.range.deserialize_json(
             data["fieldValueRange"]
         )
-    if "fieldLengthRange" in data:
+    if data.get("fieldLengthRange") is not None:
         import capo_appflow.types.range
 
         out["field_length_range"] = capo_appflow.types.range.deserialize_json(

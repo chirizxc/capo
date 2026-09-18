@@ -27,7 +27,7 @@ def serialize_json(value: S3LogsConfigurationResult) -> dict:
 
 def deserialize_json(data: dict) -> S3LogsConfigurationResult:
     out: S3LogsConfigurationResult = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_guardduty.types.data_source_status
 
         out["status"] = capo_guardduty.types.data_source_status.deserialize_json(

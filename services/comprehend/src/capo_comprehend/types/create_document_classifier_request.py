@@ -118,27 +118,27 @@ def serialize_aws_json_1_1(value: CreateDocumentClassifierRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateDocumentClassifierRequest:
     out: CreateDocumentClassifierRequest = {}  # type: ignore[typeddict-item]
-    if "DocumentClassifierName" in data:
+    if data.get("DocumentClassifierName") is not None:
         out["document_classifier_name"] = data["DocumentClassifierName"]
     else:
         raise DeserializationError(
             "CreateDocumentClassifierRequest.document_classifier_name required"
         )
-    if "VersionName" in data:
+    if data.get("VersionName") is not None:
         out["version_name"] = data["VersionName"]
-    if "DataAccessRoleArn" in data:
+    if data.get("DataAccessRoleArn") is not None:
         out["data_access_role_arn"] = data["DataAccessRoleArn"]
     else:
         raise DeserializationError(
             "CreateDocumentClassifierRequest.data_access_role_arn required"
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_comprehend.types.tag_list
 
         out["tags"] = capo_comprehend.types.tag_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "InputDataConfig" in data:
+    if data.get("InputDataConfig") is not None:
         import capo_comprehend.types.document_classifier_input_data_config
 
         out["input_data_config"] = (
@@ -150,7 +150,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDocumentClassifierRequest:
         raise DeserializationError(
             "CreateDocumentClassifierRequest.input_data_config required"
         )
-    if "OutputDataConfig" in data:
+    if data.get("OutputDataConfig") is not None:
         import capo_comprehend.types.document_classifier_output_data_config
 
         out["output_data_config"] = (
@@ -158,9 +158,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDocumentClassifierRequest:
                 data["OutputDataConfig"]
             )
         )
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "LanguageCode" in data:
+    if data.get("LanguageCode") is not None:
         import capo_comprehend.types.language_code
 
         out["language_code"] = (
@@ -172,15 +172,15 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDocumentClassifierRequest:
         raise DeserializationError(
             "CreateDocumentClassifierRequest.language_code required"
         )
-    if "VolumeKmsKeyId" in data:
+    if data.get("VolumeKmsKeyId") is not None:
         out["volume_kms_key_id"] = data["VolumeKmsKeyId"]
-    if "VpcConfig" in data:
+    if data.get("VpcConfig") is not None:
         import capo_comprehend.types.vpc_config
 
         out["vpc_config"] = capo_comprehend.types.vpc_config.deserialize_aws_json_1_1(
             data["VpcConfig"]
         )
-    if "Mode" in data:
+    if data.get("Mode") is not None:
         import capo_comprehend.types.document_classifier_mode
 
         out["mode"] = (
@@ -188,8 +188,8 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDocumentClassifierRequest:
                 data["Mode"]
             )
         )
-    if "ModelKmsKeyId" in data:
+    if data.get("ModelKmsKeyId") is not None:
         out["model_kms_key_id"] = data["ModelKmsKeyId"]
-    if "ModelPolicy" in data:
+    if data.get("ModelPolicy") is not None:
         out["model_policy"] = data["ModelPolicy"]
     return out

@@ -41,17 +41,17 @@ def serialize_aws_json_1_1(value: PutProjectPolicyRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PutProjectPolicyRequest:
     out: PutProjectPolicyRequest = {}  # type: ignore[typeddict-item]
-    if "ProjectArn" in data:
+    if data.get("ProjectArn") is not None:
         out["project_arn"] = data["ProjectArn"]
     else:
         raise DeserializationError("PutProjectPolicyRequest.project_arn required")
-    if "PolicyName" in data:
+    if data.get("PolicyName") is not None:
         out["policy_name"] = data["PolicyName"]
     else:
         raise DeserializationError("PutProjectPolicyRequest.policy_name required")
-    if "PolicyRevisionId" in data:
+    if data.get("PolicyRevisionId") is not None:
         out["policy_revision_id"] = data["PolicyRevisionId"]
-    if "PolicyDocument" in data:
+    if data.get("PolicyDocument") is not None:
         out["policy_document"] = data["PolicyDocument"]
     else:
         raise DeserializationError("PutProjectPolicyRequest.policy_document required")

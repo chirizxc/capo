@@ -35,11 +35,11 @@ def serialize_aws_json_1_1(value: ConfluenceAttachmentConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConfluenceAttachmentConfiguration:
     out: ConfluenceAttachmentConfiguration = {}  # type: ignore[typeddict-item]
-    if "CrawlAttachments" in data:
+    if data.get("CrawlAttachments") is not None:
         out["crawl_attachments"] = data["CrawlAttachments"]
     else:
         out["crawl_attachments"] = False
-    if "AttachmentFieldMappings" in data:
+    if data.get("AttachmentFieldMappings") is not None:
         import capo_kendra.types.confluence_attachment_field_mappings_list
 
         out["attachment_field_mappings"] = (

@@ -54,16 +54,16 @@ def serialize_json(value: UpdateTrackerRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateTrackerRequest:
     out: UpdateTrackerRequest = {}  # type: ignore[typeddict-item]
-    if "PricingPlan" in data:
+    if data.get("PricingPlan") is not None:
         out["pricing_plan"] = data["PricingPlan"]
-    if "PricingPlanDataSource" in data:
+    if data.get("PricingPlanDataSource") is not None:
         out["pricing_plan_data_source"] = data["PricingPlanDataSource"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "PositionFiltering" in data:
+    if data.get("PositionFiltering") is not None:
         out["position_filtering"] = data["PositionFiltering"]
-    if "EventBridgeEnabled" in data:
+    if data.get("EventBridgeEnabled") is not None:
         out["event_bridge_enabled"] = data["EventBridgeEnabled"]
-    if "KmsKeyEnableGeospatialQueries" in data:
+    if data.get("KmsKeyEnableGeospatialQueries") is not None:
         out["kms_key_enable_geospatial_queries"] = data["KmsKeyEnableGeospatialQueries"]
     return out

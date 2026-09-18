@@ -49,9 +49,9 @@ def serialize_aws_json_1_1(value: AlgorithmValidationProfile) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AlgorithmValidationProfile:
     out: AlgorithmValidationProfile = {}  # type: ignore[typeddict-item]
-    if "ProfileName" in data:
+    if data.get("ProfileName") is not None:
         out["profile_name"] = data["ProfileName"]
-    if "TrainingJobDefinition" in data:
+    if data.get("TrainingJobDefinition") is not None:
         import capo_sagemaker.types.training_job_definition
 
         out["training_job_definition"] = (
@@ -59,7 +59,7 @@ def deserialize_aws_json_1_1(data: dict) -> AlgorithmValidationProfile:
                 data["TrainingJobDefinition"]
             )
         )
-    if "TransformJobDefinition" in data:
+    if data.get("TransformJobDefinition") is not None:
         import capo_sagemaker.types.transform_job_definition
 
         out["transform_job_definition"] = (

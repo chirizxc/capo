@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> HolidayConfig:
 
     out: HolidayConfig = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_sagemaker.types.holiday_config_attributes.deserialize_aws_json_1_1(
                 item

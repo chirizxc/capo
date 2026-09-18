@@ -31,11 +31,11 @@ def serialize_json(value: SearchSort) -> dict:
 
 def deserialize_json(data: dict) -> SearchSort:
     out: SearchSort = {}  # type: ignore[typeddict-item]
-    if "attribute" in data:
+    if data.get("attribute") is not None:
         out["attribute"] = data["attribute"]
     else:
         raise DeserializationError("SearchSort.attribute required")
-    if "order" in data:
+    if data.get("order") is not None:
         import capo_datazone.types.sort_order
 
         out["order"] = capo_datazone.types.sort_order.deserialize_json(data["order"])

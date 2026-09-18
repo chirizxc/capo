@@ -44,17 +44,17 @@ def serialize_json(value: UpdateTableMetadataLocationResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateTableMetadataLocationResponse:
     out: UpdateTableMetadataLocationResponse = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("UpdateTableMetadataLocationResponse.name required")
-    if "tableARN" in data:
+    if data.get("tableARN") is not None:
         out["table_arn"] = data["tableARN"]
     else:
         raise DeserializationError(
             "UpdateTableMetadataLocationResponse.table_arn required"
         )
-    if "namespace" in data:
+    if data.get("namespace") is not None:
         import capo_s3tables.types.namespace_list
 
         out["namespace"] = capo_s3tables.types.namespace_list.deserialize_json(
@@ -64,13 +64,13 @@ def deserialize_json(data: dict) -> UpdateTableMetadataLocationResponse:
         raise DeserializationError(
             "UpdateTableMetadataLocationResponse.namespace required"
         )
-    if "versionToken" in data:
+    if data.get("versionToken") is not None:
         out["version_token"] = data["versionToken"]
     else:
         raise DeserializationError(
             "UpdateTableMetadataLocationResponse.version_token required"
         )
-    if "metadataLocation" in data:
+    if data.get("metadataLocation") is not None:
         out["metadata_location"] = data["metadataLocation"]
     else:
         raise DeserializationError(

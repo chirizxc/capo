@@ -21,7 +21,15 @@ class SpeakerSearchResult(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: SpeakerSearchResult) -> dict:
     out: dict = {}
-    out["ConfidenceScore"] = value.get("confidence_score", 0)
+    out["ConfidenceScore"] = (
+        "NaN"
+        if value.get("confidence_score", 0) != value.get("confidence_score", 0)
+        else "Infinity"
+        if value.get("confidence_score", 0) == float("inf")
+        else "-Infinity"
+        if value.get("confidence_score", 0) == float("-inf")
+        else value.get("confidence_score", 0)
+    )
     if "voice_profile_id" in value:
         out["VoiceProfileId"] = value["voice_profile_id"]
     return out
@@ -29,10 +37,10 @@ def serialize_json(value: SpeakerSearchResult) -> dict:
 
 def deserialize_json(data: dict) -> SpeakerSearchResult:
     out: SpeakerSearchResult = {}  # type: ignore[typeddict-item]
-    if "ConfidenceScore" in data:
-        out["confidence_score"] = data["ConfidenceScore"]
+    if data.get("ConfidenceScore") is not None:
+        out["confidence_score"] = float(data["ConfidenceScore"])
     else:
         out["confidence_score"] = 0
-    if "VoiceProfileId" in data:
+    if data.get("VoiceProfileId") is not None:
         out["voice_profile_id"] = data["VoiceProfileId"]
     return out

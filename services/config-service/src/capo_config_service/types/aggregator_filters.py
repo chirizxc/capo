@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: AggregatorFilters) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AggregatorFilters:
     out: AggregatorFilters = {}  # type: ignore[typeddict-item]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_config_service.types.aggregator_filter_resource_type
 
         out["resource_type"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> AggregatorFilters:
                 data["ResourceType"]
             )
         )
-    if "ServicePrincipal" in data:
+    if data.get("ServicePrincipal") is not None:
         import capo_config_service.types.aggregator_filter_service_principal
 
         out["service_principal"] = (

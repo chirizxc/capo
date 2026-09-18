@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: EnableFederationRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EnableFederationRequest:
     out: EnableFederationRequest = {}  # type: ignore[typeddict-item]
-    if "EventDataStore" in data:
+    if data.get("EventDataStore") is not None:
         out["event_data_store"] = data["EventDataStore"]
     else:
         raise DeserializationError("EnableFederationRequest.event_data_store required")
-    if "FederationRoleArn" in data:
+    if data.get("FederationRoleArn") is not None:
         out["federation_role_arn"] = data["FederationRoleArn"]
     else:
         raise DeserializationError(

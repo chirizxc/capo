@@ -140,15 +140,15 @@ def serialize_json(value: CodeReviewJob) -> dict:
             )
         )
     if "created_at" in value:
-        import capo_securityagent.types._prelude.timestamp
+        import capo_securityagent._protocol.serialize
 
-        out["createdAt"] = capo_securityagent.types._prelude.timestamp.serialize_json(
+        out["createdAt"] = capo_securityagent._protocol.serialize.fmt_date_time(
             value["created_at"]
         )
     if "updated_at" in value:
-        import capo_securityagent.types._prelude.timestamp
+        import capo_securityagent._protocol.serialize
 
-        out["updatedAt"] = capo_securityagent.types._prelude.timestamp.serialize_json(
+        out["updatedAt"] = capo_securityagent._protocol.serialize.fmt_date_time(
             value["updated_at"]
         )
     return out
@@ -156,27 +156,27 @@ def serialize_json(value: CodeReviewJob) -> dict:
 
 def deserialize_json(data: dict) -> CodeReviewJob:
     out: CodeReviewJob = {}  # type: ignore[typeddict-item]
-    if "codeReviewJobId" in data:
+    if data.get("codeReviewJobId") is not None:
         out["code_review_job_id"] = data["codeReviewJobId"]
-    if "codeReviewId" in data:
+    if data.get("codeReviewId") is not None:
         out["code_review_id"] = data["codeReviewId"]
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
-    if "overview" in data:
+    if data.get("overview") is not None:
         out["overview"] = data["overview"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_securityagent.types.job_status
 
         out["status"] = capo_securityagent.types.job_status.deserialize_json(
             data["status"]
         )
-    if "documents" in data:
+    if data.get("documents") is not None:
         import capo_securityagent.types.document_list
 
         out["documents"] = capo_securityagent.types.document_list.deserialize_json(
             data["documents"]
         )
-    if "sourceCode" in data:
+    if data.get("sourceCode") is not None:
         import capo_securityagent.types.source_code_repository_list
 
         out["source_code"] = (
@@ -184,13 +184,13 @@ def deserialize_json(data: dict) -> CodeReviewJob:
                 data["sourceCode"]
             )
         )
-    if "steps" in data:
+    if data.get("steps") is not None:
         import capo_securityagent.types.step_list
 
         out["steps"] = capo_securityagent.types.step_list.deserialize_json(
             data["steps"]
         )
-    if "executionContext" in data:
+    if data.get("executionContext") is not None:
         import capo_securityagent.types.execution_context_list
 
         out["execution_context"] = (
@@ -198,15 +198,15 @@ def deserialize_json(data: dict) -> CodeReviewJob:
                 data["executionContext"]
             )
         )
-    if "serviceRole" in data:
+    if data.get("serviceRole") is not None:
         out["service_role"] = data["serviceRole"]
-    if "logConfig" in data:
+    if data.get("logConfig") is not None:
         import capo_securityagent.types.cloud_watch_log
 
         out["log_config"] = capo_securityagent.types.cloud_watch_log.deserialize_json(
             data["logConfig"]
         )
-    if "errorInformation" in data:
+    if data.get("errorInformation") is not None:
         import capo_securityagent.types.error_information
 
         out["error_information"] = (
@@ -214,7 +214,7 @@ def deserialize_json(data: dict) -> CodeReviewJob:
                 data["errorInformation"]
             )
         )
-    if "integratedRepositories" in data:
+    if data.get("integratedRepositories") is not None:
         import capo_securityagent.types.integrated_repository_list
 
         out["integrated_repositories"] = (
@@ -222,7 +222,7 @@ def deserialize_json(data: dict) -> CodeReviewJob:
                 data["integratedRepositories"]
             )
         )
-    if "codeRemediationStrategy" in data:
+    if data.get("codeRemediationStrategy") is not None:
         import capo_securityagent.types.code_remediation_strategy
 
         out["code_remediation_strategy"] = (
@@ -230,20 +230,16 @@ def deserialize_json(data: dict) -> CodeReviewJob:
                 data["codeRemediationStrategy"]
             )
         )
-    if "createdAt" in data:
-        import capo_securityagent.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = (
-            capo_securityagent.types._prelude.timestamp.deserialize_json(
-                data["createdAt"]
-            )
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
-    if "updatedAt" in data:
-        import capo_securityagent.types._prelude.timestamp
+    if data.get("updatedAt") is not None:
+        import datetime
 
-        out["updated_at"] = (
-            capo_securityagent.types._prelude.timestamp.deserialize_json(
-                data["updatedAt"]
-            )
+        out["updated_at"] = datetime.datetime.fromisoformat(
+            data["updatedAt"].replace("Z", "+00:00")
         )
     return out

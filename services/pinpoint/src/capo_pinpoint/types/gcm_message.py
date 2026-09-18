@@ -110,39 +110,39 @@ def serialize_json(value: GCMMessage) -> dict:
 
 def deserialize_json(data: dict) -> GCMMessage:
     out: GCMMessage = {}  # type: ignore[typeddict-item]
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_pinpoint.types.action
 
         out["action"] = capo_pinpoint.types.action.deserialize_json(data["Action"])
-    if "Body" in data:
+    if data.get("Body") is not None:
         out["body"] = data["Body"]
-    if "CollapseKey" in data:
+    if data.get("CollapseKey") is not None:
         out["collapse_key"] = data["CollapseKey"]
-    if "Data" in data:
+    if data.get("Data") is not None:
         import capo_pinpoint.types.map_of__string
 
         out["data"] = capo_pinpoint.types.map_of__string.deserialize_json(data["Data"])
-    if "IconReference" in data:
+    if data.get("IconReference") is not None:
         out["icon_reference"] = data["IconReference"]
-    if "ImageIconUrl" in data:
+    if data.get("ImageIconUrl") is not None:
         out["image_icon_url"] = data["ImageIconUrl"]
-    if "ImageUrl" in data:
+    if data.get("ImageUrl") is not None:
         out["image_url"] = data["ImageUrl"]
-    if "PreferredAuthenticationMethod" in data:
+    if data.get("PreferredAuthenticationMethod") is not None:
         out["preferred_authentication_method"] = data["PreferredAuthenticationMethod"]
-    if "Priority" in data:
+    if data.get("Priority") is not None:
         out["priority"] = data["Priority"]
-    if "RawContent" in data:
+    if data.get("RawContent") is not None:
         out["raw_content"] = data["RawContent"]
-    if "RestrictedPackageName" in data:
+    if data.get("RestrictedPackageName") is not None:
         out["restricted_package_name"] = data["RestrictedPackageName"]
-    if "SilentPush" in data:
+    if data.get("SilentPush") is not None:
         out["silent_push"] = data["SilentPush"]
-    if "SmallImageIconUrl" in data:
+    if data.get("SmallImageIconUrl") is not None:
         out["small_image_icon_url"] = data["SmallImageIconUrl"]
-    if "Sound" in data:
+    if data.get("Sound") is not None:
         out["sound"] = data["Sound"]
-    if "Substitutions" in data:
+    if data.get("Substitutions") is not None:
         import capo_pinpoint.types.map_of_list_of__string
 
         out["substitutions"] = (
@@ -150,10 +150,10 @@ def deserialize_json(data: dict) -> GCMMessage:
                 data["Substitutions"]
             )
         )
-    if "TimeToLive" in data:
+    if data.get("TimeToLive") is not None:
         out["time_to_live"] = data["TimeToLive"]
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
-    if "Url" in data:
+    if data.get("Url") is not None:
         out["url"] = data["Url"]
     return out

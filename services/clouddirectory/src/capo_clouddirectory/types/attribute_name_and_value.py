@@ -32,11 +32,11 @@ def serialize_json(value: AttributeNameAndValue) -> dict:
 
 def deserialize_json(data: dict) -> AttributeNameAndValue:
     out: AttributeNameAndValue = {}  # type: ignore[typeddict-item]
-    if "AttributeName" in data:
+    if data.get("AttributeName") is not None:
         out["attribute_name"] = data["AttributeName"]
     else:
         raise DeserializationError("AttributeNameAndValue.attribute_name required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         import capo_clouddirectory.types.typed_attribute_value
 
         out["value"] = capo_clouddirectory.types.typed_attribute_value.deserialize_json(

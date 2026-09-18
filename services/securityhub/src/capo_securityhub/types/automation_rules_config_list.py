@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> AutomationRulesConfigList:
 
     out: AutomationRulesConfigList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.automation_rules_config.deserialize_json(item)
         )

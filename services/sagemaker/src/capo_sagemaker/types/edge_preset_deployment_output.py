@@ -56,7 +56,7 @@ def serialize_aws_json_1_1(value: EdgePresetDeploymentOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> EdgePresetDeploymentOutput:
     out: EdgePresetDeploymentOutput = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_sagemaker.types.edge_preset_deployment_type
 
         out["type"] = (
@@ -64,9 +64,9 @@ def deserialize_aws_json_1_1(data: dict) -> EdgePresetDeploymentOutput:
                 data["Type"]
             )
         )
-    if "Artifact" in data:
+    if data.get("Artifact") is not None:
         out["artifact"] = data["Artifact"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.edge_preset_deployment_status
 
         out["status"] = (
@@ -74,6 +74,6 @@ def deserialize_aws_json_1_1(data: dict) -> EdgePresetDeploymentOutput:
                 data["Status"]
             )
         )
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
     return out

@@ -25,11 +25,11 @@ def serialize_json(value: FailurePolicy) -> dict:
 
 def deserialize_json(data: dict) -> FailurePolicy:
     out: FailurePolicy = {}  # type: ignore[typeddict-item]
-    if "rtoInSecs" in data:
+    if data.get("rtoInSecs") is not None:
         out["rto_in_secs"] = data["rtoInSecs"]
     else:
         out["rto_in_secs"] = 0
-    if "rpoInSecs" in data:
+    if data.get("rpoInSecs") is not None:
         out["rpo_in_secs"] = data["rpoInSecs"]
     else:
         out["rpo_in_secs"] = 0

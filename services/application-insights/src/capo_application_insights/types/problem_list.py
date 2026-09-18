@@ -23,6 +23,8 @@ def deserialize_aws_json_1_1(data: list) -> ProblemList:
 
     out: ProblemList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_application_insights.types.problem.deserialize_aws_json_1_1(item)
         )

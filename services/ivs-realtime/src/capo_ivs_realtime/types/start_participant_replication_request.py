@@ -51,27 +51,27 @@ def serialize_json(value: StartParticipantReplicationRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartParticipantReplicationRequest:
     out: StartParticipantReplicationRequest = {}  # type: ignore[typeddict-item]
-    if "sourceStageArn" in data:
+    if data.get("sourceStageArn") is not None:
         out["source_stage_arn"] = data["sourceStageArn"]
     else:
         raise DeserializationError(
             "StartParticipantReplicationRequest.source_stage_arn required"
         )
-    if "destinationStageArn" in data:
+    if data.get("destinationStageArn") is not None:
         out["destination_stage_arn"] = data["destinationStageArn"]
     else:
         raise DeserializationError(
             "StartParticipantReplicationRequest.destination_stage_arn required"
         )
-    if "participantId" in data:
+    if data.get("participantId") is not None:
         out["participant_id"] = data["participantId"]
     else:
         raise DeserializationError(
             "StartParticipantReplicationRequest.participant_id required"
         )
-    if "reconnectWindowSeconds" in data:
+    if data.get("reconnectWindowSeconds") is not None:
         out["reconnect_window_seconds"] = data["reconnectWindowSeconds"]
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_ivs_realtime.types.participant_attributes
 
         out["attributes"] = (

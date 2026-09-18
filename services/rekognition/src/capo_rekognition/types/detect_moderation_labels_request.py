@@ -35,7 +35,15 @@ def serialize_aws_json_1_1(value: DetectModerationLabelsRequest) -> dict:
 
     out["Image"] = capo_rekognition.types.image.serialize_aws_json_1_1(value["image"])
     if "min_confidence" in value:
-        out["MinConfidence"] = value["min_confidence"]
+        out["MinConfidence"] = (
+            "NaN"
+            if value["min_confidence"] != value["min_confidence"]
+            else "Infinity"
+            if value["min_confidence"] == float("inf")
+            else "-Infinity"
+            if value["min_confidence"] == float("-inf")
+            else value["min_confidence"]
+        )
     if "human_loop_config" in value:
         import capo_rekognition.types.human_loop_config
 
@@ -51,7 +59,7 @@ def serialize_aws_json_1_1(value: DetectModerationLabelsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DetectModerationLabelsRequest:
     out: DetectModerationLabelsRequest = {}  # type: ignore[typeddict-item]
-    if "Image" in data:
+    if data.get("Image") is not None:
         import capo_rekognition.types.image
 
         out["image"] = capo_rekognition.types.image.deserialize_aws_json_1_1(
@@ -59,9 +67,9 @@ def deserialize_aws_json_1_1(data: dict) -> DetectModerationLabelsRequest:
         )
     else:
         raise DeserializationError("DetectModerationLabelsRequest.image required")
-    if "MinConfidence" in data:
-        out["min_confidence"] = data["MinConfidence"]
-    if "HumanLoopConfig" in data:
+    if data.get("MinConfidence") is not None:
+        out["min_confidence"] = float(data["MinConfidence"])
+    if data.get("HumanLoopConfig") is not None:
         import capo_rekognition.types.human_loop_config
 
         out["human_loop_config"] = (
@@ -69,6 +77,6 @@ def deserialize_aws_json_1_1(data: dict) -> DetectModerationLabelsRequest:
                 data["HumanLoopConfig"]
             )
         )
-    if "ProjectVersion" in data:
+    if data.get("ProjectVersion") is not None:
         out["project_version"] = data["ProjectVersion"]
     return out

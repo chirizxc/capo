@@ -39,14 +39,22 @@ def serialize_json(value: AbortCriteria) -> dict:
     import capo_iot.types.abort_action
 
     out["action"] = capo_iot.types.abort_action.serialize_json(value["action"])
-    out["thresholdPercentage"] = value["threshold_percentage"]
+    out["thresholdPercentage"] = (
+        "NaN"
+        if value["threshold_percentage"] != value["threshold_percentage"]
+        else "Infinity"
+        if value["threshold_percentage"] == float("inf")
+        else "-Infinity"
+        if value["threshold_percentage"] == float("-inf")
+        else value["threshold_percentage"]
+    )
     out["minNumberOfExecutedThings"] = value["min_number_of_executed_things"]
     return out
 
 
 def deserialize_json(data: dict) -> AbortCriteria:
     out: AbortCriteria = {}  # type: ignore[typeddict-item]
-    if "failureType" in data:
+    if data.get("failureType") is not None:
         import capo_iot.types.job_execution_failure_type
 
         out["failure_type"] = (
@@ -56,17 +64,17 @@ def deserialize_json(data: dict) -> AbortCriteria:
         )
     else:
         raise DeserializationError("AbortCriteria.failure_type required")
-    if "action" in data:
+    if data.get("action") is not None:
         import capo_iot.types.abort_action
 
         out["action"] = capo_iot.types.abort_action.deserialize_json(data["action"])
     else:
         raise DeserializationError("AbortCriteria.action required")
-    if "thresholdPercentage" in data:
-        out["threshold_percentage"] = data["thresholdPercentage"]
+    if data.get("thresholdPercentage") is not None:
+        out["threshold_percentage"] = float(data["thresholdPercentage"])
     else:
         raise DeserializationError("AbortCriteria.threshold_percentage required")
-    if "minNumberOfExecutedThings" in data:
+    if data.get("minNumberOfExecutedThings") is not None:
         out["min_number_of_executed_things"] = data["minNumberOfExecutedThings"]
     else:
         raise DeserializationError(

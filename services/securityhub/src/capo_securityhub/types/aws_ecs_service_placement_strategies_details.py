@@ -27,8 +27,8 @@ def serialize_json(value: AwsEcsServicePlacementStrategiesDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsEcsServicePlacementStrategiesDetails:
     out: AwsEcsServicePlacementStrategiesDetails = {}  # type: ignore[typeddict-item]
-    if "Field" in data:
+    if data.get("Field") is not None:
         out["field"] = data["Field"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     return out

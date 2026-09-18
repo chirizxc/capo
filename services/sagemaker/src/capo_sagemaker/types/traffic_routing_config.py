@@ -57,7 +57,7 @@ def serialize_aws_json_1_1(value: TrafficRoutingConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TrafficRoutingConfig:
     out: TrafficRoutingConfig = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_sagemaker.types.traffic_routing_config_type
 
         out["type"] = (
@@ -65,9 +65,9 @@ def deserialize_aws_json_1_1(data: dict) -> TrafficRoutingConfig:
                 data["Type"]
             )
         )
-    if "WaitIntervalInSeconds" in data:
+    if data.get("WaitIntervalInSeconds") is not None:
         out["wait_interval_in_seconds"] = data["WaitIntervalInSeconds"]
-    if "CanarySize" in data:
+    if data.get("CanarySize") is not None:
         import capo_sagemaker.types.capacity_size
 
         out["canary_size"] = (
@@ -75,7 +75,7 @@ def deserialize_aws_json_1_1(data: dict) -> TrafficRoutingConfig:
                 data["CanarySize"]
             )
         )
-    if "LinearStepSize" in data:
+    if data.get("LinearStepSize") is not None:
         import capo_sagemaker.types.capacity_size
 
         out["linear_step_size"] = (

@@ -37,15 +37,15 @@ def serialize_json(value: PosixUser) -> dict:
 
 def deserialize_json(data: dict) -> PosixUser:
     out: PosixUser = {}  # type: ignore[typeddict-item]
-    if "Uid" in data:
+    if data.get("Uid") is not None:
         out["uid"] = data["Uid"]
     else:
         raise DeserializationError("PosixUser.uid required")
-    if "Gid" in data:
+    if data.get("Gid") is not None:
         out["gid"] = data["Gid"]
     else:
         raise DeserializationError("PosixUser.gid required")
-    if "SecondaryGids" in data:
+    if data.get("SecondaryGids") is not None:
         import capo_efs.types.secondary_gids
 
         out["secondary_gids"] = capo_efs.types.secondary_gids.deserialize_json(

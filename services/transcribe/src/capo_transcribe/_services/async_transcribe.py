@@ -1,6 +1,7 @@
 """Generated from Smithy shape ``com.amazonaws.transcribe#Transcribe``."""
 
 import warnings
+from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
 
 from typing_extensions import Self, TypedDict
@@ -16,6 +17,7 @@ from capo_transcribe._auth._providers import (
     default_aws_credentials_chain,
 )
 from capo_transcribe._auth._zapros_handler import AuthMiddleware
+from capo_transcribe._pagination import resolve_path as _resolve_path
 from capo_transcribe._services._aws_config import aaws_config
 from capo_transcribe._services._pipeline import (
     AsyncInterceptor,
@@ -294,9 +296,10 @@ class AsyncTranscribeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe.types.create_call_analytics_category_request.CreateCallAnalyticsCategoryRequest = {}  # type: ignore[typeddict-item]
-        input_["category_name"] = category_name
-        input_["rules"] = rules
+        input_: capo_transcribe.types.create_call_analytics_category_request.CreateCallAnalyticsCategoryRequest = {
+            "category_name": category_name,
+            "rules": rules,
+        }
         if tags is not None:
             input_["tags"] = tags
         if input_type is not None:
@@ -307,6 +310,7 @@ class AsyncTranscribeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_language_model(
@@ -352,11 +356,12 @@ class AsyncTranscribeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe.types.create_language_model_request.CreateLanguageModelRequest = {}  # type: ignore[typeddict-item]
-        input_["language_code"] = language_code
-        input_["base_model_name"] = base_model_name
-        input_["model_name"] = model_name
-        input_["input_data_config"] = input_data_config
+        input_: capo_transcribe.types.create_language_model_request.CreateLanguageModelRequest = {
+            "language_code": language_code,
+            "base_model_name": base_model_name,
+            "model_name": model_name,
+            "input_data_config": input_data_config,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -365,6 +370,7 @@ class AsyncTranscribeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_medical_vocabulary(
@@ -408,10 +414,11 @@ class AsyncTranscribeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe.types.create_medical_vocabulary_request.CreateMedicalVocabularyRequest = {}  # type: ignore[typeddict-item]
-        input_["vocabulary_name"] = vocabulary_name
-        input_["language_code"] = language_code
-        input_["vocabulary_file_uri"] = vocabulary_file_uri
+        input_: capo_transcribe.types.create_medical_vocabulary_request.CreateMedicalVocabularyRequest = {
+            "vocabulary_name": vocabulary_name,
+            "language_code": language_code,
+            "vocabulary_file_uri": vocabulary_file_uri,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -420,6 +427,7 @@ class AsyncTranscribeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_vocabulary(
@@ -469,9 +477,10 @@ class AsyncTranscribeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe.types.create_vocabulary_request.CreateVocabularyRequest = {}  # type: ignore[typeddict-item]
-        input_["vocabulary_name"] = vocabulary_name
-        input_["language_code"] = language_code
+        input_: capo_transcribe.types.create_vocabulary_request.CreateVocabularyRequest = {
+            "vocabulary_name": vocabulary_name,
+            "language_code": language_code,
+        }
         if phrases is not None:
             input_["phrases"] = phrases
         if vocabulary_file_uri is not None:
@@ -486,6 +495,7 @@ class AsyncTranscribeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def create_vocabulary_filter(
@@ -535,9 +545,10 @@ class AsyncTranscribeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe.types.create_vocabulary_filter_request.CreateVocabularyFilterRequest = {}  # type: ignore[typeddict-item]
-        input_["vocabulary_filter_name"] = vocabulary_filter_name
-        input_["language_code"] = language_code
+        input_: capo_transcribe.types.create_vocabulary_filter_request.CreateVocabularyFilterRequest = {
+            "vocabulary_filter_name": vocabulary_filter_name,
+            "language_code": language_code,
+        }
         if words is not None:
             input_["words"] = words
         if vocabulary_filter_file_uri is not None:
@@ -552,6 +563,7 @@ class AsyncTranscribeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_call_analytics_category(
@@ -589,14 +601,16 @@ class AsyncTranscribeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe.types.delete_call_analytics_category_request.DeleteCallAnalyticsCategoryRequest = {}  # type: ignore[typeddict-item]
-        input_["category_name"] = category_name
+        input_: capo_transcribe.types.delete_call_analytics_category_request.DeleteCallAnalyticsCategoryRequest = {
+            "category_name": category_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_call_analytics_job(
@@ -633,14 +647,16 @@ class AsyncTranscribeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe.types.delete_call_analytics_job_request.DeleteCallAnalyticsJobRequest = {}  # type: ignore[typeddict-item]
-        input_["call_analytics_job_name"] = call_analytics_job_name
+        input_: capo_transcribe.types.delete_call_analytics_job_request.DeleteCallAnalyticsJobRequest = {
+            "call_analytics_job_name": call_analytics_job_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_language_model(
@@ -675,14 +691,16 @@ class AsyncTranscribeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe.types.delete_language_model_request.DeleteLanguageModelRequest = {}  # type: ignore[typeddict-item]
-        input_["model_name"] = model_name
+        input_: capo_transcribe.types.delete_language_model_request.DeleteLanguageModelRequest = {
+            "model_name": model_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_medical_scribe_job(
@@ -717,14 +735,16 @@ class AsyncTranscribeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe.types.delete_medical_scribe_job_request.DeleteMedicalScribeJobRequest = {}  # type: ignore[typeddict-item]
-        input_["medical_scribe_job_name"] = medical_scribe_job_name
+        input_: capo_transcribe.types.delete_medical_scribe_job_request.DeleteMedicalScribeJobRequest = {
+            "medical_scribe_job_name": medical_scribe_job_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_medical_transcription_job(
@@ -759,14 +779,16 @@ class AsyncTranscribeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe.types.delete_medical_transcription_job_request.DeleteMedicalTranscriptionJobRequest = {}  # type: ignore[typeddict-item]
-        input_["medical_transcription_job_name"] = medical_transcription_job_name
+        input_: capo_transcribe.types.delete_medical_transcription_job_request.DeleteMedicalTranscriptionJobRequest = {
+            "medical_transcription_job_name": medical_transcription_job_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_medical_vocabulary(
@@ -802,14 +824,16 @@ class AsyncTranscribeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe.types.delete_medical_vocabulary_request.DeleteMedicalVocabularyRequest = {}  # type: ignore[typeddict-item]
-        input_["vocabulary_name"] = vocabulary_name
+        input_: capo_transcribe.types.delete_medical_vocabulary_request.DeleteMedicalVocabularyRequest = {
+            "vocabulary_name": vocabulary_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_transcription_job(
@@ -844,14 +868,16 @@ class AsyncTranscribeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe.types.delete_transcription_job_request.DeleteTranscriptionJobRequest = {}  # type: ignore[typeddict-item]
-        input_["transcription_job_name"] = transcription_job_name
+        input_: capo_transcribe.types.delete_transcription_job_request.DeleteTranscriptionJobRequest = {
+            "transcription_job_name": transcription_job_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_vocabulary(
@@ -887,14 +913,16 @@ class AsyncTranscribeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe.types.delete_vocabulary_request.DeleteVocabularyRequest = {}  # type: ignore[typeddict-item]
-        input_["vocabulary_name"] = vocabulary_name
+        input_: capo_transcribe.types.delete_vocabulary_request.DeleteVocabularyRequest = {
+            "vocabulary_name": vocabulary_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_vocabulary_filter(
@@ -930,14 +958,16 @@ class AsyncTranscribeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe.types.delete_vocabulary_filter_request.DeleteVocabularyFilterRequest = {}  # type: ignore[typeddict-item]
-        input_["vocabulary_filter_name"] = vocabulary_filter_name
+        input_: capo_transcribe.types.delete_vocabulary_filter_request.DeleteVocabularyFilterRequest = {
+            "vocabulary_filter_name": vocabulary_filter_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_language_model(
@@ -975,14 +1005,16 @@ class AsyncTranscribeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe.types.describe_language_model_request.DescribeLanguageModelRequest = {}  # type: ignore[typeddict-item]
-        input_["model_name"] = model_name
+        input_: capo_transcribe.types.describe_language_model_request.DescribeLanguageModelRequest = {
+            "model_name": model_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_call_analytics_category(
@@ -1020,14 +1052,16 @@ class AsyncTranscribeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe.types.get_call_analytics_category_request.GetCallAnalyticsCategoryRequest = {}  # type: ignore[typeddict-item]
-        input_["category_name"] = category_name
+        input_: capo_transcribe.types.get_call_analytics_category_request.GetCallAnalyticsCategoryRequest = {
+            "category_name": category_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_call_analytics_job(
@@ -1065,14 +1099,16 @@ class AsyncTranscribeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe.types.get_call_analytics_job_request.GetCallAnalyticsJobRequest = {}  # type: ignore[typeddict-item]
-        input_["call_analytics_job_name"] = call_analytics_job_name
+        input_: capo_transcribe.types.get_call_analytics_job_request.GetCallAnalyticsJobRequest = {
+            "call_analytics_job_name": call_analytics_job_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_medical_scribe_job(
@@ -1110,14 +1146,16 @@ class AsyncTranscribeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe.types.get_medical_scribe_job_request.GetMedicalScribeJobRequest = {}  # type: ignore[typeddict-item]
-        input_["medical_scribe_job_name"] = medical_scribe_job_name
+        input_: capo_transcribe.types.get_medical_scribe_job_request.GetMedicalScribeJobRequest = {
+            "medical_scribe_job_name": medical_scribe_job_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_medical_transcription_job(
@@ -1155,14 +1193,16 @@ class AsyncTranscribeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe.types.get_medical_transcription_job_request.GetMedicalTranscriptionJobRequest = {}  # type: ignore[typeddict-item]
-        input_["medical_transcription_job_name"] = medical_transcription_job_name
+        input_: capo_transcribe.types.get_medical_transcription_job_request.GetMedicalTranscriptionJobRequest = {
+            "medical_transcription_job_name": medical_transcription_job_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_medical_vocabulary(
@@ -1200,14 +1240,16 @@ class AsyncTranscribeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe.types.get_medical_vocabulary_request.GetMedicalVocabularyRequest = {}  # type: ignore[typeddict-item]
-        input_["vocabulary_name"] = vocabulary_name
+        input_: capo_transcribe.types.get_medical_vocabulary_request.GetMedicalVocabularyRequest = {
+            "vocabulary_name": vocabulary_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_transcription_job(
@@ -1245,14 +1287,16 @@ class AsyncTranscribeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe.types.get_transcription_job_request.GetTranscriptionJobRequest = {}  # type: ignore[typeddict-item]
-        input_["transcription_job_name"] = transcription_job_name
+        input_: capo_transcribe.types.get_transcription_job_request.GetTranscriptionJobRequest = {
+            "transcription_job_name": transcription_job_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_vocabulary(
@@ -1290,14 +1334,16 @@ class AsyncTranscribeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe.types.get_vocabulary_request.GetVocabularyRequest = {}  # type: ignore[typeddict-item]
-        input_["vocabulary_name"] = vocabulary_name
+        input_: capo_transcribe.types.get_vocabulary_request.GetVocabularyRequest = {
+            "vocabulary_name": vocabulary_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_vocabulary_filter(
@@ -1335,14 +1381,16 @@ class AsyncTranscribeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe.types.get_vocabulary_filter_request.GetVocabularyFilterRequest = {}  # type: ignore[typeddict-item]
-        input_["vocabulary_filter_name"] = vocabulary_filter_name
+        input_: capo_transcribe.types.get_vocabulary_filter_request.GetVocabularyFilterRequest = {
+            "vocabulary_filter_name": vocabulary_filter_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_call_analytics_categories(
@@ -1381,7 +1429,7 @@ class AsyncTranscribeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe.types.list_call_analytics_categories_request.ListCallAnalyticsCategoriesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_transcribe.types.list_call_analytics_categories_request.ListCallAnalyticsCategoriesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1392,7 +1440,27 @@ class AsyncTranscribeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_call_analytics_categories(
+        self,
+        *,
+        config_overrides: Optional[AsyncTranscribeClientConfig] = None,
+        next_token: Optional["capo_transcribe.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_transcribe.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_transcribe.types.list_call_analytics_categories_response.ListCallAnalyticsCategoriesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_call_analytics_categories(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_call_analytics_jobs(
         self,
@@ -1438,7 +1506,7 @@ class AsyncTranscribeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe.types.list_call_analytics_jobs_request.ListCallAnalyticsJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_transcribe.types.list_call_analytics_jobs_request.ListCallAnalyticsJobsRequest = {}
         if status is not None:
             input_["status"] = status
         if job_name_contains is not None:
@@ -1453,7 +1521,35 @@ class AsyncTranscribeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_call_analytics_jobs(
+        self,
+        *,
+        config_overrides: Optional[AsyncTranscribeClientConfig] = None,
+        status: Optional[
+            "capo_transcribe.types.call_analytics_job_status.CallAnalyticsJobStatus"
+        ] = None,
+        job_name_contains: Optional[
+            "capo_transcribe.types.call_analytics_job_name.CallAnalyticsJobName"
+        ] = None,
+        next_token: Optional["capo_transcribe.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_transcribe.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_transcribe.types.list_call_analytics_jobs_response.ListCallAnalyticsJobsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_call_analytics_jobs(
+                config_overrides=config_overrides,
+                status=status,
+                job_name_contains=job_name_contains,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_language_models(
         self,
@@ -1499,7 +1595,7 @@ class AsyncTranscribeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe.types.list_language_models_request.ListLanguageModelsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_transcribe.types.list_language_models_request.ListLanguageModelsRequest = {}
         if status_equals is not None:
             input_["status_equals"] = status_equals
         if name_contains is not None:
@@ -1514,7 +1610,33 @@ class AsyncTranscribeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_language_models(
+        self,
+        *,
+        config_overrides: Optional[AsyncTranscribeClientConfig] = None,
+        status_equals: Optional[
+            "capo_transcribe.types.model_status.ModelStatus"
+        ] = None,
+        name_contains: Optional["capo_transcribe.types.model_name.ModelName"] = None,
+        next_token: Optional["capo_transcribe.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_transcribe.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_transcribe.types.list_language_models_response.ListLanguageModelsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_language_models(
+                config_overrides=config_overrides,
+                status_equals=status_equals,
+                name_contains=name_contains,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_medical_scribe_jobs(
         self,
@@ -1560,7 +1682,7 @@ class AsyncTranscribeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe.types.list_medical_scribe_jobs_request.ListMedicalScribeJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_transcribe.types.list_medical_scribe_jobs_request.ListMedicalScribeJobsRequest = {}
         if status is not None:
             input_["status"] = status
         if job_name_contains is not None:
@@ -1575,7 +1697,35 @@ class AsyncTranscribeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_medical_scribe_jobs(
+        self,
+        *,
+        config_overrides: Optional[AsyncTranscribeClientConfig] = None,
+        status: Optional[
+            "capo_transcribe.types.medical_scribe_job_status.MedicalScribeJobStatus"
+        ] = None,
+        job_name_contains: Optional[
+            "capo_transcribe.types.transcription_job_name.TranscriptionJobName"
+        ] = None,
+        next_token: Optional["capo_transcribe.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_transcribe.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_transcribe.types.list_medical_scribe_jobs_response.ListMedicalScribeJobsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_medical_scribe_jobs(
+                config_overrides=config_overrides,
+                status=status,
+                job_name_contains=job_name_contains,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_medical_transcription_jobs(
         self,
@@ -1621,7 +1771,7 @@ class AsyncTranscribeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe.types.list_medical_transcription_jobs_request.ListMedicalTranscriptionJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_transcribe.types.list_medical_transcription_jobs_request.ListMedicalTranscriptionJobsRequest = {}
         if status is not None:
             input_["status"] = status
         if job_name_contains is not None:
@@ -1636,7 +1786,35 @@ class AsyncTranscribeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_medical_transcription_jobs(
+        self,
+        *,
+        config_overrides: Optional[AsyncTranscribeClientConfig] = None,
+        status: Optional[
+            "capo_transcribe.types.transcription_job_status.TranscriptionJobStatus"
+        ] = None,
+        job_name_contains: Optional[
+            "capo_transcribe.types.transcription_job_name.TranscriptionJobName"
+        ] = None,
+        next_token: Optional["capo_transcribe.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_transcribe.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_transcribe.types.list_medical_transcription_jobs_response.ListMedicalTranscriptionJobsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_medical_transcription_jobs(
+                config_overrides=config_overrides,
+                status=status,
+                job_name_contains=job_name_contains,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_medical_vocabularies(
         self,
@@ -1682,7 +1860,7 @@ class AsyncTranscribeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe.types.list_medical_vocabularies_request.ListMedicalVocabulariesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_transcribe.types.list_medical_vocabularies_request.ListMedicalVocabulariesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1697,7 +1875,35 @@ class AsyncTranscribeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_medical_vocabularies(
+        self,
+        *,
+        config_overrides: Optional[AsyncTranscribeClientConfig] = None,
+        next_token: Optional["capo_transcribe.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_transcribe.types.max_results.MaxResults"] = None,
+        state_equals: Optional[
+            "capo_transcribe.types.vocabulary_state.VocabularyState"
+        ] = None,
+        name_contains: Optional[
+            "capo_transcribe.types.vocabulary_name.VocabularyName"
+        ] = None,
+    ) -> "AsyncIterator[capo_transcribe.types.list_medical_vocabularies_response.ListMedicalVocabulariesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_medical_vocabularies(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                state_equals=state_equals,
+                name_contains=name_contains,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_tags_for_resource(
         self,
@@ -1734,14 +1940,16 @@ class AsyncTranscribeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_transcribe.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_transcription_jobs(
@@ -1788,7 +1996,7 @@ class AsyncTranscribeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe.types.list_transcription_jobs_request.ListTranscriptionJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_transcribe.types.list_transcription_jobs_request.ListTranscriptionJobsRequest = {}
         if status is not None:
             input_["status"] = status
         if job_name_contains is not None:
@@ -1803,7 +2011,35 @@ class AsyncTranscribeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_transcription_jobs(
+        self,
+        *,
+        config_overrides: Optional[AsyncTranscribeClientConfig] = None,
+        status: Optional[
+            "capo_transcribe.types.transcription_job_status.TranscriptionJobStatus"
+        ] = None,
+        job_name_contains: Optional[
+            "capo_transcribe.types.transcription_job_name.TranscriptionJobName"
+        ] = None,
+        next_token: Optional["capo_transcribe.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_transcribe.types.max_results.MaxResults"] = None,
+    ) -> "AsyncIterator[capo_transcribe.types.list_transcription_jobs_response.ListTranscriptionJobsResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_transcription_jobs(
+                config_overrides=config_overrides,
+                status=status,
+                job_name_contains=job_name_contains,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_vocabularies(
         self,
@@ -1849,7 +2085,7 @@ class AsyncTranscribeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe.types.list_vocabularies_request.ListVocabulariesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_transcribe.types.list_vocabularies_request.ListVocabulariesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1864,7 +2100,35 @@ class AsyncTranscribeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_vocabularies(
+        self,
+        *,
+        config_overrides: Optional[AsyncTranscribeClientConfig] = None,
+        next_token: Optional["capo_transcribe.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_transcribe.types.max_results.MaxResults"] = None,
+        state_equals: Optional[
+            "capo_transcribe.types.vocabulary_state.VocabularyState"
+        ] = None,
+        name_contains: Optional[
+            "capo_transcribe.types.vocabulary_name.VocabularyName"
+        ] = None,
+    ) -> "AsyncIterator[capo_transcribe.types.list_vocabularies_response.ListVocabulariesResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_vocabularies(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                state_equals=state_equals,
+                name_contains=name_contains,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def list_vocabulary_filters(
         self,
@@ -1906,7 +2170,7 @@ class AsyncTranscribeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe.types.list_vocabulary_filters_request.ListVocabularyFiltersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_transcribe.types.list_vocabulary_filters_request.ListVocabularyFiltersRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1919,7 +2183,31 @@ class AsyncTranscribeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
+
+    async def iter_list_vocabulary_filters(
+        self,
+        *,
+        config_overrides: Optional[AsyncTranscribeClientConfig] = None,
+        next_token: Optional["capo_transcribe.types.next_token.NextToken"] = None,
+        max_results: Optional["capo_transcribe.types.max_results.MaxResults"] = None,
+        name_contains: Optional[
+            "capo_transcribe.types.vocabulary_filter_name.VocabularyFilterName"
+        ] = None,
+    ) -> "AsyncIterator[capo_transcribe.types.list_vocabulary_filters_response.ListVocabularyFiltersResponse]":
+        _token = next_token
+        while True:
+            _response = await self.list_vocabulary_filters(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+                name_contains=name_contains,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     async def start_call_analytics_job(
         self,
@@ -1978,9 +2266,10 @@ class AsyncTranscribeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe.types.start_call_analytics_job_request.StartCallAnalyticsJobRequest = {}  # type: ignore[typeddict-item]
-        input_["call_analytics_job_name"] = call_analytics_job_name
-        input_["media"] = media
+        input_: capo_transcribe.types.start_call_analytics_job_request.StartCallAnalyticsJobRequest = {
+            "call_analytics_job_name": call_analytics_job_name,
+            "media": media,
+        }
         if output_location is not None:
             input_["output_location"] = output_location
         if output_encryption_kms_key_id is not None:
@@ -1999,6 +2288,7 @@ class AsyncTranscribeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_medical_scribe_job(
@@ -2061,16 +2351,17 @@ class AsyncTranscribeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe.types.start_medical_scribe_job_request.StartMedicalScribeJobRequest = {}  # type: ignore[typeddict-item]
-        input_["medical_scribe_job_name"] = medical_scribe_job_name
-        input_["media"] = media
-        input_["output_bucket_name"] = output_bucket_name
+        input_: capo_transcribe.types.start_medical_scribe_job_request.StartMedicalScribeJobRequest = {
+            "medical_scribe_job_name": medical_scribe_job_name,
+            "media": media,
+            "output_bucket_name": output_bucket_name,
+            "data_access_role_arn": data_access_role_arn,
+            "settings": settings,
+        }
         if output_encryption_kms_key_id is not None:
             input_["output_encryption_kms_key_id"] = output_encryption_kms_key_id
         if kms_encryption_context is not None:
             input_["kms_encryption_context"] = kms_encryption_context
-        input_["data_access_role_arn"] = data_access_role_arn
-        input_["settings"] = settings
         if channel_definitions is not None:
             input_["channel_definitions"] = channel_definitions
         if tags is not None:
@@ -2083,6 +2374,7 @@ class AsyncTranscribeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_medical_transcription_job(
@@ -2155,15 +2447,18 @@ class AsyncTranscribeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe.types.start_medical_transcription_job_request.StartMedicalTranscriptionJobRequest = {}  # type: ignore[typeddict-item]
-        input_["medical_transcription_job_name"] = medical_transcription_job_name
-        input_["language_code"] = language_code
+        input_: capo_transcribe.types.start_medical_transcription_job_request.StartMedicalTranscriptionJobRequest = {
+            "medical_transcription_job_name": medical_transcription_job_name,
+            "language_code": language_code,
+            "media": media,
+            "output_bucket_name": output_bucket_name,
+            "specialty": specialty,
+            "type": type,
+        }
         if media_sample_rate_hertz is not None:
             input_["media_sample_rate_hertz"] = media_sample_rate_hertz
         if media_format is not None:
             input_["media_format"] = media_format
-        input_["media"] = media
-        input_["output_bucket_name"] = output_bucket_name
         if output_key is not None:
             input_["output_key"] = output_key
         if output_encryption_kms_key_id is not None:
@@ -2174,8 +2469,6 @@ class AsyncTranscribeClient:
             input_["settings"] = settings
         if content_identification_type is not None:
             input_["content_identification_type"] = content_identification_type
-        input_["specialty"] = specialty
-        input_["type"] = type
         if tags is not None:
             input_["tags"] = tags
 
@@ -2184,6 +2477,7 @@ class AsyncTranscribeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_transcription_job(
@@ -2283,15 +2577,16 @@ class AsyncTranscribeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe.types.start_transcription_job_request.StartTranscriptionJobRequest = {}  # type: ignore[typeddict-item]
-        input_["transcription_job_name"] = transcription_job_name
+        input_: capo_transcribe.types.start_transcription_job_request.StartTranscriptionJobRequest = {
+            "transcription_job_name": transcription_job_name,
+            "media": media,
+        }
         if language_code is not None:
             input_["language_code"] = language_code
         if media_sample_rate_hertz is not None:
             input_["media_sample_rate_hertz"] = media_sample_rate_hertz
         if media_format is not None:
             input_["media_format"] = media_format
-        input_["media"] = media
         if output_bucket_name is not None:
             input_["output_bucket_name"] = output_bucket_name
         if output_key is not None:
@@ -2328,6 +2623,7 @@ class AsyncTranscribeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -2368,15 +2664,17 @@ class AsyncTranscribeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_transcribe.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -2417,15 +2715,17 @@ class AsyncTranscribeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_transcribe.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_call_analytics_category(
@@ -2468,9 +2768,10 @@ class AsyncTranscribeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe.types.update_call_analytics_category_request.UpdateCallAnalyticsCategoryRequest = {}  # type: ignore[typeddict-item]
-        input_["category_name"] = category_name
-        input_["rules"] = rules
+        input_: capo_transcribe.types.update_call_analytics_category_request.UpdateCallAnalyticsCategoryRequest = {
+            "category_name": category_name,
+            "rules": rules,
+        }
         if input_type is not None:
             input_["input_type"] = input_type
 
@@ -2479,6 +2780,7 @@ class AsyncTranscribeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_medical_vocabulary(
@@ -2521,16 +2823,18 @@ class AsyncTranscribeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe.types.update_medical_vocabulary_request.UpdateMedicalVocabularyRequest = {}  # type: ignore[typeddict-item]
-        input_["vocabulary_name"] = vocabulary_name
-        input_["language_code"] = language_code
-        input_["vocabulary_file_uri"] = vocabulary_file_uri
+        input_: capo_transcribe.types.update_medical_vocabulary_request.UpdateMedicalVocabularyRequest = {
+            "vocabulary_name": vocabulary_name,
+            "language_code": language_code,
+            "vocabulary_file_uri": vocabulary_file_uri,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_vocabulary(
@@ -2579,9 +2883,10 @@ class AsyncTranscribeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe.types.update_vocabulary_request.UpdateVocabularyRequest = {}  # type: ignore[typeddict-item]
-        input_["vocabulary_name"] = vocabulary_name
-        input_["language_code"] = language_code
+        input_: capo_transcribe.types.update_vocabulary_request.UpdateVocabularyRequest = {
+            "vocabulary_name": vocabulary_name,
+            "language_code": language_code,
+        }
         if phrases is not None:
             input_["phrases"] = phrases
         if vocabulary_file_uri is not None:
@@ -2594,6 +2899,7 @@ class AsyncTranscribeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update_vocabulary_filter(
@@ -2639,8 +2945,9 @@ class AsyncTranscribeClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_transcribe.types.update_vocabulary_filter_request.UpdateVocabularyFilterRequest = {}  # type: ignore[typeddict-item]
-        input_["vocabulary_filter_name"] = vocabulary_filter_name
+        input_: capo_transcribe.types.update_vocabulary_filter_request.UpdateVocabularyFilterRequest = {
+            "vocabulary_filter_name": vocabulary_filter_name
+        }
         if words is not None:
             input_["words"] = words
         if vocabulary_filter_file_uri is not None:
@@ -2653,6 +2960,7 @@ class AsyncTranscribeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

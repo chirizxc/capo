@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: StopDeploymentOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StopDeploymentOutput:
     out: StopDeploymentOutput = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_codedeploy.types.stop_status
 
         out["status"] = capo_codedeploy.types.stop_status.deserialize_aws_json_1_1(
             data["status"]
         )
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
     return out

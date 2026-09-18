@@ -13,9 +13,9 @@ from capo_mediatailor import AsyncMediaTailorClient
 
 
 async def main():
-    async with AsyncMediaTailorClient() as s3:
+    async with AsyncMediaTailorClient() as media_tailor:
         # Example: call the configure_logs_for_playback_configuration operation
-        response = await s3.configure_logs_for_playback_configuration()
+        response = await media_tailor.configure_logs_for_playback_configuration()
         print(response["percent_enabled"])
 ```
 
@@ -28,9 +28,9 @@ from capo_mediatailor import AsyncMediaTailorClient
 
 
 async def main():
-    async with AsyncMediaTailorClient() as s3:
+    async with AsyncMediaTailorClient() as media_tailor:
         # Example: paginate over list_alerts
-        async for item in s3.iter_list_alerts():
+        async for item in media_tailor.iter_list_alerts():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_mediatailor.error import BadRequestException
 
 
 async def main():
-    async with AsyncMediaTailorClient() as s3:
+    async with AsyncMediaTailorClient() as media_tailor:
         try:
-            await s3.list_tags_for_resource()
+            await media_tailor.list_tags_for_resource()
         except BadRequestException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_mediatailor import AsyncMediaTailorClient
 
 
 async def main():
-    async with AsyncMediaTailorClient() as s3:
+    async with AsyncMediaTailorClient() as media_tailor:
         # Default: 3 attempts for every operation
-        response = await s3.configure_logs_for_playback_configuration()
+        response = await media_tailor.configure_logs_for_playback_configuration()
 
         # Override per operation
-        response = await s3.configure_logs_for_playback_configuration(config_overrides={"retry_max_attempts": 5})
+        response = await media_tailor.configure_logs_for_playback_configuration(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.configure_logs_for_playback_configuration(config_overrides={"retry_max_attempts": 1})
+        response = await media_tailor.configure_logs_for_playback_configuration(config_overrides={"retry_max_attempts": 1})
 ```

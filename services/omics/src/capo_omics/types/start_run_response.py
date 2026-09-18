@@ -65,26 +65,26 @@ def serialize_json(value: StartRunResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartRunResponse:
     out: StartRunResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_omics.types.tag_map
 
         out["tags"] = capo_omics.types.tag_map.deserialize_json(data["tags"])
-    if "uuid" in data:
+    if data.get("uuid") is not None:
         out["uuid"] = data["uuid"]
-    if "runOutputUri" in data:
+    if data.get("runOutputUri") is not None:
         out["run_output_uri"] = data["runOutputUri"]
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_omics.types.configuration_details
 
         out["configuration"] = capo_omics.types.configuration_details.deserialize_json(
             data["configuration"]
         )
-    if "networkingMode" in data:
+    if data.get("networkingMode") is not None:
         out["networking_mode"] = data["networkingMode"]
     return out

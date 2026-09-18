@@ -35,12 +35,12 @@ def serialize_aws_json_1_1(value: AIRecommendationPerformanceMetric) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AIRecommendationPerformanceMetric:
     out: AIRecommendationPerformanceMetric = {}  # type: ignore[typeddict-item]
-    if "Metric" in data:
+    if data.get("Metric") is not None:
         out["metric"] = data["Metric"]
-    if "Stat" in data:
+    if data.get("Stat") is not None:
         out["stat"] = data["Stat"]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
-    if "Unit" in data:
+    if data.get("Unit") is not None:
         out["unit"] = data["Unit"]
     return out

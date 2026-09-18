@@ -4,6 +4,8 @@ from typing import TYPE_CHECKING
 
 from typing_extensions import TypedDict
 
+from capo_transcribe.errors import DeserializationError
+
 if TYPE_CHECKING:
     import capo_transcribe.types.vocabulary_filter_name
 
@@ -18,9 +20,16 @@ class DeleteVocabularyFilterRequest(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: DeleteVocabularyFilterRequest) -> dict:
     out: dict = {}
+    out["VocabularyFilterName"] = value["vocabulary_filter_name"]
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteVocabularyFilterRequest:
     out: DeleteVocabularyFilterRequest = {}  # type: ignore[typeddict-item]
+    if data.get("VocabularyFilterName") is not None:
+        out["vocabulary_filter_name"] = data["VocabularyFilterName"]
+    else:
+        raise DeserializationError(
+            "DeleteVocabularyFilterRequest.vocabulary_filter_name required"
+        )
     return out

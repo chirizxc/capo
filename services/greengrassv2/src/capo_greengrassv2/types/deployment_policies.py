@@ -57,7 +57,7 @@ def serialize_json(value: DeploymentPolicies) -> dict:
 
 def deserialize_json(data: dict) -> DeploymentPolicies:
     out: DeploymentPolicies = {}  # type: ignore[typeddict-item]
-    if "failureHandlingPolicy" in data:
+    if data.get("failureHandlingPolicy") is not None:
         import capo_greengrassv2.types.deployment_failure_handling_policy
 
         out["failure_handling_policy"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> DeploymentPolicies:
                 data["failureHandlingPolicy"]
             )
         )
-    if "componentUpdatePolicy" in data:
+    if data.get("componentUpdatePolicy") is not None:
         import capo_greengrassv2.types.deployment_component_update_policy
 
         out["component_update_policy"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> DeploymentPolicies:
                 data["componentUpdatePolicy"]
             )
         )
-    if "configurationValidationPolicy" in data:
+    if data.get("configurationValidationPolicy") is not None:
         import capo_greengrassv2.types.deployment_configuration_validation_policy
 
         out["configuration_validation_policy"] = (

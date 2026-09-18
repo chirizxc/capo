@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListAcceleratorsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListAcceleratorsResponse:
     out: ListAcceleratorsResponse = {}  # type: ignore[typeddict-item]
-    if "Accelerators" in data:
+    if data.get("Accelerators") is not None:
         import capo_global_accelerator.types.accelerators
 
         out["accelerators"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListAcceleratorsResponse:
                 data["Accelerators"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

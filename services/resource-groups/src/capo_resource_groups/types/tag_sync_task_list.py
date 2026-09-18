@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> TagSyncTaskList:
 
     out: TagSyncTaskList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_resource_groups.types.tag_sync_task_item.deserialize_json(item))
     return out

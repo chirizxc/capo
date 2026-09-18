@@ -46,11 +46,11 @@ def serialize_json(value: ProfileAttributeValuesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ProfileAttributeValuesResponse:
     out: ProfileAttributeValuesResponse = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
-    if "AttributeName" in data:
+    if data.get("AttributeName") is not None:
         out["attribute_name"] = data["AttributeName"]
-    if "Items" in data:
+    if data.get("Items") is not None:
         import capo_customer_profiles.types.attribute_value_item_list
 
         out["items"] = (

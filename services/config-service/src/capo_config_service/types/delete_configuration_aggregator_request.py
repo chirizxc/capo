@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteConfigurationAggregatorRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteConfigurationAggregatorRequest:
     out: DeleteConfigurationAggregatorRequest = {}  # type: ignore[typeddict-item]
-    if "ConfigurationAggregatorName" in data:
+    if data.get("ConfigurationAggregatorName") is not None:
         out["configuration_aggregator_name"] = data["ConfigurationAggregatorName"]
     else:
         raise DeserializationError(

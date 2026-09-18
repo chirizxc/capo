@@ -40,13 +40,13 @@ def serialize_aws_json_1_1(value: BackfillError) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> BackfillError:
     out: BackfillError = {}  # type: ignore[typeddict-item]
-    if "Code" in data:
+    if data.get("Code") is not None:
         import capo_glue.types.backfill_error_code
 
         out["code"] = capo_glue.types.backfill_error_code.deserialize_aws_json_1_1(
             data["Code"]
         )
-    if "Partitions" in data:
+    if data.get("Partitions") is not None:
         import capo_glue.types.backfill_errored_partitions_list
 
         out["partitions"] = (

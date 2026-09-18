@@ -26,7 +26,7 @@ def serialize_json(value: NotificationTargetActions) -> dict:
 
 def deserialize_json(data: dict) -> NotificationTargetActions:
     out: NotificationTargetActions = {}  # type: ignore[typeddict-item]
-    if "lambdaAction" in data:
+    if data.get("lambdaAction") is not None:
         import capo_iot_events.types.lambda_action
 
         out["lambda_action"] = capo_iot_events.types.lambda_action.deserialize_json(

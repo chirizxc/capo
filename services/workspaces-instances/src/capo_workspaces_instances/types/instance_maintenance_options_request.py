@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: InstanceMaintenanceOptionsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> InstanceMaintenanceOptionsRequest:
     out: InstanceMaintenanceOptionsRequest = {}  # type: ignore[typeddict-item]
-    if "AutoRecovery" in data:
+    if data.get("AutoRecovery") is not None:
         import capo_workspaces_instances.types.auto_recovery_enum
 
         out["auto_recovery"] = (

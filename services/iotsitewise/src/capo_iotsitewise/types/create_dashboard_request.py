@@ -51,25 +51,25 @@ def serialize_json(value: CreateDashboardRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDashboardRequest:
     out: CreateDashboardRequest = {}  # type: ignore[typeddict-item]
-    if "projectId" in data:
+    if data.get("projectId") is not None:
         out["project_id"] = data["projectId"]
     else:
         raise DeserializationError("CreateDashboardRequest.project_id required")
-    if "dashboardName" in data:
+    if data.get("dashboardName") is not None:
         out["dashboard_name"] = data["dashboardName"]
     else:
         raise DeserializationError("CreateDashboardRequest.dashboard_name required")
-    if "dashboardDescription" in data:
+    if data.get("dashboardDescription") is not None:
         out["dashboard_description"] = data["dashboardDescription"]
-    if "dashboardDefinition" in data:
+    if data.get("dashboardDefinition") is not None:
         out["dashboard_definition"] = data["dashboardDefinition"]
     else:
         raise DeserializationError(
             "CreateDashboardRequest.dashboard_definition required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_iotsitewise.types.tag_map
 
         out["tags"] = capo_iotsitewise.types.tag_map.deserialize_json(data["tags"])

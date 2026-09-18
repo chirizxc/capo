@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: SourceAndDestinationAreSameException_) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> SourceAndDestinationAreSameException_:
     out: SourceAndDestinationAreSameException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,20 @@ class SourceAndDestinationAreSameException(ServiceError):
 
     code: str | None = "SourceAndDestinationAreSameException"
 
-    def __init__(self, data: SourceAndDestinationAreSameException_):
+    def __init__(
+        self, data: SourceAndDestinationAreSameException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="SourceAndDestinationAreSameException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "SourceAndDestinationAreSameException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "SourceAndDestinationAreSameException":
+        return cls(deserialize_aws_json_1_1(data), message)

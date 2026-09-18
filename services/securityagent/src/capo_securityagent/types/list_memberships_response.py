@@ -37,7 +37,7 @@ def serialize_json(value: ListMembershipsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListMembershipsResponse:
     out: ListMembershipsResponse = {}  # type: ignore[typeddict-item]
-    if "membershipSummaries" in data:
+    if data.get("membershipSummaries") is not None:
         import capo_securityagent.types.membership_summary_list
 
         out["membership_summaries"] = (
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> ListMembershipsResponse:
         raise DeserializationError(
             "ListMembershipsResponse.membership_summaries required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

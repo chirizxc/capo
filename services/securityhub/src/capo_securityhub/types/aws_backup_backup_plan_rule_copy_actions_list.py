@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> AwsBackupBackupPlanRuleCopyActionsList:
 
     out: AwsBackupBackupPlanRuleCopyActionsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_backup_backup_plan_rule_copy_actions_details.deserialize_json(
                 item

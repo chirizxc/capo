@@ -68,9 +68,9 @@ def serialize_aws_json_1_0(value: SpotMarketOptions) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SpotMarketOptions:
     out: SpotMarketOptions = {}  # type: ignore[typeddict-item]
-    if "BlockDurationMinutes" in data:
+    if data.get("BlockDurationMinutes") is not None:
         out["block_duration_minutes"] = data["BlockDurationMinutes"]
-    if "InstanceInterruptionBehavior" in data:
+    if data.get("InstanceInterruptionBehavior") is not None:
         import capo_workspaces_instances.types.instance_interruption_behavior_enum
 
         out["instance_interruption_behavior"] = (
@@ -78,9 +78,9 @@ def deserialize_aws_json_1_0(data: dict) -> SpotMarketOptions:
                 data["InstanceInterruptionBehavior"]
             )
         )
-    if "MaxPrice" in data:
+    if data.get("MaxPrice") is not None:
         out["max_price"] = data["MaxPrice"]
-    if "SpotInstanceType" in data:
+    if data.get("SpotInstanceType") is not None:
         import capo_workspaces_instances.types.spot_instance_type_enum
 
         out["spot_instance_type"] = (
@@ -88,7 +88,7 @@ def deserialize_aws_json_1_0(data: dict) -> SpotMarketOptions:
                 data["SpotInstanceType"]
             )
         )
-    if "ValidUntilUtc" in data:
+    if data.get("ValidUntilUtc") is not None:
         import capo_workspaces_instances.types._prelude.timestamp
 
         out["valid_until_utc"] = (

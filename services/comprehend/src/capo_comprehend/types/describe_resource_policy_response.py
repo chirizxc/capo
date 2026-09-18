@@ -49,15 +49,15 @@ def serialize_aws_json_1_1(value: DescribeResourcePolicyResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeResourcePolicyResponse:
     out: DescribeResourcePolicyResponse = {}  # type: ignore[typeddict-item]
-    if "ResourcePolicy" in data:
+    if data.get("ResourcePolicy") is not None:
         out["resource_policy"] = data["ResourcePolicy"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_comprehend.types.timestamp
 
         out["creation_time"] = capo_comprehend.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_comprehend.types.timestamp
 
         out["last_modified_time"] = (
@@ -65,6 +65,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeResourcePolicyResponse:
                 data["LastModifiedTime"]
             )
         )
-    if "PolicyRevisionId" in data:
+    if data.get("PolicyRevisionId") is not None:
         out["policy_revision_id"] = data["PolicyRevisionId"]
     return out

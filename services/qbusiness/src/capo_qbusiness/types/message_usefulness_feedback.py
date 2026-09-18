@@ -54,7 +54,7 @@ def serialize_json(value: MessageUsefulnessFeedback) -> dict:
 
 def deserialize_json(data: dict) -> MessageUsefulnessFeedback:
     out: MessageUsefulnessFeedback = {}  # type: ignore[typeddict-item]
-    if "usefulness" in data:
+    if data.get("usefulness") is not None:
         import capo_qbusiness.types.message_usefulness
 
         out["usefulness"] = capo_qbusiness.types.message_usefulness.deserialize_json(
@@ -62,15 +62,15 @@ def deserialize_json(data: dict) -> MessageUsefulnessFeedback:
         )
     else:
         raise DeserializationError("MessageUsefulnessFeedback.usefulness required")
-    if "reason" in data:
+    if data.get("reason") is not None:
         import capo_qbusiness.types.message_usefulness_reason
 
         out["reason"] = capo_qbusiness.types.message_usefulness_reason.deserialize_json(
             data["reason"]
         )
-    if "comment" in data:
+    if data.get("comment") is not None:
         out["comment"] = data["comment"]
-    if "submittedAt" in data:
+    if data.get("submittedAt") is not None:
         import capo_qbusiness.types.timestamp
 
         out["submitted_at"] = capo_qbusiness.types.timestamp.deserialize_json(

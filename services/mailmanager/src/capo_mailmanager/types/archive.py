@@ -54,13 +54,13 @@ def serialize_aws_json_1_0(value: Archive) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Archive:
     out: Archive = {}  # type: ignore[typeddict-item]
-    if "ArchiveId" in data:
+    if data.get("ArchiveId") is not None:
         out["archive_id"] = data["ArchiveId"]
     else:
         raise DeserializationError("Archive.archive_id required")
-    if "ArchiveName" in data:
+    if data.get("ArchiveName") is not None:
         out["archive_name"] = data["ArchiveName"]
-    if "ArchiveState" in data:
+    if data.get("ArchiveState") is not None:
         import capo_mailmanager.types.archive_state
 
         out["archive_state"] = (
@@ -68,7 +68,7 @@ def deserialize_aws_json_1_0(data: dict) -> Archive:
                 data["ArchiveState"]
             )
         )
-    if "LastUpdatedTimestamp" in data:
+    if data.get("LastUpdatedTimestamp") is not None:
         import capo_mailmanager.types._prelude.timestamp
 
         out["last_updated_timestamp"] = (

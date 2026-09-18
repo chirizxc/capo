@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: Annotations) -> dict:
 def deserialize_json(data: dict) -> Annotations:
     out: Annotations = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_xray.types.values_with_service_ids
 
         out[key] = capo_xray.types.values_with_service_ids.deserialize_json(value)

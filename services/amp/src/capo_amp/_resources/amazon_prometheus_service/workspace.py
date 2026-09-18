@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_amp._auth._signers
@@ -81,11 +82,12 @@ class Workspace:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amp.types.create_workspace_request.CreateWorkspaceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_amp.types.create_workspace_request.CreateWorkspaceRequest = {}
         if alias is not None:
             input_["alias"] = alias
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
         if kms_key_arn is not None:
@@ -96,6 +98,7 @@ class Workspace:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -133,14 +136,16 @@ class Workspace:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amp.types.describe_workspace_request.DescribeWorkspaceRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
+        input_: capo_amp.types.describe_workspace_request.DescribeWorkspaceRequest = {
+            "workspace_id": workspace_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -184,18 +189,21 @@ class Workspace:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amp.types.update_workspace_alias_request.UpdateWorkspaceAliasRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
+        input_: capo_amp.types.update_workspace_alias_request.UpdateWorkspaceAliasRequest = {
+            "workspace_id": workspace_id
+        }
         if alias is not None:
             input_["alias"] = alias
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -236,16 +244,19 @@ class Workspace:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amp.types.delete_workspace_request.DeleteWorkspaceRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_amp.types.delete_workspace_request.DeleteWorkspaceRequest = {
+            "workspace_id": workspace_id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -286,7 +297,7 @@ class Workspace:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amp.types.list_workspaces_request.ListWorkspacesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_amp.types.list_workspaces_request.ListWorkspacesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if alias is not None:
@@ -299,6 +310,7 @@ class Workspace:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -351,11 +363,12 @@ class AsyncWorkspace:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amp.types.create_workspace_request.CreateWorkspaceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_amp.types.create_workspace_request.CreateWorkspaceRequest = {}
         if alias is not None:
             input_["alias"] = alias
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
         if kms_key_arn is not None:
@@ -366,6 +379,7 @@ class AsyncWorkspace:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -404,14 +418,16 @@ class AsyncWorkspace:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amp.types.describe_workspace_request.DescribeWorkspaceRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
+        input_: capo_amp.types.describe_workspace_request.DescribeWorkspaceRequest = {
+            "workspace_id": workspace_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -456,18 +472,21 @@ class AsyncWorkspace:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amp.types.update_workspace_alias_request.UpdateWorkspaceAliasRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
+        input_: capo_amp.types.update_workspace_alias_request.UpdateWorkspaceAliasRequest = {
+            "workspace_id": workspace_id
+        }
         if alias is not None:
             input_["alias"] = alias
-        if client_token is not None:
-            input_["client_token"] = client_token
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -509,16 +528,19 @@ class AsyncWorkspace:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amp.types.delete_workspace_request.DeleteWorkspaceRequest = {}  # type: ignore[typeddict-item]
-        input_["workspace_id"] = workspace_id
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_amp.types.delete_workspace_request.DeleteWorkspaceRequest = {
+            "workspace_id": workspace_id
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -560,7 +582,7 @@ class AsyncWorkspace:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amp.types.list_workspaces_request.ListWorkspacesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_amp.types.list_workspaces_request.ListWorkspacesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if alias is not None:
@@ -573,4 +595,5 @@ class AsyncWorkspace:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

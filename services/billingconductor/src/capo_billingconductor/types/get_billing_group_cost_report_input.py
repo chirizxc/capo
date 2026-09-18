@@ -62,11 +62,11 @@ def serialize_json(value: GetBillingGroupCostReportInput) -> dict:
 
 def deserialize_json(data: dict) -> GetBillingGroupCostReportInput:
     out: GetBillingGroupCostReportInput = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("GetBillingGroupCostReportInput.arn required")
-    if "BillingPeriodRange" in data:
+    if data.get("BillingPeriodRange") is not None:
         import capo_billingconductor.types.billing_period_range
 
         out["billing_period_range"] = (
@@ -74,7 +74,7 @@ def deserialize_json(data: dict) -> GetBillingGroupCostReportInput:
                 data["BillingPeriodRange"]
             )
         )
-    if "GroupBy" in data:
+    if data.get("GroupBy") is not None:
         import capo_billingconductor.types.group_by_attributes_list
 
         out["group_by"] = (
@@ -82,8 +82,8 @@ def deserialize_json(data: dict) -> GetBillingGroupCostReportInput:
                 data["GroupBy"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

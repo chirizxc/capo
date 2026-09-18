@@ -27,8 +27,8 @@ def serialize_json(value: AwsCloudWatchAlarmDimensionsDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsCloudWatchAlarmDimensionsDetails:
     out: AwsCloudWatchAlarmDimensionsDetails = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     return out

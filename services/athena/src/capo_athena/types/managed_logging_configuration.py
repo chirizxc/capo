@@ -29,10 +29,10 @@ def serialize_aws_json_1_1(value: ManagedLoggingConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ManagedLoggingConfiguration:
     out: ManagedLoggingConfiguration = {}  # type: ignore[typeddict-item]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
     else:
         raise DeserializationError("ManagedLoggingConfiguration.enabled required")
-    if "KmsKey" in data:
+    if data.get("KmsKey") is not None:
         out["kms_key"] = data["KmsKey"]
     return out

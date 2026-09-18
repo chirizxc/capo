@@ -35,11 +35,11 @@ def serialize_aws_json_1_0(value: EksCluster) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> EksCluster:
     out: EksCluster = {}  # type: ignore[typeddict-item]
-    if "crossAccountRole" in data:
+    if data.get("crossAccountRole") is not None:
         out["cross_account_role"] = data["crossAccountRole"]
-    if "externalId" in data:
+    if data.get("externalId") is not None:
         out["external_id"] = data["externalId"]
-    if "clusterArn" in data:
+    if data.get("clusterArn") is not None:
         out["cluster_arn"] = data["clusterArn"]
     else:
         raise DeserializationError("EksCluster.cluster_arn required")

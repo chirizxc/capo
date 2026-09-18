@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> Suggestions:
 
     out: Suggestions = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cloudsearch_domain.types.suggestion_match.deserialize_json(item)
         )

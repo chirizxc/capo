@@ -50,9 +50,9 @@ def serialize_json(value: ValidationException_) -> dict:
 
 def deserialize_json(data: dict) -> ValidationException_:
     out: ValidationException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "Reason" in data:
+    if data.get("Reason") is not None:
         import capo_wellarchitected.types.validation_exception_reason
 
         out["reason"] = (
@@ -60,7 +60,7 @@ def deserialize_json(data: dict) -> ValidationException_:
                 data["Reason"]
             )
         )
-    if "Fields" in data:
+    if data.get("Fields") is not None:
         import capo_wellarchitected.types.validation_exception_field_list
 
         out["fields"] = (
@@ -76,15 +76,16 @@ class ValidationException(ServiceError):
 
     code: str | None = "ValidationException"
 
-    def __init__(self, data: ValidationException_):
+    def __init__(self, data: ValidationException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ValidationException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ValidationException":
-        return cls(deserialize_json(data))
+    def from_json(cls, data: dict, message: str | None = None) -> "ValidationException":
+        return cls(deserialize_json(data), message)

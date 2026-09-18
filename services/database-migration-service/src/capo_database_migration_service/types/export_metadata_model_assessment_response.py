@@ -43,7 +43,7 @@ def serialize_aws_json_1_1(value: ExportMetadataModelAssessmentResponse) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> ExportMetadataModelAssessmentResponse:
     out: ExportMetadataModelAssessmentResponse = {}  # type: ignore[typeddict-item]
-    if "PdfReport" in data:
+    if data.get("PdfReport") is not None:
         import capo_database_migration_service.types.export_metadata_model_assessment_result_entry
 
         out["pdf_report"] = (
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_1(data: dict) -> ExportMetadataModelAssessmentRespons
                 data["PdfReport"]
             )
         )
-    if "CsvReport" in data:
+    if data.get("CsvReport") is not None:
         import capo_database_migration_service.types.export_metadata_model_assessment_result_entry
 
         out["csv_report"] = (

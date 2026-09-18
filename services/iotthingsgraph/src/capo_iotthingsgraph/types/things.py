@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> Things:
 
     out: Things = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iotthingsgraph.types.thing.deserialize_aws_json_1_1(item))
     return out

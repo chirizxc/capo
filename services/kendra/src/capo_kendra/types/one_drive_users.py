@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: OneDriveUsers) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OneDriveUsers:
     out: OneDriveUsers = {}  # type: ignore[typeddict-item]
-    if "OneDriveUserList" in data:
+    if data.get("OneDriveUserList") is not None:
         import capo_kendra.types.one_drive_user_list
 
         out["one_drive_user_list"] = (
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(data: dict) -> OneDriveUsers:
                 data["OneDriveUserList"]
             )
         )
-    if "OneDriveUserS3Path" in data:
+    if data.get("OneDriveUserS3Path") is not None:
         import capo_kendra.types.s3_path
 
         out["one_drive_user_s3_path"] = (

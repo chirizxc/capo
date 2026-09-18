@@ -28,11 +28,11 @@ def serialize_json(value: SalesforceAction) -> dict:
 
 def deserialize_json(data: dict) -> SalesforceAction:
     out: SalesforceAction = {}  # type: ignore[typeddict-item]
-    if "token" in data:
+    if data.get("token") is not None:
         out["token"] = data["token"]
     else:
         raise DeserializationError("SalesforceAction.token required")
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
     else:
         raise DeserializationError("SalesforceAction.url required")

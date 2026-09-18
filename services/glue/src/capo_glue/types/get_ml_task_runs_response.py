@@ -32,12 +32,12 @@ def serialize_aws_json_1_1(value: GetMLTaskRunsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetMLTaskRunsResponse:
     out: GetMLTaskRunsResponse = {}  # type: ignore[typeddict-item]
-    if "TaskRuns" in data:
+    if data.get("TaskRuns") is not None:
         import capo_glue.types.task_run_list
 
         out["task_runs"] = capo_glue.types.task_run_list.deserialize_aws_json_1_1(
             data["TaskRuns"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

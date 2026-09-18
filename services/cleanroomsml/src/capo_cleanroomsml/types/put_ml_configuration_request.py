@@ -35,7 +35,7 @@ def serialize_json(value: PutMLConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutMLConfigurationRequest:
     out: PutMLConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "defaultOutputLocation" in data:
+    if data.get("defaultOutputLocation") is not None:
         import capo_cleanroomsml.types.ml_output_configuration
 
         out["default_output_location"] = (

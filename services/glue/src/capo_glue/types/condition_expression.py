@@ -35,13 +35,13 @@ def serialize_aws_json_1_1(value: ConditionExpression) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ConditionExpression:
     out: ConditionExpression = {}  # type: ignore[typeddict-item]
-    if "Condition" in data:
+    if data.get("Condition") is not None:
         out["condition"] = data["Condition"]
     else:
         raise DeserializationError("ConditionExpression.condition required")
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
-    if "TargetColumn" in data:
+    if data.get("TargetColumn") is not None:
         out["target_column"] = data["TargetColumn"]
     else:
         raise DeserializationError("ConditionExpression.target_column required")

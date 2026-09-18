@@ -53,9 +53,9 @@ def serialize_aws_json_1_1(value: SpotProvisioningSpecification) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SpotProvisioningSpecification:
     out: SpotProvisioningSpecification = {}  # type: ignore[typeddict-item]
-    if "TimeoutDurationMinutes" in data:
+    if data.get("TimeoutDurationMinutes") is not None:
         out["timeout_duration_minutes"] = data["TimeoutDurationMinutes"]
-    if "TimeoutAction" in data:
+    if data.get("TimeoutAction") is not None:
         import capo_emr.types.spot_provisioning_timeout_action
 
         out["timeout_action"] = (
@@ -63,9 +63,9 @@ def deserialize_aws_json_1_1(data: dict) -> SpotProvisioningSpecification:
                 data["TimeoutAction"]
             )
         )
-    if "BlockDurationMinutes" in data:
+    if data.get("BlockDurationMinutes") is not None:
         out["block_duration_minutes"] = data["BlockDurationMinutes"]
-    if "AllocationStrategy" in data:
+    if data.get("AllocationStrategy") is not None:
         import capo_emr.types.spot_provisioning_allocation_strategy
 
         out["allocation_strategy"] = (

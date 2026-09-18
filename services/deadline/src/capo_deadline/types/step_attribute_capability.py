@@ -49,11 +49,11 @@ def serialize_json(value: StepAttributeCapability) -> dict:
 
 def deserialize_json(data: dict) -> StepAttributeCapability:
     out: StepAttributeCapability = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("StepAttributeCapability.name required")
-    if "anyOf" in data:
+    if data.get("anyOf") is not None:
         import capo_deadline.types.list_attribute_capability_value
 
         out["any_of"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> StepAttributeCapability:
                 data["anyOf"]
             )
         )
-    if "allOf" in data:
+    if data.get("allOf") is not None:
         import capo_deadline.types.list_attribute_capability_value
 
         out["all_of"] = (

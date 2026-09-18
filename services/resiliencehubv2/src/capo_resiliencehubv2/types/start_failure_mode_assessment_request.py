@@ -27,12 +27,12 @@ def serialize_json(value: StartFailureModeAssessmentRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartFailureModeAssessmentRequest:
     out: StartFailureModeAssessmentRequest = {}  # type: ignore[typeddict-item]
-    if "serviceArn" in data:
+    if data.get("serviceArn") is not None:
         out["service_arn"] = data["serviceArn"]
     else:
         raise DeserializationError(
             "StartFailureModeAssessmentRequest.service_arn required"
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

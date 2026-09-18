@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> LineItemListDefinition:
 
     out: LineItemListDefinition = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_outposts.types.line_item.deserialize_json(item))
     return out

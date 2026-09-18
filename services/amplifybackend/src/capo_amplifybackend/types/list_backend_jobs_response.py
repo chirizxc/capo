@@ -36,7 +36,7 @@ def serialize_json(value: ListBackendJobsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListBackendJobsResponse:
     out: ListBackendJobsResponse = {}  # type: ignore[typeddict-item]
-    if "jobs" in data:
+    if data.get("jobs") is not None:
         import capo_amplifybackend.types.list_of_backend_job_resp_obj
 
         out["jobs"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListBackendJobsResponse:
                 data["jobs"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

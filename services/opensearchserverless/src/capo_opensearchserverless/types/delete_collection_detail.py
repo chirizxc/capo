@@ -42,12 +42,12 @@ def serialize_aws_json_1_0(value: DeleteCollectionDetail) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DeleteCollectionDetail:
     out: DeleteCollectionDetail = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "deletionProtection" in data:
+    if data.get("deletionProtection") is not None:
         out["deletion_protection"] = data["deletionProtection"]
     return out

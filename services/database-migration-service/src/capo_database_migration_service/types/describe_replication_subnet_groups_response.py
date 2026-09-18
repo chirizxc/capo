@@ -36,9 +36,9 @@ def serialize_aws_json_1_1(value: DescribeReplicationSubnetGroupsResponse) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeReplicationSubnetGroupsResponse:
     out: DescribeReplicationSubnetGroupsResponse = {}  # type: ignore[typeddict-item]
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
-    if "ReplicationSubnetGroups" in data:
+    if data.get("ReplicationSubnetGroups") is not None:
         import capo_database_migration_service.types.replication_subnet_groups
 
         out["replication_subnet_groups"] = (

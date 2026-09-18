@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 import capo_amplifyuibuilder._auth._signers
@@ -85,18 +86,21 @@ class ThemeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amplifyuibuilder.types.create_theme_request.CreateThemeRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["environment_name"] = environment_name
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["theme_to_create"] = theme_to_create
+        input_: capo_amplifyuibuilder.types.create_theme_request.CreateThemeRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+            "theme_to_create": theme_to_create,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -136,16 +140,18 @@ class ThemeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amplifyuibuilder.types.get_theme_request.GetThemeRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["environment_name"] = environment_name
-        input_["id"] = id
+        input_: capo_amplifyuibuilder.types.get_theme_request.GetThemeRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+            "id": id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -189,19 +195,22 @@ class ThemeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amplifyuibuilder.types.update_theme_request.UpdateThemeRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["environment_name"] = environment_name
-        input_["id"] = id
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["updated_theme"] = updated_theme
+        input_: capo_amplifyuibuilder.types.update_theme_request.UpdateThemeRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+            "id": id,
+            "updated_theme": updated_theme,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -239,16 +248,18 @@ class ThemeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amplifyuibuilder.types.delete_theme_request.DeleteThemeRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["environment_name"] = environment_name
-        input_["id"] = id
+        input_: capo_amplifyuibuilder.types.delete_theme_request.DeleteThemeRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+            "id": id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -291,9 +302,10 @@ class ThemeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amplifyuibuilder.types.list_themes_request.ListThemesRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["environment_name"] = environment_name
+        input_: capo_amplifyuibuilder.types.list_themes_request.ListThemesRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -304,6 +316,7 @@ class ThemeResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def export_themes(
@@ -342,9 +355,10 @@ class ThemeResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amplifyuibuilder.types.export_themes_request.ExportThemesRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["environment_name"] = environment_name
+        input_: capo_amplifyuibuilder.types.export_themes_request.ExportThemesRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -353,6 +367,7 @@ class ThemeResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -401,18 +416,21 @@ class AsyncThemeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amplifyuibuilder.types.create_theme_request.CreateThemeRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["environment_name"] = environment_name
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["theme_to_create"] = theme_to_create
+        input_: capo_amplifyuibuilder.types.create_theme_request.CreateThemeRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+            "theme_to_create": theme_to_create,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -453,16 +471,18 @@ class AsyncThemeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amplifyuibuilder.types.get_theme_request.GetThemeRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["environment_name"] = environment_name
-        input_["id"] = id
+        input_: capo_amplifyuibuilder.types.get_theme_request.GetThemeRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+            "id": id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -507,19 +527,22 @@ class AsyncThemeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amplifyuibuilder.types.update_theme_request.UpdateThemeRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["environment_name"] = environment_name
-        input_["id"] = id
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["updated_theme"] = updated_theme
+        input_: capo_amplifyuibuilder.types.update_theme_request.UpdateThemeRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+            "id": id,
+            "updated_theme": updated_theme,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -558,16 +581,18 @@ class AsyncThemeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amplifyuibuilder.types.delete_theme_request.DeleteThemeRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["environment_name"] = environment_name
-        input_["id"] = id
+        input_: capo_amplifyuibuilder.types.delete_theme_request.DeleteThemeRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+            "id": id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -611,9 +636,10 @@ class AsyncThemeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amplifyuibuilder.types.list_themes_request.ListThemesRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["environment_name"] = environment_name
+        input_: capo_amplifyuibuilder.types.list_themes_request.ListThemesRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -624,6 +650,7 @@ class AsyncThemeResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def export_themes(
@@ -663,9 +690,10 @@ class AsyncThemeResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_amplifyuibuilder.types.export_themes_request.ExportThemesRequest = {}  # type: ignore[typeddict-item]
-        input_["app_id"] = app_id
-        input_["environment_name"] = environment_name
+        input_: capo_amplifyuibuilder.types.export_themes_request.ExportThemesRequest = {
+            "app_id": app_id,
+            "environment_name": environment_name,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
 
@@ -674,4 +702,5 @@ class AsyncThemeResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

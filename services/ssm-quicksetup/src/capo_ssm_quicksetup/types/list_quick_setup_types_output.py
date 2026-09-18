@@ -31,7 +31,7 @@ def serialize_json(value: ListQuickSetupTypesOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListQuickSetupTypesOutput:
     out: ListQuickSetupTypesOutput = {}  # type: ignore[typeddict-item]
-    if "QuickSetupTypeList" in data:
+    if data.get("QuickSetupTypeList") is not None:
         import capo_ssm_quicksetup.types.quick_setup_type_list
 
         out["quick_setup_type_list"] = (

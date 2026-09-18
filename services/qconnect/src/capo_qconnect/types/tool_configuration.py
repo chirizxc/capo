@@ -111,27 +111,27 @@ def serialize_json(value: ToolConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ToolConfiguration:
     out: ToolConfiguration = {}  # type: ignore[typeddict-item]
-    if "toolName" in data:
+    if data.get("toolName") is not None:
         out["tool_name"] = data["toolName"]
     else:
         raise DeserializationError("ToolConfiguration.tool_name required")
-    if "toolType" in data:
+    if data.get("toolType") is not None:
         out["tool_type"] = data["toolType"]
     else:
         raise DeserializationError("ToolConfiguration.tool_type required")
-    if "title" in data:
+    if data.get("title") is not None:
         out["title"] = data["title"]
-    if "toolId" in data:
+    if data.get("toolId") is not None:
         out["tool_id"] = data["toolId"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "instruction" in data:
+    if data.get("instruction") is not None:
         import capo_qconnect.types.tool_instruction
 
         out["instruction"] = capo_qconnect.types.tool_instruction.deserialize_json(
             data["instruction"]
         )
-    if "overrideInputValues" in data:
+    if data.get("overrideInputValues") is not None:
         import capo_qconnect.types.tool_override_input_value_list
 
         out["override_input_values"] = (
@@ -139,7 +139,7 @@ def deserialize_json(data: dict) -> ToolConfiguration:
                 data["overrideInputValues"]
             )
         )
-    if "outputFilters" in data:
+    if data.get("outputFilters") is not None:
         import capo_qconnect.types.tool_output_filter_list
 
         out["output_filters"] = (
@@ -147,17 +147,17 @@ def deserialize_json(data: dict) -> ToolConfiguration:
                 data["outputFilters"]
             )
         )
-    if "inputSchema" in data:
+    if data.get("inputSchema") is not None:
         out["input_schema"] = data["inputSchema"]
-    if "outputSchema" in data:
+    if data.get("outputSchema") is not None:
         out["output_schema"] = data["outputSchema"]
-    if "annotations" in data:
+    if data.get("annotations") is not None:
         import capo_qconnect.types.annotation
 
         out["annotations"] = capo_qconnect.types.annotation.deserialize_json(
             data["annotations"]
         )
-    if "userInteractionConfiguration" in data:
+    if data.get("userInteractionConfiguration") is not None:
         import capo_qconnect.types.user_interaction_configuration
 
         out["user_interaction_configuration"] = (

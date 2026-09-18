@@ -36,7 +36,7 @@ def serialize_json(value: UpdateResourceGatewayRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateResourceGatewayRequest:
     out: UpdateResourceGatewayRequest = {}  # type: ignore[typeddict-item]
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_vpc_lattice.types.security_group_list
 
         out["security_group_ids"] = (

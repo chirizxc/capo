@@ -39,13 +39,13 @@ def serialize_json(value: ImportTableOperationSource) -> dict:
 
 def deserialize_json(data: dict) -> ImportTableOperationSource:
     out: ImportTableOperationSource = {}  # type: ignore[typeddict-item]
-    if "SourceTableId" in data:
+    if data.get("SourceTableId") is not None:
         out["source_table_id"] = data["SourceTableId"]
     else:
         raise DeserializationError(
             "ImportTableOperationSource.source_table_id required"
         )
-    if "ColumnIdMappings" in data:
+    if data.get("ColumnIdMappings") is not None:
         import capo_quicksight.types.data_set_column_id_mapping_list
 
         out["column_id_mappings"] = (

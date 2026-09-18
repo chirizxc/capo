@@ -60,18 +60,16 @@ def serialize_json(value: GetIndexOutput) -> dict:
             )
         )
     if "created_at" in value:
-        import capo_resource_explorer_2.types._prelude.timestamp
+        import capo_resource_explorer_2._protocol.serialize
 
-        out["CreatedAt"] = (
-            capo_resource_explorer_2.types._prelude.timestamp.serialize_json(
-                value["created_at"]
-            )
+        out["CreatedAt"] = capo_resource_explorer_2._protocol.serialize.fmt_date_time(
+            value["created_at"]
         )
     if "last_updated_at" in value:
-        import capo_resource_explorer_2.types._prelude.timestamp
+        import capo_resource_explorer_2._protocol.serialize
 
         out["LastUpdatedAt"] = (
-            capo_resource_explorer_2.types._prelude.timestamp.serialize_json(
+            capo_resource_explorer_2._protocol.serialize.fmt_date_time(
                 value["last_updated_at"]
             )
         )
@@ -86,13 +84,13 @@ def serialize_json(value: GetIndexOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetIndexOutput:
     out: GetIndexOutput = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
-    if "State" in data:
+    if data.get("State") is not None:
         out["state"] = data["State"]
-    if "ReplicatingFrom" in data:
+    if data.get("ReplicatingFrom") is not None:
         import capo_resource_explorer_2.types.region_list
 
         out["replicating_from"] = (
@@ -100,7 +98,7 @@ def deserialize_json(data: dict) -> GetIndexOutput:
                 data["ReplicatingFrom"]
             )
         )
-    if "ReplicatingTo" in data:
+    if data.get("ReplicatingTo") is not None:
         import capo_resource_explorer_2.types.region_list
 
         out["replicating_to"] = (
@@ -108,23 +106,19 @@ def deserialize_json(data: dict) -> GetIndexOutput:
                 data["ReplicatingTo"]
             )
         )
-    if "CreatedAt" in data:
-        import capo_resource_explorer_2.types._prelude.timestamp
+    if data.get("CreatedAt") is not None:
+        import datetime
 
-        out["created_at"] = (
-            capo_resource_explorer_2.types._prelude.timestamp.deserialize_json(
-                data["CreatedAt"]
-            )
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["CreatedAt"].replace("Z", "+00:00")
         )
-    if "LastUpdatedAt" in data:
-        import capo_resource_explorer_2.types._prelude.timestamp
+    if data.get("LastUpdatedAt") is not None:
+        import datetime
 
-        out["last_updated_at"] = (
-            capo_resource_explorer_2.types._prelude.timestamp.deserialize_json(
-                data["LastUpdatedAt"]
-            )
+        out["last_updated_at"] = datetime.datetime.fromisoformat(
+            data["LastUpdatedAt"].replace("Z", "+00:00")
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_resource_explorer_2.types.tag_map
 
         out["tags"] = capo_resource_explorer_2.types.tag_map.deserialize_json(

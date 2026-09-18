@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.marketplacecatalog#AWSMPSeymour``."""
 
+import uuid
 import warnings
 from collections.abc import AsyncIterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -207,14 +208,16 @@ class AsyncMarketplaceCatalogClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_catalog.types.batch_describe_entities_request.BatchDescribeEntitiesRequest = {}  # type: ignore[typeddict-item]
-        input_["entity_request_list"] = entity_request_list
+        input_: capo_marketplace_catalog.types.batch_describe_entities_request.BatchDescribeEntitiesRequest = {
+            "entity_request_list": entity_request_list
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def cancel_change_set(
@@ -256,15 +259,17 @@ class AsyncMarketplaceCatalogClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_catalog.types.cancel_change_set_request.CancelChangeSetRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["change_set_id"] = change_set_id
+        input_: capo_marketplace_catalog.types.cancel_change_set_request.CancelChangeSetRequest = {
+            "catalog": catalog,
+            "change_set_id": change_set_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete_resource_policy(
@@ -303,14 +308,16 @@ class AsyncMarketplaceCatalogClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_catalog.types.delete_resource_policy_request.DeleteResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_marketplace_catalog.types.delete_resource_policy_request.DeleteResourcePolicyRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_change_set(
@@ -351,15 +358,17 @@ class AsyncMarketplaceCatalogClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_catalog.types.describe_change_set_request.DescribeChangeSetRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["change_set_id"] = change_set_id
+        input_: capo_marketplace_catalog.types.describe_change_set_request.DescribeChangeSetRequest = {
+            "catalog": catalog,
+            "change_set_id": change_set_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def describe_entity(
@@ -403,15 +412,17 @@ class AsyncMarketplaceCatalogClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_catalog.types.describe_entity_request.DescribeEntityRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["entity_id"] = entity_id
+        input_: capo_marketplace_catalog.types.describe_entity_request.DescribeEntityRequest = {
+            "catalog": catalog,
+            "entity_id": entity_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_resource_policy(
@@ -450,14 +461,16 @@ class AsyncMarketplaceCatalogClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_catalog.types.get_resource_policy_request.GetResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_marketplace_catalog.types.get_resource_policy_request.GetResourcePolicyRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_change_sets(
@@ -509,8 +522,9 @@ class AsyncMarketplaceCatalogClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_catalog.types.list_change_sets_request.ListChangeSetsRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
+        input_: capo_marketplace_catalog.types.list_change_sets_request.ListChangeSetsRequest = {
+            "catalog": catalog
+        }
         if filter_list is not None:
             input_["filter_list"] = filter_list
         if sort is not None:
@@ -525,6 +539,7 @@ class AsyncMarketplaceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_change_sets(
@@ -624,9 +639,10 @@ class AsyncMarketplaceCatalogClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_catalog.types.list_entities_request.ListEntitiesRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["entity_type"] = entity_type
+        input_: capo_marketplace_catalog.types.list_entities_request.ListEntitiesRequest = {
+            "catalog": catalog,
+            "entity_type": entity_type,
+        }
         if filter_list is not None:
             input_["filter_list"] = filter_list
         if sort is not None:
@@ -647,6 +663,7 @@ class AsyncMarketplaceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def iter_list_entities(
@@ -732,14 +749,16 @@ class AsyncMarketplaceCatalogClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_catalog.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_marketplace_catalog.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_resource_policy(
@@ -780,15 +799,17 @@ class AsyncMarketplaceCatalogClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_catalog.types.put_resource_policy_request.PutResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["policy"] = policy
+        input_: capo_marketplace_catalog.types.put_resource_policy_request.PutResourcePolicyRequest = {
+            "resource_arn": resource_arn,
+            "policy": policy,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def start_change_set(
@@ -845,13 +866,15 @@ class AsyncMarketplaceCatalogClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_catalog.types.start_change_set_request.StartChangeSetRequest = {}  # type: ignore[typeddict-item]
-        input_["catalog"] = catalog
-        input_["change_set"] = change_set
+        input_: capo_marketplace_catalog.types.start_change_set_request.StartChangeSetRequest = {
+            "catalog": catalog,
+            "change_set": change_set,
+        }
         if change_set_name is not None:
             input_["change_set_name"] = change_set_name
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if change_set_tags is not None:
             input_["change_set_tags"] = change_set_tags
         if intent is not None:
@@ -862,6 +885,7 @@ class AsyncMarketplaceCatalogClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def tag_resource(
@@ -902,15 +926,17 @@ class AsyncMarketplaceCatalogClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_catalog.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_marketplace_catalog.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def untag_resource(
@@ -951,15 +977,17 @@ class AsyncMarketplaceCatalogClient:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_catalog.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_marketplace_catalog.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def __aenter__(self) -> Self:

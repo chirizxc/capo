@@ -91,17 +91,17 @@ def serialize_json(value: GetTemplateStepGroupResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetTemplateStepGroupResponse:
     out: GetTemplateStepGroupResponse = {}  # type: ignore[typeddict-item]
-    if "templateId" in data:
+    if data.get("templateId") is not None:
         out["template_id"] = data["templateId"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_migrationhuborchestrator.types._prelude.timestamp
 
         out["creation_time"] = (
@@ -109,7 +109,7 @@ def deserialize_json(data: dict) -> GetTemplateStepGroupResponse:
                 data["creationTime"]
             )
         )
-    if "lastModifiedTime" in data:
+    if data.get("lastModifiedTime") is not None:
         import capo_migrationhuborchestrator.types._prelude.timestamp
 
         out["last_modified_time"] = (
@@ -117,13 +117,13 @@ def deserialize_json(data: dict) -> GetTemplateStepGroupResponse:
                 data["lastModifiedTime"]
             )
         )
-    if "tools" in data:
+    if data.get("tools") is not None:
         import capo_migrationhuborchestrator.types.tools_list
 
         out["tools"] = capo_migrationhuborchestrator.types.tools_list.deserialize_json(
             data["tools"]
         )
-    if "previous" in data:
+    if data.get("previous") is not None:
         import capo_migrationhuborchestrator.types.string_list
 
         out["previous"] = (
@@ -131,7 +131,7 @@ def deserialize_json(data: dict) -> GetTemplateStepGroupResponse:
                 data["previous"]
             )
         )
-    if "next" in data:
+    if data.get("next") is not None:
         import capo_migrationhuborchestrator.types.string_list
 
         out["next"] = capo_migrationhuborchestrator.types.string_list.deserialize_json(

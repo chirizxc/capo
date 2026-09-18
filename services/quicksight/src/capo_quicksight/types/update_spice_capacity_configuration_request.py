@@ -31,7 +31,7 @@ def serialize_json(value: UpdateSPICECapacityConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateSPICECapacityConfigurationRequest:
     out: UpdateSPICECapacityConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "PurchaseMode" in data:
+    if data.get("PurchaseMode") is not None:
         import capo_quicksight.types.purchase_mode
 
         out["purchase_mode"] = capo_quicksight.types.purchase_mode.deserialize_json(

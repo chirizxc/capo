@@ -131,29 +131,29 @@ def serialize_aws_json_1_1(value: AcmCertificateMetadata) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AcmCertificateMetadata:
     out: AcmCertificateMetadata = {}  # type: ignore[typeddict-item]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_acm.types.t_stamp
 
         out["created_at"] = capo_acm.types.t_stamp.deserialize_aws_json_1_1(
             data["CreatedAt"]
         )
-    if "Exported" in data:
+    if data.get("Exported") is not None:
         out["exported"] = data["Exported"]
-    if "ImportedAt" in data:
+    if data.get("ImportedAt") is not None:
         import capo_acm.types.t_stamp
 
         out["imported_at"] = capo_acm.types.t_stamp.deserialize_aws_json_1_1(
             data["ImportedAt"]
         )
-    if "InUse" in data:
+    if data.get("InUse") is not None:
         out["in_use"] = data["InUse"]
-    if "IssuedAt" in data:
+    if data.get("IssuedAt") is not None:
         import capo_acm.types.t_stamp
 
         out["issued_at"] = capo_acm.types.t_stamp.deserialize_aws_json_1_1(
             data["IssuedAt"]
         )
-    if "RenewalEligibility" in data:
+    if data.get("RenewalEligibility") is not None:
         import capo_acm.types.renewal_eligibility
 
         out["renewal_eligibility"] = (
@@ -161,31 +161,31 @@ def deserialize_aws_json_1_1(data: dict) -> AcmCertificateMetadata:
                 data["RenewalEligibility"]
             )
         )
-    if "RevokedAt" in data:
+    if data.get("RevokedAt") is not None:
         import capo_acm.types.t_stamp
 
         out["revoked_at"] = capo_acm.types.t_stamp.deserialize_aws_json_1_1(
             data["RevokedAt"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_acm.types.certificate_status
 
         out["status"] = capo_acm.types.certificate_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "RenewalStatus" in data:
+    if data.get("RenewalStatus") is not None:
         import capo_acm.types.renewal_status
 
         out["renewal_status"] = capo_acm.types.renewal_status.deserialize_aws_json_1_1(
             data["RenewalStatus"]
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_acm.types.certificate_type
 
         out["type"] = capo_acm.types.certificate_type.deserialize_aws_json_1_1(
             data["Type"]
         )
-    if "ExportOption" in data:
+    if data.get("ExportOption") is not None:
         import capo_acm.types.certificate_export
 
         out["export_option"] = (
@@ -193,7 +193,7 @@ def deserialize_aws_json_1_1(data: dict) -> AcmCertificateMetadata:
                 data["ExportOption"]
             )
         )
-    if "ManagedBy" in data:
+    if data.get("ManagedBy") is not None:
         import capo_acm.types.certificate_managed_by
 
         out["managed_by"] = (
@@ -201,7 +201,7 @@ def deserialize_aws_json_1_1(data: dict) -> AcmCertificateMetadata:
                 data["ManagedBy"]
             )
         )
-    if "ValidationMethod" in data:
+    if data.get("ValidationMethod") is not None:
         import capo_acm.types.validation_method
 
         out["validation_method"] = (

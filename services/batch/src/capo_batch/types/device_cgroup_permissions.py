@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> DeviceCgroupPermissions:
 
     out: DeviceCgroupPermissions = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_batch.types.device_cgroup_permission.deserialize_json(item))
     return out

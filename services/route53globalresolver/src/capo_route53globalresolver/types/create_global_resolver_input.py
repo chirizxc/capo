@@ -73,11 +73,11 @@ def serialize_json(value: CreateGlobalResolverInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateGlobalResolverInput:
     out: CreateGlobalResolverInput = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "ipAddressType" in data:
+    if data.get("ipAddressType") is not None:
         import capo_route53globalresolver.types.global_resolver_ip_address_type
 
         out["ip_address_type"] = (
@@ -85,13 +85,13 @@ def deserialize_json(data: dict) -> CreateGlobalResolverInput:
                 data["ipAddressType"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateGlobalResolverInput.name required")
-    if "observabilityRegion" in data:
+    if data.get("observabilityRegion") is not None:
         out["observability_region"] = data["observabilityRegion"]
-    if "regions" in data:
+    if data.get("regions") is not None:
         import capo_route53globalresolver.types.regions
 
         out["regions"] = capo_route53globalresolver.types.regions.deserialize_json(
@@ -99,7 +99,7 @@ def deserialize_json(data: dict) -> CreateGlobalResolverInput:
         )
     else:
         raise DeserializationError("CreateGlobalResolverInput.regions required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_route53globalresolver.types.tags
 
         out["tags"] = capo_route53globalresolver.types.tags.deserialize_json(

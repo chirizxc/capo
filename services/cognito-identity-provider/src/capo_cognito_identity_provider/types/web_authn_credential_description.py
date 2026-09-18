@@ -59,27 +59,27 @@ def serialize_aws_json_1_1(value: WebAuthnCredentialDescription) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> WebAuthnCredentialDescription:
     out: WebAuthnCredentialDescription = {}  # type: ignore[typeddict-item]
-    if "CredentialId" in data:
+    if data.get("CredentialId") is not None:
         out["credential_id"] = data["CredentialId"]
     else:
         raise DeserializationError(
             "WebAuthnCredentialDescription.credential_id required"
         )
-    if "FriendlyCredentialName" in data:
+    if data.get("FriendlyCredentialName") is not None:
         out["friendly_credential_name"] = data["FriendlyCredentialName"]
     else:
         raise DeserializationError(
             "WebAuthnCredentialDescription.friendly_credential_name required"
         )
-    if "RelyingPartyId" in data:
+    if data.get("RelyingPartyId") is not None:
         out["relying_party_id"] = data["RelyingPartyId"]
     else:
         raise DeserializationError(
             "WebAuthnCredentialDescription.relying_party_id required"
         )
-    if "AuthenticatorAttachment" in data:
+    if data.get("AuthenticatorAttachment") is not None:
         out["authenticator_attachment"] = data["AuthenticatorAttachment"]
-    if "AuthenticatorTransports" in data:
+    if data.get("AuthenticatorTransports") is not None:
         import capo_cognito_identity_provider.types.web_authn_authenticator_transports_list
 
         out["authenticator_transports"] = (
@@ -91,7 +91,7 @@ def deserialize_aws_json_1_1(data: dict) -> WebAuthnCredentialDescription:
         raise DeserializationError(
             "WebAuthnCredentialDescription.authenticator_transports required"
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_cognito_identity_provider.types.date_type
 
         out["created_at"] = (

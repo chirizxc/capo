@@ -38,15 +38,15 @@ def serialize_json(value: SlackConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SlackConfiguration:
     out: SlackConfiguration = {}  # type: ignore[typeddict-item]
-    if "workspaceId" in data:
+    if data.get("workspaceId") is not None:
         out["workspace_id"] = data["workspaceId"]
     else:
         raise DeserializationError("SlackConfiguration.workspace_id required")
-    if "workspaceName" in data:
+    if data.get("workspaceName") is not None:
         out["workspace_name"] = data["workspaceName"]
     else:
         raise DeserializationError("SlackConfiguration.workspace_name required")
-    if "transmissionTarget" in data:
+    if data.get("transmissionTarget") is not None:
         import capo_devops_agent.types.slack_transmission_target
 
         out["transmission_target"] = (

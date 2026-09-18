@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> FilterCriterionList:
 
     out: FilterCriterionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_guardduty.types.filter_criterion.deserialize_json(item))
     return out

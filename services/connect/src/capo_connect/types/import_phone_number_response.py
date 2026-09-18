@@ -28,8 +28,8 @@ def serialize_json(value: ImportPhoneNumberResponse) -> dict:
 
 def deserialize_json(data: dict) -> ImportPhoneNumberResponse:
     out: ImportPhoneNumberResponse = {}  # type: ignore[typeddict-item]
-    if "PhoneNumberId" in data:
+    if data.get("PhoneNumberId") is not None:
         out["phone_number_id"] = data["PhoneNumberId"]
-    if "PhoneNumberArn" in data:
+    if data.get("PhoneNumberArn") is not None:
         out["phone_number_arn"] = data["PhoneNumberArn"]
     return out

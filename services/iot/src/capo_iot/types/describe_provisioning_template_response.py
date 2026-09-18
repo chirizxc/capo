@@ -90,33 +90,33 @@ def serialize_json(value: DescribeProvisioningTemplateResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeProvisioningTemplateResponse:
     out: DescribeProvisioningTemplateResponse = {}  # type: ignore[typeddict-item]
-    if "templateArn" in data:
+    if data.get("templateArn") is not None:
         out["template_arn"] = data["templateArn"]
-    if "templateName" in data:
+    if data.get("templateName") is not None:
         out["template_name"] = data["templateName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "creationDate" in data:
+    if data.get("creationDate") is not None:
         import capo_iot.types.date_type
 
         out["creation_date"] = capo_iot.types.date_type.deserialize_json(
             data["creationDate"]
         )
-    if "lastModifiedDate" in data:
+    if data.get("lastModifiedDate") is not None:
         import capo_iot.types.date_type
 
         out["last_modified_date"] = capo_iot.types.date_type.deserialize_json(
             data["lastModifiedDate"]
         )
-    if "defaultVersionId" in data:
+    if data.get("defaultVersionId") is not None:
         out["default_version_id"] = data["defaultVersionId"]
-    if "templateBody" in data:
+    if data.get("templateBody") is not None:
         out["template_body"] = data["templateBody"]
-    if "enabled" in data:
+    if data.get("enabled") is not None:
         out["enabled"] = data["enabled"]
-    if "provisioningRoleArn" in data:
+    if data.get("provisioningRoleArn") is not None:
         out["provisioning_role_arn"] = data["provisioningRoleArn"]
-    if "preProvisioningHook" in data:
+    if data.get("preProvisioningHook") is not None:
         import capo_iot.types.provisioning_hook
 
         out["pre_provisioning_hook"] = (
@@ -124,7 +124,7 @@ def deserialize_json(data: dict) -> DescribeProvisioningTemplateResponse:
                 data["preProvisioningHook"]
             )
         )
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_iot.types.template_type
 
         out["type"] = capo_iot.types.template_type.deserialize_json(data["type"])

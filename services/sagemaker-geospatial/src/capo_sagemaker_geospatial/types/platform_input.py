@@ -30,10 +30,10 @@ def serialize_json(value: PlatformInput) -> dict:
 
 def deserialize_json(data: dict) -> PlatformInput:
     out: PlatformInput = {}  # type: ignore[typeddict-item]
-    if "Value" in data:
+    if data.get("Value") is not None:
         out["value"] = data["Value"]
     else:
         raise DeserializationError("PlatformInput.value required")
-    if "ComparisonOperator" in data:
+    if data.get("ComparisonOperator") is not None:
         out["comparison_operator"] = data["ComparisonOperator"]
     return out

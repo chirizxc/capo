@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> SessionSpecifications:
 
     out: SessionSpecifications = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_lex_models_v2.types.session_specification.deserialize_json(item)
         )

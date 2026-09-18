@@ -20,6 +20,10 @@ class ListAutonomousDatabaseVersionsInput(TypedDict, closed=True):
 # --- awsJson1_0 ser/de ---
 def serialize_aws_json_1_0(value: ListAutonomousDatabaseVersionsInput) -> dict:
     out: dict = {}
+    if "max_results" in value:
+        out["maxResults"] = value["max_results"]
+    if "next_token" in value:
+        out["nextToken"] = value["next_token"]
     if "db_workload" in value:
         import capo_odb.types.db_workload
 
@@ -31,7 +35,11 @@ def serialize_aws_json_1_0(value: ListAutonomousDatabaseVersionsInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListAutonomousDatabaseVersionsInput:
     out: ListAutonomousDatabaseVersionsInput = {}  # type: ignore[typeddict-item]
-    if "dbWorkload" in data:
+    if data.get("maxResults") is not None:
+        out["max_results"] = data["maxResults"]
+    if data.get("nextToken") is not None:
+        out["next_token"] = data["nextToken"]
+    if data.get("dbWorkload") is not None:
         import capo_odb.types.db_workload
 
         out["db_workload"] = capo_odb.types.db_workload.deserialize_aws_json_1_0(

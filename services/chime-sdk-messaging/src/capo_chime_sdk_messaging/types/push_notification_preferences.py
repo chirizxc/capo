@@ -37,7 +37,7 @@ def serialize_json(value: PushNotificationPreferences) -> dict:
 
 def deserialize_json(data: dict) -> PushNotificationPreferences:
     out: PushNotificationPreferences = {}  # type: ignore[typeddict-item]
-    if "AllowNotifications" in data:
+    if data.get("AllowNotifications") is not None:
         import capo_chime_sdk_messaging.types.allow_notifications
 
         out["allow_notifications"] = (
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> PushNotificationPreferences:
         raise DeserializationError(
             "PushNotificationPreferences.allow_notifications required"
         )
-    if "FilterRule" in data:
+    if data.get("FilterRule") is not None:
         out["filter_rule"] = data["FilterRule"]
     return out

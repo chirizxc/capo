@@ -36,16 +36,16 @@ def serialize_json(value: BeginTransactionRequest) -> dict:
 
 def deserialize_json(data: dict) -> BeginTransactionRequest:
     out: BeginTransactionRequest = {}  # type: ignore[typeddict-item]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
     else:
         raise DeserializationError("BeginTransactionRequest.resource_arn required")
-    if "secretArn" in data:
+    if data.get("secretArn") is not None:
         out["secret_arn"] = data["secretArn"]
     else:
         raise DeserializationError("BeginTransactionRequest.secret_arn required")
-    if "database" in data:
+    if data.get("database") is not None:
         out["database"] = data["database"]
-    if "schema" in data:
+    if data.get("schema") is not None:
         out["schema"] = data["schema"]
     return out

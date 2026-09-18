@@ -36,14 +36,14 @@ def serialize_json(value: ListEdgeAgentConfigurationsInput) -> dict:
 
 def deserialize_json(data: dict) -> ListEdgeAgentConfigurationsInput:
     out: ListEdgeAgentConfigurationsInput = {}  # type: ignore[typeddict-item]
-    if "HubDeviceArn" in data:
+    if data.get("HubDeviceArn") is not None:
         out["hub_device_arn"] = data["HubDeviceArn"]
     else:
         raise DeserializationError(
             "ListEdgeAgentConfigurationsInput.hub_device_arn required"
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

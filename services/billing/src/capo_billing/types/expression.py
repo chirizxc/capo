@@ -58,7 +58,7 @@ def serialize_aws_json_1_0(value: Expression) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Expression:
     out: Expression = {}  # type: ignore[typeddict-item]
-    if "dimensions" in data:
+    if data.get("dimensions") is not None:
         import capo_billing.types.dimension_values
 
         out["dimensions"] = (
@@ -66,13 +66,13 @@ def deserialize_aws_json_1_0(data: dict) -> Expression:
                 data["dimensions"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_billing.types.tag_values
 
         out["tags"] = capo_billing.types.tag_values.deserialize_aws_json_1_0(
             data["tags"]
         )
-    if "costCategories" in data:
+    if data.get("costCategories") is not None:
         import capo_billing.types.cost_category_values
 
         out["cost_categories"] = (
@@ -80,7 +80,7 @@ def deserialize_aws_json_1_0(data: dict) -> Expression:
                 data["costCategories"]
             )
         )
-    if "timeRange" in data:
+    if data.get("timeRange") is not None:
         import capo_billing.types.time_range
 
         out["time_range"] = capo_billing.types.time_range.deserialize_aws_json_1_0(

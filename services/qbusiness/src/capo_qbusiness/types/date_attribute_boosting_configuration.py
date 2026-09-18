@@ -37,7 +37,7 @@ def serialize_json(value: DateAttributeBoostingConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> DateAttributeBoostingConfiguration:
     out: DateAttributeBoostingConfiguration = {}  # type: ignore[typeddict-item]
-    if "boostingLevel" in data:
+    if data.get("boostingLevel") is not None:
         import capo_qbusiness.types.document_attribute_boosting_level
 
         out["boosting_level"] = (
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> DateAttributeBoostingConfiguration:
         raise DeserializationError(
             "DateAttributeBoostingConfiguration.boosting_level required"
         )
-    if "boostingDurationInSeconds" in data:
+    if data.get("boostingDurationInSeconds") is not None:
         out["boosting_duration_in_seconds"] = data["boostingDurationInSeconds"]
     return out

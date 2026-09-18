@@ -45,9 +45,9 @@ def serialize_json(value: ScheduleAdBreak) -> dict:
 
 def deserialize_json(data: dict) -> ScheduleAdBreak:
     out: ScheduleAdBreak = {}  # type: ignore[typeddict-item]
-    if "ApproximateDurationSeconds" in data:
+    if data.get("ApproximateDurationSeconds") is not None:
         out["approximate_duration_seconds"] = data["ApproximateDurationSeconds"]
-    if "ApproximateStartTime" in data:
+    if data.get("ApproximateStartTime") is not None:
         import capo_mediatailor.types.__timestamp_unix
 
         out["approximate_start_time"] = (
@@ -55,8 +55,8 @@ def deserialize_json(data: dict) -> ScheduleAdBreak:
                 data["ApproximateStartTime"]
             )
         )
-    if "SourceLocationName" in data:
+    if data.get("SourceLocationName") is not None:
         out["source_location_name"] = data["SourceLocationName"]
-    if "VodSourceName" in data:
+    if data.get("VodSourceName") is not None:
         out["vod_source_name"] = data["VodSourceName"]
     return out

@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> GameSessionQueueDestinationList:
 
     out: GameSessionQueueDestinationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_gamelift.types.game_session_queue_destination.deserialize_aws_json_1_1(
                 item

@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: PlacementGroupConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PlacementGroupConfig:
     out: PlacementGroupConfig = {}  # type: ignore[typeddict-item]
-    if "InstanceRole" in data:
+    if data.get("InstanceRole") is not None:
         import capo_emr.types.instance_role_type
 
         out["instance_role"] = (
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_1(data: dict) -> PlacementGroupConfig:
                 data["InstanceRole"]
             )
         )
-    if "PlacementStrategy" in data:
+    if data.get("PlacementStrategy") is not None:
         import capo_emr.types.placement_group_strategy
 
         out["placement_strategy"] = (

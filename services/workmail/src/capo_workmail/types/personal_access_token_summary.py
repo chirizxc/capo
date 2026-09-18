@@ -75,31 +75,31 @@ def serialize_aws_json_1_1(value: PersonalAccessTokenSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PersonalAccessTokenSummary:
     out: PersonalAccessTokenSummary = {}  # type: ignore[typeddict-item]
-    if "PersonalAccessTokenId" in data:
+    if data.get("PersonalAccessTokenId") is not None:
         out["personal_access_token_id"] = data["PersonalAccessTokenId"]
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "DateCreated" in data:
+    if data.get("DateCreated") is not None:
         import capo_workmail.types.timestamp
 
         out["date_created"] = capo_workmail.types.timestamp.deserialize_aws_json_1_1(
             data["DateCreated"]
         )
-    if "DateLastUsed" in data:
+    if data.get("DateLastUsed") is not None:
         import capo_workmail.types.timestamp
 
         out["date_last_used"] = capo_workmail.types.timestamp.deserialize_aws_json_1_1(
             data["DateLastUsed"]
         )
-    if "ExpiresTime" in data:
+    if data.get("ExpiresTime") is not None:
         import capo_workmail.types.timestamp
 
         out["expires_time"] = capo_workmail.types.timestamp.deserialize_aws_json_1_1(
             data["ExpiresTime"]
         )
-    if "Scopes" in data:
+    if data.get("Scopes") is not None:
         import capo_workmail.types.personal_access_token_scope_list
 
         out["scopes"] = (

@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> CategoriesWithMostFindings:
 
     out: CategoriesWithMostFindings = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codeguru_security.types.category_with_finding_num.deserialize_json(
                 item

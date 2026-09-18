@@ -28,8 +28,8 @@ def serialize_json(value: CreateDataIntegrationAssociationResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateDataIntegrationAssociationResponse:
     out: CreateDataIntegrationAssociationResponse = {}  # type: ignore[typeddict-item]
-    if "DataIntegrationAssociationId" in data:
+    if data.get("DataIntegrationAssociationId") is not None:
         out["data_integration_association_id"] = data["DataIntegrationAssociationId"]
-    if "DataIntegrationArn" in data:
+    if data.get("DataIntegrationArn") is not None:
         out["data_integration_arn"] = data["DataIntegrationArn"]
     return out

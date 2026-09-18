@@ -25,7 +25,7 @@ def serialize_json(value: TimeoutConfig) -> dict:
 
 def deserialize_json(data: dict) -> TimeoutConfig:
     out: TimeoutConfig = {}  # type: ignore[typeddict-item]
-    if "durationInSeconds" in data:
+    if data.get("durationInSeconds") is not None:
         out["duration_in_seconds"] = data["durationInSeconds"]
     else:
         raise DeserializationError("TimeoutConfig.duration_in_seconds required")

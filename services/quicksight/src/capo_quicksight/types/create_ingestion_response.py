@@ -47,11 +47,11 @@ def serialize_json(value: CreateIngestionResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateIngestionResponse:
     out: CreateIngestionResponse = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "IngestionId" in data:
+    if data.get("IngestionId") is not None:
         out["ingestion_id"] = data["IngestionId"]
-    if "IngestionStatus" in data:
+    if data.get("IngestionStatus") is not None:
         import capo_quicksight.types.ingestion_status
 
         out["ingestion_status"] = (
@@ -59,6 +59,6 @@ def deserialize_json(data: dict) -> CreateIngestionResponse:
                 data["IngestionStatus"]
             )
         )
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

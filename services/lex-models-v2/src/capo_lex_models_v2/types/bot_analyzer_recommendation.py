@@ -43,7 +43,7 @@ def serialize_json(value: BotAnalyzerRecommendation) -> dict:
 
 def deserialize_json(data: dict) -> BotAnalyzerRecommendation:
     out: BotAnalyzerRecommendation = {}  # type: ignore[typeddict-item]
-    if "issueLocation" in data:
+    if data.get("issueLocation") is not None:
         import capo_lex_models_v2.types.issue_location
 
         out["issue_location"] = (
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> BotAnalyzerRecommendation:
         )
     else:
         raise DeserializationError("BotAnalyzerRecommendation.issue_location required")
-    if "priority" in data:
+    if data.get("priority") is not None:
         import capo_lex_models_v2.types.priority
 
         out["priority"] = capo_lex_models_v2.types.priority.deserialize_json(
@@ -61,13 +61,13 @@ def deserialize_json(data: dict) -> BotAnalyzerRecommendation:
         )
     else:
         raise DeserializationError("BotAnalyzerRecommendation.priority required")
-    if "issueDescription" in data:
+    if data.get("issueDescription") is not None:
         out["issue_description"] = data["issueDescription"]
     else:
         raise DeserializationError(
             "BotAnalyzerRecommendation.issue_description required"
         )
-    if "proposedFix" in data:
+    if data.get("proposedFix") is not None:
         out["proposed_fix"] = data["proposedFix"]
     else:
         raise DeserializationError("BotAnalyzerRecommendation.proposed_fix required")

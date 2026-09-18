@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AwsRdsDbParameterGroups:
 
     out: AwsRdsDbParameterGroups = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.aws_rds_db_parameter_group.deserialize_json(item)
         )

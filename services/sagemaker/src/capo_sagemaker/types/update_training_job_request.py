@@ -77,9 +77,9 @@ def serialize_aws_json_1_1(value: UpdateTrainingJobRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateTrainingJobRequest:
     out: UpdateTrainingJobRequest = {}  # type: ignore[typeddict-item]
-    if "TrainingJobName" in data:
+    if data.get("TrainingJobName") is not None:
         out["training_job_name"] = data["TrainingJobName"]
-    if "ProfilerConfig" in data:
+    if data.get("ProfilerConfig") is not None:
         import capo_sagemaker.types.profiler_config_for_update
 
         out["profiler_config"] = (
@@ -87,7 +87,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateTrainingJobRequest:
                 data["ProfilerConfig"]
             )
         )
-    if "ProfilerRuleConfigurations" in data:
+    if data.get("ProfilerRuleConfigurations") is not None:
         import capo_sagemaker.types.profiler_rule_configurations
 
         out["profiler_rule_configurations"] = (
@@ -95,7 +95,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateTrainingJobRequest:
                 data["ProfilerRuleConfigurations"]
             )
         )
-    if "ResourceConfig" in data:
+    if data.get("ResourceConfig") is not None:
         import capo_sagemaker.types.resource_config_for_update
 
         out["resource_config"] = (
@@ -103,7 +103,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateTrainingJobRequest:
                 data["ResourceConfig"]
             )
         )
-    if "RemoteDebugConfig" in data:
+    if data.get("RemoteDebugConfig") is not None:
         import capo_sagemaker.types.remote_debug_config_for_update
 
         out["remote_debug_config"] = (

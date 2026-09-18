@@ -91,7 +91,7 @@ def serialize_aws_json_1_1(value: UpdateProvisioningPreferences) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateProvisioningPreferences:
     out: UpdateProvisioningPreferences = {}  # type: ignore[typeddict-item]
-    if "StackSetAccounts" in data:
+    if data.get("StackSetAccounts") is not None:
         import capo_service_catalog.types.stack_set_accounts
 
         out["stack_set_accounts"] = (
@@ -99,7 +99,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateProvisioningPreferences:
                 data["StackSetAccounts"]
             )
         )
-    if "StackSetRegions" in data:
+    if data.get("StackSetRegions") is not None:
         import capo_service_catalog.types.stack_set_regions
 
         out["stack_set_regions"] = (
@@ -107,19 +107,19 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateProvisioningPreferences:
                 data["StackSetRegions"]
             )
         )
-    if "StackSetFailureToleranceCount" in data:
+    if data.get("StackSetFailureToleranceCount") is not None:
         out["stack_set_failure_tolerance_count"] = data["StackSetFailureToleranceCount"]
-    if "StackSetFailureTolerancePercentage" in data:
+    if data.get("StackSetFailureTolerancePercentage") is not None:
         out["stack_set_failure_tolerance_percentage"] = data[
             "StackSetFailureTolerancePercentage"
         ]
-    if "StackSetMaxConcurrencyCount" in data:
+    if data.get("StackSetMaxConcurrencyCount") is not None:
         out["stack_set_max_concurrency_count"] = data["StackSetMaxConcurrencyCount"]
-    if "StackSetMaxConcurrencyPercentage" in data:
+    if data.get("StackSetMaxConcurrencyPercentage") is not None:
         out["stack_set_max_concurrency_percentage"] = data[
             "StackSetMaxConcurrencyPercentage"
         ]
-    if "StackSetOperationType" in data:
+    if data.get("StackSetOperationType") is not None:
         import capo_service_catalog.types.stack_set_operation_type
 
         out["stack_set_operation_type"] = (

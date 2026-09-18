@@ -106,11 +106,11 @@ def serialize_json(value: ManagedResourceSummary) -> dict:
 
 def deserialize_json(data: dict) -> ManagedResourceSummary:
     out: ManagedResourceSummary = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "availabilityZones" in data:
+    if data.get("availabilityZones") is not None:
         import capo_arc_zonal_shift.types.availability_zones
 
         out["availability_zones"] = (
@@ -120,7 +120,7 @@ def deserialize_json(data: dict) -> ManagedResourceSummary:
         )
     else:
         raise DeserializationError("ManagedResourceSummary.availability_zones required")
-    if "appliedWeights" in data:
+    if data.get("appliedWeights") is not None:
         import capo_arc_zonal_shift.types.applied_weights
 
         out["applied_weights"] = (
@@ -128,7 +128,7 @@ def deserialize_json(data: dict) -> ManagedResourceSummary:
                 data["appliedWeights"]
             )
         )
-    if "zonalShifts" in data:
+    if data.get("zonalShifts") is not None:
         import capo_arc_zonal_shift.types.zonal_shifts_in_resource
 
         out["zonal_shifts"] = (
@@ -136,7 +136,7 @@ def deserialize_json(data: dict) -> ManagedResourceSummary:
                 data["zonalShifts"]
             )
         )
-    if "autoshifts" in data:
+    if data.get("autoshifts") is not None:
         import capo_arc_zonal_shift.types.autoshifts_in_resource
 
         out["autoshifts"] = (
@@ -144,7 +144,7 @@ def deserialize_json(data: dict) -> ManagedResourceSummary:
                 data["autoshifts"]
             )
         )
-    if "zonalAutoshiftStatus" in data:
+    if data.get("zonalAutoshiftStatus") is not None:
         import capo_arc_zonal_shift.types.zonal_autoshift_status
 
         out["zonal_autoshift_status"] = (
@@ -152,7 +152,7 @@ def deserialize_json(data: dict) -> ManagedResourceSummary:
                 data["zonalAutoshiftStatus"]
             )
         )
-    if "practiceRunStatus" in data:
+    if data.get("practiceRunStatus") is not None:
         import capo_arc_zonal_shift.types.zonal_autoshift_status
 
         out["practice_run_status"] = (

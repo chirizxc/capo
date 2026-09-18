@@ -60,9 +60,9 @@ def serialize_json(value: ListTelemetryRulesForOrganizationInput) -> dict:
 
 def deserialize_json(data: dict) -> ListTelemetryRulesForOrganizationInput:
     out: ListTelemetryRulesForOrganizationInput = {}  # type: ignore[typeddict-item]
-    if "RuleNamePrefix" in data:
+    if data.get("RuleNamePrefix") is not None:
         out["rule_name_prefix"] = data["RuleNamePrefix"]
-    if "SourceAccountIds" in data:
+    if data.get("SourceAccountIds") is not None:
         import capo_observabilityadmin.types.account_identifiers
 
         out["source_account_ids"] = (
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> ListTelemetryRulesForOrganizationInput:
                 data["SourceAccountIds"]
             )
         )
-    if "SourceOrganizationUnitIds" in data:
+    if data.get("SourceOrganizationUnitIds") is not None:
         import capo_observabilityadmin.types.organization_unit_identifiers
 
         out["source_organization_unit_ids"] = (
@@ -78,8 +78,8 @@ def deserialize_json(data: dict) -> ListTelemetryRulesForOrganizationInput:
                 data["SourceOrganizationUnitIds"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

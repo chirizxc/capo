@@ -32,8 +32,8 @@ def serialize_aws_json_1_1(value: RemediationExceptionResourceKey) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RemediationExceptionResourceKey:
     out: RemediationExceptionResourceKey = {}  # type: ignore[typeddict-item]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
-    if "ResourceId" in data:
+    if data.get("ResourceId") is not None:
         out["resource_id"] = data["ResourceId"]
     return out

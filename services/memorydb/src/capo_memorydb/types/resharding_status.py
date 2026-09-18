@@ -29,7 +29,7 @@ def serialize_aws_json_1_1(value: ReshardingStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ReshardingStatus:
     out: ReshardingStatus = {}  # type: ignore[typeddict-item]
-    if "SlotMigration" in data:
+    if data.get("SlotMigration") is not None:
         import capo_memorydb.types.slot_migration
 
         out["slot_migration"] = (

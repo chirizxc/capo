@@ -13,9 +13,9 @@ from capo_elasticache import AsyncElastiCacheClient
 
 
 async def main():
-    async with AsyncElastiCacheClient() as s3:
+    async with AsyncElastiCacheClient() as elasti_cache:
         # Example: call the add_tags_to_resource operation
-        response = await s3.add_tags_to_resource()
+        response = await elasti_cache.add_tags_to_resource()
         print(response["tag_list"])
 ```
 
@@ -28,9 +28,9 @@ from capo_elasticache import AsyncElastiCacheClient
 
 
 async def main():
-    async with AsyncElastiCacheClient() as s3:
+    async with AsyncElastiCacheClient() as elasti_cache:
         # Example: paginate over describe_cache_clusters
-        async for item in s3.iter_describe_cache_clusters():
+        async for item in elasti_cache.iter_describe_cache_clusters():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_elasticache.error import CacheClusterNotFoundFault
 
 
 async def main():
-    async with AsyncElastiCacheClient() as s3:
+    async with AsyncElastiCacheClient() as elasti_cache:
         try:
-            await s3.add_tags_to_resource()
+            await elasti_cache.add_tags_to_resource()
         except CacheClusterNotFoundFault as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_elasticache import AsyncElastiCacheClient
 
 
 async def main():
-    async with AsyncElastiCacheClient() as s3:
+    async with AsyncElastiCacheClient() as elasti_cache:
         # Default: 3 attempts for every operation
-        response = await s3.add_tags_to_resource()
+        response = await elasti_cache.add_tags_to_resource()
 
         # Override per operation
-        response = await s3.add_tags_to_resource(config_overrides={"retry_max_attempts": 5})
+        response = await elasti_cache.add_tags_to_resource(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.add_tags_to_resource(config_overrides={"retry_max_attempts": 1})
+        response = await elasti_cache.add_tags_to_resource(config_overrides={"retry_max_attempts": 1})
 ```

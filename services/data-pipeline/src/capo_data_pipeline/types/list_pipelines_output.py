@@ -39,7 +39,7 @@ def serialize_aws_json_1_1(value: ListPipelinesOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListPipelinesOutput:
     out: ListPipelinesOutput = {}  # type: ignore[typeddict-item]
-    if "pipelineIdList" in data:
+    if data.get("pipelineIdList") is not None:
         import capo_data_pipeline.types.pipeline_list
 
         out["pipeline_id_list"] = (
@@ -49,9 +49,9 @@ def deserialize_aws_json_1_1(data: dict) -> ListPipelinesOutput:
         )
     else:
         raise DeserializationError("ListPipelinesOutput.pipeline_id_list required")
-    if "marker" in data:
+    if data.get("marker") is not None:
         out["marker"] = data["marker"]
-    if "hasMoreResults" in data:
+    if data.get("hasMoreResults") is not None:
         out["has_more_results"] = data["hasMoreResults"]
     else:
         out["has_more_results"] = False

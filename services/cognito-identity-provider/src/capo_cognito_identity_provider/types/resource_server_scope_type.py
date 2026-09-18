@@ -28,11 +28,11 @@ def serialize_aws_json_1_1(value: ResourceServerScopeType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ResourceServerScopeType:
     out: ResourceServerScopeType = {}  # type: ignore[typeddict-item]
-    if "ScopeName" in data:
+    if data.get("ScopeName") is not None:
         out["scope_name"] = data["ScopeName"]
     else:
         raise DeserializationError("ResourceServerScopeType.scope_name required")
-    if "ScopeDescription" in data:
+    if data.get("ScopeDescription") is not None:
         out["scope_description"] = data["ScopeDescription"]
     else:
         raise DeserializationError("ResourceServerScopeType.scope_description required")

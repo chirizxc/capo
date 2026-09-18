@@ -54,23 +54,23 @@ def serialize_aws_json_1_1(value: ThesaurusSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ThesaurusSummary:
     out: ThesaurusSummary = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_kendra.types.thesaurus_status
 
         out["status"] = capo_kendra.types.thesaurus_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_kendra.types.timestamp
 
         out["created_at"] = capo_kendra.types.timestamp.deserialize_aws_json_1_1(
             data["CreatedAt"]
         )
-    if "UpdatedAt" in data:
+    if data.get("UpdatedAt") is not None:
         import capo_kendra.types.timestamp
 
         out["updated_at"] = capo_kendra.types.timestamp.deserialize_aws_json_1_1(

@@ -34,9 +34,9 @@ def serialize_json(value: AccountAggregation) -> dict:
 
 def deserialize_json(data: dict) -> AccountAggregation:
     out: AccountAggregation = {}  # type: ignore[typeddict-item]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "severityCounts" in data:
+    if data.get("severityCounts") is not None:
         import capo_imagebuilder.types.severity_counts
 
         out["severity_counts"] = (

@@ -28,8 +28,8 @@ def serialize_json(value: SourceServerConnectorAction) -> dict:
 
 def deserialize_json(data: dict) -> SourceServerConnectorAction:
     out: SourceServerConnectorAction = {}  # type: ignore[typeddict-item]
-    if "credentialsSecretArn" in data:
+    if data.get("credentialsSecretArn") is not None:
         out["credentials_secret_arn"] = data["credentialsSecretArn"]
-    if "connectorArn" in data:
+    if data.get("connectorArn") is not None:
         out["connector_arn"] = data["connectorArn"]
     return out

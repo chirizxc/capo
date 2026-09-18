@@ -64,7 +64,7 @@ def serialize_aws_json_1_1(value: FlinkApplicationConfigurationDescription) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> FlinkApplicationConfigurationDescription:
     out: FlinkApplicationConfigurationDescription = {}  # type: ignore[typeddict-item]
-    if "CheckpointConfigurationDescription" in data:
+    if data.get("CheckpointConfigurationDescription") is not None:
         import capo_kinesis_analytics_v2.types.checkpoint_configuration_description
 
         out["checkpoint_configuration_description"] = (
@@ -72,7 +72,7 @@ def deserialize_aws_json_1_1(data: dict) -> FlinkApplicationConfigurationDescrip
                 data["CheckpointConfigurationDescription"]
             )
         )
-    if "MonitoringConfigurationDescription" in data:
+    if data.get("MonitoringConfigurationDescription") is not None:
         import capo_kinesis_analytics_v2.types.monitoring_configuration_description
 
         out["monitoring_configuration_description"] = (
@@ -80,7 +80,7 @@ def deserialize_aws_json_1_1(data: dict) -> FlinkApplicationConfigurationDescrip
                 data["MonitoringConfigurationDescription"]
             )
         )
-    if "ParallelismConfigurationDescription" in data:
+    if data.get("ParallelismConfigurationDescription") is not None:
         import capo_kinesis_analytics_v2.types.parallelism_configuration_description
 
         out["parallelism_configuration_description"] = (
@@ -88,6 +88,6 @@ def deserialize_aws_json_1_1(data: dict) -> FlinkApplicationConfigurationDescrip
                 data["ParallelismConfigurationDescription"]
             )
         )
-    if "JobPlanDescription" in data:
+    if data.get("JobPlanDescription") is not None:
         out["job_plan_description"] = data["JobPlanDescription"]
     return out

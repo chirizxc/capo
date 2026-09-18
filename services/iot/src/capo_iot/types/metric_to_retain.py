@@ -38,16 +38,16 @@ def serialize_json(value: MetricToRetain) -> dict:
 
 def deserialize_json(data: dict) -> MetricToRetain:
     out: MetricToRetain = {}  # type: ignore[typeddict-item]
-    if "metric" in data:
+    if data.get("metric") is not None:
         out["metric"] = data["metric"]
     else:
         raise DeserializationError("MetricToRetain.metric required")
-    if "metricDimension" in data:
+    if data.get("metricDimension") is not None:
         import capo_iot.types.metric_dimension
 
         out["metric_dimension"] = capo_iot.types.metric_dimension.deserialize_json(
             data["metricDimension"]
         )
-    if "exportMetric" in data:
+    if data.get("exportMetric") is not None:
         out["export_metric"] = data["exportMetric"]
     return out

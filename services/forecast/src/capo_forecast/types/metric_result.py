@@ -22,14 +22,22 @@ def serialize_aws_json_1_1(value: MetricResult) -> dict:
     if "metric_name" in value:
         out["MetricName"] = value["metric_name"]
     if "metric_value" in value:
-        out["MetricValue"] = value["metric_value"]
+        out["MetricValue"] = (
+            "NaN"
+            if value["metric_value"] != value["metric_value"]
+            else "Infinity"
+            if value["metric_value"] == float("inf")
+            else "-Infinity"
+            if value["metric_value"] == float("-inf")
+            else value["metric_value"]
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> MetricResult:
     out: MetricResult = {}  # type: ignore[typeddict-item]
-    if "MetricName" in data:
+    if data.get("MetricName") is not None:
         out["metric_name"] = data["MetricName"]
-    if "MetricValue" in data:
-        out["metric_value"] = data["MetricValue"]
+    if data.get("MetricValue") is not None:
+        out["metric_value"] = float(data["MetricValue"])
     return out

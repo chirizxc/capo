@@ -54,13 +54,13 @@ def serialize_json(value: DescribeRecoverySnapshotsRequest) -> dict:
 
 def deserialize_json(data: dict) -> DescribeRecoverySnapshotsRequest:
     out: DescribeRecoverySnapshotsRequest = {}  # type: ignore[typeddict-item]
-    if "sourceServerID" in data:
+    if data.get("sourceServerID") is not None:
         out["source_server_id"] = data["sourceServerID"]
     else:
         raise DeserializationError(
             "DescribeRecoverySnapshotsRequest.source_server_id required"
         )
-    if "filters" in data:
+    if data.get("filters") is not None:
         import capo_drs.types.describe_recovery_snapshots_request_filters
 
         out["filters"] = (
@@ -68,10 +68,10 @@ def deserialize_json(data: dict) -> DescribeRecoverySnapshotsRequest:
                 data["filters"]
             )
         )
-    if "order" in data:
+    if data.get("order") is not None:
         out["order"] = data["order"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

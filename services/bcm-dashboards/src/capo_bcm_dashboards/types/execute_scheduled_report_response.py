@@ -33,7 +33,7 @@ def serialize_aws_json_1_0(value: ExecuteScheduledReportResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ExecuteScheduledReportResponse:
     out: ExecuteScheduledReportResponse = {}  # type: ignore[typeddict-item]
-    if "healthStatus" in data:
+    if data.get("healthStatus") is not None:
         import capo_bcm_dashboards.types.health_status
 
         out["health_status"] = (
@@ -41,6 +41,6 @@ def deserialize_aws_json_1_0(data: dict) -> ExecuteScheduledReportResponse:
                 data["healthStatus"]
             )
         )
-    if "executionTriggered" in data:
+    if data.get("executionTriggered") is not None:
         out["execution_triggered"] = data["executionTriggered"]
     return out

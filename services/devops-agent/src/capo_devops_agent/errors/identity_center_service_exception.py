@@ -23,11 +23,11 @@ def serialize_json(value: IdentityCenterServiceException_) -> dict:
 
 def deserialize_json(data: dict) -> IdentityCenterServiceException_:
     out: IdentityCenterServiceException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("IdentityCenterServiceException_.message required")
-    if "underlyingErrorCode" in data:
+    if data.get("underlyingErrorCode") is not None:
         out["underlying_error_code"] = data["underlyingErrorCode"]
     return out
 
@@ -37,15 +37,20 @@ class IdentityCenterServiceException(ServiceError):
 
     code: str | None = "IdentityCenterServiceException"
 
-    def __init__(self, data: IdentityCenterServiceException_):
+    def __init__(
+        self, data: IdentityCenterServiceException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="IdentityCenterServiceException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "IdentityCenterServiceException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "IdentityCenterServiceException":
+        return cls(deserialize_json(data), message)

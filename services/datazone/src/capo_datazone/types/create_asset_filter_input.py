@@ -51,13 +51,13 @@ def serialize_json(value: CreateAssetFilterInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateAssetFilterInput:
     out: CreateAssetFilterInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateAssetFilterInput.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_datazone.types.asset_filter_configuration
 
         out["configuration"] = (
@@ -67,6 +67,6 @@ def deserialize_json(data: dict) -> CreateAssetFilterInput:
         )
     else:
         raise DeserializationError("CreateAssetFilterInput.configuration required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

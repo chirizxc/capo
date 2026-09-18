@@ -43,17 +43,17 @@ def serialize_json(value: ListPendingMessagesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListPendingMessagesResponse:
     out: ListPendingMessagesResponse = {}  # type: ignore[typeddict-item]
-    if "agentSpaceId" in data:
+    if data.get("agentSpaceId") is not None:
         out["agent_space_id"] = data["agentSpaceId"]
     else:
         raise DeserializationError(
             "ListPendingMessagesResponse.agent_space_id required"
         )
-    if "executionId" in data:
+    if data.get("executionId") is not None:
         out["execution_id"] = data["executionId"]
     else:
         raise DeserializationError("ListPendingMessagesResponse.execution_id required")
-    if "messages" in data:
+    if data.get("messages") is not None:
         import capo_devops_agent.types.pending_messages
 
         out["messages"] = capo_devops_agent.types.pending_messages.deserialize_json(
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> ListPendingMessagesResponse:
         )
     else:
         out["messages"] = []
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_devops_agent.types._prelude.timestamp
 
         out["created_at"] = capo_devops_agent.types._prelude.timestamp.deserialize_json(

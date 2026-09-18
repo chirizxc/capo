@@ -64,15 +64,15 @@ def serialize_json(value: QueueLimitAssociationSummary) -> dict:
 
 def deserialize_json(data: dict) -> QueueLimitAssociationSummary:
     out: QueueLimitAssociationSummary = {}  # type: ignore[typeddict-item]
-    if "queueId" in data:
+    if data.get("queueId") is not None:
         out["queue_id"] = data["queueId"]
     else:
         raise DeserializationError("QueueLimitAssociationSummary.queue_id required")
-    if "limitId" in data:
+    if data.get("limitId") is not None:
         out["limit_id"] = data["limitId"]
     else:
         raise DeserializationError("QueueLimitAssociationSummary.limit_id required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_deadline.types.queue_limit_association_status
 
         out["status"] = (
@@ -82,7 +82,7 @@ def deserialize_json(data: dict) -> QueueLimitAssociationSummary:
         )
     else:
         raise DeserializationError("QueueLimitAssociationSummary.status required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_deadline.types.created_at
 
         out["created_at"] = capo_deadline.types.created_at.deserialize_json(
@@ -90,16 +90,16 @@ def deserialize_json(data: dict) -> QueueLimitAssociationSummary:
         )
     else:
         raise DeserializationError("QueueLimitAssociationSummary.created_at required")
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
     else:
         raise DeserializationError("QueueLimitAssociationSummary.created_by required")
-    if "updatedAt" in data:
+    if data.get("updatedAt") is not None:
         import capo_deadline.types.updated_at
 
         out["updated_at"] = capo_deadline.types.updated_at.deserialize_json(
             data["updatedAt"]
         )
-    if "updatedBy" in data:
+    if data.get("updatedBy") is not None:
         out["updated_by"] = data["updatedBy"]
     return out

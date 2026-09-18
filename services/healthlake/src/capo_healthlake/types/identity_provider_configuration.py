@@ -50,7 +50,7 @@ def serialize_aws_json_1_0(value: IdentityProviderConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> IdentityProviderConfiguration:
     out: IdentityProviderConfiguration = {}  # type: ignore[typeddict-item]
-    if "AuthorizationStrategy" in data:
+    if data.get("AuthorizationStrategy") is not None:
         import capo_healthlake.types.authorization_strategy
 
         out["authorization_strategy"] = (
@@ -62,14 +62,14 @@ def deserialize_aws_json_1_0(data: dict) -> IdentityProviderConfiguration:
         raise DeserializationError(
             "IdentityProviderConfiguration.authorization_strategy required"
         )
-    if "FineGrainedAuthorizationEnabled" in data:
+    if data.get("FineGrainedAuthorizationEnabled") is not None:
         out["fine_grained_authorization_enabled"] = data[
             "FineGrainedAuthorizationEnabled"
         ]
     else:
         out["fine_grained_authorization_enabled"] = False
-    if "Metadata" in data:
+    if data.get("Metadata") is not None:
         out["metadata"] = data["Metadata"]
-    if "IdpLambdaArn" in data:
+    if data.get("IdpLambdaArn") is not None:
         out["idp_lambda_arn"] = data["IdpLambdaArn"]
     return out

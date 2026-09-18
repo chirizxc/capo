@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: TerminateRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TerminateRequest:
     out: TerminateRequest = {}  # type: ignore[typeddict-item]
-    if "WorkspaceId" in data:
+    if data.get("WorkspaceId") is not None:
         out["workspace_id"] = data["WorkspaceId"]
     else:
         raise DeserializationError("TerminateRequest.workspace_id required")

@@ -45,18 +45,18 @@ def serialize_json(value: EBSOptions) -> dict:
 
 def deserialize_json(data: dict) -> EBSOptions:
     out: EBSOptions = {}  # type: ignore[typeddict-item]
-    if "EBSEnabled" in data:
+    if data.get("EBSEnabled") is not None:
         out["ebs_enabled"] = data["EBSEnabled"]
-    if "VolumeType" in data:
+    if data.get("VolumeType") is not None:
         import capo_opensearch.types.volume_type
 
         out["volume_type"] = capo_opensearch.types.volume_type.deserialize_json(
             data["VolumeType"]
         )
-    if "VolumeSize" in data:
+    if data.get("VolumeSize") is not None:
         out["volume_size"] = data["VolumeSize"]
-    if "Iops" in data:
+    if data.get("Iops") is not None:
         out["iops"] = data["Iops"]
-    if "Throughput" in data:
+    if data.get("Throughput") is not None:
         out["throughput"] = data["Throughput"]
     return out

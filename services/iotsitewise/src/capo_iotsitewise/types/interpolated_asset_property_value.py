@@ -32,7 +32,7 @@ def serialize_json(value: InterpolatedAssetPropertyValue) -> dict:
 
 def deserialize_json(data: dict) -> InterpolatedAssetPropertyValue:
     out: InterpolatedAssetPropertyValue = {}  # type: ignore[typeddict-item]
-    if "timestamp" in data:
+    if data.get("timestamp") is not None:
         import capo_iotsitewise.types.time_in_nanos
 
         out["timestamp"] = capo_iotsitewise.types.time_in_nanos.deserialize_json(
@@ -40,7 +40,7 @@ def deserialize_json(data: dict) -> InterpolatedAssetPropertyValue:
         )
     else:
         raise DeserializationError("InterpolatedAssetPropertyValue.timestamp required")
-    if "value" in data:
+    if data.get("value") is not None:
         import capo_iotsitewise.types.variant
 
         out["value"] = capo_iotsitewise.types.variant.deserialize_json(data["value"])

@@ -24,7 +24,7 @@ def serialize_json(value: RetryDataReplicationRequest) -> dict:
 
 def deserialize_json(data: dict) -> RetryDataReplicationRequest:
     out: RetryDataReplicationRequest = {}  # type: ignore[typeddict-item]
-    if "sourceServerID" in data:
+    if data.get("sourceServerID") is not None:
         out["source_server_id"] = data["sourceServerID"]
     else:
         raise DeserializationError(

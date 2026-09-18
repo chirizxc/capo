@@ -38,7 +38,7 @@ def serialize_json(value: StartJobResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartJobResponse:
     out: StartJobResponse = {}  # type: ignore[typeddict-item]
-    if "CreatedAt" in data:
+    if data.get("CreatedAt") is not None:
         import capo_location.types.timestamp
 
         out["created_at"] = capo_location.types.timestamp.deserialize_json(
@@ -46,15 +46,15 @@ def deserialize_json(data: dict) -> StartJobResponse:
         )
     else:
         raise DeserializationError("StartJobResponse.created_at required")
-    if "JobArn" in data:
+    if data.get("JobArn") is not None:
         out["job_arn"] = data["JobArn"]
     else:
         raise DeserializationError("StartJobResponse.job_arn required")
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
     else:
         raise DeserializationError("StartJobResponse.job_id required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     else:
         raise DeserializationError("StartJobResponse.status required")

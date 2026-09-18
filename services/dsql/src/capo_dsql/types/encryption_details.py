@@ -41,7 +41,7 @@ def serialize_json(value: EncryptionDetails) -> dict:
 
 def deserialize_json(data: dict) -> EncryptionDetails:
     out: EncryptionDetails = {}  # type: ignore[typeddict-item]
-    if "encryptionType" in data:
+    if data.get("encryptionType") is not None:
         import capo_dsql.types.encryption_type
 
         out["encryption_type"] = capo_dsql.types.encryption_type.deserialize_json(
@@ -49,9 +49,9 @@ def deserialize_json(data: dict) -> EncryptionDetails:
         )
     else:
         raise DeserializationError("EncryptionDetails.encryption_type required")
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
-    if "encryptionStatus" in data:
+    if data.get("encryptionStatus") is not None:
         import capo_dsql.types.encryption_status
 
         out["encryption_status"] = capo_dsql.types.encryption_status.deserialize_json(

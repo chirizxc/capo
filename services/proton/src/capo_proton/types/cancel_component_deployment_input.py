@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: CancelComponentDeploymentInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> CancelComponentDeploymentInput:
     out: CancelComponentDeploymentInput = {}  # type: ignore[typeddict-item]
-    if "componentName" in data:
+    if data.get("componentName") is not None:
         out["component_name"] = data["componentName"]
     else:
         raise DeserializationError(

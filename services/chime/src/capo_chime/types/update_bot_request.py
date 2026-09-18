@@ -28,6 +28,6 @@ def serialize_json(value: UpdateBotRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateBotRequest:
     out: UpdateBotRequest = {}  # type: ignore[typeddict-item]
-    if "Disabled" in data:
+    if data.get("Disabled") is not None:
         out["disabled"] = data["Disabled"]
     return out

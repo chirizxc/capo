@@ -66,15 +66,15 @@ def serialize_aws_json_1_1(value: CreateDatasetImportJobRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateDatasetImportJobRequest:
     out: CreateDatasetImportJobRequest = {}  # type: ignore[typeddict-item]
-    if "jobName" in data:
+    if data.get("jobName") is not None:
         out["job_name"] = data["jobName"]
     else:
         raise DeserializationError("CreateDatasetImportJobRequest.job_name required")
-    if "datasetArn" in data:
+    if data.get("datasetArn") is not None:
         out["dataset_arn"] = data["datasetArn"]
     else:
         raise DeserializationError("CreateDatasetImportJobRequest.dataset_arn required")
-    if "dataSource" in data:
+    if data.get("dataSource") is not None:
         import capo_personalize.types.data_source
 
         out["data_source"] = (
@@ -84,13 +84,13 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDatasetImportJobRequest:
         )
     else:
         raise DeserializationError("CreateDatasetImportJobRequest.data_source required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_personalize.types.tags
 
         out["tags"] = capo_personalize.types.tags.deserialize_aws_json_1_1(data["tags"])
-    if "importMode" in data:
+    if data.get("importMode") is not None:
         import capo_personalize.types.import_mode
 
         out["import_mode"] = (
@@ -98,6 +98,6 @@ def deserialize_aws_json_1_1(data: dict) -> CreateDatasetImportJobRequest:
                 data["importMode"]
             )
         )
-    if "publishAttributionMetricsToS3" in data:
+    if data.get("publishAttributionMetricsToS3") is not None:
         out["publish_attribution_metrics_to_s3"] = data["publishAttributionMetricsToS3"]
     return out

@@ -128,7 +128,16 @@ def serialize_aws_json_1_0(value: InstanceRecommendation) -> dict:
                 value["utilization_metrics"]
             )
         )
-    out["lookBackPeriodInDays"] = value.get("look_back_period_in_days", 0)
+    out["lookBackPeriodInDays"] = (
+        "NaN"
+        if value.get("look_back_period_in_days", 0)
+        != value.get("look_back_period_in_days", 0)
+        else "Infinity"
+        if value.get("look_back_period_in_days", 0) == float("inf")
+        else "-Infinity"
+        if value.get("look_back_period_in_days", 0) == float("-inf")
+        else value.get("look_back_period_in_days", 0)
+    )
     if "recommendation_options" in value:
         import capo_compute_optimizer.types.recommendation_options
 
@@ -218,21 +227,21 @@ def serialize_aws_json_1_0(value: InstanceRecommendation) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> InstanceRecommendation:
     out: InstanceRecommendation = {}  # type: ignore[typeddict-item]
-    if "instanceArn" in data:
+    if data.get("instanceArn") is not None:
         out["instance_arn"] = data["instanceArn"]
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
-    if "instanceName" in data:
+    if data.get("instanceName") is not None:
         out["instance_name"] = data["instanceName"]
-    if "currentInstanceType" in data:
+    if data.get("currentInstanceType") is not None:
         out["current_instance_type"] = data["currentInstanceType"]
-    if "finding" in data:
+    if data.get("finding") is not None:
         import capo_compute_optimizer.types.finding
 
         out["finding"] = capo_compute_optimizer.types.finding.deserialize_aws_json_1_0(
             data["finding"]
         )
-    if "findingReasonCodes" in data:
+    if data.get("findingReasonCodes") is not None:
         import capo_compute_optimizer.types.instance_recommendation_finding_reason_codes
 
         out["finding_reason_codes"] = (
@@ -240,7 +249,7 @@ def deserialize_aws_json_1_0(data: dict) -> InstanceRecommendation:
                 data["findingReasonCodes"]
             )
         )
-    if "utilizationMetrics" in data:
+    if data.get("utilizationMetrics") is not None:
         import capo_compute_optimizer.types.utilization_metrics
 
         out["utilization_metrics"] = (
@@ -248,11 +257,11 @@ def deserialize_aws_json_1_0(data: dict) -> InstanceRecommendation:
                 data["utilizationMetrics"]
             )
         )
-    if "lookBackPeriodInDays" in data:
-        out["look_back_period_in_days"] = data["lookBackPeriodInDays"]
+    if data.get("lookBackPeriodInDays") is not None:
+        out["look_back_period_in_days"] = float(data["lookBackPeriodInDays"])
     else:
         out["look_back_period_in_days"] = 0
-    if "recommendationOptions" in data:
+    if data.get("recommendationOptions") is not None:
         import capo_compute_optimizer.types.recommendation_options
 
         out["recommendation_options"] = (
@@ -260,7 +269,7 @@ def deserialize_aws_json_1_0(data: dict) -> InstanceRecommendation:
                 data["recommendationOptions"]
             )
         )
-    if "recommendationSources" in data:
+    if data.get("recommendationSources") is not None:
         import capo_compute_optimizer.types.recommendation_sources
 
         out["recommendation_sources"] = (
@@ -268,7 +277,7 @@ def deserialize_aws_json_1_0(data: dict) -> InstanceRecommendation:
                 data["recommendationSources"]
             )
         )
-    if "lastRefreshTimestamp" in data:
+    if data.get("lastRefreshTimestamp") is not None:
         import capo_compute_optimizer.types.last_refresh_timestamp
 
         out["last_refresh_timestamp"] = (
@@ -276,7 +285,7 @@ def deserialize_aws_json_1_0(data: dict) -> InstanceRecommendation:
                 data["lastRefreshTimestamp"]
             )
         )
-    if "currentPerformanceRisk" in data:
+    if data.get("currentPerformanceRisk") is not None:
         import capo_compute_optimizer.types.current_performance_risk
 
         out["current_performance_risk"] = (
@@ -284,7 +293,7 @@ def deserialize_aws_json_1_0(data: dict) -> InstanceRecommendation:
                 data["currentPerformanceRisk"]
             )
         )
-    if "effectiveRecommendationPreferences" in data:
+    if data.get("effectiveRecommendationPreferences") is not None:
         import capo_compute_optimizer.types.effective_recommendation_preferences
 
         out["effective_recommendation_preferences"] = (
@@ -292,7 +301,7 @@ def deserialize_aws_json_1_0(data: dict) -> InstanceRecommendation:
                 data["effectiveRecommendationPreferences"]
             )
         )
-    if "inferredWorkloadTypes" in data:
+    if data.get("inferredWorkloadTypes") is not None:
         import capo_compute_optimizer.types.inferred_workload_types
 
         out["inferred_workload_types"] = (
@@ -300,7 +309,7 @@ def deserialize_aws_json_1_0(data: dict) -> InstanceRecommendation:
                 data["inferredWorkloadTypes"]
             )
         )
-    if "instanceState" in data:
+    if data.get("instanceState") is not None:
         import capo_compute_optimizer.types.instance_state
 
         out["instance_state"] = (
@@ -308,13 +317,13 @@ def deserialize_aws_json_1_0(data: dict) -> InstanceRecommendation:
                 data["instanceState"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_compute_optimizer.types.tags
 
         out["tags"] = capo_compute_optimizer.types.tags.deserialize_aws_json_1_0(
             data["tags"]
         )
-    if "externalMetricStatus" in data:
+    if data.get("externalMetricStatus") is not None:
         import capo_compute_optimizer.types.external_metric_status
 
         out["external_metric_status"] = (
@@ -322,7 +331,7 @@ def deserialize_aws_json_1_0(data: dict) -> InstanceRecommendation:
                 data["externalMetricStatus"]
             )
         )
-    if "currentInstanceGpuInfo" in data:
+    if data.get("currentInstanceGpuInfo") is not None:
         import capo_compute_optimizer.types.gpu_info
 
         out["current_instance_gpu_info"] = (
@@ -330,7 +339,7 @@ def deserialize_aws_json_1_0(data: dict) -> InstanceRecommendation:
                 data["currentInstanceGpuInfo"]
             )
         )
-    if "idle" in data:
+    if data.get("idle") is not None:
         import capo_compute_optimizer.types.instance_idle
 
         out["idle"] = (

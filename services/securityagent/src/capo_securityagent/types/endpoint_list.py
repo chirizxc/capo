@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> EndpointList:
 
     out: EndpointList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityagent.types.endpoint.deserialize_json(item))
     return out

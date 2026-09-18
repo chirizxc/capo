@@ -29,7 +29,7 @@ def serialize_aws_json_1_1(value: OSUpdateSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OSUpdateSettings:
     out: OSUpdateSettings = {}  # type: ignore[typeddict-item]
-    if "OSVersion" in data:
+    if data.get("OSVersion") is not None:
         import capo_directory_service.types.os_version
 
         out["os_version"] = (

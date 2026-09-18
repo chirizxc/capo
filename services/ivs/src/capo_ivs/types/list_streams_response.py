@@ -31,12 +31,12 @@ def serialize_json(value: ListStreamsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListStreamsResponse:
     out: ListStreamsResponse = {}  # type: ignore[typeddict-item]
-    if "streams" in data:
+    if data.get("streams") is not None:
         import capo_ivs.types.stream_list
 
         out["streams"] = capo_ivs.types.stream_list.deserialize_json(data["streams"])
     else:
         raise DeserializationError("ListStreamsResponse.streams required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

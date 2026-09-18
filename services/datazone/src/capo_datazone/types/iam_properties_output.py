@@ -22,8 +22,8 @@ def serialize_json(value: IamPropertiesOutput) -> dict:
 
 def deserialize_json(data: dict) -> IamPropertiesOutput:
     out: IamPropertiesOutput = {}  # type: ignore[typeddict-item]
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
-    if "glueLineageSyncEnabled" in data:
+    if data.get("glueLineageSyncEnabled") is not None:
         out["glue_lineage_sync_enabled"] = data["glueLineageSyncEnabled"]
     return out

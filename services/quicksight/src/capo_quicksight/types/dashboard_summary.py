@@ -67,27 +67,27 @@ def serialize_json(value: DashboardSummary) -> dict:
 
 def deserialize_json(data: dict) -> DashboardSummary:
     out: DashboardSummary = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
-    if "DashboardId" in data:
+    if data.get("DashboardId") is not None:
         out["dashboard_id"] = data["DashboardId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_quicksight.types.timestamp
 
         out["created_time"] = capo_quicksight.types.timestamp.deserialize_json(
             data["CreatedTime"]
         )
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_quicksight.types.timestamp
 
         out["last_updated_time"] = capo_quicksight.types.timestamp.deserialize_json(
             data["LastUpdatedTime"]
         )
-    if "PublishedVersionNumber" in data:
+    if data.get("PublishedVersionNumber") is not None:
         out["published_version_number"] = data["PublishedVersionNumber"]
-    if "LastPublishedTime" in data:
+    if data.get("LastPublishedTime") is not None:
         import capo_quicksight.types.timestamp
 
         out["last_published_time"] = capo_quicksight.types.timestamp.deserialize_json(

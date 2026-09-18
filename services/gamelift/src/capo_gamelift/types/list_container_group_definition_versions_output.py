@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: ListContainerGroupDefinitionVersionsOutput) ->
 
 def deserialize_aws_json_1_1(data: dict) -> ListContainerGroupDefinitionVersionsOutput:
     out: ListContainerGroupDefinitionVersionsOutput = {}  # type: ignore[typeddict-item]
-    if "ContainerGroupDefinitions" in data:
+    if data.get("ContainerGroupDefinitions") is not None:
         import capo_gamelift.types.container_group_definition_list
 
         out["container_group_definitions"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListContainerGroupDefinitionVersions
                 data["ContainerGroupDefinitions"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

@@ -25,15 +25,15 @@ def serialize_json(value: FailureByQueryException_) -> dict:
 
 def deserialize_json(data: dict) -> FailureByQueryException_:
     out: FailureByQueryException_ = {}  # type: ignore[typeddict-item]
-    if "detailedMessage" in data:
+    if data.get("detailedMessage") is not None:
         out["detailed_message"] = data["detailedMessage"]
     else:
         raise DeserializationError("FailureByQueryException_.detailed_message required")
-    if "requestId" in data:
+    if data.get("requestId") is not None:
         out["request_id"] = data["requestId"]
     else:
         raise DeserializationError("FailureByQueryException_.request_id required")
-    if "code" in data:
+    if data.get("code") is not None:
         out["code"] = data["code"]
     else:
         raise DeserializationError("FailureByQueryException_.code required")
@@ -45,15 +45,18 @@ class FailureByQueryException(ServiceError):
 
     code: str | None = "FailureByQueryException"
 
-    def __init__(self, data: FailureByQueryException_):
+    def __init__(self, data: FailureByQueryException_, message: str | None = None):
         super().__init__(
             "server",
             is_throttling_error=False,
             is_retryable=True,
             code="FailureByQueryException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "FailureByQueryException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "FailureByQueryException":
+        return cls(deserialize_json(data), message)

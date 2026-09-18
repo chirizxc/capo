@@ -45,7 +45,7 @@ def serialize_json(value: UpdateTopicRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateTopicRequest:
     out: UpdateTopicRequest = {}  # type: ignore[typeddict-item]
-    if "Topic" in data:
+    if data.get("Topic") is not None:
         import capo_quicksight.types.topic_details
 
         out["topic"] = capo_quicksight.types.topic_details.deserialize_json(
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> UpdateTopicRequest:
         )
     else:
         raise DeserializationError("UpdateTopicRequest.topic required")
-    if "CustomInstructions" in data:
+    if data.get("CustomInstructions") is not None:
         import capo_quicksight.types.custom_instructions
 
         out["custom_instructions"] = (

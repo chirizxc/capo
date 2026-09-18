@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> CountryCodes:
 
     out: CountryCodes = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_wafv2.types.country_code.deserialize_aws_json_1_1(item))
     return out

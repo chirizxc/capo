@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: DatasetLabelStats) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DatasetLabelStats:
     out: DatasetLabelStats = {}  # type: ignore[typeddict-item]
-    if "EntryCount" in data:
+    if data.get("EntryCount") is not None:
         out["entry_count"] = data["EntryCount"]
-    if "BoundingBoxCount" in data:
+    if data.get("BoundingBoxCount") is not None:
         out["bounding_box_count"] = data["BoundingBoxCount"]
     return out

@@ -31,7 +31,7 @@ def serialize_json(value: ListNetworkMigrationMapperSegmentsFilters) -> dict:
 
 def deserialize_json(data: dict) -> ListNetworkMigrationMapperSegmentsFilters:
     out: ListNetworkMigrationMapperSegmentsFilters = {}  # type: ignore[typeddict-item]
-    if "segmentIDs" in data:
+    if data.get("segmentIDs") is not None:
         import capo_mgn.types.list_network_migration_mapper_segments_i_ds_filter
 
         out["segment_i_ds"] = (

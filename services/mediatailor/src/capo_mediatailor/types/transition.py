@@ -45,9 +45,9 @@ def serialize_json(value: Transition) -> dict:
 
 def deserialize_json(data: dict) -> Transition:
     out: Transition = {}  # type: ignore[typeddict-item]
-    if "DurationMillis" in data:
+    if data.get("DurationMillis") is not None:
         out["duration_millis"] = data["DurationMillis"]
-    if "RelativePosition" in data:
+    if data.get("RelativePosition") is not None:
         import capo_mediatailor.types.relative_position
 
         out["relative_position"] = (
@@ -57,11 +57,11 @@ def deserialize_json(data: dict) -> Transition:
         )
     else:
         raise DeserializationError("Transition.relative_position required")
-    if "RelativeProgram" in data:
+    if data.get("RelativeProgram") is not None:
         out["relative_program"] = data["RelativeProgram"]
-    if "ScheduledStartTimeMillis" in data:
+    if data.get("ScheduledStartTimeMillis") is not None:
         out["scheduled_start_time_millis"] = data["ScheduledStartTimeMillis"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     else:
         raise DeserializationError("Transition.type required")

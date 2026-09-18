@@ -61,13 +61,13 @@ def serialize_aws_json_1_1(value: UpdateGameServerInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateGameServerInput:
     out: UpdateGameServerInput = {}  # type: ignore[typeddict-item]
-    if "GameServerGroupName" in data:
+    if data.get("GameServerGroupName") is not None:
         out["game_server_group_name"] = data["GameServerGroupName"]
-    if "GameServerId" in data:
+    if data.get("GameServerId") is not None:
         out["game_server_id"] = data["GameServerId"]
-    if "GameServerData" in data:
+    if data.get("GameServerData") is not None:
         out["game_server_data"] = data["GameServerData"]
-    if "UtilizationStatus" in data:
+    if data.get("UtilizationStatus") is not None:
         import capo_gamelift.types.game_server_utilization_status
 
         out["utilization_status"] = (
@@ -75,7 +75,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateGameServerInput:
                 data["UtilizationStatus"]
             )
         )
-    if "HealthCheck" in data:
+    if data.get("HealthCheck") is not None:
         import capo_gamelift.types.game_server_health_check
 
         out["health_check"] = (

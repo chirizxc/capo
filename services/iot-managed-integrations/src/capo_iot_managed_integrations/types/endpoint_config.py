@@ -34,7 +34,7 @@ def serialize_json(value: EndpointConfig) -> dict:
 
 def deserialize_json(data: dict) -> EndpointConfig:
     out: EndpointConfig = {}  # type: ignore[typeddict-item]
-    if "lambda" in data:
+    if data.get("lambda") is not None:
         import capo_iot_managed_integrations.types.lambda_config
 
         out["lambda"] = (

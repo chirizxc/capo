@@ -32,10 +32,10 @@ def serialize_aws_json_1_1(value: FindMatchesTaskRunProperties) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> FindMatchesTaskRunProperties:
     out: FindMatchesTaskRunProperties = {}  # type: ignore[typeddict-item]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
-    if "JobName" in data:
+    if data.get("JobName") is not None:
         out["job_name"] = data["JobName"]
-    if "JobRunId" in data:
+    if data.get("JobRunId") is not None:
         out["job_run_id"] = data["JobRunId"]
     return out

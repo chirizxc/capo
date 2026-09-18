@@ -197,11 +197,11 @@ def serialize_aws_json_1_0(value: InstanceNetworkInterfaceSpecification) -> dict
 
 def deserialize_aws_json_1_0(data: dict) -> InstanceNetworkInterfaceSpecification:
     out: InstanceNetworkInterfaceSpecification = {}  # type: ignore[typeddict-item]
-    if "AssociateCarrierIpAddress" in data:
+    if data.get("AssociateCarrierIpAddress") is not None:
         out["associate_carrier_ip_address"] = data["AssociateCarrierIpAddress"]
-    if "AssociatePublicIpAddress" in data:
+    if data.get("AssociatePublicIpAddress") is not None:
         out["associate_public_ip_address"] = data["AssociatePublicIpAddress"]
-    if "ConnectionTrackingSpecification" in data:
+    if data.get("ConnectionTrackingSpecification") is not None:
         import capo_workspaces_instances.types.connection_tracking_specification_request
 
         out["connection_tracking_specification"] = (
@@ -209,11 +209,11 @@ def deserialize_aws_json_1_0(data: dict) -> InstanceNetworkInterfaceSpecificatio
                 data["ConnectionTrackingSpecification"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DeviceIndex" in data:
+    if data.get("DeviceIndex") is not None:
         out["device_index"] = data["DeviceIndex"]
-    if "EnaSrdSpecification" in data:
+    if data.get("EnaSrdSpecification") is not None:
         import capo_workspaces_instances.types.ena_srd_specification_request
 
         out["ena_srd_specification"] = (
@@ -221,7 +221,7 @@ def deserialize_aws_json_1_0(data: dict) -> InstanceNetworkInterfaceSpecificatio
                 data["EnaSrdSpecification"]
             )
         )
-    if "InterfaceType" in data:
+    if data.get("InterfaceType") is not None:
         import capo_workspaces_instances.types.interface_type_enum
 
         out["interface_type"] = (
@@ -229,7 +229,7 @@ def deserialize_aws_json_1_0(data: dict) -> InstanceNetworkInterfaceSpecificatio
                 data["InterfaceType"]
             )
         )
-    if "Ipv4Prefixes" in data:
+    if data.get("Ipv4Prefixes") is not None:
         import capo_workspaces_instances.types.ipv4_prefixes
 
         out["ipv4_prefixes"] = (
@@ -237,11 +237,11 @@ def deserialize_aws_json_1_0(data: dict) -> InstanceNetworkInterfaceSpecificatio
                 data["Ipv4Prefixes"]
             )
         )
-    if "Ipv4PrefixCount" in data:
+    if data.get("Ipv4PrefixCount") is not None:
         out["ipv4_prefix_count"] = data["Ipv4PrefixCount"]
-    if "Ipv6AddressCount" in data:
+    if data.get("Ipv6AddressCount") is not None:
         out["ipv6_address_count"] = data["Ipv6AddressCount"]
-    if "Ipv6Addresses" in data:
+    if data.get("Ipv6Addresses") is not None:
         import capo_workspaces_instances.types.ipv6_addresses
 
         out["ipv6_addresses"] = (
@@ -249,7 +249,7 @@ def deserialize_aws_json_1_0(data: dict) -> InstanceNetworkInterfaceSpecificatio
                 data["Ipv6Addresses"]
             )
         )
-    if "Ipv6Prefixes" in data:
+    if data.get("Ipv6Prefixes") is not None:
         import capo_workspaces_instances.types.ipv6_prefixes
 
         out["ipv6_prefixes"] = (
@@ -257,17 +257,17 @@ def deserialize_aws_json_1_0(data: dict) -> InstanceNetworkInterfaceSpecificatio
                 data["Ipv6Prefixes"]
             )
         )
-    if "Ipv6PrefixCount" in data:
+    if data.get("Ipv6PrefixCount") is not None:
         out["ipv6_prefix_count"] = data["Ipv6PrefixCount"]
-    if "NetworkCardIndex" in data:
+    if data.get("NetworkCardIndex") is not None:
         out["network_card_index"] = data["NetworkCardIndex"]
-    if "NetworkInterfaceId" in data:
+    if data.get("NetworkInterfaceId") is not None:
         out["network_interface_id"] = data["NetworkInterfaceId"]
-    if "PrimaryIpv6" in data:
+    if data.get("PrimaryIpv6") is not None:
         out["primary_ipv6"] = data["PrimaryIpv6"]
-    if "PrivateIpAddress" in data:
+    if data.get("PrivateIpAddress") is not None:
         out["private_ip_address"] = data["PrivateIpAddress"]
-    if "PrivateIpAddresses" in data:
+    if data.get("PrivateIpAddresses") is not None:
         import capo_workspaces_instances.types.private_ip_addresses
 
         out["private_ip_addresses"] = (
@@ -275,11 +275,11 @@ def deserialize_aws_json_1_0(data: dict) -> InstanceNetworkInterfaceSpecificatio
                 data["PrivateIpAddresses"]
             )
         )
-    if "SecondaryPrivateIpAddressCount" in data:
+    if data.get("SecondaryPrivateIpAddressCount") is not None:
         out["secondary_private_ip_address_count"] = data[
             "SecondaryPrivateIpAddressCount"
         ]
-    if "Groups" in data:
+    if data.get("Groups") is not None:
         import capo_workspaces_instances.types.security_group_ids
 
         out["groups"] = (
@@ -287,6 +287,6 @@ def deserialize_aws_json_1_0(data: dict) -> InstanceNetworkInterfaceSpecificatio
                 data["Groups"]
             )
         )
-    if "SubnetId" in data:
+    if data.get("SubnetId") is not None:
         out["subnet_id"] = data["SubnetId"]
     return out

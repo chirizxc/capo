@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> HitList:
 
     out: HitList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_cloudsearch_domain.types.hit.deserialize_json(item))
     return out

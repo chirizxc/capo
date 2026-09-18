@@ -42,7 +42,7 @@ def serialize_json(value: SameSheetTargetVisualConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SameSheetTargetVisualConfiguration:
     out: SameSheetTargetVisualConfiguration = {}  # type: ignore[typeddict-item]
-    if "TargetVisuals" in data:
+    if data.get("TargetVisuals") is not None:
         import capo_quicksight.types.target_visual_list
 
         out["target_visuals"] = (
@@ -50,7 +50,7 @@ def deserialize_json(data: dict) -> SameSheetTargetVisualConfiguration:
                 data["TargetVisuals"]
             )
         )
-    if "TargetVisualOptions" in data:
+    if data.get("TargetVisualOptions") is not None:
         import capo_quicksight.types.target_visual_options
 
         out["target_visual_options"] = (

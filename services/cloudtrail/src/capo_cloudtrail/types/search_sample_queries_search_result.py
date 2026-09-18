@@ -33,20 +33,28 @@ def serialize_aws_json_1_1(value: SearchSampleQueriesSearchResult) -> dict:
         out["Description"] = value["description"]
     if "sql" in value:
         out["SQL"] = value["sql"]
-    out["Relevance"] = value.get("relevance", 0)
+    out["Relevance"] = (
+        "NaN"
+        if value.get("relevance", 0) != value.get("relevance", 0)
+        else "Infinity"
+        if value.get("relevance", 0) == float("inf")
+        else "-Infinity"
+        if value.get("relevance", 0) == float("-inf")
+        else value.get("relevance", 0)
+    )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> SearchSampleQueriesSearchResult:
     out: SearchSampleQueriesSearchResult = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "SQL" in data:
+    if data.get("SQL") is not None:
         out["sql"] = data["SQL"]
-    if "Relevance" in data:
-        out["relevance"] = data["Relevance"]
+    if data.get("Relevance") is not None:
+        out["relevance"] = float(data["Relevance"])
     else:
         out["relevance"] = 0
     return out

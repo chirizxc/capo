@@ -14,4 +14,4 @@ def serialize_json(value: CorsOriginList) -> list:
 
 
 def deserialize_json(data: list) -> CorsOriginList:
-    return list(data)
+    return [item for item in data if item is not None]

@@ -44,7 +44,7 @@ def serialize_json(value: BandwidthReductionFilter) -> dict:
 
 def deserialize_json(data: dict) -> BandwidthReductionFilter:
     out: BandwidthReductionFilter = {}  # type: ignore[typeddict-item]
-    if "sharpening" in data:
+    if data.get("sharpening") is not None:
         import capo_mediaconvert.types.bandwidth_reduction_filter_sharpening
 
         out["sharpening"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> BandwidthReductionFilter:
                 data["sharpening"]
             )
         )
-    if "strength" in data:
+    if data.get("strength") is not None:
         import capo_mediaconvert.types.bandwidth_reduction_filter_strength
 
         out["strength"] = (

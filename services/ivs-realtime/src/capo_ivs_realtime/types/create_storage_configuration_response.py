@@ -31,7 +31,7 @@ def serialize_json(value: CreateStorageConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateStorageConfigurationResponse:
     out: CreateStorageConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "storageConfiguration" in data:
+    if data.get("storageConfiguration") is not None:
         import capo_ivs_realtime.types.storage_configuration
 
         out["storage_configuration"] = (

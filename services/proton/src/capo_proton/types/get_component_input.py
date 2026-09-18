@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: GetComponentInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetComponentInput:
     out: GetComponentInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("GetComponentInput.name required")

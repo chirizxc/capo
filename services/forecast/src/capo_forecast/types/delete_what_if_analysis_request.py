@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteWhatIfAnalysisRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteWhatIfAnalysisRequest:
     out: DeleteWhatIfAnalysisRequest = {}  # type: ignore[typeddict-item]
-    if "WhatIfAnalysisArn" in data:
+    if data.get("WhatIfAnalysisArn") is not None:
         out["what_if_analysis_arn"] = data["WhatIfAnalysisArn"]
     else:
         raise DeserializationError(

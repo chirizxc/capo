@@ -35,12 +35,12 @@ def serialize_json(value: CreateBackendConfigResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateBackendConfigResponse:
     out: CreateBackendConfigResponse = {}  # type: ignore[typeddict-item]
-    if "appId" in data:
+    if data.get("appId") is not None:
         out["app_id"] = data["appId"]
-    if "backendEnvironmentName" in data:
+    if data.get("backendEnvironmentName") is not None:
         out["backend_environment_name"] = data["backendEnvironmentName"]
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     return out

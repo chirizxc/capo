@@ -32,7 +32,7 @@ def serialize_json(value: GetDatastoreResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetDatastoreResponse:
     out: GetDatastoreResponse = {}  # type: ignore[typeddict-item]
-    if "datastoreProperties" in data:
+    if data.get("datastoreProperties") is not None:
         import capo_medical_imaging.types.datastore_properties
 
         out["datastore_properties"] = (

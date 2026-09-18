@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: StopEntitiesDetectionV2JobRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StopEntitiesDetectionV2JobRequest:
     out: StopEntitiesDetectionV2JobRequest = {}  # type: ignore[typeddict-item]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
     else:
         raise DeserializationError("StopEntitiesDetectionV2JobRequest.job_id required")

@@ -99,7 +99,7 @@ def serialize_json(value: FilledMapConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> FilledMapConfiguration:
     out: FilledMapConfiguration = {}  # type: ignore[typeddict-item]
-    if "FieldWells" in data:
+    if data.get("FieldWells") is not None:
         import capo_quicksight.types.filled_map_field_wells
 
         out["field_wells"] = (
@@ -107,7 +107,7 @@ def deserialize_json(data: dict) -> FilledMapConfiguration:
                 data["FieldWells"]
             )
         )
-    if "SortConfiguration" in data:
+    if data.get("SortConfiguration") is not None:
         import capo_quicksight.types.filled_map_sort_configuration
 
         out["sort_configuration"] = (
@@ -115,19 +115,19 @@ def deserialize_json(data: dict) -> FilledMapConfiguration:
                 data["SortConfiguration"]
             )
         )
-    if "Legend" in data:
+    if data.get("Legend") is not None:
         import capo_quicksight.types.legend_options
 
         out["legend"] = capo_quicksight.types.legend_options.deserialize_json(
             data["Legend"]
         )
-    if "Tooltip" in data:
+    if data.get("Tooltip") is not None:
         import capo_quicksight.types.tooltip_options
 
         out["tooltip"] = capo_quicksight.types.tooltip_options.deserialize_json(
             data["Tooltip"]
         )
-    if "WindowOptions" in data:
+    if data.get("WindowOptions") is not None:
         import capo_quicksight.types.geospatial_window_options
 
         out["window_options"] = (
@@ -135,7 +135,7 @@ def deserialize_json(data: dict) -> FilledMapConfiguration:
                 data["WindowOptions"]
             )
         )
-    if "MapStyleOptions" in data:
+    if data.get("MapStyleOptions") is not None:
         import capo_quicksight.types.geospatial_map_style_options
 
         out["map_style_options"] = (
@@ -143,7 +143,7 @@ def deserialize_json(data: dict) -> FilledMapConfiguration:
                 data["MapStyleOptions"]
             )
         )
-    if "Interactions" in data:
+    if data.get("Interactions") is not None:
         import capo_quicksight.types.visual_interaction_options
 
         out["interactions"] = (

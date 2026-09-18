@@ -27,7 +27,7 @@ def serialize_json(value: GetDedicatedIpResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetDedicatedIpResponse:
     out: GetDedicatedIpResponse = {}  # type: ignore[typeddict-item]
-    if "DedicatedIp" in data:
+    if data.get("DedicatedIp") is not None:
         import capo_pinpoint_email.types.dedicated_ip
 
         out["dedicated_ip"] = capo_pinpoint_email.types.dedicated_ip.deserialize_json(

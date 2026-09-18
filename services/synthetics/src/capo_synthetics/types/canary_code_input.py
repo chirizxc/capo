@@ -60,27 +60,27 @@ def serialize_json(value: CanaryCodeInput) -> dict:
 
 def deserialize_json(data: dict) -> CanaryCodeInput:
     out: CanaryCodeInput = {}  # type: ignore[typeddict-item]
-    if "S3Bucket" in data:
+    if data.get("S3Bucket") is not None:
         out["s3_bucket"] = data["S3Bucket"]
-    if "S3Key" in data:
+    if data.get("S3Key") is not None:
         out["s3_key"] = data["S3Key"]
-    if "S3Version" in data:
+    if data.get("S3Version") is not None:
         out["s3_version"] = data["S3Version"]
-    if "ZipFile" in data:
+    if data.get("ZipFile") is not None:
         import capo_synthetics.types.blob
 
         out["zip_file"] = capo_synthetics.types.blob.deserialize_json(data["ZipFile"])
-    if "Handler" in data:
+    if data.get("Handler") is not None:
         out["handler"] = data["Handler"]
     else:
         out["handler"] = ""
-    if "BlueprintTypes" in data:
+    if data.get("BlueprintTypes") is not None:
         import capo_synthetics.types.blueprint_types
 
         out["blueprint_types"] = capo_synthetics.types.blueprint_types.deserialize_json(
             data["BlueprintTypes"]
         )
-    if "Dependencies" in data:
+    if data.get("Dependencies") is not None:
         import capo_synthetics.types.dependencies
 
         out["dependencies"] = capo_synthetics.types.dependencies.deserialize_json(

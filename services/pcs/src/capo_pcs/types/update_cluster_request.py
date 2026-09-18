@@ -42,13 +42,13 @@ def serialize_aws_json_1_0(value: UpdateClusterRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdateClusterRequest:
     out: UpdateClusterRequest = {}  # type: ignore[typeddict-item]
-    if "clusterIdentifier" in data:
+    if data.get("clusterIdentifier") is not None:
         out["cluster_identifier"] = data["clusterIdentifier"]
     else:
         raise DeserializationError("UpdateClusterRequest.cluster_identifier required")
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "slurmConfiguration" in data:
+    if data.get("slurmConfiguration") is not None:
         import capo_pcs.types.update_cluster_slurm_configuration_request
 
         out["slurm_configuration"] = (

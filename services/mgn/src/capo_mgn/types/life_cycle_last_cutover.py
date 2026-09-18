@@ -57,7 +57,7 @@ def serialize_json(value: LifeCycleLastCutover) -> dict:
 
 def deserialize_json(data: dict) -> LifeCycleLastCutover:
     out: LifeCycleLastCutover = {}  # type: ignore[typeddict-item]
-    if "initiated" in data:
+    if data.get("initiated") is not None:
         import capo_mgn.types.life_cycle_last_cutover_initiated
 
         out["initiated"] = (
@@ -65,7 +65,7 @@ def deserialize_json(data: dict) -> LifeCycleLastCutover:
                 data["initiated"]
             )
         )
-    if "reverted" in data:
+    if data.get("reverted") is not None:
         import capo_mgn.types.life_cycle_last_cutover_reverted
 
         out["reverted"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> LifeCycleLastCutover:
                 data["reverted"]
             )
         )
-    if "finalized" in data:
+    if data.get("finalized") is not None:
         import capo_mgn.types.life_cycle_last_cutover_finalized
 
         out["finalized"] = (

@@ -23,6 +23,6 @@ def serialize_json(value: AmazonConnectGuideAssociationData) -> dict:
 
 def deserialize_json(data: dict) -> AmazonConnectGuideAssociationData:
     out: AmazonConnectGuideAssociationData = {}  # type: ignore[typeddict-item]
-    if "flowId" in data:
+    if data.get("flowId") is not None:
         out["flow_id"] = data["flowId"]
     return out

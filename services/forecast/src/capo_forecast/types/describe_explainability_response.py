@@ -111,13 +111,13 @@ def serialize_aws_json_1_1(value: DescribeExplainabilityResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeExplainabilityResponse:
     out: DescribeExplainabilityResponse = {}  # type: ignore[typeddict-item]
-    if "ExplainabilityArn" in data:
+    if data.get("ExplainabilityArn") is not None:
         out["explainability_arn"] = data["ExplainabilityArn"]
-    if "ExplainabilityName" in data:
+    if data.get("ExplainabilityName") is not None:
         out["explainability_name"] = data["ExplainabilityName"]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "ExplainabilityConfig" in data:
+    if data.get("ExplainabilityConfig") is not None:
         import capo_forecast.types.explainability_config
 
         out["explainability_config"] = (
@@ -125,39 +125,39 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeExplainabilityResponse:
                 data["ExplainabilityConfig"]
             )
         )
-    if "EnableVisualization" in data:
+    if data.get("EnableVisualization") is not None:
         out["enable_visualization"] = data["EnableVisualization"]
-    if "DataSource" in data:
+    if data.get("DataSource") is not None:
         import capo_forecast.types.data_source
 
         out["data_source"] = capo_forecast.types.data_source.deserialize_aws_json_1_1(
             data["DataSource"]
         )
-    if "Schema" in data:
+    if data.get("Schema") is not None:
         import capo_forecast.types.schema
 
         out["schema"] = capo_forecast.types.schema.deserialize_aws_json_1_1(
             data["Schema"]
         )
-    if "StartDateTime" in data:
+    if data.get("StartDateTime") is not None:
         out["start_date_time"] = data["StartDateTime"]
-    if "EndDateTime" in data:
+    if data.get("EndDateTime") is not None:
         out["end_date_time"] = data["EndDateTime"]
-    if "EstimatedTimeRemainingInMinutes" in data:
+    if data.get("EstimatedTimeRemainingInMinutes") is not None:
         out["estimated_time_remaining_in_minutes"] = data[
             "EstimatedTimeRemainingInMinutes"
         ]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_forecast.types.timestamp
 
         out["creation_time"] = capo_forecast.types.timestamp.deserialize_aws_json_1_1(
             data["CreationTime"]
         )
-    if "LastModificationTime" in data:
+    if data.get("LastModificationTime") is not None:
         import capo_forecast.types.timestamp
 
         out["last_modification_time"] = (

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> EnvironmentFailureReasonsList:
 
     out: EnvironmentFailureReasonsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_datazone.types.environment_error.deserialize_json(item))
     return out

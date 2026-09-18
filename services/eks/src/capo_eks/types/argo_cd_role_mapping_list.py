@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> ArgoCdRoleMappingList:
 
     out: ArgoCdRoleMappingList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_eks.types.argo_cd_role_mapping.deserialize_json(item))
     return out

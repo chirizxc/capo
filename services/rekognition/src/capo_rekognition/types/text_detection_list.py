@@ -25,5 +25,7 @@ def deserialize_aws_json_1_1(data: list) -> TextDetectionList:
 
     out: TextDetectionList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_rekognition.types.text_detection.deserialize_aws_json_1_1(item))
     return out

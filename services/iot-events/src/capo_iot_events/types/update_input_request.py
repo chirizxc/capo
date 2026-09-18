@@ -38,9 +38,9 @@ def serialize_json(value: UpdateInputRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateInputRequest:
     out: UpdateInputRequest = {}  # type: ignore[typeddict-item]
-    if "inputDescription" in data:
+    if data.get("inputDescription") is not None:
         out["input_description"] = data["inputDescription"]
-    if "inputDefinition" in data:
+    if data.get("inputDefinition") is not None:
         import capo_iot_events.types.input_definition
 
         out["input_definition"] = (

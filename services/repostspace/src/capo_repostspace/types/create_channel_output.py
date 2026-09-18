@@ -24,7 +24,7 @@ def serialize_json(value: CreateChannelOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateChannelOutput:
     out: CreateChannelOutput = {}  # type: ignore[typeddict-item]
-    if "channelId" in data:
+    if data.get("channelId") is not None:
         out["channel_id"] = data["channelId"]
     else:
         raise DeserializationError("CreateChannelOutput.channel_id required")

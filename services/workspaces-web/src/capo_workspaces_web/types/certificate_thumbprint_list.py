@@ -16,4 +16,4 @@ def serialize_json(value: CertificateThumbprintList) -> list:
 
 
 def deserialize_json(data: list) -> CertificateThumbprintList:
-    return list(data)
+    return [item for item in data if item is not None]

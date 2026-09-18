@@ -32,17 +32,17 @@ def serialize_aws_json_1_0(value: AcceptConnectionInvitationRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> AcceptConnectionInvitationRequest:
     out: AcceptConnectionInvitationRequest = {}  # type: ignore[typeddict-item]
-    if "Catalog" in data:
+    if data.get("Catalog") is not None:
         out["catalog"] = data["Catalog"]
     else:
         raise DeserializationError("AcceptConnectionInvitationRequest.catalog required")
-    if "Identifier" in data:
+    if data.get("Identifier") is not None:
         out["identifier"] = data["Identifier"]
     else:
         raise DeserializationError(
             "AcceptConnectionInvitationRequest.identifier required"
         )
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
     else:
         raise DeserializationError(

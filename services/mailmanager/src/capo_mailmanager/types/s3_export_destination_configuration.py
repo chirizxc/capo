@@ -23,6 +23,6 @@ def serialize_aws_json_1_0(value: S3ExportDestinationConfiguration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> S3ExportDestinationConfiguration:
     out: S3ExportDestinationConfiguration = {}  # type: ignore[typeddict-item]
-    if "S3Location" in data:
+    if data.get("S3Location") is not None:
         out["s3_location"] = data["S3Location"]
     return out

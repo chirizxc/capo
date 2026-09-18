@@ -36,17 +36,17 @@ def serialize_json(value: SharePrincipal) -> dict:
 
 def deserialize_json(data: dict) -> SharePrincipal:
     out: SharePrincipal = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("SharePrincipal.id required")
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_workdocs.types.principal_type
 
         out["type"] = capo_workdocs.types.principal_type.deserialize_json(data["Type"])
     else:
         raise DeserializationError("SharePrincipal.type required")
-    if "Role" in data:
+    if data.get("Role") is not None:
         import capo_workdocs.types.role_type
 
         out["role"] = capo_workdocs.types.role_type.deserialize_json(data["Role"])

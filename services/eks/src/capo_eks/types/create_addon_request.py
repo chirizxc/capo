@@ -86,29 +86,29 @@ def serialize_json(value: CreateAddonRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateAddonRequest:
     out: CreateAddonRequest = {}  # type: ignore[typeddict-item]
-    if "addonName" in data:
+    if data.get("addonName") is not None:
         out["addon_name"] = data["addonName"]
     else:
         raise DeserializationError("CreateAddonRequest.addon_name required")
-    if "addonVersion" in data:
+    if data.get("addonVersion") is not None:
         out["addon_version"] = data["addonVersion"]
-    if "serviceAccountRoleArn" in data:
+    if data.get("serviceAccountRoleArn") is not None:
         out["service_account_role_arn"] = data["serviceAccountRoleArn"]
-    if "resolveConflicts" in data:
+    if data.get("resolveConflicts") is not None:
         import capo_eks.types.resolve_conflicts
 
         out["resolve_conflicts"] = capo_eks.types.resolve_conflicts.deserialize_json(
             data["resolveConflicts"]
         )
-    if "clientRequestToken" in data:
+    if data.get("clientRequestToken") is not None:
         out["client_request_token"] = data["clientRequestToken"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_eks.types.tag_map
 
         out["tags"] = capo_eks.types.tag_map.deserialize_json(data["tags"])
-    if "configurationValues" in data:
+    if data.get("configurationValues") is not None:
         out["configuration_values"] = data["configurationValues"]
-    if "podIdentityAssociations" in data:
+    if data.get("podIdentityAssociations") is not None:
         import capo_eks.types.addon_pod_identity_associations_list
 
         out["pod_identity_associations"] = (
@@ -116,7 +116,7 @@ def deserialize_json(data: dict) -> CreateAddonRequest:
                 data["podIdentityAssociations"]
             )
         )
-    if "namespaceConfig" in data:
+    if data.get("namespaceConfig") is not None:
         import capo_eks.types.addon_namespace_config_request
 
         out["namespace_config"] = (

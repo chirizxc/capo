@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> WorkspacePageList:
 
     out: WorkspacePageList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connect.types.workspace_page.deserialize_json(item))
     return out

@@ -99,21 +99,21 @@ def serialize_json(value: GetApplicationResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetApplicationResponse:
     out: GetApplicationResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "endpoint" in data:
+    if data.get("endpoint") is not None:
         out["endpoint"] = data["endpoint"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_opensearch.types.application_status
 
         out["status"] = capo_opensearch.types.application_status.deserialize_json(
             data["status"]
         )
-    if "iamIdentityCenterOptions" in data:
+    if data.get("iamIdentityCenterOptions") is not None:
         import capo_opensearch.types.iam_identity_center_options
 
         out["iam_identity_center_options"] = (
@@ -121,30 +121,30 @@ def deserialize_json(data: dict) -> GetApplicationResponse:
                 data["iamIdentityCenterOptions"]
             )
         )
-    if "dataSources" in data:
+    if data.get("dataSources") is not None:
         import capo_opensearch.types.data_sources
 
         out["data_sources"] = capo_opensearch.types.data_sources.deserialize_json(
             data["dataSources"]
         )
-    if "appConfigs" in data:
+    if data.get("appConfigs") is not None:
         import capo_opensearch.types.app_configs
 
         out["app_configs"] = capo_opensearch.types.app_configs.deserialize_json(
             data["appConfigs"]
         )
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_opensearch.types.timestamp
 
         out["created_at"] = capo_opensearch.types.timestamp.deserialize_json(
             data["createdAt"]
         )
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_opensearch.types.timestamp
 
         out["last_updated_at"] = capo_opensearch.types.timestamp.deserialize_json(
             data["lastUpdatedAt"]
         )
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
     return out

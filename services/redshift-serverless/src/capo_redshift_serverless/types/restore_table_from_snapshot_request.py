@@ -52,49 +52,49 @@ def serialize_aws_json_1_1(value: RestoreTableFromSnapshotRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RestoreTableFromSnapshotRequest:
     out: RestoreTableFromSnapshotRequest = {}  # type: ignore[typeddict-item]
-    if "namespaceName" in data:
+    if data.get("namespaceName") is not None:
         out["namespace_name"] = data["namespaceName"]
     else:
         raise DeserializationError(
             "RestoreTableFromSnapshotRequest.namespace_name required"
         )
-    if "workgroupName" in data:
+    if data.get("workgroupName") is not None:
         out["workgroup_name"] = data["workgroupName"]
     else:
         raise DeserializationError(
             "RestoreTableFromSnapshotRequest.workgroup_name required"
         )
-    if "snapshotName" in data:
+    if data.get("snapshotName") is not None:
         out["snapshot_name"] = data["snapshotName"]
     else:
         raise DeserializationError(
             "RestoreTableFromSnapshotRequest.snapshot_name required"
         )
-    if "sourceDatabaseName" in data:
+    if data.get("sourceDatabaseName") is not None:
         out["source_database_name"] = data["sourceDatabaseName"]
     else:
         raise DeserializationError(
             "RestoreTableFromSnapshotRequest.source_database_name required"
         )
-    if "sourceSchemaName" in data:
+    if data.get("sourceSchemaName") is not None:
         out["source_schema_name"] = data["sourceSchemaName"]
-    if "sourceTableName" in data:
+    if data.get("sourceTableName") is not None:
         out["source_table_name"] = data["sourceTableName"]
     else:
         raise DeserializationError(
             "RestoreTableFromSnapshotRequest.source_table_name required"
         )
-    if "targetDatabaseName" in data:
+    if data.get("targetDatabaseName") is not None:
         out["target_database_name"] = data["targetDatabaseName"]
-    if "targetSchemaName" in data:
+    if data.get("targetSchemaName") is not None:
         out["target_schema_name"] = data["targetSchemaName"]
-    if "newTableName" in data:
+    if data.get("newTableName") is not None:
         out["new_table_name"] = data["newTableName"]
     else:
         raise DeserializationError(
             "RestoreTableFromSnapshotRequest.new_table_name required"
         )
-    if "activateCaseSensitiveIdentifier" in data:
+    if data.get("activateCaseSensitiveIdentifier") is not None:
         out["activate_case_sensitive_identifier"] = data[
             "activateCaseSensitiveIdentifier"
         ]

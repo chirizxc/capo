@@ -24,7 +24,7 @@ def serialize_json(value: CaseSummarizationInputData) -> dict:
 
 def deserialize_json(data: dict) -> CaseSummarizationInputData:
     out: CaseSummarizationInputData = {}  # type: ignore[typeddict-item]
-    if "caseArn" in data:
+    if data.get("caseArn") is not None:
         out["case_arn"] = data["caseArn"]
     else:
         raise DeserializationError("CaseSummarizationInputData.case_arn required")

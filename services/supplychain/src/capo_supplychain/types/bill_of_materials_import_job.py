@@ -43,15 +43,15 @@ def serialize_json(value: BillOfMaterialsImportJob) -> dict:
 
 def deserialize_json(data: dict) -> BillOfMaterialsImportJob:
     out: BillOfMaterialsImportJob = {}  # type: ignore[typeddict-item]
-    if "instanceId" in data:
+    if data.get("instanceId") is not None:
         out["instance_id"] = data["instanceId"]
     else:
         raise DeserializationError("BillOfMaterialsImportJob.instance_id required")
-    if "jobId" in data:
+    if data.get("jobId") is not None:
         out["job_id"] = data["jobId"]
     else:
         raise DeserializationError("BillOfMaterialsImportJob.job_id required")
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_supplychain.types.configuration_job_status
 
         out["status"] = (
@@ -61,10 +61,10 @@ def deserialize_json(data: dict) -> BillOfMaterialsImportJob:
         )
     else:
         raise DeserializationError("BillOfMaterialsImportJob.status required")
-    if "s3uri" in data:
+    if data.get("s3uri") is not None:
         out["s3uri"] = data["s3uri"]
     else:
         raise DeserializationError("BillOfMaterialsImportJob.s3uri required")
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out

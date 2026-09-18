@@ -68,7 +68,7 @@ def serialize_json(value: CreateRecommenderRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateRecommenderRequest:
     out: CreateRecommenderRequest = {}  # type: ignore[typeddict-item]
-    if "RecommenderRecipeName" in data:
+    if data.get("RecommenderRecipeName") is not None:
         import capo_customer_profiles.types.recommender_recipe_name
 
         out["recommender_recipe_name"] = (
@@ -80,7 +80,7 @@ def deserialize_json(data: dict) -> CreateRecommenderRequest:
         raise DeserializationError(
             "CreateRecommenderRequest.recommender_recipe_name required"
         )
-    if "RecommenderConfig" in data:
+    if data.get("RecommenderConfig") is not None:
         import capo_customer_profiles.types.recommender_config
 
         out["recommender_config"] = (
@@ -88,11 +88,11 @@ def deserialize_json(data: dict) -> CreateRecommenderRequest:
                 data["RecommenderConfig"]
             )
         )
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "RecommenderSchemaName" in data:
+    if data.get("RecommenderSchemaName") is not None:
         out["recommender_schema_name"] = data["RecommenderSchemaName"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_customer_profiles.types.tag_map
 
         out["tags"] = capo_customer_profiles.types.tag_map.deserialize_json(

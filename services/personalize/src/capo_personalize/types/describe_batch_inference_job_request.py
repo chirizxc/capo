@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DescribeBatchInferenceJobRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeBatchInferenceJobRequest:
     out: DescribeBatchInferenceJobRequest = {}  # type: ignore[typeddict-item]
-    if "batchInferenceJobArn" in data:
+    if data.get("batchInferenceJobArn") is not None:
         out["batch_inference_job_arn"] = data["batchInferenceJobArn"]
     else:
         raise DeserializationError(

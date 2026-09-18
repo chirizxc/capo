@@ -58,7 +58,7 @@ def serialize_json(value: Destination) -> dict:
 
 def deserialize_json(data: dict) -> Destination:
     out: Destination = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_efs.types.replication_status
 
         out["status"] = capo_efs.types.replication_status.deserialize_json(
@@ -66,24 +66,24 @@ def deserialize_json(data: dict) -> Destination:
         )
     else:
         raise DeserializationError("Destination.status required")
-    if "FileSystemId" in data:
+    if data.get("FileSystemId") is not None:
         out["file_system_id"] = data["FileSystemId"]
     else:
         raise DeserializationError("Destination.file_system_id required")
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
     else:
         raise DeserializationError("Destination.region required")
-    if "LastReplicatedTimestamp" in data:
+    if data.get("LastReplicatedTimestamp") is not None:
         import capo_efs.types.timestamp
 
         out["last_replicated_timestamp"] = capo_efs.types.timestamp.deserialize_json(
             data["LastReplicatedTimestamp"]
         )
-    if "OwnerId" in data:
+    if data.get("OwnerId") is not None:
         out["owner_id"] = data["OwnerId"]
-    if "StatusMessage" in data:
+    if data.get("StatusMessage") is not None:
         out["status_message"] = data["StatusMessage"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     return out

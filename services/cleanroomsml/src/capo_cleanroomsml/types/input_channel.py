@@ -36,7 +36,7 @@ def serialize_json(value: InputChannel) -> dict:
 
 def deserialize_json(data: dict) -> InputChannel:
     out: InputChannel = {}  # type: ignore[typeddict-item]
-    if "dataSource" in data:
+    if data.get("dataSource") is not None:
         import capo_cleanroomsml.types.input_channel_data_source
 
         out["data_source"] = (
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> InputChannel:
         )
     else:
         raise DeserializationError("InputChannel.data_source required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("InputChannel.role_arn required")

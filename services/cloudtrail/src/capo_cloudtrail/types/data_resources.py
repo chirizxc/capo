@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> DataResources:
 
     out: DataResources = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_cloudtrail.types.data_resource.deserialize_aws_json_1_1(item))
     return out

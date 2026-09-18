@@ -36,13 +36,13 @@ def serialize_json(value: S3RecordingSinkRuntimeConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> S3RecordingSinkRuntimeConfiguration:
     out: S3RecordingSinkRuntimeConfiguration = {}  # type: ignore[typeddict-item]
-    if "Destination" in data:
+    if data.get("Destination") is not None:
         out["destination"] = data["Destination"]
     else:
         raise DeserializationError(
             "S3RecordingSinkRuntimeConfiguration.destination required"
         )
-    if "RecordingFileFormat" in data:
+    if data.get("RecordingFileFormat") is not None:
         import capo_chime_sdk_media_pipelines.types.recording_file_format
 
         out["recording_file_format"] = (

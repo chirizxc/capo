@@ -34,7 +34,7 @@ def serialize_json(value: TerminationHealth) -> dict:
 
 def deserialize_json(data: dict) -> TerminationHealth:
     out: TerminationHealth = {}  # type: ignore[typeddict-item]
-    if "Timestamp" in data:
+    if data.get("Timestamp") is not None:
         import capo_chime_sdk_voice.types.iso8601_timestamp
 
         out["timestamp"] = (
@@ -42,6 +42,6 @@ def deserialize_json(data: dict) -> TerminationHealth:
                 data["Timestamp"]
             )
         )
-    if "Source" in data:
+    if data.get("Source") is not None:
         out["source"] = data["Source"]
     return out

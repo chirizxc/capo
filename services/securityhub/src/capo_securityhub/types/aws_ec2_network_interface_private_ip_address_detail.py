@@ -31,8 +31,8 @@ def serialize_json(value: AwsEc2NetworkInterfacePrivateIpAddressDetail) -> dict:
 
 def deserialize_json(data: dict) -> AwsEc2NetworkInterfacePrivateIpAddressDetail:
     out: AwsEc2NetworkInterfacePrivateIpAddressDetail = {}  # type: ignore[typeddict-item]
-    if "PrivateIpAddress" in data:
+    if data.get("PrivateIpAddress") is not None:
         out["private_ip_address"] = data["PrivateIpAddress"]
-    if "PrivateDnsName" in data:
+    if data.get("PrivateDnsName") is not None:
         out["private_dns_name"] = data["PrivateDnsName"]
     return out

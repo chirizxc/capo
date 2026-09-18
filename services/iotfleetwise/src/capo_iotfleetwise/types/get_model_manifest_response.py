@@ -63,19 +63,19 @@ def serialize_aws_json_1_0(value: GetModelManifestResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetModelManifestResponse:
     out: GetModelManifestResponse = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("GetModelManifestResponse.name required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("GetModelManifestResponse.arn required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "signalCatalogArn" in data:
+    if data.get("signalCatalogArn") is not None:
         out["signal_catalog_arn"] = data["signalCatalogArn"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_iotfleetwise.types.manifest_status
 
         out["status"] = (
@@ -83,7 +83,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetModelManifestResponse:
                 data["status"]
             )
         )
-    if "creationTime" in data:
+    if data.get("creationTime") is not None:
         import capo_iotfleetwise.types.timestamp
 
         out["creation_time"] = (
@@ -93,7 +93,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetModelManifestResponse:
         )
     else:
         raise DeserializationError("GetModelManifestResponse.creation_time required")
-    if "lastModificationTime" in data:
+    if data.get("lastModificationTime") is not None:
         import capo_iotfleetwise.types.timestamp
 
         out["last_modification_time"] = (

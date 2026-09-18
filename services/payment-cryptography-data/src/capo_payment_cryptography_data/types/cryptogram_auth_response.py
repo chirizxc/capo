@@ -50,7 +50,7 @@ def serialize_json(value: CryptogramAuthResponse) -> dict:
 
 
 def deserialize_json(data: dict) -> CryptogramAuthResponse:
-    if "ArpcMethod1" in data:
+    if data.get("ArpcMethod1") is not None:
         import capo_payment_cryptography_data.types.cryptogram_verification_arpc_method1
 
         return {
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> CryptogramAuthResponse:
                 data["ArpcMethod1"]
             )
         }
-    elif "ArpcMethod2" in data:
+    elif data.get("ArpcMethod2") is not None:
         import capo_payment_cryptography_data.types.cryptogram_verification_arpc_method2
 
         return {

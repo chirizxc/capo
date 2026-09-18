@@ -48,7 +48,7 @@ def serialize_aws_json_1_0(value: InputConversion) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> InputConversion:
     out: InputConversion = {}  # type: ignore[typeddict-item]
-    if "fromFormat" in data:
+    if data.get("fromFormat") is not None:
         import capo_b2bi.types.from_format
 
         out["from_format"] = capo_b2bi.types.from_format.deserialize_aws_json_1_0(
@@ -56,13 +56,13 @@ def deserialize_aws_json_1_0(data: dict) -> InputConversion:
         )
     else:
         raise DeserializationError("InputConversion.from_format required")
-    if "formatOptions" in data:
+    if data.get("formatOptions") is not None:
         import capo_b2bi.types.format_options
 
         out["format_options"] = capo_b2bi.types.format_options.deserialize_aws_json_1_0(
             data["formatOptions"]
         )
-    if "advancedOptions" in data:
+    if data.get("advancedOptions") is not None:
         import capo_b2bi.types.advanced_options
 
         out["advanced_options"] = (

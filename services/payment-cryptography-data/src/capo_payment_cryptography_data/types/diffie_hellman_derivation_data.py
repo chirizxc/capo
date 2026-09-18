@@ -31,7 +31,7 @@ def serialize_json(value: DiffieHellmanDerivationData) -> dict:
 
 
 def deserialize_json(data: dict) -> DiffieHellmanDerivationData:
-    if "SharedInformation" in data:
+    if data.get("SharedInformation") is not None:
         return {"SharedInformation": data["SharedInformation"]}
     else:
         raise DeserializationError(

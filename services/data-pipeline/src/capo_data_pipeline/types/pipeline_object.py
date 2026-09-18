@@ -35,15 +35,15 @@ def serialize_aws_json_1_1(value: PipelineObject) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PipelineObject:
     out: PipelineObject = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("PipelineObject.id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("PipelineObject.name required")
-    if "fields" in data:
+    if data.get("fields") is not None:
         import capo_data_pipeline.types.field_list
 
         out["fields"] = capo_data_pipeline.types.field_list.deserialize_aws_json_1_1(

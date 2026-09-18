@@ -37,8 +37,24 @@ def serialize_json(value: Step) -> dict:
     out["EndPosition"] = capo_location.types.position.serialize_json(
         value["end_position"]
     )
-    out["Distance"] = value["distance"]
-    out["DurationSeconds"] = value["duration_seconds"]
+    out["Distance"] = (
+        "NaN"
+        if value["distance"] != value["distance"]
+        else "Infinity"
+        if value["distance"] == float("inf")
+        else "-Infinity"
+        if value["distance"] == float("-inf")
+        else value["distance"]
+    )
+    out["DurationSeconds"] = (
+        "NaN"
+        if value["duration_seconds"] != value["duration_seconds"]
+        else "Infinity"
+        if value["duration_seconds"] == float("inf")
+        else "-Infinity"
+        if value["duration_seconds"] == float("-inf")
+        else value["duration_seconds"]
+    )
     if "geometry_offset" in value:
         out["GeometryOffset"] = value["geometry_offset"]
     return out
@@ -46,7 +62,7 @@ def serialize_json(value: Step) -> dict:
 
 def deserialize_json(data: dict) -> Step:
     out: Step = {}  # type: ignore[typeddict-item]
-    if "StartPosition" in data:
+    if data.get("StartPosition") is not None:
         import capo_location.types.position
 
         out["start_position"] = capo_location.types.position.deserialize_json(
@@ -54,7 +70,7 @@ def deserialize_json(data: dict) -> Step:
         )
     else:
         raise DeserializationError("Step.start_position required")
-    if "EndPosition" in data:
+    if data.get("EndPosition") is not None:
         import capo_location.types.position
 
         out["end_position"] = capo_location.types.position.deserialize_json(
@@ -62,14 +78,14 @@ def deserialize_json(data: dict) -> Step:
         )
     else:
         raise DeserializationError("Step.end_position required")
-    if "Distance" in data:
-        out["distance"] = data["Distance"]
+    if data.get("Distance") is not None:
+        out["distance"] = float(data["Distance"])
     else:
         raise DeserializationError("Step.distance required")
-    if "DurationSeconds" in data:
-        out["duration_seconds"] = data["DurationSeconds"]
+    if data.get("DurationSeconds") is not None:
+        out["duration_seconds"] = float(data["DurationSeconds"])
     else:
         raise DeserializationError("Step.duration_seconds required")
-    if "GeometryOffset" in data:
+    if data.get("GeometryOffset") is not None:
         out["geometry_offset"] = data["GeometryOffset"]
     return out

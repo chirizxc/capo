@@ -30,10 +30,10 @@ def serialize_json(value: AppConfig) -> dict:
 
 def deserialize_json(data: dict) -> AppConfig:
     out: AppConfig = {}  # type: ignore[typeddict-item]
-    if "key" in data:
+    if data.get("key") is not None:
         import capo_opensearch.types.app_config_type
 
         out["key"] = capo_opensearch.types.app_config_type.deserialize_json(data["key"])
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     return out

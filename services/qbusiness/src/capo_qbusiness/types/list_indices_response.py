@@ -30,9 +30,9 @@ def serialize_json(value: ListIndicesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListIndicesResponse:
     out: ListIndicesResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "indices" in data:
+    if data.get("indices") is not None:
         import capo_qbusiness.types.indices
 
         out["indices"] = capo_qbusiness.types.indices.deserialize_json(data["indices"])

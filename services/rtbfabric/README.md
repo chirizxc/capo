@@ -13,9 +13,9 @@ from capo_rtbfabric import AsyncRTBFabricClient
 
 
 async def main():
-    async with AsyncRTBFabricClient() as s3:
+    async with AsyncRTBFabricClient() as rtb_fabric:
         # Example: call the list_requester_gateways operation
-        response = await s3.list_requester_gateways()
+        response = await rtb_fabric.list_requester_gateways()
         print(response["gateway_ids"])
 ```
 
@@ -28,9 +28,9 @@ from capo_rtbfabric import AsyncRTBFabricClient
 
 
 async def main():
-    async with AsyncRTBFabricClient() as s3:
+    async with AsyncRTBFabricClient() as rtb_fabric:
         # Example: paginate over list_requester_gateways
-        async for item in s3.iter_list_requester_gateways():
+        async for item in rtb_fabric.iter_list_requester_gateways():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_rtbfabric.error import InternalServerException
 
 
 async def main():
-    async with AsyncRTBFabricClient() as s3:
+    async with AsyncRTBFabricClient() as rtb_fabric:
         try:
-            await s3.list_requester_gateways()
+            await rtb_fabric.list_requester_gateways()
         except InternalServerException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_rtbfabric import AsyncRTBFabricClient
 
 
 async def main():
-    async with AsyncRTBFabricClient() as s3:
+    async with AsyncRTBFabricClient() as rtb_fabric:
         # Default: 3 attempts for every operation
-        response = await s3.list_requester_gateways()
+        response = await rtb_fabric.list_requester_gateways()
 
         # Override per operation
-        response = await s3.list_requester_gateways(config_overrides={"retry_max_attempts": 5})
+        response = await rtb_fabric.list_requester_gateways(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.list_requester_gateways(config_overrides={"retry_max_attempts": 1})
+        response = await rtb_fabric.list_requester_gateways(config_overrides={"retry_max_attempts": 1})
 ```

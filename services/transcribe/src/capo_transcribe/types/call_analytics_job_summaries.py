@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> CallAnalyticsJobSummaries:
 
     out: CallAnalyticsJobSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_transcribe.types.call_analytics_job_summary.deserialize_aws_json_1_1(
                 item

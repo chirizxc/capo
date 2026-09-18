@@ -54,13 +54,13 @@ def serialize_json(value: ListApplicationComponentsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListApplicationComponentsRequest:
     out: ListApplicationComponentsRequest = {}  # type: ignore[typeddict-item]
-    if "applicationComponentCriteria" in data:
+    if data.get("applicationComponentCriteria") is not None:
         out["application_component_criteria"] = data["applicationComponentCriteria"]
-    if "filterValue" in data:
+    if data.get("filterValue") is not None:
         out["filter_value"] = data["filterValue"]
-    if "sort" in data:
+    if data.get("sort") is not None:
         out["sort"] = data["sort"]
-    if "groupIdFilter" in data:
+    if data.get("groupIdFilter") is not None:
         import capo_migrationhubstrategy.types.group_ids
 
         out["group_id_filter"] = (
@@ -68,8 +68,8 @@ def deserialize_json(data: dict) -> ListApplicationComponentsRequest:
                 data["groupIdFilter"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

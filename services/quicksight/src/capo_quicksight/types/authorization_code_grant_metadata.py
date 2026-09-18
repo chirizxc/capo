@@ -53,19 +53,19 @@ def serialize_json(value: AuthorizationCodeGrantMetadata) -> dict:
 
 def deserialize_json(data: dict) -> AuthorizationCodeGrantMetadata:
     out: AuthorizationCodeGrantMetadata = {}  # type: ignore[typeddict-item]
-    if "BaseEndpoint" in data:
+    if data.get("BaseEndpoint") is not None:
         out["base_endpoint"] = data["BaseEndpoint"]
     else:
         raise DeserializationError(
             "AuthorizationCodeGrantMetadata.base_endpoint required"
         )
-    if "RedirectUrl" in data:
+    if data.get("RedirectUrl") is not None:
         out["redirect_url"] = data["RedirectUrl"]
     else:
         raise DeserializationError(
             "AuthorizationCodeGrantMetadata.redirect_url required"
         )
-    if "AuthorizationCodeGrantCredentialsSource" in data:
+    if data.get("AuthorizationCodeGrantCredentialsSource") is not None:
         import capo_quicksight.types.authorization_code_grant_credentials_source
 
         out["authorization_code_grant_credentials_source"] = (
@@ -73,7 +73,7 @@ def deserialize_json(data: dict) -> AuthorizationCodeGrantMetadata:
                 data["AuthorizationCodeGrantCredentialsSource"]
             )
         )
-    if "AuthorizationCodeGrantCredentialsDetails" in data:
+    if data.get("AuthorizationCodeGrantCredentialsDetails") is not None:
         import capo_quicksight.types.authorization_code_grant_credentials_details
 
         out["authorization_code_grant_credentials_details"] = (

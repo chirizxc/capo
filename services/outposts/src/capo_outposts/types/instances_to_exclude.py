@@ -47,19 +47,19 @@ def serialize_json(value: InstancesToExclude) -> dict:
 
 def deserialize_json(data: dict) -> InstancesToExclude:
     out: InstancesToExclude = {}  # type: ignore[typeddict-item]
-    if "Instances" in data:
+    if data.get("Instances") is not None:
         import capo_outposts.types.instance_id_list
 
         out["instances"] = capo_outposts.types.instance_id_list.deserialize_json(
             data["Instances"]
         )
-    if "AccountIds" in data:
+    if data.get("AccountIds") is not None:
         import capo_outposts.types.account_id_list
 
         out["account_ids"] = capo_outposts.types.account_id_list.deserialize_json(
             data["AccountIds"]
         )
-    if "Services" in data:
+    if data.get("Services") is not None:
         import capo_outposts.types.aws_service_name_list
 
         out["services"] = capo_outposts.types.aws_service_name_list.deserialize_json(

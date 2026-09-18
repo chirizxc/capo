@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> AgentList:
 
     out: AgentList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_datasync.types.agent_list_entry.deserialize_aws_json_1_1(item))
     return out

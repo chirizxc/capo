@@ -32,7 +32,7 @@ def serialize_aws_json_1_1(value: DescribeIntegrationsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeIntegrationsResponse:
     out: DescribeIntegrationsResponse = {}  # type: ignore[typeddict-item]
-    if "Integrations" in data:
+    if data.get("Integrations") is not None:
         import capo_glue.types.integrations_list
 
         out["integrations"] = (
@@ -40,6 +40,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeIntegrationsResponse:
                 data["Integrations"]
             )
         )
-    if "Marker" in data:
+    if data.get("Marker") is not None:
         out["marker"] = data["Marker"]
     return out

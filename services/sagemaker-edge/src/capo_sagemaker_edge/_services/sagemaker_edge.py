@@ -170,7 +170,7 @@ class SagemakerEdgeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sagemaker_edge.types.get_deployments_request.GetDeploymentsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_sagemaker_edge.types.get_deployments_request.GetDeploymentsRequest = {}
         if device_name is not None:
             input_["device_name"] = device_name
         if device_fleet_name is not None:
@@ -181,6 +181,7 @@ class SagemakerEdgeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_device_registration(
@@ -220,7 +221,7 @@ class SagemakerEdgeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sagemaker_edge.types.get_device_registration_request.GetDeviceRegistrationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_sagemaker_edge.types.get_device_registration_request.GetDeviceRegistrationRequest = {}
         if device_name is not None:
             input_["device_name"] = device_name
         if device_fleet_name is not None:
@@ -231,6 +232,7 @@ class SagemakerEdgeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def send_heartbeat(
@@ -280,7 +282,7 @@ class SagemakerEdgeClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_sagemaker_edge.types.send_heartbeat_request.SendHeartbeatRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_sagemaker_edge.types.send_heartbeat_request.SendHeartbeatRequest = {}
         if agent_metrics is not None:
             input_["agent_metrics"] = agent_metrics
         if models is not None:
@@ -299,6 +301,7 @@ class SagemakerEdgeClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

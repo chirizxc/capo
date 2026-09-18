@@ -37,11 +37,11 @@ def serialize_json(value: MetaFlowHealthStatus) -> dict:
 
 def deserialize_json(data: dict) -> MetaFlowHealthStatus:
     out: MetaFlowHealthStatus = {}  # type: ignore[typeddict-item]
-    if "canSendMessage" in data:
+    if data.get("canSendMessage") is not None:
         out["can_send_message"] = data["canSendMessage"]
     else:
         raise DeserializationError("MetaFlowHealthStatus.can_send_message required")
-    if "entities" in data:
+    if data.get("entities") is not None:
         import capo_socialmessaging.types.meta_flow_health_entity_list
 
         out["entities"] = (

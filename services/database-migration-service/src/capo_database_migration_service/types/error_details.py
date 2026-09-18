@@ -35,7 +35,7 @@ def serialize_aws_json_1_1(value: ErrorDetails) -> dict:
 
 
 def deserialize_aws_json_1_1(data: dict) -> ErrorDetails:
-    if "defaultErrorDetails" in data:
+    if data.get("defaultErrorDetails") is not None:
         import capo_database_migration_service.types.default_error_details
 
         return {

@@ -33,13 +33,13 @@ def serialize_json(value: DatabaseTableOutputOptions) -> dict:
 
 def deserialize_json(data: dict) -> DatabaseTableOutputOptions:
     out: DatabaseTableOutputOptions = {}  # type: ignore[typeddict-item]
-    if "TempDirectory" in data:
+    if data.get("TempDirectory") is not None:
         import capo_databrew.types.s3_location
 
         out["temp_directory"] = capo_databrew.types.s3_location.deserialize_json(
             data["TempDirectory"]
         )
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
     else:
         raise DeserializationError("DatabaseTableOutputOptions.table_name required")

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> QuickResponseFilterFieldList:
 
     out: QuickResponseFilterFieldList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_wisdom.types.quick_response_filter_field.deserialize_json(item))
     return out

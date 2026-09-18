@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> SamplingBoostStatisticsDocumentList:
 
     out: SamplingBoostStatisticsDocumentList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_xray.types.sampling_boost_statistics_document.deserialize_json(item)
         )

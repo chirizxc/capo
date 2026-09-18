@@ -74,15 +74,15 @@ def serialize_json(value: NewRelicApiKeyConfig) -> dict:
 
 def deserialize_json(data: dict) -> NewRelicApiKeyConfig:
     out: NewRelicApiKeyConfig = {}  # type: ignore[typeddict-item]
-    if "apiKey" in data:
+    if data.get("apiKey") is not None:
         out["api_key"] = data["apiKey"]
     else:
         raise DeserializationError("NewRelicApiKeyConfig.api_key required")
-    if "accountId" in data:
+    if data.get("accountId") is not None:
         out["account_id"] = data["accountId"]
     else:
         raise DeserializationError("NewRelicApiKeyConfig.account_id required")
-    if "region" in data:
+    if data.get("region") is not None:
         import capo_devops_agent.types.new_relic_region
 
         out["region"] = capo_devops_agent.types.new_relic_region.deserialize_json(
@@ -90,7 +90,7 @@ def deserialize_json(data: dict) -> NewRelicApiKeyConfig:
         )
     else:
         raise DeserializationError("NewRelicApiKeyConfig.region required")
-    if "applicationIds" in data:
+    if data.get("applicationIds") is not None:
         import capo_devops_agent.types.new_relic_application_ids
 
         out["application_ids"] = (
@@ -98,7 +98,7 @@ def deserialize_json(data: dict) -> NewRelicApiKeyConfig:
                 data["applicationIds"]
             )
         )
-    if "entityGuids" in data:
+    if data.get("entityGuids") is not None:
         import capo_devops_agent.types.new_relic_entity_guids
 
         out["entity_guids"] = (
@@ -106,7 +106,7 @@ def deserialize_json(data: dict) -> NewRelicApiKeyConfig:
                 data["entityGuids"]
             )
         )
-    if "alertPolicyIds" in data:
+    if data.get("alertPolicyIds") is not None:
         import capo_devops_agent.types.new_relic_alert_policy_ids
 
         out["alert_policy_ids"] = (

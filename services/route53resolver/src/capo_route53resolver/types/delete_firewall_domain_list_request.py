@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DeleteFirewallDomainListRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteFirewallDomainListRequest:
     out: DeleteFirewallDomainListRequest = {}  # type: ignore[typeddict-item]
-    if "FirewallDomainListId" in data:
+    if data.get("FirewallDomainListId") is not None:
         out["firewall_domain_list_id"] = data["FirewallDomainListId"]
     else:
         raise DeserializationError(

@@ -29,6 +29,8 @@ def deserialize_aws_json_1_1(data: list) -> CostCategoryResourceAssociations:
 
     out: CostCategoryResourceAssociations = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_cost_explorer.types.cost_category_resource_association.deserialize_aws_json_1_1(
                 item

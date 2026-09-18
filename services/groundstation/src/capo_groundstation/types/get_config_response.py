@@ -58,19 +58,19 @@ def serialize_json(value: GetConfigResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetConfigResponse:
     out: GetConfigResponse = {}  # type: ignore[typeddict-item]
-    if "configId" in data:
+    if data.get("configId") is not None:
         out["config_id"] = data["configId"]
     else:
         raise DeserializationError("GetConfigResponse.config_id required")
-    if "configArn" in data:
+    if data.get("configArn") is not None:
         out["config_arn"] = data["configArn"]
     else:
         raise DeserializationError("GetConfigResponse.config_arn required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("GetConfigResponse.name required")
-    if "configType" in data:
+    if data.get("configType") is not None:
         import capo_groundstation.types.config_capability_type
 
         out["config_type"] = (
@@ -78,7 +78,7 @@ def deserialize_json(data: dict) -> GetConfigResponse:
                 data["configType"]
             )
         )
-    if "configData" in data:
+    if data.get("configData") is not None:
         import capo_groundstation.types.config_type_data
 
         out["config_data"] = capo_groundstation.types.config_type_data.deserialize_json(
@@ -86,7 +86,7 @@ def deserialize_json(data: dict) -> GetConfigResponse:
         )
     else:
         raise DeserializationError("GetConfigResponse.config_data required")
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_groundstation.types.tags_map
 
         out["tags"] = capo_groundstation.types.tags_map.deserialize_json(data["tags"])

@@ -30,15 +30,15 @@ def serialize_json(value: DataArtifact) -> dict:
 
 def deserialize_json(data: dict) -> DataArtifact:
     out: DataArtifact = {}  # type: ignore[typeddict-item]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "resourceArn" in data:
+    if data.get("resourceArn") is not None:
         out["resource_arn"] = data["resourceArn"]
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         out["resource_type"] = data["resourceType"]
     else:
         raise DeserializationError("DataArtifact.resource_type required")
-    if "dataClassification" in data:
+    if data.get("dataClassification") is not None:
         out["data_classification"] = data["dataClassification"]
     else:
         raise DeserializationError("DataArtifact.data_classification required")

@@ -49,7 +49,7 @@ def serialize_json(value: LogSourceResource) -> dict:
 
 
 def deserialize_json(data: dict) -> LogSourceResource:
-    if "awsLogSource" in data:
+    if data.get("awsLogSource") is not None:
         import capo_securitylake.types.aws_log_source_resource
 
         return {
@@ -57,7 +57,7 @@ def deserialize_json(data: dict) -> LogSourceResource:
                 data["awsLogSource"]
             )
         }
-    elif "customLogSource" in data:
+    elif data.get("customLogSource") is not None:
         import capo_securitylake.types.custom_log_source_resource
 
         return {

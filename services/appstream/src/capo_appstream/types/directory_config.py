@@ -71,9 +71,9 @@ def serialize_aws_json_1_1(value: DirectoryConfig) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DirectoryConfig:
     out: DirectoryConfig = {}  # type: ignore[typeddict-item]
-    if "DirectoryName" in data:
+    if data.get("DirectoryName") is not None:
         out["directory_name"] = data["DirectoryName"]
-    if "OrganizationalUnitDistinguishedNames" in data:
+    if data.get("OrganizationalUnitDistinguishedNames") is not None:
         import capo_appstream.types.organizational_unit_distinguished_names_list
 
         out["organizational_unit_distinguished_names"] = (
@@ -81,7 +81,7 @@ def deserialize_aws_json_1_1(data: dict) -> DirectoryConfig:
                 data["OrganizationalUnitDistinguishedNames"]
             )
         )
-    if "ServiceAccountCredentials" in data:
+    if data.get("ServiceAccountCredentials") is not None:
         import capo_appstream.types.service_account_credentials
 
         out["service_account_credentials"] = (
@@ -89,13 +89,13 @@ def deserialize_aws_json_1_1(data: dict) -> DirectoryConfig:
                 data["ServiceAccountCredentials"]
             )
         )
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_appstream.types.timestamp
 
         out["created_time"] = capo_appstream.types.timestamp.deserialize_aws_json_1_1(
             data["CreatedTime"]
         )
-    if "CertificateBasedAuthProperties" in data:
+    if data.get("CertificateBasedAuthProperties") is not None:
         import capo_appstream.types.certificate_based_auth_properties
 
         out["certificate_based_auth_properties"] = (

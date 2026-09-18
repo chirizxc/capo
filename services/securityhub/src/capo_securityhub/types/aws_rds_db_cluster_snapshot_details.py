@@ -127,49 +127,49 @@ def serialize_json(value: AwsRdsDbClusterSnapshotDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsRdsDbClusterSnapshotDetails:
     out: AwsRdsDbClusterSnapshotDetails = {}  # type: ignore[typeddict-item]
-    if "AvailabilityZones" in data:
+    if data.get("AvailabilityZones") is not None:
         import capo_securityhub.types.string_list
 
         out["availability_zones"] = capo_securityhub.types.string_list.deserialize_json(
             data["AvailabilityZones"]
         )
-    if "SnapshotCreateTime" in data:
+    if data.get("SnapshotCreateTime") is not None:
         out["snapshot_create_time"] = data["SnapshotCreateTime"]
-    if "Engine" in data:
+    if data.get("Engine") is not None:
         out["engine"] = data["Engine"]
-    if "AllocatedStorage" in data:
+    if data.get("AllocatedStorage") is not None:
         out["allocated_storage"] = data["AllocatedStorage"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
-    if "ClusterCreateTime" in data:
+    if data.get("ClusterCreateTime") is not None:
         out["cluster_create_time"] = data["ClusterCreateTime"]
-    if "MasterUsername" in data:
+    if data.get("MasterUsername") is not None:
         out["master_username"] = data["MasterUsername"]
-    if "EngineVersion" in data:
+    if data.get("EngineVersion") is not None:
         out["engine_version"] = data["EngineVersion"]
-    if "LicenseModel" in data:
+    if data.get("LicenseModel") is not None:
         out["license_model"] = data["LicenseModel"]
-    if "SnapshotType" in data:
+    if data.get("SnapshotType") is not None:
         out["snapshot_type"] = data["SnapshotType"]
-    if "PercentProgress" in data:
+    if data.get("PercentProgress") is not None:
         out["percent_progress"] = data["PercentProgress"]
-    if "StorageEncrypted" in data:
+    if data.get("StorageEncrypted") is not None:
         out["storage_encrypted"] = data["StorageEncrypted"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "DbClusterIdentifier" in data:
+    if data.get("DbClusterIdentifier") is not None:
         out["db_cluster_identifier"] = data["DbClusterIdentifier"]
-    if "DbClusterSnapshotIdentifier" in data:
+    if data.get("DbClusterSnapshotIdentifier") is not None:
         out["db_cluster_snapshot_identifier"] = data["DbClusterSnapshotIdentifier"]
-    if "IamDatabaseAuthenticationEnabled" in data:
+    if data.get("IamDatabaseAuthenticationEnabled") is not None:
         out["iam_database_authentication_enabled"] = data[
             "IamDatabaseAuthenticationEnabled"
         ]
-    if "DbClusterSnapshotAttributes" in data:
+    if data.get("DbClusterSnapshotAttributes") is not None:
         import capo_securityhub.types.aws_rds_db_cluster_snapshot_db_cluster_snapshot_attributes
 
         out["db_cluster_snapshot_attributes"] = (

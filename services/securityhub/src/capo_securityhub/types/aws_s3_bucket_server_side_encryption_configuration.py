@@ -31,7 +31,7 @@ def serialize_json(value: AwsS3BucketServerSideEncryptionConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AwsS3BucketServerSideEncryptionConfiguration:
     out: AwsS3BucketServerSideEncryptionConfiguration = {}  # type: ignore[typeddict-item]
-    if "Rules" in data:
+    if data.get("Rules") is not None:
         import capo_securityhub.types.aws_s3_bucket_server_side_encryption_rules
 
         out["rules"] = (

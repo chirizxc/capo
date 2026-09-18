@@ -43,15 +43,15 @@ def serialize_json(value: KMSServerSideEncryptionIntegration) -> dict:
 
 def deserialize_json(data: dict) -> KMSServerSideEncryptionIntegration:
     out: KMSServerSideEncryptionIntegration = {}  # type: ignore[typeddict-item]
-    if "KMSKeyId" in data:
+    if data.get("KMSKeyId") is not None:
         out["kms_key_id"] = data["KMSKeyId"]
-    if "OptInStatus" in data:
+    if data.get("OptInStatus") is not None:
         import capo_devops_guru.types.opt_in_status
 
         out["opt_in_status"] = capo_devops_guru.types.opt_in_status.deserialize_json(
             data["OptInStatus"]
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_devops_guru.types.server_side_encryption_type
 
         out["type"] = (

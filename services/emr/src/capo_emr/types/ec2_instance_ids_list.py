@@ -14,4 +14,4 @@ def serialize_aws_json_1_1(value: EC2InstanceIdsList) -> list:
 
 
 def deserialize_aws_json_1_1(data: list) -> EC2InstanceIdsList:
-    return list(data)
+    return [item for item in data if item is not None]

@@ -116,8 +116,9 @@ class GeofenceCollectionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.create_geofence_collection_request.CreateGeofenceCollectionRequest = {}  # type: ignore[typeddict-item]
-        input_["collection_name"] = collection_name
+        input_: capo_location.types.create_geofence_collection_request.CreateGeofenceCollectionRequest = {
+            "collection_name": collection_name
+        }
         if pricing_plan is not None:
             input_["pricing_plan"] = pricing_plan
         if pricing_plan_data_source is not None:
@@ -134,6 +135,7 @@ class GeofenceCollectionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -171,14 +173,16 @@ class GeofenceCollectionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.describe_geofence_collection_request.DescribeGeofenceCollectionRequest = {}  # type: ignore[typeddict-item]
-        input_["collection_name"] = collection_name
+        input_: capo_location.types.describe_geofence_collection_request.DescribeGeofenceCollectionRequest = {
+            "collection_name": collection_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -224,8 +228,9 @@ class GeofenceCollectionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.update_geofence_collection_request.UpdateGeofenceCollectionRequest = {}  # type: ignore[typeddict-item]
-        input_["collection_name"] = collection_name
+        input_: capo_location.types.update_geofence_collection_request.UpdateGeofenceCollectionRequest = {
+            "collection_name": collection_name
+        }
         if pricing_plan is not None:
             input_["pricing_plan"] = pricing_plan
         if pricing_plan_data_source is not None:
@@ -238,6 +243,7 @@ class GeofenceCollectionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -275,14 +281,16 @@ class GeofenceCollectionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.delete_geofence_collection_request.DeleteGeofenceCollectionRequest = {}  # type: ignore[typeddict-item]
-        input_["collection_name"] = collection_name
+        input_: capo_location.types.delete_geofence_collection_request.DeleteGeofenceCollectionRequest = {
+            "collection_name": collection_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -321,7 +329,7 @@ class GeofenceCollectionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.list_geofence_collections_request.ListGeofenceCollectionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_location.types.list_geofence_collections_request.ListGeofenceCollectionsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -332,6 +340,7 @@ class GeofenceCollectionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_delete_geofence(
@@ -373,15 +382,17 @@ class GeofenceCollectionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.batch_delete_geofence_request.BatchDeleteGeofenceRequest = {}  # type: ignore[typeddict-item]
-        input_["collection_name"] = collection_name
-        input_["geofence_ids"] = geofence_ids
+        input_: capo_location.types.batch_delete_geofence_request.BatchDeleteGeofenceRequest = {
+            "collection_name": collection_name,
+            "geofence_ids": geofence_ids,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_evaluate_geofences(
@@ -421,15 +432,17 @@ class GeofenceCollectionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.batch_evaluate_geofences_request.BatchEvaluateGeofencesRequest = {}  # type: ignore[typeddict-item]
-        input_["collection_name"] = collection_name
-        input_["device_position_updates"] = device_position_updates
+        input_: capo_location.types.batch_evaluate_geofences_request.BatchEvaluateGeofencesRequest = {
+            "collection_name": collection_name,
+            "device_position_updates": device_position_updates,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_put_geofence(
@@ -469,15 +482,17 @@ class GeofenceCollectionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.batch_put_geofence_request.BatchPutGeofenceRequest = {}  # type: ignore[typeddict-item]
-        input_["collection_name"] = collection_name
-        input_["entries"] = entries
+        input_: capo_location.types.batch_put_geofence_request.BatchPutGeofenceRequest = {
+            "collection_name": collection_name,
+            "entries": entries,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def forecast_geofence_events(
@@ -529,9 +544,10 @@ class GeofenceCollectionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.forecast_geofence_events_request.ForecastGeofenceEventsRequest = {}  # type: ignore[typeddict-item]
-        input_["collection_name"] = collection_name
-        input_["device_state"] = device_state
+        input_: capo_location.types.forecast_geofence_events_request.ForecastGeofenceEventsRequest = {
+            "collection_name": collection_name,
+            "device_state": device_state,
+        }
         if time_horizon_minutes is not None:
             input_["time_horizon_minutes"] = time_horizon_minutes
         if distance_unit is not None:
@@ -548,6 +564,7 @@ class GeofenceCollectionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_geofence(
@@ -587,15 +604,17 @@ class GeofenceCollectionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.get_geofence_request.GetGeofenceRequest = {}  # type: ignore[typeddict-item]
-        input_["collection_name"] = collection_name
-        input_["geofence_id"] = geofence_id
+        input_: capo_location.types.get_geofence_request.GetGeofenceRequest = {
+            "collection_name": collection_name,
+            "geofence_id": geofence_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_geofences(
@@ -637,8 +656,9 @@ class GeofenceCollectionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.list_geofences_request.ListGeofencesRequest = {}  # type: ignore[typeddict-item]
-        input_["collection_name"] = collection_name
+        input_: capo_location.types.list_geofences_request.ListGeofencesRequest = {
+            "collection_name": collection_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -649,6 +669,7 @@ class GeofenceCollectionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_geofence(
@@ -695,10 +716,11 @@ class GeofenceCollectionResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.put_geofence_request.PutGeofenceRequest = {}  # type: ignore[typeddict-item]
-        input_["collection_name"] = collection_name
-        input_["geofence_id"] = geofence_id
-        input_["geometry"] = geometry
+        input_: capo_location.types.put_geofence_request.PutGeofenceRequest = {
+            "collection_name": collection_name,
+            "geofence_id": geofence_id,
+            "geometry": geometry,
+        }
         if geofence_properties is not None:
             input_["geofence_properties"] = geofence_properties
 
@@ -707,6 +729,7 @@ class GeofenceCollectionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -763,8 +786,9 @@ class AsyncGeofenceCollectionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.create_geofence_collection_request.CreateGeofenceCollectionRequest = {}  # type: ignore[typeddict-item]
-        input_["collection_name"] = collection_name
+        input_: capo_location.types.create_geofence_collection_request.CreateGeofenceCollectionRequest = {
+            "collection_name": collection_name
+        }
         if pricing_plan is not None:
             input_["pricing_plan"] = pricing_plan
         if pricing_plan_data_source is not None:
@@ -781,6 +805,7 @@ class AsyncGeofenceCollectionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -819,14 +844,16 @@ class AsyncGeofenceCollectionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.describe_geofence_collection_request.DescribeGeofenceCollectionRequest = {}  # type: ignore[typeddict-item]
-        input_["collection_name"] = collection_name
+        input_: capo_location.types.describe_geofence_collection_request.DescribeGeofenceCollectionRequest = {
+            "collection_name": collection_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -873,8 +900,9 @@ class AsyncGeofenceCollectionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.update_geofence_collection_request.UpdateGeofenceCollectionRequest = {}  # type: ignore[typeddict-item]
-        input_["collection_name"] = collection_name
+        input_: capo_location.types.update_geofence_collection_request.UpdateGeofenceCollectionRequest = {
+            "collection_name": collection_name
+        }
         if pricing_plan is not None:
             input_["pricing_plan"] = pricing_plan
         if pricing_plan_data_source is not None:
@@ -887,6 +915,7 @@ class AsyncGeofenceCollectionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -925,14 +954,16 @@ class AsyncGeofenceCollectionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.delete_geofence_collection_request.DeleteGeofenceCollectionRequest = {}  # type: ignore[typeddict-item]
-        input_["collection_name"] = collection_name
+        input_: capo_location.types.delete_geofence_collection_request.DeleteGeofenceCollectionRequest = {
+            "collection_name": collection_name
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -972,7 +1003,7 @@ class AsyncGeofenceCollectionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.list_geofence_collections_request.ListGeofenceCollectionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_location.types.list_geofence_collections_request.ListGeofenceCollectionsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -983,6 +1014,7 @@ class AsyncGeofenceCollectionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_delete_geofence(
@@ -1025,15 +1057,17 @@ class AsyncGeofenceCollectionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.batch_delete_geofence_request.BatchDeleteGeofenceRequest = {}  # type: ignore[typeddict-item]
-        input_["collection_name"] = collection_name
-        input_["geofence_ids"] = geofence_ids
+        input_: capo_location.types.batch_delete_geofence_request.BatchDeleteGeofenceRequest = {
+            "collection_name": collection_name,
+            "geofence_ids": geofence_ids,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_evaluate_geofences(
@@ -1074,15 +1108,17 @@ class AsyncGeofenceCollectionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.batch_evaluate_geofences_request.BatchEvaluateGeofencesRequest = {}  # type: ignore[typeddict-item]
-        input_["collection_name"] = collection_name
-        input_["device_position_updates"] = device_position_updates
+        input_: capo_location.types.batch_evaluate_geofences_request.BatchEvaluateGeofencesRequest = {
+            "collection_name": collection_name,
+            "device_position_updates": device_position_updates,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def batch_put_geofence(
@@ -1123,15 +1159,17 @@ class AsyncGeofenceCollectionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.batch_put_geofence_request.BatchPutGeofenceRequest = {}  # type: ignore[typeddict-item]
-        input_["collection_name"] = collection_name
-        input_["entries"] = entries
+        input_: capo_location.types.batch_put_geofence_request.BatchPutGeofenceRequest = {
+            "collection_name": collection_name,
+            "entries": entries,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def forecast_geofence_events(
@@ -1184,9 +1222,10 @@ class AsyncGeofenceCollectionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.forecast_geofence_events_request.ForecastGeofenceEventsRequest = {}  # type: ignore[typeddict-item]
-        input_["collection_name"] = collection_name
-        input_["device_state"] = device_state
+        input_: capo_location.types.forecast_geofence_events_request.ForecastGeofenceEventsRequest = {
+            "collection_name": collection_name,
+            "device_state": device_state,
+        }
         if time_horizon_minutes is not None:
             input_["time_horizon_minutes"] = time_horizon_minutes
         if distance_unit is not None:
@@ -1203,6 +1242,7 @@ class AsyncGeofenceCollectionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_geofence(
@@ -1243,15 +1283,17 @@ class AsyncGeofenceCollectionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.get_geofence_request.GetGeofenceRequest = {}  # type: ignore[typeddict-item]
-        input_["collection_name"] = collection_name
-        input_["geofence_id"] = geofence_id
+        input_: capo_location.types.get_geofence_request.GetGeofenceRequest = {
+            "collection_name": collection_name,
+            "geofence_id": geofence_id,
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_geofences(
@@ -1294,8 +1336,9 @@ class AsyncGeofenceCollectionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.list_geofences_request.ListGeofencesRequest = {}  # type: ignore[typeddict-item]
-        input_["collection_name"] = collection_name
+        input_: capo_location.types.list_geofences_request.ListGeofencesRequest = {
+            "collection_name": collection_name
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1306,6 +1349,7 @@ class AsyncGeofenceCollectionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def put_geofence(
@@ -1353,10 +1397,11 @@ class AsyncGeofenceCollectionResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_location.types.put_geofence_request.PutGeofenceRequest = {}  # type: ignore[typeddict-item]
-        input_["collection_name"] = collection_name
-        input_["geofence_id"] = geofence_id
-        input_["geometry"] = geometry
+        input_: capo_location.types.put_geofence_request.PutGeofenceRequest = {
+            "collection_name": collection_name,
+            "geofence_id": geofence_id,
+            "geometry": geometry,
+        }
         if geofence_properties is not None:
             input_["geofence_properties"] = geofence_properties
 
@@ -1365,4 +1410,5 @@ class AsyncGeofenceCollectionResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

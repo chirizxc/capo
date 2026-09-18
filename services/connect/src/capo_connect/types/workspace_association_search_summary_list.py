@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> WorkspaceAssociationSearchSummaryList:
 
     out: WorkspaceAssociationSearchSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_connect.types.workspace_association_search_summary.deserialize_json(
                 item

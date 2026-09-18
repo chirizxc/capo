@@ -386,14 +386,16 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.accept_network_firewall_transit_gateway_attachment_request.AcceptNetworkFirewallTransitGatewayAttachmentRequest = {}  # type: ignore[typeddict-item]
-        input_["transit_gateway_attachment_id"] = transit_gateway_attachment_id
+        input_: capo_network_firewall.types.accept_network_firewall_transit_gateway_attachment_request.AcceptNetworkFirewallTransitGatewayAttachmentRequest = {
+            "transit_gateway_attachment_id": transit_gateway_attachment_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_availability_zones(
@@ -445,20 +447,22 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.associate_availability_zones_request.AssociateAvailabilityZonesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.associate_availability_zones_request.AssociateAvailabilityZonesRequest = {
+            "availability_zone_mappings": availability_zone_mappings
+        }
         if update_token is not None:
             input_["update_token"] = update_token
         if firewall_arn is not None:
             input_["firewall_arn"] = firewall_arn
         if firewall_name is not None:
             input_["firewall_name"] = firewall_name
-        input_["availability_zone_mappings"] = availability_zone_mappings
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_firewall_policy(
@@ -509,20 +513,22 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.associate_firewall_policy_request.AssociateFirewallPolicyRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.associate_firewall_policy_request.AssociateFirewallPolicyRequest = {
+            "firewall_policy_arn": firewall_policy_arn
+        }
         if update_token is not None:
             input_["update_token"] = update_token
         if firewall_arn is not None:
             input_["firewall_arn"] = firewall_arn
         if firewall_name is not None:
             input_["firewall_name"] = firewall_name
-        input_["firewall_policy_arn"] = firewall_policy_arn
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_subnets(
@@ -574,20 +580,22 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.associate_subnets_request.AssociateSubnetsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.associate_subnets_request.AssociateSubnetsRequest = {
+            "subnet_mappings": subnet_mappings
+        }
         if update_token is not None:
             input_["update_token"] = update_token
         if firewall_arn is not None:
             input_["firewall_arn"] = firewall_arn
         if firewall_name is not None:
             input_["firewall_name"] = firewall_name
-        input_["subnet_mappings"] = subnet_mappings
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def attach_rule_groups_to_proxy_configuration(
@@ -634,19 +642,21 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.attach_rule_groups_to_proxy_configuration_request.AttachRuleGroupsToProxyConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.attach_rule_groups_to_proxy_configuration_request.AttachRuleGroupsToProxyConfigurationRequest = {
+            "rule_groups": rule_groups,
+            "update_token": update_token,
+        }
         if proxy_configuration_name is not None:
             input_["proxy_configuration_name"] = proxy_configuration_name
         if proxy_configuration_arn is not None:
             input_["proxy_configuration_arn"] = proxy_configuration_arn
-        input_["rule_groups"] = rule_groups
-        input_["update_token"] = update_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_firewall(
@@ -731,9 +741,10 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.create_firewall_request.CreateFirewallRequest = {}  # type: ignore[typeddict-item]
-        input_["firewall_name"] = firewall_name
-        input_["firewall_policy_arn"] = firewall_policy_arn
+        input_: capo_network_firewall.types.create_firewall_request.CreateFirewallRequest = {
+            "firewall_name": firewall_name,
+            "firewall_policy_arn": firewall_policy_arn,
+        }
         if vpc_id is not None:
             input_["vpc_id"] = vpc_id
         if subnet_mappings is not None:
@@ -768,6 +779,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_firewall_policy(
@@ -819,9 +831,10 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.create_firewall_policy_request.CreateFirewallPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["firewall_policy_name"] = firewall_policy_name
-        input_["firewall_policy"] = firewall_policy
+        input_: capo_network_firewall.types.create_firewall_policy_request.CreateFirewallPolicyRequest = {
+            "firewall_policy_name": firewall_policy_name,
+            "firewall_policy": firewall_policy,
+        }
         if description is not None:
             input_["description"] = description
         if tags is not None:
@@ -836,6 +849,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_proxy(
@@ -892,16 +906,17 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.create_proxy_request.CreateProxyRequest = {}  # type: ignore[typeddict-item]
-        input_["proxy_name"] = proxy_name
-        input_["nat_gateway_id"] = nat_gateway_id
+        input_: capo_network_firewall.types.create_proxy_request.CreateProxyRequest = {
+            "proxy_name": proxy_name,
+            "nat_gateway_id": nat_gateway_id,
+            "tls_intercept_properties": tls_intercept_properties,
+        }
         if proxy_configuration_name is not None:
             input_["proxy_configuration_name"] = proxy_configuration_name
         if proxy_configuration_arn is not None:
             input_["proxy_configuration_arn"] = proxy_configuration_arn
         if listener_properties is not None:
             input_["listener_properties"] = listener_properties
-        input_["tls_intercept_properties"] = tls_intercept_properties
         if tags is not None:
             input_["tags"] = tags
 
@@ -910,6 +925,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_proxy_configuration(
@@ -963,15 +979,16 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.create_proxy_configuration_request.CreateProxyConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["proxy_configuration_name"] = proxy_configuration_name
+        input_: capo_network_firewall.types.create_proxy_configuration_request.CreateProxyConfigurationRequest = {
+            "proxy_configuration_name": proxy_configuration_name,
+            "default_rule_phase_actions": default_rule_phase_actions,
+        }
         if description is not None:
             input_["description"] = description
         if rule_group_names is not None:
             input_["rule_group_names"] = rule_group_names
         if rule_group_arns is not None:
             input_["rule_group_arns"] = rule_group_arns
-        input_["default_rule_phase_actions"] = default_rule_phase_actions
         if tags is not None:
             input_["tags"] = tags
 
@@ -980,6 +997,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_proxy_rule_group(
@@ -1026,8 +1044,9 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.create_proxy_rule_group_request.CreateProxyRuleGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["proxy_rule_group_name"] = proxy_rule_group_name
+        input_: capo_network_firewall.types.create_proxy_rule_group_request.CreateProxyRuleGroupRequest = {
+            "proxy_rule_group_name": proxy_rule_group_name
+        }
         if description is not None:
             input_["description"] = description
         if rules is not None:
@@ -1040,6 +1059,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_proxy_rules(
@@ -1083,18 +1103,20 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.create_proxy_rules_request.CreateProxyRulesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.create_proxy_rules_request.CreateProxyRulesRequest = {
+            "rules": rules
+        }
         if proxy_rule_group_arn is not None:
             input_["proxy_rule_group_arn"] = proxy_rule_group_arn
         if proxy_rule_group_name is not None:
             input_["proxy_rule_group_name"] = proxy_rule_group_name
-        input_["rules"] = rules
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_rule_group(
@@ -1166,16 +1188,17 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.create_rule_group_request.CreateRuleGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["rule_group_name"] = rule_group_name
+        input_: capo_network_firewall.types.create_rule_group_request.CreateRuleGroupRequest = {
+            "rule_group_name": rule_group_name,
+            "type": type,
+            "capacity": capacity,
+        }
         if rule_group is not None:
             input_["rule_group"] = rule_group
         if rules is not None:
             input_["rules"] = rules
-        input_["type"] = type
         if description is not None:
             input_["description"] = description
-        input_["capacity"] = capacity
         if tags is not None:
             input_["tags"] = tags
         if dry_run is not None:
@@ -1194,6 +1217,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_tls_inspection_configuration(
@@ -1242,9 +1266,10 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.create_tls_inspection_configuration_request.CreateTLSInspectionConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["tls_inspection_configuration_name"] = tls_inspection_configuration_name
-        input_["tls_inspection_configuration"] = tls_inspection_configuration
+        input_: capo_network_firewall.types.create_tls_inspection_configuration_request.CreateTLSInspectionConfigurationRequest = {
+            "tls_inspection_configuration_name": tls_inspection_configuration_name,
+            "tls_inspection_configuration": tls_inspection_configuration,
+        }
         if description is not None:
             input_["description"] = description
         if tags is not None:
@@ -1257,6 +1282,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_vpc_endpoint_association(
@@ -1305,10 +1331,11 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.create_vpc_endpoint_association_request.CreateVpcEndpointAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["firewall_arn"] = firewall_arn
-        input_["vpc_id"] = vpc_id
-        input_["subnet_mapping"] = subnet_mapping
+        input_: capo_network_firewall.types.create_vpc_endpoint_association_request.CreateVpcEndpointAssociationRequest = {
+            "firewall_arn": firewall_arn,
+            "vpc_id": vpc_id,
+            "subnet_mapping": subnet_mapping,
+        }
         if description is not None:
             input_["description"] = description
         if tags is not None:
@@ -1319,6 +1346,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_firewall(
@@ -1363,7 +1391,7 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.delete_firewall_request.DeleteFirewallRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.delete_firewall_request.DeleteFirewallRequest = {}
         if firewall_name is not None:
             input_["firewall_name"] = firewall_name
         if firewall_arn is not None:
@@ -1374,6 +1402,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_firewall_policy(
@@ -1418,7 +1447,7 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.delete_firewall_policy_request.DeleteFirewallPolicyRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.delete_firewall_policy_request.DeleteFirewallPolicyRequest = {}
         if firewall_policy_name is not None:
             input_["firewall_policy_name"] = firewall_policy_name
         if firewall_policy_arn is not None:
@@ -1429,6 +1458,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_network_firewall_transit_gateway_attachment(
@@ -1465,14 +1495,16 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.delete_network_firewall_transit_gateway_attachment_request.DeleteNetworkFirewallTransitGatewayAttachmentRequest = {}  # type: ignore[typeddict-item]
-        input_["transit_gateway_attachment_id"] = transit_gateway_attachment_id
+        input_: capo_network_firewall.types.delete_network_firewall_transit_gateway_attachment_request.DeleteNetworkFirewallTransitGatewayAttachmentRequest = {
+            "transit_gateway_attachment_id": transit_gateway_attachment_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_proxy(
@@ -1518,8 +1550,9 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.delete_proxy_request.DeleteProxyRequest = {}  # type: ignore[typeddict-item]
-        input_["nat_gateway_id"] = nat_gateway_id
+        input_: capo_network_firewall.types.delete_proxy_request.DeleteProxyRequest = {
+            "nat_gateway_id": nat_gateway_id
+        }
         if proxy_name is not None:
             input_["proxy_name"] = proxy_name
         if proxy_arn is not None:
@@ -1530,6 +1563,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_proxy_configuration(
@@ -1572,7 +1606,7 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.delete_proxy_configuration_request.DeleteProxyConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.delete_proxy_configuration_request.DeleteProxyConfigurationRequest = {}
         if proxy_configuration_name is not None:
             input_["proxy_configuration_name"] = proxy_configuration_name
         if proxy_configuration_arn is not None:
@@ -1583,6 +1617,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_proxy_rule_group(
@@ -1625,7 +1660,7 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.delete_proxy_rule_group_request.DeleteProxyRuleGroupRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.delete_proxy_rule_group_request.DeleteProxyRuleGroupRequest = {}
         if proxy_rule_group_name is not None:
             input_["proxy_rule_group_name"] = proxy_rule_group_name
         if proxy_rule_group_arn is not None:
@@ -1636,6 +1671,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_proxy_rules(
@@ -1680,18 +1716,20 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.delete_proxy_rules_request.DeleteProxyRulesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.delete_proxy_rules_request.DeleteProxyRulesRequest = {
+            "rules": rules
+        }
         if proxy_rule_group_arn is not None:
             input_["proxy_rule_group_arn"] = proxy_rule_group_arn
         if proxy_rule_group_name is not None:
             input_["proxy_rule_group_name"] = proxy_rule_group_name
-        input_["rules"] = rules
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_resource_policy(
@@ -1729,14 +1767,16 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.delete_resource_policy_request.DeleteResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_network_firewall.types.delete_resource_policy_request.DeleteResourcePolicyRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_rule_group(
@@ -1787,7 +1827,7 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.delete_rule_group_request.DeleteRuleGroupRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.delete_rule_group_request.DeleteRuleGroupRequest = {}
         if rule_group_name is not None:
             input_["rule_group_name"] = rule_group_name
         if rule_group_arn is not None:
@@ -1800,6 +1840,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_tls_inspection_configuration(
@@ -1843,7 +1884,7 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.delete_tls_inspection_configuration_request.DeleteTLSInspectionConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.delete_tls_inspection_configuration_request.DeleteTLSInspectionConfigurationRequest = {}
         if tls_inspection_configuration_arn is not None:
             input_["tls_inspection_configuration_arn"] = (
                 tls_inspection_configuration_arn
@@ -1858,6 +1899,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_vpc_endpoint_association(
@@ -1895,14 +1937,16 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.delete_vpc_endpoint_association_request.DeleteVpcEndpointAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["vpc_endpoint_association_arn"] = vpc_endpoint_association_arn
+        input_: capo_network_firewall.types.delete_vpc_endpoint_association_request.DeleteVpcEndpointAssociationRequest = {
+            "vpc_endpoint_association_arn": vpc_endpoint_association_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_firewall(
@@ -1945,7 +1989,7 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.describe_firewall_request.DescribeFirewallRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.describe_firewall_request.DescribeFirewallRequest = {}
         if firewall_name is not None:
             input_["firewall_name"] = firewall_name
         if firewall_arn is not None:
@@ -1956,6 +2000,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_firewall_metadata(
@@ -1994,7 +2039,7 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.describe_firewall_metadata_request.DescribeFirewallMetadataRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.describe_firewall_metadata_request.DescribeFirewallMetadataRequest = {}
         if firewall_arn is not None:
             input_["firewall_arn"] = firewall_arn
 
@@ -2003,6 +2048,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_firewall_policy(
@@ -2045,7 +2091,7 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.describe_firewall_policy_request.DescribeFirewallPolicyRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.describe_firewall_policy_request.DescribeFirewallPolicyRequest = {}
         if firewall_policy_name is not None:
             input_["firewall_policy_name"] = firewall_policy_name
         if firewall_policy_arn is not None:
@@ -2056,6 +2102,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_flow_operation(
@@ -2106,21 +2153,23 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.describe_flow_operation_request.DescribeFlowOperationRequest = {}  # type: ignore[typeddict-item]
-        input_["firewall_arn"] = firewall_arn
+        input_: capo_network_firewall.types.describe_flow_operation_request.DescribeFlowOperationRequest = {
+            "firewall_arn": firewall_arn,
+            "flow_operation_id": flow_operation_id,
+        }
         if availability_zone is not None:
             input_["availability_zone"] = availability_zone
         if vpc_endpoint_association_arn is not None:
             input_["vpc_endpoint_association_arn"] = vpc_endpoint_association_arn
         if vpc_endpoint_id is not None:
             input_["vpc_endpoint_id"] = vpc_endpoint_id
-        input_["flow_operation_id"] = flow_operation_id
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_logging_configuration(
@@ -2163,7 +2212,7 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.describe_logging_configuration_request.DescribeLoggingConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.describe_logging_configuration_request.DescribeLoggingConfigurationRequest = {}
         if firewall_arn is not None:
             input_["firewall_arn"] = firewall_arn
         if firewall_name is not None:
@@ -2174,6 +2223,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_proxy(
@@ -2216,7 +2266,7 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.describe_proxy_request.DescribeProxyRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.describe_proxy_request.DescribeProxyRequest = {}
         if proxy_name is not None:
             input_["proxy_name"] = proxy_name
         if proxy_arn is not None:
@@ -2227,6 +2277,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_proxy_configuration(
@@ -2269,7 +2320,7 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.describe_proxy_configuration_request.DescribeProxyConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.describe_proxy_configuration_request.DescribeProxyConfigurationRequest = {}
         if proxy_configuration_name is not None:
             input_["proxy_configuration_name"] = proxy_configuration_name
         if proxy_configuration_arn is not None:
@@ -2280,6 +2331,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_proxy_rule(
@@ -2324,8 +2376,9 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.describe_proxy_rule_request.DescribeProxyRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["proxy_rule_name"] = proxy_rule_name
+        input_: capo_network_firewall.types.describe_proxy_rule_request.DescribeProxyRuleRequest = {
+            "proxy_rule_name": proxy_rule_name
+        }
         if proxy_rule_group_name is not None:
             input_["proxy_rule_group_name"] = proxy_rule_group_name
         if proxy_rule_group_arn is not None:
@@ -2336,6 +2389,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_proxy_rule_group(
@@ -2378,7 +2432,7 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.describe_proxy_rule_group_request.DescribeProxyRuleGroupRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.describe_proxy_rule_group_request.DescribeProxyRuleGroupRequest = {}
         if proxy_rule_group_name is not None:
             input_["proxy_rule_group_name"] = proxy_rule_group_name
         if proxy_rule_group_arn is not None:
@@ -2389,6 +2443,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_resource_policy(
@@ -2425,14 +2480,16 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.describe_resource_policy_request.DescribeResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_network_firewall.types.describe_resource_policy_request.DescribeResourcePolicyRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_rule_group(
@@ -2483,7 +2540,7 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.describe_rule_group_request.DescribeRuleGroupRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.describe_rule_group_request.DescribeRuleGroupRequest = {}
         if rule_group_name is not None:
             input_["rule_group_name"] = rule_group_name
         if rule_group_arn is not None:
@@ -2498,6 +2555,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_rule_group_metadata(
@@ -2544,7 +2602,7 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.describe_rule_group_metadata_request.DescribeRuleGroupMetadataRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.describe_rule_group_metadata_request.DescribeRuleGroupMetadataRequest = {}
         if rule_group_name is not None:
             input_["rule_group_name"] = rule_group_name
         if rule_group_arn is not None:
@@ -2557,6 +2615,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_rule_group_summary(
@@ -2603,7 +2662,7 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.describe_rule_group_summary_request.DescribeRuleGroupSummaryRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.describe_rule_group_summary_request.DescribeRuleGroupSummaryRequest = {}
         if rule_group_name is not None:
             input_["rule_group_name"] = rule_group_name
         if rule_group_arn is not None:
@@ -2616,6 +2675,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_tls_inspection_configuration(
@@ -2658,7 +2718,7 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.describe_tls_inspection_configuration_request.DescribeTLSInspectionConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.describe_tls_inspection_configuration_request.DescribeTLSInspectionConfigurationRequest = {}
         if tls_inspection_configuration_arn is not None:
             input_["tls_inspection_configuration_arn"] = (
                 tls_inspection_configuration_arn
@@ -2673,6 +2733,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_vpc_endpoint_association(
@@ -2709,14 +2770,16 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.describe_vpc_endpoint_association_request.DescribeVpcEndpointAssociationRequest = {}  # type: ignore[typeddict-item]
-        input_["vpc_endpoint_association_arn"] = vpc_endpoint_association_arn
+        input_: capo_network_firewall.types.describe_vpc_endpoint_association_request.DescribeVpcEndpointAssociationRequest = {
+            "vpc_endpoint_association_arn": vpc_endpoint_association_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def detach_rule_groups_from_proxy_configuration(
@@ -2769,7 +2832,9 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.detach_rule_groups_from_proxy_configuration_request.DetachRuleGroupsFromProxyConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.detach_rule_groups_from_proxy_configuration_request.DetachRuleGroupsFromProxyConfigurationRequest = {
+            "update_token": update_token
+        }
         if proxy_configuration_name is not None:
             input_["proxy_configuration_name"] = proxy_configuration_name
         if proxy_configuration_arn is not None:
@@ -2778,13 +2843,13 @@ class NetworkFirewallClient:
             input_["rule_group_names"] = rule_group_names
         if rule_group_arns is not None:
             input_["rule_group_arns"] = rule_group_arns
-        input_["update_token"] = update_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_availability_zones(
@@ -2835,20 +2900,22 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.disassociate_availability_zones_request.DisassociateAvailabilityZonesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.disassociate_availability_zones_request.DisassociateAvailabilityZonesRequest = {
+            "availability_zone_mappings": availability_zone_mappings
+        }
         if update_token is not None:
             input_["update_token"] = update_token
         if firewall_arn is not None:
             input_["firewall_arn"] = firewall_arn
         if firewall_name is not None:
             input_["firewall_name"] = firewall_name
-        input_["availability_zone_mappings"] = availability_zone_mappings
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_subnets(
@@ -2899,20 +2966,22 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.disassociate_subnets_request.DisassociateSubnetsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.disassociate_subnets_request.DisassociateSubnetsRequest = {
+            "subnet_ids": subnet_ids
+        }
         if update_token is not None:
             input_["update_token"] = update_token
         if firewall_arn is not None:
             input_["firewall_arn"] = firewall_arn
         if firewall_name is not None:
             input_["firewall_name"] = firewall_name
-        input_["subnet_ids"] = subnet_ids
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_analysis_report_results(
@@ -2965,10 +3034,11 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.get_analysis_report_results_request.GetAnalysisReportResultsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.get_analysis_report_results_request.GetAnalysisReportResultsRequest = {
+            "analysis_report_id": analysis_report_id
+        }
         if firewall_name is not None:
             input_["firewall_name"] = firewall_name
-        input_["analysis_report_id"] = analysis_report_id
         if firewall_arn is not None:
             input_["firewall_arn"] = firewall_arn
         if next_token is not None:
@@ -2981,6 +3051,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_analysis_report_results(
@@ -3066,7 +3137,7 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.list_analysis_reports_request.ListAnalysisReportsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.list_analysis_reports_request.ListAnalysisReportsRequest = {}
         if firewall_name is not None:
             input_["firewall_name"] = firewall_name
         if firewall_arn is not None:
@@ -3081,6 +3152,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_analysis_reports(
@@ -3155,7 +3227,7 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.list_firewall_policies_request.ListFirewallPoliciesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.list_firewall_policies_request.ListFirewallPoliciesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3166,6 +3238,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_firewall_policies(
@@ -3234,7 +3307,7 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.list_firewalls_request.ListFirewallsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.list_firewalls_request.ListFirewallsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if vpc_ids is not None:
@@ -3247,6 +3320,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_firewalls(
@@ -3332,9 +3406,10 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.list_flow_operation_results_request.ListFlowOperationResultsRequest = {}  # type: ignore[typeddict-item]
-        input_["firewall_arn"] = firewall_arn
-        input_["flow_operation_id"] = flow_operation_id
+        input_: capo_network_firewall.types.list_flow_operation_results_request.ListFlowOperationResultsRequest = {
+            "firewall_arn": firewall_arn,
+            "flow_operation_id": flow_operation_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3351,6 +3426,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_flow_operation_results(
@@ -3452,8 +3528,9 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.list_flow_operations_request.ListFlowOperationsRequest = {}  # type: ignore[typeddict-item]
-        input_["firewall_arn"] = firewall_arn
+        input_: capo_network_firewall.types.list_flow_operations_request.ListFlowOperationsRequest = {
+            "firewall_arn": firewall_arn
+        }
         if availability_zone is not None:
             input_["availability_zone"] = availability_zone
         if vpc_endpoint_association_arn is not None:
@@ -3472,6 +3549,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_flow_operations(
@@ -3556,7 +3634,7 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.list_proxies_request.ListProxiesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.list_proxies_request.ListProxiesRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3567,6 +3645,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_proxies(
@@ -3634,7 +3713,7 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.list_proxy_configurations_request.ListProxyConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.list_proxy_configurations_request.ListProxyConfigurationsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3645,6 +3724,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_proxy_configurations(
@@ -3712,7 +3792,7 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.list_proxy_rule_groups_request.ListProxyRuleGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.list_proxy_rule_groups_request.ListProxyRuleGroupsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3723,6 +3803,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_proxy_rule_groups(
@@ -3805,7 +3886,7 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.list_rule_groups_request.ListRuleGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.list_rule_groups_request.ListRuleGroupsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3824,6 +3905,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_rule_groups(
@@ -3909,18 +3991,20 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
             input_["max_results"] = max_results
-        input_["resource_arn"] = resource_arn
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_tags_for_resource(
@@ -3989,7 +4073,7 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.list_tls_inspection_configurations_request.ListTLSInspectionConfigurationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.list_tls_inspection_configurations_request.ListTLSInspectionConfigurationsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -4000,6 +4084,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_tls_inspection_configurations(
@@ -4070,7 +4155,7 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.list_vpc_endpoint_associations_request.ListVpcEndpointAssociationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.list_vpc_endpoint_associations_request.ListVpcEndpointAssociationsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -4083,6 +4168,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_vpc_endpoint_associations(
@@ -4151,15 +4237,17 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.put_resource_policy_request.PutResourcePolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["policy"] = policy
+        input_: capo_network_firewall.types.put_resource_policy_request.PutResourcePolicyRequest = {
+            "resource_arn": resource_arn,
+            "policy": policy,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def reject_network_firewall_transit_gateway_attachment(
@@ -4196,14 +4284,16 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.reject_network_firewall_transit_gateway_attachment_request.RejectNetworkFirewallTransitGatewayAttachmentRequest = {}  # type: ignore[typeddict-item]
-        input_["transit_gateway_attachment_id"] = transit_gateway_attachment_id
+        input_: capo_network_firewall.types.reject_network_firewall_transit_gateway_attachment_request.RejectNetworkFirewallTransitGatewayAttachmentRequest = {
+            "transit_gateway_attachment_id": transit_gateway_attachment_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_analysis_report(
@@ -4248,18 +4338,20 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.start_analysis_report_request.StartAnalysisReportRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.start_analysis_report_request.StartAnalysisReportRequest = {
+            "analysis_type": analysis_type
+        }
         if firewall_name is not None:
             input_["firewall_name"] = firewall_name
         if firewall_arn is not None:
             input_["firewall_arn"] = firewall_arn
-        input_["analysis_type"] = analysis_type
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_flow_capture(
@@ -4314,8 +4406,10 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.start_flow_capture_request.StartFlowCaptureRequest = {}  # type: ignore[typeddict-item]
-        input_["firewall_arn"] = firewall_arn
+        input_: capo_network_firewall.types.start_flow_capture_request.StartFlowCaptureRequest = {
+            "firewall_arn": firewall_arn,
+            "flow_filters": flow_filters,
+        }
         if availability_zone is not None:
             input_["availability_zone"] = availability_zone
         if vpc_endpoint_association_arn is not None:
@@ -4324,13 +4418,13 @@ class NetworkFirewallClient:
             input_["vpc_endpoint_id"] = vpc_endpoint_id
         if minimum_flow_age_in_seconds is not None:
             input_["minimum_flow_age_in_seconds"] = minimum_flow_age_in_seconds
-        input_["flow_filters"] = flow_filters
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_flow_flush(
@@ -4385,8 +4479,10 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.start_flow_flush_request.StartFlowFlushRequest = {}  # type: ignore[typeddict-item]
-        input_["firewall_arn"] = firewall_arn
+        input_: capo_network_firewall.types.start_flow_flush_request.StartFlowFlushRequest = {
+            "firewall_arn": firewall_arn,
+            "flow_filters": flow_filters,
+        }
         if availability_zone is not None:
             input_["availability_zone"] = availability_zone
         if vpc_endpoint_association_arn is not None:
@@ -4395,13 +4491,13 @@ class NetworkFirewallClient:
             input_["vpc_endpoint_id"] = vpc_endpoint_id
         if minimum_flow_age_in_seconds is not None:
             input_["minimum_flow_age_in_seconds"] = minimum_flow_age_in_seconds
-        input_["flow_filters"] = flow_filters
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -4440,15 +4536,17 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_network_firewall.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -4487,15 +4585,17 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_network_firewall.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_availability_zone_change_protection(
@@ -4546,22 +4646,22 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.update_availability_zone_change_protection_request.UpdateAvailabilityZoneChangeProtectionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.update_availability_zone_change_protection_request.UpdateAvailabilityZoneChangeProtectionRequest = {
+            "availability_zone_change_protection": availability_zone_change_protection
+        }
         if update_token is not None:
             input_["update_token"] = update_token
         if firewall_arn is not None:
             input_["firewall_arn"] = firewall_arn
         if firewall_name is not None:
             input_["firewall_name"] = firewall_name
-        input_["availability_zone_change_protection"] = (
-            availability_zone_change_protection
-        )
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_firewall_analysis_settings(
@@ -4613,7 +4713,7 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.update_firewall_analysis_settings_request.UpdateFirewallAnalysisSettingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.update_firewall_analysis_settings_request.UpdateFirewallAnalysisSettingsRequest = {}
         if enabled_analysis_types is not None:
             input_["enabled_analysis_types"] = enabled_analysis_types
         if firewall_arn is not None:
@@ -4628,6 +4728,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_firewall_delete_protection(
@@ -4678,20 +4779,22 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.update_firewall_delete_protection_request.UpdateFirewallDeleteProtectionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.update_firewall_delete_protection_request.UpdateFirewallDeleteProtectionRequest = {
+            "delete_protection": delete_protection
+        }
         if update_token is not None:
             input_["update_token"] = update_token
         if firewall_arn is not None:
             input_["firewall_arn"] = firewall_arn
         if firewall_name is not None:
             input_["firewall_name"] = firewall_name
-        input_["delete_protection"] = delete_protection
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_firewall_description(
@@ -4743,7 +4846,7 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.update_firewall_description_request.UpdateFirewallDescriptionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.update_firewall_description_request.UpdateFirewallDescriptionRequest = {}
         if update_token is not None:
             input_["update_token"] = update_token
         if firewall_arn is not None:
@@ -4758,6 +4861,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_firewall_encryption_configuration(
@@ -4809,7 +4913,7 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.update_firewall_encryption_configuration_request.UpdateFirewallEncryptionConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.update_firewall_encryption_configuration_request.UpdateFirewallEncryptionConfigurationRequest = {}
         if update_token is not None:
             input_["update_token"] = update_token
         if firewall_arn is not None:
@@ -4824,6 +4928,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_firewall_policy(
@@ -4881,13 +4986,14 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.update_firewall_policy_request.UpdateFirewallPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["update_token"] = update_token
+        input_: capo_network_firewall.types.update_firewall_policy_request.UpdateFirewallPolicyRequest = {
+            "update_token": update_token,
+            "firewall_policy": firewall_policy,
+        }
         if firewall_policy_arn is not None:
             input_["firewall_policy_arn"] = firewall_policy_arn
         if firewall_policy_name is not None:
             input_["firewall_policy_name"] = firewall_policy_name
-        input_["firewall_policy"] = firewall_policy
         if description is not None:
             input_["description"] = description
         if dry_run is not None:
@@ -4900,6 +5006,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_firewall_policy_change_protection(
@@ -4950,20 +5057,22 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.update_firewall_policy_change_protection_request.UpdateFirewallPolicyChangeProtectionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.update_firewall_policy_change_protection_request.UpdateFirewallPolicyChangeProtectionRequest = {
+            "firewall_policy_change_protection": firewall_policy_change_protection
+        }
         if update_token is not None:
             input_["update_token"] = update_token
         if firewall_arn is not None:
             input_["firewall_arn"] = firewall_arn
         if firewall_name is not None:
             input_["firewall_name"] = firewall_name
-        input_["firewall_policy_change_protection"] = firewall_policy_change_protection
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_logging_configuration(
@@ -5016,7 +5125,7 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.update_logging_configuration_request.UpdateLoggingConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.update_logging_configuration_request.UpdateLoggingConfigurationRequest = {}
         if firewall_arn is not None:
             input_["firewall_arn"] = firewall_arn
         if firewall_name is not None:
@@ -5031,6 +5140,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_proxy(
@@ -5090,8 +5200,10 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.update_proxy_request.UpdateProxyRequest = {}  # type: ignore[typeddict-item]
-        input_["nat_gateway_id"] = nat_gateway_id
+        input_: capo_network_firewall.types.update_proxy_request.UpdateProxyRequest = {
+            "nat_gateway_id": nat_gateway_id,
+            "update_token": update_token,
+        }
         if proxy_name is not None:
             input_["proxy_name"] = proxy_name
         if proxy_arn is not None:
@@ -5102,13 +5214,13 @@ class NetworkFirewallClient:
             input_["listener_properties_to_remove"] = listener_properties_to_remove
         if tls_intercept_properties is not None:
             input_["tls_intercept_properties"] = tls_intercept_properties
-        input_["update_token"] = update_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_proxy_configuration(
@@ -5155,19 +5267,21 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.update_proxy_configuration_request.UpdateProxyConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.update_proxy_configuration_request.UpdateProxyConfigurationRequest = {
+            "default_rule_phase_actions": default_rule_phase_actions,
+            "update_token": update_token,
+        }
         if proxy_configuration_name is not None:
             input_["proxy_configuration_name"] = proxy_configuration_name
         if proxy_configuration_arn is not None:
             input_["proxy_configuration_arn"] = proxy_configuration_arn
-        input_["default_rule_phase_actions"] = default_rule_phase_actions
-        input_["update_token"] = update_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_proxy_rule(
@@ -5232,12 +5346,14 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.update_proxy_rule_request.UpdateProxyRuleRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.update_proxy_rule_request.UpdateProxyRuleRequest = {
+            "proxy_rule_name": proxy_rule_name,
+            "update_token": update_token,
+        }
         if proxy_rule_group_name is not None:
             input_["proxy_rule_group_name"] = proxy_rule_group_name
         if proxy_rule_group_arn is not None:
             input_["proxy_rule_group_arn"] = proxy_rule_group_arn
-        input_["proxy_rule_name"] = proxy_rule_name
         if description is not None:
             input_["description"] = description
         if action is not None:
@@ -5246,13 +5362,13 @@ class NetworkFirewallClient:
             input_["add_conditions"] = add_conditions
         if remove_conditions is not None:
             input_["remove_conditions"] = remove_conditions
-        input_["update_token"] = update_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_proxy_rule_group_priorities(
@@ -5299,19 +5415,21 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.update_proxy_rule_group_priorities_request.UpdateProxyRuleGroupPrioritiesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.update_proxy_rule_group_priorities_request.UpdateProxyRuleGroupPrioritiesRequest = {
+            "rule_groups": rule_groups,
+            "update_token": update_token,
+        }
         if proxy_configuration_name is not None:
             input_["proxy_configuration_name"] = proxy_configuration_name
         if proxy_configuration_arn is not None:
             input_["proxy_configuration_arn"] = proxy_configuration_arn
-        input_["rule_groups"] = rule_groups
-        input_["update_token"] = update_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_proxy_rule_priorities(
@@ -5360,20 +5478,22 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.update_proxy_rule_priorities_request.UpdateProxyRulePrioritiesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.update_proxy_rule_priorities_request.UpdateProxyRulePrioritiesRequest = {
+            "rule_group_request_phase": rule_group_request_phase,
+            "rules": rules,
+            "update_token": update_token,
+        }
         if proxy_rule_group_name is not None:
             input_["proxy_rule_group_name"] = proxy_rule_group_name
         if proxy_rule_group_arn is not None:
             input_["proxy_rule_group_arn"] = proxy_rule_group_arn
-        input_["rule_group_request_phase"] = rule_group_request_phase
-        input_["rules"] = rules
-        input_["update_token"] = update_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_rule_group(
@@ -5451,8 +5571,9 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.update_rule_group_request.UpdateRuleGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["update_token"] = update_token
+        input_: capo_network_firewall.types.update_rule_group_request.UpdateRuleGroupRequest = {
+            "update_token": update_token
+        }
         if rule_group_arn is not None:
             input_["rule_group_arn"] = rule_group_arn
         if rule_group_name is not None:
@@ -5481,6 +5602,7 @@ class NetworkFirewallClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_subnet_change_protection(
@@ -5531,20 +5653,22 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.update_subnet_change_protection_request.UpdateSubnetChangeProtectionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.update_subnet_change_protection_request.UpdateSubnetChangeProtectionRequest = {
+            "subnet_change_protection": subnet_change_protection
+        }
         if update_token is not None:
             input_["update_token"] = update_token
         if firewall_arn is not None:
             input_["firewall_arn"] = firewall_arn
         if firewall_name is not None:
             input_["firewall_name"] = firewall_name
-        input_["subnet_change_protection"] = subnet_change_protection
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_tls_inspection_configuration(
@@ -5600,7 +5724,10 @@ class NetworkFirewallClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_network_firewall.types.update_tls_inspection_configuration_request.UpdateTLSInspectionConfigurationRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_network_firewall.types.update_tls_inspection_configuration_request.UpdateTLSInspectionConfigurationRequest = {
+            "tls_inspection_configuration": tls_inspection_configuration,
+            "update_token": update_token,
+        }
         if tls_inspection_configuration_arn is not None:
             input_["tls_inspection_configuration_arn"] = (
                 tls_inspection_configuration_arn
@@ -5609,18 +5736,17 @@ class NetworkFirewallClient:
             input_["tls_inspection_configuration_name"] = (
                 tls_inspection_configuration_name
             )
-        input_["tls_inspection_configuration"] = tls_inspection_configuration
         if description is not None:
             input_["description"] = description
         if encryption_configuration is not None:
             input_["encryption_configuration"] = encryption_configuration
-        input_["update_token"] = update_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

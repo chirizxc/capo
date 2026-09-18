@@ -45,26 +45,26 @@ def serialize_aws_json_1_0(value: TemplateSyncConfig) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TemplateSyncConfig:
     out: TemplateSyncConfig = {}  # type: ignore[typeddict-item]
-    if "templateName" in data:
+    if data.get("templateName") is not None:
         out["template_name"] = data["templateName"]
     else:
         raise DeserializationError("TemplateSyncConfig.template_name required")
-    if "templateType" in data:
+    if data.get("templateType") is not None:
         out["template_type"] = data["templateType"]
     else:
         raise DeserializationError("TemplateSyncConfig.template_type required")
-    if "repositoryProvider" in data:
+    if data.get("repositoryProvider") is not None:
         out["repository_provider"] = data["repositoryProvider"]
     else:
         raise DeserializationError("TemplateSyncConfig.repository_provider required")
-    if "repositoryName" in data:
+    if data.get("repositoryName") is not None:
         out["repository_name"] = data["repositoryName"]
     else:
         raise DeserializationError("TemplateSyncConfig.repository_name required")
-    if "branch" in data:
+    if data.get("branch") is not None:
         out["branch"] = data["branch"]
     else:
         raise DeserializationError("TemplateSyncConfig.branch required")
-    if "subdirectory" in data:
+    if data.get("subdirectory") is not None:
         out["subdirectory"] = data["subdirectory"]
     return out

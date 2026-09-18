@@ -62,7 +62,7 @@ def serialize_json(value: RestoreTestingPlanForList) -> dict:
 
 def deserialize_json(data: dict) -> RestoreTestingPlanForList:
     out: RestoreTestingPlanForList = {}  # type: ignore[typeddict-item]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_backup.types._prelude.timestamp
 
         out["creation_time"] = capo_backup.types._prelude.timestamp.deserialize_json(
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> RestoreTestingPlanForList:
         )
     else:
         raise DeserializationError("RestoreTestingPlanForList.creation_time required")
-    if "LastExecutionTime" in data:
+    if data.get("LastExecutionTime") is not None:
         import capo_backup.types._prelude.timestamp
 
         out["last_execution_time"] = (
@@ -78,33 +78,33 @@ def deserialize_json(data: dict) -> RestoreTestingPlanForList:
                 data["LastExecutionTime"]
             )
         )
-    if "LastUpdateTime" in data:
+    if data.get("LastUpdateTime") is not None:
         import capo_backup.types._prelude.timestamp
 
         out["last_update_time"] = capo_backup.types._prelude.timestamp.deserialize_json(
             data["LastUpdateTime"]
         )
-    if "RestoreTestingPlanArn" in data:
+    if data.get("RestoreTestingPlanArn") is not None:
         out["restore_testing_plan_arn"] = data["RestoreTestingPlanArn"]
     else:
         raise DeserializationError(
             "RestoreTestingPlanForList.restore_testing_plan_arn required"
         )
-    if "RestoreTestingPlanName" in data:
+    if data.get("RestoreTestingPlanName") is not None:
         out["restore_testing_plan_name"] = data["RestoreTestingPlanName"]
     else:
         raise DeserializationError(
             "RestoreTestingPlanForList.restore_testing_plan_name required"
         )
-    if "ScheduleExpression" in data:
+    if data.get("ScheduleExpression") is not None:
         out["schedule_expression"] = data["ScheduleExpression"]
     else:
         raise DeserializationError(
             "RestoreTestingPlanForList.schedule_expression required"
         )
-    if "ScheduleExpressionTimezone" in data:
+    if data.get("ScheduleExpressionTimezone") is not None:
         out["schedule_expression_timezone"] = data["ScheduleExpressionTimezone"]
-    if "StartWindowHours" in data:
+    if data.get("StartWindowHours") is not None:
         out["start_window_hours"] = data["StartWindowHours"]
     else:
         out["start_window_hours"] = 0

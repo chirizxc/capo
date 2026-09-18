@@ -22,13 +22,13 @@ def serialize_json(value: RistRouterOutputConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> RistRouterOutputConfiguration:
     out: RistRouterOutputConfiguration = {}  # type: ignore[typeddict-item]
-    if "destinationAddress" in data:
+    if data.get("destinationAddress") is not None:
         out["destination_address"] = data["destinationAddress"]
     else:
         raise DeserializationError(
             "RistRouterOutputConfiguration.destination_address required"
         )
-    if "destinationPort" in data:
+    if data.get("destinationPort") is not None:
         out["destination_port"] = data["destinationPort"]
     else:
         raise DeserializationError(

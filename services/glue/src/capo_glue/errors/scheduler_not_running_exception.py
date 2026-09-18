@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: SchedulerNotRunningException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SchedulerNotRunningException_:
     out: SchedulerNotRunningException_ = {}  # type: ignore[typeddict-item]
-    if "Message" in data:
+    if data.get("Message") is not None:
         out["message"] = data["Message"]
     return out
 
@@ -35,15 +35,18 @@ class SchedulerNotRunningException(ServiceError):
 
     code: str | None = "SchedulerNotRunningException"
 
-    def __init__(self, data: SchedulerNotRunningException_):
+    def __init__(self, data: SchedulerNotRunningException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="SchedulerNotRunningException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "SchedulerNotRunningException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "SchedulerNotRunningException":
+        return cls(deserialize_aws_json_1_1(data), message)

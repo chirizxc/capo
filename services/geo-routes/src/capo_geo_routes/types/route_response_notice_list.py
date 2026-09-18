@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> RouteResponseNoticeList:
 
     out: RouteResponseNoticeList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_geo_routes.types.route_response_notice.deserialize_json(item))
     return out

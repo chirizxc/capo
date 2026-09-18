@@ -49,13 +49,13 @@ def serialize_json(value: ExperimentOptions) -> dict:
 
 def deserialize_json(data: dict) -> ExperimentOptions:
     out: ExperimentOptions = {}  # type: ignore[typeddict-item]
-    if "accountTargeting" in data:
+    if data.get("accountTargeting") is not None:
         import capo_fis.types.account_targeting
 
         out["account_targeting"] = capo_fis.types.account_targeting.deserialize_json(
             data["accountTargeting"]
         )
-    if "emptyTargetResolutionMode" in data:
+    if data.get("emptyTargetResolutionMode") is not None:
         import capo_fis.types.empty_target_resolution_mode
 
         out["empty_target_resolution_mode"] = (
@@ -63,7 +63,7 @@ def deserialize_json(data: dict) -> ExperimentOptions:
                 data["emptyTargetResolutionMode"]
             )
         )
-    if "actionsMode" in data:
+    if data.get("actionsMode") is not None:
         import capo_fis.types.actions_mode
 
         out["actions_mode"] = capo_fis.types.actions_mode.deserialize_json(

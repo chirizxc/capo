@@ -16,12 +16,22 @@ RuleMetricsMap: TypeAlias = dict[
 def serialize_aws_json_1_1(input_to_serialize: RuleMetricsMap) -> dict:
     out: dict = {}
     for key, value in input_to_serialize.items():
-        out[key] = value
+        out[key] = (
+            "NaN"
+            if value != value
+            else "Infinity"
+            if value == float("inf")
+            else "-Infinity"
+            if value == float("-inf")
+            else value
+        )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> RuleMetricsMap:
     out: RuleMetricsMap = {}
     for key, value in data.items():
-        out[key] = value
+        if value is None:
+            continue
+        out[key] = float(value)
     return out

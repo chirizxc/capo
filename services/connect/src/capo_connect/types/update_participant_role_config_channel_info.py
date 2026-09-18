@@ -36,7 +36,7 @@ def serialize_json(value: UpdateParticipantRoleConfigChannelInfo) -> dict:
 
 
 def deserialize_json(data: dict) -> UpdateParticipantRoleConfigChannelInfo:
-    if "Chat" in data:
+    if data.get("Chat") is not None:
         import capo_connect.types.chat_participant_role_config
 
         return {

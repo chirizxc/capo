@@ -32,8 +32,11 @@ def serialize_json(input_to_serialize: PackageGroupOriginRestrictions) -> dict:
 def deserialize_json(data: dict) -> PackageGroupOriginRestrictions:
     out: PackageGroupOriginRestrictions = {}
     for key, value in data.items():
-        import capo_codeartifact.types.package_group_origin_restriction
         import capo_codeartifact.types.package_group_origin_restriction_type
+
+        if value is None:
+            continue
+        import capo_codeartifact.types.package_group_origin_restriction
 
         out[
             capo_codeartifact.types.package_group_origin_restriction_type.deserialize_json(

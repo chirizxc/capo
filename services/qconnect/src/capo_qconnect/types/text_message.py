@@ -45,15 +45,15 @@ def serialize_json(value: TextMessage) -> dict:
 
 def deserialize_json(data: dict) -> TextMessage:
     out: TextMessage = {}  # type: ignore[typeddict-item]
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
-    if "citations" in data:
+    if data.get("citations") is not None:
         import capo_qconnect.types.citations
 
         out["citations"] = capo_qconnect.types.citations.deserialize_json(
             data["citations"]
         )
-    if "aiGuardrailAssessment" in data:
+    if data.get("aiGuardrailAssessment") is not None:
         import capo_qconnect.types.ai_guardrail_assessment
 
         out["ai_guardrail_assessment"] = (

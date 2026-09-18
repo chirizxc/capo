@@ -82,39 +82,39 @@ def serialize_aws_json_1_0(value: RegisterActivityTypeInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> RegisterActivityTypeInput:
     out: RegisterActivityTypeInput = {}  # type: ignore[typeddict-item]
-    if "domain" in data:
+    if data.get("domain") is not None:
         out["domain"] = data["domain"]
     else:
         raise DeserializationError("RegisterActivityTypeInput.domain required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("RegisterActivityTypeInput.name required")
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     else:
         raise DeserializationError("RegisterActivityTypeInput.version required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "defaultTaskStartToCloseTimeout" in data:
+    if data.get("defaultTaskStartToCloseTimeout") is not None:
         out["default_task_start_to_close_timeout"] = data[
             "defaultTaskStartToCloseTimeout"
         ]
-    if "defaultTaskHeartbeatTimeout" in data:
+    if data.get("defaultTaskHeartbeatTimeout") is not None:
         out["default_task_heartbeat_timeout"] = data["defaultTaskHeartbeatTimeout"]
-    if "defaultTaskList" in data:
+    if data.get("defaultTaskList") is not None:
         import capo_swf.types.task_list
 
         out["default_task_list"] = capo_swf.types.task_list.deserialize_aws_json_1_0(
             data["defaultTaskList"]
         )
-    if "defaultTaskPriority" in data:
+    if data.get("defaultTaskPriority") is not None:
         out["default_task_priority"] = data["defaultTaskPriority"]
-    if "defaultTaskScheduleToStartTimeout" in data:
+    if data.get("defaultTaskScheduleToStartTimeout") is not None:
         out["default_task_schedule_to_start_timeout"] = data[
             "defaultTaskScheduleToStartTimeout"
         ]
-    if "defaultTaskScheduleToCloseTimeout" in data:
+    if data.get("defaultTaskScheduleToCloseTimeout") is not None:
         out["default_task_schedule_to_close_timeout"] = data[
             "defaultTaskScheduleToCloseTimeout"
         ]

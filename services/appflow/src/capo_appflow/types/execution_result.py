@@ -48,20 +48,20 @@ def serialize_json(value: ExecutionResult) -> dict:
 
 def deserialize_json(data: dict) -> ExecutionResult:
     out: ExecutionResult = {}  # type: ignore[typeddict-item]
-    if "errorInfo" in data:
+    if data.get("errorInfo") is not None:
         import capo_appflow.types.error_info
 
         out["error_info"] = capo_appflow.types.error_info.deserialize_json(
             data["errorInfo"]
         )
-    if "bytesProcessed" in data:
+    if data.get("bytesProcessed") is not None:
         out["bytes_processed"] = data["bytesProcessed"]
-    if "bytesWritten" in data:
+    if data.get("bytesWritten") is not None:
         out["bytes_written"] = data["bytesWritten"]
-    if "recordsProcessed" in data:
+    if data.get("recordsProcessed") is not None:
         out["records_processed"] = data["recordsProcessed"]
-    if "numParallelProcesses" in data:
+    if data.get("numParallelProcesses") is not None:
         out["num_parallel_processes"] = data["numParallelProcesses"]
-    if "maxPageSize" in data:
+    if data.get("maxPageSize") is not None:
         out["max_page_size"] = data["maxPageSize"]
     return out

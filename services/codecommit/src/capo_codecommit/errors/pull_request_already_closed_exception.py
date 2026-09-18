@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: PullRequestAlreadyClosedException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PullRequestAlreadyClosedException_:
     out: PullRequestAlreadyClosedException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -35,15 +35,20 @@ class PullRequestAlreadyClosedException(ServiceError):
 
     code: str | None = "PullRequestAlreadyClosedException"
 
-    def __init__(self, data: PullRequestAlreadyClosedException_):
+    def __init__(
+        self, data: PullRequestAlreadyClosedException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="PullRequestAlreadyClosedException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "PullRequestAlreadyClosedException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "PullRequestAlreadyClosedException":
+        return cls(deserialize_aws_json_1_1(data), message)

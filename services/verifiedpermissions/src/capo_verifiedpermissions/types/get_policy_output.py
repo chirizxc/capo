@@ -123,15 +123,15 @@ def serialize_aws_json_1_0(value: GetPolicyOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetPolicyOutput:
     out: GetPolicyOutput = {}  # type: ignore[typeddict-item]
-    if "policyStoreId" in data:
+    if data.get("policyStoreId") is not None:
         out["policy_store_id"] = data["policyStoreId"]
     else:
         raise DeserializationError("GetPolicyOutput.policy_store_id required")
-    if "policyId" in data:
+    if data.get("policyId") is not None:
         out["policy_id"] = data["policyId"]
     else:
         raise DeserializationError("GetPolicyOutput.policy_id required")
-    if "policyType" in data:
+    if data.get("policyType") is not None:
         import capo_verifiedpermissions.types.policy_type
 
         out["policy_type"] = (
@@ -141,7 +141,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetPolicyOutput:
         )
     else:
         raise DeserializationError("GetPolicyOutput.policy_type required")
-    if "principal" in data:
+    if data.get("principal") is not None:
         import capo_verifiedpermissions.types.entity_identifier
 
         out["principal"] = (
@@ -149,7 +149,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetPolicyOutput:
                 data["principal"]
             )
         )
-    if "resource" in data:
+    if data.get("resource") is not None:
         import capo_verifiedpermissions.types.entity_identifier
 
         out["resource"] = (
@@ -157,7 +157,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetPolicyOutput:
                 data["resource"]
             )
         )
-    if "actions" in data:
+    if data.get("actions") is not None:
         import capo_verifiedpermissions.types.action_identifier_list
 
         out["actions"] = (
@@ -165,7 +165,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetPolicyOutput:
                 data["actions"]
             )
         )
-    if "definition" in data:
+    if data.get("definition") is not None:
         import capo_verifiedpermissions.types.policy_definition_detail
 
         out["definition"] = (
@@ -175,7 +175,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetPolicyOutput:
         )
     else:
         raise DeserializationError("GetPolicyOutput.definition required")
-    if "createdDate" in data:
+    if data.get("createdDate") is not None:
         import capo_verifiedpermissions.types.timestamp_format
 
         out["created_date"] = (
@@ -185,7 +185,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetPolicyOutput:
         )
     else:
         raise DeserializationError("GetPolicyOutput.created_date required")
-    if "lastUpdatedDate" in data:
+    if data.get("lastUpdatedDate") is not None:
         import capo_verifiedpermissions.types.timestamp_format
 
         out["last_updated_date"] = (
@@ -195,7 +195,7 @@ def deserialize_aws_json_1_0(data: dict) -> GetPolicyOutput:
         )
     else:
         raise DeserializationError("GetPolicyOutput.last_updated_date required")
-    if "effect" in data:
+    if data.get("effect") is not None:
         import capo_verifiedpermissions.types.policy_effect
 
         out["effect"] = (
@@ -203,6 +203,6 @@ def deserialize_aws_json_1_0(data: dict) -> GetPolicyOutput:
                 data["effect"]
             )
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     return out

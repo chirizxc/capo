@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: InvalidPolicyException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidPolicyException_:
     out: InvalidPolicyException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,18 @@ class InvalidPolicyException(ServiceError):
 
     code: str | None = "InvalidPolicyException"
 
-    def __init__(self, data: InvalidPolicyException_):
+    def __init__(self, data: InvalidPolicyException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidPolicyException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidPolicyException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidPolicyException":
+        return cls(deserialize_aws_json_1_1(data), message)

@@ -45,18 +45,16 @@ def serialize_json(value: Theme) -> dict:
     out["environmentName"] = value["environment_name"]
     out["id"] = value["id"]
     out["name"] = value["name"]
-    import capo_amplifyuibuilder.types._prelude.timestamp
+    import capo_amplifyuibuilder._protocol.serialize
 
-    out["createdAt"] = capo_amplifyuibuilder.types._prelude.timestamp.serialize_json(
+    out["createdAt"] = capo_amplifyuibuilder._protocol.serialize.fmt_date_time(
         value["created_at"]
     )
     if "modified_at" in value:
-        import capo_amplifyuibuilder.types._prelude.timestamp
+        import capo_amplifyuibuilder._protocol.serialize
 
-        out["modifiedAt"] = (
-            capo_amplifyuibuilder.types._prelude.timestamp.serialize_json(
-                value["modified_at"]
-            )
+        out["modifiedAt"] = capo_amplifyuibuilder._protocol.serialize.fmt_date_time(
+            value["modified_at"]
         )
     import capo_amplifyuibuilder.types.theme_values_list
 
@@ -78,41 +76,37 @@ def serialize_json(value: Theme) -> dict:
 
 def deserialize_json(data: dict) -> Theme:
     out: Theme = {}  # type: ignore[typeddict-item]
-    if "appId" in data:
+    if data.get("appId") is not None:
         out["app_id"] = data["appId"]
     else:
         raise DeserializationError("Theme.app_id required")
-    if "environmentName" in data:
+    if data.get("environmentName") is not None:
         out["environment_name"] = data["environmentName"]
     else:
         raise DeserializationError("Theme.environment_name required")
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("Theme.id required")
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("Theme.name required")
-    if "createdAt" in data:
-        import capo_amplifyuibuilder.types._prelude.timestamp
+    if data.get("createdAt") is not None:
+        import datetime
 
-        out["created_at"] = (
-            capo_amplifyuibuilder.types._prelude.timestamp.deserialize_json(
-                data["createdAt"]
-            )
+        out["created_at"] = datetime.datetime.fromisoformat(
+            data["createdAt"].replace("Z", "+00:00")
         )
     else:
         raise DeserializationError("Theme.created_at required")
-    if "modifiedAt" in data:
-        import capo_amplifyuibuilder.types._prelude.timestamp
+    if data.get("modifiedAt") is not None:
+        import datetime
 
-        out["modified_at"] = (
-            capo_amplifyuibuilder.types._prelude.timestamp.deserialize_json(
-                data["modifiedAt"]
-            )
+        out["modified_at"] = datetime.datetime.fromisoformat(
+            data["modifiedAt"].replace("Z", "+00:00")
         )
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_amplifyuibuilder.types.theme_values_list
 
         out["values"] = capo_amplifyuibuilder.types.theme_values_list.deserialize_json(
@@ -120,7 +114,7 @@ def deserialize_json(data: dict) -> Theme:
         )
     else:
         raise DeserializationError("Theme.values required")
-    if "overrides" in data:
+    if data.get("overrides") is not None:
         import capo_amplifyuibuilder.types.theme_values_list
 
         out["overrides"] = (
@@ -128,7 +122,7 @@ def deserialize_json(data: dict) -> Theme:
                 data["overrides"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_amplifyuibuilder.types.tags
 
         out["tags"] = capo_amplifyuibuilder.types.tags.deserialize_json(data["tags"])

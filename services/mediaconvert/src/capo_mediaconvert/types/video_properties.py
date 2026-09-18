@@ -104,17 +104,17 @@ def serialize_json(value: VideoProperties) -> dict:
 
 def deserialize_json(data: dict) -> VideoProperties:
     out: VideoProperties = {}  # type: ignore[typeddict-item]
-    if "bitDepth" in data:
+    if data.get("bitDepth") is not None:
         out["bit_depth"] = data["bitDepth"]
-    if "bitRate" in data:
+    if data.get("bitRate") is not None:
         out["bit_rate"] = data["bitRate"]
-    if "codecMetadata" in data:
+    if data.get("codecMetadata") is not None:
         import capo_mediaconvert.types.codec_metadata
 
         out["codec_metadata"] = capo_mediaconvert.types.codec_metadata.deserialize_json(
             data["codecMetadata"]
         )
-    if "colorPrimaries" in data:
+    if data.get("colorPrimaries") is not None:
         import capo_mediaconvert.types.color_primaries
 
         out["color_primaries"] = (
@@ -122,21 +122,21 @@ def deserialize_json(data: dict) -> VideoProperties:
                 data["colorPrimaries"]
             )
         )
-    if "frameRate" in data:
+    if data.get("frameRate") is not None:
         import capo_mediaconvert.types.frame_rate
 
         out["frame_rate"] = capo_mediaconvert.types.frame_rate.deserialize_json(
             data["frameRate"]
         )
-    if "hdrMetadata" in data:
+    if data.get("hdrMetadata") is not None:
         import capo_mediaconvert.types.hdr_metadata
 
         out["hdr_metadata"] = capo_mediaconvert.types.hdr_metadata.deserialize_json(
             data["hdrMetadata"]
         )
-    if "height" in data:
+    if data.get("height") is not None:
         out["height"] = data["height"]
-    if "matrixCoefficients" in data:
+    if data.get("matrixCoefficients") is not None:
         import capo_mediaconvert.types.matrix_coefficients
 
         out["matrix_coefficients"] = (
@@ -144,9 +144,9 @@ def deserialize_json(data: dict) -> VideoProperties:
                 data["matrixCoefficients"]
             )
         )
-    if "rotation" in data:
+    if data.get("rotation") is not None:
         out["rotation"] = data["rotation"]
-    if "transferCharacteristics" in data:
+    if data.get("transferCharacteristics") is not None:
         import capo_mediaconvert.types.transfer_characteristics
 
         out["transfer_characteristics"] = (
@@ -154,6 +154,6 @@ def deserialize_json(data: dict) -> VideoProperties:
                 data["transferCharacteristics"]
             )
         )
-    if "width" in data:
+    if data.get("width") is not None:
         out["width"] = data["width"]
     return out

@@ -67,14 +67,16 @@ class WebAppCustomizationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.describe_web_app_customization_request.DescribeWebAppCustomizationRequest = {}  # type: ignore[typeddict-item]
-        input_["web_app_id"] = web_app_id
+        input_: capo_transfer.types.describe_web_app_customization_request.DescribeWebAppCustomizationRequest = {
+            "web_app_id": web_app_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -123,8 +125,9 @@ class WebAppCustomizationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.update_web_app_customization_request.UpdateWebAppCustomizationRequest = {}  # type: ignore[typeddict-item]
-        input_["web_app_id"] = web_app_id
+        input_: capo_transfer.types.update_web_app_customization_request.UpdateWebAppCustomizationRequest = {
+            "web_app_id": web_app_id
+        }
         if title is not None:
             input_["title"] = title
         if logo_file is not None:
@@ -137,6 +140,7 @@ class WebAppCustomizationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -173,14 +177,16 @@ class WebAppCustomizationResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.delete_web_app_customization_request.DeleteWebAppCustomizationRequest = {}  # type: ignore[typeddict-item]
-        input_["web_app_id"] = web_app_id
+        input_: capo_transfer.types.delete_web_app_customization_request.DeleteWebAppCustomizationRequest = {
+            "web_app_id": web_app_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -224,14 +230,16 @@ class AsyncWebAppCustomizationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.describe_web_app_customization_request.DescribeWebAppCustomizationRequest = {}  # type: ignore[typeddict-item]
-        input_["web_app_id"] = web_app_id
+        input_: capo_transfer.types.describe_web_app_customization_request.DescribeWebAppCustomizationRequest = {
+            "web_app_id": web_app_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -281,8 +289,9 @@ class AsyncWebAppCustomizationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.update_web_app_customization_request.UpdateWebAppCustomizationRequest = {}  # type: ignore[typeddict-item]
-        input_["web_app_id"] = web_app_id
+        input_: capo_transfer.types.update_web_app_customization_request.UpdateWebAppCustomizationRequest = {
+            "web_app_id": web_app_id
+        }
         if title is not None:
             input_["title"] = title
         if logo_file is not None:
@@ -295,6 +304,7 @@ class AsyncWebAppCustomizationResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -332,12 +342,14 @@ class AsyncWebAppCustomizationResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_transfer.types.delete_web_app_customization_request.DeleteWebAppCustomizationRequest = {}  # type: ignore[typeddict-item]
-        input_["web_app_id"] = web_app_id
+        input_: capo_transfer.types.delete_web_app_customization_request.DeleteWebAppCustomizationRequest = {
+            "web_app_id": web_app_id
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

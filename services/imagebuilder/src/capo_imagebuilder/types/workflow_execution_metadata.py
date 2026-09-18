@@ -95,17 +95,17 @@ def serialize_json(value: WorkflowExecutionMetadata) -> dict:
 
 def deserialize_json(data: dict) -> WorkflowExecutionMetadata:
     out: WorkflowExecutionMetadata = {}  # type: ignore[typeddict-item]
-    if "workflowBuildVersionArn" in data:
+    if data.get("workflowBuildVersionArn") is not None:
         out["workflow_build_version_arn"] = data["workflowBuildVersionArn"]
-    if "workflowExecutionId" in data:
+    if data.get("workflowExecutionId") is not None:
         out["workflow_execution_id"] = data["workflowExecutionId"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_imagebuilder.types.workflow_type
 
         out["type"] = capo_imagebuilder.types.workflow_type.deserialize_json(
             data["type"]
         )
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_imagebuilder.types.workflow_execution_status
 
         out["status"] = (
@@ -113,30 +113,30 @@ def deserialize_json(data: dict) -> WorkflowExecutionMetadata:
                 data["status"]
             )
         )
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
-    if "totalStepCount" in data:
+    if data.get("totalStepCount") is not None:
         out["total_step_count"] = data["totalStepCount"]
     else:
         out["total_step_count"] = 0
-    if "totalStepsSucceeded" in data:
+    if data.get("totalStepsSucceeded") is not None:
         out["total_steps_succeeded"] = data["totalStepsSucceeded"]
     else:
         out["total_steps_succeeded"] = 0
-    if "totalStepsFailed" in data:
+    if data.get("totalStepsFailed") is not None:
         out["total_steps_failed"] = data["totalStepsFailed"]
     else:
         out["total_steps_failed"] = 0
-    if "totalStepsSkipped" in data:
+    if data.get("totalStepsSkipped") is not None:
         out["total_steps_skipped"] = data["totalStepsSkipped"]
     else:
         out["total_steps_skipped"] = 0
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         out["start_time"] = data["startTime"]
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         out["end_time"] = data["endTime"]
-    if "parallelGroup" in data:
+    if data.get("parallelGroup") is not None:
         out["parallel_group"] = data["parallelGroup"]
-    if "retried" in data:
+    if data.get("retried") is not None:
         out["retried"] = data["retried"]
     return out

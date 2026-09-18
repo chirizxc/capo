@@ -31,7 +31,7 @@ def serialize_json(value: ConfiguredAudienceModelOutputConfig) -> dict:
 
 def deserialize_json(data: dict) -> ConfiguredAudienceModelOutputConfig:
     out: ConfiguredAudienceModelOutputConfig = {}  # type: ignore[typeddict-item]
-    if "destination" in data:
+    if data.get("destination") is not None:
         import capo_cleanroomsml.types.audience_destination
 
         out["destination"] = (
@@ -43,7 +43,7 @@ def deserialize_json(data: dict) -> ConfiguredAudienceModelOutputConfig:
         raise DeserializationError(
             "ConfiguredAudienceModelOutputConfig.destination required"
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError(

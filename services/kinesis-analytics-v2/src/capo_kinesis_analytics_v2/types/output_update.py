@@ -83,13 +83,13 @@ def serialize_aws_json_1_1(value: OutputUpdate) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> OutputUpdate:
     out: OutputUpdate = {}  # type: ignore[typeddict-item]
-    if "OutputId" in data:
+    if data.get("OutputId") is not None:
         out["output_id"] = data["OutputId"]
     else:
         raise DeserializationError("OutputUpdate.output_id required")
-    if "NameUpdate" in data:
+    if data.get("NameUpdate") is not None:
         out["name_update"] = data["NameUpdate"]
-    if "KinesisStreamsOutputUpdate" in data:
+    if data.get("KinesisStreamsOutputUpdate") is not None:
         import capo_kinesis_analytics_v2.types.kinesis_streams_output_update
 
         out["kinesis_streams_output_update"] = (
@@ -97,7 +97,7 @@ def deserialize_aws_json_1_1(data: dict) -> OutputUpdate:
                 data["KinesisStreamsOutputUpdate"]
             )
         )
-    if "KinesisFirehoseOutputUpdate" in data:
+    if data.get("KinesisFirehoseOutputUpdate") is not None:
         import capo_kinesis_analytics_v2.types.kinesis_firehose_output_update
 
         out["kinesis_firehose_output_update"] = (
@@ -105,7 +105,7 @@ def deserialize_aws_json_1_1(data: dict) -> OutputUpdate:
                 data["KinesisFirehoseOutputUpdate"]
             )
         )
-    if "LambdaOutputUpdate" in data:
+    if data.get("LambdaOutputUpdate") is not None:
         import capo_kinesis_analytics_v2.types.lambda_output_update
 
         out["lambda_output_update"] = (
@@ -113,7 +113,7 @@ def deserialize_aws_json_1_1(data: dict) -> OutputUpdate:
                 data["LambdaOutputUpdate"]
             )
         )
-    if "DestinationSchemaUpdate" in data:
+    if data.get("DestinationSchemaUpdate") is not None:
         import capo_kinesis_analytics_v2.types.destination_schema
 
         out["destination_schema_update"] = (

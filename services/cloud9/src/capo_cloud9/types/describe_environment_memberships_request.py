@@ -47,11 +47,11 @@ def serialize_aws_json_1_1(value: DescribeEnvironmentMembershipsRequest) -> dict
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeEnvironmentMembershipsRequest:
     out: DescribeEnvironmentMembershipsRequest = {}  # type: ignore[typeddict-item]
-    if "userArn" in data:
+    if data.get("userArn") is not None:
         out["user_arn"] = data["userArn"]
-    if "environmentId" in data:
+    if data.get("environmentId") is not None:
         out["environment_id"] = data["environmentId"]
-    if "permissions" in data:
+    if data.get("permissions") is not None:
         import capo_cloud9.types.permissions_list
 
         out["permissions"] = (
@@ -59,8 +59,8 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeEnvironmentMembershipsReques
                 data["permissions"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
     return out

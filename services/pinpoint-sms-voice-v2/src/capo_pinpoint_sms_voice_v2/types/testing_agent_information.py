@@ -31,13 +31,13 @@ def serialize_aws_json_1_0(value: TestingAgentInformation) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TestingAgentInformation:
     out: TestingAgentInformation = {}  # type: ignore[typeddict-item]
-    if "Status" in data:
+    if data.get("Status") is not None:
         out["status"] = data["Status"]
     else:
         raise DeserializationError("TestingAgentInformation.status required")
-    if "TestingAgentId" in data:
+    if data.get("TestingAgentId") is not None:
         out["testing_agent_id"] = data["TestingAgentId"]
-    if "RegistrationId" in data:
+    if data.get("RegistrationId") is not None:
         out["registration_id"] = data["RegistrationId"]
     else:
         raise DeserializationError("TestingAgentInformation.registration_id required")

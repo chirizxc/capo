@@ -140,11 +140,11 @@ def serialize_json(value: UpdateQueueRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateQueueRequest:
     out: UpdateQueueRequest = {}  # type: ignore[typeddict-item]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "defaultBudgetAction" in data:
+    if data.get("defaultBudgetAction") is not None:
         import capo_deadline.types.default_queue_budget_action
 
         out["default_budget_action"] = (
@@ -152,7 +152,7 @@ def deserialize_json(data: dict) -> UpdateQueueRequest:
                 data["defaultBudgetAction"]
             )
         )
-    if "jobAttachmentSettings" in data:
+    if data.get("jobAttachmentSettings") is not None:
         import capo_deadline.types.job_attachment_settings
 
         out["job_attachment_settings"] = (
@@ -160,15 +160,15 @@ def deserialize_json(data: dict) -> UpdateQueueRequest:
                 data["jobAttachmentSettings"]
             )
         )
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
-    if "jobRunAsUser" in data:
+    if data.get("jobRunAsUser") is not None:
         import capo_deadline.types.job_run_as_user
 
         out["job_run_as_user"] = capo_deadline.types.job_run_as_user.deserialize_json(
             data["jobRunAsUser"]
         )
-    if "requiredFileSystemLocationNamesToAdd" in data:
+    if data.get("requiredFileSystemLocationNamesToAdd") is not None:
         import capo_deadline.types.required_file_system_location_names
 
         out["required_file_system_location_names_to_add"] = (
@@ -176,7 +176,7 @@ def deserialize_json(data: dict) -> UpdateQueueRequest:
                 data["requiredFileSystemLocationNamesToAdd"]
             )
         )
-    if "requiredFileSystemLocationNamesToRemove" in data:
+    if data.get("requiredFileSystemLocationNamesToRemove") is not None:
         import capo_deadline.types.required_file_system_location_names
 
         out["required_file_system_location_names_to_remove"] = (
@@ -184,7 +184,7 @@ def deserialize_json(data: dict) -> UpdateQueueRequest:
                 data["requiredFileSystemLocationNamesToRemove"]
             )
         )
-    if "allowedStorageProfileIdsToAdd" in data:
+    if data.get("allowedStorageProfileIdsToAdd") is not None:
         import capo_deadline.types.allowed_storage_profile_ids
 
         out["allowed_storage_profile_ids_to_add"] = (
@@ -192,7 +192,7 @@ def deserialize_json(data: dict) -> UpdateQueueRequest:
                 data["allowedStorageProfileIdsToAdd"]
             )
         )
-    if "allowedStorageProfileIdsToRemove" in data:
+    if data.get("allowedStorageProfileIdsToRemove") is not None:
         import capo_deadline.types.allowed_storage_profile_ids
 
         out["allowed_storage_profile_ids_to_remove"] = (
@@ -200,7 +200,7 @@ def deserialize_json(data: dict) -> UpdateQueueRequest:
                 data["allowedStorageProfileIdsToRemove"]
             )
         )
-    if "schedulingConfiguration" in data:
+    if data.get("schedulingConfiguration") is not None:
         import capo_deadline.types.scheduling_configuration
 
         out["scheduling_configuration"] = (

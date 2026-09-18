@@ -30,7 +30,7 @@ def serialize_json(value: MultiplexContainerSettings) -> dict:
 
 def deserialize_json(data: dict) -> MultiplexContainerSettings:
     out: MultiplexContainerSettings = {}  # type: ignore[typeddict-item]
-    if "multiplexM2tsSettings" in data:
+    if data.get("multiplexM2tsSettings") is not None:
         import capo_medialive.types.multiplex_m2ts_settings
 
         out["multiplex_m2ts_settings"] = (

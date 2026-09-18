@@ -149,11 +149,11 @@ def serialize_json(value: ServerDetail) -> dict:
 
 def deserialize_json(data: dict) -> ServerDetail:
     out: ServerDetail = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "recommendationSet" in data:
+    if data.get("recommendationSet") is not None:
         import capo_migrationhubstrategy.types.recommendation_set
 
         out["recommendation_set"] = (
@@ -161,11 +161,11 @@ def deserialize_json(data: dict) -> ServerDetail:
                 data["recommendationSet"]
             )
         )
-    if "dataCollectionStatus" in data:
+    if data.get("dataCollectionStatus") is not None:
         out["data_collection_status"] = data["dataCollectionStatus"]
-    if "statusMessage" in data:
+    if data.get("statusMessage") is not None:
         out["status_message"] = data["statusMessage"]
-    if "listAntipatternSeveritySummary" in data:
+    if data.get("listAntipatternSeveritySummary") is not None:
         import capo_migrationhubstrategy.types.list_antipattern_severity_summary
 
         out["list_antipattern_severity_summary"] = (
@@ -173,7 +173,7 @@ def deserialize_json(data: dict) -> ServerDetail:
                 data["listAntipatternSeveritySummary"]
             )
         )
-    if "systemInfo" in data:
+    if data.get("systemInfo") is not None:
         import capo_migrationhubstrategy.types.system_info
 
         out["system_info"] = (
@@ -181,7 +181,7 @@ def deserialize_json(data: dict) -> ServerDetail:
                 data["systemInfo"]
             )
         )
-    if "applicationComponentStrategySummary" in data:
+    if data.get("applicationComponentStrategySummary") is not None:
         import capo_migrationhubstrategy.types.list_strategy_summary
 
         out["application_component_strategy_summary"] = (
@@ -189,7 +189,7 @@ def deserialize_json(data: dict) -> ServerDetail:
                 data["applicationComponentStrategySummary"]
             )
         )
-    if "antipatternReportS3Object" in data:
+    if data.get("antipatternReportS3Object") is not None:
         import capo_migrationhubstrategy.types.s3_object
 
         out["antipattern_report_s3_object"] = (
@@ -197,15 +197,15 @@ def deserialize_json(data: dict) -> ServerDetail:
                 data["antipatternReportS3Object"]
             )
         )
-    if "antipatternReportStatus" in data:
+    if data.get("antipatternReportStatus") is not None:
         out["antipattern_report_status"] = data["antipatternReportStatus"]
-    if "antipatternReportStatusMessage" in data:
+    if data.get("antipatternReportStatusMessage") is not None:
         out["antipattern_report_status_message"] = data[
             "antipatternReportStatusMessage"
         ]
-    if "serverType" in data:
+    if data.get("serverType") is not None:
         out["server_type"] = data["serverType"]
-    if "lastAnalyzedTimestamp" in data:
+    if data.get("lastAnalyzedTimestamp") is not None:
         import capo_migrationhubstrategy.types.time_stamp
 
         out["last_analyzed_timestamp"] = (
@@ -213,7 +213,7 @@ def deserialize_json(data: dict) -> ServerDetail:
                 data["lastAnalyzedTimestamp"]
             )
         )
-    if "serverError" in data:
+    if data.get("serverError") is not None:
         import capo_migrationhubstrategy.types.server_error
 
         out["server_error"] = (

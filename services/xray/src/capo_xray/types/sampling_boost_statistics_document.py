@@ -46,31 +46,31 @@ def serialize_json(value: SamplingBoostStatisticsDocument) -> dict:
 
 def deserialize_json(data: dict) -> SamplingBoostStatisticsDocument:
     out: SamplingBoostStatisticsDocument = {}  # type: ignore[typeddict-item]
-    if "RuleName" in data:
+    if data.get("RuleName") is not None:
         out["rule_name"] = data["RuleName"]
     else:
         raise DeserializationError("SamplingBoostStatisticsDocument.rule_name required")
-    if "ServiceName" in data:
+    if data.get("ServiceName") is not None:
         out["service_name"] = data["ServiceName"]
     else:
         raise DeserializationError(
             "SamplingBoostStatisticsDocument.service_name required"
         )
-    if "Timestamp" in data:
+    if data.get("Timestamp") is not None:
         import capo_xray.types.timestamp
 
         out["timestamp"] = capo_xray.types.timestamp.deserialize_json(data["Timestamp"])
     else:
         raise DeserializationError("SamplingBoostStatisticsDocument.timestamp required")
-    if "AnomalyCount" in data:
+    if data.get("AnomalyCount") is not None:
         out["anomaly_count"] = data["AnomalyCount"]
     else:
         out["anomaly_count"] = 0
-    if "TotalCount" in data:
+    if data.get("TotalCount") is not None:
         out["total_count"] = data["TotalCount"]
     else:
         out["total_count"] = 0
-    if "SampledAnomalyCount" in data:
+    if data.get("SampledAnomalyCount") is not None:
         out["sampled_anomaly_count"] = data["SampledAnomalyCount"]
     else:
         out["sampled_anomaly_count"] = 0

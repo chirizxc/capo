@@ -31,11 +31,11 @@ def serialize_json(value: UpdateVoiceConnectorRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateVoiceConnectorRequest:
     out: UpdateVoiceConnectorRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("UpdateVoiceConnectorRequest.name required")
-    if "RequireEncryption" in data:
+    if data.get("RequireEncryption") is not None:
         out["require_encryption"] = data["RequireEncryption"]
     else:
         raise DeserializationError(

@@ -31,7 +31,7 @@ def serialize_json(value: EvaluationFormLanguageConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> EvaluationFormLanguageConfiguration:
     out: EvaluationFormLanguageConfiguration = {}  # type: ignore[typeddict-item]
-    if "FormLanguage" in data:
+    if data.get("FormLanguage") is not None:
         import capo_connect.types.evaluation_form_language_code
 
         out["form_language"] = (

@@ -45,15 +45,15 @@ def serialize_aws_json_1_1(value: Subscriber) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Subscriber:
     out: Subscriber = {}  # type: ignore[typeddict-item]
-    if "Address" in data:
+    if data.get("Address") is not None:
         out["address"] = data["Address"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_cost_explorer.types.subscriber_type
 
         out["type"] = capo_cost_explorer.types.subscriber_type.deserialize_aws_json_1_1(
             data["Type"]
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_cost_explorer.types.subscriber_status
 
         out["status"] = (

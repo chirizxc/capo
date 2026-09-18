@@ -32,10 +32,10 @@ def serialize_aws_json_1_1(value: DatabaseIdentifier) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DatabaseIdentifier:
     out: DatabaseIdentifier = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
-    if "Region" in data:
+    if data.get("Region") is not None:
         out["region"] = data["Region"]
     return out

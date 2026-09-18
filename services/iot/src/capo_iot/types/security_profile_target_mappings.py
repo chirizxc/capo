@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> SecurityProfileTargetMappings:
 
     out: SecurityProfileTargetMappings = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iot.types.security_profile_target_mapping.deserialize_json(item)
         )

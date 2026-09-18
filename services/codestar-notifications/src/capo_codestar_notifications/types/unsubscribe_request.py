@@ -28,11 +28,11 @@ def serialize_json(value: UnsubscribeRequest) -> dict:
 
 def deserialize_json(data: dict) -> UnsubscribeRequest:
     out: UnsubscribeRequest = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("UnsubscribeRequest.arn required")
-    if "TargetAddress" in data:
+    if data.get("TargetAddress") is not None:
         out["target_address"] = data["TargetAddress"]
     else:
         raise DeserializationError("UnsubscribeRequest.target_address required")

@@ -36,7 +36,7 @@ def serialize_json(value: AttributeAggregationFunction) -> dict:
 
 def deserialize_json(data: dict) -> AttributeAggregationFunction:
     out: AttributeAggregationFunction = {}  # type: ignore[typeddict-item]
-    if "SimpleAttributeAggregation" in data:
+    if data.get("SimpleAttributeAggregation") is not None:
         import capo_quicksight.types.simple_attribute_aggregation_function
 
         out["simple_attribute_aggregation"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> AttributeAggregationFunction:
                 data["SimpleAttributeAggregation"]
             )
         )
-    if "ValueForMultipleValues" in data:
+    if data.get("ValueForMultipleValues") is not None:
         out["value_for_multiple_values"] = data["ValueForMultipleValues"]
     return out

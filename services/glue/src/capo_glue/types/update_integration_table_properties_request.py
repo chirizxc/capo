@@ -54,19 +54,19 @@ def serialize_aws_json_1_1(value: UpdateIntegrationTablePropertiesRequest) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateIntegrationTablePropertiesRequest:
     out: UpdateIntegrationTablePropertiesRequest = {}  # type: ignore[typeddict-item]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
     else:
         raise DeserializationError(
             "UpdateIntegrationTablePropertiesRequest.resource_arn required"
         )
-    if "TableName" in data:
+    if data.get("TableName") is not None:
         out["table_name"] = data["TableName"]
     else:
         raise DeserializationError(
             "UpdateIntegrationTablePropertiesRequest.table_name required"
         )
-    if "SourceTableConfig" in data:
+    if data.get("SourceTableConfig") is not None:
         import capo_glue.types.source_table_config
 
         out["source_table_config"] = (
@@ -74,7 +74,7 @@ def deserialize_aws_json_1_1(data: dict) -> UpdateIntegrationTablePropertiesRequ
                 data["SourceTableConfig"]
             )
         )
-    if "TargetTableConfig" in data:
+    if data.get("TargetTableConfig") is not None:
         import capo_glue.types.target_table_config
 
         out["target_table_config"] = (

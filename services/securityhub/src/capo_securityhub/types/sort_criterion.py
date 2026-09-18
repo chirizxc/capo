@@ -32,9 +32,9 @@ def serialize_json(value: SortCriterion) -> dict:
 
 def deserialize_json(data: dict) -> SortCriterion:
     out: SortCriterion = {}  # type: ignore[typeddict-item]
-    if "Field" in data:
+    if data.get("Field") is not None:
         out["field"] = data["Field"]
-    if "SortOrder" in data:
+    if data.get("SortOrder") is not None:
         import capo_securityhub.types.sort_order
 
         out["sort_order"] = capo_securityhub.types.sort_order.deserialize_json(

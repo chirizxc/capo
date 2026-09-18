@@ -13,9 +13,9 @@ from capo_apigatewayv2 import AsyncApiGatewayV2Client
 
 
 async def main():
-    async with AsyncApiGatewayV2Client() as s3:
+    async with AsyncApiGatewayV2Client() as api_gateway_v2:
         # Example: call the create_api operation
-        response = await s3.create_api()
+        response = await api_gateway_v2.create_api()
         print(response["api_endpoint"])
 ```
 
@@ -28,9 +28,9 @@ from capo_apigatewayv2 import AsyncApiGatewayV2Client
 
 
 async def main():
-    async with AsyncApiGatewayV2Client() as s3:
+    async with AsyncApiGatewayV2Client() as api_gateway_v2:
         # Example: paginate over list_routing_rules
-        async for item in s3.iter_list_routing_rules():
+        async for item in api_gateway_v2.iter_list_routing_rules():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_apigatewayv2.error import BadRequestException
 
 
 async def main():
-    async with AsyncApiGatewayV2Client() as s3:
+    async with AsyncApiGatewayV2Client() as api_gateway_v2:
         try:
-            await s3.create_api()
+            await api_gateway_v2.create_api()
         except BadRequestException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_apigatewayv2 import AsyncApiGatewayV2Client
 
 
 async def main():
-    async with AsyncApiGatewayV2Client() as s3:
+    async with AsyncApiGatewayV2Client() as api_gateway_v2:
         # Default: 3 attempts for every operation
-        response = await s3.create_api()
+        response = await api_gateway_v2.create_api()
 
         # Override per operation
-        response = await s3.create_api(config_overrides={"retry_max_attempts": 5})
+        response = await api_gateway_v2.create_api(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_api(config_overrides={"retry_max_attempts": 1})
+        response = await api_gateway_v2.create_api(config_overrides={"retry_max_attempts": 1})
 ```

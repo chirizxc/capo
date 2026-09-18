@@ -37,13 +37,13 @@ def serialize_aws_json_1_1(value: RenewDomainRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RenewDomainRequest:
     out: RenewDomainRequest = {}  # type: ignore[typeddict-item]
-    if "DomainName" in data:
+    if data.get("DomainName") is not None:
         out["domain_name"] = data["DomainName"]
     else:
         raise DeserializationError("RenewDomainRequest.domain_name required")
-    if "DurationInYears" in data:
+    if data.get("DurationInYears") is not None:
         out["duration_in_years"] = data["DurationInYears"]
-    if "CurrentExpiryYear" in data:
+    if data.get("CurrentExpiryYear") is not None:
         out["current_expiry_year"] = data["CurrentExpiryYear"]
     else:
         out["current_expiry_year"] = 0

@@ -23,6 +23,6 @@ def serialize_json(value: MeshServiceDiscovery) -> dict:
 
 def deserialize_json(data: dict) -> MeshServiceDiscovery:
     out: MeshServiceDiscovery = {}  # type: ignore[typeddict-item]
-    if "ipPreference" in data:
+    if data.get("ipPreference") is not None:
         out["ip_preference"] = data["ipPreference"]
     return out

@@ -32,14 +32,14 @@ def serialize_json(value: InputSource) -> dict:
 
 def deserialize_json(data: dict) -> InputSource:
     out: InputSource = {}  # type: ignore[typeddict-item]
-    if "inputSourceARN" in data:
+    if data.get("inputSourceARN") is not None:
         out["input_source_arn"] = data["inputSourceARN"]
     else:
         raise DeserializationError("InputSource.input_source_arn required")
-    if "schemaName" in data:
+    if data.get("schemaName") is not None:
         out["schema_name"] = data["schemaName"]
     else:
         raise DeserializationError("InputSource.schema_name required")
-    if "applyNormalization" in data:
+    if data.get("applyNormalization") is not None:
         out["apply_normalization"] = data["applyNormalization"]
     return out

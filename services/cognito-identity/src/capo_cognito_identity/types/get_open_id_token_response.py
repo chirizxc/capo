@@ -28,8 +28,8 @@ def serialize_aws_json_1_1(value: GetOpenIdTokenResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetOpenIdTokenResponse:
     out: GetOpenIdTokenResponse = {}  # type: ignore[typeddict-item]
-    if "IdentityId" in data:
+    if data.get("IdentityId") is not None:
         out["identity_id"] = data["IdentityId"]
-    if "Token" in data:
+    if data.get("Token") is not None:
         out["token"] = data["Token"]
     return out

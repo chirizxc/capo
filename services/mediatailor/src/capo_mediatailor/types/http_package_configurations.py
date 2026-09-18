@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> HttpPackageConfigurations:
 
     out: HttpPackageConfigurations = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mediatailor.types.http_package_configuration.deserialize_json(item)
         )

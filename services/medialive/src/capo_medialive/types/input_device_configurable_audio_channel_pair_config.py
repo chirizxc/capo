@@ -36,9 +36,9 @@ def serialize_json(value: InputDeviceConfigurableAudioChannelPairConfig) -> dict
 
 def deserialize_json(data: dict) -> InputDeviceConfigurableAudioChannelPairConfig:
     out: InputDeviceConfigurableAudioChannelPairConfig = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "profile" in data:
+    if data.get("profile") is not None:
         import capo_medialive.types.input_device_configurable_audio_channel_pair_profile
 
         out["profile"] = (

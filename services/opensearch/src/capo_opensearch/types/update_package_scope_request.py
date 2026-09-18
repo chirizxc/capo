@@ -44,11 +44,11 @@ def serialize_json(value: UpdatePackageScopeRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdatePackageScopeRequest:
     out: UpdatePackageScopeRequest = {}  # type: ignore[typeddict-item]
-    if "PackageID" in data:
+    if data.get("PackageID") is not None:
         out["package_id"] = data["PackageID"]
     else:
         raise DeserializationError("UpdatePackageScopeRequest.package_id required")
-    if "Operation" in data:
+    if data.get("Operation") is not None:
         import capo_opensearch.types.package_scope_operation_enum
 
         out["operation"] = (
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> UpdatePackageScopeRequest:
         )
     else:
         raise DeserializationError("UpdatePackageScopeRequest.operation required")
-    if "PackageUserList" in data:
+    if data.get("PackageUserList") is not None:
         import capo_opensearch.types.package_user_list
 
         out["package_user_list"] = (

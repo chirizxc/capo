@@ -35,9 +35,9 @@ def serialize_json(value: ProtectedQueryStatistics) -> dict:
 
 def deserialize_json(data: dict) -> ProtectedQueryStatistics:
     out: ProtectedQueryStatistics = {}  # type: ignore[typeddict-item]
-    if "totalDurationInMillis" in data:
+    if data.get("totalDurationInMillis") is not None:
         out["total_duration_in_millis"] = data["totalDurationInMillis"]
-    if "billedResourceUtilization" in data:
+    if data.get("billedResourceUtilization") is not None:
         import capo_cleanrooms.types.billed_resource_utilization
 
         out["billed_resource_utilization"] = (

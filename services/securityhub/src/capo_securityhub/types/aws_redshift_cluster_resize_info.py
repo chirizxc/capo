@@ -28,8 +28,8 @@ def serialize_json(value: AwsRedshiftClusterResizeInfo) -> dict:
 
 def deserialize_json(data: dict) -> AwsRedshiftClusterResizeInfo:
     out: AwsRedshiftClusterResizeInfo = {}  # type: ignore[typeddict-item]
-    if "AllowCancelResize" in data:
+    if data.get("AllowCancelResize") is not None:
         out["allow_cancel_resize"] = data["AllowCancelResize"]
-    if "ResizeType" in data:
+    if data.get("ResizeType") is not None:
         out["resize_type"] = data["ResizeType"]
     return out

@@ -81,7 +81,7 @@ def deserialize_json(
     data: dict,
 ) -> AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDetails:
     out: AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDetails = {}  # type: ignore[typeddict-item]
-    if "Capabilities" in data:
+    if data.get("Capabilities") is not None:
         import capo_securityhub.types.aws_ecs_task_definition_container_definitions_linux_parameters_capabilities_details
 
         out["capabilities"] = (
@@ -89,7 +89,7 @@ def deserialize_json(
                 data["Capabilities"]
             )
         )
-    if "Devices" in data:
+    if data.get("Devices") is not None:
         import capo_securityhub.types.aws_ecs_task_definition_container_definitions_linux_parameters_devices_list
 
         out["devices"] = (
@@ -97,15 +97,15 @@ def deserialize_json(
                 data["Devices"]
             )
         )
-    if "InitProcessEnabled" in data:
+    if data.get("InitProcessEnabled") is not None:
         out["init_process_enabled"] = data["InitProcessEnabled"]
-    if "MaxSwap" in data:
+    if data.get("MaxSwap") is not None:
         out["max_swap"] = data["MaxSwap"]
-    if "SharedMemorySize" in data:
+    if data.get("SharedMemorySize") is not None:
         out["shared_memory_size"] = data["SharedMemorySize"]
-    if "Swappiness" in data:
+    if data.get("Swappiness") is not None:
         out["swappiness"] = data["Swappiness"]
-    if "Tmpfs" in data:
+    if data.get("Tmpfs") is not None:
         import capo_securityhub.types.aws_ecs_task_definition_container_definitions_linux_parameters_tmpfs_list
 
         out["tmpfs"] = (

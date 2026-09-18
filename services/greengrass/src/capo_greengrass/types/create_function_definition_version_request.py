@@ -45,7 +45,7 @@ def serialize_json(value: CreateFunctionDefinitionVersionRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateFunctionDefinitionVersionRequest:
     out: CreateFunctionDefinitionVersionRequest = {}  # type: ignore[typeddict-item]
-    if "DefaultConfig" in data:
+    if data.get("DefaultConfig") is not None:
         import capo_greengrass.types.function_default_config
 
         out["default_config"] = (
@@ -53,7 +53,7 @@ def deserialize_json(data: dict) -> CreateFunctionDefinitionVersionRequest:
                 data["DefaultConfig"]
             )
         )
-    if "Functions" in data:
+    if data.get("Functions") is not None:
         import capo_greengrass.types.__list_of_function
 
         out["functions"] = capo_greengrass.types.__list_of_function.deserialize_json(

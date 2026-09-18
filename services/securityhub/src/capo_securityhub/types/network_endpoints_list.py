@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> NetworkEndpointsList:
 
     out: NetworkEndpointsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityhub.types.network_endpoint.deserialize_json(item))
     return out

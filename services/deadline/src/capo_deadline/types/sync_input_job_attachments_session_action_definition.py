@@ -23,6 +23,6 @@ def serialize_json(value: SyncInputJobAttachmentsSessionActionDefinition) -> dic
 
 def deserialize_json(data: dict) -> SyncInputJobAttachmentsSessionActionDefinition:
     out: SyncInputJobAttachmentsSessionActionDefinition = {}  # type: ignore[typeddict-item]
-    if "stepId" in data:
+    if data.get("stepId") is not None:
         out["step_id"] = data["stepId"]
     return out

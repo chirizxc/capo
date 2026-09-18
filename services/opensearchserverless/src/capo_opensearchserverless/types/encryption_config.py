@@ -22,8 +22,8 @@ def serialize_aws_json_1_0(value: EncryptionConfig) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> EncryptionConfig:
     out: EncryptionConfig = {}  # type: ignore[typeddict-item]
-    if "aWSOwnedKey" in data:
+    if data.get("aWSOwnedKey") is not None:
         out["a_ws_owned_key"] = data["aWSOwnedKey"]
-    if "kmsKeyArn" in data:
+    if data.get("kmsKeyArn") is not None:
         out["kms_key_arn"] = data["kmsKeyArn"]
     return out

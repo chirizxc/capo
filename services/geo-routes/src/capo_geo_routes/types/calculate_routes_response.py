@@ -44,7 +44,7 @@ def serialize_json(value: CalculateRoutesResponse) -> dict:
 
 def deserialize_json(data: dict) -> CalculateRoutesResponse:
     out: CalculateRoutesResponse = {}  # type: ignore[typeddict-item]
-    if "LegGeometryFormat" in data:
+    if data.get("LegGeometryFormat") is not None:
         import capo_geo_routes.types.geometry_format
 
         out["leg_geometry_format"] = (
@@ -56,7 +56,7 @@ def deserialize_json(data: dict) -> CalculateRoutesResponse:
         raise DeserializationError(
             "CalculateRoutesResponse.leg_geometry_format required"
         )
-    if "Notices" in data:
+    if data.get("Notices") is not None:
         import capo_geo_routes.types.route_response_notice_list
 
         out["notices"] = (
@@ -66,7 +66,7 @@ def deserialize_json(data: dict) -> CalculateRoutesResponse:
         )
     else:
         raise DeserializationError("CalculateRoutesResponse.notices required")
-    if "Routes" in data:
+    if data.get("Routes") is not None:
         import capo_geo_routes.types.route_list
 
         out["routes"] = capo_geo_routes.types.route_list.deserialize_json(

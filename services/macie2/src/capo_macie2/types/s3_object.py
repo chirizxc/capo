@@ -95,25 +95,25 @@ def serialize_json(value: S3Object) -> dict:
 
 def deserialize_json(data: dict) -> S3Object:
     out: S3Object = {}  # type: ignore[typeddict-item]
-    if "bucketArn" in data:
+    if data.get("bucketArn") is not None:
         out["bucket_arn"] = data["bucketArn"]
-    if "eTag" in data:
+    if data.get("eTag") is not None:
         out["e_tag"] = data["eTag"]
-    if "extension" in data:
+    if data.get("extension") is not None:
         out["extension"] = data["extension"]
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
-    if "lastModified" in data:
+    if data.get("lastModified") is not None:
         import capo_macie2.types.__timestamp_iso8601
 
         out["last_modified"] = capo_macie2.types.__timestamp_iso8601.deserialize_json(
             data["lastModified"]
         )
-    if "path" in data:
+    if data.get("path") is not None:
         out["path"] = data["path"]
-    if "publicAccess" in data:
+    if data.get("publicAccess") is not None:
         out["public_access"] = data["publicAccess"]
-    if "serverSideEncryption" in data:
+    if data.get("serverSideEncryption") is not None:
         import capo_macie2.types.server_side_encryption
 
         out["server_side_encryption"] = (
@@ -121,20 +121,20 @@ def deserialize_json(data: dict) -> S3Object:
                 data["serverSideEncryption"]
             )
         )
-    if "size" in data:
+    if data.get("size") is not None:
         out["size"] = data["size"]
-    if "storageClass" in data:
+    if data.get("storageClass") is not None:
         import capo_macie2.types.storage_class
 
         out["storage_class"] = capo_macie2.types.storage_class.deserialize_json(
             data["storageClass"]
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_macie2.types.key_value_pair_list
 
         out["tags"] = capo_macie2.types.key_value_pair_list.deserialize_json(
             data["tags"]
         )
-    if "versionId" in data:
+    if data.get("versionId") is not None:
         out["version_id"] = data["versionId"]
     return out

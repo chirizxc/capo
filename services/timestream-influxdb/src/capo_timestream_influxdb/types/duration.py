@@ -33,7 +33,7 @@ def serialize_aws_json_1_0(value: Duration) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Duration:
     out: Duration = {}  # type: ignore[typeddict-item]
-    if "durationType" in data:
+    if data.get("durationType") is not None:
         import capo_timestream_influxdb.types.duration_type
 
         out["duration_type"] = (
@@ -43,7 +43,7 @@ def deserialize_aws_json_1_0(data: dict) -> Duration:
         )
     else:
         raise DeserializationError("Duration.duration_type required")
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     else:
         raise DeserializationError("Duration.value required")

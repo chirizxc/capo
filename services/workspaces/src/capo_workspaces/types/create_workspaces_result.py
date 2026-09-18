@@ -42,7 +42,7 @@ def serialize_aws_json_1_1(value: CreateWorkspacesResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateWorkspacesResult:
     out: CreateWorkspacesResult = {}  # type: ignore[typeddict-item]
-    if "FailedRequests" in data:
+    if data.get("FailedRequests") is not None:
         import capo_workspaces.types.failed_create_workspace_requests
 
         out["failed_requests"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateWorkspacesResult:
                 data["FailedRequests"]
             )
         )
-    if "PendingRequests" in data:
+    if data.get("PendingRequests") is not None:
         import capo_workspaces.types.workspace_list
 
         out["pending_requests"] = (

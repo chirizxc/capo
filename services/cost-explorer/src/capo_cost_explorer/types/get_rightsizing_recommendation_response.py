@@ -77,7 +77,7 @@ def serialize_aws_json_1_1(value: GetRightsizingRecommendationResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetRightsizingRecommendationResponse:
     out: GetRightsizingRecommendationResponse = {}  # type: ignore[typeddict-item]
-    if "Metadata" in data:
+    if data.get("Metadata") is not None:
         import capo_cost_explorer.types.rightsizing_recommendation_metadata
 
         out["metadata"] = (
@@ -85,7 +85,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetRightsizingRecommendationResponse
                 data["Metadata"]
             )
         )
-    if "Summary" in data:
+    if data.get("Summary") is not None:
         import capo_cost_explorer.types.rightsizing_recommendation_summary
 
         out["summary"] = (
@@ -93,7 +93,7 @@ def deserialize_aws_json_1_1(data: dict) -> GetRightsizingRecommendationResponse
                 data["Summary"]
             )
         )
-    if "RightsizingRecommendations" in data:
+    if data.get("RightsizingRecommendations") is not None:
         import capo_cost_explorer.types.rightsizing_recommendation_list
 
         out["rightsizing_recommendations"] = (
@@ -101,9 +101,9 @@ def deserialize_aws_json_1_1(data: dict) -> GetRightsizingRecommendationResponse
                 data["RightsizingRecommendations"]
             )
         )
-    if "NextPageToken" in data:
+    if data.get("NextPageToken") is not None:
         out["next_page_token"] = data["NextPageToken"]
-    if "Configuration" in data:
+    if data.get("Configuration") is not None:
         import capo_cost_explorer.types.rightsizing_recommendation_configuration
 
         out["configuration"] = (

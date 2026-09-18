@@ -23,5 +23,7 @@ def deserialize_aws_json_1_1(data: list) -> As2Transports:
 
     out: As2Transports = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_transfer.types.as2_transport.deserialize_aws_json_1_1(item))
     return out

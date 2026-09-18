@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetGeoMatchSetRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetGeoMatchSetRequest:
     out: GetGeoMatchSetRequest = {}  # type: ignore[typeddict-item]
-    if "GeoMatchSetId" in data:
+    if data.get("GeoMatchSetId") is not None:
         out["geo_match_set_id"] = data["GeoMatchSetId"]
     else:
         raise DeserializationError("GetGeoMatchSetRequest.geo_match_set_id required")

@@ -46,7 +46,7 @@ def serialize_json(value: ParticipantTimerConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> ParticipantTimerConfiguration:
     out: ParticipantTimerConfiguration = {}  # type: ignore[typeddict-item]
-    if "ParticipantRole" in data:
+    if data.get("ParticipantRole") is not None:
         import capo_connect.types.timer_eligible_participant_roles
 
         out["participant_role"] = (
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> ParticipantTimerConfiguration:
         raise DeserializationError(
             "ParticipantTimerConfiguration.participant_role required"
         )
-    if "TimerType" in data:
+    if data.get("TimerType") is not None:
         import capo_connect.types.participant_timer_type
 
         out["timer_type"] = capo_connect.types.participant_timer_type.deserialize_json(
@@ -66,7 +66,7 @@ def deserialize_json(data: dict) -> ParticipantTimerConfiguration:
         )
     else:
         raise DeserializationError("ParticipantTimerConfiguration.timer_type required")
-    if "TimerValue" in data:
+    if data.get("TimerValue") is not None:
         import capo_connect.types.participant_timer_value
 
         out["timer_value"] = (

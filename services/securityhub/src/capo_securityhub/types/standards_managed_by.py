@@ -27,8 +27,8 @@ def serialize_json(value: StandardsManagedBy) -> dict:
 
 def deserialize_json(data: dict) -> StandardsManagedBy:
     out: StandardsManagedBy = {}  # type: ignore[typeddict-item]
-    if "Company" in data:
+    if data.get("Company") is not None:
         out["company"] = data["Company"]
-    if "Product" in data:
+    if data.get("Product") is not None:
         out["product"] = data["Product"]
     return out

@@ -35,8 +35,15 @@ def serialize_xml(value: SelectionCriteria, parent: Element, tag: str) -> None:
     if "max_depth" in value:
         SubElement(el, "MaxDepth").text = str(value["max_depth"])
     if "min_storage_bytes_percentage" in value:
-        SubElement(el, "MinStorageBytesPercentage").text = str(
-            value["min_storage_bytes_percentage"]
+        SubElement(el, "MinStorageBytesPercentage").text = (
+            "NaN"
+            if value["min_storage_bytes_percentage"]
+            != value["min_storage_bytes_percentage"]
+            else "Infinity"
+            if value["min_storage_bytes_percentage"] == float("inf")
+            else "-Infinity"
+            if value["min_storage_bytes_percentage"] == float("-inf")
+            else str(value["min_storage_bytes_percentage"])
         )
 
 

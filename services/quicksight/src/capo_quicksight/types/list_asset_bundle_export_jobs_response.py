@@ -44,7 +44,7 @@ def serialize_json(value: ListAssetBundleExportJobsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListAssetBundleExportJobsResponse:
     out: ListAssetBundleExportJobsResponse = {}  # type: ignore[typeddict-item]
-    if "AssetBundleExportJobSummaryList" in data:
+    if data.get("AssetBundleExportJobSummaryList") is not None:
         import capo_quicksight.types.asset_bundle_export_job_summary_list
 
         out["asset_bundle_export_job_summary_list"] = (
@@ -52,8 +52,8 @@ def deserialize_json(data: dict) -> ListAssetBundleExportJobsResponse:
                 data["AssetBundleExportJobSummaryList"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "RequestId" in data:
+    if data.get("RequestId") is not None:
         out["request_id"] = data["RequestId"]
     return out

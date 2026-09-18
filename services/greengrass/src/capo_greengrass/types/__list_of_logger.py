@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> __listOfLogger:
 
     out: __listOfLogger = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_greengrass.types.logger.deserialize_json(item))
     return out

@@ -49,15 +49,15 @@ def serialize_json(value: GenerateMacInput) -> dict:
 
 def deserialize_json(data: dict) -> GenerateMacInput:
     out: GenerateMacInput = {}  # type: ignore[typeddict-item]
-    if "KeyIdentifier" in data:
+    if data.get("KeyIdentifier") is not None:
         out["key_identifier"] = data["KeyIdentifier"]
     else:
         raise DeserializationError("GenerateMacInput.key_identifier required")
-    if "MessageData" in data:
+    if data.get("MessageData") is not None:
         out["message_data"] = data["MessageData"]
     else:
         raise DeserializationError("GenerateMacInput.message_data required")
-    if "GenerationAttributes" in data:
+    if data.get("GenerationAttributes") is not None:
         import capo_payment_cryptography_data.types.mac_attributes
 
         out["generation_attributes"] = (
@@ -67,6 +67,6 @@ def deserialize_json(data: dict) -> GenerateMacInput:
         )
     else:
         raise DeserializationError("GenerateMacInput.generation_attributes required")
-    if "MacLength" in data:
+    if data.get("MacLength") is not None:
         out["mac_length"] = data["MacLength"]
     return out

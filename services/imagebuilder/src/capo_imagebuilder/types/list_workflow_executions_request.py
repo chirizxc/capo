@@ -38,11 +38,11 @@ def serialize_json(value: ListWorkflowExecutionsRequest) -> dict:
 
 def deserialize_json(data: dict) -> ListWorkflowExecutionsRequest:
     out: ListWorkflowExecutionsRequest = {}  # type: ignore[typeddict-item]
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "imageBuildVersionArn" in data:
+    if data.get("imageBuildVersionArn") is not None:
         out["image_build_version_arn"] = data["imageBuildVersionArn"]
     else:
         raise DeserializationError(

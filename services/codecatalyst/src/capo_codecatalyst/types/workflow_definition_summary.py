@@ -19,7 +19,7 @@ def serialize_json(value: WorkflowDefinitionSummary) -> dict:
 
 def deserialize_json(data: dict) -> WorkflowDefinitionSummary:
     out: WorkflowDefinitionSummary = {}  # type: ignore[typeddict-item]
-    if "path" in data:
+    if data.get("path") is not None:
         out["path"] = data["path"]
     else:
         raise DeserializationError("WorkflowDefinitionSummary.path required")

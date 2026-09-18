@@ -29,17 +29,17 @@ def serialize_json(value: SchemaField) -> dict:
 
 def deserialize_json(data: dict) -> SchemaField:
     out: SchemaField = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("SchemaField.name required")
-    if "type" in data:
+    if data.get("type") is not None:
         out["type"] = data["type"]
     else:
         raise DeserializationError("SchemaField.type required")
-    if "required" in data:
+    if data.get("required") is not None:
         out["required"] = data["required"]
     else:
         out["required"] = False

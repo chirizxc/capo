@@ -49,7 +49,7 @@ def serialize_json(value: SnapshotConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> SnapshotConfiguration:
     out: SnapshotConfiguration = {}  # type: ignore[typeddict-item]
-    if "FileGroups" in data:
+    if data.get("FileGroups") is not None:
         import capo_quicksight.types.snapshot_file_group_list
 
         out["file_groups"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> SnapshotConfiguration:
         )
     else:
         raise DeserializationError("SnapshotConfiguration.file_groups required")
-    if "DestinationConfiguration" in data:
+    if data.get("DestinationConfiguration") is not None:
         import capo_quicksight.types.snapshot_destination_configuration
 
         out["destination_configuration"] = (
@@ -67,7 +67,7 @@ def deserialize_json(data: dict) -> SnapshotConfiguration:
                 data["DestinationConfiguration"]
             )
         )
-    if "Parameters" in data:
+    if data.get("Parameters") is not None:
         import capo_quicksight.types.parameters
 
         out["parameters"] = capo_quicksight.types.parameters.deserialize_json(

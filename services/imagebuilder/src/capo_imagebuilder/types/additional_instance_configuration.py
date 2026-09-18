@@ -38,7 +38,7 @@ def serialize_json(value: AdditionalInstanceConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AdditionalInstanceConfiguration:
     out: AdditionalInstanceConfiguration = {}  # type: ignore[typeddict-item]
-    if "systemsManagerAgent" in data:
+    if data.get("systemsManagerAgent") is not None:
         import capo_imagebuilder.types.systems_manager_agent
 
         out["systems_manager_agent"] = (
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> AdditionalInstanceConfiguration:
                 data["systemsManagerAgent"]
             )
         )
-    if "userDataOverride" in data:
+    if data.get("userDataOverride") is not None:
         out["user_data_override"] = data["userDataOverride"]
     return out

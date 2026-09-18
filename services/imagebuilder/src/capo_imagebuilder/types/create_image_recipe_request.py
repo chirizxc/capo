@@ -102,17 +102,17 @@ def serialize_json(value: CreateImageRecipeRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateImageRecipeRequest:
     out: CreateImageRecipeRequest = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateImageRecipeRequest.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "semanticVersion" in data:
+    if data.get("semanticVersion") is not None:
         out["semantic_version"] = data["semanticVersion"]
     else:
         raise DeserializationError("CreateImageRecipeRequest.semantic_version required")
-    if "components" in data:
+    if data.get("components") is not None:
         import capo_imagebuilder.types.component_configuration_list
 
         out["components"] = (
@@ -120,11 +120,11 @@ def deserialize_json(data: dict) -> CreateImageRecipeRequest:
                 data["components"]
             )
         )
-    if "parentImage" in data:
+    if data.get("parentImage") is not None:
         out["parent_image"] = data["parentImage"]
     else:
         raise DeserializationError("CreateImageRecipeRequest.parent_image required")
-    if "blockDeviceMappings" in data:
+    if data.get("blockDeviceMappings") is not None:
         import capo_imagebuilder.types.instance_block_device_mappings
 
         out["block_device_mappings"] = (
@@ -132,13 +132,13 @@ def deserialize_json(data: dict) -> CreateImageRecipeRequest:
                 data["blockDeviceMappings"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_imagebuilder.types.tag_map
 
         out["tags"] = capo_imagebuilder.types.tag_map.deserialize_json(data["tags"])
-    if "workingDirectory" in data:
+    if data.get("workingDirectory") is not None:
         out["working_directory"] = data["workingDirectory"]
-    if "additionalInstanceConfiguration" in data:
+    if data.get("additionalInstanceConfiguration") is not None:
         import capo_imagebuilder.types.additional_instance_configuration
 
         out["additional_instance_configuration"] = (
@@ -146,13 +146,13 @@ def deserialize_json(data: dict) -> CreateImageRecipeRequest:
                 data["additionalInstanceConfiguration"]
             )
         )
-    if "amiTags" in data:
+    if data.get("amiTags") is not None:
         import capo_imagebuilder.types.tag_map
 
         out["ami_tags"] = capo_imagebuilder.types.tag_map.deserialize_json(
             data["amiTags"]
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     else:
         raise DeserializationError("CreateImageRecipeRequest.client_token required")

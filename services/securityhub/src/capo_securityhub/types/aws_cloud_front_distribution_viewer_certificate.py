@@ -60,18 +60,18 @@ def serialize_json(value: AwsCloudFrontDistributionViewerCertificate) -> dict:
 
 def deserialize_json(data: dict) -> AwsCloudFrontDistributionViewerCertificate:
     out: AwsCloudFrontDistributionViewerCertificate = {}  # type: ignore[typeddict-item]
-    if "AcmCertificateArn" in data:
+    if data.get("AcmCertificateArn") is not None:
         out["acm_certificate_arn"] = data["AcmCertificateArn"]
-    if "Certificate" in data:
+    if data.get("Certificate") is not None:
         out["certificate"] = data["Certificate"]
-    if "CertificateSource" in data:
+    if data.get("CertificateSource") is not None:
         out["certificate_source"] = data["CertificateSource"]
-    if "CloudFrontDefaultCertificate" in data:
+    if data.get("CloudFrontDefaultCertificate") is not None:
         out["cloud_front_default_certificate"] = data["CloudFrontDefaultCertificate"]
-    if "IamCertificateId" in data:
+    if data.get("IamCertificateId") is not None:
         out["iam_certificate_id"] = data["IamCertificateId"]
-    if "MinimumProtocolVersion" in data:
+    if data.get("MinimumProtocolVersion") is not None:
         out["minimum_protocol_version"] = data["MinimumProtocolVersion"]
-    if "SslSupportMethod" in data:
+    if data.get("SslSupportMethod") is not None:
         out["ssl_support_method"] = data["SslSupportMethod"]
     return out

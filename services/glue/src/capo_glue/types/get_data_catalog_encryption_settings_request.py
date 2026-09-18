@@ -23,6 +23,6 @@ def serialize_aws_json_1_1(value: GetDataCatalogEncryptionSettingsRequest) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> GetDataCatalogEncryptionSettingsRequest:
     out: GetDataCatalogEncryptionSettingsRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
     return out

@@ -157,39 +157,39 @@ def serialize_aws_json_1_1(value: Lag) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Lag:
     out: Lag = {}  # type: ignore[typeddict-item]
-    if "connectionsBandwidth" in data:
+    if data.get("connectionsBandwidth") is not None:
         out["connections_bandwidth"] = data["connectionsBandwidth"]
-    if "numberOfConnections" in data:
+    if data.get("numberOfConnections") is not None:
         out["number_of_connections"] = data["numberOfConnections"]
     else:
         out["number_of_connections"] = 0
-    if "lagId" in data:
+    if data.get("lagId") is not None:
         out["lag_id"] = data["lagId"]
-    if "ownerAccount" in data:
+    if data.get("ownerAccount") is not None:
         out["owner_account"] = data["ownerAccount"]
-    if "lagName" in data:
+    if data.get("lagName") is not None:
         out["lag_name"] = data["lagName"]
-    if "lagState" in data:
+    if data.get("lagState") is not None:
         import capo_direct_connect.types.lag_state
 
         out["lag_state"] = capo_direct_connect.types.lag_state.deserialize_aws_json_1_1(
             data["lagState"]
         )
-    if "location" in data:
+    if data.get("location") is not None:
         out["location"] = data["location"]
-    if "region" in data:
+    if data.get("region") is not None:
         out["region"] = data["region"]
-    if "minimumLinks" in data:
+    if data.get("minimumLinks") is not None:
         out["minimum_links"] = data["minimumLinks"]
     else:
         out["minimum_links"] = 0
-    if "awsDevice" in data:
+    if data.get("awsDevice") is not None:
         out["aws_device"] = data["awsDevice"]
-    if "awsDeviceV2" in data:
+    if data.get("awsDeviceV2") is not None:
         out["aws_device_v2"] = data["awsDeviceV2"]
-    if "awsLogicalDeviceId" in data:
+    if data.get("awsLogicalDeviceId") is not None:
         out["aws_logical_device_id"] = data["awsLogicalDeviceId"]
-    if "connections" in data:
+    if data.get("connections") is not None:
         import capo_direct_connect.types.connection_list
 
         out["connections"] = (
@@ -197,13 +197,13 @@ def deserialize_aws_json_1_1(data: dict) -> Lag:
                 data["connections"]
             )
         )
-    if "allowsHostedConnections" in data:
+    if data.get("allowsHostedConnections") is not None:
         out["allows_hosted_connections"] = data["allowsHostedConnections"]
     else:
         out["allows_hosted_connections"] = False
-    if "jumboFrameCapable" in data:
+    if data.get("jumboFrameCapable") is not None:
         out["jumbo_frame_capable"] = data["jumboFrameCapable"]
-    if "hasLogicalRedundancy" in data:
+    if data.get("hasLogicalRedundancy") is not None:
         import capo_direct_connect.types.has_logical_redundancy
 
         out["has_logical_redundancy"] = (
@@ -211,19 +211,19 @@ def deserialize_aws_json_1_1(data: dict) -> Lag:
                 data["hasLogicalRedundancy"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_direct_connect.types.tag_list
 
         out["tags"] = capo_direct_connect.types.tag_list.deserialize_aws_json_1_1(
             data["tags"]
         )
-    if "providerName" in data:
+    if data.get("providerName") is not None:
         out["provider_name"] = data["providerName"]
-    if "macSecCapable" in data:
+    if data.get("macSecCapable") is not None:
         out["mac_sec_capable"] = data["macSecCapable"]
-    if "encryptionMode" in data:
+    if data.get("encryptionMode") is not None:
         out["encryption_mode"] = data["encryptionMode"]
-    if "macSecKeys" in data:
+    if data.get("macSecKeys") is not None:
         import capo_direct_connect.types.mac_sec_key_list
 
         out["mac_sec_keys"] = (

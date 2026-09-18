@@ -88,13 +88,13 @@ def serialize_aws_json_1_1(value: CreateMlflowAppRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateMlflowAppRequest:
     out: CreateMlflowAppRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ArtifactStoreUri" in data:
+    if data.get("ArtifactStoreUri") is not None:
         out["artifact_store_uri"] = data["ArtifactStoreUri"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
-    if "ModelRegistrationMode" in data:
+    if data.get("ModelRegistrationMode") is not None:
         import capo_sagemaker.types.model_registration_mode
 
         out["model_registration_mode"] = (
@@ -102,9 +102,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateMlflowAppRequest:
                 data["ModelRegistrationMode"]
             )
         )
-    if "WeeklyMaintenanceWindowStart" in data:
+    if data.get("WeeklyMaintenanceWindowStart") is not None:
         out["weekly_maintenance_window_start"] = data["WeeklyMaintenanceWindowStart"]
-    if "AccountDefaultStatus" in data:
+    if data.get("AccountDefaultStatus") is not None:
         import capo_sagemaker.types.account_default_status
 
         out["account_default_status"] = (
@@ -112,7 +112,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateMlflowAppRequest:
                 data["AccountDefaultStatus"]
             )
         )
-    if "DefaultDomainIdList" in data:
+    if data.get("DefaultDomainIdList") is not None:
         import capo_sagemaker.types.default_domain_id_list
 
         out["default_domain_id_list"] = (
@@ -120,7 +120,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateMlflowAppRequest:
                 data["DefaultDomainIdList"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_sagemaker.types.tag_list
 
         out["tags"] = capo_sagemaker.types.tag_list.deserialize_aws_json_1_1(

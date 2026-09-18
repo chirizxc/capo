@@ -33,7 +33,7 @@ def serialize_json(value: ListTimelineEventsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListTimelineEventsOutput:
     out: ListTimelineEventsOutput = {}  # type: ignore[typeddict-item]
-    if "eventSummaries" in data:
+    if data.get("eventSummaries") is not None:
         import capo_ssm_incidents.types.event_summary_list
 
         out["event_summaries"] = (
@@ -43,6 +43,6 @@ def deserialize_json(data: dict) -> ListTimelineEventsOutput:
         )
     else:
         raise DeserializationError("ListTimelineEventsOutput.event_summaries required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

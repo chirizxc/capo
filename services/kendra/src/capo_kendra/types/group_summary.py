@@ -30,8 +30,8 @@ def serialize_aws_json_1_1(value: GroupSummary) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GroupSummary:
     out: GroupSummary = {}  # type: ignore[typeddict-item]
-    if "GroupId" in data:
+    if data.get("GroupId") is not None:
         out["group_id"] = data["GroupId"]
-    if "OrderingId" in data:
+    if data.get("OrderingId") is not None:
         out["ordering_id"] = data["OrderingId"]
     return out

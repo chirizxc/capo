@@ -31,7 +31,15 @@ def serialize_aws_json_1_1(value: ProtectiveEquipmentBodyPart) -> dict:
             value["name"]
         )
     if "confidence" in value:
-        out["Confidence"] = value["confidence"]
+        out["Confidence"] = (
+            "NaN"
+            if value["confidence"] != value["confidence"]
+            else "Infinity"
+            if value["confidence"] == float("inf")
+            else "-Infinity"
+            if value["confidence"] == float("-inf")
+            else value["confidence"]
+        )
     if "equipment_detections" in value:
         import capo_rekognition.types.equipment_detections
 
@@ -45,15 +53,15 @@ def serialize_aws_json_1_1(value: ProtectiveEquipmentBodyPart) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProtectiveEquipmentBodyPart:
     out: ProtectiveEquipmentBodyPart = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         import capo_rekognition.types.body_part
 
         out["name"] = capo_rekognition.types.body_part.deserialize_aws_json_1_1(
             data["Name"]
         )
-    if "Confidence" in data:
-        out["confidence"] = data["Confidence"]
-    if "EquipmentDetections" in data:
+    if data.get("Confidence") is not None:
+        out["confidence"] = float(data["Confidence"])
+    if data.get("EquipmentDetections") is not None:
         import capo_rekognition.types.equipment_detections
 
         out["equipment_detections"] = (

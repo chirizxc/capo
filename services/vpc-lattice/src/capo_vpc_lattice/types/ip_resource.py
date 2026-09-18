@@ -23,6 +23,6 @@ def serialize_json(value: IpResource) -> dict:
 
 def deserialize_json(data: dict) -> IpResource:
     out: IpResource = {}  # type: ignore[typeddict-item]
-    if "ipAddress" in data:
+    if data.get("ipAddress") is not None:
         out["ip_address"] = data["ipAddress"]
     return out

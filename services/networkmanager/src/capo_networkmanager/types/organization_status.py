@@ -54,15 +54,15 @@ def serialize_json(value: OrganizationStatus) -> dict:
 
 def deserialize_json(data: dict) -> OrganizationStatus:
     out: OrganizationStatus = {}  # type: ignore[typeddict-item]
-    if "OrganizationId" in data:
+    if data.get("OrganizationId") is not None:
         out["organization_id"] = data["OrganizationId"]
-    if "OrganizationAwsServiceAccessStatus" in data:
+    if data.get("OrganizationAwsServiceAccessStatus") is not None:
         out["organization_aws_service_access_status"] = data[
             "OrganizationAwsServiceAccessStatus"
         ]
-    if "SLRDeploymentStatus" in data:
+    if data.get("SLRDeploymentStatus") is not None:
         out["slr_deployment_status"] = data["SLRDeploymentStatus"]
-    if "AccountStatusList" in data:
+    if data.get("AccountStatusList") is not None:
         import capo_networkmanager.types.account_status_list
 
         out["account_status_list"] = (

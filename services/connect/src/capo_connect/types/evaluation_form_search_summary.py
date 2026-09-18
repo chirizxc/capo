@@ -127,23 +127,23 @@ def serialize_json(value: EvaluationFormSearchSummary) -> dict:
 
 def deserialize_json(data: dict) -> EvaluationFormSearchSummary:
     out: EvaluationFormSearchSummary = {}  # type: ignore[typeddict-item]
-    if "EvaluationFormId" in data:
+    if data.get("EvaluationFormId") is not None:
         out["evaluation_form_id"] = data["EvaluationFormId"]
     else:
         raise DeserializationError(
             "EvaluationFormSearchSummary.evaluation_form_id required"
         )
-    if "EvaluationFormArn" in data:
+    if data.get("EvaluationFormArn") is not None:
         out["evaluation_form_arn"] = data["EvaluationFormArn"]
     else:
         raise DeserializationError(
             "EvaluationFormSearchSummary.evaluation_form_arn required"
         )
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
     else:
         raise DeserializationError("EvaluationFormSearchSummary.title required")
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_connect.types.evaluation_form_version_status
 
         out["status"] = (
@@ -153,9 +153,9 @@ def deserialize_json(data: dict) -> EvaluationFormSearchSummary:
         )
     else:
         raise DeserializationError("EvaluationFormSearchSummary.status required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "CreatedTime" in data:
+    if data.get("CreatedTime") is not None:
         import capo_connect.types.timestamp
 
         out["created_time"] = capo_connect.types.timestamp.deserialize_json(
@@ -163,11 +163,11 @@ def deserialize_json(data: dict) -> EvaluationFormSearchSummary:
         )
     else:
         raise DeserializationError("EvaluationFormSearchSummary.created_time required")
-    if "CreatedBy" in data:
+    if data.get("CreatedBy") is not None:
         out["created_by"] = data["CreatedBy"]
     else:
         raise DeserializationError("EvaluationFormSearchSummary.created_by required")
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_connect.types.timestamp
 
         out["last_modified_time"] = capo_connect.types.timestamp.deserialize_json(
@@ -177,33 +177,33 @@ def deserialize_json(data: dict) -> EvaluationFormSearchSummary:
         raise DeserializationError(
             "EvaluationFormSearchSummary.last_modified_time required"
         )
-    if "LastModifiedBy" in data:
+    if data.get("LastModifiedBy") is not None:
         out["last_modified_by"] = data["LastModifiedBy"]
     else:
         raise DeserializationError(
             "EvaluationFormSearchSummary.last_modified_by required"
         )
-    if "LastActivatedTime" in data:
+    if data.get("LastActivatedTime") is not None:
         import capo_connect.types.timestamp
 
         out["last_activated_time"] = capo_connect.types.timestamp.deserialize_json(
             data["LastActivatedTime"]
         )
-    if "LastActivatedBy" in data:
+    if data.get("LastActivatedBy") is not None:
         out["last_activated_by"] = data["LastActivatedBy"]
-    if "LatestVersion" in data:
+    if data.get("LatestVersion") is not None:
         out["latest_version"] = data["LatestVersion"]
     else:
         raise DeserializationError(
             "EvaluationFormSearchSummary.latest_version required"
         )
-    if "ActiveVersion" in data:
+    if data.get("ActiveVersion") is not None:
         out["active_version"] = data["ActiveVersion"]
-    if "AutoEvaluationEnabled" in data:
+    if data.get("AutoEvaluationEnabled") is not None:
         out["auto_evaluation_enabled"] = data["AutoEvaluationEnabled"]
     else:
         out["auto_evaluation_enabled"] = False
-    if "EvaluationFormLanguage" in data:
+    if data.get("EvaluationFormLanguage") is not None:
         import capo_connect.types.evaluation_form_language_code
 
         out["evaluation_form_language"] = (
@@ -211,7 +211,7 @@ def deserialize_json(data: dict) -> EvaluationFormSearchSummary:
                 data["EvaluationFormLanguage"]
             )
         )
-    if "ContactInteractionType" in data:
+    if data.get("ContactInteractionType") is not None:
         import capo_connect.types.contact_interaction_type
 
         out["contact_interaction_type"] = (
@@ -219,7 +219,7 @@ def deserialize_json(data: dict) -> EvaluationFormSearchSummary:
                 data["ContactInteractionType"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_connect.types.tag_map
 
         out["tags"] = capo_connect.types.tag_map.deserialize_json(data["Tags"])

@@ -46,11 +46,11 @@ def serialize_json(value: ConflictException_) -> dict:
 
 def deserialize_json(data: dict) -> ConflictException_:
     out: ConflictException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     else:
         raise DeserializationError("ConflictException_.message required")
-    if "reason" in data:
+    if data.get("reason") is not None:
         import capo_deadline.types.conflict_exception_reason
 
         out["reason"] = capo_deadline.types.conflict_exception_reason.deserialize_json(
@@ -58,15 +58,15 @@ def deserialize_json(data: dict) -> ConflictException_:
         )
     else:
         raise DeserializationError("ConflictException_.reason required")
-    if "resourceId" in data:
+    if data.get("resourceId") is not None:
         out["resource_id"] = data["resourceId"]
     else:
         raise DeserializationError("ConflictException_.resource_id required")
-    if "resourceType" in data:
+    if data.get("resourceType") is not None:
         out["resource_type"] = data["resourceType"]
     else:
         raise DeserializationError("ConflictException_.resource_type required")
-    if "context" in data:
+    if data.get("context") is not None:
         import capo_deadline.types.exception_context
 
         out["context"] = capo_deadline.types.exception_context.deserialize_json(
@@ -80,15 +80,16 @@ class ConflictException(ServiceError):
 
     code: str | None = "ConflictException"
 
-    def __init__(self, data: ConflictException_):
+    def __init__(self, data: ConflictException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ConflictException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "ConflictException":
-        return cls(deserialize_json(data))
+    def from_json(cls, data: dict, message: str | None = None) -> "ConflictException":
+        return cls(deserialize_json(data), message)

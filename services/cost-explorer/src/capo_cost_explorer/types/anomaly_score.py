@@ -18,19 +18,35 @@ class AnomalyScore(TypedDict, closed=True):
 # --- awsJson1_1 ser/de ---
 def serialize_aws_json_1_1(value: AnomalyScore) -> dict:
     out: dict = {}
-    out["MaxScore"] = value.get("max_score", 0)
-    out["CurrentScore"] = value.get("current_score", 0)
+    out["MaxScore"] = (
+        "NaN"
+        if value.get("max_score", 0) != value.get("max_score", 0)
+        else "Infinity"
+        if value.get("max_score", 0) == float("inf")
+        else "-Infinity"
+        if value.get("max_score", 0) == float("-inf")
+        else value.get("max_score", 0)
+    )
+    out["CurrentScore"] = (
+        "NaN"
+        if value.get("current_score", 0) != value.get("current_score", 0)
+        else "Infinity"
+        if value.get("current_score", 0) == float("inf")
+        else "-Infinity"
+        if value.get("current_score", 0) == float("-inf")
+        else value.get("current_score", 0)
+    )
     return out
 
 
 def deserialize_aws_json_1_1(data: dict) -> AnomalyScore:
     out: AnomalyScore = {}  # type: ignore[typeddict-item]
-    if "MaxScore" in data:
-        out["max_score"] = data["MaxScore"]
+    if data.get("MaxScore") is not None:
+        out["max_score"] = float(data["MaxScore"])
     else:
         out["max_score"] = 0
-    if "CurrentScore" in data:
-        out["current_score"] = data["CurrentScore"]
+    if data.get("CurrentScore") is not None:
+        out["current_score"] = float(data["CurrentScore"])
     else:
         out["current_score"] = 0
     return out

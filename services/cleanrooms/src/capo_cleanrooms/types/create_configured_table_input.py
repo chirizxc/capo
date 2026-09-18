@@ -73,13 +73,13 @@ def serialize_json(value: CreateConfiguredTableInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateConfiguredTableInput:
     out: CreateConfiguredTableInput = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("CreateConfiguredTableInput.name required")
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "tableReference" in data:
+    if data.get("tableReference") is not None:
         import capo_cleanrooms.types.table_reference
 
         out["table_reference"] = capo_cleanrooms.types.table_reference.deserialize_json(
@@ -89,7 +89,7 @@ def deserialize_json(data: dict) -> CreateConfiguredTableInput:
         raise DeserializationError(
             "CreateConfiguredTableInput.table_reference required"
         )
-    if "allowedColumns" in data:
+    if data.get("allowedColumns") is not None:
         import capo_cleanrooms.types.allowed_column_list
 
         out["allowed_columns"] = (
@@ -101,7 +101,7 @@ def deserialize_json(data: dict) -> CreateConfiguredTableInput:
         raise DeserializationError(
             "CreateConfiguredTableInput.allowed_columns required"
         )
-    if "analysisMethod" in data:
+    if data.get("analysisMethod") is not None:
         import capo_cleanrooms.types.analysis_method
 
         out["analysis_method"] = capo_cleanrooms.types.analysis_method.deserialize_json(
@@ -111,7 +111,7 @@ def deserialize_json(data: dict) -> CreateConfiguredTableInput:
         raise DeserializationError(
             "CreateConfiguredTableInput.analysis_method required"
         )
-    if "selectedAnalysisMethods" in data:
+    if data.get("selectedAnalysisMethods") is not None:
         import capo_cleanrooms.types.selected_analysis_methods
 
         out["selected_analysis_methods"] = (
@@ -119,7 +119,7 @@ def deserialize_json(data: dict) -> CreateConfiguredTableInput:
                 data["selectedAnalysisMethods"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_cleanrooms.types.tag_map
 
         out["tags"] = capo_cleanrooms.types.tag_map.deserialize_json(data["tags"])

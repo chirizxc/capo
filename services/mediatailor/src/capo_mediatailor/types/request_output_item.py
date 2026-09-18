@@ -53,7 +53,7 @@ def serialize_json(value: RequestOutputItem) -> dict:
 
 def deserialize_json(data: dict) -> RequestOutputItem:
     out: RequestOutputItem = {}  # type: ignore[typeddict-item]
-    if "DashPlaylistSettings" in data:
+    if data.get("DashPlaylistSettings") is not None:
         import capo_mediatailor.types.dash_playlist_settings
 
         out["dash_playlist_settings"] = (
@@ -61,7 +61,7 @@ def deserialize_json(data: dict) -> RequestOutputItem:
                 data["DashPlaylistSettings"]
             )
         )
-    if "HlsPlaylistSettings" in data:
+    if data.get("HlsPlaylistSettings") is not None:
         import capo_mediatailor.types.hls_playlist_settings
 
         out["hls_playlist_settings"] = (
@@ -69,11 +69,11 @@ def deserialize_json(data: dict) -> RequestOutputItem:
                 data["HlsPlaylistSettings"]
             )
         )
-    if "ManifestName" in data:
+    if data.get("ManifestName") is not None:
         out["manifest_name"] = data["ManifestName"]
     else:
         raise DeserializationError("RequestOutputItem.manifest_name required")
-    if "SourceGroup" in data:
+    if data.get("SourceGroup") is not None:
         out["source_group"] = data["SourceGroup"]
     else:
         raise DeserializationError("RequestOutputItem.source_group required")

@@ -31,9 +31,9 @@ def serialize_json(value: CreateIndexInput) -> dict:
 
 def deserialize_json(data: dict) -> CreateIndexInput:
     out: CreateIndexInput = {}  # type: ignore[typeddict-item]
-    if "ClientToken" in data:
+    if data.get("ClientToken") is not None:
         out["client_token"] = data["ClientToken"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_resource_explorer_2.types.tag_map
 
         out["tags"] = capo_resource_explorer_2.types.tag_map.deserialize_json(

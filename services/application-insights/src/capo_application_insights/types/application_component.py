@@ -73,13 +73,13 @@ def serialize_aws_json_1_1(value: ApplicationComponent) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ApplicationComponent:
     out: ApplicationComponent = {}  # type: ignore[typeddict-item]
-    if "ComponentName" in data:
+    if data.get("ComponentName") is not None:
         out["component_name"] = data["ComponentName"]
-    if "ComponentRemarks" in data:
+    if data.get("ComponentRemarks") is not None:
         out["component_remarks"] = data["ComponentRemarks"]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         out["resource_type"] = data["ResourceType"]
-    if "OsType" in data:
+    if data.get("OsType") is not None:
         import capo_application_insights.types.os_type
 
         out["os_type"] = (
@@ -87,15 +87,15 @@ def deserialize_aws_json_1_1(data: dict) -> ApplicationComponent:
                 data["OsType"]
             )
         )
-    if "Tier" in data:
+    if data.get("Tier") is not None:
         import capo_application_insights.types.tier
 
         out["tier"] = capo_application_insights.types.tier.deserialize_aws_json_1_1(
             data["Tier"]
         )
-    if "Monitor" in data:
+    if data.get("Monitor") is not None:
         out["monitor"] = data["Monitor"]
-    if "DetectedWorkload" in data:
+    if data.get("DetectedWorkload") is not None:
         import capo_application_insights.types.detected_workload
 
         out["detected_workload"] = (

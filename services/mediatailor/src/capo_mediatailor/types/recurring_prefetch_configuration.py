@@ -58,13 +58,13 @@ def serialize_json(value: RecurringPrefetchConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> RecurringPrefetchConfiguration:
     out: RecurringPrefetchConfiguration = {}  # type: ignore[typeddict-item]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_mediatailor.types.__timestamp_unix
 
         out["start_time"] = capo_mediatailor.types.__timestamp_unix.deserialize_json(
             data["StartTime"]
         )
-    if "EndTime" in data:
+    if data.get("EndTime") is not None:
         import capo_mediatailor.types.__timestamp_unix
 
         out["end_time"] = capo_mediatailor.types.__timestamp_unix.deserialize_json(
@@ -72,7 +72,7 @@ def deserialize_json(data: dict) -> RecurringPrefetchConfiguration:
         )
     else:
         raise DeserializationError("RecurringPrefetchConfiguration.end_time required")
-    if "RecurringConsumption" in data:
+    if data.get("RecurringConsumption") is not None:
         import capo_mediatailor.types.recurring_consumption
 
         out["recurring_consumption"] = (
@@ -84,7 +84,7 @@ def deserialize_json(data: dict) -> RecurringPrefetchConfiguration:
         raise DeserializationError(
             "RecurringPrefetchConfiguration.recurring_consumption required"
         )
-    if "RecurringRetrieval" in data:
+    if data.get("RecurringRetrieval") is not None:
         import capo_mediatailor.types.recurring_retrieval
 
         out["recurring_retrieval"] = (

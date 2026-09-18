@@ -36,15 +36,15 @@ def serialize_json(value: LookbackWindow) -> dict:
 
 def deserialize_json(data: dict) -> LookbackWindow:
     out: LookbackWindow = {}  # type: ignore[typeddict-item]
-    if "ColumnName" in data:
+    if data.get("ColumnName") is not None:
         out["column_name"] = data["ColumnName"]
     else:
         raise DeserializationError("LookbackWindow.column_name required")
-    if "Size" in data:
+    if data.get("Size") is not None:
         out["size"] = data["Size"]
     else:
         raise DeserializationError("LookbackWindow.size required")
-    if "SizeUnit" in data:
+    if data.get("SizeUnit") is not None:
         import capo_quicksight.types.lookback_window_size_unit
 
         out["size_unit"] = (

@@ -36,13 +36,13 @@ def serialize_json(value: ClientStat) -> dict:
 
 def deserialize_json(data: dict) -> ClientStat:
     out: ClientStat = {}  # type: ignore[typeddict-item]
-    if "userAgent" in data:
+    if data.get("userAgent") is not None:
         out["user_agent"] = data["userAgent"]
-    if "numberOfRequestsLast30Days" in data:
+    if data.get("numberOfRequestsLast30Days") is not None:
         out["number_of_requests_last30_days"] = data["numberOfRequestsLast30Days"]
     else:
         out["number_of_requests_last30_days"] = 0
-    if "lastRequestTime" in data:
+    if data.get("lastRequestTime") is not None:
         import capo_eks.types.timestamp
 
         out["last_request_time"] = capo_eks.types.timestamp.deserialize_json(

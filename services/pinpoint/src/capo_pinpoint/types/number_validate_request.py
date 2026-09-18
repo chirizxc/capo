@@ -27,8 +27,8 @@ def serialize_json(value: NumberValidateRequest) -> dict:
 
 def deserialize_json(data: dict) -> NumberValidateRequest:
     out: NumberValidateRequest = {}  # type: ignore[typeddict-item]
-    if "IsoCountryCode" in data:
+    if data.get("IsoCountryCode") is not None:
         out["iso_country_code"] = data["IsoCountryCode"]
-    if "PhoneNumber" in data:
+    if data.get("PhoneNumber") is not None:
         out["phone_number"] = data["PhoneNumber"]
     return out

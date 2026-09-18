@@ -29,7 +29,7 @@ def serialize_json(value: BatchPutDocumentResponse) -> dict:
 
 def deserialize_json(data: dict) -> BatchPutDocumentResponse:
     out: BatchPutDocumentResponse = {}  # type: ignore[typeddict-item]
-    if "failedDocuments" in data:
+    if data.get("failedDocuments") is not None:
         import capo_qbusiness.types.failed_documents
 
         out["failed_documents"] = (

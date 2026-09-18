@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: MergeBranchesByFastForwardOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MergeBranchesByFastForwardOutput:
     out: MergeBranchesByFastForwardOutput = {}  # type: ignore[typeddict-item]
-    if "commitId" in data:
+    if data.get("commitId") is not None:
         out["commit_id"] = data["commitId"]
-    if "treeId" in data:
+    if data.get("treeId") is not None:
         out["tree_id"] = data["treeId"]
     return out

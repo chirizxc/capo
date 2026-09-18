@@ -28,8 +28,8 @@ def serialize_json(value: StartMetricsExportRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartMetricsExportRequest:
     out: StartMetricsExportRequest = {}  # type: ignore[typeddict-item]
-    if "bucketName" in data:
+    if data.get("bucketName") is not None:
         out["bucket_name"] = data["bucketName"]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

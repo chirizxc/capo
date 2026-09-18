@@ -43,7 +43,7 @@ def serialize_aws_json_1_0(value: ListRecommendedActionsRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListRecommendedActionsRequest:
     out: ListRecommendedActionsRequest = {}  # type: ignore[typeddict-item]
-    if "filter" in data:
+    if data.get("filter") is not None:
         import capo_bcm_recommended_actions.types.request_filter
 
         out["filter"] = (
@@ -51,8 +51,8 @@ def deserialize_aws_json_1_0(data: dict) -> ListRecommendedActionsRequest:
                 data["filter"]
             )
         )
-    if "maxResults" in data:
+    if data.get("maxResults") is not None:
         out["max_results"] = data["maxResults"]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

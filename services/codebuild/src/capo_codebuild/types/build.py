@@ -286,51 +286,51 @@ def serialize_aws_json_1_1(value: Build) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Build:
     out: Build = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "buildNumber" in data:
+    if data.get("buildNumber") is not None:
         out["build_number"] = data["buildNumber"]
-    if "startTime" in data:
+    if data.get("startTime") is not None:
         import capo_codebuild.types.timestamp
 
         out["start_time"] = capo_codebuild.types.timestamp.deserialize_aws_json_1_1(
             data["startTime"]
         )
-    if "endTime" in data:
+    if data.get("endTime") is not None:
         import capo_codebuild.types.timestamp
 
         out["end_time"] = capo_codebuild.types.timestamp.deserialize_aws_json_1_1(
             data["endTime"]
         )
-    if "currentPhase" in data:
+    if data.get("currentPhase") is not None:
         out["current_phase"] = data["currentPhase"]
-    if "buildStatus" in data:
+    if data.get("buildStatus") is not None:
         import capo_codebuild.types.status_type
 
         out["build_status"] = capo_codebuild.types.status_type.deserialize_aws_json_1_1(
             data["buildStatus"]
         )
-    if "sourceVersion" in data:
+    if data.get("sourceVersion") is not None:
         out["source_version"] = data["sourceVersion"]
-    if "resolvedSourceVersion" in data:
+    if data.get("resolvedSourceVersion") is not None:
         out["resolved_source_version"] = data["resolvedSourceVersion"]
-    if "projectName" in data:
+    if data.get("projectName") is not None:
         out["project_name"] = data["projectName"]
-    if "phases" in data:
+    if data.get("phases") is not None:
         import capo_codebuild.types.build_phases
 
         out["phases"] = capo_codebuild.types.build_phases.deserialize_aws_json_1_1(
             data["phases"]
         )
-    if "source" in data:
+    if data.get("source") is not None:
         import capo_codebuild.types.project_source
 
         out["source"] = capo_codebuild.types.project_source.deserialize_aws_json_1_1(
             data["source"]
         )
-    if "secondarySources" in data:
+    if data.get("secondarySources") is not None:
         import capo_codebuild.types.project_sources
 
         out["secondary_sources"] = (
@@ -338,7 +338,7 @@ def deserialize_aws_json_1_1(data: dict) -> Build:
                 data["secondarySources"]
             )
         )
-    if "secondarySourceVersions" in data:
+    if data.get("secondarySourceVersions") is not None:
         import capo_codebuild.types.project_secondary_source_versions
 
         out["secondary_source_versions"] = (
@@ -346,7 +346,7 @@ def deserialize_aws_json_1_1(data: dict) -> Build:
                 data["secondarySourceVersions"]
             )
         )
-    if "artifacts" in data:
+    if data.get("artifacts") is not None:
         import capo_codebuild.types.build_artifacts
 
         out["artifacts"] = (
@@ -354,7 +354,7 @@ def deserialize_aws_json_1_1(data: dict) -> Build:
                 data["artifacts"]
             )
         )
-    if "secondaryArtifacts" in data:
+    if data.get("secondaryArtifacts") is not None:
         import capo_codebuild.types.build_artifacts_list
 
         out["secondary_artifacts"] = (
@@ -362,13 +362,13 @@ def deserialize_aws_json_1_1(data: dict) -> Build:
                 data["secondaryArtifacts"]
             )
         )
-    if "cache" in data:
+    if data.get("cache") is not None:
         import capo_codebuild.types.project_cache
 
         out["cache"] = capo_codebuild.types.project_cache.deserialize_aws_json_1_1(
             data["cache"]
         )
-    if "environment" in data:
+    if data.get("environment") is not None:
         import capo_codebuild.types.project_environment
 
         out["environment"] = (
@@ -376,31 +376,31 @@ def deserialize_aws_json_1_1(data: dict) -> Build:
                 data["environment"]
             )
         )
-    if "serviceRole" in data:
+    if data.get("serviceRole") is not None:
         out["service_role"] = data["serviceRole"]
-    if "logs" in data:
+    if data.get("logs") is not None:
         import capo_codebuild.types.logs_location
 
         out["logs"] = capo_codebuild.types.logs_location.deserialize_aws_json_1_1(
             data["logs"]
         )
-    if "timeoutInMinutes" in data:
+    if data.get("timeoutInMinutes") is not None:
         out["timeout_in_minutes"] = data["timeoutInMinutes"]
-    if "queuedTimeoutInMinutes" in data:
+    if data.get("queuedTimeoutInMinutes") is not None:
         out["queued_timeout_in_minutes"] = data["queuedTimeoutInMinutes"]
-    if "buildComplete" in data:
+    if data.get("buildComplete") is not None:
         out["build_complete"] = data["buildComplete"]
     else:
         out["build_complete"] = False
-    if "initiator" in data:
+    if data.get("initiator") is not None:
         out["initiator"] = data["initiator"]
-    if "vpcConfig" in data:
+    if data.get("vpcConfig") is not None:
         import capo_codebuild.types.vpc_config
 
         out["vpc_config"] = capo_codebuild.types.vpc_config.deserialize_aws_json_1_1(
             data["vpcConfig"]
         )
-    if "networkInterface" in data:
+    if data.get("networkInterface") is not None:
         import capo_codebuild.types.network_interface
 
         out["network_interface"] = (
@@ -408,9 +408,9 @@ def deserialize_aws_json_1_1(data: dict) -> Build:
                 data["networkInterface"]
             )
         )
-    if "encryptionKey" in data:
+    if data.get("encryptionKey") is not None:
         out["encryption_key"] = data["encryptionKey"]
-    if "exportedEnvironmentVariables" in data:
+    if data.get("exportedEnvironmentVariables") is not None:
         import capo_codebuild.types.exported_environment_variables
 
         out["exported_environment_variables"] = (
@@ -418,7 +418,7 @@ def deserialize_aws_json_1_1(data: dict) -> Build:
                 data["exportedEnvironmentVariables"]
             )
         )
-    if "reportArns" in data:
+    if data.get("reportArns") is not None:
         import capo_codebuild.types.build_report_arns
 
         out["report_arns"] = (
@@ -426,7 +426,7 @@ def deserialize_aws_json_1_1(data: dict) -> Build:
                 data["reportArns"]
             )
         )
-    if "fileSystemLocations" in data:
+    if data.get("fileSystemLocations") is not None:
         import capo_codebuild.types.project_file_system_locations
 
         out["file_system_locations"] = (
@@ -434,7 +434,7 @@ def deserialize_aws_json_1_1(data: dict) -> Build:
                 data["fileSystemLocations"]
             )
         )
-    if "debugSession" in data:
+    if data.get("debugSession") is not None:
         import capo_codebuild.types.debug_session
 
         out["debug_session"] = (
@@ -442,9 +442,9 @@ def deserialize_aws_json_1_1(data: dict) -> Build:
                 data["debugSession"]
             )
         )
-    if "buildBatchArn" in data:
+    if data.get("buildBatchArn") is not None:
         out["build_batch_arn"] = data["buildBatchArn"]
-    if "autoRetryConfig" in data:
+    if data.get("autoRetryConfig") is not None:
         import capo_codebuild.types.auto_retry_config
 
         out["auto_retry_config"] = (

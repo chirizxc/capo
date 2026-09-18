@@ -73,13 +73,13 @@ def serialize_json(value: CreateDataViewRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDataViewRequest:
     out: CreateDataViewRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "autoUpdate" in data:
+    if data.get("autoUpdate") is not None:
         out["auto_update"] = data["autoUpdate"]
     else:
         out["auto_update"] = False
-    if "sortColumns" in data:
+    if data.get("sortColumns") is not None:
         import capo_finspace_data.types.sort_column_list
 
         out["sort_columns"] = (
@@ -87,7 +87,7 @@ def deserialize_json(data: dict) -> CreateDataViewRequest:
                 data["sortColumns"]
             )
         )
-    if "partitionColumns" in data:
+    if data.get("partitionColumns") is not None:
         import capo_finspace_data.types.partition_column_list
 
         out["partition_columns"] = (
@@ -95,9 +95,9 @@ def deserialize_json(data: dict) -> CreateDataViewRequest:
                 data["partitionColumns"]
             )
         )
-    if "asOfTimestamp" in data:
+    if data.get("asOfTimestamp") is not None:
         out["as_of_timestamp"] = data["asOfTimestamp"]
-    if "destinationTypeParams" in data:
+    if data.get("destinationTypeParams") is not None:
         import capo_finspace_data.types.data_view_destination_type_params
 
         out["destination_type_params"] = (

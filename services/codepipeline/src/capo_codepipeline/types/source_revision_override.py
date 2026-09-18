@@ -38,11 +38,11 @@ def serialize_aws_json_1_1(value: SourceRevisionOverride) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> SourceRevisionOverride:
     out: SourceRevisionOverride = {}  # type: ignore[typeddict-item]
-    if "actionName" in data:
+    if data.get("actionName") is not None:
         out["action_name"] = data["actionName"]
     else:
         raise DeserializationError("SourceRevisionOverride.action_name required")
-    if "revisionType" in data:
+    if data.get("revisionType") is not None:
         import capo_codepipeline.types.source_revision_type
 
         out["revision_type"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> SourceRevisionOverride:
         )
     else:
         raise DeserializationError("SourceRevisionOverride.revision_type required")
-    if "revisionValue" in data:
+    if data.get("revisionValue") is not None:
         out["revision_value"] = data["revisionValue"]
     else:
         raise DeserializationError("SourceRevisionOverride.revision_value required")

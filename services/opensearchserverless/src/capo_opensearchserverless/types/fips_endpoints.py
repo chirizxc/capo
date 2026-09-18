@@ -22,8 +22,8 @@ def serialize_aws_json_1_0(value: FipsEndpoints) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> FipsEndpoints:
     out: FipsEndpoints = {}  # type: ignore[typeddict-item]
-    if "collectionEndpoint" in data:
+    if data.get("collectionEndpoint") is not None:
         out["collection_endpoint"] = data["collectionEndpoint"]
-    if "dashboardEndpoint" in data:
+    if data.get("dashboardEndpoint") is not None:
         out["dashboard_endpoint"] = data["dashboardEndpoint"]
     return out

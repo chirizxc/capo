@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> AssessmentTargets:
 
     out: AssessmentTargets = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_migrationhubstrategy.types.assessment_target.deserialize_json(item)
         )

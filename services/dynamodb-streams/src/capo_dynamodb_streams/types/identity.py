@@ -27,8 +27,8 @@ def serialize_aws_json_1_0(value: Identity) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Identity:
     out: Identity = {}  # type: ignore[typeddict-item]
-    if "PrincipalId" in data:
+    if data.get("PrincipalId") is not None:
         out["principal_id"] = data["PrincipalId"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         out["type"] = data["Type"]
     return out

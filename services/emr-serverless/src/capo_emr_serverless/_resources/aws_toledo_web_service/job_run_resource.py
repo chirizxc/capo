@@ -121,10 +121,11 @@ class JobRunResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_emr_serverless.types.start_job_run_request.StartJobRunRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["client_token"] = client_token
-        input_["execution_role_arn"] = execution_role_arn
+        input_: capo_emr_serverless.types.start_job_run_request.StartJobRunRequest = {
+            "application_id": application_id,
+            "client_token": client_token,
+            "execution_role_arn": execution_role_arn,
+        }
         if execution_iam_policy is not None:
             input_["execution_iam_policy"] = execution_iam_policy
         if job_driver is not None:
@@ -147,6 +148,7 @@ class JobRunResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -188,9 +190,10 @@ class JobRunResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_emr_serverless.types.get_job_run_request.GetJobRunRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["job_run_id"] = job_run_id
+        input_: capo_emr_serverless.types.get_job_run_request.GetJobRunRequest = {
+            "application_id": application_id,
+            "job_run_id": job_run_id,
+        }
         if attempt is not None:
             input_["attempt"] = attempt
 
@@ -199,6 +202,7 @@ class JobRunResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -240,9 +244,10 @@ class JobRunResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_emr_serverless.types.cancel_job_run_request.CancelJobRunRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["job_run_id"] = job_run_id
+        input_: capo_emr_serverless.types.cancel_job_run_request.CancelJobRunRequest = {
+            "application_id": application_id,
+            "job_run_id": job_run_id,
+        }
         if shutdown_grace_period_in_seconds is not None:
             input_["shutdown_grace_period_in_seconds"] = (
                 shutdown_grace_period_in_seconds
@@ -253,6 +258,7 @@ class JobRunResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -301,8 +307,9 @@ class JobRunResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_emr_serverless.types.list_job_runs_request.ListJobRunsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_emr_serverless.types.list_job_runs_request.ListJobRunsRequest = {
+            "application_id": application_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -321,6 +328,7 @@ class JobRunResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_dashboard_for_job_run(
@@ -364,9 +372,10 @@ class JobRunResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_emr_serverless.types.get_dashboard_for_job_run_request.GetDashboardForJobRunRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["job_run_id"] = job_run_id
+        input_: capo_emr_serverless.types.get_dashboard_for_job_run_request.GetDashboardForJobRunRequest = {
+            "application_id": application_id,
+            "job_run_id": job_run_id,
+        }
         if attempt is not None:
             input_["attempt"] = attempt
         if access_system_profile_logs is not None:
@@ -377,6 +386,7 @@ class JobRunResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_job_run_attempts(
@@ -418,9 +428,10 @@ class JobRunResource:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_emr_serverless.types.list_job_run_attempts_request.ListJobRunAttemptsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["job_run_id"] = job_run_id
+        input_: capo_emr_serverless.types.list_job_run_attempts_request.ListJobRunAttemptsRequest = {
+            "application_id": application_id,
+            "job_run_id": job_run_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -431,6 +442,7 @@ class JobRunResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -501,10 +513,11 @@ class AsyncJobRunResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_emr_serverless.types.start_job_run_request.StartJobRunRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["client_token"] = client_token
-        input_["execution_role_arn"] = execution_role_arn
+        input_: capo_emr_serverless.types.start_job_run_request.StartJobRunRequest = {
+            "application_id": application_id,
+            "client_token": client_token,
+            "execution_role_arn": execution_role_arn,
+        }
         if execution_iam_policy is not None:
             input_["execution_iam_policy"] = execution_iam_policy
         if job_driver is not None:
@@ -527,6 +540,7 @@ class AsyncJobRunResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -569,9 +583,10 @@ class AsyncJobRunResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_emr_serverless.types.get_job_run_request.GetJobRunRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["job_run_id"] = job_run_id
+        input_: capo_emr_serverless.types.get_job_run_request.GetJobRunRequest = {
+            "application_id": application_id,
+            "job_run_id": job_run_id,
+        }
         if attempt is not None:
             input_["attempt"] = attempt
 
@@ -580,6 +595,7 @@ class AsyncJobRunResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -622,9 +638,10 @@ class AsyncJobRunResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_emr_serverless.types.cancel_job_run_request.CancelJobRunRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["job_run_id"] = job_run_id
+        input_: capo_emr_serverless.types.cancel_job_run_request.CancelJobRunRequest = {
+            "application_id": application_id,
+            "job_run_id": job_run_id,
+        }
         if shutdown_grace_period_in_seconds is not None:
             input_["shutdown_grace_period_in_seconds"] = (
                 shutdown_grace_period_in_seconds
@@ -635,6 +652,7 @@ class AsyncJobRunResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -684,8 +702,9 @@ class AsyncJobRunResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_emr_serverless.types.list_job_runs_request.ListJobRunsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
+        input_: capo_emr_serverless.types.list_job_runs_request.ListJobRunsRequest = {
+            "application_id": application_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -704,6 +723,7 @@ class AsyncJobRunResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def get_dashboard_for_job_run(
@@ -748,9 +768,10 @@ class AsyncJobRunResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_emr_serverless.types.get_dashboard_for_job_run_request.GetDashboardForJobRunRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["job_run_id"] = job_run_id
+        input_: capo_emr_serverless.types.get_dashboard_for_job_run_request.GetDashboardForJobRunRequest = {
+            "application_id": application_id,
+            "job_run_id": job_run_id,
+        }
         if attempt is not None:
             input_["attempt"] = attempt
         if access_system_profile_logs is not None:
@@ -761,6 +782,7 @@ class AsyncJobRunResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list_job_run_attempts(
@@ -803,9 +825,10 @@ class AsyncJobRunResource:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_emr_serverless.types.list_job_run_attempts_request.ListJobRunAttemptsRequest = {}  # type: ignore[typeddict-item]
-        input_["application_id"] = application_id
-        input_["job_run_id"] = job_run_id
+        input_: capo_emr_serverless.types.list_job_run_attempts_request.ListJobRunAttemptsRequest = {
+            "application_id": application_id,
+            "job_run_id": job_run_id,
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -816,4 +839,5 @@ class AsyncJobRunResource:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

@@ -32,9 +32,9 @@ def serialize_json(value: AddonCompatibilityDetail) -> dict:
 
 def deserialize_json(data: dict) -> AddonCompatibilityDetail:
     out: AddonCompatibilityDetail = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "compatibleVersions" in data:
+    if data.get("compatibleVersions") is not None:
         import capo_eks.types.string_list
 
         out["compatible_versions"] = capo_eks.types.string_list.deserialize_json(

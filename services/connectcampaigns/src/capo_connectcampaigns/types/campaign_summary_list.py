@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> CampaignSummaryList:
 
     out: CampaignSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_connectcampaigns.types.campaign_summary.deserialize_json(item))
     return out

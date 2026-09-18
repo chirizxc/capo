@@ -45,15 +45,15 @@ def serialize_aws_json_1_0(value: DescribeFirewallResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> DescribeFirewallResponse:
     out: DescribeFirewallResponse = {}  # type: ignore[typeddict-item]
-    if "UpdateToken" in data:
+    if data.get("UpdateToken") is not None:
         out["update_token"] = data["UpdateToken"]
-    if "Firewall" in data:
+    if data.get("Firewall") is not None:
         import capo_network_firewall.types.firewall
 
         out["firewall"] = capo_network_firewall.types.firewall.deserialize_aws_json_1_0(
             data["Firewall"]
         )
-    if "FirewallStatus" in data:
+    if data.get("FirewallStatus") is not None:
         import capo_network_firewall.types.firewall_status
 
         out["firewall_status"] = (

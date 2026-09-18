@@ -59,11 +59,11 @@ def serialize_aws_json_1_1(value: ProfilerRuleEvaluationStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ProfilerRuleEvaluationStatus:
     out: ProfilerRuleEvaluationStatus = {}  # type: ignore[typeddict-item]
-    if "RuleConfigurationName" in data:
+    if data.get("RuleConfigurationName") is not None:
         out["rule_configuration_name"] = data["RuleConfigurationName"]
-    if "RuleEvaluationJobArn" in data:
+    if data.get("RuleEvaluationJobArn") is not None:
         out["rule_evaluation_job_arn"] = data["RuleEvaluationJobArn"]
-    if "RuleEvaluationStatus" in data:
+    if data.get("RuleEvaluationStatus") is not None:
         import capo_sagemaker.types.rule_evaluation_status
 
         out["rule_evaluation_status"] = (
@@ -71,9 +71,9 @@ def deserialize_aws_json_1_1(data: dict) -> ProfilerRuleEvaluationStatus:
                 data["RuleEvaluationStatus"]
             )
         )
-    if "StatusDetails" in data:
+    if data.get("StatusDetails") is not None:
         out["status_details"] = data["StatusDetails"]
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["last_modified_time"] = (

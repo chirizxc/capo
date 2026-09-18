@@ -68,19 +68,19 @@ def serialize_json(value: ImportResourcesToDraftAppVersionRequest) -> dict:
 
 def deserialize_json(data: dict) -> ImportResourcesToDraftAppVersionRequest:
     out: ImportResourcesToDraftAppVersionRequest = {}  # type: ignore[typeddict-item]
-    if "appArn" in data:
+    if data.get("appArn") is not None:
         out["app_arn"] = data["appArn"]
     else:
         raise DeserializationError(
             "ImportResourcesToDraftAppVersionRequest.app_arn required"
         )
-    if "sourceArns" in data:
+    if data.get("sourceArns") is not None:
         import capo_resiliencehub.types.arn_list
 
         out["source_arns"] = capo_resiliencehub.types.arn_list.deserialize_json(
             data["sourceArns"]
         )
-    if "terraformSources" in data:
+    if data.get("terraformSources") is not None:
         import capo_resiliencehub.types.terraform_source_list
 
         out["terraform_sources"] = (
@@ -88,7 +88,7 @@ def deserialize_json(data: dict) -> ImportResourcesToDraftAppVersionRequest:
                 data["terraformSources"]
             )
         )
-    if "importStrategy" in data:
+    if data.get("importStrategy") is not None:
         import capo_resiliencehub.types.resource_import_strategy_type
 
         out["import_strategy"] = (
@@ -96,7 +96,7 @@ def deserialize_json(data: dict) -> ImportResourcesToDraftAppVersionRequest:
                 data["importStrategy"]
             )
         )
-    if "eksSources" in data:
+    if data.get("eksSources") is not None:
         import capo_resiliencehub.types.eks_source_list
 
         out["eks_sources"] = capo_resiliencehub.types.eks_source_list.deserialize_json(

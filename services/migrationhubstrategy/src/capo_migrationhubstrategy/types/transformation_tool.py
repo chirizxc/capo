@@ -41,11 +41,11 @@ def serialize_json(value: TransformationTool) -> dict:
 
 def deserialize_json(data: dict) -> TransformationTool:
     out: TransformationTool = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "tranformationToolInstallationLink" in data:
+    if data.get("tranformationToolInstallationLink") is not None:
         out["tranformation_tool_installation_link"] = data[
             "tranformationToolInstallationLink"
         ]

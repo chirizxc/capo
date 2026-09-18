@@ -45,14 +45,14 @@ def serialize_json(value: DetectedProperties) -> dict:
 
 def deserialize_json(data: dict) -> DetectedProperties:
     out: DetectedProperties = {}  # type: ignore[typeddict-item]
-    if "Width" in data:
+    if data.get("Width") is not None:
         out["width"] = data["Width"]
-    if "Height" in data:
+    if data.get("Height") is not None:
         out["height"] = data["Height"]
-    if "FrameRate" in data:
+    if data.get("FrameRate") is not None:
         out["frame_rate"] = data["FrameRate"]
-    if "FileSize" in data:
+    if data.get("FileSize") is not None:
         out["file_size"] = data["FileSize"]
-    if "DurationMillis" in data:
+    if data.get("DurationMillis") is not None:
         out["duration_millis"] = data["DurationMillis"]
     return out

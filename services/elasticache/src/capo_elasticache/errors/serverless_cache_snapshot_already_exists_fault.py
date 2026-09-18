@@ -39,15 +39,22 @@ class ServerlessCacheSnapshotAlreadyExistsFault(ServiceError):
 
     code: str | None = "ServerlessCacheSnapshotAlreadyExistsFault"
 
-    def __init__(self, data: ServerlessCacheSnapshotAlreadyExistsFault_):
+    def __init__(
+        self,
+        data: ServerlessCacheSnapshotAlreadyExistsFault_,
+        message: str | None = None,
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="ServerlessCacheSnapshotAlreadyExistsFault",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "ServerlessCacheSnapshotAlreadyExistsFault":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "ServerlessCacheSnapshotAlreadyExistsFault":
+        return cls(deserialize_query(el), message)

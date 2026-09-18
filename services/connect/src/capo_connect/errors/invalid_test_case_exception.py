@@ -27,7 +27,7 @@ def serialize_json(value: InvalidTestCaseException_) -> dict:
 
 def deserialize_json(data: dict) -> InvalidTestCaseException_:
     out: InvalidTestCaseException_ = {}  # type: ignore[typeddict-item]
-    if "Problems" in data:
+    if data.get("Problems") is not None:
         import capo_connect.types.problems
 
         out["problems"] = capo_connect.types.problems.deserialize_json(data["Problems"])
@@ -39,15 +39,18 @@ class InvalidTestCaseException(ServiceError):
 
     code: str | None = "InvalidTestCaseException"
 
-    def __init__(self, data: InvalidTestCaseException_):
+    def __init__(self, data: InvalidTestCaseException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidTestCaseException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "InvalidTestCaseException":
-        return cls(deserialize_json(data))
+    def from_json(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidTestCaseException":
+        return cls(deserialize_json(data), message)

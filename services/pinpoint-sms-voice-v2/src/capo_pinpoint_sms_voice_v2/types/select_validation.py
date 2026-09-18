@@ -36,15 +36,15 @@ def serialize_aws_json_1_0(value: SelectValidation) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SelectValidation:
     out: SelectValidation = {}  # type: ignore[typeddict-item]
-    if "MinChoices" in data:
+    if data.get("MinChoices") is not None:
         out["min_choices"] = data["MinChoices"]
     else:
         raise DeserializationError("SelectValidation.min_choices required")
-    if "MaxChoices" in data:
+    if data.get("MaxChoices") is not None:
         out["max_choices"] = data["MaxChoices"]
     else:
         raise DeserializationError("SelectValidation.max_choices required")
-    if "Options" in data:
+    if data.get("Options") is not None:
         import capo_pinpoint_sms_voice_v2.types.string_list
 
         out["options"] = (

@@ -31,7 +31,7 @@ def serialize_json(value: DescribeInstanceStorageConfigResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeInstanceStorageConfigResponse:
     out: DescribeInstanceStorageConfigResponse = {}  # type: ignore[typeddict-item]
-    if "StorageConfig" in data:
+    if data.get("StorageConfig") is not None:
         import capo_connect.types.instance_storage_config
 
         out["storage_config"] = (

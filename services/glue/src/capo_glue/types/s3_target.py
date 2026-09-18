@@ -51,20 +51,20 @@ def serialize_aws_json_1_1(value: S3Target) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> S3Target:
     out: S3Target = {}  # type: ignore[typeddict-item]
-    if "Path" in data:
+    if data.get("Path") is not None:
         out["path"] = data["Path"]
-    if "Exclusions" in data:
+    if data.get("Exclusions") is not None:
         import capo_glue.types.path_list
 
         out["exclusions"] = capo_glue.types.path_list.deserialize_aws_json_1_1(
             data["Exclusions"]
         )
-    if "ConnectionName" in data:
+    if data.get("ConnectionName") is not None:
         out["connection_name"] = data["ConnectionName"]
-    if "SampleSize" in data:
+    if data.get("SampleSize") is not None:
         out["sample_size"] = data["SampleSize"]
-    if "EventQueueArn" in data:
+    if data.get("EventQueueArn") is not None:
         out["event_queue_arn"] = data["EventQueueArn"]
-    if "DlqEventQueueArn" in data:
+    if data.get("DlqEventQueueArn") is not None:
         out["dlq_event_queue_arn"] = data["DlqEventQueueArn"]
     return out

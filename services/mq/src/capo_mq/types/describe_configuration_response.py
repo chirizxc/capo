@@ -88,9 +88,9 @@ def serialize_json(value: DescribeConfigurationResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeConfigurationResponse:
     out: DescribeConfigurationResponse = {}  # type: ignore[typeddict-item]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "authenticationStrategy" in data:
+    if data.get("authenticationStrategy") is not None:
         import capo_mq.types.authentication_strategy
 
         out["authentication_strategy"] = (
@@ -98,33 +98,33 @@ def deserialize_json(data: dict) -> DescribeConfigurationResponse:
                 data["authenticationStrategy"]
             )
         )
-    if "created" in data:
+    if data.get("created") is not None:
         import capo_mq.types.__timestamp_iso8601
 
         out["created"] = capo_mq.types.__timestamp_iso8601.deserialize_json(
             data["created"]
         )
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "engineType" in data:
+    if data.get("engineType") is not None:
         import capo_mq.types.engine_type
 
         out["engine_type"] = capo_mq.types.engine_type.deserialize_json(
             data["engineType"]
         )
-    if "engineVersion" in data:
+    if data.get("engineVersion") is not None:
         out["engine_version"] = data["engineVersion"]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "latestRevision" in data:
+    if data.get("latestRevision") is not None:
         import capo_mq.types.configuration_revision
 
         out["latest_revision"] = capo_mq.types.configuration_revision.deserialize_json(
             data["latestRevision"]
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_mq.types.__map_of__string
 
         out["tags"] = capo_mq.types.__map_of__string.deserialize_json(data["tags"])

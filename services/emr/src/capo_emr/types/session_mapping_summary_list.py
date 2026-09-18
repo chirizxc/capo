@@ -25,6 +25,8 @@ def deserialize_aws_json_1_1(data: list) -> SessionMappingSummaryList:
 
     out: SessionMappingSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_emr.types.session_mapping_summary.deserialize_aws_json_1_1(item)
         )

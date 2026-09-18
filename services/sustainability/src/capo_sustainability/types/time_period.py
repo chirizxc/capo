@@ -31,7 +31,7 @@ def serialize_json(value: TimePeriod) -> dict:
 
 def deserialize_json(data: dict) -> TimePeriod:
     out: TimePeriod = {}  # type: ignore[typeddict-item]
-    if "Start" in data:
+    if data.get("Start") is not None:
         import capo_sustainability.types.timestamp
 
         out["start"] = capo_sustainability.types.timestamp.deserialize_json(
@@ -39,7 +39,7 @@ def deserialize_json(data: dict) -> TimePeriod:
         )
     else:
         raise DeserializationError("TimePeriod.start required")
-    if "End" in data:
+    if data.get("End") is not None:
         import capo_sustainability.types.timestamp
 
         out["end"] = capo_sustainability.types.timestamp.deserialize_json(data["End"])

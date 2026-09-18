@@ -13,9 +13,9 @@ from capo_lex_models_v2 import AsyncLexModelsV2Client
 
 
 async def main():
-    async with AsyncLexModelsV2Client() as s3:
+    async with AsyncLexModelsV2Client() as lex_models_v2:
         # Example: call the batch_create_custom_vocabulary_item operation
-        response = await s3.batch_create_custom_vocabulary_item()
+        response = await lex_models_v2.batch_create_custom_vocabulary_item()
         print(response["bot_id"])
 ```
 
@@ -28,9 +28,9 @@ from capo_lex_models_v2 import AsyncLexModelsV2Client
 
 
 async def main():
-    async with AsyncLexModelsV2Client() as s3:
+    async with AsyncLexModelsV2Client() as lex_models_v2:
         # Example: paginate over describe_bot_analyzer_recommendation
-        async for item in s3.iter_describe_bot_analyzer_recommendation():
+        async for item in lex_models_v2.iter_describe_bot_analyzer_recommendation():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_lex_models_v2.error import InternalServerException
 
 
 async def main():
-    async with AsyncLexModelsV2Client() as s3:
+    async with AsyncLexModelsV2Client() as lex_models_v2:
         try:
-            await s3.batch_create_custom_vocabulary_item()
+            await lex_models_v2.batch_create_custom_vocabulary_item()
         except InternalServerException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_lex_models_v2 import AsyncLexModelsV2Client
 
 
 async def main():
-    async with AsyncLexModelsV2Client() as s3:
+    async with AsyncLexModelsV2Client() as lex_models_v2:
         # Default: 3 attempts for every operation
-        response = await s3.batch_create_custom_vocabulary_item()
+        response = await lex_models_v2.batch_create_custom_vocabulary_item()
 
         # Override per operation
-        response = await s3.batch_create_custom_vocabulary_item(config_overrides={"retry_max_attempts": 5})
+        response = await lex_models_v2.batch_create_custom_vocabulary_item(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.batch_create_custom_vocabulary_item(config_overrides={"retry_max_attempts": 1})
+        response = await lex_models_v2.batch_create_custom_vocabulary_item(config_overrides={"retry_max_attempts": 1})
 ```

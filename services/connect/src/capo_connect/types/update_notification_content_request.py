@@ -34,7 +34,7 @@ def serialize_json(value: UpdateNotificationContentRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateNotificationContentRequest:
     out: UpdateNotificationContentRequest = {}  # type: ignore[typeddict-item]
-    if "Content" in data:
+    if data.get("Content") is not None:
         import capo_connect.types.notification_content
 
         out["content"] = capo_connect.types.notification_content.deserialize_json(

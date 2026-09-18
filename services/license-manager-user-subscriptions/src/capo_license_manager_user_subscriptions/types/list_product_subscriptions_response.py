@@ -35,7 +35,7 @@ def serialize_json(value: ListProductSubscriptionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListProductSubscriptionsResponse:
     out: ListProductSubscriptionsResponse = {}  # type: ignore[typeddict-item]
-    if "ProductUserSummaries" in data:
+    if data.get("ProductUserSummaries") is not None:
         import capo_license_manager_user_subscriptions.types.product_user_summary_list
 
         out["product_user_summaries"] = (
@@ -43,6 +43,6 @@ def deserialize_json(data: dict) -> ListProductSubscriptionsResponse:
                 data["ProductUserSummaries"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

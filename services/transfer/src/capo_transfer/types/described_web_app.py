@@ -108,15 +108,15 @@ def serialize_aws_json_1_1(value: DescribedWebApp) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribedWebApp:
     out: DescribedWebApp = {}  # type: ignore[typeddict-item]
-    if "Arn" in data:
+    if data.get("Arn") is not None:
         out["arn"] = data["Arn"]
     else:
         raise DeserializationError("DescribedWebApp.arn required")
-    if "WebAppId" in data:
+    if data.get("WebAppId") is not None:
         out["web_app_id"] = data["WebAppId"]
     else:
         raise DeserializationError("DescribedWebApp.web_app_id required")
-    if "DescribedIdentityProviderDetails" in data:
+    if data.get("DescribedIdentityProviderDetails") is not None:
         import capo_transfer.types.described_web_app_identity_provider_details
 
         out["described_identity_provider_details"] = (
@@ -124,11 +124,11 @@ def deserialize_aws_json_1_1(data: dict) -> DescribedWebApp:
                 data["DescribedIdentityProviderDetails"]
             )
         )
-    if "AccessEndpoint" in data:
+    if data.get("AccessEndpoint") is not None:
         out["access_endpoint"] = data["AccessEndpoint"]
-    if "WebAppEndpoint" in data:
+    if data.get("WebAppEndpoint") is not None:
         out["web_app_endpoint"] = data["WebAppEndpoint"]
-    if "WebAppUnits" in data:
+    if data.get("WebAppUnits") is not None:
         import capo_transfer.types.web_app_units
 
         out["web_app_units"] = (
@@ -136,11 +136,11 @@ def deserialize_aws_json_1_1(data: dict) -> DescribedWebApp:
                 data["WebAppUnits"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_transfer.types.tags
 
         out["tags"] = capo_transfer.types.tags.deserialize_aws_json_1_1(data["Tags"])
-    if "WebAppEndpointPolicy" in data:
+    if data.get("WebAppEndpointPolicy") is not None:
         import capo_transfer.types.web_app_endpoint_policy
 
         out["web_app_endpoint_policy"] = (
@@ -148,7 +148,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribedWebApp:
                 data["WebAppEndpointPolicy"]
             )
         )
-    if "EndpointType" in data:
+    if data.get("EndpointType") is not None:
         import capo_transfer.types.web_app_endpoint_type
 
         out["endpoint_type"] = (
@@ -156,7 +156,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribedWebApp:
                 data["EndpointType"]
             )
         )
-    if "DescribedEndpointDetails" in data:
+    if data.get("DescribedEndpointDetails") is not None:
         import capo_transfer.types.described_web_app_endpoint_details
 
         out["described_endpoint_details"] = (

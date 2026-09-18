@@ -57,31 +57,31 @@ def serialize_json(value: VirtualGatewayRef) -> dict:
 
 def deserialize_json(data: dict) -> VirtualGatewayRef:
     out: VirtualGatewayRef = {}  # type: ignore[typeddict-item]
-    if "meshName" in data:
+    if data.get("meshName") is not None:
         out["mesh_name"] = data["meshName"]
     else:
         raise DeserializationError("VirtualGatewayRef.mesh_name required")
-    if "virtualGatewayName" in data:
+    if data.get("virtualGatewayName") is not None:
         out["virtual_gateway_name"] = data["virtualGatewayName"]
     else:
         raise DeserializationError("VirtualGatewayRef.virtual_gateway_name required")
-    if "meshOwner" in data:
+    if data.get("meshOwner") is not None:
         out["mesh_owner"] = data["meshOwner"]
     else:
         raise DeserializationError("VirtualGatewayRef.mesh_owner required")
-    if "resourceOwner" in data:
+    if data.get("resourceOwner") is not None:
         out["resource_owner"] = data["resourceOwner"]
     else:
         raise DeserializationError("VirtualGatewayRef.resource_owner required")
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
     else:
         raise DeserializationError("VirtualGatewayRef.arn required")
-    if "version" in data:
+    if data.get("version") is not None:
         out["version"] = data["version"]
     else:
         raise DeserializationError("VirtualGatewayRef.version required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_app_mesh.types._prelude.timestamp
 
         out["created_at"] = capo_app_mesh.types._prelude.timestamp.deserialize_json(
@@ -89,7 +89,7 @@ def deserialize_json(data: dict) -> VirtualGatewayRef:
         )
     else:
         raise DeserializationError("VirtualGatewayRef.created_at required")
-    if "lastUpdatedAt" in data:
+    if data.get("lastUpdatedAt") is not None:
         import capo_app_mesh.types._prelude.timestamp
 
         out["last_updated_at"] = (

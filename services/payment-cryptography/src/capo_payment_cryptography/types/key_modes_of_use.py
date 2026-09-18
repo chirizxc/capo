@@ -41,39 +41,39 @@ def serialize_aws_json_1_0(value: KeyModesOfUse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> KeyModesOfUse:
     out: KeyModesOfUse = {}  # type: ignore[typeddict-item]
-    if "Encrypt" in data:
+    if data.get("Encrypt") is not None:
         out["encrypt"] = data["Encrypt"]
     else:
         out["encrypt"] = False
-    if "Decrypt" in data:
+    if data.get("Decrypt") is not None:
         out["decrypt"] = data["Decrypt"]
     else:
         out["decrypt"] = False
-    if "Wrap" in data:
+    if data.get("Wrap") is not None:
         out["wrap"] = data["Wrap"]
     else:
         out["wrap"] = False
-    if "Unwrap" in data:
+    if data.get("Unwrap") is not None:
         out["unwrap"] = data["Unwrap"]
     else:
         out["unwrap"] = False
-    if "Generate" in data:
+    if data.get("Generate") is not None:
         out["generate"] = data["Generate"]
     else:
         out["generate"] = False
-    if "Sign" in data:
+    if data.get("Sign") is not None:
         out["sign"] = data["Sign"]
     else:
         out["sign"] = False
-    if "Verify" in data:
+    if data.get("Verify") is not None:
         out["verify"] = data["Verify"]
     else:
         out["verify"] = False
-    if "DeriveKey" in data:
+    if data.get("DeriveKey") is not None:
         out["derive_key"] = data["DeriveKey"]
     else:
         out["derive_key"] = False
-    if "NoRestrictions" in data:
+    if data.get("NoRestrictions") is not None:
         out["no_restrictions"] = data["NoRestrictions"]
     else:
         out["no_restrictions"] = False

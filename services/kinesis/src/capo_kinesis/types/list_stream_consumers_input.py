@@ -52,15 +52,15 @@ def serialize_aws_json_1_1(value: ListStreamConsumersInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListStreamConsumersInput:
     out: ListStreamConsumersInput = {}  # type: ignore[typeddict-item]
-    if "StreamARN" in data:
+    if data.get("StreamARN") is not None:
         out["stream_arn"] = data["StreamARN"]
     else:
         raise DeserializationError("ListStreamConsumersInput.stream_arn required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "StreamCreationTimestamp" in data:
+    if data.get("StreamCreationTimestamp") is not None:
         import capo_kinesis.types.timestamp
 
         out["stream_creation_timestamp"] = (
@@ -68,6 +68,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListStreamConsumersInput:
                 data["StreamCreationTimestamp"]
             )
         )
-    if "StreamId" in data:
+    if data.get("StreamId") is not None:
         out["stream_id"] = data["StreamId"]
     return out

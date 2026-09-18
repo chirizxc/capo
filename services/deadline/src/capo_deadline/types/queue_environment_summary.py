@@ -32,17 +32,17 @@ def serialize_json(value: QueueEnvironmentSummary) -> dict:
 
 def deserialize_json(data: dict) -> QueueEnvironmentSummary:
     out: QueueEnvironmentSummary = {}  # type: ignore[typeddict-item]
-    if "queueEnvironmentId" in data:
+    if data.get("queueEnvironmentId") is not None:
         out["queue_environment_id"] = data["queueEnvironmentId"]
     else:
         raise DeserializationError(
             "QueueEnvironmentSummary.queue_environment_id required"
         )
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
     else:
         raise DeserializationError("QueueEnvironmentSummary.name required")
-    if "priority" in data:
+    if data.get("priority") is not None:
         out["priority"] = data["priority"]
     else:
         raise DeserializationError("QueueEnvironmentSummary.priority required")

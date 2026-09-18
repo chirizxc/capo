@@ -29,12 +29,12 @@ def serialize_json(value: ElicitationCodeHookInvocationSetting) -> dict:
 
 def deserialize_json(data: dict) -> ElicitationCodeHookInvocationSetting:
     out: ElicitationCodeHookInvocationSetting = {}  # type: ignore[typeddict-item]
-    if "enableCodeHookInvocation" in data:
+    if data.get("enableCodeHookInvocation") is not None:
         out["enable_code_hook_invocation"] = data["enableCodeHookInvocation"]
     else:
         raise DeserializationError(
             "ElicitationCodeHookInvocationSetting.enable_code_hook_invocation required"
         )
-    if "invocationLabel" in data:
+    if data.get("invocationLabel") is not None:
         out["invocation_label"] = data["invocationLabel"]
     return out

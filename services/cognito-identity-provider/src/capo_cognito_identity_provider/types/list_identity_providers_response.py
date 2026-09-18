@@ -39,7 +39,7 @@ def serialize_aws_json_1_1(value: ListIdentityProvidersResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListIdentityProvidersResponse:
     out: ListIdentityProvidersResponse = {}  # type: ignore[typeddict-item]
-    if "Providers" in data:
+    if data.get("Providers") is not None:
         import capo_cognito_identity_provider.types.providers_list_type
 
         out["providers"] = (
@@ -49,6 +49,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListIdentityProvidersResponse:
         )
     else:
         raise DeserializationError("ListIdentityProvidersResponse.providers required")
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

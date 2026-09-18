@@ -57,15 +57,15 @@ def serialize_json(value: UpdateServiceNetworkVpcAssociationResponse) -> dict:
 
 def deserialize_json(data: dict) -> UpdateServiceNetworkVpcAssociationResponse:
     out: UpdateServiceNetworkVpcAssociationResponse = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "arn" in data:
+    if data.get("arn") is not None:
         out["arn"] = data["arn"]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
-    if "createdBy" in data:
+    if data.get("createdBy") is not None:
         out["created_by"] = data["createdBy"]
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_vpc_lattice.types.security_group_list
 
         out["security_group_ids"] = (

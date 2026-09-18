@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> FulfillmentOptionsList:
 
     out: FulfillmentOptionsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_marketplace_discovery.types.fulfillment_option.deserialize_json(item)
         )

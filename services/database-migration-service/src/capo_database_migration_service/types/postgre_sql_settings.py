@@ -202,37 +202,37 @@ def serialize_aws_json_1_1(value: PostgreSQLSettings) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> PostgreSQLSettings:
     out: PostgreSQLSettings = {}  # type: ignore[typeddict-item]
-    if "AfterConnectScript" in data:
+    if data.get("AfterConnectScript") is not None:
         out["after_connect_script"] = data["AfterConnectScript"]
-    if "CaptureDdls" in data:
+    if data.get("CaptureDdls") is not None:
         out["capture_ddls"] = data["CaptureDdls"]
-    if "MaxFileSize" in data:
+    if data.get("MaxFileSize") is not None:
         out["max_file_size"] = data["MaxFileSize"]
-    if "DatabaseName" in data:
+    if data.get("DatabaseName") is not None:
         out["database_name"] = data["DatabaseName"]
-    if "DdlArtifactsSchema" in data:
+    if data.get("DdlArtifactsSchema") is not None:
         out["ddl_artifacts_schema"] = data["DdlArtifactsSchema"]
-    if "ExecuteTimeout" in data:
+    if data.get("ExecuteTimeout") is not None:
         out["execute_timeout"] = data["ExecuteTimeout"]
-    if "FailTasksOnLobTruncation" in data:
+    if data.get("FailTasksOnLobTruncation") is not None:
         out["fail_tasks_on_lob_truncation"] = data["FailTasksOnLobTruncation"]
-    if "HeartbeatEnable" in data:
+    if data.get("HeartbeatEnable") is not None:
         out["heartbeat_enable"] = data["HeartbeatEnable"]
-    if "HeartbeatSchema" in data:
+    if data.get("HeartbeatSchema") is not None:
         out["heartbeat_schema"] = data["HeartbeatSchema"]
-    if "HeartbeatFrequency" in data:
+    if data.get("HeartbeatFrequency") is not None:
         out["heartbeat_frequency"] = data["HeartbeatFrequency"]
-    if "Password" in data:
+    if data.get("Password") is not None:
         out["password"] = data["Password"]
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
-    if "ServerName" in data:
+    if data.get("ServerName") is not None:
         out["server_name"] = data["ServerName"]
-    if "Username" in data:
+    if data.get("Username") is not None:
         out["username"] = data["Username"]
-    if "SlotName" in data:
+    if data.get("SlotName") is not None:
         out["slot_name"] = data["SlotName"]
-    if "PluginName" in data:
+    if data.get("PluginName") is not None:
         import capo_database_migration_service.types.plugin_name_value
 
         out["plugin_name"] = (
@@ -240,17 +240,17 @@ def deserialize_aws_json_1_1(data: dict) -> PostgreSQLSettings:
                 data["PluginName"]
             )
         )
-    if "SecretsManagerAccessRoleArn" in data:
+    if data.get("SecretsManagerAccessRoleArn") is not None:
         out["secrets_manager_access_role_arn"] = data["SecretsManagerAccessRoleArn"]
-    if "SecretsManagerSecretId" in data:
+    if data.get("SecretsManagerSecretId") is not None:
         out["secrets_manager_secret_id"] = data["SecretsManagerSecretId"]
-    if "TrimSpaceInChar" in data:
+    if data.get("TrimSpaceInChar") is not None:
         out["trim_space_in_char"] = data["TrimSpaceInChar"]
-    if "MapBooleanAsBoolean" in data:
+    if data.get("MapBooleanAsBoolean") is not None:
         out["map_boolean_as_boolean"] = data["MapBooleanAsBoolean"]
-    if "MapJsonbAsClob" in data:
+    if data.get("MapJsonbAsClob") is not None:
         out["map_jsonb_as_clob"] = data["MapJsonbAsClob"]
-    if "MapLongVarcharAs" in data:
+    if data.get("MapLongVarcharAs") is not None:
         import capo_database_migration_service.types.long_varchar_mapping_type
 
         out["map_long_varchar_as"] = (
@@ -258,7 +258,7 @@ def deserialize_aws_json_1_1(data: dict) -> PostgreSQLSettings:
                 data["MapLongVarcharAs"]
             )
         )
-    if "DatabaseMode" in data:
+    if data.get("DatabaseMode") is not None:
         import capo_database_migration_service.types.database_mode
 
         out["database_mode"] = (
@@ -266,13 +266,13 @@ def deserialize_aws_json_1_1(data: dict) -> PostgreSQLSettings:
                 data["DatabaseMode"]
             )
         )
-    if "BabelfishDatabaseName" in data:
+    if data.get("BabelfishDatabaseName") is not None:
         out["babelfish_database_name"] = data["BabelfishDatabaseName"]
-    if "DisableUnicodeSourceFilter" in data:
+    if data.get("DisableUnicodeSourceFilter") is not None:
         out["disable_unicode_source_filter"] = data["DisableUnicodeSourceFilter"]
-    if "ServiceAccessRoleArn" in data:
+    if data.get("ServiceAccessRoleArn") is not None:
         out["service_access_role_arn"] = data["ServiceAccessRoleArn"]
-    if "AuthenticationMethod" in data:
+    if data.get("AuthenticationMethod") is not None:
         import capo_database_migration_service.types.postgre_sql_authentication_method
 
         out["authentication_method"] = (

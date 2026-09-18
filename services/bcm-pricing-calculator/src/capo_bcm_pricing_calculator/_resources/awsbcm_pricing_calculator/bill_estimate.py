@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import datetime
+import uuid
 from typing import TYPE_CHECKING, Optional
 
 from capo_bcm_pricing_calculator._services._pipeline import (
@@ -91,11 +92,13 @@ class BillEstimate:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_bcm_pricing_calculator.types.create_bill_estimate_request.CreateBillEstimateRequest = {}  # type: ignore[typeddict-item]
-        input_["bill_scenario_id"] = bill_scenario_id
-        input_["name"] = name
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_bcm_pricing_calculator.types.create_bill_estimate_request.CreateBillEstimateRequest = {
+            "bill_scenario_id": bill_scenario_id,
+            "name": name,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -104,6 +107,7 @@ class BillEstimate:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def read(
@@ -142,14 +146,16 @@ class BillEstimate:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_bcm_pricing_calculator.types.get_bill_estimate_request.GetBillEstimateRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_bcm_pricing_calculator.types.get_bill_estimate_request.GetBillEstimateRequest = {
+            "identifier": identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update(
@@ -195,8 +201,9 @@ class BillEstimate:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_bcm_pricing_calculator.types.update_bill_estimate_request.UpdateBillEstimateRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_bcm_pricing_calculator.types.update_bill_estimate_request.UpdateBillEstimateRequest = {
+            "identifier": identifier
+        }
         if name is not None:
             input_["name"] = name
         if expires_at is not None:
@@ -207,6 +214,7 @@ class BillEstimate:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete(
@@ -245,14 +253,16 @@ class BillEstimate:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_bcm_pricing_calculator.types.delete_bill_estimate_request.DeleteBillEstimateRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_bcm_pricing_calculator.types.delete_bill_estimate_request.DeleteBillEstimateRequest = {
+            "identifier": identifier
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list(
@@ -308,7 +318,7 @@ class BillEstimate:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_bcm_pricing_calculator.types.list_bill_estimates_request.ListBillEstimatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_bcm_pricing_calculator.types.list_bill_estimates_request.ListBillEstimatesRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if created_at_filter is not None:
@@ -325,6 +335,7 @@ class BillEstimate:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
 
@@ -378,11 +389,13 @@ class AsyncBillEstimate:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_bcm_pricing_calculator.types.create_bill_estimate_request.CreateBillEstimateRequest = {}  # type: ignore[typeddict-item]
-        input_["bill_scenario_id"] = bill_scenario_id
-        input_["name"] = name
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_bcm_pricing_calculator.types.create_bill_estimate_request.CreateBillEstimateRequest = {
+            "bill_scenario_id": bill_scenario_id,
+            "name": name,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if tags is not None:
             input_["tags"] = tags
 
@@ -391,6 +404,7 @@ class AsyncBillEstimate:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def read(
@@ -430,14 +444,16 @@ class AsyncBillEstimate:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_bcm_pricing_calculator.types.get_bill_estimate_request.GetBillEstimateRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_bcm_pricing_calculator.types.get_bill_estimate_request.GetBillEstimateRequest = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def update(
@@ -484,8 +500,9 @@ class AsyncBillEstimate:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_bcm_pricing_calculator.types.update_bill_estimate_request.UpdateBillEstimateRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_bcm_pricing_calculator.types.update_bill_estimate_request.UpdateBillEstimateRequest = {
+            "identifier": identifier
+        }
         if name is not None:
             input_["name"] = name
         if expires_at is not None:
@@ -496,6 +513,7 @@ class AsyncBillEstimate:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def delete(
@@ -535,14 +553,16 @@ class AsyncBillEstimate:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_bcm_pricing_calculator.types.delete_bill_estimate_request.DeleteBillEstimateRequest = {}  # type: ignore[typeddict-item]
-        input_["identifier"] = identifier
+        input_: capo_bcm_pricing_calculator.types.delete_bill_estimate_request.DeleteBillEstimateRequest = {
+            "identifier": identifier
+        }
 
         response = await aexecute_pipeline(
             AsyncOperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output
 
     async def list(
@@ -599,7 +619,7 @@ class AsyncBillEstimate:
             return AsyncOperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self._service.operation_options(config_overrides)
-        input_: capo_bcm_pricing_calculator.types.list_bill_estimates_request.ListBillEstimatesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_bcm_pricing_calculator.types.list_bill_estimates_request.ListBillEstimatesRequest = {}
         if filters is not None:
             input_["filters"] = filters
         if created_at_filter is not None:
@@ -616,4 +636,5 @@ class AsyncBillEstimate:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        await response.response.aclose()
         return response.output

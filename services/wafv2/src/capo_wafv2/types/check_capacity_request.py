@@ -32,13 +32,13 @@ def serialize_aws_json_1_1(value: CheckCapacityRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CheckCapacityRequest:
     out: CheckCapacityRequest = {}  # type: ignore[typeddict-item]
-    if "Scope" in data:
+    if data.get("Scope") is not None:
         import capo_wafv2.types.scope
 
         out["scope"] = capo_wafv2.types.scope.deserialize_aws_json_1_1(data["Scope"])
     else:
         raise DeserializationError("CheckCapacityRequest.scope required")
-    if "Rules" in data:
+    if data.get("Rules") is not None:
         import capo_wafv2.types.rules
 
         out["rules"] = capo_wafv2.types.rules.deserialize_aws_json_1_1(data["Rules"])

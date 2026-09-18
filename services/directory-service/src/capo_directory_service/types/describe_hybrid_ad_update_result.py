@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: DescribeHybridADUpdateResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeHybridADUpdateResult:
     out: DescribeHybridADUpdateResult = {}  # type: ignore[typeddict-item]
-    if "UpdateActivities" in data:
+    if data.get("UpdateActivities") is not None:
         import capo_directory_service.types.hybrid_update_activities
 
         out["update_activities"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeHybridADUpdateResult:
                 data["UpdateActivities"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

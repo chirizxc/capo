@@ -36,9 +36,9 @@ def serialize_json(value: RootDirectory) -> dict:
 
 def deserialize_json(data: dict) -> RootDirectory:
     out: RootDirectory = {}  # type: ignore[typeddict-item]
-    if "path" in data:
+    if data.get("path") is not None:
         out["path"] = data["path"]
-    if "creationPermissions" in data:
+    if data.get("creationPermissions") is not None:
         import capo_s3files.types.creation_permissions
 
         out["creation_permissions"] = (

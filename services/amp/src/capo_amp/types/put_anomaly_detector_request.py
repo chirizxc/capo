@@ -69,11 +69,11 @@ def serialize_json(value: PutAnomalyDetectorRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutAnomalyDetectorRequest:
     out: PutAnomalyDetectorRequest = {}  # type: ignore[typeddict-item]
-    if "evaluationIntervalInSeconds" in data:
+    if data.get("evaluationIntervalInSeconds") is not None:
         out["evaluation_interval_in_seconds"] = data["evaluationIntervalInSeconds"]
     else:
         out["evaluation_interval_in_seconds"] = 60
-    if "missingDataAction" in data:
+    if data.get("missingDataAction") is not None:
         import capo_amp.types.anomaly_detector_missing_data_action
 
         out["missing_data_action"] = (
@@ -81,7 +81,7 @@ def deserialize_json(data: dict) -> PutAnomalyDetectorRequest:
                 data["missingDataAction"]
             )
         )
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_amp.types.anomaly_detector_configuration
 
         out["configuration"] = (
@@ -91,12 +91,12 @@ def deserialize_json(data: dict) -> PutAnomalyDetectorRequest:
         )
     else:
         raise DeserializationError("PutAnomalyDetectorRequest.configuration required")
-    if "labels" in data:
+    if data.get("labels") is not None:
         import capo_amp.types.prometheus_metric_label_map
 
         out["labels"] = capo_amp.types.prometheus_metric_label_map.deserialize_json(
             data["labels"]
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

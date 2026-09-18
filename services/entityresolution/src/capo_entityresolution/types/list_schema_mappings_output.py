@@ -36,7 +36,7 @@ def serialize_json(value: ListSchemaMappingsOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListSchemaMappingsOutput:
     out: ListSchemaMappingsOutput = {}  # type: ignore[typeddict-item]
-    if "schemaList" in data:
+    if data.get("schemaList") is not None:
         import capo_entityresolution.types.schema_mapping_list
 
         out["schema_list"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListSchemaMappingsOutput:
                 data["schemaList"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

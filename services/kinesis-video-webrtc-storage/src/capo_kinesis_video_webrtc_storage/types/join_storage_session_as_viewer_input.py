@@ -28,13 +28,13 @@ def serialize_json(value: JoinStorageSessionAsViewerInput) -> dict:
 
 def deserialize_json(data: dict) -> JoinStorageSessionAsViewerInput:
     out: JoinStorageSessionAsViewerInput = {}  # type: ignore[typeddict-item]
-    if "channelArn" in data:
+    if data.get("channelArn") is not None:
         out["channel_arn"] = data["channelArn"]
     else:
         raise DeserializationError(
             "JoinStorageSessionAsViewerInput.channel_arn required"
         )
-    if "clientId" in data:
+    if data.get("clientId") is not None:
         out["client_id"] = data["clientId"]
     else:
         raise DeserializationError("JoinStorageSessionAsViewerInput.client_id required")

@@ -26,7 +26,7 @@ def serialize_json(value: ExecutionStatus) -> dict:
 
 def deserialize_json(data: dict) -> ExecutionStatus:
     out: ExecutionStatus = {}  # type: ignore[typeddict-item]
-    if "state" in data:
+    if data.get("state") is not None:
         import capo_iotsitewise.types.execution_state
 
         out["state"] = capo_iotsitewise.types.execution_state.deserialize_json(

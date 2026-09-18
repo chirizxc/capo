@@ -13,9 +13,9 @@ from capo_ivs_realtime import AsyncIVSRealTimeClient
 
 
 async def main():
-    async with AsyncIVSRealTimeClient() as s3:
+    async with AsyncIVSRealTimeClient() as ivs_real_time:
         # Example: call the create_encoder_configuration operation
-        response = await s3.create_encoder_configuration()
+        response = await ivs_real_time.create_encoder_configuration()
         print(response["encoder_configuration"])
 ```
 
@@ -28,9 +28,9 @@ from capo_ivs_realtime import AsyncIVSRealTimeClient
 
 
 async def main():
-    async with AsyncIVSRealTimeClient() as s3:
-        # Example: paginate over list_ingest_configurations
-        async for item in s3.iter_list_ingest_configurations():
+    async with AsyncIVSRealTimeClient() as ivs_real_time:
+        # Example: paginate over list_compositions
+        async for item in ivs_real_time.iter_list_compositions():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_ivs_realtime.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncIVSRealTimeClient() as s3:
+    async with AsyncIVSRealTimeClient() as ivs_real_time:
         try:
-            await s3.create_encoder_configuration()
+            await ivs_real_time.create_encoder_configuration()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_ivs_realtime import AsyncIVSRealTimeClient
 
 
 async def main():
-    async with AsyncIVSRealTimeClient() as s3:
+    async with AsyncIVSRealTimeClient() as ivs_real_time:
         # Default: 3 attempts for every operation
-        response = await s3.create_encoder_configuration()
+        response = await ivs_real_time.create_encoder_configuration()
 
         # Override per operation
-        response = await s3.create_encoder_configuration(config_overrides={"retry_max_attempts": 5})
+        response = await ivs_real_time.create_encoder_configuration(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.create_encoder_configuration(config_overrides={"retry_max_attempts": 1})
+        response = await ivs_real_time.create_encoder_configuration(config_overrides={"retry_max_attempts": 1})
 ```

@@ -35,10 +35,10 @@ def serialize_json(value: AppInstanceSummary) -> dict:
 
 def deserialize_json(data: dict) -> AppInstanceSummary:
     out: AppInstanceSummary = {}  # type: ignore[typeddict-item]
-    if "AppInstanceArn" in data:
+    if data.get("AppInstanceArn") is not None:
         out["app_instance_arn"] = data["AppInstanceArn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Metadata" in data:
+    if data.get("Metadata") is not None:
         out["metadata"] = data["Metadata"]
     return out

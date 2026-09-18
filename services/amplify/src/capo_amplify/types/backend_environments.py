@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> BackendEnvironments:
 
     out: BackendEnvironments = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_amplify.types.backend_environment.deserialize_json(item))
     return out

@@ -42,9 +42,9 @@ def serialize_aws_json_1_1(value: ManagedQueryResultsConfigurationUpdates) -> di
 
 def deserialize_aws_json_1_1(data: dict) -> ManagedQueryResultsConfigurationUpdates:
     out: ManagedQueryResultsConfigurationUpdates = {}  # type: ignore[typeddict-item]
-    if "Enabled" in data:
+    if data.get("Enabled") is not None:
         out["enabled"] = data["Enabled"]
-    if "EncryptionConfiguration" in data:
+    if data.get("EncryptionConfiguration") is not None:
         import capo_athena.types.managed_query_results_encryption_configuration
 
         out["encryption_configuration"] = (
@@ -52,6 +52,6 @@ def deserialize_aws_json_1_1(data: dict) -> ManagedQueryResultsConfigurationUpda
                 data["EncryptionConfiguration"]
             )
         )
-    if "RemoveEncryptionConfiguration" in data:
+    if data.get("RemoveEncryptionConfiguration") is not None:
         out["remove_encryption_configuration"] = data["RemoveEncryptionConfiguration"]
     return out

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AssociatedStandardsList:
 
     out: AssociatedStandardsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityhub.types.associated_standard.deserialize_json(item))
     return out

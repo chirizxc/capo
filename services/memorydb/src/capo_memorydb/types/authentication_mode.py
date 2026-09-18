@@ -42,7 +42,7 @@ def serialize_aws_json_1_1(value: AuthenticationMode) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AuthenticationMode:
     out: AuthenticationMode = {}  # type: ignore[typeddict-item]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_memorydb.types.input_authentication_type
 
         out["type"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> AuthenticationMode:
                 data["Type"]
             )
         )
-    if "Passwords" in data:
+    if data.get("Passwords") is not None:
         import capo_memorydb.types.password_list_input
 
         out["passwords"] = (

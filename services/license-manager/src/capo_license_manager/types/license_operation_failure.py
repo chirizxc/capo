@@ -72,9 +72,9 @@ def serialize_aws_json_1_1(value: LicenseOperationFailure) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> LicenseOperationFailure:
     out: LicenseOperationFailure = {}  # type: ignore[typeddict-item]
-    if "ResourceArn" in data:
+    if data.get("ResourceArn") is not None:
         out["resource_arn"] = data["ResourceArn"]
-    if "ResourceType" in data:
+    if data.get("ResourceType") is not None:
         import capo_license_manager.types.resource_type
 
         out["resource_type"] = (
@@ -82,9 +82,9 @@ def deserialize_aws_json_1_1(data: dict) -> LicenseOperationFailure:
                 data["ResourceType"]
             )
         )
-    if "ErrorMessage" in data:
+    if data.get("ErrorMessage") is not None:
         out["error_message"] = data["ErrorMessage"]
-    if "FailureTime" in data:
+    if data.get("FailureTime") is not None:
         import capo_license_manager.types.date_time
 
         out["failure_time"] = (
@@ -92,13 +92,13 @@ def deserialize_aws_json_1_1(data: dict) -> LicenseOperationFailure:
                 data["FailureTime"]
             )
         )
-    if "OperationName" in data:
+    if data.get("OperationName") is not None:
         out["operation_name"] = data["OperationName"]
-    if "ResourceOwnerId" in data:
+    if data.get("ResourceOwnerId") is not None:
         out["resource_owner_id"] = data["ResourceOwnerId"]
-    if "OperationRequestedBy" in data:
+    if data.get("OperationRequestedBy") is not None:
         out["operation_requested_by"] = data["OperationRequestedBy"]
-    if "MetadataList" in data:
+    if data.get("MetadataList") is not None:
         import capo_license_manager.types.metadata_list
 
         out["metadata_list"] = (

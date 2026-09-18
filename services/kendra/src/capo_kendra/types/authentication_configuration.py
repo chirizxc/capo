@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: AuthenticationConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AuthenticationConfiguration:
     out: AuthenticationConfiguration = {}  # type: ignore[typeddict-item]
-    if "BasicAuthentication" in data:
+    if data.get("BasicAuthentication") is not None:
         import capo_kendra.types.basic_authentication_configuration_list
 
         out["basic_authentication"] = (

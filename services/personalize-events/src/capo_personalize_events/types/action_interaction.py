@@ -75,17 +75,17 @@ def serialize_json(value: ActionInteraction) -> dict:
 
 def deserialize_json(data: dict) -> ActionInteraction:
     out: ActionInteraction = {}  # type: ignore[typeddict-item]
-    if "actionId" in data:
+    if data.get("actionId") is not None:
         out["action_id"] = data["actionId"]
     else:
         raise DeserializationError("ActionInteraction.action_id required")
-    if "userId" in data:
+    if data.get("userId") is not None:
         out["user_id"] = data["userId"]
-    if "sessionId" in data:
+    if data.get("sessionId") is not None:
         out["session_id"] = data["sessionId"]
     else:
         raise DeserializationError("ActionInteraction.session_id required")
-    if "timestamp" in data:
+    if data.get("timestamp") is not None:
         import capo_personalize_events.types.date
 
         out["timestamp"] = capo_personalize_events.types.date.deserialize_json(
@@ -93,15 +93,15 @@ def deserialize_json(data: dict) -> ActionInteraction:
         )
     else:
         raise DeserializationError("ActionInteraction.timestamp required")
-    if "eventType" in data:
+    if data.get("eventType") is not None:
         out["event_type"] = data["eventType"]
     else:
         raise DeserializationError("ActionInteraction.event_type required")
-    if "eventId" in data:
+    if data.get("eventId") is not None:
         out["event_id"] = data["eventId"]
-    if "recommendationId" in data:
+    if data.get("recommendationId") is not None:
         out["recommendation_id"] = data["recommendationId"]
-    if "impression" in data:
+    if data.get("impression") is not None:
         import capo_personalize_events.types.action_impression
 
         out["impression"] = (
@@ -109,6 +109,6 @@ def deserialize_json(data: dict) -> ActionInteraction:
                 data["impression"]
             )
         )
-    if "properties" in data:
+    if data.get("properties") is not None:
         out["properties"] = data["properties"]
     return out

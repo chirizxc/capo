@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> NextInvocationsList:
 
     out: NextInvocationsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_redshift_serverless.types._prelude.timestamp.deserialize_aws_json_1_1(
                 item

@@ -86,21 +86,21 @@ def serialize_aws_json_1_1(value: ListComputeQuotasRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListComputeQuotasRequest:
     out: ListComputeQuotasRequest = {}  # type: ignore[typeddict-item]
-    if "CreatedAfter" in data:
+    if data.get("CreatedAfter") is not None:
         import capo_sagemaker.types.timestamp
 
         out["created_after"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreatedAfter"]
         )
-    if "CreatedBefore" in data:
+    if data.get("CreatedBefore") is not None:
         import capo_sagemaker.types.timestamp
 
         out["created_before"] = capo_sagemaker.types.timestamp.deserialize_aws_json_1_1(
             data["CreatedBefore"]
         )
-    if "NameContains" in data:
+    if data.get("NameContains") is not None:
         out["name_contains"] = data["NameContains"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_sagemaker.types.scheduler_resource_status
 
         out["status"] = (
@@ -108,22 +108,22 @@ def deserialize_aws_json_1_1(data: dict) -> ListComputeQuotasRequest:
                 data["Status"]
             )
         )
-    if "ClusterArn" in data:
+    if data.get("ClusterArn") is not None:
         out["cluster_arn"] = data["ClusterArn"]
-    if "SortBy" in data:
+    if data.get("SortBy") is not None:
         import capo_sagemaker.types.sort_quota_by
 
         out["sort_by"] = capo_sagemaker.types.sort_quota_by.deserialize_aws_json_1_1(
             data["SortBy"]
         )
-    if "SortOrder" in data:
+    if data.get("SortOrder") is not None:
         import capo_sagemaker.types.sort_order
 
         out["sort_order"] = capo_sagemaker.types.sort_order.deserialize_aws_json_1_1(
             data["SortOrder"]
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
     return out

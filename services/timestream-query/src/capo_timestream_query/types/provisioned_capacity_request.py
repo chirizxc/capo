@@ -37,13 +37,13 @@ def serialize_aws_json_1_0(value: ProvisionedCapacityRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ProvisionedCapacityRequest:
     out: ProvisionedCapacityRequest = {}  # type: ignore[typeddict-item]
-    if "TargetQueryTCU" in data:
+    if data.get("TargetQueryTCU") is not None:
         out["target_query_tcu"] = data["TargetQueryTCU"]
     else:
         raise DeserializationError(
             "ProvisionedCapacityRequest.target_query_tcu required"
         )
-    if "NotificationConfiguration" in data:
+    if data.get("NotificationConfiguration") is not None:
         import capo_timestream_query.types.account_settings_notification_configuration
 
         out["notification_configuration"] = (

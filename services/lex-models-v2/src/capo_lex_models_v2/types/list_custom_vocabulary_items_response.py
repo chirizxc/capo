@@ -51,13 +51,13 @@ def serialize_json(value: ListCustomVocabularyItemsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListCustomVocabularyItemsResponse:
     out: ListCustomVocabularyItemsResponse = {}  # type: ignore[typeddict-item]
-    if "botId" in data:
+    if data.get("botId") is not None:
         out["bot_id"] = data["botId"]
-    if "botVersion" in data:
+    if data.get("botVersion") is not None:
         out["bot_version"] = data["botVersion"]
-    if "localeId" in data:
+    if data.get("localeId") is not None:
         out["locale_id"] = data["localeId"]
-    if "customVocabularyItems" in data:
+    if data.get("customVocabularyItems") is not None:
         import capo_lex_models_v2.types.custom_vocabulary_items
 
         out["custom_vocabulary_items"] = (
@@ -65,6 +65,6 @@ def deserialize_json(data: dict) -> ListCustomVocabularyItemsResponse:
                 data["customVocabularyItems"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

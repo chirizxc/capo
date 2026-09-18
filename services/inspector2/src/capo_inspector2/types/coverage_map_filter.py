@@ -32,14 +32,14 @@ def serialize_json(value: CoverageMapFilter) -> dict:
 
 def deserialize_json(data: dict) -> CoverageMapFilter:
     out: CoverageMapFilter = {}  # type: ignore[typeddict-item]
-    if "comparison" in data:
+    if data.get("comparison") is not None:
         out["comparison"] = data["comparison"]
     else:
         raise DeserializationError("CoverageMapFilter.comparison required")
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
     else:
         raise DeserializationError("CoverageMapFilter.key required")
-    if "value" in data:
+    if data.get("value") is not None:
         out["value"] = data["value"]
     return out

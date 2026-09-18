@@ -27,7 +27,7 @@ def serialize_aws_json_1_1(value: Explainability) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Explainability:
     out: Explainability = {}  # type: ignore[typeddict-item]
-    if "Report" in data:
+    if data.get("Report") is not None:
         import capo_sagemaker.types.metrics_source
 
         out["report"] = capo_sagemaker.types.metrics_source.deserialize_aws_json_1_1(

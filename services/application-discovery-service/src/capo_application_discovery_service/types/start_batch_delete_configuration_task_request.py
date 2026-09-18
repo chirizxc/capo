@@ -40,7 +40,7 @@ def serialize_aws_json_1_1(value: StartBatchDeleteConfigurationTaskRequest) -> d
 
 def deserialize_aws_json_1_1(data: dict) -> StartBatchDeleteConfigurationTaskRequest:
     out: StartBatchDeleteConfigurationTaskRequest = {}  # type: ignore[typeddict-item]
-    if "configurationType" in data:
+    if data.get("configurationType") is not None:
         import capo_application_discovery_service.types.deletion_configuration_item_type
 
         out["configuration_type"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> StartBatchDeleteConfigurationTaskReq
         raise DeserializationError(
             "StartBatchDeleteConfigurationTaskRequest.configuration_type required"
         )
-    if "configurationIds" in data:
+    if data.get("configurationIds") is not None:
         import capo_application_discovery_service.types.configuration_id_list
 
         out["configuration_ids"] = (

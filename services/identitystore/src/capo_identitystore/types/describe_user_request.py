@@ -39,15 +39,15 @@ def serialize_aws_json_1_1(value: DescribeUserRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeUserRequest:
     out: DescribeUserRequest = {}  # type: ignore[typeddict-item]
-    if "IdentityStoreId" in data:
+    if data.get("IdentityStoreId") is not None:
         out["identity_store_id"] = data["IdentityStoreId"]
     else:
         raise DeserializationError("DescribeUserRequest.identity_store_id required")
-    if "UserId" in data:
+    if data.get("UserId") is not None:
         out["user_id"] = data["UserId"]
     else:
         raise DeserializationError("DescribeUserRequest.user_id required")
-    if "Extensions" in data:
+    if data.get("Extensions") is not None:
         import capo_identitystore.types.extension_names
 
         out["extensions"] = (

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> AnalysisResults:
 
     out: AnalysisResults = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot_events.types.analysis_result.deserialize_json(item))
     return out

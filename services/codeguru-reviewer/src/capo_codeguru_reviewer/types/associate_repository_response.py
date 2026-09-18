@@ -38,7 +38,7 @@ def serialize_json(value: AssociateRepositoryResponse) -> dict:
 
 def deserialize_json(data: dict) -> AssociateRepositoryResponse:
     out: AssociateRepositoryResponse = {}  # type: ignore[typeddict-item]
-    if "RepositoryAssociation" in data:
+    if data.get("RepositoryAssociation") is not None:
         import capo_codeguru_reviewer.types.repository_association
 
         out["repository_association"] = (
@@ -46,7 +46,7 @@ def deserialize_json(data: dict) -> AssociateRepositoryResponse:
                 data["RepositoryAssociation"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_codeguru_reviewer.types.tag_map
 
         out["tags"] = capo_codeguru_reviewer.types.tag_map.deserialize_json(

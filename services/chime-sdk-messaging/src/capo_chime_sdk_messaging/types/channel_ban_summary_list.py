@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> ChannelBanSummaryList:
 
     out: ChannelBanSummaryList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_chime_sdk_messaging.types.channel_ban_summary.deserialize_json(item)
         )

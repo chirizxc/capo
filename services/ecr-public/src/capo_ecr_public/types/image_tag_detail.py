@@ -49,9 +49,9 @@ def serialize_aws_json_1_1(value: ImageTagDetail) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ImageTagDetail:
     out: ImageTagDetail = {}  # type: ignore[typeddict-item]
-    if "imageTag" in data:
+    if data.get("imageTag") is not None:
         out["image_tag"] = data["imageTag"]
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_ecr_public.types.creation_timestamp
 
         out["created_at"] = (
@@ -59,7 +59,7 @@ def deserialize_aws_json_1_1(data: dict) -> ImageTagDetail:
                 data["createdAt"]
             )
         )
-    if "imageDetail" in data:
+    if data.get("imageDetail") is not None:
         import capo_ecr_public.types.referenced_image_detail
 
         out["image_detail"] = (

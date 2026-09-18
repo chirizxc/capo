@@ -30,7 +30,7 @@ def serialize_aws_json_1_1(value: RulesConfigurationType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RulesConfigurationType:
     out: RulesConfigurationType = {}  # type: ignore[typeddict-item]
-    if "Rules" in data:
+    if data.get("Rules") is not None:
         import capo_cognito_identity.types.mapping_rules_list
 
         out["rules"] = (

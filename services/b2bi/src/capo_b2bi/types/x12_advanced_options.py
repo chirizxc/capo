@@ -40,7 +40,7 @@ def serialize_aws_json_1_0(value: X12AdvancedOptions) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> X12AdvancedOptions:
     out: X12AdvancedOptions = {}  # type: ignore[typeddict-item]
-    if "splitOptions" in data:
+    if data.get("splitOptions") is not None:
         import capo_b2bi.types.x12_split_options
 
         out["split_options"] = (
@@ -48,7 +48,7 @@ def deserialize_aws_json_1_0(data: dict) -> X12AdvancedOptions:
                 data["splitOptions"]
             )
         )
-    if "validationOptions" in data:
+    if data.get("validationOptions") is not None:
         import capo_b2bi.types.x12_validation_options
 
         out["validation_options"] = (

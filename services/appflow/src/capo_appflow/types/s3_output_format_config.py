@@ -53,19 +53,19 @@ def serialize_json(value: S3OutputFormatConfig) -> dict:
 
 def deserialize_json(data: dict) -> S3OutputFormatConfig:
     out: S3OutputFormatConfig = {}  # type: ignore[typeddict-item]
-    if "fileType" in data:
+    if data.get("fileType") is not None:
         import capo_appflow.types.file_type
 
         out["file_type"] = capo_appflow.types.file_type.deserialize_json(
             data["fileType"]
         )
-    if "prefixConfig" in data:
+    if data.get("prefixConfig") is not None:
         import capo_appflow.types.prefix_config
 
         out["prefix_config"] = capo_appflow.types.prefix_config.deserialize_json(
             data["prefixConfig"]
         )
-    if "aggregationConfig" in data:
+    if data.get("aggregationConfig") is not None:
         import capo_appflow.types.aggregation_config
 
         out["aggregation_config"] = (
@@ -73,6 +73,6 @@ def deserialize_json(data: dict) -> S3OutputFormatConfig:
                 data["aggregationConfig"]
             )
         )
-    if "preserveSourceDataTyping" in data:
+    if data.get("preserveSourceDataTyping") is not None:
         out["preserve_source_data_typing"] = data["preserveSourceDataTyping"]
     return out

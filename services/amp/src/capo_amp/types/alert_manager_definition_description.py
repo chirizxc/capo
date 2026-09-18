@@ -54,7 +54,7 @@ def serialize_json(value: AlertManagerDefinitionDescription) -> dict:
 
 def deserialize_json(data: dict) -> AlertManagerDefinitionDescription:
     out: AlertManagerDefinitionDescription = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_amp.types.alert_manager_definition_status
 
         out["status"] = capo_amp.types.alert_manager_definition_status.deserialize_json(
@@ -62,7 +62,7 @@ def deserialize_json(data: dict) -> AlertManagerDefinitionDescription:
         )
     else:
         raise DeserializationError("AlertManagerDefinitionDescription.status required")
-    if "data" in data:
+    if data.get("data") is not None:
         import capo_amp.types.alert_manager_definition_data
 
         out["data"] = capo_amp.types.alert_manager_definition_data.deserialize_json(
@@ -70,7 +70,7 @@ def deserialize_json(data: dict) -> AlertManagerDefinitionDescription:
         )
     else:
         raise DeserializationError("AlertManagerDefinitionDescription.data required")
-    if "createdAt" in data:
+    if data.get("createdAt") is not None:
         import capo_amp.types._prelude.timestamp
 
         out["created_at"] = capo_amp.types._prelude.timestamp.deserialize_json(
@@ -80,7 +80,7 @@ def deserialize_json(data: dict) -> AlertManagerDefinitionDescription:
         raise DeserializationError(
             "AlertManagerDefinitionDescription.created_at required"
         )
-    if "modifiedAt" in data:
+    if data.get("modifiedAt") is not None:
         import capo_amp.types._prelude.timestamp
 
         out["modified_at"] = capo_amp.types._prelude.timestamp.deserialize_json(

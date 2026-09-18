@@ -40,11 +40,11 @@ def serialize_aws_json_1_0(value: BatchDeleteWorkloadEstimateUsageError) -> dict
 
 def deserialize_aws_json_1_0(data: dict) -> BatchDeleteWorkloadEstimateUsageError:
     out: BatchDeleteWorkloadEstimateUsageError = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         import capo_bcm_pricing_calculator.types.workload_estimate_update_usage_error_code
 
         out["error_code"] = (

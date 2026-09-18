@@ -34,13 +34,13 @@ def serialize_json(value: VectorEnrichmentJobInputConfig) -> dict:
 
 def deserialize_json(data: dict) -> VectorEnrichmentJobInputConfig:
     out: VectorEnrichmentJobInputConfig = {}  # type: ignore[typeddict-item]
-    if "DocumentType" in data:
+    if data.get("DocumentType") is not None:
         out["document_type"] = data["DocumentType"]
     else:
         raise DeserializationError(
             "VectorEnrichmentJobInputConfig.document_type required"
         )
-    if "DataSourceConfig" in data:
+    if data.get("DataSourceConfig") is not None:
         import capo_sagemaker_geospatial.types.vector_enrichment_job_data_source_config_input
 
         out["data_source_config"] = (

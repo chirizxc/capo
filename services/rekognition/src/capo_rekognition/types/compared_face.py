@@ -41,7 +41,15 @@ def serialize_aws_json_1_1(value: ComparedFace) -> dict:
             value["bounding_box"]
         )
     if "confidence" in value:
-        out["Confidence"] = value["confidence"]
+        out["Confidence"] = (
+            "NaN"
+            if value["confidence"] != value["confidence"]
+            else "Infinity"
+            if value["confidence"] == float("inf")
+            else "-Infinity"
+            if value["confidence"] == float("-inf")
+            else value["confidence"]
+        )
     if "landmarks" in value:
         import capo_rekognition.types.landmarks
 
@@ -75,7 +83,7 @@ def serialize_aws_json_1_1(value: ComparedFace) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ComparedFace:
     out: ComparedFace = {}  # type: ignore[typeddict-item]
-    if "BoundingBox" in data:
+    if data.get("BoundingBox") is not None:
         import capo_rekognition.types.bounding_box
 
         out["bounding_box"] = (
@@ -83,31 +91,31 @@ def deserialize_aws_json_1_1(data: dict) -> ComparedFace:
                 data["BoundingBox"]
             )
         )
-    if "Confidence" in data:
-        out["confidence"] = data["Confidence"]
-    if "Landmarks" in data:
+    if data.get("Confidence") is not None:
+        out["confidence"] = float(data["Confidence"])
+    if data.get("Landmarks") is not None:
         import capo_rekognition.types.landmarks
 
         out["landmarks"] = capo_rekognition.types.landmarks.deserialize_aws_json_1_1(
             data["Landmarks"]
         )
-    if "Pose" in data:
+    if data.get("Pose") is not None:
         import capo_rekognition.types.pose
 
         out["pose"] = capo_rekognition.types.pose.deserialize_aws_json_1_1(data["Pose"])
-    if "Quality" in data:
+    if data.get("Quality") is not None:
         import capo_rekognition.types.image_quality
 
         out["quality"] = capo_rekognition.types.image_quality.deserialize_aws_json_1_1(
             data["Quality"]
         )
-    if "Emotions" in data:
+    if data.get("Emotions") is not None:
         import capo_rekognition.types.emotions
 
         out["emotions"] = capo_rekognition.types.emotions.deserialize_aws_json_1_1(
             data["Emotions"]
         )
-    if "Smile" in data:
+    if data.get("Smile") is not None:
         import capo_rekognition.types.smile
 
         out["smile"] = capo_rekognition.types.smile.deserialize_aws_json_1_1(

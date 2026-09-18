@@ -31,7 +31,7 @@ def serialize_json(value: StartMulticastGroupSessionRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartMulticastGroupSessionRequest:
     out: StartMulticastGroupSessionRequest = {}  # type: ignore[typeddict-item]
-    if "LoRaWAN" in data:
+    if data.get("LoRaWAN") is not None:
         import capo_iot_wireless.types.lo_ra_wan_multicast_session
 
         out["lo_ra_wan"] = (

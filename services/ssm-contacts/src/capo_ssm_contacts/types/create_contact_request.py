@@ -59,13 +59,13 @@ def serialize_aws_json_1_1(value: CreateContactRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateContactRequest:
     out: CreateContactRequest = {}  # type: ignore[typeddict-item]
-    if "Alias" in data:
+    if data.get("Alias") is not None:
         out["alias"] = data["Alias"]
     else:
         raise DeserializationError("CreateContactRequest.alias required")
-    if "DisplayName" in data:
+    if data.get("DisplayName") is not None:
         out["display_name"] = data["DisplayName"]
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_ssm_contacts.types.contact_type
 
         out["type"] = capo_ssm_contacts.types.contact_type.deserialize_aws_json_1_1(
@@ -73,7 +73,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateContactRequest:
         )
     else:
         raise DeserializationError("CreateContactRequest.type required")
-    if "Plan" in data:
+    if data.get("Plan") is not None:
         import capo_ssm_contacts.types.plan
 
         out["plan"] = capo_ssm_contacts.types.plan.deserialize_aws_json_1_1(
@@ -81,12 +81,12 @@ def deserialize_aws_json_1_1(data: dict) -> CreateContactRequest:
         )
     else:
         raise DeserializationError("CreateContactRequest.plan required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_ssm_contacts.types.tags_list
 
         out["tags"] = capo_ssm_contacts.types.tags_list.deserialize_aws_json_1_1(
             data["Tags"]
         )
-    if "IdempotencyToken" in data:
+    if data.get("IdempotencyToken") is not None:
         out["idempotency_token"] = data["IdempotencyToken"]
     return out

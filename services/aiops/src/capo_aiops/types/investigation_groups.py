@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> InvestigationGroups:
 
     out: InvestigationGroups = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_aiops.types.list_investigation_groups_model.deserialize_json(item)
         )

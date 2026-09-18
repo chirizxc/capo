@@ -44,11 +44,11 @@ def serialize_aws_json_1_1(value: CreateACLRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateACLRequest:
     out: CreateACLRequest = {}  # type: ignore[typeddict-item]
-    if "ACLName" in data:
+    if data.get("ACLName") is not None:
         out["acl_name"] = data["ACLName"]
     else:
         raise DeserializationError("CreateACLRequest.acl_name required")
-    if "UserNames" in data:
+    if data.get("UserNames") is not None:
         import capo_memorydb.types.user_name_list_input
 
         out["user_names"] = (
@@ -56,7 +56,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateACLRequest:
                 data["UserNames"]
             )
         )
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_memorydb.types.tag_list
 
         out["tags"] = capo_memorydb.types.tag_list.deserialize_aws_json_1_1(

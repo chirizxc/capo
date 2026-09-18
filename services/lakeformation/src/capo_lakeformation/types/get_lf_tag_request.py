@@ -31,9 +31,9 @@ def serialize_json(value: GetLFTagRequest) -> dict:
 
 def deserialize_json(data: dict) -> GetLFTagRequest:
     out: GetLFTagRequest = {}  # type: ignore[typeddict-item]
-    if "CatalogId" in data:
+    if data.get("CatalogId") is not None:
         out["catalog_id"] = data["CatalogId"]
-    if "TagKey" in data:
+    if data.get("TagKey") is not None:
         out["tag_key"] = data["TagKey"]
     else:
         raise DeserializationError("GetLFTagRequest.tag_key required")

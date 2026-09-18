@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListConstraintsForPortfolioOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListConstraintsForPortfolioOutput:
     out: ListConstraintsForPortfolioOutput = {}  # type: ignore[typeddict-item]
-    if "ConstraintDetails" in data:
+    if data.get("ConstraintDetails") is not None:
         import capo_service_catalog.types.constraint_details
 
         out["constraint_details"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListConstraintsForPortfolioOutput:
                 data["ConstraintDetails"]
             )
         )
-    if "NextPageToken" in data:
+    if data.get("NextPageToken") is not None:
         out["next_page_token"] = data["NextPageToken"]
     return out

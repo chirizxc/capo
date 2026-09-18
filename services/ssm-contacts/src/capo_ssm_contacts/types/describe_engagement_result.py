@@ -71,39 +71,39 @@ def serialize_aws_json_1_1(value: DescribeEngagementResult) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeEngagementResult:
     out: DescribeEngagementResult = {}  # type: ignore[typeddict-item]
-    if "ContactArn" in data:
+    if data.get("ContactArn") is not None:
         out["contact_arn"] = data["ContactArn"]
     else:
         raise DeserializationError("DescribeEngagementResult.contact_arn required")
-    if "EngagementArn" in data:
+    if data.get("EngagementArn") is not None:
         out["engagement_arn"] = data["EngagementArn"]
     else:
         raise DeserializationError("DescribeEngagementResult.engagement_arn required")
-    if "Sender" in data:
+    if data.get("Sender") is not None:
         out["sender"] = data["Sender"]
     else:
         raise DeserializationError("DescribeEngagementResult.sender required")
-    if "Subject" in data:
+    if data.get("Subject") is not None:
         out["subject"] = data["Subject"]
     else:
         raise DeserializationError("DescribeEngagementResult.subject required")
-    if "Content" in data:
+    if data.get("Content") is not None:
         out["content"] = data["Content"]
     else:
         raise DeserializationError("DescribeEngagementResult.content required")
-    if "PublicSubject" in data:
+    if data.get("PublicSubject") is not None:
         out["public_subject"] = data["PublicSubject"]
-    if "PublicContent" in data:
+    if data.get("PublicContent") is not None:
         out["public_content"] = data["PublicContent"]
-    if "IncidentId" in data:
+    if data.get("IncidentId") is not None:
         out["incident_id"] = data["IncidentId"]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_ssm_contacts.types.date_time
 
         out["start_time"] = capo_ssm_contacts.types.date_time.deserialize_aws_json_1_1(
             data["StartTime"]
         )
-    if "StopTime" in data:
+    if data.get("StopTime") is not None:
         import capo_ssm_contacts.types.date_time
 
         out["stop_time"] = capo_ssm_contacts.types.date_time.deserialize_aws_json_1_1(

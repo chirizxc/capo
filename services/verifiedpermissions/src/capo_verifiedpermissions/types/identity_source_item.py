@@ -81,7 +81,7 @@ def serialize_aws_json_1_0(value: IdentitySourceItem) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> IdentitySourceItem:
     out: IdentitySourceItem = {}  # type: ignore[typeddict-item]
-    if "createdDate" in data:
+    if data.get("createdDate") is not None:
         import capo_verifiedpermissions.types.timestamp_format
 
         out["created_date"] = (
@@ -91,7 +91,7 @@ def deserialize_aws_json_1_0(data: dict) -> IdentitySourceItem:
         )
     else:
         raise DeserializationError("IdentitySourceItem.created_date required")
-    if "details" in data:
+    if data.get("details") is not None:
         import capo_verifiedpermissions.types.identity_source_item_details
 
         out["details"] = (
@@ -99,11 +99,11 @@ def deserialize_aws_json_1_0(data: dict) -> IdentitySourceItem:
                 data["details"]
             )
         )
-    if "identitySourceId" in data:
+    if data.get("identitySourceId") is not None:
         out["identity_source_id"] = data["identitySourceId"]
     else:
         raise DeserializationError("IdentitySourceItem.identity_source_id required")
-    if "lastUpdatedDate" in data:
+    if data.get("lastUpdatedDate") is not None:
         import capo_verifiedpermissions.types.timestamp_format
 
         out["last_updated_date"] = (
@@ -113,15 +113,15 @@ def deserialize_aws_json_1_0(data: dict) -> IdentitySourceItem:
         )
     else:
         raise DeserializationError("IdentitySourceItem.last_updated_date required")
-    if "policyStoreId" in data:
+    if data.get("policyStoreId") is not None:
         out["policy_store_id"] = data["policyStoreId"]
     else:
         raise DeserializationError("IdentitySourceItem.policy_store_id required")
-    if "principalEntityType" in data:
+    if data.get("principalEntityType") is not None:
         out["principal_entity_type"] = data["principalEntityType"]
     else:
         raise DeserializationError("IdentitySourceItem.principal_entity_type required")
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_verifiedpermissions.types.configuration_item
 
         out["configuration"] = (

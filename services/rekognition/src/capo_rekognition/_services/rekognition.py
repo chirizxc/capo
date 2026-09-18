@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.rekognition#RekognitionService``."""
 
+import uuid
 import warnings
 from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -435,20 +436,23 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.associate_faces_request.AssociateFacesRequest = {}  # type: ignore[typeddict-item]
-        input_["collection_id"] = collection_id
-        input_["user_id"] = user_id
-        input_["face_ids"] = face_ids
+        input_: capo_rekognition.types.associate_faces_request.AssociateFacesRequest = {
+            "collection_id": collection_id,
+            "user_id": user_id,
+            "face_ids": face_ids,
+        }
         if user_match_threshold is not None:
             input_["user_match_threshold"] = user_match_threshold
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def compare_faces(
@@ -503,9 +507,10 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.compare_faces_request.CompareFacesRequest = {}  # type: ignore[typeddict-item]
-        input_["source_image"] = source_image
-        input_["target_image"] = target_image
+        input_: capo_rekognition.types.compare_faces_request.CompareFacesRequest = {
+            "source_image": source_image,
+            "target_image": target_image,
+        }
         if similarity_threshold is not None:
             input_["similarity_threshold"] = similarity_threshold
         if quality_filter is not None:
@@ -516,6 +521,7 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def copy_project_version(
@@ -575,12 +581,13 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.copy_project_version_request.CopyProjectVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["source_project_arn"] = source_project_arn
-        input_["source_project_version_arn"] = source_project_version_arn
-        input_["destination_project_arn"] = destination_project_arn
-        input_["version_name"] = version_name
-        input_["output_config"] = output_config
+        input_: capo_rekognition.types.copy_project_version_request.CopyProjectVersionRequest = {
+            "source_project_arn": source_project_arn,
+            "source_project_version_arn": source_project_version_arn,
+            "destination_project_arn": destination_project_arn,
+            "version_name": version_name,
+            "output_config": output_config,
+        }
         if tags is not None:
             input_["tags"] = tags
         if kms_key_id is not None:
@@ -591,6 +598,7 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_collection(
@@ -638,8 +646,9 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.create_collection_request.CreateCollectionRequest = {}  # type: ignore[typeddict-item]
-        input_["collection_id"] = collection_id
+        input_: capo_rekognition.types.create_collection_request.CreateCollectionRequest = {
+            "collection_id": collection_id
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -648,6 +657,7 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_dataset(
@@ -703,11 +713,12 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.create_dataset_request.CreateDatasetRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_rekognition.types.create_dataset_request.CreateDatasetRequest = {
+            "dataset_type": dataset_type,
+            "project_arn": project_arn,
+        }
         if dataset_source is not None:
             input_["dataset_source"] = dataset_source
-        input_["dataset_type"] = dataset_type
-        input_["project_arn"] = project_arn
         if tags is not None:
             input_["tags"] = tags
 
@@ -716,6 +727,7 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_face_liveness_session(
@@ -761,7 +773,7 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.create_face_liveness_session_request.CreateFaceLivenessSessionRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_rekognition.types.create_face_liveness_session_request.CreateFaceLivenessSessionRequest = {}
         if kms_key_id is not None:
             input_["kms_key_id"] = kms_key_id
         if settings is not None:
@@ -774,6 +786,7 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_project(
@@ -829,8 +842,9 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.create_project_request.CreateProjectRequest = {}  # type: ignore[typeddict-item]
-        input_["project_name"] = project_name
+        input_: capo_rekognition.types.create_project_request.CreateProjectRequest = {
+            "project_name": project_name
+        }
         if feature is not None:
             input_["feature"] = feature
         if auto_update is not None:
@@ -843,6 +857,7 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_project_version(
@@ -914,10 +929,11 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.create_project_version_request.CreateProjectVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["project_arn"] = project_arn
-        input_["version_name"] = version_name
-        input_["output_config"] = output_config
+        input_: capo_rekognition.types.create_project_version_request.CreateProjectVersionRequest = {
+            "project_arn": project_arn,
+            "version_name": version_name,
+            "output_config": output_config,
+        }
         if training_data is not None:
             input_["training_data"] = training_data
         if testing_data is not None:
@@ -936,6 +952,7 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_stream_processor(
@@ -999,12 +1016,13 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.create_stream_processor_request.CreateStreamProcessorRequest = {}  # type: ignore[typeddict-item]
-        input_["input"] = input
-        input_["output"] = output
-        input_["name"] = name
-        input_["settings"] = settings
-        input_["role_arn"] = role_arn
+        input_: capo_rekognition.types.create_stream_processor_request.CreateStreamProcessorRequest = {
+            "input": input,
+            "output": output,
+            "name": name,
+            "settings": settings,
+            "role_arn": role_arn,
+        }
         if tags is not None:
             input_["tags"] = tags
         if notification_channel is not None:
@@ -1021,6 +1039,7 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_user(
@@ -1074,17 +1093,20 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.create_user_request.CreateUserRequest = {}  # type: ignore[typeddict-item]
-        input_["collection_id"] = collection_id
-        input_["user_id"] = user_id
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        input_: capo_rekognition.types.create_user_request.CreateUserRequest = {
+            "collection_id": collection_id,
+            "user_id": user_id,
+        }
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_collection(
@@ -1129,14 +1151,16 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.delete_collection_request.DeleteCollectionRequest = {}  # type: ignore[typeddict-item]
-        input_["collection_id"] = collection_id
+        input_: capo_rekognition.types.delete_collection_request.DeleteCollectionRequest = {
+            "collection_id": collection_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_dataset(
@@ -1183,14 +1207,16 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.delete_dataset_request.DeleteDatasetRequest = {}  # type: ignore[typeddict-item]
-        input_["dataset_arn"] = dataset_arn
+        input_: capo_rekognition.types.delete_dataset_request.DeleteDatasetRequest = {
+            "dataset_arn": dataset_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_faces(
@@ -1237,15 +1263,17 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.delete_faces_request.DeleteFacesRequest = {}  # type: ignore[typeddict-item]
-        input_["collection_id"] = collection_id
-        input_["face_ids"] = face_ids
+        input_: capo_rekognition.types.delete_faces_request.DeleteFacesRequest = {
+            "collection_id": collection_id,
+            "face_ids": face_ids,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_project(
@@ -1291,14 +1319,16 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.delete_project_request.DeleteProjectRequest = {}  # type: ignore[typeddict-item]
-        input_["project_arn"] = project_arn
+        input_: capo_rekognition.types.delete_project_request.DeleteProjectRequest = {
+            "project_arn": project_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_project_policy(
@@ -1350,9 +1380,10 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.delete_project_policy_request.DeleteProjectPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["project_arn"] = project_arn
-        input_["policy_name"] = policy_name
+        input_: capo_rekognition.types.delete_project_policy_request.DeleteProjectPolicyRequest = {
+            "project_arn": project_arn,
+            "policy_name": policy_name,
+        }
         if policy_revision_id is not None:
             input_["policy_revision_id"] = policy_revision_id
 
@@ -1361,6 +1392,7 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_project_version(
@@ -1406,14 +1438,16 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.delete_project_version_request.DeleteProjectVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["project_version_arn"] = project_version_arn
+        input_: capo_rekognition.types.delete_project_version_request.DeleteProjectVersionRequest = {
+            "project_version_arn": project_version_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_stream_processor(
@@ -1453,14 +1487,16 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.delete_stream_processor_request.DeleteStreamProcessorRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_rekognition.types.delete_stream_processor_request.DeleteStreamProcessorRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_user(
@@ -1513,17 +1549,20 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.delete_user_request.DeleteUserRequest = {}  # type: ignore[typeddict-item]
-        input_["collection_id"] = collection_id
-        input_["user_id"] = user_id
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        input_: capo_rekognition.types.delete_user_request.DeleteUserRequest = {
+            "collection_id": collection_id,
+            "user_id": user_id,
+        }
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_collection(
@@ -1564,14 +1603,16 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.describe_collection_request.DescribeCollectionRequest = {}  # type: ignore[typeddict-item]
-        input_["collection_id"] = collection_id
+        input_: capo_rekognition.types.describe_collection_request.DescribeCollectionRequest = {
+            "collection_id": collection_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_dataset(
@@ -1610,14 +1651,16 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.describe_dataset_request.DescribeDatasetRequest = {}  # type: ignore[typeddict-item]
-        input_["dataset_arn"] = dataset_arn
+        input_: capo_rekognition.types.describe_dataset_request.DescribeDatasetRequest = {
+            "dataset_arn": dataset_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_projects(
@@ -1670,7 +1713,7 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.describe_projects_request.DescribeProjectsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_rekognition.types.describe_projects_request.DescribeProjectsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -1685,6 +1728,7 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_projects(
@@ -1769,8 +1813,9 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.describe_project_versions_request.DescribeProjectVersionsRequest = {}  # type: ignore[typeddict-item]
-        input_["project_arn"] = project_arn
+        input_: capo_rekognition.types.describe_project_versions_request.DescribeProjectVersionsRequest = {
+            "project_arn": project_arn
+        }
         if version_names is not None:
             input_["version_names"] = version_names
         if next_token is not None:
@@ -1783,6 +1828,7 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_describe_project_versions(
@@ -1852,14 +1898,16 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.describe_stream_processor_request.DescribeStreamProcessorRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_rekognition.types.describe_stream_processor_request.DescribeStreamProcessorRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def detect_custom_labels(
@@ -1914,9 +1962,10 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.detect_custom_labels_request.DetectCustomLabelsRequest = {}  # type: ignore[typeddict-item]
-        input_["project_version_arn"] = project_version_arn
-        input_["image"] = image
+        input_: capo_rekognition.types.detect_custom_labels_request.DetectCustomLabelsRequest = {
+            "project_version_arn": project_version_arn,
+            "image": image,
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if min_confidence is not None:
@@ -1927,6 +1976,7 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def detect_faces(
@@ -1975,8 +2025,9 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.detect_faces_request.DetectFacesRequest = {}  # type: ignore[typeddict-item]
-        input_["image"] = image
+        input_: capo_rekognition.types.detect_faces_request.DetectFacesRequest = {
+            "image": image
+        }
         if attributes is not None:
             input_["attributes"] = attributes
 
@@ -1985,6 +2036,7 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def detect_labels(
@@ -2043,8 +2095,9 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.detect_labels_request.DetectLabelsRequest = {}  # type: ignore[typeddict-item]
-        input_["image"] = image
+        input_: capo_rekognition.types.detect_labels_request.DetectLabelsRequest = {
+            "image": image
+        }
         if max_labels is not None:
             input_["max_labels"] = max_labels
         if min_confidence is not None:
@@ -2059,6 +2112,7 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def detect_moderation_labels(
@@ -2112,8 +2166,9 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.detect_moderation_labels_request.DetectModerationLabelsRequest = {}  # type: ignore[typeddict-item]
-        input_["image"] = image
+        input_: capo_rekognition.types.detect_moderation_labels_request.DetectModerationLabelsRequest = {
+            "image": image
+        }
         if min_confidence is not None:
             input_["min_confidence"] = min_confidence
         if human_loop_config is not None:
@@ -2126,6 +2181,7 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def detect_protective_equipment(
@@ -2170,8 +2226,9 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.detect_protective_equipment_request.DetectProtectiveEquipmentRequest = {}  # type: ignore[typeddict-item]
-        input_["image"] = image
+        input_: capo_rekognition.types.detect_protective_equipment_request.DetectProtectiveEquipmentRequest = {
+            "image": image
+        }
         if summarization_attributes is not None:
             input_["summarization_attributes"] = summarization_attributes
 
@@ -2180,6 +2237,7 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def detect_text(
@@ -2224,8 +2282,9 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.detect_text_request.DetectTextRequest = {}  # type: ignore[typeddict-item]
-        input_["image"] = image
+        input_: capo_rekognition.types.detect_text_request.DetectTextRequest = {
+            "image": image
+        }
         if filters is not None:
             input_["filters"] = filters
 
@@ -2234,6 +2293,7 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_faces(
@@ -2288,18 +2348,21 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.disassociate_faces_request.DisassociateFacesRequest = {}  # type: ignore[typeddict-item]
-        input_["collection_id"] = collection_id
-        input_["user_id"] = user_id
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
-        input_["face_ids"] = face_ids
+        input_: capo_rekognition.types.disassociate_faces_request.DisassociateFacesRequest = {
+            "collection_id": collection_id,
+            "user_id": user_id,
+            "face_ids": face_ids,
+        }
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def distribute_dataset_entries(
@@ -2345,14 +2408,16 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.distribute_dataset_entries_request.DistributeDatasetEntriesRequest = {}  # type: ignore[typeddict-item]
-        input_["datasets"] = datasets
+        input_: capo_rekognition.types.distribute_dataset_entries_request.DistributeDatasetEntriesRequest = {
+            "datasets": datasets
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_celebrity_info(
@@ -2391,14 +2456,16 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.get_celebrity_info_request.GetCelebrityInfoRequest = {}  # type: ignore[typeddict-item]
-        input_["id"] = id
+        input_: capo_rekognition.types.get_celebrity_info_request.GetCelebrityInfoRequest = {
+            "id": id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_celebrity_recognition(
@@ -2448,8 +2515,9 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.get_celebrity_recognition_request.GetCelebrityRecognitionRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_rekognition.types.get_celebrity_recognition_request.GetCelebrityRecognitionRequest = {
+            "job_id": job_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2462,7 +2530,35 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_celebrity_recognition(
+        self,
+        job_id: "capo_rekognition.types.job_id.JobId",
+        *,
+        config_overrides: Optional[RekognitionClientConfig] = None,
+        max_results: Optional["capo_rekognition.types.max_results.MaxResults"] = None,
+        next_token: Optional[
+            "capo_rekognition.types.pagination_token.PaginationToken"
+        ] = None,
+        sort_by: Optional[
+            "capo_rekognition.types.celebrity_recognition_sort_by.CelebrityRecognitionSortBy"
+        ] = None,
+    ) -> "Iterator[capo_rekognition.types.get_celebrity_recognition_response.GetCelebrityRecognitionResponse]":
+        _token = next_token
+        while True:
+            _response = self.get_celebrity_recognition(
+                job_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+                sort_by=sort_by,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_content_moderation(
         self,
@@ -2515,8 +2611,9 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.get_content_moderation_request.GetContentModerationRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_rekognition.types.get_content_moderation_request.GetContentModerationRequest = {
+            "job_id": job_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2531,7 +2628,39 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_content_moderation(
+        self,
+        job_id: "capo_rekognition.types.job_id.JobId",
+        *,
+        config_overrides: Optional[RekognitionClientConfig] = None,
+        max_results: Optional["capo_rekognition.types.max_results.MaxResults"] = None,
+        next_token: Optional[
+            "capo_rekognition.types.pagination_token.PaginationToken"
+        ] = None,
+        sort_by: Optional[
+            "capo_rekognition.types.content_moderation_sort_by.ContentModerationSortBy"
+        ] = None,
+        aggregate_by: Optional[
+            "capo_rekognition.types.content_moderation_aggregate_by.ContentModerationAggregateBy"
+        ] = None,
+    ) -> "Iterator[capo_rekognition.types.get_content_moderation_response.GetContentModerationResponse]":
+        _token = next_token
+        while True:
+            _response = self.get_content_moderation(
+                job_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+                sort_by=sort_by,
+                aggregate_by=aggregate_by,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_face_detection(
         self,
@@ -2576,8 +2705,9 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.get_face_detection_request.GetFaceDetectionRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_rekognition.types.get_face_detection_request.GetFaceDetectionRequest = {
+            "job_id": job_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2588,7 +2718,31 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_face_detection(
+        self,
+        job_id: "capo_rekognition.types.job_id.JobId",
+        *,
+        config_overrides: Optional[RekognitionClientConfig] = None,
+        max_results: Optional["capo_rekognition.types.max_results.MaxResults"] = None,
+        next_token: Optional[
+            "capo_rekognition.types.pagination_token.PaginationToken"
+        ] = None,
+    ) -> "Iterator[capo_rekognition.types.get_face_detection_response.GetFaceDetectionResponse]":
+        _token = next_token
+        while True:
+            _response = self.get_face_detection(
+                job_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_face_liveness_session_results(
         self,
@@ -2626,14 +2780,16 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.get_face_liveness_session_results_request.GetFaceLivenessSessionResultsRequest = {}  # type: ignore[typeddict-item]
-        input_["session_id"] = session_id
+        input_: capo_rekognition.types.get_face_liveness_session_results_request.GetFaceLivenessSessionResultsRequest = {
+            "session_id": session_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_face_search(
@@ -2683,8 +2839,9 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.get_face_search_request.GetFaceSearchRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_rekognition.types.get_face_search_request.GetFaceSearchRequest = {
+            "job_id": job_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2697,7 +2854,35 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_face_search(
+        self,
+        job_id: "capo_rekognition.types.job_id.JobId",
+        *,
+        config_overrides: Optional[RekognitionClientConfig] = None,
+        max_results: Optional["capo_rekognition.types.max_results.MaxResults"] = None,
+        next_token: Optional[
+            "capo_rekognition.types.pagination_token.PaginationToken"
+        ] = None,
+        sort_by: Optional[
+            "capo_rekognition.types.face_search_sort_by.FaceSearchSortBy"
+        ] = None,
+    ) -> "Iterator[capo_rekognition.types.get_face_search_response.GetFaceSearchResponse]":
+        _token = next_token
+        while True:
+            _response = self.get_face_search(
+                job_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+                sort_by=sort_by,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_label_detection(
         self,
@@ -2752,8 +2937,9 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.get_label_detection_request.GetLabelDetectionRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_rekognition.types.get_label_detection_request.GetLabelDetectionRequest = {
+            "job_id": job_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2768,7 +2954,39 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_label_detection(
+        self,
+        job_id: "capo_rekognition.types.job_id.JobId",
+        *,
+        config_overrides: Optional[RekognitionClientConfig] = None,
+        max_results: Optional["capo_rekognition.types.max_results.MaxResults"] = None,
+        next_token: Optional[
+            "capo_rekognition.types.pagination_token.PaginationToken"
+        ] = None,
+        sort_by: Optional[
+            "capo_rekognition.types.label_detection_sort_by.LabelDetectionSortBy"
+        ] = None,
+        aggregate_by: Optional[
+            "capo_rekognition.types.label_detection_aggregate_by.LabelDetectionAggregateBy"
+        ] = None,
+    ) -> "Iterator[capo_rekognition.types.get_label_detection_response.GetLabelDetectionResponse]":
+        _token = next_token
+        while True:
+            _response = self.get_label_detection(
+                job_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+                sort_by=sort_by,
+                aggregate_by=aggregate_by,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_media_analysis_job(
         self,
@@ -2806,14 +3024,16 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.get_media_analysis_job_request.GetMediaAnalysisJobRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_rekognition.types.get_media_analysis_job_request.GetMediaAnalysisJobRequest = {
+            "job_id": job_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_person_tracking(
@@ -2865,8 +3085,9 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.get_person_tracking_request.GetPersonTrackingRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_rekognition.types.get_person_tracking_request.GetPersonTrackingRequest = {
+            "job_id": job_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2879,7 +3100,35 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_person_tracking(
+        self,
+        job_id: "capo_rekognition.types.job_id.JobId",
+        *,
+        config_overrides: Optional[RekognitionClientConfig] = None,
+        max_results: Optional["capo_rekognition.types.max_results.MaxResults"] = None,
+        next_token: Optional[
+            "capo_rekognition.types.pagination_token.PaginationToken"
+        ] = None,
+        sort_by: Optional[
+            "capo_rekognition.types.person_tracking_sort_by.PersonTrackingSortBy"
+        ] = None,
+    ) -> "Iterator[capo_rekognition.types.get_person_tracking_response.GetPersonTrackingResponse]":
+        _token = next_token
+        while True:
+            _response = self.get_person_tracking(
+                job_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+                sort_by=sort_by,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_segment_detection(
         self,
@@ -2924,8 +3173,9 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.get_segment_detection_request.GetSegmentDetectionRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_rekognition.types.get_segment_detection_request.GetSegmentDetectionRequest = {
+            "job_id": job_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2936,7 +3186,31 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_segment_detection(
+        self,
+        job_id: "capo_rekognition.types.job_id.JobId",
+        *,
+        config_overrides: Optional[RekognitionClientConfig] = None,
+        max_results: Optional["capo_rekognition.types.max_results.MaxResults"] = None,
+        next_token: Optional[
+            "capo_rekognition.types.pagination_token.PaginationToken"
+        ] = None,
+    ) -> "Iterator[capo_rekognition.types.get_segment_detection_response.GetSegmentDetectionResponse]":
+        _token = next_token
+        while True:
+            _response = self.get_segment_detection(
+                job_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def get_text_detection(
         self,
@@ -2981,8 +3255,9 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.get_text_detection_request.GetTextDetectionRequest = {}  # type: ignore[typeddict-item]
-        input_["job_id"] = job_id
+        input_: capo_rekognition.types.get_text_detection_request.GetTextDetectionRequest = {
+            "job_id": job_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -2993,7 +3268,31 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_get_text_detection(
+        self,
+        job_id: "capo_rekognition.types.job_id.JobId",
+        *,
+        config_overrides: Optional[RekognitionClientConfig] = None,
+        max_results: Optional["capo_rekognition.types.max_results.MaxResults"] = None,
+        next_token: Optional[
+            "capo_rekognition.types.pagination_token.PaginationToken"
+        ] = None,
+    ) -> "Iterator[capo_rekognition.types.get_text_detection_response.GetTextDetectionResponse]":
+        _token = next_token
+        while True:
+            _response = self.get_text_detection(
+                job_id,
+                config_overrides=config_overrides,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def index_faces(
         self,
@@ -3059,9 +3358,10 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.index_faces_request.IndexFacesRequest = {}  # type: ignore[typeddict-item]
-        input_["collection_id"] = collection_id
-        input_["image"] = image
+        input_: capo_rekognition.types.index_faces_request.IndexFacesRequest = {
+            "collection_id": collection_id,
+            "image": image,
+        }
         if external_image_id is not None:
             input_["external_image_id"] = external_image_id
         if detection_attributes is not None:
@@ -3076,6 +3376,7 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_collections(
@@ -3125,7 +3426,7 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.list_collections_request.ListCollectionsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_rekognition.types.list_collections_request.ListCollectionsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3136,6 +3437,7 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_collections(
@@ -3226,8 +3528,9 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.list_dataset_entries_request.ListDatasetEntriesRequest = {}  # type: ignore[typeddict-item]
-        input_["dataset_arn"] = dataset_arn
+        input_: capo_rekognition.types.list_dataset_entries_request.ListDatasetEntriesRequest = {
+            "dataset_arn": dataset_arn
+        }
         if contains_labels is not None:
             input_["contains_labels"] = contains_labels
         if labeled is not None:
@@ -3246,6 +3549,7 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_dataset_entries(
@@ -3342,8 +3646,9 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.list_dataset_labels_request.ListDatasetLabelsRequest = {}  # type: ignore[typeddict-item]
-        input_["dataset_arn"] = dataset_arn
+        input_: capo_rekognition.types.list_dataset_labels_request.ListDatasetLabelsRequest = {
+            "dataset_arn": dataset_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3354,6 +3659,7 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_dataset_labels(
@@ -3436,8 +3742,9 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.list_faces_request.ListFacesRequest = {}  # type: ignore[typeddict-item]
-        input_["collection_id"] = collection_id
+        input_: capo_rekognition.types.list_faces_request.ListFacesRequest = {
+            "collection_id": collection_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3452,6 +3759,7 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_faces(
@@ -3525,7 +3833,7 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.list_media_analysis_jobs_request.ListMediaAnalysisJobsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_rekognition.types.list_media_analysis_jobs_request.ListMediaAnalysisJobsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3536,7 +3844,31 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_media_analysis_jobs(
+        self,
+        *,
+        config_overrides: Optional[RekognitionClientConfig] = None,
+        next_token: Optional[
+            "capo_rekognition.types.extended_pagination_token.ExtendedPaginationToken"
+        ] = None,
+        max_results: Optional[
+            "capo_rekognition.types.list_media_analysis_jobs_page_size.ListMediaAnalysisJobsPageSize"
+        ] = None,
+    ) -> "Iterator[capo_rekognition.types.list_media_analysis_jobs_response.ListMediaAnalysisJobsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_media_analysis_jobs(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_project_policies(
         self,
@@ -3583,8 +3915,9 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.list_project_policies_request.ListProjectPoliciesRequest = {}  # type: ignore[typeddict-item]
-        input_["project_arn"] = project_arn
+        input_: capo_rekognition.types.list_project_policies_request.ListProjectPoliciesRequest = {
+            "project_arn": project_arn
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3595,6 +3928,7 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_project_policies(
@@ -3664,7 +3998,7 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.list_stream_processors_request.ListStreamProcessorsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_rekognition.types.list_stream_processors_request.ListStreamProcessorsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3675,7 +4009,29 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_stream_processors(
+        self,
+        *,
+        config_overrides: Optional[RekognitionClientConfig] = None,
+        next_token: Optional[
+            "capo_rekognition.types.pagination_token.PaginationToken"
+        ] = None,
+        max_results: Optional["capo_rekognition.types.max_results.MaxResults"] = None,
+    ) -> "Iterator[capo_rekognition.types.list_stream_processors_response.ListStreamProcessorsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_stream_processors(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_tags_for_resource(
         self,
@@ -3713,14 +4069,16 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_rekognition.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_users(
@@ -3774,8 +4132,9 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.list_users_request.ListUsersRequest = {}  # type: ignore[typeddict-item]
-        input_["collection_id"] = collection_id
+        input_: capo_rekognition.types.list_users_request.ListUsersRequest = {
+            "collection_id": collection_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3786,6 +4145,7 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_users(
@@ -3870,18 +4230,20 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.put_project_policy_request.PutProjectPolicyRequest = {}  # type: ignore[typeddict-item]
-        input_["project_arn"] = project_arn
-        input_["policy_name"] = policy_name
+        input_: capo_rekognition.types.put_project_policy_request.PutProjectPolicyRequest = {
+            "project_arn": project_arn,
+            "policy_name": policy_name,
+            "policy_document": policy_document,
+        }
         if policy_revision_id is not None:
             input_["policy_revision_id"] = policy_revision_id
-        input_["policy_document"] = policy_document
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def recognize_celebrities(
@@ -3922,14 +4284,16 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.recognize_celebrities_request.RecognizeCelebritiesRequest = {}  # type: ignore[typeddict-item]
-        input_["image"] = image
+        input_: capo_rekognition.types.recognize_celebrities_request.RecognizeCelebritiesRequest = {
+            "image": image
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def search_faces(
@@ -3980,9 +4344,10 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.search_faces_request.SearchFacesRequest = {}  # type: ignore[typeddict-item]
-        input_["collection_id"] = collection_id
-        input_["face_id"] = face_id
+        input_: capo_rekognition.types.search_faces_request.SearchFacesRequest = {
+            "collection_id": collection_id,
+            "face_id": face_id,
+        }
         if max_faces is not None:
             input_["max_faces"] = max_faces
         if face_match_threshold is not None:
@@ -3993,6 +4358,7 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def search_faces_by_image(
@@ -4050,9 +4416,10 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.search_faces_by_image_request.SearchFacesByImageRequest = {}  # type: ignore[typeddict-item]
-        input_["collection_id"] = collection_id
-        input_["image"] = image
+        input_: capo_rekognition.types.search_faces_by_image_request.SearchFacesByImageRequest = {
+            "collection_id": collection_id,
+            "image": image,
+        }
         if max_faces is not None:
             input_["max_faces"] = max_faces
         if face_match_threshold is not None:
@@ -4065,6 +4432,7 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def search_users(
@@ -4119,8 +4487,9 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.search_users_request.SearchUsersRequest = {}  # type: ignore[typeddict-item]
-        input_["collection_id"] = collection_id
+        input_: capo_rekognition.types.search_users_request.SearchUsersRequest = {
+            "collection_id": collection_id
+        }
         if user_id is not None:
             input_["user_id"] = user_id
         if face_id is not None:
@@ -4135,6 +4504,7 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def search_users_by_image(
@@ -4193,9 +4563,10 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.search_users_by_image_request.SearchUsersByImageRequest = {}  # type: ignore[typeddict-item]
-        input_["collection_id"] = collection_id
-        input_["image"] = image
+        input_: capo_rekognition.types.search_users_by_image_request.SearchUsersByImageRequest = {
+            "collection_id": collection_id,
+            "image": image,
+        }
         if user_match_threshold is not None:
             input_["user_match_threshold"] = user_match_threshold
         if max_users is not None:
@@ -4208,6 +4579,7 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_celebrity_recognition(
@@ -4259,8 +4631,9 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.start_celebrity_recognition_request.StartCelebrityRecognitionRequest = {}  # type: ignore[typeddict-item]
-        input_["video"] = video
+        input_: capo_rekognition.types.start_celebrity_recognition_request.StartCelebrityRecognitionRequest = {
+            "video": video
+        }
         if client_request_token is not None:
             input_["client_request_token"] = client_request_token
         if notification_channel is not None:
@@ -4273,6 +4646,7 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_content_moderation(
@@ -4326,8 +4700,9 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.start_content_moderation_request.StartContentModerationRequest = {}  # type: ignore[typeddict-item]
-        input_["video"] = video
+        input_: capo_rekognition.types.start_content_moderation_request.StartContentModerationRequest = {
+            "video": video
+        }
         if min_confidence is not None:
             input_["min_confidence"] = min_confidence
         if client_request_token is not None:
@@ -4342,6 +4717,7 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_face_detection(
@@ -4397,8 +4773,9 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.start_face_detection_request.StartFaceDetectionRequest = {}  # type: ignore[typeddict-item]
-        input_["video"] = video
+        input_: capo_rekognition.types.start_face_detection_request.StartFaceDetectionRequest = {
+            "video": video
+        }
         if client_request_token is not None:
             input_["client_request_token"] = client_request_token
         if notification_channel is not None:
@@ -4413,6 +4790,7 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_face_search(
@@ -4469,13 +4847,14 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.start_face_search_request.StartFaceSearchRequest = {}  # type: ignore[typeddict-item]
-        input_["video"] = video
+        input_: capo_rekognition.types.start_face_search_request.StartFaceSearchRequest = {
+            "video": video,
+            "collection_id": collection_id,
+        }
         if client_request_token is not None:
             input_["client_request_token"] = client_request_token
         if face_match_threshold is not None:
             input_["face_match_threshold"] = face_match_threshold
-        input_["collection_id"] = collection_id
         if notification_channel is not None:
             input_["notification_channel"] = notification_channel
         if job_tag is not None:
@@ -4486,6 +4865,7 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_label_detection(
@@ -4547,8 +4927,9 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.start_label_detection_request.StartLabelDetectionRequest = {}  # type: ignore[typeddict-item]
-        input_["video"] = video
+        input_: capo_rekognition.types.start_label_detection_request.StartLabelDetectionRequest = {
+            "video": video
+        }
         if client_request_token is not None:
             input_["client_request_token"] = client_request_token
         if min_confidence is not None:
@@ -4567,6 +4948,7 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_media_analysis_job(
@@ -4630,14 +5012,16 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.start_media_analysis_job_request.StartMediaAnalysisJobRequest = {}  # type: ignore[typeddict-item]
-        if client_request_token is not None:
-            input_["client_request_token"] = client_request_token
+        input_: capo_rekognition.types.start_media_analysis_job_request.StartMediaAnalysisJobRequest = {
+            "operations_config": operations_config,
+            "input": input,
+            "output_config": output_config,
+        }
+        if client_request_token is None:
+            client_request_token = str(uuid.uuid4())
+        input_["client_request_token"] = client_request_token
         if job_name is not None:
             input_["job_name"] = job_name
-        input_["operations_config"] = operations_config
-        input_["input"] = input
-        input_["output_config"] = output_config
         if kms_key_id is not None:
             input_["kms_key_id"] = kms_key_id
 
@@ -4646,6 +5030,7 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_person_tracking(
@@ -4697,8 +5082,9 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.start_person_tracking_request.StartPersonTrackingRequest = {}  # type: ignore[typeddict-item]
-        input_["video"] = video
+        input_: capo_rekognition.types.start_person_tracking_request.StartPersonTrackingRequest = {
+            "video": video
+        }
         if client_request_token is not None:
             input_["client_request_token"] = client_request_token
         if notification_channel is not None:
@@ -4711,6 +5097,7 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_project_version(
@@ -4763,9 +5150,10 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.start_project_version_request.StartProjectVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["project_version_arn"] = project_version_arn
-        input_["min_inference_units"] = min_inference_units
+        input_: capo_rekognition.types.start_project_version_request.StartProjectVersionRequest = {
+            "project_version_arn": project_version_arn,
+            "min_inference_units": min_inference_units,
+        }
         if max_inference_units is not None:
             input_["max_inference_units"] = max_inference_units
 
@@ -4774,6 +5162,7 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_segment_detection(
@@ -4830,8 +5219,10 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.start_segment_detection_request.StartSegmentDetectionRequest = {}  # type: ignore[typeddict-item]
-        input_["video"] = video
+        input_: capo_rekognition.types.start_segment_detection_request.StartSegmentDetectionRequest = {
+            "video": video,
+            "segment_types": segment_types,
+        }
         if client_request_token is not None:
             input_["client_request_token"] = client_request_token
         if notification_channel is not None:
@@ -4840,13 +5231,13 @@ class RekognitionClient:
             input_["job_tag"] = job_tag
         if filters is not None:
             input_["filters"] = filters
-        input_["segment_types"] = segment_types
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_stream_processor(
@@ -4894,8 +5285,9 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.start_stream_processor_request.StartStreamProcessorRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_rekognition.types.start_stream_processor_request.StartStreamProcessorRequest = {
+            "name": name
+        }
         if start_selector is not None:
             input_["start_selector"] = start_selector
         if stop_selector is not None:
@@ -4906,6 +5298,7 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_text_detection(
@@ -4959,8 +5352,9 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.start_text_detection_request.StartTextDetectionRequest = {}  # type: ignore[typeddict-item]
-        input_["video"] = video
+        input_: capo_rekognition.types.start_text_detection_request.StartTextDetectionRequest = {
+            "video": video
+        }
         if client_request_token is not None:
             input_["client_request_token"] = client_request_token
         if notification_channel is not None:
@@ -4975,6 +5369,7 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_project_version(
@@ -5020,14 +5415,16 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.stop_project_version_request.StopProjectVersionRequest = {}  # type: ignore[typeddict-item]
-        input_["project_version_arn"] = project_version_arn
+        input_: capo_rekognition.types.stop_project_version_request.StopProjectVersionRequest = {
+            "project_version_arn": project_version_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_stream_processor(
@@ -5067,14 +5464,16 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.stop_stream_processor_request.StopStreamProcessorRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_rekognition.types.stop_stream_processor_request.StopStreamProcessorRequest = {
+            "name": name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -5116,15 +5515,17 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_rekognition.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -5165,15 +5566,17 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_rekognition.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_dataset_entries(
@@ -5222,15 +5625,17 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.update_dataset_entries_request.UpdateDatasetEntriesRequest = {}  # type: ignore[typeddict-item]
-        input_["dataset_arn"] = dataset_arn
-        input_["changes"] = changes
+        input_: capo_rekognition.types.update_dataset_entries_request.UpdateDatasetEntriesRequest = {
+            "dataset_arn": dataset_arn,
+            "changes": changes,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_stream_processor(
@@ -5286,8 +5691,9 @@ class RekognitionClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_rekognition.types.update_stream_processor_request.UpdateStreamProcessorRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_rekognition.types.update_stream_processor_request.UpdateStreamProcessorRequest = {
+            "name": name
+        }
         if settings_for_update is not None:
             input_["settings_for_update"] = settings_for_update
         if regions_of_interest_for_update is not None:
@@ -5304,6 +5710,7 @@ class RekognitionClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

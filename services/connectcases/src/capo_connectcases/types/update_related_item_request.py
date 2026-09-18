@@ -48,7 +48,7 @@ def serialize_json(value: UpdateRelatedItemRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateRelatedItemRequest:
     out: UpdateRelatedItemRequest = {}  # type: ignore[typeddict-item]
-    if "content" in data:
+    if data.get("content") is not None:
         import capo_connectcases.types.related_item_update_content
 
         out["content"] = (
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> UpdateRelatedItemRequest:
         )
     else:
         raise DeserializationError("UpdateRelatedItemRequest.content required")
-    if "performedBy" in data:
+    if data.get("performedBy") is not None:
         import capo_connectcases.types.user_union
 
         out["performed_by"] = capo_connectcases.types.user_union.deserialize_json(

@@ -26,7 +26,7 @@ def serialize_json(value: GetIndexOutput) -> dict:
 
 def deserialize_json(data: dict) -> GetIndexOutput:
     out: GetIndexOutput = {}  # type: ignore[typeddict-item]
-    if "index" in data:
+    if data.get("index") is not None:
         import capo_s3vectors.types.index
 
         out["index"] = capo_s3vectors.types.index.deserialize_json(data["index"])

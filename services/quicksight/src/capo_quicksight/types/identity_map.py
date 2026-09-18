@@ -25,6 +25,8 @@ def serialize_json(input_to_serialize: IdentityMap) -> dict:
 def deserialize_json(data: dict) -> IdentityMap:
     out: IdentityMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_quicksight.types.identity_name_list
 
         out[key] = capo_quicksight.types.identity_name_list.deserialize_json(value)

@@ -42,17 +42,17 @@ def serialize_json(value: ModelTrainingDataChannel) -> dict:
 
 def deserialize_json(data: dict) -> ModelTrainingDataChannel:
     out: ModelTrainingDataChannel = {}  # type: ignore[typeddict-item]
-    if "mlInputChannelArn" in data:
+    if data.get("mlInputChannelArn") is not None:
         out["ml_input_channel_arn"] = data["mlInputChannelArn"]
     else:
         raise DeserializationError(
             "ModelTrainingDataChannel.ml_input_channel_arn required"
         )
-    if "channelName" in data:
+    if data.get("channelName") is not None:
         out["channel_name"] = data["channelName"]
     else:
         raise DeserializationError("ModelTrainingDataChannel.channel_name required")
-    if "s3DataDistributionType" in data:
+    if data.get("s3DataDistributionType") is not None:
         import capo_cleanroomsml.types.s3_data_distribution_type
 
         out["s3_data_distribution_type"] = (

@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> PendingMessages:
 
     out: PendingMessages = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_devops_agent.types.pending_message.deserialize_json(item))
     return out

@@ -36,7 +36,7 @@ def serialize_aws_json_1_1(value: ListFlowExecutionMessagesResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ListFlowExecutionMessagesResponse:
     out: ListFlowExecutionMessagesResponse = {}  # type: ignore[typeddict-item]
-    if "messages" in data:
+    if data.get("messages") is not None:
         import capo_iotthingsgraph.types.flow_execution_messages
 
         out["messages"] = (
@@ -44,6 +44,6 @@ def deserialize_aws_json_1_1(data: dict) -> ListFlowExecutionMessagesResponse:
                 data["messages"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

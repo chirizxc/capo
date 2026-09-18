@@ -28,10 +28,10 @@ def serialize_json(value: ClientInfo) -> dict:
 
 def deserialize_json(data: dict) -> ClientInfo:
     out: ClientInfo = {}  # type: ignore[typeddict-item]
-    if "compatibilityVersion" in data:
+    if data.get("compatibilityVersion") is not None:
         out["compatibility_version"] = data["compatibilityVersion"]
     else:
         raise DeserializationError("ClientInfo.compatibility_version required")
-    if "sdkVersion" in data:
+    if data.get("sdkVersion") is not None:
         out["sdk_version"] = data["sdkVersion"]
     return out

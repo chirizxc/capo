@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: InvalidPublicKeyVersionException_) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InvalidPublicKeyVersionException_:
     out: InvalidPublicKeyVersionException_ = {}  # type: ignore[typeddict-item]
-    if "message" in data:
+    if data.get("message") is not None:
         out["message"] = data["message"]
     return out
 
@@ -34,15 +34,20 @@ class InvalidPublicKeyVersionException(ServiceError):
 
     code: str | None = "InvalidPublicKeyVersionException"
 
-    def __init__(self, data: InvalidPublicKeyVersionException_):
+    def __init__(
+        self, data: InvalidPublicKeyVersionException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidPublicKeyVersionException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_aws_json_1_1(cls, data: dict) -> "InvalidPublicKeyVersionException":
-        return cls(deserialize_aws_json_1_1(data))
+    def from_aws_json_1_1(
+        cls, data: dict, message: str | None = None
+    ) -> "InvalidPublicKeyVersionException":
+        return cls(deserialize_aws_json_1_1(data), message)

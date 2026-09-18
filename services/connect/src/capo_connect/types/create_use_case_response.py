@@ -28,8 +28,8 @@ def serialize_json(value: CreateUseCaseResponse) -> dict:
 
 def deserialize_json(data: dict) -> CreateUseCaseResponse:
     out: CreateUseCaseResponse = {}  # type: ignore[typeddict-item]
-    if "UseCaseId" in data:
+    if data.get("UseCaseId") is not None:
         out["use_case_id"] = data["UseCaseId"]
-    if "UseCaseArn" in data:
+    if data.get("UseCaseArn") is not None:
         out["use_case_arn"] = data["UseCaseArn"]
     return out

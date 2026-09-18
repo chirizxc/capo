@@ -63,15 +63,20 @@ class InvalidCloudWatchDestinationException(ServiceError):
 
     code: str | None = "InvalidCloudWatchDestinationException"
 
-    def __init__(self, data: InvalidCloudWatchDestinationException_):
+    def __init__(
+        self, data: InvalidCloudWatchDestinationException_, message: str | None = None
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="InvalidCloudWatchDestinationException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "InvalidCloudWatchDestinationException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "InvalidCloudWatchDestinationException":
+        return cls(deserialize_query(el), message)

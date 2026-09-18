@@ -31,14 +31,14 @@ def serialize_json(value: AuditEvent) -> dict:
 
 def deserialize_json(data: dict) -> AuditEvent:
     out: AuditEvent = {}  # type: ignore[typeddict-item]
-    if "id" in data:
+    if data.get("id") is not None:
         out["id"] = data["id"]
     else:
         raise DeserializationError("AuditEvent.id required")
-    if "eventData" in data:
+    if data.get("eventData") is not None:
         out["event_data"] = data["eventData"]
     else:
         raise DeserializationError("AuditEvent.event_data required")
-    if "eventDataChecksum" in data:
+    if data.get("eventDataChecksum") is not None:
         out["event_data_checksum"] = data["eventDataChecksum"]
     return out

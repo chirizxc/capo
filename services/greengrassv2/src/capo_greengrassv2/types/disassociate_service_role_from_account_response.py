@@ -23,6 +23,6 @@ def serialize_json(value: DisassociateServiceRoleFromAccountResponse) -> dict:
 
 def deserialize_json(data: dict) -> DisassociateServiceRoleFromAccountResponse:
     out: DisassociateServiceRoleFromAccountResponse = {}  # type: ignore[typeddict-item]
-    if "DisassociatedAt" in data:
+    if data.get("DisassociatedAt") is not None:
         out["disassociated_at"] = data["DisassociatedAt"]
     return out

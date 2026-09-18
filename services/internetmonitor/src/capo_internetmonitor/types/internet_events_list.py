@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> InternetEventsList:
 
     out: InternetEventsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_internetmonitor.types.internet_event_summary.deserialize_json(item)
         )

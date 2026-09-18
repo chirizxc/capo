@@ -29,8 +29,8 @@ def serialize_aws_json_1_1(value: MetadataModelReference) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MetadataModelReference:
     out: MetadataModelReference = {}  # type: ignore[typeddict-item]
-    if "MetadataModelName" in data:
+    if data.get("MetadataModelName") is not None:
         out["metadata_model_name"] = data["MetadataModelName"]
-    if "SelectionRules" in data:
+    if data.get("SelectionRules") is not None:
         out["selection_rules"] = data["SelectionRules"]
     return out

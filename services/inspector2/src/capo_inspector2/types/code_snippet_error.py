@@ -32,15 +32,15 @@ def serialize_json(value: CodeSnippetError) -> dict:
 
 def deserialize_json(data: dict) -> CodeSnippetError:
     out: CodeSnippetError = {}  # type: ignore[typeddict-item]
-    if "findingArn" in data:
+    if data.get("findingArn") is not None:
         out["finding_arn"] = data["findingArn"]
     else:
         raise DeserializationError("CodeSnippetError.finding_arn required")
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         out["error_code"] = data["errorCode"]
     else:
         raise DeserializationError("CodeSnippetError.error_code required")
-    if "errorMessage" in data:
+    if data.get("errorMessage") is not None:
         out["error_message"] = data["errorMessage"]
     else:
         raise DeserializationError("CodeSnippetError.error_message required")

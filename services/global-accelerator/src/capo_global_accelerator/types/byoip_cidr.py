@@ -47,9 +47,9 @@ def serialize_aws_json_1_1(value: ByoipCidr) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ByoipCidr:
     out: ByoipCidr = {}  # type: ignore[typeddict-item]
-    if "Cidr" in data:
+    if data.get("Cidr") is not None:
         out["cidr"] = data["Cidr"]
-    if "State" in data:
+    if data.get("State") is not None:
         import capo_global_accelerator.types.byoip_cidr_state
 
         out["state"] = (
@@ -57,7 +57,7 @@ def deserialize_aws_json_1_1(data: dict) -> ByoipCidr:
                 data["State"]
             )
         )
-    if "Events" in data:
+    if data.get("Events") is not None:
         import capo_global_accelerator.types.byoip_cidr_events
 
         out["events"] = (

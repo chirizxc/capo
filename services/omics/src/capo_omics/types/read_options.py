@@ -60,28 +60,28 @@ def serialize_json(value: ReadOptions) -> dict:
 
 def deserialize_json(data: dict) -> ReadOptions:
     out: ReadOptions = {}  # type: ignore[typeddict-item]
-    if "sep" in data:
+    if data.get("sep") is not None:
         out["sep"] = data["sep"]
-    if "encoding" in data:
+    if data.get("encoding") is not None:
         out["encoding"] = data["encoding"]
-    if "quote" in data:
+    if data.get("quote") is not None:
         out["quote"] = data["quote"]
-    if "quoteAll" in data:
+    if data.get("quoteAll") is not None:
         out["quote_all"] = data["quoteAll"]
     else:
         out["quote_all"] = False
-    if "escape" in data:
+    if data.get("escape") is not None:
         out["escape"] = data["escape"]
-    if "escapeQuotes" in data:
+    if data.get("escapeQuotes") is not None:
         out["escape_quotes"] = data["escapeQuotes"]
     else:
         out["escape_quotes"] = False
-    if "comment" in data:
+    if data.get("comment") is not None:
         out["comment"] = data["comment"]
-    if "header" in data:
+    if data.get("header") is not None:
         out["header"] = data["header"]
     else:
         out["header"] = False
-    if "lineSep" in data:
+    if data.get("lineSep") is not None:
         out["line_sep"] = data["lineSep"]
     return out

@@ -36,13 +36,13 @@ def serialize_aws_json_1_1(value: CreateHomeRegionControlRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateHomeRegionControlRequest:
     out: CreateHomeRegionControlRequest = {}  # type: ignore[typeddict-item]
-    if "HomeRegion" in data:
+    if data.get("HomeRegion") is not None:
         out["home_region"] = data["HomeRegion"]
     else:
         raise DeserializationError(
             "CreateHomeRegionControlRequest.home_region required"
         )
-    if "Target" in data:
+    if data.get("Target") is not None:
         import capo_migrationhub_config.types.target
 
         out["target"] = capo_migrationhub_config.types.target.deserialize_aws_json_1_1(
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateHomeRegionControlRequest:
         )
     else:
         raise DeserializationError("CreateHomeRegionControlRequest.target required")
-    if "DryRun" in data:
+    if data.get("DryRun") is not None:
         out["dry_run"] = data["DryRun"]
     else:
         out["dry_run"] = False

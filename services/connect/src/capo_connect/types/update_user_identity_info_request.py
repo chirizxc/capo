@@ -34,7 +34,7 @@ def serialize_json(value: UpdateUserIdentityInfoRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateUserIdentityInfoRequest:
     out: UpdateUserIdentityInfoRequest = {}  # type: ignore[typeddict-item]
-    if "IdentityInfo" in data:
+    if data.get("IdentityInfo") is not None:
         import capo_connect.types.user_identity_info
 
         out["identity_info"] = capo_connect.types.user_identity_info.deserialize_json(

@@ -27,10 +27,10 @@ def serialize_aws_json_1_1(value: MetricsConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> MetricsConfiguration:
     out: MetricsConfiguration = {}  # type: ignore[typeddict-item]
-    if "cloudMetricEnabled" in data:
+    if data.get("cloudMetricEnabled") is not None:
         out["cloud_metric_enabled"] = data["cloudMetricEnabled"]
     else:
         out["cloud_metric_enabled"] = False
-    if "metricRuleRoleArn" in data:
+    if data.get("metricRuleRoleArn") is not None:
         out["metric_rule_role_arn"] = data["metricRuleRoleArn"]
     return out

@@ -43,17 +43,22 @@ class TooManyUniqueTargetGroupsPerLoadBalancerException(ServiceError):
 
     code: str | None = "TooManyUniqueTargetGroupsPerLoadBalancerException"
 
-    def __init__(self, data: TooManyUniqueTargetGroupsPerLoadBalancerException_):
+    def __init__(
+        self,
+        data: TooManyUniqueTargetGroupsPerLoadBalancerException_,
+        message: str | None = None,
+    ):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="TooManyUniqueTargetGroupsPerLoadBalancerException",
+            message=message,
         )
         self.data = data
 
     @classmethod
     def from_query(
-        cls, el: Element
+        cls, el: Element, message: str | None = None
     ) -> "TooManyUniqueTargetGroupsPerLoadBalancerException":
-        return cls(deserialize_query(el))
+        return cls(deserialize_query(el), message)

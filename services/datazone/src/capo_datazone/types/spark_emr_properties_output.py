@@ -57,12 +57,10 @@ def serialize_json(value: SparkEmrPropertiesOutput) -> dict:
             value["credentials"]
         )
     if "credentials_expiration" in value:
-        import capo_datazone.types._prelude.timestamp
+        import capo_datazone._protocol.serialize
 
-        out["credentialsExpiration"] = (
-            capo_datazone.types._prelude.timestamp.serialize_json(
-                value["credentials_expiration"]
-            )
+        out["credentialsExpiration"] = capo_datazone._protocol.serialize.fmt_date_time(
+            value["credentials_expiration"]
         )
     if "governance_type" in value:
         import capo_datazone.types.governance_type
@@ -101,47 +99,45 @@ def serialize_json(value: SparkEmrPropertiesOutput) -> dict:
 
 def deserialize_json(data: dict) -> SparkEmrPropertiesOutput:
     out: SparkEmrPropertiesOutput = {}  # type: ignore[typeddict-item]
-    if "computeArn" in data:
+    if data.get("computeArn") is not None:
         out["compute_arn"] = data["computeArn"]
-    if "credentials" in data:
+    if data.get("credentials") is not None:
         import capo_datazone.types.username_password
 
         out["credentials"] = capo_datazone.types.username_password.deserialize_json(
             data["credentials"]
         )
-    if "credentialsExpiration" in data:
-        import capo_datazone.types._prelude.timestamp
+    if data.get("credentialsExpiration") is not None:
+        import datetime
 
-        out["credentials_expiration"] = (
-            capo_datazone.types._prelude.timestamp.deserialize_json(
-                data["credentialsExpiration"]
-            )
+        out["credentials_expiration"] = datetime.datetime.fromisoformat(
+            data["credentialsExpiration"].replace("Z", "+00:00")
         )
-    if "governanceType" in data:
+    if data.get("governanceType") is not None:
         import capo_datazone.types.governance_type
 
         out["governance_type"] = capo_datazone.types.governance_type.deserialize_json(
             data["governanceType"]
         )
-    if "instanceProfileArn" in data:
+    if data.get("instanceProfileArn") is not None:
         out["instance_profile_arn"] = data["instanceProfileArn"]
-    if "javaVirtualEnv" in data:
+    if data.get("javaVirtualEnv") is not None:
         out["java_virtual_env"] = data["javaVirtualEnv"]
-    if "livyEndpoint" in data:
+    if data.get("livyEndpoint") is not None:
         out["livy_endpoint"] = data["livyEndpoint"]
-    if "logUri" in data:
+    if data.get("logUri") is not None:
         out["log_uri"] = data["logUri"]
-    if "pythonVirtualEnv" in data:
+    if data.get("pythonVirtualEnv") is not None:
         out["python_virtual_env"] = data["pythonVirtualEnv"]
-    if "runtimeRole" in data:
+    if data.get("runtimeRole") is not None:
         out["runtime_role"] = data["runtimeRole"]
-    if "trustedCertificatesS3Uri" in data:
+    if data.get("trustedCertificatesS3Uri") is not None:
         out["trusted_certificates_s3_uri"] = data["trustedCertificatesS3Uri"]
-    if "certificateData" in data:
+    if data.get("certificateData") is not None:
         out["certificate_data"] = data["certificateData"]
-    if "managedEndpointArn" in data:
+    if data.get("managedEndpointArn") is not None:
         out["managed_endpoint_arn"] = data["managedEndpointArn"]
-    if "managedEndpointCredentials" in data:
+    if data.get("managedEndpointCredentials") is not None:
         import capo_datazone.types.managed_endpoint_credentials
 
         out["managed_endpoint_credentials"] = (

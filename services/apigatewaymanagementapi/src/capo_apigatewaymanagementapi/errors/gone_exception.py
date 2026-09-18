@@ -25,15 +25,16 @@ class GoneException(ServiceError):
 
     code: str | None = "GoneException"
 
-    def __init__(self, data: GoneException_):
+    def __init__(self, data: GoneException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="GoneException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_json(cls, data: dict) -> "GoneException":
-        return cls(deserialize_json(data))
+    def from_json(cls, data: dict, message: str | None = None) -> "GoneException":
+        return cls(deserialize_json(data), message)

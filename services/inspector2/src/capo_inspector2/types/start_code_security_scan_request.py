@@ -35,9 +35,9 @@ def serialize_json(value: StartCodeSecurityScanRequest) -> dict:
 
 def deserialize_json(data: dict) -> StartCodeSecurityScanRequest:
     out: StartCodeSecurityScanRequest = {}  # type: ignore[typeddict-item]
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
-    if "resource" in data:
+    if data.get("resource") is not None:
         import capo_inspector2.types.code_security_resource
 
         out["resource"] = capo_inspector2.types.code_security_resource.deserialize_json(

@@ -68,23 +68,23 @@ def serialize_json(value: CreateCapabilityRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateCapabilityRequest:
     out: CreateCapabilityRequest = {}  # type: ignore[typeddict-item]
-    if "capabilityName" in data:
+    if data.get("capabilityName") is not None:
         out["capability_name"] = data["capabilityName"]
     else:
         raise DeserializationError("CreateCapabilityRequest.capability_name required")
-    if "clientRequestToken" in data:
+    if data.get("clientRequestToken") is not None:
         out["client_request_token"] = data["clientRequestToken"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_eks.types.capability_type
 
         out["type"] = capo_eks.types.capability_type.deserialize_json(data["type"])
     else:
         raise DeserializationError("CreateCapabilityRequest.type required")
-    if "roleArn" in data:
+    if data.get("roleArn") is not None:
         out["role_arn"] = data["roleArn"]
     else:
         raise DeserializationError("CreateCapabilityRequest.role_arn required")
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_eks.types.capability_configuration_request
 
         out["configuration"] = (
@@ -92,11 +92,11 @@ def deserialize_json(data: dict) -> CreateCapabilityRequest:
                 data["configuration"]
             )
         )
-    if "tags" in data:
+    if data.get("tags") is not None:
         import capo_eks.types.tag_map
 
         out["tags"] = capo_eks.types.tag_map.deserialize_json(data["tags"])
-    if "deletePropagationPolicy" in data:
+    if data.get("deletePropagationPolicy") is not None:
         import capo_eks.types.capability_delete_propagation_policy
 
         out["delete_propagation_policy"] = (

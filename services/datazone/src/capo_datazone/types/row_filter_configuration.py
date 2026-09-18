@@ -31,7 +31,7 @@ def serialize_json(value: RowFilterConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> RowFilterConfiguration:
     out: RowFilterConfiguration = {}  # type: ignore[typeddict-item]
-    if "rowFilter" in data:
+    if data.get("rowFilter") is not None:
         import capo_datazone.types.row_filter
 
         out["row_filter"] = capo_datazone.types.row_filter.deserialize_json(
@@ -39,7 +39,7 @@ def deserialize_json(data: dict) -> RowFilterConfiguration:
         )
     else:
         raise DeserializationError("RowFilterConfiguration.row_filter required")
-    if "sensitive" in data:
+    if data.get("sensitive") is not None:
         out["sensitive"] = data["sensitive"]
     else:
         out["sensitive"] = True

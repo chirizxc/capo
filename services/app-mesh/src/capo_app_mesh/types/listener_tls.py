@@ -45,11 +45,11 @@ def serialize_json(value: ListenerTls) -> dict:
 
 def deserialize_json(data: dict) -> ListenerTls:
     out: ListenerTls = {}  # type: ignore[typeddict-item]
-    if "mode" in data:
+    if data.get("mode") is not None:
         out["mode"] = data["mode"]
     else:
         raise DeserializationError("ListenerTls.mode required")
-    if "certificate" in data:
+    if data.get("certificate") is not None:
         import capo_app_mesh.types.listener_tls_certificate
 
         out["certificate"] = (
@@ -59,7 +59,7 @@ def deserialize_json(data: dict) -> ListenerTls:
         )
     else:
         raise DeserializationError("ListenerTls.certificate required")
-    if "validation" in data:
+    if data.get("validation") is not None:
         import capo_app_mesh.types.listener_tls_validation_context
 
         out["validation"] = (

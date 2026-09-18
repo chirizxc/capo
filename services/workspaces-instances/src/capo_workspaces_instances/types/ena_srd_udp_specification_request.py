@@ -18,6 +18,6 @@ def serialize_aws_json_1_0(value: EnaSrdUdpSpecificationRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> EnaSrdUdpSpecificationRequest:
     out: EnaSrdUdpSpecificationRequest = {}  # type: ignore[typeddict-item]
-    if "EnaSrdUdpEnabled" in data:
+    if data.get("EnaSrdUdpEnabled") is not None:
         out["ena_srd_udp_enabled"] = data["EnaSrdUdpEnabled"]
     return out

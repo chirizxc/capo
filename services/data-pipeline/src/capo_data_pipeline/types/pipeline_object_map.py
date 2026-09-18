@@ -27,6 +27,8 @@ def serialize_aws_json_1_1(input_to_serialize: PipelineObjectMap) -> dict:
 def deserialize_aws_json_1_1(data: dict) -> PipelineObjectMap:
     out: PipelineObjectMap = {}
     for key, value in data.items():
+        if value is None:
+            continue
         import capo_data_pipeline.types.pipeline_object
 
         out[key] = capo_data_pipeline.types.pipeline_object.deserialize_aws_json_1_1(

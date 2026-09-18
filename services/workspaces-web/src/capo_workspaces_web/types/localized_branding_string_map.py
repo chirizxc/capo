@@ -29,6 +29,9 @@ def deserialize_json(data: dict) -> LocalizedBrandingStringMap:
     out: LocalizedBrandingStringMap = {}
     for key, value in data.items():
         import capo_workspaces_web.types.locale
+
+        if value is None:
+            continue
         import capo_workspaces_web.types.localized_branding_strings
 
         out[capo_workspaces_web.types.locale.deserialize_json(key)] = (

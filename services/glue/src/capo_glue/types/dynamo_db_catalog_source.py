@@ -49,21 +49,21 @@ def serialize_aws_json_1_1(value: DynamoDBCatalogSource) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DynamoDBCatalogSource:
     out: DynamoDBCatalogSource = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("DynamoDBCatalogSource.name required")
-    if "Database" in data:
+    if data.get("Database") is not None:
         out["database"] = data["Database"]
     else:
         raise DeserializationError("DynamoDBCatalogSource.database required")
-    if "Table" in data:
+    if data.get("Table") is not None:
         out["table"] = data["Table"]
     else:
         raise DeserializationError("DynamoDBCatalogSource.table required")
-    if "PitrEnabled" in data:
+    if data.get("PitrEnabled") is not None:
         out["pitr_enabled"] = data["PitrEnabled"]
-    if "AdditionalOptions" in data:
+    if data.get("AdditionalOptions") is not None:
         import capo_glue.types.ddbelt_catalog_additional_options
 
         out["additional_options"] = (

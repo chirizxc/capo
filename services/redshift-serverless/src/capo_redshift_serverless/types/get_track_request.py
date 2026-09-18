@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: GetTrackRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> GetTrackRequest:
     out: GetTrackRequest = {}  # type: ignore[typeddict-item]
-    if "trackName" in data:
+    if data.get("trackName") is not None:
         out["track_name"] = data["trackName"]
     else:
         raise DeserializationError("GetTrackRequest.track_name required")

@@ -40,13 +40,13 @@ def serialize_json(value: AccessConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AccessConfiguration:
     out: AccessConfiguration = {}  # type: ignore[typeddict-item]
-    if "AccessType" in data:
+    if data.get("AccessType") is not None:
         import capo_mediatailor.types.access_type
 
         out["access_type"] = capo_mediatailor.types.access_type.deserialize_json(
             data["AccessType"]
         )
-    if "SecretsManagerAccessTokenConfiguration" in data:
+    if data.get("SecretsManagerAccessTokenConfiguration") is not None:
         import capo_mediatailor.types.secrets_manager_access_token_configuration
 
         out["secrets_manager_access_token_configuration"] = (

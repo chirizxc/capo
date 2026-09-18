@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.simpledbv2#SimpleDBv2``."""
 
+import uuid
 import warnings
 from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -178,14 +179,16 @@ class SimpleDBv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_simpledbv2.types.get_export_request.GetExportRequest = {}  # type: ignore[typeddict-item]
-        input_["export_arn"] = export_arn
+        input_: capo_simpledbv2.types.get_export_request.GetExportRequest = {
+            "export_arn": export_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_exports(
@@ -230,7 +233,7 @@ class SimpleDBv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_simpledbv2.types.list_exports_request.ListExportsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_simpledbv2.types.list_exports_request.ListExportsRequest = {}
         if domain_name is not None:
             input_["domain_name"] = domain_name
         if max_results is not None:
@@ -243,6 +246,7 @@ class SimpleDBv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_exports(
@@ -330,11 +334,13 @@ class SimpleDBv2Client:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_simpledbv2.types.start_domain_export_request.StartDomainExportRequest = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["domain_name"] = domain_name
-        input_["s3_bucket"] = s3_bucket
+        input_: capo_simpledbv2.types.start_domain_export_request.StartDomainExportRequest = {
+            "domain_name": domain_name,
+            "s3_bucket": s3_bucket,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if s3_key_prefix is not None:
             input_["s3_key_prefix"] = s3_key_prefix
         if s3_sse_algorithm is not None:
@@ -349,6 +355,7 @@ class SimpleDBv2Client:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

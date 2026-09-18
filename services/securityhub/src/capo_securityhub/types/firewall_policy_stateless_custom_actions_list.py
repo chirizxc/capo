@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> FirewallPolicyStatelessCustomActionsList:
 
     out: FirewallPolicyStatelessCustomActionsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_securityhub.types.firewall_policy_stateless_custom_actions_details.deserialize_json(
                 item

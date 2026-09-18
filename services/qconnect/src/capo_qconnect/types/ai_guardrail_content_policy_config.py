@@ -30,7 +30,7 @@ def serialize_json(value: AIGuardrailContentPolicyConfig) -> dict:
 
 def deserialize_json(data: dict) -> AIGuardrailContentPolicyConfig:
     out: AIGuardrailContentPolicyConfig = {}  # type: ignore[typeddict-item]
-    if "filtersConfig" in data:
+    if data.get("filtersConfig") is not None:
         import capo_qconnect.types.guardrail_content_filters_config
 
         out["filters_config"] = (

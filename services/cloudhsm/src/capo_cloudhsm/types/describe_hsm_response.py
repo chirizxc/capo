@@ -131,23 +131,23 @@ def serialize_aws_json_1_1(value: DescribeHsmResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeHsmResponse:
     out: DescribeHsmResponse = {}  # type: ignore[typeddict-item]
-    if "HsmArn" in data:
+    if data.get("HsmArn") is not None:
         out["hsm_arn"] = data["HsmArn"]
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_cloudhsm.types.hsm_status
 
         out["status"] = capo_cloudhsm.types.hsm_status.deserialize_aws_json_1_1(
             data["Status"]
         )
-    if "StatusDetails" in data:
+    if data.get("StatusDetails") is not None:
         out["status_details"] = data["StatusDetails"]
-    if "AvailabilityZone" in data:
+    if data.get("AvailabilityZone") is not None:
         out["availability_zone"] = data["AvailabilityZone"]
-    if "EniId" in data:
+    if data.get("EniId") is not None:
         out["eni_id"] = data["EniId"]
-    if "EniIp" in data:
+    if data.get("EniIp") is not None:
         out["eni_ip"] = data["EniIp"]
-    if "SubscriptionType" in data:
+    if data.get("SubscriptionType") is not None:
         import capo_cloudhsm.types.subscription_type
 
         out["subscription_type"] = (
@@ -155,33 +155,33 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeHsmResponse:
                 data["SubscriptionType"]
             )
         )
-    if "SubscriptionStartDate" in data:
+    if data.get("SubscriptionStartDate") is not None:
         out["subscription_start_date"] = data["SubscriptionStartDate"]
-    if "SubscriptionEndDate" in data:
+    if data.get("SubscriptionEndDate") is not None:
         out["subscription_end_date"] = data["SubscriptionEndDate"]
-    if "VpcId" in data:
+    if data.get("VpcId") is not None:
         out["vpc_id"] = data["VpcId"]
-    if "SubnetId" in data:
+    if data.get("SubnetId") is not None:
         out["subnet_id"] = data["SubnetId"]
-    if "IamRoleArn" in data:
+    if data.get("IamRoleArn") is not None:
         out["iam_role_arn"] = data["IamRoleArn"]
-    if "SerialNumber" in data:
+    if data.get("SerialNumber") is not None:
         out["serial_number"] = data["SerialNumber"]
-    if "VendorName" in data:
+    if data.get("VendorName") is not None:
         out["vendor_name"] = data["VendorName"]
-    if "HsmType" in data:
+    if data.get("HsmType") is not None:
         out["hsm_type"] = data["HsmType"]
-    if "SoftwareVersion" in data:
+    if data.get("SoftwareVersion") is not None:
         out["software_version"] = data["SoftwareVersion"]
-    if "SshPublicKey" in data:
+    if data.get("SshPublicKey") is not None:
         out["ssh_public_key"] = data["SshPublicKey"]
-    if "SshKeyLastUpdated" in data:
+    if data.get("SshKeyLastUpdated") is not None:
         out["ssh_key_last_updated"] = data["SshKeyLastUpdated"]
-    if "ServerCertUri" in data:
+    if data.get("ServerCertUri") is not None:
         out["server_cert_uri"] = data["ServerCertUri"]
-    if "ServerCertLastUpdated" in data:
+    if data.get("ServerCertLastUpdated") is not None:
         out["server_cert_last_updated"] = data["ServerCertLastUpdated"]
-    if "Partitions" in data:
+    if data.get("Partitions") is not None:
         import capo_cloudhsm.types.partition_list
 
         out["partitions"] = capo_cloudhsm.types.partition_list.deserialize_aws_json_1_1(

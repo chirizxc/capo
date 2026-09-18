@@ -36,7 +36,7 @@ def serialize_json(value: BatchAssociateAnalyticsDataSetRequest) -> dict:
 
 def deserialize_json(data: dict) -> BatchAssociateAnalyticsDataSetRequest:
     out: BatchAssociateAnalyticsDataSetRequest = {}  # type: ignore[typeddict-item]
-    if "DataSetIds" in data:
+    if data.get("DataSetIds") is not None:
         import capo_connect.types.data_set_ids
 
         out["data_set_ids"] = capo_connect.types.data_set_ids.deserialize_json(
@@ -46,6 +46,6 @@ def deserialize_json(data: dict) -> BatchAssociateAnalyticsDataSetRequest:
         raise DeserializationError(
             "BatchAssociateAnalyticsDataSetRequest.data_set_ids required"
         )
-    if "TargetAccountId" in data:
+    if data.get("TargetAccountId") is not None:
         out["target_account_id"] = data["TargetAccountId"]
     return out

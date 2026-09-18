@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> LaunchTemplateConfigurationList:
 
     out: LaunchTemplateConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_imagebuilder.types.launch_template_configuration.deserialize_json(item)
         )

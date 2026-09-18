@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> WiFiAccessPoints:
 
     out: WiFiAccessPoints = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_iot_wireless.types.wi_fi_access_point.deserialize_json(item))
     return out

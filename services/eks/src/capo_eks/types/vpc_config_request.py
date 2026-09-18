@@ -52,23 +52,23 @@ def serialize_json(value: VpcConfigRequest) -> dict:
 
 def deserialize_json(data: dict) -> VpcConfigRequest:
     out: VpcConfigRequest = {}  # type: ignore[typeddict-item]
-    if "subnetIds" in data:
+    if data.get("subnetIds") is not None:
         import capo_eks.types.string_list
 
         out["subnet_ids"] = capo_eks.types.string_list.deserialize_json(
             data["subnetIds"]
         )
-    if "securityGroupIds" in data:
+    if data.get("securityGroupIds") is not None:
         import capo_eks.types.string_list
 
         out["security_group_ids"] = capo_eks.types.string_list.deserialize_json(
             data["securityGroupIds"]
         )
-    if "endpointPublicAccess" in data:
+    if data.get("endpointPublicAccess") is not None:
         out["endpoint_public_access"] = data["endpointPublicAccess"]
-    if "endpointPrivateAccess" in data:
+    if data.get("endpointPrivateAccess") is not None:
         out["endpoint_private_access"] = data["endpointPrivateAccess"]
-    if "publicAccessCidrs" in data:
+    if data.get("publicAccessCidrs") is not None:
         import capo_eks.types.string_list
 
         out["public_access_cidrs"] = capo_eks.types.string_list.deserialize_json(

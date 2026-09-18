@@ -31,7 +31,7 @@ def serialize_json(value: AwsRoute53QueryLoggingConfigDetails) -> dict:
 
 def deserialize_json(data: dict) -> AwsRoute53QueryLoggingConfigDetails:
     out: AwsRoute53QueryLoggingConfigDetails = {}  # type: ignore[typeddict-item]
-    if "CloudWatchLogsLogGroupArn" in data:
+    if data.get("CloudWatchLogsLogGroupArn") is not None:
         import capo_securityhub.types.cloud_watch_logs_log_group_arn_config_details
 
         out["cloud_watch_logs_log_group_arn"] = (

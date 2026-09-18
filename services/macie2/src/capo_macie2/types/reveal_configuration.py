@@ -32,9 +32,9 @@ def serialize_json(value: RevealConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> RevealConfiguration:
     out: RevealConfiguration = {}  # type: ignore[typeddict-item]
-    if "kmsKeyId" in data:
+    if data.get("kmsKeyId") is not None:
         out["kms_key_id"] = data["kmsKeyId"]
-    if "status" in data:
+    if data.get("status") is not None:
         import capo_macie2.types.reveal_status
 
         out["status"] = capo_macie2.types.reveal_status.deserialize_json(data["status"])

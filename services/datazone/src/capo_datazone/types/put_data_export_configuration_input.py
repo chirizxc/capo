@@ -44,13 +44,13 @@ def serialize_json(value: PutDataExportConfigurationInput) -> dict:
 
 def deserialize_json(data: dict) -> PutDataExportConfigurationInput:
     out: PutDataExportConfigurationInput = {}  # type: ignore[typeddict-item]
-    if "enableExport" in data:
+    if data.get("enableExport") is not None:
         out["enable_export"] = data["enableExport"]
     else:
         raise DeserializationError(
             "PutDataExportConfigurationInput.enable_export required"
         )
-    if "encryptionConfiguration" in data:
+    if data.get("encryptionConfiguration") is not None:
         import capo_datazone.types.encryption_configuration
 
         out["encryption_configuration"] = (
@@ -58,6 +58,6 @@ def deserialize_json(data: dict) -> PutDataExportConfigurationInput:
                 data["encryptionConfiguration"]
             )
         )
-    if "clientToken" in data:
+    if data.get("clientToken") is not None:
         out["client_token"] = data["clientToken"]
     return out

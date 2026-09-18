@@ -25,7 +25,7 @@ def serialize_aws_json_1_1(value: UpdateVolumeResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateVolumeResponse:
     out: UpdateVolumeResponse = {}  # type: ignore[typeddict-item]
-    if "Volume" in data:
+    if data.get("Volume") is not None:
         import capo_fsx.types.volume
 
         out["volume"] = capo_fsx.types.volume.deserialize_aws_json_1_1(data["Volume"])

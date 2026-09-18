@@ -14,4 +14,4 @@ def serialize_json(value: FormNameList) -> list:
 
 
 def deserialize_json(data: list) -> FormNameList:
-    return list(data)
+    return [item for item in data if item is not None]

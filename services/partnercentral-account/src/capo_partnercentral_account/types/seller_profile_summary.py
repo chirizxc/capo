@@ -28,11 +28,11 @@ def serialize_aws_json_1_0(value: SellerProfileSummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> SellerProfileSummary:
     out: SellerProfileSummary = {}  # type: ignore[typeddict-item]
-    if "Id" in data:
+    if data.get("Id") is not None:
         out["id"] = data["Id"]
     else:
         raise DeserializationError("SellerProfileSummary.id required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("SellerProfileSummary.name required")

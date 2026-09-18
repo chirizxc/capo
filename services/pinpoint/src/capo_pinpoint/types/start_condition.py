@@ -48,9 +48,9 @@ def serialize_json(value: StartCondition) -> dict:
 
 def deserialize_json(data: dict) -> StartCondition:
     out: StartCondition = {}  # type: ignore[typeddict-item]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "EventStartCondition" in data:
+    if data.get("EventStartCondition") is not None:
         import capo_pinpoint.types.event_start_condition
 
         out["event_start_condition"] = (
@@ -58,7 +58,7 @@ def deserialize_json(data: dict) -> StartCondition:
                 data["EventStartCondition"]
             )
         )
-    if "SegmentStartCondition" in data:
+    if data.get("SegmentStartCondition") is not None:
         import capo_pinpoint.types.segment_condition
 
         out["segment_start_condition"] = (

@@ -85,21 +85,21 @@ def serialize_json(value: AwsApiCallAction) -> dict:
 
 def deserialize_json(data: dict) -> AwsApiCallAction:
     out: AwsApiCallAction = {}  # type: ignore[typeddict-item]
-    if "api" in data:
+    if data.get("api") is not None:
         out["api"] = data["api"]
-    if "callerType" in data:
+    if data.get("callerType") is not None:
         out["caller_type"] = data["callerType"]
-    if "domainDetails" in data:
+    if data.get("domainDetails") is not None:
         import capo_guardduty.types.domain_details
 
         out["domain_details"] = capo_guardduty.types.domain_details.deserialize_json(
             data["domainDetails"]
         )
-    if "errorCode" in data:
+    if data.get("errorCode") is not None:
         out["error_code"] = data["errorCode"]
-    if "userAgent" in data:
+    if data.get("userAgent") is not None:
         out["user_agent"] = data["userAgent"]
-    if "remoteIpDetails" in data:
+    if data.get("remoteIpDetails") is not None:
         import capo_guardduty.types.remote_ip_details
 
         out["remote_ip_details"] = (
@@ -107,9 +107,9 @@ def deserialize_json(data: dict) -> AwsApiCallAction:
                 data["remoteIpDetails"]
             )
         )
-    if "serviceName" in data:
+    if data.get("serviceName") is not None:
         out["service_name"] = data["serviceName"]
-    if "remoteAccountDetails" in data:
+    if data.get("remoteAccountDetails") is not None:
         import capo_guardduty.types.remote_account_details
 
         out["remote_account_details"] = (
@@ -117,7 +117,7 @@ def deserialize_json(data: dict) -> AwsApiCallAction:
                 data["remoteAccountDetails"]
             )
         )
-    if "affectedResources" in data:
+    if data.get("affectedResources") is not None:
         import capo_guardduty.types.affected_resources
 
         out["affected_resources"] = (

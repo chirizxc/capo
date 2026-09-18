@@ -13,9 +13,9 @@ from capo_license_manager_linux_subscriptions import AsyncLicenseManagerLinuxSub
 
 
 async def main():
-    async with AsyncLicenseManagerLinuxSubscriptionsClient() as s3:
+    async with AsyncLicenseManagerLinuxSubscriptionsClient() as license_manager_linux_subscriptions:
         # Example: call the deregister_subscription_provider operation
-        response = await s3.deregister_subscription_provider()
+        response = await license_manager_linux_subscriptions.deregister_subscription_provider()
         print(response)
 ```
 
@@ -28,9 +28,9 @@ from capo_license_manager_linux_subscriptions import AsyncLicenseManagerLinuxSub
 
 
 async def main():
-    async with AsyncLicenseManagerLinuxSubscriptionsClient() as s3:
+    async with AsyncLicenseManagerLinuxSubscriptionsClient() as license_manager_linux_subscriptions:
         # Example: paginate over list_linux_subscription_instances
-        async for item in s3.iter_list_linux_subscription_instances():
+        async for item in license_manager_linux_subscriptions.iter_list_linux_subscription_instances():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_license_manager_linux_subscriptions.error import InternalServerExcepti
 
 
 async def main():
-    async with AsyncLicenseManagerLinuxSubscriptionsClient() as s3:
+    async with AsyncLicenseManagerLinuxSubscriptionsClient() as license_manager_linux_subscriptions:
         try:
-            await s3.deregister_subscription_provider()
+            await license_manager_linux_subscriptions.deregister_subscription_provider()
         except InternalServerException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_license_manager_linux_subscriptions import AsyncLicenseManagerLinuxSub
 
 
 async def main():
-    async with AsyncLicenseManagerLinuxSubscriptionsClient() as s3:
+    async with AsyncLicenseManagerLinuxSubscriptionsClient() as license_manager_linux_subscriptions:
         # Default: 3 attempts for every operation
-        response = await s3.deregister_subscription_provider()
+        response = await license_manager_linux_subscriptions.deregister_subscription_provider()
 
         # Override per operation
-        response = await s3.deregister_subscription_provider(config_overrides={"retry_max_attempts": 5})
+        response = await license_manager_linux_subscriptions.deregister_subscription_provider(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.deregister_subscription_provider(config_overrides={"retry_max_attempts": 1})
+        response = await license_manager_linux_subscriptions.deregister_subscription_provider(config_overrides={"retry_max_attempts": 1})
 ```

@@ -13,9 +13,9 @@ from capo_customer_profiles import AsyncCustomerProfilesClient
 
 
 async def main():
-    async with AsyncCustomerProfilesClient() as s3:
+    async with AsyncCustomerProfilesClient() as customer_profiles:
         # Example: call the add_profile_key operation
-        response = await s3.add_profile_key()
+        response = await customer_profiles.add_profile_key()
         print(response["key_name"])
 ```
 
@@ -28,9 +28,9 @@ from capo_customer_profiles import AsyncCustomerProfilesClient
 
 
 async def main():
-    async with AsyncCustomerProfilesClient() as s3:
+    async with AsyncCustomerProfilesClient() as customer_profiles:
         # Example: paginate over get_similar_profiles
-        async for item in s3.iter_get_similar_profiles():
+        async for item in customer_profiles.iter_get_similar_profiles():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_customer_profiles.error import AccessDeniedException
 
 
 async def main():
-    async with AsyncCustomerProfilesClient() as s3:
+    async with AsyncCustomerProfilesClient() as customer_profiles:
         try:
-            await s3.add_profile_key()
+            await customer_profiles.add_profile_key()
         except AccessDeniedException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_customer_profiles import AsyncCustomerProfilesClient
 
 
 async def main():
-    async with AsyncCustomerProfilesClient() as s3:
+    async with AsyncCustomerProfilesClient() as customer_profiles:
         # Default: 3 attempts for every operation
-        response = await s3.add_profile_key()
+        response = await customer_profiles.add_profile_key()
 
         # Override per operation
-        response = await s3.add_profile_key(config_overrides={"retry_max_attempts": 5})
+        response = await customer_profiles.add_profile_key(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.add_profile_key(config_overrides={"retry_max_attempts": 1})
+        response = await customer_profiles.add_profile_key(config_overrides={"retry_max_attempts": 1})
 ```

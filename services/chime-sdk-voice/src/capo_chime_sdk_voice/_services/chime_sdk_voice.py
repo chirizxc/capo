@@ -404,9 +404,10 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.associate_phone_numbers_with_voice_connector_request.AssociatePhoneNumbersWithVoiceConnectorRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_id"] = voice_connector_id
-        input_["e164_phone_numbers"] = e164_phone_numbers
+        input_: capo_chime_sdk_voice.types.associate_phone_numbers_with_voice_connector_request.AssociatePhoneNumbersWithVoiceConnectorRequest = {
+            "voice_connector_id": voice_connector_id,
+            "e164_phone_numbers": e164_phone_numbers,
+        }
         if force_associate is not None:
             input_["force_associate"] = force_associate
 
@@ -415,6 +416,7 @@ class ChimeSDKVoiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def associate_phone_numbers_with_voice_connector_group(
@@ -461,9 +463,10 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.associate_phone_numbers_with_voice_connector_group_request.AssociatePhoneNumbersWithVoiceConnectorGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_group_id"] = voice_connector_group_id
-        input_["e164_phone_numbers"] = e164_phone_numbers
+        input_: capo_chime_sdk_voice.types.associate_phone_numbers_with_voice_connector_group_request.AssociatePhoneNumbersWithVoiceConnectorGroupRequest = {
+            "voice_connector_group_id": voice_connector_group_id,
+            "e164_phone_numbers": e164_phone_numbers,
+        }
         if force_associate is not None:
             input_["force_associate"] = force_associate
 
@@ -472,6 +475,7 @@ class ChimeSDKVoiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_delete_phone_number(
@@ -511,14 +515,16 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.batch_delete_phone_number_request.BatchDeletePhoneNumberRequest = {}  # type: ignore[typeddict-item]
-        input_["phone_number_ids"] = phone_number_ids
+        input_: capo_chime_sdk_voice.types.batch_delete_phone_number_request.BatchDeletePhoneNumberRequest = {
+            "phone_number_ids": phone_number_ids
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_update_phone_number(
@@ -558,14 +564,16 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.batch_update_phone_number_request.BatchUpdatePhoneNumberRequest = {}  # type: ignore[typeddict-item]
-        input_["update_phone_number_request_items"] = update_phone_number_request_items
+        input_: capo_chime_sdk_voice.types.batch_update_phone_number_request.BatchUpdatePhoneNumberRequest = {
+            "update_phone_number_request_items": update_phone_number_request_items
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_phone_number_order(
@@ -612,9 +620,10 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.create_phone_number_order_request.CreatePhoneNumberOrderRequest = {}  # type: ignore[typeddict-item]
-        input_["product_type"] = product_type
-        input_["e164_phone_numbers"] = e164_phone_numbers
+        input_: capo_chime_sdk_voice.types.create_phone_number_order_request.CreatePhoneNumberOrderRequest = {
+            "product_type": product_type,
+            "e164_phone_numbers": e164_phone_numbers,
+        }
         if name is not None:
             input_["name"] = name
 
@@ -623,6 +632,7 @@ class ChimeSDKVoiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_proxy_session(
@@ -686,14 +696,15 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.create_proxy_session_request.CreateProxySessionRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_id"] = voice_connector_id
-        input_["participant_phone_numbers"] = participant_phone_numbers
+        input_: capo_chime_sdk_voice.types.create_proxy_session_request.CreateProxySessionRequest = {
+            "voice_connector_id": voice_connector_id,
+            "participant_phone_numbers": participant_phone_numbers,
+            "capabilities": capabilities,
+        }
         if name is not None:
             input_["name"] = name
         if expiry_minutes is not None:
             input_["expiry_minutes"] = expiry_minutes
-        input_["capabilities"] = capabilities
         if number_selection_behavior is not None:
             input_["number_selection_behavior"] = number_selection_behavior
         if geo_match_level is not None:
@@ -706,6 +717,7 @@ class ChimeSDKVoiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_sip_media_application(
@@ -753,10 +765,11 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.create_sip_media_application_request.CreateSipMediaApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["aws_region"] = aws_region
-        input_["name"] = name
-        input_["endpoints"] = endpoints
+        input_: capo_chime_sdk_voice.types.create_sip_media_application_request.CreateSipMediaApplicationRequest = {
+            "aws_region": aws_region,
+            "name": name,
+            "endpoints": endpoints,
+        }
         if tags is not None:
             input_["tags"] = tags
 
@@ -765,6 +778,7 @@ class ChimeSDKVoiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_sip_media_application_call(
@@ -817,10 +831,11 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.create_sip_media_application_call_request.CreateSipMediaApplicationCallRequest = {}  # type: ignore[typeddict-item]
-        input_["from_phone_number"] = from_phone_number
-        input_["to_phone_number"] = to_phone_number
-        input_["sip_media_application_id"] = sip_media_application_id
+        input_: capo_chime_sdk_voice.types.create_sip_media_application_call_request.CreateSipMediaApplicationCallRequest = {
+            "from_phone_number": from_phone_number,
+            "to_phone_number": to_phone_number,
+            "sip_media_application_id": sip_media_application_id,
+        }
         if sip_headers is not None:
             input_["sip_headers"] = sip_headers
         if arguments_map is not None:
@@ -831,6 +846,7 @@ class ChimeSDKVoiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_sip_rule(
@@ -884,10 +900,11 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.create_sip_rule_request.CreateSipRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
-        input_["trigger_type"] = trigger_type
-        input_["trigger_value"] = trigger_value
+        input_: capo_chime_sdk_voice.types.create_sip_rule_request.CreateSipRuleRequest = {
+            "name": name,
+            "trigger_type": trigger_type,
+            "trigger_value": trigger_value,
+        }
         if disabled is not None:
             input_["disabled"] = disabled
         if target_applications is not None:
@@ -898,6 +915,7 @@ class ChimeSDKVoiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_voice_connector(
@@ -954,11 +972,12 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.create_voice_connector_request.CreateVoiceConnectorRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_chime_sdk_voice.types.create_voice_connector_request.CreateVoiceConnectorRequest = {
+            "name": name,
+            "require_encryption": require_encryption,
+        }
         if aws_region is not None:
             input_["aws_region"] = aws_region
-        input_["require_encryption"] = require_encryption
         if tags is not None:
             input_["tags"] = tags
         if integration_type is not None:
@@ -971,6 +990,7 @@ class ChimeSDKVoiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_voice_connector_group(
@@ -1015,8 +1035,9 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.create_voice_connector_group_request.CreateVoiceConnectorGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_chime_sdk_voice.types.create_voice_connector_group_request.CreateVoiceConnectorGroupRequest = {
+            "name": name
+        }
         if voice_connector_items is not None:
             input_["voice_connector_items"] = voice_connector_items
 
@@ -1025,6 +1046,7 @@ class ChimeSDKVoiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_voice_profile(
@@ -1068,14 +1090,16 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.create_voice_profile_request.CreateVoiceProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["speaker_search_task_id"] = speaker_search_task_id
+        input_: capo_chime_sdk_voice.types.create_voice_profile_request.CreateVoiceProfileRequest = {
+            "speaker_search_task_id": speaker_search_task_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_voice_profile_domain(
@@ -1129,13 +1153,12 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.create_voice_profile_domain_request.CreateVoiceProfileDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["name"] = name
+        input_: capo_chime_sdk_voice.types.create_voice_profile_domain_request.CreateVoiceProfileDomainRequest = {
+            "name": name,
+            "server_side_encryption_configuration": server_side_encryption_configuration,
+        }
         if description is not None:
             input_["description"] = description
-        input_["server_side_encryption_configuration"] = (
-            server_side_encryption_configuration
-        )
         if client_request_token is not None:
             input_["client_request_token"] = client_request_token
         if tags is not None:
@@ -1146,6 +1169,7 @@ class ChimeSDKVoiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_phone_number(
@@ -1183,14 +1207,16 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.delete_phone_number_request.DeletePhoneNumberRequest = {}  # type: ignore[typeddict-item]
-        input_["phone_number_id"] = phone_number_id
+        input_: capo_chime_sdk_voice.types.delete_phone_number_request.DeletePhoneNumberRequest = {
+            "phone_number_id": phone_number_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_proxy_session(
@@ -1230,15 +1256,17 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.delete_proxy_session_request.DeleteProxySessionRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_id"] = voice_connector_id
-        input_["proxy_session_id"] = proxy_session_id
+        input_: capo_chime_sdk_voice.types.delete_proxy_session_request.DeleteProxySessionRequest = {
+            "voice_connector_id": voice_connector_id,
+            "proxy_session_id": proxy_session_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_sip_media_application(
@@ -1277,14 +1305,16 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.delete_sip_media_application_request.DeleteSipMediaApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["sip_media_application_id"] = sip_media_application_id
+        input_: capo_chime_sdk_voice.types.delete_sip_media_application_request.DeleteSipMediaApplicationRequest = {
+            "sip_media_application_id": sip_media_application_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_sip_rule(
@@ -1323,14 +1353,16 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.delete_sip_rule_request.DeleteSipRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["sip_rule_id"] = sip_rule_id
+        input_: capo_chime_sdk_voice.types.delete_sip_rule_request.DeleteSipRuleRequest = {
+            "sip_rule_id": sip_rule_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_voice_connector(
@@ -1369,14 +1401,16 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.delete_voice_connector_request.DeleteVoiceConnectorRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_id"] = voice_connector_id
+        input_: capo_chime_sdk_voice.types.delete_voice_connector_request.DeleteVoiceConnectorRequest = {
+            "voice_connector_id": voice_connector_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_voice_connector_emergency_calling_configuration(
@@ -1414,14 +1448,16 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.delete_voice_connector_emergency_calling_configuration_request.DeleteVoiceConnectorEmergencyCallingConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_id"] = voice_connector_id
+        input_: capo_chime_sdk_voice.types.delete_voice_connector_emergency_calling_configuration_request.DeleteVoiceConnectorEmergencyCallingConfigurationRequest = {
+            "voice_connector_id": voice_connector_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_voice_connector_external_systems_configuration(
@@ -1459,14 +1495,16 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.delete_voice_connector_external_systems_configuration_request.DeleteVoiceConnectorExternalSystemsConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_id"] = voice_connector_id
+        input_: capo_chime_sdk_voice.types.delete_voice_connector_external_systems_configuration_request.DeleteVoiceConnectorExternalSystemsConfigurationRequest = {
+            "voice_connector_id": voice_connector_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_voice_connector_group(
@@ -1505,14 +1543,16 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.delete_voice_connector_group_request.DeleteVoiceConnectorGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_group_id"] = voice_connector_group_id
+        input_: capo_chime_sdk_voice.types.delete_voice_connector_group_request.DeleteVoiceConnectorGroupRequest = {
+            "voice_connector_group_id": voice_connector_group_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_voice_connector_origination(
@@ -1550,14 +1590,16 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.delete_voice_connector_origination_request.DeleteVoiceConnectorOriginationRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_id"] = voice_connector_id
+        input_: capo_chime_sdk_voice.types.delete_voice_connector_origination_request.DeleteVoiceConnectorOriginationRequest = {
+            "voice_connector_id": voice_connector_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_voice_connector_proxy(
@@ -1595,14 +1637,16 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.delete_voice_connector_proxy_request.DeleteVoiceConnectorProxyRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_id"] = voice_connector_id
+        input_: capo_chime_sdk_voice.types.delete_voice_connector_proxy_request.DeleteVoiceConnectorProxyRequest = {
+            "voice_connector_id": voice_connector_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_voice_connector_streaming_configuration(
@@ -1640,14 +1684,16 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.delete_voice_connector_streaming_configuration_request.DeleteVoiceConnectorStreamingConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_id"] = voice_connector_id
+        input_: capo_chime_sdk_voice.types.delete_voice_connector_streaming_configuration_request.DeleteVoiceConnectorStreamingConfigurationRequest = {
+            "voice_connector_id": voice_connector_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_voice_connector_termination(
@@ -1685,14 +1731,16 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.delete_voice_connector_termination_request.DeleteVoiceConnectorTerminationRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_id"] = voice_connector_id
+        input_: capo_chime_sdk_voice.types.delete_voice_connector_termination_request.DeleteVoiceConnectorTerminationRequest = {
+            "voice_connector_id": voice_connector_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_voice_connector_termination_credentials(
@@ -1732,15 +1780,17 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.delete_voice_connector_termination_credentials_request.DeleteVoiceConnectorTerminationCredentialsRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_id"] = voice_connector_id
-        input_["usernames"] = usernames
+        input_: capo_chime_sdk_voice.types.delete_voice_connector_termination_credentials_request.DeleteVoiceConnectorTerminationCredentialsRequest = {
+            "voice_connector_id": voice_connector_id,
+            "usernames": usernames,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_voice_profile(
@@ -1780,14 +1830,16 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.delete_voice_profile_request.DeleteVoiceProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_profile_id"] = voice_profile_id
+        input_: capo_chime_sdk_voice.types.delete_voice_profile_request.DeleteVoiceProfileRequest = {
+            "voice_profile_id": voice_profile_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def delete_voice_profile_domain(
@@ -1827,14 +1879,16 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.delete_voice_profile_domain_request.DeleteVoiceProfileDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_profile_domain_id"] = voice_profile_domain_id
+        input_: capo_chime_sdk_voice.types.delete_voice_profile_domain_request.DeleteVoiceProfileDomainRequest = {
+            "voice_profile_domain_id": voice_profile_domain_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_phone_numbers_from_voice_connector(
@@ -1876,15 +1930,17 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.disassociate_phone_numbers_from_voice_connector_request.DisassociatePhoneNumbersFromVoiceConnectorRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_id"] = voice_connector_id
-        input_["e164_phone_numbers"] = e164_phone_numbers
+        input_: capo_chime_sdk_voice.types.disassociate_phone_numbers_from_voice_connector_request.DisassociatePhoneNumbersFromVoiceConnectorRequest = {
+            "voice_connector_id": voice_connector_id,
+            "e164_phone_numbers": e164_phone_numbers,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def disassociate_phone_numbers_from_voice_connector_group(
@@ -1926,15 +1982,17 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.disassociate_phone_numbers_from_voice_connector_group_request.DisassociatePhoneNumbersFromVoiceConnectorGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_group_id"] = voice_connector_group_id
-        input_["e164_phone_numbers"] = e164_phone_numbers
+        input_: capo_chime_sdk_voice.types.disassociate_phone_numbers_from_voice_connector_group_request.DisassociatePhoneNumbersFromVoiceConnectorGroupRequest = {
+            "voice_connector_group_id": voice_connector_group_id,
+            "e164_phone_numbers": e164_phone_numbers,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_global_settings(
@@ -1973,6 +2031,7 @@ class ChimeSDKVoiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_phone_number(
@@ -2012,14 +2071,16 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.get_phone_number_request.GetPhoneNumberRequest = {}  # type: ignore[typeddict-item]
-        input_["phone_number_id"] = phone_number_id
+        input_: capo_chime_sdk_voice.types.get_phone_number_request.GetPhoneNumberRequest = {
+            "phone_number_id": phone_number_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_phone_number_order(
@@ -2059,14 +2120,16 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.get_phone_number_order_request.GetPhoneNumberOrderRequest = {}  # type: ignore[typeddict-item]
-        input_["phone_number_order_id"] = phone_number_order_id
+        input_: capo_chime_sdk_voice.types.get_phone_number_order_request.GetPhoneNumberOrderRequest = {
+            "phone_number_order_id": phone_number_order_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_phone_number_settings(
@@ -2105,6 +2168,7 @@ class ChimeSDKVoiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_proxy_session(
@@ -2148,15 +2212,17 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.get_proxy_session_request.GetProxySessionRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_id"] = voice_connector_id
-        input_["proxy_session_id"] = proxy_session_id
+        input_: capo_chime_sdk_voice.types.get_proxy_session_request.GetProxySessionRequest = {
+            "voice_connector_id": voice_connector_id,
+            "proxy_session_id": proxy_session_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_sip_media_application(
@@ -2196,14 +2262,16 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.get_sip_media_application_request.GetSipMediaApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["sip_media_application_id"] = sip_media_application_id
+        input_: capo_chime_sdk_voice.types.get_sip_media_application_request.GetSipMediaApplicationRequest = {
+            "sip_media_application_id": sip_media_application_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_sip_media_application_alexa_skill_configuration(
@@ -2243,14 +2311,16 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.get_sip_media_application_alexa_skill_configuration_request.GetSipMediaApplicationAlexaSkillConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["sip_media_application_id"] = sip_media_application_id
+        input_: capo_chime_sdk_voice.types.get_sip_media_application_alexa_skill_configuration_request.GetSipMediaApplicationAlexaSkillConfigurationRequest = {
+            "sip_media_application_id": sip_media_application_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_sip_media_application_logging_configuration(
@@ -2290,14 +2360,16 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.get_sip_media_application_logging_configuration_request.GetSipMediaApplicationLoggingConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["sip_media_application_id"] = sip_media_application_id
+        input_: capo_chime_sdk_voice.types.get_sip_media_application_logging_configuration_request.GetSipMediaApplicationLoggingConfigurationRequest = {
+            "sip_media_application_id": sip_media_application_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_sip_rule(
@@ -2337,14 +2409,16 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.get_sip_rule_request.GetSipRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["sip_rule_id"] = sip_rule_id
+        input_: capo_chime_sdk_voice.types.get_sip_rule_request.GetSipRuleRequest = {
+            "sip_rule_id": sip_rule_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_speaker_search_task(
@@ -2388,15 +2462,17 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.get_speaker_search_task_request.GetSpeakerSearchTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_id"] = voice_connector_id
-        input_["speaker_search_task_id"] = speaker_search_task_id
+        input_: capo_chime_sdk_voice.types.get_speaker_search_task_request.GetSpeakerSearchTaskRequest = {
+            "voice_connector_id": voice_connector_id,
+            "speaker_search_task_id": speaker_search_task_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_voice_connector(
@@ -2436,14 +2512,16 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.get_voice_connector_request.GetVoiceConnectorRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_id"] = voice_connector_id
+        input_: capo_chime_sdk_voice.types.get_voice_connector_request.GetVoiceConnectorRequest = {
+            "voice_connector_id": voice_connector_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_voice_connector_emergency_calling_configuration(
@@ -2483,14 +2561,16 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.get_voice_connector_emergency_calling_configuration_request.GetVoiceConnectorEmergencyCallingConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_id"] = voice_connector_id
+        input_: capo_chime_sdk_voice.types.get_voice_connector_emergency_calling_configuration_request.GetVoiceConnectorEmergencyCallingConfigurationRequest = {
+            "voice_connector_id": voice_connector_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_voice_connector_external_systems_configuration(
@@ -2530,14 +2610,16 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.get_voice_connector_external_systems_configuration_request.GetVoiceConnectorExternalSystemsConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_id"] = voice_connector_id
+        input_: capo_chime_sdk_voice.types.get_voice_connector_external_systems_configuration_request.GetVoiceConnectorExternalSystemsConfigurationRequest = {
+            "voice_connector_id": voice_connector_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_voice_connector_group(
@@ -2577,14 +2659,16 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.get_voice_connector_group_request.GetVoiceConnectorGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_group_id"] = voice_connector_group_id
+        input_: capo_chime_sdk_voice.types.get_voice_connector_group_request.GetVoiceConnectorGroupRequest = {
+            "voice_connector_group_id": voice_connector_group_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_voice_connector_logging_configuration(
@@ -2624,14 +2708,16 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.get_voice_connector_logging_configuration_request.GetVoiceConnectorLoggingConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_id"] = voice_connector_id
+        input_: capo_chime_sdk_voice.types.get_voice_connector_logging_configuration_request.GetVoiceConnectorLoggingConfigurationRequest = {
+            "voice_connector_id": voice_connector_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_voice_connector_origination(
@@ -2671,14 +2757,16 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.get_voice_connector_origination_request.GetVoiceConnectorOriginationRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_id"] = voice_connector_id
+        input_: capo_chime_sdk_voice.types.get_voice_connector_origination_request.GetVoiceConnectorOriginationRequest = {
+            "voice_connector_id": voice_connector_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_voice_connector_proxy(
@@ -2718,14 +2806,16 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.get_voice_connector_proxy_request.GetVoiceConnectorProxyRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_id"] = voice_connector_id
+        input_: capo_chime_sdk_voice.types.get_voice_connector_proxy_request.GetVoiceConnectorProxyRequest = {
+            "voice_connector_id": voice_connector_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_voice_connector_streaming_configuration(
@@ -2765,14 +2855,16 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.get_voice_connector_streaming_configuration_request.GetVoiceConnectorStreamingConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_id"] = voice_connector_id
+        input_: capo_chime_sdk_voice.types.get_voice_connector_streaming_configuration_request.GetVoiceConnectorStreamingConfigurationRequest = {
+            "voice_connector_id": voice_connector_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_voice_connector_termination(
@@ -2812,14 +2904,16 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.get_voice_connector_termination_request.GetVoiceConnectorTerminationRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_id"] = voice_connector_id
+        input_: capo_chime_sdk_voice.types.get_voice_connector_termination_request.GetVoiceConnectorTerminationRequest = {
+            "voice_connector_id": voice_connector_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_voice_connector_termination_health(
@@ -2859,14 +2953,16 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.get_voice_connector_termination_health_request.GetVoiceConnectorTerminationHealthRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_id"] = voice_connector_id
+        input_: capo_chime_sdk_voice.types.get_voice_connector_termination_health_request.GetVoiceConnectorTerminationHealthRequest = {
+            "voice_connector_id": voice_connector_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_voice_profile(
@@ -2909,14 +3005,16 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.get_voice_profile_request.GetVoiceProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_profile_id"] = voice_profile_id
+        input_: capo_chime_sdk_voice.types.get_voice_profile_request.GetVoiceProfileRequest = {
+            "voice_profile_id": voice_profile_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_voice_profile_domain(
@@ -2957,14 +3055,16 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.get_voice_profile_domain_request.GetVoiceProfileDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_profile_domain_id"] = voice_profile_domain_id
+        input_: capo_chime_sdk_voice.types.get_voice_profile_domain_request.GetVoiceProfileDomainRequest = {
+            "voice_profile_domain_id": voice_profile_domain_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_voice_tone_analysis_task(
@@ -3010,16 +3110,18 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.get_voice_tone_analysis_task_request.GetVoiceToneAnalysisTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_id"] = voice_connector_id
-        input_["voice_tone_analysis_task_id"] = voice_tone_analysis_task_id
-        input_["is_caller"] = is_caller
+        input_: capo_chime_sdk_voice.types.get_voice_tone_analysis_task_request.GetVoiceToneAnalysisTaskRequest = {
+            "voice_connector_id": voice_connector_id,
+            "voice_tone_analysis_task_id": voice_tone_analysis_task_id,
+            "is_caller": is_caller,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_available_voice_connector_regions(
@@ -3058,6 +3160,7 @@ class ChimeSDKVoiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_phone_number_orders(
@@ -3098,7 +3201,7 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.list_phone_number_orders_request.ListPhoneNumberOrdersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_chime_sdk_voice.types.list_phone_number_orders_request.ListPhoneNumberOrdersRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3109,7 +3212,27 @@ class ChimeSDKVoiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_phone_number_orders(
+        self,
+        *,
+        config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
+        next_token: Optional["capo_chime_sdk_voice.types.string.String"] = None,
+        max_results: Optional["capo_chime_sdk_voice.types.result_max.ResultMax"] = None,
+    ) -> "Iterator[capo_chime_sdk_voice.types.list_phone_number_orders_response.ListPhoneNumberOrdersResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_phone_number_orders(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_phone_numbers(
         self,
@@ -3162,7 +3285,7 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.list_phone_numbers_request.ListPhoneNumbersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_chime_sdk_voice.types.list_phone_numbers_request.ListPhoneNumbersRequest = {}
         if status is not None:
             input_["status"] = status
         if product_type is not None:
@@ -3181,7 +3304,39 @@ class ChimeSDKVoiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_phone_numbers(
+        self,
+        *,
+        config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
+        status: Optional["capo_chime_sdk_voice.types.string.String"] = None,
+        product_type: Optional[
+            "capo_chime_sdk_voice.types.phone_number_product_type.PhoneNumberProductType"
+        ] = None,
+        filter_name: Optional[
+            "capo_chime_sdk_voice.types.phone_number_association_name.PhoneNumberAssociationName"
+        ] = None,
+        filter_value: Optional["capo_chime_sdk_voice.types.string.String"] = None,
+        max_results: Optional["capo_chime_sdk_voice.types.result_max.ResultMax"] = None,
+        next_token: Optional["capo_chime_sdk_voice.types.string.String"] = None,
+    ) -> "Iterator[capo_chime_sdk_voice.types.list_phone_numbers_response.ListPhoneNumbersResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_phone_numbers(
+                config_overrides=config_overrides,
+                status=status,
+                product_type=product_type,
+                filter_name=filter_name,
+                filter_value=filter_value,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_proxy_sessions(
         self,
@@ -3230,8 +3385,9 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.list_proxy_sessions_request.ListProxySessionsRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_id"] = voice_connector_id
+        input_: capo_chime_sdk_voice.types.list_proxy_sessions_request.ListProxySessionsRequest = {
+            "voice_connector_id": voice_connector_id
+        }
         if status is not None:
             input_["status"] = status
         if next_token is not None:
@@ -3244,7 +3400,35 @@ class ChimeSDKVoiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_proxy_sessions(
+        self,
+        voice_connector_id: "capo_chime_sdk_voice.types.non_empty_string128.NonEmptyString128",
+        *,
+        config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
+        status: Optional[
+            "capo_chime_sdk_voice.types.proxy_session_status.ProxySessionStatus"
+        ] = None,
+        next_token: Optional[
+            "capo_chime_sdk_voice.types.next_token_string.NextTokenString"
+        ] = None,
+        max_results: Optional["capo_chime_sdk_voice.types.result_max.ResultMax"] = None,
+    ) -> "Iterator[capo_chime_sdk_voice.types.list_proxy_sessions_response.ListProxySessionsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_proxy_sessions(
+                voice_connector_id,
+                config_overrides=config_overrides,
+                status=status,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_sip_media_applications(
         self,
@@ -3286,7 +3470,7 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.list_sip_media_applications_request.ListSipMediaApplicationsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_chime_sdk_voice.types.list_sip_media_applications_request.ListSipMediaApplicationsRequest = {}
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -3297,6 +3481,7 @@ class ChimeSDKVoiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_sip_media_applications(
@@ -3368,7 +3553,7 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.list_sip_rules_request.ListSipRulesRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_chime_sdk_voice.types.list_sip_rules_request.ListSipRulesRequest = {}
         if sip_media_application_id is not None:
             input_["sip_media_application_id"] = sip_media_application_id
         if max_results is not None:
@@ -3381,6 +3566,7 @@ class ChimeSDKVoiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_sip_rules(
@@ -3447,14 +3633,16 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.list_supported_phone_number_countries_request.ListSupportedPhoneNumberCountriesRequest = {}  # type: ignore[typeddict-item]
-        input_["product_type"] = product_type
+        input_: capo_chime_sdk_voice.types.list_supported_phone_number_countries_request.ListSupportedPhoneNumberCountriesRequest = {
+            "product_type": product_type
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_tags_for_resource(
@@ -3493,14 +3681,16 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.list_tags_for_resource_request.ListTagsForResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
+        input_: capo_chime_sdk_voice.types.list_tags_for_resource_request.ListTagsForResourceRequest = {
+            "resource_arn": resource_arn
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_voice_connector_groups(
@@ -3541,7 +3731,7 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.list_voice_connector_groups_request.ListVoiceConnectorGroupsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_chime_sdk_voice.types.list_voice_connector_groups_request.ListVoiceConnectorGroupsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3552,7 +3742,27 @@ class ChimeSDKVoiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_voice_connector_groups(
+        self,
+        *,
+        config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
+        next_token: Optional["capo_chime_sdk_voice.types.string.String"] = None,
+        max_results: Optional["capo_chime_sdk_voice.types.result_max.ResultMax"] = None,
+    ) -> "Iterator[capo_chime_sdk_voice.types.list_voice_connector_groups_response.ListVoiceConnectorGroupsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_voice_connector_groups(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_voice_connectors(
         self,
@@ -3592,7 +3802,7 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.list_voice_connectors_request.ListVoiceConnectorsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_chime_sdk_voice.types.list_voice_connectors_request.ListVoiceConnectorsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3603,7 +3813,27 @@ class ChimeSDKVoiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_voice_connectors(
+        self,
+        *,
+        config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
+        next_token: Optional["capo_chime_sdk_voice.types.string.String"] = None,
+        max_results: Optional["capo_chime_sdk_voice.types.result_max.ResultMax"] = None,
+    ) -> "Iterator[capo_chime_sdk_voice.types.list_voice_connectors_response.ListVoiceConnectorsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_voice_connectors(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_voice_connector_termination_credentials(
         self,
@@ -3642,14 +3872,16 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.list_voice_connector_termination_credentials_request.ListVoiceConnectorTerminationCredentialsRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_id"] = voice_connector_id
+        input_: capo_chime_sdk_voice.types.list_voice_connector_termination_credentials_request.ListVoiceConnectorTerminationCredentialsRequest = {
+            "voice_connector_id": voice_connector_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_voice_profile_domains(
@@ -3691,7 +3923,7 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.list_voice_profile_domains_request.ListVoiceProfileDomainsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_chime_sdk_voice.types.list_voice_profile_domains_request.ListVoiceProfileDomainsRequest = {}
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3702,7 +3934,27 @@ class ChimeSDKVoiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_voice_profile_domains(
+        self,
+        *,
+        config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
+        next_token: Optional["capo_chime_sdk_voice.types.string.String"] = None,
+        max_results: Optional["capo_chime_sdk_voice.types.result_max.ResultMax"] = None,
+    ) -> "Iterator[capo_chime_sdk_voice.types.list_voice_profile_domains_response.ListVoiceProfileDomainsResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_voice_profile_domains(
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def list_voice_profiles(
         self,
@@ -3745,8 +3997,9 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.list_voice_profiles_request.ListVoiceProfilesRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_profile_domain_id"] = voice_profile_domain_id
+        input_: capo_chime_sdk_voice.types.list_voice_profiles_request.ListVoiceProfilesRequest = {
+            "voice_profile_domain_id": voice_profile_domain_id
+        }
         if next_token is not None:
             input_["next_token"] = next_token
         if max_results is not None:
@@ -3757,7 +4010,29 @@ class ChimeSDKVoiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_list_voice_profiles(
+        self,
+        voice_profile_domain_id: "capo_chime_sdk_voice.types.non_empty_string256.NonEmptyString256",
+        *,
+        config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
+        next_token: Optional["capo_chime_sdk_voice.types.string.String"] = None,
+        max_results: Optional["capo_chime_sdk_voice.types.result_max.ResultMax"] = None,
+    ) -> "Iterator[capo_chime_sdk_voice.types.list_voice_profiles_response.ListVoiceProfilesResponse]":
+        _token = next_token
+        while True:
+            _response = self.list_voice_profiles(
+                voice_profile_domain_id,
+                config_overrides=config_overrides,
+                next_token=_token,
+                max_results=max_results,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def put_sip_media_application_alexa_skill_configuration(
         self,
@@ -3800,8 +4075,9 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.put_sip_media_application_alexa_skill_configuration_request.PutSipMediaApplicationAlexaSkillConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["sip_media_application_id"] = sip_media_application_id
+        input_: capo_chime_sdk_voice.types.put_sip_media_application_alexa_skill_configuration_request.PutSipMediaApplicationAlexaSkillConfigurationRequest = {
+            "sip_media_application_id": sip_media_application_id
+        }
         if sip_media_application_alexa_skill_configuration is not None:
             input_["sip_media_application_alexa_skill_configuration"] = (
                 sip_media_application_alexa_skill_configuration
@@ -3812,6 +4088,7 @@ class ChimeSDKVoiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_sip_media_application_logging_configuration(
@@ -3855,8 +4132,9 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.put_sip_media_application_logging_configuration_request.PutSipMediaApplicationLoggingConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["sip_media_application_id"] = sip_media_application_id
+        input_: capo_chime_sdk_voice.types.put_sip_media_application_logging_configuration_request.PutSipMediaApplicationLoggingConfigurationRequest = {
+            "sip_media_application_id": sip_media_application_id
+        }
         if sip_media_application_logging_configuration is not None:
             input_["sip_media_application_logging_configuration"] = (
                 sip_media_application_logging_configuration
@@ -3867,6 +4145,7 @@ class ChimeSDKVoiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_voice_connector_emergency_calling_configuration(
@@ -3908,15 +4187,17 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.put_voice_connector_emergency_calling_configuration_request.PutVoiceConnectorEmergencyCallingConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_id"] = voice_connector_id
-        input_["emergency_calling_configuration"] = emergency_calling_configuration
+        input_: capo_chime_sdk_voice.types.put_voice_connector_emergency_calling_configuration_request.PutVoiceConnectorEmergencyCallingConfigurationRequest = {
+            "voice_connector_id": voice_connector_id,
+            "emergency_calling_configuration": emergency_calling_configuration,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_voice_connector_external_systems_configuration(
@@ -3965,8 +4246,9 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.put_voice_connector_external_systems_configuration_request.PutVoiceConnectorExternalSystemsConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_id"] = voice_connector_id
+        input_: capo_chime_sdk_voice.types.put_voice_connector_external_systems_configuration_request.PutVoiceConnectorExternalSystemsConfigurationRequest = {
+            "voice_connector_id": voice_connector_id
+        }
         if session_border_controller_types is not None:
             input_["session_border_controller_types"] = session_border_controller_types
         if contact_center_system_types is not None:
@@ -3977,6 +4259,7 @@ class ChimeSDKVoiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_voice_connector_logging_configuration(
@@ -4018,15 +4301,17 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.put_voice_connector_logging_configuration_request.PutVoiceConnectorLoggingConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_id"] = voice_connector_id
-        input_["logging_configuration"] = logging_configuration
+        input_: capo_chime_sdk_voice.types.put_voice_connector_logging_configuration_request.PutVoiceConnectorLoggingConfigurationRequest = {
+            "voice_connector_id": voice_connector_id,
+            "logging_configuration": logging_configuration,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_voice_connector_origination(
@@ -4068,15 +4353,17 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.put_voice_connector_origination_request.PutVoiceConnectorOriginationRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_id"] = voice_connector_id
-        input_["origination"] = origination
+        input_: capo_chime_sdk_voice.types.put_voice_connector_origination_request.PutVoiceConnectorOriginationRequest = {
+            "voice_connector_id": voice_connector_id,
+            "origination": origination,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_voice_connector_proxy(
@@ -4127,10 +4414,11 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.put_voice_connector_proxy_request.PutVoiceConnectorProxyRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_id"] = voice_connector_id
-        input_["default_session_expiry_minutes"] = default_session_expiry_minutes
-        input_["phone_number_pool_countries"] = phone_number_pool_countries
+        input_: capo_chime_sdk_voice.types.put_voice_connector_proxy_request.PutVoiceConnectorProxyRequest = {
+            "voice_connector_id": voice_connector_id,
+            "default_session_expiry_minutes": default_session_expiry_minutes,
+            "phone_number_pool_countries": phone_number_pool_countries,
+        }
         if fall_back_phone_number is not None:
             input_["fall_back_phone_number"] = fall_back_phone_number
         if disabled is not None:
@@ -4141,6 +4429,7 @@ class ChimeSDKVoiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_voice_connector_streaming_configuration(
@@ -4182,15 +4471,17 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.put_voice_connector_streaming_configuration_request.PutVoiceConnectorStreamingConfigurationRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_id"] = voice_connector_id
-        input_["streaming_configuration"] = streaming_configuration
+        input_: capo_chime_sdk_voice.types.put_voice_connector_streaming_configuration_request.PutVoiceConnectorStreamingConfigurationRequest = {
+            "voice_connector_id": voice_connector_id,
+            "streaming_configuration": streaming_configuration,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_voice_connector_termination(
@@ -4233,15 +4524,17 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.put_voice_connector_termination_request.PutVoiceConnectorTerminationRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_id"] = voice_connector_id
-        input_["termination"] = termination
+        input_: capo_chime_sdk_voice.types.put_voice_connector_termination_request.PutVoiceConnectorTerminationRequest = {
+            "voice_connector_id": voice_connector_id,
+            "termination": termination,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def put_voice_connector_termination_credentials(
@@ -4283,8 +4576,9 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.put_voice_connector_termination_credentials_request.PutVoiceConnectorTerminationCredentialsRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_id"] = voice_connector_id
+        input_: capo_chime_sdk_voice.types.put_voice_connector_termination_credentials_request.PutVoiceConnectorTerminationCredentialsRequest = {
+            "voice_connector_id": voice_connector_id
+        }
         if credentials is not None:
             input_["credentials"] = credentials
 
@@ -4293,6 +4587,7 @@ class ChimeSDKVoiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def restore_phone_number(
@@ -4333,14 +4628,16 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.restore_phone_number_request.RestorePhoneNumberRequest = {}  # type: ignore[typeddict-item]
-        input_["phone_number_id"] = phone_number_id
+        input_: capo_chime_sdk_voice.types.restore_phone_number_request.RestorePhoneNumberRequest = {
+            "phone_number_id": phone_number_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def search_available_phone_numbers(
@@ -4402,7 +4699,7 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.search_available_phone_numbers_request.SearchAvailablePhoneNumbersRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_chime_sdk_voice.types.search_available_phone_numbers_request.SearchAvailablePhoneNumbersRequest = {}
         if area_code is not None:
             input_["area_code"] = area_code
         if city is not None:
@@ -4425,7 +4722,47 @@ class ChimeSDKVoiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
+
+    def iter_search_available_phone_numbers(
+        self,
+        *,
+        config_overrides: Optional[ChimeSDKVoiceClientConfig] = None,
+        area_code: Optional["capo_chime_sdk_voice.types.string.String"] = None,
+        city: Optional["capo_chime_sdk_voice.types.string.String"] = None,
+        country: Optional[
+            "capo_chime_sdk_voice.types.alpha2_country_code.Alpha2CountryCode"
+        ] = None,
+        state: Optional["capo_chime_sdk_voice.types.string.String"] = None,
+        toll_free_prefix: Optional[
+            "capo_chime_sdk_voice.types.toll_free_prefix.TollFreePrefix"
+        ] = None,
+        phone_number_type: Optional[
+            "capo_chime_sdk_voice.types.phone_number_type.PhoneNumberType"
+        ] = None,
+        max_results: Optional[
+            "capo_chime_sdk_voice.types.phone_number_max_results.PhoneNumberMaxResults"
+        ] = None,
+        next_token: Optional["capo_chime_sdk_voice.types.string.String"] = None,
+    ) -> "Iterator[capo_chime_sdk_voice.types.search_available_phone_numbers_response.SearchAvailablePhoneNumbersResponse]":
+        _token = next_token
+        while True:
+            _response = self.search_available_phone_numbers(
+                config_overrides=config_overrides,
+                area_code=area_code,
+                city=city,
+                country=country,
+                state=state,
+                toll_free_prefix=toll_free_prefix,
+                phone_number_type=phone_number_type,
+                max_results=max_results,
+                next_token=_token,
+            )
+            yield _response
+            _token = _resolve_path(_response, ("next_token",))
+            if not _token:
+                break
 
     def start_speaker_search_task(
         self,
@@ -4481,10 +4818,11 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.start_speaker_search_task_request.StartSpeakerSearchTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_id"] = voice_connector_id
-        input_["transaction_id"] = transaction_id
-        input_["voice_profile_domain_id"] = voice_profile_domain_id
+        input_: capo_chime_sdk_voice.types.start_speaker_search_task_request.StartSpeakerSearchTaskRequest = {
+            "voice_connector_id": voice_connector_id,
+            "transaction_id": transaction_id,
+            "voice_profile_domain_id": voice_profile_domain_id,
+        }
         if client_request_token is not None:
             input_["client_request_token"] = client_request_token
         if call_leg is not None:
@@ -4495,6 +4833,7 @@ class ChimeSDKVoiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def start_voice_tone_analysis_task(
@@ -4547,10 +4886,11 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.start_voice_tone_analysis_task_request.StartVoiceToneAnalysisTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_id"] = voice_connector_id
-        input_["transaction_id"] = transaction_id
-        input_["language_code"] = language_code
+        input_: capo_chime_sdk_voice.types.start_voice_tone_analysis_task_request.StartVoiceToneAnalysisTaskRequest = {
+            "voice_connector_id": voice_connector_id,
+            "transaction_id": transaction_id,
+            "language_code": language_code,
+        }
         if client_request_token is not None:
             input_["client_request_token"] = client_request_token
 
@@ -4559,6 +4899,7 @@ class ChimeSDKVoiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_speaker_search_task(
@@ -4601,15 +4942,17 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.stop_speaker_search_task_request.StopSpeakerSearchTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_id"] = voice_connector_id
-        input_["speaker_search_task_id"] = speaker_search_task_id
+        input_: capo_chime_sdk_voice.types.stop_speaker_search_task_request.StopSpeakerSearchTaskRequest = {
+            "voice_connector_id": voice_connector_id,
+            "speaker_search_task_id": speaker_search_task_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def stop_voice_tone_analysis_task(
@@ -4652,15 +4995,17 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.stop_voice_tone_analysis_task_request.StopVoiceToneAnalysisTaskRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_id"] = voice_connector_id
-        input_["voice_tone_analysis_task_id"] = voice_tone_analysis_task_id
+        input_: capo_chime_sdk_voice.types.stop_voice_tone_analysis_task_request.StopVoiceToneAnalysisTaskRequest = {
+            "voice_connector_id": voice_connector_id,
+            "voice_tone_analysis_task_id": voice_tone_analysis_task_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def tag_resource(
@@ -4700,15 +5045,17 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.tag_resource_request.TagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tags"] = tags
+        input_: capo_chime_sdk_voice.types.tag_resource_request.TagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def untag_resource(
@@ -4747,15 +5094,17 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.untag_resource_request.UntagResourceRequest = {}  # type: ignore[typeddict-item]
-        input_["resource_arn"] = resource_arn
-        input_["tag_keys"] = tag_keys
+        input_: capo_chime_sdk_voice.types.untag_resource_request.UntagResourceRequest = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_global_settings(
@@ -4794,7 +5143,7 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.update_global_settings_request.UpdateGlobalSettingsRequest = {}  # type: ignore[typeddict-item]
+        input_: capo_chime_sdk_voice.types.update_global_settings_request.UpdateGlobalSettingsRequest = {}
         if voice_connector is not None:
             input_["voice_connector"] = voice_connector
 
@@ -4803,6 +5152,7 @@ class ChimeSDKVoiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_phone_number(
@@ -4855,8 +5205,9 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.update_phone_number_request.UpdatePhoneNumberRequest = {}  # type: ignore[typeddict-item]
-        input_["phone_number_id"] = phone_number_id
+        input_: capo_chime_sdk_voice.types.update_phone_number_request.UpdatePhoneNumberRequest = {
+            "phone_number_id": phone_number_id
+        }
         if product_type is not None:
             input_["product_type"] = product_type
         if calling_name is not None:
@@ -4869,6 +5220,7 @@ class ChimeSDKVoiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_phone_number_settings(
@@ -4905,14 +5257,16 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.update_phone_number_settings_request.UpdatePhoneNumberSettingsRequest = {}  # type: ignore[typeddict-item]
-        input_["calling_name"] = calling_name
+        input_: capo_chime_sdk_voice.types.update_phone_number_settings_request.UpdatePhoneNumberSettingsRequest = {
+            "calling_name": calling_name
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_proxy_session(
@@ -4960,10 +5314,11 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.update_proxy_session_request.UpdateProxySessionRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_id"] = voice_connector_id
-        input_["proxy_session_id"] = proxy_session_id
-        input_["capabilities"] = capabilities
+        input_: capo_chime_sdk_voice.types.update_proxy_session_request.UpdateProxySessionRequest = {
+            "voice_connector_id": voice_connector_id,
+            "proxy_session_id": proxy_session_id,
+            "capabilities": capabilities,
+        }
         if expiry_minutes is not None:
             input_["expiry_minutes"] = expiry_minutes
 
@@ -4972,6 +5327,7 @@ class ChimeSDKVoiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_sip_media_application(
@@ -5020,8 +5376,9 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.update_sip_media_application_request.UpdateSipMediaApplicationRequest = {}  # type: ignore[typeddict-item]
-        input_["sip_media_application_id"] = sip_media_application_id
+        input_: capo_chime_sdk_voice.types.update_sip_media_application_request.UpdateSipMediaApplicationRequest = {
+            "sip_media_application_id": sip_media_application_id
+        }
         if name is not None:
             input_["name"] = name
         if endpoints is not None:
@@ -5032,6 +5389,7 @@ class ChimeSDKVoiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_sip_media_application_call(
@@ -5076,16 +5434,18 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.update_sip_media_application_call_request.UpdateSipMediaApplicationCallRequest = {}  # type: ignore[typeddict-item]
-        input_["sip_media_application_id"] = sip_media_application_id
-        input_["transaction_id"] = transaction_id
-        input_["arguments"] = arguments
+        input_: capo_chime_sdk_voice.types.update_sip_media_application_call_request.UpdateSipMediaApplicationCallRequest = {
+            "sip_media_application_id": sip_media_application_id,
+            "transaction_id": transaction_id,
+            "arguments": arguments,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_sip_rule(
@@ -5137,9 +5497,10 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.update_sip_rule_request.UpdateSipRuleRequest = {}  # type: ignore[typeddict-item]
-        input_["sip_rule_id"] = sip_rule_id
-        input_["name"] = name
+        input_: capo_chime_sdk_voice.types.update_sip_rule_request.UpdateSipRuleRequest = {
+            "sip_rule_id": sip_rule_id,
+            "name": name,
+        }
         if disabled is not None:
             input_["disabled"] = disabled
         if target_applications is not None:
@@ -5150,6 +5511,7 @@ class ChimeSDKVoiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_voice_connector(
@@ -5193,16 +5555,18 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.update_voice_connector_request.UpdateVoiceConnectorRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_id"] = voice_connector_id
-        input_["name"] = name
-        input_["require_encryption"] = require_encryption
+        input_: capo_chime_sdk_voice.types.update_voice_connector_request.UpdateVoiceConnectorRequest = {
+            "voice_connector_id": voice_connector_id,
+            "name": name,
+            "require_encryption": require_encryption,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_voice_connector_group(
@@ -5247,16 +5611,18 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.update_voice_connector_group_request.UpdateVoiceConnectorGroupRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_connector_group_id"] = voice_connector_group_id
-        input_["name"] = name
-        input_["voice_connector_items"] = voice_connector_items
+        input_: capo_chime_sdk_voice.types.update_voice_connector_group_request.UpdateVoiceConnectorGroupRequest = {
+            "voice_connector_group_id": voice_connector_group_id,
+            "name": name,
+            "voice_connector_items": voice_connector_items,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_voice_profile(
@@ -5301,15 +5667,17 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.update_voice_profile_request.UpdateVoiceProfileRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_profile_id"] = voice_profile_id
-        input_["speaker_search_task_id"] = speaker_search_task_id
+        input_: capo_chime_sdk_voice.types.update_voice_profile_request.UpdateVoiceProfileRequest = {
+            "voice_profile_id": voice_profile_id,
+            "speaker_search_task_id": speaker_search_task_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_voice_profile_domain(
@@ -5358,8 +5726,9 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.update_voice_profile_domain_request.UpdateVoiceProfileDomainRequest = {}  # type: ignore[typeddict-item]
-        input_["voice_profile_domain_id"] = voice_profile_domain_id
+        input_: capo_chime_sdk_voice.types.update_voice_profile_domain_request.UpdateVoiceProfileDomainRequest = {
+            "voice_profile_domain_id": voice_profile_domain_id
+        }
         if name is not None:
             input_["name"] = name
         if description is not None:
@@ -5370,6 +5739,7 @@ class ChimeSDKVoiceClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def validate_e911_address(
@@ -5422,20 +5792,22 @@ class ChimeSDKVoiceClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_chime_sdk_voice.types.validate_e911_address_request.ValidateE911AddressRequest = {}  # type: ignore[typeddict-item]
-        input_["aws_account_id"] = aws_account_id
-        input_["street_number"] = street_number
-        input_["street_info"] = street_info
-        input_["city"] = city
-        input_["state"] = state
-        input_["country"] = country
-        input_["postal_code"] = postal_code
+        input_: capo_chime_sdk_voice.types.validate_e911_address_request.ValidateE911AddressRequest = {
+            "aws_account_id": aws_account_id,
+            "street_number": street_number,
+            "street_info": street_info,
+            "city": city,
+            "state": state,
+            "country": country,
+            "postal_code": postal_code,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

@@ -37,11 +37,11 @@ def serialize_aws_json_1_1(value: StartDashboardRefreshRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartDashboardRefreshRequest:
     out: StartDashboardRefreshRequest = {}  # type: ignore[typeddict-item]
-    if "DashboardId" in data:
+    if data.get("DashboardId") is not None:
         out["dashboard_id"] = data["DashboardId"]
     else:
         raise DeserializationError("StartDashboardRefreshRequest.dashboard_id required")
-    if "QueryParameterValues" in data:
+    if data.get("QueryParameterValues") is not None:
         import capo_cloudtrail.types.query_parameter_values
 
         out["query_parameter_values"] = (

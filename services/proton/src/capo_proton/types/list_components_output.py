@@ -33,9 +33,9 @@ def serialize_aws_json_1_0(value: ListComponentsOutput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListComponentsOutput:
     out: ListComponentsOutput = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "components" in data:
+    if data.get("components") is not None:
         import capo_proton.types.component_summary_list
 
         out["components"] = (

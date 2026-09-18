@@ -84,29 +84,29 @@ def serialize_json(value: Site) -> dict:
 
 def deserialize_json(data: dict) -> Site:
     out: Site = {}  # type: ignore[typeddict-item]
-    if "SiteId" in data:
+    if data.get("SiteId") is not None:
         out["site_id"] = data["SiteId"]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_outposts.types.tag_map
 
         out["tags"] = capo_outposts.types.tag_map.deserialize_json(data["Tags"])
-    if "SiteArn" in data:
+    if data.get("SiteArn") is not None:
         out["site_arn"] = data["SiteArn"]
-    if "Notes" in data:
+    if data.get("Notes") is not None:
         out["notes"] = data["Notes"]
-    if "OperatingAddressCountryCode" in data:
+    if data.get("OperatingAddressCountryCode") is not None:
         out["operating_address_country_code"] = data["OperatingAddressCountryCode"]
-    if "OperatingAddressStateOrRegion" in data:
+    if data.get("OperatingAddressStateOrRegion") is not None:
         out["operating_address_state_or_region"] = data["OperatingAddressStateOrRegion"]
-    if "OperatingAddressCity" in data:
+    if data.get("OperatingAddressCity") is not None:
         out["operating_address_city"] = data["OperatingAddressCity"]
-    if "RackPhysicalProperties" in data:
+    if data.get("RackPhysicalProperties") is not None:
         import capo_outposts.types.rack_physical_properties
 
         out["rack_physical_properties"] = (

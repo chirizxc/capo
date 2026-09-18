@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: InferenceComponentPlacementStatus) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> InferenceComponentPlacementStatus:
     out: InferenceComponentPlacementStatus = {}  # type: ignore[typeddict-item]
-    if "InstanceType" in data:
+    if data.get("InstanceType") is not None:
         import capo_sagemaker.types.production_variant_instance_type
 
         out["instance_type"] = (
@@ -46,6 +46,6 @@ def deserialize_aws_json_1_1(data: dict) -> InferenceComponentPlacementStatus:
                 data["InstanceType"]
             )
         )
-    if "CurrentCopyCount" in data:
+    if data.get("CurrentCopyCount") is not None:
         out["current_copy_count"] = data["CurrentCopyCount"]
     return out

@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> CisResultStatusFilterList:
 
     out: CisResultStatusFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_inspector2.types.cis_result_status_filter.deserialize_json(item)
         )

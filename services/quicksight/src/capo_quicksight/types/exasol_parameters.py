@@ -28,11 +28,11 @@ def serialize_json(value: ExasolParameters) -> dict:
 
 def deserialize_json(data: dict) -> ExasolParameters:
     out: ExasolParameters = {}  # type: ignore[typeddict-item]
-    if "Host" in data:
+    if data.get("Host") is not None:
         out["host"] = data["Host"]
     else:
         raise DeserializationError("ExasolParameters.host required")
-    if "Port" in data:
+    if data.get("Port") is not None:
         out["port"] = data["Port"]
     else:
         raise DeserializationError("ExasolParameters.port required")

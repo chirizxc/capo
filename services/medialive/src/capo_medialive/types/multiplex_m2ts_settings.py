@@ -150,15 +150,22 @@ def serialize_json(value: MultiplexM2tsSettings) -> dict:
             value["scte35_control"]
         )
     if "scte35_preroll_pullup_milliseconds" in value:
-        out["scte35PrerollPullupMilliseconds"] = value[
-            "scte35_preroll_pullup_milliseconds"
-        ]
+        out["scte35PrerollPullupMilliseconds"] = (
+            "NaN"
+            if value["scte35_preroll_pullup_milliseconds"]
+            != value["scte35_preroll_pullup_milliseconds"]
+            else "Infinity"
+            if value["scte35_preroll_pullup_milliseconds"] == float("inf")
+            else "-Infinity"
+            if value["scte35_preroll_pullup_milliseconds"] == float("-inf")
+            else value["scte35_preroll_pullup_milliseconds"]
+        )
     return out
 
 
 def deserialize_json(data: dict) -> MultiplexM2tsSettings:
     out: MultiplexM2tsSettings = {}  # type: ignore[typeddict-item]
-    if "absentInputAudioBehavior" in data:
+    if data.get("absentInputAudioBehavior") is not None:
         import capo_medialive.types.m2ts_absent_input_audio_behavior
 
         out["absent_input_audio_behavior"] = (
@@ -166,11 +173,11 @@ def deserialize_json(data: dict) -> MultiplexM2tsSettings:
                 data["absentInputAudioBehavior"]
             )
         )
-    if "arib" in data:
+    if data.get("arib") is not None:
         import capo_medialive.types.m2ts_arib
 
         out["arib"] = capo_medialive.types.m2ts_arib.deserialize_json(data["arib"])
-    if "audioBufferModel" in data:
+    if data.get("audioBufferModel") is not None:
         import capo_medialive.types.m2ts_audio_buffer_model
 
         out["audio_buffer_model"] = (
@@ -178,9 +185,9 @@ def deserialize_json(data: dict) -> MultiplexM2tsSettings:
                 data["audioBufferModel"]
             )
         )
-    if "audioFramesPerPes" in data:
+    if data.get("audioFramesPerPes") is not None:
         out["audio_frames_per_pes"] = data["audioFramesPerPes"]
-    if "audioStreamType" in data:
+    if data.get("audioStreamType") is not None:
         import capo_medialive.types.m2ts_audio_stream_type
 
         out["audio_stream_type"] = (
@@ -188,19 +195,19 @@ def deserialize_json(data: dict) -> MultiplexM2tsSettings:
                 data["audioStreamType"]
             )
         )
-    if "ccDescriptor" in data:
+    if data.get("ccDescriptor") is not None:
         import capo_medialive.types.m2ts_cc_descriptor
 
         out["cc_descriptor"] = capo_medialive.types.m2ts_cc_descriptor.deserialize_json(
             data["ccDescriptor"]
         )
-    if "ebif" in data:
+    if data.get("ebif") is not None:
         import capo_medialive.types.m2ts_ebif_control
 
         out["ebif"] = capo_medialive.types.m2ts_ebif_control.deserialize_json(
             data["ebif"]
         )
-    if "esRateInPes" in data:
+    if data.get("esRateInPes") is not None:
         import capo_medialive.types.m2ts_es_rate_in_pes
 
         out["es_rate_in_pes"] = (
@@ -208,11 +215,11 @@ def deserialize_json(data: dict) -> MultiplexM2tsSettings:
                 data["esRateInPes"]
             )
         )
-    if "klv" in data:
+    if data.get("klv") is not None:
         import capo_medialive.types.m2ts_klv
 
         out["klv"] = capo_medialive.types.m2ts_klv.deserialize_json(data["klv"])
-    if "nielsenId3Behavior" in data:
+    if data.get("nielsenId3Behavior") is not None:
         import capo_medialive.types.m2ts_nielsen_id3_behavior
 
         out["nielsen_id3_behavior"] = (
@@ -220,15 +227,15 @@ def deserialize_json(data: dict) -> MultiplexM2tsSettings:
                 data["nielsenId3Behavior"]
             )
         )
-    if "pcrControl" in data:
+    if data.get("pcrControl") is not None:
         import capo_medialive.types.m2ts_pcr_control
 
         out["pcr_control"] = capo_medialive.types.m2ts_pcr_control.deserialize_json(
             data["pcrControl"]
         )
-    if "pcrPeriod" in data:
+    if data.get("pcrPeriod") is not None:
         out["pcr_period"] = data["pcrPeriod"]
-    if "scte35Control" in data:
+    if data.get("scte35Control") is not None:
         import capo_medialive.types.m2ts_scte35_control
 
         out["scte35_control"] = (
@@ -236,8 +243,8 @@ def deserialize_json(data: dict) -> MultiplexM2tsSettings:
                 data["scte35Control"]
             )
         )
-    if "scte35PrerollPullupMilliseconds" in data:
-        out["scte35_preroll_pullup_milliseconds"] = data[
-            "scte35PrerollPullupMilliseconds"
-        ]
+    if data.get("scte35PrerollPullupMilliseconds") is not None:
+        out["scte35_preroll_pullup_milliseconds"] = float(
+            data["scte35PrerollPullupMilliseconds"]
+        )
     return out

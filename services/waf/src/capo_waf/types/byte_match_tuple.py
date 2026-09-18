@@ -58,7 +58,7 @@ def serialize_aws_json_1_1(value: ByteMatchTuple) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ByteMatchTuple:
     out: ByteMatchTuple = {}  # type: ignore[typeddict-item]
-    if "FieldToMatch" in data:
+    if data.get("FieldToMatch") is not None:
         import capo_waf.types.field_to_match
 
         out["field_to_match"] = capo_waf.types.field_to_match.deserialize_aws_json_1_1(
@@ -66,7 +66,7 @@ def deserialize_aws_json_1_1(data: dict) -> ByteMatchTuple:
         )
     else:
         raise DeserializationError("ByteMatchTuple.field_to_match required")
-    if "TargetString" in data:
+    if data.get("TargetString") is not None:
         import capo_waf.types.byte_match_target_string
 
         out["target_string"] = (
@@ -76,7 +76,7 @@ def deserialize_aws_json_1_1(data: dict) -> ByteMatchTuple:
         )
     else:
         raise DeserializationError("ByteMatchTuple.target_string required")
-    if "TextTransformation" in data:
+    if data.get("TextTransformation") is not None:
         import capo_waf.types.text_transformation
 
         out["text_transformation"] = (
@@ -86,7 +86,7 @@ def deserialize_aws_json_1_1(data: dict) -> ByteMatchTuple:
         )
     else:
         raise DeserializationError("ByteMatchTuple.text_transformation required")
-    if "PositionalConstraint" in data:
+    if data.get("PositionalConstraint") is not None:
         import capo_waf.types.positional_constraint
 
         out["positional_constraint"] = (

@@ -24,7 +24,7 @@ def serialize_aws_json_1_1(value: DescribeCampaignRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeCampaignRequest:
     out: DescribeCampaignRequest = {}  # type: ignore[typeddict-item]
-    if "campaignArn" in data:
+    if data.get("campaignArn") is not None:
         out["campaign_arn"] = data["campaignArn"]
     else:
         raise DeserializationError("DescribeCampaignRequest.campaign_arn required")

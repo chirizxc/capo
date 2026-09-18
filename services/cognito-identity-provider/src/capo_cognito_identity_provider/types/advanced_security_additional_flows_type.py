@@ -31,7 +31,7 @@ def serialize_aws_json_1_1(value: AdvancedSecurityAdditionalFlowsType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AdvancedSecurityAdditionalFlowsType:
     out: AdvancedSecurityAdditionalFlowsType = {}  # type: ignore[typeddict-item]
-    if "CustomAuthMode" in data:
+    if data.get("CustomAuthMode") is not None:
         import capo_cognito_identity_provider.types.advanced_security_enabled_mode_type
 
         out["custom_auth_mode"] = (

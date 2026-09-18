@@ -116,39 +116,39 @@ def serialize_aws_json_1_1(value: CreateHITRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateHITRequest:
     out: CreateHITRequest = {}  # type: ignore[typeddict-item]
-    if "MaxAssignments" in data:
+    if data.get("MaxAssignments") is not None:
         out["max_assignments"] = data["MaxAssignments"]
-    if "AutoApprovalDelayInSeconds" in data:
+    if data.get("AutoApprovalDelayInSeconds") is not None:
         out["auto_approval_delay_in_seconds"] = data["AutoApprovalDelayInSeconds"]
-    if "LifetimeInSeconds" in data:
+    if data.get("LifetimeInSeconds") is not None:
         out["lifetime_in_seconds"] = data["LifetimeInSeconds"]
     else:
         raise DeserializationError("CreateHITRequest.lifetime_in_seconds required")
-    if "AssignmentDurationInSeconds" in data:
+    if data.get("AssignmentDurationInSeconds") is not None:
         out["assignment_duration_in_seconds"] = data["AssignmentDurationInSeconds"]
     else:
         raise DeserializationError(
             "CreateHITRequest.assignment_duration_in_seconds required"
         )
-    if "Reward" in data:
+    if data.get("Reward") is not None:
         out["reward"] = data["Reward"]
     else:
         raise DeserializationError("CreateHITRequest.reward required")
-    if "Title" in data:
+    if data.get("Title") is not None:
         out["title"] = data["Title"]
     else:
         raise DeserializationError("CreateHITRequest.title required")
-    if "Keywords" in data:
+    if data.get("Keywords") is not None:
         out["keywords"] = data["Keywords"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
     else:
         raise DeserializationError("CreateHITRequest.description required")
-    if "Question" in data:
+    if data.get("Question") is not None:
         out["question"] = data["Question"]
-    if "RequesterAnnotation" in data:
+    if data.get("RequesterAnnotation") is not None:
         out["requester_annotation"] = data["RequesterAnnotation"]
-    if "QualificationRequirements" in data:
+    if data.get("QualificationRequirements") is not None:
         import capo_mturk.types.qualification_requirement_list
 
         out["qualification_requirements"] = (
@@ -156,9 +156,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateHITRequest:
                 data["QualificationRequirements"]
             )
         )
-    if "UniqueRequestToken" in data:
+    if data.get("UniqueRequestToken") is not None:
         out["unique_request_token"] = data["UniqueRequestToken"]
-    if "AssignmentReviewPolicy" in data:
+    if data.get("AssignmentReviewPolicy") is not None:
         import capo_mturk.types.review_policy
 
         out["assignment_review_policy"] = (
@@ -166,7 +166,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateHITRequest:
                 data["AssignmentReviewPolicy"]
             )
         )
-    if "HITReviewPolicy" in data:
+    if data.get("HITReviewPolicy") is not None:
         import capo_mturk.types.review_policy
 
         out["hit_review_policy"] = (
@@ -174,9 +174,9 @@ def deserialize_aws_json_1_1(data: dict) -> CreateHITRequest:
                 data["HITReviewPolicy"]
             )
         )
-    if "HITLayoutId" in data:
+    if data.get("HITLayoutId") is not None:
         out["hit_layout_id"] = data["HITLayoutId"]
-    if "HITLayoutParameters" in data:
+    if data.get("HITLayoutParameters") is not None:
         import capo_mturk.types.hit_layout_parameter_list
 
         out["hit_layout_parameters"] = (

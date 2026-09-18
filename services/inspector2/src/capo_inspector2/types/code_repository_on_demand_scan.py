@@ -42,9 +42,9 @@ def serialize_json(value: CodeRepositoryOnDemandScan) -> dict:
 
 def deserialize_json(data: dict) -> CodeRepositoryOnDemandScan:
     out: CodeRepositoryOnDemandScan = {}  # type: ignore[typeddict-item]
-    if "lastScannedCommitId" in data:
+    if data.get("lastScannedCommitId") is not None:
         out["last_scanned_commit_id"] = data["lastScannedCommitId"]
-    if "lastScanAt" in data:
+    if data.get("lastScanAt") is not None:
         import capo_inspector2.types.date_time_timestamp
 
         out["last_scan_at"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> CodeRepositoryOnDemandScan:
                 data["lastScanAt"]
             )
         )
-    if "scanStatus" in data:
+    if data.get("scanStatus") is not None:
         import capo_inspector2.types.scan_status
 
         out["scan_status"] = capo_inspector2.types.scan_status.deserialize_json(

@@ -34,7 +34,7 @@ def serialize_json(value: ListManagedResourcesResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListManagedResourcesResponse:
     out: ListManagedResourcesResponse = {}  # type: ignore[typeddict-item]
-    if "items" in data:
+    if data.get("items") is not None:
         import capo_arc_zonal_shift.types.managed_resource_summaries
 
         out["items"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListManagedResourcesResponse:
         )
     else:
         raise DeserializationError("ListManagedResourcesResponse.items required")
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

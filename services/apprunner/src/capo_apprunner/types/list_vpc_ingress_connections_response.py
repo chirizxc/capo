@@ -35,7 +35,7 @@ def serialize_aws_json_1_0(value: ListVpcIngressConnectionsResponse) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> ListVpcIngressConnectionsResponse:
     out: ListVpcIngressConnectionsResponse = {}  # type: ignore[typeddict-item]
-    if "VpcIngressConnectionSummaryList" in data:
+    if data.get("VpcIngressConnectionSummaryList") is not None:
         import capo_apprunner.types.vpc_ingress_connection_summary_list
 
         out["vpc_ingress_connection_summary_list"] = (
@@ -47,6 +47,6 @@ def deserialize_aws_json_1_0(data: dict) -> ListVpcIngressConnectionsResponse:
         raise DeserializationError(
             "ListVpcIngressConnectionsResponse.vpc_ingress_connection_summary_list required"
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

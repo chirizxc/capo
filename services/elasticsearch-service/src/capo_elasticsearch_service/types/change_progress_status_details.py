@@ -131,9 +131,9 @@ def serialize_json(value: ChangeProgressStatusDetails) -> dict:
 
 def deserialize_json(data: dict) -> ChangeProgressStatusDetails:
     out: ChangeProgressStatusDetails = {}  # type: ignore[typeddict-item]
-    if "ChangeId" in data:
+    if data.get("ChangeId") is not None:
         out["change_id"] = data["ChangeId"]
-    if "StartTime" in data:
+    if data.get("StartTime") is not None:
         import capo_elasticsearch_service.types.update_timestamp
 
         out["start_time"] = (
@@ -141,7 +141,7 @@ def deserialize_json(data: dict) -> ChangeProgressStatusDetails:
                 data["StartTime"]
             )
         )
-    if "Status" in data:
+    if data.get("Status") is not None:
         import capo_elasticsearch_service.types.overall_change_status
 
         out["status"] = (
@@ -149,7 +149,7 @@ def deserialize_json(data: dict) -> ChangeProgressStatusDetails:
                 data["Status"]
             )
         )
-    if "PendingProperties" in data:
+    if data.get("PendingProperties") is not None:
         import capo_elasticsearch_service.types.string_list
 
         out["pending_properties"] = (
@@ -157,7 +157,7 @@ def deserialize_json(data: dict) -> ChangeProgressStatusDetails:
                 data["PendingProperties"]
             )
         )
-    if "CompletedProperties" in data:
+    if data.get("CompletedProperties") is not None:
         import capo_elasticsearch_service.types.string_list
 
         out["completed_properties"] = (
@@ -165,11 +165,11 @@ def deserialize_json(data: dict) -> ChangeProgressStatusDetails:
                 data["CompletedProperties"]
             )
         )
-    if "TotalNumberOfStages" in data:
+    if data.get("TotalNumberOfStages") is not None:
         out["total_number_of_stages"] = data["TotalNumberOfStages"]
     else:
         out["total_number_of_stages"] = 0
-    if "ChangeProgressStages" in data:
+    if data.get("ChangeProgressStages") is not None:
         import capo_elasticsearch_service.types.change_progress_stage_list
 
         out["change_progress_stages"] = (
@@ -177,7 +177,7 @@ def deserialize_json(data: dict) -> ChangeProgressStatusDetails:
                 data["ChangeProgressStages"]
             )
         )
-    if "ConfigChangeStatus" in data:
+    if data.get("ConfigChangeStatus") is not None:
         import capo_elasticsearch_service.types.config_change_status
 
         out["config_change_status"] = (
@@ -185,7 +185,7 @@ def deserialize_json(data: dict) -> ChangeProgressStatusDetails:
                 data["ConfigChangeStatus"]
             )
         )
-    if "LastUpdatedTime" in data:
+    if data.get("LastUpdatedTime") is not None:
         import capo_elasticsearch_service.types.update_timestamp
 
         out["last_updated_time"] = (
@@ -193,7 +193,7 @@ def deserialize_json(data: dict) -> ChangeProgressStatusDetails:
                 data["LastUpdatedTime"]
             )
         )
-    if "InitiatedBy" in data:
+    if data.get("InitiatedBy") is not None:
         import capo_elasticsearch_service.types.initiated_by
 
         out["initiated_by"] = (

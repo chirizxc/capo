@@ -24,7 +24,7 @@ def serialize_json(value: OwnerGroupProperties) -> dict:
 
 def deserialize_json(data: dict) -> OwnerGroupProperties:
     out: OwnerGroupProperties = {}  # type: ignore[typeddict-item]
-    if "groupIdentifier" in data:
+    if data.get("groupIdentifier") is not None:
         out["group_identifier"] = data["groupIdentifier"]
     else:
         raise DeserializationError("OwnerGroupProperties.group_identifier required")

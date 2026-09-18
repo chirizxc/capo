@@ -40,7 +40,7 @@ def serialize_json(value: GetTimeSeriesServiceStatisticsResult) -> dict:
 
 def deserialize_json(data: dict) -> GetTimeSeriesServiceStatisticsResult:
     out: GetTimeSeriesServiceStatisticsResult = {}  # type: ignore[typeddict-item]
-    if "TimeSeriesServiceStatistics" in data:
+    if data.get("TimeSeriesServiceStatistics") is not None:
         import capo_xray.types.time_series_service_statistics_list
 
         out["time_series_service_statistics"] = (
@@ -48,10 +48,10 @@ def deserialize_json(data: dict) -> GetTimeSeriesServiceStatisticsResult:
                 data["TimeSeriesServiceStatistics"]
             )
         )
-    if "ContainsOldGroupVersions" in data:
+    if data.get("ContainsOldGroupVersions") is not None:
         out["contains_old_group_versions"] = data["ContainsOldGroupVersions"]
     else:
         out["contains_old_group_versions"] = False
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

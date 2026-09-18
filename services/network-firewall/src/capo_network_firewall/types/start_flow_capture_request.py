@@ -59,19 +59,19 @@ def serialize_aws_json_1_0(value: StartFlowCaptureRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> StartFlowCaptureRequest:
     out: StartFlowCaptureRequest = {}  # type: ignore[typeddict-item]
-    if "FirewallArn" in data:
+    if data.get("FirewallArn") is not None:
         out["firewall_arn"] = data["FirewallArn"]
     else:
         raise DeserializationError("StartFlowCaptureRequest.firewall_arn required")
-    if "AvailabilityZone" in data:
+    if data.get("AvailabilityZone") is not None:
         out["availability_zone"] = data["AvailabilityZone"]
-    if "VpcEndpointAssociationArn" in data:
+    if data.get("VpcEndpointAssociationArn") is not None:
         out["vpc_endpoint_association_arn"] = data["VpcEndpointAssociationArn"]
-    if "VpcEndpointId" in data:
+    if data.get("VpcEndpointId") is not None:
         out["vpc_endpoint_id"] = data["VpcEndpointId"]
-    if "MinimumFlowAgeInSeconds" in data:
+    if data.get("MinimumFlowAgeInSeconds") is not None:
         out["minimum_flow_age_in_seconds"] = data["MinimumFlowAgeInSeconds"]
-    if "FlowFilters" in data:
+    if data.get("FlowFilters") is not None:
         import capo_network_firewall.types.flow_filters
 
         out["flow_filters"] = (

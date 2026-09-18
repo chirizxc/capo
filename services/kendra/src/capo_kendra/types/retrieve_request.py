@@ -83,15 +83,15 @@ def serialize_aws_json_1_1(value: RetrieveRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> RetrieveRequest:
     out: RetrieveRequest = {}  # type: ignore[typeddict-item]
-    if "IndexId" in data:
+    if data.get("IndexId") is not None:
         out["index_id"] = data["IndexId"]
     else:
         raise DeserializationError("RetrieveRequest.index_id required")
-    if "QueryText" in data:
+    if data.get("QueryText") is not None:
         out["query_text"] = data["QueryText"]
     else:
         raise DeserializationError("RetrieveRequest.query_text required")
-    if "AttributeFilter" in data:
+    if data.get("AttributeFilter") is not None:
         import capo_kendra.types.attribute_filter
 
         out["attribute_filter"] = (
@@ -99,7 +99,7 @@ def deserialize_aws_json_1_1(data: dict) -> RetrieveRequest:
                 data["AttributeFilter"]
             )
         )
-    if "RequestedDocumentAttributes" in data:
+    if data.get("RequestedDocumentAttributes") is not None:
         import capo_kendra.types.document_attribute_key_list
 
         out["requested_document_attributes"] = (
@@ -107,7 +107,7 @@ def deserialize_aws_json_1_1(data: dict) -> RetrieveRequest:
                 data["RequestedDocumentAttributes"]
             )
         )
-    if "DocumentRelevanceOverrideConfigurations" in data:
+    if data.get("DocumentRelevanceOverrideConfigurations") is not None:
         import capo_kendra.types.document_relevance_override_configuration_list
 
         out["document_relevance_override_configurations"] = (
@@ -115,11 +115,11 @@ def deserialize_aws_json_1_1(data: dict) -> RetrieveRequest:
                 data["DocumentRelevanceOverrideConfigurations"]
             )
         )
-    if "PageNumber" in data:
+    if data.get("PageNumber") is not None:
         out["page_number"] = data["PageNumber"]
-    if "PageSize" in data:
+    if data.get("PageSize") is not None:
         out["page_size"] = data["PageSize"]
-    if "UserContext" in data:
+    if data.get("UserContext") is not None:
         import capo_kendra.types.user_context
 
         out["user_context"] = capo_kendra.types.user_context.deserialize_aws_json_1_1(

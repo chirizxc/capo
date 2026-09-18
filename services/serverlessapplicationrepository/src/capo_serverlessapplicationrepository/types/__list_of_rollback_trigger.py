@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> __listOfRollbackTrigger:
 
     out: __listOfRollbackTrigger = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_serverlessapplicationrepository.types.rollback_trigger.deserialize_json(
                 item

@@ -42,7 +42,7 @@ def serialize_json(value: UplinkConnectionDetails) -> dict:
 
 def deserialize_json(data: dict) -> UplinkConnectionDetails:
     out: UplinkConnectionDetails = {}  # type: ignore[typeddict-item]
-    if "ingressAddressAndPort" in data:
+    if data.get("ingressAddressAndPort") is not None:
         import capo_groundstation.types.connection_details
 
         out["ingress_address_and_port"] = (
@@ -54,7 +54,7 @@ def deserialize_json(data: dict) -> UplinkConnectionDetails:
         raise DeserializationError(
             "UplinkConnectionDetails.ingress_address_and_port required"
         )
-    if "agentIpAndPortAddress" in data:
+    if data.get("agentIpAndPortAddress") is not None:
         import capo_groundstation.types.ranged_connection_details
 
         out["agent_ip_and_port_address"] = (

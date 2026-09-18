@@ -25,6 +25,6 @@ def serialize_json(value: KinesisVideoStreamConfigurationUpdate) -> dict:
 
 def deserialize_json(data: dict) -> KinesisVideoStreamConfigurationUpdate:
     out: KinesisVideoStreamConfigurationUpdate = {}  # type: ignore[typeddict-item]
-    if "DataRetentionInHours" in data:
+    if data.get("DataRetentionInHours") is not None:
         out["data_retention_in_hours"] = data["DataRetentionInHours"]
     return out

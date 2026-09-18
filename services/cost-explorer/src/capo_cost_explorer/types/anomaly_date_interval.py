@@ -28,10 +28,10 @@ def serialize_aws_json_1_1(value: AnomalyDateInterval) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AnomalyDateInterval:
     out: AnomalyDateInterval = {}  # type: ignore[typeddict-item]
-    if "StartDate" in data:
+    if data.get("StartDate") is not None:
         out["start_date"] = data["StartDate"]
     else:
         raise DeserializationError("AnomalyDateInterval.start_date required")
-    if "EndDate" in data:
+    if data.get("EndDate") is not None:
         out["end_date"] = data["EndDate"]
     return out

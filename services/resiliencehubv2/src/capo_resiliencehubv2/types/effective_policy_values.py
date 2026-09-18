@@ -101,7 +101,7 @@ def serialize_json(value: EffectivePolicyValues) -> dict:
 
 def deserialize_json(data: dict) -> EffectivePolicyValues:
     out: EffectivePolicyValues = {}  # type: ignore[typeddict-item]
-    if "availabilitySlo" in data:
+    if data.get("availabilitySlo") is not None:
         import capo_resiliencehubv2.types.slo_source
 
         out["availability_slo"] = (
@@ -109,19 +109,19 @@ def deserialize_json(data: dict) -> EffectivePolicyValues:
                 data["availabilitySlo"]
             )
         )
-    if "multiAzRto" in data:
+    if data.get("multiAzRto") is not None:
         import capo_resiliencehubv2.types.target_source
 
         out["multi_az_rto"] = capo_resiliencehubv2.types.target_source.deserialize_json(
             data["multiAzRto"]
         )
-    if "multiAzRpo" in data:
+    if data.get("multiAzRpo") is not None:
         import capo_resiliencehubv2.types.target_source
 
         out["multi_az_rpo"] = capo_resiliencehubv2.types.target_source.deserialize_json(
             data["multiAzRpo"]
         )
-    if "multiAzDrApproach" in data:
+    if data.get("multiAzDrApproach") is not None:
         import capo_resiliencehubv2.types.disaster_recovery_source
 
         out["multi_az_dr_approach"] = (
@@ -129,7 +129,7 @@ def deserialize_json(data: dict) -> EffectivePolicyValues:
                 data["multiAzDrApproach"]
             )
         )
-    if "multiRegionRto" in data:
+    if data.get("multiRegionRto") is not None:
         import capo_resiliencehubv2.types.target_source
 
         out["multi_region_rto"] = (
@@ -137,7 +137,7 @@ def deserialize_json(data: dict) -> EffectivePolicyValues:
                 data["multiRegionRto"]
             )
         )
-    if "multiRegionRpo" in data:
+    if data.get("multiRegionRpo") is not None:
         import capo_resiliencehubv2.types.target_source
 
         out["multi_region_rpo"] = (
@@ -145,7 +145,7 @@ def deserialize_json(data: dict) -> EffectivePolicyValues:
                 data["multiRegionRpo"]
             )
         )
-    if "multiRegionDrApproach" in data:
+    if data.get("multiRegionDrApproach") is not None:
         import capo_resiliencehubv2.types.disaster_recovery_source
 
         out["multi_region_dr_approach"] = (
@@ -153,7 +153,7 @@ def deserialize_json(data: dict) -> EffectivePolicyValues:
                 data["multiRegionDrApproach"]
             )
         )
-    if "dataRecoveryTimeBetweenBackups" in data:
+    if data.get("dataRecoveryTimeBetweenBackups") is not None:
         import capo_resiliencehubv2.types.target_source
 
         out["data_recovery_time_between_backups"] = (

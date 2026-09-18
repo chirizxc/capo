@@ -43,7 +43,7 @@ def serialize_aws_json_1_0(value: InvoiceUnitRule) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> InvoiceUnitRule:
     out: InvoiceUnitRule = {}  # type: ignore[typeddict-item]
-    if "LinkedAccounts" in data:
+    if data.get("LinkedAccounts") is not None:
         import capo_invoicing.types.rule_account_id_list
 
         out["linked_accounts"] = (
@@ -51,7 +51,7 @@ def deserialize_aws_json_1_0(data: dict) -> InvoiceUnitRule:
                 data["LinkedAccounts"]
             )
         )
-    if "BillSourceAccounts" in data:
+    if data.get("BillSourceAccounts") is not None:
         import capo_invoicing.types.rule_account_id_list
 
         out["bill_source_accounts"] = (

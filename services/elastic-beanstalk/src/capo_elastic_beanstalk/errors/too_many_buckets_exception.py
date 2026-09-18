@@ -40,15 +40,18 @@ class TooManyBucketsException(ServiceError):
 
     code: str | None = "TooManyBucketsException"
 
-    def __init__(self, data: TooManyBucketsException_):
+    def __init__(self, data: TooManyBucketsException_, message: str | None = None):
         super().__init__(
             "client",
             is_throttling_error=False,
             is_retryable=False,
             code="TooManyBucketsException",
+            message=message,
         )
         self.data = data
 
     @classmethod
-    def from_query(cls, el: Element) -> "TooManyBucketsException":
-        return cls(deserialize_query(el))
+    def from_query(
+        cls, el: Element, message: str | None = None
+    ) -> "TooManyBucketsException":
+        return cls(deserialize_query(el), message)

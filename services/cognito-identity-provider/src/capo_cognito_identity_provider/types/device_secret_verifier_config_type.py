@@ -29,8 +29,8 @@ def serialize_aws_json_1_1(value: DeviceSecretVerifierConfigType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeviceSecretVerifierConfigType:
     out: DeviceSecretVerifierConfigType = {}  # type: ignore[typeddict-item]
-    if "PasswordVerifier" in data:
+    if data.get("PasswordVerifier") is not None:
         out["password_verifier"] = data["PasswordVerifier"]
-    if "Salt" in data:
+    if data.get("Salt") is not None:
         out["salt"] = data["Salt"]
     return out

@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> SqlInjectionMatchSetSummaries:
 
     out: SqlInjectionMatchSetSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_waf.types.sql_injection_match_set_summary.deserialize_aws_json_1_1(
                 item

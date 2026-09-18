@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> RelevantContentList:
 
     out: RelevantContentList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_qbusiness.types.relevant_content.deserialize_json(item))
     return out

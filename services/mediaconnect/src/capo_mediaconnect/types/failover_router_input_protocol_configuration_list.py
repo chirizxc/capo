@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> FailoverRouterInputProtocolConfigurationList
 
     out: FailoverRouterInputProtocolConfigurationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_mediaconnect.types.failover_router_input_protocol_configuration.deserialize_json(
                 item

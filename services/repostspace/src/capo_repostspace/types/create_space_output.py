@@ -24,7 +24,7 @@ def serialize_json(value: CreateSpaceOutput) -> dict:
 
 def deserialize_json(data: dict) -> CreateSpaceOutput:
     out: CreateSpaceOutput = {}  # type: ignore[typeddict-item]
-    if "spaceId" in data:
+    if data.get("spaceId") is not None:
         out["space_id"] = data["spaceId"]
     else:
         raise DeserializationError("CreateSpaceOutput.space_id required")

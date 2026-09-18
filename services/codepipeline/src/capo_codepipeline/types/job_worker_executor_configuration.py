@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: JobWorkerExecutorConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> JobWorkerExecutorConfiguration:
     out: JobWorkerExecutorConfiguration = {}  # type: ignore[typeddict-item]
-    if "pollingAccounts" in data:
+    if data.get("pollingAccounts") is not None:
         import capo_codepipeline.types.polling_account_list
 
         out["polling_accounts"] = (
@@ -52,7 +52,7 @@ def deserialize_aws_json_1_1(data: dict) -> JobWorkerExecutorConfiguration:
                 data["pollingAccounts"]
             )
         )
-    if "pollingServicePrincipals" in data:
+    if data.get("pollingServicePrincipals") is not None:
         import capo_codepipeline.types.polling_service_principal_list
 
         out["polling_service_principals"] = (

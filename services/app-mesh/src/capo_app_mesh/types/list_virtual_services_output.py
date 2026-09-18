@@ -32,7 +32,7 @@ def serialize_json(value: ListVirtualServicesOutput) -> dict:
 
 def deserialize_json(data: dict) -> ListVirtualServicesOutput:
     out: ListVirtualServicesOutput = {}  # type: ignore[typeddict-item]
-    if "virtualServices" in data:
+    if data.get("virtualServices") is not None:
         import capo_app_mesh.types.virtual_service_list
 
         out["virtual_services"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListVirtualServicesOutput:
         raise DeserializationError(
             "ListVirtualServicesOutput.virtual_services required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

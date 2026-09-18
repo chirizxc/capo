@@ -41,7 +41,7 @@ def serialize_aws_json_1_1(value: DescribeUsersRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeUsersRequest:
     out: DescribeUsersRequest = {}  # type: ignore[typeddict-item]
-    if "AuthenticationType" in data:
+    if data.get("AuthenticationType") is not None:
         import capo_appstream.types.authentication_type
 
         out["authentication_type"] = (
@@ -49,8 +49,8 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeUsersRequest:
                 data["AuthenticationType"]
             )
         )
-    if "MaxResults" in data:
+    if data.get("MaxResults") is not None:
         out["max_results"] = data["MaxResults"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

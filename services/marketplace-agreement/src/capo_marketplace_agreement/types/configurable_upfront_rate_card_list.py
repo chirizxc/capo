@@ -29,6 +29,8 @@ def deserialize_aws_json_1_0(data: list) -> ConfigurableUpfrontRateCardList:
 
     out: ConfigurableUpfrontRateCardList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_marketplace_agreement.types.configurable_upfront_rate_card_item.deserialize_aws_json_1_0(
                 item

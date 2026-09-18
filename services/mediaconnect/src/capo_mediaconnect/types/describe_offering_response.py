@@ -27,7 +27,7 @@ def serialize_json(value: DescribeOfferingResponse) -> dict:
 
 def deserialize_json(data: dict) -> DescribeOfferingResponse:
     out: DescribeOfferingResponse = {}  # type: ignore[typeddict-item]
-    if "offering" in data:
+    if data.get("offering") is not None:
         import capo_mediaconnect.types.offering
 
         out["offering"] = capo_mediaconnect.types.offering.deserialize_json(

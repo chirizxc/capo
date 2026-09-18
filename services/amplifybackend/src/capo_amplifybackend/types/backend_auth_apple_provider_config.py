@@ -35,12 +35,12 @@ def serialize_json(value: BackendAuthAppleProviderConfig) -> dict:
 
 def deserialize_json(data: dict) -> BackendAuthAppleProviderConfig:
     out: BackendAuthAppleProviderConfig = {}  # type: ignore[typeddict-item]
-    if "client_id" in data:
+    if data.get("client_id") is not None:
         out["client_id"] = data["client_id"]
-    if "key_id" in data:
+    if data.get("key_id") is not None:
         out["key_id"] = data["key_id"]
-    if "private_key" in data:
+    if data.get("private_key") is not None:
         out["private_key"] = data["private_key"]
-    if "team_id" in data:
+    if data.get("team_id") is not None:
         out["team_id"] = data["team_id"]
     return out

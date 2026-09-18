@@ -27,7 +27,7 @@ def serialize_json(value: GetRevocationStatusResponse) -> dict:
 
 def deserialize_json(data: dict) -> GetRevocationStatusResponse:
     out: GetRevocationStatusResponse = {}  # type: ignore[typeddict-item]
-    if "revokedEntities" in data:
+    if data.get("revokedEntities") is not None:
         import capo_signer.types.revoked_entities
 
         out["revoked_entities"] = capo_signer.types.revoked_entities.deserialize_json(

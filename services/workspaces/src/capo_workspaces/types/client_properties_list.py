@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ClientPropertiesList:
 
     out: ClientPropertiesList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_workspaces.types.client_properties_result.deserialize_aws_json_1_1(
                 item

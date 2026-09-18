@@ -22,7 +22,7 @@ def serialize_json(value: VoiceEnhancementSinkConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> VoiceEnhancementSinkConfiguration:
     out: VoiceEnhancementSinkConfiguration = {}  # type: ignore[typeddict-item]
-    if "Disabled" in data:
+    if data.get("Disabled") is not None:
         out["disabled"] = data["Disabled"]
     else:
         out["disabled"] = False

@@ -37,11 +37,11 @@ def serialize_json(value: Administrator) -> dict:
 
 def deserialize_json(data: dict) -> Administrator:
     out: Administrator = {}  # type: ignore[typeddict-item]
-    if "AccountId" in data:
+    if data.get("AccountId") is not None:
         out["account_id"] = data["AccountId"]
-    if "GraphArn" in data:
+    if data.get("GraphArn") is not None:
         out["graph_arn"] = data["GraphArn"]
-    if "DelegationTime" in data:
+    if data.get("DelegationTime") is not None:
         import capo_detective.types.timestamp
 
         out["delegation_time"] = capo_detective.types.timestamp.deserialize_json(

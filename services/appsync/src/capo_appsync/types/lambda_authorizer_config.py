@@ -34,14 +34,14 @@ def serialize_json(value: LambdaAuthorizerConfig) -> dict:
 
 def deserialize_json(data: dict) -> LambdaAuthorizerConfig:
     out: LambdaAuthorizerConfig = {}  # type: ignore[typeddict-item]
-    if "authorizerResultTtlInSeconds" in data:
+    if data.get("authorizerResultTtlInSeconds") is not None:
         out["authorizer_result_ttl_in_seconds"] = data["authorizerResultTtlInSeconds"]
     else:
         out["authorizer_result_ttl_in_seconds"] = 0
-    if "authorizerUri" in data:
+    if data.get("authorizerUri") is not None:
         out["authorizer_uri"] = data["authorizerUri"]
     else:
         raise DeserializationError("LambdaAuthorizerConfig.authorizer_uri required")
-    if "identityValidationExpression" in data:
+    if data.get("identityValidationExpression") is not None:
         out["identity_validation_expression"] = data["identityValidationExpression"]
     return out

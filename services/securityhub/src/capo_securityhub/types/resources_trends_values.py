@@ -29,7 +29,7 @@ def serialize_json(value: ResourcesTrendsValues) -> dict:
 
 def deserialize_json(data: dict) -> ResourcesTrendsValues:
     out: ResourcesTrendsValues = {}  # type: ignore[typeddict-item]
-    if "ResourcesCount" in data:
+    if data.get("ResourcesCount") is not None:
         import capo_securityhub.types.resources_count
 
         out["resources_count"] = (

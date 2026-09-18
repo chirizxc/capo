@@ -50,21 +50,21 @@ def serialize_json(value: TagScopeTerm) -> dict:
 
 def deserialize_json(data: dict) -> TagScopeTerm:
     out: TagScopeTerm = {}  # type: ignore[typeddict-item]
-    if "comparator" in data:
+    if data.get("comparator") is not None:
         import capo_macie2.types.job_comparator
 
         out["comparator"] = capo_macie2.types.job_comparator.deserialize_json(
             data["comparator"]
         )
-    if "key" in data:
+    if data.get("key") is not None:
         out["key"] = data["key"]
-    if "tagValues" in data:
+    if data.get("tagValues") is not None:
         import capo_macie2.types.__list_of_tag_value_pair
 
         out["tag_values"] = capo_macie2.types.__list_of_tag_value_pair.deserialize_json(
             data["tagValues"]
         )
-    if "target" in data:
+    if data.get("target") is not None:
         import capo_macie2.types.tag_target
 
         out["target"] = capo_macie2.types.tag_target.deserialize_json(data["target"])

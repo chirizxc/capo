@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> OcsfBooleanFilterList:
 
     out: OcsfBooleanFilterList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityhub.types.ocsf_boolean_filter.deserialize_json(item))
     return out

@@ -46,13 +46,13 @@ def serialize_aws_json_1_1(value: DescribeRemediationExceptionsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeRemediationExceptionsRequest:
     out: DescribeRemediationExceptionsRequest = {}  # type: ignore[typeddict-item]
-    if "ConfigRuleName" in data:
+    if data.get("ConfigRuleName") is not None:
         out["config_rule_name"] = data["ConfigRuleName"]
     else:
         raise DeserializationError(
             "DescribeRemediationExceptionsRequest.config_rule_name required"
         )
-    if "ResourceKeys" in data:
+    if data.get("ResourceKeys") is not None:
         import capo_config_service.types.remediation_exception_resource_keys
 
         out["resource_keys"] = (
@@ -60,10 +60,10 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeRemediationExceptionsRequest
                 data["ResourceKeys"]
             )
         )
-    if "Limit" in data:
+    if data.get("Limit") is not None:
         out["limit"] = data["Limit"]
     else:
         out["limit"] = 0
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

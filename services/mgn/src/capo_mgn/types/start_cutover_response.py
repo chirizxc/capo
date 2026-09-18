@@ -25,7 +25,7 @@ def serialize_json(value: StartCutoverResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartCutoverResponse:
     out: StartCutoverResponse = {}  # type: ignore[typeddict-item]
-    if "job" in data:
+    if data.get("job") is not None:
         import capo_mgn.types.job
 
         out["job"] = capo_mgn.types.job.deserialize_json(data["job"])

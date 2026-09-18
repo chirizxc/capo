@@ -27,6 +27,8 @@ def deserialize_json(data: list) -> DomainNameConfigurations:
 
     out: DomainNameConfigurations = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_apigatewayv2.types.domain_name_configuration.deserialize_json(item)
         )

@@ -96,11 +96,11 @@ def serialize_aws_json_1_1(value: Connection) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> Connection:
     out: Connection = {}  # type: ignore[typeddict-item]
-    if "ConnectionArn" in data:
+    if data.get("ConnectionArn") is not None:
         out["connection_arn"] = data["ConnectionArn"]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
-    if "ConnectionState" in data:
+    if data.get("ConnectionState") is not None:
         import capo_cloudwatch_events.types.connection_state
 
         out["connection_state"] = (
@@ -108,9 +108,9 @@ def deserialize_aws_json_1_1(data: dict) -> Connection:
                 data["ConnectionState"]
             )
         )
-    if "StateReason" in data:
+    if data.get("StateReason") is not None:
         out["state_reason"] = data["StateReason"]
-    if "AuthorizationType" in data:
+    if data.get("AuthorizationType") is not None:
         import capo_cloudwatch_events.types.connection_authorization_type
 
         out["authorization_type"] = (
@@ -118,7 +118,7 @@ def deserialize_aws_json_1_1(data: dict) -> Connection:
                 data["AuthorizationType"]
             )
         )
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_cloudwatch_events.types.timestamp
 
         out["creation_time"] = (
@@ -126,7 +126,7 @@ def deserialize_aws_json_1_1(data: dict) -> Connection:
                 data["CreationTime"]
             )
         )
-    if "LastModifiedTime" in data:
+    if data.get("LastModifiedTime") is not None:
         import capo_cloudwatch_events.types.timestamp
 
         out["last_modified_time"] = (
@@ -134,7 +134,7 @@ def deserialize_aws_json_1_1(data: dict) -> Connection:
                 data["LastModifiedTime"]
             )
         )
-    if "LastAuthorizedTime" in data:
+    if data.get("LastAuthorizedTime") is not None:
         import capo_cloudwatch_events.types.timestamp
 
         out["last_authorized_time"] = (

@@ -29,6 +29,8 @@ def deserialize_json(data: list) -> ComputationModelDataBindingUsageSummaries:
 
     out: ComputationModelDataBindingUsageSummaries = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_iotsitewise.types.computation_model_data_binding_usage_summary.deserialize_json(
                 item

@@ -47,11 +47,11 @@ def serialize_aws_json_1_0(value: BatchIsAuthorizedInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> BatchIsAuthorizedInput:
     out: BatchIsAuthorizedInput = {}  # type: ignore[typeddict-item]
-    if "policyStoreId" in data:
+    if data.get("policyStoreId") is not None:
         out["policy_store_id"] = data["policyStoreId"]
     else:
         raise DeserializationError("BatchIsAuthorizedInput.policy_store_id required")
-    if "entities" in data:
+    if data.get("entities") is not None:
         import capo_verifiedpermissions.types.entities_definition
 
         out["entities"] = (
@@ -59,7 +59,7 @@ def deserialize_aws_json_1_0(data: dict) -> BatchIsAuthorizedInput:
                 data["entities"]
             )
         )
-    if "requests" in data:
+    if data.get("requests") is not None:
         import capo_verifiedpermissions.types.batch_is_authorized_input_list
 
         out["requests"] = (

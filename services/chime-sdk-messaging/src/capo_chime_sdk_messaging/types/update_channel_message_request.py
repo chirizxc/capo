@@ -49,14 +49,14 @@ def serialize_json(value: UpdateChannelMessageRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateChannelMessageRequest:
     out: UpdateChannelMessageRequest = {}  # type: ignore[typeddict-item]
-    if "Content" in data:
+    if data.get("Content") is not None:
         out["content"] = data["Content"]
     else:
         raise DeserializationError("UpdateChannelMessageRequest.content required")
-    if "Metadata" in data:
+    if data.get("Metadata") is not None:
         out["metadata"] = data["Metadata"]
-    if "SubChannelId" in data:
+    if data.get("SubChannelId") is not None:
         out["sub_channel_id"] = data["SubChannelId"]
-    if "ContentType" in data:
+    if data.get("ContentType") is not None:
         out["content_type"] = data["ContentType"]
     return out

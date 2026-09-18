@@ -32,11 +32,11 @@ def serialize_aws_json_1_1(value: UpdateJobShipmentStateRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> UpdateJobShipmentStateRequest:
     out: UpdateJobShipmentStateRequest = {}  # type: ignore[typeddict-item]
-    if "JobId" in data:
+    if data.get("JobId") is not None:
         out["job_id"] = data["JobId"]
     else:
         raise DeserializationError("UpdateJobShipmentStateRequest.job_id required")
-    if "ShipmentState" in data:
+    if data.get("ShipmentState") is not None:
         import capo_snowball.types.shipment_state
 
         out["shipment_state"] = (

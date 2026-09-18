@@ -32,8 +32,8 @@ def serialize_aws_json_1_1(value: ScheduledActionAssociation) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ScheduledActionAssociation:
     out: ScheduledActionAssociation = {}  # type: ignore[typeddict-item]
-    if "namespaceName" in data:
+    if data.get("namespaceName") is not None:
         out["namespace_name"] = data["namespaceName"]
-    if "scheduledActionName" in data:
+    if data.get("scheduledActionName") is not None:
         out["scheduled_action_name"] = data["scheduledActionName"]
     return out

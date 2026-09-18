@@ -59,11 +59,11 @@ def serialize_json(value: CreateDestinationRequest) -> dict:
 
 def deserialize_json(data: dict) -> CreateDestinationRequest:
     out: CreateDestinationRequest = {}  # type: ignore[typeddict-item]
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateDestinationRequest.name required")
-    if "ExpressionType" in data:
+    if data.get("ExpressionType") is not None:
         import capo_iot_wireless.types.expression_type
 
         out["expression_type"] = (
@@ -73,20 +73,20 @@ def deserialize_json(data: dict) -> CreateDestinationRequest:
         )
     else:
         raise DeserializationError("CreateDestinationRequest.expression_type required")
-    if "Expression" in data:
+    if data.get("Expression") is not None:
         out["expression"] = data["Expression"]
     else:
         raise DeserializationError("CreateDestinationRequest.expression required")
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "RoleArn" in data:
+    if data.get("RoleArn") is not None:
         out["role_arn"] = data["RoleArn"]
     else:
         raise DeserializationError("CreateDestinationRequest.role_arn required")
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_iot_wireless.types.tag_list
 
         out["tags"] = capo_iot_wireless.types.tag_list.deserialize_json(data["Tags"])
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
     return out

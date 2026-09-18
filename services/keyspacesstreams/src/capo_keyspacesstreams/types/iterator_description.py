@@ -31,7 +31,7 @@ def serialize_aws_json_1_0(value: IteratorDescription) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> IteratorDescription:
     out: IteratorDescription = {}  # type: ignore[typeddict-item]
-    if "iteratorPosition" in data:
+    if data.get("iteratorPosition") is not None:
         import capo_keyspacesstreams.types.iterator_position
 
         out["iterator_position"] = (

@@ -1,5 +1,6 @@
 """Generated from Smithy shape ``com.amazonaws.marketplaceagreement#AWSMPCommerceService_v20200301``."""
 
+import uuid
 import warnings
 from collections.abc import Iterator
 from typing import TYPE_CHECKING, Any, Iterable, Optional
@@ -257,15 +258,17 @@ class MarketplaceAgreementClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_agreement.types.accept_agreement_cancellation_request_input.AcceptAgreementCancellationRequestInput = {}  # type: ignore[typeddict-item]
-        input_["agreement_id"] = agreement_id
-        input_["agreement_cancellation_request_id"] = agreement_cancellation_request_id
+        input_: capo_marketplace_agreement.types.accept_agreement_cancellation_request_input.AcceptAgreementCancellationRequestInput = {
+            "agreement_id": agreement_id,
+            "agreement_cancellation_request_id": agreement_cancellation_request_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def accept_agreement_payment_request(
@@ -310,9 +313,10 @@ class MarketplaceAgreementClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_agreement.types.accept_agreement_payment_request_input.AcceptAgreementPaymentRequestInput = {}  # type: ignore[typeddict-item]
-        input_["payment_request_id"] = payment_request_id
-        input_["agreement_id"] = agreement_id
+        input_: capo_marketplace_agreement.types.accept_agreement_payment_request_input.AcceptAgreementPaymentRequestInput = {
+            "payment_request_id": payment_request_id,
+            "agreement_id": agreement_id,
+        }
         if purchase_order_reference is not None:
             input_["purchase_order_reference"] = purchase_order_reference
 
@@ -321,6 +325,7 @@ class MarketplaceAgreementClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def accept_agreement_request(
@@ -363,8 +368,9 @@ class MarketplaceAgreementClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_agreement.types.accept_agreement_request_input.AcceptAgreementRequestInput = {}  # type: ignore[typeddict-item]
-        input_["agreement_request_id"] = agreement_request_id
+        input_: capo_marketplace_agreement.types.accept_agreement_request_input.AcceptAgreementRequestInput = {
+            "agreement_request_id": agreement_request_id
+        }
         if purchase_orders is not None:
             input_["purchase_orders"] = purchase_orders
 
@@ -373,6 +379,7 @@ class MarketplaceAgreementClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def batch_create_billing_adjustment_request(
@@ -415,16 +422,16 @@ class MarketplaceAgreementClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_agreement.types.batch_create_billing_adjustment_request_input.BatchCreateBillingAdjustmentRequestInput = {}  # type: ignore[typeddict-item]
-        input_["billing_adjustment_request_entries"] = (
-            billing_adjustment_request_entries
-        )
+        input_: capo_marketplace_agreement.types.batch_create_billing_adjustment_request_input.BatchCreateBillingAdjustmentRequestInput = {
+            "billing_adjustment_request_entries": billing_adjustment_request_entries
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_agreement(
@@ -465,14 +472,16 @@ class MarketplaceAgreementClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_agreement.types.cancel_agreement_input.CancelAgreementInput = {}  # type: ignore[typeddict-item]
-        input_["agreement_id"] = agreement_id
+        input_: capo_marketplace_agreement.types.cancel_agreement_input.CancelAgreementInput = {
+            "agreement_id": agreement_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_agreement_cancellation_request(
@@ -520,16 +529,18 @@ class MarketplaceAgreementClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_agreement.types.cancel_agreement_cancellation_request_input.CancelAgreementCancellationRequestInput = {}  # type: ignore[typeddict-item]
-        input_["agreement_id"] = agreement_id
-        input_["agreement_cancellation_request_id"] = agreement_cancellation_request_id
-        input_["cancellation_reason"] = cancellation_reason
+        input_: capo_marketplace_agreement.types.cancel_agreement_cancellation_request_input.CancelAgreementCancellationRequestInput = {
+            "agreement_id": agreement_id,
+            "agreement_cancellation_request_id": agreement_cancellation_request_id,
+            "cancellation_reason": cancellation_reason,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def cancel_agreement_payment_request(
@@ -570,15 +581,17 @@ class MarketplaceAgreementClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_agreement.types.cancel_agreement_payment_request_input.CancelAgreementPaymentRequestInput = {}  # type: ignore[typeddict-item]
-        input_["payment_request_id"] = payment_request_id
-        input_["agreement_id"] = agreement_id
+        input_: capo_marketplace_agreement.types.cancel_agreement_payment_request_input.CancelAgreementPaymentRequestInput = {
+            "payment_request_id": payment_request_id,
+            "agreement_id": agreement_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def create_agreement_request(
@@ -636,11 +649,13 @@ class MarketplaceAgreementClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_agreement.types.create_agreement_request_input.CreateAgreementRequestInput = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["intent"] = intent
-        input_["requested_terms"] = requested_terms
+        input_: capo_marketplace_agreement.types.create_agreement_request_input.CreateAgreementRequestInput = {
+            "intent": intent,
+            "requested_terms": requested_terms,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if source_agreement_identifier is not None:
             input_["source_agreement_identifier"] = source_agreement_identifier
         if agreement_proposal_identifier is not None:
@@ -653,6 +668,7 @@ class MarketplaceAgreementClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def describe_agreement(
@@ -690,14 +706,16 @@ class MarketplaceAgreementClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_agreement.types.describe_agreement_input.DescribeAgreementInput = {}  # type: ignore[typeddict-item]
-        input_["agreement_id"] = agreement_id
+        input_: capo_marketplace_agreement.types.describe_agreement_input.DescribeAgreementInput = {
+            "agreement_id": agreement_id
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_agreement_cancellation_request(
@@ -742,15 +760,17 @@ class MarketplaceAgreementClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_agreement.types.get_agreement_cancellation_request_input.GetAgreementCancellationRequestInput = {}  # type: ignore[typeddict-item]
-        input_["agreement_cancellation_request_id"] = agreement_cancellation_request_id
-        input_["agreement_id"] = agreement_id
+        input_: capo_marketplace_agreement.types.get_agreement_cancellation_request_input.GetAgreementCancellationRequestInput = {
+            "agreement_cancellation_request_id": agreement_cancellation_request_id,
+            "agreement_id": agreement_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_agreement_entitlements(
@@ -796,8 +816,9 @@ class MarketplaceAgreementClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_agreement.types.get_agreement_entitlements_input.GetAgreementEntitlementsInput = {}  # type: ignore[typeddict-item]
-        input_["agreement_id"] = agreement_id
+        input_: capo_marketplace_agreement.types.get_agreement_entitlements_input.GetAgreementEntitlementsInput = {
+            "agreement_id": agreement_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -808,6 +829,7 @@ class MarketplaceAgreementClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_agreement_entitlements(
@@ -874,15 +896,17 @@ class MarketplaceAgreementClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_agreement.types.get_agreement_payment_request_input.GetAgreementPaymentRequestInput = {}  # type: ignore[typeddict-item]
-        input_["payment_request_id"] = payment_request_id
-        input_["agreement_id"] = agreement_id
+        input_: capo_marketplace_agreement.types.get_agreement_payment_request_input.GetAgreementPaymentRequestInput = {
+            "payment_request_id": payment_request_id,
+            "agreement_id": agreement_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def get_agreement_terms(
@@ -928,8 +952,9 @@ class MarketplaceAgreementClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_agreement.types.get_agreement_terms_input.GetAgreementTermsInput = {}  # type: ignore[typeddict-item]
-        input_["agreement_id"] = agreement_id
+        input_: capo_marketplace_agreement.types.get_agreement_terms_input.GetAgreementTermsInput = {
+            "agreement_id": agreement_id
+        }
         if max_results is not None:
             input_["max_results"] = max_results
         if next_token is not None:
@@ -940,6 +965,7 @@ class MarketplaceAgreementClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_get_agreement_terms(
@@ -1011,15 +1037,17 @@ class MarketplaceAgreementClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_agreement.types.get_billing_adjustment_request_input.GetBillingAdjustmentRequestInput = {}  # type: ignore[typeddict-item]
-        input_["agreement_id"] = agreement_id
-        input_["billing_adjustment_request_id"] = billing_adjustment_request_id
+        input_: capo_marketplace_agreement.types.get_billing_adjustment_request_input.GetBillingAdjustmentRequestInput = {
+            "agreement_id": agreement_id,
+            "billing_adjustment_request_id": billing_adjustment_request_id,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def list_agreement_cancellation_requests(
@@ -1083,8 +1111,9 @@ class MarketplaceAgreementClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_agreement.types.list_agreement_cancellation_requests_input.ListAgreementCancellationRequestsInput = {}  # type: ignore[typeddict-item]
-        input_["party_type"] = party_type
+        input_: capo_marketplace_agreement.types.list_agreement_cancellation_requests_input.ListAgreementCancellationRequestsInput = {
+            "party_type": party_type
+        }
         if agreement_id is not None:
             input_["agreement_id"] = agreement_id
         if status is not None:
@@ -1103,6 +1132,7 @@ class MarketplaceAgreementClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_agreement_cancellation_requests(
@@ -1196,7 +1226,7 @@ class MarketplaceAgreementClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_agreement.types.list_agreement_charges_input.ListAgreementChargesInput = {}  # type: ignore[typeddict-item]
+        input_: capo_marketplace_agreement.types.list_agreement_charges_input.ListAgreementChargesInput = {}
         if catalog is not None:
             input_["catalog"] = catalog
         if agreement_id is not None:
@@ -1213,6 +1243,7 @@ class MarketplaceAgreementClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_agreement_charges(
@@ -1320,9 +1351,10 @@ class MarketplaceAgreementClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_agreement.types.list_agreement_invoice_line_items_input.ListAgreementInvoiceLineItemsInput = {}  # type: ignore[typeddict-item]
-        input_["agreement_id"] = agreement_id
-        input_["group_by"] = group_by
+        input_: capo_marketplace_agreement.types.list_agreement_invoice_line_items_input.ListAgreementInvoiceLineItemsInput = {
+            "agreement_id": agreement_id,
+            "group_by": group_by,
+        }
         if invoice_id is not None:
             input_["invoice_id"] = invoice_id
         if invoice_type is not None:
@@ -1343,6 +1375,7 @@ class MarketplaceAgreementClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_agreement_invoice_line_items(
@@ -1452,8 +1485,9 @@ class MarketplaceAgreementClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_agreement.types.list_agreement_payment_requests_input.ListAgreementPaymentRequestsInput = {}  # type: ignore[typeddict-item]
-        input_["party_type"] = party_type
+        input_: capo_marketplace_agreement.types.list_agreement_payment_requests_input.ListAgreementPaymentRequestsInput = {
+            "party_type": party_type
+        }
         if agreement_type is not None:
             input_["agreement_type"] = agreement_type
         if catalog is not None:
@@ -1472,6 +1506,7 @@ class MarketplaceAgreementClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_agreement_payment_requests(
@@ -1582,7 +1617,7 @@ class MarketplaceAgreementClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_agreement.types.list_billing_adjustment_requests_input.ListBillingAdjustmentRequestsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_marketplace_agreement.types.list_billing_adjustment_requests_input.ListBillingAdjustmentRequestsInput = {}
         if agreement_id is not None:
             input_["agreement_id"] = agreement_id
         if status is not None:
@@ -1605,6 +1640,7 @@ class MarketplaceAgreementClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_list_billing_adjustment_requests(
@@ -1694,16 +1730,18 @@ class MarketplaceAgreementClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_agreement.types.reject_agreement_cancellation_request_input.RejectAgreementCancellationRequestInput = {}  # type: ignore[typeddict-item]
-        input_["agreement_id"] = agreement_id
-        input_["agreement_cancellation_request_id"] = agreement_cancellation_request_id
-        input_["rejection_reason"] = rejection_reason
+        input_: capo_marketplace_agreement.types.reject_agreement_cancellation_request_input.RejectAgreementCancellationRequestInput = {
+            "agreement_id": agreement_id,
+            "agreement_cancellation_request_id": agreement_cancellation_request_id,
+            "rejection_reason": rejection_reason,
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def reject_agreement_payment_request(
@@ -1748,9 +1786,10 @@ class MarketplaceAgreementClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_agreement.types.reject_agreement_payment_request_input.RejectAgreementPaymentRequestInput = {}  # type: ignore[typeddict-item]
-        input_["payment_request_id"] = payment_request_id
-        input_["agreement_id"] = agreement_id
+        input_: capo_marketplace_agreement.types.reject_agreement_payment_request_input.RejectAgreementPaymentRequestInput = {
+            "payment_request_id": payment_request_id,
+            "agreement_id": agreement_id,
+        }
         if rejection_reason is not None:
             input_["rejection_reason"] = rejection_reason
 
@@ -1759,6 +1798,7 @@ class MarketplaceAgreementClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def search_agreements(
@@ -1809,7 +1849,7 @@ class MarketplaceAgreementClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_agreement.types.search_agreements_input.SearchAgreementsInput = {}  # type: ignore[typeddict-item]
+        input_: capo_marketplace_agreement.types.search_agreements_input.SearchAgreementsInput = {}
         if catalog is not None:
             input_["catalog"] = catalog
         if filters is not None:
@@ -1826,6 +1866,7 @@ class MarketplaceAgreementClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def iter_search_agreements(
@@ -1912,11 +1953,13 @@ class MarketplaceAgreementClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_agreement.types.send_agreement_cancellation_request_input.SendAgreementCancellationRequestInput = {}  # type: ignore[typeddict-item]
-        input_["agreement_id"] = agreement_id
-        input_["reason_code"] = reason_code
-        if client_token is not None:
-            input_["client_token"] = client_token
+        input_: capo_marketplace_agreement.types.send_agreement_cancellation_request_input.SendAgreementCancellationRequestInput = {
+            "agreement_id": agreement_id,
+            "reason_code": reason_code,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if description is not None:
             input_["description"] = description
 
@@ -1925,6 +1968,7 @@ class MarketplaceAgreementClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def send_agreement_payment_request(
@@ -1977,13 +2021,15 @@ class MarketplaceAgreementClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_agreement.types.send_agreement_payment_request_input.SendAgreementPaymentRequestInput = {}  # type: ignore[typeddict-item]
-        if client_token is not None:
-            input_["client_token"] = client_token
-        input_["agreement_id"] = agreement_id
-        input_["term_id"] = term_id
-        input_["name"] = name
-        input_["charge_amount"] = charge_amount
+        input_: capo_marketplace_agreement.types.send_agreement_payment_request_input.SendAgreementPaymentRequestInput = {
+            "agreement_id": agreement_id,
+            "term_id": term_id,
+            "name": name,
+            "charge_amount": charge_amount,
+        }
+        if client_token is None:
+            client_token = str(uuid.uuid4())
+        input_["client_token"] = client_token
         if description is not None:
             input_["description"] = description
 
@@ -1992,6 +2038,7 @@ class MarketplaceAgreementClient:
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def update_purchase_orders(
@@ -2030,14 +2077,16 @@ class MarketplaceAgreementClient:
             return OperationResponse(output=output, response=http_response)
 
         interceptors_, options_ = self.operation_options(config_overrides)
-        input_: capo_marketplace_agreement.types.update_purchase_orders_input.UpdatePurchaseOrdersInput = {}  # type: ignore[typeddict-item]
-        input_["purchase_orders"] = purchase_orders
+        input_: capo_marketplace_agreement.types.update_purchase_orders_input.UpdatePurchaseOrdersInput = {
+            "purchase_orders": purchase_orders
+        }
 
         response = execute_pipeline(
             OperationRequest(input=input_, options=options_),
             handler=_handler,
             interceptors=list(interceptors_),
         )
+        response.response.close()
         return response.output
 
     def __enter__(self) -> Self:

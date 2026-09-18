@@ -42,11 +42,11 @@ def serialize_aws_json_1_1(value: TransformOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TransformOutput:
     out: TransformOutput = {}  # type: ignore[typeddict-item]
-    if "S3OutputPath" in data:
+    if data.get("S3OutputPath") is not None:
         out["s3_output_path"] = data["S3OutputPath"]
-    if "Accept" in data:
+    if data.get("Accept") is not None:
         out["accept"] = data["Accept"]
-    if "AssembleWith" in data:
+    if data.get("AssembleWith") is not None:
         import capo_sagemaker.types.assembly_type
 
         out["assemble_with"] = (
@@ -54,6 +54,6 @@ def deserialize_aws_json_1_1(data: dict) -> TransformOutput:
                 data["AssembleWith"]
             )
         )
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
     return out

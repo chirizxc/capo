@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> AttemptDetails:
 
     out: AttemptDetails = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_batch.types.attempt_detail.deserialize_json(item))
     return out

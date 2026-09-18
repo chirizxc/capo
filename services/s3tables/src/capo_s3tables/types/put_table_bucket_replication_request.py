@@ -36,7 +36,7 @@ def serialize_json(value: PutTableBucketReplicationRequest) -> dict:
 
 def deserialize_json(data: dict) -> PutTableBucketReplicationRequest:
     out: PutTableBucketReplicationRequest = {}  # type: ignore[typeddict-item]
-    if "configuration" in data:
+    if data.get("configuration") is not None:
         import capo_s3tables.types.table_bucket_replication_configuration
 
         out["configuration"] = (

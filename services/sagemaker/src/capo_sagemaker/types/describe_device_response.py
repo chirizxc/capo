@@ -85,17 +85,17 @@ def serialize_aws_json_1_1(value: DescribeDeviceResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeDeviceResponse:
     out: DescribeDeviceResponse = {}  # type: ignore[typeddict-item]
-    if "DeviceArn" in data:
+    if data.get("DeviceArn") is not None:
         out["device_arn"] = data["DeviceArn"]
-    if "DeviceName" in data:
+    if data.get("DeviceName") is not None:
         out["device_name"] = data["DeviceName"]
-    if "Description" in data:
+    if data.get("Description") is not None:
         out["description"] = data["Description"]
-    if "DeviceFleetName" in data:
+    if data.get("DeviceFleetName") is not None:
         out["device_fleet_name"] = data["DeviceFleetName"]
-    if "IotThingName" in data:
+    if data.get("IotThingName") is not None:
         out["iot_thing_name"] = data["IotThingName"]
-    if "RegistrationTime" in data:
+    if data.get("RegistrationTime") is not None:
         import capo_sagemaker.types.timestamp
 
         out["registration_time"] = (
@@ -103,7 +103,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeDeviceResponse:
                 data["RegistrationTime"]
             )
         )
-    if "LatestHeartbeat" in data:
+    if data.get("LatestHeartbeat") is not None:
         import capo_sagemaker.types.timestamp
 
         out["latest_heartbeat"] = (
@@ -111,16 +111,16 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeDeviceResponse:
                 data["LatestHeartbeat"]
             )
         )
-    if "Models" in data:
+    if data.get("Models") is not None:
         import capo_sagemaker.types.edge_models
 
         out["models"] = capo_sagemaker.types.edge_models.deserialize_aws_json_1_1(
             data["Models"]
         )
-    if "MaxModels" in data:
+    if data.get("MaxModels") is not None:
         out["max_models"] = data["MaxModels"]
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
-    if "AgentVersion" in data:
+    if data.get("AgentVersion") is not None:
         out["agent_version"] = data["AgentVersion"]
     return out

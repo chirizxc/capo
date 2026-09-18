@@ -32,7 +32,7 @@ def serialize_json(value: RuleMatch) -> dict:
 
 
 def deserialize_json(data: dict) -> RuleMatch:
-    if "httpMatch" in data:
+    if data.get("httpMatch") is not None:
         import capo_vpc_lattice.types.http_match
 
         return {

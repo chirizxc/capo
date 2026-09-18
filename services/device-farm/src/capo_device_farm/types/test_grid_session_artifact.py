@@ -41,9 +41,9 @@ def serialize_aws_json_1_1(value: TestGridSessionArtifact) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> TestGridSessionArtifact:
     out: TestGridSessionArtifact = {}  # type: ignore[typeddict-item]
-    if "filename" in data:
+    if data.get("filename") is not None:
         out["filename"] = data["filename"]
-    if "type" in data:
+    if data.get("type") is not None:
         import capo_device_farm.types.test_grid_session_artifact_type
 
         out["type"] = (
@@ -51,6 +51,6 @@ def deserialize_aws_json_1_1(data: dict) -> TestGridSessionArtifact:
                 data["type"]
             )
         )
-    if "url" in data:
+    if data.get("url") is not None:
         out["url"] = data["url"]
     return out

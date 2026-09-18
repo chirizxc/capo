@@ -51,11 +51,11 @@ def serialize_json(value: ListExportsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListExportsResponse:
     out: ListExportsResponse = {}  # type: ignore[typeddict-item]
-    if "botId" in data:
+    if data.get("botId") is not None:
         out["bot_id"] = data["botId"]
-    if "botVersion" in data:
+    if data.get("botVersion") is not None:
         out["bot_version"] = data["botVersion"]
-    if "exportSummaries" in data:
+    if data.get("exportSummaries") is not None:
         import capo_lex_models_v2.types.export_summary_list
 
         out["export_summaries"] = (
@@ -63,8 +63,8 @@ def deserialize_json(data: dict) -> ListExportsResponse:
                 data["exportSummaries"]
             )
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "localeId" in data:
+    if data.get("localeId") is not None:
         out["locale_id"] = data["localeId"]
     return out

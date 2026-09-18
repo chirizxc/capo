@@ -27,6 +27,8 @@ def deserialize_aws_json_1_1(data: list) -> ReactionsForCommentList:
 
     out: ReactionsForCommentList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_codecommit.types.reaction_for_comment.deserialize_aws_json_1_1(item)
         )

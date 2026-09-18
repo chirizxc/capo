@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: DescribeAssessmentRunsResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeAssessmentRunsResponse:
     out: DescribeAssessmentRunsResponse = {}  # type: ignore[typeddict-item]
-    if "assessmentRuns" in data:
+    if data.get("assessmentRuns") is not None:
         import capo_inspector.types.assessment_run_list
 
         out["assessment_runs"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAssessmentRunsResponse:
         raise DeserializationError(
             "DescribeAssessmentRunsResponse.assessment_runs required"
         )
-    if "failedItems" in data:
+    if data.get("failedItems") is not None:
         import capo_inspector.types.failed_items
 
         out["failed_items"] = (

@@ -43,7 +43,15 @@ def serialize_aws_json_1_1(value: StartFaceSearchRequest) -> dict:
     if "client_request_token" in value:
         out["ClientRequestToken"] = value["client_request_token"]
     if "face_match_threshold" in value:
-        out["FaceMatchThreshold"] = value["face_match_threshold"]
+        out["FaceMatchThreshold"] = (
+            "NaN"
+            if value["face_match_threshold"] != value["face_match_threshold"]
+            else "Infinity"
+            if value["face_match_threshold"] == float("inf")
+            else "-Infinity"
+            if value["face_match_threshold"] == float("-inf")
+            else value["face_match_threshold"]
+        )
     out["CollectionId"] = value["collection_id"]
     if "notification_channel" in value:
         import capo_rekognition.types.notification_channel
@@ -60,7 +68,7 @@ def serialize_aws_json_1_1(value: StartFaceSearchRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> StartFaceSearchRequest:
     out: StartFaceSearchRequest = {}  # type: ignore[typeddict-item]
-    if "Video" in data:
+    if data.get("Video") is not None:
         import capo_rekognition.types.video
 
         out["video"] = capo_rekognition.types.video.deserialize_aws_json_1_1(
@@ -68,15 +76,15 @@ def deserialize_aws_json_1_1(data: dict) -> StartFaceSearchRequest:
         )
     else:
         raise DeserializationError("StartFaceSearchRequest.video required")
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
-    if "FaceMatchThreshold" in data:
-        out["face_match_threshold"] = data["FaceMatchThreshold"]
-    if "CollectionId" in data:
+    if data.get("FaceMatchThreshold") is not None:
+        out["face_match_threshold"] = float(data["FaceMatchThreshold"])
+    if data.get("CollectionId") is not None:
         out["collection_id"] = data["CollectionId"]
     else:
         raise DeserializationError("StartFaceSearchRequest.collection_id required")
-    if "NotificationChannel" in data:
+    if data.get("NotificationChannel") is not None:
         import capo_rekognition.types.notification_channel
 
         out["notification_channel"] = (
@@ -84,6 +92,6 @@ def deserialize_aws_json_1_1(data: dict) -> StartFaceSearchRequest:
                 data["NotificationChannel"]
             )
         )
-    if "JobTag" in data:
+    if data.get("JobTag") is not None:
         out["job_tag"] = data["JobTag"]
     return out

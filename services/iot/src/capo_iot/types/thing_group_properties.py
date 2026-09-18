@@ -34,9 +34,9 @@ def serialize_json(value: ThingGroupProperties) -> dict:
 
 def deserialize_json(data: dict) -> ThingGroupProperties:
     out: ThingGroupProperties = {}  # type: ignore[typeddict-item]
-    if "thingGroupDescription" in data:
+    if data.get("thingGroupDescription") is not None:
         out["thing_group_description"] = data["thingGroupDescription"]
-    if "attributePayload" in data:
+    if data.get("attributePayload") is not None:
         import capo_iot.types.attribute_payload
 
         out["attribute_payload"] = capo_iot.types.attribute_payload.deserialize_json(

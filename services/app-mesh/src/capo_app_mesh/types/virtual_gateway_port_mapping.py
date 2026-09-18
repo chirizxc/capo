@@ -30,11 +30,11 @@ def serialize_json(value: VirtualGatewayPortMapping) -> dict:
 
 def deserialize_json(data: dict) -> VirtualGatewayPortMapping:
     out: VirtualGatewayPortMapping = {}  # type: ignore[typeddict-item]
-    if "port" in data:
+    if data.get("port") is not None:
         out["port"] = data["port"]
     else:
         raise DeserializationError("VirtualGatewayPortMapping.port required")
-    if "protocol" in data:
+    if data.get("protocol") is not None:
         out["protocol"] = data["protocol"]
     else:
         raise DeserializationError("VirtualGatewayPortMapping.protocol required")

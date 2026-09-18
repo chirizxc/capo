@@ -35,8 +35,24 @@ class Item(TypedDict, closed=True):
 # --- restJson1 ser/de ---
 def serialize_json(value: Item) -> dict:
     out: dict = {}
-    out["StartTime"] = value.get("start_time", 0)
-    out["EndTime"] = value.get("end_time", 0)
+    out["StartTime"] = (
+        "NaN"
+        if value.get("start_time", 0) != value.get("start_time", 0)
+        else "Infinity"
+        if value.get("start_time", 0) == float("inf")
+        else "-Infinity"
+        if value.get("start_time", 0) == float("-inf")
+        else value.get("start_time", 0)
+    )
+    out["EndTime"] = (
+        "NaN"
+        if value.get("end_time", 0) != value.get("end_time", 0)
+        else "Infinity"
+        if value.get("end_time", 0) == float("inf")
+        else "-Infinity"
+        if value.get("end_time", 0) == float("-inf")
+        else value.get("end_time", 0)
+    )
     if "type" in value:
         import capo_transcribe_streaming.types.item_type
 
@@ -49,7 +65,15 @@ def serialize_json(value: Item) -> dict:
     if "speaker" in value:
         out["Speaker"] = value["speaker"]
     if "confidence" in value:
-        out["Confidence"] = value["confidence"]
+        out["Confidence"] = (
+            "NaN"
+            if value["confidence"] != value["confidence"]
+            else "Infinity"
+            if value["confidence"] == float("inf")
+            else "-Infinity"
+            if value["confidence"] == float("-inf")
+            else value["confidence"]
+        )
     if "stable" in value:
         out["Stable"] = value["stable"]
     return out
@@ -57,30 +81,30 @@ def serialize_json(value: Item) -> dict:
 
 def deserialize_json(data: dict) -> Item:
     out: Item = {}  # type: ignore[typeddict-item]
-    if "StartTime" in data:
-        out["start_time"] = data["StartTime"]
+    if data.get("StartTime") is not None:
+        out["start_time"] = float(data["StartTime"])
     else:
         out["start_time"] = 0
-    if "EndTime" in data:
-        out["end_time"] = data["EndTime"]
+    if data.get("EndTime") is not None:
+        out["end_time"] = float(data["EndTime"])
     else:
         out["end_time"] = 0
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_transcribe_streaming.types.item_type
 
         out["type"] = capo_transcribe_streaming.types.item_type.deserialize_json(
             data["Type"]
         )
-    if "Content" in data:
+    if data.get("Content") is not None:
         out["content"] = data["Content"]
-    if "VocabularyFilterMatch" in data:
+    if data.get("VocabularyFilterMatch") is not None:
         out["vocabulary_filter_match"] = data["VocabularyFilterMatch"]
     else:
         out["vocabulary_filter_match"] = False
-    if "Speaker" in data:
+    if data.get("Speaker") is not None:
         out["speaker"] = data["Speaker"]
-    if "Confidence" in data:
-        out["confidence"] = data["Confidence"]
-    if "Stable" in data:
+    if data.get("Confidence") is not None:
+        out["confidence"] = float(data["Confidence"])
+    if data.get("Stable") is not None:
         out["stable"] = data["Stable"]
     return out

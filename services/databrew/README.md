@@ -13,9 +13,9 @@ from capo_databrew import AsyncDataBrewClient
 
 
 async def main():
-    async with AsyncDataBrewClient() as s3:
+    async with AsyncDataBrewClient() as data_brew:
         # Example: call the batch_delete_recipe_version operation
-        response = await s3.batch_delete_recipe_version()
+        response = await data_brew.batch_delete_recipe_version()
         print(response["name"])
 ```
 
@@ -28,9 +28,9 @@ from capo_databrew import AsyncDataBrewClient
 
 
 async def main():
-    async with AsyncDataBrewClient() as s3:
+    async with AsyncDataBrewClient() as data_brew:
         # Example: paginate over list_datasets
-        async for item in s3.iter_list_datasets():
+        async for item in data_brew.iter_list_datasets():
             print(item)
 ```
 
@@ -44,9 +44,9 @@ from capo_databrew.error import ConflictException
 
 
 async def main():
-    async with AsyncDataBrewClient() as s3:
+    async with AsyncDataBrewClient() as data_brew:
         try:
-            await s3.batch_delete_recipe_version()
+            await data_brew.batch_delete_recipe_version()
         except ConflictException as e:
             print(f"Error: {e}")
             print(e.data)  # additional error data
@@ -63,13 +63,13 @@ from capo_databrew import AsyncDataBrewClient
 
 
 async def main():
-    async with AsyncDataBrewClient() as s3:
+    async with AsyncDataBrewClient() as data_brew:
         # Default: 3 attempts for every operation
-        response = await s3.batch_delete_recipe_version()
+        response = await data_brew.batch_delete_recipe_version()
 
         # Override per operation
-        response = await s3.batch_delete_recipe_version(config_overrides={"retry_max_attempts": 5})
+        response = await data_brew.batch_delete_recipe_version(config_overrides={"retry_max_attempts": 5})
 
         # Disable retries for this call
-        response = await s3.batch_delete_recipe_version(config_overrides={"retry_max_attempts": 1})
+        response = await data_brew.batch_delete_recipe_version(config_overrides={"retry_max_attempts": 1})
 ```

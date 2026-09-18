@@ -31,7 +31,7 @@ def serialize_json(value: StartVoiceToneAnalysisTaskResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartVoiceToneAnalysisTaskResponse:
     out: StartVoiceToneAnalysisTaskResponse = {}  # type: ignore[typeddict-item]
-    if "VoiceToneAnalysisTask" in data:
+    if data.get("VoiceToneAnalysisTask") is not None:
         import capo_chime_sdk_voice.types.voice_tone_analysis_task
 
         out["voice_tone_analysis_task"] = (

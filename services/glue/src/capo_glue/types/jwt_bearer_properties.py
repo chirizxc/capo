@@ -66,31 +66,31 @@ def serialize_aws_json_1_1(value: JWTBearerProperties) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> JWTBearerProperties:
     out: JWTBearerProperties = {}  # type: ignore[typeddict-item]
-    if "TokenUrl" in data:
+    if data.get("TokenUrl") is not None:
         import capo_glue.types.connector_property
 
         out["token_url"] = capo_glue.types.connector_property.deserialize_aws_json_1_1(
             data["TokenUrl"]
         )
-    if "RequestMethod" in data:
+    if data.get("RequestMethod") is not None:
         import capo_glue.types.http_method
 
         out["request_method"] = capo_glue.types.http_method.deserialize_aws_json_1_1(
             data["RequestMethod"]
         )
-    if "ContentType" in data:
+    if data.get("ContentType") is not None:
         import capo_glue.types.content_type
 
         out["content_type"] = capo_glue.types.content_type.deserialize_aws_json_1_1(
             data["ContentType"]
         )
-    if "JwtToken" in data:
+    if data.get("JwtToken") is not None:
         import capo_glue.types.connector_property
 
         out["jwt_token"] = capo_glue.types.connector_property.deserialize_aws_json_1_1(
             data["JwtToken"]
         )
-    if "TokenUrlParameters" in data:
+    if data.get("TokenUrlParameters") is not None:
         import capo_glue.types.connector_property_list
 
         out["token_url_parameters"] = (

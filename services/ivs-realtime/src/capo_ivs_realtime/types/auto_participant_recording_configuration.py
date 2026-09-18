@@ -75,13 +75,13 @@ def serialize_json(value: AutoParticipantRecordingConfiguration) -> dict:
 
 def deserialize_json(data: dict) -> AutoParticipantRecordingConfiguration:
     out: AutoParticipantRecordingConfiguration = {}  # type: ignore[typeddict-item]
-    if "storageConfigurationArn" in data:
+    if data.get("storageConfigurationArn") is not None:
         out["storage_configuration_arn"] = data["storageConfigurationArn"]
     else:
         raise DeserializationError(
             "AutoParticipantRecordingConfiguration.storage_configuration_arn required"
         )
-    if "mediaTypes" in data:
+    if data.get("mediaTypes") is not None:
         import capo_ivs_realtime.types.participant_recording_media_type_list
 
         out["media_types"] = (
@@ -89,7 +89,7 @@ def deserialize_json(data: dict) -> AutoParticipantRecordingConfiguration:
                 data["mediaTypes"]
             )
         )
-    if "thumbnailConfiguration" in data:
+    if data.get("thumbnailConfiguration") is not None:
         import capo_ivs_realtime.types.participant_thumbnail_configuration
 
         out["thumbnail_configuration"] = (
@@ -97,13 +97,13 @@ def deserialize_json(data: dict) -> AutoParticipantRecordingConfiguration:
                 data["thumbnailConfiguration"]
             )
         )
-    if "recordingReconnectWindowSeconds" in data:
+    if data.get("recordingReconnectWindowSeconds") is not None:
         out["recording_reconnect_window_seconds"] = data[
             "recordingReconnectWindowSeconds"
         ]
     else:
         out["recording_reconnect_window_seconds"] = 0
-    if "hlsConfiguration" in data:
+    if data.get("hlsConfiguration") is not None:
         import capo_ivs_realtime.types.participant_recording_hls_configuration
 
         out["hls_configuration"] = (
@@ -111,7 +111,7 @@ def deserialize_json(data: dict) -> AutoParticipantRecordingConfiguration:
                 data["hlsConfiguration"]
             )
         )
-    if "recordParticipantReplicas" in data:
+    if data.get("recordParticipantReplicas") is not None:
         out["record_participant_replicas"] = data["recordParticipantReplicas"]
     else:
         out["record_participant_replicas"] = False

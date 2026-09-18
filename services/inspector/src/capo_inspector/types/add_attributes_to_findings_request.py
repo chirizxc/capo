@@ -38,7 +38,7 @@ def serialize_aws_json_1_1(value: AddAttributesToFindingsRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AddAttributesToFindingsRequest:
     out: AddAttributesToFindingsRequest = {}  # type: ignore[typeddict-item]
-    if "findingArns" in data:
+    if data.get("findingArns") is not None:
         import capo_inspector.types.add_remove_attributes_finding_arn_list
 
         out["finding_arns"] = (
@@ -50,7 +50,7 @@ def deserialize_aws_json_1_1(data: dict) -> AddAttributesToFindingsRequest:
         raise DeserializationError(
             "AddAttributesToFindingsRequest.finding_arns required"
         )
-    if "attributes" in data:
+    if data.get("attributes") is not None:
         import capo_inspector.types.user_attribute_list
 
         out["attributes"] = (

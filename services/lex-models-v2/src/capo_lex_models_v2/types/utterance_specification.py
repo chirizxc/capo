@@ -157,23 +157,23 @@ def serialize_json(value: UtteranceSpecification) -> dict:
 
 def deserialize_json(data: dict) -> UtteranceSpecification:
     out: UtteranceSpecification = {}  # type: ignore[typeddict-item]
-    if "botAliasId" in data:
+    if data.get("botAliasId") is not None:
         out["bot_alias_id"] = data["botAliasId"]
-    if "botVersion" in data:
+    if data.get("botVersion") is not None:
         out["bot_version"] = data["botVersion"]
-    if "localeId" in data:
+    if data.get("localeId") is not None:
         out["locale_id"] = data["localeId"]
-    if "sessionId" in data:
+    if data.get("sessionId") is not None:
         out["session_id"] = data["sessionId"]
-    if "channel" in data:
+    if data.get("channel") is not None:
         out["channel"] = data["channel"]
-    if "mode" in data:
+    if data.get("mode") is not None:
         import capo_lex_models_v2.types.analytics_modality
 
         out["mode"] = capo_lex_models_v2.types.analytics_modality.deserialize_json(
             data["mode"]
         )
-    if "conversationStartTime" in data:
+    if data.get("conversationStartTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["conversation_start_time"] = (
@@ -181,7 +181,7 @@ def deserialize_json(data: dict) -> UtteranceSpecification:
                 data["conversationStartTime"]
             )
         )
-    if "conversationEndTime" in data:
+    if data.get("conversationEndTime") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["conversation_end_time"] = (
@@ -189,9 +189,9 @@ def deserialize_json(data: dict) -> UtteranceSpecification:
                 data["conversationEndTime"]
             )
         )
-    if "utterance" in data:
+    if data.get("utterance") is not None:
         out["utterance"] = data["utterance"]
-    if "utteranceTimestamp" in data:
+    if data.get("utteranceTimestamp") is not None:
         import capo_lex_models_v2.types.timestamp
 
         out["utterance_timestamp"] = (
@@ -199,35 +199,35 @@ def deserialize_json(data: dict) -> UtteranceSpecification:
                 data["utteranceTimestamp"]
             )
         )
-    if "audioVoiceDurationMillis" in data:
+    if data.get("audioVoiceDurationMillis") is not None:
         out["audio_voice_duration_millis"] = data["audioVoiceDurationMillis"]
-    if "utteranceUnderstood" in data:
+    if data.get("utteranceUnderstood") is not None:
         out["utterance_understood"] = data["utteranceUnderstood"]
     else:
         out["utterance_understood"] = False
-    if "inputType" in data:
+    if data.get("inputType") is not None:
         out["input_type"] = data["inputType"]
-    if "outputType" in data:
+    if data.get("outputType") is not None:
         out["output_type"] = data["outputType"]
-    if "associatedIntentName" in data:
+    if data.get("associatedIntentName") is not None:
         out["associated_intent_name"] = data["associatedIntentName"]
-    if "associatedSlotName" in data:
+    if data.get("associatedSlotName") is not None:
         out["associated_slot_name"] = data["associatedSlotName"]
-    if "intentState" in data:
+    if data.get("intentState") is not None:
         import capo_lex_models_v2.types.intent_state
 
         out["intent_state"] = capo_lex_models_v2.types.intent_state.deserialize_json(
             data["intentState"]
         )
-    if "dialogActionType" in data:
+    if data.get("dialogActionType") is not None:
         out["dialog_action_type"] = data["dialogActionType"]
-    if "botResponseAudioVoiceId" in data:
+    if data.get("botResponseAudioVoiceId") is not None:
         out["bot_response_audio_voice_id"] = data["botResponseAudioVoiceId"]
-    if "slotsFilledInSession" in data:
+    if data.get("slotsFilledInSession") is not None:
         out["slots_filled_in_session"] = data["slotsFilledInSession"]
-    if "utteranceRequestId" in data:
+    if data.get("utteranceRequestId") is not None:
         out["utterance_request_id"] = data["utteranceRequestId"]
-    if "botResponses" in data:
+    if data.get("botResponses") is not None:
         import capo_lex_models_v2.types.utterance_bot_responses
 
         out["bot_responses"] = (

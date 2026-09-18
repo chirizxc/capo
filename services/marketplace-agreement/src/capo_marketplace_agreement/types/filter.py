@@ -36,9 +36,9 @@ def serialize_aws_json_1_0(value: Filter) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> Filter:
     out: Filter = {}  # type: ignore[typeddict-item]
-    if "name" in data:
+    if data.get("name") is not None:
         out["name"] = data["name"]
-    if "values" in data:
+    if data.get("values") is not None:
         import capo_marketplace_agreement.types.filter_value_list
 
         out["values"] = (

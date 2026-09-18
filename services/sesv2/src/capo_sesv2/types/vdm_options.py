@@ -38,13 +38,13 @@ def serialize_json(value: VdmOptions) -> dict:
 
 def deserialize_json(data: dict) -> VdmOptions:
     out: VdmOptions = {}  # type: ignore[typeddict-item]
-    if "DashboardOptions" in data:
+    if data.get("DashboardOptions") is not None:
         import capo_sesv2.types.dashboard_options
 
         out["dashboard_options"] = capo_sesv2.types.dashboard_options.deserialize_json(
             data["DashboardOptions"]
         )
-    if "GuardianOptions" in data:
+    if data.get("GuardianOptions") is not None:
         import capo_sesv2.types.guardian_options
 
         out["guardian_options"] = capo_sesv2.types.guardian_options.deserialize_json(

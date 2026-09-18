@@ -33,9 +33,9 @@ def serialize_json(value: ListPermissionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListPermissionsResponse:
     out: ListPermissionsResponse = {}  # type: ignore[typeddict-item]
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
-    if "permissions" in data:
+    if data.get("permissions") is not None:
         import capo_grafana.types.permission_entry_list
 
         out["permissions"] = capo_grafana.types.permission_entry_list.deserialize_json(

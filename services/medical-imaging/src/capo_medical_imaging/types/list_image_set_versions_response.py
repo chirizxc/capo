@@ -37,7 +37,7 @@ def serialize_json(value: ListImageSetVersionsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListImageSetVersionsResponse:
     out: ListImageSetVersionsResponse = {}  # type: ignore[typeddict-item]
-    if "imageSetPropertiesList" in data:
+    if data.get("imageSetPropertiesList") is not None:
         import capo_medical_imaging.types.image_set_properties_list
 
         out["image_set_properties_list"] = (
@@ -49,6 +49,6 @@ def deserialize_json(data: dict) -> ListImageSetVersionsResponse:
         raise DeserializationError(
             "ListImageSetVersionsResponse.image_set_properties_list required"
         )
-    if "nextToken" in data:
+    if data.get("nextToken") is not None:
         out["next_token"] = data["nextToken"]
     return out

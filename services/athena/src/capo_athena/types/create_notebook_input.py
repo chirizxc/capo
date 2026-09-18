@@ -35,14 +35,14 @@ def serialize_aws_json_1_1(value: CreateNotebookInput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateNotebookInput:
     out: CreateNotebookInput = {}  # type: ignore[typeddict-item]
-    if "WorkGroup" in data:
+    if data.get("WorkGroup") is not None:
         out["work_group"] = data["WorkGroup"]
     else:
         raise DeserializationError("CreateNotebookInput.work_group required")
-    if "Name" in data:
+    if data.get("Name") is not None:
         out["name"] = data["Name"]
     else:
         raise DeserializationError("CreateNotebookInput.name required")
-    if "ClientRequestToken" in data:
+    if data.get("ClientRequestToken") is not None:
         out["client_request_token"] = data["ClientRequestToken"]
     return out

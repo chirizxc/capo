@@ -18,6 +18,6 @@ def serialize_json(value: PhilippinesAdditionalInfo) -> dict:
 
 def deserialize_json(data: dict) -> PhilippinesAdditionalInfo:
     out: PhilippinesAdditionalInfo = {}  # type: ignore[typeddict-item]
-    if "isVatRegistered" in data:
+    if data.get("isVatRegistered") is not None:
         out["is_vat_registered"] = data["isVatRegistered"]
     return out

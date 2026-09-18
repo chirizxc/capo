@@ -90,21 +90,21 @@ def serialize_json(value: SourceApiAssociation) -> dict:
 
 def deserialize_json(data: dict) -> SourceApiAssociation:
     out: SourceApiAssociation = {}  # type: ignore[typeddict-item]
-    if "associationId" in data:
+    if data.get("associationId") is not None:
         out["association_id"] = data["associationId"]
-    if "associationArn" in data:
+    if data.get("associationArn") is not None:
         out["association_arn"] = data["associationArn"]
-    if "sourceApiId" in data:
+    if data.get("sourceApiId") is not None:
         out["source_api_id"] = data["sourceApiId"]
-    if "sourceApiArn" in data:
+    if data.get("sourceApiArn") is not None:
         out["source_api_arn"] = data["sourceApiArn"]
-    if "mergedApiArn" in data:
+    if data.get("mergedApiArn") is not None:
         out["merged_api_arn"] = data["mergedApiArn"]
-    if "mergedApiId" in data:
+    if data.get("mergedApiId") is not None:
         out["merged_api_id"] = data["mergedApiId"]
-    if "description" in data:
+    if data.get("description") is not None:
         out["description"] = data["description"]
-    if "sourceApiAssociationConfig" in data:
+    if data.get("sourceApiAssociationConfig") is not None:
         import capo_appsync.types.source_api_association_config
 
         out["source_api_association_config"] = (
@@ -112,7 +112,7 @@ def deserialize_json(data: dict) -> SourceApiAssociation:
                 data["sourceApiAssociationConfig"]
             )
         )
-    if "sourceApiAssociationStatus" in data:
+    if data.get("sourceApiAssociationStatus") is not None:
         import capo_appsync.types.source_api_association_status
 
         out["source_api_association_status"] = (
@@ -120,11 +120,11 @@ def deserialize_json(data: dict) -> SourceApiAssociation:
                 data["sourceApiAssociationStatus"]
             )
         )
-    if "sourceApiAssociationStatusDetail" in data:
+    if data.get("sourceApiAssociationStatusDetail") is not None:
         out["source_api_association_status_detail"] = data[
             "sourceApiAssociationStatusDetail"
         ]
-    if "lastSuccessfulMergeDate" in data:
+    if data.get("lastSuccessfulMergeDate") is not None:
         import capo_appsync.types.date
 
         out["last_successful_merge_date"] = capo_appsync.types.date.deserialize_json(

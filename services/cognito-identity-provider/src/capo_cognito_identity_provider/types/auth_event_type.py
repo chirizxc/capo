@@ -112,9 +112,9 @@ def serialize_aws_json_1_1(value: AuthEventType) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> AuthEventType:
     out: AuthEventType = {}  # type: ignore[typeddict-item]
-    if "EventId" in data:
+    if data.get("EventId") is not None:
         out["event_id"] = data["EventId"]
-    if "EventType" in data:
+    if data.get("EventType") is not None:
         import capo_cognito_identity_provider.types.event_type
 
         out["event_type"] = (
@@ -122,7 +122,7 @@ def deserialize_aws_json_1_1(data: dict) -> AuthEventType:
                 data["EventType"]
             )
         )
-    if "CreationDate" in data:
+    if data.get("CreationDate") is not None:
         import capo_cognito_identity_provider.types.date_type
 
         out["creation_date"] = (
@@ -130,7 +130,7 @@ def deserialize_aws_json_1_1(data: dict) -> AuthEventType:
                 data["CreationDate"]
             )
         )
-    if "EventResponse" in data:
+    if data.get("EventResponse") is not None:
         import capo_cognito_identity_provider.types.event_response_type
 
         out["event_response"] = (
@@ -138,7 +138,7 @@ def deserialize_aws_json_1_1(data: dict) -> AuthEventType:
                 data["EventResponse"]
             )
         )
-    if "EventRisk" in data:
+    if data.get("EventRisk") is not None:
         import capo_cognito_identity_provider.types.event_risk_type
 
         out["event_risk"] = (
@@ -146,7 +146,7 @@ def deserialize_aws_json_1_1(data: dict) -> AuthEventType:
                 data["EventRisk"]
             )
         )
-    if "ChallengeResponses" in data:
+    if data.get("ChallengeResponses") is not None:
         import capo_cognito_identity_provider.types.challenge_response_list_type
 
         out["challenge_responses"] = (
@@ -154,7 +154,7 @@ def deserialize_aws_json_1_1(data: dict) -> AuthEventType:
                 data["ChallengeResponses"]
             )
         )
-    if "EventContextData" in data:
+    if data.get("EventContextData") is not None:
         import capo_cognito_identity_provider.types.event_context_data_type
 
         out["event_context_data"] = (
@@ -162,7 +162,7 @@ def deserialize_aws_json_1_1(data: dict) -> AuthEventType:
                 data["EventContextData"]
             )
         )
-    if "EventFeedback" in data:
+    if data.get("EventFeedback") is not None:
         import capo_cognito_identity_provider.types.event_feedback_type
 
         out["event_feedback"] = (

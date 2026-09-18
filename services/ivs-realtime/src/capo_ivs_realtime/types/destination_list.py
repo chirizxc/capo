@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> DestinationList:
 
     out: DestinationList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_ivs_realtime.types.destination.deserialize_json(item))
     return out

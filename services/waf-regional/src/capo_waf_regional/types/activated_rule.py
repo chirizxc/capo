@@ -70,21 +70,21 @@ def serialize_aws_json_1_1(value: ActivatedRule) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ActivatedRule:
     out: ActivatedRule = {}  # type: ignore[typeddict-item]
-    if "Priority" in data:
+    if data.get("Priority") is not None:
         out["priority"] = data["Priority"]
     else:
         raise DeserializationError("ActivatedRule.priority required")
-    if "RuleId" in data:
+    if data.get("RuleId") is not None:
         out["rule_id"] = data["RuleId"]
     else:
         raise DeserializationError("ActivatedRule.rule_id required")
-    if "Action" in data:
+    if data.get("Action") is not None:
         import capo_waf_regional.types.waf_action
 
         out["action"] = capo_waf_regional.types.waf_action.deserialize_aws_json_1_1(
             data["Action"]
         )
-    if "OverrideAction" in data:
+    if data.get("OverrideAction") is not None:
         import capo_waf_regional.types.waf_override_action
 
         out["override_action"] = (
@@ -92,13 +92,13 @@ def deserialize_aws_json_1_1(data: dict) -> ActivatedRule:
                 data["OverrideAction"]
             )
         )
-    if "Type" in data:
+    if data.get("Type") is not None:
         import capo_waf_regional.types.waf_rule_type
 
         out["type"] = capo_waf_regional.types.waf_rule_type.deserialize_aws_json_1_1(
             data["Type"]
         )
-    if "ExcludedRules" in data:
+    if data.get("ExcludedRules") is not None:
         import capo_waf_regional.types.excluded_rules
 
         out["excluded_rules"] = (

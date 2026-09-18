@@ -44,7 +44,7 @@ def serialize_aws_json_1_1(value: DestinationBackup) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DestinationBackup:
     out: DestinationBackup = {}  # type: ignore[typeddict-item]
-    if "CreateTimestamp" in data:
+    if data.get("CreateTimestamp") is not None:
         import capo_cloudhsm_v2.types.timestamp
 
         out["create_timestamp"] = (
@@ -52,10 +52,10 @@ def deserialize_aws_json_1_1(data: dict) -> DestinationBackup:
                 data["CreateTimestamp"]
             )
         )
-    if "SourceRegion" in data:
+    if data.get("SourceRegion") is not None:
         out["source_region"] = data["SourceRegion"]
-    if "SourceBackup" in data:
+    if data.get("SourceBackup") is not None:
         out["source_backup"] = data["SourceBackup"]
-    if "SourceCluster" in data:
+    if data.get("SourceCluster") is not None:
         out["source_cluster"] = data["SourceCluster"]
     return out

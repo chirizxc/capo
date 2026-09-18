@@ -36,13 +36,13 @@ def serialize_json(value: SlotTypeValue) -> dict:
 
 def deserialize_json(data: dict) -> SlotTypeValue:
     out: SlotTypeValue = {}  # type: ignore[typeddict-item]
-    if "sampleValue" in data:
+    if data.get("sampleValue") is not None:
         import capo_lex_models_v2.types.sample_value
 
         out["sample_value"] = capo_lex_models_v2.types.sample_value.deserialize_json(
             data["sampleValue"]
         )
-    if "synonyms" in data:
+    if data.get("synonyms") is not None:
         import capo_lex_models_v2.types.synonym_list
 
         out["synonyms"] = capo_lex_models_v2.types.synonym_list.deserialize_json(

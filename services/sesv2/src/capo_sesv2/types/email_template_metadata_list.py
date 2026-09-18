@@ -25,5 +25,7 @@ def deserialize_json(data: list) -> EmailTemplateMetadataList:
 
     out: EmailTemplateMetadataList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_sesv2.types.email_template_metadata.deserialize_json(item))
     return out

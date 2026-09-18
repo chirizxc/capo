@@ -27,7 +27,7 @@ def serialize_json(value: DetachPolicyRequest) -> dict:
 
 def deserialize_json(data: dict) -> DetachPolicyRequest:
     out: DetachPolicyRequest = {}  # type: ignore[typeddict-item]
-    if "target" in data:
+    if data.get("target") is not None:
         out["target"] = data["target"]
     else:
         raise DeserializationError("DetachPolicyRequest.target required")

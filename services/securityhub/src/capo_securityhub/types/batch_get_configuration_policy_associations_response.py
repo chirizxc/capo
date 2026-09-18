@@ -44,7 +44,7 @@ def serialize_json(value: BatchGetConfigurationPolicyAssociationsResponse) -> di
 
 def deserialize_json(data: dict) -> BatchGetConfigurationPolicyAssociationsResponse:
     out: BatchGetConfigurationPolicyAssociationsResponse = {}  # type: ignore[typeddict-item]
-    if "ConfigurationPolicyAssociations" in data:
+    if data.get("ConfigurationPolicyAssociations") is not None:
         import capo_securityhub.types.configuration_policy_association_list
 
         out["configuration_policy_associations"] = (
@@ -52,7 +52,7 @@ def deserialize_json(data: dict) -> BatchGetConfigurationPolicyAssociationsRespo
                 data["ConfigurationPolicyAssociations"]
             )
         )
-    if "UnprocessedConfigurationPolicyAssociations" in data:
+    if data.get("UnprocessedConfigurationPolicyAssociations") is not None:
         import capo_securityhub.types.unprocessed_configuration_policy_association_list
 
         out["unprocessed_configuration_policy_associations"] = (

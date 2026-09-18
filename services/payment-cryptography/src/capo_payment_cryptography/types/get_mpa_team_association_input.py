@@ -24,7 +24,7 @@ def serialize_aws_json_1_0(value: GetMpaTeamAssociationInput) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> GetMpaTeamAssociationInput:
     out: GetMpaTeamAssociationInput = {}  # type: ignore[typeddict-item]
-    if "Action" in data:
+    if data.get("Action") is not None:
         out["action"] = data["Action"]
     else:
         raise DeserializationError("GetMpaTeamAssociationInput.action required")

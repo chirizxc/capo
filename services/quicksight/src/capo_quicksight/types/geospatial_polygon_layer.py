@@ -28,7 +28,7 @@ def serialize_json(value: GeospatialPolygonLayer) -> dict:
 
 def deserialize_json(data: dict) -> GeospatialPolygonLayer:
     out: GeospatialPolygonLayer = {}  # type: ignore[typeddict-item]
-    if "Style" in data:
+    if data.get("Style") is not None:
         import capo_quicksight.types.geospatial_polygon_style
 
         out["style"] = capo_quicksight.types.geospatial_polygon_style.deserialize_json(

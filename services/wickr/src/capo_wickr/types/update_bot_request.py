@@ -42,12 +42,12 @@ def serialize_json(value: UpdateBotRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateBotRequest:
     out: UpdateBotRequest = {}  # type: ignore[typeddict-item]
-    if "displayName" in data:
+    if data.get("displayName") is not None:
         out["display_name"] = data["displayName"]
-    if "groupId" in data:
+    if data.get("groupId") is not None:
         out["group_id"] = data["groupId"]
-    if "challenge" in data:
+    if data.get("challenge") is not None:
         out["challenge"] = data["challenge"]
-    if "suspend" in data:
+    if data.get("suspend") is not None:
         out["suspend"] = data["suspend"]
     return out

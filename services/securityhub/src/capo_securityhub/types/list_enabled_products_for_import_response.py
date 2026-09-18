@@ -36,7 +36,7 @@ def serialize_json(value: ListEnabledProductsForImportResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListEnabledProductsForImportResponse:
     out: ListEnabledProductsForImportResponse = {}  # type: ignore[typeddict-item]
-    if "ProductSubscriptions" in data:
+    if data.get("ProductSubscriptions") is not None:
         import capo_securityhub.types.product_subscription_arn_list
 
         out["product_subscriptions"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListEnabledProductsForImportResponse:
                 data["ProductSubscriptions"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

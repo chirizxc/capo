@@ -39,11 +39,11 @@ def serialize_aws_json_1_0(value: PointInTimeRecoverySummary) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> PointInTimeRecoverySummary:
     out: PointInTimeRecoverySummary = {}  # type: ignore[typeddict-item]
-    if "status" in data:
+    if data.get("status") is not None:
         out["status"] = data["status"]
     else:
         raise DeserializationError("PointInTimeRecoverySummary.status required")
-    if "earliestRestorableTimestamp" in data:
+    if data.get("earliestRestorableTimestamp") is not None:
         import capo_keyspaces.types.timestamp
 
         out["earliest_restorable_timestamp"] = (

@@ -25,6 +25,8 @@ def deserialize_json(data: list) -> ServiceJobRecentPreemptedAttemptList:
 
     out: ServiceJobRecentPreemptedAttemptList = []
     for item in data:
+        if item is None:
+            continue
         out.append(
             capo_batch.types.service_job_preempted_attempt.deserialize_json(item)
         )

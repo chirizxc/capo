@@ -28,13 +28,13 @@ def serialize_json(value: SnowflakeConnectorProfileCredentials) -> dict:
 
 def deserialize_json(data: dict) -> SnowflakeConnectorProfileCredentials:
     out: SnowflakeConnectorProfileCredentials = {}  # type: ignore[typeddict-item]
-    if "username" in data:
+    if data.get("username") is not None:
         out["username"] = data["username"]
     else:
         raise DeserializationError(
             "SnowflakeConnectorProfileCredentials.username required"
         )
-    if "password" in data:
+    if data.get("password") is not None:
         out["password"] = data["password"]
     else:
         raise DeserializationError(

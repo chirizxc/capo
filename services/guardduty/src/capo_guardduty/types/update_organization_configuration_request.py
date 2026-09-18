@@ -65,9 +65,9 @@ def serialize_json(value: UpdateOrganizationConfigurationRequest) -> dict:
 
 def deserialize_json(data: dict) -> UpdateOrganizationConfigurationRequest:
     out: UpdateOrganizationConfigurationRequest = {}  # type: ignore[typeddict-item]
-    if "autoEnable" in data:
+    if data.get("autoEnable") is not None:
         out["auto_enable"] = data["autoEnable"]
-    if "dataSources" in data:
+    if data.get("dataSources") is not None:
         import capo_guardduty.types.organization_data_source_configurations
 
         out["data_sources"] = (
@@ -75,7 +75,7 @@ def deserialize_json(data: dict) -> UpdateOrganizationConfigurationRequest:
                 data["dataSources"]
             )
         )
-    if "features" in data:
+    if data.get("features") is not None:
         import capo_guardduty.types.organization_features_configurations
 
         out["features"] = (
@@ -83,7 +83,7 @@ def deserialize_json(data: dict) -> UpdateOrganizationConfigurationRequest:
                 data["features"]
             )
         )
-    if "autoEnableOrganizationMembers" in data:
+    if data.get("autoEnableOrganizationMembers") is not None:
         import capo_guardduty.types.auto_enable_members
 
         out["auto_enable_organization_members"] = (

@@ -44,19 +44,19 @@ def serialize_aws_json_1_1(value: CopySnapshotRequest) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CopySnapshotRequest:
     out: CopySnapshotRequest = {}  # type: ignore[typeddict-item]
-    if "SourceSnapshotName" in data:
+    if data.get("SourceSnapshotName") is not None:
         out["source_snapshot_name"] = data["SourceSnapshotName"]
     else:
         raise DeserializationError("CopySnapshotRequest.source_snapshot_name required")
-    if "TargetSnapshotName" in data:
+    if data.get("TargetSnapshotName") is not None:
         out["target_snapshot_name"] = data["TargetSnapshotName"]
     else:
         raise DeserializationError("CopySnapshotRequest.target_snapshot_name required")
-    if "TargetBucket" in data:
+    if data.get("TargetBucket") is not None:
         out["target_bucket"] = data["TargetBucket"]
-    if "KmsKeyId" in data:
+    if data.get("KmsKeyId") is not None:
         out["kms_key_id"] = data["KmsKeyId"]
-    if "Tags" in data:
+    if data.get("Tags") is not None:
         import capo_memorydb.types.tag_list
 
         out["tags"] = capo_memorydb.types.tag_list.deserialize_aws_json_1_1(

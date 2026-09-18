@@ -121,13 +121,13 @@ def serialize_aws_json_1_1(value: DescribeAlgorithmOutput) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DescribeAlgorithmOutput:
     out: DescribeAlgorithmOutput = {}  # type: ignore[typeddict-item]
-    if "AlgorithmName" in data:
+    if data.get("AlgorithmName") is not None:
         out["algorithm_name"] = data["AlgorithmName"]
-    if "AlgorithmArn" in data:
+    if data.get("AlgorithmArn") is not None:
         out["algorithm_arn"] = data["AlgorithmArn"]
-    if "AlgorithmDescription" in data:
+    if data.get("AlgorithmDescription") is not None:
         out["algorithm_description"] = data["AlgorithmDescription"]
-    if "CreationTime" in data:
+    if data.get("CreationTime") is not None:
         import capo_sagemaker.types.creation_time
 
         out["creation_time"] = (
@@ -135,7 +135,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAlgorithmOutput:
                 data["CreationTime"]
             )
         )
-    if "TrainingSpecification" in data:
+    if data.get("TrainingSpecification") is not None:
         import capo_sagemaker.types.training_specification
 
         out["training_specification"] = (
@@ -143,7 +143,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAlgorithmOutput:
                 data["TrainingSpecification"]
             )
         )
-    if "InferenceSpecification" in data:
+    if data.get("InferenceSpecification") is not None:
         import capo_sagemaker.types.inference_specification
 
         out["inference_specification"] = (
@@ -151,7 +151,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAlgorithmOutput:
                 data["InferenceSpecification"]
             )
         )
-    if "ValidationSpecification" in data:
+    if data.get("ValidationSpecification") is not None:
         import capo_sagemaker.types.algorithm_validation_specification
 
         out["validation_specification"] = (
@@ -159,7 +159,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAlgorithmOutput:
                 data["ValidationSpecification"]
             )
         )
-    if "AlgorithmStatus" in data:
+    if data.get("AlgorithmStatus") is not None:
         import capo_sagemaker.types.algorithm_status
 
         out["algorithm_status"] = (
@@ -167,7 +167,7 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAlgorithmOutput:
                 data["AlgorithmStatus"]
             )
         )
-    if "AlgorithmStatusDetails" in data:
+    if data.get("AlgorithmStatusDetails") is not None:
         import capo_sagemaker.types.algorithm_status_details
 
         out["algorithm_status_details"] = (
@@ -175,8 +175,8 @@ def deserialize_aws_json_1_1(data: dict) -> DescribeAlgorithmOutput:
                 data["AlgorithmStatusDetails"]
             )
         )
-    if "ProductId" in data:
+    if data.get("ProductId") is not None:
         out["product_id"] = data["ProductId"]
-    if "CertifyForMarketplace" in data:
+    if data.get("CertifyForMarketplace") is not None:
         out["certify_for_marketplace"] = data["CertifyForMarketplace"]
     return out

@@ -61,22 +61,22 @@ def serialize_aws_json_1_0(value: UpdatePoolRequest) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> UpdatePoolRequest:
     out: UpdatePoolRequest = {}  # type: ignore[typeddict-item]
-    if "PoolId" in data:
+    if data.get("PoolId") is not None:
         out["pool_id"] = data["PoolId"]
     else:
         raise DeserializationError("UpdatePoolRequest.pool_id required")
-    if "TwoWayEnabled" in data:
+    if data.get("TwoWayEnabled") is not None:
         out["two_way_enabled"] = data["TwoWayEnabled"]
-    if "TwoWayChannelArn" in data:
+    if data.get("TwoWayChannelArn") is not None:
         out["two_way_channel_arn"] = data["TwoWayChannelArn"]
-    if "TwoWayChannelRole" in data:
+    if data.get("TwoWayChannelRole") is not None:
         out["two_way_channel_role"] = data["TwoWayChannelRole"]
-    if "SelfManagedOptOutsEnabled" in data:
+    if data.get("SelfManagedOptOutsEnabled") is not None:
         out["self_managed_opt_outs_enabled"] = data["SelfManagedOptOutsEnabled"]
-    if "OptOutListName" in data:
+    if data.get("OptOutListName") is not None:
         out["opt_out_list_name"] = data["OptOutListName"]
-    if "SharedRoutesEnabled" in data:
+    if data.get("SharedRoutesEnabled") is not None:
         out["shared_routes_enabled"] = data["SharedRoutesEnabled"]
-    if "DeletionProtectionEnabled" in data:
+    if data.get("DeletionProtectionEnabled") is not None:
         out["deletion_protection_enabled"] = data["DeletionProtectionEnabled"]
     return out

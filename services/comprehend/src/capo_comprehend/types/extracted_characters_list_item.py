@@ -27,8 +27,8 @@ def serialize_aws_json_1_1(value: ExtractedCharactersListItem) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> ExtractedCharactersListItem:
     out: ExtractedCharactersListItem = {}  # type: ignore[typeddict-item]
-    if "Page" in data:
+    if data.get("Page") is not None:
         out["page"] = data["Page"]
-    if "Count" in data:
+    if data.get("Count") is not None:
         out["count"] = data["Count"]
     return out

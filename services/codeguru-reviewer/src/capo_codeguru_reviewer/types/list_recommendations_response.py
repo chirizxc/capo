@@ -36,7 +36,7 @@ def serialize_json(value: ListRecommendationsResponse) -> dict:
 
 def deserialize_json(data: dict) -> ListRecommendationsResponse:
     out: ListRecommendationsResponse = {}  # type: ignore[typeddict-item]
-    if "RecommendationSummaries" in data:
+    if data.get("RecommendationSummaries") is not None:
         import capo_codeguru_reviewer.types.recommendation_summaries
 
         out["recommendation_summaries"] = (
@@ -44,6 +44,6 @@ def deserialize_json(data: dict) -> ListRecommendationsResponse:
                 data["RecommendationSummaries"]
             )
         )
-    if "NextToken" in data:
+    if data.get("NextToken") is not None:
         out["next_token"] = data["NextToken"]
     return out

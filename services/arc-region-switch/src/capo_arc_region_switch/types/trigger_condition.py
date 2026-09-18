@@ -33,11 +33,11 @@ def serialize_aws_json_1_0(value: TriggerCondition) -> dict:
 
 def deserialize_aws_json_1_0(data: dict) -> TriggerCondition:
     out: TriggerCondition = {}  # type: ignore[typeddict-item]
-    if "associatedAlarmName" in data:
+    if data.get("associatedAlarmName") is not None:
         out["associated_alarm_name"] = data["associatedAlarmName"]
     else:
         raise DeserializationError("TriggerCondition.associated_alarm_name required")
-    if "condition" in data:
+    if data.get("condition") is not None:
         import capo_arc_region_switch.types.alarm_condition
 
         out["condition"] = (

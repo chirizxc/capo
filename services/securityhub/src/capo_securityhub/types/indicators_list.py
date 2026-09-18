@@ -23,5 +23,7 @@ def deserialize_json(data: list) -> IndicatorsList:
 
     out: IndicatorsList = []
     for item in data:
+        if item is None:
+            continue
         out.append(capo_securityhub.types.indicator.deserialize_json(item))
     return out

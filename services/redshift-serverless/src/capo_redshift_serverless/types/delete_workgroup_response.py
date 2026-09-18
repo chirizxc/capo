@@ -28,7 +28,7 @@ def serialize_aws_json_1_1(value: DeleteWorkgroupResponse) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> DeleteWorkgroupResponse:
     out: DeleteWorkgroupResponse = {}  # type: ignore[typeddict-item]
-    if "workgroup" in data:
+    if data.get("workgroup") is not None:
         import capo_redshift_serverless.types.workgroup
 
         out["workgroup"] = (

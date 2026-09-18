@@ -23,6 +23,6 @@ def serialize_json(value: StartDomainMaintenanceResponse) -> dict:
 
 def deserialize_json(data: dict) -> StartDomainMaintenanceResponse:
     out: StartDomainMaintenanceResponse = {}  # type: ignore[typeddict-item]
-    if "MaintenanceId" in data:
+    if data.get("MaintenanceId") is not None:
         out["maintenance_id"] = data["MaintenanceId"]
     return out

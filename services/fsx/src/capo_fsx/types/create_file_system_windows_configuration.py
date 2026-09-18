@@ -134,9 +134,9 @@ def serialize_aws_json_1_1(value: CreateFileSystemWindowsConfiguration) -> dict:
 
 def deserialize_aws_json_1_1(data: dict) -> CreateFileSystemWindowsConfiguration:
     out: CreateFileSystemWindowsConfiguration = {}  # type: ignore[typeddict-item]
-    if "ActiveDirectoryId" in data:
+    if data.get("ActiveDirectoryId") is not None:
         out["active_directory_id"] = data["ActiveDirectoryId"]
-    if "SelfManagedActiveDirectoryConfiguration" in data:
+    if data.get("SelfManagedActiveDirectoryConfiguration") is not None:
         import capo_fsx.types.self_managed_active_directory_configuration
 
         out["self_managed_active_directory_configuration"] = (
@@ -144,7 +144,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateFileSystemWindowsConfiguration
                 data["SelfManagedActiveDirectoryConfiguration"]
             )
         )
-    if "DeploymentType" in data:
+    if data.get("DeploymentType") is not None:
         import capo_fsx.types.windows_deployment_type
 
         out["deployment_type"] = (
@@ -152,25 +152,25 @@ def deserialize_aws_json_1_1(data: dict) -> CreateFileSystemWindowsConfiguration
                 data["DeploymentType"]
             )
         )
-    if "PreferredSubnetId" in data:
+    if data.get("PreferredSubnetId") is not None:
         out["preferred_subnet_id"] = data["PreferredSubnetId"]
-    if "ThroughputCapacity" in data:
+    if data.get("ThroughputCapacity") is not None:
         out["throughput_capacity"] = data["ThroughputCapacity"]
-    if "WeeklyMaintenanceStartTime" in data:
+    if data.get("WeeklyMaintenanceStartTime") is not None:
         out["weekly_maintenance_start_time"] = data["WeeklyMaintenanceStartTime"]
-    if "DailyAutomaticBackupStartTime" in data:
+    if data.get("DailyAutomaticBackupStartTime") is not None:
         out["daily_automatic_backup_start_time"] = data["DailyAutomaticBackupStartTime"]
-    if "AutomaticBackupRetentionDays" in data:
+    if data.get("AutomaticBackupRetentionDays") is not None:
         out["automatic_backup_retention_days"] = data["AutomaticBackupRetentionDays"]
-    if "CopyTagsToBackups" in data:
+    if data.get("CopyTagsToBackups") is not None:
         out["copy_tags_to_backups"] = data["CopyTagsToBackups"]
-    if "Aliases" in data:
+    if data.get("Aliases") is not None:
         import capo_fsx.types.alternate_dns_names
 
         out["aliases"] = capo_fsx.types.alternate_dns_names.deserialize_aws_json_1_1(
             data["Aliases"]
         )
-    if "AuditLogConfiguration" in data:
+    if data.get("AuditLogConfiguration") is not None:
         import capo_fsx.types.windows_audit_log_create_configuration
 
         out["audit_log_configuration"] = (
@@ -178,7 +178,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateFileSystemWindowsConfiguration
                 data["AuditLogConfiguration"]
             )
         )
-    if "DiskIopsConfiguration" in data:
+    if data.get("DiskIopsConfiguration") is not None:
         import capo_fsx.types.disk_iops_configuration
 
         out["disk_iops_configuration"] = (
@@ -186,7 +186,7 @@ def deserialize_aws_json_1_1(data: dict) -> CreateFileSystemWindowsConfiguration
                 data["DiskIopsConfiguration"]
             )
         )
-    if "FsrmConfiguration" in data:
+    if data.get("FsrmConfiguration") is not None:
         import capo_fsx.types.windows_fsrm_configuration
 
         out["fsrm_configuration"] = (
